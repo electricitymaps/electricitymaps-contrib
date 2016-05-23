@@ -26,15 +26,21 @@ def fetch_DK():
     root = ET.fromstring(response.content)
     data = root[0][0][0][0][0][0].attrib
 
-    return {
+    obj = {
         'countryCode': COUNTRY_CODE,
         'datetime': arrow.get(arrow.get(data['Modified']).datetime, 
             'Europe/Copenhagen').datetime,
-        'co2': float(data['_x0043_O2']),
-        'consumption': float(data['Elforbrug']),
-        'windProduction': float(data['Vindmoeller']),
-        'solarProduction': float(data['Solcelle_Produktion'])
+        'co2': float(data['_x0043_O2'])
+    }
+    obj['consumption'] = {
+        'other': float(data['Elforbrug'])
+    }
+    obj['production'] = {
+        'wind': float(data['Vindmoeller']),
+        'solar': float(data['Solcelle_Produktion'])
         #'central': float(data['Centrale_kraftvaerker']),
         #'local_chp': float(data['Decentrale_kraftvaerker']),
         #'import': float(data['Udveksling'])
     }
+
+    return obj
