@@ -135,21 +135,19 @@
 
                 var countries = {};
                 countries['BE'] = topo[4];
-                countries['SE'] = topo[48];
                 countries['CH'] = topo[8];
                 countries['DE'] = topo[10];
                 countries['DK'] = topo[11];
                 countries['ES'] = topo[12];
                 countries['FR'] = topo[15];
                 countries['UK'] = topo[17];
+                countries['SE'] = topo[48];
 
                 // Add empty fields
                 for (let countryCode of d3.keys(countries)) {
                     countries[countryCode].meta = {};
                     countries[countryCode].meta.capacity = {}
                 }
-
-                // TODO: index by country code
 
                 // DK
                 countries['DK'].meta = {
