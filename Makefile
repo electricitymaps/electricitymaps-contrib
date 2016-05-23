@@ -6,10 +6,10 @@ server:
 	foreman start
 
 api:
-	python server/server.py
+	python -u server/server.py
 
 feeder:
-	python server/feeder.py
+	python -u server/feeder.py
 
 db:
 	mongod

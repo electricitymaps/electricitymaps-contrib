@@ -1,19 +1,24 @@
 import pymongo
 import schedule, time
 
-from parsers.dk import fetch_dk
+from parsers.DK import fetch_DK
 
-parsers = [fetch_dk]
+INTERVAL_SECONDS = 60
+
+parsers = [fetch_DK]
 
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['electricity']
 col = db['realtime']
 
 def fetch_all():
-    for parser in parsers: col.insert_one(parser())
+    for parser in parsers: 
+        obj = parser()
+        print 'INSERT %s' % obj
+        col.insert_one(obj)
 
-schedule.every(1).minutes.do(fetch_all)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_all)
 
 while True:
     schedule.run_pending()
-    time.sleep(1)
+    time.sleep(INTERVAL_SECONDS)

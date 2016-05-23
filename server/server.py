@@ -22,10 +22,15 @@ def bson_measurement_to_json(obj):
 
 @app.route('/realtime', methods=['GET', 'OPTIONS'])
 def realtime_GET():
-    obj = col.find_one(sort=[('datetime', pymongo.DESCENDING)])
+    objs = col.aggregate([
+        {'$group': {'_id': '$countryCode', 'lastDocument': {'$last': '$$CURRENT'}}}
+    ])
+    objs = map(bson_measurement_to_json,
+        map(lambda o: o['lastDocument'], list(objs)))
+    data = {obj['countryCode']: obj for obj in objs if 'countryCode' in obj}
     return flask.jsonify({
         'status': 'ok',
-        'data': {'DK': bson_measurement_to_json(obj)}
+        'data': data
     })
 
 @app.route('/data/<path:path>')
