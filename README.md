@@ -4,6 +4,7 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 ## Real-time data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix)
+- Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - UK: [ELEXON](http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable)
 
 ## CO2 calculations

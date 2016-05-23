@@ -64,6 +64,7 @@
             'coal': '#ac8c35',
             'oil': '#8356a2',
             'nuclear': '#f5b300',
+            'gas': '#f30a0a',
             'other': 'gray'
         };
         var productionModes = d3.keys(productionColors);
@@ -170,6 +171,7 @@
                     for (let k of d3.keys(obj))
                         countries[countryCode].meta[k] = obj[k];
                     // Add extra data
+                    // TODO: Calculate co2 in the browser
                     countries[countryCode].meta.maxCapacity = 
                         d3.max(d3.values(countries[countryCode].meta.capacity));
                     countries[countryCode].meta.maxProduction = 
