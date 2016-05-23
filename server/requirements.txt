@@ -1,0 +1,2 @@
+pymongo==3.2.2
+schedule==0.3.2Flask==0.10.1Flask-Cors==2.1.2

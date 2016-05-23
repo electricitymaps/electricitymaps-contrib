@@ -30,6 +30,7 @@
 <body>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="http://d3js.org/topojson.v0.min.js"></script>
     <svg class="map"></svg>
     <div class="panel-container">
@@ -119,7 +120,7 @@
                 .attr('y', panelPadding + 6 + i * (productionBarMarginX + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
         });
 
-        d3.json('europe.topo.json', function(err, data) {
+        var cb = function(err, data, realtime) {
             var countries = topojson.object(data, data.objects.europe).geometries;
 
             // TODO: index by country code
@@ -146,6 +147,11 @@
                     'SE': 738 + 71
                 }
             };
+            // DEBUG: OVERRIDE WITH REALTIME DATA
+            countries[11].meta.co2 = realtime.data.DK.co2;
+            countries[11].meta.windProduction = realtime.data.DK.windProduction;
+            countries[11].meta.solarProduction = realtime.data.DK.solarProduction;
+            console.log(realtime.data.DK.datetime);
 
             land.selectAll('.country')
                 .data(countries)
@@ -177,7 +183,12 @@
                                 .text(mode)
                         });
                     });
-        });
+        };
+
+        queue()
+            .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
+            .defer(d3.json, 'http://localhost:8000/realtime')
+            .await(cb);
     </script>   
 </body>
 </html>
