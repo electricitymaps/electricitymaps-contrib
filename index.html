@@ -27,8 +27,7 @@
         position: absolute;
         top: 0px;
         margin: 10px;
-        background-color: white;
-        opacity: 0.6;
+        background-color: rgba(255, 255, 255, 0.9);
     }
 </style>
 </head>
@@ -49,12 +48,12 @@
         }
 
         var panelHeight = '300px',
-            panelWidth = '200px',
+            panelWidth = '350px',
             panelPadding = 10;
 
-        var productionBarHeight = 6,
-            productionBarMaxWidth = 150;
-            productionBarMarginX = 5;
+        var productionBarHeight = 10,
+            productionBarMaxWidth = 250;
+            productionBarMarginY = 10;
 
         var productionColors = {
             'wind': '#74cdb9',
@@ -117,17 +116,17 @@
                     .attr('height', productionBarHeight)
                     .attr('fill', productionColors[mode]) // TODO: Replace by css?
                     .attr('fill-opacity', 0.1)
-                    .attr('y', panelPadding + i * (productionBarMarginX + productionBarHeight))
+                    .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                     .attr('x', panelPadding + prefixTextMaxWidth)
                 productionRects[mode] = panel.append('rect')
                     .attr('height', productionBarHeight)
                     .attr('fill', productionColors[mode])
-                    .attr('y', panelPadding + i * (productionBarMarginX + productionBarHeight))
+                    .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                     .attr('x', panelPadding + prefixTextMaxWidth)
                 productionPrefixText[mode] = panel.append('text')
                     .attr('font-size', 10)
                     .attr('x', panelPadding)
-                    .attr('y', panelPadding + 6 + i * (productionBarMarginX + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
+                    .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
             });
 
             let cb = function(err, data, realtime) {
@@ -163,6 +162,15 @@
                     wind: 5070,
                     solar: 790,   
                 };
+                countries['FR'].meta.capacity = {
+                    nuclear: 63130,
+                    oil: 6670,
+                    coal: 2930,
+                    hydro: 10326 + 8204 + 4965,
+                    gas: 6121,
+                    wind: 1426 + 10,
+                    solar: 396.6
+                }
 
                 // Populate with realtime data
                 for (let countryCode of d3.keys(realtime.data)) {

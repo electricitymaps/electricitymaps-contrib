@@ -16,4 +16,5 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
+- France: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
 - Germany: [Fraunhofer ISE](https://www.energy-charts.de/power_inst.htm)
