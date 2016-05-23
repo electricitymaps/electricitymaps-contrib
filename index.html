@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <head>
 <style>
-    body {    
+    html, body {    
         margin: 0 !important;
         padding: 0 !important;
+        height: 100%;
     }
     .land {
         fill: #ccc;
@@ -13,6 +14,10 @@
     }
     .sea {
         background-color: #6f95b1;
+    }
+    .map {
+        width: 100%;
+        height: 100%;
     }
     .graticule {
         stroke: #185c96;
@@ -43,10 +48,6 @@
             'selectedCountry': null
         }
 
-        // Constants
-        var width = '100%',
-            height = '500px';
-
         var panelHeight = '300px',
             panelWidth = '200px',
             panelPadding = 10;
@@ -59,9 +60,7 @@
         var productionColors = {
             'wind': 'blue',
             'solar': 'orange'
-        }
-
-        // TODO: Put as much as possible in CSS
+        };
 
         // Scales
         var co2scale = d3.scale.linear()
@@ -70,125 +69,139 @@
 
         var productionScale = d3.scale.linear()
             .range([0, productionBarMaxWidth]);
-            
-        // Set up map
-        var projection = d3.geo.mercator()
-            .center([17, 53])
-            .scale(550);
-            
-        var path = d3.geo.path()
-            .projection(projection);
-            
-        var graticule = d3.geo.graticule()
-            .step([5, 5]);
-            
-        var map = d3.select('.map')
-            .attr('width', width)
-            .attr('height', height)
-            .attr('class', 'sea');
-            
-        map.append('path')
-            .datum(graticule)
-            .attr('class', 'graticule')
-            .attr('d', path);
-            
-        var land = map.append('g');
 
-        var panel = d3.select('.panel')
-            .attr('width', panelWidth)
-            .attr('height', panelHeight);
+        var drawMap = function()  {
+                
+            // Set up map
+            var computedMapWidth = d3.select('.map').node().getBoundingClientRect().width,
+                computedMapHeight = d3.select('.map').node().getBoundingClientRect().height;
 
-        var productionRects = {};
-        var capacityRects = {};
-        var productionPrefixText = {};
-        var prefixTextMaxWidth = 30;
-        productionModes.forEach(function (mode, i) {
-            capacityRects[mode] = panel.append('rect')
-                .attr('height', productionBarHeight)
-                .attr('fill', productionColors[mode]) // TODO: Replace by css?
-                .attr('fill-opacity', 0.1)
-                .attr('y', panelPadding + i * (productionBarMarginX + productionBarHeight))
-                .attr('x', panelPadding + prefixTextMaxWidth)
-            productionRects[mode] = panel.append('rect')
-                .attr('height', productionBarHeight)
-                .attr('fill', productionColors[mode])
-                .attr('y', panelPadding + i * (productionBarMarginX + productionBarHeight))
-                .attr('x', panelPadding + prefixTextMaxWidth)
-            productionPrefixText[mode] = panel.append('text')
-                .attr('font-size', 10)
-                .attr('x', panelPadding)
-                .attr('y', panelPadding + 6 + i * (productionBarMarginX + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
-        });
+            var projection = d3.geo.mercator()
+                .center([3, 48])
+                .translate([computedMapWidth / 2, computedMapHeight / 2])
+                .scale(550);
+                
+            var path = d3.geo.path()
+                .projection(projection);
+                
+            var graticule = d3.geo.graticule()
+                .step([5, 5]);
+                
+            var map = d3.select('.map')
+                .attr('class', 'map sea');
+                
+            map.append('path')
+                .datum(graticule)
+                .attr('class', 'graticule')
+                .attr('d', path);
+                
+            var land = map.append('g');
 
-        var cb = function(err, data, realtime) {
-            var countries = topojson.object(data, data.objects.europe).geometries;
+            var panel = d3.select('.panel')
+                .attr('width', panelWidth)
+                .attr('height', panelHeight);
 
-            // TODO: index by country code
+            var productionRects = {};
+            var capacityRects = {};
+            var productionPrefixText = {};
+            var prefixTextMaxWidth = 30;
+            productionModes.forEach(function (mode, i) {
+                capacityRects[mode] = panel.append('rect')
+                    .attr('height', productionBarHeight)
+                    .attr('fill', productionColors[mode]) // TODO: Replace by css?
+                    .attr('fill-opacity', 0.1)
+                    .attr('y', panelPadding + i * (productionBarMarginX + productionBarHeight))
+                    .attr('x', panelPadding + prefixTextMaxWidth)
+                productionRects[mode] = panel.append('rect')
+                    .attr('height', productionBarHeight)
+                    .attr('fill', productionColors[mode])
+                    .attr('y', panelPadding + i * (productionBarMarginX + productionBarHeight))
+                    .attr('x', panelPadding + prefixTextMaxWidth)
+                productionPrefixText[mode] = panel.append('text')
+                    .attr('font-size', 10)
+                    .attr('x', panelPadding)
+                    .attr('y', panelPadding + 6 + i * (productionBarMarginX + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
+            });
 
-            // FR
-            countries[15].meta = {co2: 50};
-            // SE
-            countries[48].meta = {};
-            // DE
-            countries[10].meta = {};
-            // DK
-            countries[11].meta = {
-                co2: 262,
-                totalCapacity: 5070 + 790,
-                windProduction: 1555,
-                windCapacity: 5070,
-                solarProduction: 113,
-                solarCapacity: 790,
-                imports: {
-                    'SE': 20,
-                    'DE': 1428 + 600
-                },
-                exports: {
-                    'SE': 738 + 71
-                }
-            };
-            // DEBUG: OVERRIDE WITH REALTIME DATA
-            countries[11].meta.co2 = realtime.data.DK.co2;
-            countries[11].meta.windProduction = realtime.data.DK.windProduction;
-            countries[11].meta.solarProduction = realtime.data.DK.solarProduction;
-            console.log(realtime.data.DK.datetime);
+            var cb = function(err, data, realtime) {
+                var countries = topojson.object(data, data.objects.europe).geometries;
 
-            land.selectAll('.country')
-                .data(countries)
-                .enter()
-                    .append('path')
-                    .attr('class', 'country')
-                    .attr('d', path)
-                    .attr('stroke', 'black')
-                    .attr('stroke-width', 0.2)
-                    .attr('fill', function (d, i) { 
-                        return d.meta ? co2scale(d.meta.co2) : 'gray';
-                    })
-                    .on('click', function (d, i) { 
-                        if (!d.meta) return;
-                        productionScale.domain([0, d.meta.totalCapacity]);
-                        productionModes.forEach(function (mode) {
-                            productionRects[mode]
-                                .datum(d.meta)
-                                .attr('width', function (d, i) {
-                                    return productionScale(d[mode + 'Production'])
-                                });
-                            capacityRects[mode]
-                                .datum(d.meta)
-                                .attr('width', function (d, i) {
-                                    return productionScale(d[mode + 'Capacity'])
-                                });
-                            productionPrefixText[mode]
-                                .datum(d.meta)
-                                .text(mode)
+                // TODO: index by country code
+
+                // FR
+                countries[15].meta = {co2: 50};
+                // SE
+                countries[48].meta = {};
+                // DE
+                countries[10].meta = {};
+                // DK
+                countries[11].meta = {
+                    co2: 262,
+                    totalCapacity: 5070 + 790,
+                    windProduction: 1555,
+                    windCapacity: 5070,
+                    solarProduction: 113,
+                    solarCapacity: 790,
+                    imports: {
+                        'SE': 20,
+                        'DE': 1428 + 600
+                    },
+                    exports: {
+                        'SE': 738 + 71
+                    }
+                };
+                // DEBUG: OVERRIDE WITH REALTIME DATA
+                countries[11].meta.co2 = realtime.data.DK.co2;
+                countries[11].meta.windProduction = realtime.data.DK.windProduction;
+                countries[11].meta.solarProduction = realtime.data.DK.solarProduction;
+                console.log(realtime.data.DK.datetime);
+
+                land.selectAll('.country')
+                    .data(countries)
+                    .enter()
+                        .append('path')
+                        .attr('class', 'country')
+                        .attr('d', path)
+                        .attr('stroke', 'black')
+                        .attr('stroke-width', 0.2)
+                        .attr('fill', function (d, i) { 
+                            return d.meta ? co2scale(d.meta.co2) : 'gray';
+                        })
+                        .on('click', function (d, i) { 
+                            if (!d.meta) return;
+                            productionScale.domain([0, d.meta.totalCapacity]);
+                            productionModes.forEach(function (mode) {
+                                productionRects[mode]
+                                    .datum(d.meta)
+                                    .attr('width', function (d, i) {
+                                        return productionScale(d[mode + 'Production'])
+                                    });
+                                capacityRects[mode]
+                                    .datum(d.meta)
+                                    .attr('width', function (d, i) {
+                                        return productionScale(d[mode + 'Capacity'])
+                                    });
+                                productionPrefixText[mode]
+                                    .datum(d.meta)
+                                    .text(mode)
+                            });
                         });
-                    });
+            };
+
+            queue()
+                .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
+                .defer(d3.json, 'http://localhost:8000/realtime')
+                .await(cb);
         };
 
-        queue()
-            .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-            .defer(d3.json, 'http://localhost:8000/realtime')
-            .await(cb);
+        // TODO: Put as much as possible in CSS
+
+        window.onresize = function () {
+            console.log('resize');
+            // TODO: Bind
+        };
+
+        drawMap();
     </script>   
 </body>
 </html>
