@@ -2,6 +2,8 @@ import arrow
 import requests
 import xml.etree.ElementTree as ET
 
+COUNTRY_CODE = 'DK'
+
 def fetch_dk():
     url = 'http://energinet.dk/_layouts/FlashProxy.asmx'
     headers = {
@@ -25,6 +27,7 @@ def fetch_dk():
     data = root[0][0][0][0][0][0].attrib
 
     return {
+        'COUNTRY_CODE': COUNTRY_CODE,
         'datetime': arrow.get(arrow.get(data['Modified']).datetime, 
             'Europe/Copenhagen').datetime,
         'co2': float(data['_x0043_O2']),

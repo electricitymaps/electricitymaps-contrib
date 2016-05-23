@@ -1,5 +1,5 @@
 # electricitymap
-A real-time visualisation of electricity generation
+A real-time visualisation of electricity generation. Try it out at [http://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
 
 ## Real-time data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
