@@ -3,12 +3,14 @@ import schedule, time
 
 from parsers.DK import fetch_DK
 from parsers.FR import fetch_FR
+from parsers.UK import fetch_UK
 
 INTERVAL_SECONDS = 60
 
 parsers = [
     fetch_DK,
-    fetch_FR
+    fetch_FR,
+    fetch_UK
 ]
 
 client = pymongo.MongoClient('mongodb://localhost:27017')

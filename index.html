@@ -63,7 +63,8 @@
             'biomass': '#166a57',
             'coal': '#ac8c35',
             'oil': '#8356a2',
-            'nuclear': '#f5b300'
+            'nuclear': '#f5b300',
+            'other': 'gray'
         };
         var productionModes = d3.keys(productionColors);
 
@@ -133,10 +134,20 @@
                 let topo = topojson.object(data, data.objects.europe).geometries;
 
                 var countries = {};
-                countries['FR'] = topo[15];
+                countries['BE'] = topo[4];
                 countries['SE'] = topo[48];
+                countries['CH'] = topo[8];
                 countries['DE'] = topo[10];
                 countries['DK'] = topo[11];
+                countries['ES'] = topo[12];
+                countries['FR'] = topo[15];
+                countries['UK'] = topo[17];
+
+                // Add empty fields
+                for (let countryCode of d3.keys(countries)) {
+                    countries[countryCode].meta = {};
+                    countries[countryCode].meta.capacity = {}
+                }
 
                 // TODO: index by country code
 
@@ -155,19 +166,14 @@
                     }
                 };
 
-                // FR
-                countries['FR'].meta = {
-                    capacity: {}
-                }
-
                 // Populate with realtime data
                 for (let countryCode of d3.keys(realtime.data)) {
                     let obj = realtime.data[countryCode];
                     for (let k of d3.keys(obj))
                         countries[countryCode].meta[k] = obj[k];
                     // Add extra data
-                    countries[countryCode].meta.totalCapacity = 
-                        d3.sum(d3.values(countries[countryCode].meta.capacity));
+                    countries[countryCode].meta.maxCapacity = 
+                        d3.max(d3.values(countries[countryCode].meta.capacity));
                     countries[countryCode].meta.maxProduction = 
                         d3.max(d3.values(countries[countryCode].meta.production));
                 }
@@ -182,11 +188,11 @@
                         .attr('stroke', 'black')
                         .attr('stroke-width', 0.2)
                         .attr('fill', function (d, i) { 
-                            return d.meta ? co2scale(d.meta.co2) : 'gray';
+                            return d.meta.co2 ? co2scale(d.meta.co2) : 'gray';
                         })
                         .on('click', function (d, i) { 
                             if (!d.meta) return;
-                            productionScale.domain([0, d.meta.totalCapacity || d.meta.maxProduction]);
+                            productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
                             productionModes.forEach(function (mode) {
                                 productionRects[mode]
                                     .datum(d.meta)
