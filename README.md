@@ -4,6 +4,7 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 ## Real-time data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix)
+- Germany: [Agora Energiewende](https://www.agora-energiewende.de/en/topics/-agothem-/Produkt/produkt/76/Agorameter/)
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - UK: [ELEXON](http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable)
 
@@ -15,3 +16,4 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
+- Germany: [Fraunhofer ISE](https://www.energy-charts.de/power_inst.htm)

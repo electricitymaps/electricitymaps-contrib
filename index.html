@@ -150,19 +150,18 @@
                     countries[countryCode].meta.capacity = {}
                 }
 
-                // DK
-                countries['DK'].meta = {
-                    capacity: {
-                        wind: 5070,
-                        solar: 790,   
-                    },
-                    imports: {
-                        'SE': 20,
-                        'DE': 1428 + 600
-                    },
-                    exports: {
-                        'SE': 738 + 71
-                    }
+                countries['DE'].meta.capacity = {
+                    solar: 39700,
+                    wind: 2700 + 40990,
+                    gas: 28540,
+                    hydro: 5580,
+                    biomass: 8860,
+                    nuclear: 10790,
+                    coal: 27090 + 21140
+                };
+                countries['DK'].meta.capacity = {
+                    wind: 5070,
+                    solar: 790,   
                 };
 
                 // Populate with realtime data
