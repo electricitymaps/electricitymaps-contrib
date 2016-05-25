@@ -42,10 +42,8 @@ def fetch_DK():
     }
     obj['production'] = {
         'wind': float(data['Vindmoeller']),
-        'solar': float(data['Solcelle_Produktion'])
-        #'central': float(data['Centrale_kraftvaerker']),
-        #'local_chp': float(data['Decentrale_kraftvaerker']),
-        #'import': float(data['Udveksling'])
+        'solar': float(data['Solcelle_Produktion']),
+        'other': float(data['Centrale_kraftvaerker']) + float(data['Decentrale_kraftvaerker'])
     }
 
     return obj
