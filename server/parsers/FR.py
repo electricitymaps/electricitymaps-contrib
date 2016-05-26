@@ -42,11 +42,31 @@ def fetch_FR():
             data['consumption'][MAP_STORAGE[key]] = float(value.text)
 
     # Fetch co2
-    url ='http://www.rte-france.com/getEco2MixXml.php?type=co2&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
+    url = 'http://www.rte-france.com/getEco2MixXml.php?type=co2&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
     response = r.get(url)
     obj = ET.fromstring(response.content)
     value = None
     for value in obj[7][0].getchildren(): pass
     data['co2'] = float(value.text)
 
+    # Fetch imports
+    url = 'http://www.rte-france.com/getEco2MixXml.php?type=echcom&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
+    response = r.get(url)
+    obj = ET.fromstring(response.content)
+    parsed = {}
+    for item in obj[7].getchildren():
+        value = None
+        for value in item: pass
+        parsed[item.get('v')] = float(value.text)
+
+    data['exchange'] = {
+        'CH': parsed['CH'],
+        'UK': parsed['GB'],
+        'ES': parsed['ES'],
+        'IT': parsed['IT'],
+        'DE': parsed['DB'] # Germany + Belgium redirected to Germany
+    }
+
     return data
+
+fetch_FR()
