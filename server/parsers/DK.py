@@ -32,7 +32,7 @@ def fetch_DK():
             'Europe/Copenhagen').datetime,
         'co2': float(data['_x0043_O2'])
     }
-    obj['import'] = {
+    obj['exchange'] = {
         'DE': float(data['Udveksling_JyllandTyskland']) + float(data['Udveksling_SjaellandTyskland']),
         'SE': float(data['Udveksling_JyllandSverige']) + float(data['Udveksling_BornholmSverige']) + + float(data['Udveksling_SjaellandSverige']),
         'NO': float(data['Udveksling_JyllandNorge'])

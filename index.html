@@ -70,12 +70,16 @@
         var productionModes = d3.keys(productionColors);
 
         // Scales
-        var co2scale = d3.scale.linear()
+        var co2color = d3.scale.linear()
             .domain([0, 250, 500])
             .range(['green', 'orange', 'black']);
 
         var productionScale = d3.scale.linear()
             .range([0, productionBarMaxWidth]);
+
+        var exchangeAnimationScale = d3.scale.linear()
+            .domain([100, 5000])
+            .range([2000, 100])
 
         var drawMap = function()  {
                 
@@ -136,6 +140,44 @@
                     .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight))
             });
 
+            // Prepare exchanges
+            let exchangeArrowsContainer = map.append('g')
+            let exchangeGradientsContainer = map.append('g')
+
+            const TRIANGLE_WIDTH = 8
+            let trianglePath = 'M 0 0 L ' + TRIANGLE_WIDTH + ' ' + TRIANGLE_WIDTH + ' L -' + TRIANGLE_WIDTH + ' ' + TRIANGLE_WIDTH + ' Z ' +
+                'M 0 -' + TRIANGLE_WIDTH + ' L ' + TRIANGLE_WIDTH + ' 0 L -' + TRIANGLE_WIDTH + ' 0 Z ' +
+                'M 0 -' + TRIANGLE_WIDTH * 2.0 + ' L ' + TRIANGLE_WIDTH + ' -' + TRIANGLE_WIDTH + ' L -' + TRIANGLE_WIDTH + ' -' + TRIANGLE_WIDTH + ' Z';
+
+            function animateGradient(selector, color, duration) {
+                var arrow = selector.selectAll('stop')
+                    .data([
+                        {offset: 0, color: 'black'},
+                        {offset: 0, color: 'black'},
+                        {offset: 0, color: color},
+                        {offset: 0, color: 'black'},
+                        {offset: 1, color: 'black'},
+                    ]);
+                arrow.enter().append('stop')
+                    .attr('offset', function(d) { return d.offset; })
+                    .attr('stop-color', function(d) { return d.color; })
+                arrow
+                    .transition()
+                    .duration(duration)
+                    .ease('linear')
+                    .attrTween('offset', function(d, i, a) {
+                        // Only animate the middle color
+                        if (i == 0 || i == 4)
+                            return function (t) { return d.offset };
+                        else {
+                            return function (t) { return 1 - t + (i - 2) * 0.4 };
+                        }
+                    })
+                    .each('end', function () { 
+                        return animateGradient(selector, color, duration);
+                    });
+            };
+
             let cb = function(err, data, realtime) {
 
                 let topo = topojson.object(data, data.objects.europe).geometries;
@@ -146,8 +188,14 @@
                 countries['DE'] = topo[10];
                 countries['DK'] = topo[11];
                 countries['ES'] = topo[12];
+                countries['FI'] = topo[14];
                 countries['FR'] = topo[15];
                 countries['UK'] = topo[17];
+                countries['IE'] = topo[24];
+                countries['IT'] = topo[26];
+                countries['LU'] = topo[31];
+                countries['NL'] = topo[38];
+                countries['NO'] = topo[39];
                 countries['SE'] = topo[48];
 
                 // Add empty fields
@@ -186,32 +234,105 @@
                     gas: 38000
                 }
 
+                // Prepare exchanges
+                let exchanges = [
+                    {
+                        countries: ['DE', 'DK'],
+                        center: projection([9.5, 54.7]), 
+                        rotation: 10
+                    },
+                    {
+                        countries: ['SE', 'DK'],
+                        center: projection([13, 56]), 
+                        rotation: -100
+                    },
+                    {
+                        countries: ['UK', 'FR'],
+                        center: projection([0, 50.4]), 
+                        rotation: -20
+                    },
+                    {
+                        countries: ['DK', 'NO'],
+                        center: projection([8.8, 58]), 
+                        rotation: -25
+                    },
+                    {
+                        countries: ['IE', 'UK'],
+                        center: projection([-5.7, 53]), 
+                        rotation: 100
+                    },
+                    {
+                        countries: ['NL', 'UK'],
+                        center: projection([3, 52.2]), 
+                        rotation: -90
+                    }
+                ];
+
                 // Populate with realtime data
                 for (let countryCode of d3.keys(realtime.data)) {
                     let obj = realtime.data[countryCode];
+                    let country = countries[countryCode]
                     for (let k of d3.keys(obj))
-                        countries[countryCode].meta[k] = obj[k];
+                        country.meta[k] = obj[k];
                     // Add extra data
-                    // TODO: Calculate co2 in the browser
-                    countries[countryCode].meta.maxCapacity = 
-                        d3.max(d3.values(countries[countryCode].meta.capacity));
-                    countries[countryCode].meta.maxProduction = 
-                        d3.max(d3.values(countries[countryCode].meta.production));
-                    countries[countryCode].meta.totalProduction = 
-                        d3.sum(d3.values(countries[countryCode].meta.production));
+                    // TODO: Calculate co2 in the browser to take into account exchanges
+                    country.meta.maxCapacity = 
+                        d3.max(d3.values(country.meta.capacity));
+                    country.meta.maxProduction = 
+                        d3.max(d3.values(country.meta.production));
+                    country.meta.totalProduction = 
+                        d3.sum(d3.values(country.meta.production));
+                    // Populate exchanges
+                    // Very hacky as the last country will always have precedence
+                    for (let sourceCountryCode of d3.keys(country.meta.exchange)) {
+                        // Find the exchange object
+                        var matches = exchanges.filter(function (e) { 
+                            return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
+                        });
+                        var amount = country.meta.exchange[sourceCountryCode];
+                        if (matches.length) {
+                            var match = matches[0];
+                            match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
+                        } else {
+                            console.warn('Could not find exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                        }
+                    }
                 }
                 console.log(countries);
+                console.log(exchanges);
 
-                let exchange_dk_de = exchanges.append('path')
-                .attr('d', function(d) { 
-                  return 'M 0 0 L 10 10 L -10 10 Z M 0 -10 L 10 0 L -10 0 Z M 0 -20 L 10 -10 L -10 -10 Z';
-                })
-                .datum(exchangesConfig[0])
-                .attr('transform', function (d) {
-                    let netFlow = countries[d.countries[1]].meta.import[d.countries[0]];
-                    let rotation = d.rotation + (netFlow < 0 ? 180 : 0);
-                    return 'translate(' + d.center[0] + ',' + d.center[1] + '),rotate(' + rotation + ')';
-                })
+                var exchangeGradients = exchangeGradientsContainer.selectAll('.exchange-gradient')
+                    .data(exchanges)
+                    .enter()
+                    .append('linearGradient')
+                    .attr('gradientUnits', 'userSpaceOnUse')
+                    .attr('x1', 0).attr('y1', -2.0 * TRIANGLE_WIDTH - 5)
+                    .attr('x2', 0).attr('y2', TRIANGLE_WIDTH + 5)
+                    .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
+
+                var exchangeArrows = exchangeArrowsContainer.selectAll('.exchange-arrow')
+                    .data(exchanges)
+                    .enter()
+                    .append('path')
+                    .attr('class', 'exchange-arrow')
+                    .attr('d', trianglePath)
+                    .attr('transform', function (d) {;
+                        let rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
+                        return 'translate(' + d.center[0] + ',' + d.center[1] + '),rotate(' + rotation + ')';
+                    })
+                    .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
+                    .attr('stroke', function (d) { return d.netFlow ? 'black' : 'none'; })
+                    .attr('stroke-width', 0.3)
+                    .on('click', function (d) { console.log(d, exchangeAnimationScale(Math.abs(d.netFlow))); })
+                    .each(function (d, i) {
+                        if (!d.netFlow) return;
+                        var co2 = countries[d.countries[d.netFlow > 0 ? 0 : 1]].meta.co2;
+                        return animateGradient(
+                            d3.select('#exchange-gradient-' + i), 
+                            co2 ? co2color(co2) : 'grey',
+                            exchangeAnimationScale(Math.abs(d.netFlow))
+                        );
+                    });
 
                 land.selectAll('.country')
                     .data(d3.values(countries))
@@ -222,7 +343,7 @@
                         .attr('stroke', 'black')
                         .attr('stroke-width', 0.2)
                         .attr('fill', function (d, i) { 
-                            return d.meta.co2 ? co2scale(d.meta.co2) : 'gray';
+                            return d.meta.co2 ? co2color(d.meta.co2) : 'gray';
                         })
                         .on('click', function (d, i) { 
                             if (!d.meta) return;
@@ -259,19 +380,6 @@
                             });
                         });
             };
-
-            // Draw import/exports
-            let exchangesConfig = [
-                {
-                    center: projection([10, 54.7]), 
-                    rotation: 10,
-                    countries: ['DE', 'DK']
-                }
-            ];
-
-            let exchanges = map.append('g')
-                .attr('class', 'exchanges')
-            
 
             queue()
                 .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')

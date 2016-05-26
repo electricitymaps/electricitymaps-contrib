@@ -60,7 +60,7 @@ def fetch_ES():
     obj['consumption'] = {
         'other': float(parsed['demanda'])
     }
-    obj['import'] = {
+    obj['exchange'] = {
         'other': float(parsed['intercambios'])
     }
     obj['production'] = {

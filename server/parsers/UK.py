@@ -30,7 +30,7 @@ def fetch_UK():
         'hydro': parsed['PS'] + parsed['NPSHYD'],
         'other': parsed['OTHER']
     }
-    obj['imports'] = {
+    obj['exchange'] = {
         'FR': parsed['INTFR'],
         'IE': parsed['INTIRL'],
         'NL': parsed['INTNED']
