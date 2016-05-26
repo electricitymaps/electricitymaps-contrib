@@ -85,8 +85,8 @@
 
             var projection = d3.geo.mercator()
                 .center([3, 48])
-                .translate([computedMapWidth / 2, computedMapHeight / 2])
-                .scale(550);
+                .translate([0.6 * computedMapWidth, 0.6 * computedMapHeight])
+                .scale(700);
                 
             var path = d3.geo.path()
                 .projection(projection);
@@ -202,6 +202,17 @@
                 }
                 console.log(countries);
 
+                let exchange_dk_de = exchanges.append('path')
+                .attr('d', function(d) { 
+                  return 'M 0 0 L 10 10 L -10 10 Z M 0 -10 L 10 0 L -10 0 Z M 0 -20 L 10 -10 L -10 -10 Z';
+                })
+                .datum(exchangesConfig[0])
+                .attr('transform', function (d) {
+                    let netFlow = countries[d.countries[1]].meta.import[d.countries[0]];
+                    let rotation = d.rotation + (netFlow < 0 ? 180 : 0);
+                    return 'translate(' + d.center[0] + ',' + d.center[1] + '),rotate(' + rotation + ')';
+                })
+
                 land.selectAll('.country')
                     .data(d3.values(countries))
                     .enter()
@@ -248,6 +259,19 @@
                             });
                         });
             };
+
+            // Draw import/exports
+            let exchangesConfig = [
+                {
+                    center: projection([10, 54.7]), 
+                    rotation: 10,
+                    countries: ['DE', 'DK']
+                }
+            ];
+
+            let exchanges = map.append('g')
+                .attr('class', 'exchanges')
+            
 
             queue()
                 .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
