@@ -27,7 +27,8 @@
         position: absolute;
         top: 0px;
         margin: 10px;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid grey;
     }
 </style>
 </head>
@@ -48,11 +49,11 @@
         }
 
         var panelHeight = '300px',
-            panelWidth = '350px',
+            panelWidth = '360px',
             panelPadding = 10;
 
-        var productionBarHeight = 10,
-            productionBarMaxWidth = 250;
+        var productionBarHeight = 8,
+            productionBarMaxWidth = 120;
             productionBarMarginY = 10;
 
         var productionColors = {
@@ -110,12 +111,14 @@
             var productionRects = {};
             var capacityRects = {};
             var productionPrefixText = {};
-            var prefixTextMaxWidth = 40;
+            var productionSuffixText = {}
+            var prefixTextMaxWidth = 80;
             productionModes.forEach(function (mode, i) {
                 capacityRects[mode] = panel.append('rect')
                     .attr('height', productionBarHeight)
-                    .attr('fill', productionColors[mode]) // TODO: Replace by css?
-                    .attr('fill-opacity', 0.1)
+                    .attr('fill', 'none') // TODO: Replace by css?
+                    .attr('stroke', productionColors[mode])
+                    .attr('stroke-width', 0.2)
                     .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                     .attr('x', panelPadding + prefixTextMaxWidth)
                 productionRects[mode] = panel.append('rect')
@@ -124,9 +127,13 @@
                     .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                     .attr('x', panelPadding + prefixTextMaxWidth)
                 productionPrefixText[mode] = panel.append('text')
-                    .attr('font-size', 10)
+                    .attr('font-size', 12)
                     .attr('x', panelPadding)
                     .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
+                productionSuffixText[mode] = panel.append('text')
+                    .attr('font-size', 12)
+                    .attr('x', panelPadding + 8 + prefixTextMaxWidth + productionBarMaxWidth)
+                    .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight))
             });
 
             let cb = function(err, data, realtime) {
@@ -190,6 +197,8 @@
                         d3.max(d3.values(countries[countryCode].meta.capacity));
                     countries[countryCode].meta.maxProduction = 
                         d3.max(d3.values(countries[countryCode].meta.production));
+                    countries[countryCode].meta.totalProduction = 
+                        d3.sum(d3.values(countries[countryCode].meta.production));
                 }
                 console.log(countries);
 
@@ -210,17 +219,32 @@
                             productionModes.forEach(function (mode) {
                                 productionRects[mode]
                                     .datum(d.meta)
+                                    .transition()
                                     .attr('width', function (d, i) {
                                         return productionScale(d.production[mode])
                                     });
                                 capacityRects[mode]
                                     .datum(d.meta)
+                                    .transition()
                                     .attr('width', function (d, i) {
                                         return productionScale(d.capacity[mode])
                                     });
-                                productionPrefixText[mode]
-                                    .datum(d.meta)
-                                    .text(mode)
+                                let production = Math.round(d.meta.production[mode] / 100) * 100
+                                if (d.meta.capacity[mode] && d.meta.production[mode]) {
+                                    let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100)
+                                    productionSuffixText[mode]
+                                        .text(production + ' MW (' + capacityPct + '% capacity)')
+                                } else if (d.meta.production[mode]) {
+                                    productionSuffixText[mode].text(production + ' MW');
+                                } else {
+                                    productionSuffixText[mode].text('')
+                                }
+                                if (d.meta.production[mode]) {
+                                    productionPrefixText[mode]
+                                        .text(mode + ' (' + Math.round(d.meta.production[mode]/d.meta.totalProduction*100.0) + '%)')
+                                } else {
+                                    productionPrefixText[mode].text(mode)
+                                }
                             });
                         });
             };
