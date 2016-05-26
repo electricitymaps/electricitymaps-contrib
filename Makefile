@@ -1,3 +1,5 @@
+.PHONY: server
+
 install:
 	pip install -r server/requirements.txt
 	sudo gem install foreman
