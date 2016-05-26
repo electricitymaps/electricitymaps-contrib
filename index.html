@@ -10,7 +10,6 @@
         fill: #ccc;
         fill-opacity: 0.8;
         stroke: #3b3b3b;
-        stroke-width: 0.3px;
     }
     .sea {
         background-color: white;
@@ -229,7 +228,6 @@
                 countries['UK'].meta.capacity = {
                     wind: 13500,
                     nuclear: 9000,
-                    solar: 9200,
                     hydro: 1550,
                     gas: 38000
                 }
@@ -341,37 +339,49 @@
                         .attr('class', 'country')
                         .attr('d', path)
                         .attr('stroke', 'black')
-                        .attr('stroke-width', 0.2)
+                        .attr('stroke-width', 0.3)
                         .attr('fill', function (d, i) { 
                             return d.meta.co2 ? co2color(d.meta.co2) : 'gray';
                         })
+                        .on('mouseover', function (d) { 
+                            if (d.meta.production)
+                                d3.select(this)
+                                    .attr('stroke', 'black')
+                                    .attr('stroke-width', 1)
+                        })
+                        .on('mouseout', function (d) { 
+                            if (d.meta.production) 
+                                d3.select(this)
+                                    .attr('stroke', 'black')
+                                    .attr('stroke-width', 0.3)
+                        })
                         .on('click', function (d, i) { 
-                            if (!d.meta) return;
+                            if (!d.meta.production) return;
                             productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
                             productionModes.forEach(function (mode) {
                                 productionRects[mode]
                                     .datum(d.meta)
                                     .transition()
                                     .attr('width', function (d, i) {
-                                        return productionScale(d.production[mode])
+                                        return productionScale(d.production[mode] || 0)
                                     });
                                 capacityRects[mode]
                                     .datum(d.meta)
                                     .transition()
                                     .attr('width', function (d, i) {
-                                        return productionScale(d.capacity[mode])
+                                        return productionScale(d.capacity[mode] || 0)
                                     });
                                 let production = Math.round(d.meta.production[mode] / 100) * 100
-                                if (d.meta.capacity[mode] && d.meta.production[mode]) {
+                                if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
                                     let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100)
                                     productionSuffixText[mode]
                                         .text(production + ' MW (' + capacityPct + '% capacity)')
-                                } else if (d.meta.production[mode]) {
+                                } else if (d.meta.production[mode] !== undefined) {
                                     productionSuffixText[mode].text(production + ' MW');
                                 } else {
                                     productionSuffixText[mode].text('')
                                 }
-                                if (d.meta.production[mode]) {
+                                if (d.meta.production[mode] !== undefined) {
                                     productionPrefixText[mode]
                                         .text(mode + ' (' + Math.round(d.meta.production[mode]/d.meta.totalProduction*100.0) + '%)')
                                 } else {
