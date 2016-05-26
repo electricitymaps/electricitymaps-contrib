@@ -35,15 +35,19 @@ def fetch_UK():
         'IE': parsed['INTIRL'],
         'NL': parsed['INTNED']
     }
+    total_production = 0
+    for value in obj['production'].values(): total_production += value
     obj['co2'] = (
-        parsed['CCGT'] * 360 +
-        parsed['OCGT'] * 480 +
-        parsed['COAL'] * 910 +
-        parsed['OTHER'] * 300 +
-        parsed['OIL'] * 610 +
-        parsed['INTFR'] * 90 +
-        parsed['INTIRL'] * 450 +
-        parsed['INTNED'] * 550 +
-        parsed['INTEW'] * 450)/0.93
+        parsed['CCGT']/total_production * 360 +
+        parsed['OCGT']/total_production * 480 +
+        parsed['COAL']/total_production * 910 +
+        parsed['OTHER']/total_production * 300 +
+        parsed['OIL']/total_production * 610 +
+        parsed['INTFR']/total_production * 90 +
+        parsed['INTIRL']/total_production * 450 +
+        parsed['INTNED']/total_production * 550 +
+        parsed['INTEW']/total_production * 450)/0.93
 
     return obj
+
+fetch_UK()
