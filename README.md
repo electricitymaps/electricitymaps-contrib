@@ -11,6 +11,7 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 ## CO2 calculations
 - Denmark: [energinet.dk](http://www.energinet.dk/DA/El/Engrosmarked/Udtraek-af-markedsdata/Sider/Om-Elsystemet-lige-nu.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-co2-en)
+- United Kingdom [GridCarbon](http://www.gridcarbon.uk/)
 
 ## Production capacity sources
 - Denmark
@@ -19,7 +20,7 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 - France: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
 - Germany: [Fraunhofer ISE](https://www.energy-charts.de/power_inst.htm)
 - UK
-    - Gas: [nergy-uk.org.uk](http://www.energy-uk.org.uk/energy-industry/gas-generation.html)
+    - Gas: [energy-uk.org.uk](http://www.energy-uk.org.uk/energy-industry/gas-generation.html)
     - Hydro: [wikipedia.org](https://en.wikipedia.org/wiki/Hydroelectricity_in_the_United_Kingdom)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Nuclear_power_in_the_United_Kingdom)
     - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_the_United_Kingdom)

@@ -35,5 +35,15 @@ def fetch_UK():
         'IE': parsed['INTIRL'],
         'NL': parsed['INTNED']
     }
+    obj['co2'] = (
+        parsed['CCGT'] * 360 +
+        parsed['OCGT'] * 480 +
+        parsed['COAL'] * 910 +
+        parsed['OTHER'] * 300 +
+        parsed['OIL'] * 610 +
+        parsed['INTFR'] * 90 +
+        parsed['INTIRL'] * 450 +
+        parsed['INTNED'] * 550 +
+        parsed['INTEW'] * 450)/0.93
 
     return obj
