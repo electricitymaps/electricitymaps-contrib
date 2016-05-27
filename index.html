@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <head>
-<style>
-    html, body {    
-        margin: 0 !important;
-        padding: 0 !important;
-        height: 100%;
-    }
-    .land {
-        fill: #ccc;
-        fill-opacity: 0.8;
-        stroke: #3b3b3b;
-    }
-    .sea {
-        background-color: white;
-    }
-    .map {
-        width: 100%;
-        height: 100%;
-    }
-    .graticule {
-        stroke: #185c96;
-        stroke-width: 0.3px;
-    }
-    .panel-container {
-        position: absolute;
-        top: 0px;
-        margin: 10px;
-        background-color: rgba(255, 255, 255, 0.95);
-        border: 1px solid grey;
-    }
-</style>
-</head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <style>
+        html, body {    
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100%;
+        }
+        .land {
+            fill: #ccc;
+            fill-opacity: 0.8;
+            stroke: #3b3b3b;
+        }
+        .sea {
+            background-color: white;
+        }
+        .map {
+            width: 100%;
+            height: 100%;
+        }
+        .graticule {
+            stroke: #185c96;
+            stroke-width: 0.3px;
+        }
+        .panel-container {
+            position: absolute;
+            top: 0px;
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid grey;
+        }
+    </style>
+    </head>
 <body>
+    
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="http://d3js.org/topojson.v0.min.js"></script>
+    
+    <!-- <script src="d3.v3.min.js"></script>
+    <script src="d3.geo.projection.v0.min.js"></script>
+    <script src="queue.v1.min.js"></script>
+    <script src="topojson.v0.min.js"></script> -->
+    
     <svg class="map"></svg>
     <div class="panel-container">
         <svg class="panel"></svg>
@@ -200,6 +208,7 @@
                 countries['LU'] = topo[31];
                 countries['NL'] = topo[38];
                 countries['NO'] = topo[39];
+                countries['PT'] = topo[41];
                 countries['SE'] = topo[48];
 
                 // Add empty fields
