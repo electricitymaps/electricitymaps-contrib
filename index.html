@@ -122,14 +122,16 @@
                 .attr('height', productionBarHeight)
                 .attr('fill', 'none') // TODO: Replace by css?
                 .attr('stroke', productionColors[mode])
-                .attr('stroke-width', 0.5)
+                .attr('stroke-width', 1.0)
                 .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                 .attr('x', panelPadding + prefixTextMaxWidth)
+                .attr('shape-rendering', 'crispEdges');
             productionRects[mode] = panel.append('rect')
                 .attr('height', productionBarHeight)
                 .attr('fill', productionColors[mode])
                 .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                 .attr('x', panelPadding + prefixTextMaxWidth)
+                .attr('shape-rendering', 'crispEdges');
             productionPrefixText[mode] = panel.append('text')
                 .attr('font-size', 12)
                 .attr('x', panelPadding)
@@ -410,7 +412,7 @@
                         .on('mouseover', function (d) { 
                             if (d.meta.production)
                                 d3.select(this)
-                                    .attr('opacity', 0.7)
+                                    .attr('opacity', 0.8)
                                     .style('cursor', 'hand')
                             if (d.meta.co2)
                                 co2Colorbar.currentMarker(d.meta.co2);
