@@ -91,9 +91,83 @@
             .domain([500, 4000])
             .range([4, 15])
 
-        var drawMap = function()  {
+        var map = d3.select('.map')
+            .attr('class', 'map sea');
+
+        var graticule = map.append('path').attr('class', 'graticule');
+        var land = map.append('g');
+        var panel = d3.select('.panel')
+
+        var productionRects = {};
+        var capacityRects = {};
+        var productionPrefixText = {};
+        var productionSuffixText = {}
+        var prefixTextMaxWidth = 80;
+        productionModes.forEach(function (mode, i) {
+            capacityRects[mode] = panel.append('rect')
+                .attr('height', productionBarHeight)
+                .attr('fill', 'none') // TODO: Replace by css?
+                .attr('stroke', productionColors[mode])
+                .attr('stroke-width', 0.5)
+                .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
+                .attr('x', panelPadding + prefixTextMaxWidth)
+            productionRects[mode] = panel.append('rect')
+                .attr('height', productionBarHeight)
+                .attr('fill', productionColors[mode])
+                .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
+                .attr('x', panelPadding + prefixTextMaxWidth)
+            productionPrefixText[mode] = panel.append('text')
+                .attr('font-size', 12)
+                .attr('x', panelPadding)
+                .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
+            productionSuffixText[mode] = panel.append('text')
+                .attr('font-size', 12)
+                .attr('x', panelPadding + 8 + prefixTextMaxWidth + productionBarMaxWidth)
+                .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight))
+        });
+
+        // Prepare exchanges
+        let exchangeArrowsContainer = map.append('g')
+        let exchangeGradientsContainer = map.append('g')
+
+        const TRIANGLE_HEIGHT = 8;
+        function trianglePath(w) {
+            return 'M 0 0 L ' + w + ' ' + TRIANGLE_HEIGHT + ' L -' + w + ' ' + TRIANGLE_HEIGHT + ' Z ' +
+            'M 0 -' + TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
+            'M 0 -' + TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + TRIANGLE_HEIGHT + ' L -' + w + ' -' + TRIANGLE_HEIGHT + ' Z'
+        };
+
+        function animateGradient(selector, color, duration) {
+            var arrow = selector.selectAll('stop')
+                .data([
+                    {offset: 0, color: 'black'},
+                    {offset: 0, color: 'black'},
+                    {offset: 0, color: color},
+                    {offset: 0, color: 'black'},
+                    {offset: 1, color: 'black'},
+                ]);
+            arrow.enter().append('stop')
+                .attr('offset', function(d) { return d.offset; })
+                .attr('stop-color', function(d) { return d.color; })
+            arrow
+                .transition()
+                .duration(duration)
+                .ease('linear')
+                .attrTween('offset', function(d, i, a) {
+                    // Only animate the middle color
+                    if (i == 0 || i == 4)
+                        return function (t) { return d.offset };
+                    else {
+                        return function (t) { return 1 - t + (i - 2) * 0.4 };
+                    }
+                })
+                .each('end', function () { 
+                    return animateGradient(selector, color, duration);
+                });
+        };
+
+        function redraw() {
                 
-            // Set up map
             var computedMapWidth = d3.select('.map').node().getBoundingClientRect().width,
                 computedMapHeight = d3.select('.map').node().getBoundingClientRect().height;
 
@@ -105,90 +179,16 @@
             var path = d3.geo.path()
                 .projection(projection);
                 
-            var graticule = d3.geo.graticule()
+            var graticuleData = d3.geo.graticule()
                 .step([5, 5]);
                 
-            var map = d3.select('.map')
-                .attr('class', 'map sea');
-                
-            map.append('path')
-                .datum(graticule)
-                .attr('class', 'graticule')
+            graticule
+                .datum(graticuleData)
                 .attr('d', path);
-                
-            var land = map.append('g');
 
-            var panel = d3.select('.panel')
+            panel
                 .attr('width', panelWidth)
                 .attr('height', panelHeight);
-
-            var productionRects = {};
-            var capacityRects = {};
-            var productionPrefixText = {};
-            var productionSuffixText = {}
-            var prefixTextMaxWidth = 80;
-            productionModes.forEach(function (mode, i) {
-                capacityRects[mode] = panel.append('rect')
-                    .attr('height', productionBarHeight)
-                    .attr('fill', 'none') // TODO: Replace by css?
-                    .attr('stroke', productionColors[mode])
-                    .attr('stroke-width', 0.5)
-                    .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
-                    .attr('x', panelPadding + prefixTextMaxWidth)
-                productionRects[mode] = panel.append('rect')
-                    .attr('height', productionBarHeight)
-                    .attr('fill', productionColors[mode])
-                    .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
-                    .attr('x', panelPadding + prefixTextMaxWidth)
-                productionPrefixText[mode] = panel.append('text')
-                    .attr('font-size', 12)
-                    .attr('x', panelPadding)
-                    .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
-                productionSuffixText[mode] = panel.append('text')
-                    .attr('font-size', 12)
-                    .attr('x', panelPadding + 8 + prefixTextMaxWidth + productionBarMaxWidth)
-                    .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight))
-            });
-
-            // Prepare exchanges
-            let exchangeArrowsContainer = map.append('g')
-            let exchangeGradientsContainer = map.append('g')
-
-            const TRIANGLE_HEIGHT = 8;
-            function trianglePath(w) {
-                return 'M 0 0 L ' + w + ' ' + TRIANGLE_HEIGHT + ' L -' + w + ' ' + TRIANGLE_HEIGHT + ' Z ' +
-                'M 0 -' + TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
-                'M 0 -' + TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + TRIANGLE_HEIGHT + ' L -' + w + ' -' + TRIANGLE_HEIGHT + ' Z'
-            };
-
-            function animateGradient(selector, color, duration) {
-                var arrow = selector.selectAll('stop')
-                    .data([
-                        {offset: 0, color: 'black'},
-                        {offset: 0, color: 'black'},
-                        {offset: 0, color: color},
-                        {offset: 0, color: 'black'},
-                        {offset: 1, color: 'black'},
-                    ]);
-                arrow.enter().append('stop')
-                    .attr('offset', function(d) { return d.offset; })
-                    .attr('stop-color', function(d) { return d.color; })
-                arrow
-                    .transition()
-                    .duration(duration)
-                    .ease('linear')
-                    .attrTween('offset', function(d, i, a) {
-                        // Only animate the middle color
-                        if (i == 0 || i == 4)
-                            return function (t) { return d.offset };
-                        else {
-                            return function (t) { return 1 - t + (i - 2) * 0.4 };
-                        }
-                    })
-                    .each('end', function () { 
-                        return animateGradient(selector, color, duration);
-                    });
-            };
 
             let cb = function(err, data, realtime) {
 
@@ -450,11 +450,10 @@
         // TODO: Put as much as possible in CSS
 
         window.onresize = function () {
-            console.log('resize');
-            // TODO: Bind
+            redraw();
         };
 
-        drawMap();
+        redraw();
     </script>   
 </body>
 </html>
