@@ -4,7 +4,10 @@ import schedule, time
 from parsers.DE import fetch_DE
 from parsers.DK import fetch_DK
 from parsers.ES import fetch_ES
+from parsers.FI import fetch_FI
 from parsers.FR import fetch_FR
+from parsers.NO import fetch_NO
+from parsers.SE import fetch_SE
 from parsers.UK import fetch_UK
 
 INTERVAL_SECONDS = 60
@@ -13,7 +16,10 @@ parsers = [
     fetch_DE,
     fetch_DK,
     fetch_ES,
+    fetch_FI,
     fetch_FR,
+    fetch_NO,
+    fetch_SE,
     fetch_UK
 ]
 
