@@ -77,8 +77,11 @@
             .range([0, productionBarMaxWidth]);
 
         var exchangeAnimationScale = d3.scale.linear()
-            .domain([1000, 3000])
-            .range([2000, 100])
+            .domain([500, 4000])
+            .range([2000, 10])
+        var exchangeArrowWidthScale = d3.scale.linear()
+            .domain([500, 4000])
+            .range([4, 15])
 
         var drawMap = function()  {
                 
@@ -121,7 +124,7 @@
                     .attr('height', productionBarHeight)
                     .attr('fill', 'none') // TODO: Replace by css?
                     .attr('stroke', productionColors[mode])
-                    .attr('stroke-width', 0.2)
+                    .attr('stroke-width', 0.5)
                     .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
                     .attr('x', panelPadding + prefixTextMaxWidth)
                 productionRects[mode] = panel.append('rect')
@@ -143,10 +146,12 @@
             let exchangeArrowsContainer = map.append('g')
             let exchangeGradientsContainer = map.append('g')
 
-            const TRIANGLE_WIDTH = 8
-            let trianglePath = 'M 0 0 L ' + TRIANGLE_WIDTH + ' ' + TRIANGLE_WIDTH + ' L -' + TRIANGLE_WIDTH + ' ' + TRIANGLE_WIDTH + ' Z ' +
-                'M 0 -' + TRIANGLE_WIDTH + ' L ' + TRIANGLE_WIDTH + ' 0 L -' + TRIANGLE_WIDTH + ' 0 Z ' +
-                'M 0 -' + TRIANGLE_WIDTH * 2.0 + ' L ' + TRIANGLE_WIDTH + ' -' + TRIANGLE_WIDTH + ' L -' + TRIANGLE_WIDTH + ' -' + TRIANGLE_WIDTH + ' Z';
+            const TRIANGLE_HEIGHT = 8;
+            function trianglePath(w) {
+                return 'M 0 0 L ' + w + ' ' + TRIANGLE_HEIGHT + ' L -' + w + ' ' + TRIANGLE_HEIGHT + ' Z ' +
+                'M 0 -' + TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
+                'M 0 -' + TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + TRIANGLE_HEIGHT + ' L -' + w + ' -' + TRIANGLE_HEIGHT + ' Z'
+            };
 
             function animateGradient(selector, color, duration) {
                 var arrow = selector.selectAll('stop')
@@ -312,20 +317,33 @@
                             var match = matches[0];
                             match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
                         } else {
-                            console.warn('Could not find exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                            if (sourceCountryCode != 'other')
+                                console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
                         }
                     }
+                    // Send warnings for missing data
+                    if (country.meta.co2 === undefined)
+                        console.warn(countryCode + ' is missing co2 footprint');
+                    productionModes.forEach(function (mode) {
+                        if (mode == 'other') return;
+                        if (country.meta.production[mode] === undefined)
+                            console.warn(countryCode + ' is missing production of ' + mode);
+                        if (country.meta.capacity[mode] === undefined)
+                            console.warn(countryCode + ' is missing capacity of ' + mode);
+                    });
+                    if (country.meta.exchange === undefined || country.meta.exchange.length == 0)
+                        console.warn(countryCode + ' is missing exchanges');
                 }
-                console.log(countries);
-                console.log(exchanges);
+                console.log('countries', countries);
+                console.log('exchanges', exchanges);
 
                 var exchangeGradients = exchangeGradientsContainer.selectAll('.exchange-gradient')
                     .data(exchanges)
                     .enter()
                     .append('linearGradient')
                     .attr('gradientUnits', 'userSpaceOnUse')
-                    .attr('x1', 0).attr('y1', -2.0 * TRIANGLE_WIDTH - 5)
-                    .attr('x2', 0).attr('y2', TRIANGLE_WIDTH + 5)
+                    .attr('x1', 0).attr('y1', -2.0 * TRIANGLE_HEIGHT - 5)
+                    .attr('x2', 0).attr('y2', TRIANGLE_HEIGHT + 5)
                     .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
                 var exchangeArrows = exchangeArrowsContainer.selectAll('.exchange-arrow')
@@ -333,14 +351,16 @@
                     .enter()
                     .append('path')
                     .attr('class', 'exchange-arrow')
-                    .attr('d', trianglePath)
+                    .attr('d', function(d) { 
+                        return trianglePath(exchangeArrowWidthScale(Math.abs(d.netFlow)));
+                    })
                     .attr('transform', function (d) {;
                         let rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
                         return 'translate(' + d.center[0] + ',' + d.center[1] + '),rotate(' + rotation + ')';
                     })
                     .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
                     .attr('stroke', function (d) { return d.netFlow ? 'black' : 'none'; })
-                    .attr('stroke-width', 0.3)
+                    .attr('stroke-width', 0.4)
                     .on('click', function (d) { console.log(d, exchangeAnimationScale(Math.abs(d.netFlow))); })
                     .each(function (d, i) {
                         if (!d.netFlow) return;
@@ -389,9 +409,9 @@
                                     .datum(d.meta)
                                     .transition()
                                     .attr('width', function (d, i) {
-                                        return productionScale(d.capacity[mode] || 0)
+                                        return d.production[mode] === undefined ? 0 : productionScale(d.capacity[mode] || 0)
                                     });
-                                let production = Math.round(d.meta.production[mode] / 100) * 100
+                                let production = Math.round(d.meta.production[mode] / 10) * 10
                                 if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
                                     let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100)
                                     productionSuffixText[mode]
