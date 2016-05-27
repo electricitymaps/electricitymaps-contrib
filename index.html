@@ -30,6 +30,15 @@
             background-color: rgba(255, 255, 255, 0.95);
             border: 1px solid grey;
         }
+        .co2-colorbar {
+            position:absolute;
+            bottom: 0px;
+            right: 0px;
+            margin: 10px;
+            width: 300px;
+            height: 30px;
+            font-size: 0.2em;
+        }
     </style>
     </head>
 <body>
@@ -43,7 +52,9 @@
     <script src="d3.geo.projection.v0.min.js"></script>
     <script src="queue.v1.min.js"></script>
     <script src="topojson.v0.min.js"></script> -->
-    
+
+    <script src="scripts/colorbar.js"></script>
+    <svg class="co2-colorbar"></svg>
     <svg class="map"></svg>
     <div class="panel-container">
         <svg class="panel"></svg>
@@ -93,6 +104,9 @@
 
         var map = d3.select('.map')
             .attr('class', 'map sea');
+
+        var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+            .markerColor('black');
 
         var graticule = map.append('path').attr('class', 'graticule');
         var land = map.append('g');
@@ -398,12 +412,16 @@
                                 d3.select(this)
                                     .attr('opacity', 0.7)
                                     .style('cursor', 'hand')
+                            if (d.meta.co2)
+                                co2Colorbar.currentMarker(d.meta.co2);
                         })
                         .on('mouseout', function (d) { 
                             if (d.meta.production) 
                                 d3.select(this)
                                     .attr('opacity', 1)
                                     .style('cursor', 'normal')
+                            if (d.meta.co2)
+                                co2Colorbar.currentMarker(undefined);
                         })
                         .on('click', function (d, i) { 
                             if (!d.meta.production) return;
