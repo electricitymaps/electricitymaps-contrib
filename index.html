@@ -135,11 +135,11 @@
             productionPrefixText[mode] = panel.append('text')
                 .attr('font-size', 12)
                 .attr('x', panelPadding)
-                .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
+                .attr('y', panelPadding + 8 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
             productionSuffixText[mode] = panel.append('text')
                 .attr('font-size', 12)
-                .attr('x', panelPadding + 8 + prefixTextMaxWidth + productionBarMaxWidth)
-                .attr('y', panelPadding + 6 + i * (productionBarMarginY + productionBarHeight))
+                .attr('x', panelPadding + 15 + prefixTextMaxWidth + productionBarMaxWidth)
+                .attr('y', panelPadding + 8 + i * (productionBarMarginY + productionBarHeight))
         });
 
         // Prepare exchanges
@@ -247,6 +247,10 @@
                     solar: 790,
                     hydro: 0,
                 };
+                countries['ES'].meta.capacity = {
+                    wind: 23025,
+                    solar: 5400
+                }
                 countries['FR'].meta.capacity = {
                     nuclear: 63130,
                     oil: 6670,
@@ -254,13 +258,14 @@
                     hydro: 10326 + 8204 + 4965,
                     gas: 6121,
                     wind: 10358,
-                    solar: 5200
+                    solar: 6580
                 };
                 countries['UK'].meta.capacity = {
                     wind: 13500,
                     nuclear: 9000,
                     hydro: 1550,
-                    gas: 38000
+                    gas: 38000,
+                    solar: 8780
                 }
 
                 // Prepare exchanges
@@ -443,7 +448,7 @@
                                     });
                                 let production = Math.round(d.meta.production[mode] / 10) * 10
                                 if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
-                                    let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100)
+                                    let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100) || 0
                                     productionSuffixText[mode]
                                         .text(production + ' MW (' + capacityPct + '% capacity)')
                                 } else if (d.meta.production[mode] !== undefined) {
