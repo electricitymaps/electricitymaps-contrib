@@ -55,6 +55,7 @@
 
     <script src="scripts/countrymap.js"></script>
     <script src="scripts/colorbar.js"></script>
+    <script src="scripts/exchangelayer.js"></script>
 
     <svg class="co2-colorbar"></svg>
     <svg class="map sea"></svg>
@@ -109,6 +110,7 @@
             .markerColor('black');
 
         var countryMap = new CountryMap('.map');
+        var exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
 
         var panel = d3.select('.panel')
         var productionPanel = panel
@@ -147,17 +149,6 @@
                 .attr('x', 15 + prefixTextMaxWidth + productionBarMaxWidth)
                 .attr('y', 8 + i * (productionBarMarginY + productionBarHeight))
         });
-
-        // Prepare exchanges (append layer)
-        let exchangeArrowsContainer = d3.select('.map').append('g')
-        let exchangeGradientsContainer = d3.select('.map').append('g')
-
-        const TRIANGLE_HEIGHT = 8;
-        function trianglePath(w) {
-            return 'M 0 0 L ' + w + ' ' + TRIANGLE_HEIGHT + ' L -' + w + ' ' + TRIANGLE_HEIGHT + ' Z ' +
-            'M 0 -' + TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
-            'M 0 -' + TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + TRIANGLE_HEIGHT + ' L -' + w + ' -' + TRIANGLE_HEIGHT + ' Z'
-        };
 
         function animateGradient(selector, color, duration) {
             var arrow = selector.selectAll('stop')
@@ -336,6 +327,9 @@
                         if (matches.length) {
                             var match = matches[0];
                             match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
+                            match.co2 = match.countries.map(function (key) {
+                                return countries[key].meta.co2;
+                            });
                         } else {
                             if (sourceCountryCode != 'other')
                                 console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
@@ -357,129 +351,97 @@
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);
 
-                var exchangeGradients = exchangeGradientsContainer.selectAll('.exchange-gradient')
-                    .data(exchanges)
-                    .enter()
-                    .append('linearGradient')
-                    .attr('gradientUnits', 'userSpaceOnUse')
-                    .attr('x1', 0).attr('y1', -2.0 * TRIANGLE_HEIGHT - 5)
-                    .attr('x2', 0).attr('y2', TRIANGLE_HEIGHT + 5)
-                    .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
-
-                var exchangeArrows = exchangeArrowsContainer.selectAll('.exchange-arrow')
-                    .data(exchanges)
-                    .enter()
-                    .append('path')
-                    .attr('class', 'exchange-arrow')
-                    .attr('d', function(d) { 
-                        return trianglePath(exchangeArrowWidthScale(Math.abs(d.netFlow)));
-                    })
-                    .attr('transform', function (d) {;
-                        let rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
-                        return 'translate(' + d.center[0] + ',' + d.center[1] + '),rotate(' + rotation + ')';
-                    })
-                    .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
-                    .attr('stroke', function (d) { return d.netFlow ? 'black' : 'none'; })
-                    .attr('stroke-width', 0.4)
-                    .on('click', function (d) { console.log(d, exchangeAnimationScale(Math.abs(d.netFlow))); })
-                    .each(function (d, i) {
-                        if (!d.netFlow) return;
-                        var co2 = countries[d.countries[d.netFlow > 0 ? 0 : 1]].meta.co2;
-                        return animateGradient(
-                            d3.select('#exchange-gradient-' + i), 
-                            co2 ? co2color(co2) : 'grey',
-                            exchangeAnimationScale(Math.abs(d.netFlow))
-                        );
-                    });
-
-                countryMap.data(d3.values(countries));
-                countryMap.onCountryClick(function (d, i) {
-                    if (!d.meta.production) return;
-                    productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
-                    productionModes.forEach(function (mode) {
-                        productionRects[mode]
-                            .datum(d.meta)
-                            .transition()
-                            .attr('width', function (d, i) {
-                                return productionScale(d.production[mode] || 0)
-                            });
-                        capacityRects[mode]
-                            .datum(d.meta)
-                            .transition()
-                            .attr('width', function (d, i) {
-                                return d.production[mode] === undefined ? 0 : productionScale(d.capacity[mode] || 0)
-                            });
-                        let production = Math.round(d.meta.production[mode] / 10) * 10
-                        if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
-                            let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100) || 0
-                            productionSuffixText[mode]
-                                .text(production + ' MW (' + capacityPct + '% capacity)')
-                        } else if (d.meta.production[mode] !== undefined) {
-                            productionSuffixText[mode].text(production + ' MW');
-                        } else {
-                            productionSuffixText[mode].text('')
-                        }
-                        if (d.meta.production[mode] !== undefined) {
-                            productionPrefixText[mode]
-                                .text(mode)
-                        } else {
-                            productionPrefixText[mode].text(mode)
-                        }
-                        // Exchanges in panel
-                        panelExchangeData = d3.entries(d.meta.exchange)
-                            .filter(function (o) {
-                                return o.key != 'other';
-                            });
-                        var enterG = exchangePanel.selectAll('.exchange-for-country')
-                            .data(panelExchangeData)
-                            .enter()
-                                .append('g')
-                                .attr('class', 'exchange-for-country')
-                                .attr('transform', function (d, i) {
-                                    return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')'; 
+                countryMap
+                    .data(d3.values(countries))
+                    .onCountryClick(function (d, i) {
+                        if (!d.meta.production) return;
+                        productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
+                        productionModes.forEach(function (mode) {
+                            productionRects[mode]
+                                .datum(d.meta)
+                                .transition()
+                                .attr('width', function (d, i) {
+                                    return productionScale(d.production[mode] || 0)
                                 });
-                        enterG.append('rect')
-                            .attr('x', prefixTextMaxWidth)
-                            .attr('height', productionBarHeight)
-                            .attr('fill', 'black')
-                            .style('transform-origin', 'left')
-                        enterG.append('text')
-                        exchangePanel.selectAll('.exchange-for-country')
-                            .data(panelExchangeData)
-                            .exit().remove()
-                        exchangePanel.selectAll('.exchange-for-country > rect')
-                            .data(panelExchangeData)
-                            .transition()
-                            .attr('width', function (d) { 
-                                return productionScale(Math.abs(d.value));
-                            })
-                            .attr('fill', function (d) {
-                                return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
-                            })
-                            .style('transform', function (d) {
-                                return d.value < 0 ? 'scaleX(-1)' : ''; 
-                            });
-                        exchangePanel.selectAll('.exchange-for-country > text')
-                            .data(panelExchangeData)
-                            .text(function(d) { return (d.value < 0 ? '>' : '<') + d.key; });
+                            capacityRects[mode]
+                                .datum(d.meta)
+                                .transition()
+                                .attr('width', function (d, i) {
+                                    return d.production[mode] === undefined ? 0 : productionScale(d.capacity[mode] || 0)
+                                });
+                            let production = Math.round(d.meta.production[mode] / 10) * 10
+                            if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
+                                let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100) || 0
+                                productionSuffixText[mode]
+                                    .text(production + ' MW (' + capacityPct + '% capacity)')
+                            } else if (d.meta.production[mode] !== undefined) {
+                                productionSuffixText[mode].text(production + ' MW');
+                            } else {
+                                productionSuffixText[mode].text('')
+                            }
+                            if (d.meta.production[mode] !== undefined) {
+                                productionPrefixText[mode]
+                                    .text(mode)
+                            } else {
+                                productionPrefixText[mode].text(mode)
+                            }
+                            // Exchanges in panel
+                            panelExchangeData = d3.entries(d.meta.exchange)
+                                .filter(function (o) {
+                                    return o.key != 'other';
+                                });
+                            var enterG = exchangePanel.selectAll('.exchange-for-country')
+                                .data(panelExchangeData)
+                                .enter()
+                                    .append('g')
+                                    .attr('class', 'exchange-for-country')
+                                    .attr('transform', function (d, i) {
+                                        return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')'; 
+                                    });
+                            enterG.append('rect')
+                                .attr('x', prefixTextMaxWidth)
+                                .attr('height', productionBarHeight)
+                                .attr('fill', 'black')
+                                .style('transform-origin', 'left')
+                            enterG.append('text')
+                            exchangePanel.selectAll('.exchange-for-country')
+                                .data(panelExchangeData)
+                                .exit().remove()
+                            exchangePanel.selectAll('.exchange-for-country > rect')
+                                .data(panelExchangeData)
+                                .transition()
+                                .attr('width', function (d) { 
+                                    return productionScale(Math.abs(d.value));
+                                })
+                                .attr('fill', function (d) {
+                                    return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
+                                })
+                                .style('transform', function (d) {
+                                    return d.value < 0 ? 'scaleX(-1)' : ''; 
+                                });
+                            exchangePanel.selectAll('.exchange-for-country > text')
+                                .data(panelExchangeData)
+                                .text(function(d) { return (d.value < 0 ? '>' : '<') + d.key; });
+                        });
+                    })
+                    .onCountryMouseOver(function (d) { 
+                        if (d.meta.production)
+                            d3.select(this)
+                                .attr('opacity', 0.8)
+                                .style('cursor', 'hand')
+                        if (d.meta.co2)
+                            co2Colorbar.currentMarker(d.meta.co2);
+                    })
+                    .onCountryMouseOut(function (d) { 
+                        if (d.meta.production) 
+                            d3.select(this)
+                                .attr('opacity', 1)
+                                .style('cursor', 'normal')
+                        if (d.meta.co2)
+                            co2Colorbar.currentMarker(undefined);
                     });
-                });
-                countryMap.onCountryMouseOver(function (d) { 
-                    if (d.meta.production)
-                        d3.select(this)
-                            .attr('opacity', 0.8)
-                            .style('cursor', 'hand')
-                    if (d.meta.co2)
-                        co2Colorbar.currentMarker(d.meta.co2);
-                });
-                countryMap.onCountryMouseOut(function (d) { 
-                    if (d.meta.production) 
-                        d3.select(this)
-                            .attr('opacity', 1)
-                            .style('cursor', 'normal')
-                    if (d.meta.co2)
-                        co2Colorbar.currentMarker(undefined);
-                });
+
+                exchangeLayer.data(exchanges);
             };
 
             queue()

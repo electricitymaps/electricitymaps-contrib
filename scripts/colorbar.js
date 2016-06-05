@@ -1,16 +1,16 @@
 function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
-    this.padding = 20; // Inner padding allow place for the axis
+    this.PADDING = 20; // Inner padding allow place for the axis
 
     this.root = d3.select(selector);
     this.scale = d3scale.copy();
     this.width = this.root.node().getBoundingClientRect().width;
     this.height = this.root.node().getBoundingClientRect().height;
 
-    this.colorbarWidth = this.width - 2 * this.padding;
-    this.colorbarHeight = this.height - this.padding;
+    this.colorbarWidth = this.width - 2 * this.PADDING;
+    this.colorbarHeight = this.height - this.PADDING;
 
     this.gColorbar = this.root.append('g')
-        .attr('transform', 'translate(' + this.padding + ', 0)');
+        .attr('transform', 'translate(' + this.PADDING + ', 0)');
 
     if (this.scale.ticks) {
         // Linear scale

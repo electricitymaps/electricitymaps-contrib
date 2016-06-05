@@ -29,21 +29,25 @@ CountryMap.prototype.render = function() {
 CountryMap.prototype.projection = function(arg) {
     if (!arg) return this.projection;
     else this.projection = arg;
+    return this;
 };
 
 CountryMap.prototype.onCountryClick = function(arg) {
     if (!arg) return this.countryClickHandler;
     else this.countryClickHandler = arg;
+    return this;
 };
 
 CountryMap.prototype.onCountryMouseOver = function(arg) {
     if (!arg) return this.countryMouseOverHandler;
     else this.countryMouseOverHandler = arg;
+    return this;
 };
 
 CountryMap.prototype.onCountryMouseOut = function(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
 };
 
 CountryMap.prototype.data = function(data) {
@@ -73,4 +77,5 @@ CountryMap.prototype.data = function(data) {
                     return that.countryClickHandler.call(this, d, i);
                 });
     }
+    return this;
 };
