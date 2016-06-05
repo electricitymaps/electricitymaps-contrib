@@ -31,7 +31,7 @@
             border: 1px solid grey;
         }
         .co2-colorbar {
-            position:absolute;
+            position: absolute;
             bottom: 0px;
             right: 0px;
             margin: 10px;
@@ -53,9 +53,12 @@
     <script src="queue.v1.min.js"></script>
     <script src="topojson.v0.min.js"></script> -->
 
+    <script src="scripts/countrymap.js"></script>
     <script src="scripts/colorbar.js"></script>
+
     <svg class="co2-colorbar"></svg>
-    <svg class="map"></svg>
+    <svg class="map sea"></svg>
+    <svg class="exchange-arrows-layer"></svg>
     <div class="panel-container">
         <svg class="panel"></svg>
     </div>
@@ -102,14 +105,11 @@
             .domain([500, 4000])
             .range([4, 15])
 
-        var map = d3.select('.map')
-            .attr('class', 'map sea');
-
         var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('black');
 
-        var graticule = map.append('path').attr('class', 'graticule');
-        var land = map.append('g');
+        var countryMap = new CountryMap('.map');
+
         var panel = d3.select('.panel')
         var productionPanel = panel
             .append('g')
@@ -148,9 +148,9 @@
                 .attr('y', 8 + i * (productionBarMarginY + productionBarHeight))
         });
 
-        // Prepare exchanges
-        let exchangeArrowsContainer = map.append('g')
-        let exchangeGradientsContainer = map.append('g')
+        // Prepare exchanges (append layer)
+        let exchangeArrowsContainer = d3.select('.map').append('g')
+        let exchangeGradientsContainer = d3.select('.map').append('g')
 
         const TRIANGLE_HEIGHT = 8;
         function trianglePath(w) {
@@ -189,24 +189,7 @@
         };
 
         function redraw() {
-                
-            var computedMapWidth = d3.select('.map').node().getBoundingClientRect().width,
-                computedMapHeight = d3.select('.map').node().getBoundingClientRect().height;
-
-            var projection = d3.geo.mercator()
-                .center([3, 48])
-                .translate([0.6 * computedMapWidth, 0.6 * computedMapHeight])
-                .scale(700);
-                
-            var path = d3.geo.path()
-                .projection(projection);
-                
-            var graticuleData = d3.geo.graticule()
-                .step([5, 5]);
-                
-            graticule
-                .datum(graticuleData)
-                .attr('d', path);
+            countryMap.render();
 
             panel
                 .attr('width', panelWidth)
@@ -278,52 +261,52 @@
                 let exchanges = [
                     {
                         countries: ['DE', 'DK'],
-                        center: projection([9.3, 54.9]), 
+                        center: countryMap.projection([9.3, 54.9]), 
                         rotation: 0
                     },
                     {
                         countries: ['SE', 'DK'],
-                        center: projection([13, 55.7]), 
+                        center: countryMap.projection([13, 55.7]), 
                         rotation: -100
                     },
                     {
                         countries: ['UK', 'FR'],
-                        center: projection([0, 50.4]), 
+                        center: countryMap.projection([0, 50.4]), 
                         rotation: 160
                     },
                     {
                         countries: ['DK', 'NO'],
-                        center: projection([8.8, 58]), 
+                        center: countryMap.projection([8.8, 58]), 
                         rotation: -25
                     },
                     {
                         countries: ['IE', 'UK'],
-                        center: projection([-5.7, 53]), 
+                        center: countryMap.projection([-5.7, 53]), 
                         rotation: 100
                     },
                     {
                         countries: ['NL', 'UK'],
-                        center: projection([3.3, 52.4]), 
+                        center: countryMap.projection([3.3, 52.4]), 
                         rotation: -90
                     },
                     {
                         countries: ['FR', 'ES'],
-                        center: projection([0.3, 42.9]), 
+                        center: countryMap.projection([0.3, 42.9]), 
                         rotation: -160
                     },
                     {
                         countries: ['FR', 'DE'],
-                        center: projection([5.7, 49.8]), 
+                        center: countryMap.projection([5.7, 49.8]), 
                         rotation: 50
                     },
                     {
                         countries: ['FR', 'CH'],
-                        center: projection([6.5, 46.7]), 
+                        center: countryMap.projection([6.5, 46.7]), 
                         rotation: 90
                     },
                     {
                         countries: ['FR', 'IT'],
-                        center: projection([6.5, 44.5]), 
+                        center: countryMap.projection([6.5, 44.5]), 
                         rotation: 70
                     }
                 ];
@@ -409,99 +392,94 @@
                         );
                     });
 
-                land.selectAll('.country')
-                    .data(d3.values(countries))
-                    .enter()
-                        .append('path')
-                        .attr('class', 'country')
-                        .attr('d', path)
-                        .attr('stroke', 'black')
-                        .attr('stroke-width', 0.3)
-                        .attr('fill', function (d, i) { 
-                            return d.meta.co2 ? co2color(d.meta.co2) : 'gray';
-                        })
-                        .on('mouseover', function (d) { 
-                            if (d.meta.production)
-                                d3.select(this)
-                                    .attr('opacity', 0.8)
-                                    .style('cursor', 'hand')
-                            if (d.meta.co2)
-                                co2Colorbar.currentMarker(d.meta.co2);
-                        })
-                        .on('mouseout', function (d) { 
-                            if (d.meta.production) 
-                                d3.select(this)
-                                    .attr('opacity', 1)
-                                    .style('cursor', 'normal')
-                            if (d.meta.co2)
-                                co2Colorbar.currentMarker(undefined);
-                        })
-                        .on('click', function (d, i) { 
-                            if (!d.meta.production) return;
-                            productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
-                            productionModes.forEach(function (mode) {
-                                productionRects[mode]
-                                    .datum(d.meta)
-                                    .transition()
-                                    .attr('width', function (d, i) {
-                                        return productionScale(d.production[mode] || 0)
-                                    });
-                                capacityRects[mode]
-                                    .datum(d.meta)
-                                    .transition()
-                                    .attr('width', function (d, i) {
-                                        return d.production[mode] === undefined ? 0 : productionScale(d.capacity[mode] || 0)
-                                    });
-                                let production = Math.round(d.meta.production[mode] / 10) * 10
-                                if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
-                                    let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100) || 0
-                                    productionSuffixText[mode]
-                                        .text(production + ' MW (' + capacityPct + '% capacity)')
-                                } else if (d.meta.production[mode] !== undefined) {
-                                    productionSuffixText[mode].text(production + ' MW');
-                                } else {
-                                    productionSuffixText[mode].text('')
-                                }
-                                if (d.meta.production[mode] !== undefined) {
-                                    productionPrefixText[mode]
-                                        .text(mode)
-                                } else {
-                                    productionPrefixText[mode].text(mode)
-                                }
-                                // Exchanges in panel
-                                var enterG = exchangePanel.selectAll('.exchange-for-country')
-                                    .data(d3.entries(d.meta.exchange))
-                                    .enter()
-                                        .append('g')
-                                        .attr('class', 'exchange-for-country')
-                                        .attr('transform', function (d, i) {
-                                            return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')'; 
-                                        });
-                                enterG.append('rect')
-                                    .attr('x', prefixTextMaxWidth)
-                                    .attr('height', productionBarHeight)
-                                    .attr('fill', 'black')
-                                    .style('transform-origin', 'left')
-                                enterG.append('text')
-                                exchangePanel.selectAll('.exchange-for-country')
-                                    .data(d3.entries(d.meta.exchange))
-                                    .exit().remove()
-                                exchangePanel.selectAll('.exchange-for-country > rect')
-                                    .data(d3.entries(d.meta.exchange))
-                                    .attr('width', function (d) { 
-                                        return productionScale(Math.abs(d.value));
-                                    })
-                                    .attr('fill', function (d) {
-                                        return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
-                                    })
-                                    .style('transform', function (d) {
-                                        return d.value < 0 ? 'scaleX(-1)' : ''; 
-                                    });
-                                exchangePanel.selectAll('.exchange-for-country > text')
-                                    .data(d3.entries(d.meta.exchange))
-                                    .text(function(d) { return (d.value < 0 ? '>' : '<') + d.key; });
+                countryMap.data(d3.values(countries));
+                countryMap.onCountryClick(function (d, i) {
+                    if (!d.meta.production) return;
+                    productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
+                    productionModes.forEach(function (mode) {
+                        productionRects[mode]
+                            .datum(d.meta)
+                            .transition()
+                            .attr('width', function (d, i) {
+                                return productionScale(d.production[mode] || 0)
                             });
-                        });
+                        capacityRects[mode]
+                            .datum(d.meta)
+                            .transition()
+                            .attr('width', function (d, i) {
+                                return d.production[mode] === undefined ? 0 : productionScale(d.capacity[mode] || 0)
+                            });
+                        let production = Math.round(d.meta.production[mode] / 10) * 10
+                        if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
+                            let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100) || 0
+                            productionSuffixText[mode]
+                                .text(production + ' MW (' + capacityPct + '% capacity)')
+                        } else if (d.meta.production[mode] !== undefined) {
+                            productionSuffixText[mode].text(production + ' MW');
+                        } else {
+                            productionSuffixText[mode].text('')
+                        }
+                        if (d.meta.production[mode] !== undefined) {
+                            productionPrefixText[mode]
+                                .text(mode)
+                        } else {
+                            productionPrefixText[mode].text(mode)
+                        }
+                        // Exchanges in panel
+                        panelExchangeData = d3.entries(d.meta.exchange)
+                            .filter(function (o) {
+                                return o.key != 'other';
+                            });
+                        var enterG = exchangePanel.selectAll('.exchange-for-country')
+                            .data(panelExchangeData)
+                            .enter()
+                                .append('g')
+                                .attr('class', 'exchange-for-country')
+                                .attr('transform', function (d, i) {
+                                    return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')'; 
+                                });
+                        enterG.append('rect')
+                            .attr('x', prefixTextMaxWidth)
+                            .attr('height', productionBarHeight)
+                            .attr('fill', 'black')
+                            .style('transform-origin', 'left')
+                        enterG.append('text')
+                        exchangePanel.selectAll('.exchange-for-country')
+                            .data(panelExchangeData)
+                            .exit().remove()
+                        exchangePanel.selectAll('.exchange-for-country > rect')
+                            .data(panelExchangeData)
+                            .transition()
+                            .attr('width', function (d) { 
+                                return productionScale(Math.abs(d.value));
+                            })
+                            .attr('fill', function (d) {
+                                return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
+                            })
+                            .style('transform', function (d) {
+                                return d.value < 0 ? 'scaleX(-1)' : ''; 
+                            });
+                        exchangePanel.selectAll('.exchange-for-country > text')
+                            .data(panelExchangeData)
+                            .text(function(d) { return (d.value < 0 ? '>' : '<') + d.key; });
+                    });
+                });
+                countryMap.onCountryMouseOver(function (d) { 
+                    if (d.meta.production)
+                        d3.select(this)
+                            .attr('opacity', 0.8)
+                            .style('cursor', 'hand')
+                    if (d.meta.co2)
+                        co2Colorbar.currentMarker(d.meta.co2);
+                });
+                countryMap.onCountryMouseOut(function (d) { 
+                    if (d.meta.production) 
+                        d3.select(this)
+                            .attr('opacity', 1)
+                            .style('cursor', 'normal')
+                    if (d.meta.co2)
+                        co2Colorbar.currentMarker(undefined);
+                });
             };
 
             queue()
