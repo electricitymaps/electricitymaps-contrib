@@ -111,35 +111,41 @@
         var graticule = map.append('path').attr('class', 'graticule');
         var land = map.append('g');
         var panel = d3.select('.panel')
+        var productionPanel = panel
+            .append('g')
+            .attr('transform', 'translate(' + panelPadding + ',' + panelPadding + ')')
+        var exchangePanel = panel
+            .append('g')
+            .attr('transform', 'translate(' + panelPadding + ',' + (productionBarMarginY + productionModes.length * (productionBarHeight + productionBarMarginY)) + ')')
 
         var productionRects = {};
         var capacityRects = {};
         var productionPrefixText = {};
-        var productionSuffixText = {}
+        var productionSuffixText = {};
         var prefixTextMaxWidth = 80;
         productionModes.forEach(function (mode, i) {
-            capacityRects[mode] = panel.append('rect')
+            capacityRects[mode] = productionPanel.append('rect')
                 .attr('height', productionBarHeight)
                 .attr('fill', 'none') // TODO: Replace by css?
                 .attr('stroke', productionColors[mode])
                 .attr('stroke-width', 1.0)
-                .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
-                .attr('x', panelPadding + prefixTextMaxWidth)
+                .attr('opacity', 0.2)
+                .attr('y', i * (productionBarMarginY + productionBarHeight))
+                .attr('x', prefixTextMaxWidth)
                 .attr('shape-rendering', 'crispEdges');
-            productionRects[mode] = panel.append('rect')
+            productionRects[mode] = productionPanel.append('rect')
                 .attr('height', productionBarHeight)
                 .attr('fill', productionColors[mode])
-                .attr('y', panelPadding + i * (productionBarMarginY + productionBarHeight))
-                .attr('x', panelPadding + prefixTextMaxWidth)
+                .attr('y', i * (productionBarMarginY + productionBarHeight))
+                .attr('x', prefixTextMaxWidth)
                 .attr('shape-rendering', 'crispEdges');
-            productionPrefixText[mode] = panel.append('text')
+            productionPrefixText[mode] = productionPanel.append('text')
                 .attr('font-size', 12)
-                .attr('x', panelPadding)
-                .attr('y', panelPadding + 8 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
-            productionSuffixText[mode] = panel.append('text')
+                .attr('y', 8 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
+            productionSuffixText[mode] = productionPanel.append('text')
                 .attr('font-size', 12)
-                .attr('x', panelPadding + 15 + prefixTextMaxWidth + productionBarMaxWidth)
-                .attr('y', panelPadding + 8 + i * (productionBarMarginY + productionBarHeight))
+                .attr('x', 15 + prefixTextMaxWidth + productionBarMaxWidth)
+                .attr('y', 8 + i * (productionBarMarginY + productionBarHeight))
         });
 
         // Prepare exchanges
@@ -458,10 +464,42 @@
                                 }
                                 if (d.meta.production[mode] !== undefined) {
                                     productionPrefixText[mode]
-                                        .text(mode + ' (' + Math.round(d.meta.production[mode]/d.meta.totalProduction*100.0) + '%)')
+                                        .text(mode)
                                 } else {
                                     productionPrefixText[mode].text(mode)
                                 }
+                                // Exchanges in panel
+                                var enterG = exchangePanel.selectAll('.exchange-for-country')
+                                    .data(d3.entries(d.meta.exchange))
+                                    .enter()
+                                        .append('g')
+                                        .attr('class', 'exchange-for-country')
+                                        .attr('transform', function (d, i) {
+                                            return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')'; 
+                                        });
+                                enterG.append('rect')
+                                    .attr('x', prefixTextMaxWidth)
+                                    .attr('height', productionBarHeight)
+                                    .attr('fill', 'black')
+                                    .style('transform-origin', 'left')
+                                enterG.append('text')
+                                exchangePanel.selectAll('.exchange-for-country')
+                                    .data(d3.entries(d.meta.exchange))
+                                    .exit().remove()
+                                exchangePanel.selectAll('.exchange-for-country > rect')
+                                    .data(d3.entries(d.meta.exchange))
+                                    .attr('width', function (d) { 
+                                        return productionScale(Math.abs(d.value));
+                                    })
+                                    .attr('fill', function (d) {
+                                        return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
+                                    })
+                                    .style('transform', function (d) {
+                                        return d.value < 0 ? 'scaleX(-1)' : ''; 
+                                    });
+                                exchangePanel.selectAll('.exchange-for-country > text')
+                                    .data(d3.entries(d.meta.exchange))
+                                    .text(function(d) { return (d.value < 0 ? '>' : '<') + d.key; });
                             });
                         });
             };
