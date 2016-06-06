@@ -66,19 +66,19 @@
     <script>
         // Global state
         // TODO: Use redux?
-        var state = {
+        let state = {
             'selectedCountry': null
         }
 
-        var panelHeight = '300px',
+        let panelHeight = '300px',
             panelWidth = '360px',
             panelPadding = 10;
 
-        var productionBarHeight = 8,
+        let productionBarHeight = 8,
             productionBarMaxWidth = 120;
             productionBarMarginY = 10;
 
-        var productionColors = {
+        let productionColors = {
             'wind': '#74cdb9',
             'solar': '#f27406',
             'hydro': '#2772b2',
@@ -89,42 +89,35 @@
             'gas': '#f30a0a',
             'other': 'gray'
         };
-        var productionModes = d3.keys(productionColors);
+        let productionModes = d3.keys(productionColors);
 
         // Scales
-        var co2color = d3.scale.linear()
+        let co2color = d3.scale.linear()
             .domain([0, 250, 500])
             .range(['green', 'orange', 'black']);
 
-        var productionScale = d3.scale.linear()
+        let productionScale = d3.scale.linear()
             .range([0, productionBarMaxWidth]);
 
-        var exchangeAnimationScale = d3.scale.linear()
-            .domain([500, 4000])
-            .range([2000, 10])
-        var exchangeArrowWidthScale = d3.scale.linear()
-            .domain([500, 4000])
-            .range([4, 15])
-
-        var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+        let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('black');
 
-        var countryMap = new CountryMap('.map');
-        var exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
+        let countryMap = new CountryMap('.map');
+        let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
 
-        var panel = d3.select('.panel')
-        var productionPanel = panel
+        let panel = d3.select('.panel')
+        let productionPanel = panel
             .append('g')
             .attr('transform', 'translate(' + panelPadding + ',' + panelPadding + ')')
-        var exchangePanel = panel
+        let exchangePanel = panel
             .append('g')
             .attr('transform', 'translate(' + panelPadding + ',' + (productionBarMarginY + productionModes.length * (productionBarHeight + productionBarMarginY)) + ')')
 
-        var productionRects = {};
-        var capacityRects = {};
-        var productionPrefixText = {};
-        var productionSuffixText = {};
-        var prefixTextMaxWidth = 80;
+        let productionRects = {};
+        let capacityRects = {};
+        let productionPrefixText = {};
+        let productionSuffixText = {};
+        let prefixTextMaxWidth = 80;
         productionModes.forEach(function (mode, i) {
             capacityRects[mode] = productionPanel.append('rect')
                 .attr('height', productionBarHeight)
@@ -150,35 +143,6 @@
                 .attr('y', 8 + i * (productionBarMarginY + productionBarHeight))
         });
 
-        function animateGradient(selector, color, duration) {
-            var arrow = selector.selectAll('stop')
-                .data([
-                    {offset: 0, color: 'black'},
-                    {offset: 0, color: 'black'},
-                    {offset: 0, color: color},
-                    {offset: 0, color: 'black'},
-                    {offset: 1, color: 'black'},
-                ]);
-            arrow.enter().append('stop')
-                .attr('offset', function(d) { return d.offset; })
-                .attr('stop-color', function(d) { return d.color; })
-            arrow
-                .transition()
-                .duration(duration)
-                .ease('linear')
-                .attrTween('offset', function(d, i, a) {
-                    // Only animate the middle color
-                    if (i == 0 || i == 4)
-                        return function (t) { return d.offset };
-                    else {
-                        return function (t) { return 1 - t + (i - 2) * 0.4 };
-                    }
-                })
-                .each('end', function () { 
-                    return animateGradient(selector, color, duration);
-                });
-        };
-
         function redraw() {
             countryMap.render();
 
@@ -190,7 +154,7 @@
 
                 let topo = topojson.object(data, data.objects.europe).geometries;
 
-                var countries = {};
+                let countries = {};
                 countries['BE'] = topo[4];
                 countries['CH'] = topo[8];
                 countries['DE'] = topo[10];
@@ -320,12 +284,12 @@
                     // Very hacky as the last country will always have precedence
                     for (let sourceCountryCode of d3.keys(country.meta.exchange)) {
                         // Find the exchange object
-                        var matches = exchanges.filter(function (e) { 
+                        let matches = exchanges.filter(function (e) { 
                             return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
                         });
-                        var amount = country.meta.exchange[sourceCountryCode];
+                        let amount = country.meta.exchange[sourceCountryCode];
                         if (matches.length) {
-                            var match = matches[0];
+                            let match = matches[0];
                             match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
                             match.co2 = match.countries.map(function (key) {
                                 return countries[key].meta.co2;
@@ -390,7 +354,7 @@
                                 .filter(function (o) {
                                     return o.key != 'other';
                                 });
-                            var enterG = exchangePanel.selectAll('.exchange-for-country')
+                            let enterG = exchangePanel.selectAll('.exchange-for-country')
                                 .data(panelExchangeData)
                                 .enter()
                                     .append('g')

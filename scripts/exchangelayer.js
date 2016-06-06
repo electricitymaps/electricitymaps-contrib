@@ -1,5 +1,11 @@
 function ExchangeLayer(selector, projection) {
     this.TRIANGLE_HEIGHT = 8;
+    this.exchangeAnimationDurationScale = d3.scale.linear()
+        .domain([500, 4000])
+        .range([2000, 10])
+    this.exchangeArrowWidthScale = d3.scale.linear()
+        .domain([500, 4000])
+        .range([4, 15])
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = this.root.append('g');
@@ -9,6 +15,36 @@ function ExchangeLayer(selector, projection) {
         return 'M 0 0 L ' + w + ' ' + this.TRIANGLE_HEIGHT + ' L -' + w + ' ' + this.TRIANGLE_HEIGHT + ' Z ' +
         'M 0 -' + this.TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
         'M 0 -' + this.TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + this.TRIANGLE_HEIGHT + ' L -' + w + ' -' + this.TRIANGLE_HEIGHT + ' Z'
+    };
+
+    let that = this;
+    this.animateGradient = function(selector, color, duration) {
+        let arrow = selector.selectAll('stop')
+            .data([
+                {offset: 0, color: 'black'},
+                {offset: 0, color: 'black'},
+                {offset: 0, color: color},
+                {offset: 0, color: 'black'},
+                {offset: 1, color: 'black'},
+            ]);
+        arrow.enter().append('stop')
+            .attr('offset', function(d) { return d.offset; })
+            .attr('stop-color', function(d) { return d.color; })
+        arrow
+            .transition()
+            .duration(duration)
+            .ease('linear')
+            .attrTween('offset', function(d, i, a) {
+                // Only animate the middle color
+                if (i == 0 || i == 4)
+                    return function (t) { return d.offset };
+                else {
+                    return function (t) { return 1 - t + (i - 2) * 0.4 };
+                }
+            })
+            .each('end', function () { 
+                return that.animateGradient(selector, color, duration);
+            });
     };
 }
 
@@ -33,7 +69,7 @@ ExchangeLayer.prototype.data = function(arg) {
             .append('path')
             .attr('class', 'exchange-arrow')
             .attr('d', function(d) { 
-                return that.trianglePath(exchangeArrowWidthScale(Math.abs(d.netFlow)));
+                return that.trianglePath(that.exchangeArrowWidthScale(Math.abs(d.netFlow)));
             })
             .attr('transform', function (d) {;
                 let rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
@@ -42,14 +78,16 @@ ExchangeLayer.prototype.data = function(arg) {
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
             .attr('stroke', function (d) { return d.netFlow ? 'black' : 'none'; })
             .attr('stroke-width', 0.4)
-            .on('click', function (d) { console.log(d, exchangeAnimationScale(Math.abs(d.netFlow))); })
+            .on('click', function (d) {
+                console.log(d, that.exchangeAnimationDurationScale(Math.abs(d.netFlow)));
+            })
             .each(function (d, i) {
                 if (!d.netFlow) return;
                 let co2 = d.co2[d.netFlow > 0 ? 0 : 1];
-                return animateGradient(
+                return that.animateGradient(
                     d3.select('#exchange-gradient-' + i), 
                     co2 ? co2color(co2) : 'grey',
-                    exchangeAnimationScale(Math.abs(d.netFlow))
+                    that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
                 );
             });
     }
