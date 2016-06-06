@@ -28,6 +28,7 @@
             position: absolute;
             top: 0px;
             margin: 10px;
+            padding: 10px;
             background-color: rgba(255, 255, 255, 0.95);
             border: 1px solid grey;
         }
@@ -63,91 +64,30 @@
     <script src="scripts/countrymap.js"></script>
     <script src="scripts/colorbar.js"></script>
     <script src="scripts/exchangelayer.js"></script>
+    <script src="scripts/countrytable.js"></script>
 
     <svg class="co2-colorbar"></svg>
     <svg class="map sea"></svg>
     <svg class="exchange-arrows-layer"></svg>
     <div class="panel-container">
-        <svg class="production-panel"></svg>
-        <svg class="exchanges-panel"></svg>
+        <svg class="country-table"></svg>
     </div>
     <script>
-        let panelWidth = 450
-            panelPadding = 10;
-
-        let productionBarHeight = 8
-            productionBarMarginY = 10
-            innerMarginX = 8
-            prefixTextMaxWidth = 80
-            suffixTextMaxWidth = 130;
-
         let co2color = d3.scale.linear()
             .domain([0, 250, 500])
             .range(['green', 'orange', 'black']);
 
-        let productionColors = {
-            'wind': '#74cdb9',
-            'solar': '#f27406',
-            'hydro': '#2772b2',
-            'biomass': '#166a57',
-            'coal': '#ac8c35',
-            'oil': '#8356a2',
-            'nuclear': '#f5b300',
-            'gas': '#f30a0a',
-            'other': 'gray'
-        };
-        let productionModes = d3.keys(productionColors);
-
         // Set up objects
         let countryMap = new CountryMap('.map');
         let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
-
-        let productionPanelHeight = productionModes.length * (productionBarHeight + productionBarMarginY)
-        let productionBarMaxWidth = panelWidth - 2 * panelPadding - prefixTextMaxWidth - suffixTextMaxWidth - 2 * innerMarginX;
-        let panelContainer = d3.select('.panel-container')
-            .style('width', panelWidth)
-            .style('padding', panelPadding + 'px')
-        let productionPanel = d3.select('.production-panel')
-            .style('width', panelWidth - 2 * panelPadding)
-            .style('height', productionPanelHeight)
-        let exchangesPanel = d3.select('.exchanges-panel')
-            .style('width', panelWidth - 2 * panelPadding)
-
-        let productionScale = d3.scale.linear()
-            .range([0, productionBarMaxWidth]);
+        let countryTable = new CountryTable('.country-table');
 
         let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('black');
 
-        let productionRects = {};
-        let capacityRects = {};
-        let productionPrefixText = {};
-        let productionSuffixText = {};
-        productionModes.forEach(function (mode, i) {
-            capacityRects[mode] = productionPanel.append('rect')
-                .attr('height', productionBarHeight)
-                .attr('fill', 'none') // TODO: Replace by css?
-                .attr('stroke', productionColors[mode])
-                .attr('stroke-width', 1.0)
-                .attr('opacity', 0.2)
-                .attr('y', i * (productionBarMarginY + productionBarHeight))
-                .attr('x', prefixTextMaxWidth)
-                .attr('shape-rendering', 'crispEdges');
-            productionRects[mode] = productionPanel.append('rect')
-                .attr('height', productionBarHeight)
-                .attr('fill', productionColors[mode])
-                .attr('y', i * (productionBarMarginY + productionBarHeight))
-                .attr('x', prefixTextMaxWidth)
-                .attr('shape-rendering', 'crispEdges');
-            productionPrefixText[mode] = productionPanel.append('text')
-                .attr('y', 8 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
-            productionSuffixText[mode] = productionPanel.append('text')
-                .attr('x', 2 * innerMarginX + prefixTextMaxWidth + productionBarMaxWidth)
-                .attr('y', 8 + i * (productionBarMarginY + productionBarHeight))
-        });
-
         function redraw() {
             countryMap.render();
+            countryTable.render();
 
             let cb = function(err, data, realtime) {
 
@@ -301,7 +241,7 @@
                     // Send warnings for missing data
                     if (country.meta.co2 === undefined)
                         console.warn(countryCode + ' is missing co2 footprint');
-                    productionModes.forEach(function (mode) {
+                    countryTable.PRODUCTION_MODES.forEach(function (mode) {
                         if (mode == 'other') return;
                         if (country.meta.production[mode] === undefined)
                             console.warn(countryCode + ' is missing production of ' + mode);
@@ -318,86 +258,9 @@
                     .data(d3.values(countries))
                     .onCountryClick(function (d, i) {
                         if (!d.meta.production) return;
-                        // Production
-                        productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
-                        productionModes.forEach(function (mode) {
-                            productionRects[mode]
-                                .datum(d.meta)
-                                .transition()
-                                .attr('width', function (d, i) {
-                                    return productionScale(d.production[mode] || 0)
-                                });
-                            capacityRects[mode]
-                                .datum(d.meta)
-                                .transition()
-                                .attr('width', function (d, i) {
-                                    return d.production[mode] === undefined ? 0 : productionScale(d.capacity[mode] || 0)
-                                });
-                            let production = Math.round(d.meta.production[mode] / 10) * 10
-                            if (d.meta.capacity[mode] !== undefined && d.meta.production[mode] !== undefined) {
-                                let capacityPct = Math.round(d.meta.production[mode] / d.meta.capacity[mode] * 100) || 0
-                                productionSuffixText[mode]
-                                    .text(production + ' MW (' + capacityPct + '% capacity)')
-                            } else if (d.meta.production[mode] !== undefined) {
-                                productionSuffixText[mode].text(production + ' MW');
-                            } else {
-                                productionSuffixText[mode].text('')
-                            }
-                            if (d.meta.production[mode] !== undefined) {
-                                productionPrefixText[mode]
-                                    .text(mode)
-                            } else {
-                                productionPrefixText[mode].text(mode)
-                            }
-                        });
-
-                        // Exchanges
-                        panelExchangeData = d3.entries(d.meta.exchange)
-                            .filter(function (o) {
-                                return o.key != 'other';
-                            });
-
-                        let exchangesPanelHeight = panelExchangeData.length * (productionBarHeight + productionBarMarginY);
-                        let panelHeight = 2 * panelPadding + productionPanelHeight + exchangesPanelHeight;
-                        panelContainer
-                            .transition()
-                            .style('height', panelHeight);
-                        exchangesPanel
-                            .transition()
-                            .style('height', exchangesPanelHeight);
-
-                        let enterG = exchangesPanel.selectAll('.exchange-for-country')
-                            .data(panelExchangeData)
-                            .enter()
-                                .append('g')
-                                .attr('class', 'exchange-for-country')
-                                .attr('transform', function (d, i) {
-                                    return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')';
-                                });
-                        enterG.append('rect')
-                            .attr('x', prefixTextMaxWidth)
-                            .attr('height', productionBarHeight)
-                            .attr('fill', 'black')
-                            .style('transform-origin', 'left')
-                        enterG.append('text')
-                        exchangesPanel.selectAll('.exchange-for-country')
-                            .data(panelExchangeData)
-                            .exit().remove()
-                        exchangesPanel.selectAll('.exchange-for-country > rect')
-                            .data(panelExchangeData)
-                            .transition()
-                            .attr('width', function (d) { 
-                                return productionScale(Math.abs(d.value));
-                            })
-                            .attr('fill', function (d) {
-                                return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
-                            })
-                            .style('transform', function (d) {
-                                return d.value < 0 ? 'scaleX(-1)' : ''; 
-                            });
-                        exchangesPanel.selectAll('.exchange-for-country > text')
-                            .data(panelExchangeData)
-                            .text(function(d) { return d.key; });
+                        countryTable
+                            .powerDomain([0, d.meta.maxCapacity || d.meta.maxProduction])
+                            .data(d.meta);
                     })
                     .onCountryMouseOver(function (d) { 
                         if (d.meta.production)
@@ -424,8 +287,6 @@
                 .defer(d3.json, 'http://localhost:8000/realtime')
                 .await(cb);
         };
-
-        // TODO: Put as much as possible in CSS
 
         window.onresize = function () {
             redraw();
