@@ -6,6 +6,11 @@
             margin: 0 !important;
             padding: 0 !important;
             height: 100%;
+            font-family: sans-serif;
+        }
+        .map {
+            width: 100%;
+            height: 100%;
         }
         .land {
             fill: #ccc;
@@ -14,10 +19,6 @@
         }
         .sea {
             background-color: white;
-        }
-        .map {
-            width: 100%;
-            height: 100%;
         }
         .graticule {
             stroke: #185c96;
@@ -29,6 +30,12 @@
             margin: 10px;
             background-color: rgba(255, 255, 255, 0.95);
             border: 1px solid grey;
+        }
+        .panel-container > svg {
+            display: block;
+        }
+        .panel-container text {
+            font-size: 0.7em;
         }
         .co2-colorbar {
             position: absolute;
@@ -61,22 +68,22 @@
     <svg class="map sea"></svg>
     <svg class="exchange-arrows-layer"></svg>
     <div class="panel-container">
-        <svg class="panel"></svg>
+        <svg class="production-panel"></svg>
+        <svg class="exchanges-panel"></svg>
     </div>
     <script>
-        // Global state
-        // TODO: Use redux?
-        let state = {
-            'selectedCountry': null
-        }
-
-        let panelHeight = '300px',
-            panelWidth = '360px',
+        let panelWidth = 450
             panelPadding = 10;
 
-        let productionBarHeight = 8,
-            productionBarMaxWidth = 120;
-            productionBarMarginY = 10;
+        let productionBarHeight = 8
+            productionBarMarginY = 10
+            innerMarginX = 8
+            prefixTextMaxWidth = 80
+            suffixTextMaxWidth = 130;
+
+        let co2color = d3.scale.linear()
+            .domain([0, 250, 500])
+            .range(['green', 'orange', 'black']);
 
         let productionColors = {
             'wind': '#74cdb9',
@@ -91,10 +98,20 @@
         };
         let productionModes = d3.keys(productionColors);
 
-        // Scales
-        let co2color = d3.scale.linear()
-            .domain([0, 250, 500])
-            .range(['green', 'orange', 'black']);
+        // Set up objects
+        let countryMap = new CountryMap('.map');
+        let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
+
+        let productionPanelHeight = productionModes.length * (productionBarHeight + productionBarMarginY)
+        let productionBarMaxWidth = panelWidth - 2 * panelPadding - prefixTextMaxWidth - suffixTextMaxWidth - 2 * innerMarginX;
+        let panelContainer = d3.select('.panel-container')
+            .style('width', panelWidth)
+            .style('padding', panelPadding + 'px')
+        let productionPanel = d3.select('.production-panel')
+            .style('width', panelWidth - 2 * panelPadding)
+            .style('height', productionPanelHeight)
+        let exchangesPanel = d3.select('.exchanges-panel')
+            .style('width', panelWidth - 2 * panelPadding)
 
         let productionScale = d3.scale.linear()
             .range([0, productionBarMaxWidth]);
@@ -102,22 +119,10 @@
         let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('black');
 
-        let countryMap = new CountryMap('.map');
-        let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
-
-        let panel = d3.select('.panel')
-        let productionPanel = panel
-            .append('g')
-            .attr('transform', 'translate(' + panelPadding + ',' + panelPadding + ')')
-        let exchangePanel = panel
-            .append('g')
-            .attr('transform', 'translate(' + panelPadding + ',' + (productionBarMarginY + productionModes.length * (productionBarHeight + productionBarMarginY)) + ')')
-
         let productionRects = {};
         let capacityRects = {};
         let productionPrefixText = {};
         let productionSuffixText = {};
-        let prefixTextMaxWidth = 80;
         productionModes.forEach(function (mode, i) {
             capacityRects[mode] = productionPanel.append('rect')
                 .attr('height', productionBarHeight)
@@ -135,20 +140,14 @@
                 .attr('x', prefixTextMaxWidth)
                 .attr('shape-rendering', 'crispEdges');
             productionPrefixText[mode] = productionPanel.append('text')
-                .attr('font-size', 12)
                 .attr('y', 8 + i * (productionBarMarginY + productionBarHeight)); // TODO: Do it with CSS and the em or rem unit measure
             productionSuffixText[mode] = productionPanel.append('text')
-                .attr('font-size', 12)
-                .attr('x', 15 + prefixTextMaxWidth + productionBarMaxWidth)
+                .attr('x', 2 * innerMarginX + prefixTextMaxWidth + productionBarMaxWidth)
                 .attr('y', 8 + i * (productionBarMarginY + productionBarHeight))
         });
 
         function redraw() {
             countryMap.render();
-
-            panel
-                .attr('width', panelWidth)
-                .attr('height', panelHeight);
 
             let cb = function(err, data, realtime) {
 
@@ -319,6 +318,7 @@
                     .data(d3.values(countries))
                     .onCountryClick(function (d, i) {
                         if (!d.meta.production) return;
+                        // Production
                         productionScale.domain([0, d.meta.maxCapacity || d.meta.maxProduction]);
                         productionModes.forEach(function (mode) {
                             productionRects[mode]
@@ -349,44 +349,55 @@
                             } else {
                                 productionPrefixText[mode].text(mode)
                             }
-                            // Exchanges in panel
-                            panelExchangeData = d3.entries(d.meta.exchange)
-                                .filter(function (o) {
-                                    return o.key != 'other';
-                                });
-                            let enterG = exchangePanel.selectAll('.exchange-for-country')
-                                .data(panelExchangeData)
-                                .enter()
-                                    .append('g')
-                                    .attr('class', 'exchange-for-country')
-                                    .attr('transform', function (d, i) {
-                                        return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')'; 
-                                    });
-                            enterG.append('rect')
-                                .attr('x', prefixTextMaxWidth)
-                                .attr('height', productionBarHeight)
-                                .attr('fill', 'black')
-                                .style('transform-origin', 'left')
-                            enterG.append('text')
-                            exchangePanel.selectAll('.exchange-for-country')
-                                .data(panelExchangeData)
-                                .exit().remove()
-                            exchangePanel.selectAll('.exchange-for-country > rect')
-                                .data(panelExchangeData)
-                                .transition()
-                                .attr('width', function (d) { 
-                                    return productionScale(Math.abs(d.value));
-                                })
-                                .attr('fill', function (d) {
-                                    return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
-                                })
-                                .style('transform', function (d) {
-                                    return d.value < 0 ? 'scaleX(-1)' : ''; 
-                                });
-                            exchangePanel.selectAll('.exchange-for-country > text')
-                                .data(panelExchangeData)
-                                .text(function(d) { return (d.value < 0 ? '>' : '<') + d.key; });
                         });
+
+                        // Exchanges
+                        panelExchangeData = d3.entries(d.meta.exchange)
+                            .filter(function (o) {
+                                return o.key != 'other';
+                            });
+
+                        let exchangesPanelHeight = panelExchangeData.length * (productionBarHeight + productionBarMarginY);
+                        let panelHeight = 2 * panelPadding + productionPanelHeight + exchangesPanelHeight;
+                        panelContainer
+                            .transition()
+                            .style('height', panelHeight);
+                        exchangesPanel
+                            .transition()
+                            .style('height', exchangesPanelHeight);
+
+                        let enterG = exchangesPanel.selectAll('.exchange-for-country')
+                            .data(panelExchangeData)
+                            .enter()
+                                .append('g')
+                                .attr('class', 'exchange-for-country')
+                                .attr('transform', function (d, i) {
+                                    return 'translate(0,' + i * (productionBarHeight + productionBarMarginY) + ')';
+                                });
+                        enterG.append('rect')
+                            .attr('x', prefixTextMaxWidth)
+                            .attr('height', productionBarHeight)
+                            .attr('fill', 'black')
+                            .style('transform-origin', 'left')
+                        enterG.append('text')
+                        exchangesPanel.selectAll('.exchange-for-country')
+                            .data(panelExchangeData)
+                            .exit().remove()
+                        exchangesPanel.selectAll('.exchange-for-country > rect')
+                            .data(panelExchangeData)
+                            .transition()
+                            .attr('width', function (d) { 
+                                return productionScale(Math.abs(d.value));
+                            })
+                            .attr('fill', function (d) {
+                                return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
+                            })
+                            .style('transform', function (d) {
+                                return d.value < 0 ? 'scaleX(-1)' : ''; 
+                            });
+                        exchangesPanel.selectAll('.exchange-for-country > text')
+                            .data(panelExchangeData)
+                            .text(function(d) { return d.key; });
                     })
                     .onCountryMouseOver(function (d) { 
                         if (d.meta.production)
