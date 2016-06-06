@@ -1,6 +1,6 @@
 import arrow, flask, json, os, pymongo
 
-from flask.ext.cors import CORS
+from flask_cors import CORS
 
 ENV = os.environ.get('ENV', 'DEBUG')
 PORT = 8000
