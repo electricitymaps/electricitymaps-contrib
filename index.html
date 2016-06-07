@@ -11,6 +11,8 @@
         .map {
             width: 100%;
             height: 100%;
+            position: absolute;
+            top: 0px;
         }
         .land {
             fill: #ccc;
@@ -19,6 +21,8 @@
         }
         .sea {
             background-color: white;
+        }
+        .wind {
         }
         .graticule {
             stroke: #185c96;
@@ -47,6 +51,15 @@
             height: 30px;
             font-size: 0.2em;
         }
+        .wind-colorbar {
+            position: absolute;
+            bottom: 30px;
+            right: 0px;
+            margin: 10px;
+            width: 300px;
+            height: 30px;
+            font-size: 0.2em;
+        }
     </style>
     </head>
 <body>
@@ -62,13 +75,15 @@
     <script src="topojson.v0.min.js"></script> -->
 
     <script src="scripts/countrymap.js"></script>
-    <script src="scripts/colorbar.js"></script>
+    <script src="scripts/horizontalcolorbar.js"></script>
     <script src="scripts/exchangelayer.js"></script>
     <script src="scripts/countrytable.js"></script>
+    <script src="scripts/windy.js"></script>
 
-    <svg class="co2-colorbar"></svg>
     <svg class="map sea"></svg>
-    <svg class="exchange-arrows-layer"></svg>
+    <canvas class="map wind"></canvas>
+    <svg class="co2-colorbar"></svg>
+    <svg class="wind-colorbar"></svg>
     <div class="panel-container">
         <svg class="country-table"></svg>
     </div>
@@ -76,6 +91,9 @@
         let co2color = d3.scale.linear()
             .domain([0, 250, 500])
             .range(['green', 'orange', 'black']);
+        let windColor = d3.scale.linear()
+            .domain([0, 40])
+            .range(['rgba(0, 255, 255, 0.5)', 'rgba(255, 30, 219, 0.5)'])
 
         // Set up objects
         let countryMap = new CountryMap('.map');
@@ -85,11 +103,30 @@
         let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('black');
 
+        let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor);
+
+        let canvas = d3.select('.wind');
+        let width = canvas.node().getBoundingClientRect().width;
+        let height = canvas.node().getBoundingClientRect().height;
+        canvas.attr('height', height);
+        canvas.attr('width', width);
+
         function redraw() {
             countryMap.render();
             countryTable.render();
 
-            let cb = function(err, data, realtime) {
+            // TODO: Only fetch data once
+            let cb = function(err, data, gfs, realtime) {
+
+                let windLayer = new Windy({ canvas: canvas.node(), data: gfs });
+                let sw = countryMap.projection.invert([0, height]);
+                let ne = countryMap.projection.invert([width, 0]);
+                windLayer.start(
+                    [[0, 0], [width, height]], 
+                    width,
+                    height,
+                    [sw, ne]
+                );
 
                 let topo = topojson.object(data, data.objects.europe).geometries;
 
@@ -253,6 +290,7 @@
                 }
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);
+                console.log('GFS', gfs);
 
                 countryMap
                     .data(d3.values(countries))
@@ -284,6 +322,7 @@
 
             queue()
                 .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
+                .defer(d3.json, 'http://esri.github.io/wind-js/gfs.json')
                 .defer(d3.json, 'http://localhost:8000/realtime')
                 .await(cb);
         };
