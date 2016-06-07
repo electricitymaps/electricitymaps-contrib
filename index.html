@@ -93,7 +93,7 @@
             .range(['green', 'orange', 'black']);
         let windColor = d3.scale.linear()
             .domain([0, 40])
-            .range(['rgba(0, 255, 255, 0.5)', 'rgba(255, 30, 219, 0.5)'])
+            .range(['rgba(0, 255, 255, 0)', 'rgba(255, 30, 219, ' + (9/7) +')'])
 
         // Set up objects
         let countryMap = new CountryMap('.map');
