@@ -99,20 +99,23 @@
         // Set up objects
         let countryMap = new CountryMap('.map');
         let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
-        let countryTable = new CountryTable('.country-table');
+        let countryTable = new CountryTable('.country-table', co2color);
         let windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
         let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('red');
 
         let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-            .markerColor('red');;
+            .markerColor('red');
 
         let canvas = d3.select('.wind');
         let width = canvas.node().getBoundingClientRect().width;
         let height = canvas.node().getBoundingClientRect().height;
         canvas.attr('height', height);
         canvas.attr('width', width);
+
+        // Prepare data
+        let countries = {};
 
         // Events
         function windMouseOver(coordinates) {
@@ -132,6 +135,14 @@
             .on('mouseout', function() {
                 windMouseOver(null);
             });
+        countryTable
+            .onExchangeMouseOver(function (d, countryCode) {
+                let co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
+                co2Colorbar.currentMarker(co2);
+            })
+            .onExchangeMouseOut(function (d) {
+                co2Colorbar.currentMarker(null);
+            });
 
         function dataLoaded(err, data, gfs, realtime) {
 
@@ -147,7 +158,6 @@
 
             let topo = topojson.object(data, data.objects.europe).geometries;
 
-            let countries = {};
             countries['BE'] = topo[4];
             countries['CH'] = topo[8];
             countries['DE'] = topo[10];
@@ -166,11 +176,11 @@
 
             // Add empty fields
             for (let countryCode of d3.keys(countries)) {
-                countries[countryCode].meta = {};
-                countries[countryCode].meta.capacity = {}
+                countries[countryCode].data = {};
+                countries[countryCode].data.capacity = {}
             }
 
-            countries['DE'].meta.capacity = {
+            countries['DE'].data.capacity = {
                 solar: 39700,
                 wind: 2700 + 40990,
                 gas: 28540,
@@ -179,16 +189,16 @@
                 nuclear: 10790,
                 coal: 27090 + 21140
             };
-            countries['DK'].meta.capacity = {
+            countries['DK'].data.capacity = {
                 wind: 5070,
                 solar: 790,
                 hydro: 0,
             };
-            countries['ES'].meta.capacity = {
+            countries['ES'].data.capacity = {
                 wind: 23025,
                 solar: 5400
             }
-            countries['FR'].meta.capacity = {
+            countries['FR'].data.capacity = {
                 nuclear: 63130,
                 oil: 6670,
                 coal: 2930,
@@ -197,7 +207,7 @@
                 wind: 10358,
                 solar: 6580
             };
-            countries['UK'].meta.capacity = {
+            countries['UK'].data.capacity = {
                 wind: 13500,
                 nuclear: 9000,
                 hydro: 1550,
@@ -264,45 +274,53 @@
                 let obj = realtime.data[countryCode];
                 let country = countries[countryCode]
                 for (let k of d3.keys(obj))
-                    country.meta[k] = obj[k];
+                    country.data[k] = obj[k];
                 // Add extra data
                 // TODO: Calculate co2 in the browser to take into account exchanges
-                country.meta.maxCapacity = 
-                    d3.max(d3.values(country.meta.capacity));
-                country.meta.maxProduction = 
-                    d3.max(d3.values(country.meta.production));
-                country.meta.totalProduction = 
-                    d3.sum(d3.values(country.meta.production));
+                country.data.maxCapacity = 
+                    d3.max(d3.values(country.data.capacity));
+                country.data.maxProduction = 
+                    d3.max(d3.values(country.data.production));
+                country.data.totalProduction = 
+                    d3.sum(d3.values(country.data.production));
+                // Add own country code so each country is identifiable
+                country.data.countryCode = countryCode;
+                // Add co2 to each exchange
+                country.data.exchangeCo2 = {};
+                d3.keys(country.data.exchange).forEach(function (k) {
+                    if (k == 'other') return;
+                    country.data.exchangeCo2[k] = countries[k].data.co2;
+                });
                 // Populate exchanges
                 // Very hacky as the last country will always have precedence
-                for (let sourceCountryCode of d3.keys(country.meta.exchange)) {
+                d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
                     // Find the exchange object
                     let matches = exchanges.filter(function (e) { 
                         return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
                     });
-                    let amount = country.meta.exchange[sourceCountryCode];
+                    let amount = country.data.exchange[sourceCountryCode];
                     if (matches.length) {
                         let match = matches[0];
                         match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
                         match.co2 = match.countries.map(function (key) {
-                            return countries[key].meta.co2;
+                            return countries[key].data.co2;
                         });
                     } else {
                         if (sourceCountryCode != 'other')
                             console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
                     }
-                }
+                });
                 // Send warnings for missing data
-                if (country.meta.co2 === undefined)
+                if (country.data.co2 === undefined)
                     console.warn(countryCode + ' is missing co2 footprint');
                 countryTable.PRODUCTION_MODES.forEach(function (mode) {
                     if (mode == 'other') return;
-                    if (country.meta.production[mode] === undefined)
+                    if (country.data.production[mode] === undefined)
                         console.warn(countryCode + ' is missing production of ' + mode);
-                    if (country.meta.capacity[mode] === undefined)
+                    if (country.data.capacity[mode] === undefined)
                         console.warn(countryCode + ' is missing capacity of ' + mode);
                 });
-                if (country.meta.exchange === undefined || country.meta.exchange.length == 0)
+                if (country.data.exchange === undefined || country.data.exchange.length == 0)
                     console.warn(countryCode + ' is missing exchanges');
             }
             console.log('countries', countries);
@@ -312,25 +330,25 @@
             countryMap
                 .data(d3.values(countries))
                 .onCountryClick(function (d, i) {
-                    if (!d.meta.production) return;
+                    if (!d.data.production) return;
                     countryTable
-                        .powerDomain([0, d.meta.maxCapacity || d.meta.maxProduction])
-                        .data(d.meta);
+                        .powerDomain([0, d.data.maxCapacity || d.data.maxProduction])
+                        .data(d.data);
                 })
                 .onCountryMouseOver(function (d) { 
-                    if (d.meta.production)
+                    if (d.data.production)
                         d3.select(this)
                             .attr('opacity', 0.8)
                             .style('cursor', 'hand')
-                    if (d.meta.co2)
-                        co2Colorbar.currentMarker(d.meta.co2);
+                    if (d.data.co2)
+                        co2Colorbar.currentMarker(d.data.co2);
                 })
                 .onCountryMouseOut(function (d) { 
-                    if (d.meta.production) 
+                    if (d.data.production) 
                         d3.select(this)
                             .attr('opacity', 1)
                             .style('cursor', 'normal')
-                    if (d.meta.co2)
+                    if (d.data.co2)
                         co2Colorbar.currentMarker(undefined);
                 });
 

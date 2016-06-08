@@ -1,5 +1,6 @@
-function CountryTable(selector) {
+function CountryTable(selector, co2color) {
     this.root = d3.select(selector);
+    this.co2color = co2color;
 
     // Create containers
     this.productionRoot = this.root.append('g');
@@ -84,6 +85,18 @@ CountryTable.prototype.powerDomain = function(arg) {
     return this;
 }
 
+CountryTable.prototype.onExchangeMouseOver = function(arg) {
+    if (!arg) return this.exchangeMouseOverHandler;
+    else this.exchangeMouseOverHandler = arg;
+    return this;
+}
+
+CountryTable.prototype.onExchangeMouseOut = function(arg) {
+    if (!arg) return this.exchangeMouseOutHandler;
+    else this.exchangeMouseOutHandler = arg;
+    return this;
+}
+
 CountryTable.prototype.data = function(arg) {
     let that = this;
 
@@ -133,13 +146,20 @@ CountryTable.prototype.data = function(arg) {
             .attr('fill', 'black')
             .style('transform-origin', 'left')
         selection.select('rect')
+            .attr('fill', function (d, i) {
+                return d.value > 0 ? 
+                    that._data.exchangeCo2[d.key] ? that.co2color(that._data.exchangeCo2[d.key]) : 'gray'
+                    : that._data.co2 ? that.co2color(that._data.co2) : 'gray';
+            })
+            .on('mouseover', function (d) {
+                that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
+            })
+            .on('mouseout', function (d) {
+                that.exchangeMouseOverHandler.call(this, d);
+            })
             .transition()
             .attr('width', function (d) { 
                 return that.powerScale(Math.abs(d.value));
-            })
-            .attr('fill', function (d) {
-                return 'black';
-                //return d.value > 0 ? co2color(countries[d.key].meta.co2) : 'black';
             })
             .style('transform', function (d) {
                 return d.value < 0 ? 'scaleX(-1)' : ''; 
