@@ -23,6 +23,7 @@
             background-color: white;
         }
         .wind {
+            pointer-events: none;
         }
         .graticule {
             stroke: #185c96;
@@ -99,6 +100,7 @@
         let countryMap = new CountryMap('.map');
         let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
         let countryTable = new CountryTable('.country-table');
+        let windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
         let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
             .markerColor('red');
@@ -112,27 +114,36 @@
         canvas.attr('height', height);
         canvas.attr('width', width);
 
+        // Events
+        function windMouseOver(coordinates) {
+            if (coordinates) {
+                let wind = windLayer.field(coordinates[0], coordinates[1]);
+                windColorbar.currentMarker(wind[2]);
+            } else {
+                windColorbar.currentMarker(null);
+            }
+        }
+
+        // Attach events
+        d3.select('.map')
+            .on('mousemove', function() {
+                windMouseOver(d3.mouse(this));
+            })
+            .on('mouseout', function() {
+                windMouseOver(null);
+            });
+
         function dataLoaded(err, data, gfs, realtime) {
 
-            let windLayer = new Windy({ canvas: canvas.node(), data: gfs });
             let sw = countryMap.projection.invert([0, height]);
             let ne = countryMap.projection.invert([width, 0]);
+            windLayer.params.data = gfs;
             windLayer.start(
                 [[0, 0], [width, height]], 
                 width,
                 height,
                 [sw, ne]
             );
-
-            // TODO: Only do it once.
-            canvas.on('mousemove', function(e) {
-                let coordinates = d3.mouse(this);
-                let wind = windLayer.field(coordinates[0], coordinates[1]);
-                windColorbar.currentMarker(wind[2]);
-            });
-            canvas.on('mouseout', function() {
-                windColorbar.currentMarker(null);
-            });
 
             let topo = topojson.object(data, data.objects.europe).geometries;
 
