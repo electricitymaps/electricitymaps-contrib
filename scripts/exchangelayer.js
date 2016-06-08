@@ -13,15 +13,15 @@ function ExchangeLayer(selector, projection) {
     this.exchangeGradientsContainer = this.root.append('g');
 
     this.trianglePath = function() {
-        let w = this.TRIANGLE_HEIGHT;
+        var w = this.TRIANGLE_HEIGHT;
         return 'M 0 0 L ' + w + ' ' + this.TRIANGLE_HEIGHT + ' L -' + w + ' ' + this.TRIANGLE_HEIGHT + ' Z ' +
         'M 0 -' + this.TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
         'M 0 -' + this.TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + this.TRIANGLE_HEIGHT + ' L -' + w + ' -' + this.TRIANGLE_HEIGHT + ' Z'
     };
 
-    let that = this;
+    var that = this;
     this.animateGradient = function(selector, color, duration) {
-        let arrow = selector.selectAll('stop')
+        var arrow = selector.selectAll('stop')
             .data([
                 {offset: 0, color: color},
                 {offset: 0, color: color},
@@ -57,8 +57,8 @@ ExchangeLayer.prototype.data = function(arg) {
     else {
         this.data = arg;
 
-        let that = this;
-        let exchangeGradients = this.exchangeGradientsContainer.selectAll('.exchange-gradient')
+        var that = this;
+        var exchangeGradients = this.exchangeGradientsContainer.selectAll('.exchange-gradient')
             .data(this.data)
             .enter()
             .append('linearGradient')
@@ -67,7 +67,7 @@ ExchangeLayer.prototype.data = function(arg) {
             .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
             .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
-        let exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
+        var exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
             .data(this.data)
             .enter()
             .append('path')
@@ -76,7 +76,7 @@ ExchangeLayer.prototype.data = function(arg) {
                 return that.trianglePath();
             })
             .attr('transform', function (d) {;
-                let rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
+                var rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
                 return 'translate(' + d.center[0] + ',' + d.center[1] + '),' + 
                     'scale(' + that.exchangeArrowScale(Math.abs(d.netFlow)) + '),' + 
                     'rotate(' + rotation + ')';
@@ -89,7 +89,7 @@ ExchangeLayer.prototype.data = function(arg) {
             })
             .each(function (d, i) {
                 if (!d.netFlow) return;
-                let co2 = d.co2[d.netFlow > 0 ? 0 : 1];
+                var co2 = d.co2[d.netFlow > 0 ? 0 : 1];
                 return that.animateGradient(
                     d3.select('#exchange-gradient-' + i), 
                     co2 ? co2color(co2) : 'grey',

@@ -90,36 +90,36 @@
             <svg class="country-table"></svg>
         </div>
         <script>
-            let co2color = d3.scale.linear()
+            var co2color = d3.scale.linear()
                 .domain([0, 250, 500])
                 .range(['green', 'orange', 'black']);
-            let windColor = d3.scale.linear()
+            var windColor = d3.scale.linear()
                 .domain([0, 40])
                 .range(['rgba(40, 54, 64, 0)', 'rgba(255, 30, 219, ' + (9/7) +')'])
 
             // Set up objects
-            let countryMap = new CountryMap('.map');
-            let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
-            let countryTable = new CountryTable('.country-table', co2color);
-            let windLayer = new Windy({ canvas: d3.select('.wind').node() });
+            var countryMap = new CountryMap('.map');
+            var exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
+            var countryTable = new CountryTable('.country-table', co2color);
+            var windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
-            let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color);
+            var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color);
 
-            let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor);
+            var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor);
 
-            let canvas = d3.select('.wind');
-            let width = canvas.node().getBoundingClientRect().width;
-            let height = canvas.node().getBoundingClientRect().height;
+            var canvas = d3.select('.wind');
+            var width = window.innerWidth;
+            var height = window.innerHeight;
             canvas.attr('height', height);
             canvas.attr('width', width);
 
             // Prepare data
-            let countries = {};
+            var countries = {};
 
             // Events
             function windMouseOver(coordinates) {
                 if (windLayer.field && coordinates) {
-                    let wind = windLayer.field(coordinates[0], coordinates[1]);
+                    var wind = windLayer.field(coordinates[0], coordinates[1]);
                     windColorbar.currentMarker(wind[2]);
                 } else {
                     windColorbar.currentMarker(null);
@@ -137,7 +137,7 @@
             countryTable
                 .onExchangeMouseOver(function (d, countryCode) {
                     if (d.key == 'other') return;
-                    let co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
+                    var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
                     co2Colorbar.currentMarker(co2);
                 })
                 .onExchangeMouseOut(function (d) {
@@ -146,8 +146,8 @@
 
             function dataLoaded(err, data, gfs, realtime) {
 
-                let sw = countryMap.projection.invert([0, height]);
-                let ne = countryMap.projection.invert([width, 0]);
+                var sw = countryMap.projection.invert([0, height]);
+                var ne = countryMap.projection.invert([width, 0]);
                 windLayer.params.data = gfs;
                 windLayer.start(
                     [[0, 0], [width, height]], 
@@ -156,7 +156,7 @@
                     [sw, ne]
                 );
 
-                let topo = topojson.object(data, data.objects.europe).geometries;
+                var topo = topojson.object(data, data.objects.europe).geometries;
 
                 countries['BE'] = topo[4];
                 countries['CH'] = topo[8];
@@ -218,7 +218,7 @@
                 }
 
                 // Prepare exchanges
-                let exchanges = [
+                var exchanges = [
                     {
                         countries: ['DE', 'DK'],
                         center: countryMap.projection([9.3, 54.9]), 
@@ -273,14 +273,14 @@
 
                 // Populate with realtime production data
                 // TODO: Calculate co2 in the browser to take into account exchanges
-                for (let countryCode of d3.keys(realtime.data)) {
-                    let obj = realtime.data[countryCode];
-                    let country = countries[countryCode];
+                for (var countryCode of d3.keys(realtime.data)) {
+                    var obj = realtime.data[countryCode];
+                    var country = countries[countryCode];
                     if (!country) {
                         console.warn(countryCode + ' has no definition.');
                         continue;
                     }
-                    for (let k of d3.keys(obj))
+                    for (var k of d3.keys(obj))
                         country.data[k] = obj[k];
                     // Add co2 to each neighboring country
                     country.data.neighborCo2 = {};
@@ -306,9 +306,9 @@
 
                 // Populate exchanges
                 exchanges.forEach(function (pair) {
-                    let o = pair.countries[0];
-                    let d = pair.countries[1];
-                    let netFlows = [
+                    var o = pair.countries[0];
+                    var d = pair.countries[1];
+                    var netFlows = [
                         countries[d].data.exchange[o],
                         -countries[o].data.exchange[d]
                     ];
@@ -335,12 +335,12 @@
                 });
 
                 // Issue warnings for missing data
-                for (let countryCode of d3.keys(realtime.data)) {
-                    let country = countries[countryCode]
+                for (var countryCode of d3.keys(realtime.data)) {
+                    var country = countries[countryCode]
                     if (!country) continue;
                     d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
                         // Find the exchange object
-                        let matches = exchanges.filter(function (e) { 
+                        var matches = exchanges.filter(function (e) { 
                             return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
                         });
                         if (!matches.length) {
