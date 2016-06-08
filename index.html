@@ -276,7 +276,7 @@
             // TODO: Calculate co2 in the browser to take into account exchanges
             for (let countryCode of d3.keys(realtime.data)) {
                 let obj = realtime.data[countryCode];
-                let country = countries[countryCode]
+                let country = countries[countryCode];
                 for (let k of d3.keys(obj))
                     country.data[k] = obj[k];
                 // Add extra data
@@ -309,6 +309,21 @@
             }
 
             // Populate exchanges
+            exchanges.forEach(function (pair) {
+                let o = pair.countries[0];
+                let d = pair.countries[1];
+                let netFlows = [
+                    countries[d].data.exchange[o],
+                    -countries[o].data.exchange[d]
+                ];
+                pair.netFlow = d3.mean(netFlows);
+                pair.co2 = pair.countries.map(function (k) { return countries[k].data.co2; });
+                countries[o].data.exchange[d] = -pair.netFlow;
+                countries[d].data.exchange[o] = pair.netFlow;
+                countries[o].data.neighborCo2[d] = countries[d].data.co2;
+                countries[d].data.neighborCo2[o] = countries[o].data.co2;
+            });
+
             for (let countryCode of d3.keys(realtime.data)) {
                 let country = countries[countryCode]
                 // Very hacky as the last country will always have precedence
@@ -317,17 +332,7 @@
                     let matches = exchanges.filter(function (e) { 
                         return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
                     });
-                    let amount = country.data.exchange[sourceCountryCode];
-                    if (matches.length) {
-                        let pair = matches[0];
-                        pair.netFlow = pair.countries[0] == sourceCountryCode ? amount : -amount;
-                        pair.co2 = pair.countries.map(function (key) {
-                            return countries[key].data.co2;
-                        });
-                        // Update the other country
-                        countries[sourceCountryCode].data.exchange[countryCode] = -amount;
-                        countries[sourceCountryCode].data.neighborCo2[countryCode] = country.data.co2;
-                    } else {
+                    if (!matches.length) {
                         if (sourceCountryCode != 'other')
                             console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
                     }
