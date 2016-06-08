@@ -287,7 +287,7 @@
                 country.data.totalProduction = 
                     d3.sum(d3.values(country.data.production));
                 country.data.maxExport = 
-                    -Math.min(d3.min(d3.values(country.data.exchange)), 0);
+                    -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
                 // Add co2 to each neighboring country
                 country.data.neighborCo2 = {};
                 d3.keys(country.data.exchange).forEach(function (k) {
