@@ -61,7 +61,7 @@ def fetch_FR():
 
     data['exchange'] = {
         'CH': parsed['CH'],
-        'UK': parsed['GB'],
+        'GB': parsed['GB'],
         'ES': parsed['ES'],
         'IT': parsed['IT'],
         'DE': parsed['DB'] # Germany + Belgium redirected to Germany

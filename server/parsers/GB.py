@@ -2,9 +2,9 @@ import arrow
 import requests
 import xml.etree.ElementTree as ET
 
-COUNTRY_CODE = 'UK'
+COUNTRY_CODE = 'GB'
 
-def fetch_UK():
+def fetch_GB():
     url = 'http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable'
 
     response = requests.get(url)
@@ -50,4 +50,4 @@ def fetch_UK():
 
     return obj
 
-fetch_UK()
+fetch_GB()

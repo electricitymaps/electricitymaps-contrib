@@ -168,7 +168,7 @@
                 countries['ES'] = topo[12];
                 countries['FI'] = topo[14];
                 countries['FR'] = topo[15];
-                countries['UK'] = topo[17];
+                countries['GB'] = topo[17];
                 countries['IE'] = topo[24];
                 countries['IT'] = topo[26];
                 countries['LU'] = topo[31];
@@ -212,7 +212,7 @@
                     wind: 10358,
                     solar: 6580
                 };
-                countries['UK'].data.capacity = {
+                countries['GB'].data.capacity = {
                     wind: 13500,
                     nuclear: 9000,
                     hydro: 1550,
@@ -233,7 +233,7 @@
                         rotation: -100
                     },
                     {
-                        countries: ['UK', 'FR'],
+                        countries: ['GB', 'FR'],
                         center: countryMap.projection([0, 50.4]), 
                         rotation: 160
                     },
@@ -243,12 +243,12 @@
                         rotation: -25
                     },
                     {
-                        countries: ['IE', 'UK'],
+                        countries: ['IE', 'GB'],
                         center: countryMap.projection([-5.7, 53]), 
                         rotation: 100
                     },
                     {
-                        countries: ['NL', 'UK'],
+                        countries: ['NL', 'GB'],
                         center: countryMap.projection([3.3, 52.4]), 
                         rotation: -90
                     },
@@ -279,6 +279,10 @@
                 for (let countryCode of d3.keys(realtime.data)) {
                     let obj = realtime.data[countryCode];
                     let country = countries[countryCode];
+                    if (!country) {
+                        console.warn(countryCode + ' has no definition.');
+                        continue;
+                    }
                     for (let k of d3.keys(obj))
                         country.data[k] = obj[k];
                     // Add extra data
@@ -330,6 +334,7 @@
 
                 for (let countryCode of d3.keys(realtime.data)) {
                     let country = countries[countryCode]
+                    if (!country) continue;
                     // Very hacky as the last country will always have precedence
                     d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
                         // Find the exchange object
