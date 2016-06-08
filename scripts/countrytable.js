@@ -10,10 +10,10 @@ function CountryTable(selector, co2color) {
 
     // Constants
     this.ROW_HEIGHT = 10;
-    this.LABEL_MAX_WIDTH = 60;
-    // Inner paddings
-    this.PADDING_X = 5;
-    this.PADDING_Y = 5;
+    this.LABEL_MAX_WIDTH = 50;
+    this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
+    this.FLAG_SIZE_MULTIPLIER = 3;
+    this.TEXT_ADJUST_Y = 9; // To align properly on a line
     this.PRODUCTION_COLORS = {
         'wind': '#74cdb9',
         'solar': '#f27406',
@@ -34,13 +34,16 @@ CountryTable.prototype.render = function() {
     let width = this.root.node().getBoundingClientRect().width;
 
     // Header
-    // this.headerRoot.append('rect')
-    //     .attr('class', 'flag-icon')
-    // this.headerRoot.append('text')
-    //     .attr('class', 'country')
-    //     .style('font-weight', 'bold')
-    //     .attr('transform', 'translate(0, 10)')
-    //     .text('<click on a country>'); // TODO: Translate by the right amount of em
+    this.headerRoot.append('image')
+        .attr('class', 'flag-icon')
+        .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
+        .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
+        .attr('shape-rendering', 'crispEdges');
+    this.headerRoot.append('text')
+        .attr('class', 'country')
+        .style('font-weight', 'bold')
+        .attr('transform', 'translate(' + (4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')') // TODO: Translate by the right amount of em
+        .text('<click on a country>');
 
     // ** Production labels and rects **
     let gNewRow = this.productionRoot.selectAll('.row')
@@ -53,7 +56,7 @@ CountryTable.prototype.render = function() {
             });
     gNewRow.append('text')
         .text(function(d) { return d; })
-        .attr('transform', 'translate(0, 10)'); // TODO: Translate by the right amount of em
+        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
@@ -109,7 +112,7 @@ CountryTable.prototype.resize = function() {
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
     this.productionRoot
         .attr('transform', 'translate(0,' + this.yProduction + ')');
-    this.yExchange = this.yProduction + this.productionHeight;
+    this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT;
     this.exchangeRoot
         .attr('transform', 'translate(0,' + this.yExchange + ')');
 
@@ -125,14 +128,10 @@ CountryTable.prototype.data = function(arg) {
         this._data = arg;
 
         // Set header
-        // this.headerRoot.select('image.flag-icon')
-        //     .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
-        // this.headerRoot.select('text.country')
-        //     .text(this._data.countryCode)
-        d3.select('.selected-country')
+        this.headerRoot.select('image.flag-icon')
+            .attr('xlink:href', 'vendor/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
+        this.headerRoot.select('text.country')
             .text(this._data.countryCode);
-        d3.select('.flag-icon')
-            .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase());
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
@@ -170,8 +169,15 @@ CountryTable.prototype.data = function(arg) {
             .attr('transform', function (d, i) {
                 return 'translate(0,' + i * (that.ROW_HEIGHT + that.PADDING_Y) + ')';
             });
+        gNewRow.append('image')
+            .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
+            .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
+            .attr('xlink:href', function (d) { 
+                return 'vendor/flag-icon-css/flags/4x3/' + d.key + '.svg';
+            });
         gNewRow.append('text')
-            .attr('transform', 'translate(0, 10)'); // TODO: Translate by the right amount of em
+            .attr('x', 4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_X)
+            .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
         gNewRow.append('rect')
             .attr('height', this.ROW_HEIGHT)
             .attr('fill', 'black')
@@ -203,7 +209,7 @@ CountryTable.prototype.data = function(arg) {
         // Vertical axis
         this.verticalAxis
             .transition()
-            .attr('d', 'M 0 0 L 0 ' + this.productionHeight + this.exchangeHeight)
+            .attr('d', 'M 0 0 L 0 ' + this.productionHeight + this.exchangeHeight + this.ROW_HEIGHT)
             .attr('transform', 'translate(' + 
                 (this.LABEL_MAX_WIDTH + this.powerScale(0)) + ',' +
                 this.yProduction + ')')

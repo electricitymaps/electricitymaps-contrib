@@ -34,7 +34,7 @@
                 top: 0px;
                 margin: 10px;
                 padding: 10px;
-                background-color: rgba(43, 43, 43, 0.95);
+                background-color: rgba(60, 60, 60, 0.85);
                 border: 1px solid grey;
             }
             .panel-container > svg {
@@ -65,8 +65,6 @@
             }
         </style>
 
-        <link rel="stylesheet" type="text/css" href="vendor/flag-icon-css/css/flag-icon.min.css">
-
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
         <script src="http://d3js.org/queue.v1.min.js"></script>
@@ -81,7 +79,7 @@
         <script src="scripts/horizontalcolorbar.js"></script>
         <script src="scripts/exchangelayer.js"></script>
         <script src="scripts/countrytable.js"></script>
-        <script src="scripts/windy.js"></script>
+        <script src="vendor/wind-js/windy.js"></script>
     </head>
     <body>
         <svg class="map sea"></svg>
@@ -89,7 +87,6 @@
         <svg class="co2-colorbar"></svg>
         <svg class="wind-colorbar"></svg>
         <div class="panel-container">
-            <div><i class="flag-icon"></i> <b><span class="selected-country">...</span></b></div>
             <svg class="country-table"></svg>
         </div>
         <script>
