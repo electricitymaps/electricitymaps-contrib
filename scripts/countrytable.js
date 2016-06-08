@@ -60,7 +60,7 @@ CountryTable.prototype.render = function() {
         .attr('fill', 'none')
         .attr('stroke', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('stroke-width', 1.0)
-        .attr('opacity', 0.2)
+        .attr('opacity', 0.4)
         .attr('shape-rendering', 'crispEdges');
     gNewRow.append('rect')
         .attr('class', 'production')
@@ -71,8 +71,8 @@ CountryTable.prototype.render = function() {
     // Vertical axis
     this.verticalAxis
         .attr('stroke-width', 1)
-        .attr('stroke', 'black')
-        .attr('opacity', 0.1)
+        .attr('stroke', 'gray')
+        .attr('opacity', 0.4)
         .attr('shape-rendering', 'crispEdges');
 
     this.resize();

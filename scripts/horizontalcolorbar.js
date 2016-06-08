@@ -62,7 +62,7 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
         .attr('width', this.colorbarWidth)
         .attr('height', this.colorbarHeight)
         .style('fill', 'none')
-        .style('stroke', 'black')
+        .style('stroke', 'gray')
         .style('stroke-width', 1)
         .attr('shape-rendering', 'crispEdges');
 
@@ -79,9 +79,10 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
         .attr('transform', 'translate(0, ' + (this.colorbarHeight) + ')')
         .call(axis)
     this.gColorbarAxis.selectAll('.tick text')
+        .attr('fill', 'gray')
         .attr('transform', 'translate(0, ' + 4 + ')')
     this.gColorbarAxis.selectAll('.tick line')
-            .style('stroke', 'black')
+            .style('stroke', 'gray')
             .style('stroke-width', 1)
             .attr('shape-rendering', 'crispEdges')
             .attr('y2', this.colorbarHeight / 2.0);
@@ -93,16 +94,16 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
     if (this.scale.ticks) {
         this.gColorbar.append('line')
             .attr('class', 'marker')
-            .style('stroke', 'black')
-            .style('stroke-width', 2)
+            .style('stroke', 'gray')
+            .style('stroke-width', 3)
             .attr('y1', 0)
             .attr('y2', this.colorbarHeight)
             .style('display', 'none');
     } else {
         this.gColorbar.append('rect')
             .attr('class', 'marker')
-            .style('stroke', 'red')
-            .style('stroke-width', 2)
+            .style('stroke', 'gray')
+            .style('stroke-width', 3)
             .style('fill', 'none')
             .attr('y', 0)
             .attr('width', this.deltaOrdinal)
