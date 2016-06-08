@@ -1,395 +1,397 @@
 <!DOCTYPE html>
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF8">
-    <style>
-        html, body {    
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 100%;
-            font-family: sans-serif;
-        }
-        .map {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-        }
-        .land {
-            fill: #ccc;
-            fill-opacity: 0.8;
-            stroke: #3b3b3b;
-        }
-        .sea {
-            background-color: white;
-        }
-        .wind {
-            pointer-events: none;
-        }
-        .graticule {
-            stroke: #185c96;
-            stroke-width: 0.3px;
-        }
-        .panel-container {
-            position: absolute;
-            top: 0px;
-            margin: 10px;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border: 1px solid grey;
-        }
-        .panel-container > svg {
-            display: block;
-        }
-        .panel-container text {
-            font-size: 0.7em;
-        }
-        .co2-colorbar {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-            margin: 10px;
-            width: 300px;
-            height: 30px;
-            font-size: 0.2em;
-        }
-        .wind-colorbar {
-            position: absolute;
-            bottom: 30px;
-            right: 0px;
-            margin: 10px;
-            width: 300px;
-            height: 30px;
-            font-size: 0.2em;
-        }
-    </style>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8">
+        <style>
+            html, body {    
+                margin: 0 !important;
+                padding: 0 !important;
+                height: 100%;
+                font-family: sans-serif;
+            }
+            .map {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+            }
+            .land {
+                fill: #ccc;
+                fill-opacity: 0.8;
+                stroke: #3b3b3b;
+            }
+            .sea {
+                background-color: white;
+            }
+            .wind {
+                pointer-events: none;
+            }
+            .graticule {
+                stroke: #185c96;
+                stroke-width: 0.3px;
+            }
+            .panel-container {
+                position: absolute;
+                top: 0px;
+                margin: 10px;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.95);
+                border: 1px solid grey;
+            }
+            .panel-container > svg {
+                display: block;
+            }
+            .panel-container, panel-container.text {
+                font-size: 0.7em;
+            }
+            .co2-colorbar {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                margin: 10px;
+                width: 300px;
+                height: 30px;
+                font-size: 0.2em;
+            }
+            .wind-colorbar {
+                position: absolute;
+                bottom: 30px;
+                right: 0px;
+                margin: 10px;
+                width: 300px;
+                height: 30px;
+                font-size: 0.2em;
+            }
+        </style>
+
+        <link rel="stylesheet" type="text/css" href="vendor/flag-icon-css/css/flag-icon.min.css">
+
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+        <script src="http://d3js.org/queue.v1.min.js"></script>
+        <script src="http://d3js.org/topojson.v0.min.js"></script>
+
+        <!-- <script src="d3.v3.min.js"></script>
+        <script src="d3.geo.projection.v0.min.js"></script>
+        <script src="queue.v1.min.js"></script>
+        <script src="topojson.v0.min.js"></script> -->
+
+        <script src="scripts/countrymap.js"></script>
+        <script src="scripts/horizontalcolorbar.js"></script>
+        <script src="scripts/exchangelayer.js"></script>
+        <script src="scripts/countrytable.js"></script>
+        <script src="scripts/windy.js"></script>
     </head>
-<body>
-    
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-    <script src="http://d3js.org/queue.v1.min.js"></script>
-    <script src="http://d3js.org/topojson.v0.min.js"></script>
-    
-    <!-- <script src="d3.v3.min.js"></script>
-    <script src="d3.geo.projection.v0.min.js"></script>
-    <script src="queue.v1.min.js"></script>
-    <script src="topojson.v0.min.js"></script> -->
+    <body>
+        <svg class="map sea"></svg>
+        <canvas class="map wind"></canvas>
+        <svg class="co2-colorbar"></svg>
+        <svg class="wind-colorbar"></svg>
+        <div class="panel-container">
+            <div><i class="flag-icon"></i> <b><span class="selected-country">...</span></b></div>
+            <svg class="country-table"></svg>
+        </div>
+        <script>
+            let co2color = d3.scale.linear()
+                .domain([0, 250, 500])
+                .range(['green', 'orange', 'black']);
+            let windColor = d3.scale.linear()
+                .domain([0, 40])
+                .range(['rgba(0, 255, 255, 0)', 'rgba(255, 30, 219, ' + (9/7) +')'])
 
-    <script src="scripts/countrymap.js"></script>
-    <script src="scripts/horizontalcolorbar.js"></script>
-    <script src="scripts/exchangelayer.js"></script>
-    <script src="scripts/countrytable.js"></script>
-    <script src="scripts/windy.js"></script>
+            // Set up objects
+            let countryMap = new CountryMap('.map');
+            let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
+            let countryTable = new CountryTable('.country-table', co2color);
+            let windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
-    <svg class="map sea"></svg>
-    <canvas class="map wind"></canvas>
-    <svg class="co2-colorbar"></svg>
-    <svg class="wind-colorbar"></svg>
-    <div class="panel-container">
-        <svg class="country-table"></svg>
-    </div>
-    <script>
-        let co2color = d3.scale.linear()
-            .domain([0, 250, 500])
-            .range(['green', 'orange', 'black']);
-        let windColor = d3.scale.linear()
-            .domain([0, 40])
-            .range(['rgba(0, 255, 255, 0)', 'rgba(255, 30, 219, ' + (9/7) +')'])
+            let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+                .markerColor('red');
 
-        // Set up objects
-        let countryMap = new CountryMap('.map');
-        let exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
-        let countryTable = new CountryTable('.country-table', co2color);
-        let windLayer = new Windy({ canvas: d3.select('.wind').node() });
+            let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
+                .markerColor('red');
 
-        let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-            .markerColor('red');
+            let canvas = d3.select('.wind');
+            let width = canvas.node().getBoundingClientRect().width;
+            let height = canvas.node().getBoundingClientRect().height;
+            canvas.attr('height', height);
+            canvas.attr('width', width);
 
-        let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-            .markerColor('red');
+            // Prepare data
+            let countries = {};
 
-        let canvas = d3.select('.wind');
-        let width = canvas.node().getBoundingClientRect().width;
-        let height = canvas.node().getBoundingClientRect().height;
-        canvas.attr('height', height);
-        canvas.attr('width', width);
-
-        // Prepare data
-        let countries = {};
-
-        // Events
-        function windMouseOver(coordinates) {
-            if (coordinates) {
-                let wind = windLayer.field(coordinates[0], coordinates[1]);
-                windColorbar.currentMarker(wind[2]);
-            } else {
-                windColorbar.currentMarker(null);
-            }
-        }
-
-        // Attach events
-        d3.select('.map')
-            .on('mousemove', function() {
-                windMouseOver(d3.mouse(this));
-            })
-            .on('mouseout', function() {
-                windMouseOver(null);
-            });
-        countryTable
-            .onExchangeMouseOver(function (d, countryCode) {
-                if (d.key == 'other') return;
-                let co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
-                co2Colorbar.currentMarker(co2);
-            })
-            .onExchangeMouseOut(function (d) {
-                co2Colorbar.currentMarker(null);
-            });
-
-        function dataLoaded(err, data, gfs, realtime) {
-
-            let sw = countryMap.projection.invert([0, height]);
-            let ne = countryMap.projection.invert([width, 0]);
-            windLayer.params.data = gfs;
-            windLayer.start(
-                [[0, 0], [width, height]], 
-                width,
-                height,
-                [sw, ne]
-            );
-
-            let topo = topojson.object(data, data.objects.europe).geometries;
-
-            countries['BE'] = topo[4];
-            countries['CH'] = topo[8];
-            countries['DE'] = topo[10];
-            countries['DK'] = topo[11];
-            countries['ES'] = topo[12];
-            countries['FI'] = topo[14];
-            countries['FR'] = topo[15];
-            countries['UK'] = topo[17];
-            countries['IE'] = topo[24];
-            countries['IT'] = topo[26];
-            countries['LU'] = topo[31];
-            countries['NL'] = topo[38];
-            countries['NO'] = topo[39];
-            countries['PT'] = topo[41];
-            countries['SE'] = topo[48];
-
-            // Add empty fields
-            d3.keys(countries).forEach(function (countryCode) {
-                countries[countryCode].data = {};
-                countries[countryCode].data.capacity = {};
-                countries[countryCode].data.exchange = {};
-                countries[countryCode].data.neighborCo2 = {};
-            });
-
-            countries['DE'].data.capacity = {
-                solar: 39700,
-                wind: 2700 + 40990,
-                gas: 28540,
-                hydro: 5580,
-                biomass: 8860,
-                nuclear: 10790,
-                coal: 27090 + 21140
-            };
-            countries['DK'].data.capacity = {
-                wind: 5070,
-                solar: 790,
-                hydro: 0,
-            };
-            countries['ES'].data.capacity = {
-                wind: 23025,
-                solar: 5400
-            }
-            countries['FR'].data.capacity = {
-                nuclear: 63130,
-                oil: 6670,
-                coal: 2930,
-                hydro: 10326 + 8204 + 4965,
-                gas: 6121,
-                wind: 10358,
-                solar: 6580
-            };
-            countries['UK'].data.capacity = {
-                wind: 13500,
-                nuclear: 9000,
-                hydro: 1550,
-                gas: 38000,
-                solar: 8780
-            }
-
-            // Prepare exchanges
-            let exchanges = [
-                {
-                    countries: ['DE', 'DK'],
-                    center: countryMap.projection([9.3, 54.9]), 
-                    rotation: 0
-                },
-                {
-                    countries: ['SE', 'DK'],
-                    center: countryMap.projection([13, 55.7]), 
-                    rotation: -100
-                },
-                {
-                    countries: ['UK', 'FR'],
-                    center: countryMap.projection([0, 50.4]), 
-                    rotation: 160
-                },
-                {
-                    countries: ['DK', 'NO'],
-                    center: countryMap.projection([8.8, 58]), 
-                    rotation: -25
-                },
-                {
-                    countries: ['IE', 'UK'],
-                    center: countryMap.projection([-5.7, 53]), 
-                    rotation: 100
-                },
-                {
-                    countries: ['NL', 'UK'],
-                    center: countryMap.projection([3.3, 52.4]), 
-                    rotation: -90
-                },
-                {
-                    countries: ['FR', 'ES'],
-                    center: countryMap.projection([0.3, 42.9]), 
-                    rotation: -160
-                },
-                {
-                    countries: ['FR', 'DE'],
-                    center: countryMap.projection([5.7, 49.8]), 
-                    rotation: 50
-                },
-                {
-                    countries: ['FR', 'CH'],
-                    center: countryMap.projection([6.5, 46.7]), 
-                    rotation: 90
-                },
-                {
-                    countries: ['FR', 'IT'],
-                    center: countryMap.projection([6.5, 44.5]), 
-                    rotation: 70
+            // Events
+            function windMouseOver(coordinates) {
+                if (coordinates) {
+                    let wind = windLayer.field(coordinates[0], coordinates[1]);
+                    windColorbar.currentMarker(wind[2]);
+                } else {
+                    windColorbar.currentMarker(null);
                 }
-            ];
-
-            // Populate with realtime production data
-            // TODO: Calculate co2 in the browser to take into account exchanges
-            for (let countryCode of d3.keys(realtime.data)) {
-                let obj = realtime.data[countryCode];
-                let country = countries[countryCode];
-                for (let k of d3.keys(obj))
-                    country.data[k] = obj[k];
-                // Add extra data
-                country.data.maxCapacity = 
-                    d3.max(d3.values(country.data.capacity));
-                country.data.maxProduction = 
-                    d3.max(d3.values(country.data.production));
-                country.data.totalProduction = 
-                    d3.sum(d3.values(country.data.production));
-                country.data.maxExport = 
-                    -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
-                // Add co2 to each neighboring country
-                country.data.neighborCo2 = {};
-                d3.keys(country.data.exchange).forEach(function (k) {
-                    if (k == 'other') return;
-                    country.data.neighborCo2[k] = countries[k].data.co2;
-                });
-                // Add own country code so each country is identifiable
-                country.data.countryCode = countryCode;
-                // Send warnings for missing data
-                if (country.data.co2 === undefined)
-                    console.warn(countryCode + ' is missing co2 footprint');
-                countryTable.PRODUCTION_MODES.forEach(function (mode) {
-                    if (mode == 'other') return;
-                    if (country.data.production[mode] === undefined)
-                        console.warn(countryCode + ' is missing production of ' + mode);
-                    if (country.data.capacity[mode] === undefined)
-                        console.warn(countryCode + ' is missing capacity of ' + mode);
-                });
-                if (country.data.exchange === undefined || country.data.exchange.length == 0)
-                    console.warn(countryCode + ' is missing exchanges');
             }
 
-            // Populate exchanges
-            exchanges.forEach(function (pair) {
-                let o = pair.countries[0];
-                let d = pair.countries[1];
-                let netFlows = [
-                    countries[d].data.exchange[o],
-                    -countries[o].data.exchange[d]
-                ];
-                pair.netFlow = d3.mean(netFlows);
-                pair.co2 = pair.countries.map(function (k) { return countries[k].data.co2; });
-                countries[o].data.exchange[d] = -pair.netFlow;
-                countries[d].data.exchange[o] = pair.netFlow;
-                countries[o].data.neighborCo2[d] = countries[d].data.co2;
-                countries[d].data.neighborCo2[o] = countries[o].data.co2;
-            });
+            // Attach events
+            d3.select('.map')
+                .on('mousemove', function() {
+                    windMouseOver(d3.mouse(this));
+                })
+                .on('mouseout', function() {
+                    windMouseOver(null);
+                });
+            countryTable
+                .onExchangeMouseOver(function (d, countryCode) {
+                    if (d.key == 'other') return;
+                    let co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
+                    co2Colorbar.currentMarker(co2);
+                })
+                .onExchangeMouseOut(function (d) {
+                    co2Colorbar.currentMarker(null);
+                });
 
-            for (let countryCode of d3.keys(realtime.data)) {
-                let country = countries[countryCode]
-                // Very hacky as the last country will always have precedence
-                d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
-                    // Find the exchange object
-                    let matches = exchanges.filter(function (e) { 
-                        return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
-                    });
-                    if (!matches.length) {
-                        if (sourceCountryCode != 'other')
-                            console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+            function dataLoaded(err, data, gfs, realtime) {
+
+                let sw = countryMap.projection.invert([0, height]);
+                let ne = countryMap.projection.invert([width, 0]);
+                windLayer.params.data = gfs;
+                windLayer.start(
+                    [[0, 0], [width, height]], 
+                    width,
+                    height,
+                    [sw, ne]
+                );
+
+                let topo = topojson.object(data, data.objects.europe).geometries;
+
+                countries['BE'] = topo[4];
+                countries['CH'] = topo[8];
+                countries['DE'] = topo[10];
+                countries['DK'] = topo[11];
+                countries['ES'] = topo[12];
+                countries['FI'] = topo[14];
+                countries['FR'] = topo[15];
+                countries['UK'] = topo[17];
+                countries['IE'] = topo[24];
+                countries['IT'] = topo[26];
+                countries['LU'] = topo[31];
+                countries['NL'] = topo[38];
+                countries['NO'] = topo[39];
+                countries['PT'] = topo[41];
+                countries['SE'] = topo[48];
+
+                // Add empty fields
+                d3.keys(countries).forEach(function (countryCode) {
+                    countries[countryCode].data = {};
+                    countries[countryCode].data.capacity = {};
+                    countries[countryCode].data.exchange = {};
+                    countries[countryCode].data.neighborCo2 = {};
+                });
+
+                countries['DE'].data.capacity = {
+                    solar: 39700,
+                    wind: 2700 + 40990,
+                    gas: 28540,
+                    hydro: 5580,
+                    biomass: 8860,
+                    nuclear: 10790,
+                    coal: 27090 + 21140
+                };
+                countries['DK'].data.capacity = {
+                    wind: 5070,
+                    solar: 790,
+                    hydro: 0,
+                };
+                countries['ES'].data.capacity = {
+                    wind: 23025,
+                    solar: 5400
+                }
+                countries['FR'].data.capacity = {
+                    nuclear: 63130,
+                    oil: 6670,
+                    coal: 2930,
+                    hydro: 10326 + 8204 + 4965,
+                    gas: 6121,
+                    wind: 10358,
+                    solar: 6580
+                };
+                countries['UK'].data.capacity = {
+                    wind: 13500,
+                    nuclear: 9000,
+                    hydro: 1550,
+                    gas: 38000,
+                    solar: 8780
+                }
+
+                // Prepare exchanges
+                let exchanges = [
+                    {
+                        countries: ['DE', 'DK'],
+                        center: countryMap.projection([9.3, 54.9]), 
+                        rotation: 0
+                    },
+                    {
+                        countries: ['SE', 'DK'],
+                        center: countryMap.projection([13, 55.7]), 
+                        rotation: -100
+                    },
+                    {
+                        countries: ['UK', 'FR'],
+                        center: countryMap.projection([0, 50.4]), 
+                        rotation: 160
+                    },
+                    {
+                        countries: ['DK', 'NO'],
+                        center: countryMap.projection([8.8, 58]), 
+                        rotation: -25
+                    },
+                    {
+                        countries: ['IE', 'UK'],
+                        center: countryMap.projection([-5.7, 53]), 
+                        rotation: 100
+                    },
+                    {
+                        countries: ['NL', 'UK'],
+                        center: countryMap.projection([3.3, 52.4]), 
+                        rotation: -90
+                    },
+                    {
+                        countries: ['FR', 'ES'],
+                        center: countryMap.projection([0.3, 42.9]), 
+                        rotation: -160
+                    },
+                    {
+                        countries: ['FR', 'DE'],
+                        center: countryMap.projection([5.7, 49.8]), 
+                        rotation: 50
+                    },
+                    {
+                        countries: ['FR', 'CH'],
+                        center: countryMap.projection([6.5, 46.7]), 
+                        rotation: 90
+                    },
+                    {
+                        countries: ['FR', 'IT'],
+                        center: countryMap.projection([6.5, 44.5]), 
+                        rotation: 70
                     }
+                ];
+
+                // Populate with realtime production data
+                // TODO: Calculate co2 in the browser to take into account exchanges
+                for (let countryCode of d3.keys(realtime.data)) {
+                    let obj = realtime.data[countryCode];
+                    let country = countries[countryCode];
+                    for (let k of d3.keys(obj))
+                        country.data[k] = obj[k];
+                    // Add extra data
+                    country.data.maxCapacity = 
+                        d3.max(d3.values(country.data.capacity));
+                    country.data.maxProduction = 
+                        d3.max(d3.values(country.data.production));
+                    country.data.totalProduction = 
+                        d3.sum(d3.values(country.data.production));
+                    country.data.maxExport = 
+                        -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
+                    // Add co2 to each neighboring country
+                    country.data.neighborCo2 = {};
+                    d3.keys(country.data.exchange).forEach(function (k) {
+                        if (k == 'other') return;
+                        country.data.neighborCo2[k] = countries[k].data.co2;
+                    });
+                    // Add own country code so each country is identifiable
+                    country.data.countryCode = countryCode;
+                    // Send warnings for missing data
+                    if (country.data.co2 === undefined)
+                        console.warn(countryCode + ' is missing co2 footprint');
+                    countryTable.PRODUCTION_MODES.forEach(function (mode) {
+                        if (mode == 'other') return;
+                        if (country.data.production[mode] === undefined)
+                            console.warn(countryCode + ' is missing production of ' + mode);
+                        if (country.data.capacity[mode] === undefined)
+                            console.warn(countryCode + ' is missing capacity of ' + mode);
+                    });
+                    if (country.data.exchange === undefined || country.data.exchange.length == 0)
+                        console.warn(countryCode + ' is missing exchanges');
+                }
+
+                // Populate exchanges
+                exchanges.forEach(function (pair) {
+                    let o = pair.countries[0];
+                    let d = pair.countries[1];
+                    let netFlows = [
+                        countries[d].data.exchange[o],
+                        -countries[o].data.exchange[d]
+                    ];
+                    pair.netFlow = d3.mean(netFlows);
+                    pair.co2 = pair.countries.map(function (k) { return countries[k].data.co2; });
+                    countries[o].data.exchange[d] = -pair.netFlow;
+                    countries[d].data.exchange[o] = pair.netFlow;
+                    countries[o].data.neighborCo2[d] = countries[d].data.co2;
+                    countries[d].data.neighborCo2[o] = countries[o].data.co2;
                 });
-            }
 
-            console.log('countries', countries);
-            console.log('exchanges', exchanges);
-            console.log('GFS', gfs);
+                for (let countryCode of d3.keys(realtime.data)) {
+                    let country = countries[countryCode]
+                    // Very hacky as the last country will always have precedence
+                    d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
+                        // Find the exchange object
+                        let matches = exchanges.filter(function (e) { 
+                            return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
+                        });
+                        if (!matches.length) {
+                            if (sourceCountryCode != 'other')
+                                console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                        }
+                    });
+                }
 
-            countryMap
-                .data(d3.values(countries))
-                .onCountryClick(function (d, i) {
-                    if (!d.data.production) return;
-                    countryTable
-                        .powerDomain([-d.data.maxExport, d.data.maxCapacity || d.data.maxProduction])
-                        .data(d.data);
-                })
-                .onCountryMouseOver(function (d) { 
-                    if (d.data.production)
-                        d3.select(this)
-                            .attr('opacity', 0.8)
-                            .style('cursor', 'hand')
-                    if (d.data.co2)
-                        co2Colorbar.currentMarker(d.data.co2);
-                })
-                .onCountryMouseOut(function (d) { 
-                    if (d.data.production) 
-                        d3.select(this)
-                            .attr('opacity', 1)
-                            .style('cursor', 'normal')
-                    if (d.data.co2)
-                        co2Colorbar.currentMarker(undefined);
-                });
+                console.log('countries', countries);
+                console.log('exchanges', exchanges);
+                console.log('GFS', gfs);
 
-            exchangeLayer.data(exchanges);
-        };
+                countryMap
+                    .data(d3.values(countries))
+                    .onCountryClick(function (d, i) {
+                        if (!d.data.production) return;
+                        countryTable
+                            .powerDomain([-d.data.maxExport, d.data.maxCapacity || d.data.maxProduction])
+                            .data(d.data);
+                    })
+                    .onCountryMouseOver(function (d) { 
+                        if (d.data.production)
+                            d3.select(this)
+                                .attr('opacity', 0.8)
+                                .style('cursor', 'hand')
+                        if (d.data.co2)
+                            co2Colorbar.currentMarker(d.data.co2);
+                    })
+                    .onCountryMouseOut(function (d) { 
+                        if (d.data.production) 
+                            d3.select(this)
+                                .attr('opacity', 1)
+                                .style('cursor', 'normal')
+                        if (d.data.co2)
+                            co2Colorbar.currentMarker(undefined);
+                    });
 
-        // Load data
-        queue()
-            .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-            .defer(d3.json, 'http://esri.github.io/wind-js/gfs.json')
-            .defer(d3.json, 'http://localhost:8000/realtime')
-            .await(dataLoaded);
+                exchangeLayer.data(exchanges);
+            };
 
-        function redraw() {
-            countryMap.render();
-            countryTable.render();
-        };
+            // Load data
+            queue()
+                .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
+                .defer(d3.json, 'http://esri.github.io/wind-js/gfs.json')
+                .defer(d3.json, 'http://localhost:8000/realtime')
+                .await(dataLoaded);
 
-        window.onresize = function () {
+            function redraw() {
+                countryMap.render();
+                countryTable.render();
+            };
+
+            window.onresize = function () {
+                redraw();
+            };
+
             redraw();
-        };
-
-        redraw();
-    </script>   
-</body>
+        </script>   
+    </body>
 </html>

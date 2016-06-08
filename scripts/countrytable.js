@@ -34,11 +34,13 @@ CountryTable.prototype.render = function() {
     let width = this.root.node().getBoundingClientRect().width;
 
     // Header
-    this.headerRoot.append('text')
-        .attr('class', 'country')
-        .style('font-weight', 'bold')
-        .attr('transform', 'translate(0, 10)')
-        .text('<click on a country>'); // TODO: Translate by the right amount of em
+    // this.headerRoot.append('rect')
+    //     .attr('class', 'flag-icon')
+    // this.headerRoot.append('text')
+    //     .attr('class', 'country')
+    //     .style('font-weight', 'bold')
+    //     .attr('transform', 'translate(0, 10)')
+    //     .text('<click on a country>'); // TODO: Translate by the right amount of em
 
     // ** Production labels and rects **
     let gNewRow = this.productionRoot.selectAll('.row')
@@ -123,8 +125,14 @@ CountryTable.prototype.data = function(arg) {
         this._data = arg;
 
         // Set header
-        this.headerRoot.select('text.country')
-            .text(this._data.countryCode)
+        // this.headerRoot.select('image.flag-icon')
+        //     .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
+        // this.headerRoot.select('text.country')
+        //     .text(this._data.countryCode)
+        d3.select('.selected-country')
+            .text(this._data.countryCode);
+        d3.select('.flag-icon')
+            .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase());
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
