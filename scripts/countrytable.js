@@ -65,11 +65,7 @@ CountryTable.prototype.render = function() {
         .attr('opacity', 0.1)
         .attr('shape-rendering', 'crispEdges');
 
-    // Resize root
-    let productionPanelHeight = this.PRODUCTION_MODES.length * (this.BAR_HEIGHT + this.PADDING_Y);
-    this.exchangeRoot.attr('transform', 'translate(0,' + productionPanelHeight + ')');
-    this.root
-        .attr('height', productionPanelHeight);
+    this.resize();
 
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
@@ -93,6 +89,15 @@ CountryTable.prototype.onExchangeMouseOut = function(arg) {
     if (!arg) return this.exchangeMouseOutHandler;
     else this.exchangeMouseOutHandler = arg;
     return this;
+}
+
+CountryTable.prototype.resize = function() {
+    this.productionPanelHeight = this.PRODUCTION_MODES.length * (this.BAR_HEIGHT + this.PADDING_Y);
+    this.exchangeRoot
+        .attr('transform', 'translate(0,' + this.productionPanelHeight + ')');
+    this.exchangePanelHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).length * (this.BAR_HEIGHT + this.PADDING_Y);
+    this.root
+        .attr('height', this.productionPanelHeight + this.exchangePanelHeight);
 }
 
 CountryTable.prototype.data = function(arg) {
@@ -166,16 +171,12 @@ CountryTable.prototype.data = function(arg) {
         selection.select('text')
             .text(function(d) { return d.key; });
 
-        // Resize root
-        let productionPanelHeight = this.PRODUCTION_MODES.length * (this.BAR_HEIGHT + this.PADDING_Y);
-        let exchangePanelHeight = exchangeData.length * (this.BAR_HEIGHT + this.PADDING_Y);
-        this.root
-            .attr('height', productionPanelHeight + exchangePanelHeight);
+        this.resize();
 
         // Vertical axis
         this.verticalAxis
             .transition()
-            .attr('d', 'M 0 0 L 0 ' + (productionPanelHeight + exchangePanelHeight))
+            .attr('d', 'M 0 0 L 0 ' + (this.productionPanelHeight + this.exchangePanelHeight))
             .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH + this.powerScale(0)) + ',0)')
     }
     return this;
