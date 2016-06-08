@@ -101,9 +101,10 @@
         let countryTable = new CountryTable('.country-table');
 
         let co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-            .markerColor('black');
+            .markerColor('red');
 
-        let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor);
+        let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
+            .markerColor('red');;
 
         let canvas = d3.select('.wind');
         let width = canvas.node().getBoundingClientRect().width;
@@ -127,6 +128,16 @@
                     height,
                     [sw, ne]
                 );
+
+                // TODO: Only do it once.
+                canvas.on('mousemove', function(e) {
+                    let coordinates = d3.mouse(this);
+                    let wind = windLayer.field(coordinates[0], coordinates[1]);
+                    windColorbar.currentMarker(wind[2]);
+                });
+                canvas.on('mouseout', function() {
+                    windColorbar.currentMarker(null);
+                });
 
                 let topo = topojson.object(data, data.objects.europe).geometries;
 
