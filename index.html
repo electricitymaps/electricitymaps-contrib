@@ -94,8 +94,19 @@
                 .domain([0, 250, 500])
                 .range(['green', 'orange', 'black']);
             var windColor = d3.scale.linear()
-                .domain([0, 40])
-                .range(['rgba(40, 54, 64, 0)', 'rgba(255, 30, 219, ' + (9/7) +')'])
+                .domain(d3.range(0, 10).map( function (i) { return i * 4; } ))
+                .range([
+                    "rgba(0, 255, 255, 0.5)",
+                    "rgba(100, 240, 255, 0.5)",
+                    "rgba(135, 225, 255, 0.5)",
+                    "rgba(160, 208, 255, 0.5)",
+                    "rgba(181, 192, 255, 0.5)",
+                    "rgba(198, 173, 255, 0.5)",
+                    "rgba(212, 155, 255, 0.5)",
+                    "rgba(225, 133, 255, 0.5)",
+                    "rgba(236, 109, 255, 0.5)",
+                    "rgba(255, 30, 219, 0.5)"
+                ])
 
             // Set up objects
             var countryMap = new CountryMap('.map');
@@ -103,9 +114,11 @@
             var countryTable = new CountryTable('.country-table', co2color);
             var windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
-            var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color);
+            var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+                .markerColor('black');
 
-            var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor);
+            var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
+                .markerColor('black');;
 
             var canvas = d3.select('.wind');
             var width = window.innerWidth;
