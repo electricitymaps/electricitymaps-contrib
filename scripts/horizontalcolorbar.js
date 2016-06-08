@@ -68,7 +68,9 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
 
     // Draw the horizontal axis
     var axis = d3.svg.axis()
-        .scale(this.scale);
+        .scale(this.scale)
+        .innerTickSize(this.colorbarHeight / 2.0)
+        .tickPadding(7);
     if (d3TickFormat)
         axis.tickFormat(d3TickFormat);
     if (d3TickValues)
@@ -79,13 +81,11 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
         .attr('transform', 'translate(0, ' + (this.colorbarHeight) + ')')
         .call(axis)
     this.gColorbarAxis.selectAll('.tick text')
-        .attr('fill', 'gray')
-        .attr('transform', 'translate(0, ' + 4 + ')')
+        .attr('fill', 'gray');
     this.gColorbarAxis.selectAll('.tick line')
             .style('stroke', 'gray')
             .style('stroke-width', 1)
             .attr('shape-rendering', 'crispEdges')
-            .attr('y2', this.colorbarHeight / 2.0);
     this.gColorbarAxis.select('path')
             .style('fill', 'none')
             .style('stroke', 'none');

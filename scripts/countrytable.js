@@ -33,6 +33,11 @@ CountryTable.prototype.render = function() {
 
     let width = this.root.node().getBoundingClientRect().width;
 
+    // Update scale
+    this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
+    this.powerScale = d3.scale.linear()
+        .range([0, this.barMaxWidth]);
+
     // Header
     this.headerRoot.append('image')
         .attr('class', 'flag-icon')
@@ -44,6 +49,8 @@ CountryTable.prototype.render = function() {
         .style('font-weight', 'bold')
         .attr('transform', 'translate(' + (4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')') // TODO: Translate by the right amount of em
         .text('<click on a country>');
+    this.gPowerAxis = this.headerRoot.append('g')
+        .attr('class', 'x axis');
 
     // ** Production labels and rects **
     let gNewRow = this.productionRoot.selectAll('.row')
@@ -79,11 +86,6 @@ CountryTable.prototype.render = function() {
         .attr('shape-rendering', 'crispEdges');
 
     this.resize();
-
-    // Update scale
-    this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
-    this.powerScale = d3.scale.linear()
-        .range([0, this.barMaxWidth]);
 }
 
 CountryTable.prototype.powerDomain = function(arg) {
@@ -127,11 +129,35 @@ CountryTable.prototype.data = function(arg) {
     else {
         this._data = arg;
 
+        // Prepare axis
+        this.axis = d3.svg.axis()
+            .scale(this.powerScale)
+            .orient('top')
+            .innerTickSize(-5)
+            .outerTickSize(0)
+            .ticks(4)
+            .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'W'; });
+        this.gPowerAxis
+            .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 10)')
+            .call(this.axis);
+        this.gPowerAxis.selectAll('.tick text')
+            .attr('fill', 'gray')
+            .attr('font-size', '0.4em')
+        this.gPowerAxis.selectAll('.tick line')
+                .style('stroke', 'gray')
+                .style('stroke-width', 1)
+                .attr('shape-rendering', 'crispEdges')
+        this.gPowerAxis.select('path')
+                .style('fill', 'none')
+                .style('stroke', 'gray')
+                .attr('shape-rendering', 'crispEdges')
+
         // Set header
         this.headerRoot.select('image.flag-icon')
             .attr('xlink:href', 'vendor/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
         this.headerRoot.select('text.country')
             .text(this._data.countryCode);
+
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
