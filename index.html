@@ -137,6 +137,7 @@
             });
         countryTable
             .onExchangeMouseOver(function (d, countryCode) {
+                if (d.key == 'other') return;
                 let co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
                 co2Colorbar.currentMarker(co2);
             })

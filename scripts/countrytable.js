@@ -155,7 +155,7 @@ CountryTable.prototype.data = function(arg) {
                 that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
             })
             .on('mouseout', function (d) {
-                that.exchangeMouseOverHandler.call(this, d);
+                that.exchangeMouseOutHandler.call(this, d);
             })
             .transition()
             .attr('width', function (d) { 
