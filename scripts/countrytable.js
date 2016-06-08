@@ -146,11 +146,6 @@ CountryTable.prototype.data = function(arg) {
             .attr('fill', 'black')
             .style('transform-origin', 'left')
         selection.select('rect')
-            .attr('fill', function (d, i) {
-                return d.value > 0 ? 
-                    that._data.exchangeCo2[d.key] ? that.co2color(that._data.exchangeCo2[d.key]) : 'gray'
-                    : that._data.co2 ? that.co2color(that._data.co2) : 'gray';
-            })
             .on('mouseover', function (d) {
                 that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
             })
@@ -158,6 +153,11 @@ CountryTable.prototype.data = function(arg) {
                 that.exchangeMouseOutHandler.call(this, d);
             })
             .transition()
+            .attr('fill', function (d, i) {
+                return d.value > 0 ? 
+                    that._data.neighborCo2[d.key] ? that.co2color(that._data.neighborCo2[d.key]) : 'gray'
+                    : that._data.co2 ? that.co2color(that._data.co2) : 'gray';
+            })
             .attr('width', function (d) { 
                 return that.powerScale(Math.abs(d.value));
             })

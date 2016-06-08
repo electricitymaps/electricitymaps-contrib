@@ -176,10 +176,12 @@
             countries['SE'] = topo[48];
 
             // Add empty fields
-            for (let countryCode of d3.keys(countries)) {
+            d3.keys(countries).forEach(function (countryCode) {
                 countries[countryCode].data = {};
-                countries[countryCode].data.capacity = {}
-            }
+                countries[countryCode].data.capacity = {};
+                countries[countryCode].data.exchange = {};
+                countries[countryCode].data.neighborCo2 = {};
+            });
 
             countries['DE'].data.capacity = {
                 solar: 39700,
@@ -270,47 +272,28 @@
                 }
             ];
 
-            // Populate with realtime data
+            // Populate with realtime production data
+            // TODO: Calculate co2 in the browser to take into account exchanges
             for (let countryCode of d3.keys(realtime.data)) {
                 let obj = realtime.data[countryCode];
                 let country = countries[countryCode]
                 for (let k of d3.keys(obj))
                     country.data[k] = obj[k];
                 // Add extra data
-                // TODO: Calculate co2 in the browser to take into account exchanges
                 country.data.maxCapacity = 
                     d3.max(d3.values(country.data.capacity));
                 country.data.maxProduction = 
                     d3.max(d3.values(country.data.production));
                 country.data.totalProduction = 
                     d3.sum(d3.values(country.data.production));
-                // Add own country code so each country is identifiable
-                country.data.countryCode = countryCode;
-                // Add co2 to each exchange
-                country.data.exchangeCo2 = {};
+                // Add co2 to each neighboring country
+                country.data.neighborCo2 = {};
                 d3.keys(country.data.exchange).forEach(function (k) {
                     if (k == 'other') return;
-                    country.data.exchangeCo2[k] = countries[k].data.co2;
+                    country.data.neighborCo2[k] = countries[k].data.co2;
                 });
-                // Populate exchanges
-                // Very hacky as the last country will always have precedence
-                d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
-                    // Find the exchange object
-                    let matches = exchanges.filter(function (e) { 
-                        return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
-                    });
-                    let amount = country.data.exchange[sourceCountryCode];
-                    if (matches.length) {
-                        let match = matches[0];
-                        match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
-                        match.co2 = match.countries.map(function (key) {
-                            return countries[key].data.co2;
-                        });
-                    } else {
-                        if (sourceCountryCode != 'other')
-                            console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
-                    }
-                });
+                // Add own country code so each country is identifiable
+                country.data.countryCode = countryCode;
                 // Send warnings for missing data
                 if (country.data.co2 === undefined)
                     console.warn(countryCode + ' is missing co2 footprint');
@@ -324,6 +307,33 @@
                 if (country.data.exchange === undefined || country.data.exchange.length == 0)
                     console.warn(countryCode + ' is missing exchanges');
             }
+
+            // Populate exchanges
+            for (let countryCode of d3.keys(realtime.data)) {
+                let country = countries[countryCode]
+                // Very hacky as the last country will always have precedence
+                d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
+                    // Find the exchange object
+                    let matches = exchanges.filter(function (e) { 
+                        return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
+                    });
+                    let amount = country.data.exchange[sourceCountryCode];
+                    if (matches.length) {
+                        let pair = matches[0];
+                        pair.netFlow = pair.countries[0] == sourceCountryCode ? amount : -amount;
+                        pair.co2 = pair.countries.map(function (key) {
+                            return countries[key].data.co2;
+                        });
+                        // Update the other country
+                        countries[sourceCountryCode].data.exchange[countryCode] = -amount;
+                        countries[sourceCountryCode].data.neighborCo2[countryCode] = country.data.co2;
+                    } else {
+                        if (sourceCountryCode != 'other')
+                            console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                    }
+                });
+            }
+
             console.log('countries', countries);
             console.log('exchanges', exchanges);
             console.log('GFS', gfs);
