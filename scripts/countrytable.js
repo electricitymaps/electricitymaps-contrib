@@ -195,7 +195,7 @@ CountryTable.prototype.data = function(arg) {
                     that._data.neighborCo2[d.key] ? that.co2color(that._data.neighborCo2[d.key]) : 'gray'
                     : that._data.co2 ? that.co2color(that._data.co2) : 'gray';
             })
-            .attr('x', function (d) { 
+            .attr('x', function (d) {
                 return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
             })
             .attr('width', function (d) { 

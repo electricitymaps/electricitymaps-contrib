@@ -118,7 +118,7 @@
 
             // Events
             function windMouseOver(coordinates) {
-                if (coordinates) {
+                if (windLayer.field && coordinates) {
                     let wind = windLayer.field(coordinates[0], coordinates[1]);
                     windColorbar.currentMarker(wind[2]);
                 } else {
@@ -282,15 +282,6 @@
                     }
                     for (let k of d3.keys(obj))
                         country.data[k] = obj[k];
-                    // Add extra data
-                    country.data.maxCapacity = 
-                        d3.max(d3.values(country.data.capacity));
-                    country.data.maxProduction = 
-                        d3.max(d3.values(country.data.production));
-                    country.data.totalProduction = 
-                        d3.sum(d3.values(country.data.production));
-                    country.data.maxExport = 
-                        -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
                     // Add co2 to each neighboring country
                     country.data.neighborCo2 = {};
                     d3.keys(country.data.exchange).forEach(function (k) {
@@ -329,10 +320,24 @@
                     countries[d].data.neighborCo2[o] = countries[o].data.co2;
                 });
 
+                // Compute aggregates
+                d3.entries(countries).forEach(function (entry) {
+                    country = entry.value;
+                    // Add extra data
+                    country.data.maxCapacity = 
+                        d3.max(d3.values(country.data.capacity));
+                    country.data.maxProduction = 
+                        d3.max(d3.values(country.data.production));
+                    country.data.totalProduction = 
+                        d3.sum(d3.values(country.data.production));
+                    country.data.maxExport = 
+                        -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
+                });
+
+                // Issue warnings for missing data
                 for (let countryCode of d3.keys(realtime.data)) {
                     let country = countries[countryCode]
                     if (!country) continue;
-                    // Very hacky as the last country will always have precedence
                     d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
                         // Find the exchange object
                         let matches = exchanges.filter(function (e) { 
