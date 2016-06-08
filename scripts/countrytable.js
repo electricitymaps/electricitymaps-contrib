@@ -51,13 +51,11 @@ CountryTable.prototype.render = function() {
         .attr('stroke', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('stroke-width', 1.0)
         .attr('opacity', 0.2)
-        .attr('x', that.LABEL_MAX_WIDTH)
         .attr('shape-rendering', 'crispEdges');
     gNewRow.append('rect')
         .attr('class', 'production')
         .attr('height', this.BAR_HEIGHT)
         .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('x', that.LABEL_MAX_WIDTH)
         .attr('shape-rendering', 'crispEdges');
 
     // Vertical axis
@@ -116,13 +114,15 @@ CountryTable.prototype.data = function(arg) {
             .data(sortedProductionData);
         selection.select('rect.capacity')
             .transition()
+            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
-                return d.capacity === undefined ? 0 : that.powerScale(d.capacity);
+                return d.capacity === undefined ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
             });
         selection.select('rect.production')
             .transition()
+            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
-                return d.production === undefined ? 0 : that.powerScale(d.production);
+                return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
             });
 
         // Construct exchanges
@@ -141,7 +141,6 @@ CountryTable.prototype.data = function(arg) {
         gNewRow.append('text')
             .attr('transform', 'translate(0, 10)'); // TODO: Translate by the right amount of em
         gNewRow.append('rect')
-            .attr('x', this.LABEL_MAX_WIDTH)
             .attr('height', this.BAR_HEIGHT)
             .attr('fill', 'black')
             .style('transform-origin', 'left')
@@ -158,12 +157,12 @@ CountryTable.prototype.data = function(arg) {
                     that._data.neighborCo2[d.key] ? that.co2color(that._data.neighborCo2[d.key]) : 'gray'
                     : that._data.co2 ? that.co2color(that._data.co2) : 'gray';
             })
-            .attr('width', function (d) { 
-                return that.powerScale(Math.abs(d.value));
+            .attr('x', function (d) { 
+                return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
             })
-            .style('transform', function (d) {
-                return d.value < 0 ? 'scaleX(-1)' : ''; 
-            });
+            .attr('width', function (d) { 
+                return Math.abs(that.powerScale(d.value) - that.powerScale(0));
+            })
         selection.select('text')
             .text(function(d) { return d.key; });
 
@@ -175,8 +174,9 @@ CountryTable.prototype.data = function(arg) {
 
         // Vertical axis
         this.verticalAxis
+            .transition()
             .attr('d', 'M 0 0 L 0 ' + (productionPanelHeight + exchangePanelHeight))
-            .attr('transform', 'translate(' + this.LABEL_MAX_WIDTH + ',0)')
+            .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH + this.powerScale(0)) + ',0)')
     }
     return this;
 };
