@@ -112,230 +112,230 @@
         canvas.attr('height', height);
         canvas.attr('width', width);
 
+        function dataLoaded(err, data, gfs, realtime) {
+
+            let windLayer = new Windy({ canvas: canvas.node(), data: gfs });
+            let sw = countryMap.projection.invert([0, height]);
+            let ne = countryMap.projection.invert([width, 0]);
+            windLayer.start(
+                [[0, 0], [width, height]], 
+                width,
+                height,
+                [sw, ne]
+            );
+
+            // TODO: Only do it once.
+            canvas.on('mousemove', function(e) {
+                let coordinates = d3.mouse(this);
+                let wind = windLayer.field(coordinates[0], coordinates[1]);
+                windColorbar.currentMarker(wind[2]);
+            });
+            canvas.on('mouseout', function() {
+                windColorbar.currentMarker(null);
+            });
+
+            let topo = topojson.object(data, data.objects.europe).geometries;
+
+            let countries = {};
+            countries['BE'] = topo[4];
+            countries['CH'] = topo[8];
+            countries['DE'] = topo[10];
+            countries['DK'] = topo[11];
+            countries['ES'] = topo[12];
+            countries['FI'] = topo[14];
+            countries['FR'] = topo[15];
+            countries['UK'] = topo[17];
+            countries['IE'] = topo[24];
+            countries['IT'] = topo[26];
+            countries['LU'] = topo[31];
+            countries['NL'] = topo[38];
+            countries['NO'] = topo[39];
+            countries['PT'] = topo[41];
+            countries['SE'] = topo[48];
+
+            // Add empty fields
+            for (let countryCode of d3.keys(countries)) {
+                countries[countryCode].meta = {};
+                countries[countryCode].meta.capacity = {}
+            }
+
+            countries['DE'].meta.capacity = {
+                solar: 39700,
+                wind: 2700 + 40990,
+                gas: 28540,
+                hydro: 5580,
+                biomass: 8860,
+                nuclear: 10790,
+                coal: 27090 + 21140
+            };
+            countries['DK'].meta.capacity = {
+                wind: 5070,
+                solar: 790,
+                hydro: 0,
+            };
+            countries['ES'].meta.capacity = {
+                wind: 23025,
+                solar: 5400
+            }
+            countries['FR'].meta.capacity = {
+                nuclear: 63130,
+                oil: 6670,
+                coal: 2930,
+                hydro: 10326 + 8204 + 4965,
+                gas: 6121,
+                wind: 10358,
+                solar: 6580
+            };
+            countries['UK'].meta.capacity = {
+                wind: 13500,
+                nuclear: 9000,
+                hydro: 1550,
+                gas: 38000,
+                solar: 8780
+            }
+
+            // Prepare exchanges
+            let exchanges = [
+                {
+                    countries: ['DE', 'DK'],
+                    center: countryMap.projection([9.3, 54.9]), 
+                    rotation: 0
+                },
+                {
+                    countries: ['SE', 'DK'],
+                    center: countryMap.projection([13, 55.7]), 
+                    rotation: -100
+                },
+                {
+                    countries: ['UK', 'FR'],
+                    center: countryMap.projection([0, 50.4]), 
+                    rotation: 160
+                },
+                {
+                    countries: ['DK', 'NO'],
+                    center: countryMap.projection([8.8, 58]), 
+                    rotation: -25
+                },
+                {
+                    countries: ['IE', 'UK'],
+                    center: countryMap.projection([-5.7, 53]), 
+                    rotation: 100
+                },
+                {
+                    countries: ['NL', 'UK'],
+                    center: countryMap.projection([3.3, 52.4]), 
+                    rotation: -90
+                },
+                {
+                    countries: ['FR', 'ES'],
+                    center: countryMap.projection([0.3, 42.9]), 
+                    rotation: -160
+                },
+                {
+                    countries: ['FR', 'DE'],
+                    center: countryMap.projection([5.7, 49.8]), 
+                    rotation: 50
+                },
+                {
+                    countries: ['FR', 'CH'],
+                    center: countryMap.projection([6.5, 46.7]), 
+                    rotation: 90
+                },
+                {
+                    countries: ['FR', 'IT'],
+                    center: countryMap.projection([6.5, 44.5]), 
+                    rotation: 70
+                }
+            ];
+
+            // Populate with realtime data
+            for (let countryCode of d3.keys(realtime.data)) {
+                let obj = realtime.data[countryCode];
+                let country = countries[countryCode]
+                for (let k of d3.keys(obj))
+                    country.meta[k] = obj[k];
+                // Add extra data
+                // TODO: Calculate co2 in the browser to take into account exchanges
+                country.meta.maxCapacity = 
+                    d3.max(d3.values(country.meta.capacity));
+                country.meta.maxProduction = 
+                    d3.max(d3.values(country.meta.production));
+                country.meta.totalProduction = 
+                    d3.sum(d3.values(country.meta.production));
+                // Populate exchanges
+                // Very hacky as the last country will always have precedence
+                for (let sourceCountryCode of d3.keys(country.meta.exchange)) {
+                    // Find the exchange object
+                    let matches = exchanges.filter(function (e) { 
+                        return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
+                    });
+                    let amount = country.meta.exchange[sourceCountryCode];
+                    if (matches.length) {
+                        let match = matches[0];
+                        match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
+                        match.co2 = match.countries.map(function (key) {
+                            return countries[key].meta.co2;
+                        });
+                    } else {
+                        if (sourceCountryCode != 'other')
+                            console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                    }
+                }
+                // Send warnings for missing data
+                if (country.meta.co2 === undefined)
+                    console.warn(countryCode + ' is missing co2 footprint');
+                countryTable.PRODUCTION_MODES.forEach(function (mode) {
+                    if (mode == 'other') return;
+                    if (country.meta.production[mode] === undefined)
+                        console.warn(countryCode + ' is missing production of ' + mode);
+                    if (country.meta.capacity[mode] === undefined)
+                        console.warn(countryCode + ' is missing capacity of ' + mode);
+                });
+                if (country.meta.exchange === undefined || country.meta.exchange.length == 0)
+                    console.warn(countryCode + ' is missing exchanges');
+            }
+            console.log('countries', countries);
+            console.log('exchanges', exchanges);
+            console.log('GFS', gfs);
+
+            countryMap
+                .data(d3.values(countries))
+                .onCountryClick(function (d, i) {
+                    if (!d.meta.production) return;
+                    countryTable
+                        .powerDomain([0, d.meta.maxCapacity || d.meta.maxProduction])
+                        .data(d.meta);
+                })
+                .onCountryMouseOver(function (d) { 
+                    if (d.meta.production)
+                        d3.select(this)
+                            .attr('opacity', 0.8)
+                            .style('cursor', 'hand')
+                    if (d.meta.co2)
+                        co2Colorbar.currentMarker(d.meta.co2);
+                })
+                .onCountryMouseOut(function (d) { 
+                    if (d.meta.production) 
+                        d3.select(this)
+                            .attr('opacity', 1)
+                            .style('cursor', 'normal')
+                    if (d.meta.co2)
+                        co2Colorbar.currentMarker(undefined);
+                });
+
+            exchangeLayer.data(exchanges);
+        };
+
+        // Load data
+        queue()
+            .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
+            .defer(d3.json, 'http://esri.github.io/wind-js/gfs.json')
+            .defer(d3.json, 'http://localhost:8000/realtime')
+            .await(dataLoaded);
+
         function redraw() {
             countryMap.render();
             countryTable.render();
-
-            // TODO: Only fetch data once
-            let cb = function(err, data, gfs, realtime) {
-
-                let windLayer = new Windy({ canvas: canvas.node(), data: gfs });
-                let sw = countryMap.projection.invert([0, height]);
-                let ne = countryMap.projection.invert([width, 0]);
-                windLayer.start(
-                    [[0, 0], [width, height]], 
-                    width,
-                    height,
-                    [sw, ne]
-                );
-
-                // TODO: Only do it once.
-                canvas.on('mousemove', function(e) {
-                    let coordinates = d3.mouse(this);
-                    let wind = windLayer.field(coordinates[0], coordinates[1]);
-                    windColorbar.currentMarker(wind[2]);
-                });
-                canvas.on('mouseout', function() {
-                    windColorbar.currentMarker(null);
-                });
-
-                let topo = topojson.object(data, data.objects.europe).geometries;
-
-                let countries = {};
-                countries['BE'] = topo[4];
-                countries['CH'] = topo[8];
-                countries['DE'] = topo[10];
-                countries['DK'] = topo[11];
-                countries['ES'] = topo[12];
-                countries['FI'] = topo[14];
-                countries['FR'] = topo[15];
-                countries['UK'] = topo[17];
-                countries['IE'] = topo[24];
-                countries['IT'] = topo[26];
-                countries['LU'] = topo[31];
-                countries['NL'] = topo[38];
-                countries['NO'] = topo[39];
-                countries['PT'] = topo[41];
-                countries['SE'] = topo[48];
-
-                // Add empty fields
-                for (let countryCode of d3.keys(countries)) {
-                    countries[countryCode].meta = {};
-                    countries[countryCode].meta.capacity = {}
-                }
-
-                countries['DE'].meta.capacity = {
-                    solar: 39700,
-                    wind: 2700 + 40990,
-                    gas: 28540,
-                    hydro: 5580,
-                    biomass: 8860,
-                    nuclear: 10790,
-                    coal: 27090 + 21140
-                };
-                countries['DK'].meta.capacity = {
-                    wind: 5070,
-                    solar: 790,
-                    hydro: 0,
-                };
-                countries['ES'].meta.capacity = {
-                    wind: 23025,
-                    solar: 5400
-                }
-                countries['FR'].meta.capacity = {
-                    nuclear: 63130,
-                    oil: 6670,
-                    coal: 2930,
-                    hydro: 10326 + 8204 + 4965,
-                    gas: 6121,
-                    wind: 10358,
-                    solar: 6580
-                };
-                countries['UK'].meta.capacity = {
-                    wind: 13500,
-                    nuclear: 9000,
-                    hydro: 1550,
-                    gas: 38000,
-                    solar: 8780
-                }
-
-                // Prepare exchanges
-                let exchanges = [
-                    {
-                        countries: ['DE', 'DK'],
-                        center: countryMap.projection([9.3, 54.9]), 
-                        rotation: 0
-                    },
-                    {
-                        countries: ['SE', 'DK'],
-                        center: countryMap.projection([13, 55.7]), 
-                        rotation: -100
-                    },
-                    {
-                        countries: ['UK', 'FR'],
-                        center: countryMap.projection([0, 50.4]), 
-                        rotation: 160
-                    },
-                    {
-                        countries: ['DK', 'NO'],
-                        center: countryMap.projection([8.8, 58]), 
-                        rotation: -25
-                    },
-                    {
-                        countries: ['IE', 'UK'],
-                        center: countryMap.projection([-5.7, 53]), 
-                        rotation: 100
-                    },
-                    {
-                        countries: ['NL', 'UK'],
-                        center: countryMap.projection([3.3, 52.4]), 
-                        rotation: -90
-                    },
-                    {
-                        countries: ['FR', 'ES'],
-                        center: countryMap.projection([0.3, 42.9]), 
-                        rotation: -160
-                    },
-                    {
-                        countries: ['FR', 'DE'],
-                        center: countryMap.projection([5.7, 49.8]), 
-                        rotation: 50
-                    },
-                    {
-                        countries: ['FR', 'CH'],
-                        center: countryMap.projection([6.5, 46.7]), 
-                        rotation: 90
-                    },
-                    {
-                        countries: ['FR', 'IT'],
-                        center: countryMap.projection([6.5, 44.5]), 
-                        rotation: 70
-                    }
-                ];
-
-                // Populate with realtime data
-                for (let countryCode of d3.keys(realtime.data)) {
-                    let obj = realtime.data[countryCode];
-                    let country = countries[countryCode]
-                    for (let k of d3.keys(obj))
-                        country.meta[k] = obj[k];
-                    // Add extra data
-                    // TODO: Calculate co2 in the browser to take into account exchanges
-                    country.meta.maxCapacity = 
-                        d3.max(d3.values(country.meta.capacity));
-                    country.meta.maxProduction = 
-                        d3.max(d3.values(country.meta.production));
-                    country.meta.totalProduction = 
-                        d3.sum(d3.values(country.meta.production));
-                    // Populate exchanges
-                    // Very hacky as the last country will always have precedence
-                    for (let sourceCountryCode of d3.keys(country.meta.exchange)) {
-                        // Find the exchange object
-                        let matches = exchanges.filter(function (e) { 
-                            return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
-                        });
-                        let amount = country.meta.exchange[sourceCountryCode];
-                        if (matches.length) {
-                            let match = matches[0];
-                            match.netFlow = match.countries[0] == sourceCountryCode ? amount : -amount;
-                            match.co2 = match.countries.map(function (key) {
-                                return countries[key].meta.co2;
-                            });
-                        } else {
-                            if (sourceCountryCode != 'other')
-                                console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
-                        }
-                    }
-                    // Send warnings for missing data
-                    if (country.meta.co2 === undefined)
-                        console.warn(countryCode + ' is missing co2 footprint');
-                    countryTable.PRODUCTION_MODES.forEach(function (mode) {
-                        if (mode == 'other') return;
-                        if (country.meta.production[mode] === undefined)
-                            console.warn(countryCode + ' is missing production of ' + mode);
-                        if (country.meta.capacity[mode] === undefined)
-                            console.warn(countryCode + ' is missing capacity of ' + mode);
-                    });
-                    if (country.meta.exchange === undefined || country.meta.exchange.length == 0)
-                        console.warn(countryCode + ' is missing exchanges');
-                }
-                console.log('countries', countries);
-                console.log('exchanges', exchanges);
-                console.log('GFS', gfs);
-
-                countryMap
-                    .data(d3.values(countries))
-                    .onCountryClick(function (d, i) {
-                        if (!d.meta.production) return;
-                        countryTable
-                            .powerDomain([0, d.meta.maxCapacity || d.meta.maxProduction])
-                            .data(d.meta);
-                    })
-                    .onCountryMouseOver(function (d) { 
-                        if (d.meta.production)
-                            d3.select(this)
-                                .attr('opacity', 0.8)
-                                .style('cursor', 'hand')
-                        if (d.meta.co2)
-                            co2Colorbar.currentMarker(d.meta.co2);
-                    })
-                    .onCountryMouseOut(function (d) { 
-                        if (d.meta.production) 
-                            d3.select(this)
-                                .attr('opacity', 1)
-                                .style('cursor', 'normal')
-                        if (d.meta.co2)
-                            co2Colorbar.currentMarker(undefined);
-                    });
-
-                exchangeLayer.data(exchanges);
-            };
-
-            queue()
-                .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-                .defer(d3.json, 'http://esri.github.io/wind-js/gfs.json')
-                .defer(d3.json, 'http://localhost:8000/realtime')
-                .await(cb);
         };
 
         window.onresize = function () {
