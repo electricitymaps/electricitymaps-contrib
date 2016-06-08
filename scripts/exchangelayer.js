@@ -1,9 +1,10 @@
 function ExchangeLayer(selector, projection) {
-    this.TRIANGLE_HEIGHT = 8;
+    this.TRIANGLE_HEIGHT = 1;
+    this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.exchangeAnimationDurationScale = d3.scale.linear()
         .domain([500, 4000])
         .range([2000, 10])
-    this.exchangeArrowWidthScale = d3.scale.linear()
+    this.exchangeArrowScale = d3.scale.linear()
         .domain([500, 4000])
         .range([4, 15])
 
@@ -11,7 +12,8 @@ function ExchangeLayer(selector, projection) {
     this.exchangeArrowsContainer = this.root.append('g');
     this.exchangeGradientsContainer = this.root.append('g');
 
-    this.trianglePath = function(w) {
+    this.trianglePath = function() {
+        let w = this.TRIANGLE_HEIGHT;
         return 'M 0 0 L ' + w + ' ' + this.TRIANGLE_HEIGHT + ' L -' + w + ' ' + this.TRIANGLE_HEIGHT + ' Z ' +
         'M 0 -' + this.TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
         'M 0 -' + this.TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + this.TRIANGLE_HEIGHT + ' L -' + w + ' -' + this.TRIANGLE_HEIGHT + ' Z'
@@ -21,11 +23,11 @@ function ExchangeLayer(selector, projection) {
     this.animateGradient = function(selector, color, duration) {
         let arrow = selector.selectAll('stop')
             .data([
-                {offset: 0, color: 'black'},
-                {offset: 0, color: 'black'},
                 {offset: 0, color: color},
-                {offset: 0, color: 'black'},
-                {offset: 1, color: 'black'},
+                {offset: 0, color: color},
+                {offset: 0, color: d3.rgb(color).brighter(0.8)},
+                {offset: 0, color: color},
+                {offset: 1, color: color},
             ]);
         arrow.enter().append('stop')
             .attr('offset', function(d) { return d.offset; })
@@ -39,7 +41,9 @@ function ExchangeLayer(selector, projection) {
                 if (i == 0 || i == 4)
                     return function (t) { return d.offset };
                 else {
-                    return function (t) { return 1 - t + (i - 2) * 0.4 };
+                    return function (t) {
+                        return 1 - t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
+                    };
                 }
             })
             .each('end', function () { 
@@ -59,8 +63,8 @@ ExchangeLayer.prototype.data = function(arg) {
             .enter()
             .append('linearGradient')
             .attr('gradientUnits', 'userSpaceOnUse')
-            .attr('x1', 0).attr('y1', -2.0 * this.TRIANGLE_HEIGHT - 5)
-            .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 5)
+            .attr('x1', 0).attr('y1', -2.0 * this.TRIANGLE_HEIGHT - 1)
+            .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
             .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
         let exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
@@ -69,15 +73,17 @@ ExchangeLayer.prototype.data = function(arg) {
             .append('path')
             .attr('class', 'exchange-arrow')
             .attr('d', function(d) { 
-                return that.trianglePath(that.exchangeArrowWidthScale(Math.abs(d.netFlow)));
+                return that.trianglePath();
             })
             .attr('transform', function (d) {;
                 let rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
-                return 'translate(' + d.center[0] + ',' + d.center[1] + '),rotate(' + rotation + ')';
+                return 'translate(' + d.center[0] + ',' + d.center[1] + '),' + 
+                    'scale(' + that.exchangeArrowScale(Math.abs(d.netFlow)) + '),' + 
+                    'rotate(' + rotation + ')';
             })
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
             .attr('stroke', function (d) { return d.netFlow ? 'black' : 'none'; })
-            .attr('stroke-width', 0.4)
+            .attr('stroke-width', 0.1)
             .on('click', function (d) {
                 console.log(d, that.exchangeAnimationDurationScale(Math.abs(d.netFlow)));
             })
