@@ -102,7 +102,7 @@ CountryTable.prototype.onExchangeMouseOut = function(arg) {
 CountryTable.prototype.resize = function() {
     this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
-    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).length * (this.ROW_HEIGHT + this.PADDING_Y);
+    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).filter(function (d) { return d.key != 'other'; }).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
     this.productionRoot
