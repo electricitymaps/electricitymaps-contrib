@@ -63,13 +63,12 @@ def fetch_ES():
     obj['exchange'] = {
     }
     obj['production'] = {
-        'gas': float(parsed['gasFuel']),
+        'gas': float(parsed['gasFuel']) + float(parsed['cicloComb']),
         'coal': float(parsed['carbon']),
         'solar': float(parsed['solar']), # = float(parsed['solTer']) + float(parsed['solFot']),
         'nuclear': float(parsed['nuclear']),
         'wind': float(parsed['eolica']),
         'hydro': float(parsed['hidro']),
-        'gas': float(parsed['cicloComb']),
         'other': float(parsed['termRenov']) + float(parsed['cogenResto']),
     }
 

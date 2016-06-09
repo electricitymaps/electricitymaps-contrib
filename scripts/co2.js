@@ -20,6 +20,9 @@ function CO2Calculator() {
         'FI': function (productionMode) {
             return productionMode == 'other' ? 600 : null;
         },
+        'GB': function (productionMode) {
+            return productionMode == 'other' ? 300 : null;
+        },
         'NO': function (productionMode) {
             return productionMode == 'other' ? 600 : null;
         },

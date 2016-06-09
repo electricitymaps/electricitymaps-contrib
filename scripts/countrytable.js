@@ -181,7 +181,7 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
-                return d.capacity === undefined ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
+                return (d.capacity === undefined || d.production === undefined) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
             });
         selection.select('rect.production')
             .on('mouseover', function (d) {

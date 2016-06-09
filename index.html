@@ -205,23 +205,34 @@
                 });
 
                 countries['DE'].data.capacity = {
-                    solar: 39700,
-                    wind: 2700 + 40990,
-                    gas: 28540,
-                    hydro: 5580,
-                    biomass: 8860,
+                    biomass: 8970,
+                    coal: 28310 + 21140,
+                    gas: 28490,
+                    hydro: 5590,
                     nuclear: 10790,
-                    coal: 27090 + 21140
+                    oil: 4240,
+                    solar: 39630,
+                    wind: 3740 + 42460,
                 };
                 countries['DK'].data.capacity = {
-                    wind: 5070,
-                    solar: 790,
                     hydro: 0,
+                    nuclear: 0,
+                    solar: 790,
+                    wind: 5070,
                 };
                 countries['ES'].data.capacity = {
-                    wind: 23025,
-                    solar: 5400
-                }
+                    coal: 11482,
+                    gas: 3498 + 27206,
+                    hydro: 17787 + 2106,
+                    nuclear: 7866,
+                    solar: 4672 + 2300,
+                    wind: 23002,
+                };
+                countries['FI'].data.capacity = {
+                    hydro: 3080,
+                    nuclear: 2860,
+                    wind: 1000
+                };
                 countries['FR'].data.capacity = {
                     nuclear: 63130,
                     oil: 6670,
@@ -237,7 +248,19 @@
                     hydro: 1550,
                     gas: 38000,
                     solar: 8780
-                }
+                };
+                countries['NO'].data.capacity = {
+                    hydro: 31000,
+                    nuclear: 0,
+                    solar: 0,
+                    wind: 856,
+                };
+                countries['SE'].data.capacity = {
+                    hydro: 16200,
+                    nuclear: 8849,
+                    solar: 79,
+                    wind: 6025
+                };
 
                 // Prepare exchanges
                 var exchanges = [
@@ -309,7 +332,7 @@
                         if (mode == 'other') return;
                         if (country.data.production[mode] === undefined)
                             console.warn(countryCode + ' is missing production of ' + mode);
-                        if (country.data.capacity[mode] === undefined)
+                        else if (country.data.capacity[mode] === undefined)
                             console.warn(countryCode + ' is missing capacity of ' + mode);
                     });
                     if (!country.data.exchange || !d3.keys(country.data.exchange).length)
@@ -393,7 +416,7 @@
                     .onCountryClick(function (d, i) {
                         if (!d.data.production) return;
                         countryTable
-                            .powerDomain([-d.data.maxExport, d.data.maxCapacity || d.data.maxProduction])
+                            .powerDomain([-d.data.maxExport, Math.max(d.data.maxCapacity, d.data.maxProduction)])
                             .data(d.data);
                     })
                     .onCountryMouseOver(function (d) { 

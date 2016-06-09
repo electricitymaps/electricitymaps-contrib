@@ -21,6 +21,7 @@ def fetch_NO():
     obj['exchange'] = {
     }
     obj['production'] = {
+        'solar': 0,
         'other': float(data['ThermalData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')) + 
             float(data['NotSpecifiedData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
         'wind': float(data['WindData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
