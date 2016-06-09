@@ -5,7 +5,6 @@ COUNTRY_CODE = 'FI'
 
 def fetch_FI():
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview?timestamp={}'.format(arrow.now().timestamp * 1000)
-
     data = requests.get(url).json()
     countries = map(lambda x: x['value'], data['Headers'])
     i = countries.index(COUNTRY_CODE)

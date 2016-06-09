@@ -84,7 +84,7 @@ ExchangeLayer.prototype.data = function(arg) {
                     'rotate(' + rotation + ')';
             })
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
-            .attr('stroke', function (d) { return d.netFlow ? 'black' : 'none'; })
+            .attr('stroke', 'black')
             .attr('stroke-width', 0.1)
             .on('click', function (d) {
                 console.log(d, that.exchangeAnimationDurationScale(Math.abs(d.netFlow)));

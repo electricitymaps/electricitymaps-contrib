@@ -312,7 +312,7 @@
                         if (country.data.capacity[mode] === undefined)
                             console.warn(countryCode + ' is missing capacity of ' + mode);
                     });
-                    if (country.data.exchange === undefined || country.data.exchange.length == 0)
+                    if (!country.data.exchange || !d3.keys(country.data.exchange).length)
                         console.warn(countryCode + ' is missing exchanges');
                 }
 

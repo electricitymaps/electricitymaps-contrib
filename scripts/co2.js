@@ -17,6 +17,9 @@ function CO2Calculator() {
         'DK': function (productionMode) {
             return productionMode == 'other' ? 600 : null;
         },
+        'FI': function (productionMode) {
+            return productionMode == 'other' ? 600 : null;
+        },
         'NO': function (productionMode) {
             return productionMode == 'other' ? 600 : null;
         },
@@ -63,7 +66,7 @@ CO2Calculator.prototype.compute = function(countries) {
         d3.entries(country.production).forEach(function (production) {
             var footprint = that.footprintOf(production.key, country.countryCode);
             if (footprint === undefined) {
-                console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown.');
+                console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
                 return;
             }
             // Accumulate
@@ -73,7 +76,7 @@ CO2Calculator.prototype.compute = function(countries) {
         d3.entries(country.exchange).forEach(function (exchange) {
             var j = validCountryKeys.indexOf(exchange.key);
             if (j < 0) {
-                console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has not data.');
+                console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no data');
                 return;
             }
             // Accumulate
