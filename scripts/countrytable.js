@@ -28,9 +28,9 @@ function CountryTable(selector, co2color) {
 }
 
 CountryTable.prototype.render = function() {
-    let that = this;
+    var that = this;
 
-    let width = this.root.node().getBoundingClientRect().width;
+    var width = this.root.node().getBoundingClientRect().width;
 
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
@@ -52,7 +52,7 @@ CountryTable.prototype.render = function() {
         .attr('class', 'x axis');
 
     // ** Production labels and rects **
-    let gNewRow = this.productionRoot.selectAll('.row')
+    var gNewRow = this.productionRoot.selectAll('.row')
         .data(this.PRODUCTION_MODES)
         .enter()
         .append('g')
@@ -116,7 +116,7 @@ CountryTable.prototype.resize = function() {
 }
 
 CountryTable.prototype.data = function(arg) {
-    let that = this;
+    var that = this;
 
     if (!arg) return this._data;
     else {
@@ -157,7 +157,7 @@ CountryTable.prototype.data = function(arg) {
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
-        let sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
+        var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
             return {
                 production: arg.production[d],
                 capacity: arg.capacity[d]
@@ -179,14 +179,14 @@ CountryTable.prototype.data = function(arg) {
             });
 
         // Construct exchanges
-        let exchangeData = d3.entries(this._data.exchange)
+        var exchangeData = d3.entries(this._data.exchange)
             .filter(function (o) {
                 return o.key != 'other';
             });
         var selection = this.exchangeRoot.selectAll('.row')
             .data(exchangeData);
         selection.exit().remove();
-        let gNewRow = selection.enter().append('g')
+        var gNewRow = selection.enter().append('g')
             .attr('class', 'row')
             .attr('transform', function (d, i) {
                 return 'translate(0,' + i * (that.ROW_HEIGHT + that.PADDING_Y) + ')';

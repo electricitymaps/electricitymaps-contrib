@@ -90,7 +90,7 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
     var axis = d3.svg.axis()
         .scale(this.scale)
         .innerTickSize(this.colorbarHeight / 2.0)
-        .tickPadding(7);
+        .tickPadding(3);
     if (d3TickFormat)
         axis.tickFormat(d3TickFormat);
     if (d3TickValues)
