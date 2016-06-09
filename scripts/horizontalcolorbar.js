@@ -55,6 +55,26 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
                 .style('fill', d3.identity)
     }
 
+    // Prepare an invisible marker
+    if (this.scale.ticks) {
+        this.gColorbar.append('line')
+            .attr('class', 'marker')
+            .style('stroke', 'gray')
+            .style('stroke-width', 3)
+            .attr('y1', 0)
+            .attr('y2', this.colorbarHeight)
+            .style('display', 'none');
+    } else {
+        this.gColorbar.append('rect')
+            .attr('class', 'marker')
+            .style('stroke', 'gray')
+            .style('stroke-width', 3)
+            .style('fill', 'none')
+            .attr('y', 0)
+            .attr('width', this.deltaOrdinal)
+            .style('display', 'none');
+    }
+
     // Draw a container around the colorbar
     this.gColorbar.append('rect')
         .attr('x', 0)
@@ -89,26 +109,6 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
     this.gColorbarAxis.select('path')
             .style('fill', 'none')
             .style('stroke', 'none');
-
-    // Prepare an invisible marker
-    if (this.scale.ticks) {
-        this.gColorbar.append('line')
-            .attr('class', 'marker')
-            .style('stroke', 'gray')
-            .style('stroke-width', 3)
-            .attr('y1', 0)
-            .attr('y2', this.colorbarHeight)
-            .style('display', 'none');
-    } else {
-        this.gColorbar.append('rect')
-            .attr('class', 'marker')
-            .style('stroke', 'gray')
-            .style('stroke-width', 3)
-            .style('fill', 'none')
-            .attr('y', 0)
-            .attr('width', this.deltaOrdinal)
-            .style('display', 'none');
-    }
 
     return this;
 }
