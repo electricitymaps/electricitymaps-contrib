@@ -102,7 +102,7 @@ CountryTable.prototype.onExchangeMouseOut = function(arg) {
 CountryTable.prototype.resize = function() {
     this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
-    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).filter(function (d) { return d.key != 'other'; }).length * (this.ROW_HEIGHT + this.PADDING_Y);
+    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
     this.productionRoot
@@ -179,10 +179,7 @@ CountryTable.prototype.data = function(arg) {
             });
 
         // Construct exchanges
-        var exchangeData = d3.entries(this._data.exchange)
-            .filter(function (o) {
-                return o.key != 'other';
-            });
+        var exchangeData = d3.entries(this._data.exchange);
         var selection = this.exchangeRoot.selectAll('.row')
             .data(exchangeData);
         selection.exit().remove();
@@ -193,10 +190,7 @@ CountryTable.prototype.data = function(arg) {
             });
         gNewRow.append('image')
             .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
-            .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
-            .attr('xlink:href', function (d) { 
-                return 'vendor/flag-icon-css/flags/4x3/' + d.key + '.svg';
-            });
+            .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER);
         gNewRow.append('text')
             .attr('x', 4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_X)
             .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
@@ -204,6 +198,10 @@ CountryTable.prototype.data = function(arg) {
             .attr('height', this.ROW_HEIGHT)
             .attr('opacity', 0.8)
             .style('transform-origin', 'left')
+        selection.select('image')
+            .attr('xlink:href', function (d) {
+                return 'vendor/flag-icon-css/flags/4x3/' + d.key + '.svg';
+            })
         selection.select('rect')
             .on('mouseover', function (d) {
                 that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);

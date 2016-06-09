@@ -69,12 +69,14 @@
         <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
         <script src="http://d3js.org/queue.v1.min.js"></script>
         <script src="http://d3js.org/topojson.v0.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>
 
         <!-- <script src="d3.v3.min.js"></script>
         <script src="d3.geo.projection.v0.min.js"></script>
         <script src="queue.v1.min.js"></script>
         <script src="topojson.v0.min.js"></script> -->
 
+        <script src="scripts/co2.js"></script>
         <script src="scripts/countrymap.js"></script>
         <script src="scripts/horizontalcolorbar.js"></script>
         <script src="scripts/exchangelayer.js"></script>
@@ -149,7 +151,6 @@
                 });
             countryTable
                 .onExchangeMouseOver(function (d, countryCode) {
-                    if (d.key == 'other') return;
                     var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
                     co2Colorbar.currentMarker(co2);
                 })
@@ -290,7 +291,7 @@
                     var obj = realtime.data[countryCode];
                     var country = countries[countryCode];
                     if (!country) {
-                        console.warn(countryCode + ' has no definition.');
+                        console.warn(countryCode + ' has no country definition.');
                         continue;
                     }
                     for (var k of d3.keys(obj))
@@ -298,7 +299,8 @@
                     // Add co2 to each neighboring country
                     country.data.neighborCo2 = {};
                     d3.keys(country.data.exchange).forEach(function (k) {
-                        if (k == 'other') return;
+                        if (!countries[k])
+                            console.error(countryCode + ' neighbor ' + k + ' could not be found');
                         country.data.neighborCo2[k] = countries[k].data.co2;
                     });
                     // Add own country code so each country is identifiable
@@ -343,6 +345,8 @@
                         d3.max(d3.values(country.data.production));
                     country.data.totalProduction = 
                         d3.sum(d3.values(country.data.production));
+                    country.data.totalNetExchange = 
+                        d3.sum(d3.values(country.data.exchange));
                     country.data.maxExport = 
                         -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
                 });
@@ -362,6 +366,9 @@
                         }
                     });
                 }
+
+                // Compute co2
+                var x = computeCO2(countries);
 
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);

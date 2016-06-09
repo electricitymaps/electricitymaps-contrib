@@ -19,7 +19,6 @@ def fetch_NO():
         'other': float(data['ConsumptionData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0'))
     }
     obj['exchange'] = {
-        'other': float(data['NetExchangeData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
     }
     obj['production'] = {
         'other': float(data['ThermalData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')) + 

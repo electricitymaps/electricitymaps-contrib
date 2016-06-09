@@ -61,7 +61,6 @@ def fetch_ES():
         'other': float(parsed['demanda'])
     }
     obj['exchange'] = {
-        'other': float(parsed['intercambios'])
     }
     obj['production'] = {
         'gas': float(parsed['gasFuel']),

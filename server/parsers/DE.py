@@ -33,4 +33,5 @@ def fetch_DE():
     
     return data
 
-fetch_DE()
+def __main__():
+    fetch_DE()
