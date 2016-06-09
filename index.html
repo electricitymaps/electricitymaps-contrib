@@ -348,8 +348,6 @@
                         d3.sum(d3.values(country.data.exchange));
                     country.data.maxExport = 
                         -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
-                    country.data.maxImport = 
-                        Math.max(d3.max(d3.values(country.data.exchange)), 0) || 0;
                 });
 
 
@@ -395,7 +393,7 @@
                     .onCountryClick(function (d, i) {
                         if (!d.data.production) return;
                         countryTable
-                            .powerDomain([-d.data.maxImport, d.data.maxCapacity || d.data.maxProduction])
+                            .powerDomain([-d.data.maxExport, d.data.maxCapacity || d.data.maxProduction])
                             .data(d.data);
                     })
                     .onCountryMouseOver(function (d) { 
