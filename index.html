@@ -347,7 +347,7 @@
                 d3.entries(computeCO2(countries)).forEach(function (entry) {
                     var country = countries[entry.key];
                     // Assign co2
-                    // country.data.co2 = entry.value;
+                    country.data.co2 = entry.value;
                     // Add co2 to each neighboring country
                     country.data.neighborCo2 = {};
                     d3.keys(country.data.exchange).forEach(function (k) {
@@ -391,7 +391,7 @@
                     .onCountryMouseOver(function (d) { 
                         if (d.data.production)
                             d3.select(this)
-                                .attr('opacity', 0.8)
+                                .style('opacity', 0.8)
                                 .style('cursor', 'hand')
                         if (d.data.co2)
                             co2Colorbar.currentMarker(d.data.co2);
@@ -399,7 +399,7 @@
                     .onCountryMouseOut(function (d) { 
                         if (d.data.production) 
                             d3.select(this)
-                                .attr('opacity', 1)
+                                .style('opacity', 1)
                                 .style('cursor', 'normal')
                         if (d.data.co2)
                             co2Colorbar.currentMarker(undefined);

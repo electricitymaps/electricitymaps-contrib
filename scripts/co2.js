@@ -2,12 +2,33 @@ function computeCO2(countries) {
     var defaultCO2Footprint = {
         'biomass': 900,
         'coal': 930,
-        'gas': 400,
+        'gas': 500,
         'hydro': 0,
         'nuclear': 0,
         'oil': 650,
         'solar': 0,
         'wind': 0,
+    };
+
+    var countryCO2Footprint = {
+        'DE': function (productionMode) {
+            return productionMode == 'other' ? 600 : null;
+        },
+        'DK': function (productionMode) {
+            return productionMode == 'other' ? 600 : null;
+        },
+        'NO': function (productionMode) {
+            return productionMode == 'other' ? 600 : null;
+        },
+        'SE': function (productionMode) {
+            return productionMode == 'other' ? 600 : null;
+        }
+    };
+
+    function footprintOf(productionMode, countryKey) {
+        var defaultFootprint = defaultCO2Footprint[productionMode];
+        var countryFootprint = countryCO2Footprint[countryKey] || function () { };
+        return countryFootprint(productionMode) || defaultFootprint;
     };
 
     // Only consider countries which have a co2 rating
@@ -36,18 +57,19 @@ function computeCO2(countries) {
         A.set([i, i], -country.totalProduction - country.totalNetExchange);
         // Intern
         d3.entries(country.production).forEach(function (production) {
-            if (defaultCO2Footprint[production.key] === undefined) {
+            var footprint = footprintOf(production.key, country.countryCode);
+            if (footprint === undefined) {
                 console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown.');
                 return;
             }
             // Accumulate
-            b.set([i], b.get([i]) - defaultCO2Footprint[production.key] * production.value);
+            b.set([i], b.get([i]) - footprint * production.value);
         });
         // Exchanges
         d3.entries(country.exchange).forEach(function (exchange) {
             var j = validCountryKeys.indexOf(exchange.key);
             if (j < 0) {
-                console.warn(country.countryCode + ' neighbor ' + exchange.key + ' was not found.');
+                console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has not data.');
                 return;
             }
             // Accumulate
