@@ -212,8 +212,8 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('fill', function (d, i) {
                 return d.value > 0 ? 
-                    that._data.neighborCo2[d.key] ? that.co2color(that._data.neighborCo2[d.key]) : 'gray'
-                    : that._data.co2 ? that.co2color(that._data.co2) : 'gray';
+                    (that._data.neighborCo2[d.key]() !== undefined) ? that.co2color(that._data.neighborCo2[d.key]()) : 'gray'
+                    : (that._data.co2 !== undefined) ? that.co2color(that._data.co2) : 'gray';
             })
             .attr('x', function (d) {
                 return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));

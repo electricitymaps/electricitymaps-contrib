@@ -91,7 +91,7 @@ ExchangeLayer.prototype.data = function(arg) {
             })
             .each(function (d, i) {
                 if (!d.netFlow) return;
-                var co2 = d.co2[d.netFlow > 0 ? 0 : 1];
+                var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
                 return that.animateGradient(
                     d3.select('#exchange-gradient-' + i), 
                     co2 ? co2color(co2) : 'grey',

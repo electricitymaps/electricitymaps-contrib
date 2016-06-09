@@ -286,7 +286,6 @@
                 ];
 
                 // Populate with realtime production data
-                // TODO: Calculate co2 in the browser to take into account exchanges
                 for (var countryCode of d3.keys(realtime.data)) {
                     var obj = realtime.data[countryCode];
                     var country = countries[countryCode];
@@ -296,18 +295,8 @@
                     }
                     for (var k of d3.keys(obj))
                         country.data[k] = obj[k];
-                    // Add co2 to each neighboring country
-                    country.data.neighborCo2 = {};
-                    d3.keys(country.data.exchange).forEach(function (k) {
-                        if (!countries[k])
-                            console.error(countryCode + ' neighbor ' + k + ' could not be found');
-                        country.data.neighborCo2[k] = countries[k].data.co2;
-                    });
                     // Add own country code so each country is identifiable
                     country.data.countryCode = countryCode;
-                    // Send warnings for missing data
-                    if (country.data.co2 === undefined)
-                        console.warn(countryCode + ' is missing co2 footprint');
                     countryTable.PRODUCTION_MODES.forEach(function (mode) {
                         if (mode == 'other') return;
                         if (country.data.production[mode] === undefined)
@@ -319,7 +308,7 @@
                         console.warn(countryCode + ' is missing exchanges');
                 }
 
-                // Populate exchanges
+                // Populate exchange pairs for arrows
                 exchanges.forEach(function (pair) {
                     var o = pair.countries[0];
                     var d = pair.countries[1];
@@ -328,7 +317,9 @@
                         -countries[o].data.exchange[d]
                     ];
                     pair.netFlow = d3.mean(netFlows);
-                    pair.co2 = pair.countries.map(function (k) { return countries[k].data.co2; });
+                    pair.co2 = function () {
+                        return pair.countries.map(function (k) { return countries[k].data.co2; });
+                    };
                     countries[o].data.exchange[d] = -pair.netFlow;
                     countries[d].data.exchange[o] = pair.netFlow;
                     countries[o].data.neighborCo2[d] = countries[d].data.co2;
@@ -351,7 +342,27 @@
                         -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
                 });
 
-                // Issue warnings for missing data
+
+                // Compute CO2
+                d3.entries(computeCO2(countries)).forEach(function (entry) {
+                    var country = countries[entry.key];
+                    // Assign co2
+                    // country.data.co2 = entry.value;
+                    // Add co2 to each neighboring country
+                    country.data.neighborCo2 = {};
+                    d3.keys(country.data.exchange).forEach(function (k) {
+                        if (!countries[k])
+                            console.error(entry.key + ' neighbor ' + k + ' could not be found');
+                        country.data.neighborCo2[k] = function() {
+                            return countries[k].data.co2;
+                        };
+                    });
+                    // Display warnings for missing data
+                    if (country.data.co2 === undefined)
+                        console.warn(entry.key + ' is missing co2 footprint');
+                });
+
+                // Issue warnings for missing exchange configurations
                 for (var countryCode of d3.keys(realtime.data)) {
                     var country = countries[countryCode]
                     if (!country) continue;
@@ -360,15 +371,10 @@
                         var matches = exchanges.filter(function (e) { 
                             return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
                         });
-                        if (!matches.length) {
-                            if (sourceCountryCode != 'other')
-                                console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
-                        }
+                        if (!matches.length)
+                            console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
                     });
                 }
-
-                // Compute co2
-                var x = computeCO2(countries);
 
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);

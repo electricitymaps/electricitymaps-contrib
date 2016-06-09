@@ -1,15 +1,15 @@
-var co2Footprint = {
-    'biomass': 900,
-    'coal': 930,
-    'gas': 400,
-    'hydro': 0,
-    'nuclear': 0,
-    'oil': 650,
-    'solar': 0,
-    'wind': 0,
-};
-
 function computeCO2(countries) {
+    var defaultCO2Footprint = {
+        'biomass': 900,
+        'coal': 930,
+        'gas': 400,
+        'hydro': 0,
+        'nuclear': 0,
+        'oil': 650,
+        'solar': 0,
+        'wind': 0,
+    };
+
     // Only consider countries which have a co2 rating
     var validCountries = d3.entries(countries)
         .map(function(d) { return d.value.data })
@@ -36,12 +36,12 @@ function computeCO2(countries) {
         A.set([i, i], -country.totalProduction - country.totalNetExchange);
         // Intern
         d3.entries(country.production).forEach(function (production) {
-            if (co2Footprint[production.key] === undefined) {
+            if (defaultCO2Footprint[production.key] === undefined) {
                 console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown.');
                 return;
             }
             // Accumulate
-            b.set([i], b.get([i]) - co2Footprint[production.key] * production.value);
+            b.set([i], b.get([i]) - defaultCO2Footprint[production.key] * production.value);
         });
         // Exchanges
         d3.entries(country.exchange).forEach(function (exchange) {
@@ -56,19 +56,18 @@ function computeCO2(countries) {
                 A.set([i, j], exchange.value);
             } else {
                 // Export
-                A.set([i, i], A.get([i, 0]) - Math.abs(exchange.value));
+                A.set([i, i], A.get([i, i]) - Math.abs(exchange.value));
             }
         });
     });
-    
-    console.log('A', JSON.stringify(A.toArray()));
-    console.log('b', JSON.stringify(b));
 
     // Solve
     var x = math.lusolve(A, b);
-    console.log('x', JSON.stringify(x));
+    var co2 = {};
     x.toArray().forEach(function (x, i) {
         console.log(validCountries[i].countryCode, x, validCountries[i].co2);
+        // console.log(A.toArray()[i], b.toArray()[i]);
+        co2[validCountries[i].countryCode] = x[0];
     });
-    return x;
+    return co2;
 }
