@@ -107,7 +107,7 @@ CountryTable.prototype.resize = function() {
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
     this.productionRoot
         .attr('transform', 'translate(0,' + this.yProduction + ')');
-    this.yExchange = this.yProduction + this.productionHeight + 2 * this.ROW_HEIGHT;
+    this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;
     this.exchangeRoot
         .attr('transform', 'translate(0,' + this.yExchange + ')');
 
@@ -202,7 +202,7 @@ CountryTable.prototype.data = function(arg) {
             .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
         gNewRow.append('rect')
             .attr('height', this.ROW_HEIGHT)
-            .attr('fill', 'black')
+            .attr('opacity', 0.8)
             .style('transform-origin', 'left')
         selection.select('rect')
             .on('mouseover', function (d) {
