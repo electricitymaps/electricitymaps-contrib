@@ -233,10 +233,10 @@ CountryTable.prototype.data = function(arg) {
                     : (that._data.co2 !== undefined) ? that.co2color(that._data.co2) : 'gray';
             })
             .attr('x', function (d) {
-                return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
+                return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(-d.value, 0));
             })
-            .attr('width', function (d) { 
-                return Math.abs(that.powerScale(d.value) - that.powerScale(0));
+            .attr('width', function (d) {
+                return Math.abs(that.powerScale(-d.value) - that.powerScale(0));
             })
         selection.select('text')
             .text(function(d) { return d.key; });
