@@ -6,11 +6,10 @@ function CountryTable(selector, co2color) {
     this.headerRoot = this.root.append('g');
     this.productionRoot = this.root.append('g');
     this.exchangeRoot = this.root.append('g');
-    this.verticalAxis = this.root.append('path');
 
     // Constants
     this.ROW_HEIGHT = 10;
-    this.LABEL_MAX_WIDTH = 50;
+    this.LABEL_MAX_WIDTH = 60;
     this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
     this.TEXT_ADJUST_Y = 9; // To align properly on a line
@@ -76,13 +75,7 @@ CountryTable.prototype.render = function() {
         .attr('class', 'production')
         .attr('height', this.ROW_HEIGHT)
         .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('shape-rendering', 'crispEdges');
-
-    // Vertical axis
-    this.verticalAxis
-        .attr('stroke-width', 1)
-        .attr('stroke', 'gray')
-        .attr('opacity', 0.4)
+        .attr('opacity', 0.8)
         .attr('shape-rendering', 'crispEdges');
 
     this.resize();
@@ -107,14 +100,14 @@ CountryTable.prototype.onExchangeMouseOut = function(arg) {
 }
 
 CountryTable.prototype.resize = function() {
-    this.headerHeight = this.ROW_HEIGHT;
+    this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
     this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).length * (this.ROW_HEIGHT + this.PADDING_Y);
-    
+
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
     this.productionRoot
         .attr('transform', 'translate(0,' + this.yProduction + ')');
-    this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT;
+    this.yExchange = this.yProduction + this.productionHeight + 2 * this.ROW_HEIGHT;
     this.exchangeRoot
         .attr('transform', 'translate(0,' + this.yExchange + ')');
 
@@ -133,12 +126,13 @@ CountryTable.prototype.data = function(arg) {
         this.axis = d3.svg.axis()
             .scale(this.powerScale)
             .orient('top')
-            .innerTickSize(-5)
+            .innerTickSize(-250)
             .outerTickSize(0)
             .ticks(4)
             .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'W'; });
         this.gPowerAxis
-            .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 10)')
+            .transition()
+            .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')
@@ -146,10 +140,12 @@ CountryTable.prototype.data = function(arg) {
         this.gPowerAxis.selectAll('.tick line')
                 .style('stroke', 'gray')
                 .style('stroke-width', 1)
+                .attr('opacity', 0.3)
                 .attr('shape-rendering', 'crispEdges')
         this.gPowerAxis.select('path')
                 .style('fill', 'none')
                 .style('stroke', 'gray')
+                .attr('opacity', 0.3)
                 .attr('shape-rendering', 'crispEdges')
 
         // Set header
@@ -231,14 +227,6 @@ CountryTable.prototype.data = function(arg) {
             .text(function(d) { return d.key; });
 
         this.resize();
-
-        // Vertical axis
-        this.verticalAxis
-            .transition()
-            .attr('d', 'M 0 0 L 0 ' + this.productionHeight + this.exchangeHeight + this.ROW_HEIGHT)
-            .attr('transform', 'translate(' + 
-                (this.LABEL_MAX_WIDTH + this.powerScale(0)) + ',' +
-                this.yProduction + ')')
     }
     return this;
 };
