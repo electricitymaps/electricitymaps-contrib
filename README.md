@@ -1,7 +1,13 @@
 # electricitymap
 A real-time visualisation of electricity generation. Try it out at [http://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
 
-## Real-time electricity data sources
+## CO2 calculations
+TBD
+
+
+## Data sources
+
+### Real-time electricity data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
 - Finland: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix)
@@ -11,15 +17,15 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 
-## Real-time weather data sources
+### Real-time weather data sources
 - Wind: [NOAA](http://nomads.ncdc.noaa.gov/data.php?name=access#hires_weather_datasets) using [wind-js](https://github.com/esri/wind-js)
 
-## CO2 calculations
+### CO2 data sources
 - Denmark: [energinet.dk](http://www.energinet.dk/DA/El/Engrosmarked/Udtraek-af-markedsdata/Sider/Om-Elsystemet-lige-nu.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-co2-en)
 - Great Britain [GridCarbon](http://www.gridcarbon.uk/)
 
-## Production capacity sources
+### Production capacity sources
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
