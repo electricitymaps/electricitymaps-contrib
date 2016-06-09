@@ -1,5 +1,5 @@
-function computeCO2(countries) {
-    var defaultCO2Footprint = {
+function CO2Calculator() {
+    this.defaultCO2Footprint = {
         'biomass': 900,
         'coal': 930,
         'gas': 500,
@@ -10,7 +10,7 @@ function computeCO2(countries) {
         'wind': 0,
     };
 
-    var countryCO2Footprint = {
+    this.countryCO2Footprint = {
         'DE': function (productionMode) {
             return productionMode == 'other' ? 600 : null;
         },
@@ -24,13 +24,15 @@ function computeCO2(countries) {
             return productionMode == 'other' ? 600 : null;
         }
     };
+}
 
-    function footprintOf(productionMode, countryKey) {
-        var defaultFootprint = defaultCO2Footprint[productionMode];
-        var countryFootprint = countryCO2Footprint[countryKey] || function () { };
-        return countryFootprint(productionMode) || defaultFootprint;
-    };
+CO2Calculator.prototype.footprintOf = function(productionMode, countryKey) {
+    var defaultFootprint = this.defaultCO2Footprint[productionMode];
+    var countryFootprint = this.countryCO2Footprint[countryKey] || function () { };
+    return countryFootprint(productionMode) || defaultFootprint;
+};
 
+CO2Calculator.prototype.compute = function(countries) {
     // Only consider countries which have a co2 rating
     var validCountries = d3.entries(countries)
         .map(function(d) { return d.value.data })
@@ -53,11 +55,13 @@ function computeCO2(countries) {
     var A = math.sparse().resize([n, n]);
     var b = math.zeros(n);
 
+    var that = this;
+
     validCountries.forEach(function (country, i) {
         A.set([i, i], -country.totalProduction - country.totalNetExchange);
         // Intern
         d3.entries(country.production).forEach(function (production) {
-            var footprint = footprintOf(production.key, country.countryCode);
+            var footprint = that.footprintOf(production.key, country.countryCode);
             if (footprint === undefined) {
                 console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown.');
                 return;
@@ -85,11 +89,12 @@ function computeCO2(countries) {
 
     // Solve
     var x = math.lusolve(A, b);
-    var co2 = {};
+    this.assignments = {};
     x.toArray().forEach(function (x, i) {
         console.log(validCountries[i].countryCode, x, validCountries[i].co2);
         // console.log(A.toArray()[i], b.toArray()[i]);
-        co2[validCountries[i].countryCode] = x[0];
+        that.assignments[validCountries[i].countryCode] = x[0];
     });
-    return co2;
+
+    return this;
 }

@@ -118,9 +118,10 @@
 
             var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
                 .markerColor('black');
-
             var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-                .markerColor('black');;
+                .markerColor('black');
+
+            var co2Calculator = new CO2Calculator();
 
             var canvas = d3.select('.wind');
             var width = window.innerWidth;
@@ -344,7 +345,7 @@
 
 
                 // Compute CO2
-                d3.entries(computeCO2(countries)).forEach(function (entry) {
+                d3.entries(co2Calculator.compute(countries).assignments).forEach(function (entry) {
                     var country = countries[entry.key];
                     // Assign co2
                     country.data.co2 = entry.value;
