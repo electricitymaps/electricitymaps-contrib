@@ -9,6 +9,7 @@ function CountryTable(selector, co2color) {
 
     // Constants
     this.ROW_HEIGHT = 10;
+    this.RECT_OPACITY = 0.8;
     this.LABEL_MAX_WIDTH = 60;
     this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
@@ -64,18 +65,18 @@ CountryTable.prototype.render = function() {
         .text(function(d) { return d; })
         .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
     gNewRow.append('rect')
+        .attr('class', 'production')
+        .attr('height', this.ROW_HEIGHT)
+        .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
+        .attr('opacity', this.RECT_OPACITY)
+        .attr('shape-rendering', 'crispEdges');
+    gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
         .attr('fill', 'none')
         .attr('stroke', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('stroke-width', 1.0)
         .attr('opacity', 0.4)
-        .attr('shape-rendering', 'crispEdges');
-    gNewRow.append('rect')
-        .attr('class', 'production')
-        .attr('height', this.ROW_HEIGHT)
-        .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('opacity', 0.8)
         .attr('shape-rendering', 'crispEdges');
 
     this.resize();
@@ -92,10 +93,19 @@ CountryTable.prototype.onExchangeMouseOver = function(arg) {
     else this.exchangeMouseOverHandler = arg;
     return this;
 }
-
 CountryTable.prototype.onExchangeMouseOut = function(arg) {
     if (!arg) return this.exchangeMouseOutHandler;
     else this.exchangeMouseOutHandler = arg;
+    return this;
+}
+CountryTable.prototype.onProductionMouseOver = function(arg) {
+    if (!arg) return this.productionMouseOverHandler;
+    else this.productionMouseOverHandler = arg;
+    return this;
+}
+CountryTable.prototype.onProductionMouseOut = function(arg) {
+    if (!arg) return this.productionMouseOutHandler;
+    else this.productionMouseOutHandler = arg;
     return this;
 }
 
@@ -160,7 +170,8 @@ CountryTable.prototype.data = function(arg) {
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
             return {
                 production: arg.production[d],
-                capacity: arg.capacity[d]
+                capacity: arg.capacity[d],
+                mode: d
             };
         });
         var selection = this.productionRoot.selectAll('.row')
@@ -172,6 +183,12 @@ CountryTable.prototype.data = function(arg) {
                 return d.capacity === undefined ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
             });
         selection.select('rect.production')
+            .on('mouseover', function (d) {
+                that.productionMouseOverHandler.call(this, d, that._data.countryCode);
+            })
+            .on('mouseout', function (d) {
+                that.productionMouseOutHandler.call(this, d);
+            })
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
@@ -196,7 +213,7 @@ CountryTable.prototype.data = function(arg) {
             .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
         gNewRow.append('rect')
             .attr('height', this.ROW_HEIGHT)
-            .attr('opacity', 0.8)
+            .attr('opacity', this.RECT_OPACITY)
             .style('transform-origin', 'left')
         selection.select('image')
             .attr('xlink:href', function (d) {

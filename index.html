@@ -138,7 +138,7 @@
                     var wind = windLayer.field(coordinates[0], coordinates[1]);
                     windColorbar.currentMarker(wind[2]);
                 } else {
-                    windColorbar.currentMarker(null);
+                    windColorbar.currentMarker(undefined);
                 }
             }
 
@@ -148,7 +148,7 @@
                     windMouseOver(d3.mouse(this));
                 })
                 .on('mouseout', function() {
-                    windMouseOver(null);
+                    windMouseOver(undefined);
                 });
             countryTable
                 .onExchangeMouseOver(function (d, countryCode) {
@@ -156,7 +156,14 @@
                     co2Colorbar.currentMarker(co2);
                 })
                 .onExchangeMouseOut(function (d) {
-                    co2Colorbar.currentMarker(null);
+                    co2Colorbar.currentMarker(undefined);
+                })
+                .onProductionMouseOver(function (d, countryCode) {
+                    var co2 = co2Calculator.footprintOf(d.mode, countryCode);
+                    co2Colorbar.currentMarker(co2);
+                })
+                .onProductionMouseOut(function (d) {
+                    co2Colorbar.currentMarker(undefined);
                 });
 
             function dataLoaded(err, data, gfs, realtime) {

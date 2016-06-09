@@ -60,7 +60,7 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
         this.gColorbar.append('line')
             .attr('class', 'marker')
             .style('stroke', 'gray')
-            .style('stroke-width', 3)
+            .style('stroke-width', 2)
             .attr('y1', 0)
             .attr('y2', this.colorbarHeight)
             .style('display', 'none');
@@ -68,7 +68,7 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
         this.gColorbar.append('rect')
             .attr('class', 'marker')
             .style('stroke', 'gray')
-            .style('stroke-width', 3)
+            .style('stroke-width', 2)
             .style('fill', 'none')
             .attr('y', 0)
             .attr('width', this.deltaOrdinal)
@@ -114,7 +114,7 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
 }
 
 HorizontalColorbar.prototype.currentMarker = function(d) {
-    if (d) {
+    if (d !== undefined) {
         if (this.scale.ticks) {
             // Linear
             this.gColorbar.select('.marker')
