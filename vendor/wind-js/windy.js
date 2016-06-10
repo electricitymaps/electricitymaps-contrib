@@ -425,7 +425,6 @@ var Windy = function( params ){
             if (bucket.length > 0) {
                 g.beginPath();
                 g.strokeStyle = colorStyles[i];
-                g.globalAlpha = i / 7; // Hides low wind!
                 bucket.forEach(function(particle) {
                     g.moveTo(particle.x, particle.y);
                     g.lineTo(particle.xt, particle.yt);

@@ -409,7 +409,7 @@
 
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);
-                console.log('GFS', gfs);
+                console.log('GFS', gfs[0].header.refTime, gfs);
 
                 countryMap
                     .data(d3.values(countries))
@@ -442,7 +442,7 @@
             // Load data
             queue()
                 .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-                .defer(d3.json, 'http://esri.github.io/wind-js/gfs.json')
+                .defer(d3.json, 'http://localhost:8000/data/gfs.json')
                 .defer(d3.json, 'http://localhost:8000/realtime')
                 .await(dataLoaded);
 

@@ -2,11 +2,13 @@
 A real-time visualisation of electricity generation. Try it out at [http://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
 
 
-<Explain how CO2 is calculated>
+The CO2 footprint of each country is measured from the perspective of a consumer. It represents the CO2 footprint of 1 kWh consumed inside a given country. Therefore, the footprint takes into account the footprint of electricity imported in the country.
+The numbers unfortunately do not take into account the construction of production units, nor the transportation or extraction of raw materials. Any help would be appreciated to get closer to the truth!
 
-## Data sources
 
-Real-time electricity data sources
+### Data sources
+
+## Real-time electricity data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
 - Finland: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix)
@@ -16,15 +18,15 @@ Real-time electricity data sources
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 
-Real-time weather data sources
-- Wind: [NOAA](http://nomads.ncdc.noaa.gov/data.php?name=access#hires_weather_datasets) using [wind-js](https://github.com/esri/wind-js)
+## Real-time weather data sources
+- Wind: [GFS](https://github.com/cambecc/earth#getting-weather-data)
 
-CO2 data sources
+## CO2 data sources
 - Denmark: [energinet.dk](http://www.energinet.dk/DA/El/Engrosmarked/Udtraek-af-markedsdata/Sider/Om-Elsystemet-lige-nu.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-co2-en)
 - Great Britain [GridCarbon](http://www.gridcarbon.uk/)
 
-Production capacity sources
+## Production capacity sources
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
