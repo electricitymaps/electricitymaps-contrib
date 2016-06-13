@@ -15,7 +15,6 @@ def fetch_DE():
     for s in re.findall('{"id":"(.*?)",.*?,"data":(.*?)(,"|})', body):
         parsed[s[0]] = json.loads(s[1])[-1]
 
-    print parsed
     data = {
         'countryCode': COUNTRY_CODE,
         'datetime': arrow.get(arrow.get(parsed['wind'][0] / 1000.0).datetime, 
@@ -23,13 +22,15 @@ def fetch_DE():
         'production': {
             'wind': parsed['wind'][1],
             'solar': parsed['solar'][1],
-            'biomass': parsed['biomass'][1],
-            'other': parsed['run-of-the-river'][1] + parsed['conventional-power'][1],
+            'biomass': parsed['biomass'][1]
         },
         'consumption': {
             'other': parsed['total-load'][1]
         }
     }
+
+    if parsed['run-of-the-river'][1] and parsed['conventional-power'][1]:
+        data['production']['other'] = parsed['run-of-the-river'][1] and parsed['conventional-power'][1]
     
     return data
 

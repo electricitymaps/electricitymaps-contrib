@@ -19,7 +19,8 @@ The numbers unfortunately do not take into account the construction of productio
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 
 ## Real-time weather data sources
-- Wind: [GFS](https://github.com/cambecc/earth#getting-weather-data)
+- Solar: [GFS 0.5 Degree](http://nomads.ncep.noaa.gov/)
+- Wind: [CFS Flux](http://nomads.ncep.noaa.gov/)
 
 ## CO2 data sources
 - Denmark: [energinet.dk](http://www.energinet.dk/DA/El/Engrosmarked/Udtraek-af-markedsdata/Sider/Om-Elsystemet-lige-nu.aspx)
