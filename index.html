@@ -26,6 +26,9 @@
                 pointer-events: none;
                 opacity: 0.5;
             }
+            .solar {
+                pointer-events: none;
+            }
             .graticule {
                 stroke: #185c96;
                 stroke-width: 0.3px;
@@ -87,6 +90,7 @@
     <body>
         <svg class="map sea"></svg>
         <canvas class="map wind"></canvas>
+        <canvas class="map solar"></canvas>
         <svg class="co2-colorbar"></svg>
         <svg class="wind-colorbar"></svg>
         <div class="panel-container">
@@ -124,11 +128,18 @@
 
             var co2Calculator = new CO2Calculator();
 
+            // TODO: Name properly
             var canvas = d3.select('.wind');
             var width = window.innerWidth;
             var height = window.innerHeight;
             canvas.attr('height', height);
             canvas.attr('width', width);
+
+            var solarCanvas = d3.select('.solar');
+            solarCanvas.attr('height', height);
+            solarCanvas.attr('width', width);
+
+            var ctx = d3.select('.solar').node().getContext('2d');
 
             // Prepare data
             var countries = {};
@@ -167,7 +178,11 @@
                     co2Colorbar.currentMarker(undefined);
                 });
 
-            function dataLoaded(err, data, gfs, realtime) {
+            function dataLoaded(err, data, gfs, realtime, solar) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
 
                 var sw = countryMap.projection.invert([0, height]);
                 var ne = countryMap.projection.invert([width, 0]);
@@ -178,6 +193,29 @@
                     height,
                     [sw, ne]
                 );
+
+                var s = d3.scale.linear()
+                    .range(['blue', 'red'])
+                    .domain([300, 400])
+
+                var Nx = solar.DLWRF.length;
+                var Ny = solar.DLWRF[0].length;
+                for (var i of d3.range(Nx)) {
+                    for (var j of d3.range(Ny)) {
+                        var n = i * Ny + j;
+                        var lon = solar.lonlats[0][n];
+                        var lat = solar.lonlats[1][n];
+                        var val = solar.DLWRF[i][j];
+                        var p = countryMap.projection([lon, lat]);
+                        // TODO: Filter outside of visible range before
+                        if (isNaN(p[0]) || isNaN(p[1]))
+                            continue;
+                        ctx.beginPath();
+                        ctx.arc(p[0], p[1], 2, 0, 2 * Math.PI);
+                        ctx.fillStyle = s(val);
+                        ctx.fill();
+                    }
+                }
 
                 var topo = topojson.object(data, data.objects.europe).geometries;
 
@@ -445,6 +483,7 @@
                 .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
                 .defer(d3.json, 'http://localhost:8000/data/gfs.json')
                 .defer(d3.json, 'http://localhost:8000/realtime')
+                .defer(d3.json, 'http://localhost:8000/data/solar.json')
                 .await(dataLoaded);
 
             function redraw() {
