@@ -11,6 +11,7 @@ from parsers.NO import fetch_NO
 from parsers.SE import fetch_SE
 
 from parsers.solar import fetch_solar
+from parsers.wind import fetch_wind
 
 INTERVAL_SECONDS = 60
 
@@ -37,6 +38,7 @@ def fetch_all():
 
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_all)
 schedule.every(6).hours.do(fetch_solar)
+schedule.every(6).hours.do(fetch_wind)
 fetch_all()
 
 while True:

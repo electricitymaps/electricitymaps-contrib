@@ -36,12 +36,12 @@ def fetch_ES():
     <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <SOAP-ENV:Body>
         <tns:demandaGeneracion30 xmlns:tns="http://ws.wsDemanda24.ree.es/">
-          <fecha>2016-05-23</fecha>
+          <fecha>%s</fecha>
           <clave>%s</clave>
         </tns:demandaGeneracion30>
       </SOAP-ENV:Body>
     </SOAP-ENV:Envelope>
-    """ % key
+    """ % (arrow.now(tz='Europe/Madrid').format('YYYY-MM-DD'), key)
 
     response = r.post(url, data=body, headers=headers)
     root = ET.fromstring(response.content)

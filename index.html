@@ -115,8 +115,9 @@
                     "rgba(255, 30, 219, 0.5)"
                 ]);
             var solarColor = d3.scale.linear()
-                .range(['blue', 'red'])
-                .domain([300, 440]);
+                .range(['black', 'orange'])
+                //.domain([300, 440]);
+                .domain([0, 1000]);
 
             // Set up objects
             var countryMap = new CountryMap('.map');
@@ -189,6 +190,7 @@
 
                 var sw = countryMap.projection.invert([0, height]);
                 var ne = countryMap.projection.invert([width, 0]);
+                console.log('wind', gfs);
                 windLayer.params.data = gfs;
                 windLayer.start(
                     [[0, 0], [width, height]], 

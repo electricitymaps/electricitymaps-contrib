@@ -47,6 +47,6 @@ def fetch_solar():
     with open('backend/data/solar.json', 'w') as f:
         json.dump(obj, f)
 
-def __main__():
+if __name__ == '__main__':
     fetch_solar()
     
