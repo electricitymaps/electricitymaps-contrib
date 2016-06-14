@@ -10,6 +10,8 @@ from parsers.GB import fetch_GB
 from parsers.NO import fetch_NO
 from parsers.SE import fetch_SE
 
+from parsers.solar import fetch_solar
+
 INTERVAL_SECONDS = 60
 
 parsers = [
@@ -34,6 +36,7 @@ def fetch_all():
         col.insert_one(obj)
 
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_all)
+schedule.every(6).hours.do(fetch_solar)
 fetch_all()
 
 while True:

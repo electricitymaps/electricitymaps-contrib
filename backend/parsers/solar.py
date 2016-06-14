@@ -5,11 +5,6 @@ MULTIPLE = 6
 SW = [-48.66, 28.17]
 NE = [37.45, 67.71]
 
-horizon = arrow.utcnow().floor('hour')
-while (int(horizon.format('HH')) % MULTIPLE) != 0:
-    horizon = horizon.replace(hours=-1)
-origin = horizon
-
 def get_url(origin, horizon):
     return 'http://nomads.ncep.noaa.gov/cgi-bin/filter_cfs_flx.pl?' + \
         'file=flxf%s.01.%s.grb2' % (horizon.format('YYYYMMDDHH'), origin.format('YYYYMMDDHH')) + \
@@ -37,11 +32,21 @@ def fetch_forecast(origin, horizon):
             'date': origin.isoformat()
         }
 
-obj_before = fetch_forecast(origin, horizon)
-obj_after = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE))
-obj = {
-    'forecasts': [obj_before, obj_after]
-}
+def fetch_solar():
+    horizon = arrow.utcnow().floor('hour')
+    while (int(horizon.format('HH')) % MULTIPLE) != 0:
+        horizon = horizon.replace(hours=-1)
+    origin = horizon
 
-with open('backend/data/solar.json', 'w') as f:
-    json.dump(obj, f)
+    obj_before = fetch_forecast(origin, horizon)
+    obj_after = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE))
+    obj = {
+        'forecasts': [obj_before, obj_after]
+    }
+
+    with open('backend/data/solar.json', 'w') as f:
+        json.dump(obj, f)
+
+def __main__():
+    fetch_solar()
+    
