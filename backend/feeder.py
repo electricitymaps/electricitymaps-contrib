@@ -30,16 +30,19 @@ client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['electricity']
 col = db['realtime']
 
-def fetch_all():
+def fetch_countries():
     for parser in parsers: 
         obj = parser()
         print 'INSERT %s' % obj
         col.insert_one(obj)
 
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_all)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_countries)
 schedule.every(6).hours.do(fetch_solar)
 schedule.every(6).hours.do(fetch_wind)
-fetch_all()
+
+fetch_countries()
+fetch_wind()
+fetch_solar()
 
 while True:
     schedule.run_pending()

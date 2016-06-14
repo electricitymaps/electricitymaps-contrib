@@ -13,7 +13,7 @@ def fetch_DE():
 
     parsed = {}
     for s in re.findall('{"id":"(.*?)",.*?,"data":(.*?)(,"|})', body):
-        parsed[s[0]] = json.loads(s[1])[0]
+        parsed[s[0]] = json.loads(s[1])[-1]
     data = {
         'countryCode': COUNTRY_CODE,
         'datetime': arrow.get(parsed['wind'][0] / 1000.0).datetime, # UTC
