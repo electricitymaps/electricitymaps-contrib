@@ -113,7 +113,10 @@
                     "rgba(225, 133, 255, 0.5)",
                     "rgba(236, 109, 255, 0.5)",
                     "rgba(255, 30, 219, 0.5)"
-                ])
+                ]);
+            var solarColor = d3.scale.linear()
+                .range(['blue', 'red'])
+                .domain([300, 440]);
 
             // Set up objects
             var countryMap = new CountryMap('.map');
@@ -194,25 +197,27 @@
                     [sw, ne]
                 );
 
-                var s = d3.scale.linear()
-                    .range(['blue', 'red'])
-                    .domain([300, 400])
+                console.log('solar', solar);
 
-                var Nx = solar.DLWRF.length;
-                var Ny = solar.DLWRF[0].length;
+                // Interpolates between two solar forecasts
+                var Nx = solar.forecasts[0].DLWRF.length;
+                var Ny = solar.forecasts[0].DLWRF[0].length;
+                var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
+                var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
+                var now = (new Date()).getTime();
+                var k = (now - t_before)/(t_after - t_before);
                 for (var i of d3.range(Nx)) {
                     for (var j of d3.range(Ny)) {
                         var n = i * Ny + j;
-                        var lon = solar.lonlats[0][n];
-                        var lat = solar.lonlats[1][n];
-                        var val = solar.DLWRF[i][j];
+                        var lon = solar.forecasts[0].lonlats[0][n];
+                        var lat = solar.forecasts[0].lonlats[1][n];
+                        var val = d3.interpolate(solar.forecasts[0].DLWRF[i][j], solar.forecasts[1].DLWRF[i][j])(k);
                         var p = countryMap.projection([lon, lat]);
-                        // TODO: Filter outside of visible range before
                         if (isNaN(p[0]) || isNaN(p[1]))
                             continue;
                         ctx.beginPath();
                         ctx.arc(p[0], p[1], 2, 0, 2 * Math.PI);
-                        ctx.fillStyle = s(val);
+                        ctx.fillStyle = solarColor(val);
                         ctx.fill();
                     }
                 }

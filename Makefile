@@ -32,7 +32,7 @@ fetchWind:
 	rm gfs.t00z.pgrb2full.0p50.f000
 
 fetchSolar:
-	curl "http://nomads.ncep.noaa.gov/cgi-bin/filter_cfs_flx.pl?file=flxf`date '+%Y%m%d'`00.01.`date '+%Y%m%d'`00.grb2&lev_surface=on&var_DLWRF=on&var_DSWRF=on&leftlon=0&rightlon=360&toplat=90&bottomlat=-90&dir=%2Fcfs.`date '+%Y%m%d'`%2F00%2F6hrly_grib_01" -o solar.grb2
+	d=`date '+%Y%m%d'` curl "http://nomads.ncep.noaa.gov/cgi-bin/filter_cfs_flx.pl?file=flxf${d}00.01.${d}00.grb2&lev_surface=on&var_DLWRF=on&var_DSWRF=on&leftlon=0&rightlon=360&toplat=90&bottomlat=-90&dir=%2Fcfs.${d}%2F00%2F6hrly_grib_01" -o flxf${d}00.01.${d}00.grb2
 
 db:
 	mongod
