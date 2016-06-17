@@ -1,44 +1,44 @@
-function CO2Calculator() {
-    this.defaultCO2Footprint = {
-        'biomass': 900,
-        'coal': 930,
-        'gas': 500,
-        'hydro': 0,
-        'nuclear': 0,
+function Co2eqCalculator() {
+    this.defaultCo2eqFootprint = {
+        'biomass': 740,
+        'coal': 820,
+        'gas': 490,
+        'hydro': 24,
+        'nuclear': 12,
         'oil': 650,
-        'solar': 0,
-        'wind': 0,
+        'solar': 45,
+        'wind': 12,
     };
 
-    this.countryCO2Footprint = {
+    this.countryCo2eqFootprint = {
         'DE': function (productionMode) {
-            return productionMode == 'other' ? 600 : null;
+            return productionMode == 'other' ? 700 : null;
         },
         'DK': function (productionMode) {
-            return productionMode == 'other' ? 600 : null;
+            return productionMode == 'other' ? 700 : null;
         },
         'FI': function (productionMode) {
-            return productionMode == 'other' ? 600 : null;
+            return productionMode == 'other' ? 700 : null;
         },
         'GB': function (productionMode) {
             return productionMode == 'other' ? 300 : null;
         },
         'NO': function (productionMode) {
-            return productionMode == 'other' ? 600 : null;
+            return productionMode == 'other' ? 700 : null;
         },
         'SE': function (productionMode) {
-            return productionMode == 'other' ? 600 : null;
+            return productionMode == 'other' ? 700 : null;
         }
     };
 }
 
-CO2Calculator.prototype.footprintOf = function(productionMode, countryKey) {
-    var defaultFootprint = this.defaultCO2Footprint[productionMode];
-    var countryFootprint = this.countryCO2Footprint[countryKey] || function () { };
+Co2eqCalculator.prototype.footprintOf = function(productionMode, countryKey) {
+    var defaultFootprint = this.defaultCo2eqFootprint[productionMode];
+    var countryFootprint = this.countryCo2eqFootprint[countryKey] || function () { };
     return countryFootprint(productionMode) || defaultFootprint;
 };
 
-CO2Calculator.prototype.compute = function(countries) {
+Co2eqCalculator.prototype.compute = function(countries) {
     // Only consider countries which have a co2 rating
     var validCountries = d3.entries(countries)
         .map(function(d) { return d.value.data })
