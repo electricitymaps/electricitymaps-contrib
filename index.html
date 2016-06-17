@@ -80,7 +80,7 @@
         <script src="queue.v1.min.js"></script>
         <script src="topojson.v0.min.js"></script> -->
 
-        <script src="scripts/co2.js"></script>
+        <script src="scripts/co2eq.js"></script>
         <script src="scripts/countrymap.js"></script>
         <script src="scripts/horizontalcolorbar.js"></script>
         <script src="scripts/exchangelayer.js"></script>
@@ -129,7 +129,7 @@
             var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
                 .markerColor('black');
 
-            var co2Calculator = new CO2Calculator();
+            var co2eqCalculator = new Co2eqCalculator();
 
             // TODO: Name properly
             var canvas = d3.select('.wind');
@@ -174,7 +174,7 @@
                     co2Colorbar.currentMarker(undefined);
                 })
                 .onProductionMouseOver(function (d, countryCode) {
-                    var co2 = co2Calculator.footprintOf(d.mode, countryCode);
+                    var co2 = co2eqCalculator.footprintOf(d.mode, countryCode);
                     co2Colorbar.currentMarker(co2);
                 })
                 .onProductionMouseOut(function (d) {
@@ -420,7 +420,7 @@
 
 
                 // Compute CO2
-                d3.entries(co2Calculator.compute(countries).assignments).forEach(function (entry) {
+                d3.entries(co2eqCalculator.compute(countries).assignments).forEach(function (entry) {
                     var country = countries[entry.key];
                     // Assign co2
                     country.data.co2 = entry.value;

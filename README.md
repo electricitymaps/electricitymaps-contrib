@@ -2,8 +2,8 @@
 A real-time visualisation of electricity generation. Try it out at [http://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
 
 
-The CO2 footprint of each country is measured from the perspective of a consumer. It represents the CO2 footprint of 1 kWh consumed inside a given country. Therefore, the footprint takes into account the footprint of electricity imported in the country.
-The numbers unfortunately do not take into account the construction of production units, nor the transportation or extraction of raw materials. Any help would be appreciated to get closer to the truth!
+The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). The GHG footprint takes into account the footprint of electricity imported in the country.
+The numbers take into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources)).
 
 
 ### Data sources
@@ -21,11 +21,6 @@ The numbers unfortunately do not take into account the construction of productio
 ## Real-time weather data sources
 - Solar: [GFS 0.5 Degree](http://nomads.ncep.noaa.gov/)
 - Wind: [CFS Flux](http://nomads.ncep.noaa.gov/)
-
-## CO2 data sources
-- Denmark: [energinet.dk](http://www.energinet.dk/DA/El/Engrosmarked/Udtraek-af-markedsdata/Sider/Om-Elsystemet-lige-nu.aspx)
-- France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-co2-en)
-- Great Britain [GridCarbon](http://www.gridcarbon.uk/)
 
 ## Production capacity sources
 - Denmark
