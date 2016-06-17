@@ -1,6 +1,7 @@
 function ExchangeLayer(selector, projection) {
-    this.TRIANGLE_HEIGHT = 1;
+    this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
+    this.EXCHANGE_ANIMATION_DURATION = 1000;
     this.exchangeAnimationDurationScale = d3.scale.pow()
         .exponent(2)
         .domain([500, 4000])
@@ -15,10 +16,17 @@ function ExchangeLayer(selector, projection) {
     this.exchangeGradientsContainer = this.root.append('g');
 
     this.trianglePath = function() {
-        var w = this.TRIANGLE_HEIGHT;
-        return 'M 0 0 L ' + w + ' ' + this.TRIANGLE_HEIGHT + ' L -' + w + ' ' + this.TRIANGLE_HEIGHT + ' Z ' +
-        'M 0 -' + this.TRIANGLE_HEIGHT + ' L ' + w + ' 0 L -' + w + ' 0 Z ' +
-        'M 0 -' + this.TRIANGLE_HEIGHT * 2.0 + ' L ' + w + ' -' + this.TRIANGLE_HEIGHT + ' L -' + w + ' -' + this.TRIANGLE_HEIGHT + ' Z'
+        var hh = this.TRIANGLE_HEIGHT / 2.0; // half-height
+        var hb = this.TRIANGLE_HEIGHT; // half-base with base = 0.5 * height
+        return 'M -' + hb + ' -' + hh + ' ' + 
+        'L 0 ' + hh + ' ' + 
+        'L ' + hb + ' -' + hh + ' Z ' +
+        'M -' + hb + ' ' + hh + ' ' + 
+        'L 0 ' + (3.0 * hh) + ' ' + 
+        'L ' + hb + ' ' + hh + ' Z ' +
+        'M -' + hb + ' -' + (3.0 * hh) + ' ' + 
+        'L 0 -' + hh + ' ' + 
+        'L ' + hb + ' -' + (3.0 * hh) + ' Z';
     };
 
     var that = this;
@@ -27,7 +35,7 @@ function ExchangeLayer(selector, projection) {
             .data([
                 {offset: 0, color: color},
                 {offset: 0, color: color},
-                {offset: 0, color: d3.rgb(color).brighter(0.8)},
+                {offset: 0, color: d3.rgb(color).brighter(2.0)},
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
@@ -44,7 +52,7 @@ function ExchangeLayer(selector, projection) {
                     return function (t) { return d.offset };
                 else {
                     return function (t) {
-                        return 1 - t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
+                        return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
                     };
                 }
             })
@@ -78,16 +86,16 @@ ExchangeLayer.prototype.data = function(arg) {
                 return that.trianglePath();
             })
             .attr('transform', function (d) {;
-                var rotation = d.rotation + (d.netFlow < 0 ? 180 : 0);
+                var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+                var scale = that.exchangeArrowScale(Math.abs(d.netFlow));
                 return 'translate(' + d.center[0] + ',' + d.center[1] + '),' + 
-                    'scale(' + that.exchangeArrowScale(Math.abs(d.netFlow)) + '),' + 
-                    'rotate(' + rotation + ')';
+                    'rotate(' + rotation + '), scale(' + scale + ')';
             })
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
             .attr('stroke', 'black')
             .attr('stroke-width', 0.1)
             .on('click', function (d) {
-                console.log(d, that.exchangeAnimationDurationScale(Math.abs(d.netFlow)));
+                console.log(d);
             })
             .each(function (d, i) {
                 if (!d.netFlow) return;
@@ -96,6 +104,7 @@ ExchangeLayer.prototype.data = function(arg) {
                     d3.select('#exchange-gradient-' + i), 
                     co2 ? co2color(co2) : 'grey',
                     that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
+                    //that.EXCHANGE_ANIMATION_DURATION
                 );
             });
     }
