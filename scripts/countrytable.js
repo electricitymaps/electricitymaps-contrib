@@ -65,12 +65,6 @@ CountryTable.prototype.render = function() {
         .text(function(d) { return d; })
         .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
     gNewRow.append('rect')
-        .attr('class', 'production')
-        .attr('height', this.ROW_HEIGHT)
-        .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('opacity', this.RECT_OPACITY)
-        .attr('shape-rendering', 'crispEdges');
-    gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
         .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
@@ -79,7 +73,12 @@ CountryTable.prototype.render = function() {
         .attr('stroke-width', 1.0)
         .attr('opacity', 0.3)
         .attr('shape-rendering', 'crispEdges');
-
+    gNewRow.append('rect')
+        .attr('class', 'production')
+        .attr('height', this.ROW_HEIGHT)
+        .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
+        .attr('opacity', this.RECT_OPACITY)
+        .attr('shape-rendering', 'crispEdges');
     this.resize();
 }
 
