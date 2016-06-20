@@ -13,7 +13,7 @@ from parsers.SE import fetch_SE
 from parsers.solar import fetch_solar
 from parsers.wind import fetch_wind
 
-INTERVAL_SECONDS = 60
+INTERVAL_SECONDS = 60 * 5
 
 parsers = [
     fetch_DE,
