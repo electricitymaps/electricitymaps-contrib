@@ -1,5 +1,6 @@
-function CountryMap(selector) {
+function CountryMap(selector, co2color) {
     this.root = d3.select(selector);
+    this.co2color = co2color;
     this.graticule = this.root
         .append('path')
         .attr('class', 'graticule');
@@ -65,7 +66,7 @@ CountryMap.prototype.data = function(data) {
                 .attr('stroke', 'black')
                 .attr('stroke-width', 0.3)
                 .attr('fill', function (d, i) { 
-                    return (d.data.co2 !== undefined) ? co2color(d.data.co2) : 'gray';
+                    return (d.data.co2 !== undefined) ? that.co2color(d.data.co2) : 'gray';
                 })
                 .on('mouseover', function (d, i) {
                     return that.countryMouseOverHandler.call(this, d, i);

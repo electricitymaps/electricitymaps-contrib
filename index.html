@@ -121,7 +121,7 @@
                 .domain([300, 440]);
 
             // Set up objects
-            var countryMap = new CountryMap('.map');
+            var countryMap = new CountryMap('.map', co2color);
             var exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
             var countryTable = new CountryTable('.country-table', co2color);
             var windLayer = new Windy({ canvas: d3.select('.wind').node() });
