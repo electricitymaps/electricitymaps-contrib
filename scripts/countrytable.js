@@ -172,9 +172,11 @@ CountryTable.prototype.data = function(arg) {
             return {
                 production: arg.production[d],
                 capacity: arg.capacity[d],
-                mode: d
+                mode: d,
+                gCo2eqPerHour: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
             };
         });
+
         var selection = this.productionRoot.selectAll('.row')
             .data(sortedProductionData);
         selection.select('rect.capacity')
@@ -190,12 +192,14 @@ CountryTable.prototype.data = function(arg) {
             .on('mouseout', function (d) {
                 that.productionMouseOutHandler.call(this, d);
             })
+            .on('click', function (d) {
+                console.log(d.gCo2eqPerHour / 1000000.0 / 3600.0, 'tCo2eq/s');
+            })
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
                 return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
             });
-
         // Construct exchanges
         var exchangeData = d3.entries(this._data.exchange);
         var selection = this.exchangeRoot.selectAll('.row')
