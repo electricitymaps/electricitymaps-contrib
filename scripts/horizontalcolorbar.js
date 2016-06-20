@@ -16,7 +16,8 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
         // Linear scale
         this.scale = d3.scale.linear()
             .range([0, this.colorbarWidth])
-            .domain(d3.extent(d3scale.domain()));
+            .domain(d3.extent(d3scale.domain()))
+            .clamp(d3scale.clamp());
         this.gGradient = this.gColorbar.append('linearGradient')
             .attr('id', selector + 'gradient')
             .attr('x1', 0)
