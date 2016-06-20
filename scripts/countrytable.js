@@ -63,7 +63,7 @@ CountryTable.prototype.render = function() {
             });
     gNewRow.append('text')
         .text(function(d) { return d; })
-        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
+        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
@@ -79,6 +79,11 @@ CountryTable.prototype.render = function() {
         .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('opacity', this.RECT_OPACITY)
         .attr('shape-rendering', 'crispEdges');
+    gNewRow.append('text')
+        .attr('class', 'unknown')
+        .text('?')
+        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')')
+        .style('display', 'none');
     this.resize();
 }
 
@@ -198,6 +203,13 @@ CountryTable.prototype.data = function(arg) {
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
                 return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
+            });
+        selection.select('text.unknown')
+            .transition()
+            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+            .style('fill', 'lightgray')
+            .style('display', function (d) {
+                return d.production === undefined ? 'block' : 'none';
             });
         // Construct exchanges
         var exchangeData = d3.entries(this._data.exchange);
