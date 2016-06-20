@@ -8,7 +8,7 @@ function Co2eqCalculator() {
         'oil': 650,
         'solar': 45,
         'wind': 12,
-    };
+    }; // in gCo2eq/kWh
 
     this.countryCo2eqFootprint = {
         'DE': function (productionMode) {
