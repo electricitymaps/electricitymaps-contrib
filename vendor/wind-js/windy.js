@@ -15,7 +15,7 @@
 var Windy = function( params ){
   var VELOCITY_SCALE = 1/100000;//1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
   var INTENSITY_SCALE_STEP = 10;            // step size of particle intensity color scale
-  var MAX_WIND_INTENSITY = 40;              // wind velocity at which particle intensity is maximum (m/s)
+  var MAX_WIND_INTENSITY = 15;              // wind velocity at which particle intensity is maximum (m/s)
   var MAX_PARTICLE_AGE = 100;                // max number of frames a particle is drawn before regeneration
   var PARTICLE_LINE_WIDTH = 2;              // line width of a drawn particle
   var PARTICLE_MULTIPLIER = 1;//8              // particle count scalar (completely arbitrary--this values looks nice)
