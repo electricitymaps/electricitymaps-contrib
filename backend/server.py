@@ -20,8 +20,8 @@ def bson_measurement_to_json(obj):
     return obj
 
 
-@app.route('/realtime', methods=['GET', 'OPTIONS'])
-def realtime_GET():
+@app.route('/production', methods=['GET', 'OPTIONS'])
+def production_GET():
     objs = col.aggregate([
         {'$group': {'_id': '$countryCode', 'lastDocument': {'$last': '$$CURRENT'}}}
     ])
@@ -32,6 +32,14 @@ def realtime_GET():
         'status': 'ok',
         'data': data
     })
+
+@app.route('/solar', methods=['GET', 'OPTIONS'])
+def solar_GET():
+    return flask.send_from_directory('data', 'solar.json')
+
+@app.route('/wind', methods=['GET', 'OPTIONS'])
+def wind_GET():
+    return flask.send_from_directory('data', 'wind.json')
 
 @app.route('/data/<path:path>')
 def data_GET(path, methods=['GET', 'OPTIONS']):
