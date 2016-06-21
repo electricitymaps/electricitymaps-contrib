@@ -28,16 +28,6 @@ function CountryTable(selector, co2color) {
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
 
     // Header
-    this.headerRoot.append('image')
-        .attr('class', 'flag-icon')
-        .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
-        .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
-        .attr('shape-rendering', 'crispEdges');
-    this.headerRoot.append('text')
-        .attr('class', 'country')
-        .style('font-weight', 'bold')
-        .attr('transform', 'translate(' + (4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')') // TODO: Translate by the right amount of em
-        .text('<click on a country>');
     this.gPowerAxis = this.headerRoot.append('g')
         .attr('class', 'x axis');
 }
@@ -163,11 +153,18 @@ CountryTable.prototype.data = function(arg) {
                 .attr('opacity', 0.3)
                 .attr('shape-rendering', 'crispEdges')
 
+
         // Set header
-        this.headerRoot.select('image.flag-icon')
-            .attr('xlink:href', 'vendor/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
-        this.headerRoot.select('text.country')
+        var header = d3.select('.country-table-header')
+            .style('display', 'block');
+        header.select('img.country-flag')
+            .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
+            .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
+            .attr('src', 'vendor/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
+        header.select('span.country-name')
             .text(this._data.countryCode);
+        header.select('span.country-last-update')
+            .text(moment(this._data.datetime).fromNow())
 
 
         // Construct a list having each production in the same order as
