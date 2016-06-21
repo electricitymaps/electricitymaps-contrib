@@ -28,6 +28,9 @@ CountryMap.prototype.render = function() {
 
     var that = this;
     if (this._data) {
+        var getCo2Color = function (d) {
+            return (d.data.co2 !== undefined) ? that.co2color(d.data.co2) : 'gray';
+        };
         var selector = this.land.selectAll('.country')
             .data(this._data);
         selector.enter()
@@ -35,6 +38,7 @@ CountryMap.prototype.render = function() {
                 .attr('class', 'country')
                 .attr('stroke', 'black')
                 .attr('stroke-width', 0.3)
+                .attr('fill', getCo2Color)
                 .on('mouseover', function (d, i) {
                     return that.countryMouseOverHandler.call(this, d, i);
                 })
@@ -46,9 +50,8 @@ CountryMap.prototype.render = function() {
                 });
         selector
             .attr('d', this.path)
-            .attr('fill', function (d, i) { 
-                return (d.data.co2 !== undefined) ? that.co2color(d.data.co2) : 'gray';
-            });
+            .transition()
+            .attr('fill', getCo2Color);
     }
 }
 
