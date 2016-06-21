@@ -58,8 +58,9 @@ html, body {
     overflow: auto;
     display: inline-block;
     height: 100%;
-    width: 50px;
+    width: 55px;
     text-align: right;
+    font-size: 1.3em;
 }
 .legend {
     position: absolute;

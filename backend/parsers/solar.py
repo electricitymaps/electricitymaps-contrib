@@ -44,7 +44,7 @@ def fetch_solar():
         'forecasts': [obj_before, obj_after]
     }
 
-    with open('backend/data/solar.json', 'w') as f:
+    with open('data/solar.json', 'w') as f:
         json.dump(obj, f)
 
 if __name__ == '__main__':
