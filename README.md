@@ -2,17 +2,13 @@
 A real-time visualisation of electricity generation. Try it out at [http://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
 
 
-# Data sources
+## Data sources
 
-## GreenHouse Gas footprint
+### GreenHouse Gas footprint data sources
 The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). The GHG footprint takes into account the footprint of electricity imported in the country.
 The numbers take into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources)).
 
-## Real-time weather data sources
-- Solar: [National Centers for Environmental Prediction Climate Forecast System](http://nomads.ncep.noaa.gov/)
-- Wind: [National Centers for Environmental Prediction Global Forecast System](http://nomads.ncep.noaa.gov/)
-
-## Real-time electricity data sources
+### Real-time electricity data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
 - Finland: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix)
@@ -22,7 +18,7 @@ The numbers take into account the construction of production units and their usu
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 
-## Production capacity sources
+### Production capacity data sources
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
@@ -50,3 +46,7 @@ The numbers take into account the construction of production units and their usu
   - Nuclear: [world-nuclear.org](http://www.world-nuclear.org/information-library/country-profiles/countries-o-s/sweden.aspx)
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Sweden)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
+
+### Real-time weather data sources
+- Solar: [National Centers for Environmental Prediction Climate Forecast System](http://nomads.ncep.noaa.gov/)
+- Wind: [National Centers for Environmental Prediction Global Forecast System](http://nomads.ncep.noaa.gov/)
