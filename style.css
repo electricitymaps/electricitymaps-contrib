@@ -53,23 +53,34 @@ html, body {
     color: lightgray;
     fill: lightgray;
 }
-.co2-colorbar {
+.colorbar-unit {
+    color: darkgray;
+    overflow: auto;
+    display: inline-block;
+    height: 100%;
+    width: 50px;
+    text-align: right;
+}
+.legend {
     position: absolute;
     bottom: 0px;
     right: 0px;
     margin: 10px;
-    width: 300px;
-    height: 30px;
     font-size: 0.5em;
 }
-.wind-colorbar {
-    position: absolute;
-    bottom: 30px;
-    right: 0px;
-    margin: 10px;
-    width: 300px;
+.co2-legend {
     height: 30px;
-    font-size: 0.5em;
+}
+.co2-colorbar {
+    height: 100%;
+    width: 300px;
+}
+.wind-legend {
+    height: 30px;
+}
+.wind-colorbar {
+    height: 100%;
+    width: 300px;
 }
 
 a {

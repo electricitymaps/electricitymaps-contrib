@@ -1,23 +1,19 @@
-function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
-    this.PADDING = 20; // Inner padding allow place for the axis
+function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) {
+    this.PADDING_X = 10; // Inner padding allow place for the axis text
 
     this.root = d3.select(selector);
-    this.scale = d3scale.copy();
-    this.width = this.root.node().getBoundingClientRect().width;
-    this.height = this.root.node().getBoundingClientRect().height;
-
-    this.colorbarWidth = this.width - 2 * this.PADDING;
-    this.colorbarHeight = this.height - this.PADDING;
+    this.scale = d3ColorScale.copy();
+    this.colors = d3ColorScale.range();
+    this.d3TickFormat = d3TickFormat;
+    this.d3TickValues = d3TickValues;
 
     this.gColorbar = this.root.append('g')
-        .attr('transform', 'translate(' + this.PADDING + ', 0)');
-
+        .attr('transform', 'translate(' + this.PADDING_X + ', 0)');
+    
     if (this.scale.ticks) {
         // Linear scale
-        this.scale = d3.scale.linear()
-            .range([0, this.colorbarWidth])
-            .domain(d3.extent(d3scale.domain()))
-            .clamp(d3scale.clamp());
+
+        // Create gradient
         this.gGradient = this.gColorbar.append('linearGradient')
             .attr('id', selector + 'gradient')
             .attr('x1', 0)
@@ -25,22 +21,81 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
             .attr('x2', '100%')
             .attr('y2', 0)
 
+        // Create fill
+        this.gColorbar.append('rect')
+            .attr('class', 'gradient')
+            .style('fill', 'url(#' + selector + 'gradient' + ')');
+
+        // Prepare an invisible marker
+        this.gColorbar.append('line')
+            .attr('class', 'marker')
+            .style('stroke', 'gray')
+            .style('stroke-width', 2)
+            .attr('y1', 0)
+            .style('display', 'none');
+
+    } else {
+        // Ordinal scale
+
+        // Prepare an invisible marker
+        this.gColorbar.append('rect')
+            .attr('class', 'marker')
+            .style('stroke', 'gray')
+            .style('stroke-width', 2)
+            .style('fill', 'none')
+            .attr('y', 0)
+            .style('display', 'none');
+    }
+
+    // Draw a container around the colorbar
+    this.gColorbar.append('rect')
+        .attr('class', 'border')
+        .attr('x', 0)
+        .attr('y', 0)
+        .style('fill', 'none')
+        .style('stroke', 'gray')
+        .style('stroke-width', 1)
+        .attr('shape-rendering', 'crispEdges');
+
+    // Prepare axis
+    this.gColorbarAxis = this.gColorbar.append('g');
+
+    return this;
+}
+
+HorizontalColorbar.prototype.render = function() {
+    this.width = this.root.node().getBoundingClientRect().width;
+    this.height = this.root.node().getBoundingClientRect().height;
+    console.log(this.width, this.height);
+
+    this.colorbarWidth = this.width - 2 * this.PADDING_X;
+    this.colorbarHeight = this.height - 2 * this.PADDING_X;
+
+    var that = this;
+
+    if (this.scale.ticks) {
+        // Linear scale
+        this.scale
+            .range(d3.range(this.colors.length).map(function (d, i) {
+                return d3.interpolate(0, that.colorbarWidth)(i / (that.colors.length - 1));
+            }))
+            .clamp(this.scale.clamp());
+
         // Place the colors on the gradient
-        var that = this;
         this.gGradient.selectAll('stop')
-            .data(d3scale.range())
+            .data(this.colors)
             .enter()
                 .append('stop')
                 .attr('class', 'stop')
                 .attr('offset', function (d, i) { 
-                    return i * 1.0 / (d3scale.range().length - 1);
+                    return i * 1.0 / (that.colors.length - 1);
                 })
                 .attr('stop-color', function (d) { return d; });
         // Add a rect with the gradient
-        this.gColorbar.append('rect')
+        this.gColorbar.select('rect.gradient')
             .attr('width', this.colorbarWidth)
-            .attr('height', this.colorbarHeight)
-            .style('fill', 'url(#' + selector + 'gradient' + ')');
+            .attr('height', this.colorbarHeight);
+
     } else {
         // Ordinal scale
         this.scale.rangeBands([0, this.colorbarWidth]);
@@ -58,46 +113,29 @@ function HorizontalColorbar(selector, d3scale, d3TickFormat, d3TickValues) {
 
     // Prepare an invisible marker
     if (this.scale.ticks) {
-        this.gColorbar.append('line')
-            .attr('class', 'marker')
-            .style('stroke', 'gray')
-            .style('stroke-width', 2)
-            .attr('y1', 0)
+        this.gColorbar.select('line')
             .attr('y2', this.colorbarHeight)
-            .style('display', 'none');
     } else {
-        this.gColorbar.append('rect')
-            .attr('class', 'marker')
-            .style('stroke', 'gray')
-            .style('stroke-width', 2)
-            .style('fill', 'none')
-            .attr('y', 0)
+        this.gColorbar.select('rect')
             .attr('width', this.deltaOrdinal)
-            .style('display', 'none');
     }
 
     // Draw a container around the colorbar
-    this.gColorbar.append('rect')
-        .attr('x', 0)
-        .attr('y', 0)
+    this.gColorbar.select('rect.border')
         .attr('width', this.colorbarWidth)
-        .attr('height', this.colorbarHeight)
-        .style('fill', 'none')
-        .style('stroke', 'gray')
-        .style('stroke-width', 1)
-        .attr('shape-rendering', 'crispEdges');
+        .attr('height', this.colorbarHeight);
 
     // Draw the horizontal axis
     var axis = d3.svg.axis()
         .scale(this.scale)
         .innerTickSize(this.colorbarHeight / 2.0)
         .tickPadding(3);
-    if (d3TickFormat)
-        axis.tickFormat(d3TickFormat);
-    if (d3TickValues)
-        axis.tickValues(d3TickValues);
+    if (this.d3TickFormat)
+        axis.tickFormat(this.d3TickFormat);
+    if (this.d3TickValues)
+        axis.tickValues(this.d3TickValues);
     
-    this.gColorbarAxis = this.gColorbar.append('g')
+    this.gColorbarAxis
         .attr('class', 'x axis')
         .attr('transform', 'translate(0, ' + (this.colorbarHeight) + ')')
         .call(axis)

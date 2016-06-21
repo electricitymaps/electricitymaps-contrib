@@ -438,6 +438,8 @@ function fetchAndReschedule() {
 function redraw() {
     countryMap.render();
     countryTable.render();
+    co2Colorbar.render();
+    windColorbar.render();
     exchangeLayer
         .projection(countryMap.projection())
         .render();
