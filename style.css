@@ -1,0 +1,73 @@
+html, body {    
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+    font-family: sans-serif;
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    opacity: 0.7;
+    background: black url('vendor/loading.svg') no-repeat center center;
+}
+.map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+}
+.land {
+    fill: #ccc;
+    fill-opacity: 0.8;
+    stroke: #3b3b3b;
+}
+.sea {
+    background-color: #283640;
+}
+.wind {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.solar {
+    pointer-events: none;
+}
+.graticule {
+    stroke: #185c96;
+    stroke-width: 0.3px;
+}
+.panel-container {
+    position: absolute;
+    top: 0px;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(70, 70, 70, 0.95);
+    border: 1px solid grey;
+}
+.panel-container > svg {
+    display: block;
+}
+.panel-container, panel-container.text {
+    font-size: 0.7em;
+    color: lightgray;
+    fill: lightgray;
+}
+.co2-colorbar {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 10px;
+    width: 300px;
+    height: 30px;
+    font-size: 0.5em;
+}
+.wind-colorbar {
+    position: absolute;
+    bottom: 30px;
+    right: 0px;
+    margin: 10px;
+    width: 300px;
+    height: 30px;
+    font-size: 0.5em;
+}
