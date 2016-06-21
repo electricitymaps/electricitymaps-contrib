@@ -38,11 +38,12 @@ function ExchangeLayer(selector) {
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
-        arrow.enter().append('stop')
-            .attr('offset', function(d) { return d.offset; })
+        arrow.enter()
+            .append('stop')
             .attr('stop-color', function(d) { return d.color; })
         arrow
             .transition()
+            .attr('stop-color', function(d) { return d.color; })
             .duration(duration)
             .ease('linear')
             .attrTween('offset', function(d, i, a) {
@@ -79,6 +80,13 @@ ExchangeLayer.prototype.render = function() {
         .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
         .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
+    var getTransform = function (d) {
+        var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+        var scale = that.exchangeArrowScale(Math.abs(d.netFlow));
+        var center = that.projection()(d.lonlat);
+        return 'translate(' + center[0] + ',' + center[1] + '),' + 
+            'rotate(' + rotation + '), scale(' + scale + ')';
+    };
     var exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
         .data(this._data);
     exchangeArrows.enter()
@@ -88,15 +96,11 @@ ExchangeLayer.prototype.render = function() {
         .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
         .attr('stroke', 'black')
         .attr('stroke-width', 0.1)
+        .attr('transform', getTransform)
         .on('click', function (d) { console.log(d); })
     exchangeArrows
-        .attr('transform', function (d) {
-            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            var scale = that.exchangeArrowScale(Math.abs(d.netFlow));
-            var center = that.projection()(d.lonlat);
-            return 'translate(' + center[0] + ',' + center[1] + '),' + 
-                'rotate(' + rotation + '), scale(' + scale + ')';
-        })
+        .transition()
+        .attr('transform', getTransform)
         .each(function (d, i) {
             if (!d.netFlow) return;
             var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
