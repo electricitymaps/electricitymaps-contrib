@@ -2,11 +2,15 @@
 A real-time visualisation of electricity generation. Try it out at [http://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
 
 
+# Data sources
+
+## GreenHouse Gas footprint
 The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). The GHG footprint takes into account the footprint of electricity imported in the country.
 The numbers take into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources)).
 
-
-### Data sources
+## Real-time weather data sources
+- Solar: [National Centers for Environmental Prediction Climate Forecast System](http://nomads.ncep.noaa.gov/)
+- Wind: [National Centers for Environmental Prediction Global Forecast System](http://nomads.ncep.noaa.gov/)
 
 ## Real-time electricity data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
@@ -17,10 +21,6 @@ The numbers take into account the construction of production units and their usu
 - Norway: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
-
-## Real-time weather data sources
-- Solar: [National Centers for Environmental Prediction Climate Forecast System](http://nomads.ncep.noaa.gov/)
-- Wind: [National Centers for Environmental Prediction Global Forecast System](http://nomads.ncep.noaa.gov/)
 
 ## Production capacity sources
 - Denmark
