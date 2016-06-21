@@ -11,13 +11,13 @@ CountryMap.prototype.render = function() {
     var computedMapWidth = this.root.node().getBoundingClientRect().width,
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
-    this.projection = d3.geo.mercator()
+    this._projection = d3.geo.mercator()
         .center([3, 48])
         .translate([0.6 * computedMapWidth, 0.6 * computedMapHeight])
         .scale(700);
 
     this.path = d3.geo.path()
-        .projection(this.projection);
+        .projection(this._projection);
         
     var graticuleData = d3.geo.graticule()
         .step([5, 5]);
@@ -25,11 +25,36 @@ CountryMap.prototype.render = function() {
     this.graticule
         .datum(graticuleData)
         .attr('d', this.path);
+
+    var that = this;
+    if (this._data) {
+        var selector = this.land.selectAll('.country')
+            .data(this._data);
+        selector.enter()
+                .append('path')
+                .attr('class', 'country')
+                .attr('stroke', 'black')
+                .attr('stroke-width', 0.3)
+                .on('mouseover', function (d, i) {
+                    return that.countryMouseOverHandler.call(this, d, i);
+                })
+                .on('mouseout', function (d, i) {
+                    return that.countryMouseOutHandler.call(this, d, i);
+                })
+                .on('click', function (d, i) {
+                    return that.countryClickHandler.call(this, d, i);
+                });
+        selector
+            .attr('d', this.path)
+            .attr('fill', function (d, i) { 
+                return (d.data.co2 !== undefined) ? that.co2color(d.data.co2) : 'gray';
+            });
+    }
 }
 
 CountryMap.prototype.projection = function(arg) {
-    if (!arg) return this.projection;
-    else this.projection = arg;
+    if (!arg) return this._projection;
+    else this._projection = arg;
     return this;
 };
 
@@ -53,30 +78,9 @@ CountryMap.prototype.onCountryMouseOut = function(arg) {
 
 CountryMap.prototype.data = function(data) {
     if (!data) {
-        return this.data;
+        return this._data;
     } else {
-        this.data = data;
-        var that = this;
-        this.land.selectAll('.country')
-            .data(data)
-            .enter()
-                .append('path')
-                .attr('class', 'country')
-                .attr('d', this.path)
-                .attr('stroke', 'black')
-                .attr('stroke-width', 0.3)
-                .attr('fill', function (d, i) { 
-                    return (d.data.co2 !== undefined) ? that.co2color(d.data.co2) : 'gray';
-                })
-                .on('mouseover', function (d, i) {
-                    return that.countryMouseOverHandler.call(this, d, i);
-                })
-                .on('mouseout', function (d, i) {
-                    return that.countryMouseOutHandler.call(this, d, i);
-                })
-                .on('click', function (d, i) {
-                    return that.countryClickHandler.call(this, d, i);
-                });
+        this._data = data;
     }
     return this;
 };

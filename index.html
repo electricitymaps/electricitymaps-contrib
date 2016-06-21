@@ -122,7 +122,7 @@
 
             // Set up objects
             var countryMap = new CountryMap('.map', co2color);
-            var exchangeLayer = new ExchangeLayer('.map', countryMap.projection());
+            var exchangeLayer = new ExchangeLayer('.map');
             var countryTable = new CountryTable('.country-table', co2color);
             var windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
@@ -191,8 +191,8 @@
                     return;
                 }
 
-                var sw = countryMap.projection.invert([0, height]);
-                var ne = countryMap.projection.invert([width, 0]);
+                var sw = countryMap.projection().invert([0, height]);
+                var ne = countryMap.projection().invert([width, 0]);
                 console.log('wind', gfs);
                 windLayer.params.data = gfs;
                 windLayer.start(
@@ -218,7 +218,7 @@
                             var lon = solar.forecasts[0].lonlats[0][n];
                             var lat = solar.forecasts[0].lonlats[1][n];
                             var val = d3.interpolate(solar.forecasts[0].DLWRF[i][j], solar.forecasts[1].DLWRF[i][j])(k);
-                            var p = countryMap.projection([lon, lat]);
+                            var p = countryMap.projection()([lon, lat]);
                             if (isNaN(p[0]) || isNaN(p[1]))
                                 continue;
                             ctx.beginPath();
@@ -337,52 +337,52 @@
                 var exchanges = [
                     {
                         countries: ['DE', 'DK'],
-                        center: countryMap.projection([9.3, 54.9]), 
+                        lonlat: [9.3, 54.9],
                         rotation: 0
                     },
                     {
                         countries: ['SE', 'DK'],
-                        center: countryMap.projection([13, 55.7]), 
+                        lonlat: [13, 55.7],
                         rotation: -100
                     },
                     {
                         countries: ['GB', 'FR'],
-                        center: countryMap.projection([0, 50.4]), 
+                        lonlat: [0, 50.4],
                         rotation: 160
                     },
                     {
                         countries: ['DK', 'NO'],
-                        center: countryMap.projection([8.8, 58]), 
+                        lonlat: [8.8, 58],
                         rotation: -25
                     },
                     {
                         countries: ['IE', 'GB'],
-                        center: countryMap.projection([-5.7, 53]), 
+                        lonlat: [-5.7, 53],
                         rotation: 100
                     },
                     {
                         countries: ['NL', 'GB'],
-                        center: countryMap.projection([3.3, 52.4]), 
+                        lonlat: [3.3, 52.4],
                         rotation: -90
                     },
                     {
                         countries: ['FR', 'ES'],
-                        center: countryMap.projection([0.3, 42.9]), 
+                        lonlat: [0.3, 42.9],
                         rotation: -160
                     },
                     {
                         countries: ['FR', 'DE'],
-                        center: countryMap.projection([5.7, 49.8]), 
+                        lonlat: [5.7, 49.8],
                         rotation: 50
                     },
                     {
                         countries: ['FR', 'CH'],
-                        center: countryMap.projection([6.5, 46.7]), 
+                        lonlat: [6.5, 46.7],
                         rotation: 90
                     },
                     {
                         countries: ['FR', 'IT'],
-                        center: countryMap.projection([6.5, 44.5]), 
+                        lonlat: [6.5, 44.5],
                         rotation: 70
                     }
                 ];
@@ -505,9 +505,13 @@
                                 .style('cursor', 'normal')
                         if (d.data.co2)
                             co2Colorbar.currentMarker(undefined);
-                    });
+                    })
+                    .render();
 
-                exchangeLayer.data(exchanges);
+                exchangeLayer
+                    .data(exchanges)
+                    .projection(countryMap.projection())
+                    .render();
             };
 
             // Load data
@@ -521,6 +525,9 @@
             function redraw() {
                 countryMap.render();
                 countryTable.render();
+                exchangeLayer
+                    .projection(countryMap.projection())
+                    .render();
             };
 
             window.onresize = function () {
