@@ -36,6 +36,8 @@ CountryTable.prototype.render = function() {
     var that = this;
 
     var width = this.root.node().getBoundingClientRect().width;
+    if (width == 0)
+        return;
 
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
@@ -118,6 +120,11 @@ CountryTable.prototype.resize = function() {
 
     this.root
         .attr('height', this.yExchange + this.exchangeHeight);
+}
+
+CountryTable.prototype.show = function() {
+    this.root.style('display', 'block');
+    this.render();
 }
 
 CountryTable.prototype.data = function(arg) {
