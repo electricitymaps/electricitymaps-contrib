@@ -3,7 +3,7 @@ var co2color = d3.scale.linear()
     .range(['green', 'orange', 'black']);
 var maxWind = 15;
 var windColor = d3.scale.linear()
-    .domain(d3.range(0, 11).map( function (i) { return d3.interpolate(0, maxWind)(i / 10.0); } ))
+    .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
     .range([
         "rgba(0, 255, 255, 0.5)",
         "rgba(100, 240, 255, 0.5)",
@@ -15,8 +15,7 @@ var windColor = d3.scale.linear()
         "rgba(225, 133, 255, 0.5)",
         "rgba(236, 109, 255, 0.5)",
         "rgba(255, 30, 219, 0.5)"
-    ])
-    .clamp(true);
+    ]);
 var solarColor = d3.scale.linear()
     .range(['black', 'orange'])
     .domain([300, 440]);
