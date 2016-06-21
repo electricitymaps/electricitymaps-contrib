@@ -1,7 +1,6 @@
-function ExchangeLayer(selector, projection) {
+function ExchangeLayer(selector) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
-    this.EXCHANGE_ANIMATION_DURATION = 1000;
     this.exchangeAnimationDurationScale = d3.scale.pow()
         .exponent(2)
         .domain([500, 4000])
@@ -62,51 +61,59 @@ function ExchangeLayer(selector, projection) {
     };
 }
 
+ExchangeLayer.prototype.projection = function(arg) {
+    if (!arg) return this._projection;
+    else this._projection = arg;
+    return this;
+};
+
+ExchangeLayer.prototype.render = function() {
+    if (!this._data) { return; }
+    var that = this;
+    var exchangeGradients = this.exchangeGradientsContainer.selectAll('.exchange-gradient')
+        .data(this._data)
+    exchangeGradients.enter()
+        .append('linearGradient')
+        .attr('gradientUnits', 'userSpaceOnUse')
+        .attr('x1', 0).attr('y1', -2.0 * this.TRIANGLE_HEIGHT - 1)
+        .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
+        .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
+
+    var exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
+        .data(this._data);
+    exchangeArrows.enter()
+        .append('path')
+        .attr('class', 'exchange-arrow')
+        .attr('d', function(d) { return that.trianglePath(); })
+        .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
+        .attr('stroke', 'black')
+        .attr('stroke-width', 0.1)
+        .on('click', function (d) { console.log(d); })
+    exchangeArrows
+        .attr('transform', function (d) {
+            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+            var scale = that.exchangeArrowScale(Math.abs(d.netFlow));
+            var center = that.projection()(d.lonlat);
+            return 'translate(' + center[0] + ',' + center[1] + '),' + 
+                'rotate(' + rotation + '), scale(' + scale + ')';
+        })
+        .each(function (d, i) {
+            if (!d.netFlow) return;
+            var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
+            return that.animateGradient(
+                d3.select('#exchange-gradient-' + i), 
+                co2 ? co2color(co2) : 'grey',
+                that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
+            );
+        });
+
+    return this;
+}
+
 ExchangeLayer.prototype.data = function(arg) {
-    if (!arg) return this.data;
+    if (!arg) return this._data;
     else {
-        this.data = arg;
-
-        var that = this;
-        var exchangeGradients = this.exchangeGradientsContainer.selectAll('.exchange-gradient')
-            .data(this.data)
-            .enter()
-            .append('linearGradient')
-            .attr('gradientUnits', 'userSpaceOnUse')
-            .attr('x1', 0).attr('y1', -2.0 * this.TRIANGLE_HEIGHT - 1)
-            .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
-            .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
-
-        var exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
-            .data(this.data)
-            .enter()
-            .append('path')
-            .attr('class', 'exchange-arrow')
-            .attr('d', function(d) { 
-                return that.trianglePath();
-            })
-            .attr('transform', function (d) {;
-                var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-                var scale = that.exchangeArrowScale(Math.abs(d.netFlow));
-                return 'translate(' + d.center[0] + ',' + d.center[1] + '),' + 
-                    'rotate(' + rotation + '), scale(' + scale + ')';
-            })
-            .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
-            .attr('stroke', 'black')
-            .attr('stroke-width', 0.1)
-            .on('click', function (d) {
-                console.log(d);
-            })
-            .each(function (d, i) {
-                if (!d.netFlow) return;
-                var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
-                return that.animateGradient(
-                    d3.select('#exchange-gradient-' + i), 
-                    co2 ? co2color(co2) : 'grey',
-                    that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
-                    //that.EXCHANGE_ANIMATION_DURATION
-                );
-            });
+        this._data = arg;
     }
     return this;
 };

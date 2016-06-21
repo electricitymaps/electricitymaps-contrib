@@ -26,17 +26,6 @@ function CountryTable(selector, co2color) {
         'other': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
-}
-
-CountryTable.prototype.render = function() {
-    var that = this;
-
-    var width = this.root.node().getBoundingClientRect().width;
-
-    // Update scale
-    this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
-    this.powerScale = d3.scale.linear()
-        .range([0, this.barMaxWidth]);
 
     // Header
     this.headerRoot.append('image')
@@ -51,6 +40,17 @@ CountryTable.prototype.render = function() {
         .text('<click on a country>');
     this.gPowerAxis = this.headerRoot.append('g')
         .attr('class', 'x axis');
+}
+
+CountryTable.prototype.render = function() {
+    var that = this;
+
+    var width = this.root.node().getBoundingClientRect().width;
+
+    // Update scale
+    this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
+    this.powerScale = d3.scale.linear()
+        .range([0, this.barMaxWidth]);
 
     // ** Production labels and rects **
     var gNewRow = this.productionRoot.selectAll('.row')
