@@ -77,8 +77,7 @@ HorizontalColorbar.prototype.render = function() {
         this.scale
             .range(d3.range(this.colors.length).map(function (d, i) {
                 return d3.interpolate(0, that.colorbarWidth)(i / (that.colors.length - 1));
-            }))
-            .clamp(this.scale.clamp());
+            }));
 
         // Place the colors on the gradient
         this.gGradient.selectAll('stop')
@@ -87,7 +86,7 @@ HorizontalColorbar.prototype.render = function() {
                 .append('stop')
                 .attr('class', 'stop')
                 .attr('offset', function (d, i) { 
-                    return i * 1.0 / (that.colors.length - 1);
+                    return i / (that.colors.length - 1);
                 })
                 .attr('stop-color', function (d) { return d; });
         // Add a rect with the gradient
