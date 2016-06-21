@@ -419,7 +419,8 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
 
     d3.select('.loading')
         .transition()
-        .style('opacity', 0);
+        .style('opacity', 0)
+        .style('pointer-events', 'none');
 };
 
 // Periodically load data
