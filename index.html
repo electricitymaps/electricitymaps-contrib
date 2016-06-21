@@ -185,16 +185,16 @@
                     co2Colorbar.currentMarker(undefined);
                 });
 
-            function dataLoaded(err, data, gfs, realtime, solar) {
+            function dataLoaded(err, countryTopos, production, solar, wind) {
                 if (err) {
                     console.error(err);
                     return;
                 }
 
+                console.log('wind', wind);
                 var sw = countryMap.projection().invert([0, height]);
                 var ne = countryMap.projection().invert([width, 0]);
-                console.log('wind', gfs);
-                windLayer.params.data = gfs;
+                windLayer.params.data = wind;
                 windLayer.start(
                     [[0, 0], [width, height]], 
                     width,
@@ -203,7 +203,6 @@
                 );
 
                 console.log('solar', solar);
-
                 if (ctx) {
                     // Interpolates between two solar forecasts
                     var Nx = solar.forecasts[0].DLWRF.length;
@@ -229,7 +228,7 @@
                     }
                 }
 
-                var topo = topojson.object(data, data.objects.europe).geometries;
+                var topo = topojson.object(countryTopos, countryTopos.objects.europe).geometries;
 
                 countries['AT'] = topo[3];
                 countries['BE'] = topo[4];
@@ -388,8 +387,8 @@
                 ];
 
                 // Populate with realtime production data
-                for (var countryCode of d3.keys(realtime.data)) {
-                    var obj = realtime.data[countryCode];
+                for (var countryCode of d3.keys(production.data)) {
+                    var obj = production.data[countryCode];
                     var country = countries[countryCode];
                     if (!country) {
                         console.warn(countryCode + ' has no country definition.');
@@ -465,7 +464,7 @@
                 });
 
                 // Issue warnings for missing exchange configurations
-                for (var countryCode of d3.keys(realtime.data)) {
+                for (var countryCode of d3.keys(production.data)) {
                     var country = countries[countryCode]
                     if (!country) continue;
                     d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
@@ -480,7 +479,7 @@
 
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);
-                console.log('GFS', gfs[0].header.refTime, gfs);
+                console.log('GFS', wind[0].header.refTime, wind);
 
                 countryMap
                     .data(d3.values(countries))
@@ -517,9 +516,9 @@
             // Load data
             queue()
                 .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-                .defer(d3.json, 'http://localhost:8000/data/gfs.json')
-                .defer(d3.json, 'http://localhost:8000/realtime')
-                .defer(d3.json, 'http://localhost:8000/data/solar.json')
+                .defer(d3.json, 'http://localhost:8000/production')
+                .defer(d3.json, 'http://localhost:8000/solar')
+                .defer(d3.json, 'http://localhost:8000/wind')
                 .await(dataLoaded);
 
             function redraw() {

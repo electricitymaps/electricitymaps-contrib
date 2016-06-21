@@ -71,7 +71,8 @@ ExchangeLayer.prototype.projection = function(arg) {
 ExchangeLayer.prototype.render = function() {
     if (!this._data) { return; }
     var that = this;
-    var exchangeGradients = this.exchangeGradientsContainer.selectAll('.exchange-gradient')
+    var exchangeGradients = this.exchangeGradientsContainer
+        .selectAll('.exchange-gradient')
         .data(this._data)
     exchangeGradients.enter()
         .append('linearGradient')
@@ -83,33 +84,38 @@ ExchangeLayer.prototype.render = function() {
     var getTransform = function (d) {
         var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
         var scale = that.exchangeArrowScale(Math.abs(d.netFlow));
-        var center = that.projection()(d.lonlat);
-        return 'translate(' + center[0] + ',' + center[1] + '),' + 
-            'rotate(' + rotation + '), scale(' + scale + ')';
+        return 'rotate(' + rotation + '), scale(' + scale + ')';
     };
-    var exchangeArrows = this.exchangeArrowsContainer.selectAll('.exchange-arrow')
+    var exchangeArrows = this.exchangeArrowsContainer
+        .selectAll('.exchange-arrow')
         .data(this._data);
     exchangeArrows.enter()
-        .append('path')
+        .append('g') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow')
-        .attr('d', function(d) { return that.trianglePath(); })
-        .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
-        .attr('stroke', 'black')
-        .attr('stroke-width', 0.1)
-        .attr('transform', getTransform)
-        .on('click', function (d) { console.log(d); })
+        .append('path')
+            .attr('d', function(d) { return that.trianglePath(); })
+            .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
+            .attr('stroke', 'black')
+            .attr('stroke-width', 0.1)
+            .attr('transform', getTransform)
+            .on('click', function (d) { console.log(d); })
     exchangeArrows
-        .transition()
-        .attr('transform', getTransform)
-        .each(function (d, i) {
-            if (!d.netFlow) return;
-            var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
-            return that.animateGradient(
-                d3.select('#exchange-gradient-' + i), 
-                co2 ? co2color(co2) : 'grey',
-                that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
-            );
-        });
+        .attr('transform', function (d) {
+            var center = that.projection()(d.lonlat);
+            return 'translate(' + center[0] + ',' + center[1] + ')';
+        })
+        .select('path')
+            .transition()
+            .attr('transform', getTransform)
+            .each(function (d, i) {
+                if (!d.netFlow) return;
+                var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
+                return that.animateGradient(
+                    d3.select('#exchange-gradient-' + i), 
+                    co2 ? co2color(co2) : 'grey',
+                    that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
+                );
+            });
 
     return this;
 }
