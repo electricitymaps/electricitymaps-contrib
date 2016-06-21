@@ -513,13 +513,17 @@
                     .render();
             };
 
-            // Load data
-            queue()
-                .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-                .defer(d3.json, 'http://localhost:8000/production')
-                .defer(d3.json, 'http://localhost:8000/solar')
-                .defer(d3.json, 'http://localhost:8000/wind')
-                .await(dataLoaded);
+            // Periodically load data
+            var REFRESH_TIME_MINUTES = 5;
+            function fetchAndReschedule() {
+                queue()
+                    .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
+                    .defer(d3.json, 'http://localhost:8000/production')
+                    .defer(d3.json, 'http://localhost:8000/solar')
+                    .defer(d3.json, 'http://localhost:8000/wind')
+                    .await(dataLoaded);
+                setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+            }
 
             function redraw() {
                 countryMap.render();
@@ -534,6 +538,7 @@
             };
 
             redraw();
+            fetchAndReschedule();
         </script>   
     </body>
 </html>
