@@ -390,6 +390,9 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
         .data(d3.values(countries))
         .onCountryClick(function (d, i) {
             if (!d.data.production) return;
+            d3.select('.country-table-initial-text')
+                .style('display', 'none');
+            countryTable.show();
             countryTable
                 .powerDomain([-d.data.maxExport, Math.max(d.data.maxCapacity, d.data.maxProduction)])
                 .data(d.data);
