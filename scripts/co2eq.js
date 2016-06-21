@@ -97,8 +97,6 @@ Co2eqCalculator.prototype.compute = function(countries) {
     var x = math.lusolve(A, b);
     this.assignments = {};
     x.toArray().forEach(function (x, i) {
-        console.log(validCountries[i].countryCode, x, validCountries[i].co2);
-        // console.log(A.toArray()[i], b.toArray()[i]);
         that.assignments[validCountries[i].countryCode] = x[0];
     });
 

@@ -69,16 +69,18 @@
             }
         </style>
 
-        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <!--<script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
         <script src="http://d3js.org/queue.v1.min.js"></script>
         <script src="http://d3js.org/topojson.v0.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>-->
 
-        <!-- <script src="d3.v3.min.js"></script>
-        <script src="d3.geo.projection.v0.min.js"></script>
-        <script src="queue.v1.min.js"></script>
-        <script src="topojson.v0.min.js"></script> -->
+        <script src="vendor/d3.v3.min.js"></script>
+        <script src="vendor/d3.geo.projection.v0.min.js"></script>
+        <script src="vendor/queue.v1.min.js"></script>
+        <script src="vendor/topojson.v0.min.js"></script>
+        <script src="vendor/math.min.js"></script>
+        <script src="vendor/moment.min.js"></script>
 
         <script src="scripts/co2eq.js"></script>
         <script src="scripts/countrymap.js"></script>
@@ -94,6 +96,16 @@
         <svg class="co2-colorbar"></svg>
         <svg class="wind-colorbar"></svg>
         <div class="panel-container">
+            <div class="country-table-header" style="display: none">
+                <img class="country-flag">
+                <b>
+                    <span class="country-name">click to select a country</span>
+                </b>
+                <span style="color: darkgray;">
+                    (<span class="country-last-update">?</span>)
+                    [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
+                </span>
+            </div>
             <svg class="country-table"></svg>
         </div>
         <script>
@@ -210,6 +222,10 @@
                     var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
                     var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
                     var now = (new Date()).getTime();
+                    console.log('solar updated', moment(now).fromNow());
+                    if (moment(now) > moment(solar.forecasts[1].horizon)) {
+                        console.error('Error while interpolating solar because current time is out of bounds');
+                    }
                     var k = (now - t_before)/(t_after - t_before);
                     for (var i of d3.range(Nx)) {
                         for (var j of d3.range(Ny)) {
@@ -479,7 +495,7 @@
 
                 console.log('countries', countries);
                 console.log('exchanges', exchanges);
-                console.log('GFS', wind[0].header.refTime, wind);
+                console.log('wind updated', moment(wind[0].header.refTime).fromNow());
 
                 countryMap
                     .data(d3.values(countries))
