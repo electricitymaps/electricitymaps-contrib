@@ -13,7 +13,6 @@ client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['electricity']
 col = db['realtime']
 
-
 def bson_measurement_to_json(obj):
     obj['_id'] = str(obj['_id'])
     obj['datetime'] = arrow.get(obj['datetime']).isoformat()
@@ -41,9 +40,21 @@ def solar_GET():
 def wind_GET():
     return flask.send_from_directory('data', 'wind.json')
 
-@app.route('/data/<path:path>')
-def data_GET(path, methods=['GET', 'OPTIONS']):
+@app.route('/data/<path:path>', methods=['GET', 'OPTIONS'])
+def data_GET(path):
     return flask.send_from_directory('data', path)
+
+@app.route('/')
+def index_GET():
+    return flask.send_from_directory('', 'index.html')
+
+@app.route('/vendor/<path:path>', methods=['GET', 'OPTIONS'])
+def vendor_GET(path):
+    return flask.send_from_directory('vendor', path)
+
+@app.route('/app/<path:path>', methods=['GET', 'OPTIONS'])
+def app_GET(path):
+    return flask.send_from_directory('app', path)
 
 
 if __name__ == '__main__':

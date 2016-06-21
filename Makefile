@@ -1,7 +1,7 @@
 .PHONY: server
 
 install:
-	pip install -r backend/requirements.txt
+	pip install -r requirements.txt
 	sudo gem install foreman
 	
 install-grib2json:
@@ -12,7 +12,7 @@ server:
 	foreman start
 
 api:
-	python -u backend/server.py
+	python -u server.py
 
 feeder:
 	python -u backend/feeder.py
