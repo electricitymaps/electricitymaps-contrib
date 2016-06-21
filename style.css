@@ -71,3 +71,11 @@ html, body {
     height: 30px;
     font-size: 0.5em;
 }
+
+a {
+    text-decoration: none;
+    color: lightblue;
+}
+a:hover {
+    text-decoration: underline;
+}
