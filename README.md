@@ -19,8 +19,8 @@ The numbers take into account the construction of production units and their usu
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 
 ## Real-time weather data sources
-- Solar: [GFS 0.5 Degree](http://nomads.ncep.noaa.gov/)
-- Wind: [CFS Flux](http://nomads.ncep.noaa.gov/)
+- Solar: [National Centers for Environmental Prediction Climate Forecast System](http://nomads.ncep.noaa.gov/)
+- Wind: [National Centers for Environmental Prediction Global Forecast System](http://nomads.ncep.noaa.gov/)
 
 ## Production capacity sources
 - Denmark
