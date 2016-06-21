@@ -48,6 +48,10 @@ def data_GET(path):
 def index_GET():
     return flask.send_from_directory('', 'index.html')
 
+@app.route('/style.css')
+def style_GET():
+    return flask.send_from_directory('', 'style.css')
+
 @app.route('/vendor/<path:path>', methods=['GET', 'OPTIONS'])
 def vendor_GET(path):
     return flask.send_from_directory('vendor', path)
