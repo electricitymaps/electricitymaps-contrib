@@ -124,7 +124,15 @@ CountryTable.prototype.resize = function() {
 
 CountryTable.prototype.show = function() {
     this.root.style('display', 'block');
+    d3.select('.country-table-header')
+        .style('display', 'block');
     this.render();
+}
+
+CountryTable.prototype.hide = function() {
+    this.root.style('display', 'none');
+    d3.select('.country-table-header')
+        .style('display', 'none');
 }
 
 CountryTable.prototype.data = function(arg) {
@@ -162,8 +170,7 @@ CountryTable.prototype.data = function(arg) {
 
 
         // Set header
-        var header = d3.select('.country-table-header')
-            .style('display', 'block');
+        var header = d3.select('.country-table-header');
         header.select('img.country-flag')
             .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
             .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)

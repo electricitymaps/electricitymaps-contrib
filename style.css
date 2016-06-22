@@ -10,10 +10,6 @@ html, body {
     bottom: 0px;
     padding: 5px;
     background-color: rgba(70,70,70,0.7);
-    border-color: gray;
-    border-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
     text-align: center;
     color: darkgray;
     font-size: 0.6em;
@@ -58,6 +54,7 @@ html, body {
     padding: 10px;
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
+    width: 300px;
 }
 .panel-container > svg {
     display: block;
