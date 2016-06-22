@@ -1,9 +1,14 @@
 function CountryMap(selector, co2color) {
+    var that = this;
+
     this.root = d3.select(selector);
     this.co2color = co2color;
     this.graticule = this.root
+        .on('click', function (d, i) {
+            that.seaClickHandler.call(this, d, i);
+        })
         .append('path')
-        .attr('class', 'graticule');
+        .attr('class', 'graticule')
     this.land = this.root.append('g');
 }
 
@@ -46,6 +51,7 @@ CountryMap.prototype.render = function() {
                     return that.countryMouseOutHandler.call(this, d, i);
                 })
                 .on('click', function (d, i) {
+                    d3.event.stopPropagation(); // To avoid call click on sea
                     return that.countryClickHandler.call(this, d, i);
                 });
         selector
@@ -58,6 +64,12 @@ CountryMap.prototype.render = function() {
 CountryMap.prototype.projection = function(arg) {
     if (!arg) return this._projection;
     else this._projection = arg;
+    return this;
+};
+
+CountryMap.prototype.onSeaClick = function(arg) {
+    if (!arg) return this.seaClickHandler;
+    else this.seaClickHandler = arg;
     return this;
 };
 

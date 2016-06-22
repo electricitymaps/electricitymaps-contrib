@@ -387,6 +387,11 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
 
     countryMap
         .data(d3.values(countries))
+        .onSeaClick(function () {
+            d3.select('.country-table-initial-text')
+                .style('display', 'block');
+            countryTable.hide();
+        })
         .onCountryClick(function (d, i) {
             if (!d.data.production) return;
             d3.select('.country-table-initial-text')
