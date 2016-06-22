@@ -383,7 +383,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
 
     console.log('countries', countries);
     console.log('exchanges', exchanges);
-    console.log('wind updated', moment(wind[0].header.refTime).fromNow());
+    console.log('wind updated', moment(wind[0].header.refTime).add(wind[0].header.forecastTime, 'hours').fromNow());
 
     countryMap
         .data(d3.values(countries))
