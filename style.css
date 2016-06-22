@@ -4,6 +4,20 @@ html, body {
     height: 100%;
     font-family: sans-serif;
 }
+.contribute-bar {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    padding: 5px;
+    background-color: rgba(70,70,70,0.7);
+    border-color: gray;
+    border-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    text-align: center;
+    color: darkgray;
+    font-size: 0.6em;
+}
 .overlay {
     width: 100%;
     height: 100%;
@@ -58,7 +72,7 @@ html, body {
     overflow: auto;
     display: inline-block;
     height: 100%;
-    width: 55px;
+    width: 65px;
     text-align: right;
     font-size: 1.3em;
 }

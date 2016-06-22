@@ -20,6 +20,25 @@
         <script src="app/horizontalcolorbar.js"></script>
         <script src="app/exchangelayer.js"></script>
         <script src="app/countrytable.js"></script>
+
+        <!-- start GA -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-79729918-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- end GA -->
+        <!-- start Mixpanel -->
+        <script type="text/javascript">
+            (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+            for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+            mixpanel.init("f350f1ec866f4737a5f69497e58cf67d");
+        </script>
+        <!-- end Mixpanel -->
     </head>
     <body>
         <svg class="map sea"></svg>
@@ -56,6 +75,9 @@
             <svg class="country-table" style="display: none"></svg>
         </div>
         <div class="loading overlay"></div>
+        <div class="contribute-bar">
+            Get your country on the map and <b>help out</b> with missing data by <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">contributing</a> on <b>github</b>.
+        </div>
     </body>
 
     <script src="app/main.js"></script>
