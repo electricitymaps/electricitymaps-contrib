@@ -17,8 +17,7 @@ def fetch_GB():
 
     obj = {
         'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(arrow.get(data.get('AT')).datetime, 
-            'Europe/London').datetime
+        'datetime': arrow.get(data.get('AT')).datetime # Time given in UTC
     }
     obj['consumption'] = {}
     obj['production'] = {

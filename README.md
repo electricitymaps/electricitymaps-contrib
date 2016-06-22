@@ -5,8 +5,13 @@ A real-time visualisation of electricity generation. Try it out at [http://corra
 ## Data sources
 
 ### GreenHouse Gas footprint data sources
-The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). The GHG footprint takes into account the footprint of electricity imported in the country.
+The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). 
+
+The GHG footprint takes into account the footprint of electricity imported in the country.
 The numbers take into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources)).
+
+Each country has a CO2 mass flow that depends on neighboring countries. In order to determine the CO2 footprint of each country, the set of coupled CO2 mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of CO2 exchanges (see [co2eq.js](https://github.com/corradio/electricitymap/blob/master/app/co2eq.js#L50)).
+
 
 ### Real-time electricity data sources
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
