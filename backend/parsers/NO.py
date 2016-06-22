@@ -4,7 +4,7 @@ import requests
 COUNTRY_CODE = 'NO'
 
 def fetch_NO():
-    url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview?timestamp={}'.format(arrow.now().timestamp * 1000)
+    url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview'
 
     data = requests.get(url).json()
     countries = map(lambda x: x['value'], data['Headers'])
@@ -12,8 +12,7 @@ def fetch_NO():
 
     obj = {
         'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(arrow.get(data['MeasuredAt'] / 1000).datetime, 
-            'Europe/Oslo').datetime
+        'datetime': arrow.get(data['MeasuredAt'] / 1000).datetime # time given in UTC
     }
     obj['consumption'] = {
         'other': float(data['ConsumptionData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0'))

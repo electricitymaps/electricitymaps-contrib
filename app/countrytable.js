@@ -74,7 +74,7 @@ CountryTable.prototype.render = function() {
     gNewRow.append('text')
         .attr('class', 'unknown')
         .text('?')
-        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')')
+        .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
     this.resize();
 }
