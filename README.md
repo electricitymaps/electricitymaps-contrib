@@ -1,5 +1,5 @@
 # electricitymap
-A real-time visualisation of the GHG and CO2 footprint of electricity generation built with [d3.js](https://d3js.org/). Try it out at [https://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
+A real-time visualisation of the GHG and CO2 footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [https://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/), consider [contributing](#contribute) or submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
 
 
 ## Data sources
@@ -55,3 +55,27 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 ### Real-time weather data sources
 - Solar: [US National Weather Service's Prediction Climate Forecast System (CFS)](http://nomads.ncep.noaa.gov/)
 - Wind: [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)
+
+
+## Contribute
+You can contribute by
+- adding your country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/backend/parsers)
+- update an existing [parser](https://github.com/corradio/electricitymap/tree/master/backend/parsers) with a different API if you know one with more data or closer to real-time
+- optimising the code, correct inaccuracies...
+
+You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
+![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
+
+To get started, clone or [Fork](https://help.github.com/articles/fork-a-repo/) the repository, and install all requirements:
+
+```
+Make install
+```
+
+Provided you have mongodb installed, you can run the full system using
+```
+Make server
+```
+
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
+Once you're done doing your changes, submit a [Pull Request](https://help.github.com/articles/using-pull-requests/)!
