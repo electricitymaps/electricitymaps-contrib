@@ -55,7 +55,7 @@ def fetch_ES():
     obj = {
         'countryCode': COUNTRY_CODE,
         'datetime': arrow.get(arrow.get(parsed['timeStamp']).datetime, 
-            'Europe/Madrid').datetime
+            'Europe/Madrid').datetime # We receive the time in local time
     }
     obj['consumption'] = {
         'other': float(parsed['demanda'])

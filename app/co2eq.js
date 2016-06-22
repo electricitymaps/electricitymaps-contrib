@@ -39,7 +39,6 @@ Co2eqCalculator.prototype.footprintOf = function(productionMode, countryKey) {
 };
 
 Co2eqCalculator.prototype.compute = function(countries) {
-    // Only consider countries which have a co2 rating
     var validCountries = d3.entries(countries)
         .map(function(d) { return d.value.data })
         .filter(function (d) {
