@@ -6,8 +6,9 @@ SW = [-48.66, 28.17]
 NE = [37.45, 67.71]
 
 def get_url(origin, horizon):
+    delta_hours = int(((horizon - origin).total_seconds()) / 3600.0)
     return 'http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p50.pl?' + \
-        'file=gfs.t%sz.pgrb2full.0p50.f0%s' % (origin.format('HH'), horizon.format('HH')) + \
+        'file=gfs.t%sz.pgrb2full.0p50.f0%02d' % (origin.format('HH'), delta_hours) + \
         '&lev_10_m_above_ground=on&var_UGRD=on&var_VGRD=on&leftlon=%d&rightlon=%d&toplat=%d&bottomlat=%d' % (180 + SW[0], 180 + NE[0], NE[1], SW[1]) + \
         '&dir=%%2Fgfs.%s' % (origin.format('YYYYMMDDHH'))
 
