@@ -1,5 +1,9 @@
 # electricitymap
-A real-time visualisation of the GHG and CO2 footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [https://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/), consider [contributing](#contribute) or submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
+A real-time visualisation of the GHG and CO2 footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [https://corradio.github.io/electricitymap/](http://corradio.github.io/electricitymap/).
+
+![image](https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png)
+
+Consider [contributing](#contribute) or submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
 
 
 ## Data sources
@@ -64,6 +68,7 @@ You can contribute by
 - optimising the code, correct inaccuracies...
 
 You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
+
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
 To get started, clone or [Fork](https://help.github.com/articles/fork-a-repo/) the repository, and install all requirements:
@@ -78,4 +83,5 @@ Make server
 ```
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
-Once you're done doing your changes, submit a [Pull Request](https://help.github.com/articles/using-pull-requests/)!
+
+Once you're done doing your changes, submit a [Pull Request](https://help.github.com/articles/using-pull-requests/) to get them integrated.
