@@ -42,12 +42,12 @@ def fetch_FR():
             data['consumption'][MAP_STORAGE[key]] = float(value.text)
 
     # Fetch co2
-    url = 'http://www.rte-france.com/getEco2MixXml.php?type=co2&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
-    response = r.get(url)
-    obj = ET.fromstring(response.content)
-    value = None
-    for value in obj[7][0].getchildren(): pass
-    data['co2'] = float(value.text)
+    # url = 'http://www.rte-france.com/getEco2MixXml.php?type=co2&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
+    # response = r.get(url)
+    # obj = ET.fromstring(response.content)
+    # value = None
+    # for value in obj[7][0].getchildren(): pass
+    # data['co2'] = float(value.text)
 
     # Fetch imports
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=echcom&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
