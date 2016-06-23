@@ -1,5 +1,6 @@
+import logging
 import pymongo
-import schedule, time
+import os, schedule, time
 
 from parsers.DE import fetch_DE
 from parsers.DK import fetch_DK
@@ -26,23 +27,46 @@ parsers = [
     fetch_SE
 ]
 
+# Set up logging
+ENV = os.environ.get('ENV', 'DEBUG').upper()
+if not ENV == 'DEBUG':
+    import logging
+    from logging.handlers import SMTPHandler
+    mail_handler = SMTPHandler(
+        mailhost=('smtp.mailgun.org', 587),
+        fromaddr='Application Bug Reporter <noreply@mailgun.com>',
+        toaddrs=['olivier.corradi@gmail.com'],
+        subject='Electricity Map Flask Error',
+        credentials=(os.environ.get('MAILGUN_USER'), os.environ.get('MAILGUN_PASSWORD'))
+    )
+    mail_handler.setLevel(logging.ERROR)
+    logging.getLogger(__name__).addHandler(mail_handler)
+
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['electricity']
 col = db['realtime']
 
 def fetch_countries():
     for parser in parsers: 
-        obj = parser()
-        print 'INSERT %s' % obj
-        col.insert_one(obj)
+        try:
+            obj = parser()
+            logging.info('INSERT %s' % obj)
+            col.insert_one(obj)
+        except: logging.exception('fetch_one_country')
+
+def fetch_weather():
+    try:
+        fetch_wind()
+    except: logging.exception('fetch_wind()')
+    try:
+        fetch_solar()
+    except: logging.exception('fetch_solar()')
 
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_countries)
-schedule.every(6).hours.do(fetch_solar)
-schedule.every(6).hours.do(fetch_wind)
+schedule.every(6).hours.do(fetch_weather)
 
 fetch_countries()
-fetch_wind()
-fetch_solar()
+fetch_weather()
 
 while True:
     schedule.run_pending()

@@ -2,12 +2,26 @@ import arrow, flask, json, os, pymongo
 
 from flask_cors import CORS
 
-ENV = os.environ.get('ENV', 'DEBUG')
+ENV = os.environ.get('ENV', 'DEBUG').upper()
 PORT = 8000
 
 app = flask.Flask(__name__, static_folder='data')
 app.debug = (ENV == 'DEBUG')
 CORS(app)
+
+# Loghandler in production mode
+if not app.debug:
+    import logging
+    from logging.handlers import SMTPHandler
+    mail_handler = SMTPHandler(
+        mailhost=('smtp.mailgun.org', 587),
+        fromaddr='Application Bug Reporter <noreply@mailgun.com>',
+        toaddrs=['olivier.corradi@gmail.com'],
+        subject='Electricity Map Flask Error',
+        credentials=(os.environ.get('MAILGUN_USER'), os.environ.get('MAILGUN_PASSWORD'))
+    )
+    mail_handler.setLevel(logging.ERROR)
+    app.logger.addHandler(mail_handler)
 
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['electricity']
