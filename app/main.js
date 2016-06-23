@@ -1,3 +1,6 @@
+//var ENDPOINT = 'http://localhost:8000';
+var ENDPOINT = 'http://52.49.165.98:8000';
+
 var co2color = d3.scale.linear()
     .domain([0, 250, 500])
     .range(['green', 'orange', 'black']);
@@ -446,10 +449,10 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
 var REFRESH_TIME_MINUTES = 5;
 function fetchAndReschedule() {
     queue()
-        .defer(d3.json, 'http://localhost:8000/data/europe.topo.json')
-        .defer(d3.json, 'http://localhost:8000/production')
-        .defer(d3.json, 'http://localhost:8000/solar')
-        .defer(d3.json, 'http://localhost:8000/wind')
+        .defer(d3.json, ENDPOINT + '/data/europe.topo.json')
+        .defer(d3.json, ENDPOINT + '/production')
+        .defer(d3.json, ENDPOINT + '/solar')
+        .defer(d3.json, ENDPOINT + '/wind')
         .await(dataLoaded);
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 }
