@@ -1,14 +1,12 @@
 version: '2'
 services:
   web:
-    build: .
-    ports:
-     - "8000:8000"
-    volumes:
-     - .:/home/
-    depends_on:
-     - mongo
-    env_file:
-     - "~/Google\ Drive/dotfiles/mailgun.env"
+    extends:
+      file: common.yml
+      service: web
+    ports: ["8000:8000"]
+    volumes: ['.:/home/']
+    environment: [ENV=development]
+    depends_on: [mongo]
   mongo:
     image: mongo
