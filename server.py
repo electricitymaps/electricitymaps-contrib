@@ -2,11 +2,11 @@ import arrow, flask, json, os, pymongo
 
 from flask_cors import CORS
 
-ENV = os.environ.get('ENV', 'DEBUG').upper()
+ENV = os.environ.get('ENV', 'development').lower()
 PORT = 8000
 
 app = flask.Flask(__name__, static_folder='data')
-app.debug = (ENV == 'DEBUG')
+app.debug = (ENV == 'development')
 CORS(app)
 
 # Loghandler in production mode
@@ -23,7 +23,7 @@ if not app.debug:
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
 
-client = pymongo.MongoClient('mongodb://mongo:27017')
+client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
 col = db['realtime']
 
