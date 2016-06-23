@@ -77,11 +77,11 @@ To get started, clone or [Fork](https://help.github.com/articles/fork-a-repo/) t
 Make install
 ```
 
-Provided you have mongodb installed, you can run the full system using
+Provided you have mongodb installed and running, you can run the full system using
 ```
 Make server
 ```
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
+If you have Docker, you can just run `docker-compose up` instead. Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
 
 Once you're done doing your changes, submit a [Pull Request](https://help.github.com/articles/using-pull-requests/) to get them integrated.

@@ -2,14 +2,14 @@
 
 install:
 	pip install -r requirements.txt
-	sudo gem install foreman
+	pip install honcho==0.7.1
 	
 install-grib2json:
 	git clone https://github.com/cambecc/grib2json
 	cd grib2json && mvn package && tar -xvf target/grib2json-0.8.0-SNAPSHOT.tar.gz
 
 server:
-	foreman start
+	honcho start
 
 api:
 	python -u server.py

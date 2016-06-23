@@ -20,6 +20,59 @@ var solarColor = d3.scale.linear()
     .range(['black', 'orange'])
     .domain([300, 440]);
 
+var EXCHANGES_CONFIG = [
+    {
+        countries: ['DE', 'DK'],
+        lonlat: [9.3, 54.9],
+        rotation: 0
+    },
+    {
+        countries: ['SE', 'DK'],
+        lonlat: [13, 55.7],
+        rotation: -100
+    },
+    {
+        countries: ['GB', 'FR'],
+        lonlat: [0, 50.4],
+        rotation: 160
+    },
+    {
+        countries: ['DK', 'NO'],
+        lonlat: [8.8, 58],
+        rotation: -25
+    },
+    {
+        countries: ['IE', 'GB'],
+        lonlat: [-5.7, 53],
+        rotation: 100
+    },
+    {
+        countries: ['NL', 'GB'],
+        lonlat: [3.3, 52.4],
+        rotation: -90
+    },
+    {
+        countries: ['FR', 'ES'],
+        lonlat: [0.3, 42.9],
+        rotation: -160
+    },
+    {
+        countries: ['FR', 'DE'],
+        lonlat: [5.7, 49.8],
+        rotation: 50
+    },
+    {
+        countries: ['FR', 'CH'],
+        lonlat: [6.5, 46.7],
+        rotation: 90
+    },
+    {
+        countries: ['FR', 'IT'],
+        lonlat: [6.5, 44.5],
+        rotation: 70
+    }
+];
+
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map');
@@ -236,60 +289,6 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
         wind: 6025
     };
 
-    // Prepare exchanges
-    var exchanges = [
-        {
-            countries: ['DE', 'DK'],
-            lonlat: [9.3, 54.9],
-            rotation: 0
-        },
-        {
-            countries: ['SE', 'DK'],
-            lonlat: [13, 55.7],
-            rotation: -100
-        },
-        {
-            countries: ['GB', 'FR'],
-            lonlat: [0, 50.4],
-            rotation: 160
-        },
-        {
-            countries: ['DK', 'NO'],
-            lonlat: [8.8, 58],
-            rotation: -25
-        },
-        {
-            countries: ['IE', 'GB'],
-            lonlat: [-5.7, 53],
-            rotation: 100
-        },
-        {
-            countries: ['NL', 'GB'],
-            lonlat: [3.3, 52.4],
-            rotation: -90
-        },
-        {
-            countries: ['FR', 'ES'],
-            lonlat: [0.3, 42.9],
-            rotation: -160
-        },
-        {
-            countries: ['FR', 'DE'],
-            lonlat: [5.7, 49.8],
-            rotation: 50
-        },
-        {
-            countries: ['FR', 'CH'],
-            lonlat: [6.5, 46.7],
-            rotation: 90
-        },
-        {
-            countries: ['FR', 'IT'],
-            lonlat: [6.5, 44.5],
-            rotation: 70
-        }
-    ];
-
     // Populate with realtime production data
     for (var countryCode of d3.keys(production.data)) {
         var obj = production.data[countryCode];
@@ -314,7 +313,13 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     }
 
     // Populate exchange pairs for arrows
-    exchanges.forEach(function (pair) {
+    var exchanges = []
+    EXCHANGES_CONFIG.forEach(function (item) {
+        // Shallow copy the configuration item
+        var pair = {};
+        d3.entries(item).forEach(function (d) {
+            pair[d.key] = d.value;
+        });
         var o = pair.countries[0];
         var d = pair.countries[1];
         var netFlows = [
@@ -322,14 +327,20 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
             -countries[o].data.exchange[d]
         ];
         pair.netFlow = d3.mean(netFlows);
+        if (pair.netFlow == undefined)
+            return;
         pair.co2 = function () {
             return pair.countries.map(function (k) { return countries[k].data.co2; });
         };
+        exchanges.push(pair);
+
         countries[o].data.exchange[d] = -pair.netFlow;
         countries[d].data.exchange[o] = pair.netFlow;
         countries[o].data.neighborCo2[d] = countries[d].data.co2;
         countries[d].data.neighborCo2[o] = countries[o].data.co2;
     });
+
+    console.log('exchanges', exchanges);
 
     // Compute aggregates
     d3.entries(countries).forEach(function (entry) {
@@ -373,7 +384,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
         if (!country) continue;
         d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
             // Find the exchange object
-            var matches = exchanges.filter(function (e) { 
+            var matches = exchanges.filter(function (e) {
                 return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
             });
             if (!matches.length)
@@ -382,7 +393,6 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     }
 
     console.log('countries', countries);
-    console.log('exchanges', exchanges);
     console.log('wind updated', moment(wind[0].header.refTime).add(wind[0].header.forecastTime, 'hours').fromNow());
 
     countryMap

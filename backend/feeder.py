@@ -42,7 +42,7 @@ if not ENV == 'DEBUG':
     mail_handler.setLevel(logging.ERROR)
     logging.getLogger(__name__).addHandler(mail_handler)
 
-client = pymongo.MongoClient('mongodb://localhost:27017')
+client = pymongo.MongoClient('mongodb://mongo:27017')
 db = client['electricity']
 col = db['realtime']
 
