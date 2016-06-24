@@ -13,7 +13,7 @@ CORS(app)
 import statsd
 statsd.init_statsd({
     'STATSD_HOST': os.environ.get('STATSD_HOST', 'localhost'),
-    'STATSD_BUCKET_PREFIX': 'electricymap_feeder'
+    'STATSD_BUCKET_PREFIX': 'electricymap_api'
 })
 
 # Loghandler in production mode
@@ -92,8 +92,10 @@ def vendor_GET(path):
 def app_GET(path):
     return flask.send_from_directory('app', path)
 
+@statsd.StatsdTimer.wrap('health_GET')
 @app.route('/health', methods=['GET', 'OPTIONS'])
 def health_GET():
+    statsd.increment('health_GET')
     return flask.jsonify({'status': 'ok'})
 
 if __name__ == '__main__':
