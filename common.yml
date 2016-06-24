@@ -2,5 +2,3 @@ version: '2'
 services:
   web:
     build: .
-    environment:
-     - MONGO_URL=mongodb://mongo:27017

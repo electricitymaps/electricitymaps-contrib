@@ -39,7 +39,7 @@ def fetch_wind():
     origin = horizon
 
     obj_before = fetch_forecast(origin, horizon)
-    subprocess.check_call('JAVA_HOME="`/usr/libexec/java_home -v 1.8`" java -Xmx512M -jar grib2json/target/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar ' + \
+    subprocess.check_call('java -Xmx512M -jar grib2json/target/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar ' + \
         '-d -n -o data/wind.json wind.grb2', shell=True)
     # obj_after = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE))
     # obj = {

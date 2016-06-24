@@ -1,4 +1,4 @@
-FROM java:7
+FROM java:8
 ADD . /home/
 WORKDIR /home/
 ENV LANG=en_US.UTF-8

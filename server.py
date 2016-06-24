@@ -9,6 +9,13 @@ app = flask.Flask(__name__, static_folder='data')
 app.debug = (ENV == 'development')
 CORS(app)
 
+# Stats
+import statsd
+statsd.init_statsd({
+    'STATSD_HOST': os.environ.get('STATSD_HOST', 'localhost'),
+    'STATSD_BUCKET_PREFIX': 'electricymap_feeder'
+})
+
 # Loghandler in production mode
 if not app.debug:
     import logging
@@ -22,6 +29,7 @@ if not app.debug:
     )
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
+    logging.getLogger('statsd').addHandler(logging.StreamHandler())
 
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
@@ -33,8 +41,10 @@ def bson_measurement_to_json(obj):
     return obj
 
 
+@statsd.StatsdTimer.wrap('production_GET')
 @app.route('/production', methods=['GET', 'OPTIONS'])
 def production_GET():
+    statsd.increment('production_GET')
     objs = col.aggregate([
         {'$group': {'_id': '$countryCode', 'lastDocument': {'$last': '$$CURRENT'}}}
     ])
@@ -46,20 +56,28 @@ def production_GET():
         'data': data
     })
 
+@statsd.StatsdTimer.wrap('solar_GET')
 @app.route('/solar', methods=['GET', 'OPTIONS'])
 def solar_GET():
+    statsd.increment('solar_GET')
     return flask.send_from_directory('data', 'solar.json')
 
+@statsd.StatsdTimer.wrap('wind_GET')
 @app.route('/wind', methods=['GET', 'OPTIONS'])
 def wind_GET():
+    statsd.increment('wind_GET')
     return flask.send_from_directory('data', 'wind.json')
 
+@statsd.StatsdTimer.wrap('data_GET')
 @app.route('/data/<path:path>', methods=['GET', 'OPTIONS'])
 def data_GET(path):
+    statsd.increment('data_GET')
     return flask.send_from_directory('data', path)
 
+@statsd.StatsdTimer.wrap('index_GET')
 @app.route('/')
 def index_GET():
+    statsd.increment('index_GET')
     return flask.send_from_directory('', 'index.html')
 
 @app.route('/style.css')
@@ -74,6 +92,9 @@ def vendor_GET(path):
 def app_GET(path):
     return flask.send_from_directory('app', path)
 
+@app.route('/health', methods=['GET', 'OPTIONS'])
+def health_GET():
+    return flask.jsonify({'status': 'ok'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT)
