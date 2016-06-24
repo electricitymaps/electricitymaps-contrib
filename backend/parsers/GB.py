@@ -49,4 +49,5 @@ def fetch_GB():
 
     return obj
 
-fetch_GB()
+if __name__ == '__main__':
+    fetch_GB()

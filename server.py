@@ -41,9 +41,10 @@ def bson_measurement_to_json(obj):
     return obj
 
 
-@statsd.StatsdTimer.wrap('production_GET')
 @app.route('/production', methods=['GET', 'OPTIONS'])
+@statsd.StatsdTimer.wrap('production_GET')
 def production_GET():
+
     statsd.increment('production_GET')
     objs = col.aggregate([
         {'$group': {'_id': '$countryCode', 'lastDocument': {'$last': '$$CURRENT'}}}
@@ -56,26 +57,26 @@ def production_GET():
         'data': data
     })
 
-@statsd.StatsdTimer.wrap('solar_GET')
 @app.route('/solar', methods=['GET', 'OPTIONS'])
+@statsd.StatsdTimer.wrap('solar_GET')
 def solar_GET():
     statsd.increment('solar_GET')
     return flask.send_from_directory('data', 'solar.json')
 
-@statsd.StatsdTimer.wrap('wind_GET')
 @app.route('/wind', methods=['GET', 'OPTIONS'])
+@statsd.StatsdTimer.wrap('wind_GET')
 def wind_GET():
     statsd.increment('wind_GET')
     return flask.send_from_directory('data', 'wind.json')
 
-@statsd.StatsdTimer.wrap('data_GET')
 @app.route('/data/<path:path>', methods=['GET', 'OPTIONS'])
+@statsd.StatsdTimer.wrap('data_GET')
 def data_GET(path):
     statsd.increment('data_GET')
     return flask.send_from_directory('data', path)
 
-@statsd.StatsdTimer.wrap('index_GET')
 @app.route('/')
+@statsd.StatsdTimer.wrap('index_GET')
 def index_GET():
     statsd.increment('index_GET')
     return flask.send_from_directory('', 'index.html')
@@ -92,8 +93,8 @@ def vendor_GET(path):
 def app_GET(path):
     return flask.send_from_directory('app', path)
 
-@statsd.StatsdTimer.wrap('health_GET')
 @app.route('/health', methods=['GET', 'OPTIONS'])
+@statsd.StatsdTimer.wrap('health_GET')
 def health_GET():
     statsd.increment('health_GET')
     return flask.jsonify({'status': 'ok'})
