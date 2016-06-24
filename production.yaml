@@ -5,11 +5,16 @@ services:
       file: common.yml
       service: web
     ports: ["8000:8000"]
-    environment: [ENV=production]
+    environment:
+     - ENV=production
+     - MONGO_URL=mongodb://mongo:27017
+     - STATSD_HOST=statsd
     env_file: ./mailgun.env
     depends_on: [mongo]
-    restart: on-failure
+    external_links: ["grafana_graphite_statsd:statsd"]
+    links: [mongo]
+    network_mode: "bridge"
   mongo:
     image: mongo
-    restart: on-failure
     volumes: ['/home/shared/electricitymap/data:/data/db']
+    network_mode: "bridge"

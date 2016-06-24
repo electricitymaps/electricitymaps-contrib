@@ -26,6 +26,13 @@ parsers = [
     fetch_SE
 ]
 
+# Set up stats
+import statsd
+statsd.init_statsd({
+    'STATSD_HOST': os.environ.get('STATSD_HOST', 'localhost'),
+    'STATSD_BUCKET_PREFIX': 'electricymap_feeder'
+})
+
 # Set up logging
 ENV = os.environ.get('ENV', 'development').lower()
 logger = logging.getLogger(__name__)
@@ -40,6 +47,8 @@ if not ENV == 'development':
     )
     mail_handler.setLevel(logging.ERROR)
     logger.addHandler(mail_handler)
+    logging.getLogger('statsd').addHandler(logging.StreamHandler())
+
 
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
@@ -48,18 +57,25 @@ col = db['realtime']
 def fetch_countries():
     for parser in parsers: 
         try:
-            obj = parser()
-            logging.info('INSERT %s' % obj)
-            col.insert_one(obj)
-        except: logger.exception('fetch_one_country')
+            with statsd.StatsdTimer('fetch_one_country'):
+                obj = parser()
+                logging.info('INSERT %s' % obj)
+                col.insert_one(obj)
+        except: 
+            statsd.increment('fetch_one_country_error')
+            logger.exception('fetch_one_country()')
 
 def fetch_weather():
     try:
-        fetch_wind()
-    except: logger.exception('fetch_wind()')
+        with statsd.StatsdTimer('fetch_wind'): fetch_wind()
+    except: 
+        statsd.increment('fetch_wind_error')
+        logger.exception('fetch_wind()')
     try:
-        fetch_solar()
-    except: logger.exception('fetch_solar()')
+        with statsd.StatsdTimer('fetch_solar'): fetch_solar()
+    except: 
+        statsd.increment('fetch_solar_error')
+        logger.exception('fetch_solar()')
 
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_countries)
 schedule.every(6).hours.do(fetch_weather)
