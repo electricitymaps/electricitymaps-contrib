@@ -244,7 +244,7 @@ CountryTable.prototype.data = function(arg) {
             .style('transform-origin', 'left')
         selection.select('image')
             .attr('xlink:href', function (d) {
-                return 'vendor/flag-icon-css/flags/4x3/' + d.key + '.svg';
+                return 'vendor/flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
         selection.select('rect')
             .on('mouseover', function (d) {
