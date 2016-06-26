@@ -38,7 +38,6 @@ html, body {
 }
 .wind {
     pointer-events: none;
-    opacity: 0.5;
 }
 .solar {
     pointer-events: none;
