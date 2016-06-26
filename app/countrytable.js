@@ -79,12 +79,6 @@ CountryTable.prototype.render = function() {
     this.resize();
 }
 
-CountryTable.prototype.powerDomain = function(arg) {
-    if (!arg) return this.powerScale.domain();
-    else this.powerScale.domain(arg);
-    return this;
-}
-
 CountryTable.prototype.onExchangeMouseOver = function(arg) {
     if (!arg) return this.exchangeMouseOverHandler;
     else this.exchangeMouseOverHandler = arg;
@@ -141,6 +135,13 @@ CountryTable.prototype.data = function(arg) {
     if (!arg) return this._data;
     else {
         this._data = arg;
+
+        // update scales
+        this.powerScale
+            .domain([
+                -this._data.maxExport,
+                Math.max(this._data.maxCapacity, this._data.maxProduction)
+            ])
 
         // Prepare axis
         this.axis = d3.svg.axis()
