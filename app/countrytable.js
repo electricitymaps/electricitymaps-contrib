@@ -65,10 +65,10 @@ CountryTable.prototype.render = function() {
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
         .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('fill-opacity', 0.3)
+        .attr('fill-opacity', 0.2)
         .attr('stroke', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('stroke-width', 1.0)
-        .attr('opacity', 0.4)
+        .attr('opacity', 0.3)
         .attr('shape-rendering', 'crispEdges');
     gNewRow.append('rect')
         .attr('class', 'production')
