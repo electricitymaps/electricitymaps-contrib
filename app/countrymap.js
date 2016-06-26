@@ -1,10 +1,19 @@
 function CountryMap(selector, co2color) {
     var that = this;
 
+    this.STROKE_WIDTH = 0.3;
+
+    this.selectedCountry = undefined;
+
     this.root = d3.select(selector);
     this.co2color = co2color;
     this.graticule = this.root
         .on('click', function (d, i) {
+            if (that.selectedCountry !== undefined) {
+                that.selectedCountry
+                    .style('stroke', 'black')
+                    .style('stroke-width', that.STROKE_WIDTH);
+            }
             that.seaClickHandler.call(this, d, i);
         })
         .append('path')
@@ -42,7 +51,7 @@ CountryMap.prototype.render = function() {
                 .append('path')
                 .attr('class', 'country')
                 .attr('stroke', 'black')
-                .attr('stroke-width', 0.3)
+                .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('fill', getCo2Color)
                 .on('mouseover', function (d, i) {
                     return that.countryMouseOverHandler.call(this, d, i);
@@ -52,6 +61,15 @@ CountryMap.prototype.render = function() {
                 })
                 .on('click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
+                    if (that.selectedCountry !== undefined) {
+                        that.selectedCountry
+                            .style('stroke', 'black')
+                            .style('stroke-width', that.STROKE_WIDTH);
+                    }
+                    that.selectedCountry = d3.select(this);
+                    that.selectedCountry
+                        .style('stroke', 'darkred')
+                        .style('stroke-width', 1.5);
                     return that.countryClickHandler.call(this, d, i);
                 });
         selector
