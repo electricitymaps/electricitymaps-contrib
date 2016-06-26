@@ -1,5 +1,4 @@
-//var ENDPOINT = 'http://localhost:8000';
-var ENDPOINT = 'http://52.19.179.81:8000';
+var ENDPOINT = document.domain == 'localhost' ? 'http://localhost:8000' : 'http://52.19.179.81:8000';
 
 var co2color = d3.scale.linear()
     .domain([0, 250, 500])

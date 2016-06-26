@@ -47,6 +47,7 @@ html, body {
     stroke: #185c96;
     stroke-width: 0.3px;
 }
+
 .panel-container {
     position: absolute;
     top: 0px;
@@ -54,7 +55,7 @@ html, body {
     padding: 10px;
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
-    width: 300px;
+    width: 350px;
 }
 .panel-container > svg {
     display: block;
@@ -64,12 +65,20 @@ html, body {
     color: lightgray;
     fill: lightgray;
 }
+.country-table {
+    width: 100%;
+}
+.country-table-initial-text {
+    line-height: 1.7em;
+    font-size: 1.2em;
+}
+
 .colorbar-unit {
     color: darkgray;
     overflow: auto;
     display: inline-block;
     height: 100%;
-    width: 65px;
+    width: 70px;
     text-align: right;
     font-size: 1.3em;
 }
