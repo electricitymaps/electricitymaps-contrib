@@ -21,7 +21,7 @@ function CountryTable(selector, co2Color) {
         'biomass': '#166a57',
         'coal': '#ac8c35',
         'oil': '#8356a2',
-        'nuclear': '#f5b300',
+        'nuclear': '#f500c4',
         'gas': '#f30a0a',
         'other': 'gray'
     };
@@ -65,10 +65,10 @@ CountryTable.prototype.render = function() {
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
         .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('fill-opacity', 0.2)
+        .attr('fill-opacity', 0.3)
         .attr('stroke', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('stroke-width', 1.0)
-        .attr('opacity', 0.3)
+        .attr('opacity', 0.4)
         .attr('shape-rendering', 'crispEdges');
     gNewRow.append('rect')
         .attr('class', 'production')
