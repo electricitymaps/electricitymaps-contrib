@@ -410,7 +410,6 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
                 .style('display', 'none');
             countryTable.show();
             countryTable
-                .powerDomain([-d.data.maxExport, Math.max(d.data.maxCapacity, d.data.maxProduction)])
                 .data(d.data);
         })
         .onCountryMouseOver(function (d) { 
