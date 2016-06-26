@@ -338,8 +338,6 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
 
         countries[o].data.exchange[d] = -pair.netFlow;
         countries[d].data.exchange[o] = pair.netFlow;
-        countries[o].data.neighborCo2[d] = countries[d].data.co2;
-        countries[d].data.neighborCo2[o] = countries[o].data.co2;
     });
 
     console.log('exchanges', exchanges);

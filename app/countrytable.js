@@ -1,6 +1,6 @@
-function CountryTable(selector, co2color) {
+function CountryTable(selector, co2Color) {
     this.root = d3.select(selector);
-    this.co2color = co2color;
+    this.co2Color = co2Color;
 
     // Create containers
     this.headerRoot = this.root.append('g');
@@ -27,6 +27,9 @@ function CountryTable(selector, co2color) {
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
 
+    // State
+    this._displayByEmissions = false;
+
     // Header
     this.gPowerAxis = this.headerRoot.append('g')
         .attr('class', 'x axis');
@@ -42,6 +45,8 @@ CountryTable.prototype.render = function() {
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
     this.powerScale = d3.scale.linear()
+        .range([0, this.barMaxWidth]);
+    this.co2Scale = d3.scale.linear()
         .range([0, this.barMaxWidth]);
 
     // ** Production labels and rects **
@@ -135,22 +140,55 @@ CountryTable.prototype.data = function(arg) {
     if (!arg) return this._data;
     else {
         this._data = arg;
+        var exchangeData = d3.entries(this._data.exchange);
+
+        // Construct a list having each production in the same order as
+        // `this.PRODUCTION_MODES`
+        var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
+            return {
+                production: arg.production[d],
+                capacity: arg.capacity[d],
+                mode: d,
+                gCo2eqPerkWh: co2eqCalculator.footprintOf(d, that._data.countryCode),
+                gCo2eqPerH: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
+            };
+        });
 
         // update scales
         this.powerScale
             .domain([
                 -this._data.maxExport,
                 Math.max(this._data.maxCapacity, this._data.maxProduction)
-            ])
+            ]);
+        var maxCO2eqExport = d3.max(exchangeData, function (d) {
+            return d.value >= 0 ? 0 : that._data.co2 * 1000.0 * -d.value;
+        });
+        var maxCO2eqImport = d3.max(exchangeData, function (d) {
+            return d.value <= 0 ? 0 : that._data.neighborCo2[d.key]() * 1000.0 * d.value;
+        });
+        this.co2Scale
+            .domain([
+                -maxCO2eqExport,
+                Math.max(
+                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH; }),
+                    maxCO2eqImport
+                )
+            ]);
 
         // Prepare axis
         this.axis = d3.svg.axis()
-            .scale(this.powerScale)
             .orient('top')
             .innerTickSize(-250)
             .outerTickSize(0)
-            .ticks(4)
-            .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'W'; });
+            .ticks(4);
+        if (that._displayByEmissions)
+            this.axis
+                .scale(this.co2Scale)
+                .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'g/H'; });
+        else
+            this.axis
+                .scale(this.powerScale)
+                .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'W'; })
         this.gPowerAxis
             .transition()
             .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
@@ -181,29 +219,21 @@ CountryTable.prototype.data = function(arg) {
         header.select('span.country-last-update')
             .text(moment(this._data.datetime).fromNow())
 
-
-        // Construct a list having each production in the same order as
-        // `this.PRODUCTION_MODES`
-        var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
-            return {
-                production: arg.production[d],
-                capacity: arg.capacity[d],
-                mode: d,
-                gCo2eqPerkWh: co2eqCalculator.footprintOf(d, that._data.countryCode),
-                gCo2eqPerHour: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
-            };
-        });
-
         var selection = this.productionRoot.selectAll('.row')
             .data(sortedProductionData);
-        selection.select('rect.capacity')
-            .transition()
-            /*.attr('fill', function (d) { return that.co2color(d.gCo2eqPerkWh); })
-            .attr('stroke', function (d) { return that.co2color(d.gCo2eqPerkWh); })*/
-            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
-            .attr('width', function (d) {
-                return (d.capacity === undefined || d.production === undefined) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
-            });
+        if (that._displayByEmissions)
+            selection.select('rect.capacity')
+                .transition()
+                .style('display', 'none')
+        else
+            selection.select('rect.capacity')
+                .transition()
+                /*.attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); })
+                .attr('stroke', function (d) { return that.co2Color(d.gCo2eqPerkWh); })*/
+                .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+                .attr('width', function (d) {
+                    return (d.capacity === undefined || d.production === undefined) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
+                });
         selection.select('rect.production')
             .on('mouseover', function (d) {
                 that.productionMouseOverHandler.call(this, d, that._data.countryCode);
@@ -212,14 +242,23 @@ CountryTable.prototype.data = function(arg) {
                 that.productionMouseOutHandler.call(this, d);
             })
             .on('click', function (d) {
-                console.log(d.gCo2eqPerHour / 1000000.0 / 3600.0, 'tCo2eq/s');
+                console.log(d.gCo2eqPerH / 1000000.0 / 3600.0, 'tCo2eq/s');
             })
-            .transition()
-            //.attr('fill', function (d) { return that.co2color(d.gCo2eqPerkWh); })
-            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
-            .attr('width', function (d) {
-                return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
-            });
+        if (that._displayByEmissions)
+            selection.select('rect.production')
+                .transition()
+                .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
+                .attr('width', function (d) {
+                    return !isFinite(d.gCo2eqPerH) ? 0 : that.co2Scale(d.gCo2eqPerH);
+                });
+        else
+            selection.select('rect.production')
+                .transition()
+                //.attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); })
+                .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+                .attr('width', function (d) {
+                    return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
+                });
         selection.select('text.unknown')
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
@@ -227,8 +266,8 @@ CountryTable.prototype.data = function(arg) {
             .style('display', function (d) {
                 return d.production === undefined ? 'block' : 'none';
             });
+
         // Construct exchanges
-        var exchangeData = d3.entries(this._data.exchange);
         var selection = this.exchangeRoot.selectAll('.row')
             .data(exchangeData);
         selection.exit().remove();
@@ -251,6 +290,11 @@ CountryTable.prototype.data = function(arg) {
             .attr('xlink:href', function (d) {
                 return 'vendor/flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
+        function getExchangeCo2eq(d) {
+            return d.value > 0 ? 
+                (that._data.neighborCo2[d.key]() !== undefined) ? that._data.neighborCo2[d.key]() : undefined
+                : (that._data.co2 !== undefined) ? that._data.co2 : undefined;
+        }
         selection.select('rect')
             .on('mouseover', function (d) {
                 that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
@@ -260,15 +304,21 @@ CountryTable.prototype.data = function(arg) {
             })
             .transition()
             .attr('fill', function (d, i) {
-                return d.value > 0 ? 
-                    (that._data.neighborCo2[d.key]() !== undefined) ? that.co2color(that._data.neighborCo2[d.key]()) : 'gray'
-                    : (that._data.co2 !== undefined) ? that.co2color(that._data.co2) : 'gray';
+                var co2 = getExchangeCo2eq(d);
+                return co2 ? that.co2Color(co2) : 'gray';
             })
             .attr('x', function (d) {
-                return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
+                console.log(d.value * 1000.0 * getExchangeCo2eq(d), that.co2Scale(Math.min(d.value * 1000.0 * getExchangeCo2eq(d), 0)))
+                if (that._displayByEmissions)
+                    return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value * 1000.0 * getExchangeCo2eq(d), 0));
+                else
+                    return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
             })
             .attr('width', function (d) { 
-                return Math.abs(that.powerScale(d.value) - that.powerScale(0));
+                if (that._displayByEmissions)
+                    return Math.abs(that.co2Scale(d.value * 1000.0 * getExchangeCo2eq(d)) - that.co2Scale(0));
+                else
+                    return Math.abs(that.powerScale(d.value) - that.powerScale(0));
             })
         selection.select('text')
             .text(function(d) { return d.key; });
