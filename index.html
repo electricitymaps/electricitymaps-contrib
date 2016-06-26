@@ -45,13 +45,13 @@
         <canvas class="map wind"></canvas>
         <!--<canvas class="map solar"></canvas>-->
         <div class="legend">
-            <div class="wind-legend">
-                <span class="colorbar-unit">m/s</span>
-                <svg class="wind-colorbar"></svg>
-            </div>
             <div class="co2-legend">
-                <span class="colorbar-unit">gCO2eq/kWh</span>
+                <span class="colorbar-unit">GHG intensity (gCO2eq/kWh)</span>
                 <svg class="co2-colorbar"></svg>
+            </div>
+            <div class="wind-legend">
+                <span class="colorbar-unit">Wind speed (m/s)</span>
+                <svg class="wind-colorbar"></svg>
             </div>
         </div>
         <div class="panel-container">
@@ -67,11 +67,14 @@
             </div>
             <svg class="country-table" style="display: none"></svg>
             <div class="country-table-initial-text">
-                Welcome!!
-                <br>
-                <br>
-                <br>
-                Tada!
+                <span style="font-size: 1.3em">This is the <b>electricity map</b></span><br />
+                <br />
+                It shows, in real-time, <span style="color: white">where your electricity comes from</span>
+                and <span style="color: white">how much greenhouse gas (GHG)</span> was emitted in the process.<br />
+                <br />
+                The map also shows renewable resources like wind and sun. If you have access to better data, please <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">contribute</a> to complete the map!<br />
+                <br />
+                <span style="color: white">To start, click on a country</span>
             </div>
         </div>
         <div class="contribute-bar">
