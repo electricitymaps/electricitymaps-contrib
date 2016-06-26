@@ -188,6 +188,7 @@ CountryTable.prototype.data = function(arg) {
                 production: arg.production[d],
                 capacity: arg.capacity[d],
                 mode: d,
+                gCo2eqPerkWh: co2eqCalculator.footprintOf(d, that._data.countryCode),
                 gCo2eqPerHour: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
             };
         });
@@ -196,6 +197,8 @@ CountryTable.prototype.data = function(arg) {
             .data(sortedProductionData);
         selection.select('rect.capacity')
             .transition()
+            /*.attr('fill', function (d) { return that.co2color(d.gCo2eqPerkWh); })
+            .attr('stroke', function (d) { return that.co2color(d.gCo2eqPerkWh); })*/
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
                 return (d.capacity === undefined || d.production === undefined) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
@@ -211,6 +214,7 @@ CountryTable.prototype.data = function(arg) {
                 console.log(d.gCo2eqPerHour / 1000000.0 / 3600.0, 'tCo2eq/s');
             })
             .transition()
+            //.attr('fill', function (d) { return that.co2color(d.gCo2eqPerkWh); })
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
                 return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
