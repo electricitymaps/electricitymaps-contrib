@@ -88,6 +88,19 @@ var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
 
 var co2eqCalculator = new Co2eqCalculator();
 
+// State
+var tableDisplayEmissions = countryTable.displayByEmissions();
+
+function toogleSource() {
+    tableDisplayEmissions = !tableDisplayEmissions;
+    countryTable
+        .displayByEmissions(tableDisplayEmissions);
+    d3.select('.country-show-emissions')
+        .style('display', tableDisplayEmissions ? 'none' : 'block');
+    d3.select('.country-show-electricity')
+        .style('display', tableDisplayEmissions ? 'block' : 'none');
+}
+
 // TODO: Name properly
 var canvas = d3.select('.wind');
 var width = window.innerWidth;
