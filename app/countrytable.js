@@ -171,17 +171,18 @@ CountryTable.prototype.data = function(arg) {
                 -this._data.maxExport,
                 Math.max(this._data.maxCapacity, this._data.maxProduction)
             ]);
+        // co2 scale in tCO2eq/s
         var maxCO2eqExport = d3.max(exchangeData, function (d) {
-            return d.value >= 0 ? 0 : that._data.co2 * 1000.0 * -d.value;
+            return d.value >= 0 ? 0 : that._data.co2 / 1000.0 * -d.value;
         });
         var maxCO2eqImport = d3.max(exchangeData, function (d) {
-            return d.value <= 0 ? 0 : that._data.neighborCo2[d.key]() * 1000.0 * d.value;
+            return d.value <= 0 ? 0 : that._data.neighborCo2[d.key]() / 1000.0 * d.value;
         });
         this.co2Scale
             .domain([
                 -maxCO2eqExport || 0,
                 Math.max(
-                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH; }),
+                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH / 1000000.0; }),
                     maxCO2eqImport || 0
                 )
             ]);
@@ -195,7 +196,7 @@ CountryTable.prototype.data = function(arg) {
         if (that._displayByEmissions)
             this.axis
                 .scale(this.co2Scale)
-                .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'g/H'; });
+                .tickFormat(function (d) { return d3.format('s')(d) + 't/H'; });
         else
             this.axis
                 .scale(this.powerScale)
@@ -232,6 +233,9 @@ CountryTable.prototype.data = function(arg) {
 
         var selection = this.productionRoot.selectAll('.row')
             .data(sortedProductionData);
+        /*selection.select('rect.capacity')
+            .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); })
+            .attr('stroke', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
         if (that._displayByEmissions)
             selection.select('rect.capacity')
                 .transition()
@@ -239,12 +243,11 @@ CountryTable.prototype.data = function(arg) {
         else
             selection.select('rect.capacity')
                 .transition()
-                /*.attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); })
-                .attr('stroke', function (d) { return that.co2Color(d.gCo2eqPerkWh); })*/
                 .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
                 .attr('width', function (d) {
                     return (d.capacity === undefined || d.production === undefined) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
-                });
+                })
+                .each('end', function () { d3.select(this).style('display', 'block'); });
         selection.select('rect.production')
             .on('mouseover', function (d) {
                 that.productionMouseOverHandler.call(this, d, that._data.countryCode);
@@ -253,19 +256,20 @@ CountryTable.prototype.data = function(arg) {
                 that.productionMouseOutHandler.call(this, d);
             })
             .on('click', function (d) {
-                console.log(d.gCo2eqPerH / 1000000.0 / 3600.0, 'tCO2eq/s');
+                console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/s');
             })
+        /*selection.select('rect.production')
+            .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
         if (that._displayByEmissions)
             selection.select('rect.production')
                 .transition()
                 .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
                 .attr('width', function (d) {
-                    return !isFinite(d.gCo2eqPerH) ? 0 : that.co2Scale(d.gCo2eqPerH);
+                    return !isFinite(d.gCo2eqPerH) ? 0 : that.co2Scale(d.gCo2eqPerH / 1000000.0);
                 });
         else
             selection.select('rect.production')
                 .transition()
-                //.attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); })
                 .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
                 .attr('width', function (d) {
                     return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
@@ -334,10 +338,11 @@ CountryTable.prototype.data = function(arg) {
             .attr('x', function (d) {
                 if (that._displayByEmissions) {
                     var co2intensity = getExchangeCo2eq(d);
+                    console.log(that.co2Scale(Math.min(d.value / 1000.0 * co2intensity, 0)), d.value / 1000.0 * co2intensity)
                     if (getExchangeCo2eq(d) === undefined)
                         return that.LABEL_MAX_WIDTH;
                     else
-                        return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value * 1000.0 * co2intensity, 0));
+                        return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value / 1000.0 * co2intensity, 0));
                 }
                 else
                     return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
@@ -348,7 +353,7 @@ CountryTable.prototype.data = function(arg) {
                     if (getExchangeCo2eq(d) === undefined)
                         return 0;
                     else
-                        return Math.abs(that.co2Scale(d.value * 1000.0 * co2intensity) - that.co2Scale(0));
+                        return Math.abs(that.co2Scale(d.value / 1000.0 * co2intensity) - that.co2Scale(0));
                 }
                 else
                     return Math.abs(that.powerScale(d.value) - that.powerScale(0));
