@@ -85,6 +85,16 @@ CountryTable.prototype.render = function() {
     this.resize();
 }
 
+CountryTable.prototype.displayByEmissions = function(arg) {
+    if (arg === undefined) return this._displayByEmissions;
+    else {
+        this._displayByEmissions = arg;
+        // Quick hack to re-render
+        this.data(this._data);
+    }
+    return this;
+}
+
 CountryTable.prototype.onExchangeMouseOver = function(arg) {
     if (!arg) return this.exchangeMouseOverHandler;
     else this.exchangeMouseOverHandler = arg;
