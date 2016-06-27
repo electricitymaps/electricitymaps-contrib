@@ -305,18 +305,32 @@ CountryTable.prototype.data = function(arg) {
             })
             .transition()
             .attr('fill', function (d, i) {
-                var co2 = getExchangeCo2eq(d);
-                return co2 ? that.co2Color(co2) : 'gray';
+                if (that._displayByEmissions)
+                    return 'gray'
+                else {
+                    var co2intensity = getExchangeCo2eq(d);
+                    return (co2intensity !== undefined) ? that.co2Color(co2intensity) : 'gray';
+                }
             })
             .attr('x', function (d) {
-                if (that._displayByEmissions)
-                    return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value * 1000.0 * getExchangeCo2eq(d), 0));
+                if (that._displayByEmissions) {
+                    var co2intensity = getExchangeCo2eq(d);
+                    if (getExchangeCo2eq(d) === undefined)
+                        return that.LABEL_MAX_WIDTH;
+                    else
+                        return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value * 1000.0 * co2intensity, 0));
+                }
                 else
                     return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
             })
             .attr('width', function (d) { 
-                if (that._displayByEmissions)
-                    return Math.abs(that.co2Scale(d.value * 1000.0 * getExchangeCo2eq(d)) - that.co2Scale(0));
+                if (that._displayByEmissions) {
+                    var co2intensity = getExchangeCo2eq(d);
+                    if (getExchangeCo2eq(d) === undefined)
+                        return 0;
+                    else
+                        return Math.abs(that.co2Scale(d.value * 1000.0 * co2intensity) - that.co2Scale(0));
+                }
                 else
                     return Math.abs(that.powerScale(d.value) - that.powerScale(0));
             })

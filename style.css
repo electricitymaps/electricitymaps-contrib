@@ -69,7 +69,8 @@ html, body {
     width: 100%;
 }
 .country-table-initial-text {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    color: darkgrey;
 }
 .country-emission-intensity {
     font-weight: bold;
