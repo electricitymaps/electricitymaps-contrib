@@ -55,6 +55,7 @@ html, body {
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
     width: 350px;
+    line-height: 1.7em;
 }
 .panel-container > svg {
     display: block;
@@ -68,8 +69,16 @@ html, body {
     width: 100%;
 }
 .country-table-initial-text {
-    line-height: 1.7em;
     font-size: 1.2em;
+}
+.country-emission-intensity {
+    font-weight: bold;
+}
+.country-emission-rect {
+    display: inline-block;
+    border: 1px solid gray;
+    width: 8px;
+    height: 8px;
 }
 
 .colorbar-unit {

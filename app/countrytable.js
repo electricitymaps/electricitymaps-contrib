@@ -21,11 +21,12 @@ function CountryTable(selector, co2Color) {
         'biomass': '#166a57',
         'coal': '#ac8c35',
         'oil': '#8356a2',
-        'nuclear': '#f500c4',
+        'nuclear': '#AEB800',
         'gas': '#f30a0a',
         'other': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
+    this.POWER_FORMAT = function (d) { return d3.format('s')(d * 1000000) + 'W'; };
 
     // State
     this._displayByEmissions = false;
@@ -188,7 +189,7 @@ CountryTable.prototype.data = function(arg) {
         else
             this.axis
                 .scale(this.powerScale)
-                .tickFormat(function (d) { return d3.format('s')(d * 1000000) + 'W'; })
+                .tickFormat(this.POWER_FORMAT)
         this.gPowerAxis
             .transition()
             .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
@@ -242,7 +243,7 @@ CountryTable.prototype.data = function(arg) {
                 that.productionMouseOutHandler.call(this, d);
             })
             .on('click', function (d) {
-                console.log(d.gCo2eqPerH / 1000000.0 / 3600.0, 'tCo2eq/s');
+                console.log(d.gCo2eqPerH / 1000000.0 / 3600.0, 'tCO2eq/s');
             })
         if (that._displayByEmissions)
             selection.select('rect.production')
@@ -261,7 +262,7 @@ CountryTable.prototype.data = function(arg) {
                 });
         selection.select('text.unknown')
             .transition()
-            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+            .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('fill', 'lightgray')
             .style('display', function (d) {
                 return d.production === undefined ? 'block' : 'none';
@@ -308,7 +309,6 @@ CountryTable.prototype.data = function(arg) {
                 return co2 ? that.co2Color(co2) : 'gray';
             })
             .attr('x', function (d) {
-                console.log(d.value * 1000.0 * getExchangeCo2eq(d), that.co2Scale(Math.min(d.value * 1000.0 * getExchangeCo2eq(d), 0)))
                 if (that._displayByEmissions)
                     return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value * 1000.0 * getExchangeCo2eq(d), 0));
                 else
@@ -322,6 +322,11 @@ CountryTable.prototype.data = function(arg) {
             })
         selection.select('text')
             .text(function(d) { return d.key; });
+        d3.select('.country-emission-intensity')
+            .text(Math.round(this._data.co2));
+        d3.select('.country-emission-rect')
+            .transition()
+            .style('background-color', that.co2Color(this._data.co2));
 
         this.resize();
     }

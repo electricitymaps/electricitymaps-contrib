@@ -67,9 +67,9 @@ CountryMap.prototype.render = function() {
                             .style('stroke-width', that.STROKE_WIDTH);
                     }
                     that.selectedCountry = d3.select(this);
-                    that.selectedCountry
-                        .style('stroke', 'darkred')
-                        .style('stroke-width', 1.5);
+                    // that.selectedCountry
+                    //     .style('stroke', 'darkred')
+                    //     .style('stroke-width', 1.5);
                     return that.countryClickHandler.call(this, d, i);
                 });
         selector
