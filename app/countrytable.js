@@ -179,10 +179,10 @@ CountryTable.prototype.data = function(arg) {
         });
         this.co2Scale
             .domain([
-                -maxCO2eqExport,
+                -maxCO2eqExport || 0,
                 Math.max(
                     d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH; }),
-                    maxCO2eqImport
+                    maxCO2eqImport || 0
                 )
             ]);
 
