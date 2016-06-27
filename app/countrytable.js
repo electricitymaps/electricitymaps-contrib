@@ -293,10 +293,19 @@ CountryTable.prototype.data = function(arg) {
         gNewRow.append('text')
             .attr('x', 4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_X)
             .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
+        gNewRow.append('text')
+            .attr('class', 'unknown')
+            .text('?');
         gNewRow.append('rect')
             .attr('height', this.ROW_HEIGHT)
             .attr('opacity', this.RECT_OPACITY)
             .style('transform-origin', 'left')
+        selection.select('text.unknown')
+            .transition()
+            .attr('transform', 'translate(' + (that.LABEL_MAX_WIDTH + that.co2Scale(0)) + ', ' + this.TEXT_ADJUST_Y + ')')
+            .style('display', function(d) {
+                return (that._displayByEmissions && getExchangeCo2eq(d) === undefined) ? 'block' : 'none';
+            });
         selection.select('image')
             .attr('xlink:href', function (d) {
                 return 'vendor/flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
