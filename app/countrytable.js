@@ -80,6 +80,7 @@ CountryTable.prototype.render = function() {
     gNewRow.append('text')
         .attr('class', 'unknown')
         .text('?')
+        .style('fill', 'darkgray')
         .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
     this.resize();
@@ -196,7 +197,7 @@ CountryTable.prototype.data = function(arg) {
         if (that._displayByEmissions)
             this.axis
                 .scale(this.co2Scale)
-                .tickFormat(function (d) { return d3.format('s')(d) + 't/H'; });
+                .tickFormat(function (d) { return d3.format('s')(d) + 't/h'; });
         else
             this.axis
                 .scale(this.powerScale)
@@ -277,7 +278,6 @@ CountryTable.prototype.data = function(arg) {
         selection.select('text.unknown')
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
-            .style('fill', 'lightgray')
             .style('display', function (d) {
                 return d.production === undefined ? 'block' : 'none';
             });
@@ -299,6 +299,7 @@ CountryTable.prototype.data = function(arg) {
             .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
         gNewRow.append('text')
             .attr('class', 'unknown')
+            .style('fill', 'darkgray')
             .text('?');
         gNewRow.append('rect')
             .attr('height', this.ROW_HEIGHT)
