@@ -10,3 +10,4 @@ services:
     depends_on: [mongo]
   mongo:
     image: mongo
+    volumes: ['./mongodata/:/data/db']
