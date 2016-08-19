@@ -1,4 +1,4 @@
-import arrow, json, pygrib, subprocess
+import arrow, gzip, json, pygrib, subprocess
 
 BASE = '00'
 MULTIPLE = 6
@@ -44,7 +44,7 @@ def fetch_solar():
         'forecasts': [obj_before, obj_after]
     }
 
-    with open('data/solar.json', 'w') as f:
+    with gzip.open('data/solar.json.gz', 'w') as f:
         json.dump(obj, f)
 
 if __name__ == '__main__':

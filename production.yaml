@@ -16,7 +16,7 @@ services:
     network_mode: "bridge"
     command: uwsgi --ini uwsgi.ini
   feeder:
-    image: web
+    image: electricitymap_web
     environment:
      - ENV=production
      - MONGO_URL=mongodb://mongo:27017
