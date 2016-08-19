@@ -14,6 +14,19 @@ services:
     external_links: ["grafana_graphite_statsd:statsd"]
     links: [mongo]
     network_mode: "bridge"
+    command: uwsgi --ini uwsgi.ini
+  feeder:
+    image: web
+    environment:
+     - ENV=production
+     - MONGO_URL=mongodb://mongo:27017
+     - STATSD_HOST=statsd
+    env_file: ./mailgun.env
+    depends_on: [mongo]
+    external_links: ["grafana_graphite_statsd:statsd"]
+    links: [mongo]
+    network_mode: "bridge"
+    command: python -u backend/feeder.py
   mongo:
     image: mongo
     volumes: ['/home/shared/electricitymap/data:/data/db']

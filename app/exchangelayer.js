@@ -95,7 +95,6 @@ ExchangeLayer.prototype.render = function() {
         .append('path')
             .attr('d', function(d) { return that.trianglePath(); })
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
-            .attr('stroke', 'black')
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
             .on('click', function (d) { console.log(d); })
@@ -103,6 +102,10 @@ ExchangeLayer.prototype.render = function() {
         .attr('transform', function (d) {
             var center = that.projection()(d.lonlat);
             return 'translate(' + center[0] + ',' + center[1] + ')';
+        })
+        .attr('stroke', function (d) {
+            var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
+            return co2 > 400 ? 'lightgray' : 'black';
         })
         .select('path')
             .transition()
