@@ -7,6 +7,7 @@ PORT = 8000
 
 app = flask.Flask(__name__, static_folder='data')
 app.debug = (ENV == 'development')
+if app.debug: app.threaded = True
 CORS(app)
 
 # Stats

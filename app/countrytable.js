@@ -208,7 +208,7 @@ CountryTable.prototype.data = function(arg) {
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')
-            .attr('font-size', '0.4em')
+            .attr('font-size', '0.7em')
         this.gPowerAxis.selectAll('.tick line')
                 .style('stroke', 'gray')
                 .style('stroke-width', 1)
