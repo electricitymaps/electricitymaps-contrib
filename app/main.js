@@ -160,9 +160,31 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     }
 
     console.log('wind', wind);
+    var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
+    var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
+    console.log('#1 wind forecast target', 
+        t_before.fromNow(),
+        'made', moment(wind.forecasts[0][0].header.refTime).fromNow());
+    console.log('#2 wind forecast target',
+        t_after.fromNow(),
+        'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
+    // Interpolate wind
+    var now = (new Date()).getTime();
+    var interpolatedWind = wind.forecasts[0];
+    var k = (now - t_before)/(t_after - t_before);
+    interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
+        return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
+    });
+    interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
+        return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
+    });
+    if (moment(now) > moment(t_after)) {
+        console.error('Error while interpolating wind because current time is out of bounds');
+    }
+
     var sw = countryMap.projection().invert([0, height]);
     var ne = countryMap.projection().invert([width, 0]);
-    windLayer.params.data = wind;
+    windLayer.params.data = interpolatedWind;
     windLayer.start(
         [[0, 0], [width, height]], 
         width,
@@ -406,7 +428,6 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     }
 
     console.log('countries', countries);
-    console.log('wind updated', moment(wind[0].header.refTime).add(wind[0].header.forecastTime, 'hours').fromNow());
 
     countryMap
         .data(d3.values(countries))
