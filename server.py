@@ -62,13 +62,17 @@ def production_GET():
 @statsd.StatsdTimer.wrap('solar_GET')
 def solar_GET():
     statsd.increment('solar_GET')
-    return flask.send_from_directory('data', 'solar.json')
+    response = flask.make_response(flask.send_from_directory('data', 'solar.json.gz'))
+    response.headers['Content-Encoding'] = 'gzip'
+    return response
 
 @app.route('/wind', methods=['GET', 'OPTIONS'])
 @statsd.StatsdTimer.wrap('wind_GET')
 def wind_GET():
     statsd.increment('wind_GET')
-    return flask.send_from_directory('data', 'wind.json')
+    response = flask.make_response(flask.send_from_directory('data', 'wind.json.gz'))
+    response.headers['Content-Encoding'] = 'gzip'
+    return response
 
 @app.route('/data/<path:path>', methods=['GET', 'OPTIONS'])
 @statsd.StatsdTimer.wrap('data_GET')

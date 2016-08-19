@@ -6,3 +6,4 @@ pymongo==3.2.2
 requests==2.10.0
 schedule==0.3.2
 -e git+https://github.com/gaelenh/python-statsd-client.git#egg=statsd-client
+uwsgi
