@@ -171,53 +171,60 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     // Interpolate wind
     var now = (new Date()).getTime();
     var interpolatedWind = wind.forecasts[0];
-    var k = (now - t_before)/(t_after - t_before);
-    interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
-        return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
-    });
-    interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
-        return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
-    });
     if (moment(now) > moment(t_after)) {
         console.error('Error while interpolating wind because current time is out of bounds');
+    } else {
+        var k = (now - t_before)/(t_after - t_before);
+        interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
+            return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
+        });
+        interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
+            return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
+        });
+        var sw = countryMap.projection().invert([0, height]);
+        var ne = countryMap.projection().invert([width, 0]);
+        windLayer.params.data = interpolatedWind;
+        windLayer.start(
+            [[0, 0], [width, height]], 
+            width,
+            height,
+            [sw, ne]
+        );
     }
-
-    var sw = countryMap.projection().invert([0, height]);
-    var ne = countryMap.projection().invert([width, 0]);
-    windLayer.params.data = interpolatedWind;
-    windLayer.start(
-        [[0, 0], [width, height]], 
-        width,
-        height,
-        [sw, ne]
-    );
 
     console.log('solar', solar);
     if (ctx) {
         // Interpolates between two solar forecasts
-        var Nx = solar.forecasts[0].DLWRF.length;
-        var Ny = solar.forecasts[0].DLWRF[0].length;
+        var Nx = solar.forecasts[0].DSWRF.length;
+        var Ny = solar.forecasts[0].DSWRF[0].length;
         var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
         var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
         var now = (new Date()).getTime();
-        console.log('solar updated', moment(now).fromNow());
+        console.log('#1 solar forecast target', 
+            moment(t_before).fromNow(),
+            'made', moment(solar.forecasts[0].date).fromNow());
+        console.log('#2 solar forecast target',
+            moment(t_after).fromNow(),
+            'made', moment(solar.forecasts[1].date).fromNow());
         if (moment(now) > moment(solar.forecasts[1].horizon)) {
             console.error('Error while interpolating solar because current time is out of bounds');
-        }
-        var k = (now - t_before)/(t_after - t_before);
-        for (var i of d3.range(Nx)) {
-            for (var j of d3.range(Ny)) {
-                var n = i * Ny + j;
-                var lon = solar.forecasts[0].lonlats[0][n];
-                var lat = solar.forecasts[0].lonlats[1][n];
-                var val = d3.interpolate(solar.forecasts[0].DLWRF[i][j], solar.forecasts[1].DLWRF[i][j])(k);
-                var p = countryMap.projection()([lon, lat]);
-                if (isNaN(p[0]) || isNaN(p[1]))
-                    continue;
-                ctx.beginPath();
-                ctx.arc(p[0], p[1], 2, 0, 2 * Math.PI);
-                ctx.fillStyle = solarColor(val);
-                ctx.fill();
+        } else {
+            var k = (now - t_before)/(t_after - t_before);
+            var dotSize = 1.0;
+            for (var i of d3.range(Nx)) {
+                for (var j of d3.range(Ny)) {
+                    var n = i * Ny + j;
+                    var lon = solar.forecasts[0].lonlats[0][n];
+                    var lat = solar.forecasts[0].lonlats[1][n];
+                    var val = d3.interpolate(solar.forecasts[0].DSWRF[i][j], solar.forecasts[1].DSWRF[i][j])(k);
+                    var p = countryMap.projection()([lon, lat]);
+                    if (isNaN(p[0]) || isNaN(p[1]))
+                        continue;
+                    ctx.beginPath();
+                    ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
+                    ctx.fillStyle = solarColor(val);
+                    ctx.fill();
+                }
             }
         }
     }
