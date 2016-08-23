@@ -15,6 +15,7 @@ services:
     links: [mongo]
     network_mode: "bridge"
     command: uwsgi --ini uwsgi.ini
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
     image: electricitymap_web
     environment:
@@ -27,7 +28,8 @@ services:
     links: [mongo]
     network_mode: "bridge"
     command: python -u backend/feeder.py
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   mongo:
     image: mongo
-    volumes: ['/home/shared/electricitymap/data:/data/db']
+    volumes: ['/home/shared/electricitymap/mongodata:/data/db']
     network_mode: "bridge"
