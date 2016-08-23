@@ -78,7 +78,7 @@ def fetch_weather():
         logger.exception('fetch_solar()')
 
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_countries)
-schedule.every(6).hours.do(fetch_weather)
+schedule.every(3).hours.do(fetch_weather)
 
 fetch_countries()
 fetch_weather()
