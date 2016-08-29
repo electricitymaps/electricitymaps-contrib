@@ -102,6 +102,11 @@ def app_GET(path):
 @statsd.StatsdTimer.wrap('health_GET')
 def health_GET():
     statsd.increment('health_GET')
+    # Check last data point obtained
+    EXPIRATION_SECONDS = 30 * 60.0
+    result = list(col.find(sort=[('datetime', pymongo.DESCENDING)], limit=1))
+    if not len(result) or (arrow.now() - arrow.get(result[0]['datetime'])).total_seconds() > EXPIRATION_SECONDS:
+        return flask.jsonify({'error': 'Database is empty or last measurement is too old.'}), 400
     return flask.jsonify({'status': 'ok'})
 
 if __name__ == '__main__':
