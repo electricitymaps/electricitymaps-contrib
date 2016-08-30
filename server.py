@@ -32,9 +32,13 @@ if not app.debug:
     app.logger.addHandler(mail_handler)
     logging.getLogger('statsd').addHandler(logging.StreamHandler())
 
-client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
+# Database
+client = pymongo.MongoClient(
+    os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
 col = db['realtime']
+col.create_index([('datetime', pymongo.DESCENDING)])
+col.create_index([('countryCode', pymongo.ASCENDING)])
 
 def bson_measurement_to_json(obj):
     obj['_id'] = str(obj['_id'])
