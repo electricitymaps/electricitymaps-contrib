@@ -14,11 +14,11 @@ def get_url(origin, horizon):
 def fetch_forecast(origin, horizon):
     try:
         print 'Fetching forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call('wget -q "%s" -O solar.grb2' % (get_url(origin, horizon)), shell=True)
+        subprocess.check_call(['wget', '-nv', get_url(origin, horizon), '-O solar.grb2'], shell=False)
     except subprocess.CalledProcessError:
         origin = origin.replace(hours=-MULTIPLE)
         print 'Trying instead to fetch forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call('wget -q "%s" -O solar.grb2' % (get_url(origin, horizon)), shell=True)
+        subprocess.check_call(['wget', '-nv', get_url(origin, horizon), '-O solar.grb2'], shell=False)
 
     with pygrib.open('solar.grb2') as f:
         #print f.select(name='Downward long-wave radiation flux', level=0)

@@ -48,6 +48,7 @@ if not ENV == 'development':
     mail_handler.setLevel(logging.ERROR)
     logger.addHandler(mail_handler)
     logging.getLogger('statsd').addHandler(logging.StreamHandler())
+else: logger.addHandler(logging.StreamHandler())
 
 
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
