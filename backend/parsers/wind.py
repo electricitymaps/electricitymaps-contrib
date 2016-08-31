@@ -16,11 +16,11 @@ def get_url(origin, horizon):
 def fetch_forecast(origin, horizon):
     try:
         print 'Fetching forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call('wget "%s" -O wind.grb2' % (get_url(origin, horizon)), shell=True)
+        subprocess.check_call('wget -q "%s" -O wind.grb2' % (get_url(origin, horizon)), shell=True)
     except subprocess.CalledProcessError:
         origin = origin.replace(hours=-MULTIPLE_ORIGIN)
         print 'Trying instead to fetch forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call('wget "%s" -O wind.grb2' % (get_url(origin, horizon)), shell=True)
+        subprocess.check_call('wget -q "%s" -O wind.grb2' % (get_url(origin, horizon)), shell=True)
 
     # with pygrib.open('wind.grb2') as f:
     #     U_cmp = f.select(name='10 metre U wind component')[0]
@@ -44,12 +44,12 @@ def fetch_wind():
 
     _ = fetch_forecast(origin, horizon)
     subprocess.check_call('java -Xmx512M -jar grib2json/target/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar ' + \
-        '-d -n -c -o data/wind_before.json wind.grb2', shell=True)
+        '-d -n -c -o data/wind_before.json wind.grb2', shell=False)
 
     # Fetch the forecast after
     _ = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE_HORIZON))
     subprocess.check_call('java -Xmx512M -jar grib2json/target/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar ' + \
-        '-d -n -c -o data/wind_after.json wind.grb2', shell=True)
+        '-d -n -c -o data/wind_after.json wind.grb2', shell=False)
 
     with open('data/wind_before.json') as f_before, \
         open('data/wind_after.json') as f_after, \
@@ -58,6 +58,7 @@ def fetch_wind():
             'forecasts': [json.load(f_before), json.load(f_after)]
         }
         json.dump(obj, f_out)
+    print 'Done'
 
 if __name__ == '__main__':
     fetch_wind()
