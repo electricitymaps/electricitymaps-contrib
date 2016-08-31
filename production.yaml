@@ -13,7 +13,7 @@ services:
     depends_on: [mongo]
     external_links: ["grafana_graphite_statsd:statsd"]
     links: [mongo]
-    network_mode: "bridge"
+    network_mode: "bridge" # required to be able to com' with statsd & nginx
     command: uwsgi --ini uwsgi.ini
     volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
@@ -26,10 +26,9 @@ services:
     depends_on: [mongo]
     external_links: ["grafana_graphite_statsd:statsd"]
     links: [mongo]
-    network_mode: "bridge"
+    network_mode: "bridge" # required to be able to com' with statsd
     command: python -u backend/feeder.py
     volumes: ['/home/shared/electricitymap/data:/home/data']
   mongo:
     image: mongo
     volumes: ['/home/shared/electricitymap/mongodata:/data/db']
-    network_mode: "bridge"

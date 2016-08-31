@@ -14,11 +14,11 @@ def get_url(origin, horizon):
 def fetch_forecast(origin, horizon):
     try:
         print 'Fetching forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call('wget "%s" -O solar.grb2' % (get_url(origin, horizon)), shell=True)
+        subprocess.check_call('wget -q "%s" -O solar.grb2' % (get_url(origin, horizon)), shell=True)
     except subprocess.CalledProcessError:
         origin = origin.replace(hours=-MULTIPLE)
         print 'Trying instead to fetch forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call('wget "%s" -O solar.grb2' % (get_url(origin, horizon)), shell=True)
+        subprocess.check_call('wget -q "%s" -O solar.grb2' % (get_url(origin, horizon)), shell=True)
 
     with pygrib.open('solar.grb2') as f:
         #print f.select(name='Downward long-wave radiation flux', level=0)
@@ -46,6 +46,7 @@ def fetch_solar():
 
     with gzip.open('data/solar.json.gz', 'w') as f:
         json.dump(obj, f)
+    print 'Done'
 
 if __name__ == '__main__':
     fetch_solar()

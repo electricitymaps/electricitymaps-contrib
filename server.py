@@ -62,6 +62,15 @@ def production_GET():
         'data': data
     })
 
+@app.route('/co2', methods=['GET', 'OPTIONS'])
+@statsd.StatsdTimer.wrap('co2_GET')
+def co2_GET():
+    # Solve co2
+    # ...
+    # Geocode to get the country
+    # http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452
+    return flask.jsonify({'error': 'NotImplementedYet'}), 400
+
 @app.route('/solar', methods=['GET', 'OPTIONS'])
 @statsd.StatsdTimer.wrap('solar_GET')
 def solar_GET():
