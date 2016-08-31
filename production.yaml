@@ -31,4 +31,5 @@ services:
     volumes: ['/home/shared/electricitymap/data:/home/data']
   mongo:
     image: mongo
+    network_mode: "bridge" # required to be able to com' with statsd & nginx
     volumes: ['/home/shared/electricitymap/mongodata:/data/db']
