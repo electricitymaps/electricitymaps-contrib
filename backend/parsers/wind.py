@@ -17,12 +17,12 @@ def fetch_forecast(origin, horizon):
     try:
         print 'Fetching forecast of %s made at %s' % (horizon, origin)
         subprocess.check_call(
-            ['wget', '-nv', get_url(origin, horizon), '-O wind.grb2'], shell=False)
+            ['wget', '-nv', get_url(origin, horizon), '-O', 'wind.grb2'], shell=False)
     except subprocess.CalledProcessError:
         origin = origin.replace(hours=-MULTIPLE_ORIGIN)
         print 'Trying instead to fetch forecast of %s made at %s' % (horizon, origin)
         subprocess.check_call(
-            ['wget', '-nv', get_url(origin, horizon), '-O wind.grb2'], shell=False)
+            ['wget', '-nv', get_url(origin, horizon), '-O', 'wind.grb2'], shell=False)
 
     # with pygrib.open('wind.grb2') as f:
     #     U_cmp = f.select(name='10 metre U wind component')[0]
