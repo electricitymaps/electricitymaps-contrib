@@ -11,9 +11,8 @@ services:
      - VIRTUAL_HOST=electricitymap.tmrow.co
     env_file: ./mailgun.env
     depends_on: [mongo]
-    external_links: ["grafana_graphite_statsd:statsd"]
-    links: [mongo]
-    network_mode: "bridge" # required to be able to com' with statsd & nginx
+    external_links: ["grafana_graphite_statsd.infrastructure_default:statsd"]
+    networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     command: uwsgi --ini uwsgi.ini
     volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
@@ -24,12 +23,15 @@ services:
      - STATSD_HOST=statsd
     env_file: ./mailgun.env
     depends_on: [mongo]
-    external_links: ["grafana_graphite_statsd:statsd"]
-    links: [mongo]
-    network_mode: "bridge" # required to be able to com' with statsd
+    external_links: ["grafana_graphite_statsd.infrastructure_default:statsd"]
+    networks: [default, infrastructure] # required to be able to com' with statsd
     command: python -u backend/feeder.py
     volumes: ['/home/shared/electricitymap/data:/home/data']
   mongo:
     image: mongo
-    network_mode: "bridge" # required to be able to com' with statsd & nginx
     volumes: ['/home/shared/electricitymap/mongodata:/data/db']
+
+networks:
+  infrastructure:
+    external:
+      name: infrastructure_default
