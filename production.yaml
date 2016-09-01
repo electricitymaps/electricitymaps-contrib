@@ -4,11 +4,11 @@ services:
     extends:
       file: common.yml
       service: web
-    ports: ["8000:8000"]
     environment:
      - ENV=production
      - MONGO_URL=mongodb://mongo:27017
      - STATSD_HOST=statsd
+     - VIRTUAL_HOST=electricitymap.tmrow.co
     env_file: ./mailgun.env
     depends_on: [mongo]
     external_links: ["grafana_graphite_statsd:statsd"]
