@@ -7,11 +7,10 @@ services:
     environment:
      - ENV=production
      - MONGO_URL=mongodb://mongo:27017
-     - STATSD_HOST=statsd
+     - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
      - VIRTUAL_HOST=electricitymap.tmrow.co
     env_file: ./mailgun.env
     depends_on: [mongo]
-    external_links: ["grafana_graphite_statsd.infrastructure_default:statsd"]
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     command: uwsgi --ini uwsgi.ini
     volumes: ['/home/shared/electricitymap/data:/home/data']
@@ -20,10 +19,9 @@ services:
     environment:
      - ENV=production
      - MONGO_URL=mongodb://mongo:27017
-     - STATSD_HOST=statsd
+     - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
     env_file: ./mailgun.env
     depends_on: [mongo]
-    external_links: ["grafana_graphite_statsd.infrastructure_default:statsd"]
     networks: [default, infrastructure] # required to be able to com' with statsd
     command: python -u backend/feeder.py
     volumes: ['/home/shared/electricitymap/data:/home/data']
