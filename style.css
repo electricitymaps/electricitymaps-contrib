@@ -4,15 +4,9 @@ html, body {
     height: 100%;
     font-family: sans-serif;
 }
-.contribute-bar {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    padding: 5px;
-    background-color: rgba(70,70,70,0.7);
-    text-align: center;
-    color: darkgray;
-    font-size: 0.6em;
+.contribute-text {
+    display: block;
+    margin-top: 20px;
 }
 .watermark {
     position: absolute;
@@ -100,7 +94,7 @@ html, body {
 }
 .legend {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     right: 0px;
     margin: 10px;
     font-size: 0.5em;
