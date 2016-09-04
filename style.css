@@ -7,6 +7,8 @@ html, body {
 .contribute-text {
     display: block;
     margin-top: 20px;
+    margin-bottom: -35px;
+    opacity: 0.5;
 }
 .watermark {
     position: absolute;
