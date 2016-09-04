@@ -103,6 +103,10 @@ def index_GET():
 def style_GET():
     return flask.send_from_directory('', 'style.css')
 
+@app.route('/favicon-32x32.png')
+def favicon_GET():
+    return flask.send_from_directory('', 'favicon-32x32.png')    
+
 @app.route('/vendor/<path:path>', methods=['GET', 'OPTIONS'])
 def vendor_GET(path):
     return flask.send_from_directory('vendor', path)
