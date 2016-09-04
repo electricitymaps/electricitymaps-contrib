@@ -1,6 +1,6 @@
 .PHONY: server
 
-install:
+install: install-grib2json
 	pip install -r requirements.txt
 	pip install honcho==0.7.1
 	
