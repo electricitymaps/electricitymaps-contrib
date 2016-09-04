@@ -105,7 +105,11 @@ def style_GET():
 
 @app.route('/favicon-32x32.png')
 def favicon_GET():
-    return flask.send_from_directory('', 'favicon-32x32.png')    
+    return flask.send_from_directory('', 'favicon-32x32.png')
+
+@app.route('/logo_with_tagline.svg')
+def logo_GET():
+    return flask.send_from_directory('', 'logo_with_tagline.svg')
 
 @app.route('/vendor/<path:path>', methods=['GET', 'OPTIONS'])
 def vendor_GET(path):
