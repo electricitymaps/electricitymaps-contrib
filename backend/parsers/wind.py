@@ -48,7 +48,7 @@ def fetch_wind():
     subprocess.check_call([
         'java',
         '-Xmx512M',
-        '-jar', 'grib2json/target/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar',
+        '-jar', 'grib2json/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar',
         '-d', '-n', '-c', '-o',
         'data/wind_before.json', 'wind.grb2'], shell=False)
 
@@ -57,7 +57,7 @@ def fetch_wind():
     subprocess.check_call([
         'java',
         '-Xmx512M',
-        '-jar', 'grib2json/target/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar',
+        '-jar', 'grib2json/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar',
         '-d', '-n', '-c', '-o',
         'data/wind_after.json', 'wind.grb2'], shell=False)
 
