@@ -4,15 +4,26 @@ html, body {
     height: 100%;
     font-family: sans-serif;
 }
-.contribute-bar {
+.contribute-text {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(70, 70, 70, 0.95);
+    font-size: 0.6em;
+    color: lightgray;
+    padding: 3px 5px;
+}
+.watermark {
     position: absolute;
     left: 0px;
-    bottom: 0px;
-    padding: 5px;
-    background-color: rgba(70,70,70,0.7);
-    text-align: center;
-    color: darkgray;
-    font-size: 0.6em;
+    bottom: 15px;
+    padding: 15px;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+}
+.watermark:hover {
+    opacity: 1;
 }
 .overlay {
     width: 100%;

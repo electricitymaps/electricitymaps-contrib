@@ -1,14 +1,15 @@
 <!DOCTYPE html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF8" />
-        <meta name="description" content="Electricity Map | Real-time visualisation of the climate footprint of electricity generation" />
+        <meta name="description" content="Electricity Map | Real-time climate impact of the European electricity production" />
 
         <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png" />
-        <meta property="og:title" content="Electricity Map | Real-time visualisation of the climate footprint of electricity generation" />
+        <meta property="og:title" content="Electricity Map | Real-time climate impact of the European electricity production" />
 
-        <title>Electricity Map | Real-time visualisation of the climate footprint of electricity generation</title>
+        <title>Electricity Map | Real-time climate impact of the European electricity production</title>
 
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 
         <script src="vendor/d3.v3.min.js"></script>
         <script src="vendor/d3.geo.projection.v0.min.js"></script>
@@ -62,6 +63,8 @@
             </div>
         </div>
         <div class="panel-container">
+            <h1 style="line-height: 1.3; color: white; font-size: 1.4grem; padding-bottom: 15px;
+    border-bottom: solid grey 1px; margin-top: 5px;">Real-time climate impact of the European electricity production</h1>
             <div class="country-table-header" style="display: none">
                 <img class="country-flag">
                 <b>
@@ -77,23 +80,20 @@
             </div>
             <svg class="country-table" style="display: none"></svg>
             <div class="country-table-initial-text">
-                <span style="font-size: 1.3em; color: lightgray">This is the <b>electricity map</b></span><br />
-                <br />
-                It shows, in real-time, <span style="color: lightgray">where your electricity comes from</span>
-                and <span style="color: lightgray">how much greenhouse gas (GHG)</span> was emitted in the process.<br />
+                This map shows in real-time <span style="color: lightgray">where your electricity comes from</span>
+                and <span style="color: lightgray">how much greenhouse gas (GHG)</span> was emitted to produce it.
                 <!--The map also shows renewable resources like wind and sun.<br />-->
                 The <span style="color: lightgray">blinking arrows</span> represent electricity <span style="color: lightgray">imports and exports</span>.<br />
                 <br />
-                &nbsp;&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<span style="color: lightgray">click on a country to get started</span><br />
-                <br />
-                Going further:<br />
-                &gt; <a href="https://github.com/corradio/electricitymap#greenhouse-gas-footprint-calcuation-and-data-source" target="_blank">Understand</a> how GHG emissions are calculated<br />
-                &gt; <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">Contribute</a> to complete the map
+                <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span><br />
             </div>
+            
         </div>
-        <div class="contribute-bar">
-            Help out with missing data by contributing on <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">GitHub</a>. Follow me on <a href="https://twitter.com/corradio" target="_blank">Twitter</a> for the latest updates.
         </div>
+        <div class="watermark">
+            <a href="http://www.tmrow.co" target="_blank"><img src="/tomorrow_logo_open_source.svg" style="width:160px"/></a>
+        </div>
+        <small class="contribute-text">Help out with missing data by contributing on <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">GitHub</a>. Follow us on <a href="https://twitter.com/tmrowco" target="_blank">Twitter</a> for the latest updates.</small>
         <div class="loading overlay"></div>
     </body>
 
