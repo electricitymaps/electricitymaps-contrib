@@ -6,14 +6,14 @@ html, body {
 }
 .contribute-text {
     display: block;
-    margin-top: 20px;
-    margin-bottom: -35px;
-    opacity: 0.5;
+    color: white;
+    margin-top: 15px;
+    font-size: 9px;
 }
 .watermark {
     position: absolute;
     left: 0px;
-    bottom: 10px;
+    bottom: 5px;
     padding: 15px;
     opacity: 0.5;
     transition: all 0.5s ease;
