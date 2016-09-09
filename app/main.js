@@ -211,8 +211,8 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
         } else {
             var k = (now - t_before)/(t_after - t_before);
             var dotSize = 1.0;
-            for (var i of d3.range(Nx)) {
-                for (var j of d3.range(Ny)) {
+            d3.range(Nx).forEach(function(i) {
+                d3.range(Ny).forEach(function(j) {
                     var n = i * Ny + j;
                     var lon = solar.forecasts[0].lonlats[0][n];
                     var lat = solar.forecasts[0].lonlats[1][n];
@@ -224,8 +224,8 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
                     ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
                     ctx.fillStyle = solarColor(val);
                     ctx.fill();
-                }
-            }
+                });
+            });
         }
     }
 
@@ -334,15 +334,16 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     };
 
     // Populate with realtime production data
-    for (var countryCode of d3.keys(production.data)) {
+    d3.keys(production.data).forEach(function(countryCode) {
         var obj = production.data[countryCode];
         var country = countries[countryCode];
         if (!country) {
             console.warn(countryCode + ' has no country definition.');
             continue;
         }
-        for (var k of d3.keys(obj))
+        d3.keys(obj).forEach(function(k) {
             country.data[k] = obj[k];
+        });
         // Add own country code so each country is identifiable
         country.data.countryCode = countryCode;
         countryTable.PRODUCTION_MODES.forEach(function (mode) {
@@ -354,7 +355,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
         });
         if (!country.data.exchange || !d3.keys(country.data.exchange).length)
             console.warn(countryCode + ' is missing exchanges');
-    }
+    });
 
     // Populate exchange pairs for arrows
     var exchanges = []
@@ -421,7 +422,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     });
 
     // Issue warnings for missing exchange configurations
-    for (var countryCode of d3.keys(production.data)) {
+    d3.keys(production.data).forEach(function(countryCode) {
         var country = countries[countryCode]
         if (!country) continue;
         d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
@@ -432,7 +433,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
             if (!matches.length)
                 console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
         });
-    }
+    });
 
     console.log('countries', countries);
 
