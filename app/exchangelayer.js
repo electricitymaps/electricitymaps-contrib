@@ -3,10 +3,10 @@ function ExchangeLayer(selector) {
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.exchangeAnimationDurationScale = d3.scale.pow()
         .exponent(2)
-        .domain([500, 4000])
+        .domain([500, 6000])
         .range([2000, 10])
     this.exchangeArrowScale = d3.scale.linear()
-        .domain([500, 4000])
+        .domain([500, 6000])
         .range([4, 15])
 
     this.root = d3.select(selector);
