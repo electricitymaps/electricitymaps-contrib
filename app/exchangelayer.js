@@ -5,8 +5,7 @@ function ExchangeLayer(selector) {
         .exponent(2)
         .domain([500, 4000])
         .range([2000, 10])
-    this.exchangeArrowScale = d3.scale.pow()
-        .exponent(2)
+    this.exchangeArrowScale = d3.scale.linear()
         .domain([500, 4000])
         .range([4, 15])
 
