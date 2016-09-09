@@ -219,7 +219,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
                     var val = d3.interpolate(solar.forecasts[0].DSWRF[i][j], solar.forecasts[1].DSWRF[i][j])(k);
                     var p = countryMap.projection()([lon, lat]);
                     if (isNaN(p[0]) || isNaN(p[1]))
-                        continue;
+                        return;
                     ctx.beginPath();
                     ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
                     ctx.fillStyle = solarColor(val);
