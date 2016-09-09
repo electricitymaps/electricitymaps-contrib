@@ -424,7 +424,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
     // Issue warnings for missing exchange configurations
     d3.keys(production.data).forEach(function(countryCode) {
         var country = countries[countryCode]
-        if (!country) continue;
+        if (!country) return;
         d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
             // Find the exchange object
             var matches = exchanges.filter(function (e) {
