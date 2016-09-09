@@ -339,7 +339,7 @@ function dataLoaded(err, countryTopos, production, solar, wind) {
         var country = countries[countryCode];
         if (!country) {
             console.warn(countryCode + ' has no country definition.');
-            continue;
+            return;
         }
         d3.keys(obj).forEach(function(k) {
             country.data[k] = obj[k];
