@@ -1,4 +1,4 @@
-var ENDPOINT = document.domain == 'localhost' ? 'http://localhost:8000' : 'http://electricitymap.tmrow.co';
+var ENDPOINT = document.domain == 'localhost' ? 'http://localhost:8000' : 'http://api.electricitymap.tmrow.co';
 
 var co2color = d3.scale.linear()
     .domain([0, 250, 500])
