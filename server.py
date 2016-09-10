@@ -5,7 +5,7 @@ from flask_cors import CORS
 ENV = os.environ.get('ENV', 'development').lower()
 PORT = 8000
 
-app = flask.Flask(__name__, static_folder='data')
+app = flask.Flask(__name__, static_folder='public')
 app.debug = (ENV == 'development')
 if app.debug: app.threaded = True
 CORS(app)
@@ -75,7 +75,7 @@ def co2_GET():
 @statsd.StatsdTimer.wrap('solar_GET')
 def solar_GET():
     statsd.increment('solar_GET')
-    response = flask.make_response(flask.send_from_directory('data', 'solar.json.gz'))
+    response = flask.make_response(flask.send_from_directory('public/data', 'solar.json.gz'))
     response.headers['Content-Encoding'] = 'gzip'
     return response
 
@@ -83,7 +83,7 @@ def solar_GET():
 @statsd.StatsdTimer.wrap('wind_GET')
 def wind_GET():
     statsd.increment('wind_GET')
-    response = flask.make_response(flask.send_from_directory('data', 'wind.json.gz'))
+    response = flask.make_response(flask.send_from_directory('public/data', 'wind.json.gz'))
     response.headers['Content-Encoding'] = 'gzip'
     return response
 
@@ -91,33 +91,33 @@ def wind_GET():
 @statsd.StatsdTimer.wrap('data_GET')
 def data_GET(path):
     statsd.increment('data_GET')
-    return flask.send_from_directory('data', path)
+    return flask.send_from_directory('public/data', path)
 
 @app.route('/')
 @statsd.StatsdTimer.wrap('index_GET')
 def index_GET():
     statsd.increment('index_GET')
-    return flask.send_from_directory('', 'index.html')
+    return flask.send_from_directory('public', 'index.html')
 
 @app.route('/style.css')
 def style_GET():
-    return flask.send_from_directory('', 'style.css')
+    return flask.send_from_directory('public', 'style.css')
 
 @app.route('/favicon-32x32.png')
 def favicon_GET():
-    return flask.send_from_directory('', 'favicon-32x32.png')
+    return flask.send_from_directory('public', 'favicon-32x32.png')
 
 @app.route('/tomorrow_logo_open_source.svg')
 def logo_GET():
-    return flask.send_from_directory('', 'tomorrow_logo_open_source.svg')
+    return flask.send_from_directory('public', 'tomorrow_logo_open_source.svg')
 
 @app.route('/vendor/<path:path>', methods=['GET', 'OPTIONS'])
 def vendor_GET(path):
-    return flask.send_from_directory('vendor', path)
+    return flask.send_from_directory('public/vendor', path)
 
 @app.route('/app/<path:path>', methods=['GET', 'OPTIONS'])
 def app_GET(path):
-    return flask.send_from_directory('app', path)
+    return flask.send_from_directory('public/app', path)
 
 @app.route('/health', methods=['GET', 'OPTIONS'])
 @statsd.StatsdTimer.wrap('health_GET')

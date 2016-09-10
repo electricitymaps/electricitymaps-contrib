@@ -13,7 +13,7 @@ services:
     depends_on: [mongo]
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     command: uwsgi --ini uwsgi.ini
-    volumes: ['/home/shared/electricitymap/data:/home/data']
+    volumes: ['/home/shared/electricitymap/data:/home/public/data']
   feeder:
     image: electricitymap_web
     environment:
@@ -24,7 +24,7 @@ services:
     depends_on: [mongo]
     networks: [default, infrastructure] # required to be able to com' with statsd
     command: python -u backend/feeder.py
-    volumes: ['/home/shared/electricitymap/data:/home/data']
+    volumes: ['/home/shared/electricitymap/data:/home/public/data']
   mongo:
     image: mongo
     volumes: ['/home/shared/electricitymap/mongodata:/data/db']
