@@ -14,7 +14,7 @@ def fetch_DE():
     parsed = {}
     for s in re.findall('{"id":"(.*?)",.*?,"data":(.*?)(,"|})', body):
         parsed[s[0]] = json.loads(s[1])[-1]
-    # We here assume a constant nuclear production of 7.7GW
+
     data = {
         'countryCode': COUNTRY_CODE,
         'datetime': arrow.get(parsed['wind'][0] / 1000.0).datetime, # UTC
@@ -22,7 +22,8 @@ def fetch_DE():
             'wind': parsed['wind'][1],
             'solar': parsed['solar'][1],
             'biomass': parsed['biomass'][1],
-            'nuclear': 7700
+            'nuclear': 10000,
+            'coal': 15000
         },
         'consumption': {
             'other': parsed['total-load'][1]
@@ -30,7 +31,10 @@ def fetch_DE():
     }
 
     if parsed['run-of-the-river'][1] and parsed['conventional-power'][1]:
-        data['production']['other'] = -7700 - parsed['run-of-the-river'][1] + parsed['conventional-power'][1]
+        hard_coal_and_gas = parsed['conventional-power'][1] - data['production']['coal'] - data['production']['nuclear'] - parsed['run-of-the-river'][1]
+        data['production']['coal'] += 17.0/25.0 * hard_coal_and_gas
+        data['production']['gas'] = 5.0/25.0 * hard_coal_and_gas
+        data['production']['other'] = 3.0/25.0 * hard_coal_and_gas
     
     return data
 
