@@ -1,7 +1,0 @@
-*.grb2
-*.env
-grib2json
-src
-datascience
-data/*wind*
-data/*solar*

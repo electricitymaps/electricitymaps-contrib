@@ -44,7 +44,7 @@ def fetch_solar():
         'forecasts': [obj_before, obj_after]
     }
 
-    with gzip.open('public/data/solar.json.gz', 'w') as f:
+    with gzip.open('data/solar.json.gz', 'w') as f:
         json.dump(obj, f)
     print 'Done'
 

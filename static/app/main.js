@@ -506,10 +506,10 @@ if (!nobrowsercheck && !isChrome()) {
     var REFRESH_TIME_MINUTES = 5;
     function fetchAndReschedule() {
         queue()
-            .defer(d3.json, ENDPOINT + '/data/europe.topo.json')
-            .defer(d3.json, ENDPOINT + '/production')
-            .defer(d3.json, ENDPOINT + '/solar')
-            .defer(d3.json, ENDPOINT + '/wind')
+            .defer(d3.json, ENDPOINT + '/europe.topo.json')
+            .defer(d3.json, ENDPOINT + '/v1/production')
+            .defer(d3.json, ENDPOINT + '/v1/solar')
+            .defer(d3.json, ENDPOINT + '/v1/wind')
             .await(dataLoaded);
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }
