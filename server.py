@@ -114,6 +114,10 @@ def favicon_GET():
 def logo_GET():
     return flask.send_from_directory('public', 'tomorrow_logo_open_source.svg')
 
+@app.route('/chromelogo-highres.png')
+def chrome_logo_GET():
+    return flask.send_from_directory('public', 'chromelogo-highres.png')    
+
 @app.route('/vendor/<path:path>', methods=['GET', 'OPTIONS'])
 def vendor_GET(path):
     return flask.send_from_directory('public/vendor', path)
