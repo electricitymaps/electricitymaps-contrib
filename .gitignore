@@ -1,1 +1,6 @@
 *.pyc
+*.env
+mongodata
+src
+grib2json
+datascience
