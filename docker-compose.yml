@@ -1,16 +1,21 @@
 version: '2'
 services:
-  web:
-    extends:
-      file: common.yml
-      service: web
+  api:
+    build: api
+    command: ./node_modules/.bin/nodemon server.js
+    depends_on: [mongo]
+    environment: [ENV=development, 'MONGO_URL=mongodb://mongo:27017/electricity']
     ports: ['8000:8000']
     volumes:
-      - './public:/home/public'
-      - './backend:/home/backend'
-      - './server.py:/home/server.py'
-    environment: [ENV=development, 'MONGO_URL=mongodb://mongo:27017']
+      - './static:/home/static'
+      - './api/server.js:/home/server.js'
+      - './api/data:/home/data'
+  feeder:
+    build: feeder
     depends_on: [mongo]
+    environment: [ENV=development, 'MONGO_URL=mongodb://mongo:27017/electricity']
+    volumes:
+      - './api/data:/home/data'
   mongo:
     image: mongo
     volumes: ['./mongodata/:/data/db']

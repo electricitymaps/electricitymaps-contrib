@@ -1,0 +1,16 @@
+{
+  "name": "electricitymap-api",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "express": "^4.10.2",
+    "mongodb": "^2.2.9",
+    "node-statsd": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  },
+  "scripts": {
+    "dev": "nodemon server.js"
+  }
+}

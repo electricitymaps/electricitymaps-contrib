@@ -1,21 +1,18 @@
 version: '2'
 services:
-  web:
-    extends:
-      file: common.yml
-      service: web
+  api:
+    build: api
     environment:
      - ENV=production
-     - MONGO_URL=mongodb://mongo:27017
+     - MONGO_URL=mongodb://mongo:27017/electricity
      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
      - VIRTUAL_HOST=electricitymap-api.tmrow.co
     env_file: ./mailgun.env
     depends_on: [mongo]
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
-    command: uwsgi --ini uwsgi.ini
-    volumes: ['/home/shared/electricitymap/data:/home/public/data']
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
-    image: electricitymap_web
+    build: feeder
     environment:
      - ENV=production
      - MONGO_URL=mongodb://mongo:27017
@@ -23,8 +20,7 @@ services:
     env_file: ./mailgun.env
     depends_on: [mongo]
     networks: [default, infrastructure] # required to be able to com' with statsd
-    command: python -u backend/feeder.py
-    volumes: ['/home/shared/electricitymap/data:/home/public/data']
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   mongo:
     image: mongo
     volumes: ['/home/shared/electricitymap/mongodata:/data/db']

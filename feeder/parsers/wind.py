@@ -50,7 +50,7 @@ def fetch_wind():
         '-Xmx512M',
         '-jar', 'grib2json/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar',
         '-d', '-n', '-c', '-o',
-        'public/data/wind_before.json', 'wind.grb2'], shell=False)
+        'data/wind_before.json', 'wind.grb2'], shell=False)
 
     # Fetch the forecast after
     _ = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE_HORIZON))
@@ -59,11 +59,11 @@ def fetch_wind():
         '-Xmx512M',
         '-jar', 'grib2json/grib2json-0.8.0-SNAPSHOT/lib/grib2json-0.8.0-SNAPSHOT.jar',
         '-d', '-n', '-c', '-o',
-        'public/data/wind_after.json', 'wind.grb2'], shell=False)
+        'data/wind_after.json', 'wind.grb2'], shell=False)
 
-    with open('public/data/wind_before.json') as f_before, \
-        open('public/data/wind_after.json') as f_after, \
-        gzip.open('public/data/wind.json.gz', 'w') as f_out:
+    with open('data/wind_before.json') as f_before, \
+        open('data/wind_after.json') as f_after, \
+        gzip.open('data/wind.json.gz', 'w') as f_out:
         obj = {
             'forecasts': [json.load(f_before), json.load(f_after)]
         }

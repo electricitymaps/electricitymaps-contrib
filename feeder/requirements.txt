@@ -1,9 +1,6 @@
 arrow==0.5.0
-Flask==0.11
-Flask-Cors==2.1.2
 pygrib==2.0.1
 pymongo==3.2.2
 requests==2.10.0
 schedule==0.3.2
 -e git+https://github.com/gaelenh/python-statsd-client.git#egg=statsd-client
-uwsgi

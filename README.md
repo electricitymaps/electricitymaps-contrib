@@ -70,20 +70,6 @@ You can also see a list of missing informations displayed as warnings in the dev
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
-To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install all requirements:
-
-```
-Make install
-```
-
-You might need to install the [GRIB API](https://software.ecmwf.int/wiki/display/GRIB/GRIB+API+CMake+installation). On Mac OS, you can simply `brew install grib-api`.
-
-
-Provided you have mongodb installed and running, you can run the full system using
-```
-Make server
-```
-
-If you have Docker, you can just run `docker-compose up` instead. Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
+To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). then you just run `docker-compose up`. Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated.
