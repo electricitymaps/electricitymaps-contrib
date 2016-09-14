@@ -21,4 +21,5 @@ db:
 	mongod
 
 publish-gh-pages:
+	git push origin `git subtree split --prefix public gh-pages`:gh-pages --force
 	git subtree push --prefix public origin gh-pages
