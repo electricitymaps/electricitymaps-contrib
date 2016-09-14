@@ -39,6 +39,9 @@ db = client['electricity']
 col = db['realtime']
 col.create_index([('datetime', pymongo.DESCENDING)])
 col.create_index([('countryCode', pymongo.ASCENDING)])
+col.create_index([
+    ('countryCode', pymongo.ASCENDING),
+    ('datetime', pymongo.DESCENDING)])
 
 def bson_measurement_to_json(obj):
     obj['_id'] = str(obj['_id'])
@@ -49,10 +52,10 @@ def bson_measurement_to_json(obj):
 @app.route('/production', methods=['GET', 'OPTIONS'])
 @statsd.StatsdTimer.wrap('production_GET')
 def production_GET():
-
     statsd.increment('production_GET')
     objs = col.aggregate([
-        {'$group': {'_id': '$countryCode', 'lastDocument': {'$last': '$$CURRENT'}}}
+        {'$sort': {'countryCode': 1, 'datetime': -1}},
+        {'$group': {'_id': '$countryCode', 'lastDocument': {'$first': '$$CURRENT'}}}
     ])
     objs = map(bson_measurement_to_json,
         map(lambda o: o['lastDocument'], list(objs)))
