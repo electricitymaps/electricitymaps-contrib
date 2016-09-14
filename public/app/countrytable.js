@@ -257,7 +257,7 @@ CountryTable.prototype.data = function(arg) {
                 that.productionMouseOutHandler.call(this, d);
             })
             .on('click', function (d) {
-                console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/s');
+                console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/h');
             })
         /*selection.select('rect.production')
             .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
@@ -266,7 +266,7 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
                 .attr('width', function (d) {
-                    return !isFinite(d.gCo2eqPerH) ? 0 : that.co2Scale(d.gCo2eqPerH / 1000000.0);
+                    return !isFinite(d.gCo2eqPerH) ? 0 : (that.co2Scale(d.gCo2eqPerH / 1000000.0) - that.co2Scale(0));
                 });
         else
             selection.select('rect.production')
@@ -339,7 +339,6 @@ CountryTable.prototype.data = function(arg) {
             .attr('x', function (d) {
                 if (that._displayByEmissions) {
                     var co2intensity = getExchangeCo2eq(d);
-                    console.log(that.co2Scale(Math.min(d.value / 1000.0 * co2intensity, 0)), d.value / 1000.0 * co2intensity)
                     if (getExchangeCo2eq(d) === undefined)
                         return that.LABEL_MAX_WIDTH;
                     else
