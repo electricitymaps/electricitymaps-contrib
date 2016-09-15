@@ -44,7 +44,7 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
 var statsdClient = new statsd.StatsD();
 statsdClient.post = 8125;
 statsdClient.host = process.env['STATSD_HOST'];
-statsdClient.prefix = 'electricymap_api';
+statsdClient.prefix = 'electricymap_api.';
 statsdClient.socket.on('error', function(error) {
     return console.error('Error in StatsD socket: ', error);
 });
@@ -165,8 +165,8 @@ app.get('/v1/production', function(req, res) {
                     } else {
                         obj = {}
                         result.forEach(function(d) { obj[d['_id']] = d.lastDocument; });
-                        memcachedClient.set('production', obj, 5 * 60, function (err) {
-                            console.error(err);
+                        memcachedClient.set('production', obj, 5 * 60, function(err) {
+                            if (err) console.error(err);
                         });
                         returnObj(obj, false);
                     }
