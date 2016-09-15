@@ -514,10 +514,10 @@ if (!nobrowsercheck && !isChrome()) {
             .defer(d3.json, ENDPOINT + '/v1/production')
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind')
-            .await(function(){
+            .await(function(err, countryTopos, production, solar, wind) {
                 document.getElementById('connection-warning').className = "hide";
                 clearInterval(timeout_interval);
-                dataLoaded();
+                dataLoaded(err, countryTopos, production, solar, wind);
             });
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }
