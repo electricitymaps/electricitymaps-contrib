@@ -6,6 +6,7 @@
     "d3": "^4.2.3",
     "express": "^4.10.2",
     "mathjs": "^3.5.1",
+    "memcached": "^2.2.2",
     "mongodb": "^2.2.9",
     "node-statsd": "^0.1.1"
   },

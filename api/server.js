@@ -2,6 +2,8 @@ var express = require('express');
 var http = require('http');
 var app = express();
 var server = http.Server(app);
+var Memcached = require('memcached');
+var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 var d3 = require('d3');
 var statsd = require('node-statsd');
 var MongoClient = require('mongodb').MongoClient;
@@ -145,16 +147,31 @@ app.get('/v1/solar', function(req, res) {
 app.get('/v1/production', function(req, res) {
     statsdClient.increment('v1_production_GET');
     var t0 = new Date().getTime();
-    queryLastValues(function (err, result) {
-        if (err) {
-            statsdClient.increment('production_GET_ERROR');
-            console.error(err);
-            res.status(500).json({error: 'Unknown database error'});
-        } else {
-            obj = {}
-            result.forEach(function(d) { obj[d['_id']] = d.lastDocument; });
-            res.json({status: 'ok', data: obj});
-            statsdClient.timing('production_GET', new Date().getTime() - t0);
+    function returnObj(obj, cached) {
+        if (cached) statsdClient.increment('v1_production_GET_HIT_CACHE');
+        var deltaMs = new Date().getTime() - t0;
+        res.json({status: 'ok', data: obj, took: deltaMs + 'ms', cached: cached});
+        statsdClient.timing('production_GET', deltaMs);
+    }
+    memcachedClient.get('production', function (err, data) {
+        if (data) returnObj(data, true);
+        else {
+            if (false && value) { returnObj(obj, true) } else {
+                queryLastValues(function (err, result) {
+                    if (err) {
+                        statsdClient.increment('production_GET_ERROR');
+                        console.error(err);
+                        res.status(500).json({error: 'Unknown database error'});
+                    } else {
+                        obj = {}
+                        result.forEach(function(d) { obj[d['_id']] = d.lastDocument; });
+                        memcachedClient.set('production', obj, 5 * 60, function (err) {
+                            console.error(err);
+                        });
+                        returnObj(obj, false);
+                    }
+                });
+            };
         }
     });
 });

@@ -4,11 +4,12 @@ services:
     build: api
     environment:
      - ENV=production
+     - MEMCACHED_HOST=memcached
      - MONGO_URL=mongodb://mongo:27017/electricity
      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
      - VIRTUAL_HOST=electricitymap-api.tmrow.co
     env_file: ./mailgun.env
-    depends_on: [mongo]
+    depends_on: [mongo, memcached]
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
@@ -21,6 +22,8 @@ services:
     depends_on: [mongo]
     networks: [default, infrastructure] # required to be able to com' with statsd
     volumes: ['/home/shared/electricitymap/data:/home/data']
+  memcached:
+    image: memcached
   mongo:
     image: mongo
     volumes: ['/home/shared/electricitymap/mongodata:/data/db']

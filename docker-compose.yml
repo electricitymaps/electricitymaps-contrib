@@ -3,8 +3,11 @@ services:
   api:
     build: api
     command: ./node_modules/.bin/nodemon server.js
-    depends_on: [mongo]
-    environment: [ENV=development, 'MONGO_URL=mongodb://mongo:27017/electricity']
+    depends_on: [mongo, memcached]
+    environment:
+      - ENV=development
+      - MEMCACHED_HOST=memcached
+      - 'MONGO_URL=mongodb://mongo:27017/electricity'
     ports: ['8000:8000']
     volumes:
       - './api/static:/home/static'
@@ -16,6 +19,8 @@ services:
     environment: [ENV=development, 'MONGO_URL=mongodb://mongo:27017/electricity']
     volumes:
       - './api/data:/home/data'
+  memcached:
+    image: memcached
   mongo:
     image: mongo
     volumes: ['./mongodata/:/data/db']
