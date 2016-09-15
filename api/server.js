@@ -7,6 +7,13 @@ var statsd = require('node-statsd');
 var MongoClient = require('mongodb').MongoClient;
 var co2calc = require('./static/app/co2eq').Co2eqCalculator();
 
+// * Common
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 // * Database
 var mongoCollection;
 MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
@@ -36,6 +43,9 @@ var statsdClient = new statsd.StatsD();
 statsdClient.post = 8125;
 statsdClient.host = process.env['STATSD_HOST'];
 statsdClient.prefix = 'electricymap_api';
+statsdClient.socket.on('error', function(error) {
+    return console.error('Error in StatsD socket: ', error);
+});
 
 // * Database methods
 function queryLastValues(callback) {
