@@ -515,9 +515,14 @@ if (!nobrowsercheck && !isChrome()) {
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind')
             .await(function(err, countryTopos, production, solar, wind) {
-                document.getElementById('connection-warning').className = "hide";
-                clearInterval(timeout_interval);
-                dataLoaded(err, countryTopos, production, solar, wind);
+                if (err) {
+                    console.error(err);
+                    document.getElementById('connection-warning').className = "show";
+                } else {
+                    document.getElementById('connection-warning').className = "hide";
+                    clearInterval(timeout_interval);
+                    dataLoaded(err, countryTopos, production, solar, wind);
+                }
             });
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }
