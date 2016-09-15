@@ -507,7 +507,9 @@ if (!nobrowsercheck && !isChrome()) {
     function fetchAndReschedule() {
         // If data doesn't load in 30 secs, show connection warning
         timeout_interval = setTimeout(function(){
-            document.getElementById('connection-warning').style.display = "block";
+            var warning_el = document.getElementById('connection-warning');
+            warning_el.style.display = "none";
+            warning_el.style.display = "block";
         }, 30000);
         queue()
             .defer(d3.json, 'europe.topo.json')
