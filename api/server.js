@@ -185,8 +185,10 @@ app.get('/v1/co2', function(req, res) {
             console.error(err);
             res.status(500).json({error: 'Unknown error'});
         } else {
+            var deltaMs = new Date().getTime() - t0;
+            result.took = deltaMs + 'ms';
             res.json(result);
-            statsdClient.timing('co2_GET', new Date().getTime() - t0);
+            statsdClient.timing('co2_GET', deltaMs);
         }
     }
 
