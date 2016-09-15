@@ -7,15 +7,22 @@ html, body {
 
 #connection-warning {
     position: fixed;
-    display: none;
+    display: block;
     z-index: 99;
-    height: -40px;
-    top: 0px;
+    height: 40px;
+    top: -40px;
     left: 0;
-    animation: appear-from-top 15s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    transition: all 0.5s ease;
     width: 100%;
+}
+
+#connection-warning.show {
+    top: 0;
+}
+
+#connection-warning.hide {
+    top: -40px;
+    
 }
 
 #connection-warning .inner {

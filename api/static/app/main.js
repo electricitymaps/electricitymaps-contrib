@@ -507,16 +507,15 @@ if (!nobrowsercheck && !isChrome()) {
     function fetchAndReschedule() {
         // If data doesn't load in 30 secs, show connection warning
         timeout_interval = setTimeout(function(){
-            var warning_el = document.getElementById('connection-warning');
-            warning_el.style.display = "none";
-            warning_el.style.display = "block";
-        }, 30000);
+            document.getElementById('connection-warning').className = "show";
+        }, 30 * 1000);
         queue()
             .defer(d3.json, 'europe.topo.json')
             .defer(d3.json, ENDPOINT + '/v1/production')
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind')
             .await(function(){
+                document.getElementById('connection-warning').className = "hide";
                 clearInterval(timeout_interval);
                 dataLoaded();
             });
