@@ -105,18 +105,35 @@ function queryAndCalculateCo2(countryCode, callback) {
 // * Routes
 app.use(express.static('static'));
 app.use(express.static('vendor'));
-app.get('/v1/wind', function(req, res) {
+// Backwards compat
+app.get('/production', function(req, res) {
+    statsdClient.increment('production_GET');
+    res.redirect(301, '/v1/production');
+});
+app.get('/solar', function(req, res) {
+    statsdClient.increment('solar_GET');
+    res.redirect(301, '/v1/solar');
+});
+app.get('/wind', function(req, res) {
     statsdClient.increment('wind_GET');
+    res.redirect(301, '/v1/wind');
+});
+app.get('/data/europe.topo.json', function(req, res) {
+    res.redirect(301, 'http://electricitymap.tmrow.co/data/europe.topo.json');
+});
+// End backwards compat
+app.get('/v1/wind', function(req, res) {
+    statsdClient.increment('v1_wind_GET');
     res.header('Content-Encoding', 'gzip');
     res.sendFile(__dirname + '/data/wind.json.gz');
 });
 app.get('/v1/solar', function(req, res) {
-    statsdClient.increment('solar_GET');
+    statsdClient.increment('v1_solar_GET');
     res.header('Content-Encoding', 'gzip');
     res.sendFile(__dirname + '/data/solar.json.gz');
 });
 app.get('/v1/production', function(req, res) {
-    statsdClient.increment('production_GET');
+    statsdClient.increment('v1_production_GET');
     var t0 = new Date().getTime();
     queryLastValues(function (err, result) {
         if (err) {
@@ -132,7 +149,7 @@ app.get('/v1/production', function(req, res) {
     });
 });
 app.get('/v1/co2', function(req, res) {
-    statsdClient.increment('co2_GET');
+    statsdClient.increment('v1_co2_GET');
     var t0 = new Date().getTime();
 
     function onCo2Computed(err, result) {
