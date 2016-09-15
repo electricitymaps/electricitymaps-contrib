@@ -4,6 +4,34 @@ html, body {
     height: 100%;
     font-family: sans-serif;
 }
+
+#connection-warning {
+    position: fixed;
+    display: none;
+    z-index: 99;
+    height: -40px;
+    top: 0px;
+    left: 0;
+    animation: appear-from-top 15s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    width: 100%;
+}
+
+#connection-warning .inner {
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 .contribute-text {
     display: block;
     position: absolute;
@@ -185,4 +213,16 @@ a {
 }
 a:hover {
     text-decoration: underline;
+}
+
+@keyframes appear-from-top {
+  0% {
+    top: -40px;
+  }
+  15%,85% {
+    top: 0px;
+  }
+  100% {
+    top: -40px;
+  }
 }
