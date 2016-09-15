@@ -505,12 +505,20 @@ if (!nobrowsercheck && !isChrome()) {
     // Periodically load data
     var REFRESH_TIME_MINUTES = 5;
     function fetchAndReschedule() {
+        // If data doesn't load in 30 secs, show connection warning
+        timeout_interval = setTimeout(function(){
+            document.getElementById('connection-warning').className = "show";
+        }, 30 * 1000);
         queue()
             .defer(d3.json, 'europe.topo.json')
             .defer(d3.json, ENDPOINT + '/v1/production')
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind')
-            .await(dataLoaded);
+            .await(function(){
+                document.getElementById('connection-warning').className = "hide";
+                clearInterval(timeout_interval);
+                dataLoaded();
+            });
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }
 

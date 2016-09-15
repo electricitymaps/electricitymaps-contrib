@@ -4,6 +4,41 @@ html, body {
     height: 100%;
     font-family: sans-serif;
 }
+
+#connection-warning {
+    position: fixed;
+    display: block;
+    z-index: 99;
+    height: 40px;
+    top: -40px;
+    left: 0;
+    transition: all 0.5s ease;
+    width: 100%;
+}
+
+#connection-warning.show {
+    top: 0;
+}
+
+#connection-warning.hide {
+    top: -40px;
+    
+}
+
+#connection-warning .inner {
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 .contribute-text {
     display: block;
     position: absolute;
@@ -185,4 +220,16 @@ a {
 }
 a:hover {
     text-decoration: underline;
+}
+
+@keyframes appear-from-top {
+  0% {
+    top: -40px;
+  }
+  15%,85% {
+    top: 0px;
+  }
+  100% {
+    top: -40px;
+  }
 }
