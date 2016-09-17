@@ -67,6 +67,7 @@ function queryAndCalculateCo2(countryCode, callback) {
                     data: {
                         production: d.lastDocument.production,
                         exchange: d.lastDocument.exchange,
+                        datetime: d.lastDocument.datetime,
                         countryCode: d['_id']
                     }
                 };
@@ -104,12 +105,16 @@ function queryAndCalculateCo2(countryCode, callback) {
                     -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
             });
             co2calc.compute(countries);
-            callback(err, {
-                status: 'ok',
-                countryCode: countryCode,
-                data: co2calc.assignments[countryCode],
-                unit: 'gCo2eq/kWh'
-            });
+            if (!countries[countryCode])
+                callback(Error('Country ' + countryCode + ' has no data.'), null)
+            else
+                callback(err, {
+                    status: 'ok',
+                    countryCode: countryCode,
+                    co2intensity: co2calc.assignments[countryCode],
+                    unit: 'gCo2eq/kWh',
+                    countryData: countries[countryCode].data
+                });
         }
     });
 }
