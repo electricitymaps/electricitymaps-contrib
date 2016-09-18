@@ -508,7 +508,7 @@ if (!nobrowsercheck && !isChrome()) {
         // If data doesn't load in 30 secs, show connection warning
         timeout_interval = setTimeout(function(){
             document.getElementById('connection-warning').className = "show";
-        }, 30 * 1000);
+        }, 15 * 1000);
         queue()
             .defer(d3.json, 'europe.topo.json')
             .defer(d3.json, ENDPOINT + '/v1/production')

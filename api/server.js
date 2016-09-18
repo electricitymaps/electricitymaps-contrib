@@ -2,6 +2,7 @@ var express = require('express');
 var http = require('http');
 var app = express();
 var server = http.Server(app);
+var async = require('async');
 var Memcached = require('memcached');
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 var d3 = require('d3');
@@ -50,28 +51,70 @@ statsdClient.socket.on('error', function(error) {
 });
 
 // * Database methods
+function queryCountry(countryCode, callback) {
+    return mongoCollection.findOne(
+        { countryCode: countryCode }, 
+        { sort: [['datetime', -1]] },
+        callback);
+}
+function queryAllCountries(callback) {
+    countryCodes = [
+        'AT',
+        'BE',
+        'BG',
+        'BA',
+        'BY',
+        'CH',
+        'CZ',
+        'DE',
+        'DK',
+        'ES',
+        'EE',
+        'FI',
+        'FR',
+        'GB',
+        'GR',
+        'HR',
+        'HU',
+        'IE',
+        'IS',
+        'IT',
+        'LT',
+        'LU',
+        'LV',
+        'MD',
+        'NL',
+        'NO',
+        'PL',
+        'PT',
+        'RO',
+        'RU',
+        'RS',
+        'SK',
+        'SI',
+        'SE',
+        'UA'
+    ];
+    return async.parallel(countryCodes.map(function (k) {
+        return function(callback) { return queryCountry(k, callback); };
+    }), callback);
+}
 function queryLastValues(callback) {
-    return mongoCollection.aggregate([
-        {'$sort': {'countryCode': 1, 'datetime': -1}},
-        {'$group': {'_id': '$countryCode', 'lastDocument': {'$first': '$$CURRENT'}}}
-    ], callback);
+    return queryAllCountries(function (err, result) {
+        // Ignore errors: just filter results
+        countries = {};
+        result.forEach(function(d) {
+            // TODO: remove the 'data' extra level key
+            if (d) { countries[d.countryCode] = {data: d}; }
+        });
+        return callback(err, countries);
+    });
 }
 function queryAndCalculateCo2(countryCode, callback) {
-    queryLastValues(function (err, result) {
+    queryLastValues(function (err, countries) {
         if (err) {
-            callback(err, result);
+            callback(err, countries);
         } else {
-            countries = {};
-            result.forEach(function(d) {
-                countries[d['_id']] = {
-                    data: {
-                        production: d.lastDocument.production,
-                        exchange: d.lastDocument.exchange,
-                        datetime: d.lastDocument.datetime,
-                        countryCode: d['_id']
-                    }
-                };
-            });
             // Average out import-exports between commuting pairs
             d3.keys(countries).forEach(function(country1, i) {
                 d3.keys(countries).forEach(function(country2, j) {
@@ -107,14 +150,20 @@ function queryAndCalculateCo2(countryCode, callback) {
             co2calc.compute(countries);
             if (!countries[countryCode])
                 callback(Error('Country ' + countryCode + ' has no data.'), null)
-            else
+            else {
+                exchangeCo2Intensities = {}
+                d3.keys(countries[countryCode].data.exchange).forEach(function(k) {
+                    exchangeCo2Intensities[k] = co2calc.assignments[k];
+                });
                 callback(err, {
                     status: 'ok',
                     countryCode: countryCode,
                     co2intensity: co2calc.assignments[countryCode],
+                    exchangeCo2Intensities: exchangeCo2Intensities,
                     unit: 'gCo2eq/kWh',
                     countryData: countries[countryCode].data
                 });
+            }
         }
     });
 }
@@ -168,12 +217,10 @@ app.get('/v1/production', function(req, res) {
                         console.error(err);
                         res.status(500).json({error: 'Unknown database error'});
                     } else {
-                        obj = {}
-                        result.forEach(function(d) { obj[d['_id']] = d.lastDocument; });
-                        memcachedClient.set('production', obj, 5 * 60, function(err) {
+                        memcachedClient.set('production', result, 5 * 60, function(err) {
                             if (err) console.error(err);
                         });
-                        returnObj(obj, false);
+                        returnObj(result, false);
                     }
                 });
             };
