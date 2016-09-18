@@ -38,13 +38,13 @@ def fetch_DK():
         'NO': float(data['Udveksling_JyllandNorge'])
     }
     obj['consumption'] = {
-        'other': float(data['Elforbrug'])
+        'unknown': float(data['Elforbrug'])
     }
     obj['production'] = {
         'nuclear': 0,
         'wind': float(data['Vindmoeller']),
         'solar': float(data['Solcelle_Produktion']),
-        'other': float(data['Centrale_kraftvaerker']) + float(data['Decentrale_kraftvaerker']),
+        'unknown': float(data['Centrale_kraftvaerker']) + float(data['Decentrale_kraftvaerker']),
         'hydro': 0
     }
 

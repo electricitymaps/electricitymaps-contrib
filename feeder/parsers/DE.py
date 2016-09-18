@@ -26,7 +26,7 @@ def fetch_DE():
             'coal': 15000
         },
         'consumption': {
-            'other': parsed['total-load'][1]
+            'unknown': parsed['total-load'][1]
         }
     }
 
@@ -34,7 +34,7 @@ def fetch_DE():
         hard_coal_and_gas = parsed['conventional-power'][1] - data['production']['coal'] - data['production']['nuclear'] - parsed['run-of-the-river'][1]
         data['production']['coal'] += 17.0/25.0 * hard_coal_and_gas
         data['production']['gas'] = 5.0/25.0 * hard_coal_and_gas
-        data['production']['other'] = 3.0/25.0 * hard_coal_and_gas
+        data['production']['unknown'] = 3.0/25.0 * hard_coal_and_gas
     
     return data
 
