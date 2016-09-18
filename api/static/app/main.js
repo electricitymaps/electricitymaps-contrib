@@ -363,7 +363,7 @@ if (!nobrowsercheck && !isChrome()) {
             // Add own country code so each country is identifiable
             country.data.countryCode = countryCode;
             countryTable.PRODUCTION_MODES.forEach(function (mode) {
-                if (mode == 'other') return;
+                if (mode == 'other' || mode == 'unknown') return;
                 if (country.data.production[mode] === undefined)
                     console.warn(countryCode + ' is missing production of ' + mode);
                 else if (country.data.capacity[mode] === undefined)

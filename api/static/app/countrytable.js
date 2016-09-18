@@ -23,7 +23,7 @@ function CountryTable(selector, co2Color) {
         'gas': '#f30a0a',
         'coal': '#ac8c35',
         'oil': '#8356a2',
-        'other': 'gray'
+        'unknown': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
     this.POWER_FORMAT = function (d) { return d3.format('s')(d * 1000000) + 'W'; };

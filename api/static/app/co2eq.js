@@ -18,22 +18,22 @@ function Co2eqCalculator() {
 
     this.countryCo2eqFootprint = {
         'DE': function (productionMode) {
-            return productionMode == 'other' ? 700 : null;
+            return productionMode == 'unknown' ? 700 : null;
         },
         'DK': function (productionMode) {
-            return productionMode == 'other' ? 700 : null;
+            return productionMode == 'unknown' ? 700 : null;
         },
         'FI': function (productionMode) {
-            return productionMode == 'other' ? 700 : null;
+            return productionMode == 'unknown' ? 700 : null;
         },
         'GB': function (productionMode) {
-            return productionMode == 'other' ? 300 : null;
+            return productionMode == 'unknown' ? 300 : null;
         },
         'NO': function (productionMode) {
-            return productionMode == 'other' ? 700 : null;
+            return productionMode == 'unknown' ? 700 : null;
         },
         'SE': function (productionMode) {
-            return productionMode == 'other' ? 700 : null;
+            return productionMode == 'unknown' ? 700 : null;
         }
     };
 

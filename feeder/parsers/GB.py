@@ -27,7 +27,7 @@ def fetch_GB():
         'wind': parsed['WIND'],
         'oil': parsed['OIL'],
         'hydro': parsed['PS'] + parsed['NPSHYD'],
-        'other': parsed['OTHER']
+        'unknown': parsed['OTHER']
     }
     obj['exchange'] = {
         'FR': parsed['INTFR'],

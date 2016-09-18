@@ -58,7 +58,7 @@ def fetch_ES():
             'Europe/Madrid').datetime # We receive the time in local time
     }
     obj['consumption'] = {
-        'other': float(parsed['demanda'])
+        'unknown': float(parsed['demanda'])
     }
     obj['exchange'] = {
     }
@@ -69,7 +69,7 @@ def fetch_ES():
         'nuclear': float(parsed['nuclear']),
         'wind': float(parsed['eolica']),
         'hydro': float(parsed['hidro']),
-        'other': float(parsed['termRenov']) + float(parsed['cogenResto']),
+        'unknown': float(parsed['termRenov']) + float(parsed['cogenResto']),
     }
 
     return obj
