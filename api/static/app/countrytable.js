@@ -164,6 +164,8 @@ CountryTable.prototype.data = function(arg) {
                 gCo2eqPerkWh: co2eqCalculator.footprintOf(d, that._data.countryCode),
                 gCo2eqPerH: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
             };
+        }).filter(function (d) {
+            return d.mode != 'unknown' || d !== undefined;
         });
 
         // update scales
