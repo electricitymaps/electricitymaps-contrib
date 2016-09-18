@@ -18,7 +18,6 @@ app.use(function(req, res, next) {
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
-memcachedClient.del('production', function (err) { if (err) console.error(err); });
 
 // * Database
 var mongoCollection;
@@ -159,7 +158,8 @@ function queryAndCalculateCo2(countryCode, callback) {
             else {
                 countries[countryCode].data.exchangeCo2Intensities = {}
                 d3.keys(countries[countryCode].data.exchange).forEach(function(k) {
-                    countries[countryCode].data.exchangeCo2Intensities[k] = co2calc.assignments[k];
+                    countries[countryCode].data.exchangeCo2Intensities[k] =
+                        countries[countryCode].data.exchange[k] > 0 ? co2calc.assignments[k] : co2calc.assignments[countryCode];
                 });
                 callback(err, {
                     status: 'ok',

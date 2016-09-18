@@ -29,8 +29,7 @@ def fetch_DK():
     obj = {
         'countryCode': COUNTRY_CODE,
         'datetime': arrow.get(arrow.get(data['Modified']).datetime, 
-            'Europe/Copenhagen').datetime,
-        'co2': float(data['_x0043_O2'])
+            'Europe/Copenhagen').datetime
     }
     obj['exchange'] = {
         'DE': float(data['Udveksling_JyllandTyskland']) + float(data['Udveksling_SjaellandTyskland']),
