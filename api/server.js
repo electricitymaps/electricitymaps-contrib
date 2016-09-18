@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
-memcachedClient.del('production', function (err) { console.error(err); });
+memcachedClient.del('production', function (err) { if (err) console.error(err); });
 
 // * Database
 var mongoCollection;

@@ -39,4 +39,4 @@ def fetch_DE():
     return data
 
 if __name__ == '__main__':
-    fetch_DE()
+    print fetch_DE()

@@ -164,8 +164,6 @@ CountryTable.prototype.data = function(arg) {
                 gCo2eqPerkWh: co2eqCalculator.footprintOf(d, that._data.countryCode),
                 gCo2eqPerH: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
             };
-        }).filter(function (d) {
-            return d.mode != 'unknown' || d.production !== undefined;
         });
 
         // update scales
@@ -281,7 +279,7 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('display', function (d) {
-                return d.production === undefined ? 'block' : 'none';
+                return d.mode != 'unknown' && d.production === undefined ? 'block' : 'none';
             });
 
         // Construct exchanges
