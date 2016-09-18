@@ -151,15 +151,14 @@ function queryAndCalculateCo2(countryCode, callback) {
             if (!countries[countryCode])
                 callback(Error('Country ' + countryCode + ' has no data.'), null)
             else {
-                exchangeCo2Intensities = {}
+                countries[countryCode].data.exchangeCo2Intensities = {}
                 d3.keys(countries[countryCode].data.exchange).forEach(function(k) {
-                    exchangeCo2Intensities[k] = co2calc.assignments[k];
+                    countries[countryCode].data.exchangeCo2Intensities[k] = co2calc.assignments[k];
                 });
                 callback(err, {
                     status: 'ok',
                     countryCode: countryCode,
                     co2intensity: co2calc.assignments[countryCode],
-                    exchangeCo2Intensities: exchangeCo2Intensities,
                     unit: 'gCo2eq/kWh',
                     countryData: countries[countryCode].data
                 });
