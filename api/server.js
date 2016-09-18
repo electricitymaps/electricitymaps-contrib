@@ -4,7 +4,6 @@ var app = express();
 var server = http.Server(app);
 var async = require('async');
 var Memcached = require('memcached');
-var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 var d3 = require('d3');
 var statsd = require('node-statsd');
 var MongoClient = require('mongodb').MongoClient;
@@ -16,6 +15,10 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+
+// * Cache
+var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
+memcachedClient.del('production', function (err) { console.error(err); });
 
 // * Database
 var mongoCollection;
@@ -104,8 +107,7 @@ function queryLastValues(callback) {
         // Ignore errors: just filter results
         countries = {};
         result.forEach(function(d) {
-            // TODO: remove the 'data' extra level key
-            if (d) { countries[d.countryCode] = {data: d}; }
+            if (d) { countries[d.countryCode] = d; }
         });
         return callback(err, countries);
     });
@@ -115,6 +117,10 @@ function queryAndCalculateCo2(countryCode, callback) {
         if (err) {
             callback(err, countries);
         } else {
+            // TODO: Remove the extra `data` key
+            d3.keys(countries).forEach(function(k) {
+                countries[k] = { data: countries[k] };
+            });
             // Average out import-exports between commuting pairs
             d3.keys(countries).forEach(function(country1, i) {
                 d3.keys(countries).forEach(function(country2, j) {
