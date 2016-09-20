@@ -3,6 +3,13 @@ from bs4 import BeautifulSoup
 
 COUNTRY_CODE = 'PT'
 
+def GWh_per_day_to_MW(energy_day_gwh):
+	hours_in_a_day = 24;
+
+	power_mw = energy_day_gwh / 24 * 1000;
+
+	return power_mw
+
 def fetch_PT():
 
 	r = requests.get('http://www.centrodeinformacao.ren.pt/EN/InformacaoExploracao/Pages/EstatisticaDiaria.aspx')
@@ -13,7 +20,7 @@ def fetch_PT():
 
 	for tr in trs:
 		value = tr.find_all("td")[2].string # Daily values are in column 3
-		value = float(value) # str -> float
+		value = GWh_per_day_to_MW(float(value)) # str -> float
 		daily_values.append(value)
 
 	date_str = soup.find(id="ctl00_m_g_5e80321e_76aa_4894_8c09_4e392fc3dc7d_txtDatePicker_foo")['value']
