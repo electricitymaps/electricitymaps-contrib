@@ -194,6 +194,7 @@ if (!nobrowsercheck && !isChrome()) {
 
         var topo = topojson.object(countryTopos, countryTopos.objects.europe).geometries;
 
+        countries['AL'] = topo[0];
         countries['AT'] = topo[3];
         countries['BE'] = topo[4];
         countries['BG'] = topo[5];
@@ -214,10 +215,13 @@ if (!nobrowsercheck && !isChrome()) {
         countries['IE'] = topo[24];
         countries['IS'] = topo[25];
         countries['IT'] = topo[26];
+        countries['XK'] = topo[28];
         countries['LT'] = topo[30];
         countries['LU'] = topo[31];
         countries['LV'] = topo[32];
         countries['MD'] = topo[34];
+        countries['MK'] = topo[35];
+        countries['ME'] = topo[37];
         countries['NL'] = topo[38];
         countries['NO'] = topo[39];
         countries['PL'] = topo[40];
