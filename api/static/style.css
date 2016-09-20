@@ -173,6 +173,7 @@ html, body {
 
 .force-chrome .centered {
     max-width: 400px;
+    padding: 40px;
 }
 
 .force-chrome h1{
