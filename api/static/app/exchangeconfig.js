@@ -1,4 +1,30 @@
 var EXCHANGES_CONFIG = [
+    // AT
+    {
+        countries: ['AT', 'CZ'],
+        lonlat: [15.486554, 48.909846],
+        rotation: 0
+    },
+    {
+        countries: ['AT', 'SI'],
+        lonlat: [15.014142, 46.613582],
+        rotation: 180
+    },
+    {
+        countries: ['AT', 'IT'],
+        lonlat: [12.344464, 46.741723],
+        rotation: -140
+    },
+    {
+        countries: ['AT', 'CH'],
+        lonlat: [9.597882, 47.079455],
+        rotation: -90
+    },
+    {
+        countries: ['AT', 'DE'],
+        lonlat: [12.679547, 47.696804],
+        rotation: -30
+    },
     // DK
     {
         countries: ['DE', 'DK'],

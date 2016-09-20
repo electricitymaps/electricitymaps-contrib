@@ -1,6 +1,7 @@
 import pymongo
 import logging, os, schedule, time
 
+from parsers.AT import fetch_AT
 from parsers.DE import fetch_DE
 from parsers.DK import fetch_DK
 from parsers.EE import fetch_EE
@@ -22,6 +23,7 @@ from parsers.wind import fetch_wind
 INTERVAL_SECONDS = 60 * 5
 
 parsers = [
+    fetch_AT,
     fetch_DE,
     fetch_DK,
     fetch_EE,
