@@ -38,84 +38,6 @@ if (!nobrowsercheck && !isChrome()) {
         .range(['black', 'orange'])
         .domain([300, 440]);
 
-    var EXCHANGES_CONFIG = [
-        {
-            countries: ['DE', 'DK'],
-            lonlat: [9.3, 54.9],
-            rotation: 0
-        },
-        {
-            countries: ['SE', 'DK'],
-            lonlat: [13, 55.7],
-            rotation: -100
-        },
-        {
-            countries: ['GB', 'FR'],
-            lonlat: [0, 50.4],
-            rotation: 160
-        },
-        {
-            countries: ['DK', 'NO'],
-            lonlat: [8.8, 58],
-            rotation: -25
-        },
-        {
-            countries: ['IE', 'GB'],
-            lonlat: [-5.7, 53],
-            rotation: 100
-        },
-        {
-            countries: ['NL', 'GB'],
-            lonlat: [3.3, 52.4],
-            rotation: -90
-        },
-        {
-            countries: ['FR', 'ES'],
-            lonlat: [0.3, 42.9],
-            rotation: -160
-        },
-        {
-            countries: ['FR', 'DE'],
-            lonlat: [5.7, 49.8],
-            rotation: 50
-        },
-        {
-            countries: ['FR', 'CH'],
-            lonlat: [6.5, 46.7],
-            rotation: 90
-        },
-        {
-            countries: ['FR', 'IT'],
-            lonlat: [6.5, 44.5],
-            rotation: 70
-        },
-        {
-            countries: ['RO', 'HU'],
-            lonlat: [21.8074107, 47.1141229],
-            rotation: -70
-        },
-        {
-            countries: ['RO', 'UA'],
-            lonlat: [24.821959, 47.768595],
-            rotation: 0
-        },
-        {
-            countries: ['RO', 'MD'],
-            lonlat: [28.009764, 47.003312],
-            rotation: 60
-        },
-        {
-            countries: ['RO', 'BG'],
-            lonlat: [25.609385, 43.674878],
-            rotation: 180
-        },
-        {
-            countries: ['RO', 'RS'],
-            lonlat: [21.469049, 44.947107],
-            rotation: -140
-        }
-    ];
-
     // Set up objects
     var countryMap = new CountryMap('.map', co2color);
     var exchangeLayer = new ExchangeLayer('.map');
@@ -316,63 +238,8 @@ if (!nobrowsercheck && !isChrome()) {
             countries[countryCode].data.neighborCo2 = {};
         });
 
-        countries['DE'].data.capacity = {
-            biomass: 8970,
-            coal: 28310 + 21140,
-            gas: 28490,
-            hydro: 5590,
-            nuclear: 10790,
-            oil: 4240,
-            solar: 39630,
-            wind: 3740 + 42460,
-        };
-        countries['DK'].data.capacity = {
-            hydro: 0,
-            nuclear: 0,
-            solar: 790,
-            wind: 5070,
-        };
-        countries['ES'].data.capacity = {
-            coal: 11482,
-            gas: 3498 + 27206,
-            hydro: 17787 + 2106,
-            nuclear: 7866,
-            solar: 4672 + 2300,
-            wind: 23002,
-        };
-        countries['FI'].data.capacity = {
-            hydro: 3080,
-            nuclear: 2860,
-            wind: 1000
-        };
-        countries['FR'].data.capacity = {
-            nuclear: 63130,
-            oil: 6670,
-            coal: 2930,
-            hydro: 10326 + 8204 + 4965,
-            gas: 6121,
-            wind: 10358,
-            solar: 6580
-        };
-        countries['GB'].data.capacity = {
-            wind: 13500,
-            nuclear: 9000,
-            hydro: 1550,
-            gas: 38000,
-            solar: 8780
-        };
-        countries['NO'].data.capacity = {
-            hydro: 31000,
-            nuclear: 0,
-            solar: 0,
-            wind: 856,
-        };
-        countries['SE'].data.capacity = {
-            hydro: 16200,
-            nuclear: 8849,
-            solar: 79,
-            wind: 6025
-        };
+        // Load country configs
+        addCountryConfiguration(countries);
 
         // Populate with realtime production data
         d3.keys(production.data).forEach(function(countryCode) {
