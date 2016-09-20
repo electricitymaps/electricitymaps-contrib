@@ -62,6 +62,10 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Norway
   - Hydro: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Norway)
   - Wind: [ieawind.org](http://www.ieawind.org/countries/norway.html)  
+- Portugal
+  - Hydro: [wikipedia.org](https://pt.wikipedia.org/wiki/Hidroel%C3%A9tricas_em_Portugal)
+  - Wind: [wikipedia.org](https://pt.wikipedia.org/wiki/Energia_eólica_em_Portugal)
+  - Solar: [wikipedia.org](https://pt.wikipedia.org/wiki/Energia_solar_em_Portugal)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
 - Sweden

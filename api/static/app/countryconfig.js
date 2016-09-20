@@ -111,4 +111,9 @@ function addCountryConfiguration(countries) {
         solar: 79,
         wind: 6025
     };
+    countries['PT'].data.capacity = {
+        hydro: 5815,
+        solar: 57,
+        wind: 4730
+    };    
 }
