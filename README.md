@@ -36,6 +36,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
+  - General Data : [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Finland
   - Hydro: [worldenergy.org](https://www.worldenergy.org/data/resources/country/finland/hydropower/)
@@ -45,7 +46,9 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_by_country)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
   - Other: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
-- Germany: [Fraunhofer ISE](https://www.energy-charts.de/power_inst.htm)
+- Germany: 
+  - [Fraunhofer ISE](https://www.energy-charts.de/power_inst.htm)
+  - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Great Britain
   - Gas: [energy-uk.org.uk](http://www.energy-uk.org.uk/energy-industry/gas-generation.html)
   - Hydro: [wikipedia.org](https://en.wikipedia.org/wiki/Hydroelectricity_in_the_United_Kingdom)
