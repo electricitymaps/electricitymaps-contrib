@@ -8,6 +8,7 @@ from parsers.ES import fetch_ES
 from parsers.FI import fetch_FI
 from parsers.FR import fetch_FR
 from parsers.GB import fetch_GB
+from parsers.HU import fetch_HU
 from parsers.LT import fetch_LT
 from parsers.LV import fetch_LV
 from parsers.NO import fetch_NO
@@ -28,6 +29,7 @@ parsers = [
     fetch_FI,
     fetch_FR,
     fetch_GB,
+    fetch_HU,
     fetch_LT,
     fetch_LV,
     fetch_NO,
