@@ -1,4 +1,5 @@
 import arrow
+import dateutil
 import requests
 
 COUNTRY_CODE = 'RO'
@@ -9,9 +10,12 @@ def fetch_RO():
 
     obj = {
         'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(data['row1_HARTASEN_DATA'], "YY/M/D HH:mm:ss").replace(tzinfo=dateutil.tz.gettz('Europe/Bucharest'))
+        'datetime': arrow.get(data['row1_HARTASEN_DATA'], "YY/M/D HH:mm:ss").replace(
+            tzinfo=dateutil.tz.gettz('Europe/Bucharest'))
     }
-    obj['consumption'] = {}
+    obj['consumption'] = {
+        'unknown': float(data['CONS'])
+    }
     obj['exchange'] = {
     }
     obj['production'] = {
