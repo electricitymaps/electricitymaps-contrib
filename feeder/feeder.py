@@ -9,6 +9,9 @@ from parsers.FR import fetch_FR
 from parsers.GB import fetch_GB
 from parsers.NO import fetch_NO
 from parsers.SE import fetch_SE
+from parsers.EE import fetch_EE
+from parsers.LT import fetch_LT
+from parsers.LV import fetch_LV
 
 from parsers.solar import fetch_solar
 from parsers.wind import fetch_wind
@@ -23,7 +26,10 @@ parsers = [
     fetch_FR,
     fetch_GB,
     fetch_NO,
-    fetch_SE
+    fetch_SE,
+    fetch_EE,
+    fetch_LT,
+    fetch_LV
 ]
 
 # Set up stats
