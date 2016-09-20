@@ -11,6 +11,7 @@ from parsers.GB import fetch_GB
 from parsers.LT import fetch_LT
 from parsers.LV import fetch_LV
 from parsers.NO import fetch_NO
+from parsers.RO import fetch_RO
 from parsers.SE import fetch_SE
 
 
@@ -30,8 +31,8 @@ parsers = [
     fetch_LT,
     fetch_LV,
     fetch_NO,
+    fetch_RO,
     fetch_SE
-    
 ]
 
 # Set up stats
