@@ -3,12 +3,16 @@ import logging, os, schedule, time
 
 from parsers.DE import fetch_DE
 from parsers.DK import fetch_DK
+from parsers.EE import fetch_EE
 from parsers.ES import fetch_ES
 from parsers.FI import fetch_FI
 from parsers.FR import fetch_FR
 from parsers.GB import fetch_GB
+from parsers.LT import fetch_LT
+from parsers.LV import fetch_LV
 from parsers.NO import fetch_NO
 from parsers.SE import fetch_SE
+
 
 from parsers.solar import fetch_solar
 from parsers.wind import fetch_wind
@@ -18,12 +22,16 @@ INTERVAL_SECONDS = 60 * 5
 parsers = [
     fetch_DE,
     fetch_DK,
+    fetch_EE,
     fetch_ES,
     fetch_FI,
     fetch_FR,
     fetch_GB,
+    fetch_LT,
+    fetch_LV,
     fetch_NO,
     fetch_SE
+    
 ]
 
 # Set up stats
