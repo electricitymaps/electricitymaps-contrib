@@ -74,7 +74,6 @@ CountryTable.prototype.render = function() {
     gNewRow.append('rect')
         .attr('class', 'production')
         .attr('height', this.ROW_HEIGHT)
-        .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
         .attr('opacity', this.RECT_OPACITY)
         .attr('shape-rendering', 'crispEdges');
     gNewRow.append('text')
@@ -170,7 +169,7 @@ CountryTable.prototype.data = function(arg) {
         this.powerScale
             .domain([
                 -this._data.maxExport,
-                Math.max(this._data.maxCapacity, this._data.maxProduction)
+                Math.max(this._data.maxCapacity || 0, this._data.maxProduction)
             ]);
         // co2 scale in tCO2eq/s
         var maxCO2eqExport = d3.max(exchangeData, function (d) {
@@ -264,6 +263,12 @@ CountryTable.prototype.data = function(arg) {
         if (that._displayByEmissions)
             selection.select('rect.production')
                 .transition()
+                .attr('fill', function (d) {
+                    // color by Co2 Intensity
+                    // return that.co2Color(co2eqCalculator.footprintOf(d.mode, that._data.countryCode));
+                    // color by production mode
+                    return that.PRODUCTION_COLORS[d.mode];
+                })
                 .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
                 .attr('width', function (d) {
                     return !isFinite(d.gCo2eqPerH) ? 0 : (that.co2Scale(d.gCo2eqPerH / 1000000.0) - that.co2Scale(0));
@@ -271,6 +276,7 @@ CountryTable.prototype.data = function(arg) {
         else
             selection.select('rect.production')
                 .transition()
+                .attr('fill', function (d) { return that.PRODUCTION_COLORS[d.mode]; })
                 .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
                 .attr('width', function (d) {
                     return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
