@@ -3,7 +3,6 @@
 import arrow
 import dateutil
 import pandas as pd # In order to read excel
-import requests
 
 COUNTRY_CODE = 'HU'
 TIME_ZONE = 'Europe/Budapest'
