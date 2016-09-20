@@ -23,6 +23,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix)
 - Germany: [Agora Energiewende](https://www.agora-energiewende.de/en/topics/-agothem-/Produkt/produkt/76/Agorameter/)
 - Great Britain: [ELEXON](http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable)
+- Hungary: [Mavir](http://www.mavir.hu/web/mavir-en/actual-generation-per-production-type-net-operation-control-measurement)
 - Latvia: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Lithuania: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Norway: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
