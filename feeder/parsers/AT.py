@@ -33,7 +33,7 @@ def fetch_AT():
     for item in obj['DataStreams']:
         name = item['YAxisTitle']
         values = np.array(item['ValueStrings'])
-        value = float(values[i].replace(',', '.'))
+        value = float(values[i].replace(',', ''))
         if name == 'Wind': data['production']['wind'] = value
         elif name == 'Solar': data['production']['solar'] = value
         elif name == 'Biomass': data['production']['biomass'] += value
@@ -58,7 +58,7 @@ def fetch_AT():
     for item in obj['DataStreams']:
         name = item['YAxisTitle']
         values = np.array(item['ValueStrings'])
-        value = float(values[i].replace(' MW', ''))
+        value = float(values[i].replace(' MW', '').replace(',', ''))
         if name == 'CZ>AT': data['exchange']['CZ'] = value
         elif name == 'HU>AT': data['exchange']['HU'] = value
         elif name == 'SI>AT': data['exchange']['SI'] = value
