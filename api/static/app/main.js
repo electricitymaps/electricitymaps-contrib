@@ -88,6 +88,31 @@ if (!nobrowsercheck && !isChrome()) {
             countries: ['FR', 'IT'],
             lonlat: [6.5, 44.5],
             rotation: 70
+        },
+        {
+            countries: ['RO', 'HU'],
+            lonlat: [21.8074107, 47.1141229],
+            rotation: -70
+        },
+        {
+            countries: ['RO', 'UA'],
+            lonlat: [24.821959, 47.768595],
+            rotation: 0
+        },
+        {
+            countries: ['RO', 'MD'],
+            lonlat: [28.009764, 47.003312],
+            rotation: 60
+        },
+        {
+            countries: ['RO', 'BG'],
+            lonlat: [25.609385, 43.674878],
+            rotation: 180
+        },
+        {
+            countries: ['RO', 'RS'],
+            lonlat: [21.469049, 44.947107],
+            rotation: -140
         }
     ];
 
@@ -388,7 +413,7 @@ if (!nobrowsercheck && !isChrome()) {
                 -countries[o].data.exchange[d]
             ];
             pair.netFlow = d3.mean(netFlows);
-            if (pair.netFlow == undefined)
+            if (pair.netFlow === undefined)
                 return;
             pair.co2 = function () {
                 return pair.countries.map(function (k) { return countries[k].data.co2; });
