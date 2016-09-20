@@ -16,6 +16,7 @@ def fetch_RO():
     obj['consumption'] = {
         'unknown': float(data['CONS'])
     }
+    # According to http://www.transelectrica.ro/widget/web/tel/sen-harta/-/harta_WAR_SENOperareHartaportlet
     obj['exchange'] = {
     }
     obj['production'] = {
