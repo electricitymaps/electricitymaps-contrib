@@ -28,6 +28,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Latvia: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Lithuania: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Norway: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
+- Portugal: [REN](http://www.centrodeinformacao.ren.pt/EN/InformacaoExploracao/Pages/EstatisticaDiaria.aspx)
 - Romania: [Transelectrica](http://www.transelectrica.ro/en/web/tel/home)
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
