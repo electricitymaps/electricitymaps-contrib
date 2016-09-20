@@ -6,4 +6,5 @@ pymongo==3.2.2
 requests==2.10.0
 schedule==0.3.2
 xlrd==1.0.0
+beautifulsoup4==4.5.1
 -e git+https://github.com/gaelenh/python-statsd-client.git#egg=statsd-client
