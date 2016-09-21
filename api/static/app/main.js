@@ -340,6 +340,7 @@ if (!nobrowsercheck && !isChrome()) {
             var country = countries[countryCode]
             if (!country) return;
             d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
+                if (sourceCountryCode == 'datetime') return;
                 // Find the exchange object
                 var matches = exchanges.filter(function (e) {
                     return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
