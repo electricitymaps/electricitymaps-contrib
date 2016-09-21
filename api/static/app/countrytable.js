@@ -151,7 +151,8 @@ CountryTable.prototype.data = function(arg) {
     if (!arg) return this._data;
     else {
         this._data = arg;
-        var exchangeData = d3.entries(this._data.exchange);
+        var exchangeData = d3.entries(this._data.exchange)
+            .filter(function(d) { return d.key != 'datetime'; });
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`

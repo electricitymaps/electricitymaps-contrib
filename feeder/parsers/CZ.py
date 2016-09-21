@@ -21,12 +21,15 @@ def fetch_CZ():
             tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime
     }
     obj['production'] = {
+        'coal': data['TPP [MW]'],
         'gas': data['CCGT [MW]'],
         'nuclear': data['NPP [MW]'],
         'hydro': data['HPP [MW]'] + data['PsPP [MW]'],
         'solar': data['PVPP [MW]'],
         'wind': data['WPP [MW]'],
-        'unknown': data['AltPP [MW]'] + data['TPP [MW]'] + data['ApPP [MW]'],
+        'biomass': data['AltPP [MW]'],
+        'unknown': data['ApPP [MW]'],
+        'oil': 0,
         'datetime': arrow.get(data['Date'], "DD.MM.YYYY HH:mm").replace(
             tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime
     }

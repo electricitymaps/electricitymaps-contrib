@@ -8,6 +8,16 @@ function addCountryConfiguration(countries) {
         solar: 814,
         wind: 2306,
     };
+    countries['CZ'].data.capacity = {
+        biomass: 350,
+        coal: 380 + 1200 + 8334,
+        gas: 1226,
+        hydro: 1172 + 650 + 431,
+        nuclear: 4040,
+        oil: 0,
+        solar: 2067,
+        wind: 277,
+    };
     countries['DE'].data.capacity = {
         biomass: 6609 + 1581,
         coal: 28670 + 22015,

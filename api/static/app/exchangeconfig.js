@@ -25,6 +25,22 @@ var EXCHANGES_CONFIG = [
         lonlat: [12.679547, 47.696804],
         rotation: -30
     },
+    // CZ
+    {
+        countries: ['CZ', 'SK'],
+        lonlat: [18.100645, 49.089498],
+        rotation: 135
+    },
+    {
+        countries: ['CZ', 'PL'],
+        lonlat: [16.496641, 50.269487],
+        rotation: 45
+    },
+    {
+        countries: ['CZ', 'DE'],
+        lonlat: [12.321836, 50.227335],
+        rotation: -60
+    },
     // DK
     {
         countries: ['DE', 'DK'],
