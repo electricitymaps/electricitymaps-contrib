@@ -2,6 +2,7 @@ function CountryMap(selector, co2color) {
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
+    this.STROKE_COLOR = '#555555';
 
     this.selectedCountry = undefined;
 
@@ -11,13 +12,13 @@ function CountryMap(selector, co2color) {
         .on('click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
-                    .style('stroke', 'black')
+                    .style('stroke', that.STROKE_COLOR)
                     .style('stroke-width', that.STROKE_WIDTH);
             }
             that.seaClickHandler.call(this, d, i);
         })
         .append('path')
-        .attr('class', 'graticule')
+            .attr('class', 'graticule');
     this.land = this.root.append('g');
 }
 
@@ -50,7 +51,7 @@ CountryMap.prototype.render = function() {
         selector.enter()
                 .append('path')
                 .attr('class', 'country')
-                .attr('stroke', 'black')
+                .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('fill', getCo2Color)
                 .on('mouseover', function (d, i) {
@@ -63,7 +64,7 @@ CountryMap.prototype.render = function() {
                     d3.event.stopPropagation(); // To avoid call click on sea
                     if (that.selectedCountry !== undefined) {
                         that.selectedCountry
-                            .style('stroke', 'black')
+                            .style('stroke', that.STROKE_COLOR)
                             .style('stroke-width', that.STROKE_WIDTH);
                     }
                     that.selectedCountry = d3.select(this);
