@@ -24,7 +24,7 @@ def fetch_PT():
 		daily_values.append(value)
 
 	date_str = soup.find(id="ctl00_m_g_5e80321e_76aa_4894_8c09_4e392fc3dc7d_txtDatePicker_foo")['value']
-	date = arrow.get(date_str, "DD-MM-YYYY").replace(tzinfo=dateutil.tz.gettz('Europe/Lisbon')).datetime
+	date = arrow.get(date_str + " 23:59:59", "DD-MM-YYYY HH:mm:ss").replace(tzinfo=dateutil.tz.gettz('Europe/Lisbon')).datetime
 
 
 	data = {
