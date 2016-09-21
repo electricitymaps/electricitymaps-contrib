@@ -13,7 +13,7 @@ def fetch_RO():
     
     obj = {
         'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(data['row1_HARTASEN_DATA'], "YY/M/D HH:mm:ss").replace(
+        'datetime': arrow.get(data['row1_HARTASEN_DATA'], "YY/M/D H:mm:ss").replace(
             tzinfo=dateutil.tz.gettz('Europe/Bucharest')).datetime
     }
     obj['consumption'] = {
