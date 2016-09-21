@@ -28,6 +28,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Latvia: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Lithuania: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Norway: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
+- Portugal: [REN](http://www.centrodeinformacao.ren.pt/EN/InformacaoExploracao/Pages/EstatisticaDiaria.aspx)
 - Romania: [Transelectrica](http://www.transelectrica.ro/en/web/tel/home)
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
 - Sweden: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
@@ -62,6 +63,10 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Norway
   - Hydro: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Norway)
   - Wind: [ieawind.org](http://www.ieawind.org/countries/norway.html)  
+- Portugal
+  - Hydro: [wikipedia.org](https://pt.wikipedia.org/wiki/Hidroel%C3%A9tricas_em_Portugal)
+  - Wind: [wikipedia.org](https://pt.wikipedia.org/wiki/Energia_eólica_em_Portugal)
+  - Solar: [wikipedia.org](https://pt.wikipedia.org/wiki/Energia_solar_em_Portugal)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
 - Sweden
