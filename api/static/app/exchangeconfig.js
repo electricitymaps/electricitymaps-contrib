@@ -129,5 +129,11 @@ var EXCHANGES_CONFIG = [
         countries: ['HU', 'AT'],
         lonlat: [16.605363, 47.444264],
         rotation: -60
-    }
+    },
+    // PT
+    {
+        countries: ['PT', 'ES'],
+        lonlat: [-7, 40.0],
+        rotation: 90
+    },    
 ];
