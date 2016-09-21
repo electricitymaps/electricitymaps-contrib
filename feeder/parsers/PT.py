@@ -34,7 +34,8 @@ def fetch_PT():
 		    'wind': daily_values[9],
 		    'solar': daily_values[10],
 		    'hydro': daily_values[0] + daily_values[7], # There are 2 different production regimes
-		    'coal': daily_values[1] + daily_values[8] # There are 2 different production regimes
+		    'coal': daily_values[1] + daily_values[8], # There are 2 different production regimes
+		    'nuclear': 0
 		},
 		'consumption': {
 		    'unknown': daily_values[13]
