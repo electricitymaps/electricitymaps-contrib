@@ -49,4 +49,5 @@ def fetch_DK():
 
     return obj
 
-fetch_DK()
+if __name__ == '__main__':
+    print fetch_DK()

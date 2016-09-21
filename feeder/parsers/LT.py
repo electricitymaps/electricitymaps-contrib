@@ -29,4 +29,5 @@ def fetch_LT():
 
     return obj
 
-fetch_LT()
+if __name__ == '__main__':
+    print fetch_LT()

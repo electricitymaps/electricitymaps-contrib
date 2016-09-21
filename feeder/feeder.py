@@ -1,45 +1,19 @@
+import glob
 import pymongo
 import logging, os, schedule, time
-
-from parsers.AT import fetch_AT
-from parsers.DE import fetch_DE
-from parsers.DK import fetch_DK
-from parsers.EE import fetch_EE
-from parsers.ES import fetch_ES
-from parsers.FI import fetch_FI
-from parsers.FR import fetch_FR
-from parsers.GB import fetch_GB
-from parsers.HU import fetch_HU
-from parsers.LT import fetch_LT
-from parsers.LV import fetch_LV
-from parsers.NO import fetch_NO
-from parsers.PT import fetch_PT
-from parsers.RO import fetch_RO
-from parsers.SE import fetch_SE
-
 
 from parsers.solar import fetch_solar
 from parsers.wind import fetch_wind
 
 INTERVAL_SECONDS = 60 * 5
 
-parsers = [
-    fetch_AT,
-    fetch_DE,
-    fetch_DK,
-    fetch_EE,
-    fetch_ES,
-    fetch_FI,
-    fetch_FR,
-    fetch_GB,
-    fetch_HU,
-    fetch_LT,
-    fetch_LV,
-    fetch_NO,
-    fetch_PT,
-    fetch_RO,
-    fetch_SE
-]
+# Import all country parsers
+def import_country(country_code):
+    return getattr(
+        __import__('parsers.%s' % country_code, globals(), locals(), ['fetch_%s' % country_code]),
+        'fetch_%s' % country_code)
+country_codes = map(lambda s: s[len('parsers/'):len('parsers/')+2], glob.glob('parsers/??.py'))
+parsers = map(import_country, country_codes)
 
 # Set up stats
 import statsd

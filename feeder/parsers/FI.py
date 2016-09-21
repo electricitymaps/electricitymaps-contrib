@@ -28,4 +28,5 @@ def fetch_FI():
 
     return obj
 
-fetch_FI()
+if __name__ == '__main__':
+    fetch_FI()

@@ -30,4 +30,5 @@ def fetch_NO():
 
     return obj
 
-fetch_NO()
+if __name__ == '__main__':
+    fetch_NO()

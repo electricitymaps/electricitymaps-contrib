@@ -69,4 +69,5 @@ def fetch_FR():
 
     return data
 
-fetch_FR()
+if __name__ == '__main__':
+    print fetch_FR()

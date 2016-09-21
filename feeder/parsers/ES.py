@@ -74,4 +74,5 @@ def fetch_ES():
 
     return obj
 
-fetch_ES()
+if __name__ == '__main__':
+    print fetch_ES()

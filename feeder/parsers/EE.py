@@ -29,4 +29,5 @@ def fetch_EE():
 
     return obj
 
-fetch_EE()
+if __name__ == '__main__':
+    print fetch_EE()

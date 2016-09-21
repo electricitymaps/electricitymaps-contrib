@@ -29,4 +29,5 @@ def fetch_LV():
 
     return obj
 
-fetch_LV()
+if __name__ == '__main__':
+    fetch_LV()
