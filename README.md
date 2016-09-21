@@ -18,6 +18,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 
 ### Real-time electricity data sources
 - Austria: [APG](https://www.apg.at/en/market/Markttransparenz/generation/Erzeugung%20pro%20Typ)
+- Czech Republic: [CEPS](http://www.ceps.cz/ENG/Data/Vsechna-data/Pages/Vyroba.aspx)
 - Denmark: [energinet.dk](http://energinet.dk/EN/El/Sider/Elsystemet-lige-nu.aspx)
 - Estonia: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Finland: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
