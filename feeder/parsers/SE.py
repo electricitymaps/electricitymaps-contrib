@@ -29,4 +29,5 @@ def fetch_SE():
 
     return obj
 
-fetch_SE()
+if __name__ == '__main__':
+    print fetch_SE()
