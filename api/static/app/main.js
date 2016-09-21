@@ -322,11 +322,13 @@ if (!nobrowsercheck && !isChrome()) {
             // Add co2 to each neighboring country
             country.data.neighborCo2 = {};
             d3.keys(country.data.exchange).forEach(function (k) {
+                if (k == 'datetime') return;
                 if (!countries[k])
                     console.error(entry.key + ' neighbor ' + k + ' could not be found');
-                country.data.neighborCo2[k] = function() {
-                    return countries[k].data.co2;
-                };
+                else
+                    country.data.neighborCo2[k] = function() {
+                        return countries[k].data.co2;
+                    };
             });
             // Display warnings for missing data
             if (country.data.co2 === undefined)
