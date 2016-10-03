@@ -34,19 +34,19 @@ def fetch_AT():
         name = item['YAxisTitle']
         values = np.array(item['ValueStrings'])
         value = float(values[i].replace(',', ''))
-        if name == 'Wind': data['production']['wind'] = value
-        elif name == 'Solar': data['production']['solar'] = value
-        elif name == 'Biomass': data['production']['biomass'] += value
-        elif name == 'Gas': data['production']['gas'] = value
-        elif name == 'Coal': data['production']['coal'] = value
-        elif name == 'Oil': data['production']['oil'] = value
-        elif name == 'Geothermal': data['production']['unknown'] += value
-        elif name == 'Hydro Pumped Storage': data['production']['hydro'] += value
-        elif name == 'Hydro Run-of-river and poundage': data['production']['hydro'] += value
-        elif name == 'Hydro Water Reservoir': data['production']['hydro'] += value
-        elif name == 'Other renewable': data['production']['unknown'] = value
-        elif name == 'Waste': data['production']['biomass'] += value
-        elif name == 'Other': data['production']['unknown'] += value
+        if name == 'Wind': data['production']['wind'] = max(0, value)
+        elif name == 'Solar': data['production']['solar'] = max(0, value)
+        elif name == 'Biomass': data['production']['biomass'] += max(0, value)
+        elif name == 'Gas': data['production']['gas'] = max(0, value)
+        elif name == 'Coal': data['production']['coal'] = max(0, value)
+        elif name == 'Oil': data['production']['oil'] = max(0, value)
+        elif name == 'Geothermal': data['production']['unknown'] += max(0, value)
+        elif name == 'Hydro Pumped Storage': data['production']['hydro'] += max(0, value)
+        elif name == 'Hydro Run-of-river and poundage': data['production']['hydro'] += max(0, value)
+        elif name == 'Hydro Water Reservoir': data['production']['hydro'] += max(0, value)
+        elif name == 'Other renewable': data['production']['unknown'] = max(0, value)
+        elif name == 'Waste': data['production']['biomass'] += max(0, value)
+        elif name == 'Other': data['production']['unknown'] += max(0, value)
 
     # Get exchanges
     url = 'https://www.apg.at/transparency/WebMethods/ChartsEtc.aspx/GetMapData'
