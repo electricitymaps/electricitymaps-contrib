@@ -254,10 +254,12 @@ if (!nobrowsercheck && !isChrome()) {
                 return;
             }
             d3.keys(obj).forEach(function(k) {
-                country.data[k] = obj[k];
+                // Cap to a minimum value of 0
+                country.data[k] = Math.max(obj[k], 0);
             });
             // Add own country code so each country is identifiable
             country.data.countryCode = countryCode;
+            // Validate data
             countryTable.PRODUCTION_MODES.forEach(function (mode) {
                 if (mode == 'other' || mode == 'unknown') return;
                 if (country.data.production[mode] === undefined)

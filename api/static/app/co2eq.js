@@ -78,8 +78,7 @@ function Co2eqCalculator() {
                     return;
                 }
                 // Accumulate
-                var power = Math.max(0, production.value);
-                b.set([i], b.get([i]) - footprint * power);
+                b.set([i], b.get([i]) - footprint * production.value);
             });
             // Exchanges
             d3.entries(country.exchange).forEach(function (exchange) {
