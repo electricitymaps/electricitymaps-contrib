@@ -1,10 +1,13 @@
 // read querystring args
 nobrowsercheck = false;
+force_remote_endpoint = false;
 args = location.search.replace('\?','').split('&');
 args.forEach(function(arg) {
     kv = arg.split('=');
     if (kv[0] == 'nobrowsercheck' && kv[1] == '1') {
         nobrowsercheck = true;
+    } else if (kv[0] == 'remote' && kv[1] == 'true') {
+        force_remote_endpoint = true;
     }
 });
 
@@ -14,7 +17,8 @@ if (!nobrowsercheck && !isChrome()) {
 } else {
     // load all
     var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
-    var ENDPOINT = document.domain == 'localhost' ? 'http://localhost:8000' : REMOTE_ENDPOINT;
+    var ENDPOINT = (document.domain == 'localhost' && !force_remote_endpoint) ?
+        'http://localhost:8000' : REMOTE_ENDPOINT;
 
     var co2color = d3.scale.linear()
         .domain([0, 250, 500])
@@ -254,8 +258,12 @@ if (!nobrowsercheck && !isChrome()) {
                 return;
             }
             d3.keys(obj).forEach(function(k) {
-                // Cap to a minimum value of 0
                 country.data[k] = obj[k];
+                // Cap to a minimum value of 0
+                d3.keys(country.data[k]).forEach(function (mode) {
+                    if (country.data[k][mode] < 0)
+                        country.data[k][mode] = 0;
+                });
             });
             // Add own country code so each country is identifiable
             country.data.countryCode = countryCode;
