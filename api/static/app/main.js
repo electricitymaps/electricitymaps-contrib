@@ -255,7 +255,7 @@ if (!nobrowsercheck && !isChrome()) {
             }
             d3.keys(obj).forEach(function(k) {
                 // Cap to a minimum value of 0
-                country.data[k] = Math.max(obj[k], 0);
+                country.data[k] = obj[k];
             });
             // Add own country code so each country is identifiable
             country.data.countryCode = countryCode;
