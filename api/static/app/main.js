@@ -443,7 +443,10 @@ if (!nobrowsercheck && !isChrome()) {
                         callback(null, null);
                     }
                 });
-            }, function(error) { callback(error); });
+            }, function(error) { 
+                console.warn(err);
+                callback(null, null);
+            });
         } else {
             console.warn(Error('Browser geolocation is not supported'));
             callback(null, null);
