@@ -443,7 +443,7 @@ if (!nobrowsercheck && !isChrome()) {
                         callback(null, null);
                     }
                 });
-            }, function(error) { 
+            }, function(err) { 
                 console.warn(err);
                 callback(null, null);
             });
