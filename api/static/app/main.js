@@ -430,17 +430,23 @@ if (!nobrowsercheck && !isChrome()) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude, function (err, response) {
                     if (err) {
-                        callback(err, null);
+                        console.warn(err);
+                        callback(null, null);
                         return;
                     }
                     var obj = response.results[0].address_components
                         .filter(function(d) { return d.types.indexOf('country') != -1; });
                     if (obj.length)
                         callback(null, obj[0].short_name);
-                    else
-                        callback(Error('Invalid geocoder response'), null);
+                    else {
+                        console.warn(Error('Invalid geocoder response'), response);
+                        callback(null, null);
+                    }
                 });
             }, function(error) { callback(error); });
+        } else {
+            console.warn(Error('Browser geolocation is not supported'));
+            callback(null, null);
         }
     }
 
@@ -467,18 +473,20 @@ if (!nobrowsercheck && !isChrome()) {
                 document.getElementById('connection-warning').className = "hide";
                 clearInterval(timeout_interval);
                 dataLoaded(err, countryTopos, production, solar, wind);
-                if (isMobile() && countries[countryCode]) {
-                    // Select one country
-                    d3.select('.country-table-initial-text')
-                        .style('display', 'none');
-                    countryTable
-                        .show()
-                        .data(countries[countryCode].data);
+                if (isMobile()) {
+                    if (countryCode && countries[countryCode]) {
+                        // Select one country
+                        d3.select('.country-table-initial-text')
+                            .style('display', 'none');
+                        countryTable
+                            .show()
+                            .data(countries[countryCode].data);
+                    } else {
+                        // TODO: Show the country picker
+                    }
                 }
             }
         });
-
-        
 
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }

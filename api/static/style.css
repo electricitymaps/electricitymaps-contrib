@@ -21,8 +21,7 @@ html, body {
 }
 
 #connection-warning.hide {
-    top: -40px;
-    
+    top: -40px; 
 }
 
 #connection-warning .inner {
