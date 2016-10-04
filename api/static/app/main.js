@@ -11,6 +11,10 @@ args.forEach(function(arg) {
     }
 });
 
+var isMobile = function() {
+    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+}
+
 if (!nobrowsercheck && !isChrome()) {
     // show force-chrome overlay
     document.getElementById('force-chrome-overlay').style.display = "flex";
@@ -27,7 +31,7 @@ if (!nobrowsercheck && !isChrome()) {
     var windColor = d3.scale.linear()
         .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
         .range([
-            "rgba(0, 255, 255, 0.5)",
+            "rgba(0,   255, 255, 0.5)",
             "rgba(100, 240, 255, 0.5)",
             "rgba(135, 225, 255, 0.5)",
             "rgba(160, 208, 255, 0.5)",
@@ -36,7 +40,7 @@ if (!nobrowsercheck && !isChrome()) {
             "rgba(212, 155, 255, 0.5)",
             "rgba(225, 133, 255, 0.5)",
             "rgba(236, 109, 255, 0.5)",
-            "rgba(255, 30, 219, 0.5)"
+            "rgba(255,  30, 219, 0.5)"
         ]);
     var solarColor = d3.scale.linear()
         .range(['black', 'orange'])
@@ -86,39 +90,46 @@ if (!nobrowsercheck && !isChrome()) {
     // Prepare data
     var countries = {};
 
-    // Events
-    function windMouseOver(coordinates) {
-        if (windLayer.field && coordinates) {
-            var wind = windLayer.field(coordinates[0], coordinates[1]);
-            windColorbar.currentMarker(wind[2]);
-        } else {
-            windColorbar.currentMarker(undefined);
-        }
-    }
+    // Mobile
+    if (isMobile()) {
+        d3.select('.map').selectAll('*').remove();
+        d3.select('.legend').style('display', 'none');
+    } else {
+        d3.select('.panel-container')
+            .style('width', 360);
 
-    // Attach events
-    d3.select('.map')
-        .on('mousemove', function() {
-            windMouseOver(d3.mouse(this));
-        })
-        .on('mouseout', function() {
-            windMouseOver(undefined);
-        });
-    countryTable
-        .onExchangeMouseOver(function (d, countryCode) {
-            var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
-            co2Colorbar.currentMarker(co2);
-        })
-        .onExchangeMouseOut(function (d) {
-            co2Colorbar.currentMarker(undefined);
-        })
-        .onProductionMouseOver(function (d, countryCode) {
-            var co2 = co2eqCalculator.footprintOf(d.mode, countryCode);
-            co2Colorbar.currentMarker(co2);
-        })
-        .onProductionMouseOut(function (d) {
-            co2Colorbar.currentMarker(undefined);
-        });
+        // Attach event handlers
+        function windMouseOver(coordinates) {
+            if (windLayer.field && coordinates) {
+                var wind = windLayer.field(coordinates[0], coordinates[1]);
+                windColorbar.currentMarker(wind[2]);
+            } else {
+                windColorbar.currentMarker(undefined);
+            }
+        }
+        d3.select('.map')
+            .on('mousemove', function() {
+                windMouseOver(d3.mouse(this));
+            })
+            .on('mouseout', function() {
+                windMouseOver(undefined);
+            });
+        countryTable
+            .onExchangeMouseOver(function (d, countryCode) {
+                var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
+                co2Colorbar.currentMarker(co2);
+            })
+            .onExchangeMouseOut(function (d) {
+                co2Colorbar.currentMarker(undefined);
+            })
+            .onProductionMouseOver(function (d, countryCode) {
+                var co2 = co2eqCalculator.footprintOf(d.mode, countryCode);
+                co2Colorbar.currentMarker(co2);
+            })
+            .onProductionMouseOut(function (d) {
+                co2Colorbar.currentMarker(undefined);
+            });
+    }
 
     function dataLoaded(err, countryTopos, production, solar, wind) {
         if (err) {
@@ -126,73 +137,75 @@ if (!nobrowsercheck && !isChrome()) {
             return;
         }
 
-        console.log('wind', wind);
-        var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
-        var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
-        console.log('#1 wind forecast target', 
-            t_before.fromNow(),
-            'made', moment(wind.forecasts[0][0].header.refTime).fromNow());
-        console.log('#2 wind forecast target',
-            t_after.fromNow(),
-            'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
-        // Interpolate wind
-        var now = (new Date()).getTime();
-        var interpolatedWind = wind.forecasts[0];
-        if (moment(now) > moment(t_after)) {
-            console.error('Error while interpolating wind because current time is out of bounds');
-        } else {
-            var k = (now - t_before)/(t_after - t_before);
-            interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
-                return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
-            });
-            interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
-                return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
-            });
-            var sw = countryMap.projection().invert([0, height]);
-            var ne = countryMap.projection().invert([width, 0]);
-            windLayer.params.data = interpolatedWind;
-            windLayer.start(
-                [[0, 0], [width, height]], 
-                width,
-                height,
-                [sw, ne]
-            );
-        }
-
-        console.log('solar', solar);
-        if (ctx) {
-            // Interpolates between two solar forecasts
-            var Nx = solar.forecasts[0].DSWRF.length;
-            var Ny = solar.forecasts[0].DSWRF[0].length;
-            var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
-            var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
+        if (!isMobile()) {
+            console.log('wind', wind);
+            var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
+            var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
+            console.log('#1 wind forecast target', 
+                t_before.fromNow(),
+                'made', moment(wind.forecasts[0][0].header.refTime).fromNow());
+            console.log('#2 wind forecast target',
+                t_after.fromNow(),
+                'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
+            // Interpolate wind
             var now = (new Date()).getTime();
-            console.log('#1 solar forecast target', 
-                moment(t_before).fromNow(),
-                'made', moment(solar.forecasts[0].date).fromNow());
-            console.log('#2 solar forecast target',
-                moment(t_after).fromNow(),
-                'made', moment(solar.forecasts[1].date).fromNow());
-            if (moment(now) > moment(solar.forecasts[1].horizon)) {
-                console.error('Error while interpolating solar because current time is out of bounds');
+            var interpolatedWind = wind.forecasts[0];
+            if (moment(now) > moment(t_after)) {
+                console.error('Error while interpolating wind because current time is out of bounds');
             } else {
                 var k = (now - t_before)/(t_after - t_before);
-                var dotSize = 1.0;
-                d3.range(Nx).forEach(function(i) {
-                    d3.range(Ny).forEach(function(j) {
-                        var n = i * Ny + j;
-                        var lon = solar.forecasts[0].lonlats[0][n];
-                        var lat = solar.forecasts[0].lonlats[1][n];
-                        var val = d3.interpolate(solar.forecasts[0].DSWRF[i][j], solar.forecasts[1].DSWRF[i][j])(k);
-                        var p = countryMap.projection()([lon, lat]);
-                        if (isNaN(p[0]) || isNaN(p[1]))
-                            return;
-                        ctx.beginPath();
-                        ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
-                        ctx.fillStyle = solarColor(val);
-                        ctx.fill();
-                    });
+                interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
+                    return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
                 });
+                interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
+                    return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
+                });
+                var sw = countryMap.projection().invert([0, height]);
+                var ne = countryMap.projection().invert([width, 0]);
+                windLayer.params.data = interpolatedWind;
+                windLayer.start(
+                    [[0, 0], [width, height]], 
+                    width,
+                    height,
+                    [sw, ne]
+                );
+            }
+
+            console.log('solar', solar);
+            if (ctx) {
+                // Interpolates between two solar forecasts
+                var Nx = solar.forecasts[0].DSWRF.length;
+                var Ny = solar.forecasts[0].DSWRF[0].length;
+                var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
+                var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
+                var now = (new Date()).getTime();
+                console.log('#1 solar forecast target', 
+                    moment(t_before).fromNow(),
+                    'made', moment(solar.forecasts[0].date).fromNow());
+                console.log('#2 solar forecast target',
+                    moment(t_after).fromNow(),
+                    'made', moment(solar.forecasts[1].date).fromNow());
+                if (moment(now) > moment(solar.forecasts[1].horizon)) {
+                    console.error('Error while interpolating solar because current time is out of bounds');
+                } else {
+                    var k = (now - t_before)/(t_after - t_before);
+                    var dotSize = 1.0;
+                    d3.range(Nx).forEach(function(i) {
+                        d3.range(Ny).forEach(function(j) {
+                            var n = i * Ny + j;
+                            var lon = solar.forecasts[0].lonlats[0][n];
+                            var lat = solar.forecasts[0].lonlats[1][n];
+                            var val = d3.interpolate(solar.forecasts[0].DSWRF[i][j], solar.forecasts[1].DSWRF[i][j])(k);
+                            var p = countryMap.projection()([lon, lat]);
+                            if (isNaN(p[0]) || isNaN(p[1]))
+                                return;
+                            ctx.beginPath();
+                            ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
+                            ctx.fillStyle = solarColor(val);
+                            ctx.fill();
+                        });
+                    });
+                }
             }
         }
 
@@ -376,8 +389,8 @@ if (!nobrowsercheck && !isChrome()) {
                 };
                 d3.select('.country-table-initial-text')
                     .style('display', 'none');
-                countryTable.show();
                 countryTable
+                    .show()
                     .data(d.data);
             })
             .onCountryMouseOver(function (d) { 
@@ -411,6 +424,26 @@ if (!nobrowsercheck && !isChrome()) {
             });
     };
 
+    // Get geolocation is on mobile (in order to select country)
+    function geolocaliseCountryCode(callback) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude, function (err, response) {
+                    if (err) {
+                        callback(err, null);
+                        return;
+                    }
+                    var obj = response.results[0].address_components
+                        .filter(function(d) { return d.types.indexOf('country') != -1; });
+                    if (obj.length)
+                        callback(null, obj[0].short_name);
+                    else
+                        callback(Error('Invalid geocoder response'), null);
+                });
+            }, function(error) { callback(error); });
+        }
+    }
+
     // Periodically load data
     var REFRESH_TIME_MINUTES = 5;
     function fetchAndReschedule() {
@@ -418,32 +451,48 @@ if (!nobrowsercheck && !isChrome()) {
         timeout_interval = setTimeout(function(){
             document.getElementById('connection-warning').className = "show";
         }, 15 * 1000);
-        queue()
+        var Q = queue()
             .defer(d3.json, 'europe.topo.json')
             .defer(d3.json, ENDPOINT + '/v1/production')
             .defer(d3.json, ENDPOINT + '/v1/solar')
-            .defer(d3.json, ENDPOINT + '/v1/wind')
-            .await(function(err, countryTopos, production, solar, wind) {
-                if (err) {
-                    console.error(err);
-                    document.getElementById('connection-warning').className = "show";
-                } else {
-                    document.getElementById('connection-warning').className = "hide";
-                    clearInterval(timeout_interval);
-                    dataLoaded(err, countryTopos, production, solar, wind);
+            .defer(d3.json, ENDPOINT + '/v1/wind');
+        if (isMobile()) {
+            Q.defer(geolocaliseCountryCode);
+        }
+        Q.await(function(err, countryTopos, production, solar, wind, countryCode) {
+            if (err) {
+                console.error(err);
+                document.getElementById('connection-warning').className = "show";
+            } else {
+                document.getElementById('connection-warning').className = "hide";
+                clearInterval(timeout_interval);
+                dataLoaded(err, countryTopos, production, solar, wind);
+                if (isMobile() && countries[countryCode]) {
+                    // Select one country
+                    d3.select('.country-table-initial-text')
+                        .style('display', 'none');
+                    countryTable
+                        .show()
+                        .data(countries[countryCode].data);
                 }
-            });
+            }
+        });
+
+        
+
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }
 
     function redraw() {
-        countryMap.render();
         countryTable.render();
-        co2Colorbar.render();
-        windColorbar.render();
-        exchangeLayer
-            .projection(countryMap.projection())
-            .render();
+        if (!isMobile()) {
+            countryMap.render();
+            co2Colorbar.render();
+            windColorbar.render();
+            exchangeLayer
+                .projection(countryMap.projection())
+                .render();
+        }
     };
 
     window.onresize = function () {
