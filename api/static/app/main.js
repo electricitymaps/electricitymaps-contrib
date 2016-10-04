@@ -416,15 +416,6 @@ if (!nobrowsercheck && !isChrome()) {
             .projection(countryMap.projection())
             .render();
 
-        if (isMobile()) {
-            // Select one country
-            d3.select('.country-table-initial-text')
-                .style('display', 'none');
-            countryTable
-                .show()
-                .data(countries['DK'].data);
-        }
-
         d3.select('.loading')
             .transition()
             .style('opacity', 0)
@@ -433,6 +424,26 @@ if (!nobrowsercheck && !isChrome()) {
             });
     };
 
+    // Get geolocation is on mobile (in order to select country)
+    function geolocaliseCountryCode(callback) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude, function (err, response) {
+                    if (err) {
+                        callback(err, null);
+                        return;
+                    }
+                    var obj = response.results[0].address_components
+                        .filter(function(d) { return d.types.indexOf('country') != -1; });
+                    if (obj.length)
+                        callback(null, obj[0].short_name);
+                    else
+                        callback(Error('Invalid geocoder response'), null);
+                });
+            }, function(error) { callback(error); });
+        }
+    }
+
     // Periodically load data
     var REFRESH_TIME_MINUTES = 5;
     function fetchAndReschedule() {
@@ -440,32 +451,48 @@ if (!nobrowsercheck && !isChrome()) {
         timeout_interval = setTimeout(function(){
             document.getElementById('connection-warning').className = "show";
         }, 15 * 1000);
-        queue()
+        var Q = queue()
             .defer(d3.json, 'europe.topo.json')
             .defer(d3.json, ENDPOINT + '/v1/production')
             .defer(d3.json, ENDPOINT + '/v1/solar')
-            .defer(d3.json, ENDPOINT + '/v1/wind')
-            .await(function(err, countryTopos, production, solar, wind) {
-                if (err) {
-                    console.error(err);
-                    document.getElementById('connection-warning').className = "show";
-                } else {
-                    document.getElementById('connection-warning').className = "hide";
-                    clearInterval(timeout_interval);
-                    dataLoaded(err, countryTopos, production, solar, wind);
+            .defer(d3.json, ENDPOINT + '/v1/wind');
+        if (isMobile()) {
+            Q.defer(geolocaliseCountryCode);
+        }
+        Q.await(function(err, countryTopos, production, solar, wind, countryCode) {
+            if (err) {
+                console.error(err);
+                document.getElementById('connection-warning').className = "show";
+            } else {
+                document.getElementById('connection-warning').className = "hide";
+                clearInterval(timeout_interval);
+                dataLoaded(err, countryTopos, production, solar, wind);
+                if (isMobile() && countries[countryCode]) {
+                    // Select one country
+                    d3.select('.country-table-initial-text')
+                        .style('display', 'none');
+                    countryTable
+                        .show()
+                        .data(countries[countryCode].data);
                 }
-            });
+            }
+        });
+
+        
+
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     }
 
     function redraw() {
-        countryMap.render();
         countryTable.render();
-        co2Colorbar.render();
-        windColorbar.render();
-        exchangeLayer
-            .projection(countryMap.projection())
-            .render();
+        if (!isMobile()) {
+            countryMap.render();
+            co2Colorbar.render();
+            windColorbar.render();
+            exchangeLayer
+                .projection(countryMap.projection())
+                .render();
+        }
     };
 
     window.onresize = function () {
