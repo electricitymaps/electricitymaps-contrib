@@ -40,19 +40,12 @@ html, body {
 }
 
 .contribute-text {
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
     background-color: rgba(70, 70, 70, 0.95);
     font-size: 0.6em;
     color: lightgray;
     padding: 3px 5px;
 }
 .watermark {
-    position: absolute;
-    left: 0px;
-    bottom: 15px;
     padding: 15px;
     opacity: 0.5;
     transition: all 0.5s ease;
@@ -100,7 +93,6 @@ html, body {
     padding: 10px;
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
-    width: 350px;
     line-height: 1.7em;
 }
 .panel-container > svg {
