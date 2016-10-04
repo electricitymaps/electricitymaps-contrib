@@ -94,9 +94,20 @@ if (!nobrowsercheck && !isChrome()) {
     if (isMobile()) {
         d3.select('.map').selectAll('*').remove();
         d3.select('.legend').style('display', 'none');
+
+        function onSelectedCountryChange() {
+            var countryCode = d3.select('select.country-picker').node().value;
+            d3.select('.country-table-initial-text')
+                .style('display', 'none');
+            countryTable
+                .show()
+                .data(countries[countryCode].data);
+        }
     } else {
         d3.select('.panel-container')
             .style('width', 360);
+        d3.select('.country-picker')
+            .style('display', 'none');
 
         // Attach event handlers
         function windMouseOver(coordinates) {
@@ -465,7 +476,7 @@ if (!nobrowsercheck && !isChrome()) {
             .defer(d3.json, ENDPOINT + '/v1/production')
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind');
-        if (isMobile()) {
+        if (isMobile() && d3.select('.country-table-initial-text').style() != 'none') {
             Q.defer(geolocaliseCountryCode);
         }
         Q.await(function(err, countryTopos, production, solar, wind, countryCode) {
@@ -476,8 +487,8 @@ if (!nobrowsercheck && !isChrome()) {
                 document.getElementById('connection-warning').className = "hide";
                 clearInterval(timeout_interval);
                 dataLoaded(err, countryTopos, production, solar, wind);
-                if (isMobile()) {
-                    if (countryCode && countries[countryCode]) {
+                if (isMobile() && d3.select('.country-table-initial-text').style() != 'none') {
+                    if (countryCode && countries[countryCode] ) {
                         // Select one country
                         d3.select('.country-table-initial-text')
                             .style('display', 'none');
@@ -485,7 +496,18 @@ if (!nobrowsercheck && !isChrome()) {
                             .show()
                             .data(countries[countryCode].data);
                     } else {
-                        // TODO: Show the country picker
+                        // Show picker
+                        var countryCodes = d3.entries(countries)
+                            .filter(function (d) { return d.value.data.production; })
+                            .map(function (d) { return d.key; });
+                        var countryOptions = d3.select('select.country-picker')
+                            .selectAll('option')
+                            .data(countryCodes);
+                        countryOptions.enter()
+                            .append('option');
+                        countryOptions
+                            .text(function(d) { return d });
+                        countryOptions.exit().remove();
                     }
                 }
             }

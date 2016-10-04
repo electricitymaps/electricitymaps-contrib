@@ -9,7 +9,7 @@
         <meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png">
         <meta name="twitter:site" content="tmrowco">
         <meta property="og:title" content="Electricity Map | Real-time climate impact of the European electricity production" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
         <title>Electricity Map | Real-time climate impact of the European electricity production</title>
 
@@ -100,6 +100,9 @@
                 The <span style="color: lightgray">blinking arrows</span> represent electricity <span style="color: lightgray">imports and exports</span>.<br />
                 <br />
                 <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span><br />
+                <div class="country-picker-container" style="text-align: center">
+                    <select class="country-picker" onchange="onSelectedCountryChange();"></select>
+                </div>
             </div>
             
         </div>
