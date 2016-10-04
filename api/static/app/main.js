@@ -97,11 +97,14 @@ if (!nobrowsercheck && !isChrome()) {
 
         function onSelectedCountryChange() {
             var countryCode = d3.select('select.country-picker').node().value;
-            d3.select('.country-table-initial-text')
-                .style('display', 'none');
-            countryTable
-                .show()
-                .data(countries[countryCode].data);
+            if (countries[countryCode]) {
+                d3.select('.country-table-initial-text')
+                    .style('display', 'none');
+                countryTable
+                    .show()
+                    .data(countries[countryCode].data);
+                d3.select('select.country-picker').node().selectedIndex = 0;
+            }
         }
     } else {
         d3.select('.panel-container')
@@ -500,6 +503,7 @@ if (!nobrowsercheck && !isChrome()) {
                         var countryCodes = d3.entries(countries)
                             .filter(function (d) { return d.value.data.production; })
                             .map(function (d) { return d.key; });
+                        countryCodes.unshift('< press to select >');
                         var countryOptions = d3.select('select.country-picker')
                             .selectAll('option')
                             .data(countryCodes);
