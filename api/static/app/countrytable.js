@@ -137,12 +137,14 @@ CountryTable.prototype.show = function() {
     d3.select('.country-table-header')
         .style('display', 'block');
     this.render();
+    return this;
 }
 
 CountryTable.prototype.hide = function() {
     this.root.style('display', 'none');
     d3.select('.country-table-header')
         .style('display', 'none');
+    return this;
 }
 
 CountryTable.prototype.data = function(arg) {
