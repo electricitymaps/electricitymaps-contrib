@@ -440,6 +440,9 @@ if (!nobrowsercheck && !isChrome()) {
 
     // Get geolocation is on mobile (in order to select country)
     function geolocaliseCountryCode(callback) {
+        // Deactivated for now (UX was confusing)
+        callback(null, null);
+        return;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude, function (err, response) {
