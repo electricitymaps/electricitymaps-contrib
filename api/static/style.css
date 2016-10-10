@@ -20,7 +20,7 @@ html, body {
 }
 
 #connection-warning.hide {
-    top: -50px; 
+    top: -60px; 
 }
 
 #connection-warning .inner {
