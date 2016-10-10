@@ -33,6 +33,7 @@ html, body {
     font-size: 0.8em;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    max-width: 600px;
 }
 
 .contribute-text {
