@@ -10,7 +10,6 @@ html, body {
     display: block;
     z-index: 99;
     height: 40px;
-    top: -40px;
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
@@ -21,16 +20,14 @@ html, body {
 }
 
 #connection-warning.hide {
-    top: -40px; 
+    top: -50px; 
 }
 
 #connection-warning .inner {
-    width: 600px;
     display: block;
     margin: 0 auto;
     background-color: red;
-    height: 40px;
-    line-height: 40px;
+    padding: 10px;
     text-align: center;
     color: white;
     font-size: 0.8em;
