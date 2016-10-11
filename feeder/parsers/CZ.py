@@ -30,9 +30,9 @@ def fetch_CZ():
         'biomass': data['AltPP [MW]'],
         'unknown': data['ApPP [MW]'],
         'oil': 0,
-        'datetime': arrow.get(data['Date'], "DD.MM.YYYY HH:mm").replace(
-            tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime
     }
+    obj['productionDatetime'] = arrow.get(data['Date'], "DD.MM.YYYY HH:mm").replace(
+            tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime
 
     # Fetch exchanges
     url = ('http://www.ceps.cz/_layouts/15/Ceps/_Pages/GraphData.aspx?mode=txt&' +
@@ -42,13 +42,13 @@ def fetch_CZ():
     data = pd.read_csv(StringIO(requests.get(url).text), sep=';', header=2).iloc[-1]
 
     obj['exchange'] = {
-        'datetime': arrow.get(data['Date'], "DD.MM.YYYY HH:mm").replace(
-            tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime,
         'PL': data['PSE Actual [MW]'],
         'SK': data['SEPS Actual [MW]'],
         'AT': data['APG Actual [MW]'],
         'DE': data['TenneT Actual [MW]'] + data['50HzT Actual [MW]']
     }
+    obj['exchangeDatetime'] = arrow.get(data['Date'], "DD.MM.YYYY HH:mm").replace(
+            tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime
 
     return obj
 
