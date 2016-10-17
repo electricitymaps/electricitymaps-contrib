@@ -9,8 +9,8 @@ def fetchValue(params):
     now = arrow.utcnow()
     end = now.replace(hours=+2)
     start = now.replace(hours=-22)
-    periodEnd = str(end.format('YYYYMMDDHH00'))
-    periodStart = str(start.format('YYYYMMDDHH00'))
+    periodEnd = end.format('YYYYMMDDHH00')
+    periodStart = start.format('YYYYMMDDHH00')
 
     parameters = '&psrType=' + params + '&documentType=A75&processType=A16&in_Domain=10YPL-AREA-----S&periodStart=' + periodStart + '&periodEnd=' + periodEnd
     url = 'https://transparency.entsoe.eu/api?securityToken=7466690c-c66a-4a00-8e21-2cb7d538f380' + parameters
