@@ -1,9 +1,9 @@
-
 from bs4 import BeautifulSoup
-import requests
-import arrow
+import arrow, requests
+
 
 COUNTRY_CODE = 'PL'
+session = requests.session()
 
 def fetchValue(params):
 
@@ -13,23 +13,13 @@ def fetchValue(params):
     periodEnd = str(end.format('YYYYMMDDHH00'))
     periodStart = str(start.format('YYYYMMDDHH00'))
 
-
-
     parameters = '&psrType=' + params + '&documentType=A75&processType=A16&in_Domain=10YPL-AREA-----S&periodStart=' + periodStart + '&periodEnd=' + periodEnd
-    link = 'https://transparency.entsoe.eu/api?securityToken=7466690c-c66a-4a00-8e21-2cb7d538f380' + parameters
+    url = 'https://transparency.entsoe.eu/api?securityToken=7466690c-c66a-4a00-8e21-2cb7d538f380' + parameters
 
-    content = requests.get(link)
+    content = session.get(url)
     soup = BeautifulSoup(content.text, "html.parser")
 
-    quantity = []
-
-    item = soup.find_all('point')
-    for pos in item:
-        p = pos.find_all('quantity')
-        for x in p:
-            quantity.append(x)
-
-    last = quantity[len(quantity) - 1]
+    last = soup.find_all('point')[-1].find_all('quantity')[-1]
     value = str(last).strip("<quantity></quantity>")
 
     return float(value)
@@ -39,9 +29,11 @@ def fetch_PL():
 
     parameters = ["B01", "B02", "B03", "B04", "B05", "B06", "B10", "B11", "B12", "B19"]
 
-    output_array = []
-    for place in parameters:
-        output_array.append(fetchValue(place))
+    # output_array = []
+    # for place in parameters:
+    #     output_array.append(fetchValue(place))
+
+    output_array = list(map(fetchValue, parameters))
 
     data = {
         'countryCode': COUNTRY_CODE,
@@ -62,8 +54,3 @@ def fetch_PL():
 
 if __name__ == '__main__':
     print(fetch_PL())
-
-
-
-
-
