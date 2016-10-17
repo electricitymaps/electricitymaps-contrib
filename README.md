@@ -1,4 +1,4 @@
-# electricitymap
+﻿# electricitymap
 A real-time visualisation of the GHG and CO2 footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://electricitymap.tmrow.co](http://electricitymap.tmrow.co).
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png)
@@ -29,6 +29,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Latvia: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Lithuania: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
 - Norway: [energinet.dk](http://www.energinet.dk/EN/El/Sider/Det-nordiske-elsystem.aspx)
+- Poland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Portugal: [REN](http://www.centrodeinformacao.ren.pt/EN/InformacaoExploracao/Pages/EstatisticaDiaria.aspx)
 - Romania: [Transelectrica](http://www.transelectrica.ro/en/web/tel/home)
 - Spain: [REE](https://demanda.ree.es/generacion_acumulada.html)
