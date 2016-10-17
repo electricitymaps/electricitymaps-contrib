@@ -6,7 +6,7 @@ function Co2eqCalculator() {
     }
 
     this.defaultCo2eqFootprint = {
-        'biomass': 740,
+        'biomass': 230,
         'coal': 820,
         'gas': 490,
         'hydro': 24,
