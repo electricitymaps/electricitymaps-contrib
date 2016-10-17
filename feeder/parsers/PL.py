@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import arrow, requests
 
-
 COUNTRY_CODE = 'PL'
 session = requests.session()
 
@@ -24,16 +23,10 @@ def fetchValue(params):
 
     return float(value)
 
-
 def fetch_PL():
 
     parameters = ["B01", "B02", "B03", "B04", "B05", "B06", "B10", "B11", "B12", "B19"]
-
-    # output_array = []
-    # for place in parameters:
-    #     output_array.append(fetchValue(place))
-
-    output_array = list(map(fetchValue, parameters))
+    output_array = map(fetchValue, parameters)
 
     data = {
         'countryCode': COUNTRY_CODE,
