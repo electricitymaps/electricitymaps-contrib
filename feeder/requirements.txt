@@ -1,7 +1,6 @@
 arrow==0.5.0
 beautifulsoup4==4.5.1
 Cython==0.23.4
-lxml==3.6.4
 pandas==0.16.2
 pygrib==2.0.1
 pymongo==3.2.2
