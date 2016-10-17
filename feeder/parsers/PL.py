@@ -19,7 +19,7 @@ def fetchValue(params):
     soup = BeautifulSoup(content.text, "html.parser")
 
     last = soup.find_all('point')[-1].find_all('quantity')[-1]
-    value = str(last).strip("<quantity></quantity>")
+    value = last.contents[0]
 
     return float(value)
 
