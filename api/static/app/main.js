@@ -25,7 +25,7 @@ if (!nobrowsercheck && !isChrome()) {
         'http://localhost:8000' : REMOTE_ENDPOINT;
 
     var co2color = d3.scale.linear()
-        .domain([0, 250, 500])
+        .domain([0, 350, 700])
         .range(['green', 'orange', 'black']);
     var maxWind = 15;
     var windColor = d3.scale.linear()
