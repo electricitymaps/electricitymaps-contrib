@@ -8,6 +8,7 @@ services:
       - ENV=development
       - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
+      - TOKEN='7466690c-c66a-4a00-8e21-2cb7d538f380'
     ports: ['8000:8000']
     volumes:
       - './api/static:/home/static'
