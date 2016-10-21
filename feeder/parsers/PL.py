@@ -4,12 +4,12 @@ import arrow, os, requests
 COUNTRY_CODE = 'PL'
 date = arrow.now(tz='Europe/Warsaw').format('DD/MM/YYYY HH:mm:ss')
 session = requests.session()
-ENTSOE_TOKEN = os.environ.get('TOKEN')
+ENTSOE_TOKEN = os.environ.get('ENTSOE_TOKEN')
 
 def fetchValue(params):
 
     now = arrow.utcnow()
-    end = now.replace(hours=+2)
+    end = now.replace(hours=+24)
     start = now.replace(hours=-22)
     periodEnd = end.format('YYYYMMDDHH00')
     periodStart = start.format('YYYYMMDDHH00')
