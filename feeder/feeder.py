@@ -1,3 +1,4 @@
+import arrow
 import glob
 import pymongo
 import logging, os, schedule, time
@@ -49,6 +50,8 @@ def fetch_countries():
         try:
             with statsd.StatsdTimer('fetch_one_country'):
                 obj = parser()
+                if arrow.get(obj['datetime']) > arrow.get(arrow.now()):
+                    raise Exception('Data can''t be in the future')
                 logging.info('INSERT %s' % obj)
                 col.insert_one(obj)
         except: 

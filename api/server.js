@@ -287,7 +287,8 @@ app.get('/health', function(req, res) {
             console.error(err);
             res.status(500).json({error: 'Unknown database error'});
         } else {
-            if (new Date().getTime() - new Date(doc.datetime).getTime() > EXPIRATION_SECONDS * 1000.0)
+            var deltaMs = new Date().getTime() - new Date(doc.datetime).getTime();
+            if (deltaMs < 0 && deltaMs > EXPIRATION_SECONDS * 1000.0)
                 res.status(500).json({error: 'Database is empty or last measurement is too old'});
             else
                 res.json({status: 'ok'});
