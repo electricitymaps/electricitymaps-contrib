@@ -4,7 +4,7 @@ import arrow, os, requests
 COUNTRY_CODE = 'PL'
 date = arrow.now(tz='Europe/Warsaw').format('DD/MM/YYYY HH:mm:ss')
 session = requests.session()
-TOKEN = os.environ.get('TOKEN')
+ENTSOE_TOKEN = os.environ.get('TOKEN')
 
 def fetchValue(params):
 
@@ -15,7 +15,7 @@ def fetchValue(params):
     periodStart = start.format('YYYYMMDDHH00')
 
     parameters = '&psrType=' + params + '&documentType=A75&processType=A16&in_Domain=10YPL-AREA-----S&periodStart=' + periodStart + '&periodEnd=' + periodEnd
-    url = 'https://transparency.entsoe.eu/api?securityToken=' + str(TOKEN) + parameters
+    url = 'https://transparency.entsoe.eu/api?securityToken=' + ENTSOE_TOKEN + parameters
 
     content = session.get(url)
     soup = BeautifulSoup(content.text, "html.parser")
