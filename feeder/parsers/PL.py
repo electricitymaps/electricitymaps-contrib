@@ -111,9 +111,10 @@ def fetch_PL():
         raise Exception('Measurements have been taken at different times: %s' % dates)
 
     values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in output_pairs.iteritems()}
-
+    print dir(dates)
     data = {
         'countryCode': COUNTRY_CODE,
+        'datetime': list(dates)[0].datetime,
         'production': {
             'biomass': values.get('Biomass', None),
             'coal': get_coal(values),
