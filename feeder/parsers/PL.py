@@ -10,7 +10,7 @@ def fetchValue(params):
 
     now = arrow.utcnow()
     end = now.replace(hours=+2)
-    start = now.replace(hours=-24)
+    start = now.replace(hours=-22)
     periodEnd = end.format('YYYYMMDDHH00')
     periodStart = start.format('YYYYMMDDHH00')
 
