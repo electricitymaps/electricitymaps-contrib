@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import arrow, re, requests
+import arrow, os, re, requests
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -35,7 +35,7 @@ def query(psr_type, in_domain, session):
         'in_Domain': in_domain,
         'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
         'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': '7466690c-c66a-4a00-8e21-2cb7d538f380'
+        'securityToken': os.environ['ENTSOE_TOKEN']
     }
     response = session.get(ENTSOE_ENDPOINT, params=params)
     if response.ok: return response.text
