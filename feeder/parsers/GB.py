@@ -4,10 +4,10 @@ import xml.etree.ElementTree as ET
 
 COUNTRY_CODE = 'GB'
 
-def fetch_GB():
+def fetch_GB(session=None):
     url = 'http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable'
 
-    response = requests.get(url)
+    response = (session or requests).get(url)
     root = ET.fromstring(response.content)
     data = root[0]
 

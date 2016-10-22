@@ -2,6 +2,7 @@ import arrow
 import glob
 import pymongo
 import logging, os, schedule, time
+import requests
 
 from parsers.solar import fetch_solar
 from parsers.wind import fetch_wind
@@ -45,15 +46,18 @@ client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27
 db = client['electricity']
 col = db['realtime']
 
+session = requests.session()
+
 def fetch_countries():
     for parser in parsers: 
         try:
             with statsd.StatsdTimer('fetch_one_country'):
-                obj = parser()
+                obj = parser(session)
                 if not 'datetime' in obj:
                     raise Exception('datetime was not returned from %s' % parser)
-                if arrow.get(obj['datetime']) > arrow.get(arrow.now()):
-                    raise Exception('Data can''t be in the future')
+                if arrow.get(obj['datetime']) > arrow.now():
+                    print obj['datetime'], arrow.now()
+                    raise Exception("Data from %s can't be in the future" % parser)
                 logging.info('INSERT %s' % obj)
                 col.insert_one(obj)
         except: 
