@@ -4,9 +4,8 @@ import xml.etree.ElementTree as ET
 
 COUNTRY_CODE = 'ES'
 
-r = requests.session()
-
-def fetch_ES():
+def fetch_ES(session=None):
+    r = session or requests.session()
     headers = {
         'Content-Type': 'text/xml; charset=utf-8',
         'SOAPAction': '',

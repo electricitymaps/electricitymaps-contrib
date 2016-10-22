@@ -288,7 +288,7 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('display', function (d) {
-                return d.mode != 'unknown' && d.production === undefined ? 'block' : 'none';
+                return d.mode != 'unknown' && (d.production === undefined || d.production === null) ? 'block' : 'none';
             });
 
         // Construct exchanges
