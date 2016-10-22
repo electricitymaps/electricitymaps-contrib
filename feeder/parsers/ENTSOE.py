@@ -54,9 +54,12 @@ def datetime_from_position(start, position, resolution):
 def parse(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
-    resolution = soup.find_all('resolution')[0].contents[0]
-    datetime_start = arrow.get(soup.find_all('start')[0].contents[0])
-    last_entry = soup.find_all('point')[-1]
+    # Get the first time series (realised)
+    timeseries = soup.find_all('timeseries')[0]
+    resolution = timeseries.find_all('resolution')[0].contents[0]
+    datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+    # Get the last point
+    last_entry = timeseries.find_all('point')[-1]
     quantity = float(last_entry.find_all('quantity')[0].contents[0])
     position = int(last_entry.find_all('position')[0].contents[0])
     datetime = datetime_from_position(datetime_start, position, resolution)
