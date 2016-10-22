@@ -4,7 +4,8 @@ import xml.etree.ElementTree as ET
 
 COUNTRY_CODE = 'DK'
 
-def fetch_DK():
+def fetch_DK(session=None):
+    r = session or requests.session()
     url = 'http://energinet.dk/_layouts/FlashProxy.asmx'
     headers = {
         'Content-Type': 'text/xml; charset=utf-8',
@@ -22,7 +23,7 @@ def fetch_DK():
     </soap:Body>
     </soap:Envelope>"""
 
-    response = requests.post(url, data=body, headers=headers)
+    response = r.post(url, data=body, headers=headers)
     root = ET.fromstring(response.content)
     data = root[0][0][0][0][0][0].attrib
 

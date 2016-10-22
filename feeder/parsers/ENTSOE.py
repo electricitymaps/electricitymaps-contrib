@@ -26,9 +26,7 @@ ENTSOE_PARAMETER_DESC = {
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
 
-session = requests.session()
-
-def query(psr_type, in_domain):
+def query(psr_type, in_domain, session):
     now = arrow.utcnow()
     params = {
         'psrType': psr_type,
@@ -107,10 +105,11 @@ def get_unknown(values):
             values.get('Other renewable', 0) + \
             values.get('Other', 0)
 
-def fetch_ENTSOE(in_domain, country_code):
+def fetch_ENTSOE(in_domain, country_code, session=None):
+    if not session: session = requests.session()
     output_pairs = {}
     for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse(query(k, in_domain))
+        parsed = parse(query(k, in_domain, session))
         if parsed: output_pairs[k] = parsed
     dates = set(map(lambda x: x[1], output_pairs.values()))
     if not len(dates) == 1:

@@ -3,10 +3,10 @@ import requests
 
 COUNTRY_CODE = 'LV'
 
-def fetch_LV():
+def fetch_LV(session=None):
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview'
 
-    data = requests.get(url).json()
+    data = (session or requests).get(url).json()
     countries = map(lambda x: x['value'], data['Headers'])
     i = countries.index(COUNTRY_CODE)
 

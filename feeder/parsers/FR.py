@@ -17,8 +17,8 @@ MAP_STORAGE = {
     'Pompage': 'hydro',
 }
 
-def fetch_FR():
-    r = requests.session()
+def fetch_FR(session=None):
+    r = session or requests.session()
     formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=mix&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
     response = r.get(url)

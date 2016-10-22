@@ -4,10 +4,10 @@ import requests
 
 COUNTRY_CODE = 'RO'
 
-def fetch_RO():
+def fetch_RO(session=None):
     url = 'http://www.transelectrica.ro/sen-filter'
     data = {}
-    for item in requests.get(url).json():
+    for item in (session or requests).get(url).json():
         d = list(item.iteritems())[0]
         data[d[0]] = d[1]
     
