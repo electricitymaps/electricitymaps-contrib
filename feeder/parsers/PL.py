@@ -1,19 +1,21 @@
 from bs4 import BeautifulSoup
-import arrow, requests
+import arrow, os, requests
 
 COUNTRY_CODE = 'PL'
+date = arrow.now(tz='Europe/Warsaw').format('DD/MM/YYYY HH:mm:ss')
 session = requests.session()
+ENTSOE_TOKEN = os.environ.get('ENTSOE_TOKEN')
 
 def fetchValue(params):
 
     now = arrow.utcnow()
-    end = now.replace(hours=+2)
+    end = now.replace(hours=+24)
     start = now.replace(hours=-22)
     periodEnd = end.format('YYYYMMDDHH00')
     periodStart = start.format('YYYYMMDDHH00')
 
     parameters = '&psrType=' + params + '&documentType=A75&processType=A16&in_Domain=10YPL-AREA-----S&periodStart=' + periodStart + '&periodEnd=' + periodEnd
-    url = 'https://transparency.entsoe.eu/api?securityToken=7466690c-c66a-4a00-8e21-2cb7d538f380' + parameters
+    url = 'https://transparency.entsoe.eu/api?securityToken=' + ENTSOE_TOKEN + parameters
 
     content = session.get(url)
     soup = BeautifulSoup(content.text, "html.parser")
@@ -30,6 +32,7 @@ def fetch_PL():
 
     data = {
         'countryCode': COUNTRY_CODE,
+        'datetime': date,
         'production': {
             'wind': output_array[9],
             'solar': 0,
