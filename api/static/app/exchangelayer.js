@@ -1,6 +1,7 @@
 function ExchangeLayer(selector) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
+    this.STROKE_CO2_THRESHOLD = 550;
     this.exchangeAnimationDurationScale = d3.scale.pow()
         .exponent(2)
         .domain([500, 6000])
@@ -104,7 +105,7 @@ ExchangeLayer.prototype.render = function() {
         })
         .attr('stroke', function (d) {
             var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
-            return co2 > 400 ? 'lightgray' : 'black';
+            return co2 > this.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
         })
         .select('path')
             .transition()
