@@ -292,7 +292,7 @@ app.get('/v1/co2', function(req, res) {
 });
 app.get('/v1/co2/history', function(req, res) {
     // Fetch all data
-    mongoCollection.find({}, { sort: [['datetime', -1]] })
+    mongoCollection.find({}, { sort: [['datetime', 1]] })
         .toArray(function (err, data) {
             if (err)
                 return res.status(500).json({'error': 'Database error'});
