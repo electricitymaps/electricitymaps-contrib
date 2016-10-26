@@ -74,7 +74,8 @@ function Co2eqCalculator() {
             d3.entries(country.production).forEach(function (production) {
                 var footprint = that.footprintOf(production.key, country.countryCode);
                 if (footprint === undefined) {
-                    console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
+                    if (typeof require == 'undefined')
+                        console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
                     return;
                 }
                 // Accumulate
@@ -84,7 +85,8 @@ function Co2eqCalculator() {
             d3.entries(country.exchange).forEach(function (exchange) {
                 var j = validCountryKeys.indexOf(exchange.key);
                 if (j < 0) {
-                    console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
+                    if (typeof require == 'undefined')
+                        console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
                     return;
                 }
                 if (exchange.value > 0) {

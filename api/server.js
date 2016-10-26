@@ -290,27 +290,6 @@ app.get('/v1/co2', function(req, res) {
         res.status(400).json({'error': 'Missing arguments "lon" and "lat" or "countryCode"'})
     }
 });
-app.get('/v1/co2/history', function(req, res) {
-    // Fetch all data
-    mongoCollection.find({}, { sort: [['datetime', 1]] })
-        .toArray(function (err, data) {
-            if (err)
-                return res.status(500).json({'error': 'Database error'});
-            // Accumulate into a state series (countries)
-            var lastCountries = {};
-            var tasks = data.map(function (country) {
-                return function (cb) { 
-                    // Update the last state
-                    lastCountries[country.countryCode] = country;
-                    // Compute CO2 (pass a deep copy)
-                    return calculateCo2(JSON.parse(JSON.stringify(lastCountries)), cb)
-                };
-            });
-            async.series(tasks, function (err, data) {
-                res.json({'data': data});
-            });
-        });
-});
 app.get('/health', function(req, res) {
     statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
