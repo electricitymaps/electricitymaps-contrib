@@ -8,25 +8,24 @@ services:
       - ENV=development
       - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
-      - TOKEN='7466690c-c66a-4a00-8e21-2cb7d538f380'
     ports: ['8000:8000']
     volumes:
-      #- '.\api\static:\home\static'
-      #- '.\api\server.js:\home\server.js'
-      - '.\api\data:\home\data'
+      - './api/static:/home/static'
+      - './api/server.js:/home/server.js'
+      - './api/data:/home/data'
   feeder:
     build: feeder
     depends_on: [mongo]
     environment: 
+      - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
       - ENV=development
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
-      - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
     volumes:
-      - '.\api\data:\home\data'
-      #- '.\feeder\feeder.py:\home\feeder.py'
-      #- '.\feeder\parsers:\home\parsers'
+      - './api/data:/home/data'
+      - './feeder/feeder.py:/home/feeder.py'
+      - './feeder/parsers:/home/parsers'
   memcached:
     image: memcached
   mongo:
     image: mongo
-    #volumes: ['./mongodata/:/data/db']
+    volumes: ['./mongodata/:/data/db']

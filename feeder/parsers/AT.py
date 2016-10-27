@@ -8,7 +8,9 @@ import requests
 COUNTRY_CODE = 'AT'
 TIME_ZONE = 'Europe/Vienna'
 
-def fetch_AT():
+def fetch_AT(session=None):
+
+    r = session or requests.session()
 
     now = arrow.now(TIME_ZONE)
 
@@ -23,7 +25,7 @@ def fetch_AT():
     # Fetch production
     url = 'https://www.apg.at/transparency/WebMethods/ChartsEtc.aspx/GetChartData'
     payload = {"PID":"AGPT","DateString":"%s000000" % now.format('YYYYMMDD'),"Resolution":"15M","Language":"en","AdditionalFilter":"B19|B16|B01|B04|B05|B06|B09|B10|B11|B12|B15|B17|B20"}
-    obj = requests.post(url, json=payload).json()['d']['ResponseData'][1]
+    obj = r.post(url, json=payload).json()['d']['ResponseData'][1]
     times = map(lambda d: arrow.get(d['DateLocalString'] + ' ' + d['TimeLocalFromString'], "MM/DD/YYYY HH:mm").replace(tzinfo=dateutil.tz.gettz(TIME_ZONE)).replace(minutes=+15),
         obj['Times'])
     # Fetch values of first item and determine end time
@@ -51,7 +53,7 @@ def fetch_AT():
     # Get exchanges
     url = 'https://www.apg.at/transparency/WebMethods/ChartsEtc.aspx/GetMapData'
     payload = {"PID":"CBPF","DateString":"%s000000" % now.format('YYYYMMDD'),"Resolution":"15M","Language":"en","AdditionalFilter": None}
-    obj = requests.post(url, json=payload).json()['d']['ResponseData']
+    obj = r.post(url, json=payload).json()['d']['ResponseData']
     times = map(lambda d: arrow.get(d['DateLocalString'] + ' ' + d['TimeLocalFromString'], "MM/DD/YYYY HH:mm").replace(tzinfo=dateutil.tz.gettz(TIME_ZONE)).replace(minutes=+15),
         obj['Times'])
     i = np.where(np.array(times) <= data['datetime'])[0][-1]

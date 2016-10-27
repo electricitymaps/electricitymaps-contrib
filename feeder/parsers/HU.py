@@ -7,7 +7,7 @@ import pandas as pd # In order to read excel
 COUNTRY_CODE = 'HU'
 TIME_ZONE = 'Europe/Budapest'
 
-def fetch_HU():
+def fetch_HU(session=None):
 
     now = arrow.now(TIME_ZONE)
 
