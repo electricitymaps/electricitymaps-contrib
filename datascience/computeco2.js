@@ -4,7 +4,7 @@ var co2calculatorlib = require('../api/static/app/co2eq');
 console.log('Starting..')
 
 // Requires a sorted list:
-// cat backup.jsonr | jq --slurp --compact-output 'sort_by(."datetime.$date") | .[]' > backupSorted.jsonr
+// cat backup.jsonr | jq --slurp --compact-output 'sort_by(.datetime["$date"]) | .[]' > backupSorted.jsonr
 
 var lineReader = require('readline').createInterface({
     input: fs.createReadStream('backupSorted.jsonr')
@@ -16,13 +16,19 @@ var writer = fs.createWriteStream('backupWithCo2.jsonr', {
 var lastCountries = {};
 lineReader.on('line', function (line) {
     obj = JSON.parse(line);
+    // Required fields
+    if (obj['datetime'] === undefined)
+        return;
     var countryCode = obj['countryCode'];
     lastCountries[countryCode] = {'data': obj};
     var co2calc = co2calculatorlib.Co2eqCalculator();
     co2calc.compute(lastCountries);
     d3.values(lastCountries).forEach(function (country) {
-        console.log(country.data.datetime['$date'], country.data.countryCode, co2calc.assignments[country.data.countryCode]);
+        // Assign co2 results
         country.data.co2intensity = co2calc.assignments[country.data.countryCode];
+        // Update datetime of all countries
+        country.data.datetime = obj['datetime'];
+        console.log(country.data.datetime['$date'], country.data.countryCode, co2calc.assignments[country.data.countryCode]);
     });
     writer.write(JSON.stringify(lastCountries) + "\n");
 });
