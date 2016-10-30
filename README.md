@@ -85,6 +85,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 
 ## Contribute
 You can contribute by
+- helping out on the [issues](https://github.com/corradio/electricitymap/issues)
 - adding your country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers)
 - update an existing [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers) with a different API if you know one with more data or closer to real-time
 - optimising the code, correct inaccuracies...

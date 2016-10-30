@@ -14,27 +14,28 @@ function Co2eqCalculator() {
         'oil': 650,
         'solar': 45,
         'wind': 12,
-        'unknown': 700 // assume conventional
+        'unknown': 700, // assume conventional
+        'other': 700 // same as 'unknown'. Here for backward compatibility
     }; // in gCo2eq/kWh
 
     this.countryCo2eqFootprint = {
         'DE': function (productionMode) {
-            return productionMode == 'unknown' ? 700 : null;
+            return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
         },
         'DK': function (productionMode) {
-            return productionMode == 'unknown' ? 700 : null;
+            return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
         },
         'FI': function (productionMode) {
-            return productionMode == 'unknown' ? 700 : null;
+            return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
         },
         'GB': function (productionMode) {
-            return productionMode == 'unknown' ? 300 : null;
+            return (productionMode == 'unknown' || productionMode == 'other') ? 300 : null;
         },
         'NO': function (productionMode) {
-            return productionMode == 'unknown' ? 700 : null;
+            return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
         },
         'SE': function (productionMode) {
-            return productionMode == 'unknown' ? 700 : null;
+            return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
         }
     };
 
@@ -46,7 +47,7 @@ function Co2eqCalculator() {
 
     this.compute = function(countries) {
         var validCountries = d3.entries(countries)
-            .map(function(d) { return d.value.data })
+            .map(function(d) { return d.value.data; })
             .filter(function (d) {
                 return d.countryCode !== undefined;
             });
@@ -69,13 +70,18 @@ function Co2eqCalculator() {
         var that = this;
 
         validCountries.forEach(function (country, i) {
+            if (country.totalProduction === undefined || country.totalNetExchange === undefined) {
+                country.totalProduction = 
+                    d3.sum(d3.values(country.production));
+                country.totalNetExchange = 
+                    d3.sum(d3.values(country.exchange));
+            }
             A.set([i, i], -country.totalProduction - country.totalNetExchange);
             // Intern
             d3.entries(country.production).forEach(function (production) {
                 var footprint = that.footprintOf(production.key, country.countryCode);
                 if (footprint === undefined) {
-                    if (typeof require == 'undefined')
-                        console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
+                    console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
                     return;
                 }
                 // Accumulate
