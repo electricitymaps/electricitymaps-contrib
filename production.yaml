@@ -2,7 +2,6 @@ version: '2'
 services:
   api:
     build: api
-    mem_limit: 200M
     environment:
      - ENV=production
      - MEMCACHED_HOST=memcached
@@ -11,6 +10,7 @@ services:
      - VIRTUAL_HOST=electricitymap-api.tmrow.co
     env_file: ./mailgun.env
     depends_on: [mongo, memcached]
+    mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']
