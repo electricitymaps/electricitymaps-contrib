@@ -3,6 +3,9 @@ var d3 = require('d3');
 var co2calculatorlib = require('../api/static/app/co2eq');
 console.log('Starting..')
 
+// TODO: Move that to a README
+// Mongo:
+// mongoexport --db electricity --collection realtime --out /data/db/backup.jsonr
 // Requires a sorted list:
 // cat backup.jsonr | jq --slurp --compact-output 'sort_by(.datetime["$date"]) | .[]' > backupSorted.jsonr
 
