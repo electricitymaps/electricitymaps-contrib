@@ -84,16 +84,8 @@ html, body {
 }
 
 .panel-container {
-    position: relative;
-    top: 0px;
-    margin: 10px;
-    padding: 10px;
-    background-color: rgba(70, 70, 70, 0.95);
-    border: 1px solid grey;
-    line-height: 1.7em;
-}
-.panel-survey {
     position: absolute;
+    top: 0px;
     margin: 10px;
     padding: 10px;
     background-color: rgba(70, 70, 70, 0.95);
