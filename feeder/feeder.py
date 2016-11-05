@@ -59,7 +59,11 @@ def fetch_countries():
                     print obj['datetime'], arrow.now()
                     raise Exception("Data from %s can't be in the future" % parser)
                 logging.info('INSERT %s' % obj)
-                col.insert_one(obj)
+                try: col.insert_one(obj)
+                except pymongo.errors.DuplicateKeyError:
+                    # (datetime, countryCode) does already exist. Don't raise.
+                    # Note: with this design, the oldest record stays.
+                    pass
         except: 
             statsd.increment('fetch_one_country_error')
             logger.exception('fetch_one_country()')
