@@ -26,11 +26,18 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
     console.log('Connected to database');
     mongoCollection = db.collection('realtime');
     // Create indexes
+    mongoCollection.createIndex(
+        {datetime: -1, countryCode: 1},
+        {unique: true},
+        function(err, indexName) {
+            if (err) console.error(err);
+            else console.log('Database compound indexes created');
+        }
+    );
     mongoCollection.createIndexes(
         [
             { datetime: -1 },
             { countryCode: 1 },
-            { datetime: -1, countryCode: 1 }
         ],
         null,
         function (err, indexName) {
