@@ -182,7 +182,7 @@ function queryAndCalculateCo2(countryCode, callback) {
 
 // * Routes
 app.use(express.static('static'));
-app.use(express.static('vendor'));
+app.use(express.static('libs'));
 // Backwards compat
 app.get('/production', function(req, res) {
     statsdClient.increment('production_GET');

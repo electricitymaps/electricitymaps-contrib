@@ -228,7 +228,7 @@ CountryTable.prototype.data = function(arg) {
         header.select('img.country-flag')
             .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
             .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
-            .attr('src', 'vendor/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
+            .attr('src', 'libs/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
         header.select('span.country-name')
             .text(this._data.countryCode);
         header.select('span.country-last-update')
@@ -322,7 +322,7 @@ CountryTable.prototype.data = function(arg) {
             });
         selection.select('image')
             .attr('xlink:href', function (d) {
-                return 'vendor/flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
+                return 'libs/flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
         function getExchangeCo2eq(d) {
             return d.value > 0 ? 
