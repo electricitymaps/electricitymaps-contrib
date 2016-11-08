@@ -109,6 +109,10 @@ function parseDatabaseResults(result) {
         countries[d.countryCode] = d;
         // Default values
         if (!d.exchange) d.exchange = {};
+        // Truncate negative production values
+        d3.keys(d.production).forEach(function(k) {
+            d.production[k] = Math.max(0, d.production[k]);
+        });
     });
     // Average out import-exports between commuting pairs
     d3.keys(countries).forEach(function(o, i) {
