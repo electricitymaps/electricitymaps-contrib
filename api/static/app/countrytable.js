@@ -162,7 +162,7 @@ CountryTable.prototype.data = function(arg) {
             var footprint = co2eqCalculator.footprintOf(d, that._data.countryCode);
             return {
                 production: arg.production[d],
-                capacity: arg.capacity[d],
+                capacity: arg.capacity ? arg.capacity[d] : undefined,
                 mode: d,
                 gCo2eqPerkWh: footprint,
                 gCo2eqPerH: footprint * 1000.0 * arg.production[d]

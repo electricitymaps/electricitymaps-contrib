@@ -187,26 +187,10 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
     });
 }
 
-// * Routes
+// * Static
 app.use(express.static('static'));
 app.use(express.static('libs'));
-// Backwards compat
-app.get('/production', function(req, res) {
-    statsdClient.increment('production_GET');
-    res.redirect(301, '/v1/production');
-});
-app.get('/solar', function(req, res) {
-    statsdClient.increment('solar_GET');
-    res.redirect(301, '/v1/solar');
-});
-app.get('/wind', function(req, res) {
-    statsdClient.increment('wind_GET');
-    res.redirect(301, '/v1/wind');
-});
-app.get('/data/europe.topo.json', function(req, res) {
-    res.redirect(301, 'http://electricitymap.tmrow.co/data/europe.topo.json');
-});
-// End backwards compat
+// * Routes
 app.get('/v1/wind', function(req, res) {
     statsdClient.increment('v1_wind_GET');
     res.header('Content-Encoding', 'gzip');

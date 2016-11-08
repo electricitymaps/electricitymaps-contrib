@@ -44,7 +44,7 @@ CountryMap.prototype.render = function() {
     var that = this;
     if (this._data) {
         var getCo2Color = function (d) {
-            return (d.data.co2intensity !== undefined) ? that.co2color(d.data.co2intensity) : 'gray';
+            return (d.co2intensity !== undefined) ? that.co2color(d.co2intensity) : 'gray';
         };
         var selector = this.land.selectAll('.country')
             .data(this._data);
