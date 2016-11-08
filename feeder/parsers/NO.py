@@ -1,34 +1,9 @@
-import arrow
-import requests
+from ENTSOE import fetch_ENTSOE
 
 COUNTRY_CODE = 'NO'
+ENTSOE_DOMAIN = '10YNO-0--------C'
 
-def fetch_NO(session=None):
-    url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview'
+def fetch_NO(session=None): 
+    return fetch_ENTSOE(ENTSOE_DOMAIN, COUNTRY_CODE, session)
 
-    data = (session or requests).get(url).json()
-    countries = map(lambda x: x['value'], data['Headers'])
-    i = countries.index(COUNTRY_CODE)
-
-    obj = {
-        'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(data['MeasuredAt'] / 1000).datetime # time given in UTC
-    }
-    obj['consumption'] = {
-        'unknown': float(data['ConsumptionData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0'))
-    }
-    obj['exchange'] = {
-    }
-    obj['production'] = {
-        'solar': 0,
-        'unknown': float(data['ThermalData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')) + 
-            float(data['NotSpecifiedData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
-        'wind': float(data['WindData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
-        'nuclear': float(data['NuclearData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
-        'hydro': float(data['HydroData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')),
-    }
-
-    return obj
-
-if __name__ == '__main__':
-    fetch_NO()
+if __name__ == '__main__': print(fetch_NO())
