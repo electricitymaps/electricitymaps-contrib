@@ -118,6 +118,9 @@ function queryLastValues(callback) {
         return callback(err, countries);
     });
 }
+function queryValuesAtDatetime(datetime, callback) {
+    return 
+}
 function queryAndCalculateCo2(countryCode, callback) {
     queryLastValues(function (err, countries) {
         if (err) {
@@ -219,10 +222,20 @@ app.get('/v1/production', function(req, res) {
         res.json({status: 'ok', data: obj, took: deltaMs + 'ms', cached: cached});
         statsdClient.timing('production_GET', deltaMs);
     }
-    memcachedClient.get('production', function (err, data) {
-        if (data) returnObj(data, true);
-        else {
-            if (false && value) { returnObj(obj, true) } else {
+    if (req.query.datetime) {
+        queryValuesAtDatetime(req.query.datetime, function (err, result) {
+            if (err) {
+                statsdClient.increment('production_GET_ERROR');
+                console.error(err);
+                res.status(500).json({error: 'Unknown database error'});
+            } else {
+                returnObj(result, false);
+            }
+        });
+    } else {
+        memcachedClient.get('production', function (err, data) {
+            if (data) returnObj(data, true);
+            else {
                 queryLastValues(function (err, result) {
                     if (err) {
                         statsdClient.increment('production_GET_ERROR');
@@ -235,9 +248,9 @@ app.get('/v1/production', function(req, res) {
                         returnObj(result, false);
                     }
                 });
-            };
-        }
-    });
+            }
+        });
+    }
 });
 app.get('/v1/co2', function(req, res) {
     statsdClient.increment('v1_co2_GET');
