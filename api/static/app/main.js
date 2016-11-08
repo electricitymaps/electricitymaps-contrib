@@ -1,17 +1,26 @@
-// read querystring args
-nobrowsercheck = false;
-force_remote_endpoint = false;
-args = location.search.replace('\?','').split('&');
-args.forEach(function(arg) {
-    kv = arg.split('=');
-    if (kv[0] == 'nobrowsercheck' && kv[1] == '1') {
-        nobrowsercheck = true;
-    } else if (kv[0] == 'remote' && kv[1] == 'true') {
-        force_remote_endpoint = true;
-    }
-});
+// Constants
+var REFRESH_TIME_MINUTES = 5;
 
-var isMobile = function() {
+// Global State
+var nobrowsercheck = false;
+var force_remote_endpoint = false;
+var custom_date;
+
+(function readQueryString() {
+    args = location.search.replace('\?','').split('&');
+    args.forEach(function(arg) {
+        kv = arg.split('=');
+        if (kv[0] == 'nobrowsercheck' && kv[1] == '1') {
+            nobrowsercheck = true;
+        } else if (kv[0] == 'remote' && kv[1] == 'true') {
+            force_remote_endpoint = true;
+        } else if (kv[0] == 'datetime') {
+            custom_date = kv[1];
+        }
+    });
+})();
+
+function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }
 
@@ -19,7 +28,7 @@ if (!nobrowsercheck && !isChrome()) {
     // show force-chrome overlay
     document.getElementById('force-chrome-overlay').style.display = "flex";
 } else {
-    // load all
+    // Start chrome (or forced) version
     var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
     var ENDPOINT = (document.domain == 'localhost' && !force_remote_endpoint) ?
         'http://localhost:8000' : REMOTE_ENDPOINT;
@@ -59,7 +68,6 @@ if (!nobrowsercheck && !isChrome()) {
 
     var co2eqCalculator = new Co2eqCalculator();
 
-    // State
     var tableDisplayEmissions = countryTable.displayByEmissions();
 
     function toogleSource() {
@@ -88,7 +96,12 @@ if (!nobrowsercheck && !isChrome()) {
     }
 
     // Prepare data
-    var countries = {};
+    var countries = getCountryTopos(countries);
+    addCountryConfiguration(countries);
+    d3.values(countries).forEach(function (country) {
+        country.maxCapacity =
+            d3.max(d3.values(country.capacity));
+    });
 
     // Mobile
     if (isMobile()) {
@@ -130,7 +143,7 @@ if (!nobrowsercheck && !isChrome()) {
             });
         countryTable
             .onExchangeMouseOver(function (d, countryCode) {
-                var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
+                var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2intensity;
                 co2Colorbar.currentMarker(co2);
             })
             .onExchangeMouseOut(function (d) {
@@ -145,7 +158,7 @@ if (!nobrowsercheck && !isChrome()) {
             });
     }
 
-    function dataLoaded(err, countryTopos, production, solar, wind) {
+    function dataLoaded(err, production, solar, wind) {
         if (err) {
             console.error(err);
             return;
@@ -223,59 +236,6 @@ if (!nobrowsercheck && !isChrome()) {
             }
         }
 
-        var topo = topojson.object(countryTopos, countryTopos.objects.europe).geometries;
-
-        countries['AL'] = topo[0];
-        countries['AT'] = topo[3];
-        countries['BE'] = topo[4];
-        countries['BG'] = topo[5];
-        countries['BA'] = topo[6];
-        countries['BY'] = topo[7];
-        countries['CH'] = topo[8];
-        countries['CZ'] = topo[9];
-        countries['DE'] = topo[10];
-        countries['DK'] = topo[11];
-        countries['ES'] = topo[12];
-        countries['EE'] = topo[13];
-        countries['FI'] = topo[14];
-        countries['FR'] = topo[15];
-        countries['GB'] = topo[17];
-        countries['GR'] = topo[20];
-        countries['HR'] = topo[21];
-        countries['HU'] = topo[22];
-        countries['IE'] = topo[24];
-        countries['IS'] = topo[25];
-        countries['IT'] = topo[26];
-        countries['XK'] = topo[28];
-        countries['LT'] = topo[30];
-        countries['LU'] = topo[31];
-        countries['LV'] = topo[32];
-        countries['MD'] = topo[34];
-        countries['MK'] = topo[35];
-        countries['ME'] = topo[37];
-        countries['NL'] = topo[38];
-        countries['NO'] = topo[39];
-        countries['PL'] = topo[40];
-        countries['PT'] = topo[41];
-        countries['RO'] = topo[42];
-        countries['RU'] = topo[43];
-        countries['RS'] = topo[45];
-        countries['SK'] = topo[46];
-        countries['SI'] = topo[47];
-        countries['SE'] = topo[48];
-        countries['UA'] = topo[49];
-
-        // Add empty fields
-        d3.keys(countries).forEach(function (countryCode) {
-            countries[countryCode].data = {};
-            countries[countryCode].data.capacity = {};
-            countries[countryCode].data.exchange = {};
-            countries[countryCode].data.neighborCo2 = {};
-        });
-
-        // Load country configs
-        addCountryConfiguration(countries);
-
         // Populate with realtime production data
         d3.keys(production.data).forEach(function(countryCode) {
             var obj = production.data[countryCode];
@@ -284,30 +244,26 @@ if (!nobrowsercheck && !isChrome()) {
                 console.warn(countryCode + ' has no country definition.');
                 return;
             }
+            // Copy data
             d3.keys(obj).forEach(function(k) {
-                country.data[k] = obj[k];
-                // Cap to a minimum value of 0
-                d3.keys(country.data[k]).forEach(function (mode) {
-                    if (country.data[k][mode] < 0)
-                        country.data[k][mode] = 0;
-                });
+                country[k] = obj[k];
             });
             // Add own country code so each country is identifiable
-            country.data.countryCode = countryCode;
+            country.countryCode = countryCode;
             // Validate data
             countryTable.PRODUCTION_MODES.forEach(function (mode) {
                 if (mode == 'other' || mode == 'unknown') return;
-                if (country.data.production[mode] === undefined)
+                if (country.production[mode] === undefined)
                     console.warn(countryCode + ' is missing production of ' + mode);
-                else if (country.data.capacity[mode] === undefined)
+                else if (!country.capacity || country.capacity[mode] === undefined)
                     console.warn(countryCode + ' is missing capacity of ' + mode);
             });
-            if (!country.data.exchange || !d3.keys(country.data.exchange).length)
+            if (!country.exchange || !d3.keys(country.exchange).length)
                 console.warn(countryCode + ' is missing exchanges');
         });
 
         // Populate exchange pairs for arrows
-        var exchanges = []
+        var exchanges = [];
         EXCHANGES_CONFIG.forEach(function (item) {
             // Shallow copy the configuration item
             var pair = {};
@@ -316,67 +272,35 @@ if (!nobrowsercheck && !isChrome()) {
             });
             var o = pair.countries[0];
             var d = pair.countries[1];
+
+            if (!countries[d].exchange) countries[d].exchange = {};
+            if (!countries[o].exchange) countries[o].exchange = {};
+
             var netFlows = [
-                countries[d].data.exchange[o],
-                -countries[o].data.exchange[d]
+                countries[d].exchange[o],
+                -countries[o].exchange[d]
             ];
             pair.netFlow = d3.mean(netFlows);
             if (pair.netFlow === undefined)
                 return;
             pair.co2 = function () {
-                return pair.countries.map(function (k) { return countries[k].data.co2; });
+                return pair.countries.map(function (k) {
+                    return countries[k].co2intensity;
+                });
             };
             exchanges.push(pair);
 
-            countries[o].data.exchange[d] = -pair.netFlow;
-            countries[d].data.exchange[o] = pair.netFlow;
+            countries[o].exchange[d] = -pair.netFlow;
+            countries[d].exchange[o] = pair.netFlow;
         });
 
         console.log('exchanges', exchanges);
-
-        // Compute aggregates
-        d3.entries(countries).forEach(function (entry) {
-            country = entry.value;
-            // Add extra data
-            country.data.maxCapacity = 
-                d3.max(d3.values(country.data.capacity));
-            country.data.maxProduction = 
-                d3.max(d3.values(country.data.production));
-            country.data.totalProduction = 
-                d3.sum(d3.values(country.data.production));
-            country.data.totalNetExchange = 
-                d3.sum(d3.values(country.data.exchange));
-            country.data.maxExport = 
-                -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
-        });
-
-
-        // Compute CO2
-        d3.entries(co2eqCalculator.compute(countries).assignments).forEach(function (entry) {
-            var country = countries[entry.key];
-            // Assign co2
-            country.data.co2 = entry.value;
-            // Add co2 to each neighboring country
-            country.data.neighborCo2 = {};
-            d3.keys(country.data.exchange).forEach(function (k) {
-                if (k == 'datetime') return;
-                if (!countries[k])
-                    console.error(entry.key + ' neighbor ' + k + ' could not be found');
-                else
-                    country.data.neighborCo2[k] = function() {
-                        return countries[k].data.co2;
-                    };
-            });
-            // Display warnings for missing data
-            if (country.data.co2 === undefined)
-                console.warn(entry.key + ' is missing co2 footprint');
-        });
 
         // Issue warnings for missing exchange configurations
         d3.keys(production.data).forEach(function(countryCode) {
             var country = countries[countryCode]
             if (!country) return;
-            d3.keys(country.data.exchange).forEach(function (sourceCountryCode) {
+            d3.keys(country.exchange).forEach(function (sourceCountryCode) {
                 if (sourceCountryCode == 'datetime') return;
                 // Find the exchange object
                 var matches = exchanges.filter(function (e) {
@@ -397,30 +321,31 @@ if (!nobrowsercheck && !isChrome()) {
                 countryTable.hide();
             })
             .onCountryClick(function (d, i) {
-                if (!d.data.production) {
+                if (!d.production) {
                     countryMap.onSeaClick()();
                     return;
                 };
+                console.log(d);
                 d3.select('.country-table-initial-text')
                     .style('display', 'none');
                 countryTable
                     .show()
-                    .data(d.data);
+                    .data(d);
             })
             .onCountryMouseOver(function (d) { 
-                if (d.data.production)
+                if (d.production)
                     d3.select(this)
                         .style('opacity', 0.8)
                         .style('cursor', 'hand')
-                if (d.data.co2)
-                    co2Colorbar.currentMarker(d.data.co2);
+                if (d.co2intensity)
+                    co2Colorbar.currentMarker(d.co2intensity);
             })
             .onCountryMouseOut(function (d) { 
-                if (d.data.production) 
+                if (d.production) 
                     d3.select(this)
                         .style('opacity', 1)
                         .style('cursor', 'normal')
-                if (d.data.co2)
+                if (d.co2intensity)
                     co2Colorbar.currentMarker(undefined);
             })
             .render();
@@ -471,7 +396,6 @@ if (!nobrowsercheck && !isChrome()) {
     }
 
     // Periodically load data
-    var REFRESH_TIME_MINUTES = 5;
     var connectionWarningTimeout = null;
 
     function handleConnectionError(err) {
@@ -492,7 +416,6 @@ if (!nobrowsercheck && !isChrome()) {
         var Q = queue()
         if (isMobile()) {
             Q
-                .defer(d3.json, 'europe.topo.json')
                 .defer(d3.json, ENDPOINT + '/v1/production');
             if (d3.select('.country-table-initial-text').style() != 'none') {
                 Q.defer(geolocaliseCountryCode);
@@ -530,14 +453,13 @@ if (!nobrowsercheck && !isChrome()) {
             });
         } else {
             Q
-                .defer(d3.json, 'europe.topo.json')
-                .defer(d3.json, ENDPOINT + '/v1/production')
+                .defer(d3.json, ENDPOINT + '/v1/production' + (custom_date ? '?datetime=' + custom_date : ''))
                 .defer(d3.json, ENDPOINT + '/v1/solar')
                 .defer(d3.json, ENDPOINT + '/v1/wind')
-                .await(function(err, countryTopos, production, solar, wind) {
+                .await(function(err, production, solar, wind) {
                     handleConnectionError(err);
                     if (!err)
-                        dataLoaded(err, countryTopos, production, solar, wind);
+                        dataLoaded(err, production, solar, wind);
                     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
                 });
         }

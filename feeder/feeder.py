@@ -1,9 +1,11 @@
 import arrow
 import glob
+from pymemcache.client.base import Client
 import pymongo
 import logging, os, schedule, time
 import requests
 
+from parsers.ENTSOE import fetch_ENTSOE
 from parsers.solar import fetch_solar
 from parsers.wind import fetch_wind
 
@@ -16,6 +18,24 @@ def import_country(country_code):
         'fetch_%s' % country_code)
 country_codes = map(lambda s: s[len('parsers/'):len('parsers/')+2], glob.glob('parsers/??.py'))
 parsers = map(import_country, country_codes)
+
+# Define ENTSOE parsers
+ENTSOE_DOMAINS = {
+    'AT': '10YAT-APG------L',
+    'CZ': '10YCZ-CEPS-----N',
+    'DE': '10Y1001A1001A83F',
+    'DK': '10Y1001A1001A65H',
+    'FI': '10YFI-1--------U',
+    'FR': '10YFR-RTE------C',
+    'LT': '10YLT-1001A0008Q',
+    'LV': '10YLV-1001A00074',
+    'NO': '10YNO-0--------C',
+    'PL': '10YPL-AREA-----S',
+    'PT': '10YPT-REN------W',
+    'SI': '10YSI-ELES-----O',
+}
+for countryCode, domain in ENTSOE_DOMAINS.iteritems():
+    parsers.append(lambda session: fetch_ENTSOE(domain, countryCode, session))
 
 # Set up stats
 import statsd
@@ -41,11 +61,16 @@ if not ENV == 'development':
     logging.getLogger('statsd').addHandler(logging.StreamHandler())
 else: logger.addHandler(logging.StreamHandler())
 
-
+# Set up database
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
 col = db['realtime']
 
+# Set up memcached
+MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
+cache = Client((MEMCACHED_HOST, 11211))
+
+# Set up requests
 session = requests.session()
 
 def fetch_countries():
@@ -59,7 +84,9 @@ def fetch_countries():
                     print obj['datetime'], arrow.now()
                     raise Exception("Data from %s can't be in the future" % parser)
                 logging.info('INSERT %s' % obj)
-                try: col.insert_one(obj)
+                try:
+                    col.insert_one(obj)
+                    cache.delete('production')
                 except pymongo.errors.DuplicateKeyError:
                     # (datetime, countryCode) does already exist. Don't raise.
                     # Note: with this design, the oldest record stays.

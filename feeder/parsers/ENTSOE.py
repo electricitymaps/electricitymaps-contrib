@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from collections import defaultdict
 import arrow, os, re, requests
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
@@ -52,16 +53,24 @@ def datetime_from_position(start, position, resolution):
 def parse(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
-    # Get the first time series (realised)
-    timeseries = soup.find_all('timeseries')[0]
-    resolution = timeseries.find_all('resolution')[0].contents[0]
-    datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
-    # Get the last point
-    last_entry = timeseries.find_all('point')[-1]
-    quantity = float(last_entry.find_all('quantity')[0].contents[0])
-    position = int(last_entry.find_all('position')[0].contents[0])
-    datetime = datetime_from_position(datetime_start, position, resolution)
-    return quantity, datetime
+    # Read from mrid = 0 to mrid = max(mrid)/2
+    # because the second half is consumption (not well documented..)
+    max_mrid = int(soup.find_all('mrid')[-1].contents[0])
+    # Get all points
+    quantities = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        mrid = int(timeseries.find_all('mrid')[0].contents[0])
+        if mrid > 1 and mrid > max_mrid / 2: break
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            quantity = float(entry.find_all('quantity')[0].contents[0])
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            quantities.append(quantity)
+            datetimes.append(datetime)
+    return quantities, datetimes
 
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
@@ -107,19 +116,25 @@ def get_unknown(values):
 
 def fetch_ENTSOE(in_domain, country_code, session=None):
     if not session: session = requests.session()
-    output_pairs = {}
+    # Create a double hashmap with keys (datetime, parameter)
+    output_dated_pairs = defaultdict(lambda: {})
     for k in ENTSOE_PARAMETER_DESC.keys():
         parsed = parse(query(k, in_domain, session))
-        if parsed: output_pairs[k] = parsed
-    dates = set(map(lambda x: x[1], output_pairs.values()))
-    if not len(dates) == 1:
-        raise Exception('Measurements have been taken at different times: %s' % dates)
+        if parsed:
+            quantities, datetimes = parsed
+            for i in range(len(quantities)):
+                output_dated_pairs[datetimes[i]][k] = quantities[i]
+    # Take the last date that is present for all parameters
+    dates = sorted(set(output_dated_pairs.keys()), reverse=True)
+    dates_with_counts = map(lambda date: len(output_dated_pairs[date].keys()),
+        dates)
+    date = dates[dates_with_counts.index(max(dates_with_counts))]
 
-    values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in output_pairs.iteritems()}
+    values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in output_dated_pairs[date].iteritems()}
 
     data = {
         'countryCode': country_code,
-        'datetime': list(dates)[0].datetime,
+        'datetime': date.datetime,
         'production': {
             'biomass': values.get('Biomass', None),
             'coal': get_coal(values),

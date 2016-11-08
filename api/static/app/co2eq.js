@@ -45,11 +45,8 @@ function Co2eqCalculator() {
     };
 
     this.compute = function(countries) {
-        var validCountries = d3.entries(countries)
-            .map(function(d) { return d.value.data })
-            .filter(function (d) {
-                return d.countryCode !== undefined;
-            });
+        var validCountries = d3.values(countries)
+            .filter(function (d) { return d.countryCode !== undefined; });
         var validCountryKeys = validCountries.map(function (d) { return d.countryCode });
 
         // x_i: unknown co2 (consumption) footprint of i-th country
