@@ -1,13 +1,15 @@
+var async = require('async');
+var co2lib = require('./static/app/co2eq');
+var d3 = require('d3');
 var express = require('express');
 var http = require('http');
-var app = express();
-var server = http.Server(app);
-var async = require('async');
 var Memcached = require('memcached');
-var d3 = require('d3');
+var moment = require('moment');
 var statsd = require('node-statsd');
 var MongoClient = require('mongodb').MongoClient;
-var co2lib = require('./static/app/co2eq');
+
+var app = express();
+var server = http.Server(app);
 
 // * Common
 app.use(function(req, res, next) {
@@ -152,28 +154,34 @@ function computeCo2(countries) {
     });
     return countries;
 }
-function queryCountry(countryCode, callback) {
+function queryLastCountry(countryCode, callback) {
+    var minDate = moment.utc().subtract(24, 'hours').toDate();
     return mongoCollection.findOne(
-        { countryCode: countryCode }, 
+        { countryCode: countryCode, datetime: { $gte : minDate } },
         { sort: [['datetime', -1]] },
         callback);
 }
-function queryCountryAtDatetime(datetime, countryCode, callback) {
+function queryLastCountryBeforeDatetime(datetime, countryCode, callback) {
+    var minDate = moment(datetime).subtract(24, 'hours').toDate();
     return mongoCollection.findOne(
-        { countryCode: countryCode, datetime: { $lte: new Date(datetime) } },
+        {
+            countryCode: countryCode,
+            datetime: { $lte: new Date(datetime) },
+            datetime: { $gte: minDate }
+        },
         { sort: [['datetime', -1]] },
         callback);
 }
 function queryLastValues(callback) {
     return async.parallel(countryCodes.map(function(k) {
-        return function(callback) { return queryCountry(k, callback); };
+        return function(callback) { return queryLastCountry(k, callback); };
     }), function (err, result) {
         return callback(err, computeCo2(parseDatabaseResults(result)));
     });
 }
-function queryLastValuesAtDatetime(datetime, callback) {
+function queryLastValuesBeforeDatetime(datetime, callback) {
     return async.parallel(countryCodes.map(function(k) {
-        return function(callback) { return queryCountryAtDatetime(datetime, k, callback); };
+        return function(callback) { return queryLastCountryBeforeDatetime(datetime, k, callback); };
     }), function (err, result) {
         return callback(err, computeCo2(parseDatabaseResults(result)));
     });
@@ -219,7 +227,7 @@ app.get('/v1/production', function(req, res) {
         statsdClient.timing('production_GET', deltaMs);
     }
     if (req.query.datetime) {
-        queryLastValuesAtDatetime(req.query.datetime, function (err, result) {
+        queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 statsdClient.increment('production_GET_ERROR');
                 console.error(err);
