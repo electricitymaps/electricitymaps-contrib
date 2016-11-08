@@ -16,7 +16,7 @@ services:
   feeder:
     build: feeder
     depends_on: [mongo]
-    environment: 
+    environment:
       - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
       - ENV=development
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
