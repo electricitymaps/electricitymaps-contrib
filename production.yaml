@@ -17,6 +17,7 @@ services:
     environment:
      - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
      - ENV=production
+     - MEMCACHED_HOST=memcached
      - MONGO_URL=mongodb://mongo:27017
      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
     env_file: ./mailgun.env

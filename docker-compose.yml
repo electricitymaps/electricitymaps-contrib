@@ -19,6 +19,7 @@ services:
     environment:
       - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
       - ENV=development
+      - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     volumes:
       - './api/data:/home/data'
