@@ -53,19 +53,23 @@ def datetime_from_position(start, position, resolution):
 def parse(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
-    # Get the first time series (realised)
-    timeseries = soup.find_all('timeseries')[0]
-    resolution = timeseries.find_all('resolution')[0].contents[0]
-    datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
-    # Get all point
+    # Read from mrid = 0 to mrid = max(mrid)/2
+    # because the second half is consumption (not well documented..)
+    max_mrid = int(soup.find_all('mrid')[-1].contents[0])
+    # Get all points
     quantities = []
     datetimes = []
-    for entry in timeseries.find_all('point'):
-        quantity = float(entry.find_all('quantity')[0].contents[0])
-        position = int(entry.find_all('position')[0].contents[0])
-        datetime = datetime_from_position(datetime_start, position, resolution)
-        quantities.append(quantity)
-        datetimes.append(datetime)
+    for timeseries in soup.find_all('timeseries'):
+        mrid = int(timeseries.find_all('mrid')[0].contents[0])
+        if mrid > 1 and mrid > max_mrid / 2: break
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            quantity = float(entry.find_all('quantity')[0].contents[0])
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            quantities.append(quantity)
+            datetimes.append(datetime)
     return quantities, datetimes
 
 def get_biomass(values):
