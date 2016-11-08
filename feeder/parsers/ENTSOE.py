@@ -130,7 +130,7 @@ def fetch_ENTSOE(in_domain, country_code, session=None):
 
     data = {
         'countryCode': country_code,
-        'datetime': date,
+        'datetime': date.datetime,
         'production': {
             'biomass': values.get('Biomass', None),
             'coal': get_coal(values),
