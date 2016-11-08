@@ -133,7 +133,7 @@ if (!nobrowsercheck && !isChrome()) {
             });
         countryTable
             .onExchangeMouseOver(function (d, countryCode) {
-                var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2;
+                var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2intensity;
                 co2Colorbar.currentMarker(co2);
             })
             .onExchangeMouseOut(function (d) {
@@ -379,15 +379,15 @@ if (!nobrowsercheck && !isChrome()) {
                     d3.select(this)
                         .style('opacity', 0.8)
                         .style('cursor', 'hand')
-                if (d.data.co2)
-                    co2Colorbar.currentMarker(d.data.co2);
+                if (d.data.co2intensity)
+                    co2Colorbar.currentMarker(d.data.co2intensity);
             })
             .onCountryMouseOut(function (d) { 
                 if (d.data.production) 
                     d3.select(this)
                         .style('opacity', 1)
                         .style('cursor', 'normal')
-                if (d.data.co2)
+                if (d.data.co2intensity)
                     co2Colorbar.currentMarker(undefined);
             })
             .render();
