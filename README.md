@@ -13,7 +13,7 @@ The GreenHouse Gas (GHG) footprint of each country is measured from the perspect
 
 The GHG footprint of each production mode takes into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources) and [co2eq.js#L1](https://github.com/corradio/electricitymap/blob/master/api/static/app/co2eq.js#L1)).
 
-Each country has a GHG mass flow that depends on neighboring countries. In order to determine the GHG footprint of each country, the set of coupled GHG mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of GHG exchanges (see [co2eq.js#L49](https://github.com/corradio/electricitymap/blob/master/api/static/app/co2eq.js#L49)).
+Each country has a GHG mass flow that depends on neighboring countries. In order to determine the GHG footprint of each country, the set of coupled GHG mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of GHG exchanges (see [co2eq.js#L52](https://github.com/corradio/electricitymap/blob/master/api/static/app/co2eq.js#L52)).
 
 
 ### Real-time electricity data sources
