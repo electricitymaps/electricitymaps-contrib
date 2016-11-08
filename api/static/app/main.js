@@ -1,6 +1,7 @@
 // read querystring args
-nobrowsercheck = false;
-force_remote_endpoint = false;
+var nobrowsercheck = false;
+var force_remote_endpoint = false;
+var custom_date;
 args = location.search.replace('\?','').split('&');
 args.forEach(function(arg) {
     kv = arg.split('=');
@@ -8,6 +9,8 @@ args.forEach(function(arg) {
         nobrowsercheck = true;
     } else if (kv[0] == 'remote' && kv[1] == 'true') {
         force_remote_endpoint = true;
+    } else if (kv[0] == 'datetime') {
+        custom_date = kv[1];
     }
 });
 
@@ -531,7 +534,7 @@ if (!nobrowsercheck && !isChrome()) {
         } else {
             Q
                 .defer(d3.json, 'europe.topo.json')
-                .defer(d3.json, ENDPOINT + '/v1/production')
+                .defer(d3.json, ENDPOINT + '/v1/production' + (custom_date ? '?datetime=' + custom_date : ''))
                 .defer(d3.json, ENDPOINT + '/v1/solar')
                 .defer(d3.json, ENDPOINT + '/v1/wind')
                 .await(function(err, countryTopos, production, solar, wind) {
