@@ -273,11 +273,14 @@ if (!nobrowsercheck && !isChrome()) {
             countries[countryCode].data = {};
             countries[countryCode].data.capacity = {};
             countries[countryCode].data.exchange = {};
-            countries[countryCode].data.neighborCo2 = {};
         });
 
         // Load country configs
         addCountryConfiguration(countries);
+        d3.values(countries).forEach(function (country) {
+            country.data.maxCapacity =
+                d3.max(d3.values(country.data.capacity));
+        });
 
         // Populate with realtime production data
         d3.keys(production.data).forEach(function(countryCode) {
@@ -287,13 +290,9 @@ if (!nobrowsercheck && !isChrome()) {
                 console.warn(countryCode + ' has no country definition.');
                 return;
             }
+            // Copy data
             d3.keys(obj).forEach(function(k) {
                 country.data[k] = obj[k];
-                // Cap to a minimum value of 0
-                d3.keys(country.data[k]).forEach(function (mode) {
-                    if (country.data[k][mode] < 0)
-                        country.data[k][mode] = 0;
-                });
             });
             // Add own country code so each country is identifiable
             country.data.countryCode = countryCode;
@@ -310,7 +309,7 @@ if (!nobrowsercheck && !isChrome()) {
         });
 
         // Populate exchange pairs for arrows
-        var exchanges = []
+        var exchanges = [];
         EXCHANGES_CONFIG.forEach(function (item) {
             // Shallow copy the configuration item
             var pair = {};
@@ -327,7 +326,9 @@ if (!nobrowsercheck && !isChrome()) {
             if (pair.netFlow === undefined)
                 return;
             pair.co2 = function () {
-                return pair.countries.map(function (k) { return countries[k].data.co2; });
+                return pair.countries.map(function (k) {
+                    return countries[k].data.co2intensity;
+                });
             };
             exchanges.push(pair);
 
@@ -336,44 +337,6 @@ if (!nobrowsercheck && !isChrome()) {
         });
 
         console.log('exchanges', exchanges);
-
-        // Compute aggregates
-        d3.entries(countries).forEach(function (entry) {
-            country = entry.value;
-            // Add extra data
-            country.data.maxCapacity = 
-                d3.max(d3.values(country.data.capacity));
-            country.data.maxProduction = 
-                d3.max(d3.values(country.data.production));
-            country.data.totalProduction = 
-                d3.sum(d3.values(country.data.production));
-            country.data.totalNetExchange = 
-                d3.sum(d3.values(country.data.exchange));
-            country.data.maxExport = 
-                -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
-        });
-
-
-        // Compute CO2
-        d3.entries(co2eqCalculator.compute(countries).assignments).forEach(function (entry) {
-            var country = countries[entry.key];
-            // Assign co2
-            country.data.co2 = entry.value;
-            // Add co2 to each neighboring country
-            country.data.neighborCo2 = {};
-            d3.keys(country.data.exchange).forEach(function (k) {
-                if (k == 'datetime') return;
-                if (!countries[k])
-                    console.error(entry.key + ' neighbor ' + k + ' could not be found');
-                else
-                    country.data.neighborCo2[k] = function() {
-                        return countries[k].data.co2;
-                    };
-            });
-            // Display warnings for missing data
-            if (country.data.co2 === undefined)
-                console.warn(entry.key + ' is missing co2 footprint');
-        });
 
         // Issue warnings for missing exchange configurations
         d3.keys(production.data).forEach(function(countryCode) {
@@ -404,6 +367,7 @@ if (!nobrowsercheck && !isChrome()) {
                     countryMap.onSeaClick()();
                     return;
                 };
+                console.log(d.data);
                 d3.select('.country-table-initial-text')
                     .style('display', 'none');
                 countryTable

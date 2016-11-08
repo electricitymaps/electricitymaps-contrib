@@ -159,12 +159,13 @@ CountryTable.prototype.data = function(arg) {
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
+            var footprint = co2eqCalculator.footprintOf(d, that._data.countryCode);
             return {
                 production: arg.production[d],
                 capacity: arg.capacity[d],
                 mode: d,
-                gCo2eqPerkWh: co2eqCalculator.footprintOf(d, that._data.countryCode),
-                gCo2eqPerH: co2eqCalculator.footprintOf(d, that._data.countryCode) * 1000.0 * arg.production[d]
+                gCo2eqPerkWh: footprint,
+                gCo2eqPerH: footprint * 1000.0 * arg.production[d]
             };
         });
 
@@ -176,10 +177,10 @@ CountryTable.prototype.data = function(arg) {
             ]);
         // co2 scale in tCO2eq/s
         var maxCO2eqExport = d3.max(exchangeData, function (d) {
-            return d.value >= 0 ? 0 : that._data.co2 / 1000.0 * -d.value;
+            return d.value >= 0 ? 0 : that._data.co2intensity / 1000.0 * -d.value;
         });
         var maxCO2eqImport = d3.max(exchangeData, function (d) {
-            return d.value <= 0 ? 0 : that._data.neighborCo2[d.key]() / 1000.0 * d.value;
+            return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1000.0 * d.value;
         });
         this.co2Scale
             .domain([
@@ -326,8 +327,8 @@ CountryTable.prototype.data = function(arg) {
             })
         function getExchangeCo2eq(d) {
             return d.value > 0 ? 
-                (that._data.neighborCo2[d.key]() !== undefined) ? that._data.neighborCo2[d.key]() : undefined
-                : (that._data.co2 !== undefined) ? that._data.co2 : undefined;
+                (that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
+                : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
         }
         selection.select('rect')
             .on('mouseover', function (d) {
@@ -370,10 +371,10 @@ CountryTable.prototype.data = function(arg) {
         selection.select('text')
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
-            .text(Math.round(this._data.co2));
+            .text(Math.round(this._data.co2intensity));
         d3.select('.country-emission-rect')
             .transition()
-            .style('background-color', that.co2Color(this._data.co2));
+            .style('background-color', that.co2Color(this._data.co2intensity));
 
         this.resize();
     }

@@ -7,7 +7,7 @@ var Memcached = require('memcached');
 var d3 = require('d3');
 var statsd = require('node-statsd');
 var MongoClient = require('mongodb').MongoClient;
-var co2calc = require('./static/app/co2eq').Co2eqCalculator();
+var co2lib = require('./static/app/co2eq');
 
 // * Common
 app.use(function(req, res, next) {
@@ -97,6 +97,61 @@ var countryCodes = [
     'SE',
     'UA'
 ];
+function parseDatabaseResults(result) {
+    // Construct dict
+    countries = {};
+    result.forEach(function(d) {
+        // Ignore errors: just filter
+        if (!d) return;
+        // Assign
+        countries[d.countryCode] = d;
+        // Default values
+        if (!d.exchange) d.exchange = {};
+    });
+    // Average out import-exports between commuting pairs
+    d3.keys(countries).forEach(function(o, i) {
+        d3.keys(countries).forEach(function(d, j) {
+            if (i < j) return;
+            var netFlows = [
+                countries[d].exchange[o] ? countries[d].exchange[o] : undefined,
+                countries[o].exchange[d] ? -countries[o].exchange[d] : undefined
+            ];
+            var netFlow = d3.mean(netFlows);
+            if (netFlow == undefined)
+                return;
+            countries[o].exchange[d] = -netFlow;
+            countries[d].exchange[o] = netFlow;
+        });
+    });
+    // Compute aggregates
+    d3.values(countries).forEach(function (country) {
+        country.maxProduction =
+            d3.max(d3.values(country.production));
+        country.totalProduction =
+            d3.sum(d3.values(country.production));
+        country.totalNetExchange =
+            d3.sum(d3.values(country.exchange));
+        country.maxExport =
+            -Math.min(d3.min(d3.values(country.exchange)), 0) || 0;
+    });
+
+    return countries;
+}
+function computeCo2(countries) {
+    var co2calc = co2lib.Co2eqCalculator();
+    co2calc.compute(countries);
+    d3.entries(countries).forEach(function(o) {
+        o.value.co2intensity = co2calc.assignments[o.key];
+    });
+    d3.values(countries).forEach(function(country) {
+        country.exchangeCo2Intensities = {};
+        d3.keys(country.exchange).forEach(function(k) {
+            country.exchangeCo2Intensities[k] =
+                country.exchange[k] > 0 ? co2calc.assignments[k] : country.co2intensity;
+        });
+    });
+    return countries;
+}
 function queryCountry(countryCode, callback) {
     return mongoCollection.findOne(
         { countryCode: countryCode }, 
@@ -113,85 +168,14 @@ function queryLastValues(callback) {
     return async.parallel(countryCodes.map(function(k) {
         return function(callback) { return queryCountry(k, callback); };
     }), function (err, result) {
-        // Ignore errors: just filter results
-        countries = {};
-        result.forEach(function(d) {
-            if (d) { countries[d.countryCode] = d; }
-        });
-        return callback(err, countries);
+        return callback(err, computeCo2(parseDatabaseResults(result)));
     });
 }
 function queryLastValuesAtDatetime(datetime, callback) {
     return async.parallel(countryCodes.map(function(k) {
         return function(callback) { return queryCountryAtDatetime(datetime, k, callback); };
     }), function (err, result) {
-        // Ignore errors: just filter results
-        countries = {};
-        result.forEach(function(d) {
-            if (d) { countries[d.countryCode] = d; }
-        });
-        return callback(err, countries);
-    }); 
-}
-function queryAndCalculateCo2(countryCode, callback) {
-    queryLastValues(function (err, countries) {
-        if (err) {
-            callback(err, countries);
-        } else {
-            // TODO: Remove the extra `data` key
-            d3.keys(countries).forEach(function(k) {
-                countries[k] = { data: countries[k] };
-            });
-            // Average out import-exports between commuting pairs
-            d3.keys(countries).forEach(function(country1, i) {
-                d3.keys(countries).forEach(function(country2, j) {
-                    if (i < j) return;
-                    var o = country1.countryCode;
-                    var d = country2.countryCode;
-                    var netFlows = [
-                        countries[d] ? countries[d].data.exchange[o] : undefined,
-                        countries[o] ? -countries[o].data.exchange[d] : undefined
-                    ];
-                    var netFlow = d3.mean(netFlows);
-                    if (netFlow == undefined)
-                        return;
-                    countries[o].data.exchange[d] = -netFlow;
-                    countries[d].data.exchange[o] = netFlow;
-                });
-            });
-            // Compute aggregates
-            d3.entries(countries).forEach(function (entry) {
-                country = entry.value;
-                // Add extra data
-                country.data.maxCapacity = 
-                    d3.max(d3.values(country.data.capacity));
-                country.data.maxProduction = 
-                    d3.max(d3.values(country.data.production));
-                country.data.totalProduction = 
-                    d3.sum(d3.values(country.data.production));
-                country.data.totalNetExchange = 
-                    d3.sum(d3.values(country.data.exchange));
-                country.data.maxExport = 
-                    -Math.min(d3.min(d3.values(country.data.exchange)), 0) || 0;
-            });
-            co2calc.compute(countries);
-            if (!countries[countryCode])
-                callback(Error('Country ' + countryCode + ' has no data.'), null)
-            else {
-                countries[countryCode].data.exchangeCo2Intensities = {}
-                d3.keys(countries[countryCode].data.exchange).forEach(function(k) {
-                    countries[countryCode].data.exchangeCo2Intensities[k] =
-                        countries[countryCode].data.exchange[k] > 0 ? co2calc.assignments[k] : co2calc.assignments[countryCode];
-                });
-                callback(err, {
-                    status: 'ok',
-                    countryCode: countryCode,
-                    co2intensity: co2calc.assignments[countryCode],
-                    unit: 'gCo2eq/kWh',
-                    countryData: countries[countryCode].data
-                });
-            }
-        }
+        return callback(err, computeCo2(parseDatabaseResults(result)));
     });
 }
 
@@ -246,6 +230,7 @@ app.get('/v1/production', function(req, res) {
         });
     } else {
         memcachedClient.get('production', function (err, data) {
+            if (err) { console.error(err); }
             if (data) returnObj(data, true);
             else {
                 queryLastValues(function (err, result) {
@@ -267,22 +252,30 @@ app.get('/v1/production', function(req, res) {
 app.get('/v1/co2', function(req, res) {
     statsdClient.increment('v1_co2_GET');
     var t0 = new Date().getTime();
+    var countryCode = req.query.countryCode;
 
-    function onCo2Computed(err, result) {
+    function onCo2Computed(err, countries) {
         if (err) {
             statsdClient.increment('co2_GET_ERROR');
             console.error(err);
             res.status(500).json({error: 'Unknown error'});
         } else {
             var deltaMs = new Date().getTime() - t0;
-            result.took = deltaMs + 'ms';
-            res.json(result);
+            responseObject = {
+                status: 'ok',
+                countryCode: countryCode,
+                co2intensity: countries[countryCode].co2intensity,
+                unit: 'gCo2eq/kWh',
+                data: countries[countryCode]
+            };
+            responseObject.took = deltaMs + 'ms';
+            res.json(responseObject);
             statsdClient.timing('co2_GET', deltaMs);
         }
     }
 
-    if ((req.query.lon && req.query.lat) || req.query.countryCode) {
-        if (!req.query.countryCode) {
+    if ((req.query.lon && req.query.lat) || countryCode) {
+        if (!countryCode) {
             // Geocode
             http.get(
                 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + req.query.lat + ',' + req.query.lon,
@@ -292,8 +285,10 @@ app.get('/v1/co2', function(req, res) {
                     geocoderResponse.on('end', function() {
                         var obj = JSON.parse(body).results[0].address_components
                             .filter(function(d) { return d.types.indexOf('country') != -1; });
-                        if (obj.length)
-                            queryAndCalculateCo2(obj[0].short_name, onCo2Computed);
+                        if (obj.length) {
+                            countryCode = obj[0].short_name;
+                            queryLastValues(onCo2Computed);
+                        }
                         else {
                             console.error('Geocoder returned no usable results');
                             res.status(500).json({error: 'Error while geocoding'});
@@ -305,7 +300,7 @@ app.get('/v1/co2', function(req, res) {
                 res.status(500).json({error: 'Error while geocoding'});
             });
         } else {
-            queryAndCalculateCo2(req.query.countryCode, onCo2Computed);
+            queryLastValues(onCo2Computed);
         }
     } else {
         res.status(400).json({'error': 'Missing arguments "lon" and "lat" or "countryCode"'})
