@@ -99,8 +99,10 @@ def parse_production(xml_text):
                 datetimes.append(datetime)
     return quantities, datetimes
 
-def parse_exchange(xml_text, is_import, quantities=[], datetimes=[]):
+def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     if not xml_text: return None
+    if not quantities: quantities = []
+    if not datetimes: datetimes = []
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     for timeseries in soup.find_all('timeseries'):
