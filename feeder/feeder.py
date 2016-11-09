@@ -46,16 +46,22 @@ custom_parsers = map(import_country, country_codes)
 # Define ENTSOE parsers
 ENTSOE_DOMAINS = {
     'AT': '10YAT-APG------L',
+    'BE': '10YBE----------2',
+    'CH': '10YCH-SWISSGRIDZ',
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
     'DK': '10Y1001A1001A65H',
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
+    'GR': '10YGR-HTSO-----Y',
+    'IE': '10YIE-1001A00010',
+    'IT': '10YIT-GRTN-----B',
     'LT': '10YLT-1001A0008Q',
     'LV': '10YLV-1001A00074',
     'NO': '10YNO-0--------C',
     'PL': '10YPL-AREA-----S',
     'PT': '10YPT-REN------W',
+    'SE': '10YSE-1--------K',
     'SI': '10YSI-ELES-----O',
 }
 
