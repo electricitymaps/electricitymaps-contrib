@@ -283,7 +283,7 @@ if (!nobrowsercheck && !isChrome()) {
             pair.netFlow = d3.mean(netFlows);
             if (pair.netFlow === undefined)
                 return;
-            pair.co2 = function () {
+            pair.co2 = function() {
                 return pair.countryCodes.map(function (k) {
                     return countries[k].co2intensity;
                 });
