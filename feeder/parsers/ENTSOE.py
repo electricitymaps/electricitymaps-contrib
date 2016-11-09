@@ -25,7 +25,7 @@ ENTSOE_PARAMETER_DESC = {
     'B19': 'Wind Onshore',
     'B20': 'Other',
 }
-ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
+ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 
 def query(psr_type, in_domain, session):
     now = arrow.utcnow()
@@ -126,11 +126,11 @@ def fetch_ENTSOE(in_domain, country_code, session=None):
                 output_dated_pairs[datetimes[i]][k] = quantities[i]
     # Take the last date that is present for all parameters
     dates = sorted(set(output_dated_pairs.keys()), reverse=True)
-    dates_with_counts = map(lambda date: len(output_dated_pairs[date].keys()),
-        dates)
+    dates_with_counts = list(map(lambda date: len(output_dated_pairs[date].keys()),
+        dates))
     date = dates[dates_with_counts.index(max(dates_with_counts))]
 
-    values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in output_dated_pairs[date].iteritems()}
+    values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in output_dated_pairs[date].items()}
 
     data = {
         'countryCode': country_code,
@@ -149,7 +149,7 @@ def fetch_ENTSOE(in_domain, country_code, session=None):
     }
 
     # Sanity check
-    for k, v in data['production'].iteritems():
+    for k, v in data['production'].items():
         if v is None: continue
         if v < 0: raise ValueError('key %s has negative value %s' % (k, v))
 
