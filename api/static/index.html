@@ -24,7 +24,6 @@
         <script src="libs/moment.min.js"></script>
         <script src="libs/wind-js/windy.js"></script>
 
-        <script src="app/browsercheck.js"></script>
         <script src="app/co2eq.js"></script>
         <script src="app/countrymap.js"></script>
         <script src="app/countryconfig.js"></script>
@@ -94,18 +93,20 @@
             </div>
             <svg class="country-table" style="display: none"></svg>
             <div class="country-table-initial-text">
-                This map shows in real-time <span style="color: lightgray">where your electricity comes from</span>
-                and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
+                This map shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
                 <!--The map also shows renewable resources like wind and sun.--><br />
                 <br />
                 The <span style="color: lightgray">blinking arrows</span> represent electricity <span style="color: lightgray">imports and exports</span>.<br />
                 <br />
                 <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span><br />
-		 <br />
-		Like the map? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would <strong>love</strong> to hear your feedback!</a><br />
                 <div class="country-picker-container" style="text-align: center">
                     <select class="country-picker" onchange="onSelectedCountryChange();"></select>
                 </div>
+                <br />
+                Like the map? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
+                <smallx>
+                    Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
+                </smallx>
             </div>
         </div>
         <div style="bottom: 0; left: 0; position: absolute;">
@@ -117,20 +118,6 @@
             </div>
         </div>
         <div class="loading overlay"></div>
-        <div id="force-chrome-overlay" class="force-chrome" style="display: none;">
-            <div class="centered">
-                <h1>Bummer!</h1>
-                <p>In order to ensure the best viewing experience, we’ve optimized the <b>Electricity Map</b> to the Chrome web browser.</p>
-
-                <p style="margin-top:3em;">
-                    <small>If you want to install Chrome, you can get it <a href="https://www.google.com/chrome/browser/desktop/" target="_blank">here</a>.
-                    </small>
-                </p>
-                <p style="text-align:center;">
-                    <a class="button" href="?nobrowsercheck=1">continue anyway</a>
-                </p>
-            </div>
-        </div>
     </body>
 
     <script src="app/main.js"></script>

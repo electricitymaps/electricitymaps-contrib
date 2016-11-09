@@ -148,62 +148,6 @@ html, body {
     width: 300px;
 }
 
-.force-chrome {
-    position: absolute;
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: dimgrey;
-}
-
-.force-chrome .centered {
-    max-width: 400px;
-    padding: 40px;
-}
-
-.force-chrome h1{
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 1em;    
-}
-
-.force-chrome img {
-    height: 17px;
-    float: right;
-    margin-left: 7px;
-}
-
-.force-chrome a {
-    color: dimgrey;
-    text-decoration: underline;
-}
-
-.force-chrome a.button {
-    font-size: 13px;
-    display: inline-block;
-    border: 1px solid #a2a2a2;
-    border-radius: 10px;
-    padding: 7px 12px;
-    text-decoration: none;
-}
-
-.force-chrome a.button:hover {
-    text-decoration: none;
-    background-color: #f1f1f1;
-}
-
-
-.force-chrome p {
-    font-size: 0.9em;
-    font-weight: lighter;
-    text-align: justify;
-    line-height: 1.4;   
-}
-
 a {
     text-decoration: none;
     color: lightblue;
