@@ -69,7 +69,7 @@ def parse(xml_text):
             # Find out whether or not we should update the net production
             try:
                 i = datetimes.index(datetime)
-                quantity[i] += quantity
+                quantities[i] += quantity
             except ValueError: # Not in list
                 quantities.append(quantity)
                 datetimes.append(datetime)
