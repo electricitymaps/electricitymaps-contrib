@@ -40,6 +40,11 @@ def query(psr_type, in_domain, session):
     }
     response = session.get(ENTSOE_ENDPOINT, params=params)
     if response.ok: return response.text
+    else: 
+        # Grab the error if possible
+        soup = BeautifulSoup(response.text, 'html.parser')
+        print 'Failed for psr %s' % psr_type
+        print 'Reason:', soup.find_all('text')[0].contents[0]
 
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
@@ -129,6 +134,7 @@ def fetch_ENTSOE(in_domain, country_code, session=None):
                 output_dated_pairs[datetimes[i]][k] = quantities[i]
     # Take the last date that is present for all parameters
     dates = sorted(set(output_dated_pairs.keys()), reverse=True)
+    if not len(dates): raise Exception('Not data was returned')
     dates_with_counts = map(lambda date: len(output_dated_pairs[date].keys()),
         dates)
     date = dates[dates_with_counts.index(max(dates_with_counts))]

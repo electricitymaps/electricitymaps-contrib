@@ -270,8 +270,8 @@ if (!nobrowsercheck && !isChrome()) {
             d3.entries(item).forEach(function (d) {
                 pair[d.key] = d.value;
             });
-            var o = pair.countries[0];
-            var d = pair.countries[1];
+            var o = pair.countryCodes[0];
+            var d = pair.countryCodes[1];
 
             if (!countries[d].exchange) countries[d].exchange = {};
             if (!countries[o].exchange) countries[o].exchange = {};
