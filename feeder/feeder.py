@@ -1,9 +1,10 @@
 import arrow
 import glob
-from pymemcache.client.base import Client
 import pymongo
 import logging, os, schedule, time
 import requests
+
+from pymemcache.client.base import Client
 
 from parsers.ENTSOE import fetch_ENTSOE
 from parsers.solar import fetch_solar
@@ -11,13 +12,36 @@ from parsers.wind import fetch_wind
 
 INTERVAL_SECONDS = 60 * 5
 
+# Set up logging
+ENV = os.environ.get('ENV', 'development').lower()
+logger = logging.getLogger(__name__)
+stdout_handler = logging.StreamHandler()
+logger.addHandler(stdout_handler)
+if not ENV == 'development':
+    logger.setLevel(logging.INFO)
+    from logging.handlers import SMTPHandler
+    smtp_handler = SMTPHandler(
+        mailhost=('smtp.mailgun.org', 587),
+        fromaddr='Application Bug Reporter <noreply@mailgun.com>',
+        toaddrs=['olivier.corradi@gmail.com'],
+        subject='Electricity Map Feeder Error',
+        credentials=(os.environ.get('MAILGUN_USER'), os.environ.get('MAILGUN_PASSWORD'))
+    )
+    smtp_handler.setLevel(logging.WARN)
+    logger.addHandler(smtp_handler)
+    logging.getLogger('statsd').addHandler(stdout_handler)
+else:
+    logger.setLevel(logging.DEBUG)
+
+logger.info('Feeder is starting..')
+
 # Import all country parsers
 def import_country(country_code):
     return getattr(
         __import__('parsers.%s' % country_code, globals(), locals(), ['fetch_%s' % country_code]),
         'fetch_%s' % country_code)
 country_codes = map(lambda s: s[len('parsers/'):len('parsers/')+2], glob.glob('parsers/??.py'))
-parsers = map(import_country, country_codes)
+custom_parsers = map(import_country, country_codes)
 
 # Define ENTSOE parsers
 ENTSOE_DOMAINS = {
@@ -34,8 +58,6 @@ ENTSOE_DOMAINS = {
     'PT': '10YPT-REN------W',
     'SI': '10YSI-ELES-----O',
 }
-for countryCode, domain in ENTSOE_DOMAINS.iteritems():
-    parsers.append(lambda session: fetch_ENTSOE(domain, countryCode, session))
 
 # Set up stats
 import statsd
@@ -44,23 +66,6 @@ statsd.init_statsd({
     'STATSD_BUCKET_PREFIX': 'electricymap_feeder'
 })
 
-# Set up logging
-ENV = os.environ.get('ENV', 'development').lower()
-logger = logging.getLogger(__name__)
-if not ENV == 'development':
-    from logging.handlers import SMTPHandler
-    mail_handler = SMTPHandler(
-        mailhost=('smtp.mailgun.org', 587),
-        fromaddr='Application Bug Reporter <noreply@mailgun.com>',
-        toaddrs=['olivier.corradi@gmail.com'],
-        subject='Electricity Map Feeder Error',
-        credentials=(os.environ.get('MAILGUN_USER'), os.environ.get('MAILGUN_PASSWORD'))
-    )
-    mail_handler.setLevel(logging.ERROR)
-    logger.addHandler(mail_handler)
-    logging.getLogger('statsd').addHandler(logging.StreamHandler())
-else: logger.addHandler(logging.StreamHandler())
-
 # Set up database
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
@@ -68,32 +73,47 @@ col = db['realtime']
 
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
-cache = Client((MEMCACHED_HOST, 11211))
+if not MEMCACHED_HOST:
+    logger.warn('MEMCACHED_HOST env variable was not found.. starting without cache!')
+    cache = None
+else: cache = Client((MEMCACHED_HOST, 11211))
 
 # Set up requests
 session = requests.session()
 
-def fetch_countries():
-    for parser in parsers: 
-        try:
-            with statsd.StatsdTimer('fetch_one_country'):
-                obj = parser(session)
-                if not 'datetime' in obj:
-                    raise Exception('datetime was not returned from %s' % parser)
-                if arrow.get(obj['datetime']) > arrow.now():
-                    print obj['datetime'], arrow.now()
-                    raise Exception("Data from %s can't be in the future" % parser)
-                logging.info('INSERT %s' % obj)
-                try:
-                    col.insert_one(obj)
-                    cache.delete('production')
-                except pymongo.errors.DuplicateKeyError:
-                    # (datetime, countryCode) does already exist. Don't raise.
-                    # Note: with this design, the oldest record stays.
-                    pass
-        except: 
-            statsd.increment('fetch_one_country_error')
-            logger.exception('fetch_one_country()')
+def execute_parser(parser):
+    try:
+        with statsd.StatsdTimer('fetch_one_country'):
+            obj = parser(session)
+            if not 'datetime' in obj:
+                raise Exception('datetime was not returned from %s' % parser)
+            if not 'countryCode' in obj:
+                raise Exception('countryCode was not returned from %s' % parser)
+            if arrow.get(obj['datetime']) > arrow.now():
+                print 'future:', obj['datetime'], 'now', arrow.now()
+                raise Exception("Data from %s can't be in the future" % obj['countryCode'])
+            try:
+                col.insert_one(obj)
+                logger.info('Inserted %s @ %s into the database' % (obj.get('countryCode'), obj.get('datetime')))
+                logger.debug(obj)
+                if cache: cache.delete('production')
+            except pymongo.errors.DuplicateKeyError:
+                # (datetime, countryCode) does already exist. Don't raise.
+                # Note: with this design, the oldest record stays.
+                pass
+    except:
+        statsd.increment('fetch_one_country_error')
+        logger.exception('Exception while fetching one country')
+
+def fetch_entsoe_countries():
+    for countryCode, domain in ENTSOE_DOMAINS.iteritems():
+        # Warning: lambda looks up the variable name at execution,
+        # so this can't be parallelised in this state
+        parser = lambda session: fetch_ENTSOE(domain, countryCode, session)
+        execute_parser(parser)
+
+def fetch_custom_countries():
+    for parser in custom_parsers: execute_parser(parser)
 
 def fetch_weather():
     try:
@@ -107,12 +127,14 @@ def fetch_weather():
         statsd.increment('fetch_solar_error')
         logger.exception('fetch_solar()')
 
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_countries)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_custom_countries)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_entsoe_countries)
 schedule.every(15).minutes.do(fetch_weather)
 
-fetch_countries()
+fetch_custom_countries()
+fetch_entsoe_countries()
 fetch_weather()
 
 while True:
     schedule.run_pending()
-    time.sleep(INTERVAL_SECONDS)
+    time.sleep(10) # Only sleep for 10 seconds before checking again
