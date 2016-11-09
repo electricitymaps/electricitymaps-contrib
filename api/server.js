@@ -111,7 +111,8 @@ function parseDatabaseResults(result) {
         if (!d.exchange) d.exchange = {};
         // Truncate negative production values
         d3.keys(d.production).forEach(function(k) {
-            d.production[k] = Math.max(0, d.production[k]);
+            if (d.production[k] !== null)
+                d.production[k] = Math.max(0, d.production[k]);
         });
     });
     // Average out import-exports between commuting pairs

@@ -94,13 +94,13 @@ def execute_parser(parser):
                 raise Exception("Data from %s can't be in the future" % obj['countryCode'])
             try:
                 col.insert_one(obj)
-                logger.info('Inserted %s @ %s into the database' % (obj.get('countryCode'), obj.get('datetime')))
+                logger.info('Inserted %s @ %s into the db' % (obj.get('countryCode'), obj.get('datetime')))
                 logger.debug(obj)
                 if cache: cache.delete('production')
             except pymongo.errors.DuplicateKeyError:
                 # (datetime, countryCode) does already exist. Don't raise.
                 # Note: with this design, the oldest record stays.
-                logger.info('Successfully fetched %s @ %s but did not insert into the database because it already existed' % (obj.get('countryCode'), obj.get('datetime')))
+                logger.info('Successfully fetched %s @ %s but did not insert into the db because it already existed' % (obj.get('countryCode'), obj.get('datetime')))
                 pass
     except:
         statsd.increment('fetch_one_country_error')
