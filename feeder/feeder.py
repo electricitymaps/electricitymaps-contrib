@@ -65,14 +65,16 @@ ENTSOE_DOMAINS = {
     'PT': '10YPT-REN------W',
     'SE': '10YSE-1--------K',
     'SI': '10YSI-ELES-----O',
+    'SK': '10YSK-SEPS-----K',
 }
 ENTSOE_NEIGHBOR_PAIRS = [
     # AT
-    ('AT', 'CZ'),
-    ('AT', 'SI'),
-    ('AT', 'IT'),
     ('AT', 'CH'),
+    ('AT', 'CZ'),
     ('AT', 'DE'),
+    ('AT', 'IT'),
+    ('AT', 'SI'),
+    ('AT', 'SK'),
     # BE
     ('BE', 'DE'),
     ('BE', 'FR'),
@@ -100,11 +102,15 @@ ENTSOE_NEIGHBOR_PAIRS = [
     ('FR', 'ES'),
     ('FR', 'DE'),
     ('FR', 'IT'),
+    # HU
+    ('HU', 'SK'),
     # IT
     ('IT', 'SI'),
     # LT
     ('LT', 'PL'),
     ('LT', 'LV'),
+    # PL
+    ('PL', 'SK'),
     # NO
     ('NO', 'SE'),
     # RO
@@ -121,12 +127,13 @@ ENTSOE_NEIGHBOR_PAIRS = [
     ('HU', 'AT'),
     # PT
     ('PT', 'ES'),
+    # SK
+    ('SK', 'UA'),
 ]
 ENTSOE_NEIGHBORING_DOMAINS = defaultdict(lambda: {})
 for o, d in ENTSOE_NEIGHBOR_PAIRS:
     if d in ENTSOE_DOMAINS: ENTSOE_NEIGHBORING_DOMAINS[o][d] = ENTSOE_DOMAINS[d]
     if o in ENTSOE_DOMAINS: ENTSOE_NEIGHBORING_DOMAINS[d][o] = ENTSOE_DOMAINS[o]
-print ENTSOE_NEIGHBORING_DOMAINS
 
 # Set up stats
 import statsd
