@@ -28,7 +28,7 @@ CountryMap.prototype.render = function() {
 
     this._projection = d3.geo.mercator()
         .center([3, 48])
-        .translate([0.6 * computedMapWidth, 0.6 * computedMapHeight])
+        .translate([0.55 * computedMapWidth, 0.6 * computedMapHeight])
         .scale(700);
 
     this.path = d3.geo.path()

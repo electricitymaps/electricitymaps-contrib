@@ -37,6 +37,11 @@ var EXCHANGES_CONFIG = [
         lonlat: [8.806354, 47.667048],
         rotation: 0
     },
+    {
+        countryCodes: ['CH', 'IT'],
+        lonlat: [9.047334, 46.113596],
+        rotation: 180
+    },
     // CZ
     {
         countryCodes: ['CZ', 'SK'],
@@ -67,12 +72,12 @@ var EXCHANGES_CONFIG = [
     },
     {
         countryCodes: ['SE', 'DK'],
-        lonlat: [13, 55.7],
-        rotation: -100
+        lonlat: [11.556268, 56.857802],
+        rotation: -110
     },
     {
         countryCodes: ['DK', 'NO'],
-        lonlat: [8.8, 58],
+        lonlat: [8.8, 57.7],
         rotation: -25
     },
     // GB
@@ -117,6 +122,12 @@ var EXCHANGES_CONFIG = [
         countryCodes: ['FR', 'IT'],
         lonlat: [6.5, 44.5],
         rotation: 70
+    },
+    // GR
+    {
+        countryCodes: ['GR', 'IT'],
+        lonlat: [18.759248, 38.902132],
+        rotation: 90
     },
     // HU
     {

@@ -82,6 +82,7 @@ ENTSOE_NEIGHBOR_PAIRS = [
     # CH
     ('CH', 'DE'),
     ('CH', 'FR'),
+    ('CH', 'IT'),
     # CZ
     ('CZ', 'SK'),
     ('CZ', 'PL'),
@@ -102,9 +103,16 @@ ENTSOE_NEIGHBOR_PAIRS = [
     ('FR', 'ES'),
     ('FR', 'DE'),
     ('FR', 'IT'),
+    # GR
+    ('GR', 'AL'),
+    ('GR', 'BG'),
+    ('GR', 'IT'),
+    ('GR', 'MK'),
+    ('GR', 'TR'),
     # HU
     ('HU', 'SK'),
     # IT
+    ('IT', 'MT'),
     ('IT', 'SI'),
     # LT
     ('LT', 'PL'),
