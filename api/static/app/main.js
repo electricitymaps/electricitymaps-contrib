@@ -284,7 +284,7 @@ if (!nobrowsercheck && !isChrome()) {
             if (pair.netFlow === undefined)
                 return;
             pair.co2 = function () {
-                return pair.countries.map(function (k) {
+                return pair.countryCodes.map(function (k) {
                     return countries[k].co2intensity;
                 });
             };
@@ -304,10 +304,10 @@ if (!nobrowsercheck && !isChrome()) {
                 if (sourceCountryCode == 'datetime') return;
                 // Find the exchange object
                 var matches = exchanges.filter(function (e) {
-                    return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
+                    return (e.countryCodes[0] == countryCode && e.countryCodes[1] == sourceCountryCode) || (e.countryCodes[1] == countryCode && e.countryCodes[0] == sourceCountryCode)
                 });
                 if (!matches.length)
-                    console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                    console.error('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
             });
         });
 

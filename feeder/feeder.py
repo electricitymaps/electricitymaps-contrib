@@ -4,6 +4,7 @@ import pymongo
 import logging, os, schedule, time
 import requests
 
+from collections import defaultdict
 from pymemcache.client.base import Client
 
 from parsers.ENTSOE import fetch_ENTSOE
@@ -51,6 +52,7 @@ ENTSOE_DOMAINS = {
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
     'DK': '10Y1001A1001A65H',
+    'ES': '10YES-REE------0',
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
     'GR': '10YGR-HTSO-----Y',
@@ -64,6 +66,67 @@ ENTSOE_DOMAINS = {
     'SE': '10YSE-1--------K',
     'SI': '10YSI-ELES-----O',
 }
+ENTSOE_NEIGHBOR_PAIRS = [
+    # AT
+    ('AT', 'CZ'),
+    ('AT', 'SI'),
+    ('AT', 'IT'),
+    ('AT', 'CH'),
+    ('AT', 'DE'),
+    # BE
+    ('BE', 'DE'),
+    ('BE', 'FR'),
+    ('BE', 'NL'),
+    # CH
+    ('CH', 'DE'),
+    ('CH', 'FR'),
+    # CZ
+    ('CZ', 'SK'),
+    ('CZ', 'PL'),
+    ('CZ', 'DE'),
+    # DE
+    ('DE', 'PL'),
+    # DK
+    ('DE', 'DK'),
+    ('SE', 'DK'),
+    ('DK', 'NO'),
+    # GB
+    ('GB', 'FR'),
+    ('IE', 'GB'),
+    ('NL', 'GB'),
+    # FI
+    ('FI', 'SE'),
+    # FR
+    ('FR', 'ES'),
+    ('FR', 'DE'),
+    ('FR', 'IT'),
+    # IT
+    ('IT', 'SI'),
+    # LT
+    ('LT', 'PL'),
+    ('LT', 'LV'),
+    # NO
+    ('NO', 'SE'),
+    # RO
+    ('RO', 'HU'),
+    ('RO', 'UA'),
+    ('RO', 'MD'),
+    ('RO', 'BG'),
+    ('RO', 'RS'),
+    # HU
+    ('HU', 'SK'),
+    ('HU', 'UA'),
+    ('HU', 'RS'),
+    ('HU', 'HR'),
+    ('HU', 'AT'),
+    # PT
+    ('PT', 'ES'),
+]
+ENTSOE_NEIGHBORING_DOMAINS = defaultdict(lambda: {})
+for o, d in ENTSOE_NEIGHBOR_PAIRS:
+    if d in ENTSOE_DOMAINS: ENTSOE_NEIGHBORING_DOMAINS[o][d] = ENTSOE_DOMAINS[d]
+    if o in ENTSOE_DOMAINS: ENTSOE_NEIGHBORING_DOMAINS[d][o] = ENTSOE_DOMAINS[o]
+print ENTSOE_NEIGHBORING_DOMAINS
 
 # Set up stats
 import statsd
@@ -116,7 +179,11 @@ def fetch_entsoe_countries():
     for countryCode, domain in ENTSOE_DOMAINS.iteritems():
         # Warning: lambda looks up the variable name at execution,
         # so this can't be parallelised in this state
-        parser = lambda session: fetch_ENTSOE(domain, countryCode, session)
+        parser = lambda session: fetch_ENTSOE(
+            domain,
+            ENTSOE_NEIGHBORING_DOMAINS.get(countryCode, {}),
+            countryCode,
+            session)
         execute_parser(parser)
 
 def fetch_custom_countries():

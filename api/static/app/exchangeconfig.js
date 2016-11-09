@@ -151,5 +151,5 @@ var EXCHANGES_CONFIG = [
         countryCodes: ['PT', 'ES'],
         lonlat: [-7, 40.0],
         rotation: 90
-    },    
+    },
 ];
