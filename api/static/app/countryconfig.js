@@ -8,6 +8,16 @@ function addCountryConfiguration(countries) {
         solar: 814,
         wind: 2306,
     };
+    countries['BE'].capacity = {
+        biomass: 710 + 368,
+        nuclear: 5919,
+        oil: 145,
+        coal: 470,
+        hydro: 1308 + 117,
+        gas: 5303,
+        wind: 1249 + 712,
+        solar: 2953,
+    };
     countries['CZ'].capacity = {
         biomass: 350,
         coal: 380 + 1200 + 8334,
@@ -76,6 +86,20 @@ function addCountryConfiguration(countries) {
         gas: 38000,
         solar: 8780
     };
+    countries['GR'].capacity = {
+        biomass: 51,
+        coal: 3912,
+        hydro: 699 + 2403 + 299,
+        gas: 5396,
+        wind: 1875,
+        solar: 2441,
+    };
+    countries['IE'].capacity = {
+        oil: 1127,
+        coal: 1331,
+        gas: 5340,
+        wind: 2496,
+    };
     countries['HU'].capacity = {
         biomass: 246 + 28,
         coal: 1007,
@@ -106,6 +130,25 @@ function addCountryConfiguration(countries) {
         solar: 0,
         wind: 856,
     };
+    countries['PL'].capacity = {
+        biomass: 435,
+        nuclear: ,
+        oil: 345,
+        coal: 18479 + 8483,
+        hydro: 1770 + 156 + 395,
+        gas: 158 + 1302,
+        wind: 5494,
+        solar: 77,
+    };
+     countries['PT'].capacity = {
+        biomass: 582,
+        coal: 1756,
+        gas: 4695,
+        hydro: 1623 + 1511 + 2987,
+        solar: 251,
+        wind: 4617,
+        nuclear: 0
+    };    
     countries['RO'].capacity = {
         biomass: 95,
         coal: 1348 + 4546,
@@ -121,10 +164,13 @@ function addCountryConfiguration(countries) {
         solar: 79,
         wind: 6025
     };
-    countries['PT'].capacity = {
-        hydro: 5815,
-        solar: 57,
-        wind: 4730,
-        nuclear: 0
-    };    
+    countries['SI'].capacity = {
+        biomass: 17 + 40,
+        nuclear: 696,
+        coal: 921,
+        hydro: 180 + 1053,
+        gas: 491,
+        wind: 3,
+        solar: 263,
+    };
 }
