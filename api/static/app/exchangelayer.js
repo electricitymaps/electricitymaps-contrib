@@ -105,7 +105,7 @@ ExchangeLayer.prototype.render = function() {
         })
         .attr('stroke', function (d) {
             var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
-            return co2 > this.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
+            return co2 > that.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
         })
         .select('path')
             .transition()

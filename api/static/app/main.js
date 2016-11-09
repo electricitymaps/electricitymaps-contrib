@@ -270,8 +270,8 @@ if (!nobrowsercheck && !isChrome()) {
             d3.entries(item).forEach(function (d) {
                 pair[d.key] = d.value;
             });
-            var o = pair.countries[0];
-            var d = pair.countries[1];
+            var o = pair.countryCodes[0];
+            var d = pair.countryCodes[1];
 
             if (!countries[d].exchange) countries[d].exchange = {};
             if (!countries[o].exchange) countries[o].exchange = {};
@@ -283,8 +283,8 @@ if (!nobrowsercheck && !isChrome()) {
             pair.netFlow = d3.mean(netFlows);
             if (pair.netFlow === undefined)
                 return;
-            pair.co2 = function () {
-                return pair.countries.map(function (k) {
+            pair.co2 = function() {
+                return pair.countryCodes.map(function (k) {
                     return countries[k].co2intensity;
                 });
             };
@@ -304,10 +304,10 @@ if (!nobrowsercheck && !isChrome()) {
                 if (sourceCountryCode == 'datetime') return;
                 // Find the exchange object
                 var matches = exchanges.filter(function (e) {
-                    return (e.countries[0] == countryCode && e.countries[1] == sourceCountryCode) || (e.countries[1] == countryCode && e.countries[0] == sourceCountryCode)
+                    return (e.countryCodes[0] == countryCode && e.countryCodes[1] == sourceCountryCode) || (e.countryCodes[1] == countryCode && e.countryCodes[0] == sourceCountryCode)
                 });
                 if (!matches.length)
-                    console.warn('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
+                    console.error('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
             });
         });
 
