@@ -110,7 +110,7 @@ function addCountryConfiguration(countries) {
     countries['IE'].capacity = {
         biomass: 344,
         oil: 811,
-        coal: 855 + ,
+        coal: 855,
         hydro: 292 + 216,
         nuclear: 0,
         gas: 3801,
