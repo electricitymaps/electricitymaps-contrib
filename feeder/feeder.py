@@ -183,13 +183,13 @@ def execute_parser(parser):
         logger.exception('Exception while fetching one country')
 
 def fetch_entsoe_countries():
-    for countryCode, domain in ENTSOE_DOMAINS.iteritems():
+    for country_code, domain in ENTSOE_DOMAINS.iteritems():
         # Warning: lambda looks up the variable name at execution,
         # so this can't be parallelised in this state
         parser = lambda session: fetch_ENTSOE(
             domain,
-            ENTSOE_NEIGHBORING_DOMAINS.get(countryCode, {}),
-            countryCode,
+            ENTSOE_NEIGHBORING_DOMAINS.get(country_code, {}),
+            country_code,
             session)
         execute_parser(parser)
 
