@@ -40,7 +40,7 @@ def query_production(psr_type, in_domain, session):
     }
     response = session.get(ENTSOE_ENDPOINT, params=params)
     if response.ok: return response.text
-    else: 
+    else:
         return # Return by default
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
