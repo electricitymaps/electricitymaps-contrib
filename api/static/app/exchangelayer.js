@@ -104,7 +104,7 @@ ExchangeLayer.prototype.render = function() {
             return 'translate(' + center[0] + ',' + center[1] + ')';
         })
         .attr('stroke', function (d) {
-            var co2 = d3.max(d.co2());
+            var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
             return co2 > that.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
         })
         .select('path')
