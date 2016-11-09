@@ -25,6 +25,18 @@ var EXCHANGES_CONFIG = [
         lonlat: [12.679547, 47.696804],
         rotation: -30
     },
+    // BE
+    {
+        countryCodes: ['BE', 'FR'],
+        lonlat: [4.137165, 50.255806],
+        rotation: 225
+    },
+    // CH
+    {
+        countryCodes: ['CH', 'DE'],
+        lonlat: [8.806354, 47.667048],
+        rotation: 0
+    },
     // CZ
     {
         countryCodes: ['CZ', 'SK'],
@@ -40,6 +52,12 @@ var EXCHANGES_CONFIG = [
         countryCodes: ['CZ', 'DE'],
         lonlat: [12.321836, 50.227335],
         rotation: -60
+    },
+    // DE
+    {
+        countryCodes: ['DE', 'PL'],
+        lonlat: [14.585163, 52.410625],
+        rotation: 90
     },
     // DK
     {
@@ -73,6 +91,12 @@ var EXCHANGES_CONFIG = [
         lonlat: [3.3, 52.4],
         rotation: -90
     },
+    // FI
+    {
+        countryCodes: ['FI', 'SE'],
+        lonlat: [20.979206, 63.441789],
+        rotation: -50
+    },
     // FR
     {
         countryCodes: ['FR', 'ES'],
@@ -81,8 +105,8 @@ var EXCHANGES_CONFIG = [
     },
     {
         countryCodes: ['FR', 'DE'],
-        lonlat: [5.7, 49.8],
-        rotation: 50
+        lonlat: [8.048297, 48.931337],
+        rotation: 70
     },
     {
         countryCodes: ['FR', 'CH'],
@@ -93,32 +117,6 @@ var EXCHANGES_CONFIG = [
         countryCodes: ['FR', 'IT'],
         lonlat: [6.5, 44.5],
         rotation: 70
-    },
-    // RO
-    {
-        countryCodes: ['RO', 'HU'],
-        lonlat: [21.8074107, 47.1141229],
-        rotation: -70
-    },
-    {
-        countryCodes: ['RO', 'UA'],
-        lonlat: [24.821959, 47.768595],
-        rotation: 0
-    },
-    {
-        countryCodes: ['RO', 'MD'],
-        lonlat: [28.009764, 47.003312],
-        rotation: 60
-    },
-    {
-        countryCodes: ['RO', 'BG'],
-        lonlat: [25.609385, 43.674878],
-        rotation: 180
-    },
-    {
-        countryCodes: ['RO', 'RS'],
-        lonlat: [21.469049, 44.947107],
-        rotation: -140
     },
     // HU
     {
@@ -146,10 +144,66 @@ var EXCHANGES_CONFIG = [
         lonlat: [16.605363, 47.444264],
         rotation: -60
     },
+    // IT
+    {
+        countryCodes: ['IT', 'SI'],
+        lonlat: [13.596393, 46.105418],
+        rotation: 90
+    },
+    // LV
+    {
+        countryCodes: ['LV', 'LT'],
+        lonlat: [24.373981, 56.287428],
+        rotation: 180
+    },
+    // LT
+    {
+        countryCodes: ['LT', 'PL'],
+        lonlat: [23.308307, 54.247411],
+        rotation: 225
+    },
+    // NO
+    {
+        countryCodes: ['NO', 'SE'],
+        lonlat: [12.308438, 62.195230],
+        rotation: 90
+    },
+    // PL
+    {
+        countryCodes: ['PL', 'SK'],
+        lonlat: [20.614102, 49.359467],
+        rotation: 180
+    },
     // PT
     {
         countryCodes: ['PT', 'ES'],
         lonlat: [-7, 40.0],
         rotation: 90
+    },
+    // RO
+    {
+        countryCodes: ['RO', 'HU'],
+        lonlat: [21.8074107, 47.1141229],
+        rotation: -70
+    },
+    {
+        countryCodes: ['RO', 'UA'],
+        lonlat: [24.821959, 47.768595],
+        rotation: 0
+    },
+    {
+        countryCodes: ['RO', 'MD'],
+        lonlat: [28.009764, 47.003312],
+        rotation: 60
+    },
+    {
+        countryCodes: ['RO', 'BG'],
+        lonlat: [25.609385, 43.674878],
+        rotation: 180
+    },
+    {
+        countryCodes: ['RO', 'RS'],
+        lonlat: [21.469049, 44.947107],
+        rotation: -140
     },
 ];
