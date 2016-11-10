@@ -28,7 +28,7 @@ CountryMap.prototype.render = function() {
 
     this._projection = d3.geo.mercator()
         .center([3, 48])
-        .translate([0.6 * computedMapWidth, 0.6 * computedMapHeight])
+        .translate([0.55 * computedMapWidth, 0.6 * computedMapHeight])
         .scale(700);
 
     this.path = d3.geo.path()
@@ -47,7 +47,7 @@ CountryMap.prototype.render = function() {
             return (d.co2intensity !== undefined) ? that.co2color(d.co2intensity) : 'gray';
         };
         var selector = this.land.selectAll('.country')
-            .data(this._data);
+            .data(this._data, function(d) { return d.countryCode; });
         selector.enter()
                 .append('path')
                 .attr('class', 'country')
@@ -76,6 +76,7 @@ CountryMap.prototype.render = function() {
         selector
             .attr('d', this.path)
             .transition()
+            .duration(2000)
             .attr('fill', getCo2Color);
     }
 }

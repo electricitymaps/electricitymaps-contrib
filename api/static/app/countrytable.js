@@ -172,7 +172,7 @@ CountryTable.prototype.data = function(arg) {
         // update scales
         this.powerScale
             .domain([
-                -this._data.maxExport,
+                -this._data.maxExport || 0,
                 Math.max(this._data.maxCapacity || 0, this._data.maxProduction)
             ]);
         // co2 scale in tCO2eq/s
@@ -289,7 +289,7 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('display', function (d) {
-                return d.mode != 'unknown' && (d.production === undefined || d.production === null) ? 'block' : 'none';
+                return d.capacity != 0 && d.mode != 'unknown' && (d.production === undefined || d.production === null) ? 'block' : 'none';
             });
 
         // Construct exchanges

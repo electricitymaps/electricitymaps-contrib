@@ -8,7 +8,7 @@ function ExchangeLayer(selector) {
         .range([2000, 10])
     this.exchangeArrowScale = d3.scale.linear()
         .domain([500, 6000])
-        .range([4, 15])
+        .range([4, 10])
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = this.root.append('g');
@@ -29,12 +29,13 @@ function ExchangeLayer(selector) {
     };
 
     var that = this;
-    this.animateGradient = function(selector, color, duration) {
+    this.animateGradient = function(selector, colorAccessor, duration) {
+        var color = colorAccessor();
         var arrow = selector.selectAll('stop')
             .data([
                 {offset: 0, color: color},
                 {offset: 0, color: color},
-                {offset: 0, color: d3.rgb(color).brighter(2.0)},
+                {offset: 0, color: d3.rgb(color).hsl().l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')},
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
@@ -56,8 +57,11 @@ function ExchangeLayer(selector) {
                     };
                 }
             })
-            .each('end', function () { 
-                return that.animateGradient(selector, color, duration);
+            .each('end', function (d, i) {
+                // We should only start one animation, so just wait for the
+                // first transition to finish
+                if (i == 0)
+                    return that.animateGradient(selector, colorAccessor, duration);
             });
     };
 }
@@ -76,6 +80,7 @@ ExchangeLayer.prototype.render = function() {
         .data(this._data)
     exchangeGradients.enter()
         .append('linearGradient')
+        .attr('class', 'exchange-gradient')
         .attr('gradientUnits', 'userSpaceOnUse')
         .attr('x1', 0).attr('y1', -2.0 * this.TRIANGLE_HEIGHT - 1)
         .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
@@ -94,31 +99,39 @@ ExchangeLayer.prototype.render = function() {
         .attr('class', 'exchange-arrow')
         .append('path')
             .attr('d', function(d) { return that.trianglePath(); })
-            .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')' })
+            .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')'; })
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
             .on('click', function (d) { console.log(d); })
+            .each(function (d, i) {
+                // Warning: with this technique, we can add arrow dynamically,
+                // but we can't remove them because we can't remove the animation
+                if (i == 1) console.log('ADDING NEW i=1');
+                return that.animateGradient(
+                    d3.select('#exchange-gradient-' + i), 
+                    function() {
+                        var d = that.data()[i];
+                        var co2 = d.co2[d.netFlow > 0 ? 0 : 1];
+                        if (!d.netFlow) return 'gray';
+                        return co2 ? co2color(co2) : 'grey';
+                    },
+                    that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
+                );
+            })
     exchangeArrows
         .attr('transform', function (d) {
             var center = that.projection()(d.lonlat);
             return 'translate(' + center[0] + ',' + center[1] + ')';
         })
-        .attr('stroke', function (d) {
-            var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
+        .attr('stroke', function (d, i) {
+            var co2 = d.co2[d.netFlow > 0 ? 0 : 1];
             return co2 > that.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
         })
+        .style('display', function (d) { return d.netFlow == 0 ? 'none' : 'block'; })
         .select('path')
             .transition()
-            .attr('transform', getTransform)
-            .each(function (d, i) {
-                if (!d.netFlow) return;
-                var co2 = d.co2()[d.netFlow > 0 ? 0 : 1];
-                return that.animateGradient(
-                    d3.select('#exchange-gradient-' + i), 
-                    co2 ? co2color(co2) : 'grey',
-                    that.exchangeAnimationDurationScale(Math.abs(d.netFlow))
-                );
-            });
+            .duration(2000)
+            .attr('transform', getTransform);
 
     return this;
 }

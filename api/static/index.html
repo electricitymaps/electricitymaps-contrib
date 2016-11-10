@@ -2,13 +2,18 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF8" />
         <meta name="description" content="Electricity Map is a real-time visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-        <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png" />
         <meta property="og:description" content="Electricity Map is a real-time visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-        <meta property="og:url" content="http://electricitymap.tmrow.co" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png">
-        <meta name="twitter:site" content="tmrowco">
+        <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png" />
         <meta property="og:title" content="Electricity Map | Real-time CO2 emissions of the European electricity production" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://electricitymap.tmrow.co" />
+        <meta property="fb:app_id" content="1267173759989113" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:creator" content="@corradio">
+        <meta name="twitter:description" content="Electricity Map is a real-time visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png">
+        <meta name="twitter:site" content="@tmrowco">
+        <meta name="twitter:title" content="Electricity Map | Real-time CO2 emissions of the European electricity production" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
         <title>Electricity Map | Real-time CO2 emissions of the European electricity production</title>
@@ -24,7 +29,6 @@
         <script src="libs/moment.min.js"></script>
         <script src="libs/wind-js/windy.js"></script>
 
-        <script src="app/browsercheck.js"></script>
         <script src="app/co2eq.js"></script>
         <script src="app/countrymap.js"></script>
         <script src="app/countryconfig.js"></script>
@@ -58,6 +62,24 @@
         <!-- end Mixpanel -->
     </head>
     <body>
+        <!-- start FB analytics -->
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1267173759989113',
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <div id="connection-warning" class="hide">
             <div class="inner">Oops! We're having trouble reaching the server. We'll try again in a few seconds.</div>
         </div>
@@ -94,8 +116,7 @@
             </div>
             <svg class="country-table" style="display: none"></svg>
             <div class="country-table-initial-text">
-                This map shows in real-time <span style="color: lightgray">where your electricity comes from</span>
-                and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
+                This map shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
                 <!--The map also shows renewable resources like wind and sun.--><br />
                 <br />
                 The <span style="color: lightgray">blinking arrows</span> represent electricity <span style="color: lightgray">imports and exports</span>.<br />
@@ -106,6 +127,11 @@
                 <div class="country-picker-container" style="text-align: center">
                     <select class="country-picker" onchange="onSelectedCountryChange();"></select>
                 </div>
+                <br />
+                Like the map? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
+                <smallx>
+                    Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
+                </smallx>
             </div>
         </div>
         <div style="bottom: 0; left: 0; position: absolute;">
@@ -117,20 +143,6 @@
             </div>
         </div>
         <div class="loading overlay"></div>
-        <div id="force-chrome-overlay" class="force-chrome" style="display: none;">
-            <div class="centered">
-                <h1>Bummer!</h1>
-                <p>In order to ensure the best viewing experience, we’ve optimized the <b>Electricity Map</b> to the Chrome web browser.</p>
-
-                <p style="margin-top:3em;">
-                    <small>If you want to install Chrome, you can get it <a href="https://www.google.com/chrome/browser/desktop/" target="_blank">here</a>.
-                    </small>
-                </p>
-                <p style="text-align:center;">
-                    <a class="button" href="?nobrowsercheck=1">continue anyway</a>
-                </p>
-            </div>
-        </div>
     </body>
 
     <script src="app/main.js"></script>
