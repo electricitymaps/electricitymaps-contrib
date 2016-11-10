@@ -34,7 +34,7 @@ function ExchangeLayer(selector) {
             .data([
                 {offset: 0, color: color},
                 {offset: 0, color: color},
-                {offset: 0, color: "rgba(255,255,255,0.3)"},
+                {offset: 0, color: d3.rgb(color).hsl().l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')},
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
@@ -56,7 +56,7 @@ function ExchangeLayer(selector) {
                     };
                 }
             })
-            .each('end', function () { 
+            .each('end', function () {
                 return that.animateGradient(selector, color, duration);
             });
     };
