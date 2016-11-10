@@ -8,7 +8,7 @@ function ExchangeLayer(selector) {
         .range([2000, 10])
     this.exchangeArrowScale = d3.scale.linear()
         .domain([500, 6000])
-        .range([4, 15])
+        .range([4, 10])
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = this.root.append('g');
@@ -34,7 +34,7 @@ function ExchangeLayer(selector) {
             .data([
                 {offset: 0, color: color},
                 {offset: 0, color: color},
-                {offset: 0, color: d3.rgb(color).brighter(2.0)},
+                {offset: 0, color: "rgba(255,255,255,0.3)"},
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
