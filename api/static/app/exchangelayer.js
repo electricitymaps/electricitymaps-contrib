@@ -106,7 +106,6 @@ ExchangeLayer.prototype.render = function() {
             .each(function (d, i) {
                 // Warning: with this technique, we can add arrow dynamically,
                 // but we can't remove them because we can't remove the animation
-                if (i == 1) console.log('ADDING NEW i=1');
                 return that.animateGradient(
                     d3.select('#exchange-gradient-' + i), 
                     function() {
