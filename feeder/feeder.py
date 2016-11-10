@@ -48,6 +48,7 @@ custom_parsers = map(import_country, country_codes)
 ENTSOE_DOMAINS = {
     'AT': '10YAT-APG------L',
     'BE': '10YBE----------2',
+    'BG': '10YCA-BULGARIA-R',
     'CH': '10YCH-SWISSGRIDZ',
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
@@ -79,6 +80,11 @@ ENTSOE_NEIGHBOR_PAIRS = [
     ('BE', 'DE'),
     ('BE', 'FR'),
     ('BE', 'NL'),
+    # BG
+    ('BG', 'GR'),
+    ('BG', 'MD'),
+    ('BG', 'RO'),
+    ('BG', 'SE'),
     # CH
     ('CH', 'DE'),
     ('CH', 'FR'),
