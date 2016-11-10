@@ -120,7 +120,7 @@ var EXCHANGES_CONFIG = [
     },
     {
         countryCodes: ['FR', 'IT'],
-        lonlat: [6.5, 44.5],
+        lonlat: [6.9, 44.4],
         rotation: 70
     },
     // GR
