@@ -80,7 +80,8 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Norway
-  - Hydro: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Norway)
+  - Gas: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Hydro: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - Wind: [ieawind.org](http://www.ieawind.org/countries/norway.html)  
 - Poland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)

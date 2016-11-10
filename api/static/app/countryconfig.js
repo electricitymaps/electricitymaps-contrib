@@ -139,7 +139,9 @@ function addCountryConfiguration(countries) {
         wind: 55,
     };
     countries['NO'].capacity = {
-        hydro: 31000,
+        coal: 0,
+        gas: 1777,
+        hydro: 33905 + 2626,
         nuclear: 0,
         solar: 0,
         wind: 856,
