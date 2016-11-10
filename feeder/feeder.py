@@ -82,9 +82,9 @@ ENTSOE_NEIGHBOR_PAIRS = [
     ('BE', 'NL'),
     # BG
     ('BG', 'GR'),
-    ('BG', 'MD'),
+    ('BG', 'MK'),
     ('BG', 'RO'),
-    ('BG', 'SE'),
+    ('BG', 'RS'),
     # CH
     ('CH', 'DE'),
     ('CH', 'FR'),
