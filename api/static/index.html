@@ -58,6 +58,24 @@
         <!-- end Mixpanel -->
     </head>
     <body>
+        <!-- start FB analytics -->
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1267173759989113',
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <div id="connection-warning" class="hide">
             <div class="inner">Oops! We're having trouble reaching the server. We'll try again in a few seconds.</div>
         </div>
