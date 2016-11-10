@@ -2,17 +2,18 @@
 var REFRESH_TIME_MINUTES = 5;
 
 // Global State
-var force_remote_endpoint = false;
-var custom_date;
+var selectedCountryCode;
+var forceRemoteEndpoint = false;
+var customDate;
 
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
     args.forEach(function(arg) {
         kv = arg.split('=');
         if (kv[0] == 'remote' && kv[1] == 'true') {
-            force_remote_endpoint = true;
+            forceRemoteEndpoint = true;
         } else if (kv[0] == 'datetime') {
-            custom_date = kv[1];
+            customDate = kv[1];
         }
     });
 })();
@@ -23,7 +24,7 @@ function isMobile() {
 
 // Start chrome (or forced) version
 var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
-var ENDPOINT = (document.domain == 'localhost' && !force_remote_endpoint) ?
+var ENDPOINT = (document.domain == 'localhost' && !forceRemoteEndpoint) ?
     'http://localhost:8000' : REMOTE_ENDPOINT;
 
 var co2color = d3.scale.linear()
@@ -109,6 +110,7 @@ if (isMobile()) {
             countryTable
                 .show()
                 .data(countries[countryCode]);
+            selectedCountryCode = countryCode;
             d3.select('select.country-picker').node().selectedIndex = 0;
         }
     }
@@ -158,73 +160,77 @@ function dataLoaded(err, production, solar, wind) {
     }
 
     if (!isMobile()) {
-        console.log('wind', wind);
-        var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
-        var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
-        console.log('#1 wind forecast target', 
-            t_before.fromNow(),
-            'made', moment(wind.forecasts[0][0].header.refTime).fromNow());
-        console.log('#2 wind forecast target',
-            t_after.fromNow(),
-            'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
-        // Interpolate wind
-        var now = (new Date()).getTime();
-        var interpolatedWind = wind.forecasts[0];
-        if (moment(now) > moment(t_after)) {
-            console.error('Error while interpolating wind because current time is out of bounds');
-        } else {
-            var k = (now - t_before)/(t_after - t_before);
-            interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
-                return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
-            });
-            interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
-                return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
-            });
-            var sw = countryMap.projection().invert([0, height]);
-            var ne = countryMap.projection().invert([width, 0]);
-            windLayer.params.data = interpolatedWind;
-            windLayer.start(
-                [[0, 0], [width, height]], 
-                width,
-                height,
-                [sw, ne]
-            );
-        }
-
-        console.log('solar', solar);
-        if (ctx) {
-            // Interpolates between two solar forecasts
-            var Nx = solar.forecasts[0].DSWRF.length;
-            var Ny = solar.forecasts[0].DSWRF[0].length;
-            var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
-            var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
+        if (wind) {
+            console.log('wind', wind);
+            var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
+            var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
+            console.log('#1 wind forecast target', 
+                t_before.fromNow(),
+                'made', moment(wind.forecasts[0][0].header.refTime).fromNow());
+            console.log('#2 wind forecast target',
+                t_after.fromNow(),
+                'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
+            // Interpolate wind
             var now = (new Date()).getTime();
-            console.log('#1 solar forecast target', 
-                moment(t_before).fromNow(),
-                'made', moment(solar.forecasts[0].date).fromNow());
-            console.log('#2 solar forecast target',
-                moment(t_after).fromNow(),
-                'made', moment(solar.forecasts[1].date).fromNow());
-            if (moment(now) > moment(solar.forecasts[1].horizon)) {
-                console.error('Error while interpolating solar because current time is out of bounds');
+            var interpolatedWind = wind.forecasts[0];
+            if (moment(now) > moment(t_after)) {
+                console.error('Error while interpolating wind because current time is out of bounds');
             } else {
                 var k = (now - t_before)/(t_after - t_before);
-                var dotSize = 1.0;
-                d3.range(Nx).forEach(function(i) {
-                    d3.range(Ny).forEach(function(j) {
-                        var n = i * Ny + j;
-                        var lon = solar.forecasts[0].lonlats[0][n];
-                        var lat = solar.forecasts[0].lonlats[1][n];
-                        var val = d3.interpolate(solar.forecasts[0].DSWRF[i][j], solar.forecasts[1].DSWRF[i][j])(k);
-                        var p = countryMap.projection()([lon, lat]);
-                        if (isNaN(p[0]) || isNaN(p[1]))
-                            return;
-                        ctx.beginPath();
-                        ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
-                        ctx.fillStyle = solarColor(val);
-                        ctx.fill();
-                    });
+                interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
+                    return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
                 });
+                interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
+                    return d3.interpolate(d, wind.forecasts[1][1].data[i])(k)
+                });
+                var sw = countryMap.projection().invert([0, height]);
+                var ne = countryMap.projection().invert([width, 0]);
+                windLayer.params.data = interpolatedWind;
+                windLayer.start(
+                    [[0, 0], [width, height]], 
+                    width,
+                    height,
+                    [sw, ne]
+                );
+            }
+        }
+
+        if (solar) {
+            console.log('solar', solar);
+            if (ctx) {
+                // Interpolates between two solar forecasts
+                var Nx = solar.forecasts[0].DSWRF.length;
+                var Ny = solar.forecasts[0].DSWRF[0].length;
+                var t_before = d3.time.format.iso.parse(solar.forecasts[0].horizon).getTime();
+                var t_after = d3.time.format.iso.parse(solar.forecasts[1].horizon).getTime();
+                var now = (new Date()).getTime();
+                console.log('#1 solar forecast target', 
+                    moment(t_before).fromNow(),
+                    'made', moment(solar.forecasts[0].date).fromNow());
+                console.log('#2 solar forecast target',
+                    moment(t_after).fromNow(),
+                    'made', moment(solar.forecasts[1].date).fromNow());
+                if (moment(now) > moment(solar.forecasts[1].horizon)) {
+                    console.error('Error while interpolating solar because current time is out of bounds');
+                } else {
+                    var k = (now - t_before)/(t_after - t_before);
+                    var dotSize = 1.0;
+                    d3.range(Nx).forEach(function(i) {
+                        d3.range(Ny).forEach(function(j) {
+                            var n = i * Ny + j;
+                            var lon = solar.forecasts[0].lonlats[0][n];
+                            var lat = solar.forecasts[0].lonlats[1][n];
+                            var val = d3.interpolate(solar.forecasts[0].DSWRF[i][j], solar.forecasts[1].DSWRF[i][j])(k);
+                            var p = countryMap.projection()([lon, lat]);
+                            if (isNaN(p[0]) || isNaN(p[1]))
+                                return;
+                            ctx.beginPath();
+                            ctx.arc(p[0], p[1], dotSize, 0, 2 * Math.PI);
+                            ctx.fillStyle = solarColor(val);
+                            ctx.fill();
+                        });
+                    });
+                }
             }
         }
     }
@@ -312,6 +318,7 @@ function dataLoaded(err, production, solar, wind) {
             d3.select('.country-table-initial-text')
                 .style('display', 'block');
             countryTable.hide();
+            selectedCountryCode = undefined;
         })
         .onCountryClick(function (d, i) {
             if (!d.production) {
@@ -324,6 +331,7 @@ function dataLoaded(err, production, solar, wind) {
             countryTable
                 .show()
                 .data(d);
+            selectedCountryCode = d.countryCode;
         })
         .onCountryMouseOver(function (d) { 
             if (d.production)
@@ -343,10 +351,15 @@ function dataLoaded(err, production, solar, wind) {
         })
         .render();
 
-    exchangeLayer
-        .data(exchanges)
-        .projection(countryMap.projection())
-        .render();
+    // Update country table if it is visible
+    if (selectedCountryCode)
+        countryTable.data(countries[selectedCountryCode]).render()
+
+    if (!isMobile())
+        exchangeLayer
+            .data(exchanges)
+            .projection(countryMap.projection())
+            .render();
 
     d3.select('.loading')
         .transition()
@@ -413,10 +426,10 @@ function fetchAndReschedule() {
         if (d3.select('.country-table-initial-text').style() != 'none') {
             Q.defer(geolocaliseCountryCode);
         }
-        Q.await(function(err, countryTopos, production, countryCode) {
+        Q.await(function(err, production, countryCode) {
             handleConnectionError(err);
             if (!err) {
-                dataLoaded(err, countryTopos, production);
+                dataLoaded(err, production);
                 if (d3.select('.country-table-initial-text').style() != 'none') {
                     if (countryCode && countries[countryCode] ) {
                         // Select one country
@@ -446,7 +459,7 @@ function fetchAndReschedule() {
         });
     } else {
         Q
-            .defer(d3.json, ENDPOINT + '/v1/production' + (custom_date ? '?datetime=' + custom_date : ''))
+            .defer(d3.json, ENDPOINT + '/v1/production' + (customDate ? '?datetime=' + customDate : ''))
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind')
             .await(function(err, production, solar, wind) {

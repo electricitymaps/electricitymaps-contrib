@@ -172,7 +172,7 @@ CountryTable.prototype.data = function(arg) {
         // update scales
         this.powerScale
             .domain([
-                -this._data.maxExport,
+                -this._data.maxExport || 0,
                 Math.max(this._data.maxCapacity || 0, this._data.maxProduction)
             ]);
         // co2 scale in tCO2eq/s
