@@ -35,7 +35,7 @@ var EXCHANGES_CONFIG = [
     {
         countryCodes: ['BG', 'GR'],
         lonlat: [24.1, 41.558088],
-        rotation: 25
+        rotation: 205
     },
     // CH
     {
