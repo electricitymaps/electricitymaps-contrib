@@ -177,10 +177,19 @@ def execute_parser(parser):
                 print 'future:', obj['datetime'], 'now', arrow.now()
                 raise Exception("Data from %s can't be in the future" % obj['countryCode'])
             try:
-                col.insert_one(obj)
-                logger.info('Inserted %s @ %s into the db' % (obj.get('countryCode'), obj.get('datetime')))
-                logger.debug(obj)
-                if cache: cache.delete('production')
+                result = col.update_one(
+                    { 'countryCode': obj['countryCode'], 'datetime': obj['datetime'] },
+                    { '$set': obj },
+                    upsert=True)
+                if result.modified_count:
+                    logger.info('Updated %s @ %s' % (obj.get('countryCode'), obj.get('datetime')))
+                elif result.matched_count:
+                    logger.debug('Already up to date: %s @ %s' % (obj.get('countryCode'), obj.get('datetime')))
+                elif result.upserted_id:
+                    logger.info('Inserted %s @ %s' % (obj.get('countryCode'), obj.get('datetime')))
+                else:
+                    raise Exception('Unknown database command result.')
+                if (result.modified_count or result.upserted_id) and cache: cache.delete('production')
             except pymongo.errors.DuplicateKeyError:
                 # (datetime, countryCode) does already exist. Don't raise.
                 # Note: with this design, the oldest record stays.
