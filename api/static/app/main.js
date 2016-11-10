@@ -92,9 +92,11 @@ if (solarCanvas.node()) {
 // Prepare data
 var countries = getCountryTopos(countries);
 addCountryConfiguration(countries);
-d3.values(countries).forEach(function (country) {
+d3.entries(countries).forEach(function (o) {
+    var country = o.value;
     country.maxCapacity =
         d3.max(d3.values(country.capacity));
+    country.countryCode = o.key;
 });
 
 // Mobile
@@ -282,11 +284,9 @@ function dataLoaded(err, production, solar, wind) {
         pair.netFlow = d3.mean(netFlows);
         if (pair.netFlow === undefined)
             return;
-        pair.co2 = function() {
-            return pair.countryCodes.map(function (k) {
-                return countries[k].co2intensity;
-            });
-        };
+        pair.co2 = pair.countryCodes.map(function (k) {
+            return countries[k].co2intensity;
+        });
         exchanges.push(pair);
 
         countries[o].exchange[d] = -pair.netFlow;
