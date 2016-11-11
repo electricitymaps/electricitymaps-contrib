@@ -1,4 +1,5 @@
-﻿# electricitymap
+# electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co)
+ 
 A real-time visualisation of the GHG and CO2 footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://electricitymap.tmrow.co](http://electricitymap.tmrow.co).
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16257011/15711692-3856-11e6-98ca-95cce4d02b02.png)
@@ -101,10 +102,12 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 
 
 ## Contribute
-You can contribute by
-- adding your country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers)
+Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
+In the meantime, here's some things you can do:
+- check out the [issues](https://github.com/corradio/electricitymap/issues)
+- add your country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers)
 - update an existing [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers) with a different API if you know one with more data or closer to real-time
-- optimising the code, correct inaccuracies...
+- optimise the code, correct inaccuracies...
 
 You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
 
