@@ -40,13 +40,12 @@
 
         <!-- start GA -->
         <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-79729918-1', 'auto');
             if (window.location.href.indexOf("electricitymap") !== -1) {
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-79729918-1', 'auto');
                 ga('send', 'pageview');
             }
         </script>
@@ -62,28 +61,46 @@
                 mixpanel.track('Visit');
         </script>
         <!-- end Mixpanel -->
+        <!-- start Twitter -->
+        <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+            }(document, "script", "twitter-wjs"));</script>
+        <!-- end Twitter -->
     </head>
     <body>
         <!-- start FB analytics -->
         <script>
-            if (window.location.href.indexOf("electricitymap") !== -1) {
-                window.fbAsyncInit = function() {
-                    FB.init({
-                        appId      : '1267173759989113',
-                        xfbml      : true,
-                        version    : 'v2.8'
-                    });
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1267173759989113',
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+                if (window.location.href.indexOf("electricitymap") !== -1) {
                     FB.AppEvents.logPageView("pageview");
-                };
+                }
+            };
 
-                (function(d, s, id){
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) {return;}
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/en_US/sdk.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-            }
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
         </script>
         <!-- end FB analytics -->
         <div id="connection-warning" class="hide">
@@ -133,9 +150,17 @@
                 </div>
                 <br />
                 Like the map? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
-                <smallx>
-                    Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
-                </smallx>
+                Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
+                <br />
+                <!-- Facebook share -->
+                <div class="fb-share-button" 
+                    data-href="http://electricitymap.tmrow.co" 
+                    data-layout="button_count">
+                </div>
+                <!-- Twitter share -->
+                <a class="twitter-share-button"
+                    href="https://twitter.com/intent/tweet?via=tmrowco&url=http://electricitymap.tmrow.co">
+                Tweet</a>
             </div>
         </div>
         <div style="bottom: 0; left: 0; position: absolute;">
