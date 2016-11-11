@@ -93,7 +93,7 @@ ExchangeLayer.prototype.render = function() {
     };
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
-        .data(this._data);
+        .data(this._data, function(d) { return d.countryCodes[0] + d.countryCodes[1]; });
     exchangeArrows.enter()
         .append('g') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow')
