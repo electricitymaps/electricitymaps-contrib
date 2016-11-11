@@ -195,7 +195,7 @@ def fetch_ENTSOE(in_domain, connecting_domains, country_code, session=None):
 
     # Take the last production date that is present for all parameters
     production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    if not len(production_dates): raise Exception('Not data was returned')
+    if not len(production_dates): raise Exception('%s [%s]: Not production data was returned' % (country_code, in_domain))
     production_dates_with_counts = map(lambda date: len(production_hashmap[date].keys()),
         production_dates)
     production_date = production_dates[production_dates_with_counts.index(max(production_dates_with_counts))]
