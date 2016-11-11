@@ -160,12 +160,13 @@ CountryTable.prototype.data = function(arg) {
         // `this.PRODUCTION_MODES`
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
             var footprint = co2eqCalculator.footprintOf(d, that._data.countryCode);
+            var production = arg.production ? arg.production[d] : undefined;
             return {
-                production: arg.production[d],
+                production: production,
                 capacity: arg.capacity ? arg.capacity[d] : undefined,
                 mode: d,
                 gCo2eqPerkWh: footprint,
-                gCo2eqPerH: footprint * 1000.0 * arg.production[d]
+                gCo2eqPerH: footprint * 1000.0 * production
             };
         });
 
@@ -173,20 +174,21 @@ CountryTable.prototype.data = function(arg) {
         this.powerScale
             .domain([
                 -this._data.maxExport || 0,
-                Math.max(this._data.maxCapacity || 0, this._data.maxProduction)
+                Math.max(this._data.maxCapacity || 0, this._data.maxProduction || 0)
             ]);
         // co2 scale in tCO2eq/s
         var maxCO2eqExport = d3.max(exchangeData, function (d) {
-            return d.value >= 0 ? 0 : that._data.co2intensity / 1000.0 * -d.value;
+            return d.value >= 0 ? 0 : (that._data.co2intensity / 1000.0 * -d.value || 0);
         });
         var maxCO2eqImport = d3.max(exchangeData, function (d) {
+            if (!that._data.exchangeCo2Intensities) return 0;
             return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1000.0 * d.value;
         });
         this.co2Scale
             .domain([
                 -maxCO2eqExport || 0,
                 Math.max(
-                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH / 1000000.0; }),
+                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH / 1000000.0; }) || 0,
                     maxCO2eqImport || 0
                 )
             ]);
@@ -327,7 +329,7 @@ CountryTable.prototype.data = function(arg) {
             })
         function getExchangeCo2eq(d) {
             return d.value > 0 ? 
-                (that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
+                (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
                 : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
         }
         selection.select('rect')
@@ -371,7 +373,7 @@ CountryTable.prototype.data = function(arg) {
         selection.select('text')
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
-            .text(Math.round(this._data.co2intensity));
+            .text(Math.round(this._data.co2intensity) || '?');
         d3.select('.country-emission-rect')
             .transition()
             .style('background-color', that.co2Color(this._data.co2intensity));

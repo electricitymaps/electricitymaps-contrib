@@ -140,7 +140,8 @@ if (isMobile()) {
         });
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
-            var co2 = countries[d.value < 0 ? countryCode : d.key].data.co2intensity;
+            var o = d.value < 0 ? countryCode : d.key;
+            var co2 = countries[o].co2intensity;
             co2Colorbar.currentMarker(co2);
         })
         .onExchangeMouseOut(function (d) {
@@ -249,9 +250,8 @@ function dataLoaded(err, production, solar, wind) {
         d3.keys(obj).forEach(function(k) {
             country[k] = obj[k];
         });
-        // Add own country code so each country is identifiable
-        country.countryCode = countryCode;
         // Validate data
+        if (!country.production) return;
         countryTable.PRODUCTION_MODES.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown') return;
             if (country.production[mode] === undefined)
@@ -321,10 +321,6 @@ function dataLoaded(err, production, solar, wind) {
             selectedCountryCode = undefined;
         })
         .onCountryClick(function (d, i) {
-            if (!d.production) {
-                countryMap.onSeaClick()();
-                return;
-            };
             console.log(d);
             d3.select('.country-table-initial-text')
                 .style('display', 'none');
@@ -334,18 +330,16 @@ function dataLoaded(err, production, solar, wind) {
             selectedCountryCode = d.countryCode;
         })
         .onCountryMouseOver(function (d) { 
-            if (d.production)
-                d3.select(this)
-                    .style('opacity', 0.8)
-                    .style('cursor', 'hand')
+            d3.select(this)
+                .style('opacity', 0.8)
+                .style('cursor', 'hand')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(d.co2intensity);
         })
         .onCountryMouseOut(function (d) { 
-            if (d.production) 
-                d3.select(this)
-                    .style('opacity', 1)
-                    .style('cursor', 'normal')
+            d3.select(this)
+                .style('opacity', 1)
+                .style('cursor', 'normal')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(undefined);
         })

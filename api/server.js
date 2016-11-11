@@ -99,20 +99,17 @@ var countryCodes = [
     'SE',
     'UA'
 ];
-function parseDatabaseResults(result) {
-    // Construct dict
-    countries = {};
-    result.forEach(function(d) {
-        // Ignore errors: just filter
-        if (!d) return;
-        // Assign
-        countries[d.countryCode] = d;
+function parseDatabaseResults(countries) {
+    d3.keys(countries).forEach(function(k) {
+        if (!countries[k])
+            countries[k] = {countryCode: k};
+        country = countries[k];
         // Default values
-        if (!d.exchange) d.exchange = {};
+        if (!country.exchange) country.exchange = {};
         // Truncate negative production values
-        d3.keys(d.production).forEach(function(k) {
-            if (d.production[k] !== null)
-                d.production[k] = Math.max(0, d.production[k]);
+        d3.keys(country.production).forEach(function(k) {
+            if (country.production[k] !== null)
+                country.production[k] = Math.max(0, country.production[k]);
         });
     });
     // Average out import-exports between commuting pairs
@@ -177,19 +174,20 @@ function queryLastCountryBeforeDatetime(datetime, countryCode, callback) {
         { sort: [['datetime', -1]] },
         callback);
 }
-function queryLastValues(callback) {
-    return async.parallel(countryCodes.map(function(k) {
-        return function(callback) { return queryLastCountry(k, callback); };
-    }), function (err, result) {
-        return callback(err, computeCo2(parseDatabaseResults(result)));
+function queryCountries(countryCodes, countryQuery, callback) {
+    countryObject = {};
+    countryCodes.forEach(function(k) {
+        countryObject[k] = function(callback) { return countryQuery(k, callback); };
+    });
+    return async.parallel(countryObject, function (err, countries) {
+        return callback(err, computeCo2(parseDatabaseResults(countries)));
     });
 }
+function queryLastValues(callback) {
+    return queryCountries(countryCodes, queryLastCountry, callback);
+}
 function queryLastValuesBeforeDatetime(datetime, callback) {
-    return async.parallel(countryCodes.map(function(k) {
-        return function(callback) { return queryLastCountryBeforeDatetime(datetime, k, callback); };
-    }), function (err, result) {
-        return callback(err, computeCo2(parseDatabaseResults(result)));
-    });
+    return queryCountries(countryCodes, queryLastCountryBeforeDatetime, callback);
 }
 
 // * Static
