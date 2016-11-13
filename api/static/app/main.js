@@ -91,12 +91,19 @@ if (solarCanvas.node()) {
 
 // Prepare data
 var countries = getCountryTopos(countries);
-addCountryConfiguration(countries);
+addCountriesConfiguration(countries);
 d3.entries(countries).forEach(function (o) {
     var country = o.value;
     country.maxCapacity =
         d3.max(d3.values(country.capacity));
     country.countryCode = o.key;
+});
+var exchanges = {};
+addExchangesConfiguration(exchanges);
+d3.entries(exchanges).forEach(function(entry) {
+    entry.value.countryCodes = entry.key.split('->').sort();
+    if (entry.key.split('->')[0] != entry.value.countryCodes[0])
+        console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
 
 // Mobile
@@ -156,7 +163,7 @@ if (isMobile()) {
         });
 }
 
-function dataLoaded(err, production, solar, wind) {
+function dataLoaded(err, state, solar, wind) {
     if (err) {
         console.error(err);
         return;
@@ -238,17 +245,17 @@ function dataLoaded(err, production, solar, wind) {
         }
     }
 
-    // Populate with realtime production data
-    d3.keys(production.data).forEach(function(countryCode) {
-        var obj = production.data[countryCode];
+    // Populate with realtime country data
+    d3.entries(state.countries).forEach(function(entry) {
+        var countryCode = entry.key;
         var country = countries[countryCode];
         if (!country) {
             console.warn(countryCode + ' has no country definition.');
             return;
         }
         // Copy data
-        d3.keys(obj).forEach(function(k) {
-            country[k] = obj[k];
+        d3.keys(entry.value).forEach(function(k) {
+            country[k] = entry.value[k];
         });
         // Validate data
         if (!country.production) return;
@@ -262,55 +269,21 @@ function dataLoaded(err, production, solar, wind) {
         if (!country.exchange || !d3.keys(country.exchange).length)
             console.warn(countryCode + ' is missing exchanges');
     });
+    console.log('countries', countries);
 
     // Populate exchange pairs for arrows
-    var exchanges = [];
-    EXCHANGES_CONFIG.forEach(function (item) {
-        // Shallow copy the configuration item
-        var pair = {};
-        d3.entries(item).forEach(function (d) {
-            pair[d.key] = d.value;
-        });
-        var o = pair.countryCodes[0];
-        var d = pair.countryCodes[1];
-
-        if (!countries[d].exchange) countries[d].exchange = {};
-        if (!countries[o].exchange) countries[o].exchange = {};
-
-        var netFlows = [
-            countries[d].exchange[o],
-            -countries[o].exchange[d]
-        ];
-        pair.netFlow = d3.mean(netFlows);
-        if (pair.netFlow === undefined)
+    d3.entries(state.exchanges).forEach(function(obj) {
+        var exchange = exchanges[obj.key];
+        if (!exchange) {
+            console.error('Missing exchange configuration for ' + obj.key);
             return;
-        pair.co2 = pair.countryCodes.map(function (k) {
-            return countries[k].co2intensity;
+        }
+        // Copy data
+        d3.keys(obj.value).forEach(function(k) {
+            exchange[k] = obj.value[k];
         });
-        exchanges.push(pair);
-
-        countries[o].exchange[d] = -pair.netFlow;
-        countries[d].exchange[o] = pair.netFlow;
     });
-
     console.log('exchanges', exchanges);
-
-    // Issue warnings for missing exchange configurations
-    d3.keys(production.data).forEach(function(countryCode) {
-        var country = countries[countryCode]
-        if (!country) return;
-        d3.keys(country.exchange).forEach(function (sourceCountryCode) {
-            if (sourceCountryCode == 'datetime') return;
-            // Find the exchange object
-            var matches = exchanges.filter(function (e) {
-                return (e.countryCodes[0] == countryCode && e.countryCodes[1] == sourceCountryCode) || (e.countryCodes[1] == countryCode && e.countryCodes[0] == sourceCountryCode)
-            });
-            if (!matches.length)
-                console.error('Missing exchange configuration between ' + sourceCountryCode + ' and ' + countryCode);
-        });
-    });
-
-    console.log('countries', countries);
 
     countryMap
         .data(d3.values(countries))
@@ -351,7 +324,7 @@ function dataLoaded(err, production, solar, wind) {
 
     if (!isMobile())
         exchangeLayer
-            .data(exchanges)
+            .data(d3.values(exchanges))
             .projection(countryMap.projection())
             .render();
 
@@ -416,14 +389,14 @@ function fetchAndReschedule() {
     var Q = queue()
     if (isMobile()) {
         Q
-            .defer(d3.json, ENDPOINT + '/v1/production');
+            .defer(d3.json, ENDPOINT + '/v1/state');
         if (d3.select('.country-table-initial-text').style() != 'none') {
             Q.defer(geolocaliseCountryCode);
         }
-        Q.await(function(err, production, countryCode) {
+        Q.await(function(err, state, countryCode) {
             handleConnectionError(err);
             if (!err) {
-                dataLoaded(err, production);
+                dataLoaded(err, state.data);
                 if (d3.select('.country-table-initial-text').style() != 'none') {
                     if (countryCode && countries[countryCode] ) {
                         // Select one country
@@ -453,13 +426,13 @@ function fetchAndReschedule() {
         });
     } else {
         Q
-            .defer(d3.json, ENDPOINT + '/v1/production' + (customDate ? '?datetime=' + customDate : ''))
+            .defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''))
             .defer(d3.json, ENDPOINT + '/v1/solar')
             .defer(d3.json, ENDPOINT + '/v1/wind')
-            .await(function(err, production, solar, wind) {
+            .await(function(err, state, solar, wind) {
                 handleConnectionError(err);
                 if (!err)
-                    dataLoaded(err, production, solar, wind);
+                    dataLoaded(err, state.data, solar, wind);
                 setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
             });
     }
