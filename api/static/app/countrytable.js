@@ -153,8 +153,7 @@ CountryTable.prototype.data = function(arg) {
     if (!arg) return this._data;
     else {
         this._data = arg;
-        var exchangeData = d3.entries(this._data.exchange)
-            .filter(function(d) { return d.key != 'datetime'; });
+        var exchangeData = d3.entries(this._data.exchange);
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
@@ -235,7 +234,7 @@ CountryTable.prototype.data = function(arg) {
         header.select('span.country-name')
             .text(this._data.countryCode);
         header.select('span.country-last-update')
-            .text(moment(this._data.datetime).fromNow())
+            .text(this._data.datetime ? moment(this._data.datetime).fromNow() : '? minutes ago')
 
         var selection = this.productionRoot.selectAll('.row')
             .data(sortedProductionData);
@@ -342,7 +341,7 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('fill', function (d, i) {
                 if (that._displayByEmissions)
-                    return 'gray'
+                    return 'gray';
                 else {
                     var co2intensity = getExchangeCo2eq(d);
                     return (co2intensity !== undefined) ? that.co2Color(co2intensity) : 'gray';

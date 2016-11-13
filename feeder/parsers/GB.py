@@ -2,22 +2,25 @@ import arrow
 import requests
 import xml.etree.ElementTree as ET
 
-COUNTRY_CODE = 'GB'
-
-def fetch_GB(session=None):
+def fetch(session=None):
     url = 'http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable'
 
     response = (session or requests).get(url)
     root = ET.fromstring(response.content)
     data = root[0]
 
+    return data
+
+def fetch_production(country_code='GB', session=None):
+    data = fetch(session)
     parsed = {}
     for item in data:
         parsed[item.get('TYPE')] = float(item.get('VAL'))
 
     obj = {
-        'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(data.get('AT')).datetime # Time given in UTC
+        'countryCode': country_code,
+        'datetime': arrow.get(data.get('AT')).datetime, # Time given in UTC
+        'source': 'bmreports.com'
     }
     obj['consumption'] = {}
     obj['production'] = {
@@ -29,25 +32,34 @@ def fetch_GB(session=None):
         'hydro': parsed['PS'] + parsed['NPSHYD'],
         'unknown': parsed['OTHER']
     }
-    obj['exchange'] = {
-        'FR': parsed['INTFR'],
-        'IE': parsed['INTIRL'],
-        'NL': parsed['INTNED']
-    }
-    total_production = 0
-    for value in obj['production'].values(): total_production += value
-    obj['co2'] = (
-        parsed['CCGT']/total_production * 360 +
-        parsed['OCGT']/total_production * 480 +
-        parsed['COAL']/total_production * 910 +
-        parsed['OTHER']/total_production * 300 +
-        parsed['OIL']/total_production * 610 +
-        parsed['INTFR']/total_production * 90 +
-        parsed['INTIRL']/total_production * 450 +
-        parsed['INTNED']/total_production * 550 +
-        parsed['INTEW']/total_production * 450)/0.93
 
     return obj
 
+def fetch_exchange(country_code1, country_code2, session=None):
+    if country_code1 == 'GB': 
+        direction = 1
+        target = country_code2
+    elif country_code2 == 'GB': 
+        direction = -1
+        target = country_code1
+    else: return None
+    data = fetch(session)
+    parsed = {}
+    for item in data:
+        parsed[item.get('TYPE')] = float(item.get('VAL'))
+    obj = {
+        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
+        'datetime': arrow.get(data.get('AT')).datetime, # Time given in UTC
+        'source': 'bmreports.com'
+    }
+    if target == 'FR':
+        obj['netFlow'] = direction * parsed['INTFR']
+    elif target == 'IE':
+        obj['netFlow'] = direction * parsed['INTIRL']
+    elif target == 'NL':
+        obj['netFlow'] = direction * parsed['INTNED']
+    else: raise Exception('Unhandled case')
+    return obj
+
 if __name__ == '__main__':
-    fetch_GB()
+    fetch_production()

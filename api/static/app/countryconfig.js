@@ -1,4 +1,4 @@
-function addCountryConfiguration(countries) {
+function addCountriesConfiguration(countries) {
     countries['AT'].capacity = {
         biomass: 393,
         coal: 819,
