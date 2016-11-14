@@ -40,7 +40,7 @@ function addExchangesConfiguration(exchanges) {
     };
     exchanges['BG->MK'] = {
         lonlat: [22.912615, 41.867840],
-        rotation: 90
+        rotation: -90
     }
     exchanges['BG->RO'] = {
         lonlat: [25.609385, 43.674878],
@@ -48,7 +48,7 @@ function addExchangesConfiguration(exchanges) {
     };
     exchanges['BG->RS'] = {
         lonlat: [22.978533, 43.131375],
-        rotation: 90
+        rotation: -90
     }
     // CH
     exchanges['CH->DE'] = {

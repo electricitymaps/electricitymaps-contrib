@@ -69,6 +69,8 @@ PRODUCTION_PARSERS = {
 }
 # Keys are unique because both countries are sorted alphabetically
 EXCHANGE_PARSERS = {
+    # AL
+    'AL->GR': ENTSOE.fetch_exchange,
     # AT
     'AT->CH': ENTSOE.fetch_exchange,
     'AT->CZ': ENTSOE.fetch_exchange,
@@ -77,7 +79,6 @@ EXCHANGE_PARSERS = {
     'AT->IT': ENTSOE.fetch_exchange,
     'AT->SI': ENTSOE.fetch_exchange,
     # BE
-    'BE->DE': ENTSOE.fetch_exchange,
     'BE->FR': ENTSOE.fetch_exchange,
     'BE->NL': ENTSOE.fetch_exchange,
     # BG
@@ -115,7 +116,6 @@ EXCHANGE_PARSERS = {
     'GB->IE': GB.fetch_exchange,
     'GB->NL': GB.fetch_exchange,
     # GR
-    'GR->AL': ENTSOE.fetch_exchange,
     'GR->IT': ENTSOE.fetch_exchange,
     'GR->MK': ENTSOE.fetch_exchange,
     # 'GR->TR': ENTSOE.fetch_exchange,
