@@ -119,57 +119,59 @@
                 <svg class="wind-colorbar"></svg>
             </div>
         </div>
-        <div class="panel-container">
-            <h1 style="line-height: 1.3; color: white; font-size: 1.6em; padding-bottom: 15px;
-    border-bottom: solid grey 1px; margin-top: 0px;">
-                Real-time CO2 emissions of the European electricity production
-            </h1>
-            <div class="country-table-header" style="display: none">
-                <img class="country-flag">
-                <b>
-                    <span class="country-name"></span>
-                </b>
-                <span style="color: darkgray;">
-                    (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
+        <div class="content">
+            <div class="panel-container">
+                <h1 style="line-height: 1.3; color: white; font-size: 1.6em; padding-bottom: 15px;
+        border-bottom: solid grey 1px; margin-top: 0px;">
+                    Real-time CO2 emissions of the European electricity production
+                </h1>
+                <div class="country-table-header" style="display: none">
+                    <img class="country-flag">
+                    <b>
+                        <span class="country-name"></span>
+                    </b>
+                    <span style="color: darkgray;">
+                        (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
+                        <br />
+                        Emission rate:  <div class="country-emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
+                        <span class="country-show-emissions">Electricity production (<a href="javascript:toogleSource();">show emissions</a>) by source:</span>
+                        <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toogleSource();">show electricity</a>) by source:</span>
+                    </span>
+                </div>
+                <svg class="country-table" style="display: none"></svg>
+                <div class="country-table-initial-text">
+                    This map shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
+                    <!--The map also shows renewable resources like wind and sun.--><br />
                     <br />
-                    Emission rate:  <div class="country-emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
-                    <span class="country-show-emissions">Electricity production (<a href="javascript:toogleSource();">show emissions</a>) by source:</span>
-                    <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toogleSource();">show electricity</a>) by source:</span>
+                    The <span style="color: lightgray">blinking arrows</span> represent electricity <span style="color: lightgray">imports and exports</span>.<br />
+                    <br />
+                    <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span><br />
+                    <div class="country-picker-container" style="text-align: center">
+                        <select class="country-picker" onchange="onSelectedCountryChange();"></select>
+                    </div>
+                    <br />
+                    Like the map? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
+                    Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
+                    <br />
+                    <!-- Facebook share -->
+                    <div class="fb-share-button" 
+                        data-href="http://electricitymap.tmrow.co" 
+                        data-layout="button_count">
+                    </div>
+                    <!-- Twitter share -->
+                    <a class="twitter-share-button"
+                        data-via="tmrowco"
+                        data-url="http://electricitymap.tmrow.co">
+                    Tweet</a>
+                </div>
+            </div>
+            <div style="display: table-footer-group;">
+                <div class="watermark">
+                    <a href="http://www.tmrow.co" target="_blank"><img src="tomorrow_logo_open_source.svg" style="width:160px"/></a>
+                </div>
+                <span class="contribute-text">
+                    Help out with missing data by contributing on <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">GitHub</a>. Follow us on <a href="https://twitter.com/tmrowco" target="_blank">Twitter</a> for the latest updates.
                 </span>
-            </div>
-            <svg class="country-table" style="display: none"></svg>
-            <div class="country-table-initial-text">
-                This map shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
-                <!--The map also shows renewable resources like wind and sun.--><br />
-                <br />
-                The <span style="color: lightgray">blinking arrows</span> represent electricity <span style="color: lightgray">imports and exports</span>.<br />
-                <br />
-                <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span><br />
-                <div class="country-picker-container" style="text-align: center">
-                    <select class="country-picker" onchange="onSelectedCountryChange();"></select>
-                </div>
-                <br />
-                Like the map? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
-                Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
-                <br />
-                <!-- Facebook share -->
-                <div class="fb-share-button" 
-                    data-href="http://electricitymap.tmrow.co" 
-                    data-layout="button_count">
-                </div>
-                <!-- Twitter share -->
-                <a class="twitter-share-button"
-                    data-via="tmrowco"
-                    data-url="http://electricitymap.tmrow.co">
-                Tweet</a>
-            </div>
-        </div>
-        <div style="bottom: 0; left: 0; position: absolute;">
-            <div class="watermark">
-                <a href="http://www.tmrow.co" target="_blank"><img src="tomorrow_logo_open_source.svg" style="width:160px"/></a>
-            </div>
-            <div class="contribute-text">
-                Help out with missing data by contributing on <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">GitHub</a>. Follow us on <a href="https://twitter.com/tmrowco" target="_blank">Twitter</a> for the latest updates.
             </div>
         </div>
         <div class="loading overlay"></div>

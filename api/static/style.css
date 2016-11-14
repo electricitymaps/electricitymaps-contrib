@@ -3,6 +3,7 @@ html, body {
     padding: 0 !important;
     height: 100%;
     font-family: sans-serif;
+    background-color: #283640;
 }
 
 #connection-warning {
@@ -38,8 +39,8 @@ html, body {
 
 .contribute-text {
     background-color: rgba(70, 70, 70, 0.95);
-    font-size: 0.6em;
     color: lightgray;
+    font-size: 0.6em;
     padding: 3px 5px;
 }
 .watermark {
@@ -83,9 +84,14 @@ html, body {
     stroke-width: 0.3px;
 }
 
-.panel-container {
+.content {
+    display: table;
     position: absolute;
     top: 0px;
+    height: 100%;
+    width: 100%;
+}
+.panel-container {
     margin: 10px;
     padding: 10px;
     background-color: rgba(70, 70, 70, 0.95);
