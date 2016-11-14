@@ -12,6 +12,7 @@ def migrate(db):
             exchange = row['exchange']
             # Insert into exchange db
             for k, v in exchange.iteritems():
+                if k == 'datetime': continue
                 sortedCountryCodes = '->'.join(sorted([k, row['countryCode']]))
                 col_exchange.insert({
                     'datetime': row.get('datetimeExchange', row['datetime']),
