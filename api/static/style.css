@@ -40,6 +40,7 @@ html, body {
 .contribute-text {
     background-color: rgba(70, 70, 70, 0.95);
     color: lightgray;
+    display: inline-block;
     font-size: 0.6em;
     padding: 3px 5px;
 }
