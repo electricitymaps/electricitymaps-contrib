@@ -24,8 +24,8 @@ function isMobile() {
 
 // Start chrome (or forced) version
 var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
-var ENDPOINT = (document.domain == 'localhost' && !forceRemoteEndpoint) ?
-    'http://localhost:8000' : REMOTE_ENDPOINT;
+var ENDPOINT = (document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
+    '' : REMOTE_ENDPOINT;
 
 var co2color = d3.scale.linear()
     .domain([0, 350, 700])
