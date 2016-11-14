@@ -136,7 +136,7 @@ function addExchangesConfiguration(exchanges) {
     // GB
     exchanges['GB->IE'] = {
         lonlat: [-5.7, 53],
-        rotation: 100
+        rotation: -80
     };
     exchanges['GB->NL'] = {
         lonlat: [3.3, 52.4],

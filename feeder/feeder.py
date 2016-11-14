@@ -160,8 +160,8 @@ db = client['electricity']
 col_production = db['production']
 col_exchange = db['exchange']
 # Set up indices
-col_production.create_index([('countryCode', 1), ('datetime', -1)])
-col_exchange.create_index([('sortedCountryCodes', 1), ('datetime', -1)])
+col_production.create_index([('countryCode', 1), ('datetime', -1)], unique=True)
+col_exchange.create_index([('sortedCountryCodes', 1), ('datetime', -1)], unique=True)
 migrate(db)
 
 # Set up memcached
