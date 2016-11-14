@@ -91,6 +91,11 @@ html, body {
     top: 0px;
     height: 100%;
     width: 100%;
+    pointer-events: none;
+}
+.footer {
+    display: table-footer-group;
+    pointer-events: all;
 }
 .panel-container {
     margin: 10px;
@@ -98,6 +103,7 @@ html, body {
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
     line-height: 1.7em;
+    pointer-events: all;
 }
 .panel-container > svg {
     display: block;
