@@ -104,7 +104,7 @@ EXCHANGE_PARSERS = {
     'DK->NO': ENTSOE.fetch_exchange,
     'DK->SE': ENTSOE.fetch_exchange,
     # EE
-    'EE->LV': ENTSOE.fetch_exchange,
+    # 'EE->LV': ENTSOE.fetch_exchange, # No data for now
     # ES
     'ES->FR': ENTSOE.fetch_exchange,
     'ES->PT': ENTSOE.fetch_exchange,
