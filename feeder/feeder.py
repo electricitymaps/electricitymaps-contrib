@@ -7,7 +7,7 @@ import requests
 from collections import defaultdict
 from pymemcache.client.base import Client
 
-from parsers import EE, GB, HU, RO
+from parsers import EE, FR, GB, HU, RO
 
 from parsers import ENTSOE
 from parsers.solar import fetch_solar
@@ -51,7 +51,7 @@ PRODUCTION_PARSERS = {
     'EE': EE.fetch_production,
     'ES': ENTSOE.fetch_production,
     'FI': ENTSOE.fetch_production,
-    'FR': ENTSOE.fetch_production,
+    'FR': FR.fetch_production,
     'GB': GB.fetch_production,
     'GR': ENTSOE.fetch_production,
     'HU': HU.fetch_production,
@@ -95,14 +95,16 @@ EXCHANGE_PARSERS = {
     'CZ->PL': ENTSOE.fetch_exchange,
     'CZ->DE': ENTSOE.fetch_exchange,
     # DE
+    'DE->DK': ENTSOE.fetch_exchange,
     'DE->FR': ENTSOE.fetch_exchange,
     'DE->PL': ENTSOE.fetch_exchange,
     'DE->NL': ENTSOE.fetch_exchange,
     'DE->SE': ENTSOE.fetch_exchange,
     # DK
-    'DE->DK': ENTSOE.fetch_exchange,
     'DK->NO': ENTSOE.fetch_exchange,
     'DK->SE': ENTSOE.fetch_exchange,
+    # EE
+    'EE->LV': ENTSOE.fetch_exchange,
     # ES
     'ES->FR': ENTSOE.fetch_exchange,
     'ES->PT': ENTSOE.fetch_exchange,
@@ -160,8 +162,8 @@ db = client['electricity']
 col_production = db['production']
 col_exchange = db['exchange']
 # Set up indices
-col_production.create_index([('countryCode', 1), ('datetime', -1)], unique=True)
-col_exchange.create_index([('sortedCountryCodes', 1), ('datetime', -1)], unique=True)
+col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
+col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
 migrate(db)
 
 # Set up memcached
@@ -177,6 +179,7 @@ session = requests.session()
 
 def db_upsert(col, obj, database_key):
     try:
+        createdAt = arrow.now().datetime
         result = col.update_one(
             { database_key: obj[database_key], 'datetime': obj['datetime'] },
             { '$set': obj },
@@ -189,6 +192,11 @@ def db_upsert(col, obj, database_key):
             logger.info('Inserted %s @ %s' % (obj[database_key], obj['datetime']))
         else:
             raise Exception('Unknown database command result.')
+        # Only update createdAt time if upsert happened
+        if result.modified_count or result.upserted_id:
+            col.update_one(
+                { database_key: obj[database_key], 'datetime': obj['datetime'] },
+                { '$set': { 'createdAt': createdAt } })
         return result
     except pymongo.errors.DuplicateKeyError:
         # (datetime, countryCode) does already exist. Don't raise.
