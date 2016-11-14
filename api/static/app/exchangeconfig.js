@@ -1,4 +1,9 @@
 function addExchangesConfiguration(exchanges) {
+    // AL
+    exchanges['AL->GR'] = {
+        lonlat: [20.689872, 40.198219],
+        rotation: 135
+    }
     // AT
     exchanges['AT->CH'] = {
         lonlat: [9.597882, 47.079455],
