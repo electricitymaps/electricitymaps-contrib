@@ -99,6 +99,7 @@ ExchangeLayer.prototype.render = function() {
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')'; })
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
+            .attr('transform-origin', '0 0')
             .on('click', function (d) { console.log(d); })
             .each(function (d, i) {
                 // Warning: with this technique, we can add arrows dynamically,

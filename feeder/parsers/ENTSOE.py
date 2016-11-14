@@ -28,6 +28,7 @@ ENTSOE_PARAMETER_DESC = {
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
 # Define all ENTSOE country_code <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
+    'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
