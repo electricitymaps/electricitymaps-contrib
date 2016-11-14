@@ -36,6 +36,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
     'DK': '10Y1001A1001A65H',
+    'EE': '10Y1001A1001A39I',
     'ES': '10YES-REE------0',
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
