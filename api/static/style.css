@@ -167,3 +167,7 @@ a:hover {
     top: -40px;
   }
 }
+
+div.fb-share-button, iframe.twitter-share-button {
+    vertical-align: middle
+}
