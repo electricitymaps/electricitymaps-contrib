@@ -82,7 +82,11 @@ CountryTable.prototype.render = function() {
         .style('fill', 'darkgray')
         .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
-    this.resize();
+
+    // TODO: Quick hack to force re-draw
+    this
+        .data(this.data());
+    // this.resize(); // Will be called by this.data()
 }
 
 CountryTable.prototype.displayByEmissions = function(arg) {
