@@ -97,11 +97,15 @@ html, body {
     display: table-footer-group;
     pointer-events: all;
 }
+.panel {
+    font-size: 0.7em;
+    background-color: rgba(70, 70, 70, 0.95);
+    border: 1px solid grey;
+    color: lightgray;
+}
 .panel-container {
     margin: 10px;
     padding: 10px;
-    background-color: rgba(70, 70, 70, 0.95);
-    border: 1px solid grey;
     line-height: 1.7em;
     pointer-events: all;
 }
@@ -109,7 +113,6 @@ html, body {
     display: block;
 }
 .panel-container, panel-container.text {
-    font-size: 0.7em;
     color: lightgray;
     fill: lightgray;
 }
@@ -120,7 +123,7 @@ html, body {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity {
+.country-emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
 .country-emission-rect {
@@ -135,7 +138,7 @@ html, body {
     overflow: auto;
     display: inline-block;
     height: 100%;
-    width: 70px;
+    width: 80px;
     text-align: right;
     font-size: 1.3em;
 }
@@ -183,4 +186,16 @@ a:hover {
 
 div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
     vertical-align: middle
+}
+
+.tooltip {
+    color: darkgrey;
+    display: none;
+    padding: 5px;
+    position: absolute;
+}
+
+.country-flag {
+    width: 12px;
+    height: 9px;
 }

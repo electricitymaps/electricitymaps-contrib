@@ -60,6 +60,9 @@ CountryMap.prototype.render = function() {
                 .on('mouseout', function (d, i) {
                     return that.countryMouseOutHandler.call(this, d, i);
                 })
+                .on('mousemove', function (d, i) {
+                    return that.countryMouseMoveHandler.call(this, d, i);
+                })
                 .on('click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
                     if (that.selectedCountry !== undefined) {
@@ -102,6 +105,12 @@ CountryMap.prototype.onCountryClick = function(arg) {
 CountryMap.prototype.onCountryMouseOver = function(arg) {
     if (!arg) return this.countryMouseOverHandler;
     else this.countryMouseOverHandler = arg;
+    return this;
+};
+
+CountryMap.prototype.onCountryMouseMove = function(arg) {
+    if (!arg) return this.countryMouseMoveHandler;
+    else this.countryMouseMoveHandler = arg;
     return this;
 };
 

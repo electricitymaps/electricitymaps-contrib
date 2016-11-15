@@ -137,7 +137,7 @@ if (isMobile()) {
     }
 } else {
     d3.select('.panel-container')
-        .style('width', 360);
+        .style('width', 330);
     d3.select('.country-picker')
         .style('display', 'none');
 
@@ -321,6 +321,22 @@ function dataLoaded(err, state, solar, wind) {
                 .style('cursor', 'hand')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(d.co2intensity);
+            d3.select('#country-tooltip')
+                .style('display', 'inline');
+        })
+        .onCountryMouseMove(function (d) {
+            var tooltip = d3.select('#country-tooltip');
+            var w = tooltip.node().getBoundingClientRect().width;
+            var h = tooltip.node().getBoundingClientRect().height;
+            tooltip
+                .style('left', (d3.event.pageX - w - 5) + 'px')
+                .style('top', (d3.event.pageY - h - 5) + 'px');
+            tooltip.select('img.country-flag')
+                .attr('src', 'libs/flag-icon-css/flags/4x3/' + d.countryCode.toLowerCase() + '.svg');
+            tooltip.select('.country-emission-rect')
+                .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
+            tooltip.select('.country-emission-intensity')
+                .text(Math.round(d.co2intensity) || '?');
         })
         .onCountryMouseOut(function (d) { 
             d3.select(this)
@@ -328,6 +344,8 @@ function dataLoaded(err, state, solar, wind) {
                 .style('cursor', 'normal')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(undefined);
+            d3.select('#country-tooltip')
+                .style('display', 'none');
         })
         .render();
 
@@ -339,6 +357,45 @@ function dataLoaded(err, state, solar, wind) {
         exchangeLayer
             .data(d3.values(exchanges))
             .projection(countryMap.projection())
+            .onExchangeMouseOver(function (d) { 
+                d3.select(this)
+                    .style('opacity', 0.8)
+                    .style('cursor', 'hand')
+                if (d.co2intensity)
+                    co2Colorbar.currentMarker(d.co2intensity);
+                d3.select('#exchange-tooltip')
+                    .style('display', 'inline');
+            })
+            .onExchangeMouseMove(function (d) {
+                var tooltip = d3.select('#exchange-tooltip');
+                var w = tooltip.node().getBoundingClientRect().width;
+                var h = tooltip.node().getBoundingClientRect().height;
+                tooltip
+                    .style('left', (d3.event.pageX - w - 5) + 'px')
+                    .style('top', (d3.event.pageY - h - 5) + 'px');
+                tooltip.select('.country-emission-rect')
+                    .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
+                var i = d.netFlow > 0 ? 0 : 1;
+                tooltip.select('span.from')
+                    .text(d.countryCodes[i]);
+                tooltip.select('span.to')
+                    .text(d.countryCodes[(i + 1) % 2]);
+                tooltip.select('span.flow')
+                    .text(Math.abs(Math.round(d.netFlow)));
+                tooltip.select('img.from')
+                    .attr('src', 'libs/flag-icon-css/flags/4x3/' + d.countryCodes[i].toLowerCase() + '.svg');
+                tooltip.select('img.to')
+                    .attr('src', 'libs/flag-icon-css/flags/4x3/' + d.countryCodes[(i + 1) % 2].toLowerCase() + '.svg')
+            })
+            .onExchangeMouseOut(function (d) {
+                d3.select(this)
+                    .style('opacity', 1)
+                    .style('cursor', 'normal')
+                if (d.co2intensity)
+                    co2Colorbar.currentMarker(undefined);
+                d3.select('#exchange-tooltip')
+                    .style('display', 'none');
+            })
             .render();
 
     d3.select('.loading')
