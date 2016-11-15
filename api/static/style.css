@@ -181,6 +181,6 @@ a:hover {
   }
 }
 
-div.fb-share-button, iframe.twitter-share-button {
+div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
     vertical-align: middle
 }
