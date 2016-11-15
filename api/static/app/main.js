@@ -22,6 +22,15 @@ function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }
 
+function trackAnalyticsEvent(eventName, paramObj) {
+    if (window.location.href.indexOf("electricitymap") !== -1) {
+        FB.AppEvents.logEvent(eventName, undefined, paramObj);
+        if (mixpanel.track)
+            mixpanel.track(eventName, paramObj);
+        ga('send', eventName);
+    }
+}
+
 // Start chrome (or forced) version
 var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
 var ENDPOINT = (document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
@@ -66,6 +75,9 @@ var tableDisplayEmissions = countryTable.displayByEmissions();
 
 function toogleSource() {
     tableDisplayEmissions = !tableDisplayEmissions;
+    trackAnalyticsEvent(
+        tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
+        {countryCode: countryTable.data().countryCode});
     countryTable
         .displayByEmissions(tableDisplayEmissions);
     d3.select('.country-show-emissions')
@@ -295,6 +307,7 @@ function dataLoaded(err, state, solar, wind) {
         })
         .onCountryClick(function (d, i) {
             console.log(d);
+            trackAnalyticsEvent('countryClick', {countryCode: d.countryCode});
             d3.select('.country-table-initial-text')
                 .style('display', 'none');
             countryTable
