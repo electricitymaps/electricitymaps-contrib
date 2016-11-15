@@ -100,6 +100,15 @@ ExchangeLayer.prototype.render = function() {
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
             .attr('transform-origin', '0 0')
+            .on('mouseover', function (d, i) {
+                return that.exchangeMouseOverHandler.call(this, d, i);
+            })
+            .on('mouseout', function (d, i) {
+                return that.exchangeMouseOutHandler.call(this, d, i);
+            })
+            .on('mousemove', function (d, i) {
+                return that.exchangeMouseMoveHandler.call(this, d, i);
+            })
             .on('click', function (d) { console.log(d); })
             .each(function (d, i) {
                 // Warning: with this technique, we can add arrows dynamically,
@@ -138,6 +147,25 @@ ExchangeLayer.prototype.render = function() {
 
     return this;
 }
+
+
+ExchangeLayer.prototype.onExchangeMouseOver = function(arg) {
+    if (!arg) return this.exchangeMouseOverHandler;
+    else this.exchangeMouseOverHandler = arg;
+    return this;
+};
+
+ExchangeLayer.prototype.onExchangeMouseMove = function(arg) {
+    if (!arg) return this.exchangeMouseMoveHandler;
+    else this.exchangeMouseMoveHandler = arg;
+    return this;
+};
+
+ExchangeLayer.prototype.onExchangeMouseOut = function(arg) {
+    if (!arg) return this.exchangeMouseOutHandler;
+    else this.exchangeMouseOutHandler = arg;
+    return this;
+};
 
 ExchangeLayer.prototype.data = function(arg) {
     if (!arg) return this._data;
