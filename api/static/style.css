@@ -109,6 +109,12 @@ html, body {
     line-height: 1.7em;
     pointer-events: all;
 }
+.panel-container h1 {
+    line-height: 1.3;
+    color: white;
+    font-size: 1.6em;
+    margin: 0px;
+}
 .panel-container > svg {
     display: block;
 }
@@ -195,7 +201,28 @@ div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
     position: absolute;
 }
 
-.country-flag {
-    width: 12px;
-    height: 9px;
+@media screen and (min-width: 600px) {
+    .small-screen-visible {
+        display: none;
+    }
+}
+@media screen and (max-width: 600px) {
+    .large-screen-visible {
+        display: none;
+    }
+}
+
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
+.country-picker-container p {
+    column-count: 2;
+    line-height: 2em;
+}
+.country-picker-container a {
+    display: block;
 }

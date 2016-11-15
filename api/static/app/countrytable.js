@@ -233,10 +233,8 @@ CountryTable.prototype.data = function(arg) {
 
         // Set header
         var header = d3.select('.country-table-header');
-        header.select('img.country-flag')
-            .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
-            .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
-            .attr('src', 'libs/flag-icon-css/flags/4x3/' + this._data.countryCode.toLowerCase() + '.svg')
+        header.select('i#country-flag')
+            .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
         header.select('span.country-name')
             .text(this._data.countryCode);
         header.select('span.country-last-update')

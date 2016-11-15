@@ -1,4 +1,45 @@
 function addCountriesConfiguration(countries) {
+    // Names
+    countries['AT'].fullname = 'Austria';
+    countries['BE'].fullname = 'Belgium';
+    countries['BG'].fullname = 'Bulgaria';
+    countries['BA'].fullname = 'Bosnia and Herzegovina';
+    countries['BY'].fullname = 'Belarus';
+    countries['CH'].fullname = 'Switzerland';
+    countries['CZ'].fullname = 'Czech Republic';
+    countries['DE'].fullname = 'Germany';
+    countries['DK'].fullname = 'Denmark';
+    countries['ES'].fullname = 'Spain';
+    countries['EE'].fullname = 'Estonia';
+    countries['FI'].fullname = 'Finland';
+    countries['FR'].fullname = 'France';
+    countries['GB'].fullname = 'United Kingdom';
+    countries['GR'].fullname = 'Greece';
+    countries['HR'].fullname = 'Croatia';
+    countries['HU'].fullname = 'Hungary';
+    countries['IE'].fullname = 'Ireland';
+    countries['IS'].fullname = 'Iceland';
+    countries['IT'].fullname = 'Italy';
+    countries['XK'].fullname = 'Kosovo';
+    countries['LT'].fullname = 'Lithuania';
+    countries['LU'].fullname = 'Luxembourg';
+    countries['LV'].fullname = 'Latvia';
+    countries['MD'].fullname = 'Moldova';
+    countries['MK'].fullname = 'Macedonia (FYROM)';
+    countries['ME'].fullname = 'Montenegro';
+    countries['NL'].fullname = 'Netherlands';
+    countries['NO'].fullname = 'Norway';
+    countries['PL'].fullname = 'Poland';
+    countries['PT'].fullname = 'Portugal';
+    countries['RO'].fullname = 'Romania';
+    countries['RU'].fullname = 'Russia';
+    countries['RS'].fullname = 'Serbia';
+    countries['SK'].fullname = 'Slovakia';
+    countries['SI'].fullname = 'Slovenia';
+    countries['SE'].fullname = 'Sweden';
+    countries['UA'].fullname = 'Ukraine';
+
+    // Capacities
     countries['AT'].capacity = {
         biomass: 393,
         coal: 819,
