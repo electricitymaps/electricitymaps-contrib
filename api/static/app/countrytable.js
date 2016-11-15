@@ -381,7 +381,9 @@ CountryTable.prototype.data = function(arg) {
             .text(Math.round(this._data.co2intensity) || '?');
         d3.select('.country-emission-rect')
             .transition()
-            .style('background-color', that.co2Color(this._data.co2intensity));
+            .style('background-color',
+                this._data.co2intensity ?
+                    that.co2Color(this._data.co2intensity) : 'gray');
 
         this.resize();
     }
