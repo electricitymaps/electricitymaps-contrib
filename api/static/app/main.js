@@ -137,7 +137,7 @@ if (isMobile()) {
     }
 } else {
     d3.select('.panel-container')
-        .style('width', 360);
+        .style('width', 330);
     d3.select('.country-picker')
         .style('display', 'none');
 
