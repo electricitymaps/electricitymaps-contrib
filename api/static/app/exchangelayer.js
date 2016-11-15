@@ -39,27 +39,30 @@ function ExchangeLayer(selector) {
         arrow.enter()
             .append('stop')
             .attr('stop-color', function(d) { return d.color; })
-        arrow
-            .transition()
-            .attr('stop-color', function(d) { return d.color; })
-            .duration(durationAccessor())
-            .ease('linear')
-            .attrTween('offset', function(d, i, a) {
-                // Only animate the middle color
-                if (i == 0 || i == 4)
-                    return function (t) { return d.offset };
-                else {
-                    return function (t) {
-                        return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
-                    };
-                }
-            })
-            .each('end', function (d, i) {
-                // We should only start one animation, so just wait for the
-                // first transition to finish
-                if (i == 0)
-                    return that.animateGradient(selector, colorAccessor, durationAccessor);
-            });
+
+        if (!isMobile()) {
+            arrow
+                .transition()
+                .attr('stop-color', function(d) { return d.color; })
+                .duration(durationAccessor())
+                .ease('linear')
+                .attrTween('offset', function(d, i, a) {
+                    // Only animate the middle color
+                    if (i == 0 || i == 4)
+                        return function (t) { return d.offset };
+                    else {
+                        return function (t) {
+                            return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
+                        };
+                    }
+                })
+                .each('end', function (d, i) {
+                    // We should only start one animation, so just wait for the
+                    // first transition to finish
+                    if (i == 0)
+                        return that.animateGradient(selector, colorAccessor, durationAccessor);
+                });
+        }
     };
 }
 
