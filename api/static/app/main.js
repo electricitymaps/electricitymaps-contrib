@@ -21,6 +21,10 @@ var customDate;
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }
+function isSmallScreen() {
+    // Should be in sync with media queries in CSS
+    return screen.width < 600;
+}
 
 function trackAnalyticsEvent(eventName, paramObj) {
     if (window.location.href.indexOf("electricitymap") !== -1) {
@@ -118,28 +122,37 @@ d3.entries(exchanges).forEach(function(entry) {
         console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
 
-// Mobile
-if (isMobile()) {
-    d3.select('.map').selectAll('*').remove();
-    d3.select('.legend').style('display', 'none');
-
-    function onSelectedCountryChange() {
-        var countryCode = d3.select('select.country-picker').node().value;
-        if (countries[countryCode]) {
-            d3.select('.country-table-initial-text')
-                .style('display', 'none');
-            countryTable
-                .show()
-                .data(countries[countryCode]);
-            selectedCountryCode = countryCode;
-            d3.select('select.country-picker').node().selectedIndex = 0;
-        }
+function selectCountry(countryCode) {
+    if (!countryCode || !countries[countryCode]) {
+        // Unselected
+        d3.select('.country-table-initial-text')
+            .style('display', 'block');
+        countryTable.hide();
+        selectedCountryCode = undefined;
+    } else {
+        // Selected
+        console.log(countries[countryCode]);
+        trackAnalyticsEvent('countryClick', {countryCode: countryCode});
+        d3.select('.country-table-initial-text')
+            .style('display', 'none');
+        countryTable
+            .show()
+            .data(countries[countryCode]);
+        selectedCountryCode = countryCode;
     }
+    if (isSmallScreen())
+        d3.select('#country-table-back-button').style('display',
+                selectedCountryCode ? 'block' : 'none');
+}
+
+// Mobile
+if (isSmallScreen()) {
+    d3.select('.map').selectAll('*').remove();
+    d3.select('#country-table-back-button')
+        .on('click', function() { selectCountry(undefined); });
 } else {
     d3.select('.panel-container')
         .style('width', 330);
-    d3.select('.country-picker')
-        .style('display', 'none');
 
     // Attach event handlers
     function windMouseOver(coordinates) {
@@ -181,7 +194,7 @@ function dataLoaded(err, state, solar, wind) {
         return;
     }
 
-    if (!isMobile()) {
+    if (!isSmallScreen()) {
         if (wind) {
             console.log('wind', wind);
             var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
@@ -283,38 +296,34 @@ function dataLoaded(err, state, solar, wind) {
     });
     console.log('countries', countries);
 
-    // Populate exchange pairs for arrows
-    d3.entries(state.exchanges).forEach(function(obj) {
-        var exchange = exchanges[obj.key];
-        if (!exchange) {
-            console.error('Missing exchange configuration for ' + obj.key);
-            return;
-        }
-        // Copy data
-        d3.keys(obj.value).forEach(function(k) {
-            exchange[k] = obj.value[k];
+    // Render country picker if we're on mobile
+    if (isSmallScreen()) {
+        var validCountries = d3.values(countries).filter(function(d) {
+            return d.production;
+        }).sort(function(x, y) {
+            return d3.ascending(x.fullname || x.countryCode, y.fullname || y.countryCode)
         });
-    });
-    console.log('exchanges', exchanges);
+        var selector = d3.select('.country-picker-container p')
+            .selectAll('a')
+            .data(validCountries);
+        var enterA = selector.enter().append('a');
+        enterA
+            .attr('href', '#')
+            .append('i')
+        enterA
+            .append('text')
+        selector.select('text')
+            .text(function(d) { return ' ' + (d.fullname || d.countryCode); })
+        selector.select('i')
+            .attr('class', function(d) { return 'flag-icon flag-icon-' + d.countryCode.toLowerCase(); })
+        selector.on('click', function(d) { return selectCountry(d.countryCode); });
+    }
 
+    // Render country map
     countryMap
         .data(d3.values(countries))
-        .onSeaClick(function () {
-            d3.select('.country-table-initial-text')
-                .style('display', 'block');
-            countryTable.hide();
-            selectedCountryCode = undefined;
-        })
-        .onCountryClick(function (d, i) {
-            console.log(d);
-            trackAnalyticsEvent('countryClick', {countryCode: d.countryCode});
-            d3.select('.country-table-initial-text')
-                .style('display', 'none');
-            countryTable
-                .show()
-                .data(d);
-            selectedCountryCode = d.countryCode;
-        })
+        .onSeaClick(function () { selectCountry(undefined); })
+        .onCountryClick(function (d) { selectCountry(d.countryCode); })
         .onCountryMouseOver(function (d) { 
             d3.select(this)
                 .style('opacity', 0.8)
@@ -331,8 +340,8 @@ function dataLoaded(err, state, solar, wind) {
             tooltip
                 .style('left', (d3.event.pageX - w - 5) + 'px')
                 .style('top', (d3.event.pageY - h - 5) + 'px');
-            tooltip.select('img.country-flag')
-                .attr('src', 'libs/flag-icon-css/flags/4x3/' + d.countryCode.toLowerCase() + '.svg');
+            tooltip.select('i.country-flag')
+                .attr('class', function(d) { return 'flag-icon flag-icon-' + d.countryCode.toLowerCase(); })
             tooltip.select('.country-emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
@@ -349,11 +358,26 @@ function dataLoaded(err, state, solar, wind) {
         })
         .render();
 
-    // Update country table if it is visible
-    if (selectedCountryCode)
-        countryTable.data(countries[selectedCountryCode]).render()
+        // Render country table if it already was visible
+        if (selectedCountryCode)
+            countryTable.data(countries[selectedCountryCode]).render()
 
-    if (!isMobile())
+    if (!isSmallScreen()) {
+        // Populate exchange pairs for arrows
+        d3.entries(state.exchanges).forEach(function(obj) {
+            var exchange = exchanges[obj.key];
+            if (!exchange) {
+                console.error('Missing exchange configuration for ' + obj.key);
+                return;
+            }
+            // Copy data
+            d3.keys(obj.value).forEach(function(k) {
+                exchange[k] = obj.value[k];
+            });
+        });
+        console.log('exchanges', exchanges);
+
+        // Render exchanges
         exchangeLayer
             .data(d3.values(exchanges))
             .projection(countryMap.projection())
@@ -376,16 +400,16 @@ function dataLoaded(err, state, solar, wind) {
                 tooltip.select('.country-emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
-                tooltip.select('span.from')
+                tooltip.select('span#from')
                     .text(d.countryCodes[i]);
-                tooltip.select('span.to')
+                tooltip.select('span#to')
                     .text(d.countryCodes[(i + 1) % 2]);
-                tooltip.select('span.flow')
+                tooltip.select('span#flow')
                     .text(Math.abs(Math.round(d.netFlow)));
-                tooltip.select('img.from')
-                    .attr('src', 'libs/flag-icon-css/flags/4x3/' + d.countryCodes[i].toLowerCase() + '.svg');
-                tooltip.select('img.to')
-                    .attr('src', 'libs/flag-icon-css/flags/4x3/' + d.countryCodes[(i + 1) % 2].toLowerCase() + '.svg')
+                tooltip.select('i#from')
+                    .attr('class', 'flag-icon flag-icon-' + d.countryCodes[i].toLowerCase());
+                tooltip.select('i#to')
+                    .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
             })
             .onExchangeMouseOut(function (d) {
                 d3.select(this)
@@ -397,6 +421,7 @@ function dataLoaded(err, state, solar, wind) {
                     .style('display', 'none');
             })
             .render();
+    }
 
     d3.select('.loading')
         .transition()
@@ -457,40 +482,14 @@ function fetchAndReschedule() {
         document.getElementById('connection-warning').className = "show";
     }, 15 * 1000);
     var Q = queue()
-    if (isMobile()) {
+    if (isSmallScreen()) {
         Q
             .defer(d3.json, ENDPOINT + '/v1/state');
-        if (d3.select('.country-table-initial-text').style() != 'none') {
-            Q.defer(geolocaliseCountryCode);
-        }
-        Q.await(function(err, state, countryCode) {
+        Q.defer(geolocaliseCountryCode);
+        Q.await(function(err, state, geolocalisedCountryCode) {
             handleConnectionError(err);
             if (!err) {
                 dataLoaded(err, state.data);
-                if (d3.select('.country-table-initial-text').style() != 'none') {
-                    if (countryCode && countries[countryCode] ) {
-                        // Select one country
-                        d3.select('.country-table-initial-text')
-                            .style('display', 'none');
-                        countryTable
-                            .show()
-                            .data(countries[countryCode]);
-                    } else {
-                        // Show picker
-                        var countryCodes = d3.entries(countries)
-                            .filter(function (d) { return d.value.production; })
-                            .map(function (d) { return d.key; });
-                        countryCodes.unshift('< press to select >');
-                        var countryOptions = d3.select('select.country-picker')
-                            .selectAll('option')
-                            .data(countryCodes);
-                        countryOptions.enter()
-                            .append('option');
-                        countryOptions
-                            .text(function(d) { return d });
-                        countryOptions.exit().remove();
-                    }
-                }
             }
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
         });
@@ -510,7 +509,7 @@ function fetchAndReschedule() {
 
 function redraw() {
     countryTable.render();
-    if (!isMobile()) {
+    if (!isSmallScreen()) {
         countryMap.render();
         co2Colorbar.render();
         windColorbar.render();
