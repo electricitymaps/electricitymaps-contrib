@@ -152,7 +152,7 @@ if (isSmallScreen()) {
         .on('click', function() { selectCountry(undefined); });
 } else {
     d3.select('.panel-container')
-        .style('width', 330);
+        .style('width', '330px');
 
     // Attach event handlers
     function windMouseOver(coordinates) {
