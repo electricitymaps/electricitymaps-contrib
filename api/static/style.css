@@ -85,7 +85,7 @@ html, body {
 
 .panel-container {
     position: absolute;
-    top: 0px;
+    top: 100px;
     margin: 10px;
     padding: 10px;
     background-color: rgba(70, 70, 70, 0.95);
