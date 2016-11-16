@@ -46,9 +46,8 @@ function Co2eqCalculator() {
 
     this.compute = function(countries) {
         var validCountries = d3.values(countries)
-            .filter(function (d) { return d.countryCode !== undefined; });
+            .filter(function (d) { return d.countryCode && d.production; });
         var validCountryKeys = validCountries.map(function (d) { return d.countryCode });
-
         // x_i: unknown co2 (consumption) footprint of i-th country
         // f_ij: known co2 footprint of j-th system of i-th country
         // v_ij: power volume of j-th system of i-th country
@@ -78,20 +77,22 @@ function Co2eqCalculator() {
                 b.set([i], b.get([i]) - footprint * production.value);
             });
             // Exchanges
-            d3.entries(country.exchange).forEach(function (exchange) {
-                var j = validCountryKeys.indexOf(exchange.key);
-                if (j < 0) {
-                    console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
-                    return;
-                }
-                if (exchange.value > 0) {
-                    // Import
-                    A.set([i, j], exchange.value);
-                } else {
-                    // Accumulate export
-                    A.set([i, i], A.get([i, i]) - Math.abs(exchange.value));
-                }
-            });
+            if (country.exchange)
+                d3.entries(country.exchange).forEach(function (exchange) {
+                    var j = validCountryKeys.indexOf(exchange.key);
+                    if (j < 0) {
+                        if (typeof require == 'undefined')
+                            console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
+                        return;
+                    }
+                    if (exchange.value > 0) {
+                        // Import
+                        A.set([i, j], exchange.value);
+                    } else {
+                        // Accumulate export
+                        A.set([i, i], A.get([i, i]) - Math.abs(exchange.value));
+                    }
+                });
         });
 
         // Solve

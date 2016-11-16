@@ -3,6 +3,7 @@ html, body {
     padding: 0 !important;
     height: 100%;
     font-family: sans-serif;
+    background-color: #283640;
 }
 
 #connection-warning {
@@ -38,8 +39,9 @@ html, body {
 
 .contribute-text {
     background-color: rgba(70, 70, 70, 0.95);
-    font-size: 0.6em;
     color: lightgray;
+    display: inline-block;
+    font-size: 0.6em;
     padding: 3px 5px;
 }
 .watermark {
@@ -83,20 +85,40 @@ html, body {
     stroke-width: 0.3px;
 }
 
-.panel-container {
+.content {
+    display: table;
     position: absolute;
-    top: 100px;
-    margin: 10px;
-    padding: 10px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+.footer {
+    display: table-footer-group;
+    pointer-events: all;
+}
+.panel {
+    font-size: 0.7em;
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
+    color: lightgray;
+}
+.panel-container {
+    margin: 10px;
+    padding: 10px;
     line-height: 1.7em;
+    pointer-events: all;
+}
+.panel-container h1 {
+    line-height: 1.3;
+    color: white;
+    font-size: 1.6em;
+    margin: 0px;
 }
 .panel-container > svg {
     display: block;
 }
 .panel-container, panel-container.text {
-    font-size: 0.7em;
     color: lightgray;
     fill: lightgray;
 }
@@ -107,7 +129,7 @@ html, body {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity {
+.country-emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
 .country-emission-rect {
@@ -122,7 +144,7 @@ html, body {
     overflow: auto;
     display: inline-block;
     height: 100%;
-    width: 70px;
+    width: 80px;
     text-align: right;
     font-size: 1.3em;
 }
@@ -166,4 +188,41 @@ a:hover {
   100% {
     top: -40px;
   }
+}
+
+div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
+    vertical-align: middle
+}
+
+.tooltip {
+    color: darkgrey;
+    display: none;
+    padding: 5px;
+    position: absolute;
+}
+
+@media screen and (min-width: 600px) {
+    .small-screen-visible {
+        display: none;
+    }
+}
+@media screen and (max-width: 600px) {
+    .large-screen-visible {
+        display: none;
+    }
+}
+
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
+.country-picker-container p {
+    column-count: 2;
+    line-height: 2em;
+}
+.country-picker-container a {
+    display: block;
 }

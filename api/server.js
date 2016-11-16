@@ -22,31 +22,13 @@ app.use(function(req, res, next) {
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 
 // * Database
-var mongoCollection;
+var mongoProductionCollection;
+var mongoExchangeCollection;
 MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
     if (err) throw (err);
     console.log('Connected to database');
-    mongoCollection = db.collection('realtime');
-    // Create indexes
-    mongoCollection.createIndex(
-        {datetime: -1, countryCode: 1},
-        {unique: true},
-        function(err, indexName) {
-            if (err) console.error(err);
-            else console.log('Database compound indexes created');
-        }
-    );
-    mongoCollection.createIndexes(
-        [
-            { datetime: -1 },
-            { countryCode: 1 },
-        ],
-        null,
-        function (err, indexName) {
-            if (err) console.error(err);
-            else console.log('Database indexes created');
-        }
-    );
+    mongoProductionCollection = db.collection('production');
+    mongoExchangeCollection = db.collection('exchange');
     server.listen(8000, function() {
         console.log('Listening on *:8000');
     });
@@ -62,72 +44,33 @@ statsdClient.socket.on('error', function(error) {
 });
 
 // * Database methods
-var countryCodes = [
-    'AT',
-    'BE',
-    'BG',
-    'BA',
-    'BY',
-    'CH',
-    'CZ',
-    'DE',
-    'DK',
-    'ES',
-    'EE',
-    'FI',
-    'FR',
-    'GB',
-    'GR',
-    'HR',
-    'HU',
-    'IE',
-    'IS',
-    'IT',
-    'LT',
-    'LU',
-    'LV',
-    'MD',
-    'NL',
-    'NO',
-    'PL',
-    'PT',
-    'RO',
-    'RU',
-    'RS',
-    'SK',
-    'SI',
-    'SE',
-    'UA'
-];
-function parseDatabaseResults(result) {
-    // Construct dict
-    countries = {};
-    result.forEach(function(d) {
-        // Ignore errors: just filter
-        if (!d) return;
-        // Assign
-        countries[d.countryCode] = d;
-        // Default values
-        if (!d.exchange) d.exchange = {};
-        // Truncate negative production values
-        d3.keys(d.production).forEach(function(k) {
-            if (d.production[k] !== null)
-                d.production[k] = Math.max(0, d.production[k]);
-        });
+function processDatabaseResults(countries, exchanges) {
+    // Assign exchanges to countries
+    d3.entries(exchanges).forEach(function(entry) {
+        sortedCountryCodes = entry.key.split('->');
+        entry.value.countryCodes = sortedCountryCodes;
+        if (!countries[sortedCountryCodes[0]]) countries[sortedCountryCodes[0]] = {
+            countryCode: sortedCountryCodes[0]
+        };
+        if (!countries[sortedCountryCodes[1]]) countries[sortedCountryCodes[1]] = {
+            countryCode: sortedCountryCodes[1]
+        };
+        var country1 = countries[sortedCountryCodes[0]];
+        var country2 = countries[sortedCountryCodes[1]];
+        if (!country1.exchange) country1.exchange = {};
+        if (!country2.exchange) country2.exchange = {};
+        country1.exchange[sortedCountryCodes[1]] = entry.value.netFlow * -1.0;
+        country2.exchange[sortedCountryCodes[0]] = entry.value.netFlow;
     });
-    // Average out import-exports between commuting pairs
-    d3.keys(countries).forEach(function(o, i) {
-        d3.keys(countries).forEach(function(d, j) {
-            if (i < j) return;
-            var netFlows = [
-                countries[d].exchange[o] ? countries[d].exchange[o] : undefined,
-                countries[o].exchange[d] ? -countries[o].exchange[d] : undefined
-            ];
-            var netFlow = d3.mean(netFlows);
-            if (netFlow == undefined)
-                return;
-            countries[o].exchange[d] = -netFlow;
-            countries[d].exchange[o] = netFlow;
+
+    d3.keys(countries).forEach(function(k) {
+        if (!countries[k])
+            countries[k] = {countryCode: k};
+        country = countries[k];
+        // Truncate negative production values
+        d3.keys(country.production).forEach(function(k) {
+            if (country.production[k] !== null)
+                country.production[k] = Math.max(0, country.production[k]);
         });
     });
     // Compute aggregates
@@ -142,9 +85,11 @@ function parseDatabaseResults(result) {
             -Math.min(d3.min(d3.values(country.exchange)), 0) || 0;
     });
 
-    return countries;
+    computeCo2(countries, exchanges);
+
+    return {countries: countries, exchanges: exchanges};
 }
-function computeCo2(countries) {
+function computeCo2(countries, exchanges) {
     var co2calc = co2lib.Co2eqCalculator();
     co2calc.compute(countries);
     d3.entries(countries).forEach(function(o) {
@@ -157,39 +102,69 @@ function computeCo2(countries) {
                 country.exchange[k] > 0 ? co2calc.assignments[k] : country.co2intensity;
         });
     });
-    return countries;
+    d3.values(exchanges).forEach(function(exchange) {
+        exchange.co2intensity = countries[exchange.countryCodes[exchange.netFlow > 0 ? 0 : 1]].co2intensity;
+    })
 }
-function queryLastCountry(countryCode, callback) {
-    var minDate = moment.utc().subtract(24, 'hours').toDate();
-    return mongoCollection.findOne(
-        { countryCode: countryCode, datetime: { $gte : minDate } },
-        { sort: [['datetime', -1]] },
-        callback);
+function elementQuery(keyName, keyValue, minDate, maxDate) {
+    var query = { datetime: rangeQuery(minDate, maxDate) };
+    query[keyName] = keyValue
+    return query;
 }
-function queryLastCountryBeforeDatetime(datetime, countryCode, callback) {
-    var minDate = moment(datetime).subtract(24, 'hours').toDate();
-    return mongoCollection.findOne(
-        {
-            countryCode: countryCode,
-            datetime: { $lte: new Date(datetime) },
-            datetime: { $gte: minDate }
-        },
-        { sort: [['datetime', -1]] },
-        callback);
+function rangeQuery(minDate, maxDate) {
+    var query = { $gte : minDate };
+    if (maxDate) query['$lte'] = maxDate;
+    return query;
 }
-function queryLastValues(callback) {
-    return async.parallel(countryCodes.map(function(k) {
-        return function(callback) { return queryLastCountry(k, callback); };
-    }), function (err, result) {
-        return callback(err, computeCo2(parseDatabaseResults(result)));
+function queryElements(keyName, keyValues, collection, minDate, maxDate, callback) {
+    tasks = {};
+    keyValues.forEach(function(k) {
+        tasks[k] = function(callback) { 
+            return collection.findOne(
+                elementQuery(keyName, k, minDate, maxDate),
+                { sort: [['datetime', -1]] },
+                callback);
+        };
     });
+    return async.parallel(tasks, callback);
 }
 function queryLastValuesBeforeDatetime(datetime, callback) {
-    return async.parallel(countryCodes.map(function(k) {
-        return function(callback) { return queryLastCountryBeforeDatetime(datetime, k, callback); };
-    }), function (err, result) {
-        return callback(err, computeCo2(parseDatabaseResults(result)));
+    var minDate = moment.utc().subtract(24, 'hours').toDate();
+    var maxDate = datetime ? new Date(datetime) : undefined;
+    // Get list of countries & exchanges in db
+    return async.parallel([
+        function(callback) {
+            mongoProductionCollection.distinct('countryCode',
+                {datetime: rangeQuery(minDate, maxDate)}, callback);
+        },
+        function(callback) {
+            mongoExchangeCollection.distinct('sortedCountryCodes',
+                {datetime: rangeQuery(minDate, maxDate)}, callback);
+        },
+    ], function(err, results) {
+        if (err) return callback(err);
+        countryCodes = results[0]; // production keys
+        sortedCountryCodes = results[1]; // exchange keys
+        // Query productions + exchanges
+        async.parallel([
+            function(callback) {
+                return queryElements('countryCode', countryCodes,
+                    mongoProductionCollection, minDate, maxDate, callback);
+            },
+            function(callback) {
+                return queryElements('sortedCountryCodes', sortedCountryCodes,
+                    mongoExchangeCollection, minDate, maxDate, callback);
+            }
+        ], function(err, results) {
+            if (err) return callback(err);
+            countries = results[0];
+            exchanges = results[1];
+            callback(err, processDatabaseResults(countries, exchanges));
+        });
     });
+}
+function queryLastValues(callback) {
+    return queryLastValuesBeforeDatetime(undefined, callback);
 }
 
 // * Static
@@ -206,19 +181,19 @@ app.get('/v1/solar', function(req, res) {
     res.header('Content-Encoding', 'gzip');
     res.sendFile(__dirname + '/data/solar.json.gz');
 });
-app.get('/v1/production', function(req, res) {
-    statsdClient.increment('v1_production_GET');
+app.get('/v1/state', function(req, res) {
+    statsdClient.increment('v1_state_GET');
     var t0 = new Date().getTime();
     function returnObj(obj, cached) {
-        if (cached) statsdClient.increment('v1_production_GET_HIT_CACHE');
+        if (cached) statsdClient.increment('v1_state_GET_HIT_CACHE');
         var deltaMs = new Date().getTime() - t0;
         res.json({status: 'ok', data: obj, took: deltaMs + 'ms', cached: cached});
-        statsdClient.timing('production_GET', deltaMs);
+        statsdClient.timing('state_GET', deltaMs);
     }
     if (req.query.datetime) {
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
-                statsdClient.increment('production_GET_ERROR');
+                statsdClient.increment('state_GET_ERROR');
                 console.error(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
@@ -226,17 +201,17 @@ app.get('/v1/production', function(req, res) {
             }
         });
     } else {
-        memcachedClient.get('production', function (err, data) {
+        memcachedClient.get('state', function (err, data) {
             if (err) { console.error(err); }
             if (data) returnObj(data, true);
             else {
                 queryLastValues(function (err, result) {
                     if (err) {
-                        statsdClient.increment('production_GET_ERROR');
+                        statsdClient.increment('state_GET_ERROR');
                         console.error(err);
                         res.status(500).json({error: 'Unknown database error'});
                     } else {
-                        memcachedClient.set('production', result, 5 * 60, function(err) {
+                        memcachedClient.set('state', result, 5 * 60, function(err) {
                             if (err) console.error(err);
                         });
                         returnObj(result, false);
@@ -306,7 +281,7 @@ app.get('/v1/co2', function(req, res) {
 app.get('/health', function(req, res) {
     statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
-    mongoCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
+    mongoProductionCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
         if (err) {
             console.error(err);
             res.status(500).json({error: 'Unknown database error'});

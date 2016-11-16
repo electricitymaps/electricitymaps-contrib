@@ -4,10 +4,9 @@ import arrow
 import dateutil
 import pandas as pd # In order to read excel
 
-COUNTRY_CODE = 'HU'
 TIME_ZONE = 'Europe/Budapest'
 
-def fetch_HU(session=None):
+def fetch_production(country_code='HU', session=None):
 
     now = arrow.now(TIME_ZONE)
 
@@ -21,7 +20,7 @@ def fetch_HU(session=None):
     ix = map(lambda x: arrow.get(x, "YYYY.MM.DD HH:mm:ss").replace(tzinfo=dateutil.tz.gettz(TIME_ZONE)) < now, df_prod.dropna()[u'Időpont'])
     df_prod = df_prod.iloc[ix].iloc[-1] # Get the last
 
-    # Fetch 
+    # Fetch
     url = ('http://rtdwweb.mavir.hu/webuser/ExportChartXlsIntervalServlet?' + 
         'fromDateXls=%s&fromTimeXls=T00%%3A00%%3A00&' % now.format('YYYY-MM-DD') + 
         'toDateXls=%s&toTimeXls=T00%%3A00%%3A00&' % now.replace(days=+1).format('YYYY-MM-DD') + 
@@ -32,20 +31,21 @@ def fetch_HU(session=None):
     df_exchange = df_exchange.iloc[ix].iloc[-1] # Get the last
     
     obj = {
-        'countryCode': COUNTRY_CODE,
+        'countryCode': country_code,
         'datetime': arrow.get(df_prod[u'Időpont'], "YYYY.MM.DD HH:mm:ss").replace(
-            tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime
+            tzinfo=dateutil.tz.gettz(TIME_ZONE)).datetime,
+        'source': 'mavir.hu'
     }
     obj['consumption'] = {
     }
-    obj['exchange'] = {
-        'SK': float(df_exchange[u'HU-SK mérés']),
-        'AT': float(df_exchange[u'HU-AT mérés']),
-        'HR': float(df_exchange[u'HU-HR mérés']),
-        'RO': float(df_exchange[u'HU-RO mérés']),
-        'RS': float(df_exchange[u'HU-RS mérés']),
-        'UA': float(df_exchange[u'HU-UK mérés'])
-    }
+    # obj['exchange'] = {
+    #     'SK': float(df_exchange[u'HU-SK mérés']),
+    #     'AT': float(df_exchange[u'HU-AT mérés']),
+    #     'HR': float(df_exchange[u'HU-HR mérés']),
+    #     'RO': float(df_exchange[u'HU-RO mérés']),
+    #     'RS': float(df_exchange[u'HU-RS mérés']),
+    #     'UA': float(df_exchange[u'HU-UK mérés'])
+    # }
     obj['production'] = {
         'biomass': float(df_prod[u'Biomassza erőművek net.mérés (15p)']) + float(df_prod[u'Szemétégető erőművek net.mérés (15p)']),
         'coal': float(df_prod[u'Barnakőszén-lignit erőművek net.mérés (15p)']) + float(df_prod[u'Feketekőszén erőművek net.mérés (15p)']),
@@ -60,4 +60,4 @@ def fetch_HU(session=None):
     return obj
 
 if __name__ == '__main__':
-    print fetch_HU()
+    print fetch_production()
