@@ -28,16 +28,19 @@ function isSmallScreen() {
 
 function trackAnalyticsEvent(eventName, paramObj) {
     if (window.location.href.indexOf("electricitymap") !== -1) {
-        FB.AppEvents.logEvent(eventName, undefined, paramObj);
-        if (mixpanel.track)
+        try {
+            FB.AppEvents.logEvent(eventName, undefined, paramObj);
             mixpanel.track(eventName, paramObj);
-        ga('send', eventName);
+            ga('send', eventName);
+        catch(err) {
+            console.error('Error in trackAnalyticsEvent' + err);
+        }
     }
 }
 
 // Start chrome (or forced) version
 var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
-var ENDPOINT = (document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
 var co2color = d3.scale.linear()
