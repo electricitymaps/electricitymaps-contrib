@@ -32,7 +32,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
             FB.AppEvents.logEvent(eventName, undefined, paramObj);
             mixpanel.track(eventName, paramObj);
             ga('send', eventName);
-        catch(err) {
+        } catch(err) {
             console.error('Error in trackAnalyticsEvent' + err);
         }
     }
