@@ -164,7 +164,6 @@ col_exchange = db['exchange']
 # Set up indices
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
-migrate(db)
 
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
@@ -268,6 +267,8 @@ def fetch_weather():
     except: 
         statsd.increment('fetch_solar_error')
         logger.exception('fetch_solar()')
+
+migrate(db, validate_production)
 
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
