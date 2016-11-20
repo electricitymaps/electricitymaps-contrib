@@ -46,7 +46,11 @@ function Co2eqCalculator() {
 
     this.compute = function(countries) {
         var validCountries = d3.values(countries)
-            .filter(function (d) { return d.countryCode && d.production; });
+            .filter(function (d) { return d.countryCode && d.production; })
+            .filter(function (d) {
+                // Double check that total production + import >= export
+                return (d.totalProduction + d.totalImport) >= d.totalExport;
+            });
         var validCountryKeys = validCountries.map(function (d) { return d.countryCode });
         // x_i: unknown co2 (consumption) footprint of i-th country
         // f_ij: known co2 footprint of j-th system of i-th country
