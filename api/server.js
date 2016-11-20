@@ -79,8 +79,15 @@ function processDatabaseResults(countries, exchanges) {
             d3.max(d3.values(country.production));
         country.totalProduction =
             d3.sum(d3.values(country.production));
-        country.totalNetExchange =
-            d3.sum(d3.values(country.exchange));
+        country.totalImport =
+            d3.sum(d3.values(country.exchange), function(d) {
+                return d >= 0 ? d : 0;
+            }) || 0;
+        country.totalExport =
+            d3.sum(d3.values(country.exchange), function(d) {
+                return d <= 0 ? -d : 0;
+            }) || 0;
+        country.totalNetExchange = country.totalImport - country.totalExport;
         country.maxExport =
             -Math.min(d3.min(d3.values(country.exchange)), 0) || 0;
     });
