@@ -1,4 +1,5 @@
 import pymongo
+from feeder import validate_production
 
 def migrate(db):
     print 'Starting data migration..'
@@ -28,4 +29,10 @@ def migrate(db):
         except pymongo.errors.DuplicateKeyError: pass
         # Delete in old collection
         col_old.remove({'_id': row['_id']})
+    # ** Validate production data
+    for row in col_production.find():
+        try: validate_production(row, row.get('countryCode', None))
+        except:
+            print 'Warning: row %s did not pass validation' % row['_id']
+            print row
     print 'Migration done.'

@@ -177,6 +177,20 @@ else: cache = Client((MEMCACHED_HOST, 11211))
 # Set up requests
 session = requests.session()
 
+REQUIRED_PRODUCTION_FIELDS = [
+    'coal'
+]
+def validate_production(obj, country_code):
+    if not 'datetime' in obj:
+        raise Exception('datetime was not returned for %s' % country_code)
+    if obj.get('countryCode', None) != country_code:
+        raise Exception("Country codes %s and %s don't match" % (obj.get('countryCode', None), country_code))
+    if arrow.get(obj['datetime']) > arrow.now():
+        raise Exception("Data from %s can't be in the future" % country_code)
+    for key in REQUIRED_PRODUCTION_FIELDS:
+        if not key in obj.get('production', {}):
+            raise Exception("Production key %s is required for %s" % (key, country_code))
+
 def db_upsert(col, obj, database_key):
     try:
         createdAt = arrow.now().datetime
@@ -209,12 +223,7 @@ def fetch_productions():
             with statsd.StatsdTimer('fetch_one_production'):
                 obj = parser(country_code, session)
                 if not obj: continue
-                if not 'datetime' in obj:
-                    raise Exception('datetime was not returned for %s' % country_code)
-                if obj.get('countryCode', None) != country_code:
-                    raise Exception("Country codes %s and %s don't match" % (obj.get('countryCode', None), country_code))
-                if arrow.get(obj['datetime']) > arrow.now():
-                    raise Exception("Data from %s can't be in the future" % country_code)
+                validate_production(obj, country_code)
                 # Data quality check
                 for k, v in obj['production'].iteritems():
                     if v is None: continue
