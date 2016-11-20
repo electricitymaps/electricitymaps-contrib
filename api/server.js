@@ -159,7 +159,12 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
             if (err) return callback(err);
             countries = results[0];
             exchanges = results[1];
-            callback(err, processDatabaseResults(countries, exchanges));
+            // This can crash, so we to try/catch
+            try {
+                callback(err, processDatabaseResults(countries, exchanges));
+            } catch(err) {
+                callback(err);
+            }
         });
     });
 }
