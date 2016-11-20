@@ -341,8 +341,10 @@ function dataLoaded(err, state, solar, wind) {
             tooltip
                 .style('left', (d3.event.pageX - w - 5) + 'px')
                 .style('top', (d3.event.pageY - h - 5) + 'px');
-            tooltip.select('i.country-flag')
-                .attr('class', function(d) { return 'flag-icon flag-icon-' + d.countryCode.toLowerCase(); })
+            tooltip.select('i#country-flag')
+                .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
+            tooltip.select('#country-code')
+                .text(d.countryCode);
             tooltip.select('.country-emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')

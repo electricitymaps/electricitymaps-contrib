@@ -84,7 +84,7 @@ function addExchangesConfiguration(exchanges) {
     // DE
     exchanges['DE->DK'] = {
         lonlat: [9.3, 54.9],
-        rotation: 180
+        rotation: 0
     };
     exchanges['DE->FR'] = {
         lonlat: [8.048297, 48.931337],
