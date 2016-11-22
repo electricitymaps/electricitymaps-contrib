@@ -111,7 +111,7 @@ function computeCo2(countries, exchanges) {
     });
     d3.values(exchanges).forEach(function(exchange) {
         exchange.co2intensity = countries[exchange.countryCodes[exchange.netFlow > 0 ? 0 : 1]].co2intensity;
-    })
+    });
 }
 function elementQuery(keyName, keyValue, minDate, maxDate) {
     var query = { datetime: rangeQuery(minDate, maxDate) };
@@ -238,7 +238,9 @@ app.get('/v1/co2', function(req, res) {
     var t0 = new Date().getTime();
     var countryCode = req.query.countryCode;
 
-    function onCo2Computed(err, countries) {
+    // TODO: Rewrite this api with two promises [geocoder, state]
+    function onCo2Computed(err, obj) {
+        var countries = obj.countries;
         if (err) {
             statsdClient.increment('co2_GET_ERROR');
             console.error(err);
