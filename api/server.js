@@ -1,3 +1,13 @@
+// * Opbeat (must be the first thing started)
+if (isProduction) {
+    console.log('** Running in PRODUCTION mode **');
+    var opbeat = require('opbeat').start({
+        appId: 'c36849e44e',
+        organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
+        secretToken: process.env['OPBEAT_SECRET']
+    })
+}
+
 var async = require('async');
 var co2lib = require('./static/app/co2eq');
 var d3 = require('d3');
@@ -20,18 +30,12 @@ app.use(function(req, res, next) {
     next();
 });
 
-// * Opbeat
-if (isProduction) {
-    var opbeat = require('opbeat').start({
-        appId: 'c36849e44e',
-        organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
-        secretToken: process.env['OPBEAT_SECRET']
-    })
-    app.use(opbeat.middleware.express())
-}
-
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
+
+// * Opbeat
+if (opbeat)
+    app.use(opbeat.middleware.express())
 
 // * Database
 var mongoProductionCollection;
@@ -41,6 +45,8 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
     console.log('Connected to database');
     mongoProductionCollection = db.collection('production');
     mongoExchangeCollection = db.collection('exchange');
+
+    // Start the application
     server.listen(8000, function() {
         console.log('Listening on *:8000');
     });
