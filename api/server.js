@@ -11,12 +11,24 @@ var MongoClient = require('mongodb').MongoClient;
 var app = express();
 var server = http.Server(app);
 
+var isProduction = process.env.ENV === 'production';
+
 // * Common
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+
+// * Opbeat
+if (isProduction) {
+    var opbeat = require('opbeat').start({
+        appId: 'c36849e44e',
+        organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
+        secretToken: process.env['OPBEAT_SECRET']
+    })
+    app.use(opbeat.middleware.express())
+}
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);

@@ -10,7 +10,8 @@
     "memcached": "^2.2.2",
     "moment": "^2.15.2",
     "mongodb": "^2.2.9",
-    "node-statsd": "^0.1.1"
+    "node-statsd": "^0.1.1",
+    "opbeat": "^3.21.0"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"

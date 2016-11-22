@@ -16,8 +16,8 @@ services:
   feeder:
     build: feeder
     depends_on: [mongo]
+    env_file: ./secrets.env
     environment:
-      - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
       - ENV=development
       - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
