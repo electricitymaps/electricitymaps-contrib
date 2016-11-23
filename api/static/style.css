@@ -3,6 +3,7 @@ html, body {
     padding: 0 !important;
     height: 100%;
     font-family: sans-serif;
+    background-color: #283640;
 }
 
 #connection-warning {
@@ -38,8 +39,9 @@ html, body {
 
 .contribute-text {
     background-color: rgba(70, 70, 70, 0.95);
-    font-size: 0.6em;
     color: lightgray;
+    display: inline-block;
+    font-size: 0.6em;
     padding: 3px 5px;
 }
 .watermark {
@@ -56,7 +58,7 @@ html, body {
     position: absolute;
     top: 0px;
     opacity: 0.7;
-    background: black url('vendor/loading.svg') no-repeat center center;
+    background: black url('libs/loading.svg') no-repeat center center;
 }
 .map {
     width: 100%;
@@ -83,20 +85,40 @@ html, body {
     stroke-width: 0.3px;
 }
 
-.panel-container {
+.content {
+    display: table;
     position: absolute;
     top: 0px;
-    margin: 10px;
-    padding: 10px;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+.footer {
+    display: table-footer-group;
+    pointer-events: all;
+}
+.panel {
+    font-size: 0.7em;
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
+    color: lightgray;
+}
+.panel-container {
+    margin: 10px;
+    padding: 10px;
     line-height: 1.7em;
+    pointer-events: all;
+}
+.panel-container h1 {
+    line-height: 1.3;
+    color: white;
+    font-size: 1.6em;
+    margin: 0px;
 }
 .panel-container > svg {
     display: block;
 }
 .panel-container, panel-container.text {
-    font-size: 0.7em;
     color: lightgray;
     fill: lightgray;
 }
@@ -107,7 +129,7 @@ html, body {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity {
+.country-emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
 .country-emission-rect {
@@ -122,7 +144,7 @@ html, body {
     overflow: auto;
     display: inline-block;
     height: 100%;
-    width: 70px;
+    width: 80px;
     text-align: right;
     font-size: 1.3em;
 }
@@ -148,62 +170,6 @@ html, body {
     width: 300px;
 }
 
-.force-chrome {
-    position: absolute;
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: dimgrey;
-}
-
-.force-chrome .centered {
-    max-width: 400px;
-    padding: 40px;
-}
-
-.force-chrome h1{
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 1em;    
-}
-
-.force-chrome img {
-    height: 17px;
-    float: right;
-    margin-left: 7px;
-}
-
-.force-chrome a {
-    color: dimgrey;
-    text-decoration: underline;
-}
-
-.force-chrome a.button {
-    font-size: 13px;
-    display: inline-block;
-    border: 1px solid #a2a2a2;
-    border-radius: 10px;
-    padding: 7px 12px;
-    text-decoration: none;
-}
-
-.force-chrome a.button:hover {
-    text-decoration: none;
-    background-color: #f1f1f1;
-}
-
-
-.force-chrome p {
-    font-size: 0.9em;
-    font-weight: lighter;
-    text-align: justify;
-    line-height: 1.4;   
-}
-
 a {
     text-decoration: none;
     color: lightblue;
@@ -222,4 +188,41 @@ a:hover {
   100% {
     top: -40px;
   }
+}
+
+div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
+    vertical-align: middle
+}
+
+.tooltip {
+    color: darkgrey;
+    display: none;
+    padding: 5px;
+    position: absolute;
+}
+
+@media screen and (min-width: 600px) {
+    .small-screen-visible {
+        display: none;
+    }
+}
+@media screen and (max-width: 600px) {
+    .large-screen-visible {
+        display: none;
+    }
+}
+
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
+.country-picker-container p {
+    column-count: 2;
+    line-height: 2em;
+}
+.country-picker-container a {
+    display: block;
 }

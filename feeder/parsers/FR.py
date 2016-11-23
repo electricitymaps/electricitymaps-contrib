@@ -2,7 +2,6 @@ import arrow
 import requests
 import xml.etree.ElementTree as ET
 
-COUNTRY_CODE = 'FR'
 MAP_GENERATION = {
     u'Nucl\xe9aire': 'nuclear',
     'Charbon': 'coal',
@@ -17,7 +16,7 @@ MAP_STORAGE = {
     'Pompage': 'hydro',
 }
 
-def fetch_FR(session=None):
+def fetch_production(country_code='FR', session=None):
     r = session or requests.session()
     formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=mix&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
@@ -25,11 +24,10 @@ def fetch_FR(session=None):
     obj = ET.fromstring(response.content)
     mixtr = obj[7]
     data = {
-        'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(arrow.get(obj[0].text).datetime, 
-            'Europe/Paris').datetime,
+        'countryCode': country_code,
         'production': {},
-        'consumption': {}
+        'consumption': {},
+        'source': 'rte-france.com',
     }
     for item in mixtr.getchildren():
         if item.get('granularite') != 'Global': continue
@@ -41,33 +39,28 @@ def fetch_FR(session=None):
         elif key in MAP_STORAGE:
             data['consumption'][MAP_STORAGE[key]] = float(value.text)
 
-    # Fetch co2
-    # url = 'http://www.rte-france.com/getEco2MixXml.php?type=co2&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
-    # response = r.get(url)
-    # obj = ET.fromstring(response.content)
-    # value = None
-    # for value in obj[7][0].getchildren(): pass
-    # data['co2'] = float(value.text)
+    data['datetime'] = arrow.get(arrow.get(obj[1].text).datetime, 
+        'Europe/Paris').replace(minutes=+(int(value.attrib['periode']) * 15.0)).datetime
 
     # Fetch imports
-    url = 'http://www.rte-france.com/getEco2MixXml.php?type=echcom&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
-    response = r.get(url)
-    obj = ET.fromstring(response.content)
-    parsed = {}
-    for item in obj[7].getchildren():
-        value = None
-        for value in item: pass
-        parsed[item.get('v')] = float(value.text)
+    # url = 'http://www.rte-france.com/getEco2MixXml.php?type=echcom&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
+    # response = r.get(url)
+    # obj = ET.fromstring(response.content)
+    # parsed = {}
+    # for item in obj[7].getchildren():
+    #     value = None
+    #     for value in item: pass
+    #     parsed[item.get('v')] = float(value.text)
 
-    data['exchange'] = {
-        'CH': parsed['CH'],
-        'GB': parsed['GB'],
-        'ES': parsed['ES'],
-        'IT': parsed['IT'],
-        'DE': parsed['DB'] # Germany + Belgium redirected to Germany
-    }
+    # data['exchange'] = {
+    #     'CH': parsed['CH'],
+    #     'GB': parsed['GB'],
+    #     'ES': parsed['ES'],
+    #     'IT': parsed['IT'],
+    #     'DE': parsed['DB'] # Germany + Belgium redirected to Germany
+    # }
 
     return data
 
 if __name__ == '__main__':
-    print fetch_FR()
+    print fetch_production()

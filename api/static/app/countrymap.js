@@ -28,8 +28,8 @@ CountryMap.prototype.render = function() {
 
     this._projection = d3.geo.mercator()
         .center([3, 48])
-        .translate([0.6 * computedMapWidth, 0.6 * computedMapHeight])
-        .scale(700);
+        .translate([0.55 * computedMapWidth, 0.65 * computedMapHeight])
+        .scale(650);
 
     this.path = d3.geo.path()
         .projection(this._projection);
@@ -44,10 +44,10 @@ CountryMap.prototype.render = function() {
     var that = this;
     if (this._data) {
         var getCo2Color = function (d) {
-            return (d.data.co2 !== undefined) ? that.co2color(d.data.co2) : 'gray';
+            return (d.co2intensity !== undefined) ? that.co2color(d.co2intensity) : 'gray';
         };
         var selector = this.land.selectAll('.country')
-            .data(this._data);
+            .data(this._data, function(d) { return d.countryCode; });
         selector.enter()
                 .append('path')
                 .attr('class', 'country')
@@ -59,6 +59,9 @@ CountryMap.prototype.render = function() {
                 })
                 .on('mouseout', function (d, i) {
                     return that.countryMouseOutHandler.call(this, d, i);
+                })
+                .on('mousemove', function (d, i) {
+                    return that.countryMouseMoveHandler.call(this, d, i);
                 })
                 .on('click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
@@ -76,6 +79,7 @@ CountryMap.prototype.render = function() {
         selector
             .attr('d', this.path)
             .transition()
+            .duration(2000)
             .attr('fill', getCo2Color);
     }
 }
@@ -101,6 +105,12 @@ CountryMap.prototype.onCountryClick = function(arg) {
 CountryMap.prototype.onCountryMouseOver = function(arg) {
     if (!arg) return this.countryMouseOverHandler;
     else this.countryMouseOverHandler = arg;
+    return this;
+};
+
+CountryMap.prototype.onCountryMouseMove = function(arg) {
+    if (!arg) return this.countryMouseMoveHandler;
+    else this.countryMouseMoveHandler = arg;
     return this;
 };
 

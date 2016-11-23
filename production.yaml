@@ -2,27 +2,29 @@ version: '2'
 services:
   api:
     build: api
-    environment:
-     - ENV=production
-     - MEMCACHED_HOST=memcached
-     - MONGO_URL=mongodb://mongo:27017/electricity
-     - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
-     - VIRTUAL_HOST=electricitymap-api.tmrow.co
-    env_file: ./mailgun.env
     depends_on: [mongo, memcached]
+    env_file: [./mailgun.env, ./secrets.env]
+    environment:
+      - ENV=production
+      - MEMCACHED_HOST=memcached
+      - MONGO_URL=mongodb://mongo:27017/electricity
+      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
+      - VIRTUAL_HOST=electricitymap-api.tmrow.co
+    image: corradio/electricitymap_api
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
     build: feeder
-    environment:
-     - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
-     - ENV=production
-     - MONGO_URL=mongodb://mongo:27017
-     - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
-    env_file: ./mailgun.env
     depends_on: [mongo]
+    env_file: [./mailgun.env, ./secrets.env]
+    environment:
+      - ENV=production
+      - MEMCACHED_HOST=memcached
+      - MONGO_URL=mongodb://mongo:27017
+      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
+    image: corradio/electricitymap_feeder
     networks: [default, infrastructure] # required to be able to com' with statsd
     restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']

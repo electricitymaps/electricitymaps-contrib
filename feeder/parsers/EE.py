@@ -1,23 +1,20 @@
 import arrow
 import requests
 
-COUNTRY_CODE = 'EE'
-
-def fetch_EE(session=None):
+def fetch_production(country_code='EE', session=None):
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview'
 
     data = (session or requests).get(url).json()
     countries = map(lambda x: x['value'], data['Headers'])
-    i = countries.index(COUNTRY_CODE)
+    i = countries.index(country_code)
 
     obj = {
-        'countryCode': COUNTRY_CODE,
-        'datetime': arrow.get(data['MeasuredAt'] / 1000).datetime # time given in UTC
+        'countryCode': country_code,
+        'datetime': arrow.get(data['MeasuredAt'] / 1000).datetime, # time given in UTC
+        'source': 'statnett.no'
     }
     obj['consumption'] = {
         'unknown': float(data['ConsumptionData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0'))
-    }
-    obj['exchange'] = {
     }
     obj['production'] = {
         'unknown': float(data['ThermalData'][i]['value'].replace(u'\xa0', '').replace(' ', '').replace('-', '0')) + 
@@ -30,4 +27,4 @@ def fetch_EE(session=None):
     return obj
 
 if __name__ == '__main__':
-    print fetch_EE()
+    print fetch_production()

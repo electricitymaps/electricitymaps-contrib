@@ -46,13 +46,13 @@ function Co2eqCalculator() {
     };
 
     this.compute = function(countries) {
-        var validCountries = d3.entries(countries)
-            .map(function(d) { return d.value.data; })
+        var validCountries = d3.values(countries)
+            .filter(function (d) { return d.countryCode && d.production; })
             .filter(function (d) {
-                return d.countryCode !== undefined;
+                // Double check that total production + import >= export
+                return (d.totalProduction + d.totalImport) >= d.totalExport;
             });
         var validCountryKeys = validCountries.map(function (d) { return d.countryCode });
-
         // x_i: unknown co2 (consumption) footprint of i-th country
         // f_ij: known co2 footprint of j-th system of i-th country
         // v_ij: power volume of j-th system of i-th country
@@ -70,12 +70,6 @@ function Co2eqCalculator() {
         var that = this;
 
         validCountries.forEach(function (country, i) {
-            if (country.totalProduction === undefined || country.totalNetExchange === undefined) {
-                country.totalProduction = 
-                    d3.sum(d3.values(country.production));
-                country.totalNetExchange = 
-                    d3.sum(d3.values(country.exchange));
-            }
             A.set([i, i], -country.totalProduction - country.totalNetExchange);
             // Intern
             d3.entries(country.production).forEach(function (production) {
@@ -88,21 +82,23 @@ function Co2eqCalculator() {
                 b.set([i], b.get([i]) - footprint * production.value);
             });
             // Exchanges
-            d3.entries(country.exchange).forEach(function (exchange) {
-                var j = validCountryKeys.indexOf(exchange.key);
-                if (j < 0) {
-                    if (typeof require == 'undefined')
-                        console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
-                    return;
-                }
-                if (exchange.value > 0) {
-                    // Import
-                    A.set([i, j], exchange.value);
-                } else {
-                    // Accumulate export
-                    A.set([i, i], A.get([i, i]) - Math.abs(exchange.value));
-                }
-            });
+            if (country.exchange) {
+                d3.entries(country.exchange).forEach(function (exchange) {
+                    var j = validCountryKeys.indexOf(exchange.key);
+                    if (j < 0) {
+                        if (typeof require == 'undefined')
+                            console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
+                        return;
+                    }
+                    if (exchange.value > 0) {
+                        // Import
+                        A.set([i, j], exchange.value);
+                    } else {
+                        // Accumulate export
+                        A.set([i, i], A.get([i, i]) - Math.abs(exchange.value));
+                    }
+                });
+            }
         });
 
         // Solve
