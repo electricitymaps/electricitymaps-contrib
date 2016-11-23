@@ -310,6 +310,27 @@ app.get('/v1/co2', function(req, res) {
         res.status(400).json({'error': 'Missing arguments "lon" and "lat" or "countryCode"'})
     }
 });
+app.get('/v1/production', function(req, res) {
+    var countryCode = req.query.countryCode;
+    var datetime = req.query.datetime;
+    if (!countryCode) {
+        res.status(400).json({'error': 'Missing argument "countryCode"'});
+        return;
+    }
+    var minDate = moment.utc().subtract(24, 'hours').toDate();
+    var maxDate = datetime ? new Date(datetime) : undefined;
+    mongoProductionCollection.findOne(
+        elementQuery('countryCode', countryCode, minDate, maxDate),
+        { sort: [['datetime', -1]] },
+        function(err, doc) {
+            if (err) { 
+                console.log(err);
+                res.status(500).json({error: 'Unknown database error'});
+            } else {
+                res.json(doc);
+            }
+        })
+});
 app.get('/health', function(req, res) {
     statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
