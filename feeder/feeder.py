@@ -187,8 +187,8 @@ def validate_production(obj, country_code):
     if arrow.get(obj['datetime']) > arrow.now():
         raise Exception("Data from %s can't be in the future" % country_code)
     for key in REQUIRED_PRODUCTION_FIELDS:
-        if not key in obj.get('production', {}):
-            raise Exception("Production key %s is required for %s" % (key, country_code))
+        if not key in obj.get('production', {}) or not obj['production'].get(key, None):
+            raise Exception("Production %s is required for %s" % (key, country_code))
 
 def db_upsert(col, obj, database_key):
     try:
