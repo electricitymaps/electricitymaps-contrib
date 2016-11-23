@@ -1,3 +1,5 @@
+var isProduction = process.env.ENV === 'production';
+
 // * Opbeat (must be the first thing started)
 if (isProduction) {
     console.log('** Running in PRODUCTION mode **');
@@ -20,8 +22,6 @@ var MongoClient = require('mongodb').MongoClient;
 
 var app = express();
 var server = http.Server(app);
-
-var isProduction = process.env.ENV === 'production';
 
 // * Common
 app.use(function(req, res, next) {
