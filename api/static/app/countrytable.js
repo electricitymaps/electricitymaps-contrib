@@ -123,7 +123,7 @@ CountryTable.prototype.onProductionMouseOut = function(arg) {
 CountryTable.prototype.resize = function() {
     this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
-    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._data.exchange).length * (this.ROW_HEIGHT + this.PADDING_Y);
+    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
     this.productionRoot
@@ -157,9 +157,13 @@ CountryTable.prototype.data = function(arg) {
     if (!arg) return this._data;
     else {
         this._data = arg;
-        var exchangeData = d3.entries(this._data.exchange).sort(function(x, y) {
-            return d3.ascending(x.key, y.key);
-        });
+        this._exchangeData = d3.entries(this._data.exchange)
+            .filter(function(d) {
+                return d.value !== 0;
+            })
+            .sort(function(x, y) {
+                return d3.ascending(x.key, y.key);
+            });
 
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
@@ -182,10 +186,10 @@ CountryTable.prototype.data = function(arg) {
                 Math.max(this._data.maxCapacity || 0, this._data.maxProduction || 0)
             ]);
         // co2 scale in tCO2eq/s
-        var maxCO2eqExport = d3.max(exchangeData, function (d) {
+        var maxCO2eqExport = d3.max(this._exchangeData, function (d) {
             return d.value >= 0 ? 0 : (that._data.co2intensity / 1000.0 * -d.value || 0);
         });
-        var maxCO2eqImport = d3.max(exchangeData, function (d) {
+        var maxCO2eqImport = d3.max(this._exchangeData, function (d) {
             if (!that._data.exchangeCo2Intensities) return 0;
             return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1000.0 * d.value;
         });
@@ -299,7 +303,7 @@ CountryTable.prototype.data = function(arg) {
 
         // Construct exchanges
         var selection = this.exchangeRoot.selectAll('.row')
-            .data(exchangeData);
+            .data(this._exchangeData);
         selection.exit().remove();
         var gNewRow = selection.enter().append('g')
             .attr('class', 'row')
