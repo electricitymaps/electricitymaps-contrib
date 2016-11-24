@@ -302,21 +302,31 @@ function dataLoaded(err, state, solar, wind) {
         var validCountries = d3.values(countries).filter(function(d) {
             return d.production;
         }).sort(function(x, y) {
-            return d3.ascending(x.fullname || x.countryCode, y.fullname || y.countryCode)
+            return d3.ascending(x.co2intensity || x.fullname || x.countryCode,
+                y.co2intensity || y.fullname || y.countryCode);
         });
         var selector = d3.select('.country-picker-container p')
             .selectAll('a')
             .data(validCountries);
         var enterA = selector.enter().append('a');
         enterA
-            .attr('href', '#')
-            .append('i')
+            .append('div')
+            .attr('class', 'country-emission-rect')
         enterA
             .append('text')
+        enterA
+            .attr('href', '#')
+            .append('i').attr('id', 'country-flag')
         selector.select('text')
-            .text(function(d) { return ' ' + (d.fullname || d.countryCode); })
-        selector.select('i')
-            .attr('class', function(d) { return 'flag-icon flag-icon-' + d.countryCode.toLowerCase(); })
+            .text(function(d) { return ' ' + (d.fullname || d.countryCode) + ' '; })
+        selector.select('div.country-emission-rect')
+            .style('background-color', function(d) {
+                return d.co2intensity ? co2color(d.co2intensity) : 'gray';
+            });
+        selector.select('i#country-flag')
+            .attr('class', function(d) { 
+                return 'flag-icon flag-icon-' + d.countryCode.toLowerCase();
+            })
         selector.on('click', function(d) { return selectCountry(d.countryCode); });
     }
 
