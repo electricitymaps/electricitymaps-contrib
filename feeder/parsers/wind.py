@@ -1,4 +1,4 @@
-import arrow, gzip, json, pygrib, subprocess
+import arrow, gzip, json, os, pygrib, subprocess
 
 BASE = '00'
 MULTIPLE_ORIGIN = 6
@@ -35,9 +35,11 @@ def fetch_forecast(origin, horizon):
     #         'date': origin.isoformat()
     #     }
 
-def fetch_wind():
+def fetch_wind(session=None, now=None, compress=True):
+    if not session: pass
+    if not now: now = arrow.utcnow()
     # Fetch both a forecast before and after the current time
-    horizon = arrow.utcnow().floor('hour')
+    horizon = now.floor('hour')
     while (int(horizon.format('HH')) % MULTIPLE_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
     origin = horizon
@@ -61,14 +63,17 @@ def fetch_wind():
         '-d', '-n', '-c', '-o',
         'data/wind_after.json', 'wind.grb2'], shell=False)
 
+    # Compress to json.gz
     with open('data/wind_before.json') as f_before, \
-        open('data/wind_after.json') as f_after, \
-        gzip.open('data/wind.json.gz', 'w') as f_out:
+        open('data/wind_after.json') as f_after:
         obj = {
             'forecasts': [json.load(f_before), json.load(f_after)]
         }
-        json.dump(obj, f_out)
-    print 'Done'
+        if compress:
+            with gzip.open('data/wind.json.gz', 'w') as f_out:
+                json.dump(obj, f_out)
+        print 'Done'
+        return obj
 
 if __name__ == '__main__':
     fetch_wind()
