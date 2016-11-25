@@ -18,11 +18,14 @@ def fetch_forecast(origin, horizon):
         print 'Fetching forecast of %s made at %s' % (horizon, origin)
         subprocess.check_call(
             ['wget', '-nv', get_url(origin, horizon), '-O', 'wind.grb2'], shell=False)
+        return ('wind.grb2', True) # (filename, isBest)
     except subprocess.CalledProcessError:
         origin = origin.replace(hours=-MULTIPLE_ORIGIN)
         print 'Trying instead to fetch forecast of %s made at %s' % (horizon, origin)
         subprocess.check_call(
             ['wget', '-nv', get_url(origin, horizon), '-O', 'wind.grb2'], shell=False)
+        return ('wind.grb2', False) # (filename, isBest)
+
 
     # with pygrib.open('wind.grb2') as f:
     #     U_cmp = f.select(name='10 metre U wind component')[0]
@@ -35,7 +38,7 @@ def fetch_forecast(origin, horizon):
     #         'date': origin.isoformat()
     #     }
 
-def fetch_wind(session=None, now=None, compress=True):
+def fetch_wind(session=None, now=None, compress=True, useCache=True):
     if not session: pass
     if not now: now = arrow.utcnow()
     # Fetch both a forecast before and after the current time
@@ -46,7 +49,14 @@ def fetch_wind(session=None, now=None, compress=True):
     while (int(origin.format('HH')) % MULTIPLE_ORIGIN) != 0:
         origin = origin.replace(hours=-1)
 
-    _ = fetch_forecast(origin, horizon)
+    # Read cache for horizon
+    if (useCache):
+        cache_filename = 'data/windcache_%s.json.gz' % horizon.timestamp
+        if os.path.exists(cache_filename):
+            with gzip.open(cache_filename, 'r') as f:
+                return json.load(f)
+
+    _, beforeIsBestForecast = fetch_forecast(origin, horizon)
     subprocess.check_call([
         'java',
         '-Xmx512M',
@@ -54,8 +64,9 @@ def fetch_wind(session=None, now=None, compress=True):
         '-d', '-n', '-c', '-o',
         'data/wind_before.json', 'wind.grb2'], shell=False)
 
+
     # Fetch the forecast after
-    _ = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE_HORIZON))
+    _, afterIsBestForecast = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE_HORIZON))
     subprocess.check_call([
         'java',
         '-Xmx512M',
@@ -72,6 +83,10 @@ def fetch_wind(session=None, now=None, compress=True):
         if compress:
             with gzip.open('data/wind.json.gz', 'w') as f_out:
                 json.dump(obj, f_out)
+        if useCache and beforeIsBestForecast and afterIsBestForecast:
+            cache_filename = 'data/windcache_%s.json.gz' % horizon.timestamp
+            with gzip.open(cache_filename, 'w') as f:
+                json.dump(obj, f)
         print 'Done'
         return obj
 
