@@ -317,8 +317,8 @@ app.get('/v1/production', function(req, res) {
         res.status(400).json({'error': 'Missing argument "countryCode"'});
         return;
     }
-    var minDate = moment.utc().subtract(24, 'hours').toDate();
     var maxDate = datetime ? new Date(datetime) : undefined;
+    var minDate = (moment(maxDate) || moment.utc()).subtract(24, 'hours').toDate();
     mongoProductionCollection.findOne(
         elementQuery('countryCode', countryCode, minDate, maxDate),
         { sort: [['datetime', -1]] },
