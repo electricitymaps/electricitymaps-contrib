@@ -10,8 +10,7 @@ from pymemcache.client.base import Client
 from parsers import EE, FR, GB, HU, RO
 
 from parsers import ENTSOE
-from parsers.solar import fetch_solar
-from parsers.wind import fetch_wind
+from parsers import weather
 from migrate_db import migrate
 
 INTERVAL_SECONDS = 60 * 5
@@ -258,15 +257,10 @@ def fetch_exchanges():
 
 def fetch_weather():
     try:
-        with statsd.StatsdTimer('fetch_wind'): fetch_wind()
-    except: 
-        statsd.increment('fetch_wind_error')
-        logger.exception('fetch_wind()')
-    try:
-        with statsd.StatsdTimer('fetch_solar'): fetch_solar()
-    except: 
-        statsd.increment('fetch_solar_error')
-        logger.exception('fetch_solar()')
+        with statsd.StatsdTimer('fetch_weather'): weather.fetch_weather()
+    except:
+        statsd.increment('fetch_weather_error')
+        logger.exception('fetch_weather()')
 
 migrate(db, validate_production)
 

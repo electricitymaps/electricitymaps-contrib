@@ -97,9 +97,9 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Sweden)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
 
+
 ### Real-time weather data sources
-- Solar: [US National Weather Service's Prediction Climate Forecast System (CFS)](http://nomads.ncep.noaa.gov/)
-- Wind: [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)
+We use the [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)'s GFS 0.25 Degree Hourly data.
 
 
 ## Contribute
