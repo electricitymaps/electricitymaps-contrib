@@ -94,14 +94,16 @@ def fetch_forecast(origin, horizon):
         }
 
 def fetch_weather():
-    # Fetch both a forecast before and after the current time
     horizon = arrow.utcnow().floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
-    origin = horizon
+    # Warning: solar will not be available at horizon 0
+    # so always do at least horizon 1
+    origin = horizon.replace(hours=-1)
     while (int(origin.format('HH')) % STEP_ORIGIN) != 0:
         origin = origin.replace(hours=-1)
 
+    # Fetch both a forecast before and after the current time
     obj_before = fetch_forecast(origin, horizon)
     obj_after = fetch_forecast(origin, horizon.replace(hours=+STEP_HORIZON))
     obj = {
