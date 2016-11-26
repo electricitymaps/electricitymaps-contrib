@@ -86,7 +86,21 @@ def fetch_forecast(origin, horizon):
                     },
                     'data': VGRD.flatten().tolist()
                 }
-            ]
+            ],
+            'solar': {
+                'header': {
+                    'refTime': arrow.get(solar.analDate).to('utc').isoformat(),
+                    'forecastTime': int(
+                        (arrow.get(solar.validDate) - arrow.get(solar.analDate)).total_seconds() / 3600.0),
+                    'lo1': longitudes[0][0],
+                    'la1': latitudes[0][0],
+                    'dx': GRID_DELTA * GRID_COMPRESSION_FACTOR,
+                    'dy': GRID_DELTA * GRID_COMPRESSION_FACTOR,
+                    'nx': longitudes.size,
+                    'ny': latitudes.size,
+                },
+                'data': DSWRF.flatten().tolist()
+            }
         }
         return (obj, isBest)
 
