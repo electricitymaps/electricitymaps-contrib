@@ -47,11 +47,8 @@ def fetch_forecast(origin, horizon):
         # Cleanup
         os.remove(TMP_FILENAME)
 
-        # For backwards compatibility,
-        # we're keeping the GRIB2JSON format for wind for now
+        # We're keeping the GRIB2JSON format for now
         return {
-            'longitudes': longitudes.tolist(),
-            'latitudes': latitudes.tolist(),
             'forecastTime': arrow.get(wind_u.analDate).isoformat(),
             'targetTime': arrow.get(wind_u.validDate).isoformat(),
             'wind': [
@@ -87,10 +84,7 @@ def fetch_forecast(origin, horizon):
                     },
                     'data': VGRD.flatten().tolist()
                 }
-            ], # REMOVE
-            'DSWRF': DSWRF.tolist(),
-            # 'UGRD': UGRD.tolist(),
-            # 'VGRD': VGRD.tolist(),
+            ]
         }
 
 def fetch_weather():
