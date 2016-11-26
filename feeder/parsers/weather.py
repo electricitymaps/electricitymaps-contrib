@@ -51,8 +51,6 @@ def fetch_forecast(origin, horizon):
         # For backwards compatibility,
         # we're keeping the GRIB2JSON format for wind for now
         obj = {
-            'longitudes': longitudes.tolist(),
-            'latitudes': latitudes.tolist(),
             'forecastTime': arrow.get(wind_u.analDate).isoformat(),
             'targetTime': arrow.get(wind_u.validDate).isoformat(),
             'wind': [
@@ -110,7 +108,7 @@ def fetch_forecast(origin, horizon):
 
 def fetch_weather(now=None, compress=True, useCache=False):
     if not now: now = arrow.utcnow()
-    horizon = arrow.utcnow().floor('hour')
+    horizon = now.floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
     # Warning: solar will not be available at horizon 0
@@ -146,6 +144,7 @@ def fetch_weather(now=None, compress=True, useCache=False):
         with gzip.open(cache_filename, 'w') as f:
             json.dump(obj, f)
 
+    return obj
     print 'Done'
 
 if __name__ == '__main__':
