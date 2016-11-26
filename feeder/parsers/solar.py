@@ -1,7 +1,9 @@
-import arrow, gzip, json, os, pygrib, subprocess
+import arrow, gzip, json, os, subprocess
+import pygrib
 
 BASE = '00'
-MULTIPLE = 6
+MULTIPLE_ORIGIN = 6
+MULTIPLE_HORIZON = 6
 SW = [-48.66, 28.17]
 NE = [37.45, 67.71]
 
@@ -13,21 +15,24 @@ def get_url(origin, horizon):
 
 def fetch_forecast(origin, horizon):
     isBest = False
-    try:
-        print 'Fetching forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call(['wget', '-nv', get_url(origin, horizon), '-O', 'solar.grb2'], shell=False)
-        isBest = True
-    except subprocess.CalledProcessError:
-        origin = origin.replace(hours=-MULTIPLE)
-        print 'Trying instead to fetch forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call(['wget', '-nv', get_url(origin, horizon), '-O', 'solar.grb2'], shell=False)
-
+    for i in range(3):
+        if i > 0: print 'Trying with an earlier origin..'
+        try:
+            print 'Fetching forecast of %s made at %s' % (horizon, origin)
+            subprocess.check_call(['wget', '-nv', get_url(origin, horizon), '-O', 'solar.grb2'], shell=False)
+            if i == 0: isBest = True
+            print 'Success!'
+            break
+        except subprocess.CalledProcessError:
+            if i == 2: raise Exception('Couldn\' find a forecast')
+            origin = origin.replace(hours=-MULTIPLE_ORIGIN)
+            
     with pygrib.open('solar.grb2') as f:
         #print f.select(name='Downward long-wave radiation flux', level=0)
-        grb_LW = f.select(name='Downward long-wave radiation flux', level=0)[-1]
-        grb_SW = f.select(name='Downward short-wave radiation flux', level=0)[-1]
+        grb_LW = f.select(name='Downward long-wave radiation flux', level=0)[0]
+        grb_SW = f.select(name='Downward short-wave radiation flux', level=0)[0]
         return ({
-            'lonlats': [grb_LW['longitudes'].tolist(), grb_LW['latitudes'].tolist()],
+            'lonlats': [grb_SW['longitudes'].tolist(), grb_SW['latitudes'].tolist()],
             'DLWRF': grb_LW['values'].tolist(),
             'DSWRF': grb_SW['values'].tolist(),
             'horizon': horizon.isoformat(),
@@ -37,9 +42,10 @@ def fetch_forecast(origin, horizon):
 def fetch_solar(session=None, now=None, compress=True, useCache=True):
     if not session: pass
     if not now: now = arrow.utcnow()
+    now = now.to('utc')
 
     horizon = now.floor('hour')
-    while (int(horizon.format('HH')) % MULTIPLE) != 0:
+    while (int(horizon.format('HH')) % MULTIPLE_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
     origin = horizon
 
@@ -51,7 +57,7 @@ def fetch_solar(session=None, now=None, compress=True, useCache=True):
                 return json.load(f)
 
     obj_before, beforeIsBestForecast = fetch_forecast(origin, horizon)
-    obj_after, afterIsBestForecast = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE))
+    obj_after, afterIsBestForecast = fetch_forecast(origin, horizon.replace(hours=+MULTIPLE_HORIZON))
     obj = {
         'forecasts': [obj_before, obj_after]
     }
