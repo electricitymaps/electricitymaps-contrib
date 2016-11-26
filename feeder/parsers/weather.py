@@ -110,11 +110,12 @@ def fetch_forecast(origin, horizon):
 
 def fetch_weather(now=None, compress=True, useCache=False):
     if not now: now = arrow.utcnow()
-    # Fetch both a forecast before and after the current time
-    horizon = now.floor('hour')
+    horizon = arrow.utcnow().floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
-    origin = horizon
+    # Warning: solar will not be available at horizon 0
+    # so always do at least horizon 1
+    origin = horizon.replace(hours=-1)
     while (int(origin.format('HH')) % STEP_ORIGIN) != 0:
         origin = origin.replace(hours=-1)
 
@@ -125,8 +126,10 @@ def fetch_weather(now=None, compress=True, useCache=False):
             with gzip.open(cache_filename, 'r') as f:
                 return json.load(f)
 
+    # Fetch both a forecast before and after the current time
     obj_before, beforeIsBestForecast = fetch_forecast(origin, horizon)
     obj_after, afterIsBestForecast = fetch_forecast(origin, horizon.replace(hours=+STEP_HORIZON))
+
     obj = {
         'forecasts': [obj_before, obj_after]
     }
