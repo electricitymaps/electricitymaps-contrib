@@ -49,7 +49,7 @@ def fetch_forecast(origin, horizon):
         os.remove(TMP_FILENAME)
 
         # For backwards compatibility,
-        # we're keeping the GRIB2JSON format for wind for now
+        # We're keeping the GRIB2JSON format for now
         obj = {
             'forecastTime': arrow.get(wind_u.analDate).isoformat(),
             'targetTime': arrow.get(wind_u.validDate).isoformat(),
@@ -86,6 +86,7 @@ def fetch_forecast(origin, horizon):
                     },
                     'data': VGRD.flatten().tolist()
                 }
+<<<<<<< HEAD
             ], # REMOVE
             'solar': {
                 'header': {
@@ -103,6 +104,9 @@ def fetch_forecast(origin, horizon):
                 },
                 'data': DSWRF.flatten().tolist()
             }
+=======
+            ]
+>>>>>>> master
         }
         return (obj, isBest)
 
