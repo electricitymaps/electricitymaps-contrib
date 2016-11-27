@@ -59,7 +59,8 @@ function Co2eqCalculator() {
         // x_i * (sum_j_intern(v_ij) + sum_j_import(v_ij) - sum_j_export(v_ij)) = 
         //     sum_j_intern(f_ij * v_ij)
         //   + sum_j_import(x_j * v_ij)
-        //   - x_i * sum_j_export(v_ij)
+        //   - sum_j_export(v_ij) * x_i
+        // Note that exports cancel out.
         
         // We wish to solve Ax = b
         var n = validCountries.length;
@@ -69,7 +70,7 @@ function Co2eqCalculator() {
         var that = this;
 
         validCountries.forEach(function (country, i) {
-            A.set([i, i], -country.totalProduction - country.totalNetExchange);
+            A.set([i, i], country.totalProduction + country.totalImport);
             // Intern
             d3.entries(country.production).forEach(function (production) {
                 var footprint = that.footprintOf(production.key, country.countryCode);
@@ -78,25 +79,23 @@ function Co2eqCalculator() {
                     return;
                 }
                 // Accumulate
-                b.set([i], b.get([i]) - footprint * production.value);
+                b.set([i], b.get([i]) + footprint * production.value);
             });
             // Exchanges
-            if (country.exchange)
+            if (country.exchange) {
                 d3.entries(country.exchange).forEach(function (exchange) {
-                    var j = validCountryKeys.indexOf(exchange.key);
-                    if (j < 0) {
-                        if (typeof require == 'undefined')
-                            console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
-                        return;
-                    }
                     if (exchange.value > 0) {
+                        var j = validCountryKeys.indexOf(exchange.key);
+                        if (j < 0) {
+                            if (typeof require == 'undefined')
+                                console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
+                            return;
+                        }
                         // Import
-                        A.set([i, j], exchange.value);
-                    } else {
-                        // Accumulate export
-                        A.set([i, i], A.get([i, i]) - Math.abs(exchange.value));
+                        A.set([i, j], -exchange.value);
                     }
                 });
+            }
         });
 
         // Solve
