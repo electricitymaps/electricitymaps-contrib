@@ -5,15 +5,21 @@ var REFRESH_TIME_MINUTES = 5;
 var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
+var windEnabled = true;
+var solarEnabled = false;
 
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
     args.forEach(function(arg) {
         kv = arg.split('=');
-        if (kv[0] == 'remote' && kv[1] == 'true') {
-            forceRemoteEndpoint = true;
+        if (kv[0] == 'remote') {
+            forceRemoteEndpoint = kv[1] == 'true';
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
+        } else if (kv[0] == 'wind') {
+            windEnabled = kv[1] == 'true';
+        } else if (kv[0] == 'solar') {
+            solarEnabled = kv[1] == 'true';
         }
     });
 })();
@@ -197,7 +203,7 @@ function dataLoaded(err, state, solar, wind) {
         return;
     }
 
-    if (wind) {
+    if (wind && windEnabled) {
         console.log('wind', wind);
         var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
         var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
@@ -232,7 +238,7 @@ function dataLoaded(err, state, solar, wind) {
         }
     }
 
-    if (solar) {
+    if (solar && solarEnabled) {
         console.log('solar', solar);
         if (ctx) {
             // Interpolates between two solar forecasts
@@ -496,8 +502,7 @@ function fetchAndReschedule() {
     }, 15 * 1000);
     var Q = queue()
     if (isMobile()) {
-        Q
-            .defer(d3.json, ENDPOINT + '/v1/state');
+        Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
         Q.await(function(err, state, geolocalisedCountryCode) {
             handleConnectionError(err);
@@ -507,16 +512,17 @@ function fetchAndReschedule() {
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
         });
     } else {
-        Q
-            .defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''))
-            .defer(d3.json, ENDPOINT + '/v1/solar')
-            .defer(d3.json, ENDPOINT + '/v1/wind')
-            .await(function(err, state, solar, wind) {
-                handleConnectionError(err);
-                if (!err)
-                    dataLoaded(err, state.data, solar, wind);
-                setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
-            });
+        Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
+        if (solarEnabled || windEnabled) {
+            Q.defer(d3.json, ENDPOINT + '/v1/solar');
+            Q.defer(d3.json, ENDPOINT + '/v1/wind');
+        }
+        Q.await(function(err, state, solar, wind) {
+            handleConnectionError(err);
+            if (!err)
+                dataLoaded(err, state.data, solar, wind);
+            setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+        });
     }
 };
 
