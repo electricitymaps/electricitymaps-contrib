@@ -22,11 +22,12 @@ def get_url(origin, horizon):
         '&leftlon=%d&rightlon=%d&toplat=%d&bottomlat=%d' % (180 + SW[0], 180 + NE[0], NE[1], SW[1])
 
 def fetch_forecast(origin, horizon):
+    isBest = False
     try:
         print 'Fetching weather forecast of %s made at %s' % (horizon, origin)
-        print get_url(origin, horizon)
         subprocess.check_call(
             ['wget', '-q', get_url(origin, horizon), '-O', TMP_FILENAME], shell=False)
+        isBest = True
     except subprocess.CalledProcessError:
         origin = origin.replace(hours=-STEP_ORIGIN)
         print 'Trying instead to fetch weather forecast of %s made at %s' % (horizon, origin)
@@ -47,8 +48,9 @@ def fetch_forecast(origin, horizon):
         # Cleanup
         os.remove(TMP_FILENAME)
 
+        # For backwards compatibility,
         # We're keeping the GRIB2JSON format for now
-        return {
+        obj = {
             'forecastTime': arrow.get(wind_u.analDate).isoformat(),
             'targetTime': arrow.get(wind_u.validDate).isoformat(),
             'wind': [
@@ -70,9 +72,9 @@ def fetch_forecast(origin, horizon):
                 },
                 {
                     'header': {
-                        'refTime': arrow.get(wind_u.analDate).to('utc').isoformat(),
+                        'refTime': arrow.get(wind_v.analDate).to('utc').isoformat(),
                         'forecastTime': int(
-                            (arrow.get(wind_u.validDate) - arrow.get(wind_u.analDate)).total_seconds() / 3600.0),
+                            (arrow.get(wind_v.validDate) - arrow.get(wind_v.analDate)).total_seconds() / 3600.0),
                         'lo1': longitudes[0][0],
                         'la1': latitudes[0][0],
                         'dx': GRID_DELTA * GRID_COMPRESSION_FACTOR,
@@ -84,11 +86,27 @@ def fetch_forecast(origin, horizon):
                     },
                     'data': VGRD.flatten().tolist()
                 }
-            ]
+            ],
+            'solar': {
+                'header': {
+                    'refTime': arrow.get(solar.analDate).to('utc').isoformat(),
+                    'forecastTime': int(
+                        (arrow.get(solar.validDate) - arrow.get(solar.analDate)).total_seconds() / 3600.0),
+                    'lo1': longitudes[0][0],
+                    'la1': latitudes[0][0],
+                    'dx': GRID_DELTA * GRID_COMPRESSION_FACTOR,
+                    'dy': GRID_DELTA * GRID_COMPRESSION_FACTOR,
+                    'nx': longitudes.size,
+                    'ny': latitudes.size,
+                },
+                'data': DSWRF.flatten().tolist()
+            }
         }
+        return (obj, isBest)
 
-def fetch_weather():
-    horizon = arrow.utcnow().floor('hour')
+def fetch_weather(now=None, compress=True, useCache=False):
+    if not now: now = arrow.utcnow()
+    horizon = now.floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
     # Warning: solar will not be available at horizon 0
@@ -97,20 +115,34 @@ def fetch_weather():
     while (int(origin.format('HH')) % STEP_ORIGIN) != 0:
         origin = origin.replace(hours=-1)
 
+    # Read cache for horizon
+    if (useCache):
+        cache_filename = 'data/weathercache_%s.json.gz' % horizon.timestamp
+        if os.path.exists(cache_filename):
+            with gzip.open(cache_filename, 'r') as f:
+                return json.load(f)
+
     # Fetch both a forecast before and after the current time
-    obj_before = fetch_forecast(origin, horizon)
-    obj_after = fetch_forecast(origin, horizon.replace(hours=+STEP_HORIZON))
+    obj_before, beforeIsBestForecast = fetch_forecast(origin, horizon)
+    obj_after, afterIsBestForecast = fetch_forecast(origin, horizon.replace(hours=+STEP_HORIZON))
+
     obj = {
         'forecasts': [obj_before, obj_after]
     }
 
     # Backwards compatibility: dump to wind files
-    with gzip.open('data/wind.json.gz', 'w') as f_out:
-        print 'Writing gzipped json..'
-        json.dump({
-            'forecasts': [obj_before['wind'], obj_after['wind']]
-        }, f_out)
+    if compress:
+        with gzip.open('data/wind.json.gz', 'w') as f_out:
+            print 'Writing gzipped json..'
+            json.dump({
+                'forecasts': [obj_before['wind'], obj_after['wind']]
+            }, f_out)
+    if useCache and beforeIsBestForecast and afterIsBestForecast:
+        cache_filename = 'data/weathercache_%s.json.gz' % horizon.timestamp
+        with gzip.open(cache_filename, 'w') as f:
+            json.dump(obj, f)
 
+    return obj
     print 'Done'
 
 if __name__ == '__main__':
