@@ -11,7 +11,9 @@ services:
       - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
       - VIRTUAL_HOST=electricitymap-api.tmrow.co
     image: corradio/electricitymap_api
+    mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
+    restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
     build: feeder
@@ -24,6 +26,7 @@ services:
       - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
     image: corradio/electricitymap_feeder
     networks: [default, infrastructure] # required to be able to com' with statsd
+    restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']
   memcached:
     image: memcached
