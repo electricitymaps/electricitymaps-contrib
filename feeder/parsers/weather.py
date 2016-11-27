@@ -41,6 +41,8 @@ def fetch_forecast(origin, horizon):
         latitudes, longitudes = wind_u.latlons()
         latitudes  = latitudes [::GRID_COMPRESSION_FACTOR, ::GRID_COMPRESSION_FACTOR]
         longitudes = longitudes[::GRID_COMPRESSION_FACTOR, ::GRID_COMPRESSION_FACTOR]
+        nx = np.unique(longitudes).size
+        ny = np.unique(latitudes).size
         DSWRF = solar.values[::GRID_COMPRESSION_FACTOR, ::GRID_COMPRESSION_FACTOR]
         UGRD = wind_u.values[::GRID_COMPRESSION_FACTOR, ::GRID_COMPRESSION_FACTOR]
         VGRD = wind_v.values[::GRID_COMPRESSION_FACTOR, ::GRID_COMPRESSION_FACTOR]
@@ -63,8 +65,8 @@ def fetch_forecast(origin, horizon):
                         'la1': latitudes[0][0],
                         'dx': GRID_DELTA * GRID_COMPRESSION_FACTOR,
                         'dy': GRID_DELTA * GRID_COMPRESSION_FACTOR,
-                        'nx': np.unique(longitudes).size,
-                        'ny': np.unique(latitudes).size,
+                        'nx': nx,
+                        'ny': ny,
                         'parameterCategory': 2,
                         'parameterNumber': 2
                     },
@@ -79,8 +81,8 @@ def fetch_forecast(origin, horizon):
                         'la1': latitudes[0][0],
                         'dx': GRID_DELTA * GRID_COMPRESSION_FACTOR,
                         'dy': GRID_DELTA * GRID_COMPRESSION_FACTOR,
-                        'nx': longitudes.size,
-                        'ny': latitudes.size,
+                        'nx': nx,
+                        'ny': ny,
                         'parameterCategory': 2,
                         'parameterNumber': 3
                     },
@@ -96,8 +98,8 @@ def fetch_forecast(origin, horizon):
                     'la1': latitudes[0][0],
                     'dx': GRID_DELTA * GRID_COMPRESSION_FACTOR,
                     'dy': GRID_DELTA * GRID_COMPRESSION_FACTOR,
-                    'nx': longitudes.size,
-                    'ny': latitudes.size,
+                    'nx': nx,
+                    'ny': ny,
                 },
                 'data': DSWRF.flatten().tolist()
             }
@@ -130,20 +132,25 @@ def fetch_weather(now=None, compress=True, useCache=False):
         'forecasts': [obj_before, obj_after]
     }
 
-    # Backwards compatibility: dump to wind files
+    # Backwards compatibility: dump to wind/solar files
     if compress:
         with gzip.open('data/wind.json.gz', 'w') as f_out:
-            print 'Writing gzipped json..'
+            print 'Writing wind as gzipped json..'
             json.dump({
                 'forecasts': [obj_before['wind'], obj_after['wind']]
+            }, f_out)
+        with gzip.open('data/solar.json.gz', 'w') as f_out:
+            print 'Writing solar as gzipped json..'
+            json.dump({
+                'forecasts': [obj_before['solar'], obj_after['solar']]
             }, f_out)
     if useCache and beforeIsBestForecast and afterIsBestForecast:
         cache_filename = 'data/weathercache_%s.json.gz' % horizon.timestamp
         with gzip.open(cache_filename, 'w') as f:
             json.dump(obj, f)
 
-    return obj
     print 'Done'
+    return obj
 
 if __name__ == '__main__':
     fetch_weather()
