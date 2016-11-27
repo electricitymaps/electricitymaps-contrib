@@ -80,15 +80,15 @@ HorizontalColorbar.prototype.render = function() {
             }));
 
         // Place the colors on the gradient
-        this.gGradient.selectAll('stop')
-            .data(this.colors)
-            .enter()
-                .append('stop')
-                .attr('class', 'stop')
-                .attr('offset', function (d, i) { 
-                    return i / (that.colors.length - 1);
-                })
-                .attr('stop-color', function (d) { return d; });
+        var selector = this.gGradient.selectAll('stop')
+            .data(this.colors);
+        selector.enter()
+            .append('stop')
+        selector
+            .attr('offset', function (d, i) { 
+                return i / (that.colors.length - 1);
+            })
+            .attr('stop-color', function (d) { return d; });
         // Add a rect with the gradient
         this.gColorbar.select('rect.gradient')
             .attr('width', this.colorbarWidth)

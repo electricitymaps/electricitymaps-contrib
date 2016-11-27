@@ -43,8 +43,11 @@ html, body {
     display: inline-block;
     font-size: 0.6em;
     padding: 3px 5px;
+    pointer-events: all;
 }
 .watermark {
+    display: table;
+    pointer-events: all;
     padding: 15px;
     opacity: 0.5;
     transition: all 0.5s ease;
@@ -79,6 +82,10 @@ html, body {
 }
 .solar {
     pointer-events: none;
+    -webkit-animation: flickerAnimation 4s infinite;
+    -moz-animation: flickerAnimation 4s infinite;
+    -o-animation: flickerAnimation 4s infinite;
+    animation: flickerAnimation 4s infinite;
 }
 .graticule {
     stroke: #185c96;
@@ -95,7 +102,7 @@ html, body {
 }
 .footer {
     display: table-footer-group;
-    pointer-events: all;
+    pointer-events: none;
 }
 .panel {
     font-size: 0.7em;
@@ -154,6 +161,7 @@ html, body {
     right: 0px;
     margin: 10px;
     font-size: 0.5em;
+    pointer-events: none;
 }
 .co2-legend {
     height: 30px;
@@ -166,6 +174,13 @@ html, body {
     height: 30px;
 }
 .wind-colorbar {
+    height: 100%;
+    width: 300px;
+}
+.solar-legend {
+    height: 30px;
+}
+.solar-colorbar {
     height: 100%;
     width: 300px;
 }
@@ -210,6 +225,27 @@ div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
     .large-screen-visible {
         display: none;
     }
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+@-o-keyframes flickerAnimation{
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes flickerAnimation{
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity: 1; }
+  50%  { opacity: 0.2; }
+  100% { opacity: 1; }
 }
 
 hr {
