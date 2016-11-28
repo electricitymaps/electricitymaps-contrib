@@ -6,6 +6,8 @@ services:
     env_file: [./mailgun.env, ./secrets.env]
     environment:
       - ENV=production
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - LETSENCRYPT_HOST=electricitymap-api.tmrow.co
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017/electricity
       - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
