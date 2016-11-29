@@ -27,7 +27,7 @@ function addExchangesConfiguration(exchanges) {
     };
     exchanges['AT->SI'] = {
         lonlat: [15.014142, 46.613582],
-        rotation: 0
+        rotation: 180
     };
     // BE
     exchanges['BE->FR'] = {
@@ -181,7 +181,7 @@ function addExchangesConfiguration(exchanges) {
     // IT
     exchanges['IT->SI'] = {
         lonlat: [13.596393, 46.105418],
-        rotation: -90
+        rotation: 90
     };
     // LT
     exchanges['LT->PL'] = {
