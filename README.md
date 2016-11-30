@@ -118,3 +118,7 @@ You can also see a list of missing informations displayed as warnings in the dev
 To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). then you just run `docker-compose up`. Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated.
+
+## Troubleshooting
+
+- `ERROR: Couldn't find env file:` env files are used to store sensitive information such as API keys. If you get this error after running `docker-compose up`, create an empty file named `secrets.env` in the root folder
