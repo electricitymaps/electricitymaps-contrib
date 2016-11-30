@@ -18,6 +18,24 @@ services:
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']
+  api-secure:
+    build: api
+    depends_on: [mongo, memcached]
+    env_file: [./mailgun.env, ./secrets.env]
+    environment:
+      - ENV=production
+      - LETSENCRYPT_EMAIL=info@tmrow.co
+      - LETSENCRYPT_HOST=electricitymap.tmrow.co
+      - MEMCACHED_HOST=memcached
+      - MONGO_URL=mongodb://mongo:27017/electricity
+      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
+      - VIRTUAL_HOST=electricitymap.tmrow.co
+    image: corradio/electricitymap_api
+    mem_limit: 200M
+    networks: [default, infrastructure] # required to be able to com' with statsd & nginx
+    restart: unless-stopped
+    volumes: 
+      - /home/shared/electricitymap/data:/home/data:ro
   feeder:
     build: feeder
     depends_on: [mongo]
