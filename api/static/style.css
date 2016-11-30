@@ -82,10 +82,10 @@ html, body {
 }
 .solar {
     pointer-events: none;
-    -webkit-animation: flickerAnimation 4s infinite;
-    -moz-animation: flickerAnimation 4s infinite;
-    -o-animation: flickerAnimation 4s infinite;
-    animation: flickerAnimation 4s infinite;
+    /*-webkit-animation: flickerAnimation 6s infinite;
+    -moz-animation: flickerAnimation 6s infinite;
+    -o-animation: flickerAnimation 6s infinite;
+    animation: flickerAnimation 6s infinite;*/
 }
 .graticule {
     stroke: #185c96;
