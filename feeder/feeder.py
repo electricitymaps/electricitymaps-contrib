@@ -55,9 +55,10 @@ PRODUCTION_PARSERS = {
     'GR': ENTSOE.fetch_production,
     'HU': HU.fetch_production,
     'IE': ENTSOE.fetch_production,
-    # 'IT': ENTSOE.fetch_production, # It is still missing coal for now (#72)
+    'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
     'LV': ENTSOE.fetch_production,
+    'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
     'PL': ENTSOE.fetch_production,
     'PT': ENTSOE.fetch_production,
