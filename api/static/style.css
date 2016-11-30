@@ -82,10 +82,6 @@ html, body {
 }
 .solar {
     pointer-events: none;
-    /*-webkit-animation: flickerAnimation 6s infinite;
-    -moz-animation: flickerAnimation 6s infinite;
-    -o-animation: flickerAnimation 6s infinite;
-    animation: flickerAnimation 6s infinite;*/
 }
 .graticule {
     stroke: #185c96;
@@ -225,27 +221,6 @@ div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
     .large-screen-visible {
         display: none;
     }
-}
-
-@keyframes flickerAnimation {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.2; }
-  100% { opacity: 1; }
-}
-@-o-keyframes flickerAnimation{
-  0%   { opacity: 1; }
-  50%  { opacity: 0.2; }
-  100% { opacity: 1; }
-}
-@-moz-keyframes flickerAnimation{
-  0%   { opacity: 1; }
-  50%  { opacity: 0.2; }
-  100% { opacity: 1; }
-}
-@-webkit-keyframes flickerAnimation{
-  0%   { opacity: 1; }
-  50%  { opacity: 0.2; }
-  100% { opacity: 1; }
 }
 
 hr {

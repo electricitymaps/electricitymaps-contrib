@@ -259,10 +259,10 @@ function dataLoaded(err, state, argSolar, argWind) {
         // Interpolate wind
         var now = (new Date()).getTime();
         var interpolatedWind = wind.forecasts[0];
-        if (false && moment(now) > moment(t_after)) {
+        if (moment(now) > moment(t_after)) {
             console.error('Error while interpolating wind because current time is out of bounds');
         } else {
-            var k = 1.0;//(now - t_before)/(t_after - t_before);
+            var k = (now - t_before)/(t_after - t_before);
             interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
                 return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
             });
@@ -305,7 +305,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             console.log('#2 solar forecast target',
                 moment(t_after).fromNow(),
                 'made', moment(solar.forecasts[1].header.refTime).fromNow());
-            if (false && moment(now) > moment(t_after)) {
+            if (moment(now) > moment(t_after)) {
                 console.error('Error while interpolating solar because current time is out of bounds');
             } else {
                 var buckets = d3.range(10).map(function(d) { return []; });
@@ -313,16 +313,17 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .rangeRound([0, 9])
                     .domain([0, 300])
                     .clamp(true);
+                var k = (now - t_before)/(t_after - t_before);
 
                 function bilinearInterpolate(x, y, x1, x2, y1, y2, Q11, Q12, Q21, Q22) {
                     var R1 = ((x2 - x)/(x2 - x1))*Q11 + ((x - x1)/(x2 - x1))*Q21;
                     var R2 = ((x2 - x)/(x2 - x1))*Q12 + ((x - x1)/(x2 - x1))*Q22;
                     return ((y2 - y)/(y2 - y1))*R1 + ((y - y1)/(y2 - y1))*R2;
                 }
+
                 d3.range(solarCanvas.attr('width')).forEach(function(x) {
                     d3.range(solarCanvas.attr('height')).forEach(function(y) {
                         var lonlat = countryMap.projection().invert([x, y]);
-                        var k = 1.0;// (now - t_before)/(t_after - t_before);
                         var positions = [
                             [Math.floor(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
                             [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
