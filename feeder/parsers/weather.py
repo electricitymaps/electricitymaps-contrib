@@ -108,6 +108,7 @@ def fetch_forecast(origin, horizon):
 
 def fetch_weather(now=None, compress=True, useCache=False):
     if not now: now = arrow.utcnow()
+    now = arrow.get(2016,11,30,12,0,0)
     horizon = now.floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
         horizon = horizon.replace(hours=-1)
