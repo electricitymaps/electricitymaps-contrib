@@ -45,7 +45,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
 }
 
 // Start chrome (or forced) version
-var REMOTE_ENDPOINT = 'http://electricitymap-api.tmrow.co';
+var REMOTE_ENDPOINT = '//electricitymap-api.tmrow.co';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
