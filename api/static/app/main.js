@@ -313,32 +313,39 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .rangeRound([0, 9])
                     .domain([0, 300])
                     .clamp(true);
-                function norm(v) {
-                    return Math.sqrt(d3.sum(v, function(x) { return x * x; }));
-                };
+
+                function bilinearInterpolate(x, y, x1, x2, y1, y2, Q11, Q12, Q21, Q22) {
+                    var R1 = ((x2 - x)/(x2 - x1))*Q11 + ((x - x1)/(x2 - x1))*Q21;
+                    var R2 = ((x2 - x)/(x2 - x1))*Q12 + ((x - x1)/(x2 - x1))*Q22;
+                    return ((y2 - y)/(y2 - y1))*R1 + ((y - y1)/(y2 - y1))*R2;
+                }
                 d3.range(solarCanvas.attr('width')).forEach(function(x) {
                     d3.range(solarCanvas.attr('height')).forEach(function(y) {
                         var lonlat = countryMap.projection().invert([x, y]);
                         var k = 1.0;// (now - t_before)/(t_after - t_before);
                         var positions = [
-                            [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
                             [Math.floor(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
-                            [ Math.ceil(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
+                            [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
                             [ Math.ceil(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
+                            [ Math.ceil(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
                         ];
-                        var distances = [
-                            [(lonlat[0] - lo1) / dx - positions[0][0], (la1 - lonlat[1]) / dx - positions[0][1]],
-                            [(lonlat[0] - lo1) / dx - positions[1][0], positions[1][1] - (la1 - lonlat[1]) / dx],
-                            [positions[2][0] - (lonlat[0] - lo1) / dx, (la1 - lonlat[1]) / dx - positions[2][1]],
-                            [positions[3][0] - (lonlat[0] - lo1) / dx, positions[3][1] - (la1 - lonlat[1]) / dx]
-                        ];
-                        var Z = d3.sum(distances, norm);
-                        var val = d3.sum(d3.range(4), function(idx) {
-                            var n = positions[idx][0] + Nx * positions[idx][1];
-                            return norm(distances[idx]) * d3.interpolate(
+                        var values = positions.map(function(d) {
+                            var n = d[0] + Nx * d[1];
+                            return d3.interpolate(
                                 solar.forecasts[0].data[n],
                                 solar.forecasts[1].data[n])(k);
-                        }) / Z;
+                        });
+                        var val = bilinearInterpolate(
+                            (lonlat[0] - lo1) / dx,
+                            (la1 - lonlat[1]) / dy,
+                            positions[0][0],
+                            positions[2][0],
+                            positions[0][1],
+                            positions[1][1],
+                            values[0],
+                            values[1],
+                            values[2],
+                            values[3]);
                         buckets[bucketIndex(val)].push([x, y]);
                     });
                 });
