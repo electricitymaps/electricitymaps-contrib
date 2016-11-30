@@ -70,7 +70,7 @@ var windColor = d3.scale.linear()
     ])
     .clamp(true);
 var maxSolar = 300;
-var nightOpacity = 0.3;
+var nightOpacity = 0.25;
 var maxSolarOpacity = 0.0;
 var solarColor = d3.scale.linear()
     .domain(d3.range(10).map(function (i) { return d3.interpolate(0, maxSolar)(i / (10 - 1)); } ))
@@ -259,10 +259,10 @@ function dataLoaded(err, state, argSolar, argWind) {
         // Interpolate wind
         var now = (new Date()).getTime();
         var interpolatedWind = wind.forecasts[0];
-        if (moment(now) > moment(t_after)) {
+        if (false && moment(now) > moment(t_after)) {
             console.error('Error while interpolating wind because current time is out of bounds');
         } else {
-            var k = (now - t_before)/(t_after - t_before);
+            var k = 1.0;//(now - t_before)/(t_after - t_before);
             interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
                 return d3.interpolate(d, wind.forecasts[1][0].data[i])(k)
             });
