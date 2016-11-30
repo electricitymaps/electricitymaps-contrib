@@ -184,6 +184,15 @@ function addCountriesConfiguration(countries) {
         hydro: 1537,
         wind: 55,
     };
+    countries['NL'].capacity = {
+        biomass: 398 + 674,
+        coal: 5658,
+        gas: 19914,
+        hydro: 38,
+        nuclear: 486,
+        solar: 1429,
+        wind: 3284 + 357,
+    };
     countries['NO'].capacity = {
         coal: 0,
         gas: 1777,
