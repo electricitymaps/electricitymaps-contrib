@@ -51,7 +51,7 @@ PRODUCTION_PARSERS = {
     'ES': ENTSOE.fetch_production,
     'FI': ENTSOE.fetch_production,
     'FR': FR.fetch_production,
-    'GB': GB.fetch_production,
+    'GB': ENTSOE.fetch_production,
     'GR': ENTSOE.fetch_production,
     'HU': HU.fetch_production,
     'IE': ENTSOE.fetch_production,
@@ -112,11 +112,11 @@ EXCHANGE_PARSERS = {
     'FI->NO': ENTSOE.fetch_exchange,
     'FI->SE': ENTSOE.fetch_exchange,
     # FR
-    'FR->GB': GB.fetch_exchange,
+    'FR->GB': ENTSOE.fetch_exchange,
     'FR->IT': ENTSOE.fetch_exchange,
     # GB
-    'GB->IE': GB.fetch_exchange,
-    'GB->NL': GB.fetch_exchange,
+    'GB->IE': ENTSOE.fetch_exchange,
+    'GB->NL': ENTSOE.fetch_exchange,
     # GR
     'GR->IT': ENTSOE.fetch_exchange,
     'GR->MK': ENTSOE.fetch_exchange,
@@ -176,9 +176,6 @@ else: cache = Client((MEMCACHED_HOST, 11211))
 # Set up requests
 session = requests.session()
 
-REQUIRED_PRODUCTION_FIELDS = [
-    'coal'
-]
 def validate_production(obj, country_code):
     if not 'datetime' in obj:
         raise Exception('datetime was not returned for %s' % country_code)
@@ -186,9 +183,10 @@ def validate_production(obj, country_code):
         raise Exception("Country codes %s and %s don't match" % (obj.get('countryCode', None), country_code))
     if arrow.get(obj['datetime']) > arrow.now():
         raise Exception("Data from %s can't be in the future" % country_code)
-    for key in REQUIRED_PRODUCTION_FIELDS:
-        if not key in obj.get('production', {}) or not obj['production'].get(key, None):
-            raise Exception("Production %s is required for %s" % (key, country_code))
+    if obj.get('production', {}).get('unknown', None) is None and \
+        obj.get('production', {}).get('coal', None) is None and \
+        country_code not in ['NO']:
+        raise Exception("Coal or unknown production value is required for %s" % (country_code))
 
 def db_upsert(col, obj, database_key):
     try:
