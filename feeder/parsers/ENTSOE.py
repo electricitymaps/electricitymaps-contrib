@@ -40,7 +40,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'ES': '10YES-REE------0',
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
-    # 'GB': 'GB',
+    'GB': '10YGB----------A',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
