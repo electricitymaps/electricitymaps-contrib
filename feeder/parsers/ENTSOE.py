@@ -137,9 +137,9 @@ def parse_consumption(xml_text):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
-            quantity.append(float(entry.find_all('quantity')[0].contents[0]))
+            quantities.append(float(entry.find_all('quantity')[0].contents[0]))
             position = int(entry.find_all('position')[0].contents[0])
-            datetime.append(datetime_from_position(datetime_start, position, resolution))
+            datetimes.append(datetime_from_position(datetime_start, position, resolution))
     return quantities, datetimes
 
 def parse_production(xml_text):
@@ -232,6 +232,22 @@ def get_unknown(values):
             values.get('Marine', 0) + \
             values.get('Other renewable', 0) + \
             values.get('Other', 0)
+
+def fetch_consumption(country_code, session=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_consumption(query_consumption(domain, session))
+    if parsed:
+        quantities, datetimes = parsed
+        data = {
+            'countryCode': country_code,
+            'datetime': datetimes[-1].datetime,
+            'consumption': quantities[-1],
+            'source': 'entsoe.eu'
+        }
+
+        return data
 
 def fetch_production(country_code, session=None):
     if not session: session = requests.session()
