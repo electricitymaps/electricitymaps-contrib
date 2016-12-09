@@ -40,32 +40,32 @@ logger.info('Feeder is starting..')
 
 # Define all production parsers
 CONSUMPTION_PARSERS = {
-    'AT': ENTSOE.fetch_production,
-    'BE': ENTSOE.fetch_production,
-    'BG': ENTSOE.fetch_production,
-    'CH': ENTSOE.fetch_production,
-    'CZ': ENTSOE.fetch_production,
-    'DE': ENTSOE.fetch_production,
-    'DK': ENTSOE.fetch_production,
-    # 'EE': EE.fetch_production,
-    'ES': ENTSOE.fetch_production,
-    'FI': ENTSOE.fetch_production,
-    # 'FR': FR.fetch_production,
-    'GB': ENTSOE.fetch_production,
-    'GR': ENTSOE.fetch_production,
-    # 'HU': HU.fetch_production,
-    'IE': ENTSOE.fetch_production,
-    'IT': ENTSOE.fetch_production,
-    'LT': ENTSOE.fetch_production,
-    'LV': ENTSOE.fetch_production,
-    'NL': ENTSOE.fetch_production,
-    'NO': ENTSOE.fetch_production,
-    'PL': ENTSOE.fetch_production,
-    'PT': ENTSOE.fetch_production,
-    # 'RO': RO.fetch_production,
-    'SE': ENTSOE.fetch_production,
-    'SI': ENTSOE.fetch_production,
-    'SK': ENTSOE.fetch_production,
+    'AT': ENTSOE.fetch_consumption,
+    'BE': ENTSOE.fetch_consumption,
+    'BG': ENTSOE.fetch_consumption,
+    'CH': ENTSOE.fetch_consumption,
+    'CZ': ENTSOE.fetch_consumption,
+    'DE': ENTSOE.fetch_consumption,
+    'DK': ENTSOE.fetch_consumption,
+    # 'EE': EE.fetch_consumption,
+    'ES': ENTSOE.fetch_consumption,
+    'FI': ENTSOE.fetch_consumption,
+    # 'FR': FR.fetch_consumption,
+    'GB': ENTSOE.fetch_consumption,
+    'GR': ENTSOE.fetch_consumption,
+    # 'HU': HU.fetch_consumption,
+    'IE': ENTSOE.fetch_consumption,
+    'IT': ENTSOE.fetch_consumption,
+    'LT': ENTSOE.fetch_consumption,
+    'LV': ENTSOE.fetch_consumption,
+    'NL': ENTSOE.fetch_consumption,
+    'NO': ENTSOE.fetch_consumption,
+    'PL': ENTSOE.fetch_consumption,
+    'PT': ENTSOE.fetch_consumption,
+    # 'RO': RO.fetch_consumption,
+    'SE': ENTSOE.fetch_consumption,
+    'SI': ENTSOE.fetch_consumption,
+    'SK': ENTSOE.fetch_consumption,
 }
 PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
@@ -206,6 +206,11 @@ else: cache = Client((MEMCACHED_HOST, 11211))
 # Set up requests
 session = requests.session()
 
+def validate_consumption(obj, country_code):
+    # Data quality check
+    if obj['consumption'] is not None and obj['consumption'] < 0:
+        raise ValueError('%s: consumption has negative value %s' % (country_code, obj['consumption']))
+
 def validate_production(obj, country_code):
     if not 'datetime' in obj:
         raise Exception('datetime was not returned for %s' % country_code)
@@ -229,11 +234,11 @@ def db_upsert(col, obj, database_key):
             { '$set': obj },
             upsert=True)
         if result.modified_count:
-            logger.info('Updated %s @ %s' % (obj[database_key], obj['datetime']))
+            logger.info('[%s] Updated %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
         elif result.matched_count:
-            logger.debug('Already up to date: %s @ %s' % (obj[database_key], obj['datetime']))
+            logger.debug('[%s] Already up to date: %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
         elif result.upserted_id:
-            logger.info('Inserted %s @ %s' % (obj[database_key], obj['datetime']))
+            logger.info('[%s] Inserted %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
         else:
             raise Exception('Unknown database command result.')
         # Only update createdAt time if upsert happened
@@ -252,11 +257,9 @@ def fetch_consumptions():
         try:
             with statsd.StatsdTimer('fetch_one_consumption'):
                 obj = parser(country_code, session)
+                print obj
                 if not obj: continue
-                # Data quality check
-                for k, v in obj['consumption'].iteritems():
-                    if v is None: continue
-                    if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
+                validate_consumption(obj, country_code)
                 # Database insert
                 result = db_upsert(col_consumption, obj, 'countryCode')
                 if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
@@ -309,10 +312,12 @@ def fetch_weather():
 
 migrate(db, validate_production)
 
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
 schedule.every(15).minutes.do(fetch_weather)
 
+fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
 fetch_weather()
