@@ -51,7 +51,7 @@ var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap
 
 var co2color = d3.scale.linear()
     .domain([0, 350, 700])
-    .range(['green', 'orange', 'black'])
+    .range(['green', 'orange', 'darkred'])
     .clamp(true);
 var maxWind = 15;
 var windColor = d3.scale.linear()
@@ -69,16 +69,25 @@ var windColor = d3.scale.linear()
         "rgba(255,  30, 219, 0.5)"
     ])
     .clamp(true);
-var maxSolar = 300;
-var nightOpacity = 0.25;
-var maxSolarOpacity = 0.0;
+// ** Solar Scale **
+var maxSolar = 500;
+var minDayDSWRF = 10;
+var nightOpacity = 0.4;
+var minSolarDayOpacity = 0.3;
+var maxSolarDayOpacity = 0.0;
+var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolar)(i / (10 - 1)); } );
+var solarRange = d3.range(10).map(function (i) {
+    var c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
+    var a = d3.interpolate(minSolarDayOpacity, maxSolarDayOpacity)(i / (10 - 1));
+    return 'rgba(' + c + ', ' + c + ', ' + c + ', ' + a + ')';
+});
+// Insert the night (DWSWRF \in [0, 1]) domain
+solarDomain.splice(0, 0, 1);
+solarRange.splice(0, 0, rgba(0, 0, 0, ' + nightOpacity + ')
+// Create scale
 var solarColor = d3.scale.linear()
-    .domain(d3.range(10).map(function (i) { return d3.interpolate(0, maxSolar)(i / (10 - 1)); } ))
-    .range(d3.range(10).map(function (i) { 
-        var c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
-        var a = d3.interpolate(nightOpacity, maxSolarOpacity)(i / (10 - 1));
-        return `rgba(${c}, ${c}, ${c}, ${a})`;
-    }))
+    .domain(solarDomain)
+    .range(solarRange)
     .clamp(true);
 
 // Set up objects
@@ -185,12 +194,13 @@ if (isSmallScreen()) {
             windColorbar.currentMarker(undefined);
         }
         if (solar && coordinates) {
-            var lonlat = countryMap.projection().invert(coordinates);
-            // TODO: Optimise by grouping in a solar or grib class
             var t_before = moment(solar.forecasts[0].header.refTime).unix() * 1000.0 + 
                 solar.forecasts[0].header.forecastTime * 3600.0 * 1000.0;
             var t_after = moment(solar.forecasts[1].header.refTime).unix() * 1000.0 + 
                 solar.forecasts[1].header.forecastTime * 3600.0 * 1000.0;
+            var lonlat = countryMap.projection().invert(coordinates);
+            // TODO: Optimise by grouping in a solar or grib class
+            var now = (new Date()).getTime();
             if (moment(now) <= moment(t_after)) {
                 var Nx = solar.forecasts[0].header.nx;
                 var Ny = solar.forecasts[0].header.ny;
@@ -201,12 +211,12 @@ if (isSmallScreen()) {
                 var i = parseInt(lonlat[0] - lo1) / dx;
                 var j = parseInt(la1 - lonlat[1]) / dy;
                 var n = j * Nx + i;
-                var now = (new Date()).getTime();
                 var k = (now - t_before)/(t_after - t_before);
                 var val = d3.interpolate(
                     solar.forecasts[0].data[n],
                     solar.forecasts[1].data[n])(k);
                 solarColorbar.currentMarker(val);
+                console.log(val)
             }
         } else {
             solarColorbar.currentMarker(undefined);
@@ -305,13 +315,15 @@ function dataLoaded(err, state, argSolar, argWind) {
             console.log('#2 solar forecast target',
                 moment(t_after).fromNow(),
                 'made', moment(solar.forecasts[1].header.refTime).fromNow());
-            if (false && moment(now) > moment(t_after)) {
+            if (moment(now) > moment(t_after)) {
                 console.error('Error while interpolating solar because current time is out of bounds');
             } else {
-                var buckets = d3.range(10).map(function(d) { return []; });
+                var k = (now - t_before)/(t_after - t_before);
+                var buckets = d3.range(solarColor.range().length)
+                    .map(function(d) { return []; });
                 var bucketIndex = d3.scale.linear()
-                    .rangeRound([0, 9])
-                    .domain([0, 300])
+                    .rangeRound(d3.range(buckets.length))
+                    .domain(solarColor.domain())
                     .clamp(true);
 
                 function bilinearInterpolate(x, y, x1, x2, y1, y2, Q11, Q12, Q21, Q22) {
@@ -322,7 +334,6 @@ function dataLoaded(err, state, argSolar, argWind) {
                 d3.range(solarCanvas.attr('width')).forEach(function(x) {
                     d3.range(solarCanvas.attr('height')).forEach(function(y) {
                         var lonlat = countryMap.projection().invert([x, y]);
-                        var k = 1.0;// (now - t_before)/(t_after - t_before);
                         var positions = [
                             [Math.floor(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
                             [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
@@ -351,7 +362,7 @@ function dataLoaded(err, state, argSolar, argWind) {
                 });
                 buckets.forEach(function(d, i) {
                     ctx.beginPath()
-                    rgbaColor = solarColor(bucketIndex.invert(i));
+                    rgbaColor = solarColor.range()[i];
                     ctx.strokeStyle = d3.rgb(rgbaColor.replace('rgba', 'rgb'));
                     ctx.globalAlpha = parseFloat(rgbaColor
                         .replace('(', '')
