@@ -39,6 +39,34 @@ else:
 logger.info('Feeder is starting..')
 
 # Define all production parsers
+CONSUMPTION_PARSERS = {
+    'AT': ENTSOE.fetch_production,
+    'BE': ENTSOE.fetch_production,
+    'BG': ENTSOE.fetch_production,
+    'CH': ENTSOE.fetch_production,
+    'CZ': ENTSOE.fetch_production,
+    'DE': ENTSOE.fetch_production,
+    'DK': ENTSOE.fetch_production,
+    # 'EE': EE.fetch_production,
+    'ES': ENTSOE.fetch_production,
+    'FI': ENTSOE.fetch_production,
+    # 'FR': FR.fetch_production,
+    'GB': ENTSOE.fetch_production,
+    'GR': ENTSOE.fetch_production,
+    # 'HU': HU.fetch_production,
+    'IE': ENTSOE.fetch_production,
+    'IT': ENTSOE.fetch_production,
+    'LT': ENTSOE.fetch_production,
+    'LV': ENTSOE.fetch_production,
+    'NL': ENTSOE.fetch_production,
+    'NO': ENTSOE.fetch_production,
+    'PL': ENTSOE.fetch_production,
+    'PT': ENTSOE.fetch_production,
+    # 'RO': RO.fetch_production,
+    'SE': ENTSOE.fetch_production,
+    'SI': ENTSOE.fetch_production,
+    'SK': ENTSOE.fetch_production,
+}
 PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
@@ -159,9 +187,11 @@ statsd.init_statsd({
 # Set up database
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
+col_consumption = db['consumption']
 col_production = db['production']
 col_exchange = db['exchange']
 # Set up indices
+col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
 
@@ -187,6 +217,9 @@ def validate_production(obj, country_code):
         obj.get('production', {}).get('coal', None) is None and \
         country_code not in ['CH', 'NO']:
         raise Exception("Coal or unknown production value is required for %s" % (country_code))
+    for k, v in obj['production'].iteritems():
+        if v is None: continue
+        if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
 
 def db_upsert(col, obj, database_key):
     try:
@@ -214,6 +247,23 @@ def db_upsert(col, obj, database_key):
         # Note: with this design, the oldest record stays.
         logger.info('Successfully fetched %s @ %s but did not insert into the db because it already existed' % (obj[database_key], obj['datetime']))
 
+def fetch_consumptions():
+    for country_code, parser in CONSUMPTION_PARSERS.iteritems():
+        try:
+            with statsd.StatsdTimer('fetch_one_consumption'):
+                obj = parser(country_code, session)
+                if not obj: continue
+                # Data quality check
+                for k, v in obj['consumption'].iteritems():
+                    if v is None: continue
+                    if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
+                # Database insert
+                result = db_upsert(col_consumption, obj, 'countryCode')
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
+        except:
+            statsd.increment('fetch_one_consumption_error')
+            logger.exception('Exception while fetching consumption of %s' % country_code)
+
 def fetch_productions():
     for country_code, parser in PRODUCTION_PARSERS.iteritems():
         try:
@@ -221,10 +271,6 @@ def fetch_productions():
                 obj = parser(country_code, session)
                 if not obj: continue
                 validate_production(obj, country_code)
-                # Data quality check
-                for k, v in obj['production'].iteritems():
-                    if v is None: continue
-                    if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
                 # Database insert
                 result = db_upsert(col_production, obj, 'countryCode')
                 if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
