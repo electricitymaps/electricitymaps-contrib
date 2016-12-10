@@ -64,6 +64,10 @@ function addCountriesConfiguration(countries) {
         nuclear: 3780,
         wind: 691,
     }
+    countries['CH'].capacity = {
+        hydro: 4178 + 4802 + 190,
+        nuclear: 3375
+    };
     countries['CZ'].capacity = {
         biomass: 350,
         coal: 380 + 1200 + 8334,
