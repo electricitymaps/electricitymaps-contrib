@@ -257,7 +257,6 @@ def fetch_consumptions():
         try:
             with statsd.StatsdTimer('fetch_one_consumption'):
                 obj = parser(country_code, session)
-                print obj
                 if not obj: continue
                 validate_consumption(obj, country_code)
                 # Database insert
