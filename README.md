@@ -97,6 +97,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Nuclear: [world-nuclear.org](http://www.world-nuclear.org/information-library/country-profiles/countries-o-s/sweden.aspx)
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Sweden)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
+- Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 
 
 ### Real-time weather data sources
