@@ -258,7 +258,7 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
                 .attr('width', function (d) {
-                    return (d.capacity === undefined || d.production === undefined) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
+                    return (d.capacity == null || d.production == null) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
                 })
                 .each('end', function () { d3.select(this).style('display', 'block'); });
         selection.select('rect.production')
