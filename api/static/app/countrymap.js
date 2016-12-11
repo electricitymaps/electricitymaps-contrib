@@ -26,7 +26,7 @@ CountryMap.prototype.render = function() {
     var computedMapWidth = this.root.node().getBoundingClientRect().width,
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
-    var scale = 0.5 * computedMapWidth;
+    var scale = Math.max(650, 0.5 * computedMapWidth);
     this._projection = d3.geo.mercator()
         .center([3, 48])
         .translate([0.5 * computedMapWidth, 0.65 * computedMapHeight])
