@@ -13,7 +13,7 @@ services:
       - MONGO_URL=mongodb://mongo:27017/electricity
       - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
       - VIRTUAL_HOST=electricitymap-api.tmrow.co
-    image: corradio/electricitymap_api
+    image: corradio/electricitymap_api:production
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
@@ -30,7 +30,7 @@ services:
       - MONGO_URL=mongodb://mongo:27017/electricity
       - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
       - VIRTUAL_HOST=electricitymap.tmrow.co
-    image: corradio/electricitymap_api
+    image: corradio/electricitymap_api:production
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
@@ -45,7 +45,7 @@ services:
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017
       - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
-    image: corradio/electricitymap_feeder
+    image: corradio/electricitymap_feeder:production
     networks: [default, infrastructure] # required to be able to com' with statsd
     restart: unless-stopped
     volumes: ['/home/shared/electricitymap/data:/home/data']

@@ -26,10 +26,11 @@ CountryMap.prototype.render = function() {
     var computedMapWidth = this.root.node().getBoundingClientRect().width,
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
+    var scale = 0.5 * computedMapWidth;
     this._projection = d3.geo.mercator()
         .center([3, 48])
-        .translate([0.55 * computedMapWidth, 0.65 * computedMapHeight])
-        .scale(650);
+        .translate([0.5 * computedMapWidth, 0.65 * computedMapHeight])
+        .scale(scale);
 
     this.path = d3.geo.path()
         .projection(this._projection);
