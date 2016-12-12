@@ -58,6 +58,7 @@ statsdClient.post = 8125;
 statsdClient.host = process.env['STATSD_HOST'];
 statsdClient.prefix = 'electricymap_api.';
 statsdClient.socket.on('error', function(error) {
+    if (opbeat) opbeat.captureError(error);
     return console.error('Error in StatsD socket: ', error);
 });
 
@@ -203,8 +204,18 @@ app.use(express.static('libs'));
 // * Routes
 app.get('/v1/wind', function(req, res) {
     statsdClient.increment('v1_wind_GET');
-    res.header('Content-Encoding', 'gzip');
-    res.sendFile(__dirname + '/data/wind.json.gz');
+    memcachedClient.get('wind', function (err, data) {
+        if (err) {
+            if (opbeat) opbeat.captureError(err);
+            res.status(500).send('Internal server error');
+        } else if (data) {
+            res.json(data);
+        } else {
+            res.status(404).send('Wind not found');
+        }
+    });
+    //res.header('Content-Encoding', 'gzip');
+    //res.sendFile(__dirname + '/data/wind.json.gz');
 });
 app.get('/v1/solar', function(req, res) {
     statsdClient.increment('v1_solar_GET');
@@ -224,6 +235,7 @@ app.get('/v1/state', function(req, res) {
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 statsdClient.increment('state_GET_ERROR');
+                if (opbeat) opbeat.captureError(err);
                 console.error(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
@@ -232,17 +244,24 @@ app.get('/v1/state', function(req, res) {
         });
     } else {
         memcachedClient.get('state', function (err, data) {
-            if (err) { console.error(err); }
+            if (err) { 
+                if (opbeat) 
+                    opbeat.captureError(err); 
+                console.error(err); }
             if (data) returnObj(data, true);
             else {
                 queryLastValues(function (err, result) {
                     if (err) {
                         statsdClient.increment('state_GET_ERROR');
+                        if (opbeat) opbeat.captureError(err);
                         console.error(err);
                         res.status(500).json({error: 'Unknown database error'});
                     } else {
                         memcachedClient.set('state', result, 5 * 60, function(err) {
-                            if (err) console.error(err);
+                            if (err) {
+                                if (opbeat) opbeat.captureError(err);
+                                console.error(err);
+                            }
                         });
                         returnObj(result, false);
                     }
@@ -262,6 +281,7 @@ app.get('/v1/co2', function(req, res) {
         if (err) {
             statsdClient.increment('co2_GET_ERROR');
             console.error(err);
+            if (opbeat) opbeat.captureError(err);
             res.status(500).json({error: 'Unknown error'});
         } else {
             var deltaMs = new Date().getTime() - t0;
@@ -337,6 +357,7 @@ app.get('/health', function(req, res) {
     mongoProductionCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
         if (err) {
             console.error(err);
+            if (opbeat) opbeat.captureError(err);
             res.status(500).json({error: 'Unknown database error'});
         } else {
             var deltaMs = new Date().getTime() - new Date(doc.datetime).getTime();

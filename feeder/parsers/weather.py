@@ -22,17 +22,9 @@ def get_url(origin, horizon):
         '&leftlon=%d&rightlon=%d&toplat=%d&bottomlat=%d' % (180 + SW[0], 180 + NE[0], NE[1], SW[1])
 
 def fetch_forecast(origin, horizon):
-    isBest = False
-    try:
-        print 'Fetching weather forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call(
-            ['wget', '-q', get_url(origin, horizon), '-O', TMP_FILENAME], shell=False)
-        isBest = True
-    except subprocess.CalledProcessError:
-        origin = origin.replace(hours=-STEP_ORIGIN)
-        print 'Trying instead to fetch weather forecast of %s made at %s' % (horizon, origin)
-        subprocess.check_call(
-            ['wget', '-q', get_url(origin, horizon), '-O', TMP_FILENAME], shell=False)
+    print 'Fetching weather forecast of %s made at %s' % (horizon, origin)
+    subprocess.check_call(
+        ['wget', '-q', get_url(origin, horizon), '-O', TMP_FILENAME], shell=False)
 
     with pygrib.open(TMP_FILENAME) as f:
         wind_u = f.select(name='10 metre U wind component')[0]
@@ -53,8 +45,8 @@ def fetch_forecast(origin, horizon):
         # For backwards compatibility,
         # We're keeping the GRIB2JSON format for now
         obj = {
-            'forecastTime': arrow.get(wind_u.analDate).isoformat(),
-            'targetTime': arrow.get(wind_u.validDate).isoformat(),
+            'refTime': arrow.get(wind_u.analDate).datetime,
+            'targetTime': arrow.get(wind_u.validDate).datetime,
             'wind': [
                 {
                     'header': {
@@ -104,9 +96,9 @@ def fetch_forecast(origin, horizon):
                 'data': DSWRF.flatten().tolist()
             }
         }
-        return (obj, isBest)
+        return obj
 
-def fetch_weather(now=None, compress=True, useCache=False):
+def fetch_next_forecasts(now=None, lookahead=2):
     if not now: now = arrow.utcnow()
     horizon = now.floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
@@ -117,40 +109,12 @@ def fetch_weather(now=None, compress=True, useCache=False):
     while (int(origin.format('HH')) % STEP_ORIGIN) != 0:
         origin = origin.replace(hours=-1)
 
-    # Read cache for horizon
-    if (useCache):
-        cache_filename = 'data/weathercache_%s.json.gz' % horizon.timestamp
-        if os.path.exists(cache_filename):
-            with gzip.open(cache_filename, 'r') as f:
-                return json.load(f)
+    objs = []
+    for i in range(lookahead):
+        objs.append(fetch_forecast(origin, horizon))
+        horizon = horizon.replace(hours=+STEP_HORIZON)
 
-    # Fetch both a forecast before and after the current time
-    obj_before, beforeIsBestForecast = fetch_forecast(origin, horizon)
-    obj_after, afterIsBestForecast = fetch_forecast(origin, horizon.replace(hours=+STEP_HORIZON))
-
-    obj = {
-        'forecasts': [obj_before, obj_after]
-    }
-
-    # Backwards compatibility: dump to wind/solar files
-    if compress:
-        with gzip.open('data/wind.json.gz', 'w') as f_out:
-            print 'Writing wind as gzipped json..'
-            json.dump({
-                'forecasts': [obj_before['wind'], obj_after['wind']]
-            }, f_out)
-        with gzip.open('data/solar.json.gz', 'w') as f_out:
-            print 'Writing solar as gzipped json..'
-            json.dump({
-                'forecasts': [obj_before['solar'], obj_after['solar']]
-            }, f_out)
-    if useCache and beforeIsBestForecast and afterIsBestForecast:
-        cache_filename = 'data/weathercache_%s.json.gz' % horizon.timestamp
-        with gzip.open(cache_filename, 'w') as f:
-            json.dump(obj, f)
-
-    print 'Done'
-    return obj
+    return objs
 
 if __name__ == '__main__':
-    fetch_weather()
+    fetch_next_forecasts()
