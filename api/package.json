@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "async": "^2.0.1",
+    "compression": "^1.6.2",
     "d3": "^4.2.3",
     "express": "^4.10.2",
     "mathjs": "^3.5.1",

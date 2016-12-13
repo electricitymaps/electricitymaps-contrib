@@ -12,6 +12,7 @@ if (isProduction) {
 
 var async = require('async');
 var co2lib = require('./static/app/co2eq');
+var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');
 var http = require('http');
@@ -25,11 +26,7 @@ var app = express();
 var server = http.Server(app);
 
 // * Common
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+app.use(compression());
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
