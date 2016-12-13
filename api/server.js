@@ -17,8 +17,9 @@ var express = require('express');
 var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
-var statsd = require('node-statsd');
 var MongoClient = require('mongodb').MongoClient;
+var statsd = require('node-statsd');
+var snappy = require('snappy');
 
 var app = express();
 var server = http.Server(app);
@@ -36,6 +37,10 @@ var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 // * Opbeat
 if (opbeat)
     app.use(opbeat.middleware.express())
+function handleError(err) {
+    if (opbeat) opbeat.captureError(err);
+    console.error(err);
+}
 
 // * Database
 var mongoProductionCollection;
@@ -43,8 +48,9 @@ var mongoExchangeCollection;
 MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
     if (err) throw (err);
     console.log('Connected to database');
-    mongoProductionCollection = db.collection('production');
+    mongoGfsCollection = db.collection('gfs');
     mongoExchangeCollection = db.collection('exchange');
+    mongoProductionCollection = db.collection('production');
 
     // Start the application
     server.listen(8000, function() {
@@ -58,8 +64,7 @@ statsdClient.post = 8125;
 statsdClient.host = process.env['STATSD_HOST'];
 statsdClient.prefix = 'electricymap_api.';
 statsdClient.socket.on('error', function(error) {
-    if (opbeat) opbeat.captureError(error);
-    return console.error('Error in StatsD socket: ', error);
+    handleError(error);
 });
 
 // * Database methods
@@ -138,7 +143,8 @@ function elementQuery(keyName, keyValue, minDate, maxDate) {
     return query;
 }
 function rangeQuery(minDate, maxDate) {
-    var query = { $gte : minDate };
+    var query = { };
+    if (minDate) query['$gte'] = minDate;
     if (maxDate) query['$lte'] = maxDate;
     return query;
 }
@@ -197,6 +203,28 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
 function queryLastValues(callback) {
     return queryLastValuesBeforeDatetime(undefined, callback);
 }
+function queryLastGfsAfter(key, datetime, callback) {
+    return mongoGfsCollection.findOne(
+        {'key': key, 'targetTime': rangeQuery(datetime, null)},
+        { sort: [['refTime', 1]] },
+        callback);
+}
+function queryLastGfsBefore(key, datetime, callback) {
+    return mongoGfsCollection.findOne(
+        {'key': key, 'targetTime': rangeQuery(null, datetime)},
+        { sort: [['refTime', -1]] },
+        callback);
+}
+function decompressGfs(callback) {
+    return function (err, obj) {
+        if (err) return callback(err);
+        if (!obj) return callback(Error('No data found in database'));
+        return snappy.uncompress(obj['data'].buffer, { asBuffer: false }, function (err, obj) {
+            if (err) return callback(err);
+            return callback(err, JSON.parse(obj));
+        });
+    }
+}
 
 // * Static
 app.use(express.static('static'));
@@ -204,16 +232,34 @@ app.use(express.static('libs'));
 // * Routes
 app.get('/v1/wind', function(req, res) {
     statsdClient.increment('v1_wind_GET');
-    memcachedClient.get('wind', function (err, data) {
+    now = moment.utc().toDate();
+    // Fetch two forecasts
+    var fetchBefore = function(callback) {
+        return queryLastGfsBefore('wind', now, decompressGfs(callback));
+    };
+    var fetchAfter  = function(callback) {
+        return  queryLastGfsAfter('wind', now, decompressGfs(callback));
+    };
+    async.parallel([fetchBefore, fetchAfter], function(err, results) {
+        console.log('FINAL CALLBACK', err)
         if (err) {
-            if (opbeat) opbeat.captureError(err);
-            res.status(500).send('Internal server error');
-        } else if (data) {
-            res.json(data);
+            handleError(err);
+            res.status(500).send('Unknown server error');
         } else {
-            res.status(404).send('Wind not found');
+            obj = {'forecasts': results};
+            res.json(obj);
         }
     });
+    // memcachedClient.get('wind', function (err, data) {
+    //     if (err) {
+    //         handleError(err);
+    //         res.status(500).send('Internal server error');
+    //     } else if (data) {
+    //         res.json(data);
+    //     } else {
+    //         res.status(404).send('Wind not found');
+    //     }
+    // });
     //res.header('Content-Encoding', 'gzip');
     //res.sendFile(__dirname + '/data/wind.json.gz');
 });
@@ -235,8 +281,7 @@ app.get('/v1/state', function(req, res) {
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 statsdClient.increment('state_GET_ERROR');
-                if (opbeat) opbeat.captureError(err);
-                console.error(err);
+                handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
                 returnObj(result, false);
@@ -253,14 +298,12 @@ app.get('/v1/state', function(req, res) {
                 queryLastValues(function (err, result) {
                     if (err) {
                         statsdClient.increment('state_GET_ERROR');
-                        if (opbeat) opbeat.captureError(err);
-                        console.error(err);
+                        handleError(err);
                         res.status(500).json({error: 'Unknown database error'});
                     } else {
                         memcachedClient.set('state', result, 5 * 60, function(err) {
                             if (err) {
-                                if (opbeat) opbeat.captureError(err);
-                                console.error(err);
+                                handleError(err);
                             }
                         });
                         returnObj(result, false);
@@ -280,8 +323,7 @@ app.get('/v1/co2', function(req, res) {
         var countries = obj.countries;
         if (err) {
             statsdClient.increment('co2_GET_ERROR');
-            console.error(err);
-            if (opbeat) opbeat.captureError(err);
+            handleError(err);
             res.status(500).json({error: 'Unknown error'});
         } else {
             var deltaMs = new Date().getTime() - t0;
@@ -357,7 +399,7 @@ app.get('/health', function(req, res) {
     mongoProductionCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
         if (err) {
             console.error(err);
-            if (opbeat) opbeat.captureError(err);
+            handleError(err);
             res.status(500).json({error: 'Unknown database error'});
         } else {
             var deltaMs = new Date().getTime() - new Date(doc.datetime).getTime();
