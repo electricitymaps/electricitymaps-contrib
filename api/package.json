@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "async": "^2.0.1",
+    "compression": "^1.6.2",
     "d3": "^4.2.3",
     "express": "^4.10.2",
     "mathjs": "^3.5.1",
@@ -11,7 +12,8 @@
     "moment": "^2.15.2",
     "mongodb": "^2.2.9",
     "node-statsd": "^0.1.1",
-    "opbeat": "^3.21.0"
+    "opbeat": "^3.21.0",
+    "snappy": "^5.0.5"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
