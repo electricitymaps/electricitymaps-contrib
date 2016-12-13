@@ -41,6 +41,34 @@ else:
 logger.info('Feeder is starting..')
 
 # Define all production parsers
+CONSUMPTION_PARSERS = {
+    'AT': ENTSOE.fetch_consumption,
+    'BE': ENTSOE.fetch_consumption,
+    'BG': ENTSOE.fetch_consumption,
+    'CH': ENTSOE.fetch_consumption,
+    'CZ': ENTSOE.fetch_consumption,
+    'DE': ENTSOE.fetch_consumption,
+    'DK': ENTSOE.fetch_consumption,
+    # 'EE': EE.fetch_consumption,
+    'ES': ENTSOE.fetch_consumption,
+    'FI': ENTSOE.fetch_consumption,
+    # 'FR': FR.fetch_consumption,
+    'GB': ENTSOE.fetch_consumption,
+    'GR': ENTSOE.fetch_consumption,
+    # 'HU': HU.fetch_consumption,
+    'IE': ENTSOE.fetch_consumption,
+    'IT': ENTSOE.fetch_consumption,
+    'LT': ENTSOE.fetch_consumption,
+    'LV': ENTSOE.fetch_consumption,
+    'NL': ENTSOE.fetch_consumption,
+    'NO': ENTSOE.fetch_consumption,
+    'PL': ENTSOE.fetch_consumption,
+    'PT': ENTSOE.fetch_consumption,
+    # 'RO': RO.fetch_consumption,
+    'SE': ENTSOE.fetch_consumption,
+    'SI': ENTSOE.fetch_consumption,
+    'SK': ENTSOE.fetch_consumption,
+}
 PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
@@ -161,10 +189,12 @@ statsd.init_statsd({
 # Set up database
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
+col_consumption = db['consumption']
 col_gfs = db['gfs']
 col_production = db['production']
 col_exchange = db['exchange']
 # Set up indices
+col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', 1), ('key', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
@@ -183,6 +213,11 @@ else:
 # Set up requests
 session = requests.session()
 
+def validate_consumption(obj, country_code):
+    # Data quality check
+    if obj['consumption'] is not None and obj['consumption'] < 0:
+        raise ValueError('%s: consumption has negative value %s' % (country_code, obj['consumption']))
+
 def validate_production(obj, country_code):
     if not 'datetime' in obj:
         raise Exception('datetime was not returned for %s' % country_code)
@@ -194,22 +229,39 @@ def validate_production(obj, country_code):
         obj.get('production', {}).get('coal', None) is None and \
         country_code not in ['CH', 'NO']:
         raise Exception("Coal or unknown production value is required for %s" % (country_code))
+    for k, v in obj['production'].iteritems():
+        if v is None: continue
+        if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
 
 def db_upsert(col, obj, database_key):
     now = arrow.now().datetime
     query = { database_key: obj[database_key], 'datetime': obj['datetime'] }
     result = col.update_one(query, { '$set': obj }, upsert=True)
     if result.modified_count:
-        logger.info('Updated %s @ %s' % (obj[database_key], obj['datetime']))
+        logger.info('[%s] Updated %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
         col.update_one(query, { '$set': { 'modifiedAt': now } })
     elif result.matched_count:
-        logger.debug('Already up to date: %s @ %s' % (obj[database_key], obj['datetime']))
+        logger.debug('[%s] Already up to date: %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
     elif result.upserted_id:
-        logger.info('Inserted %s @ %s' % (obj[database_key], obj['datetime']))
+        logger.info('[%s] Inserted %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
         col.update_one(query, { '$set': { 'createdAt': now } })
     else:
         raise Exception('Unknown database command result.')
     return result
+
+def fetch_consumptions():
+    for country_code, parser in CONSUMPTION_PARSERS.iteritems():
+        try:
+            with statsd.StatsdTimer('fetch_one_consumption'):
+                obj = parser(country_code, session)
+                if not obj: continue
+                validate_consumption(obj, country_code)
+                # Database insert
+                result = db_upsert(col_consumption, obj, 'countryCode')
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
+        except:
+            statsd.increment('fetch_one_consumption_error')
+            logger.exception('Exception while fetching consumption of %s' % country_code)
 
 def fetch_productions():
     for country_code, parser in PRODUCTION_PARSERS.iteritems():
@@ -218,10 +270,6 @@ def fetch_productions():
                 obj = parser(country_code, session)
                 if not obj: continue
                 validate_production(obj, country_code)
-                # Data quality check
-                for k, v in obj['production'].iteritems():
-                    if v is None: continue
-                    if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
                 # Database insert
                 result = db_upsert(col_production, obj, 'countryCode')
                 if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
@@ -297,11 +345,13 @@ def fetch_weather():
 
 migrate(db, validate_production)
 
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
 schedule.every(15).minutes.do(fetch_weather)
 
 fetch_weather()
+fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
 
