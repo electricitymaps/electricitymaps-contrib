@@ -98,7 +98,7 @@ def fetch_forecast(origin, horizon):
         }
         return obj
 
-def fetch_next_forecasts(now=None, lookahead=2):
+def fetch_next_forecasts(now=None, lookahead=6):
     if not now: now = arrow.utcnow()
     horizon = now.floor('hour')
     while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
