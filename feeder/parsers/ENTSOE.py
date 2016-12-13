@@ -40,7 +40,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'ES': '10YES-REE------0',
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
-    # 'GB': 'GB',
+    'GB': '10YGB----------A',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
@@ -63,6 +63,23 @@ ENTSOE_DOMAIN_MAPPINGS = {
     # 'TR': 'TR',
     # 'UA': 'UA'
 }
+
+def query_consumption(domain, session):
+    now = arrow.utcnow()
+    params = {
+        'documentType': 'A65',
+        'processType': 'A16',
+        'outBiddingZone_Domain': domain,
+        'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
+        'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
+        'securityToken': os.environ['ENTSOE_TOKEN']
+    }
+    response = session.get(ENTSOE_ENDPOINT, params=params)
+    if response.ok: return response.text
+    else:
+        # Grab the error if possible
+        soup = BeautifulSoup(response.text, 'html.parser')
+        raise Exception('Failed to get consumption. Reason: %s' % soup.find_all('text')[0].contents[0])
 
 def query_production(psr_type, in_domain, session):
     now = arrow.utcnow()
@@ -110,6 +127,21 @@ def datetime_from_position(start, position, resolution):
             return start.replace(minutes=position * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
+def parse_consumption(xml_text):
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    quantities = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            quantities.append(float(entry.find_all('quantity')[0].contents[0]))
+            position = int(entry.find_all('position')[0].contents[0])
+            datetimes.append(datetime_from_position(datetime_start, position, resolution))
+    return quantities, datetimes
+
 def parse_production(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -122,7 +154,7 @@ def parse_production(xml_text):
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
-            # Is this is not a production, then it is storage (consumption)
+            # If this is not a production, then it is storage (consumption)
             if not is_production: quantity *= -1
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
@@ -200,6 +232,22 @@ def get_unknown(values):
             values.get('Marine', 0) + \
             values.get('Other renewable', 0) + \
             values.get('Other', 0)
+
+def fetch_consumption(country_code, session=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_consumption(query_consumption(domain, session))
+    if parsed:
+        quantities, datetimes = parsed
+        data = {
+            'countryCode': country_code,
+            'datetime': datetimes[-1].datetime,
+            'consumption': quantities[-1],
+            'source': 'entsoe.eu'
+        }
+
+        return data
 
 def fetch_production(country_code, session=None):
     if not session: session = requests.session()
