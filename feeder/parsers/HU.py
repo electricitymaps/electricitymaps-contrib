@@ -21,14 +21,14 @@ def fetch_production(country_code='HU', session=None):
     df_prod = df_prod.iloc[ix].iloc[-1] # Get the last
 
     # Fetch
-    url = ('http://rtdwweb.mavir.hu/webuser/ExportChartXlsIntervalServlet?' + 
-        'fromDateXls=%s&fromTimeXls=T00%%3A00%%3A00&' % now.format('YYYY-MM-DD') + 
-        'toDateXls=%s&toTimeXls=T00%%3A00%%3A00&' % now.replace(days=+1).format('YYYY-MM-DD') + 
-        'resoulutionInput=15&unit=min&outputType=XLS&selectedTabId=tab5230&submitXls=')
-    df_exchange = pd.read_excel(url).dropna() # only keep non NaN value
-    # Remove points in the future
-    ix = map(lambda x: arrow.get(x, "YYYY.MM.DD HH:mm:ss").replace(tzinfo=dateutil.tz.gettz(TIME_ZONE)) < now, df_exchange.dropna()[u'Időpont'])
-    df_exchange = df_exchange.iloc[ix].iloc[-1] # Get the last
+    # url = ('http://rtdwweb.mavir.hu/webuser/ExportChartXlsIntervalServlet?' + 
+    #     'fromDateXls=%s&fromTimeXls=T00%%3A00%%3A00&' % now.format('YYYY-MM-DD') + 
+    #     'toDateXls=%s&toTimeXls=T00%%3A00%%3A00&' % now.replace(days=+1).format('YYYY-MM-DD') + 
+    #     'resoulutionInput=15&unit=min&outputType=XLS&selectedTabId=tab5230&submitXls=')
+    # df_exchange = pd.read_excel(url).dropna() # only keep non NaN value
+    # # Remove points in the future
+    # ix = map(lambda x: arrow.get(x, "YYYY.MM.DD HH:mm:ss").replace(tzinfo=dateutil.tz.gettz(TIME_ZONE)) < now, df_exchange.dropna()[u'Időpont'])
+    # df_exchange = df_exchange.iloc[ix].iloc[-1] # Get the last
     
     obj = {
         'countryCode': country_code,
