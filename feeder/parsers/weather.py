@@ -97,24 +97,3 @@ def fetch_forecast(origin, horizon):
             }
         }
         return obj
-
-def fetch_next_forecasts(now=None, lookahead=6):
-    if not now: now = arrow.utcnow()
-    horizon = now.floor('hour')
-    while (int(horizon.format('HH')) % STEP_HORIZON) != 0:
-        horizon = horizon.replace(hours=-1)
-    # Warning: solar will not be available at horizon 0
-    # so always do at least horizon 1
-    origin = horizon.replace(hours=-1)
-    while (int(origin.format('HH')) % STEP_ORIGIN) != 0:
-        origin = origin.replace(hours=-1)
-
-    objs = []
-    for i in range(lookahead):
-        objs.append(fetch_forecast(origin, horizon))
-        horizon = horizon.replace(hours=+STEP_HORIZON)
-
-    return objs
-
-if __name__ == '__main__':
-    fetch_next_forecasts()

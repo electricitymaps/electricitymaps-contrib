@@ -6,10 +6,9 @@ import requests
 import snappy
 
 from bson.binary import Binary
-from collections import defaultdict
 from pymemcache.client.base import Client
 
-from parsers import EE, FR, GB, HU, RO
+from parsers import EE, FR, HU, RO
 
 from parsers import ENTSOE
 from parsers import weather
@@ -310,20 +309,48 @@ def db_upsert_forecast(col, obj, database_key):
     delta_hours = int((obj['targetTime'] - obj['refTime']).total_seconds() / 3600.0)
     if result.modified_count:
         col.update_one(query, { '$set': { 'modifiedAt': now } })
-        logger.info('Updated %s @ %s +%d' % (obj[database_key], obj['refTime'], delta_hours))
+        logger.info('[%s] Updated %s @ %s +%d' % (col.full_name, obj[database_key], obj['refTime'], delta_hours))
     elif result.matched_count:
-        logger.debug('Already up to date: %s @ %s +%d' % (obj[database_key], obj['refTime'], delta_hours))
+        logger.debug('[%s] Already up to date: %s @ %s +%d' % (col.full_name, obj[database_key], obj['refTime'], delta_hours))
     elif result.upserted_id:
         col.update_one(query, { '$set': { 'createdAt': now } })
-        logger.info('Inserted %s @ %s +%d' % (obj[database_key], obj['refTime'], delta_hours))
+        logger.info('[%s] Inserted %s @ %s +%d' % (col.full_name, obj[database_key], obj['refTime'], delta_hours))
     else:
         raise Exception('Unknown database command result.')
     return result
 
+def fetch_next_forecasts(now=None, lookahead=6, cached=False):
+    if not now: now = arrow.utcnow()
+    horizon = now.floor('hour')
+    while (int(horizon.format('HH')) % weather.STEP_HORIZON) != 0:
+        horizon = horizon.replace(hours=-1)
+    # Warning: solar will not be available at horizon 0
+    # so always do at least horizon 1
+    origin = horizon.replace(hours=-1)
+    while (int(origin.format('HH')) % weather.STEP_ORIGIN) != 0:
+        origin = origin.replace(hours=-1)
+
+    objs = []
+    for i in range(lookahead):
+        # Check if wind and solar are already in the database
+        if cached:
+            results = map(lambda d: d['key'], col_gfs.find({
+                'refTime': origin.datetime,
+                'targetTime': horizon.datetime
+            }, projection={'key': 1}))
+            delta_hours = int((horizon.datetime - origin.datetime).total_seconds() / 3600.0)
+        if cached and set(results) == set(['wind', 'solar']):
+            logger.debug('[%s] Already in database: %s @ %s +%d' % (col_gfs.full_name, ('wind', 'solar'), origin.datetime, delta_hours))
+        else:
+            objs.append(weather.fetch_forecast(origin, horizon))
+        horizon = horizon.replace(hours=+weather.STEP_HORIZON)
+
+    return objs
+
 def fetch_weather():
     try:
-        with statsd.StatsdTimer('fetch_weather'): 
-            objs = weather.fetch_next_forecasts()
+        with statsd.StatsdTimer('fetch_weather'):
+            objs = fetch_next_forecasts(cached=True)
             for obj in objs:
                 wind = {
                     'refTime': obj['refTime'],
@@ -350,10 +377,10 @@ schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
 schedule.every(15).minutes.do(fetch_weather)
 
-fetch_weather()
 fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
+fetch_weather()
 
 while True:
     schedule.run_pending()
