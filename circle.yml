@@ -7,8 +7,8 @@ machine:
     - docker
 dependencies:
   override:
+    - touch secrets.env
     - docker-compose build
-    - docker-compose run web npm run compile
     - docker-compose up -d
     - sleep 10
     - curl --fail -i localhost:8000/health

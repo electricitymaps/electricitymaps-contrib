@@ -1,13 +1,14 @@
 import arrow
 import glob
 import pymongo
-import logging, os, schedule, time
+import json, logging, os, schedule, time
 import requests
+import snappy
 
-from collections import defaultdict
+from bson.binary import Binary
 from pymemcache.client.base import Client
 
-from parsers import EE, FR, GB, HU, RO
+from parsers import EE, FR, HU, RO
 
 from parsers import ENTSOE
 from parsers import weather
@@ -188,20 +189,25 @@ statsd.init_statsd({
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
 db = client['electricity']
 col_consumption = db['consumption']
+col_gfs = db['gfs']
 col_production = db['production']
 col_exchange = db['exchange']
 # Set up indices
 col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
+col_gfs.create_index([('refTime', -1), ('targetTime', 1), ('key', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
 
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
-MEMCACHED_KEY = 'state'
+MEMCACHED_STATE_KEY = 'state'
+MEMCACHED_SOLAR_KEY = 'solar'
+MEMCACHED_WIND_KEY = 'wind'
 if not MEMCACHED_HOST:
     logger.warn('MEMCACHED_HOST env variable was not found.. starting without cache!')
     cache = None
-else: cache = Client((MEMCACHED_HOST, 11211))
+else: 
+    cache = Client((MEMCACHED_HOST, 11211))
 
 # Set up requests
 session = requests.session()
@@ -227,30 +233,20 @@ def validate_production(obj, country_code):
         if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
 
 def db_upsert(col, obj, database_key):
-    try:
-        createdAt = arrow.now().datetime
-        result = col.update_one(
-            { database_key: obj[database_key], 'datetime': obj['datetime'] },
-            { '$set': obj },
-            upsert=True)
-        if result.modified_count:
-            logger.info('[%s] Updated %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
-        elif result.matched_count:
-            logger.debug('[%s] Already up to date: %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
-        elif result.upserted_id:
-            logger.info('[%s] Inserted %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
-        else:
-            raise Exception('Unknown database command result.')
-        # Only update createdAt time if upsert happened
-        if result.modified_count or result.upserted_id:
-            col.update_one(
-                { database_key: obj[database_key], 'datetime': obj['datetime'] },
-                { '$set': { 'createdAt': createdAt } })
-        return result
-    except pymongo.errors.DuplicateKeyError:
-        # (datetime, countryCode) does already exist. Don't raise.
-        # Note: with this design, the oldest record stays.
-        logger.info('Successfully fetched %s @ %s but did not insert into the db because it already existed' % (obj[database_key], obj['datetime']))
+    now = arrow.now().datetime
+    query = { database_key: obj[database_key], 'datetime': obj['datetime'] }
+    result = col.update_one(query, { '$set': obj }, upsert=True)
+    if result.modified_count:
+        logger.info('[%s] Updated %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
+        col.update_one(query, { '$set': { 'modifiedAt': now } })
+    elif result.matched_count:
+        logger.debug('[%s] Already up to date: %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
+    elif result.upserted_id:
+        logger.info('[%s] Inserted %s @ %s' % (col.full_name, obj[database_key], obj['datetime']))
+        col.update_one(query, { '$set': { 'createdAt': now } })
+    else:
+        raise Exception('Unknown database command result.')
+    return result
 
 def fetch_consumptions():
     for country_code, parser in CONSUMPTION_PARSERS.iteritems():
@@ -261,7 +257,7 @@ def fetch_consumptions():
                 validate_consumption(obj, country_code)
                 # Database insert
                 result = db_upsert(col_consumption, obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
             statsd.increment('fetch_one_consumption_error')
             logger.exception('Exception while fetching consumption of %s' % country_code)
@@ -275,7 +271,7 @@ def fetch_productions():
                 validate_production(obj, country_code)
                 # Database insert
                 result = db_upsert(col_production, obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
             statsd.increment('fetch_one_production_error')
             logger.exception('Exception while fetching production of %s' % country_code)
@@ -297,14 +293,79 @@ def fetch_exchanges():
                     raise Exception("Data from %s can't be in the future" % k)
                 # Database insert
                 result = db_upsert(col_exchange, obj, 'sortedCountryCodes')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
             statsd.increment('fetch_one_exchange_error')
             logger.exception('Exception while fetching exchange of %s' % k)
 
+def db_upsert_forecast(col, obj, database_key):
+    now = arrow.now().datetime
+    query = {
+        database_key: obj[database_key],
+        'refTime': obj['refTime'],
+        'targetTime': obj['targetTime']
+    }
+    result = col.update_one(query, { '$set': obj }, upsert=True)
+    delta_hours = int((obj['targetTime'] - obj['refTime']).total_seconds() / 3600.0)
+    if result.modified_count:
+        col.update_one(query, { '$set': { 'modifiedAt': now } })
+        logger.info('[%s] Updated %s @ %s +%d' % (col.full_name, obj[database_key], obj['refTime'], delta_hours))
+    elif result.matched_count:
+        logger.debug('[%s] Already up to date: %s @ %s +%d' % (col.full_name, obj[database_key], obj['refTime'], delta_hours))
+    elif result.upserted_id:
+        col.update_one(query, { '$set': { 'createdAt': now } })
+        logger.info('[%s] Inserted %s @ %s +%d' % (col.full_name, obj[database_key], obj['refTime'], delta_hours))
+    else:
+        raise Exception('Unknown database command result.')
+    return result
+
+def fetch_next_forecasts(now=None, lookahead=6, cached=False):
+    if not now: now = arrow.utcnow()
+    horizon = now.floor('hour')
+    while (int(horizon.format('HH')) % weather.STEP_HORIZON) != 0:
+        horizon = horizon.replace(hours=-1)
+    # Warning: solar will not be available at horizon 0
+    # so always do at least horizon 1
+    origin = horizon.replace(hours=-1)
+    while (int(origin.format('HH')) % weather.STEP_ORIGIN) != 0:
+        origin = origin.replace(hours=-1)
+
+    objs = []
+    for i in range(lookahead):
+        # Check if wind and solar are already in the database
+        if cached:
+            results = map(lambda d: d['key'], col_gfs.find({
+                'refTime': origin.datetime,
+                'targetTime': horizon.datetime
+            }, projection={'key': 1}))
+            delta_hours = int((horizon.datetime - origin.datetime).total_seconds() / 3600.0)
+        if cached and set(results) == set(['wind', 'solar']):
+            logger.debug('[%s] Already in database: %s @ %s +%d' % (col_gfs.full_name, ('wind', 'solar'), origin.datetime, delta_hours))
+        else:
+            objs.append(weather.fetch_forecast(origin, horizon))
+        horizon = horizon.replace(hours=+weather.STEP_HORIZON)
+
+    return objs
+
 def fetch_weather():
     try:
-        with statsd.StatsdTimer('fetch_weather'): weather.fetch_weather()
+        with statsd.StatsdTimer('fetch_weather'):
+            objs = fetch_next_forecasts(cached=True)
+            for obj in objs:
+                wind = {
+                    'refTime': obj['refTime'],
+                    'targetTime': obj['targetTime'],
+                    'data': Binary(snappy.compress(json.dumps(obj['wind']))),
+                    'key': 'wind'
+                }
+                solar = {
+                    'refTime': obj['refTime'],
+                    'targetTime': obj['targetTime'],
+                    'data': Binary(snappy.compress(json.dumps(obj['solar']))),
+                    'key': 'solar'
+                }
+                db_upsert_forecast(col_gfs, wind, 'key')
+                db_upsert_forecast(col_gfs, solar, 'key')
     except:
         statsd.increment('fetch_weather_error')
         logger.exception('fetch_weather()')
