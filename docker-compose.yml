@@ -12,7 +12,6 @@ services:
     volumes:
       - './api/static:/home/static'
       - './api/server.js:/home/server.js'
-      - './api/data:/home/data'
   feeder:
     build: feeder
     depends_on: [mongo]
@@ -22,7 +21,6 @@ services:
       - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     volumes:
-      - './api/data:/home/data'
       - './feeder/feeder.py:/home/feeder.py'
       - './feeder/parsers:/home/parsers'
   memcached:
