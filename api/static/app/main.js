@@ -401,8 +401,12 @@ function dataLoaded(err, state, argSolar, argWind) {
         var validCountries = d3.values(countries).filter(function(d) {
             return d.production;
         }).sort(function(x, y) {
-            return d3.ascending(x.co2intensity || x.fullname || x.countryCode,
-                y.co2intensity || y.fullname || y.countryCode);
+            if (!x.co2intensity && !x.countryCode)
+                return d3.ascending(x.fullname || x.countryCode,
+                    y.fullname || y.countryCode);
+            else
+                return d3.ascending(x.co2intensity || Infinity,
+                    y.co2intensity || Infinity);
         });
         var selector = d3.select('.country-picker-container p')
             .selectAll('a')
