@@ -263,6 +263,20 @@ def fetch_consumptions():
             statsd.increment('fetch_one_consumption_error')
             logger.exception('Exception while fetching consumption of %s' % country_code)
 
+def fetch_consumptions():
+    for country_code, parser in CONSUMPTION_PARSERS.iteritems():
+        try:
+            with statsd.StatsdTimer('fetch_one_consumption'):
+                obj = parser(country_code, session)
+                if not obj: continue
+                validate_consumption(obj, country_code)
+                # Database insert
+                result = db_upsert(col_consumption, obj, 'countryCode')
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_KEY)
+        except:
+            statsd.increment('fetch_one_consumption_error')
+            logger.exception('Exception while fetching consumption of %s' % country_code)
+
 def fetch_productions():
     for country_code, parser in PRODUCTION_PARSERS.iteritems():
         try:

@@ -123,3 +123,5 @@ Once you're done doing your changes, submit a [pull request](https://help.github
 ## Troubleshooting
 
 - `ERROR: Couldn't find env file:` env files are used to store sensitive information such as API keys. If you get this error after running `docker-compose up`, create an empty file named `secrets.env` in the root folder
+
+- `KeyError: 'ENTSOE_TOKEN'`: in order to request data from the ENTSOE, you need an API key. You can create an account and request your API key by [following this link](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html). Once you have it, add it to your `secrets.env` file. 
