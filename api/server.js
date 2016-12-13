@@ -202,20 +202,22 @@ function queryLastValues(callback) {
 }
 function queryLastGfsAfter(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(datetime, null)},
+        {'key': key, 'targetTime': rangeQuery(datetime,
+            moment(datetime).add(2, 'hours').toDate())},
         { sort: [['refTime', 1]] },
         callback);
 }
 function queryLastGfsBefore(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(null, datetime)},
+        {'key': key, 'targetTime': rangeQuery(
+            moment(datetime).subtract(2, 'hours').toDate(), datetime)},
         { sort: [['refTime', -1]] },
         callback);
 }
 function decompressGfs(callback) {
     return function (err, obj) {
         if (err) return callback(err);
-        if (!obj) return callback(Error('No data found in database'));
+        if (!obj) return callback(null, obj);
         return snappy.uncompress(obj['data'].buffer, { asBuffer: false }, function (err, obj) {
             if (err) return callback(err);
             return callback(err, JSON.parse(obj));
@@ -241,7 +243,7 @@ app.use(express.static('libs'));
 // * Routes
 app.get('/v1/wind', function(req, res) {
     statsdClient.increment('v1_wind_GET');
-    now = moment.utc().toDate();
+    now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
     // Fetch two forecasts
     fetchForecasts('wind', now, function(err, obj) {
         if (err) {
@@ -251,22 +253,10 @@ app.get('/v1/wind', function(req, res) {
             res.json(obj);
         }
     });
-    // memcachedClient.get('wind', function (err, data) {
-    //     if (err) {
-    //         handleError(err);
-    //         res.status(500).send('Internal server error');
-    //     } else if (data) {
-    //         res.json(data);
-    //     } else {
-    //         res.status(404).send('Wind not found');
-    //     }
-    // });
-    //res.header('Content-Encoding', 'gzip');
-    //res.sendFile(__dirname + '/data/wind.json.gz');
 });
 app.get('/v1/solar', function(req, res) {
     statsdClient.increment('v1_solar_GET');
-    now = moment.utc().toDate();
+    now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
     // Fetch two forecasts
     fetchForecasts('solar', now, function(err, obj) {
         if (err) {

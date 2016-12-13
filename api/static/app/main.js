@@ -16,6 +16,7 @@ var solarEnabled = false;
             forceRemoteEndpoint = kv[1] == 'true';
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
+            console.log('** You are using the map with a custom date set to ' + customDate + ' **');
         } else if (kv[0] == 'wind') {
             windEnabled = kv[1] == 'true';
         } else if (kv[0] == 'solar') {
@@ -200,7 +201,7 @@ if (isSmallScreen()) {
                 solar.forecasts[1].header.forecastTime * 3600.0 * 1000.0;
             var lonlat = countryMap.projection().invert(coordinates);
             // TODO: Optimise by grouping in a solar or grib class
-            var now = (new Date()).getTime();
+            var now = customDate ? moment(customDate) : (new Date()).getTime();
             if (moment(now) <= moment(t_after)) {
                 var Nx = solar.forecasts[0].header.nx;
                 var Ny = solar.forecasts[0].header.ny;
@@ -255,7 +256,7 @@ function dataLoaded(err, state, argSolar, argWind) {
     wind = argWind;
     solar = argSolar;
 
-    if (wind && windEnabled) {
+    if (wind && wind['forecasts'][0] && wind['forecasts'][1] && windEnabled) {
         console.log('wind', wind);
         d3.select('.wind-legend').style('display', 'block');
         var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
@@ -267,7 +268,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             t_after.fromNow(),
             'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
         // Interpolate wind
-        var now = (new Date()).getTime();
+        var now = customDate ? moment(customDate) : (new Date()).getTime();
         var interpolatedWind = wind.forecasts[0];
         if (moment(now) > moment(t_after)) {
             console.error('Error while interpolating wind because current time is out of bounds');
@@ -293,7 +294,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         d3.select('.wind-legend').style('display', 'none');
     }
 
-    if (solar && solarEnabled) {
+    if (solar && solar['forecasts'][0] && solar['forecasts'][1] && solarEnabled) {
         console.log('solar', solar);
         d3.select('.solar-legend').style('display', 'block');
         if (ctx) {
@@ -308,7 +309,7 @@ function dataLoaded(err, state, argSolar, argWind) {
                 solar.forecasts[0].header.forecastTime * 3600.0 * 1000.0;
             var t_after = moment(solar.forecasts[1].header.refTime).unix() * 1000.0 + 
                 solar.forecasts[1].header.forecastTime * 3600.0 * 1000.0;
-            var now = (new Date()).getTime();
+            var now = customDate ? moment(customDate) : (new Date()).getTime();
             console.log('#1 solar forecast target', 
                 moment(t_before).fromNow(),
                 'made', moment(solar.forecasts[0].header.refTime).fromNow());
@@ -618,8 +619,8 @@ function fetchAndReschedule() {
     } else {
         Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
         if (solarEnabled || windEnabled) {
-            Q.defer(d3.json, ENDPOINT + '/v1/solar');
-            Q.defer(d3.json, ENDPOINT + '/v1/wind');
+            Q.defer(d3.json, ENDPOINT + '/v1/solar' + (customDate ? '?datetime=' + customDate : ''));
+            Q.defer(d3.json, ENDPOINT + '/v1/wind' + (customDate ? '?datetime=' + customDate : ''));
         }
         Q.await(function(err, state, solar, wind) {
             handleConnectionError(err);
