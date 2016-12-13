@@ -225,6 +225,18 @@ function decompressGfs(callback) {
         });
     }
 }
+function fetchForecasts(key, datetime, callback) {
+    var fetchBefore = function(callback) {
+        return queryLastGfsBefore(key, now, decompressGfs(callback));
+    };
+    var fetchAfter  = function(callback) {
+        return  queryLastGfsAfter(key, now, decompressGfs(callback));
+    };
+    return async.parallel([fetchBefore, fetchAfter], function(err, objs) {
+        if (err) return callback(err);
+        return callback(null, {'forecasts': objs});
+    });
+}
 
 // * Static
 app.use(express.static('static'));
@@ -234,19 +246,11 @@ app.get('/v1/wind', function(req, res) {
     statsdClient.increment('v1_wind_GET');
     now = moment.utc().toDate();
     // Fetch two forecasts
-    var fetchBefore = function(callback) {
-        return queryLastGfsBefore('wind', now, decompressGfs(callback));
-    };
-    var fetchAfter  = function(callback) {
-        return  queryLastGfsAfter('wind', now, decompressGfs(callback));
-    };
-    async.parallel([fetchBefore, fetchAfter], function(err, results) {
-        console.log('FINAL CALLBACK', err)
+    fetchForecasts('wind', now, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
         } else {
-            obj = {'forecasts': results};
             res.json(obj);
         }
     });
@@ -265,8 +269,16 @@ app.get('/v1/wind', function(req, res) {
 });
 app.get('/v1/solar', function(req, res) {
     statsdClient.increment('v1_solar_GET');
-    res.header('Content-Encoding', 'gzip');
-    res.sendFile(__dirname + '/data/solar.json.gz');
+    now = moment.utc().toDate();
+    // Fetch two forecasts
+    fetchForecasts('solar', now, function(err, obj) {
+        if (err) {
+            handleError(err);
+            res.status(500).send('Unknown server error');
+        } else {
+            res.json(obj);
+        }
+    });
 });
 app.get('/v1/state', function(req, res) {
     statsdClient.increment('v1_state_GET');
