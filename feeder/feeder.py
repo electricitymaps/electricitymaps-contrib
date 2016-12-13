@@ -195,6 +195,7 @@ col_exchange = db['exchange']
 # Set up indices
 col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', 1), ('key', 1)], unique=True)
+col_gfs.create_index([('refTime', -1), ('targetTime', -1), ('key', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
 
