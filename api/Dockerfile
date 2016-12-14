@@ -1,4 +1,4 @@
-FROM node:4.5.0
+FROM node:6.9.2
 WORKDIR /home
 EXPOSE 8000
 RUN npm install -g yarn

@@ -202,8 +202,6 @@ col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
 MEMCACHED_STATE_KEY = 'state'
-MEMCACHED_SOLAR_KEY = 'solar'
-MEMCACHED_WIND_KEY = 'wind'
 if not MEMCACHED_HOST:
     logger.warn('MEMCACHED_HOST env variable was not found.. starting without cache!')
     cache = None
