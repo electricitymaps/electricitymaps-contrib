@@ -6,7 +6,14 @@ machine:
   services:
     - docker
 dependencies:
+  cache_directories:
+    - '~/docker'
   override:
+    - if [[ -e ~/docker/api.tar ]]; then docker load -i ~/docker/api.tar; fi
+    - if [[ -e ~/docker/feeder.tar ]]; then docker load -i ~/docker/feeder.tar; fi
+    - docker-compose -f docker-compose.yml build
+    - mkdir -p ~/docker; docker save electricitymap_api:latest > ~/docker/api.tar
+    - mkdir -p ~/docker; docker save electricitymap_feeder:latest > ~/docker/feeder.tar
     - touch secrets.env
     - docker-compose build
     - docker-compose up -d
