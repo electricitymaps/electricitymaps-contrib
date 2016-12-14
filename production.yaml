@@ -16,6 +16,8 @@ services:
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
+    # TODO: REMOVE
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   api-secure:
     depends_on: [mongo, memcached]
     env_file: [./mailgun.env, ./secrets.env]
@@ -31,6 +33,8 @@ services:
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     restart: unless-stopped
+    # TODO: REMOVE
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   feeder:
     depends_on: [mongo]
     env_file: [./mailgun.env, ./secrets.env]
@@ -43,6 +47,8 @@ services:
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd
     restart: unless-stopped
+    # TODO: REMOVE
+    volumes: ['/home/shared/electricitymap/data:/home/data']
   memcached:
     image: memcached
   mongo:
