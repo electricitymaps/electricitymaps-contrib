@@ -35,6 +35,7 @@ var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 if (opbeat)
     app.use(opbeat.middleware.express())
 function handleError(err) {
+    if (!err) return;
     if (opbeat) opbeat.captureError(err);
     console.error(err);
 }
@@ -214,26 +215,60 @@ function queryLastGfsBefore(key, datetime, callback) {
         { sort: [['refTime', -1]] },
         callback);
 }
-function decompressGfs(callback) {
-    return function (err, obj) {
+function decompressGfs(obj, callback) {
+    if (!obj) return callback(null, null);
+    return snappy.uncompress(obj, { asBuffer: true }, function (err, obj) {
         if (err) return callback(err);
-        if (!obj) return callback(null, obj);
-        return snappy.uncompress(obj['data'].buffer, { asBuffer: false }, function (err, obj) {
-            if (err) return callback(err);
-            return callback(err, JSON.parse(obj));
-        });
-    }
+        return callback(err, JSON.parse(obj));
+    });
 }
-function fetchForecasts(key, datetime, callback) {
-    var fetchBefore = function(callback) {
-        return queryLastGfsBefore(key, now, decompressGfs(callback));
+function queryForecasts(key, datetime, callback) {
+    function fetchBefore(callback) {
+        return queryLastGfsBefore(key, now, callback);
     };
-    var fetchAfter  = function(callback) {
-        return  queryLastGfsAfter(key, now, decompressGfs(callback));
+    function fetchAfter(callback) {
+        return queryLastGfsAfter(key, now, callback);
     };
-    return async.parallel([fetchBefore, fetchAfter], function(err, objs) {
-        if (err) return callback(err);
-        return callback(null, {'forecasts': objs});
+    return async.parallel([fetchBefore, fetchAfter], callback);
+}
+function getParsedForecasts(key, datetime, cached, callback) {
+    // Fetch two forecasts, using the cache if possible
+    var kb = key + '_before';
+    var ka = key + '_after';
+    memcachedClient.getMulti([kb, ka], function (err, data) {
+        if (err) {
+            return callback(err);
+        } else if (!data[kb] || !data[ka]) {
+            // Nothing in cache, proceed as planned
+            return queryForecasts(key, datetime, function(err, objs) {
+                if (err) return callback(err);
+                if (!objs[0] || !objs[1]) return callback(null, null);
+                // Store in cache
+                var lifetime = parseInt(
+                    (moment(objs[1]['targetTime']).toDate().getTime() - (new Date()).getTime()) / 1000.0);
+                memcachedClient.set(kb, objs[0]['data'].buffer, lifetime, handleError);
+                memcachedClient.set(ka, objs[1]['data'].buffer, lifetime, handleError);
+                // Decompress
+                return async.parallel([
+                    function(callback) { return decompressGfs(objs[0]['data'].buffer, callback); },
+                    function(callback) { return decompressGfs(objs[1]['data'].buffer, callback); }
+                ], function(err, objs) {
+                    if (err) return callback(err);
+                    // Return to sender
+                    return callback(null, {'forecasts': objs, 'cached': false});
+                });
+            })
+        } else {
+            // Decompress data, to be able to reconstruct a database object
+            return async.parallel([
+                function(callback) { return decompressGfs(data[kb], callback); },
+                function(callback) { return decompressGfs(data[ka], callback); }
+            ], function(err, objs) {
+                if (err) return callback(err);
+                // Reconstruct database object and return to sender
+                return callback(null, {'forecasts': objs, 'cached': true});
+            });
+        }
     });
 }
 
@@ -242,27 +277,33 @@ app.use(express.static('static'));
 app.use(express.static('libs'));
 // * Routes
 app.get('/v1/wind', function(req, res) {
+    var t0 = (new Date().getTime());
     statsdClient.increment('v1_wind_GET');
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
-    // Fetch two forecasts
-    fetchForecasts('wind', now, function(err, obj) {
+    getParsedForecasts('wind', now, req.query.datetime == null, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
         } else {
+            var deltaMs = new Date().getTime() - t0;
+            obj['took'] = deltaMs + 'ms';
+            statsdClient.timing('wind_GET', deltaMs);
             res.json(obj);
         }
     });
 });
 app.get('/v1/solar', function(req, res) {
+    var t0 = (new Date().getTime());
     statsdClient.increment('v1_solar_GET');
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
-    // Fetch two forecasts
-    fetchForecasts('solar', now, function(err, obj) {
+    getParsedForecasts('solar', now, req.query.datetime == null, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
         } else {
+            var deltaMs = new Date().getTime() - t0;
+            obj['took'] = deltaMs + 'ms';
+            statsdClient.timing('solar_GET', deltaMs);
             res.json(obj);
         }
     });
