@@ -5,5 +5,6 @@ ADD package.json /home/package.json
 RUN npm install
 ADD . /home
 CMD node server.js
-HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
+# Healthcheck removed for now because Docker > 1.10 not supported by circle ci
+# HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
 
