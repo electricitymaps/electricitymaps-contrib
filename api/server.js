@@ -26,7 +26,11 @@ var app = express();
 var server = http.Server(app);
 
 // * Common
-app.use(compression());
+app.use(compression()); // Cloudflare already does gzip but we do it anyway
+app.disable('etag'); // Disable etag generation (except for static)
+
+// * Static
+app.use(express.static(__dirname + '/static', {etag: true}));
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -272,9 +276,6 @@ function getParsedForecasts(key, datetime, cached, callback) {
     });
 }
 
-// * Static
-var oneDay = 86400000;
-app.use(express.static(__dirname + '/static', { maxAge: oneDay }));
 // * Routes
 app.get('/v1/wind', function(req, res) {
     var t0 = (new Date().getTime());
@@ -290,6 +291,10 @@ app.get('/v1/wind', function(req, res) {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
             statsdClient.timing('wind_GET', deltaMs);
+            var t_after = moment(obj.forecasts[1][0].header.refTime)
+                .add(obj.forecasts[1][0].header.forecastTime, 'hours');
+            res.setHeader('Cache-Control', 'public');
+            res.setHeader('Expires', t_after.toDate().toUTCString());
             res.json(obj);
         }
     });
@@ -308,6 +313,10 @@ app.get('/v1/solar', function(req, res) {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
             statsdClient.timing('solar_GET', deltaMs);
+            var t_after = moment(obj.forecasts[1].header.refTime)
+                .add(obj.forecasts[1].header.forecastTime, 'hours');
+            res.setHeader('Cache-Control', 'public');
+            res.setHeader('Expires', t_after.toDate().toUTCString());
             res.json(obj);
         }
     });
