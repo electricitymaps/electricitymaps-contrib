@@ -205,18 +205,18 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
 function queryLastValues(callback) {
     return queryLastValuesBeforeDatetime(undefined, callback);
 }
-function queryLastGfsAfter(key, datetime, callback) {
-    return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(datetime,
-            moment(datetime).add(2, 'hours').toDate())},
-        { sort: [['refTime', 1]] },
-        callback);
-}
 function queryLastGfsBefore(key, datetime, callback) {
     return mongoGfsCollection.findOne(
         {'key': key, 'targetTime': rangeQuery(
             moment(datetime).subtract(2, 'hours').toDate(), datetime)},
-        { sort: [['refTime', -1]] },
+        { sort: [['refTime', -1], ['targetTime', -1]] },
+        callback);
+}
+function queryLastGfsAfter(key, datetime, callback) {
+    return mongoGfsCollection.findOne(
+        {'key': key, 'targetTime': rangeQuery(datetime,
+            moment(datetime).add(2, 'hours').toDate())},
+        { sort: [['refTime', -1], ['targetTime', 1]] },
         callback);
 }
 function decompressGfs(obj, callback) {
