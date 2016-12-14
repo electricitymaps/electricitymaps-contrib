@@ -1,10 +1,16 @@
-FROM node:6.6.0
+FROM node:6.9.2
 WORKDIR /home
 EXPOSE 8000
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN npm install -g yarn
 ADD package.json /home/package.json
 ADD yarn.lock /home/yarn.lock
-RUN $HOME/.yarn/bin/yarn install
+# Workaround for yarn to be able to chown
+RUN adduser foo
+RUN chown -R foo /home/foo
+RUN chown -R foo /usr/local
+USER foo
+
+RUN yarn install
 ADD . /home
 CMD node server.js
 HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
