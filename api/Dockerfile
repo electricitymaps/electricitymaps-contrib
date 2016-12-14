@@ -1,4 +1,4 @@
-FROM node:6.9.2
+FROM node:6.6.0
 WORKDIR /home
 EXPOSE 8000
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
