@@ -371,15 +371,15 @@ def fetch_weather():
 
 migrate(db, validate_production)
 
+schedule.every(15).minutes.do(fetch_weather)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
-schedule.every(15).minutes.do(fetch_weather)
 
+fetch_weather()
 fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
-fetch_weather()
 
 while True:
     schedule.run_pending()

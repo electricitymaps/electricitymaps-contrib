@@ -273,8 +273,8 @@ function getParsedForecasts(key, datetime, cached, callback) {
 }
 
 // * Static
-app.use(express.static('static'));
-app.use(express.static('libs'));
+var oneDay = 86400000;
+app.use(express.static(__dirname + '/static', { maxAge: oneDay }));
 // * Routes
 app.get('/v1/wind', function(req, res) {
     var t0 = (new Date().getTime());
@@ -284,6 +284,8 @@ app.get('/v1/wind', function(req, res) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
+        } else if (!obj) {
+            res.status(500).send('No data');
         } else {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
@@ -300,6 +302,8 @@ app.get('/v1/solar', function(req, res) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
+        } else if (!obj) {
+            res.status(500).send('No data');
         } else {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
