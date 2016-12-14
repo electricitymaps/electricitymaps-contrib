@@ -23,6 +23,7 @@ services:
     env_file: [./mailgun.env, ./secrets.env]
     environment:
       - ENV=production
+      - HTTPS_METHOD=noredirect
       - LETSENCRYPT_EMAIL=info@tmrow.co
       - LETSENCRYPT_HOST=electricitymap.tmrow.co
       - MEMCACHED_HOST=memcached
