@@ -202,8 +202,6 @@ col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
 MEMCACHED_STATE_KEY = 'state'
-MEMCACHED_SOLAR_KEY = 'solar'
-MEMCACHED_WIND_KEY = 'wind'
 if not MEMCACHED_HOST:
     logger.warn('MEMCACHED_HOST env variable was not found.. starting without cache!')
     cache = None
@@ -373,15 +371,15 @@ def fetch_weather():
 
 migrate(db, validate_production)
 
+schedule.every(15).minutes.do(fetch_weather)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
-schedule.every(15).minutes.do(fetch_weather)
 
+fetch_weather()
 fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
-fetch_weather()
 
 while True:
     schedule.run_pending()
