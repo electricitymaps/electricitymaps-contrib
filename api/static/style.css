@@ -46,7 +46,7 @@ html, body {
     pointer-events: all;
 }
 .watermark {
-    display: table;
+    display: block;
     pointer-events: all;
     padding: 15px;
     opacity: 0.5;
@@ -201,7 +201,7 @@ a:hover {
   }
 }
 
-div.fb-share-button, iframe.twitter-share-button, iframe.__slackin {
+div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, iframe.twitter-follow-button, iframe.__slackin {
     vertical-align: middle
 }
 
