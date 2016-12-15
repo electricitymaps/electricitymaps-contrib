@@ -293,14 +293,17 @@ app.get('/v1/wind', function(req, res) {
             obj['took'] = deltaMs + 'ms';
 //            statsdClient.timing('wind_GET', deltaMs);
             if (cacheResponse) {
-                var beforeRefTime = moment(obj.forecasts[0][0].header.refTime);
-                var afterRefTime = moment(obj.forecasts[1][0].header.refTime);
+                var beforeTargetTime = moment(obj.forecasts[0][0].header.refTime)
+                    .add(obj.forecasts[0][0].header.forecastTime, 'hours');
                 var afterTargetTime = moment(obj.forecasts[1][0].header.refTime)
                     .add(obj.forecasts[1][0].header.forecastTime, 'hours');
+                // This cache system ignore the fact that a newer forecast,
+                // for the same target, can be fetched.
                 res.setHeader('Cache-Control', 'public');
+                // Expires at/after the upper bound (to force refresh after)
                 res.setHeader('Expires', afterTargetTime.toDate().toUTCString());
-                res.setHeader('Last-Modified',
-                    moment.max(beforeRefTime, afterRefTime).toDate().toUTCString());
+                // Last-modified at the lower bound (to force refresh before)
+                res.setHeader('Last-Modified', beforeTargetTime.toDate().toUTCString());
             }
             res.json(obj);
         }
@@ -320,16 +323,19 @@ app.get('/v1/solar', function(req, res) {
         } else {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
-            if (cacheResponse) {
                 //statsdClient.timing('solar_GET', deltaMs);
-                var beforeRefTime = moment(obj.forecasts[0].header.refTime);
-                var afterRefTime = moment(obj.forecasts[1].header.refTime);
+            if (cacheResponse) {
+                var beforeTargetTime = moment(obj.forecasts[0].header.refTime)
+                    .add(obj.forecasts[0].header.forecastTime, 'hours');
                 var afterTargetTime = moment(obj.forecasts[1].header.refTime)
                     .add(obj.forecasts[1].header.forecastTime, 'hours');
+                // This cache system ignore the fact that a newer forecast,
+                // for the same target, can be fetched.
                 res.setHeader('Cache-Control', 'public');
+                // Expires at/after the upper bound (to force refresh after)
                 res.setHeader('Expires', afterTargetTime.toDate().toUTCString());
-                res.setHeader('Last-Modified',
-                    moment.max(beforeRefTime, afterRefTime).toDate().toUTCString());
+                // Last-modified at the lower bound (to force refresh before)
+                res.setHeader('Last-Modified', beforeTargetTime.toDate().toUTCString());
                 res.json(obj);
             }
         }
