@@ -235,23 +235,29 @@ function queryForecasts(key, datetime, callback) {
     };
     return async.parallel([fetchBefore, fetchAfter], callback);
 }
-function getParsedForecasts(key, datetime, cached, callback) {
+function getParsedForecasts(key, datetime, useCache, callback) {
     // Fetch two forecasts, using the cache if possible
     var kb = key + '_before';
     var ka = key + '_after';
-    memcachedClient.getMulti([kb, ka], function (err, data) {
+    function getCache(key, useCache, callback) {
+        if (!useCache) return callback(null, {});
+        return memcachedClient.getMulti([kb, ka], callback);
+    }
+    getCache(key, useCache, function (err, data) {
         if (err) {
             return callback(err);
-        } else if (!data[kb] || !data[ka]) {
+        } else if (!data || !data[kb] || !data[ka]) {
             // Nothing in cache, proceed as planned
             return queryForecasts(key, datetime, function(err, objs) {
                 if (err) return callback(err);
                 if (!objs[0] || !objs[1]) return callback(null, null);
-                // Store in cache
-                var lifetime = parseInt(
-                    (moment(objs[1]['targetTime']).toDate().getTime() - (new Date()).getTime()) / 1000.0);
-                memcachedClient.set(kb, objs[0]['data'].buffer, lifetime, handleError);
-                memcachedClient.set(ka, objs[1]['data'].buffer, lifetime, handleError);
+                // Store raw (compressed) values in cache
+                if (useCache) {
+                    var lifetime = parseInt(
+                        (moment(objs[1]['targetTime']).toDate().getTime() - (new Date()).getTime()) / 1000.0);
+                    memcachedClient.set(kb, objs[0]['data'].buffer, lifetime, handleError);
+                    memcachedClient.set(ka, objs[1]['data'].buffer, lifetime, handleError);
+                }
                 // Decompress
                 return async.parallel([
                     function(callback) { return decompressGfs(objs[0]['data'].buffer, callback); },
@@ -280,9 +286,10 @@ function getParsedForecasts(key, datetime, cached, callback) {
 app.get('/v1/wind', function(req, res) {
     var t0 = (new Date().getTime());
     //statsdClient.increment('v1_wind_GET');
+    var cacheQuery = false;//req.query.datetime == null;
     var cacheResponse = req.query.datetime == null;
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
-    getParsedForecasts('wind', now, req.query.datetime == null, function(err, obj) {
+    getParsedForecasts('wind', now, cacheQuery, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
@@ -312,9 +319,10 @@ app.get('/v1/wind', function(req, res) {
 app.get('/v1/solar', function(req, res) {
     var t0 = (new Date().getTime());
     //statsdClient.increment('v1_solar_GET');
+    var cacheQuery = false;//req.query.datetime == null;
     var cacheResponse = req.query.datetime == null;
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
-    getParsedForecasts('solar', now, req.query.datetime == null, function(err, obj) {
+    getParsedForecasts('solar', now, cacheQuery, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
