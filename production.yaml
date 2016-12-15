@@ -6,11 +6,11 @@ services:
     environment:
       - ENV=production
       - HTTPS_METHOD=noredirect
-      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - LETSENCRYPT_EMAIL=info@tmrow.co
       - LETSENCRYPT_HOST=electricitymap-api.tmrow.co
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017/electricity
-      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
+      - PROMETHEUS_HOST=prometheus.infrastructure_default
       - VIRTUAL_HOST=electricitymap-api.tmrow.co
     image: corradio/electricitymap_api:production
     mem_limit: 200M
@@ -21,11 +21,12 @@ services:
     env_file: [./mailgun.env, ./secrets.env]
     environment:
       - ENV=production
+      - HTTPS_METHOD=noredirect
       - LETSENCRYPT_EMAIL=info@tmrow.co
       - LETSENCRYPT_HOST=electricitymap.tmrow.co
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017/electricity
-      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
+      - PROMETHEUS_HOST=prometheus.infrastructure_default
       - VIRTUAL_HOST=electricitymap.tmrow.co
     image: corradio/electricitymap_api:production
     mem_limit: 200M
@@ -38,7 +39,7 @@ services:
       - ENV=production
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017
-      - STATSD_HOST=grafana-graphite-statsd.infrastructure_default
+      - PROMETHEUS_HOST=prometheus.infrastructure_default
     image: corradio/electricitymap_feeder:production
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd

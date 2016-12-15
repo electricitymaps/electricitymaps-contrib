@@ -19,14 +19,18 @@ var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
 var MongoClient = require('mongodb').MongoClient;
-var statsd = require('node-statsd');
+//var statsd = require('node-statsd'); // TODO: Remove
 var snappy = require('snappy');
 
 var app = express();
 var server = http.Server(app);
 
 // * Common
-app.use(compression());
+app.use(compression()); // Cloudflare already does gzip but we do it anyway
+app.disable('etag'); // Disable etag generation (except for static)
+
+// * Static
+app.use(express.static(__dirname + '/static', {etag: true, maxAge: '4h'}));
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -35,6 +39,7 @@ var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 if (opbeat)
     app.use(opbeat.middleware.express())
 function handleError(err) {
+    if (!err) return;
     if (opbeat) opbeat.captureError(err);
     console.error(err);
 }
@@ -56,13 +61,13 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
 });
 
 // * Metrics
-var statsdClient = new statsd.StatsD();
-statsdClient.post = 8125;
-statsdClient.host = process.env['STATSD_HOST'];
-statsdClient.prefix = 'electricymap_api.';
-statsdClient.socket.on('error', function(error) {
-    handleError(error);
-});
+// var statsdClient = new statsd.StatsD();
+// statsdClient.post = 8125;
+// statsdClient.host = process.env['STATSD_HOST'];
+// statsdClient.prefix = 'electricymap_api.';
+// statsdClient.socket.on('error', function(error) {
+//     handleError(error);
+// });
 
 // * Database methods
 function processDatabaseResults(countries, exchanges) {
@@ -200,86 +205,163 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
 function queryLastValues(callback) {
     return queryLastValuesBeforeDatetime(undefined, callback);
 }
-function queryLastGfsAfter(key, datetime, callback) {
-    return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(datetime,
-            moment(datetime).add(2, 'hours').toDate())},
-        { sort: [['refTime', 1]] },
-        callback);
-}
 function queryLastGfsBefore(key, datetime, callback) {
     return mongoGfsCollection.findOne(
         {'key': key, 'targetTime': rangeQuery(
             moment(datetime).subtract(2, 'hours').toDate(), datetime)},
-        { sort: [['refTime', -1]] },
+        { sort: [['refTime', -1], ['targetTime', -1]] },
         callback);
 }
-function decompressGfs(callback) {
-    return function (err, obj) {
-        if (err) return callback(err);
-        if (!obj) return callback(null, obj);
-        return snappy.uncompress(obj['data'].buffer, { asBuffer: false }, function (err, obj) {
-            if (err) return callback(err);
-            return callback(err, JSON.parse(obj));
-        });
-    }
+function queryLastGfsAfter(key, datetime, callback) {
+    return mongoGfsCollection.findOne(
+        {'key': key, 'targetTime': rangeQuery(datetime,
+            moment(datetime).add(2, 'hours').toDate())},
+        { sort: [['refTime', -1], ['targetTime', 1]] },
+        callback);
 }
-function fetchForecasts(key, datetime, callback) {
-    var fetchBefore = function(callback) {
-        return queryLastGfsBefore(key, now, decompressGfs(callback));
-    };
-    var fetchAfter  = function(callback) {
-        return  queryLastGfsAfter(key, now, decompressGfs(callback));
-    };
-    return async.parallel([fetchBefore, fetchAfter], function(err, objs) {
+function decompressGfs(obj, callback) {
+    if (!obj) return callback(null, null);
+    return snappy.uncompress(obj, { asBuffer: true }, function (err, obj) {
         if (err) return callback(err);
-        return callback(null, {'forecasts': objs});
+        return callback(err, JSON.parse(obj));
+    });
+}
+function queryForecasts(key, datetime, callback) {
+    function fetchBefore(callback) {
+        return queryLastGfsBefore(key, now, callback);
+    };
+    function fetchAfter(callback) {
+        return queryLastGfsAfter(key, now, callback);
+    };
+    return async.parallel([fetchBefore, fetchAfter], callback);
+}
+function getParsedForecasts(key, datetime, useCache, callback) {
+    // Fetch two forecasts, using the cache if possible
+    var kb = key + '_before';
+    var ka = key + '_after';
+    function getCache(key, useCache, callback) {
+        if (!useCache) return callback(null, {});
+        return memcachedClient.getMulti([kb, ka], callback);
+    }
+    getCache(key, useCache, function (err, data) {
+        if (err) {
+            return callback(err);
+        } else if (!data || !data[kb] || !data[ka]) {
+            // Nothing in cache, proceed as planned
+            return queryForecasts(key, datetime, function(err, objs) {
+                if (err) return callback(err);
+                if (!objs[0] || !objs[1]) return callback(null, null);
+                // Store raw (compressed) values in cache
+                if (useCache) {
+                    var lifetime = parseInt(
+                        (moment(objs[1]['targetTime']).toDate().getTime() - (new Date()).getTime()) / 1000.0);
+                    memcachedClient.set(kb, objs[0]['data'].buffer, lifetime, handleError);
+                    memcachedClient.set(ka, objs[1]['data'].buffer, lifetime, handleError);
+                }
+                // Decompress
+                return async.parallel([
+                    function(callback) { return decompressGfs(objs[0]['data'].buffer, callback); },
+                    function(callback) { return decompressGfs(objs[1]['data'].buffer, callback); }
+                ], function(err, objs) {
+                    if (err) return callback(err);
+                    // Return to sender
+                    return callback(null, {'forecasts': objs, 'cached': false});
+                });
+            })
+        } else {
+            // Decompress data, to be able to reconstruct a database object
+            return async.parallel([
+                function(callback) { return decompressGfs(data[kb], callback); },
+                function(callback) { return decompressGfs(data[ka], callback); }
+            ], function(err, objs) {
+                if (err) return callback(err);
+                // Reconstruct database object and return to sender
+                return callback(null, {'forecasts': objs, 'cached': true});
+            });
+        }
     });
 }
 
-// * Static
-app.use(express.static('static'));
-app.use(express.static('libs'));
 // * Routes
 app.get('/v1/wind', function(req, res) {
-    statsdClient.increment('v1_wind_GET');
+    var t0 = (new Date().getTime());
+    //statsdClient.increment('v1_wind_GET');
+    var cacheQuery = false;//req.query.datetime == null;
+    var cacheResponse = req.query.datetime == null;
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
-    // Fetch two forecasts
-    fetchForecasts('wind', now, function(err, obj) {
+    getParsedForecasts('wind', now, cacheQuery, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
+        } else if (!obj) {
+            res.status(500).send('No data');
         } else {
+            var deltaMs = new Date().getTime() - t0;
+            obj['took'] = deltaMs + 'ms';
+//            statsdClient.timing('wind_GET', deltaMs);
+            if (cacheResponse) {
+                var beforeTargetTime = moment(obj.forecasts[0][0].header.refTime)
+                    .add(obj.forecasts[0][0].header.forecastTime, 'hours');
+                var afterTargetTime = moment(obj.forecasts[1][0].header.refTime)
+                    .add(obj.forecasts[1][0].header.forecastTime, 'hours');
+                // This cache system ignore the fact that a newer forecast,
+                // for the same target, can be fetched.
+                res.setHeader('Cache-Control', 'public');
+                // Expires at/after the upper bound (to force refresh after)
+                res.setHeader('Expires', afterTargetTime.toDate().toUTCString());
+                // Last-modified at the lower bound (to force refresh before)
+                res.setHeader('Last-Modified', beforeTargetTime.toDate().toUTCString());
+            }
             res.json(obj);
         }
     });
 });
 app.get('/v1/solar', function(req, res) {
-    statsdClient.increment('v1_solar_GET');
+    var t0 = (new Date().getTime());
+    //statsdClient.increment('v1_solar_GET');
+    var cacheQuery = false;//req.query.datetime == null;
+    var cacheResponse = req.query.datetime == null;
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
-    // Fetch two forecasts
-    fetchForecasts('solar', now, function(err, obj) {
+    getParsedForecasts('solar', now, cacheQuery, function(err, obj) {
         if (err) {
             handleError(err);
             res.status(500).send('Unknown server error');
+        } else if (!obj) {
+            res.status(500).send('No data');
         } else {
-            res.json(obj);
+            var deltaMs = new Date().getTime() - t0;
+            obj['took'] = deltaMs + 'ms';
+                //statsdClient.timing('solar_GET', deltaMs);
+            if (cacheResponse) {
+                var beforeTargetTime = moment(obj.forecasts[0].header.refTime)
+                    .add(obj.forecasts[0].header.forecastTime, 'hours');
+                var afterTargetTime = moment(obj.forecasts[1].header.refTime)
+                    .add(obj.forecasts[1].header.forecastTime, 'hours');
+                // This cache system ignore the fact that a newer forecast,
+                // for the same target, can be fetched.
+                res.setHeader('Cache-Control', 'public');
+                // Expires at/after the upper bound (to force refresh after)
+                res.setHeader('Expires', afterTargetTime.toDate().toUTCString());
+                // Last-modified at the lower bound (to force refresh before)
+                res.setHeader('Last-Modified', beforeTargetTime.toDate().toUTCString());
+                res.json(obj);
+            }
         }
     });
 });
 app.get('/v1/state', function(req, res) {
-    statsdClient.increment('v1_state_GET');
+    //statsdClient.increment('v1_state_GET');
     var t0 = new Date().getTime();
     function returnObj(obj, cached) {
-        if (cached) statsdClient.increment('v1_state_GET_HIT_CACHE');
+        if (cached) //statsdClient.increment('v1_state_GET_HIT_CACHE');
         var deltaMs = new Date().getTime() - t0;
         res.json({status: 'ok', data: obj, took: deltaMs + 'ms', cached: cached});
-        statsdClient.timing('state_GET', deltaMs);
+        //statsdClient.timing('state_GET', deltaMs);
     }
     if (req.query.datetime) {
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
-                statsdClient.increment('state_GET_ERROR');
+                //statsdClient.increment('state_GET_ERROR');
                 handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
@@ -296,7 +378,7 @@ app.get('/v1/state', function(req, res) {
             else {
                 queryLastValues(function (err, result) {
                     if (err) {
-                        statsdClient.increment('state_GET_ERROR');
+                        //statsdClient.increment('state_GET_ERROR');
                         handleError(err);
                         res.status(500).json({error: 'Unknown database error'});
                     } else {
@@ -313,7 +395,7 @@ app.get('/v1/state', function(req, res) {
     }
 });
 app.get('/v1/co2', function(req, res) {
-    statsdClient.increment('v1_co2_GET');
+    //statsdClient.increment('v1_co2_GET');
     var t0 = new Date().getTime();
     var countryCode = req.query.countryCode;
 
@@ -321,7 +403,7 @@ app.get('/v1/co2', function(req, res) {
     function onCo2Computed(err, obj) {
         var countries = obj.countries;
         if (err) {
-            statsdClient.increment('co2_GET_ERROR');
+            //statsdClient.increment('co2_GET_ERROR');
             handleError(err);
             res.status(500).json({error: 'Unknown error'});
         } else {
@@ -335,7 +417,7 @@ app.get('/v1/co2', function(req, res) {
             };
             responseObject.took = deltaMs + 'ms';
             res.json(responseObject);
-            statsdClient.timing('co2_GET', deltaMs);
+            //statsdClient.timing('co2_GET', deltaMs);
         }
     }
 
@@ -393,7 +475,7 @@ app.get('/v1/production', function(req, res) {
         })
 });
 app.get('/health', function(req, res) {
-    statsdClient.increment('health_GET');
+    //statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
     mongoProductionCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
         if (err) {
