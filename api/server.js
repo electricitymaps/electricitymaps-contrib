@@ -19,7 +19,7 @@ var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
 var MongoClient = require('mongodb').MongoClient;
-var statsd = require('node-statsd');
+//var statsd = require('node-statsd'); // TODO: Remove
 var snappy = require('snappy');
 
 var app = express();
@@ -30,7 +30,7 @@ app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
 // * Static
-app.use(express.static(__dirname + '/static', {etag: true}));
+app.use(express.static(__dirname + '/static', {etag: true, maxAge: '4h'}));
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -61,13 +61,13 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
 });
 
 // * Metrics
-var statsdClient = new statsd.StatsD();
-statsdClient.post = 8125;
-statsdClient.host = process.env['STATSD_HOST'];
-statsdClient.prefix = 'electricymap_api.';
-statsdClient.socket.on('error', function(error) {
-    handleError(error);
-});
+// var statsdClient = new statsd.StatsD();
+// statsdClient.post = 8125;
+// statsdClient.host = process.env['STATSD_HOST'];
+// statsdClient.prefix = 'electricymap_api.';
+// statsdClient.socket.on('error', function(error) {
+//     handleError(error);
+// });
 
 // * Database methods
 function processDatabaseResults(countries, exchanges) {
@@ -279,7 +279,8 @@ function getParsedForecasts(key, datetime, cached, callback) {
 // * Routes
 app.get('/v1/wind', function(req, res) {
     var t0 = (new Date().getTime());
-    statsdClient.increment('v1_wind_GET');
+    //statsdClient.increment('v1_wind_GET');
+    var cacheResponse = req.query.datetime == null;
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
     getParsedForecasts('wind', now, req.query.datetime == null, function(err, obj) {
         if (err) {
@@ -290,18 +291,25 @@ app.get('/v1/wind', function(req, res) {
         } else {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
-            statsdClient.timing('wind_GET', deltaMs);
-            var t_after = moment(obj.forecasts[1][0].header.refTime)
-                .add(obj.forecasts[1][0].header.forecastTime, 'hours');
-            res.setHeader('Cache-Control', 'public');
-            res.setHeader('Expires', t_after.toDate().toUTCString());
+//            statsdClient.timing('wind_GET', deltaMs);
+            if (cacheResponse) {
+                var beforeRefTime = moment(obj.forecasts[0][0].header.refTime);
+                var afterRefTime = moment(obj.forecasts[1][0].header.refTime);
+                var afterTargetTime = moment(obj.forecasts[1][0].header.refTime)
+                    .add(obj.forecasts[1][0].header.forecastTime, 'hours');
+                res.setHeader('Cache-Control', 'public');
+                res.setHeader('Expires', afterTargetTime.toDate().toUTCString());
+                res.setHeader('Last-Modified',
+                    moment.max(beforeRefTime, afterRefTime).toDate().toUTCString());
+            }
             res.json(obj);
         }
     });
 });
 app.get('/v1/solar', function(req, res) {
     var t0 = (new Date().getTime());
-    statsdClient.increment('v1_solar_GET');
+    //statsdClient.increment('v1_solar_GET');
+    var cacheResponse = req.query.datetime == null;
     now = req.query.datetime ? new Date(req.query.datetime) : moment.utc().toDate();
     getParsedForecasts('solar', now, req.query.datetime == null, function(err, obj) {
         if (err) {
@@ -312,28 +320,34 @@ app.get('/v1/solar', function(req, res) {
         } else {
             var deltaMs = new Date().getTime() - t0;
             obj['took'] = deltaMs + 'ms';
-            statsdClient.timing('solar_GET', deltaMs);
-            var t_after = moment(obj.forecasts[1].header.refTime)
-                .add(obj.forecasts[1].header.forecastTime, 'hours');
-            res.setHeader('Cache-Control', 'public');
-            res.setHeader('Expires', t_after.toDate().toUTCString());
-            res.json(obj);
+            if (cacheResponse) {
+                //statsdClient.timing('solar_GET', deltaMs);
+                var beforeRefTime = moment(obj.forecasts[0].header.refTime);
+                var afterRefTime = moment(obj.forecasts[1].header.refTime);
+                var afterTargetTime = moment(obj.forecasts[1].header.refTime)
+                    .add(obj.forecasts[1].header.forecastTime, 'hours');
+                res.setHeader('Cache-Control', 'public');
+                res.setHeader('Expires', afterTargetTime.toDate().toUTCString());
+                res.setHeader('Last-Modified',
+                    moment.max(beforeRefTime, afterRefTime).toDate().toUTCString());
+                res.json(obj);
+            }
         }
     });
 });
 app.get('/v1/state', function(req, res) {
-    statsdClient.increment('v1_state_GET');
+    //statsdClient.increment('v1_state_GET');
     var t0 = new Date().getTime();
     function returnObj(obj, cached) {
-        if (cached) statsdClient.increment('v1_state_GET_HIT_CACHE');
+        if (cached) //statsdClient.increment('v1_state_GET_HIT_CACHE');
         var deltaMs = new Date().getTime() - t0;
         res.json({status: 'ok', data: obj, took: deltaMs + 'ms', cached: cached});
-        statsdClient.timing('state_GET', deltaMs);
+        //statsdClient.timing('state_GET', deltaMs);
     }
     if (req.query.datetime) {
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
-                statsdClient.increment('state_GET_ERROR');
+                //statsdClient.increment('state_GET_ERROR');
                 handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
@@ -350,7 +364,7 @@ app.get('/v1/state', function(req, res) {
             else {
                 queryLastValues(function (err, result) {
                     if (err) {
-                        statsdClient.increment('state_GET_ERROR');
+                        //statsdClient.increment('state_GET_ERROR');
                         handleError(err);
                         res.status(500).json({error: 'Unknown database error'});
                     } else {
@@ -367,7 +381,7 @@ app.get('/v1/state', function(req, res) {
     }
 });
 app.get('/v1/co2', function(req, res) {
-    statsdClient.increment('v1_co2_GET');
+    //statsdClient.increment('v1_co2_GET');
     var t0 = new Date().getTime();
     var countryCode = req.query.countryCode;
 
@@ -375,7 +389,7 @@ app.get('/v1/co2', function(req, res) {
     function onCo2Computed(err, obj) {
         var countries = obj.countries;
         if (err) {
-            statsdClient.increment('co2_GET_ERROR');
+            //statsdClient.increment('co2_GET_ERROR');
             handleError(err);
             res.status(500).json({error: 'Unknown error'});
         } else {
@@ -389,7 +403,7 @@ app.get('/v1/co2', function(req, res) {
             };
             responseObject.took = deltaMs + 'ms';
             res.json(responseObject);
-            statsdClient.timing('co2_GET', deltaMs);
+            //statsdClient.timing('co2_GET', deltaMs);
         }
     }
 
@@ -447,7 +461,7 @@ app.get('/v1/production', function(req, res) {
         })
 });
 app.get('/health', function(req, res) {
-    statsdClient.increment('health_GET');
+    //statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
     mongoProductionCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
         if (err) {
