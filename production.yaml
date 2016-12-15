@@ -6,7 +6,7 @@ services:
     environment:
       - ENV=production
       - HTTPS_METHOD=noredirect
-      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - LETSENCRYPT_EMAIL=info@tmrow.co
       - LETSENCRYPT_HOST=electricitymap-api.tmrow.co
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017/electricity
