@@ -585,6 +585,7 @@ var connectionWarningTimeout = null;
 function handleConnectionError(err) {
     if (err) {
         console.error(err);
+        trackAnalyticsEvent('error', err.stack);
         document.getElementById('connection-warning').className = "show";
     } else {
         document.getElementById('connection-warning').className = "hide";
