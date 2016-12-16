@@ -15,6 +15,7 @@ var co2lib = require('./app/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');
+var fs = require('fs');
 var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
@@ -29,8 +30,10 @@ var server = http.Server(app);
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
-// * Static
+// * Static and templating
 app.use(express.static(__dirname + '/public', {etag: true, maxAge: '4h'}));
+app.set('view engine', 'ejs');
+var BUNDLE_HASH = JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -540,5 +543,5 @@ app.get('/health', function(req, res) {
     });
 });
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.render('pages/index', { 'bundleHash': BUNDLE_HASH});
 });

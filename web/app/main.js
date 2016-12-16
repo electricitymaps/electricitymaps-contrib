@@ -108,7 +108,7 @@ var solarColor = d3.scale.linear()
     .range(d3.range(10).map(function (i) { 
         var c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
         var a = d3.interpolate(nightOpacity, maxSolarOpacity)(i / (10 - 1));
-        return `rgba(${c}, ${c}, ${c}, ${a})`;
+        return 'rgba(' + c + '}, ' + c + '}, ' + c + '}, ' + a + '})';
     }))
     .clamp(true);
 
