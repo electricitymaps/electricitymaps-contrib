@@ -9,12 +9,19 @@ from bson.binary import Binary
 from pymemcache.client.base import Client
 
 from parsers import EE, FR, HU, RO
-
 from parsers import ENTSOE
 from parsers import weather
 from migrate_db import migrate
 
 INTERVAL_SECONDS = 60 * 5
+
+# Set up error handling
+import opbeat
+from opbeat.handlers.logging import OpbeatHandler
+opbeat_client = opbeat.Client(
+    app_id= 'c36849e44e',
+    organization_id= '093c53b0da9d43c4976cd0737fe0f2b1',
+    secret_token= os.environ['OPBEAT_SECRET'])
 
 # Set up logging
 ENV = os.environ.get('ENV', 'development').lower()
@@ -23,6 +30,10 @@ stdout_handler = logging.StreamHandler()
 logger.addHandler(stdout_handler)
 if not ENV == 'development':
     logger.setLevel(logging.INFO)
+    # Add opbeat
+    opbeat_handler = OpbeatHandler(opbeat_client)
+    logger.addHandler(opbeat_handler)
+    # Add email
     from logging.handlers import SMTPHandler
     smtp_handler = SMTPHandler(
         mailhost=('smtp.mailgun.org', 587),
@@ -33,6 +44,7 @@ if not ENV == 'development':
     )
     smtp_handler.setLevel(logging.WARN)
     logger.addHandler(smtp_handler)
+    # Add statsd
     logging.getLogger('statsd').addHandler(stdout_handler)
 else:
     logger.setLevel(logging.DEBUG)
