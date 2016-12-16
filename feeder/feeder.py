@@ -32,6 +32,7 @@ if not ENV == 'development':
     logger.setLevel(logging.INFO)
     # Add opbeat
     opbeat_handler = OpbeatHandler(opbeat_client)
+    opbeat_handler.setLevel(logging.WARN)
     logger.addHandler(opbeat_handler)
     # Add email
     from logging.handlers import SMTPHandler
