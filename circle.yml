@@ -13,7 +13,6 @@ dependencies:
     - if [[ -e ~/docker/api.tar ]]; then docker load -i ~/docker/api.tar; fi
     - if [[ -e ~/docker/feeder.tar ]]; then docker load -i ~/docker/feeder.tar; fi
     - docker-compose build
-    - docker-compose run web npm run build
     - mkdir -p ~/docker; docker save electricitymap_api:latest > ~/docker/api.tar
     - mkdir -p ~/docker; docker save electricitymap_feeder:latest > ~/docker/feeder.tar
     - docker-compose up -d

@@ -6,11 +6,11 @@ module.exports = {
   entry: './app/main.js',
   plugins: [
     new CleanWebpackPlugin(['public/dist']),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-          warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //       warnings: false
+    //   }
+    // }),
     function() {
       this.plugin('done', function(stats) {
         require('fs').writeFileSync(

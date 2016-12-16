@@ -25,16 +25,16 @@ var windEnabled = true;
 var solarEnabled = false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 
-// Error handling
-var opbeat = window._opbeat || function() {
-    if (!isLocalhost)
-        (window._opbeat.q = window._opbeat.q || []).push(arguments)
-};
+_opbeat('config', {
+    orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
+    appId: 'c36849e44e'
+});
+
 function catchError(e) {
     console.error(e);
     if (!isLocalhost) {
-        opbeat('captureException', e);
-        trackAnalyticsEvent('error', e.stack);
+        _opbeat('captureException', e);
+        trackAnalyticsEvent('error', {'stack': e.stack});
     }
 }
 
@@ -63,15 +63,23 @@ function isSmallScreen() {
     return screen.width < 600;
 }
 
+// Analytics
+if (!isLocalhost) {
+    FB.AppEvents.logPageView('pageview');
+    mixpanel.track('Visit');
+    ga('send', 'pageview');
+}
 function trackAnalyticsEvent(eventName, paramObj) {
     if (!isLocalhost) {
         try {
             FB.AppEvents.logEvent(eventName, undefined, paramObj);
+        } catch(err) { console.error('FB AppEvents error: ' + err); }
+        try {
             mixpanel.track(eventName, paramObj);
+        } catch(err) { console.error('Mixpanel error: ' + err); }
+        try {
             ga('send', eventName);
-        } catch(err) {
-            console.error('Error in trackAnalyticsEvent' + err);
-        }
+        } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
 
@@ -667,7 +675,6 @@ function ignoreError(func) {
         var callback = arguments[arguments.length - 1];
         arguments[arguments.length - 1] = function(err, obj) {
             if (err) {
-                catchError(err);
                 return callback(null, null);
             } else {
                 return callback(null, obj);
