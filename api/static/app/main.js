@@ -7,6 +7,7 @@ var forceRemoteEndpoint = false;
 var customDate;
 var windEnabled = true;
 var solarEnabled = false;
+var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
@@ -33,8 +34,15 @@ function isSmallScreen() {
     return screen.width < 600;
 }
 
+function catchError(e) {
+    console.error(e);
+    if (!isLocalhost) {
+        _opbeat('captureException', e);
+        trackAnalyticsEvent('error', e.stack);
+    }
+}
 function trackAnalyticsEvent(eventName, paramObj) {
-    if (window.location.href.indexOf("electricitymap") !== -1) {
+    if (!isLocalhost) {
         try {
             FB.AppEvents.logEvent(eventName, undefined, paramObj);
             mixpanel.track(eventName, paramObj);
@@ -584,8 +592,7 @@ var connectionWarningTimeout = null;
 
 function handleConnectionError(err) {
     if (err) {
-        console.error(err);
-        trackAnalyticsEvent('error', err.stack);
+        catchError(err);
         document.getElementById('connection-warning').className = "show";
     } else {
         document.getElementById('connection-warning').className = "hide";
