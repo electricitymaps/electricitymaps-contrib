@@ -1,3 +1,19 @@
+// Libraries
+var d3 = require('d3');
+var moment = require('moment');
+var queue = require('d3-queue').queue;
+
+// Modules
+var co2lib = require('./co2eq');
+var CountryConfig = require('./countryconfig');
+var CountryMap = require('./countrymap');
+var CountryTable = require('./countrytable');
+var CountryTopos = require('./countrytopos');
+var ExchangeConfig = require('./exchangeconfig');
+var ExchangeLayer = require('./exchangelayer');
+var HorizontalColorbar = require('./horizontalcolorbar');
+var Windy = require('./windy');
+
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
@@ -8,6 +24,19 @@ var customDate;
 var windEnabled = true;
 var solarEnabled = false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
+
+// Error handling
+var opbeat = window._opbeat || function() {
+    if (!isLocalhost)
+        (window._opbeat.q = window._opbeat.q || []).push(arguments)
+};
+function catchError(e) {
+    console.error(e);
+    if (!isLocalhost) {
+        opbeat('captureException', e);
+        trackAnalyticsEvent('error', e.stack);
+    }
+}
 
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
@@ -34,13 +63,6 @@ function isSmallScreen() {
     return screen.width < 600;
 }
 
-function catchError(e) {
-    console.error(e);
-    if (!isLocalhost) {
-        _opbeat('captureException', e);
-        trackAnalyticsEvent('error', e.stack);
-    }
-}
 function trackAnalyticsEvent(eventName, paramObj) {
     if (!isLocalhost) {
         try {
@@ -92,7 +114,7 @@ var solarColor = d3.scale.linear()
 
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
-var exchangeLayer = new ExchangeLayer('.map');
+var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color);
 var windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
@@ -102,8 +124,6 @@ var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
     .markerColor('black');
-
-var co2eqCalculator = new Co2eqCalculator();
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -136,8 +156,8 @@ if (solarCanvas.node()) {
 }
 
 // Prepare data
-var countries = getCountryTopos(countries);
-addCountriesConfiguration(countries);
+var countries = CountryTopos.getCountryTopos(countries);
+CountryConfig.addCountriesConfiguration(countries);
 d3.entries(countries).forEach(function (o) {
     var country = o.value;
     country.maxCapacity =
@@ -145,7 +165,7 @@ d3.entries(countries).forEach(function (o) {
     country.countryCode = o.key;
 });
 var exchanges = {};
-addExchangesConfiguration(exchanges);
+ExchangeConfig.addExchangesConfiguration(exchanges);
 d3.entries(exchanges).forEach(function(entry) {
     entry.value.countryCodes = entry.key.split('->').sort();
     if (entry.key.split('->')[0] != entry.value.countryCodes[0])
@@ -238,7 +258,7 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(undefined);
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2 = co2eqCalculator.footprintOf(d.mode, countryCode);
+            var co2 = co2lib.footprintOf(d.mode, countryCode);
             co2Colorbar.currentMarker(co2);
         })
         .onProductionMouseOut(function (d) {

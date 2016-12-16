@@ -1,3 +1,6 @@
+var co2lib = require('./co2eq');
+var moment = require('moment');
+
 function CountryTable(selector, co2Color) {
     this.root = d3.select(selector);
     this.co2Color = co2Color;
@@ -168,7 +171,7 @@ CountryTable.prototype.data = function(arg) {
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
-            var footprint = co2eqCalculator.footprintOf(d, that._data.countryCode);
+            var footprint = co2lib.footprintOf(d, that._data.countryCode);
             var production = arg.production ? arg.production[d] : undefined;
             return {
                 production: production,
@@ -278,7 +281,7 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('fill', function (d) {
                     // color by Co2 Intensity
-                    // return that.co2Color(co2eqCalculator.footprintOf(d.mode, that._data.countryCode));
+                    // return that.co2Color(co2lib.footprintOf(d.mode, that._data.countryCode));
                     // color by production mode
                     return that.PRODUCTION_COLORS[d.mode];
                 })
@@ -332,7 +335,7 @@ CountryTable.prototype.data = function(arg) {
             });
         selection.select('image')
             .attr('xlink:href', function (d) {
-                return 'libs/flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
+                return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
         function getExchangeCo2eq(d) {
             return d.value > 0 ? 
@@ -391,3 +394,5 @@ CountryTable.prototype.data = function(arg) {
     }
     return this;
 };
+
+module.exports = CountryTable;

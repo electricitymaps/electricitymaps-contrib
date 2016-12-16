@@ -1,4 +1,4 @@
-// This file was taken from https://github.com/esri/wind-js.
+// This file was taken from https://github.com/esri/wind-js, and slightly modified
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
 
@@ -504,3 +504,4 @@ window.requestAnimationFrame = (function(){
           };
 })();
 
+module.exports = Windy;
