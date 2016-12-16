@@ -114,7 +114,7 @@ var solarRange = d3.range(10).map(function (i) {
 });
 // Insert the night (DWSWRF \in [0, 1]) domain
 solarDomain.splice(0, 0, 1);
-solarRange.splice(0, 0, rgba(0, 0, 0, ' + nightOpacity + ')
+solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
 var solarColor = d3.scale.linear()
     .domain(solarDomain)
