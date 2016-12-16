@@ -590,13 +590,64 @@ function geolocaliseCountryCode(callback) {
 // Periodically load data
 var connectionWarningTimeout = null;
 
-function handleConnectionError(err) {
+function handleConnectionReturnCode(err) {
     if (err) {
         catchError(err);
         document.getElementById('connection-warning').className = "show";
     } else {
         document.getElementById('connection-warning').className = "hide";
         clearInterval(connectionWarningTimeout);
+    }
+}
+
+// GFS Parameters
+var GFS_STEP_ORIGIN  = 6; // hours
+var GFS_STEP_HORIZON = 1; // hours
+function fetchForecast(key, refTime, targetTime, callback) {
+    refTime = moment(refTime);
+    targetTime = moment(targetTime);
+    return d3.json(ENDPOINT + '/v2/gfs/' + key + '?' + 
+        'refTime=' + refTime.toISOString() + '&' +
+        'targetTime=' + targetTime.toISOString(), callback);
+}
+function getGfsTargetTimeBefore(datetime) {
+    var horizon = moment(datetime).utc().startOf('hour');
+    while ((horizon.hour() % GFS_STEP_HORIZON) != 0)
+        horizon.subtract(1, 'hour');
+    return horizon;
+}
+function getGfsRefTimeForTarget(datetime) {
+    // Warning: solar will not be available at horizon 0
+    // so always do at least horizon 1
+    var origin = moment(datetime).subtract(1, 'hour');
+    while ((origin.hour() % GFS_STEP_ORIGIN) != 0)
+        origin.subtract(1, 'hour');
+    return origin;
+}
+function fetchGfs(key, datetime, callback) {
+    var targetTimeBefore = getGfsTargetTimeBefore(datetime);
+    var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
+    // Note: d3.queue runs tasks in parallel
+    return Q = queue()
+        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore)
+        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter)
+        .await(function(err, before, after) {
+            if (err) return callback(err, null);
+            return callback(null, { forecasts: [before.data, after.data] });
+        });
+}
+function ignoreError(func) {
+    return function() {
+        var callback = arguments[arguments.length - 1];
+        arguments[arguments.length - 1] = function(err, obj) {
+            if (err) {
+                catchError(err);
+                return callback(null, null);
+            } else {
+                return callback(null, obj);
+            }
+        }
+        func.apply(this, arguments);
     }
 }
 
@@ -610,7 +661,7 @@ function fetchAndReschedule() {
         Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
         Q.await(function(err, state, geolocalisedCountryCode) {
-            handleConnectionError(err);
+            handleConnectionReturnCode(err);
             if (!err) {
                 dataLoaded(err, state.data);
             }
@@ -619,11 +670,11 @@ function fetchAndReschedule() {
     } else {
         Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
         if (solarEnabled || windEnabled) {
-            Q.defer(d3.json, ENDPOINT + '/v1/solar' + (customDate ? '?datetime=' + customDate : ''));
-            Q.defer(d3.json, ENDPOINT + '/v1/wind' + (customDate ? '?datetime=' + customDate : ''));
+            Q.defer(ignoreError(fetchGfs), 'solar', customDate || new Date());
+            Q.defer(ignoreError(fetchGfs), 'wind', customDate || new Date());
         }
         Q.await(function(err, state, solar, wind) {
-            handleConnectionError(err);
+            handleConnectionReturnCode(err);
             if (!err)
                 dataLoaded(err, state.data, solar, wind);
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);

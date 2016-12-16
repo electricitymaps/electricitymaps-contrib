@@ -205,17 +205,22 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
 function queryLastValues(callback) {
     return queryLastValuesBeforeDatetime(undefined, callback);
 }
+function queryGfsAt(key, refTime, targetTime, callback) {
+    refTime = moment(refTime).toDate();
+    targetTime = moment(targetTime).toDate();
+    return mongoGfsCollection.findOne({ key, refTime, targetTime }, callback);
+}
 function queryLastGfsBefore(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(
-            moment(datetime).subtract(2, 'hours').toDate(), datetime)},
+        { key, targetTime: rangeQuery(
+            moment(datetime).subtract(2, 'hours').toDate(), datetime) },
         { sort: [['refTime', -1], ['targetTime', -1]] },
         callback);
 }
 function queryLastGfsAfter(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(datetime,
-            moment(datetime).add(2, 'hours').toDate())},
+        { key, targetTime: rangeQuery(datetime,
+            moment(datetime).add(2, 'hours').toDate()) },
         { sort: [['refTime', -1], ['targetTime', 1]] },
         callback);
 }
@@ -467,13 +472,57 @@ app.get('/v1/production', function(req, res) {
         { sort: [['datetime', -1]] },
         function(err, doc) {
             if (err) { 
-                console.log(err);
+                handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
                 res.json(doc);
             }
         })
 });
+
+// *** V2 ***
+function handleForecastQuery(key, req, res) {
+    var t0 = (new Date().getTime());
+    //statsdClient.increment('v1_wind_GET');
+    var cacheResponse = req.query.datetime == null;
+    if (!req.query.refTime)
+        return res.status(400).json({'error': 'Parameter `refTime` is missing'});
+    if (!req.query.targetTime)
+        return res.status(400).json({'error': 'Parameter `targetTime` is missing'});
+    queryGfsAt(key, req.query.refTime, req.query.targetTime, (err, obj) => {
+        if (err) {
+            handleError(err);
+            return res.status(500).send('Unknown server error');
+        } else if (!obj) {
+            return res.status(404).send('Forecast was not found');
+        } else {
+            return decompressGfs(obj['data'].buffer, (err, result) => {
+                if (err) {
+                    handleError(err);
+                    return res.status(500).send('Unknown server error');
+                }
+                // statsdClient.timing('wind_GET', deltaMs);
+                if (cacheResponse) {
+                    // Cache for max 1d
+                    res.setHeader('Cache-Control', 'public, max-age=86400, s-max-age=86400');
+                    // Last-modified at the lower bound (to force refresh before)
+                    res.setHeader('Last-Modified',
+                        (obj['updatedAt'] || obj['createdAt']).toUTCString());
+                }
+                var deltaMs = new Date().getTime() - t0;
+                res.json({
+                    data: result,
+                    took: deltaMs + 'ms'
+                });
+            });
+        }
+    });
+}
+app.get('/v2/gfs/:key', function(req, res) {
+    return handleForecastQuery(req.params.key, req, res);
+});
+
+// *** UNVERSIONED ***
 app.get('/health', function(req, res) {
     //statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
