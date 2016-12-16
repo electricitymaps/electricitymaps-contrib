@@ -15,6 +15,7 @@ dependencies:
     - docker-compose build
     - mkdir -p ~/docker; docker save electricitymap_web:latest > ~/docker/web.tar
     - mkdir -p ~/docker; docker save electricitymap_feeder:latest > ~/docker/feeder.tar
+    - docker-compose run web npm run build
     - docker-compose up -d
     - sleep 20
     - docker-compose logs web
