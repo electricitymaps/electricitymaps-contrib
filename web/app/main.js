@@ -1,3 +1,19 @@
+// Libraries
+var d3 = require('d3');
+var moment = require('moment');
+var queue = require('d3-queue').queue;
+
+// Modules
+var co2lib = require('./co2eq');
+var CountryConfig = require('./countryconfig');
+var CountryMap = require('./countrymap');
+var CountryTable = require('./countrytable');
+var CountryTopos = require('./countrytopos');
+var ExchangeConfig = require('./exchangeconfig');
+var ExchangeLayer = require('./exchangelayer');
+var HorizontalColorbar = require('./horizontalcolorbar');
+var Windy = require('./windy');
+
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
@@ -7,6 +23,20 @@ var forceRemoteEndpoint = false;
 var customDate;
 var windEnabled = true;
 var solarEnabled = false;
+var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
+
+// Error handling
+var opbeat = window._opbeat || function() {
+    if (!isLocalhost)
+        (window._opbeat.q = window._opbeat.q || []).push(arguments)
+};
+function catchError(e) {
+    console.error(e);
+    if (!isLocalhost) {
+        opbeat('captureException', e);
+        trackAnalyticsEvent('error', e.stack);
+    }
+}
 
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
@@ -34,7 +64,7 @@ function isSmallScreen() {
 }
 
 function trackAnalyticsEvent(eventName, paramObj) {
-    if (window.location.href.indexOf("electricitymap") !== -1) {
+    if (!isLocalhost) {
         try {
             FB.AppEvents.logEvent(eventName, undefined, paramObj);
             mixpanel.track(eventName, paramObj);
@@ -93,7 +123,7 @@ var solarColor = d3.scale.linear()
 
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
-var exchangeLayer = new ExchangeLayer('.map');
+var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color);
 var windLayer = new Windy({ canvas: d3.select('.wind').node() });
 
@@ -103,8 +133,6 @@ var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
     .markerColor('black');
-
-var co2eqCalculator = new Co2eqCalculator();
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -137,8 +165,8 @@ if (solarCanvas.node()) {
 }
 
 // Prepare data
-var countries = getCountryTopos(countries);
-addCountriesConfiguration(countries);
+var countries = CountryTopos.getCountryTopos(countries);
+CountryConfig.addCountriesConfiguration(countries);
 d3.entries(countries).forEach(function (o) {
     var country = o.value;
     country.maxCapacity =
@@ -146,7 +174,7 @@ d3.entries(countries).forEach(function (o) {
     country.countryCode = o.key;
 });
 var exchanges = {};
-addExchangesConfiguration(exchanges);
+ExchangeConfig.addExchangesConfiguration(exchanges);
 d3.entries(exchanges).forEach(function(entry) {
     entry.value.countryCodes = entry.key.split('->').sort();
     if (entry.key.split('->')[0] != entry.value.countryCodes[0])
@@ -240,7 +268,7 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(undefined);
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2 = co2eqCalculator.footprintOf(d.mode, countryCode);
+            var co2 = co2lib.footprintOf(d.mode, countryCode);
             co2Colorbar.currentMarker(co2);
         })
         .onProductionMouseOut(function (d) {
@@ -594,14 +622,70 @@ function geolocaliseCountryCode(callback) {
 // Periodically load data
 var connectionWarningTimeout = null;
 
-function handleConnectionError(err) {
+function handleConnectionReturnCode(err) {
     if (err) {
-        console.error(err);
-        trackAnalyticsEvent('error', err.stack);
+        catchError(err);
         document.getElementById('connection-warning').className = "show";
     } else {
         document.getElementById('connection-warning').className = "hide";
         clearInterval(connectionWarningTimeout);
+    }
+}
+
+// GFS Parameters
+var GFS_STEP_ORIGIN  = 6; // hours
+var GFS_STEP_HORIZON = 1; // hours
+function fetchForecast(key, refTime, targetTime, tryOlderRefTime, callback) {
+    refTime = moment(refTime);
+    targetTime = moment(targetTime);
+    return d3.json(ENDPOINT + '/v2/gfs/' + key + '?' + 
+        'refTime=' + refTime.toISOString() + '&' +
+        'targetTime=' + targetTime.toISOString(), function (err, obj) {
+            if (err && tryOlderRefTime)
+                return fetchForecast(key, refTime.subtract(GFS_STEP_ORIGIN, 'hour'),
+                    targetTime, false, callback);
+            else
+                return callback(err, obj);
+        });
+}
+function getGfsTargetTimeBefore(datetime) {
+    var horizon = moment(datetime).utc().startOf('hour');
+    while ((horizon.hour() % GFS_STEP_HORIZON) != 0)
+        horizon.subtract(1, 'hour');
+    return horizon;
+}
+function getGfsRefTimeForTarget(datetime) {
+    // Warning: solar will not be available at horizon 0
+    // so always do at least horizon 1
+    var origin = moment(datetime).subtract(1, 'hour');
+    while ((origin.hour() % GFS_STEP_ORIGIN) != 0)
+        origin.subtract(1, 'hour');
+    return origin;
+}
+function fetchGfs(key, datetime, callback) {
+    var targetTimeBefore = getGfsTargetTimeBefore(datetime);
+    var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
+    // Note: d3.queue runs tasks in parallel
+    return Q = queue()
+        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true)
+        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true)
+        .await(function(err, before, after) {
+            if (err) return callback(err, null);
+            return callback(null, { forecasts: [before.data, after.data] });
+        });
+}
+function ignoreError(func) {
+    return function() {
+        var callback = arguments[arguments.length - 1];
+        arguments[arguments.length - 1] = function(err, obj) {
+            if (err) {
+                catchError(err);
+                return callback(null, null);
+            } else {
+                return callback(null, obj);
+            }
+        }
+        func.apply(this, arguments);
     }
 }
 
@@ -615,7 +699,7 @@ function fetchAndReschedule() {
         Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
         Q.await(function(err, state, geolocalisedCountryCode) {
-            handleConnectionError(err);
+            handleConnectionReturnCode(err);
             if (!err) {
                 dataLoaded(err, state.data);
             }
@@ -624,11 +708,11 @@ function fetchAndReschedule() {
     } else {
         Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
         if (solarEnabled || windEnabled) {
-            Q.defer(d3.json, ENDPOINT + '/v1/solar' + (customDate ? '?datetime=' + customDate : ''));
-            Q.defer(d3.json, ENDPOINT + '/v1/wind' + (customDate ? '?datetime=' + customDate : ''));
+            Q.defer(ignoreError(fetchGfs), 'solar', customDate || new Date());
+            Q.defer(ignoreError(fetchGfs), 'wind', customDate || new Date());
         }
         Q.await(function(err, state, solar, wind) {
-            handleConnectionError(err);
+            handleConnectionReturnCode(err);
             if (!err)
                 dataLoaded(err, state.data, solar, wind);
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);

@@ -19,25 +19,16 @@
 
         <title>Electricity Map | Live CO2 emissions of the European electricity production</title>
 
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="libs/flag-icon-css/css/flag-icon.min.css">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="flag-icon-css/css/flag-icon.min.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 
-        <script src="libs/d3.v3.min.js"></script>
-        <script src="libs/d3.geo.projection.v0.min.js"></script>
-        <script src="libs/queue.v1.min.js"></script>
-        <script src="libs/topojson.v0.min.js"></script>
-        <script src="libs/moment.min.js"></script>
-        <script src="libs/wind-js/windy.js"></script>
-
-        <script src="app/co2eq.js"></script>
-        <script src="app/countrymap.js"></script>
-        <script src="app/countryconfig.js"></script>
-        <script src="app/countrytopos.js"></script>
-        <script src="app/exchangeconfig.js"></script>
-        <script src="app/horizontalcolorbar.js"></script>
-        <script src="app/exchangelayer.js"></script>
-        <script src="app/countrytable.js"></script>
+        <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js"
+            data-org-id="093c53b0da9d43c4976cd0737fe0f2b1"
+            data-app-id="c36849e44e"
+            async>
+        </script>
+        <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
 
         <!-- start GA -->
         <script>
@@ -184,7 +175,7 @@
             <div class="footer">
                 <div class="watermark">
                     <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank">
-                        <img src="tomorrow_logo_open_source.svg" style="width:160px"/>
+                        <img src="images/tomorrow_logo_open_source.svg" style="width:160px"/>
                     </a><br />
                     <!-- Facebook follow -->
                     <div class="fb-like" 
@@ -217,6 +208,4 @@
             <i id="from"></i> <span id="from"></span> → <i id="to"></i> <span id="to"></span>: <span id="flow"></span> MW
         </div>
     </body>
-
-    <script src="app/main.js"></script>
 </html>

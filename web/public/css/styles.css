@@ -61,7 +61,7 @@ html, body {
     position: absolute;
     top: 0px;
     opacity: 0.7;
-    background: black url('libs/loading.svg') no-repeat center center;
+    background: black url('../images/loading.svg') no-repeat center center;
 }
 .map {
     width: 100%;

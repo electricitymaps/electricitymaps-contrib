@@ -1,0 +1,34 @@
+{
+  "name": "electricitymap-api",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "async": "^2.0.1",
+    "compression": "^1.6.2",
+    "d3": "^3.5.17",
+    "d3-queue": "^3.0.3",
+    "ejs": "^2.5.5",
+    "express": "^4.10.2",
+    "mathjs": "^3.5.1",
+    "memcached": "^2.2.2",
+    "moment": "^2.15.2",
+    "mongodb": "^2.2.9",
+    "opbeat": "^3.21.0",
+    "snappy": "^5.0.5",
+    "topojson": "^2.2.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.14",
+    "nodemon": "^1.10.2",
+    "webpack": "^1.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corradio/electricitymap.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "dev": "nodemon server.js",
+    "watch": "webpack --watch"
+  }
+}
