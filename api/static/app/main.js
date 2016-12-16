@@ -603,12 +603,18 @@ function handleConnectionReturnCode(err) {
 // GFS Parameters
 var GFS_STEP_ORIGIN  = 6; // hours
 var GFS_STEP_HORIZON = 1; // hours
-function fetchForecast(key, refTime, targetTime, callback) {
+function fetchForecast(key, refTime, targetTime, tryOlderRefTime, callback) {
     refTime = moment(refTime);
     targetTime = moment(targetTime);
     return d3.json(ENDPOINT + '/v2/gfs/' + key + '?' + 
         'refTime=' + refTime.toISOString() + '&' +
-        'targetTime=' + targetTime.toISOString(), callback);
+        'targetTime=' + targetTime.toISOString(), function (err, obj) {
+            if (err && tryOlderRefTime)
+                return fetchForecast(key, refTime.subtract(GFS_STEP_ORIGIN, 'hour'),
+                    targetTime, false, callback);
+            else
+                return callback(err, obj);
+        });
 }
 function getGfsTargetTimeBefore(datetime) {
     var horizon = moment(datetime).utc().startOf('hour');
@@ -629,8 +635,8 @@ function fetchGfs(key, datetime, callback) {
     var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
     // Note: d3.queue runs tasks in parallel
     return Q = queue()
-        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore)
-        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter)
+        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true)
+        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true)
         .await(function(err, before, after) {
             if (err) return callback(err, null);
             return callback(null, { forecasts: [before.data, after.data] });
