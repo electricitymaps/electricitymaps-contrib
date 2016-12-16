@@ -11,10 +11,10 @@ services:
     ports: ['8000:8000']
     volumes:
       - './web/app:/home/app'
-      - './web/index.html:/home/index.html'
       - './web/package.json:/home/package.json'
       - './web/public:/home/public'
       - './web/server.js:/home/server.js'
+      - './web/views:/home/views'
       - './web/webpack.config.js:/home/webpack.config.js'
   feeder:
     build: feeder
