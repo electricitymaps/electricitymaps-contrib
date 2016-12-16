@@ -16,7 +16,7 @@ dependencies:
     - mkdir -p ~/docker; docker save electricitymap_api:latest > ~/docker/api.tar
     - mkdir -p ~/docker; docker save electricitymap_feeder:latest > ~/docker/feeder.tar
     - docker-compose up -d
-    - sleep 10
+    - sleep 20
     - curl --fail -i localhost:8000/health
 test:
   override:
