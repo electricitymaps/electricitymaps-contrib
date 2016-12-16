@@ -1,7 +1,7 @@
 version: '2'
 services:
-  api:
-    build: api
+  web:
+    build: web
     command: ./node_modules/.bin/nodemon server.js
     depends_on: [mongo, memcached]
     environment:
@@ -10,8 +10,12 @@ services:
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     ports: ['8000:8000']
     volumes:
-      - './api/static:/home/static'
-      - './api/server.js:/home/server.js'
+      - './web/app:/home/app'
+      - './web/package.json:/home/package.json'
+      - './web/public:/home/public'
+      - './web/server.js:/home/server.js'
+      - './web/views:/home/views'
+      - './web/webpack.config.js:/home/webpack.config.js'
   feeder:
     build: feeder
     depends_on: [mongo]

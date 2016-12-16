@@ -7,14 +7,15 @@ if (isProduction) {
         appId: 'c36849e44e',
         organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
         secretToken: process.env['OPBEAT_SECRET']
-    })
+    });
 }
 
 var async = require('async');
-var co2lib = require('./static/app/co2eq');
+var co2lib = require('./app/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');
+var fs = require('fs');
 var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
@@ -29,14 +30,16 @@ var server = http.Server(app);
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
-// * Static
-app.use(express.static(__dirname + '/static', {etag: true, maxAge: '4h'}));
+// * Static and templating
+app.use(express.static(__dirname + '/public', {etag: true, maxAge: '4h'}));
+app.set('view engine', 'ejs');
+var BUNDLE_HASH = JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 
 // * Opbeat
-if (opbeat)
+if (isProduction)
     app.use(opbeat.middleware.express())
 function handleError(err) {
     if (!err) return;
@@ -123,16 +126,15 @@ function processDatabaseResults(countries, exchanges) {
     return {countries: countries, exchanges: exchanges};
 }
 function computeCo2(countries, exchanges) {
-    var co2calc = co2lib.Co2eqCalculator();
-    co2calc.compute(countries);
+    var assignments = co2lib.compute(countries);
     d3.entries(countries).forEach(function(o) {
-        o.value.co2intensity = co2calc.assignments[o.key];
+        o.value.co2intensity = assignments[o.key];
     });
     d3.values(countries).forEach(function(country) {
         country.exchangeCo2Intensities = {};
         d3.keys(country.exchange).forEach(function(k) {
             country.exchangeCo2Intensities[k] =
-                country.exchange[k] > 0 ? co2calc.assignments[k] : country.co2intensity;
+                country.exchange[k] > 0 ? assignments[k] : country.co2intensity;
         });
     });
     d3.values(exchanges).forEach(function(exchange) {
@@ -205,17 +207,22 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
 function queryLastValues(callback) {
     return queryLastValuesBeforeDatetime(undefined, callback);
 }
+function queryGfsAt(key, refTime, targetTime, callback) {
+    refTime = moment(refTime).toDate();
+    targetTime = moment(targetTime).toDate();
+    return mongoGfsCollection.findOne({ key, refTime, targetTime }, callback);
+}
 function queryLastGfsBefore(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(
-            moment(datetime).subtract(2, 'hours').toDate(), datetime)},
+        { key, targetTime: rangeQuery(
+            moment(datetime).subtract(2, 'hours').toDate(), datetime) },
         { sort: [['refTime', -1], ['targetTime', -1]] },
         callback);
 }
 function queryLastGfsAfter(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        {'key': key, 'targetTime': rangeQuery(datetime,
-            moment(datetime).add(2, 'hours').toDate())},
+        { key, targetTime: rangeQuery(datetime,
+            moment(datetime).add(2, 'hours').toDate()) },
         { sort: [['refTime', -1], ['targetTime', 1]] },
         callback);
 }
@@ -467,13 +474,57 @@ app.get('/v1/production', function(req, res) {
         { sort: [['datetime', -1]] },
         function(err, doc) {
             if (err) { 
-                console.log(err);
+                handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
                 res.json(doc);
             }
         })
 });
+
+// *** V2 ***
+function handleForecastQuery(key, req, res) {
+    var t0 = (new Date().getTime());
+    //statsdClient.increment('v1_wind_GET');
+    var cacheResponse = req.query.datetime == null;
+    if (!req.query.refTime)
+        return res.status(400).json({'error': 'Parameter `refTime` is missing'});
+    if (!req.query.targetTime)
+        return res.status(400).json({'error': 'Parameter `targetTime` is missing'});
+    queryGfsAt(key, req.query.refTime, req.query.targetTime, (err, obj) => {
+        if (err) {
+            handleError(err);
+            return res.status(500).send('Unknown server error');
+        } else if (!obj) {
+            return res.status(404).send('Forecast was not found');
+        } else {
+            return decompressGfs(obj['data'].buffer, (err, result) => {
+                if (err) {
+                    handleError(err);
+                    return res.status(500).send('Unknown server error');
+                }
+                // statsdClient.timing('wind_GET', deltaMs);
+                if (cacheResponse) {
+                    // Cache for max 1d
+                    res.setHeader('Cache-Control', 'public, max-age=86400, s-max-age=86400');
+                    // Last-modified at the lower bound (to force refresh before)
+                    res.setHeader('Last-Modified',
+                        (obj['updatedAt'] || obj['createdAt']).toUTCString());
+                }
+                var deltaMs = new Date().getTime() - t0;
+                res.json({
+                    data: result,
+                    took: deltaMs + 'ms'
+                });
+            });
+        }
+    });
+}
+app.get('/v2/gfs/:key', function(req, res) {
+    return handleForecastQuery(req.params.key, req, res);
+});
+
+// *** UNVERSIONED ***
 app.get('/health', function(req, res) {
     //statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
@@ -490,4 +541,7 @@ app.get('/health', function(req, res) {
                 res.json({status: 'ok'});
         }
     });
+});
+app.get('/', function(req, res) {
+    res.render('pages/index', { 'bundleHash': BUNDLE_HASH});
 });
