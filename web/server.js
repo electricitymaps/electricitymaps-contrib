@@ -3,7 +3,7 @@ var isProduction = process.env.ENV === 'production';
 // * Opbeat (must be the first thing started)
 if (isProduction) {
     console.log('** Running in PRODUCTION mode **');
-    var opbeat = require('opbeat')({
+    var opbeat = require('opbeat').start({
         appId: 'c36849e44e',
         organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
         secretToken: process.env['OPBEAT_SECRET']
@@ -39,7 +39,7 @@ var BUNDLE_HASH = JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 
 // * Opbeat
-if (opbeat)
+if (isProduction)
     app.use(opbeat.middleware.express())
 function handleError(err) {
     if (!err) return;
