@@ -1,4 +1,6 @@
-function addExchangesConfiguration(exchanges) {
+var exports = module.exports = {};
+
+exports.addExchangesConfiguration = function(exchanges) {
     // AL
     exchanges['AL->GR'] = {
         lonlat: [20.689872, 40.198219],

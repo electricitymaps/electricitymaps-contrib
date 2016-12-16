@@ -5,20 +5,28 @@
   "dependencies": {
     "async": "^2.0.1",
     "compression": "^1.6.2",
-    "d3": "^4.2.3",
+    "d3": "^3.5.17",
+    "d3-queue": "^3.0.3",
     "express": "^4.10.2",
     "mathjs": "^3.5.1",
     "memcached": "^2.2.2",
     "moment": "^2.15.2",
     "mongodb": "^2.2.9",
-    "node-statsd": "^0.1.1",
     "opbeat": "^3.21.0",
-    "snappy": "^5.0.5"
+    "snappy": "^5.0.5",
+    "topojson": "^2.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.10.2"
+    "nodemon": "^1.10.2",
+    "webpack": "^1.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corradio/electricitymap.git"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "build": "webpack",
+    "dev": "nodemon server.js",
+    "watch": "webpack --watch"
   }
 }

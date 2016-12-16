@@ -129,3 +129,5 @@ CountryMap.prototype.data = function(data) {
     }
     return this;
 };
+
+module.exports = CountryMap;

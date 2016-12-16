@@ -1,4 +1,4 @@
-function ExchangeLayer(selector) {
+function ExchangeLayer(selector, co2Color) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.STROKE_CO2_THRESHOLD = 550;
@@ -6,6 +6,7 @@ function ExchangeLayer(selector) {
         .exponent(2)
         .domain([500, 6000])
         .range([2000, 10]);
+    this.co2Color = co2Color;
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = this.root.append('g');
@@ -24,6 +25,10 @@ function ExchangeLayer(selector) {
         'L 0 -' + hh + ' ' + 
         'L ' + hb + ' -' + (3.0 * hh) + ' Z';
     };
+
+    function isMobile() {
+        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+    }
 
     var that = this;
     this.animateGradient = function(selector, colorAccessor, durationAccessor) {
@@ -125,7 +130,7 @@ ExchangeLayer.prototype.render = function() {
                     function() {
                         var d = that.data()[i];
                         if (!d.co2intensity || !d.netFlow) return 'gray';
-                        return co2color(d.co2intensity);
+                        return that.co2Color(d.co2intensity);
                     },
                     function() {
                         if (!d.netFlow) return 2000; // we have to return a duration
@@ -177,3 +182,5 @@ ExchangeLayer.prototype.data = function(arg) {
     }
     return this;
 };
+
+module.exports = ExchangeLayer;

@@ -3,15 +3,15 @@ var isProduction = process.env.ENV === 'production';
 // * Opbeat (must be the first thing started)
 if (isProduction) {
     console.log('** Running in PRODUCTION mode **');
-    var opbeat = require('opbeat').start({
+    var opbeat = require('opbeat')({
         appId: 'c36849e44e',
         organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
         secretToken: process.env['OPBEAT_SECRET']
-    })
+    });
 }
 
 var async = require('async');
-var co2lib = require('./static/app/co2eq');
+var co2lib = require('./app/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');
@@ -30,7 +30,7 @@ app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
 // * Static
-app.use(express.static(__dirname + '/static', {etag: true, maxAge: '4h'}));
+app.use(express.static(__dirname + '/public', {etag: true, maxAge: '4h'}));
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -123,16 +123,15 @@ function processDatabaseResults(countries, exchanges) {
     return {countries: countries, exchanges: exchanges};
 }
 function computeCo2(countries, exchanges) {
-    var co2calc = co2lib.Co2eqCalculator();
-    co2calc.compute(countries);
+    var assignments = co2lib.compute(countries);
     d3.entries(countries).forEach(function(o) {
-        o.value.co2intensity = co2calc.assignments[o.key];
+        o.value.co2intensity = assignments[o.key];
     });
     d3.values(countries).forEach(function(country) {
         country.exchangeCo2Intensities = {};
         d3.keys(country.exchange).forEach(function(k) {
             country.exchangeCo2Intensities[k] =
-                country.exchange[k] > 0 ? co2calc.assignments[k] : country.co2intensity;
+                country.exchange[k] > 0 ? assignments[k] : country.co2intensity;
         });
     });
     d3.values(exchanges).forEach(function(exchange) {
@@ -539,4 +538,7 @@ app.get('/health', function(req, res) {
                 res.json({status: 'ok'});
         }
     });
+});
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
 });

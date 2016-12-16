@@ -176,3 +176,5 @@ HorizontalColorbar.prototype.markerColor = function(arg) {
         .style('stroke', arg);
     return this;
 }
+
+module.exports = HorizontalColorbar;
