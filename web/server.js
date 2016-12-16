@@ -543,5 +543,8 @@ app.get('/health', function(req, res) {
     });
 });
 app.get('/', function(req, res) {
-    res.render('pages/index', { 'bundleHash': BUNDLE_HASH});
+    res.render('pages/index', {
+        'bundleHash': BUNDLE_HASH,
+        useAnalytics: req.get('host').indexOf('electricitymap') != -1
+    });
 });

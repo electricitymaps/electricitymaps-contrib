@@ -33,7 +33,8 @@ _opbeat('config', {
 function catchError(e) {
     console.error(e);
     if (!isLocalhost) {
-        _opbeat('captureException', e);
+        if(typeof _opbeat !== 'undefined')
+            _opbeat('captureException', e);
         trackAnalyticsEvent('error', {'stack': e.stack});
     }
 }
@@ -64,21 +65,19 @@ function isSmallScreen() {
 }
 
 // Analytics
-if (!isLocalhost) {
-    FB.AppEvents.logPageView('pageview');
-    mixpanel.track('Visit');
-    ga('send', 'pageview');
-}
 function trackAnalyticsEvent(eventName, paramObj) {
     if (!isLocalhost) {
         try {
-            FB.AppEvents.logEvent(eventName, undefined, paramObj);
+            if(typeof FB !== 'undefined')
+                FB.AppEvents.logEvent(eventName, undefined, paramObj);
         } catch(err) { console.error('FB AppEvents error: ' + err); }
         try {
-            mixpanel.track(eventName, paramObj);
+            if(typeof mixpanel !== 'undefined')
+                mixpanel.track(eventName, paramObj);
         } catch(err) { console.error('Mixpanel error: ' + err); }
         try {
-            ga('send', eventName);
+            if(typeof ga !== 'undefined')
+                ga.send('send', eventName);
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
