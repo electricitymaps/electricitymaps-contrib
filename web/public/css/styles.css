@@ -46,7 +46,7 @@ html, body {
     pointer-events: all;
 }
 .watermark {
-    display: block;
+    display: table;
     pointer-events: all;
     padding: 15px;
     opacity: 0.5;
