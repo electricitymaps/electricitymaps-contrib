@@ -134,7 +134,7 @@ var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
-function toogleSource() {
+window.toggleSource = function() {
     tableDisplayEmissions = !tableDisplayEmissions;
     trackAnalyticsEvent(
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
