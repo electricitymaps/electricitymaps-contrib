@@ -19,7 +19,7 @@ dependencies:
     - docker-compose up -d
     - sleep 20
     - docker-compose logs web
-    - curl --fail -i localhost:8000/health
+    - curl --fail -i http://localhost:8000/
 test:
   override:
     - echo "no test"
