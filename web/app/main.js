@@ -77,7 +77,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Mixpanel error: ' + err); }
         try {
             if(typeof ga !== 'undefined')
-                ga.send('send', eventName);
+                ga('send', eventName);
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
