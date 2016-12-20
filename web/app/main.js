@@ -9,9 +9,12 @@ var CountryConfig = require('./countryconfig');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
+var DataService = require('./dataservice');
 var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
+var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
+var Solar = require('./solar');
 var Windy = require('./windy');
 
 // Constants
@@ -160,10 +163,6 @@ var solarCanvas = d3.select('.solar');
 solarCanvas.attr('height', height);
 solarCanvas.attr('width', width);
 
-if (solarCanvas.node()) {
-    var ctx = solarCanvas.node().getContext('2d');
-}
-
 // Prepare data
 var countries = CountryTopos.getCountryTopos(countries);
 CountryConfig.addCountriesConfiguration(countries);
@@ -223,29 +222,12 @@ if (isSmallScreen()) {
             windColorbar.currentMarker(undefined);
         }
         if (solar && coordinates) {
-            var t_before = moment(solar.forecasts[0].header.refTime).unix() * 1000.0 + 
-                solar.forecasts[0].header.forecastTime * 3600.0 * 1000.0;
-            var t_after = moment(solar.forecasts[1].header.refTime).unix() * 1000.0 + 
-                solar.forecasts[1].header.forecastTime * 3600.0 * 1000.0;
             var lonlat = countryMap.projection().invert(coordinates);
-            // TODO: Optimise by grouping in a solar or grib class
             var now = customDate ? moment(customDate) : (new Date()).getTime();
-            if (moment(now) <= moment(t_after)) {
-                var Nx = solar.forecasts[0].header.nx;
-                var Ny = solar.forecasts[0].header.ny;
-                var lo1 = solar.forecasts[0].header.lo1;
-                var la1 = solar.forecasts[0].header.la1;
-                var dx = solar.forecasts[0].header.dx;
-                var dy = solar.forecasts[0].header.dy;
-                var i = parseInt(lonlat[0] - lo1) / dx;
-                var j = parseInt(la1 - lonlat[1]) / dy;
-                var n = j * Nx + i;
-                var k = (now - t_before)/(t_after - t_before);
-                var val = d3.interpolate(
-                    solar.forecasts[0].data[n],
-                    solar.forecasts[1].data[n])(k);
+            if (moment(now) <= moment(grib.getTargetTime(solar.forecasts[1]))) {
+                var val = grib.getInterpolatedValueAtLonLat(lonlat, 
+                    solar.forecasts[0], solar.forecasts[1]);
                 solarColorbar.currentMarker(val);
-                console.log(val)
             }
         } else {
             solarColorbar.currentMarker(undefined);
@@ -287,18 +269,20 @@ function dataLoaded(err, state, argSolar, argWind) {
     if (wind && wind['forecasts'][0] && wind['forecasts'][1] && windEnabled) {
         console.log('wind', wind);
         d3.select('.wind-legend').style('display', 'block');
-        var t_before = moment(wind.forecasts[0][0].header.refTime).add(wind.forecasts[0][0].header.forecastTime, 'hours');
-        var t_after = moment(wind.forecasts[1][0].header.refTime).add(wind.forecasts[1][0].header.forecastTime, 'hours');
+        var wind_before = wind.forecasts[0][0];
+        var wind_after = wind.forecasts[1][0];
+        var t_before = grib.getTargetTime(wind_before);
+        var t_after = grib.getTargetTime(wind_after);
         console.log('#1 wind forecast target', 
             t_before.fromNow(),
-            'made', moment(wind.forecasts[0][0].header.refTime).fromNow());
-        console.log('#2 wind forecast target',
+            'made', grib.getRefTime(wind_before).fromNow());
+        console.log('#2 wind forecast target', 
             t_after.fromNow(),
-            'made', moment(wind.forecasts[1][0].header.refTime).fromNow());
+            'made', grib.getRefTime(wind_after).fromNow());
         // Interpolate wind
-        var now = customDate ? moment(customDate) : (new Date()).getTime();
+        var now = customDate ? moment(customDate) : moment(new Date());
         var interpolatedWind = wind.forecasts[0];
-        if (moment(now) > moment(t_after)) {
+        if (moment(now) > t_after) {
             console.error('Error while interpolating wind because current time is out of bounds');
         } else {
             var k = (now - t_before)/(t_after - t_before);
@@ -325,87 +309,12 @@ function dataLoaded(err, state, argSolar, argWind) {
     if (solar && solar['forecasts'][0] && solar['forecasts'][1] && solarEnabled) {
         console.log('solar', solar);
         d3.select('.solar-legend').style('display', 'block');
-        if (ctx) {
-            // Interpolates between two solar forecasts
-            var Nx = solar.forecasts[0].header.nx;
-            var Ny = solar.forecasts[0].header.ny;
-            var lo1 = solar.forecasts[0].header.lo1;
-            var la1 = solar.forecasts[0].header.la1;
-            var dx = solar.forecasts[0].header.dx;
-            var dy = solar.forecasts[0].header.dy;
-            var t_before = moment(solar.forecasts[0].header.refTime).unix() * 1000.0 + 
-                solar.forecasts[0].header.forecastTime * 3600.0 * 1000.0;
-            var t_after = moment(solar.forecasts[1].header.refTime).unix() * 1000.0 + 
-                solar.forecasts[1].header.forecastTime * 3600.0 * 1000.0;
-            var now = customDate ? moment(customDate) : (new Date()).getTime();
-            console.log('#1 solar forecast target', 
-                moment(t_before).fromNow(),
-                'made', moment(solar.forecasts[0].header.refTime).fromNow());
-            console.log('#2 solar forecast target',
-                moment(t_after).fromNow(),
-                'made', moment(solar.forecasts[1].header.refTime).fromNow());
-            if (moment(now) > moment(t_after)) {
-                console.error('Error while interpolating solar because current time is out of bounds');
-            } else {
-                var k = (now - t_before)/(t_after - t_before);
-                var buckets = d3.range(solarColor.range().length)
-                    .map(function(d) { return []; });
-                var bucketIndex = d3.scale.linear()
-                    .rangeRound(d3.range(buckets.length))
-                    .domain(solarColor.domain())
-                    .clamp(true);
-                var k = (now - t_before)/(t_after - t_before);
-
-                function bilinearInterpolate(x, y, x1, x2, y1, y2, Q11, Q12, Q21, Q22) {
-                    var R1 = ((x2 - x)/(x2 - x1))*Q11 + ((x - x1)/(x2 - x1))*Q21;
-                    var R2 = ((x2 - x)/(x2 - x1))*Q12 + ((x - x1)/(x2 - x1))*Q22;
-                    return ((y2 - y)/(y2 - y1))*R1 + ((y - y1)/(y2 - y1))*R2;
-                }
-
-                d3.range(solarCanvas.attr('width')).forEach(function(x) {
-                    d3.range(solarCanvas.attr('height')).forEach(function(y) {
-                        var lonlat = countryMap.projection().invert([x, y]);
-                        var positions = [
-                            [Math.floor(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
-                            [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
-                            [ Math.ceil(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
-                            [ Math.ceil(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
-                        ];
-                        var values = positions.map(function(d) {
-                            var n = d[0] + Nx * d[1];
-                            return d3.interpolate(
-                                solar.forecasts[0].data[n],
-                                solar.forecasts[1].data[n])(k);
-                        });
-                        var val = bilinearInterpolate(
-                            (lonlat[0] - lo1) / dx,
-                            (la1 - lonlat[1]) / dy,
-                            positions[0][0],
-                            positions[2][0],
-                            positions[0][1],
-                            positions[1][1],
-                            values[0],
-                            values[1],
-                            values[2],
-                            values[3]);
-                        buckets[bucketIndex(val)].push([x, y]);
-                    });
-                });
-                buckets.forEach(function(d, i) {
-                    ctx.beginPath()
-                    rgbaColor = solarColor.range()[i];
-                    ctx.strokeStyle = d3.rgb(rgbaColor.replace('rgba', 'rgb'));
-                    ctx.globalAlpha = parseFloat(rgbaColor
-                        .replace('(', '')
-                        .replace(')', '')
-                        .replace('rgba', '')
-                        .split(', ')[3]);
-                    d.forEach(function(d) { ctx.rect(d[0], d[1], 1, 1); });
-                    ctx.stroke();
-                });
-                buckets = []; // Release memory
-            }
-        }
+        Solar.drawSolar('.solar',
+            customDate ? moment(customDate) : moment(new Date()),
+            solar.forecasts[0],
+            solar.forecasts[1],
+            solarColor,
+            countryMap.projection());
     } else {
         d3.select('.solar-legend').style('display', 'none');
     }
@@ -632,48 +541,6 @@ function handleConnectionReturnCode(err) {
     }
 }
 
-// GFS Parameters
-var GFS_STEP_ORIGIN  = 6; // hours
-var GFS_STEP_HORIZON = 1; // hours
-function fetchForecast(key, refTime, targetTime, tryOlderRefTime, callback) {
-    refTime = moment(refTime);
-    targetTime = moment(targetTime);
-    return d3.json(ENDPOINT + '/v2/gfs/' + key + '?' + 
-        'refTime=' + refTime.toISOString() + '&' +
-        'targetTime=' + targetTime.toISOString(), function (err, obj) {
-            if (err && tryOlderRefTime)
-                return fetchForecast(key, refTime.subtract(GFS_STEP_ORIGIN, 'hour'),
-                    targetTime, false, callback);
-            else
-                return callback(err, obj);
-        });
-}
-function getGfsTargetTimeBefore(datetime) {
-    var horizon = moment(datetime).utc().startOf('hour');
-    while ((horizon.hour() % GFS_STEP_HORIZON) != 0)
-        horizon.subtract(1, 'hour');
-    return horizon;
-}
-function getGfsRefTimeForTarget(datetime) {
-    // Warning: solar will not be available at horizon 0
-    // so always do at least horizon 1
-    var origin = moment(datetime).subtract(1, 'hour');
-    while ((origin.hour() % GFS_STEP_ORIGIN) != 0)
-        origin.subtract(1, 'hour');
-    return origin;
-}
-function fetchGfs(key, datetime, callback) {
-    var targetTimeBefore = getGfsTargetTimeBefore(datetime);
-    var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
-    // Note: d3.queue runs tasks in parallel
-    return Q = queue()
-        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true)
-        .defer(fetchForecast, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true)
-        .await(function(err, before, after) {
-            if (err) return callback(err, null);
-            return callback(null, { forecasts: [before.data, after.data] });
-        });
-}
 function ignoreError(func) {
     return function() {
         var callback = arguments[arguments.length - 1];
@@ -708,8 +575,8 @@ function fetchAndReschedule() {
     } else {
         Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
         if (solarEnabled || windEnabled) {
-            Q.defer(ignoreError(fetchGfs), 'solar', customDate || new Date());
-            Q.defer(ignoreError(fetchGfs), 'wind', customDate || new Date());
+            Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', customDate || new Date());
+            Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', customDate || new Date());
         }
         Q.await(function(err, state, solar, wind) {
             handleConnectionReturnCode(err);
