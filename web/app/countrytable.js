@@ -266,10 +266,12 @@ CountryTable.prototype.data = function(arg) {
                 .each('end', function () { d3.select(this).style('display', 'block'); });
         selection.select('rect.production')
             .on('mouseover', function (d) {
-                that.productionMouseOverHandler.call(this, d, that._data.countryCode);
+                if (that.productionMouseOverHandler)
+                    that.productionMouseOverHandler.call(this, d, that._data.countryCode);
             })
             .on('mouseout', function (d) {
-                that.productionMouseOutHandler.call(this, d);
+                if (that.productionMouseOutHandler)
+                    that.productionMouseOutHandler.call(this, d);
             })
             .on('click', function (d) {
                 console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/h');
