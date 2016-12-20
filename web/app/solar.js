@@ -5,13 +5,15 @@ var moment = require('moment');
 
 var grib = require('./grib');
 
+var solarCanvas;
+
 function bilinearInterpolate(x, y, x1, x2, y1, y2, Q11, Q12, Q21, Q22) {
     var R1 = ((x2 - x)/(x2 - x1))*Q11 + ((x - x1)/(x2 - x1))*Q21;
     var R2 = ((x2 - x)/(x2 - x1))*Q12 + ((x - x1)/(x2 - x1))*Q22;
     return ((y2 - y)/(y2 - y1))*R1 + ((y - y1)/(y2 - y1))*R2;
 }
 
-exports.drawSolar = function(canvasSelector, now, grib1, grib2, solarColor, projection) {
+exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projection) {
     // Interpolates between two solar forecasts
     var t_before = grib.getTargetTime(grib1);
     var t_after = grib.getTargetTime(grib2);
@@ -40,7 +42,7 @@ exports.drawSolar = function(canvasSelector, now, grib1, grib2, solarColor, proj
     var dx = grib1.header.dx;
     var dy = grib1.header.dy;
 
-    var solarCanvas = d3.select(canvasSelector);
+    solarCanvas = d3.select(canvasSelector);
 
     d3.range(solarCanvas.attr('width')).forEach(function(x) {
         d3.range(solarCanvas.attr('height')).forEach(function(y) {
@@ -85,4 +87,12 @@ exports.drawSolar = function(canvasSelector, now, grib1, grib2, solarColor, proj
         ctx.stroke();
     });
     buckets = []; // Release memory
+};
+
+exports.show = function() {
+    solarCanvas.transition().style('opacity', 100);
+}
+
+exports.hide = function() {
+    if(solarCanvas) solarCanvas.transition().style('opacity', 0);
 }

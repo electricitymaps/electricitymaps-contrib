@@ -77,25 +77,51 @@ ExchangeLayer.prototype.projection = function(arg) {
     return this;
 };
 
+function appendGradient(element, triangleHeight) {
+    return element.append('linearGradient')
+        .attr('class', 'exchange-gradient')
+        .attr('gradientUnits', 'userSpaceOnUse')
+        .attr('x1', 0).attr('y1', -2.0 * triangleHeight - 1)
+        .attr('x2', 0).attr('y2', triangleHeight + 1);
+}
+
+var getTransform = function(d) {
+    var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+    var scale = 4.5;
+    return 'rotate(' + rotation + '), scale(' + scale + ')';
+};
+
+ExchangeLayer.prototype.renderOne = function(selector) {
+    var element = d3.select(selector);
+    var id = String(parseInt(Math.random()*10000));
+    var gradient = appendGradient(
+        element.append('g').attr('class', 'exchange-gradient'),
+        this.TRIANGLE_HEIGHT
+    ).attr('id', id);
+    var that = this;
+    element
+        .append('path')
+        .attr('d', function(d) { return that.trianglePath(); })
+        .attr('fill', function (d, i) { return 'url(#' + id + ')'; })
+        .attr('transform-origin', '0 0')
+        .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
+
+    this.animateGradient(gradient, 
+        function() { return 'orange'; }, 
+        function() { return that.exchangeAnimationDurationScale(1000); });
+
+    return element
+};
+
 ExchangeLayer.prototype.render = function() {
     if (!this._data) { return; }
     var that = this;
     var exchangeGradients = this.exchangeGradientsContainer
         .selectAll('.exchange-gradient')
         .data(this._data)
-    exchangeGradients.enter()
-        .append('linearGradient')
-        .attr('class', 'exchange-gradient')
-        .attr('gradientUnits', 'userSpaceOnUse')
-        .attr('x1', 0).attr('y1', -2.0 * this.TRIANGLE_HEIGHT - 1)
-        .attr('x2', 0).attr('y2', this.TRIANGLE_HEIGHT + 1)
+    appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
         .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
-    var getTransform = function (d) {
-        var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        var scale = 4.5;
-        return 'rotate(' + rotation + '), scale(' + scale + ')';
-    };
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
         .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1]; });

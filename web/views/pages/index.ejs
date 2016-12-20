@@ -104,17 +104,9 @@
         <canvas class="map wind"></canvas>
         <canvas class="map solar"></canvas>
         <div class="legend large-screen-visible">
-            <div class="co2-legend">
+            <div class="co2-legend colorbar">
                 <span class="colorbar-unit">Carbon intensity<br />(gCO2eq/kWh)</span>
-                <svg class="co2-colorbar"></svg>
-            </div>
-            <div class="wind-legend">
-                <span class="colorbar-unit">Wind speed<br />(m/s)</span>
-                <svg class="wind-colorbar"></svg>
-            </div>
-            <div class="solar-legend">
-                <span class="colorbar-unit">Sun intensity<br />(W/m<sup>2</sup>)</span>
-                <svg class="solar-colorbar"></svg>
+                <svg class="co2-colorbar colorbar"></svg>
             </div>
         </div>
         <div class="content">
@@ -145,9 +137,10 @@
                         You're currently seeing a <span style="color: lightgray">limited mobile version</span>. For the <span style="color: lightgray">full experience</span>, visit this page on your computer.
                     </p>
                     <p class="large-screen-visible">
-                        This shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.<br />
-                        We take into account electricity <span style="color: lightgray">imports and exports</span> of each country.
-                        <!--The also shows renewable resources like wind and sun.-->
+                        This shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
+                    </p class="small-screen-visible">
+                    <p class="large-screen-visible">
+                        We take into account electricity <span style="color: lightgray">imports and exports</span> <svg id="example-arrow" style="width: 1em; height: 1em"></svg> between countries.
                     </p>
                     <p>
                         <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span>
@@ -155,6 +148,22 @@
                     <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                         <p></p>
                     </div>
+                </div>
+                <div class="large-screen-visible">
+                    <hr />
+                    <p>
+                        <input type="checkbox" id="checkbox-wind" />
+                        <label for="checkbox-wind">Wind power potential</label>
+                        <svg class="wind-colorbar colorbar"></svg>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="checkbox-solar" />
+                        <label for="checkbox-solar"> Solar power potential (W/m<sup>2</sup>)</label>
+                        <svg class="solar-colorbar colorbar"></svg>
+                    </p>
+                </div>
+                <div>
+                    <hr />
                     Like the visualization? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
                     Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
                     <br />

@@ -79,9 +79,11 @@ html, body {
 }
 .wind {
     pointer-events: none;
+    opacity: 0;
 }
 .solar {
     pointer-events: none;
+    opacity: 0;
 }
 .graticule {
     stroke: #185c96;
@@ -142,6 +144,20 @@ html, body {
     height: 8px;
 }
 
+/* ** LEGEND ** */
+.x.axis {
+    font-size: 0.5em;
+}
+.legend {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 10px;
+    pointer-events: none;
+}
+.colorbar {
+    height: 30px;
+}
 .colorbar-unit {
     color: darkgray;
     overflow: auto;
@@ -149,36 +165,7 @@ html, body {
     height: 100%;
     width: 150px;
     text-align: right;
-    font-size: 1.3em;
-}
-.legend {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 10px;
-    font-size: 0.5em;
-    pointer-events: none;
-}
-.co2-legend {
-    height: 30px;
-}
-.co2-colorbar {
-    height: 100%;
-    width: 300px;
-}
-.wind-legend {
-    height: 30px;
-}
-.wind-colorbar {
-    height: 100%;
-    width: 300px;
-}
-.solar-legend {
-    height: 30px;
-}
-.solar-colorbar {
-    height: 100%;
-    width: 300px;
+    font-size: 0.6em;
 }
 
 a {
