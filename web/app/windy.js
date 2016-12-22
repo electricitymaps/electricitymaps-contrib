@@ -436,7 +436,7 @@ var Windy = function( params ){
         });
     }
 
-    (function frame() {
+    function frame() {
         try {
             windy.timer = setTimeout(function() {
               requestAnimationFrame(frame);
@@ -447,7 +447,8 @@ var Windy = function( params ){
         catch (e) {
             console.error(e);
         }
-    })();
+    };
+    frame();
   }
 
   var start = function( bounds, width, height, extent ){
