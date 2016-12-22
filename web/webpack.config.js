@@ -2,7 +2,8 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'sourcemap',
+  //devtool: 'sourcemap',
+  devtool: 'eval',
   entry: './app/main.js',
   plugins: [
     new CleanWebpackPlugin(['public/dist']),
