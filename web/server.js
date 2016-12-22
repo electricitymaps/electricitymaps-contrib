@@ -165,7 +165,7 @@ function queryElements(keyName, keyValues, collection, minDate, maxDate, callbac
     return async.parallel(tasks, callback);
 }
 function queryLastValuesBeforeDatetime(datetime, callback) {
-    var minDate = moment.utc().subtract(24, 'hours').toDate();
+    var minDate = (moment(datetime) || moment.utc()).subtract(24, 'hours').toDate();
     var maxDate = datetime ? new Date(datetime) : undefined;
     // Get list of countries & exchanges in db
     return async.parallel([
