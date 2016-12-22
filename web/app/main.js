@@ -479,7 +479,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         .onCountryMouseOver(function (d) { 
             d3.select(this)
                 .style('opacity', 0.8)
-                .style('cursor', 'hand')
+                .style('cursor', 'pointer')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(d.co2intensity);
             d3.select('#country-tooltip')
