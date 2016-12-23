@@ -85,7 +85,7 @@ HorizontalColorbar.prototype.render = function() {
         selector.enter()
             .append('stop')
         selector
-            .attr('offset', function (d, i) { 
+            .attr('offset', function(d, i) { 
                 return i / (that.colors.length - 1);
             })
             .attr('stop-color', function (d) { return d; });
@@ -98,15 +98,15 @@ HorizontalColorbar.prototype.render = function() {
         // Ordinal scale
         this.scale.rangeBands([0, this.colorbarWidth]);
         this.deltaOrdinal = this.colorbarWidth / this.scale.range().length;
-        gColorbar.selectAll('rect')
+        this.gColorbar.selectAll('rect')
             .data(this.scale.range())
             .enter()
                 .append('rect')
-                .attr('x', i * this.deltaOrdinal)
+                .attr('x', function(d, i) { return i * that.deltaOrdinal; })
                 .attr('width', this.deltaOrdinal)
                 .attr('y', 0)
                 .attr('height', this.colorbarHeight)
-                .style('fill', d3.identity)
+                .style('fill', function(d, i) { return that.colors[i];});
     }
 
     // Prepare an invisible marker
