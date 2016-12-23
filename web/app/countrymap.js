@@ -21,15 +21,21 @@ function CountryMap(selector, co2color) {
         })
         .append('path')
             .attr('class', 'graticule');
-    this.land = this.root.append('g');
+    this.land = this.root.append('g')
+        .data([ {'x':0, 'y':0} ]);
     
     // Prepare drag
     this.drag = d3.drag()
         .on('start', function() {
             console.log('start', d3.event);
         })
-        .on('drag', function() {
-            console.log(d3.event);
+        .on('drag', function(d, i) {
+            console.log(d);
+            d.x += d3.event.dx;
+            d.y += d3.event.dy;
+            d3.select(this).attr("transform", function(d,i){
+                return "translate(" + [ d.x,d.y ] + ")"
+            })
         })
         .on('end', function() {
             console.log('end', d3.event);
