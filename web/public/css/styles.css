@@ -1,4 +1,4 @@
-html, body {    
+html, body {
     margin: 0 !important;
     padding: 0 !important;
     height: 100%;
@@ -146,7 +146,7 @@ html, body {
 
 /* ** LEGEND ** */
 .x.axis {
-    font-size: 0.5em;
+    font-size: 0.55em;
 }
 .legend {
     position: absolute;
@@ -157,6 +157,8 @@ html, body {
 }
 .colorbar {
     height: 30px;
+    /* This will make sure childs are relative to 1em */
+    font-size: 1rem;
 }
 .colorbar-unit {
     color: darkgray;
@@ -166,6 +168,7 @@ html, body {
     width: 150px;
     text-align: right;
     font-size: 0.6em;
+    line-height: 1.5em;
 }
 
 a {
