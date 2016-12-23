@@ -196,7 +196,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     };
     exchanges['LT->SE'] = {
         lonlat: [18.847674, 55.910978],
-        rotation: 75
+        rotation: -80
     }
     // MD
     exchanges['MD->RO'] = {

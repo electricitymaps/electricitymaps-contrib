@@ -10,14 +10,16 @@ dependencies:
     - '~/docker'
   override:
     - touch secrets.env
-    - if [[ -e ~/docker/api.tar ]]; then docker load -i ~/docker/api.tar; fi
+    - if [[ -e ~/docker/web.tar ]]; then docker load -i ~/docker/web.tar; fi
     - if [[ -e ~/docker/feeder.tar ]]; then docker load -i ~/docker/feeder.tar; fi
     - docker-compose build
-    - mkdir -p ~/docker; docker save electricitymap_api:latest > ~/docker/api.tar
+    - mkdir -p ~/docker; docker save electricitymap_web:latest > ~/docker/web.tar
     - mkdir -p ~/docker; docker save electricitymap_feeder:latest > ~/docker/feeder.tar
+    - docker-compose run web npm run build-release
     - docker-compose up -d
     - sleep 20
-    - curl --fail -i localhost:8000/health
+    - docker-compose logs web
+    - curl --fail -i http://localhost:8000/
 test:
   override:
     - echo "no test"

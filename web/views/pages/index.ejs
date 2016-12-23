@@ -23,13 +23,10 @@
         <link rel="stylesheet" type="text/css" href="flag-icon-css/css/flag-icon.min.css">
         <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 
-        <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js"
-            data-org-id="093c53b0da9d43c4976cd0737fe0f2b1"
-            data-app-id="c36849e44e"
-            async>
-        </script>
+        <script defer src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js"></script>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
 
+        <% if (useAnalytics) { %>
         <!-- start GA -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,22 +34,18 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
             ga('create', 'UA-79729918-1', 'auto');
-            if (window.location.href.indexOf("electricitymap") !== -1) {
-                ga('send', 'pageview');
-            }
+            ga('send', 'pageview');
         </script>
         <!-- end GA -->
         <!-- start Mixpanel -->
         <script type="text/javascript">
             (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
             for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
-            if (window.location.href.indexOf("electricitymap") !== -1) {
-                mixpanel.init("f350f1ec866f4737a5f69497e58cf67d");
-            }
-            if (mixpanel.track)
-                mixpanel.track('Visit');
+            mixpanel.init('f350f1ec866f4737a5f69497e58cf67d');
+            mixpanel.track('Visit', {'bundleVersion': '<%= bundleHash %>'});
         </script>
         <!-- end Mixpanel -->
+        <% } %>
         <!-- start Twitter -->
         <script>
             window.twttr = (function(d, s, id) {
@@ -83,9 +76,9 @@
                     xfbml      : true,
                     version    : 'v2.8'
                 });
-                if (window.location.href.indexOf("electricitymap") !== -1) {
-                    FB.AppEvents.logPageView("pageview");
-                }
+                <% if (useAnalytics) { %>
+                FB.AppEvents.logPageView('pageview');
+                <% } %>
             };
 
             (function(d, s, id){
@@ -127,8 +120,8 @@
                         (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
                         <br />
                         Carbon intensity:  <div class="country-emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
-                        <span class="country-show-emissions">Electricity production (<a href="javascript:toogleSource();">show emissions</a>) by source:</span>
-                        <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toogleSource();">show electricity</a>) by source:</span>
+                        <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
+                        <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
                     </span>
                 </div>
                 <svg class="country-table" style="display: none"></svg>
@@ -183,19 +176,15 @@
             </div>
             <div class="footer">
                 <div class="watermark">
-                    <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank">
-                        <img src="images/tomorrow_logo_open_source.svg" style="width:160px"/>
-                    </a><br />
-                    <!-- Facebook follow -->
+                    <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank"><img src="images/tomorrow_logo_open_source.svg" style="width:160px"/></a>
+                    <br />
                     <div class="fb-like" 
                         data-href="https://www.facebook.com/tmrowco" 
                         data-layout="button" 
                         data-action="like"
                         data-size="small" 
                         data-show-faces="false">
-                    </div>
-                    <!-- Twitter follow -->
-                    <a class="twitter-follow-button"
+                    </div>&nbsp;<a class="twitter-follow-button"
                         href="https://twitter.com/tmrowco"
                         data-show-screen-name="false"
                         data-show-count="false">
