@@ -31,7 +31,7 @@ app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
 // * Static and templating
-app.use(express.static(__dirname + '/public', {etag: true, maxAge: '4h'}));
+app.use(express.static(__dirname + '/public', {etag: true, maxAge: isProduction ? '4h': '0'}));
 app.set('view engine', 'ejs');
 var BUNDLE_HASH = !isProduction ? 'dev' : 
     JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
