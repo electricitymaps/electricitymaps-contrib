@@ -46,3 +46,6 @@ exports.fetchGfs = function(endpoint, key, datetime, callback) {
             return callback(null, { forecasts: [before.data, after.data] });
         });
 }
+exports.fetchNothing = function(endpoint, key, datetime, callback) {
+    return callback(null, null);
+}

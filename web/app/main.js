@@ -24,6 +24,8 @@ var REFRESH_TIME_MINUTES = 5;
 var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
+var showWindOption = true;
+var showSolarOption = false;
 var windEnabled = false;
 var solarEnabled = false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
@@ -54,10 +56,8 @@ function catchError(e) {
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
             console.log('** Custom date: ' + customDate + ' **');
-        } else if (kv[0] == 'wind') {
-            windEnabled = kv[1] == 'true';
         } else if (kv[0] == 'solar') {
-            solarEnabled = kv[1] == 'true';
+            showSolarOption = kv[1] == 'true';
         }
     });
 })();
@@ -86,6 +86,23 @@ function trackAnalyticsEvent(eventName, paramObj) {
                 ga('send', eventName);
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
+}
+
+// Loading screen
+function startLoading() {
+    d3.select('.loading')
+        .style('display', 'block')
+        .transition()
+        .style('opacity', 0.7);
+}
+
+function stopLoading() {
+    d3.select('.loading')
+        .transition()
+        .style('opacity', 0)
+        .each('end', function() {
+            d3.select(this).style('display', 'none');
+        });
 }
 
 // Start chrome (or forced) version
@@ -234,7 +251,7 @@ if (isSmallScreen()) {
         windEnabled = !windEnabled;
         if (windEnabled) {
             if (!wind || grib.getTargetTime(wind.forecasts[1][0]) >= moment.utc()) {
-                fetch();
+                fetch(false, true);
             } else {
                 Wind.show();
             }
@@ -246,7 +263,7 @@ if (isSmallScreen()) {
         solarEnabled = !solarEnabled;
         if (solarEnabled) {
             if (!solar || grib.getTargetTime(solar.forecasts[1]) >= moment.utc()) {
-                fetch();
+                fetch(false, true);
             } else {
                 Solar.show();
             }
@@ -313,9 +330,10 @@ function dataLoaded(err, state, argSolar, argWind) {
     wind = argWind;
     solar = argSolar;
 
-    if (wind && wind['forecasts'][0] && wind['forecasts'][1]) {
+    if (!showWindOption)
+        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
+    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
         console.log('wind', wind);
-        d3.select('#checkbox-wind').attr('disabled', false);
         Wind.draw('.wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
@@ -328,12 +346,16 @@ function dataLoaded(err, state, argSolar, argWind) {
             Wind.hide();
     } else {
         Wind.hide();
-        d3.select('#checkbox-wind').attr('disabled', true);
+        if (windEnabled) {
+            windEnabled = false;
+            d3.select('#checkbox-wind').attr('checked', false);
+        }
     }
 
-    if (solar && solar['forecasts'][0] && solar['forecasts'][1]) {
+    if (!showSolarOption)
+        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
+    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
         console.log('solar', solar);
-        d3.select('#checkbox-solar').attr('disabled', true);
         Solar.draw('.solar',
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
@@ -346,7 +368,10 @@ function dataLoaded(err, state, argSolar, argWind) {
             Solar.hide();
     } else {
         Solar.hide();
-        d3.select('#checkbox-solar').attr('disabled', true);
+        if (solarEnabled) {
+            solarEnabled = false;
+            d3.select('#checkbox-solar').attr('checked', false);
+        }
     }
 
     // Populate with realtime country data
@@ -518,12 +543,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             .render();
     }
 
-    d3.select('.loading')
-        .transition()
-        .style('opacity', 0)
-        .each('end', function () {
-            d3.select(this).remove();
-        });
+    stopLoading();
 };
 
 // Get geolocation is on mobile (in order to select country)
@@ -585,8 +605,10 @@ function ignoreError(func) {
     }
 }
 
-function fetch(doReschedule) {
+function fetch(doReschedule, showLoading) {
     if (!doReschedule) doReschedule = false;
+    if (!showLoading) showLoading = false;
+    if (showLoading) startLoading();
     // If data doesn't load in 30 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
         document.getElementById('connection-warning').className = "show";
@@ -605,14 +627,15 @@ function fetch(doReschedule) {
         });
     } else {
         Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
-        if (solarEnabled || windEnabled) {
-            Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', customDate || new Date());
-            Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', customDate || new Date());
-        }
+        Q.defer(solarEnabled ? ignoreError(DataService.fetchGfs) : DataService.fetchNothing,
+            ENDPOINT, 'solar', customDate || new Date());
+        Q.defer(windEnabled ? ignoreError(DataService.fetchGfs) : DataService.fetchNothing,
+            ENDPOINT, 'wind', customDate || new Date());
         Q.await(function(err, state, solar, wind) {
             handleConnectionReturnCode(err);
             if (!err)
                 dataLoaded(err, state.data, solar, wind);
+            if (showLoading) stopLoading();
             if (doReschedule)
                 setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
         });
