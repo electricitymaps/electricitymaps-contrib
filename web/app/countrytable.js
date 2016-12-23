@@ -1,4 +1,4 @@
-var co2lib = require('./co2eq');
+var co2eq_parameters = require('./co2eq_parameters');
 var moment = require('moment');
 
 function CountryTable(selector, co2Color) {
@@ -171,7 +171,7 @@ CountryTable.prototype.data = function(arg) {
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
-            var footprint = co2lib.footprintOf(d, that._data.countryCode);
+            var footprint = co2eq_parameters.footprintOf(d, that._data.countryCode);
             var production = arg.production ? arg.production[d] : undefined;
             return {
                 production: production,
@@ -283,7 +283,7 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('fill', function (d) {
                     // color by Co2 Intensity
-                    // return that.co2Color(co2lib.footprintOf(d.mode, that._data.countryCode));
+                    // return that.co2Color(co2eq_parameters.footprintOf(d.mode, that._data.countryCode));
                     // color by production mode
                     return that.PRODUCTION_COLORS[d.mode];
                 })
