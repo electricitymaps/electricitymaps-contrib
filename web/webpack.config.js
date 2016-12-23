@@ -1,12 +1,9 @@
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 var webpack = require('webpack');
 
 module.exports = {
-  //devtool: 'sourcemap',
-  devtool: 'eval',
+  devtool: (process.env.BUILD === 'debug' ? 'eval' : 'sourcemap'),
   entry: './app/main.js',
   plugins: [
-    new CleanWebpackPlugin(['public/dist']),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -23,7 +20,10 @@ module.exports = {
     }
   ],
   output: {
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.' + (process.env.BUILD === 'debug' ? 'dev' : '[hash]') + '.js',
     path: __dirname + '/public/dist/'
+  },
+  resolve: {
+    moduleDirectories: ['node_modules']
   }
 };
