@@ -543,6 +543,9 @@ app.get('/health', function(req, res) {
         }
     });
 });
+app.get(`/dist/styles.${BUNDLE_HASH}.css`, function(req, res) {
+    res.sendFile(__dirname + '/public/css/styles.css');
+});
 app.get('/', function(req, res) {
     res.render('pages/index', {
         'bundleHash': BUNDLE_HASH,
