@@ -52,7 +52,7 @@ CountryMap.prototype.render = function() {
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
         selector.enter()
-                .append('path')
+            .append('path')
                 .attr('class', 'country')
                 .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
@@ -78,12 +78,12 @@ CountryMap.prototype.render = function() {
                     //     .style('stroke', 'darkred')
                     //     .style('stroke-width', 1.5);
                     return that.countryClickHandler.call(this, d, i);
-                });
-        selector
-            .attr('d', this.path)
-            .transition()
-            .duration(2000)
-            .attr('fill', getCo2Color);
+                })
+            .merge(selector)
+                .attr('d', this.path)
+                .transition()
+                .duration(2000)
+                .attr('fill', getCo2Color);
     }
 }
 

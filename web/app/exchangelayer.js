@@ -43,12 +43,12 @@ function ExchangeLayer(selector, co2Color) {
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
-        arrow.enter()
+        var arrowEnter = arrow.enter()
             .append('stop')
-            .attr('stop-color', function(d) { return d.color; })
+            .attr('stop-color', function(d) { return d.color; });
 
         if (!isMobile()) {
-            arrow
+            arrowEnter.merge(arrow)
                 .transition()
                 .attr('stop-color', function(d) { return d.color; })
                 .duration(durationAccessor())
@@ -63,7 +63,7 @@ function ExchangeLayer(selector, co2Color) {
                         };
                     }
                 })
-                .each('end', function (d, i) {
+                .on('end', function (d, i) {
                     // We should only start one animation, so just wait for the
                     // first transition to finish
                     if (i == 0)
@@ -166,7 +166,7 @@ ExchangeLayer.prototype.render = function() {
                     }
                 );
             })
-    exchangeArrows
+    .merge(exchangeArrows)
         .attr('transform', function (d) {
             var center = that.projection()(d.lonlat);
             return 'translate(' + center[0] + ',' + center[1] + ')';

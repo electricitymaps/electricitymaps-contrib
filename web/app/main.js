@@ -159,11 +159,14 @@ var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-    .markerColor('black');
+    .markerColor('black')
+    .render();
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-    .markerColor('black');
+    .markerColor('black')
+    .render();
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
-    .markerColor('black');
+    .markerColor('black')
+    .render();
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -712,5 +715,4 @@ window.onresize = function () {
     redraw();
 };
 
-redraw();
 fetchAndReschedule();

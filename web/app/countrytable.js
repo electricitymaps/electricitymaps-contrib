@@ -219,10 +219,10 @@ CountryTable.prototype.data = function(arg) {
 
         // Prepare axis
         if (that._displayByEmissions)
-            this.axis = d3.axisBottom(this.co2Scale)
+            this.axis = d3.axisTop(this.co2Scale)
                 .tickFormat(function (d) { return d3.format('.0s')(d) + 't/h'; });
         else
-            this.axis = d3.axisBottom(this.powerScale)
+            this.axis = d3.axisTop(this.powerScale)
                 .tickFormat(this.POWER_FORMAT)
 
         this.axis
@@ -349,17 +349,17 @@ CountryTable.prototype.data = function(arg) {
             .attr('height', this.ROW_HEIGHT)
             .attr('opacity', this.RECT_OPACITY)
             .style('transform-origin', 'left')
-        selection.select('text.unknown')
+        gNewRow.merge(selection).select('text.unknown')
             .transition()
             .attr('transform', 'translate(' + (that.LABEL_MAX_WIDTH + that.co2Scale(0)) + ', ' + this.TEXT_ADJUST_Y + ')')
             .style('display', function(d) {
                 return (that._displayByEmissions && getExchangeCo2eq(d) === undefined) ? 'block' : 'none';
             });
-        selection.select('image')
+        gNewRow.merge(selection).select('image')
             .attr('xlink:href', function (d) {
                 return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
-        selection.select('rect')
+        gNewRow.merge(selection).select('rect')
             .on('mouseover', function (d) {
                 if (that.exchangeMouseOverHandler)
                     that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
@@ -403,7 +403,7 @@ CountryTable.prototype.data = function(arg) {
                 else
                     return Math.abs(that.powerScale(d.value) - that.powerScale(0));
             })
-        selection.select('text')
+        gNewRow.merge(selection).select('text')
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
