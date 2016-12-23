@@ -1,3 +1,5 @@
+var d3 = require('d3');
+
 function CountryMap(selector, co2color) {
     var that = this;
 
@@ -27,15 +29,15 @@ CountryMap.prototype.render = function() {
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
     var scale = Math.max(650, 0.5 * computedMapWidth);
-    this._projection = d3.geo.mercator()
+    this._projection = d3.geoMercator()
         .center([3, 48])
         .translate([0.5 * computedMapWidth, 0.65 * computedMapHeight])
         .scale(scale);
 
-    this.path = d3.geo.path()
+    this.path = d3.geoPath()
         .projection(this._projection);
         
-    var graticuleData = d3.geo.graticule()
+    var graticuleData = d3.geoGraticule()
         .step([5, 5]);
         
     this.graticule

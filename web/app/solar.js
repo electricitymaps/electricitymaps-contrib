@@ -29,7 +29,7 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
     var k = (now - t_before)/(t_after - t_before);
     var buckets = d3.range(solarColor.range().length)
         .map(function(d) { return []; });
-    var bucketIndex = d3.scale.linear()
+    var bucketIndex = d3.scaleLinear()
         .rangeRound(d3.range(buckets.length))
         .domain(solarColor.domain())
         .clamp(true);

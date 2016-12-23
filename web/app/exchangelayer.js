@@ -1,8 +1,10 @@
+var d3 = require('d3');
+
 function ExchangeLayer(selector, co2Color) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.STROKE_CO2_THRESHOLD = 550;
-    this.exchangeAnimationDurationScale = d3.scale.pow()
+    this.exchangeAnimationDurationScale = d3.scalePow()
         .exponent(2)
         .domain([500, 6000])
         .range([2000, 10]);
@@ -37,7 +39,7 @@ function ExchangeLayer(selector, co2Color) {
             .data([
                 {offset: 0, color: color},
                 {offset: 0, color: color},
-                {offset: 0, color: d3.rgb(color).hsl().l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')},
+                {offset: 0, color: d3.hsl(d3.rgb(color)).l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')},
                 {offset: 0, color: color},
                 {offset: 1, color: color},
             ]);
@@ -50,7 +52,7 @@ function ExchangeLayer(selector, co2Color) {
                 .transition()
                 .attr('stop-color', function(d) { return d.color; })
                 .duration(durationAccessor())
-                .ease('linear')
+                .ease(d3.easeLinear)
                 .attrTween('offset', function(d, i, a) {
                     // Only animate the middle color
                     if (i == 0 || i == 4)

@@ -2,7 +2,6 @@
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
-var queue = require('d3-queue').queue;
 
 // Modules
 var co2eq_parameters = require('./co2eq_parameters');
@@ -102,10 +101,10 @@ function startLoading() {
 function stopLoading() {
     d3.select('.loading')
         .transition()
-        .style('opacity', 0)
-        .each('end', function() {
-            d3.select(this).style('display', 'none');
-        });
+            .style('opacity', 0)
+            .on('end', function() {
+                d3.select(this).style('display', 'none');
+            });
 }
 
 // Start chrome (or forced) version
@@ -113,12 +112,12 @@ var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
-var co2color = d3.scale.linear()
+var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
     .range(['green', 'orange', 'black'])
     .clamp(true);
 var maxWind = 15;
-var windColor = d3.scale.linear()
+var windColor = d3.scaleLinear()
     .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
     .range([
         "rgba(0,   255, 255, 1.0)",
@@ -149,7 +148,7 @@ var solarRange = d3.range(10).map(function (i) {
 solarDomain.splice(0, 0, 1);
 solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
-var solarColor = d3.scale.linear()
+var solarColor = d3.scaleLinear()
     .domain(solarDomain)
     .range(solarRange)
     .clamp(true);
@@ -665,7 +664,7 @@ function fetch(doReschedule, showLoading) {
     connectionWarningTimeout = setTimeout(function(){
         document.getElementById('connection-warning').className = "show";
     }, 15 * 1000);
-    var Q = queue()
+    var Q = d3.queue()
     if (isMobile()) {
         Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
