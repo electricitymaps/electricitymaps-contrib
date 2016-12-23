@@ -20,6 +20,19 @@ function CountryMap(selector, co2color) {
         .append('path')
             .attr('class', 'graticule');
     this.land = this.root.append('g');
+    
+    // Prepare drag
+    this.drag = d3.drag()
+        .on('start', function() {
+            console.log('start', d3.event);
+        })
+        .on('drag', function() {
+            console.log(d3.event);
+        })
+        .on('end', function() {
+            console.log('end', d3.event);
+        });
+    this.land.call(this.drag);
 }
 
 CountryMap.prototype.render = function() {
