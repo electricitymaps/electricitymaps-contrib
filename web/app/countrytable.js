@@ -307,6 +307,11 @@ CountryTable.prototype.data = function(arg) {
             });
 
         // Construct exchanges
+        function getExchangeCo2eq(d) {
+            return d.value > 0 ? 
+                (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
+                : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
+        }
         var selection = this.exchangeRoot.selectAll('.row')
             .data(this._exchangeData);
         selection.exit().remove();
@@ -339,11 +344,6 @@ CountryTable.prototype.data = function(arg) {
             .attr('xlink:href', function (d) {
                 return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
-        function getExchangeCo2eq(d) {
-            return d.value > 0 ? 
-                (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
-                : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
-        }
         selection.select('rect')
             .on('mouseover', function (d) {
                 that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
