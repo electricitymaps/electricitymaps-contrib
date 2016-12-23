@@ -5,8 +5,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "compression": "^1.6.2",
-    "d3": "^3.5.17",
-    "d3-queue": "^3.0.3",
+    "d3": "^4.4.0",
     "ejs": "^2.5.5",
     "express": "^4.10.2",
     "js-cookie": "^2.1.3",
