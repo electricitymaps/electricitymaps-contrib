@@ -33,7 +33,8 @@ app.disable('etag'); // Disable etag generation (except for static)
 // * Static and templating
 app.use(express.static(__dirname + '/public', {etag: true, maxAge: '4h'}));
 app.set('view engine', 'ejs');
-var BUNDLE_HASH = JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
+var BUNDLE_HASH = !isProduction ? 'dev' : 
+    JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
