@@ -1,0 +1,58 @@
+var exports = module.exports = {};
+
+var d3 = require('d3');
+var moment = require('moment');
+
+var grib = require('./grib');
+var Windy = require('./windy');
+
+var windCanvas;
+var projection;
+var windLayer;
+
+exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProjection) {
+    var t_before = grib.getTargetTime(gribs1[0]);
+    var t_after = grib.getTargetTime(gribs2[0]);
+    console.log('#1 wind forecast target', 
+        t_before.fromNow(),
+        'made', grib.getRefTime(gribs1[0]).fromNow());
+    console.log('#2 wind forecast target', 
+        t_after.fromNow(),
+        'made', grib.getRefTime(gribs2[0]).fromNow());
+    // Interpolate wind
+    var interpolatedWind = gribs1;
+    if (moment(now) > t_after) {
+        console.error('Error while interpolating wind because current time is out of bounds');
+    } else {
+        var k = (now - t_before)/(t_after - t_before);
+        interpolatedWind[0].data = interpolatedWind[0].data.map(function (d, i) {
+            return d3.interpolate(d, gribs2[0].data[i])(k)
+        });
+        interpolatedWind[1].data = interpolatedWind[1].data.map(function (d, i) {
+            return d3.interpolate(d, gribs2[1].data[i])(k)
+        });
+        windCanvas = d3.select(canvasSelector);
+        projection = argProjection;
+        if (!windLayer) windLayer = new Windy({ canvas: windCanvas.node() });
+        windLayer.params.data = interpolatedWind;
+    }
+};
+
+exports.show = function() {
+    var width = parseInt(windCanvas.attr('width'));
+    var height = parseInt(windCanvas.attr('height'));
+    var sw = projection.invert([0, height]);
+    var ne = projection.invert([width, 0]);
+    windCanvas.transition().style('opacity', 100);
+    windLayer.start(
+        [[0, 0], [width, height]], 
+        width,
+        height,
+        [sw, ne]
+    );
+};
+
+exports.hide = function() { 
+    if (windCanvas) windCanvas.transition().style('opacity', 0);
+    if (windLayer) windLayer.stop();
+};
