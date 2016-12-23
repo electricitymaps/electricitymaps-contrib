@@ -4,7 +4,7 @@ var moment = require('moment');
 var queue = require('d3-queue').queue;
 
 // Modules
-var co2lib = require('./co2eq');
+var co2eq_parameters = require('./co2eq_parameters');
 var CountryConfig = require('./countryconfig');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
@@ -268,7 +268,7 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(undefined);
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2 = co2lib.footprintOf(d.mode, countryCode);
+            var co2 = co2eq_parameters.footprintOf(d.mode, countryCode);
             co2Colorbar.currentMarker(co2);
         })
         .onProductionMouseOut(function (d) {
