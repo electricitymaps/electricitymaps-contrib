@@ -10,6 +10,8 @@ var windCanvas;
 var projection;
 var windLayer;
 
+var WIND_OPACITY = 0.53;
+
 exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProjection) {
     var t_before = grib.getTargetTime(gribs1[0]);
     var t_after = grib.getTargetTime(gribs2[0]);
@@ -43,7 +45,7 @@ exports.show = function() {
     var height = parseInt(windCanvas.attr('height'));
     var sw = projection.invert([0, height]);
     var ne = projection.invert([width, 0]);
-    windCanvas.transition().style('opacity', 100);
+    windCanvas.transition().style('opacity', WIND_OPACITY);
     windLayer.start(
         [[0, 0], [width, height]], 
         width,

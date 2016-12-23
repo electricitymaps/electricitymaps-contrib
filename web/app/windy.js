@@ -18,9 +18,8 @@ var Windy = function( params ){
   var MAX_WIND_INTENSITY = 15;              // wind velocity at which particle intensity is maximum (m/s)
   var MAX_PARTICLE_AGE = 100;                // max number of frames a particle is drawn before regeneration
   var PARTICLE_LINE_WIDTH = 2;              // line width of a drawn particle
-  var PARTICLE_MULTIPLIER = 1;//8              // particle count scalar (completely arbitrary--this values looks nice)
+  var PARTICLE_MULTIPLIER = 4;              // particle count scalar (completely arbitrary--this values looks nice)
   var PARTICLE_REDUCTION = 0.75;            // reduce particle count to this much of normal for mobile devices
-  var FRAME_RATE = 20;                      // desired milliseconds per frame
   var BOUNDARY = 0.45;
 
   var NULL_WIND_VECTOR = [NaN, NaN, null];  // singleton for no wind in the form: [u, v, magnitude]
@@ -339,16 +338,16 @@ var Windy = function( params ){
           "rgba(" + hexToR('#fe3705') + ", " + hexToG('#fe3705') + ", " + hexToB('#fe3705') + ", " + 0.5 + ")",
           "rgba(" + hexToR('#ff0000') + ", " + hexToG('#ff0000') + ", " + hexToB('#ff0000') + ", " + 0.5 + ")"
           */
-          "rgba(" + hexToR('#00ffff') + ", " + hexToG('#00ffff') + ", " + hexToB('#00ffff') + ", " + 0.05 + ")",
-          "rgba(" + hexToR('#64f0ff') + ", " + hexToG('#64f0ff') + ", " + hexToB('#64f0ff') + ", " + 0.1 + ")",
-          "rgba(" + hexToR('#87e1ff') + ", " + hexToG('#87e1ff') + ", " + hexToB('#87e1ff') + ", " + 0.15 + ")",
-          "rgba(" + hexToR('#a0d0ff') + ", " + hexToG('#a0d0ff') + ", " + hexToB('#a0d0ff') + ", " + 0.25 + ")",
-          "rgba(" + hexToR('#b5c0ff') + ", " + hexToG('#b5c0ff') + ", " + hexToB('#b5c0ff') + ", " + 0.30 + ")",
-          "rgba(" + hexToR('#c6adff') + ", " + hexToG('#c6adff') + ", " + hexToB('#c6adff') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#d49bff') + ", " + hexToG('#d49bff') + ", " + hexToB('#d49bff') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#e185ff') + ", " + hexToG('#e185ff') + ", " + hexToB('#e185ff') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#ec6dff') + ", " + hexToG('#ec6dff') + ", " + hexToB('#ec6dff') + ", " + 0.5 + ")",
-          "rgba(" + hexToR('#ff1edb') + ", " + hexToG('#ff1edb') + ", " + hexToB('#ff1edb') + ", " + 0.5 + ")"
+          "rgba(" + hexToR('#00ffff') + ", " + hexToG('#00ffff') + ", " + hexToB('#00ffff') + ", " + 0.1 + ")",
+          "rgba(" + hexToR('#64f0ff') + ", " + hexToG('#64f0ff') + ", " + hexToB('#64f0ff') + ", " + 0.2 + ")",
+          "rgba(" + hexToR('#87e1ff') + ", " + hexToG('#87e1ff') + ", " + hexToB('#87e1ff') + ", " + 0.3 + ")",
+          "rgba(" + hexToR('#a0d0ff') + ", " + hexToG('#a0d0ff') + ", " + hexToB('#a0d0ff') + ", " + 0.5 + ")",
+          "rgba(" + hexToR('#b5c0ff') + ", " + hexToG('#b5c0ff') + ", " + hexToB('#b5c0ff') + ", " + 0.6 + ")",
+          "rgba(" + hexToR('#c6adff') + ", " + hexToG('#c6adff') + ", " + hexToB('#c6adff') + ", " + 1.0 + ")",
+          "rgba(" + hexToR('#d49bff') + ", " + hexToG('#d49bff') + ", " + hexToB('#d49bff') + ", " + 1.0 + ")",
+          "rgba(" + hexToR('#e185ff') + ", " + hexToG('#e185ff') + ", " + hexToB('#e185ff') + ", " + 1.0 + ")",
+          "rgba(" + hexToR('#ec6dff') + ", " + hexToG('#ec6dff') + ", " + hexToB('#ec6dff') + ", " + 1.0 + ")",
+          "rgba(" + hexToR('#ff1edb') + ", " + hexToG('#ff1edb') + ", " + hexToB('#ff1edb') + ", " + 1.0 + ")"
         ]
         /*
         var result = [];
@@ -369,8 +368,6 @@ var Windy = function( params ){
     if (isMobile()) {
       particleCount *= PARTICLE_REDUCTION;
     }
-
-    var fadeFillStyle = "rgba(0, 0, 0, 0.97)";
 
     var particles = [];
     for (var i = 0; i < particleCount; i++) {
@@ -411,20 +408,28 @@ var Windy = function( params ){
 
     var g = params.canvas.getContext("2d");
     g.lineWidth = PARTICLE_LINE_WIDTH;
-    g.fillStyle = fadeFillStyle;
+    g.fillStyle = "#000";
 
+    var lastFrameTime = Date.now();
     function draw() {
+        var deltaMs = Date.now() - lastFrameTime;
+        var b = deltaMs > 500 ? 1 : Math.min(deltaMs / 16, 10);
+
         // Fade existing particle trails.
-        var prev = g.globalCompositeOperation;
         g.globalCompositeOperation = "destination-in";
+        // This is the parameter concerning the fade property/bug
+        g.globalAlpha = Math.pow(0.9, b);
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
-        g.globalCompositeOperation = prev;
+        // Prepare for drawing a new particle
+        g.globalCompositeOperation = "source-over";
+        g.globalAlpha = 1;
 
         // Draw new particle trails.
         buckets.forEach(function(bucket, i) {
             if (bucket.length > 0) {
                 g.beginPath();
                 g.strokeStyle = colorStyles[i];
+                g.lineWidth = 1 + 0.25 * i;
                 bucket.forEach(function(particle) {
                     g.moveTo(particle.x, particle.y);
                     g.lineTo(particle.xt, particle.yt);
@@ -437,16 +442,9 @@ var Windy = function( params ){
     }
 
     function frame() {
-        try {
-            windy.timer = setTimeout(function() {
-              requestAnimationFrame(frame);
-              evolve();
-              draw();
-            }, 1000 / FRAME_RATE);
-        }
-        catch (e) {
-            console.error(e);
-        }
+      evolve();
+      draw();
+      requestAnimationFrame(frame);
     };
     frame();
   }
