@@ -121,16 +121,16 @@ var maxWind = 15;
 var windColor = d3.scale.linear()
     .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
     .range([
-        "rgba(0,   255, 255, 0.5)",
-        "rgba(100, 240, 255, 0.5)",
-        "rgba(135, 225, 255, 0.5)",
-        "rgba(160, 208, 255, 0.5)",
-        "rgba(181, 192, 255, 0.5)",
-        "rgba(198, 173, 255, 0.5)",
-        "rgba(212, 155, 255, 0.5)",
-        "rgba(225, 133, 255, 0.5)",
-        "rgba(236, 109, 255, 0.5)",
-        "rgba(255,  30, 219, 0.5)"
+        "rgba(0,   255, 255, 1.0)",
+        "rgba(100, 240, 255, 1.0)",
+        "rgba(135, 225, 255, 1.0)",
+        "rgba(160, 208, 255, 1.0)",
+        "rgba(181, 192, 255, 1.0)",
+        "rgba(198, 173, 255, 1.0)",
+        "rgba(212, 155, 255, 1.0)",
+        "rgba(225, 133, 255, 1.0)",
+        "rgba(236, 109, 255, 1.0)",
+        "rgba(255,  30, 219, 1.0)"
     ])
     .clamp(true);
 // ** Solar Scale **
@@ -453,16 +453,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                 .style('cursor', 'pointer')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(d.co2intensity);
-            d3.select('#country-tooltip')
-                .style('display', 'inline');
-        })
-        .onCountryMouseMove(function (d) {
             var tooltip = d3.select('#country-tooltip');
-            var w = tooltip.node().getBoundingClientRect().width;
-            var h = tooltip.node().getBoundingClientRect().height;
-            tooltip
-                .style('left', (d3.event.pageX - w - 5) + 'px')
-                .style('top', (d3.event.pageY - h - 5) + 'px');
+            tooltip.style('display', 'inline');
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
             tooltip.select('#country-code')
@@ -471,6 +463,17 @@ function dataLoaded(err, state, argSolar, argWind) {
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
                 .text(Math.round(d.co2intensity) || '?');
+        })
+        .onCountryMouseMove(function (d) {
+            var tooltip = d3.select('#country-tooltip');
+            var w = tooltip.node().getBoundingClientRect().width;
+            var h = tooltip.node().getBoundingClientRect().height;
+            tooltip
+                .style('transform',
+                    'translate(' +
+                        (d3.event.pageX - w - 5) + 'px' + ',' + 
+                        (d3.event.pageY - h - 5) + 'px' +
+                    ')');
         })
         .onCountryMouseOut(function (d) { 
             d3.select(this)
@@ -509,7 +512,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             .onExchangeMouseOver(function (d) { 
                 d3.select(this)
                     .style('opacity', 0.8)
-                    .style('cursor', 'hand')
+                    .style('cursor', 'pointer');
                 if (d.co2intensity)
                     co2Colorbar.currentMarker(d.co2intensity);
                 d3.select('#exchange-tooltip')

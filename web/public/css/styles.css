@@ -38,11 +38,12 @@ html, body {
 }
 
 .watermark {
-    display: table;
+    display: table-cell;
     pointer-events: all;
     padding: 18px;
     opacity: 0.5;
     transition: all 0.5s ease;
+    vertical-align: bottom;
 }
 .watermark:hover {
     opacity: 1;
@@ -145,6 +146,7 @@ html, body {
     bottom: 0px;
     right: 0px;
     margin: 10px;
+    width: 460px;
 }
 .colorbar {
     height: 30px;
