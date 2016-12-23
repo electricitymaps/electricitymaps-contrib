@@ -145,7 +145,6 @@ html, body {
     bottom: 0px;
     right: 0px;
     margin: 10px;
-    pointer-events: none;
 }
 .colorbar {
     height: 30px;
