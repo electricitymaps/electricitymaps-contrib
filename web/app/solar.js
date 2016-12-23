@@ -74,6 +74,7 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
         });
     });
     var ctx = solarCanvas.node().getContext('2d');
+    ctx.clearRect(0, 0, parseInt(solarCanvas.attr('width')), parseInt(solarCanvas.attr('height')));
     buckets.forEach(function(d, i) {
         ctx.beginPath()
         rgbaColor = solarColor.range()[i];
