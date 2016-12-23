@@ -44,8 +44,8 @@ var showSolarOption = false;
 })();
 
 // Computed State
-var windEnabled = showWindOption ? (Cookies.get('windEnabled') || false) : false;
-var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') || false) : false;
+var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
+var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 
 if (typeof _opbeat !== 'undefined')
@@ -311,19 +311,63 @@ if (isSmallScreen()) {
         });
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
+            var isExport = d.value < 0;
             var o = d.value < 0 ? countryCode : d.key;
-            var co2 = countries[o].co2intensity;
-            co2Colorbar.currentMarker(co2);
+            var co2intensity = countries[o].co2intensity;
+            co2Colorbar.currentMarker(co2intensity);
+            var tooltip = d3.select('#countrypanel-exchange-tooltip');
+            tooltip.style('display', 'inline');
+            tooltip.select('#label').text(isExport ? 'export to' : 'import from');
+            tooltip.select('#country-code').text(o);
+            tooltip.select('.emission-rect')
+                .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
+            tooltip.select('.emission-intensity')
+                .text(Math.round(co2intensity) || '?');
+            tooltip.select('i#country-flag')
+                .attr('class', 'flag-icon flag-icon-' + o.toLowerCase());
         })
         .onExchangeMouseOut(function (d) {
             co2Colorbar.currentMarker(undefined);
+            d3.select('#countrypanel-exchange-tooltip')
+                .style('display', 'none');
+        })
+        .onExchangeMouseMove(function(d) {
+            d3.select('#countrypanel-exchange-tooltip')
+                .style('transform',
+                    'translate(' +
+                        (d3.event.pageX + 15) + 'px' + ',' + 
+                        (d3.event.pageY + 15) + 'px' +
+                    ')');
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2 = co2eq_parameters.footprintOf(d.mode, countryCode);
-            co2Colorbar.currentMarker(co2);
+            var co2intensity = co2eq_parameters.footprintOf(d.mode, countryCode);
+            co2Colorbar.currentMarker(co2intensity);
+            var tooltip = d3.select('#countrypanel-production-tooltip');
+            tooltip.style('display', 'inline');
+            tooltip.select('#mode').text(d.mode);
+            tooltip.select('.emission-rect')
+                .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
+            tooltip.select('.emission-intensity')
+                .text(Math.round(co2intensity) || '?');
+            var loadFactor = Math.round(d.production / d.capacity * 100) || '?';
+            tooltip.select('#load-factor').text(
+                loadFactor + ' %' +
+                ' (' + (d.production || '?') + ' MW' +
+                ' / ' + 
+                (d.capacity || '?') + ' MW)');
+        })
+        .onProductionMouseMove(function(d) {
+            d3.select('#countrypanel-production-tooltip')
+                .style('transform',
+                    'translate(' +
+                        (d3.event.pageX + 10) + 'px' + ',' + 
+                        (d3.event.pageY + 10) + 'px' +
+                    ')');
         })
         .onProductionMouseOut(function (d) {
             co2Colorbar.currentMarker(undefined);
+            d3.select('#countrypanel-production-tooltip')
+                .style('display', 'none');
         });
 }
 
@@ -423,7 +467,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         var enterA = selector.enter().append('a');
         enterA
             .append('div')
-            .attr('class', 'country-emission-rect')
+            .attr('class', 'emission-rect')
         enterA
             .append('text')
         enterA
@@ -431,7 +475,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             .append('i').attr('id', 'country-flag')
         selector.select('text')
             .text(function(d) { return ' ' + (d.fullname || d.countryCode) + ' '; })
-        selector.select('div.country-emission-rect')
+        selector.select('div.emission-rect')
             .style('background-color', function(d) {
                 return d.co2intensity ? co2color(d.co2intensity) : 'gray';
             });
@@ -459,7 +503,7 @@ function dataLoaded(err, state, argSolar, argWind) {
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
             tooltip.select('#country-code')
                 .text(d.countryCode);
-            tooltip.select('.country-emission-rect')
+            tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
                 .text(Math.round(d.co2intensity) || '?');
@@ -525,7 +569,7 @@ function dataLoaded(err, state, argSolar, argWind) {
                 tooltip
                     .style('left', (d3.event.pageX - w - 5) + 'px')
                     .style('top', (d3.event.pageY - h - 5) + 'px');
-                tooltip.select('.country-emission-rect')
+                tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
                 tooltip.select('span#from')
