@@ -1,4 +1,5 @@
 // Libraries
+var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
 var queue = require('d3-queue').queue;
@@ -26,8 +27,25 @@ var forceRemoteEndpoint = false;
 var customDate;
 var showWindOption = true;
 var showSolarOption = false;
-var windEnabled = false;
-var solarEnabled = false;
+
+(function readQueryString() {
+    args = location.search.replace('\?','').split('&');
+    args.forEach(function(arg) {
+        kv = arg.split('=');
+        if (kv[0] == 'remote') {
+            forceRemoteEndpoint = kv[1] == 'true';
+        } else if (kv[0] == 'datetime') {
+            customDate = kv[1];
+            console.log('** Custom date: ' + customDate + ' **');
+        } else if (kv[0] == 'solar') {
+            showSolarOption = kv[1] == 'true';
+        }
+    });
+})();
+
+// Computed State
+var windEnabled = showWindOption ? (Cookies.get('windEnabled') || false) : false;
+var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 
 if (typeof _opbeat !== 'undefined')
@@ -46,21 +64,6 @@ function catchError(e) {
         trackAnalyticsEvent('error', {'name': e.name});
     }
 }
-
-(function readQueryString() {
-    args = location.search.replace('\?','').split('&');
-    args.forEach(function(arg) {
-        kv = arg.split('=');
-        if (kv[0] == 'remote') {
-            forceRemoteEndpoint = kv[1] == 'true';
-        } else if (kv[0] == 'datetime') {
-            customDate = kv[1];
-            console.log('** Custom date: ' + customDate + ' **');
-        } else if (kv[0] == 'solar') {
-            showSolarOption = kv[1] == 'true';
-        }
-    });
-})();
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -93,7 +96,7 @@ function startLoading() {
     d3.select('.loading')
         .style('display', 'block')
         .transition()
-        .style('opacity', 0.7);
+        .style('opacity', 0.8);
 }
 
 function stopLoading() {
@@ -249,6 +252,7 @@ if (isSmallScreen()) {
     // Attach event handlers
     d3.select('#checkbox-wind').on('change', function() {
         windEnabled = !windEnabled;
+        Cookies.set('windEnabled', windEnabled);
         if (windEnabled) {
             if (!wind || grib.getTargetTime(wind.forecasts[1][0]) >= moment.utc()) {
                 fetch(false, true);
@@ -261,6 +265,7 @@ if (isSmallScreen()) {
     });
     d3.select('#checkbox-solar').on('change', function() {
         solarEnabled = !solarEnabled;
+        Cookies.set('solarEnabled', solarEnabled);
         if (solarEnabled) {
             if (!solar || grib.getTargetTime(solar.forecasts[1]) >= moment.utc()) {
                 fetch(false, true);
