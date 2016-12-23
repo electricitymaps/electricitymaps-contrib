@@ -4,7 +4,7 @@ var moment = require('moment');
 var queue = require('d3-queue').queue;
 
 // Modules
-var co2lib = require('./co2eq');
+var co2eq_parameters = require('./co2eq_parameters');
 var CountryConfig = require('./countryconfig');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
@@ -28,16 +28,20 @@ var windEnabled = false;
 var solarEnabled = false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 
-// Error handling
-var opbeat = window._opbeat || function() {
-    if (!isLocalhost)
-        (window._opbeat.q = window._opbeat.q || []).push(arguments)
-};
+if (typeof _opbeat !== 'undefined')
+    _opbeat('config', {
+        orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
+        appId: 'f40cef4b37'
+    });
+else
+    console.warn('Opbeat could not be initialized!');
+
 function catchError(e) {
     console.error(e);
     if (!isLocalhost) {
-        opbeat('captureException', e);
-        trackAnalyticsEvent('error', e.stack);
+        if(typeof _opbeat !== 'undefined')
+            _opbeat('captureException', e);
+        trackAnalyticsEvent('error', {'name': e.name});
     }
 }
 
@@ -66,15 +70,21 @@ function isSmallScreen() {
     return screen.width < 600;
 }
 
+// Analytics
 function trackAnalyticsEvent(eventName, paramObj) {
     if (!isLocalhost) {
         try {
-            FB.AppEvents.logEvent(eventName, undefined, paramObj);
-            mixpanel.track(eventName, paramObj);
-            ga('send', eventName);
-        } catch(err) {
-            console.error('Error in trackAnalyticsEvent' + err);
-        }
+            if(typeof FB !== 'undefined')
+                FB.AppEvents.logEvent(eventName, undefined, paramObj);
+        } catch(err) { console.error('FB AppEvents error: ' + err); }
+        try {
+            if(typeof mixpanel !== 'undefined')
+                mixpanel.track(eventName, paramObj);
+        } catch(err) { console.error('Mixpanel error: ' + err); }
+        try {
+            if(typeof ga !== 'undefined')
+                ga('send', eventName);
+        } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
 
@@ -142,7 +152,7 @@ var tableDisplayEmissions = countryTable.displayByEmissions();
 d3.select("#checkbox-wind").node().checked = windEnabled;
 d3.select("#checkbox-solar").node().checked = solarEnabled;
 
-function toogleSource() {
+window.toggleSource = function() {
     tableDisplayEmissions = !tableDisplayEmissions;
     trackAnalyticsEvent(
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
@@ -287,7 +297,7 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(undefined);
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2 = co2lib.footprintOf(d.mode, countryCode);
+            var co2 = co2eq_parameters.footprintOf(d.mode, countryCode);
             co2Colorbar.currentMarker(co2);
         })
         .onProductionMouseOut(function (d) {
@@ -406,7 +416,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         .onCountryMouseOver(function (d) { 
             d3.select(this)
                 .style('opacity', 0.8)
-                .style('cursor', 'hand')
+                .style('cursor', 'pointer')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(d.co2intensity);
             d3.select('#country-tooltip')
@@ -562,7 +572,6 @@ function ignoreError(func) {
         var callback = arguments[arguments.length - 1];
         arguments[arguments.length - 1] = function(err, obj) {
             if (err) {
-                catchError(err);
                 return callback(null, null);
             } else {
                 return callback(null, obj);

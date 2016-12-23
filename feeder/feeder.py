@@ -18,10 +18,12 @@ INTERVAL_SECONDS = 60 * 5
 # Set up error handling
 import opbeat
 from opbeat.handlers.logging import OpbeatHandler
-opbeat_client = opbeat.Client(
-    app_id= 'c36849e44e',
-    organization_id= '093c53b0da9d43c4976cd0737fe0f2b1',
-    secret_token= os.environ['OPBEAT_SECRET'])
+if 'OPBEAT_SECRET' in os.environ:
+    opbeat_client = opbeat.Client(
+        app_id='c36849e44e',
+        organization_id='093c53b0da9d43c4976cd0737fe0f2b1',
+        secret_token=os.environ['OPBEAT_SECRET'])
+else: opbeat_client = None
 
 # Set up logging
 ENV = os.environ.get('ENV', 'development').lower()
@@ -31,9 +33,10 @@ logger.addHandler(stdout_handler)
 if not ENV == 'development':
     logger.setLevel(logging.INFO)
     # Add opbeat
-    opbeat_handler = OpbeatHandler(opbeat_client)
-    opbeat_handler.setLevel(logging.WARN)
-    logger.addHandler(opbeat_handler)
+    if opbeat_client:
+        opbeat_handler = OpbeatHandler(opbeat_client)
+        opbeat_handler.setLevel(logging.WARN)
+        logger.addHandler(opbeat_handler)
     # Add email
     from logging.handlers import SMTPHandler
     smtp_handler = SMTPHandler(

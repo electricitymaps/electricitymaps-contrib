@@ -1,4 +1,4 @@
-var co2lib = require('./co2eq');
+var co2eq_parameters = require('./co2eq_parameters');
 var moment = require('moment');
 
 function CountryTable(selector, co2Color) {
@@ -171,7 +171,7 @@ CountryTable.prototype.data = function(arg) {
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
-            var footprint = co2lib.footprintOf(d, that._data.countryCode);
+            var footprint = co2eq_parameters.footprintOf(d, that._data.countryCode);
             var production = arg.production ? arg.production[d] : undefined;
             return {
                 production: production,
@@ -266,10 +266,12 @@ CountryTable.prototype.data = function(arg) {
                 .each('end', function () { d3.select(this).style('display', 'block'); });
         selection.select('rect.production')
             .on('mouseover', function (d) {
-                that.productionMouseOverHandler.call(this, d, that._data.countryCode);
+                if (that.productionMouseOverHandler)
+                    that.productionMouseOverHandler.call(this, d, that._data.countryCode);
             })
             .on('mouseout', function (d) {
-                that.productionMouseOutHandler.call(this, d);
+                if (that.productionMouseOutHandler)
+                    that.productionMouseOutHandler.call(this, d);
             })
             .on('click', function (d) {
                 console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/h');
@@ -281,7 +283,7 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('fill', function (d) {
                     // color by Co2 Intensity
-                    // return that.co2Color(co2lib.footprintOf(d.mode, that._data.countryCode));
+                    // return that.co2Color(co2eq_parameters.footprintOf(d.mode, that._data.countryCode));
                     // color by production mode
                     return that.PRODUCTION_COLORS[d.mode];
                 })
@@ -305,6 +307,11 @@ CountryTable.prototype.data = function(arg) {
             });
 
         // Construct exchanges
+        function getExchangeCo2eq(d) {
+            return d.value > 0 ? 
+                (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
+                : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
+        }
         var selection = this.exchangeRoot.selectAll('.row')
             .data(this._exchangeData);
         selection.exit().remove();
@@ -337,11 +344,6 @@ CountryTable.prototype.data = function(arg) {
             .attr('xlink:href', function (d) {
                 return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
-        function getExchangeCo2eq(d) {
-            return d.value > 0 ? 
-                (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
-                : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
-        }
         selection.select('rect')
             .on('mouseover', function (d) {
                 that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);

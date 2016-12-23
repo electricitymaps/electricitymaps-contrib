@@ -118,7 +118,11 @@ You can also see a list of missing informations displayed as warnings in the dev
 
 To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). then you just run `docker-compose up`. Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
 
-You can then start editing the code. If you edit the frontend it will need compiling. You should run `docker-compose run web npm run watch` in order to compile your modifications on the fly.
+You can then start editing the code. If you edit the frontend it will need compiling. You should run
+```
+docker-compose run web npm run watch
+```
+in order to compile your modifications on the fly.
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated.
 
