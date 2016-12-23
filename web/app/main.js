@@ -160,13 +160,11 @@ var countryTable = new CountryTable('.country-table', co2color);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('black')
-    .render();
+    .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black')
-    .render();
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
     .markerColor('black')
-    .render();
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -247,6 +245,9 @@ if (isSmallScreen()) {
 } else {
     d3.select('.panel-container')
         .style('width', '330px');
+    // Now that the width is set, we can render the legends
+    windColorbar.render();
+    solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
