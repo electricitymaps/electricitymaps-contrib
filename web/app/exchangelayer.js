@@ -127,10 +127,10 @@ ExchangeLayer.prototype.render = function() {
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
         .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1]; });
-    exchangeArrows.enter()
+    var newArrows = exchangeArrows.enter()
         .append('g') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow')
-        .append('path')
+    newArrows.append('path')
             .attr('d', function(d) { return that.trianglePath(); })
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')'; })
             .attr('stroke-width', 0.1)
@@ -166,7 +166,7 @@ ExchangeLayer.prototype.render = function() {
                     }
                 );
             })
-    .merge(exchangeArrows)
+    newArrows.merge(exchangeArrows)
         .attr('transform', function (d) {
             var center = that.projection()(d.lonlat);
             return 'translate(' + center[0] + ',' + center[1] + ')';
