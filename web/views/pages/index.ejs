@@ -117,7 +117,7 @@
                     <span style="color: darkgray;">
                         (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
                         <br />
-                        Carbon intensity:  <div class="country-emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
+                        Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
                         <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
                         <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
                     </span>
@@ -195,11 +195,23 @@
         <div id="country-tooltip" class="tooltip panel">
             Carbon intensity:<br />
             <i id="country-flag"></i> <span id="country-code"></span>: 
-            <div class="country-emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh
+            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh
         </div>
         <div id="exchange-tooltip" class="tooltip panel">
             Cross-border export:<br />
             <i id="from"></i> <span id="from"></span> → <i id="to"></i> <span id="to"></span>: <span id="flow"></span> MW
+        </div>
+        <div id="countrypanel-production-tooltip" class="tooltip panel">
+            Carbon intensity of <span id="mode"></span>:<br />
+            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh
+            <br />
+            <br />
+            Load factor:<br />
+            <span id="load-factor"></span>
+        </div>
+        <div id="countrypanel-exchange-tooltip" class="tooltip panel">
+            Carbon intensity of <span id="label"></span><br />
+            <i id="country-flag"></i> <span id="country-code"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh
         </div>
     </body>
 </html>

@@ -130,7 +130,7 @@ html, body {
 .country-emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
-.country-emission-rect {
+.emission-rect {
     display: inline-block;
     border: 1px solid gray;
     width: 8px;

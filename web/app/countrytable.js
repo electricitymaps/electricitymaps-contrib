@@ -112,6 +112,11 @@ CountryTable.prototype.onExchangeMouseOut = function(arg) {
     else this.exchangeMouseOutHandler = arg;
     return this;
 }
+CountryTable.prototype.onExchangeMouseMove = function(arg) {
+    if (!arg) return this.exchangeMouseMoveHandler;
+    else this.exchangeMouseMoveHandler = arg;
+    return this;
+}
 CountryTable.prototype.onProductionMouseOver = function(arg) {
     if (!arg) return this.productionMouseOverHandler;
     else this.productionMouseOverHandler = arg;
@@ -120,6 +125,11 @@ CountryTable.prototype.onProductionMouseOver = function(arg) {
 CountryTable.prototype.onProductionMouseOut = function(arg) {
     if (!arg) return this.productionMouseOutHandler;
     else this.productionMouseOutHandler = arg;
+    return this;
+}
+CountryTable.prototype.onProductionMouseMove = function(arg) {
+    if (!arg) return this.productionMouseMoveHandler;
+    else this.productionMouseMoveHandler = arg;
     return this;
 }
 
@@ -273,6 +283,10 @@ CountryTable.prototype.data = function(arg) {
                 if (that.productionMouseOutHandler)
                     that.productionMouseOutHandler.call(this, d);
             })
+            .on('mousemove', function (d) {
+                if (that.productionMouseMoveHandler)
+                    that.productionMouseMoveHandler.call(this, d);
+            })
             .on('click', function (d) {
                 console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/h');
             })
@@ -346,10 +360,16 @@ CountryTable.prototype.data = function(arg) {
             })
         selection.select('rect')
             .on('mouseover', function (d) {
-                that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
+                if (that.exchangeMouseOverHandler)
+                    that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
             })
             .on('mouseout', function (d) {
-                that.exchangeMouseOutHandler.call(this, d);
+                if (that.exchangeMouseOutHandler)
+                    that.exchangeMouseOutHandler.call(this, d);
+            })
+            .on('mousemove', function (d) {
+                if (that.exchangeMouseMoveHandler)
+                    that.exchangeMouseMoveHandler.call(this, d);
             })
             .transition()
             .attr('fill', function (d, i) {
@@ -386,7 +406,7 @@ CountryTable.prototype.data = function(arg) {
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
-        d3.select('.country-emission-rect')
+        d3.select('#country-emission-rect')
             .transition()
             .style('background-color',
                 this._data.co2intensity ?
