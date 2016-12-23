@@ -315,6 +315,7 @@ function dataLoaded(err, state, argSolar, argWind) {
 
     if (wind && wind['forecasts'][0] && wind['forecasts'][1]) {
         console.log('wind', wind);
+        d3.select('#checkbox-wind').attr('disabled', false);
         Wind.draw('.wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
@@ -327,10 +328,12 @@ function dataLoaded(err, state, argSolar, argWind) {
             Wind.hide();
     } else {
         Wind.hide();
+        d3.select('#checkbox-wind').attr('disabled', true);
     }
 
     if (solar && solar['forecasts'][0] && solar['forecasts'][1]) {
         console.log('solar', solar);
+        d3.select('#checkbox-solar').attr('disabled', true);
         Solar.draw('.solar',
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
@@ -343,6 +346,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             Solar.hide();
     } else {
         Solar.hide();
+        d3.select('#checkbox-solar').attr('disabled', true);
     }
 
     // Populate with realtime country data
