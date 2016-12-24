@@ -88,6 +88,8 @@ function getTransform(d) {
 };
 
 ExchangeLayer.prototype.renderOne = function(selector) {
+    var color = 'orange';
+
     var element = d3.select(selector);
     var id = String(parseInt(Math.random()*10000));
     var gradient = appendGradient(
@@ -98,11 +100,14 @@ ExchangeLayer.prototype.renderOne = function(selector) {
     element
         .append('path')
         .attr('d', function(d) { return that.trianglePath(); })
-        .attr('fill', function (d, i) { return 'url(#' + id + ')'; })
+        .attr('fill', function (d, i) { 
+            return isMobile() ? color : 'url(#' + id + ')';
+        })
         .attr('transform-origin', '0 0')
         .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
 
-    that.animateGradient(gradient, 'orange', 2000);
+    if (!isMobile())
+        that.animateGradient(gradient, color, 2000);
 
     return element;
 };
@@ -137,7 +142,10 @@ ExchangeLayer.prototype.render = function() {
     newArrows
         .append('path')
             .attr('d', function(d) { return that.trianglePath(); })
-            .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')'; })
+            .attr('fill', function (d, i) { 
+                var color = (d.co2intensity && d.netFlow) && that.co2Color(d.co2intensity) || 'gray';
+                return isMobile() ? color : 'url(#exchange-gradient-' + i + ')';
+            })
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
             .attr('transform-origin', '0 0')
