@@ -82,11 +82,11 @@ HorizontalColorbar.prototype.render = function() {
             }));
 
         // Place the colors on the gradient
-        var selector = this.gGradient.selectAll('stop')
+        var stops = this.gGradient.selectAll('stop')
             .data(this.colors);
-        selector.enter()
+        stops.enter()
             .append('stop')
-        selector
+        .merge(stops)
             .attr('offset', function(d, i) { 
                 return i / (that.colors.length - 1);
             })

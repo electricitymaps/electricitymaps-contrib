@@ -27,50 +27,6 @@ function ExchangeLayer(selector, co2Color) {
         'L 0 -' + hh + ' ' + 
         'L ' + hb + ' -' + (3.0 * hh) + ' Z';
     };
-
-    function isMobile() {
-        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-    }
-
-    var that = this;
-    this.animateGradient = function(selector, colorAccessor, durationAccessor) {
-        var color = colorAccessor();
-        var arrow = selector.selectAll('stop')
-            .data([
-                {offset: 0, color: color},
-                {offset: 0, color: color},
-                {offset: 0, color: d3.hsl(d3.rgb(color)).l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')},
-                {offset: 0, color: color},
-                {offset: 1, color: color},
-            ]);
-        arrow.enter()
-            .append('stop')
-            .attr('stop-color', function(d) { return d.color; })
-
-        if (!isMobile()) {
-            arrow
-                .transition()
-                .attr('stop-color', function(d) { return d.color; })
-                .duration(durationAccessor())
-                .ease(d3.easeLinear)
-                .attrTween('offset', function(d, i, a) {
-                    // Only animate the middle color
-                    if (i == 0 || i == 4)
-                        return function (t) { return d.offset };
-                    else {
-                        return function (t) {
-                            return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
-                        };
-                    }
-                })
-                .each('end', function (d, i) {
-                    // We should only start one animation, so just wait for the
-                    // first transition to finish
-                    if (i == 0)
-                        return that.animateGradient(selector, colorAccessor, durationAccessor);
-                });
-        }
-    };
 }
 
 ExchangeLayer.prototype.projection = function(arg) {
@@ -87,7 +43,45 @@ function appendGradient(element, triangleHeight) {
         .attr('x2', 0).attr('y2', triangleHeight + 1);
 }
 
-var getTransform = function(d) {
+ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
+    var that = this;
+    var stops = element.selectAll('stop') //??? WE NEED TO DO SELECTALL OF A SELECTALL..
+        .data(d3.range(5));
+    var newStops = stops.enter()
+        .append('stop')
+        newStops.merge(stops)
+            .transition()
+            .on('start', function repeat() {
+                d3.active(this)
+                    .attr('stop-color', function(i) { 
+                        if (i == 2)
+                            return d3.hsl(d3.rgb(color)).l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')
+                        else
+                            return color;
+                    })
+                    .transition()
+                    .duration(duration)
+                    .ease(d3.easeLinear)
+                    .attrTween('offset', function(i, _, a) {
+                        // Only animate the middle color
+                        if (i == 0 || i == 4)
+                            return function (t) { return i == 4 ? 1 : 0; };
+                        else {
+                            return function (t) {
+                                return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
+                            };
+                        }
+                    })
+                    .transition()
+                    .on('start', repeat);
+            });
+}
+
+function isMobile() {
+    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+}
+
+function getTransform(d) {
     var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
     var scale = 4.5;
     return 'rotate(' + rotation + '), scale(' + scale + ')';
@@ -108,11 +102,9 @@ ExchangeLayer.prototype.renderOne = function(selector) {
         .attr('transform-origin', '0 0')
         .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
 
-    this.animateGradient(gradient, 
-        function() { return 'orange'; }, 
-        function() { return that.exchangeAnimationDurationScale(1000); });
+    that.animateGradient(gradient, 'orange', 2000);
 
-    return element
+    return element;
 };
 
 ExchangeLayer.prototype.render = function() {
@@ -121,15 +113,28 @@ ExchangeLayer.prototype.render = function() {
     var exchangeGradients = this.exchangeGradientsContainer
         .selectAll('.exchange-gradient')
         .data(this._data)
-    appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
+    exchangeGradients.exit().remove();
+    var newGradients = appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
         .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
+    
+    if (!isMobile()) {
+        // Add animations
+        var gradients = newGradients.merge(exchangeGradients);
+        gradients.each(function(d) {
+            var color = (d.co2intensity && d.netFlow) && that.co2Color(d.co2intensity) || 'gray';
+            var duration = d.netFlow && that.exchangeAnimationDurationScale(Math.abs(d.netFlow)) || 2000;
+            that.animateGradient(d3.select(this), color, duration);
+        });
+    }
 
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
         .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1]; });
-    exchangeArrows.enter()
+    exchangeArrows.exit().remove();
+    var newArrows = exchangeArrows.enter()
         .append('g') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow')
+    newArrows
         .append('path')
             .attr('d', function(d) { return that.trianglePath(); })
             .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')'; })
@@ -145,28 +150,8 @@ ExchangeLayer.prototype.render = function() {
             .on('mousemove', function (d, i) {
                 return that.exchangeMouseMoveHandler.call(this, d, i);
             })
-            .on('click', function (d) { console.log(d); })
-            .each(function (d, i) {
-                // Warning: with this technique, we can add arrows dynamically,
-                // but we can't remove them because we can't remove the animation.
-                // This forces us to create them even though the netFlow could be 
-                // null (and we should therefore hide the arrow), and thus
-                // we have to have an animateGradient loop that access the related 
-                // variables through accessors.
-                return that.animateGradient(
-                    d3.select('#exchange-gradient-' + i), 
-                    function() {
-                        var d = that.data()[i];
-                        if (!d.co2intensity || !d.netFlow) return 'gray';
-                        return that.co2Color(d.co2intensity);
-                    },
-                    function() {
-                        if (!d.netFlow) return 2000; // we have to return a duration
-                        return that.exchangeAnimationDurationScale(Math.abs(d.netFlow));
-                    }
-                );
-            })
-    exchangeArrows
+            .on('click', function (d) { console.log(d); });
+    newArrows.merge(exchangeArrows)
         .attr('transform', function (d) {
             var center = that.projection()(d.lonlat);
             return 'translate(' + center[0] + ',' + center[1] + ')';

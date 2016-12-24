@@ -159,11 +159,12 @@ var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-    .markerColor('black');
+    .markerColor('black')
+    .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-    .markerColor('black');
+    .markerColor('black')
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
-    .markerColor('black');
+    .markerColor('black')
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -244,6 +245,9 @@ if (isSmallScreen()) {
 } else {
     d3.select('.panel-container')
         .style('width', '330px');
+    // Now that the width is set, we can render the legends
+    windColorbar.render();
+    solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
@@ -374,52 +378,6 @@ function dataLoaded(err, state, argSolar, argWind) {
     if (err) {
         console.error(err);
         return;
-    }
-    wind = argWind;
-    solar = argSolar;
-
-    if (!showWindOption)
-        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
-    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        console.log('wind', wind);
-        Wind.draw('.wind',
-            customDate ? moment(customDate) : moment(new Date()),
-            wind.forecasts[0],
-            wind.forecasts[1],
-            windColor,
-            countryMap.projection());
-        if (windEnabled)
-            Wind.show();
-        else
-            Wind.hide();
-    } else {
-        Wind.hide();
-        if (windEnabled) {
-            windEnabled = false;
-            d3.select('#checkbox-wind').attr('checked', false);
-        }
-    }
-
-    if (!showSolarOption)
-        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
-    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        console.log('solar', solar);
-        Solar.draw('.solar',
-            customDate ? moment(customDate) : moment(new Date()),
-            solar.forecasts[0],
-            solar.forecasts[1],
-            solarColor,
-            countryMap.projection());
-        if (solarEnabled)
-            Solar.show();
-        else
-            Solar.hide();
-    } else {
-        Solar.hide();
-        if (solarEnabled) {
-            solarEnabled = false;
-            d3.select('#checkbox-solar').attr('checked', false);
-        }
     }
 
     // Populate with realtime country data
@@ -594,6 +552,54 @@ function dataLoaded(err, state, argSolar, argWind) {
             .render();
     }
 
+    // Render weather
+    wind = argWind;
+    solar = argSolar;
+
+    if (!showWindOption)
+        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
+    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
+        console.log('wind', wind);
+        Wind.draw('.wind',
+            customDate ? moment(customDate) : moment(new Date()),
+            wind.forecasts[0],
+            wind.forecasts[1],
+            windColor,
+            countryMap.projection());
+        if (windEnabled)
+            Wind.show();
+        else
+            Wind.hide();
+    } else {
+        Wind.hide();
+        if (windEnabled) {
+            windEnabled = false;
+            d3.select('#checkbox-wind').attr('checked', false);
+        }
+    }
+
+    if (!showSolarOption)
+        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
+    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
+        console.log('solar', solar);
+        Solar.draw('.solar',
+            customDate ? moment(customDate) : moment(new Date()),
+            solar.forecasts[0],
+            solar.forecasts[1],
+            solarColor,
+            countryMap.projection());
+        if (solarEnabled)
+            Solar.show();
+        else
+            Solar.hide();
+    } else {
+        Solar.hide();
+        if (solarEnabled) {
+            solarEnabled = false;
+            d3.select('#checkbox-solar').attr('checked', false);
+        }
+    }
+
     stopLoading();
 };
 
@@ -712,5 +718,4 @@ window.onresize = function () {
     redraw();
 };
 
-redraw();
 fetchAndReschedule();
