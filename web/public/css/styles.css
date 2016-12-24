@@ -34,7 +34,7 @@ html, body {
     font-size: 0.8em;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    max-width: 600px;
+    max-width: 750px;
 }
 
 .watermark {
@@ -192,12 +192,12 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     position: absolute;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 750px) {
     .small-screen-visible {
         display: none;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
     .large-screen-visible {
         display: none;
     }
