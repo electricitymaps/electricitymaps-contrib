@@ -69,7 +69,7 @@ function isMobile() {
 }
 function isSmallScreen() {
     // Should be in sync with media queries in CSS
-    return screen.width < 600;
+    return screen.width < 750;
 }
 
 // Analytics
@@ -430,6 +430,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         enterA
             .attr('href', '#')
             .append('i').attr('id', 'country-flag')
+        var selector = enterA.merge(selector);
         selector.select('text')
             .text(function(d) { return ' ' + (d.fullname || d.countryCode) + ' '; })
         selector.select('div.emission-rect')
