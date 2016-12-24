@@ -72,7 +72,6 @@ ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
                             };
                         }
                     })
-                    .transition()
                     .on('start', repeat);
             });
 }
