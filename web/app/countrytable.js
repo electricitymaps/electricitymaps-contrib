@@ -1,5 +1,7 @@
-var co2eq_parameters = require('./co2eq_parameters');
+var d3 = require('d3');
 var moment = require('moment');
+
+var co2eq_parameters = require('./co2eq_parameters');
 
 function CountryTable(selector, co2Color) {
     this.root = d3.select(selector);
@@ -29,7 +31,7 @@ function CountryTable(selector, co2Color) {
         'unknown': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
-    this.POWER_FORMAT = function (d) { return d3.format('s')(d * 1000000) + 'W'; };
+    this.POWER_FORMAT = function(d) { return d3.format('.0s')(d * 1000000) + 'W'; };
 
     // State
     this._displayByEmissions = false;
@@ -48,9 +50,9 @@ CountryTable.prototype.render = function() {
 
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
-    this.powerScale = d3.scale.linear()
+    this.powerScale = d3.scaleLinear()
         .range([0, this.barMaxWidth]);
-    this.co2Scale = d3.scale.linear()
+    this.co2Scale = d3.scaleLinear()
         .range([0, this.barMaxWidth]);
 
     // ** Production labels and rects **
@@ -216,19 +218,18 @@ CountryTable.prototype.data = function(arg) {
             ]);
 
         // Prepare axis
-        this.axis = d3.svg.axis()
-            .orient('top')
-            .innerTickSize(-250)
-            .outerTickSize(0)
-            .ticks(4);
         if (that._displayByEmissions)
-            this.axis
-                .scale(this.co2Scale)
-                .tickFormat(function (d) { return d3.format('s')(d) + 't/h'; });
+            this.axis = d3.axisTop(this.co2Scale)
+                .tickFormat(function (d) { return d3.format('.0s')(d) + 't/h'; });
         else
-            this.axis
-                .scale(this.powerScale)
+            this.axis = d3.axisTop(this.powerScale)
                 .tickFormat(this.POWER_FORMAT)
+
+        this.axis
+            .tickSizeInner(-250)
+            .tickSizeOuter(0)
+            .ticks(4);
+
         this.gPowerAxis
             .transition()
             .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
@@ -273,7 +274,7 @@ CountryTable.prototype.data = function(arg) {
                 .attr('width', function (d) {
                     return (d.capacity == null || d.production == null) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
                 })
-                .each('end', function () { d3.select(this).style('display', 'block'); });
+                .on('end', function () { d3.select(this).style('display', 'block'); });
         selection.select('rect.production')
             .on('mouseover', function (d) {
                 if (that.productionMouseOverHandler)
@@ -348,17 +349,17 @@ CountryTable.prototype.data = function(arg) {
             .attr('height', this.ROW_HEIGHT)
             .attr('opacity', this.RECT_OPACITY)
             .style('transform-origin', 'left')
-        selection.select('text.unknown')
+        gNewRow.merge(selection).select('text.unknown')
             .transition()
             .attr('transform', 'translate(' + (that.LABEL_MAX_WIDTH + that.co2Scale(0)) + ', ' + this.TEXT_ADJUST_Y + ')')
             .style('display', function(d) {
                 return (that._displayByEmissions && getExchangeCo2eq(d) === undefined) ? 'block' : 'none';
             });
-        selection.select('image')
+        gNewRow.merge(selection).select('image')
             .attr('xlink:href', function (d) {
                 return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
             })
-        selection.select('rect')
+        gNewRow.merge(selection).select('rect')
             .on('mouseover', function (d) {
                 if (that.exchangeMouseOverHandler)
                     that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
@@ -402,7 +403,7 @@ CountryTable.prototype.data = function(arg) {
                 else
                     return Math.abs(that.powerScale(d.value) - that.powerScale(0));
             })
-        selection.select('text')
+        gNewRow.merge(selection).select('text')
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');

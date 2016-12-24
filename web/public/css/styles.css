@@ -138,9 +138,6 @@ html, body {
 }
 
 /* ** LEGEND ** */
-.x.axis {
-    font-size: 0.55em;
-}
 .legend {
     position: absolute;
     bottom: 0px;
