@@ -8,7 +8,8 @@ function CountryMap(selector, co2color) {
 
     this.selectedCountry = undefined;
 
-    this.root = d3.select(selector);
+    this.root = d3.select(selector)
+        .data([ {'x':0, 'y':0} ]); // For dragging
     this.co2color = co2color;
     this.graticule = this.root
         .on('click', function (d, i) {
@@ -21,8 +22,7 @@ function CountryMap(selector, co2color) {
         })
         .append('path')
             .attr('class', 'graticule');
-    this.land = this.root.append('g')
-        .data([ {'x':0, 'y':0} ]);
+    this.land = this.root.append('g');
     
     // Prepare drag
     this.drag = d3.drag()
@@ -33,14 +33,14 @@ function CountryMap(selector, co2color) {
             console.log(d);
             d.x += d3.event.dx;
             d.y += d3.event.dy;
-            d3.select(this).attr("transform", function(d,i){
-                return "translate(" + [ d.x,d.y ] + ")"
+            d3.select(this).style('transform', function(d, i) {
+                return 'translate(' + d.x + 'px' + ',' + d.y + 'px' + ')';
             })
         })
         .on('end', function() {
             console.log('end', d3.event);
         });
-    this.land.call(this.drag);
+    this.root.call(this.drag);
 }
 
 CountryMap.prototype.render = function() {
