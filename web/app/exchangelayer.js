@@ -34,40 +34,38 @@ function ExchangeLayer(selector, co2Color) {
 
     var that = this;
     this.animateGradient = function(selector, colorAccessor, durationAccessor) {
-        var color = colorAccessor();
-        var arrow = selector.selectAll('stop')
-            .data([
-                {offset: 0, color: color},
-                {offset: 0, color: color},
-                {offset: 0, color: d3.hsl(d3.rgb(color)).l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')},
-                {offset: 0, color: color},
-                {offset: 1, color: color},
-            ]);
-        var arrowEnter = arrow.enter()
+        var stops = selector.selectAll('stop')
+            .data(d3.range(5));
+        var newStops = stops.enter()
             .append('stop')
             .attr('stop-color', function(d) { return d.color; });
 
         if (!isMobile()) {
-            arrowEnter.merge(arrow)
+            newStops.merge(stops)
                 .transition()
-                .attr('stop-color', function(d) { return d.color; })
-                .duration(durationAccessor())
-                .ease(d3.easeLinear)
-                .attrTween('offset', function(d, i, a) {
-                    // Only animate the middle color
-                    if (i == 0 || i == 4)
-                        return function (t) { return d.offset };
-                    else {
-                        return function (t) {
-                            return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
-                        };
-                    }
-                })
-                .on('end', function (d, i) {
-                    // We should only start one animation, so just wait for the
-                    // first transition to finish
-                    if (i == 0)
-                        return that.animateGradient(selector, colorAccessor, durationAccessor);
+                .on('start', function repeat() {
+                    d3.active(this)
+                        .attr('stop-color', function(i) { 
+                            if (i == 2)
+                                return d3.hsl(d3.rgb(colorAccessor())).l > 0.1 ? d3.rgb(colorAccessor()).brighter(2) : d3.rgb('lightgray')
+                            else
+                                return colorAccessor();
+                        })
+                        .transition()
+                        .duration(durationAccessor())
+                        .ease(d3.easeLinear)
+                        .attrTween('offset', function(i, _, a) {
+                            // Only animate the middle color
+                            if (i == 0 || i == 4)
+                                return function (t) { return i == 4 ? 1 : 0; };
+                            else {
+                                return function (t) {
+                                    return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
+                                };
+                            }
+                        })
+                        .transition()
+                        .on('start', repeat);
                 });
         }
     };

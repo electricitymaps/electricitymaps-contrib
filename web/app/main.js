@@ -379,52 +379,6 @@ function dataLoaded(err, state, argSolar, argWind) {
         console.error(err);
         return;
     }
-    wind = argWind;
-    solar = argSolar;
-
-    if (!showWindOption)
-        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
-    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        console.log('wind', wind);
-        Wind.draw('.wind',
-            customDate ? moment(customDate) : moment(new Date()),
-            wind.forecasts[0],
-            wind.forecasts[1],
-            windColor,
-            countryMap.projection());
-        if (windEnabled)
-            Wind.show();
-        else
-            Wind.hide();
-    } else {
-        Wind.hide();
-        if (windEnabled) {
-            windEnabled = false;
-            d3.select('#checkbox-wind').attr('checked', false);
-        }
-    }
-
-    if (!showSolarOption)
-        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
-    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        console.log('solar', solar);
-        Solar.draw('.solar',
-            customDate ? moment(customDate) : moment(new Date()),
-            solar.forecasts[0],
-            solar.forecasts[1],
-            solarColor,
-            countryMap.projection());
-        if (solarEnabled)
-            Solar.show();
-        else
-            Solar.hide();
-    } else {
-        Solar.hide();
-        if (solarEnabled) {
-            solarEnabled = false;
-            d3.select('#checkbox-solar').attr('checked', false);
-        }
-    }
 
     // Populate with realtime country data
     d3.entries(state.countries).forEach(function(entry) {
@@ -596,6 +550,54 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .style('display', 'none');
             })
             .render();
+    }
+
+    // Render weather
+    wind = argWind;
+    solar = argSolar;
+
+    if (!showWindOption)
+        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
+    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
+        console.log('wind', wind);
+        Wind.draw('.wind',
+            customDate ? moment(customDate) : moment(new Date()),
+            wind.forecasts[0],
+            wind.forecasts[1],
+            windColor,
+            countryMap.projection());
+        if (windEnabled)
+            Wind.show();
+        else
+            Wind.hide();
+    } else {
+        Wind.hide();
+        if (windEnabled) {
+            windEnabled = false;
+            d3.select('#checkbox-wind').attr('checked', false);
+        }
+    }
+
+    if (!showSolarOption)
+        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
+    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
+        console.log('solar', solar);
+        Solar.draw('.solar',
+            customDate ? moment(customDate) : moment(new Date()),
+            solar.forecasts[0],
+            solar.forecasts[1],
+            solarColor,
+            countryMap.projection());
+        if (solarEnabled)
+            Solar.show();
+        else
+            Solar.hide();
+    } else {
+        Solar.hide();
+        if (solarEnabled) {
+            solarEnabled = false;
+            d3.select('#checkbox-solar').attr('checked', false);
+        }
     }
 
     stopLoading();
