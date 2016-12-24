@@ -2,7 +2,6 @@ var exports = module.exports = {};
 
 var d3 = require('d3');
 var moment = require('moment');
-var queue = require('d3-queue').queue;
 
 // GFS Parameters
 var GFS_STEP_ORIGIN  = 6; // hours
@@ -38,7 +37,7 @@ exports.fetchGfs = function(endpoint, key, datetime, callback) {
     var targetTimeBefore = getGfsTargetTimeBefore(datetime);
     var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
     // Note: d3.queue runs tasks in parallel
-    return Q = queue()
+    return Q = d3.queue()
         .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true)
         .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true)
         .await(function(err, before, after) {

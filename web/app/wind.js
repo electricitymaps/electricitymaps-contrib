@@ -13,6 +13,9 @@ var windLayer;
 var WIND_OPACITY = 0.53;
 
 exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProjection) {
+    if (!argProjection)
+        throw Error('Projection can\'t be null/undefined');
+
     var t_before = grib.getTargetTime(gribs1[0]);
     var t_after = grib.getTargetTime(gribs2[0]);
     console.log('#1 wind forecast target', 

@@ -1,3 +1,5 @@
+var d3 = require('d3');
+
 function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) {
     this.PADDING_X = 10; // Inner padding allow place for the axis text
 
@@ -80,11 +82,11 @@ HorizontalColorbar.prototype.render = function() {
             }));
 
         // Place the colors on the gradient
-        var selector = this.gGradient.selectAll('stop')
+        var stops = this.gGradient.selectAll('stop')
             .data(this.colors);
-        selector.enter()
+        stops.enter()
             .append('stop')
-        selector
+        .merge(stops)
             .attr('offset', function(d, i) { 
                 return i / (that.colors.length - 1);
             })
@@ -124,9 +126,8 @@ HorizontalColorbar.prototype.render = function() {
         .attr('height', this.colorbarHeight);
 
     // Draw the horizontal axis
-    var axis = d3.svg.axis()
-        .scale(this.scale)
-        .innerTickSize(this.colorbarHeight / 2.0)
+    var axis = d3.axisBottom(this.scale)
+        .tickSizeInner(this.colorbarHeight / 2.0)
         .tickPadding(3);
     if (this.d3TickFormat)
         axis.tickFormat(this.d3TickFormat);

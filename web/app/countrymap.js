@@ -1,3 +1,5 @@
+var d3 = require('d3');
+
 function CountryMap(selector, co2color) {
     var that = this;
 
@@ -27,15 +29,15 @@ CountryMap.prototype.render = function() {
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
     var scale = Math.max(650, 0.5 * computedMapWidth);
-    this._projection = d3.geo.mercator()
+    this._projection = d3.geoMercator()
         .center([3, 48])
         .translate([0.5 * computedMapWidth, 0.65 * computedMapHeight])
         .scale(scale);
 
-    this.path = d3.geo.path()
+    this.path = d3.geoPath()
         .projection(this._projection);
         
-    var graticuleData = d3.geo.graticule()
+    var graticuleData = d3.geoGraticule()
         .step([5, 5]);
         
     this.graticule
@@ -50,7 +52,7 @@ CountryMap.prototype.render = function() {
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
         selector.enter()
-                .append('path')
+            .append('path')
                 .attr('class', 'country')
                 .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
@@ -76,12 +78,12 @@ CountryMap.prototype.render = function() {
                     //     .style('stroke', 'darkred')
                     //     .style('stroke-width', 1.5);
                     return that.countryClickHandler.call(this, d, i);
-                });
-        selector
-            .attr('d', this.path)
-            .transition()
-            .duration(2000)
-            .attr('fill', getCo2Color);
+                })
+            .merge(selector)
+                .attr('d', this.path)
+                .transition()
+                .duration(2000)
+                .attr('fill', getCo2Color);
     }
 }
 

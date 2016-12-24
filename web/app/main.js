@@ -2,7 +2,6 @@
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
-var queue = require('d3-queue').queue;
 
 // Modules
 var co2eq_parameters = require('./co2eq_parameters');
@@ -102,10 +101,10 @@ function startLoading() {
 function stopLoading() {
     d3.select('.loading')
         .transition()
-        .style('opacity', 0)
-        .each('end', function() {
-            d3.select(this).style('display', 'none');
-        });
+            .style('opacity', 0)
+            .on('end', function() {
+                d3.select(this).style('display', 'none');
+            });
 }
 
 // Start chrome (or forced) version
@@ -113,12 +112,12 @@ var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
-var co2color = d3.scale.linear()
+var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
     .range(['green', 'orange', 'black'])
     .clamp(true);
 var maxWind = 15;
-var windColor = d3.scale.linear()
+var windColor = d3.scaleLinear()
     .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
     .range([
         "rgba(0,   255, 255, 1.0)",
@@ -149,7 +148,7 @@ var solarRange = d3.range(10).map(function (i) {
 solarDomain.splice(0, 0, 1);
 solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
-var solarColor = d3.scale.linear()
+var solarColor = d3.scaleLinear()
     .domain(solarDomain)
     .range(solarRange)
     .clamp(true);
@@ -160,11 +159,12 @@ var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-    .markerColor('black');
+    .markerColor('black')
+    .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-    .markerColor('black');
+    .markerColor('black')
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
-    .markerColor('black');
+    .markerColor('black')
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -245,6 +245,9 @@ if (isSmallScreen()) {
 } else {
     d3.select('.panel-container')
         .style('width', '330px');
+    // Now that the width is set, we can render the legends
+    windColorbar.render();
+    solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
@@ -375,52 +378,6 @@ function dataLoaded(err, state, argSolar, argWind) {
     if (err) {
         console.error(err);
         return;
-    }
-    wind = argWind;
-    solar = argSolar;
-
-    if (!showWindOption)
-        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
-    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        console.log('wind', wind);
-        Wind.draw('.wind',
-            customDate ? moment(customDate) : moment(new Date()),
-            wind.forecasts[0],
-            wind.forecasts[1],
-            windColor,
-            countryMap.projection());
-        if (windEnabled)
-            Wind.show();
-        else
-            Wind.hide();
-    } else {
-        Wind.hide();
-        if (windEnabled) {
-            windEnabled = false;
-            d3.select('#checkbox-wind').attr('checked', false);
-        }
-    }
-
-    if (!showSolarOption)
-        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
-    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        console.log('solar', solar);
-        Solar.draw('.solar',
-            customDate ? moment(customDate) : moment(new Date()),
-            solar.forecasts[0],
-            solar.forecasts[1],
-            solarColor,
-            countryMap.projection());
-        if (solarEnabled)
-            Solar.show();
-        else
-            Solar.hide();
-    } else {
-        Solar.hide();
-        if (solarEnabled) {
-            solarEnabled = false;
-            d3.select('#checkbox-solar').attr('checked', false);
-        }
     }
 
     // Populate with realtime country data
@@ -595,6 +552,54 @@ function dataLoaded(err, state, argSolar, argWind) {
             .render();
     }
 
+    // Render weather
+    wind = argWind;
+    solar = argSolar;
+
+    if (!showWindOption)
+        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
+    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
+        console.log('wind', wind);
+        Wind.draw('.wind',
+            customDate ? moment(customDate) : moment(new Date()),
+            wind.forecasts[0],
+            wind.forecasts[1],
+            windColor,
+            countryMap.projection());
+        if (windEnabled)
+            Wind.show();
+        else
+            Wind.hide();
+    } else {
+        Wind.hide();
+        if (windEnabled) {
+            windEnabled = false;
+            d3.select('#checkbox-wind').attr('checked', false);
+        }
+    }
+
+    if (!showSolarOption)
+        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
+    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
+        console.log('solar', solar);
+        Solar.draw('.solar',
+            customDate ? moment(customDate) : moment(new Date()),
+            solar.forecasts[0],
+            solar.forecasts[1],
+            solarColor,
+            countryMap.projection());
+        if (solarEnabled)
+            Solar.show();
+        else
+            Solar.hide();
+    } else {
+        Solar.hide();
+        if (solarEnabled) {
+            solarEnabled = false;
+            d3.select('#checkbox-solar').attr('checked', false);
+        }
+    }
+
     stopLoading();
 };
 
@@ -665,7 +670,7 @@ function fetch(doReschedule, showLoading) {
     connectionWarningTimeout = setTimeout(function(){
         document.getElementById('connection-warning').className = "show";
     }, 15 * 1000);
-    var Q = queue()
+    var Q = d3.queue()
     if (isMobile()) {
         Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
@@ -713,5 +718,4 @@ window.onresize = function () {
     redraw();
 };
 
-redraw();
 fetchAndReschedule();
