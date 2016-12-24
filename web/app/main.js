@@ -27,6 +27,13 @@ var customDate;
 var showWindOption = true;
 var showSolarOption = false;
 
+function isMobile() {
+    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+}
+function isSmallScreen() {
+    // Should be in sync with media queries in CSS
+    return screen.width < 750;
+}
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
     args.forEach(function(arg) {
@@ -43,6 +50,8 @@ var showSolarOption = false;
 })();
 
 // Computed State
+var showWindOption = showWindOption && !isMobile();
+var showSolarOption = showSolarOption && !isMobile();
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
@@ -62,14 +71,6 @@ function catchError(e) {
             _opbeat('captureException', e);
         trackAnalyticsEvent('error', {'name': e.name});
     }
-}
-
-function isMobile() {
-    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-}
-function isSmallScreen() {
-    // Should be in sync with media queries in CSS
-    return screen.width < 750;
 }
 
 // Analytics
@@ -169,8 +170,9 @@ var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
 // Set weather checkboxes
-d3.select("#checkbox-wind").node().checked = windEnabled;
-d3.select("#checkbox-solar").node().checked = solarEnabled;
+d3.select('#checkbox-wind').node().checked = windEnabled;
+d3.select('#checkbox-solar').node().checked = solarEnabled;
+d3.select('.layer-toggles').style('display', !windEnabled && !solarEnabled ? 'none' : 'block');
 
 window.toggleSource = function() {
     tableDisplayEmissions = !tableDisplayEmissions;
@@ -671,7 +673,7 @@ function fetch(doReschedule, showLoading) {
     connectionWarningTimeout = setTimeout(function(){
         document.getElementById('connection-warning').className = "show";
     }, 15 * 1000);
-    var Q = d3.queue()
+    var Q = d3.queue();
     if (isMobile()) {
         Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
