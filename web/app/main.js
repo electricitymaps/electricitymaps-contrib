@@ -532,16 +532,18 @@ function dataLoaded(err, state, argSolar, argWind) {
                 tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
-                tooltip.select('span#from')
+                tooltip.selectAll('span#from')
                     .text(d.countryCodes[i]);
                 tooltip.select('span#to')
                     .text(d.countryCodes[(i + 1) % 2]);
                 tooltip.select('span#flow')
                     .text(Math.abs(Math.round(d.netFlow)));
-                tooltip.select('i#from')
+                tooltip.selectAll('i#from')
                     .attr('class', 'flag-icon flag-icon-' + d.countryCodes[i].toLowerCase());
                 tooltip.select('i#to')
                     .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
+                tooltip.select('.country-emission-intensity')
+                    .text(Math.round(d.co2intensity));
             })
             .onExchangeMouseOut(function (d) {
                 d3.select(this)
