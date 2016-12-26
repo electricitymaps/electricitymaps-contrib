@@ -31,7 +31,7 @@ app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
 // * Static and templating
-app.use(express.static(__dirname + '/public', {etag: true, maxAge: isProduction ? '4h': '0'}));
+app.use(express.static(__dirname + '/public', {etag: true, maxAge: isProduction ? '24h': '0'}));
 app.set('view engine', 'ejs');
 var BUNDLE_HASH = !isProduction ? 'dev' : 
     JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
@@ -544,6 +544,7 @@ app.get('/health', function(req, res) {
     });
 });
 app.get(`/dist/styles.${BUNDLE_HASH}.css`, function(req, res) {
+    res.setHeader('Cache-Control', 'public, max-age=' + (isProduction ? '86400' : '0'));
     res.sendFile(__dirname + '/public/css/styles.css');
 });
 app.get('/', function(req, res) {
