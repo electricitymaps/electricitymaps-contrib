@@ -168,7 +168,7 @@ module.addCountriesConfiguration = function(countries) {
         gas: 3801,
         unknown: 647,
         solar: 0,
-        wind: 1920,
+        wind: 3025,
     };
      countries['IT'].capacity = {
         hydro: 22382,
