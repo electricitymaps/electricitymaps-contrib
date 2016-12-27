@@ -48,6 +48,7 @@ exports.addCountryTopos = function(countries) {
     countries['MD'] = world['MDA'];
     countries['MK'] = world['MKD'];
     countries['ME'] = world['MNE'];
+    countries['MT'] = world['MLT'];
     countries['NL'] = world['NLD'];
     countries['NO'] = world['NOR'];
     countries['PL'] = world['POL'];
