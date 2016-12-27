@@ -45,7 +45,7 @@ function appendGradient(element, triangleHeight) {
 
 ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
     var that = this;
-    var stops = element.selectAll('stop') //??? WE NEED TO DO SELECTALL OF A SELECTALL..
+    var stops = element.selectAll('stop')
         .data(d3.range(5));
     var newStops = stops.enter()
         .append('stop')
@@ -120,8 +120,10 @@ ExchangeLayer.prototype.render = function() {
     exchangeGradients.exit().remove();
     var newGradients = appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
         .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
+
+    var animate = !isMobile && false;
     
-    if (!isMobile()) {
+    if (animate) {
         // Add animations
         var gradients = newGradients.merge(exchangeGradients);
         gradients.each(function(d) {
@@ -143,7 +145,7 @@ ExchangeLayer.prototype.render = function() {
             .attr('d', function(d) { return that.trianglePath(); })
             .attr('fill', function (d, i) { 
                 var color = (d.co2intensity && d.netFlow) && that.co2Color(d.co2intensity) || 'gray';
-                return isMobile() ? color : 'url(#exchange-gradient-' + i + ')';
+                return !animate ? color : 'url(#exchange-gradient-' + i + ')';
             })
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
@@ -164,7 +166,7 @@ ExchangeLayer.prototype.render = function() {
             return 'translate(' + center[0] + ',' + center[1] + ')';
         })
         .attr('stroke', function (d, i) {
-            if (!d.co2intensity) return 'lightgray';
+            if (!d.co2intensity) return 'black';
             return d.co2intensity > that.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
         })
         .style('display', function (d) { return (d.netFlow || 0) == 0 ? 'none' : 'block'; })
