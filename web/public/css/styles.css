@@ -38,8 +38,6 @@ html, body {
 }
 
 .watermark {
-    display: table-cell;
-    pointer-events: all;
     padding: 18px;
     opacity: 0.5;
     transition: all 0.5s ease;
@@ -84,28 +82,17 @@ html, body {
 }
 
 .content {
-    display: table;
-    position: absolute;
-    top: 0px;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-}
-.footer {
-    display: table-footer-group;
-    pointer-events: none;
 }
 .panel {
-    font-size: 0.7em;
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
     color: lightgray;
+    font-size: 0.7em;
 }
 .panel-container {
     margin: 10px;
     padding: 10px;
     line-height: 1.7em;
-    pointer-events: all;
 }
 .panel-container h1 {
     line-height: 1.3;
@@ -196,10 +183,27 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     .small-screen-visible {
         display: none;
     }
+    .panel {
+        position: absolute;
+        top: 0px;
+    }
+    .watermark {
+        position: absolute;
+        bottom: 0px;
+    }
 }
 @media screen and (max-width: 750px) {
     .large-screen-visible {
         display: none;
+    }
+    .content {
+        display: table;
+    }
+    .panel {
+        position: relative;
+    }
+    .watermark {
+        /* display: table-footer-group; */
     }
 }
 
