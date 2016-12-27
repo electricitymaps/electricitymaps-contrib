@@ -172,7 +172,7 @@ var tableDisplayEmissions = countryTable.displayByEmissions();
 // Set weather checkboxes
 d3.select('#checkbox-wind').node().checked = windEnabled;
 d3.select('#checkbox-solar').node().checked = solarEnabled;
-d3.select('.layer-toggles').style('display', !windEnabled && !solarEnabled ? 'none' : 'block');
+d3.select('.layer-toggles').style('display', !showWindOption && !showSolarOption ? 'none' : 'block');
 
 window.toggleSource = function() {
     tableDisplayEmissions = !tableDisplayEmissions;

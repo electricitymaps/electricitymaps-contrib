@@ -12,7 +12,9 @@ exports.addCountryTopos = function(countries) {
 
     // Map between countries iso_a2 and adm0_a3 in order to support XK
     countries['AL'] = world['ALB'];
+    countries['AM'] = world['ARM'];
     countries['AT'] = world['AUT'];
+    countries['AZ'] = world['AZE'];
     countries['BE'] = world['BEL'];
     countries['BG'] = world['BGR'];
     countries['BA'] = world['BIH'];
@@ -36,9 +38,11 @@ exports.addCountryTopos = function(countries) {
     countries['IE'] = world['IRL'];
     countries['IL'] = world['ISR'];
     countries['IQ'] = world['IRQ'];
+    countries['IR'] = world['IRN'];
     countries['IS'] = world['ISL'];
     countries['IT'] = world['ITA'];
     countries['JO'] = world['JOR'];
+    countries['KZ'] = world['KAZ'];
     countries['LB'] = world['LBN'];
     countries['LT'] = world['LTU'];
     countries['LU'] = world['LUX'];
@@ -62,9 +66,11 @@ exports.addCountryTopos = function(countries) {
     countries['SI'] = world['SVN'];
     countries['SE'] = world['SWE'];
     countries['SY'] = world['SYR'];
+    countries['TM'] = world['TKM'];
     countries['TN'] = world['TUN'];
     countries['TR'] = world['TUR'];
     countries['UA'] = world['UKR'];
+    countries['UZ'] = world['UZB'];
 
     countries['XX'] = world['CYN'];
     countries['XK'] = world['KOS'];
