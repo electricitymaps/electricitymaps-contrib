@@ -72,11 +72,13 @@ def query_consumption(domain, session):
         'outBiddingZone_Domain': domain,
         'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
         'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': os.environ['ENTSOE_TOKEN']
+        'securityToken': os.environ.get('ENTSOE_TOKEN')
     }
     response = session.get(ENTSOE_ENDPOINT, params=params)
     if response.ok: return response.text
     else:
+        if os.environ.get('ENTSOE_TOKEN') is None:
+            raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
         raise Exception('Failed to get consumption. Reason: %s' % soup.find_all('text')[0].contents[0])
@@ -90,7 +92,7 @@ def query_production(psr_type, in_domain, session):
         'in_Domain': in_domain,
         'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
         'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': os.environ['ENTSOE_TOKEN']
+        'securityToken': os.environ.get('ENTSOE_TOKEN')
     }
     response = session.get(ENTSOE_ENDPOINT, params=params)
     if response.ok: return response.text
@@ -109,11 +111,13 @@ def query_exchange(in_domain, out_domain, session):
         'out_Domain': out_domain,
         'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
         'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': os.environ['ENTSOE_TOKEN']
+        'securityToken': os.environ.get('ENTSOE_TOKEN')
     }
     response = session.get(ENTSOE_ENDPOINT, params=params)
     if response.ok: return response.text
     else:
+        if os.environ.get('ENTSOE_TOKEN') is None:
+            raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
         raise Exception('Failed to get exchange. Reason: %s' % soup.find_all('text')[0].contents[0])
