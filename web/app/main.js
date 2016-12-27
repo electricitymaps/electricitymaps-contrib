@@ -199,8 +199,9 @@ solarCanvas.attr('height', height);
 solarCanvas.attr('width', width);
 
 // Prepare data
-var countries = CountryTopos.getCountryTopos(countries);
-CountryConfig.addCountriesConfiguration(countries);
+var countries = {};
+CountryTopos.addCountryTopos(countries);
+CountryConfig.addCountryConfigurations(countries);
 d3.entries(countries).forEach(function (o) {
     var country = o.value;
     country.maxCapacity =
@@ -543,7 +544,7 @@ function dataLoaded(err, state, argSolar, argWind) {
                 tooltip.select('i#to')
                     .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
                 tooltip.select('.country-emission-intensity')
-                    .text(Math.round(d.co2intensity));
+                    .text(Math.round(d.co2intensity) || '?');
             })
             .onExchangeMouseOut(function (d) {
                 d3.select(this)
