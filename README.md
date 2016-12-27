@@ -104,6 +104,13 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 
 ### Real-time weather data sources
 We use the [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)'s GFS 0.25 Degree Hourly data.
+Forecasts are made every 6 hours, with a 1 hour time step.
+The values extracted are wind speed and direction at 10m altitude, and ground solar irradiance (DSWRF - Downward Short-Wave Radiation Flux), which takes into account cloud coverage.
+In order to obtain an estimate of those values at current time, an interpolation is made between two forecasts (the one at the beginning of the hour, and the one at the end of the hour).
+
+
+### Topology data
+We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/) country boundaries.
 
 
 ## Contribute
