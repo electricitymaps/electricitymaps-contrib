@@ -26,7 +26,7 @@ var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
 var showWindOption = true;
-var showSolarOption = false;
+var showSolarOption = true;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
