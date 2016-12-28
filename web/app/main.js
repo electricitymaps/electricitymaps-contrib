@@ -50,8 +50,6 @@ function isSmallScreen() {
 })();
 
 // Computed State
-var showWindOption = showWindOption && !isMobile();
-var showSolarOption = showSolarOption && !isMobile();
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
@@ -204,8 +202,7 @@ CountryTopos.addCountryTopos(countries);
 CountryConfig.addCountryConfigurations(countries);
 d3.entries(countries).forEach(function (o) {
     var country = o.value;
-    country.maxCapacity =
-        d3.max(d3.values(country.capacity));
+    country.maxCapacity = d3.max(d3.values(country.capacity));
     country.countryCode = o.key;
 });
 var exchanges = {};
@@ -261,7 +258,7 @@ if (isSmallScreen()) {
         Cookies.set('windEnabled', windEnabled);
         if (windEnabled) {
             if (!wind || grib.getTargetTime(wind.forecasts[1][0]) >= moment.utc()) {
-                fetch(false, true);
+                fetch(false);
             } else {
                 Wind.show();
             }
@@ -274,7 +271,7 @@ if (isSmallScreen()) {
         Cookies.set('solarEnabled', solarEnabled);
         if (solarEnabled) {
             if (!solar || grib.getTargetTime(solar.forecasts[1]) >= moment.utc()) {
-                fetch(false, true);
+                fetch(false);
             } else {
                 Solar.show();
             }
@@ -605,8 +602,6 @@ function dataLoaded(err, state, argSolar, argWind) {
             d3.select('#checkbox-solar').attr('checked', false);
         }
     }
-
-    stopLoading();
 };
 
 // Get geolocation is on mobile (in order to select country)
@@ -668,44 +663,55 @@ function ignoreError(func) {
     }
 }
 
-function fetch(doReschedule, showLoading) {
-    if (!doReschedule) doReschedule = false;
-    if (!showLoading) showLoading = false;
+function fetch(showLoading, callback) {
+    if (!showLoading) showLoading = true;
     if (showLoading) startLoading();
     // If data doesn't load in 30 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
         document.getElementById('connection-warning').className = "show";
     }, 15 * 1000);
     var Q = d3.queue();
+    Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
+
+    if (!solarEnabled)
+        Q.defer(DataService.fetchNothing);
+    else if (!solar || grib.getTargetTime(solar.forecasts[1]) <= moment.utc())
+        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', customDate || new Date());
+    else
+        Q.defer(function(cb) { return cb(null, solar); });
+
+    if (!windEnabled)
+        Q.defer(DataService.fetchNothing);
+    else if (!wind || grib.getTargetTime(wind.forecasts[1][0]) <= moment.utc())
+        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', customDate || new Date());
+    else
+        Q.defer(function(cb) { return cb(null, wind); });
+
     if (isMobile()) {
-        Q.defer(d3.json, ENDPOINT + '/v1/state');
         Q.defer(geolocaliseCountryCode);
-        Q.await(function(err, state, geolocalisedCountryCode) {
+        Q.await(function(err, state, solar, wind, geolocalisedCountryCode) {
             handleConnectionReturnCode(err);
-            if (!err) {
-                dataLoaded(err, state.data);
-            }
-            if (doReschedule)
-                setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+            if (!err)
+                dataLoaded(err, state.data, solar, wind);
+            if (showLoading) stopLoading();
+            if (callback) callback();
         });
     } else {
-        Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
-        Q.defer(solarEnabled ? ignoreError(DataService.fetchGfs) : DataService.fetchNothing,
-            ENDPOINT, 'solar', customDate || new Date());
-        Q.defer(windEnabled ? ignoreError(DataService.fetchGfs) : DataService.fetchNothing,
-            ENDPOINT, 'wind', customDate || new Date());
         Q.await(function(err, state, solar, wind) {
             handleConnectionReturnCode(err);
             if (!err)
                 dataLoaded(err, state.data, solar, wind);
             if (showLoading) stopLoading();
-            if (doReschedule)
-                setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+            if (callback) callback();
         });
     }
 };
 
-function fetchAndReschedule() { return fetch(true); };
+function fetchAndReschedule() { 
+    return fetch(false, function() { 
+        setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+    });
+};
 
 function redraw() {
     countryTable.render();
@@ -724,4 +730,8 @@ window.onresize = function () {
     redraw();
 };
 
-fetchAndReschedule();
+// Start a fetch showing loading.
+// Later `fetchAndReschedule` won't show loading screen
+fetch(true, function() { 
+    setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+});
