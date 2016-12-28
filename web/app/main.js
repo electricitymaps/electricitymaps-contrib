@@ -636,7 +636,15 @@ var connectionWarningTimeout = null;
 
 function handleConnectionReturnCode(err) {
     if (err) {
-        catchError(err);
+        if (err.target) {
+            catchError(Error(
+                'HTTPError ' +
+                err.target.status + ' ' + err.target.statusText + ': ' +
+                err.target.responseText + ' of ' +
+                err.target.responseURL));
+        } else {
+            catchError(err);
+        }
         document.getElementById('connection-warning').className = "show";
     } else {
         document.getElementById('connection-warning').className = "hide";
