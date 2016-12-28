@@ -578,12 +578,14 @@ function dataLoaded(err, state, argSolar, argWind) {
             solar.forecasts[0],
             solar.forecasts[1],
             solarColor,
-            countryMap.projection());
-        if (solarEnabled)
-            Solar.show();
-        else
-            Solar.hide();
-        LoadingService.stopLoading();
+            countryMap.projection(),
+            function() {
+                if (solarEnabled)
+                    Solar.show();
+                else
+                    Solar.hide();
+                LoadingService.stopLoading();
+            });
     } else {
         Solar.hide();
         if (solarEnabled) {
