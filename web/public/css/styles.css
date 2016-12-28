@@ -155,7 +155,7 @@ html, body {
     fill: black !important;
 }
 .co2-legend .x.axis line {
-    stroke: black !important;
+    stroke: white !important;
 }
 .co2-legend rect.border {
     stroke: black !important;
