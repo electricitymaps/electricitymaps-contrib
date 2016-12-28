@@ -257,7 +257,7 @@ if (isSmallScreen()) {
         windEnabled = !windEnabled;
         Cookies.set('windEnabled', windEnabled);
         if (windEnabled) {
-            if (!wind || grib.getTargetTime(wind.forecasts[1][0]) >= moment.utc()) {
+            if (!wind || grib.getTargetTime(wind.forecasts[1][0]) < moment.utc()) {
                 fetch(false);
             } else {
                 Wind.show();
@@ -270,7 +270,7 @@ if (isSmallScreen()) {
         solarEnabled = !solarEnabled;
         Cookies.set('solarEnabled', solarEnabled);
         if (solarEnabled) {
-            if (!solar || grib.getTargetTime(solar.forecasts[1]) >= moment.utc()) {
+            if (!solar || grib.getTargetTime(solar.forecasts[1]) < moment.utc()) {
                 fetch(false);
             } else {
                 Solar.show();
@@ -480,7 +480,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         .onCountryMouseOut(function (d) { 
             d3.select(this)
                 .style('opacity', 1)
-                .style('cursor', 'normal')
+                .style('cursor', 'auto')
             if (d.co2intensity)
                 co2Colorbar.currentMarker(undefined);
             d3.select('#country-tooltip')
@@ -546,7 +546,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             .onExchangeMouseOut(function (d) {
                 d3.select(this)
                     .style('opacity', 1)
-                    .style('cursor', 'normal')
+                    .style('cursor', 'auto')
                 if (d.co2intensity)
                     co2Colorbar.currentMarker(undefined);
                 d3.select('#exchange-tooltip')
