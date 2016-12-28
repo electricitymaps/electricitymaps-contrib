@@ -17,7 +17,8 @@ function CountryMap(selector, co2color) {
                     .style('stroke', that.STROKE_COLOR)
                     .style('stroke-width', that.STROKE_WIDTH);
             }
-            that.seaClickHandler.call(this, d, i);
+            if (that.seaClickHandler)
+                that.seaClickHandler.call(this, d, i);
         })
         .append('path')
             .attr('class', 'graticule');
