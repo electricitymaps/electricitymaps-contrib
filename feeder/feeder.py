@@ -23,7 +23,9 @@ if 'OPBEAT_SECRET' in os.environ:
         app_id='c36849e44e',
         organization_id='093c53b0da9d43c4976cd0737fe0f2b1',
         secret_token=os.environ['OPBEAT_SECRET'])
-else: opbeat_client = None
+else:
+    opbeat_client = None
+    print "No Opbeat Token found! Opbeat Error handling is inactive."
 
 # Set up logging
 ENV = os.environ.get('ENV', 'development').lower()
