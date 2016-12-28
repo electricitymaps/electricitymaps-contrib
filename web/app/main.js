@@ -133,7 +133,7 @@ var windColor = d3.scaleLinear()
     .clamp(true);
 // ** Solar Scale **
 var maxSolar = 500;
-var minDayDSWRF = 10;
+var minDayDSWRF = 5;
 var nightOpacity = 0.4;
 var minSolarDayOpacity = 0.3;
 var maxSolarDayOpacity = 0.0;
