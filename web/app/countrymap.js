@@ -11,7 +11,7 @@ function CountryMap(selector, co2color) {
     this.root = d3.select(selector);
     this.co2color = co2color;
     this.graticule = this.root
-        .on('click', function (d, i) {
+        .on('touchstart click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
                     .style('stroke', that.STROKE_COLOR)
@@ -66,7 +66,7 @@ CountryMap.prototype.render = function() {
                 .on('mousemove', function (d, i) {
                     return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('click', function (d, i) {
+                .on('touchstart click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
                     if (that.selectedCountry !== undefined) {
                         that.selectedCountry
