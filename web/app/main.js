@@ -170,7 +170,7 @@ var tableDisplayEmissions = countryTable.displayByEmissions();
 // Set weather checkboxes
 d3.select('#checkbox-wind').node().checked = windEnabled;
 d3.select('#checkbox-solar').node().checked = solarEnabled;
-d3.select('.layer-toggles').style('display', !showWindOption && !showSolarOption ? 'none' : 'block');
+d3.select('.layer-toggles').style('display', !showWindOption && !showSolarOption ? 'none' : null);
 
 window.toggleSource = function() {
     tableDisplayEmissions = !tableDisplayEmissions;
@@ -234,7 +234,7 @@ function selectCountry(countryCode) {
     }
     if (isSmallScreen())
         d3.select('#country-table-back-button').style('display',
-                selectedCountryCode ? 'block' : 'none');
+            selectedCountryCode ? 'block' : 'none');
 }
 
 // Mobile
