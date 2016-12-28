@@ -664,7 +664,7 @@ function ignoreError(func) {
 }
 
 function fetch(showLoading, callback) {
-    if (!showLoading) showLoading = true;
+    if (!showLoading) showLoading = false;
     if (showLoading) startLoading();
     // If data doesn't load in 30 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
