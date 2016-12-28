@@ -14,6 +14,7 @@ var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
 var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
+var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Wind = require('./wind');
 
@@ -89,23 +90,6 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
-// Loading screen
-function startLoading() {
-    d3.select('.loading')
-        .style('display', 'block')
-        .transition()
-        .style('opacity', 0.8);
-}
-
-function stopLoading() {
-    d3.select('.loading')
-        .transition()
-            .style('opacity', 0)
-            .on('end', function() {
-                d3.select(this).style('display', 'none');
-            });
-}
-
 // Start chrome (or forced) version
 var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
@@ -132,7 +116,7 @@ var windColor = d3.scaleLinear()
     ])
     .clamp(true);
 // ** Solar Scale **
-var maxSolar = 500;
+var maxSolar = 400;
 var minDayDSWRF = 5;
 var nightOpacity = 0.4;
 var minSolarDayOpacity = 0.3;
@@ -258,7 +242,7 @@ if (isSmallScreen()) {
         Cookies.set('windEnabled', windEnabled);
         if (windEnabled) {
             if (!wind || grib.getTargetTime(wind.forecasts[1][0]) < moment.utc()) {
-                fetch(false);
+                fetch(true);
             } else {
                 Wind.show();
             }
@@ -271,7 +255,7 @@ if (isSmallScreen()) {
         Cookies.set('solarEnabled', solarEnabled);
         if (solarEnabled) {
             if (!solar || grib.getTargetTime(solar.forecasts[1]) < moment.utc()) {
-                fetch(false);
+                fetch(true);
             } else {
                 Solar.show();
             }
@@ -555,14 +539,16 @@ function dataLoaded(err, state, argSolar, argWind) {
             .render();
     }
 
-    // Render weather
-    wind = argWind;
-    solar = argSolar;
+    // Render weather if provided
+    // Do not overwrite with null/undefined
+    if (argWind) wind = argWind;
+    if (argSolar) solar = argSolar;
 
     if (!showWindOption)
         d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
     if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
         console.log('wind', wind);
+        LoadingService.startLoading();
         Wind.draw('.wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
@@ -573,6 +559,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             Wind.show();
         else
             Wind.hide();
+        LoadingService.stopLoading();
     } else {
         Wind.hide();
         if (windEnabled) {
@@ -585,6 +572,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
         console.log('solar', solar);
+        LoadingService.startLoading();
         Solar.draw('.solar',
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
@@ -595,6 +583,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             Solar.show();
         else
             Solar.hide();
+        LoadingService.stopLoading();
     } else {
         Solar.hide();
         if (solarEnabled) {
@@ -665,7 +654,7 @@ function ignoreError(func) {
 
 function fetch(showLoading, callback) {
     if (!showLoading) showLoading = false;
-    if (showLoading) startLoading();
+    if (showLoading) LoadingService.startLoading();
     // If data doesn't load in 30 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
         document.getElementById('connection-warning').className = "show";
@@ -693,7 +682,7 @@ function fetch(showLoading, callback) {
             handleConnectionReturnCode(err);
             if (!err)
                 dataLoaded(err, state.data, solar, wind);
-            if (showLoading) stopLoading();
+            if (showLoading) LoadingService.stopLoading();
             if (callback) callback();
         });
     } else {
@@ -701,7 +690,7 @@ function fetch(showLoading, callback) {
             handleConnectionReturnCode(err);
             if (!err)
                 dataLoaded(err, state.data, solar, wind);
-            if (showLoading) stopLoading();
+            if (showLoading) LoadingService.stopLoading();
             if (callback) callback();
         });
     }
