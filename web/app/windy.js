@@ -444,7 +444,7 @@ var Windy = function( params ){
     function frame() {
       evolve();
       draw();
-      requestAnimationFrame(frame);
+      windy.animationRequest = requestAnimationFrame(frame);
     };
     frame();
   }
@@ -476,7 +476,8 @@ var Windy = function( params ){
 
   var stop = function(){
     if (windy.field) windy.field.release();
-    if (windy.timer) clearTimeout(windy.timer)
+    if (windy.animationRequest)
+      cancelAnimationFrame(windy.animationRequest);
   };
 
 
@@ -500,6 +501,16 @@ window.requestAnimationFrame = (function(){
           window.msRequestAnimationFrame ||
           function( callback ){
             window.setTimeout(callback, 1000 / 20);
+          };
+})();
+window.cancelAnimationFrame = (function(){
+  return  window.cancelAnimationFrame       ||
+          window.webkitCancelAnimationFrame ||
+          window.mozCancelAnimationFrame    ||
+          window.oCancelAnimationFrame ||
+          window.msCancelAnimationFrame ||
+          function( callback ){
+            clearTimeout
           };
 })();
 
