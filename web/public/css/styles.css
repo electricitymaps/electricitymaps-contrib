@@ -148,6 +148,19 @@ html, body {
     line-height: 1.5em;
 }
 
+/*.co2-legend > .colorbar-unit {
+    color: black;
+}
+.co2-legend .x.axis text {
+    fill: black !important;
+}
+.co2-legend .x.axis line {
+    stroke: black !important;
+}
+.co2-legend rect.border {
+    stroke: black !important;
+}*/
+
 a {
     text-decoration: none;
     color: lightblue;
