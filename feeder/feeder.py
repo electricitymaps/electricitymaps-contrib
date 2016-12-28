@@ -18,12 +18,11 @@ INTERVAL_SECONDS = 60 * 5
 # Set up error handling
 import opbeat
 from opbeat.handlers.logging import OpbeatHandler
-secret_token= os.environ.get('OPBEAT_SECRET')
-if not secret_token is None:
+if 'OPBEAT_SECRET' in os.environ:
     opbeat_client = opbeat.Client(
         app_id= 'c36849e44e',
         organization_id= '093c53b0da9d43c4976cd0737fe0f2b1',
-        secret_token= secret_token
+        secret_token=os.environ.get('OPBEAT_SECRET')
        )
 else:
     print "No Opbeat Token found! Opbeat Error handling is inactive."
