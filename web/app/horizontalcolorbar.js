@@ -77,12 +77,12 @@ HorizontalColorbar.prototype.render = function() {
 
     if (this.scale.ticks) {
         // Linear scale
-        var pixelScale = d3.scaleLinear()
-            .domain([0, d3.max(this.scale.domain())])
-            .range([0, this.colorbarWidth]);
+        var pixelRelativeScale = d3.scaleLinear()
+            .domain([d3.min(this.domain), d3.max(this.domain)])
+            .range([0, 1]);
         this.scale
             .range(this.domain.map(function (d, i) {
-                return pixelScale(d);
+                return pixelRelativeScale(d) * that.colorbarWidth;
             }));
 
         // Place the colors on the gradient
@@ -92,7 +92,7 @@ HorizontalColorbar.prototype.render = function() {
             .append('stop')
         .merge(stops)
             .attr('offset', function(d, i) { 
-                return i / (that.colors.length - 1);
+                return pixelRelativeScale(that.domain[i]);
             })
             .attr('stop-color', function (d) { return d; });
         // Add a rect with the gradient
