@@ -65,11 +65,11 @@ ENTSOE_DOMAIN_MAPPINGS = {
 }
 def query_ENTSOE(session, params):
     now = arrow.utcnow()
-    params['periodStart'] =  now.replace(hours=-24).format('YYYYMMDDHH00')
-    params['periodEnd']= now.replace(hours=+24).format('YYYYMMDDHH00')
+    params['periodStart'] = now.replace(hours=-24).format('YYYYMMDDHH00')
+    params['periodEnd'] = now.replace(hours=+24).format('YYYYMMDDHH00')
     if not 'ENTSOE_TOKEN' in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
-    params['securityToken']=os.environ.get('ENTSOE_TOKEN')
+    params['securityToken'] = os.environ['ENTSOE_TOKEN']
     return session.get(ENTSOE_ENDPOINT, params=params)
     
 def query_consumption(domain, session):
@@ -110,8 +110,6 @@ def query_exchange(in_domain, out_domain, session):
     response = query_ENTSOE(session, params)
     if response.ok: return response.text
     else:
-        if os.environ.get('ENTSOE_TOKEN') is None:
-            raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
         raise Exception('Failed to get exchange. Reason: %s' % soup.find_all('text')[0].contents[0])
