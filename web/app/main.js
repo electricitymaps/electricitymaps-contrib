@@ -116,19 +116,19 @@ var windColor = d3.scaleLinear()
     ])
     .clamp(true);
 // ** Solar Scale **
-var maxSolar = 400;
+var maxSolarDSWRF = 400;
 var minDayDSWRF = 5;
 var nightOpacity = 0.4;
 var minSolarDayOpacity = 0.3;
 var maxSolarDayOpacity = 0.0;
-var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolar)(i / (10 - 1)); } );
+var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)); } );
 var solarRange = d3.range(10).map(function (i) {
     var c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
     var a = d3.interpolate(minSolarDayOpacity, maxSolarDayOpacity)(i / (10 - 1));
     return 'rgba(' + c + ', ' + c + ', ' + c + ', ' + a + ')';
 });
-// Insert the night (DWSWRF \in [0, 1]) domain
-solarDomain.splice(0, 0, 1);
+// Insert the night (DWSWRF \in [0, minDayDSWRF]) domain
+solarDomain.splice(0, 0, 0);
 solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
 var solarColor = d3.scaleLinear()
@@ -145,9 +145,13 @@ var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('black')
     .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
-    .markerColor('black')
-var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColor)
-    .markerColor('black')
+    .markerColor('black');
+var solarColorbarColor = d3.scaleLinear()
+    .domain([0, minDayDSWRF, maxSolarDSWRF])
+    .range(['black', 'black', 'white'])
+    .clamp(solarColor.clamp());
+var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
+    .markerColor('red');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
