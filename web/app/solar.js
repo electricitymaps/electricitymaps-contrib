@@ -91,7 +91,7 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
 };
 
 exports.show = function() {
-    solarCanvas.transition().style('opacity', 100);
+    solarCanvas.transition().style('opacity', 1);
 }
 
 exports.hide = function() {
