@@ -276,7 +276,7 @@ CountryTable.prototype.data = function(arg) {
                 })
                 .on('end', function () { d3.select(this).style('display', 'block'); });
         // Add event handlers
-        selection.select('rect.capacity')
+        selection.selectAll('rect.capacity,rect.production')
             .on('mouseover', function (d) {
                 if (that.productionMouseOverHandler)
                     that.productionMouseOverHandler.call(this, d, that._data.countryCode);
