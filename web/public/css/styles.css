@@ -77,8 +77,9 @@ html, body {
     opacity: 0;
 }
 .graticule {
+    fill: none;
     stroke: #185c96;
-    stroke-width: 0.3px;
+    stroke-width: 0.5px;
 }
 
 .content {
