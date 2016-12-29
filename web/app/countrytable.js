@@ -135,6 +135,12 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
     return this;
 }
 
+CountryTable.prototype.powerFormat = function(arg) {
+    if (!arg) return this.POWER_FORMAT;
+    else this.POWER_FORMAT = arg;
+    return this;
+}
+
 CountryTable.prototype.resize = function() {
     this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);

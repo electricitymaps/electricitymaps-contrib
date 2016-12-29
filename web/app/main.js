@@ -136,6 +136,14 @@ var solarColor = d3.scaleLinear()
     .range(solarRange)
     .clamp(true);
 
+// Create power formatting
+function formatPower(d, numDigits) {
+    // Assume MW input
+    if (d == null || d == NaN) return d;
+    if (numDigits == null) numDigits = 3;
+    return d3.format('.' + numDigits + 's')(d * 1e6) + 'W';
+}
+
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
@@ -340,12 +348,19 @@ if (isSmallScreen()) {
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
-            var loadFactor = Math.round(d.production / d.capacity * 100) || '?';
-            tooltip.select('#load-factor').text(
-                loadFactor + ' %' +
-                ' (' + (d.production || '?') + ' MW' +
+            var capacityFactor = Math.round(d.production / d.capacity * 100) || '?';
+            tooltip.select('#capacity-factor').text(
+                capacityFactor + ' %' +
+                ' (' + (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (d.capacity || '?') + ' MW)');
+                (formatPower(d.capacity) || '?') + ')');
+            var totalProduction = countries[countryCode].totalProduction;
+            var productionProportion = Math.round(d.production / totalProduction * 100) || '?';
+            tooltip.select('#production-proportion').text(
+                productionProportion + ' %' +
+                ' (' + (formatPower(d.production) || '?') + ' ' +
+                ' / ' + 
+                (formatPower(totalProduction) || '?') + ')');
         })
         .onProductionMouseMove(function(d) {
             d3.select('#countrypanel-production-tooltip')
