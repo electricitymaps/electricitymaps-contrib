@@ -568,6 +568,8 @@ function dataLoaded(err, state, argSolar, argWind) {
     if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
         console.log('wind', wind);
         LoadingService.startLoading();
+        // Make sure to disable wind if the drawing goes wrong
+        Cookies.set('windEnabled', false);
         Wind.draw('.wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
@@ -578,6 +580,8 @@ function dataLoaded(err, state, argSolar, argWind) {
             Wind.show();
         else
             Wind.hide();
+        // Restore setting
+        Cookies.set('windEnabled', windEnabled);
         LoadingService.stopLoading();
     } else {
         Wind.hide();
@@ -592,6 +596,8 @@ function dataLoaded(err, state, argSolar, argWind) {
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
         console.log('solar', solar);
         LoadingService.startLoading();
+        // Make sure to disable solar if the drawing goes wrong
+        Cookies.set('solarEnabled', false);
         Solar.draw('.solar',
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
@@ -603,6 +609,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                     Solar.show();
                 else
                     Solar.hide();
+                // Restore setting
+                Cookies.set('solarEnabled', solarEnabled);
                 LoadingService.stopLoading();
             });
     } else {

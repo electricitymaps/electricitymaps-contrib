@@ -53,10 +53,10 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
             d3.range(solarCanvas.attr('height')).forEach(function(y) {
                 var lonlat = projection.invert([x, y]);
                 var positions = [
-                    [Math.floor(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
+                    [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy + 1],
                     [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
-                    [Math.ceil(lonlat[0] - lo1) / dx, Math.ceil(la1 - lonlat[1]) / dy],
-                    [Math.ceil(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
+                    [Math.floor(lonlat[0] - lo1) / dx + 1, Math.floor(la1 - lonlat[1]) / dy + 1],
+                    [Math.floor(lonlat[0] - lo1) / dx + 1, Math.floor(la1 - lonlat[1]) / dy],
                 ];
                 var values = positions.map(function(d) {
                     var n = d[0] + Nx * d[1];
