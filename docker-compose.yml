@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     build: web
-    command: ./node_modules/.bin/nodemon server.js
+    command: npm run server-dev
     depends_on: [mongo, memcached]
     environment:
       - ENV=development
