@@ -1,4 +1,5 @@
-// This file was taken from https://github.com/esri/wind-js, and slightly modified
+// This file was taken from https://github.com/esri/wind-js, and modified
+// TODO: Rewrite completely
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
 
@@ -241,15 +242,7 @@ var Windy = function( params ){
   };
 
   var invert = function(x, y, windy){
-    var mapLonDelta = windy.east - windy.west;
-    var worldMapRadius = windy.width / rad2deg(mapLonDelta) * 360/(2 * Math.PI);
-    var mapOffsetY = ( worldMapRadius / 2 * Math.log( (1 + Math.sin(windy.south) ) / (1 - Math.sin(windy.south))  ));
-    var equatorY = windy.height + mapOffsetY;
-    var a = (equatorY-y)/worldMapRadius;
-
-    var lat = 180/Math.PI * (2 * Math.atan(Math.exp(a)) - Math.PI/2);
-    var lon = rad2deg(windy.west) + x / windy.width * rad2deg(mapLonDelta);
-    return [lon, lat];
+    return params.projection.invert([x, y]);
   };
 
   var mercY = function( lat ) {
@@ -258,15 +251,7 @@ var Windy = function( params ){
 
 
   var project = function( lat, lon, windy) { // both in radians, use deg2rad if neccessary
-    var ymin = mercY(windy.south);
-    var ymax = mercY(windy.north);
-    var xFactor = windy.width / ( windy.east - windy.west );
-    var yFactor = windy.height / ( ymax - ymin );
-
-    var y = mercY( deg2rad(lat) );
-    var x = (deg2rad(lon) - windy.west) * xFactor;
-    var y = (ymax - y) * yFactor; // y points south
-    return [x, y];
+    return params.projection([lon, lat]);
   };
 
 
