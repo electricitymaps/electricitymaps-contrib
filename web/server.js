@@ -31,10 +31,11 @@ app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 
 // * Static and templating
-app.use(express.static(__dirname + '/public', {etag: true, maxAge: isProduction ? '24h': '0'}));
+var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
+app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '0'}));
 app.set('view engine', 'ejs');
 var BUNDLE_HASH = !isProduction ? 'dev' : 
-    JSON.parse(fs.readFileSync('public/dist/manifest.json')).hash;
+    JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
 
 // * Cache
 var memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -542,10 +543,6 @@ app.get('/health', function(req, res) {
                 res.json({status: 'ok'});
         }
     });
-});
-app.get(`/dist/styles.${BUNDLE_HASH}.css`, function(req, res) {
-    res.setHeader('Cache-Control', 'public, max-age=' + (isProduction ? '86400' : '0'));
-    res.sendFile(__dirname + '/public/css/styles.css');
 });
 app.get('/', function(req, res) {
     res.render('pages/index', {
