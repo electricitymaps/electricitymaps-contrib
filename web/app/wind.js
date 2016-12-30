@@ -38,7 +38,7 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
         });
         windCanvas = d3.select(canvasSelector);
         projection = argProjection;
-        if (!windLayer) windLayer = new Windy({ canvas: windCanvas.node() });
+        if (!windLayer) windLayer = new Windy({ canvas: windCanvas.node(), projection: projection });
         windLayer.params.data = interpolatedWind;
     }
 };
