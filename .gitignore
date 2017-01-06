@@ -3,4 +3,5 @@
 mongodata
 src
 grib2json
-datascience
+web/public/dist
+web/node_modules

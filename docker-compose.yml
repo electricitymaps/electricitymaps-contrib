@@ -1,8 +1,8 @@
 version: '2'
 services:
-  api:
-    build: api
-    command: ./node_modules/.bin/nodemon server.js
+  web:
+    build: web
+    command: npm run server-dev
     depends_on: [mongo, memcached]
     environment:
       - ENV=development
@@ -10,19 +10,21 @@ services:
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     ports: ['8000:8000']
     volumes:
-      - './api/static:/home/static'
-      - './api/server.js:/home/server.js'
-      - './api/data:/home/data'
+      - './web/app:/home/app'
+      - './web/package.json:/home/package.json'
+      - './web/public:/home/public'
+      - './web/server.js:/home/server.js'
+      - './web/views:/home/views'
+      - './web/webpack.config.js:/home/webpack.config.js'
   feeder:
     build: feeder
     depends_on: [mongo]
+    env_file: ./secrets.env
     environment:
-      - 'ENTSOE_TOKEN=${ENTSOE_TOKEN}'
       - ENV=development
       - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     volumes:
-      - './api/data:/home/data'
       - './feeder/feeder.py:/home/feeder.py'
       - './feeder/parsers:/home/parsers'
   memcached:

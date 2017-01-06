@@ -1,6 +1,6 @@
 import pymongo
 
-def migrate(db):
+def migrate(db, validate_production):
     print 'Starting data migration..'
     # ** Migrate one collection (production) to two (production & exchanges)
     col_production = db['production']
@@ -28,4 +28,11 @@ def migrate(db):
         except pymongo.errors.DuplicateKeyError: pass
         # Delete in old collection
         col_old.remove({'_id': row['_id']})
+    # ** Validate production data
+    # for row in col_production.find():
+    #     try:
+    #         validate_production(row, row.get('countryCode', None))
+    #     except:
+    #         print 'Warning: row %s did not pass validation' % row['_id']
+    #         print row
     print 'Migration done.'
