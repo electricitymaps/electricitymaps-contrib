@@ -111,7 +111,7 @@ In order to obtain an estimate of those values at current time, an interpolation
 
 
 ### Topology data
-We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/) country boundaries.
+We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/) country subdivisions (map admin subunits).
 
 
 ## Contribute
