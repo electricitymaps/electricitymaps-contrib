@@ -51,6 +51,8 @@ html, body {
     height: 100%;
     position: absolute;
     top: 0px;
+}
+.loading {
     opacity: 0.7;
     background: black url('../images/loading.svg') no-repeat center center;
 }
