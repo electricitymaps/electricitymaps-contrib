@@ -1,7 +1,6 @@
 var module = module.exports = {};
 
 module.addCountryConfigurations = function(countries) {
-    return;
     countries['AT'].fullname = 'Austria';
     countries['BE'].fullname = 'Belgium';
     countries['BG'].fullname = 'Bulgaria';
