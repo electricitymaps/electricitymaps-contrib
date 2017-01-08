@@ -54,6 +54,10 @@ function isSmallScreen() {
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
+var isEmbedded = window.top !== window.self;
+var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
+    '' : REMOTE_ENDPOINT;
 
 if (typeof _opbeat !== 'undefined')
     _opbeat('config', {
@@ -90,10 +94,8 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
-// Start chrome (or forced) version
-var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
-var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
-    '' : REMOTE_ENDPOINT;
+// Display embedded warning
+d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
