@@ -317,13 +317,13 @@ if (isSmallScreen()) {
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
             tooltip.select('#label').text(isExport ? 'export to' : 'import from');
-            tooltip.select('#country-code').text(o);
+            tooltip.select('#country-code').text(d.key);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
             tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + o.toLowerCase());
+                .attr('class', 'flag-icon flag-icon-' + d.key.toLowerCase());
         })
         .onExchangeMouseOut(function (d) {
             co2Colorbar.currentMarker(undefined);
