@@ -234,7 +234,7 @@ CountryTable.prototype.data = function(arg) {
         this.axis
             .tickSizeInner(-250)
             .tickSizeOuter(0)
-            .ticks(4);
+            .ticks(4, 's');
 
         this.gPowerAxis
             .transition()
