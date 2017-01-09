@@ -25,8 +25,6 @@ var REFRESH_TIME_MINUTES = 5;
 var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
-var showWindOption = true;
-var showSolarOption = true;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -44,13 +42,13 @@ function isSmallScreen() {
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
             console.log('** Custom date: ' + customDate + ' **');
-        } else if (kv[0] == 'solar') {
-            showSolarOption = kv[1] == 'true';
         }
     });
 })();
 
 // Computed State
+var showWindOption = !isSmallScreen();
+var showSolarOption = !isSmallScreen();
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
@@ -120,8 +118,8 @@ var windColor = d3.scaleLinear()
 // ** Solar Scale **
 var maxSolarDSWRF = 400;
 var minDayDSWRF = 5;
-var nightOpacity = 0.4;
-var minSolarDayOpacity = 0.3;
+var nightOpacity = 0.8;
+var minSolarDayOpacity = 0.6;
 var maxSolarDayOpacity = 0.0;
 var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)); } );
 var solarRange = d3.range(10).map(function (i) {

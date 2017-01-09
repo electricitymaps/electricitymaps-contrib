@@ -32,6 +32,6 @@
     "build-release": "BUILD=release npm run build",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "server-dev": "nodemon server.js",
-    "watch": "BUILD=debug webpack --watch --progress --bail"
+    "watch": "BUILD=debug webpack --watch --progress"
   }
 }

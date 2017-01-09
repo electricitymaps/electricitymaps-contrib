@@ -81,7 +81,7 @@ html, body {
 .graticule {
     fill: none;
     stroke: #185c96;
-    stroke-width: 0.5px;
+    stroke-width: 0.7px;
 }
 
 .content {
