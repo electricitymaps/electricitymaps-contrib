@@ -31,7 +31,7 @@ function isMobile() {
 }
 function isSmallScreen() {
     // Should be in sync with media queries in CSS
-    return screen.width < 750;
+    return window.innerWidth < 750;
 }
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
