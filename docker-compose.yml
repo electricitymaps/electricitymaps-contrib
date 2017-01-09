@@ -31,3 +31,4 @@ services:
     image: memcached
   mongo:
     image: mongo
+    volumes: ['/data/db']
