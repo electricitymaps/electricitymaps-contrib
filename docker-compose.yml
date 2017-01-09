@@ -31,4 +31,3 @@ services:
     image: memcached
   mongo:
     image: mongo
-    volumes: ['./mongodata/:/data/db']
