@@ -48,7 +48,7 @@ module.addCountryConfigurations = function(countries) {
         hydro: 3622 + 2271 + 5161,
         oil: 288,
         solar: 814,
-        wind: 2306,
+        wind: 2556,
     };
     countries['BE'].capacity = {
         biomass: 710 + 368,
@@ -126,7 +126,7 @@ module.addCountryConfigurations = function(countries) {
         oil: 6670,
         coal: 2930,
         hydro: 10326 + 8204 + 4965,
-        gas: 6121,
+        gas: 10909,
         wind: 10358,
         solar: 6580
     };
