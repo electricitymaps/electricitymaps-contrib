@@ -662,9 +662,9 @@ function handleConnectionReturnCode(err) {
         if (err.target) {
             catchError(Error(
                 'HTTPError ' +
-                err.target.status + ' ' + err.target.statusText + ': ' +
-                err.target.responseText + ' of ' +
-                err.target.responseURL));
+                err.target.status + ' ' + err.target.statusText + ' at ' + 
+                err.target.responseURL + ': ' +
+                err.target.responseText));
         } else {
             catchError(err);
         }
