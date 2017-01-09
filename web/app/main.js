@@ -93,7 +93,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
 }
 
 // Display embedded warning
-d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
+// d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
