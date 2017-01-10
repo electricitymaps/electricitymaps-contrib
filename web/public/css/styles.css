@@ -134,7 +134,7 @@ html, body {
     width: 460px;
 }
 .colorbar {
-    height: 30px;
+    height: 2.4em;
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
 }
@@ -145,15 +145,15 @@ html, body {
     height: 100%;
     width: 150px;
     text-align: right;
-    font-size: 0.6em;
+    font-size: 0.7em;
     line-height: 1.5em;
 }
 
 .co2-legend > .colorbar-unit {
-    color: black;
+    color: lightgrey;
 }
 .co2-legend .x.axis text {
-    fill: black !important;
+    fill: lightgrey !important;
 }
 .co2-legend .x.axis line {
     stroke: black !important;
