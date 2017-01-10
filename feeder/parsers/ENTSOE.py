@@ -32,6 +32,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'AT': '10YAT-APG------L',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
+    'BY': '10Y1001A1001A51S',
     'CH': '10YCH-SWISSGRIDZ',
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
@@ -58,10 +59,11 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'PT': '10YPT-REN------W',
     'RO': '10YRO-TEL------P',
     'RS': '10YCS-SERBIATSOV',
+    'RU': '10Y1001A1001A49F',
     'SE': '10YSE-1--------K',
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
-    # 'TR': 'TR',
+    'TR': '10YTR-TEIAS----W',
     # 'UA': 'UA'
 }
 def query_ENTSOE(session, params):
