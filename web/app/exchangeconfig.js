@@ -43,7 +43,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     // BG
     exchanges['BG->GR'] = {
         lonlat: [24.1, 41.558088],
-        rotation: 205
+        rotation: 180
     };
     exchanges['BG->MK'] = {
         lonlat: [22.912615, 41.867840],
@@ -181,8 +181,8 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: 0
     };
     exchanges['GR->TR'] = {
-        lonlat: [26.898640, 38.032753],
-        rotation: 45
+        lonlat: [26.316812, 41.12620],
+        rotation: 90
     };
     // HR
     exchanges['HR->HU'] = {
@@ -214,7 +214,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     // LT
     exchanges['LT->PL'] = {
         lonlat: [23.308307, 54.247411],
-        rotation: 225
+        rotation: 180
     };
     exchanges['LT->LV'] = {
         lonlat: [24.373981, 56.287428],
@@ -222,7 +222,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     };
     exchanges['LT->SE'] = {
         lonlat: [18.847674, 55.910978],
-        rotation: -80
+        rotation: -90
     };
     // LV
     exchanges['LV->RU'] = {
