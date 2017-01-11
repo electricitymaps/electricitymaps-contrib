@@ -45,7 +45,7 @@ function appendGradient(element, triangleHeight) {
 
 ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
     var that = this;
-    var stops = element.selectAll('stop') //??? WE NEED TO DO SELECTALL OF A SELECTALL..
+    var stops = element.selectAll('stop')
         .data(d3.range(5));
     var newStops = stops.enter()
         .append('stop')
@@ -72,7 +72,6 @@ ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
                             };
                         }
                     })
-                    .transition()
                     .on('start', repeat);
             });
 }
@@ -88,6 +87,8 @@ function getTransform(d) {
 };
 
 ExchangeLayer.prototype.renderOne = function(selector) {
+    var color = 'orange';
+
     var element = d3.select(selector);
     var id = String(parseInt(Math.random()*10000));
     var gradient = appendGradient(
@@ -98,11 +99,14 @@ ExchangeLayer.prototype.renderOne = function(selector) {
     element
         .append('path')
         .attr('d', function(d) { return that.trianglePath(); })
-        .attr('fill', function (d, i) { return 'url(#' + id + ')'; })
+        .attr('fill', function (d, i) { 
+            return isMobile() ? color : 'url(#' + id + ')';
+        })
         .attr('transform-origin', '0 0')
         .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
 
-    that.animateGradient(gradient, 'orange', 2000);
+    if (!isMobile())
+        that.animateGradient(gradient, color, 2000);
 
     return element;
 };
@@ -116,8 +120,10 @@ ExchangeLayer.prototype.render = function() {
     exchangeGradients.exit().remove();
     var newGradients = appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
         .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
+
+    var animate = !isMobile();
     
-    if (!isMobile()) {
+    if (animate) {
         // Add animations
         var gradients = newGradients.merge(exchangeGradients);
         gradients.each(function(d) {
@@ -137,7 +143,10 @@ ExchangeLayer.prototype.render = function() {
     newArrows
         .append('path')
             .attr('d', function(d) { return that.trianglePath(); })
-            .attr('fill', function (d, i) { return 'url(#exchange-gradient-' + i + ')'; })
+            .attr('fill', function (d, i) { 
+                var color = (d.co2intensity && d.netFlow) && that.co2Color(d.co2intensity) || 'gray';
+                return !animate ? color : 'url(#exchange-gradient-' + i + ')';
+            })
             .attr('stroke-width', 0.1)
             .attr('transform', getTransform)
             .attr('transform-origin', '0 0')
@@ -157,7 +166,7 @@ ExchangeLayer.prototype.render = function() {
             return 'translate(' + center[0] + ',' + center[1] + ')';
         })
         .attr('stroke', function (d, i) {
-            if (!d.co2intensity) return 'lightgray';
+            if (!d.co2intensity) return 'black';
             return d.co2intensity > that.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
         })
         .style('display', function (d) { return (d.netFlow || 0) == 0 ? 'none' : 'block'; })

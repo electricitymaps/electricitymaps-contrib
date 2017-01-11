@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var fs = require('fs');
 
 module.exports = {
   devtool: (process.env.BUILD === 'debug' ? 'eval' : 'sourcemap'),
@@ -13,7 +14,15 @@ module.exports = {
     }),
     function() {
       this.plugin('done', function(stats) {
-        require('fs').writeFileSync(
+        fs.createReadStream(__dirname + '/public/css/styles.css')
+          .pipe(fs.createWriteStream(
+            __dirname + '/public/dist/styles.' + 
+              (process.env.BUILD === 'debug' ? 'dev' : stats.hash) + '.css'));
+      });
+    },
+    function() {
+      this.plugin('done', function(stats) {
+        fs.writeFileSync(
           __dirname + '/public/dist/manifest.json',
           JSON.stringify(stats.toJson()));
       });

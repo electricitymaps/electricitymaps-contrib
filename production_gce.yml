@@ -5,17 +5,14 @@ services:
     env_file: [./mailgun.env, ./secrets.env]
     environment:
       - ENV=production
-      - HTTPS_METHOD=noredirect
-      - LETSENCRYPT_EMAIL=info@tmrow.co
-      - LETSENCRYPT_HOST=electricitymap.tmrow.co
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017/electricity
-      - PROMETHEUS_HOST=prometheus.infrastructure_default
       - VIRTUAL_HOST=electricitymap.tmrow.co
-    image: corradio/electricitymap_web:production
-    mem_limit: 200M
+    image: eu.gcr.io/tmrow-152415/electricitymap_web:production
+    mem_limit: 100M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
-    restart: unless-stopped
+    volumes:
+      - /home/shared/electricitymap/static/dist:/home/public/dist
   feeder:
     depends_on: [mongo]
     env_file: [./mailgun.env, ./secrets.env]
@@ -24,7 +21,7 @@ services:
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017
       - PROMETHEUS_HOST=prometheus.infrastructure_default
-    image: corradio/electricitymap_feeder:production
+    image: eu.gcr.io/tmrow-152415/electricitymap_feeder:production
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd
     restart: unless-stopped

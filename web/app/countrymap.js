@@ -12,13 +12,14 @@ function CountryMap(selector, co2color) {
         .data([ {'x':0, 'y':0} ]); // For dragging
     this.co2color = co2color;
     this.graticule = this.root
-        .on('click', function (d, i) {
+        .on('touchstart click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
                     .style('stroke', that.STROKE_COLOR)
                     .style('stroke-width', that.STROKE_WIDTH);
             }
-            that.seaClickHandler.call(this, d, i);
+            if (that.seaClickHandler)
+                that.seaClickHandler.call(this, d, i);
         })
         .append('path')
             .attr('class', 'graticule');
@@ -47,10 +48,11 @@ CountryMap.prototype.render = function() {
     var computedMapWidth = this.root.node().getBoundingClientRect().width,
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
-    var scale = Math.max(650, 0.5 * computedMapWidth);
-    this._projection = d3.geoMercator()
-        .center([3, 48])
-        .translate([0.5 * computedMapWidth, 0.65 * computedMapHeight])
+    var scale = Math.max(1100, 0.8 * computedMapWidth);
+    var center = [0, 54];
+    this._projection = d3.geoTransverseMercator()
+        .rotate([-center[0], -center[1]])
+        .translate([0.5 * computedMapWidth, 0.5 * computedMapHeight])
         .scale(scale);
 
     this.path = d3.geoPath()
@@ -85,7 +87,7 @@ CountryMap.prototype.render = function() {
                 .on('mousemove', function (d, i) {
                     return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('click', function (d, i) {
+                .on('touchstart click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
                     if (that.selectedCountry !== undefined) {
                         that.selectedCountry

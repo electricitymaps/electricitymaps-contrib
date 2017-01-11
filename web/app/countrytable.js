@@ -135,6 +135,12 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
     return this;
 }
 
+CountryTable.prototype.powerFormat = function(arg) {
+    if (!arg) return this.POWER_FORMAT;
+    else this.POWER_FORMAT = arg;
+    return this;
+}
+
 CountryTable.prototype.resize = function() {
     this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
@@ -228,7 +234,7 @@ CountryTable.prototype.data = function(arg) {
         this.axis
             .tickSizeInner(-250)
             .tickSizeOuter(0)
-            .ticks(4);
+            .ticks(4, 's');
 
         this.gPowerAxis
             .transition()
@@ -275,7 +281,8 @@ CountryTable.prototype.data = function(arg) {
                     return (d.capacity == null || d.production == null) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
                 })
                 .on('end', function () { d3.select(this).style('display', 'block'); });
-        selection.select('rect.production')
+        // Add event handlers
+        selection.selectAll('rect.capacity,rect.production')
             .on('mouseover', function (d) {
                 if (that.productionMouseOverHandler)
                     that.productionMouseOverHandler.call(this, d, that._data.countryCode);

@@ -32,6 +32,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'AT': '10YAT-APG------L',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
+    'BY': '10Y1001A1001A51S',
     'CH': '10YCH-SWISSGRIDZ',
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
@@ -47,6 +48,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'IE': '10YIE-1001A00010',
     'IT': '10YIT-GRTN-----B',
     'LT': '10YLT-1001A0008Q',
+    'LU': '10YLU-CEGEDEL-NQ',
     'LV': '10YLV-1001A00074',
     # 'MD': 'MD',
     'MK': '10YMK-MEPSO----8',
@@ -57,24 +59,29 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'PT': '10YPT-REN------W',
     'RO': '10YRO-TEL------P',
     'RS': '10YCS-SERBIATSOV',
+    'RU': '10Y1001A1001A49F',
     'SE': '10YSE-1--------K',
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
-    # 'TR': 'TR',
+    'TR': '10YTR-TEIAS----W',
     # 'UA': 'UA'
 }
-
-def query_consumption(domain, session):
+def query_ENTSOE(session, params):
     now = arrow.utcnow()
+    params['periodStart'] = now.replace(hours=-24).format('YYYYMMDDHH00')
+    params['periodEnd'] = now.replace(hours=+24).format('YYYYMMDDHH00')
+    if not 'ENTSOE_TOKEN' in os.environ:
+        raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
+    params['securityToken'] = os.environ['ENTSOE_TOKEN']
+    return session.get(ENTSOE_ENDPOINT, params=params)
+    
+def query_consumption(domain, session):
     params = {
         'documentType': 'A65',
         'processType': 'A16',
         'outBiddingZone_Domain': domain,
-        'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
-        'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': os.environ['ENTSOE_TOKEN']
     }
-    response = session.get(ENTSOE_ENDPOINT, params=params)
+    response = query_ENTSOE(session, params)
     if response.ok: return response.text
     else:
         # Grab the error if possible
@@ -82,17 +89,13 @@ def query_consumption(domain, session):
         raise Exception('Failed to get consumption. Reason: %s' % soup.find_all('text')[0].contents[0])
 
 def query_production(psr_type, in_domain, session):
-    now = arrow.utcnow()
     params = {
         'psrType': psr_type,
         'documentType': 'A75',
         'processType': 'A16',
         'in_Domain': in_domain,
-        'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
-        'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': os.environ['ENTSOE_TOKEN']
     }
-    response = session.get(ENTSOE_ENDPOINT, params=params)
+    response = query_ENTSOE(session, params)
     if response.ok: return response.text
     else:
         return # Return by default
@@ -102,16 +105,12 @@ def query_production(psr_type, in_domain, session):
         print 'Reason:', soup.find_all('text')[0].contents[0]
 
 def query_exchange(in_domain, out_domain, session):
-    now = arrow.utcnow()
     params = {
         'documentType': 'A11',
         'in_Domain': in_domain,
         'out_Domain': out_domain,
-        'periodStart': now.replace(hours=-24).format('YYYYMMDDHH00'),
-        'periodEnd': now.replace(hours=+24).format('YYYYMMDDHH00'),
-        'securityToken': os.environ['ENTSOE_TOKEN']
     }
-    response = session.get(ENTSOE_ENDPOINT, params=params)
+    response = query_ENTSOE(session, params)
     if response.ok: return response.text
     else:
         # Grab the error if possible

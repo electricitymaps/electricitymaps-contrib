@@ -5,7 +5,7 @@
         <meta name="description" content="Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:description" content="Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png" />
-        <meta property="og:title" content="Electricity Map | Live CO2 emissions of the European electricity production" />
+        <meta property="og:title" content="Electricity Map | Live CO2 emissions of the European electricity consumption" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://electricitymap.tmrow.co" />
         <meta property="fb:app_id" content="1267173759989113" />
@@ -14,14 +14,13 @@
         <meta name="twitter:description" content="Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png">
         <meta name="twitter:site" content="@tmrowco">
-        <meta name="twitter:title" content="Electricity Map | Live CO2 emissions of the European electricity production" />
+        <meta name="twitter:title" content="Electricity Map | Live CO2 emissions of the European electricity consumption" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-        <title>Electricity Map | Live CO2 emissions of the European electricity production</title>
+        <title>Electricity Map | Live CO2 emissions of the European electricity consumption</title>
 
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
         <link rel="stylesheet" type="text/css" href="flag-icon-css/css/flag-icon.min.css">
-        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 
         <script defer src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js"></script>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
@@ -103,7 +102,7 @@
         <div class="content">
             <div class="panel panel-container">
                 <h1>
-                    Live CO2 emissions of the European electricity production
+                    Live CO2 emissions of the European electricity consumption
                 </h1>
                 <p>
                     <span id="country-table-back-button" style="display: none" class="small-screen-visible"><a href="#"><< back</a></span>
@@ -139,7 +138,7 @@
                     <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                         <p></p>
                     </div>
-                    <div class="large-screen-visible">
+                    <div class="layer-toggles large-screen-visible">
                         <hr />
                         <p>
                             <input type="checkbox" id="checkbox-wind" />
@@ -148,7 +147,7 @@
                         </p>
                         <p>
                             <input type="checkbox" id="checkbox-solar" />
-                            <label for="checkbox-solar">Solar power potential<span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
+                            <label for="checkbox-solar">Solar power potential <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
                             <svg class="solar-colorbar colorbar" style="width: 100%"></svg>
                         </p>
                     </div>
@@ -170,28 +169,35 @@
                         data-url="http://electricitymap.tmrow.co">
                     Tweet</a>
                     <!-- Slack -->
-                    <script async defer src="//slack.tmrow.co/slackin.js"></script>
+                    <span class="slack-button">
+                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                            <span class="slack-ico"></span>
+                            <span class="slack-text">Slack</span>
+                        </a>
+                    </span>
                 </div>
             </div>
-            <div class="footer">
-                <div class="watermark">
-                    <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank"><img src="images/tomorrow_logo_open_source.svg" style="width:160px"/></a>
-                    <br />
-                    <div class="fb-like" 
-                        data-href="https://www.facebook.com/tmrowco" 
-                        data-layout="button" 
-                        data-action="like"
-                        data-size="small" 
-                        data-show-faces="false">
-                    </div>&nbsp;<a class="twitter-follow-button"
-                        href="https://twitter.com/tmrowco"
-                        data-show-screen-name="false"
-                        data-show-count="false">
-                    Follow @tmrowco</a>
-                </div>
+            <div class="watermark">
+                <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank"><img src="images/tomorrow_logo_open_source.svg" style="width:160px"/></a>
+                <br />
+                <div class="fb-like" 
+                    data-href="https://www.facebook.com/tmrowco" 
+                    data-layout="button" 
+                    data-action="like"
+                    data-size="small" 
+                    data-show-faces="false">
+                </div>&nbsp;<a class="twitter-follow-button"
+                    href="https://twitter.com/tmrowco"
+                    data-show-screen-name="false"
+                    data-show-count="false">
+                Follow @tmrowco</a>
             </div>
         </div>
         <div class="loading overlay"></div>
+        <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
+            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://electricitymap.tmrow.co" target="_blank">http://electricitymap.tmrow.co</a>.<br />
+            Please contact us at <a href="mailto:hello@tmrow.co">hello@tmrow.co</a> for more information.
+        </div>
         <div id="country-tooltip" class="tooltip panel">
             Carbon intensity:<br />
             <i id="country-flag"></i> <span id="country-code"></span>: 
@@ -199,15 +205,20 @@
         </div>
         <div id="exchange-tooltip" class="tooltip panel">
             Cross-border export:<br />
-            <i id="from"></i> <span id="from"></span> → <i id="to"></i> <span id="to"></span>: <span id="flow"></span> MW
+            <i id="from"></i> <span id="from"></span> → <i id="to"></i> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
+            <br />
+            Carbon intensity of export:<br />
+            <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO2eq/kWh
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
-            Carbon intensity of <span id="mode"></span>:<br />
-            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh
+            Carbon intensity of <span id="mode" style="font-weight: bold;"></span>:<br />
+            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
             <br />
+            Proportion of total production:<br />
+            <div id="production-proportion"></div>
             <br />
-            Load factor:<br />
-            <span id="load-factor"></span>
+            Capacity factor:<br />
+            <div id="capacity-factor"></div>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
             Carbon intensity of <span id="label"></span><br />
