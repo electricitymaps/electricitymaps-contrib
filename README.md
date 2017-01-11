@@ -128,20 +128,30 @@ You can also see a list of missing informations displayed as warnings in the dev
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
-To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). then you just run `docker-compose up`. Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
+### Getting started
+To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). 
 
-You can then start editing the code. If you edit the frontend it will need compiling. You should run
+The frontend will need compiling. In order to do this, open a terminal and run
 ```
 docker-compose run web npm run watch
 ```
-in order to compile your modifications on the fly.
+This will watch over source file changes, and recompile if needed.
+
+Now that the frontend is compiled, you can run the whole application, consisting of data collection system (the "feeder"), web server and database, by running the following command in a new terminal:
+```
+docker-compose up --build
+```
+
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated.
 
-## Troubleshooting
+### Troubleshooting
 
 - `ERROR: Couldn't find env file:` env files are used to store sensitive information such as API keys. If you get this error after running `docker-compose up`, create an empty file named `secrets.env` in the root folder.
 
 - `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
-- `KeyError: 'ENTSOE_TOKEN'`: in order to request data from the ENTSOE, you need an API key. You can create an account and request your API key by [following this link](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html). Once you have it, add it to your `secrets.env` file. 
+- `KeyError: 'ENTSOE_TOKEN'`: in order to request data from the ENTSOE, you need an API key. You can create an account and request your API key by [following this link](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html). Once you have it, add it to your `secrets.env` file.
+
+- No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
