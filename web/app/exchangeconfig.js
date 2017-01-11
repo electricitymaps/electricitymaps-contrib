@@ -5,7 +5,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['AL->GR'] = {
         lonlat: [20.689872, 40.198219],
         rotation: 135
-    }
+    };
     // AT
     exchanges['AT->CH'] = {
         lonlat: [9.597882, 47.079455],
@@ -39,16 +39,16 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['BE->NL'] = {
         lonlat: [5.026873, 51.425174],
         rotation: 0
-    }
+    };
     // BG
     exchanges['BG->GR'] = {
         lonlat: [24.1, 41.558088],
-        rotation: 205
+        rotation: 180
     };
     exchanges['BG->MK'] = {
         lonlat: [22.912615, 41.867840],
         rotation: -90
-    }
+    };
     exchanges['BG->RO'] = {
         lonlat: [25.609385, 43.674878],
         rotation: 0
@@ -56,7 +56,16 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['BG->RS'] = {
         lonlat: [22.978533, 43.131375],
         rotation: -90
-    }
+    };
+    exchanges['BG->TR'] = {
+        lonlat: [26.898640, 42.002181],
+        rotation: 135
+    };
+    //
+    exchanges['BY->LT'] = {
+        lonlat: [25.756061, 54.789457],
+        rotation: -90
+    };
     // CH
     exchanges['CH->DE'] = {
         lonlat: [8.806354, 47.667048],
@@ -95,7 +104,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['DE->NL'] = {
         lonlat: [6.916521, 52.159037],
         rotation: -90
-    }
+    };
     exchanges['DE->PL'] = {
         lonlat: [14.585163, 52.410625],
         rotation: 90
@@ -103,7 +112,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['DE->SE'] = {
         lonlat: [13.552264, 54.925814],
         rotation: 0
-    }
+    };
     // ES
     exchanges['ES->FR'] = {
         lonlat: [0.3, 42.9],
@@ -122,11 +131,24 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [11.556268, 56.857802],
         rotation: 70
     };
+    // EE
+    exchanges['EE->FI'] = {
+        lonlat: [25.690143, 59.923241],
+        rotation: -35
+    };
+    exchanges['EE->LV'] = {
+        lonlat: [26.041706, 57.810982],
+        rotation: 180
+    };
     // FI
     exchanges['FI->NO'] = {
         lonlat: [25.351580, 68.862684],
         rotation: -30
-    }
+    };
+    exchanges['FI->RU'] = {
+        lonlat: [29.733112, 65.422768],
+        rotation: 90
+    };
     exchanges['FI->SE'] = {
         lonlat: [20.979206, 63.441789],
         rotation: -50
@@ -157,7 +179,11 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['GR->MK'] = {
         lonlat: [22.011736, 41.160374],
         rotation: 0
-    }
+    };
+    exchanges['GR->TR'] = {
+        lonlat: [26.316812, 41.12620],
+        rotation: 90
+    };
     // HR
     exchanges['HR->HU'] = {
         lonlat: [17.407365, 45.967775],
@@ -188,7 +214,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     // LT
     exchanges['LT->PL'] = {
         lonlat: [23.308307, 54.247411],
-        rotation: 225
+        rotation: 180
     };
     exchanges['LT->LV'] = {
         lonlat: [24.373981, 56.287428],
@@ -196,8 +222,13 @@ exports.addExchangesConfiguration = function(exchanges) {
     };
     exchanges['LT->SE'] = {
         lonlat: [18.847674, 55.910978],
-        rotation: -80
-    }
+        rotation: -90
+    };
+    // LV
+    exchanges['LV->RU'] = {
+        lonlat: [27.733600, 56.874360],
+        rotation: 45
+    };
     // MD
     exchanges['MD->RO'] = {
         lonlat: [28.009764, 47.003312],
@@ -212,7 +243,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['PL->SE'] = {
         lonlat: [15.969256, 55.215172],
         rotation: -20
-    }
+    };
     exchanges['PL->SK'] = {
         lonlat: [20.614102, 49.359467],
         rotation: 180

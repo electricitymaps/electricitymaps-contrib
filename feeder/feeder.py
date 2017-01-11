@@ -135,6 +135,9 @@ EXCHANGE_PARSERS = {
     'BG->MK': ENTSOE.fetch_exchange,
     'BG->RO': RO.fetch_exchange,
     'BG->RS': ENTSOE.fetch_exchange,
+    'BG->TR': ENTSOE.fetch_exchange,
+    # BY
+    'BY->LT': ENTSOE.fetch_exchange,
     # CH
     'CH->DE': ENTSOE.fetch_exchange,
     'CH->FR': ENTSOE.fetch_exchange,
@@ -153,12 +156,14 @@ EXCHANGE_PARSERS = {
     'DK->NO': ENTSOE.fetch_exchange,
     'DK->SE': ENTSOE.fetch_exchange,
     # EE
-    # 'EE->LV': ENTSOE.fetch_exchange, # No data for now
+    'EE->FI': ENTSOE.fetch_exchange,
+    'EE->LV': ENTSOE.fetch_exchange,
     # ES
     'ES->FR': ENTSOE.fetch_exchange,
     'ES->PT': ENTSOE.fetch_exchange,
     # FI
     'FI->NO': ENTSOE.fetch_exchange,
+    'FI->RU': ENTSOE.fetch_exchange,
     'FI->SE': ENTSOE.fetch_exchange,
     # FR
     'FR->GB': ENTSOE.fetch_exchange,
@@ -169,7 +174,7 @@ EXCHANGE_PARSERS = {
     # GR
     'GR->IT': ENTSOE.fetch_exchange,
     'GR->MK': ENTSOE.fetch_exchange,
-    # 'GR->TR': ENTSOE.fetch_exchange,
+    'GR->TR': ENTSOE.fetch_exchange,
     # HR
     'HR->HU': ENTSOE.fetch_exchange,
     # HU
@@ -183,7 +188,10 @@ EXCHANGE_PARSERS = {
     # LT
     'LT->LV': ENTSOE.fetch_exchange,
     'LT->PL': ENTSOE.fetch_exchange,
+    'LT->RU': ENTSOE.fetch_exchange,
     'LT->SE': ENTSOE.fetch_exchange,
+    # LV
+    'LV->RU': ENTSOE.fetch_exchange,
     # MD
     'MD->RO': RO.fetch_exchange,
     # NO
