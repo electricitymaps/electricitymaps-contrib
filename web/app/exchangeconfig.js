@@ -234,6 +234,11 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [28.009764, 47.003312],
         rotation: -120
     };
+    // NL
+    exchanges['NL->NO'] = {
+        lonlat: [5.795449, 55.859727],
+        rotation: 0
+    };
     // NO
     exchanges['NO->SE'] = {
         lonlat: [12.308438, 62.195230],
