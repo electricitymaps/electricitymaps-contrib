@@ -37,6 +37,7 @@ exports.addCountryTopos = function(countries) {
     countries['EE'] = getCountry('EST');
     countries['EG'] = getCountry('EGY');
     countries['FI'] = getCountry('FIN');
+    countries['FO'] = getCountry('FRO');
     countries['FR'] = getCountry('FRA');
     countries['GB'] = getSubUnits(['ENG', 'SCT', 'WLS']);
     countries['GE'] = getCountry('GEO');
