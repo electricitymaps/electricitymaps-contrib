@@ -25,15 +25,13 @@ var REFRESH_TIME_MINUTES = 5;
 var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
-var showWindOption = true;
-var showSolarOption = true;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }
 function isSmallScreen() {
     // Should be in sync with media queries in CSS
-    return screen.width < 750;
+    return window.innerWidth < 750;
 }
 (function readQueryString() {
     args = location.search.replace('\?','').split('&');
@@ -44,16 +42,20 @@ function isSmallScreen() {
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
             console.log('** Custom date: ' + customDate + ' **');
-        } else if (kv[0] == 'solar') {
-            showSolarOption = kv[1] == 'true';
         }
     });
 })();
 
 // Computed State
+var showWindOption = !isSmallScreen();
+var showSolarOption = !isSmallScreen();
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
+var isEmbedded = window.top !== window.self;
+var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
+    '' : REMOTE_ENDPOINT;
 
 if (typeof _opbeat !== 'undefined')
     _opbeat('config', {
@@ -90,10 +92,8 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
-// Start chrome (or forced) version
-var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
-var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
-    '' : REMOTE_ENDPOINT;
+// Display embedded warning
+// d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
@@ -118,8 +118,8 @@ var windColor = d3.scaleLinear()
 // ** Solar Scale **
 var maxSolarDSWRF = 400;
 var minDayDSWRF = 5;
-var nightOpacity = 0.4;
-var minSolarDayOpacity = 0.3;
+var nightOpacity = 0.8;
+var minSolarDayOpacity = 0.6;
 var maxSolarDayOpacity = 0.0;
 var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)); } );
 var solarRange = d3.range(10).map(function (i) {
@@ -317,13 +317,13 @@ if (isSmallScreen()) {
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
             tooltip.select('#label').text(isExport ? 'export to' : 'import from');
-            tooltip.select('#country-code').text(o);
+            tooltip.select('#country-code').text(d.key);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
             tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + o.toLowerCase());
+                .attr('class', 'flag-icon flag-icon-' + d.key.toLowerCase());
         })
         .onExchangeMouseOut(function (d) {
             co2Colorbar.currentMarker(undefined);
@@ -662,9 +662,9 @@ function handleConnectionReturnCode(err) {
         if (err.target) {
             catchError(Error(
                 'HTTPError ' +
-                err.target.status + ' ' + err.target.statusText + ': ' +
-                err.target.responseText + ' of ' +
-                err.target.responseURL));
+                err.target.status + ' ' + err.target.statusText + ' at ' + 
+                err.target.responseURL + ': ' +
+                err.target.responseText));
         } else {
             catchError(err);
         }

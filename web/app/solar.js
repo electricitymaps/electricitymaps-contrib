@@ -42,16 +42,36 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
     var dx = grib1.header.dx;
     var dy = grib1.header.dy;
 
-    solarCanvas = d3.select(canvasSelector);
+    var alphas = solarColor.range().map(function(d) {
+        return parseFloat(d
+            .replace('(', '')
+            .replace(')', '')
+            .replace('rgba', '')
+            .split(', ')[3])
+    });
 
-    var xrange = d3.range(solarCanvas.attr('width'));
+    solarCanvas = d3.select(canvasSelector);
+    var ctx = solarCanvas.node().getContext('2d');
+        realW = solarCanvas.node().getBoundingClientRect().width,
+        realH = solarCanvas.node().getBoundingClientRect().height;
+    var w = realW,
+        h = realH;
+    var scaleX = realW / w,
+        scaleY = realH / h;
+    function canvasInvertedProjection(arr) {
+        return projection.invert([arr[0] * scaleX, arr[1] * scaleY]);
+    }
+
+    var img = ctx.createImageData(w, h);
+
+    var xrange = d3.range(w);
     function batchDrawColumns(x, batchsize, callback) {
         var batch = d3.range(Math.min(batchsize, xrange[xrange.length - 1] - x))
             .map(function(d) { return d + x; });
         console.log('Drawing solar', x, '/', xrange[xrange.length - 1]);
         batch.forEach(function(x) {
-            d3.range(solarCanvas.attr('height')).forEach(function(y) {
-                var lonlat = projection.invert([x, y]);
+            d3.range(h).forEach(function(y) {
+                var lonlat = canvasInvertedProjection([x, y]);
                 var positions = [
                     [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy + 1],
                     [Math.floor(lonlat[0] - lo1) / dx, Math.floor(la1 - lonlat[1]) / dy],
@@ -75,7 +95,7 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
                     values[1],
                     values[2],
                     values[3]);
-                buckets[bucketIndex(val)].push([x, y]);
+                img.data[((y*(img.width*4)) + (x*4)) + 3] = parseInt(alphas[bucketIndex(val)] * 255);
             });
         });
 
@@ -88,21 +108,8 @@ exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projectio
     }
 
     batchDrawColumns(0, 200, function() {
-        var ctx = solarCanvas.node().getContext('2d');
-        ctx.clearRect(0, 0, parseInt(solarCanvas.attr('width')), parseInt(solarCanvas.attr('height')));
-        buckets.forEach(function(d, i) {
-            ctx.beginPath()
-            rgbaColor = solarColor.range()[i];
-            ctx.strokeStyle = d3.rgb(rgbaColor.replace('rgba', 'rgb'));
-            ctx.globalAlpha = parseFloat(rgbaColor
-                .replace('(', '')
-                .replace(')', '')
-                .replace('rgba', '')
-                .split(', ')[3]);
-            d.forEach(function(d) { ctx.rect(d[0], d[1], 1, 1); });
-            ctx.stroke();
-        });
-        buckets = []; // Release memory
+        ctx.clearRect(0, 0, w, h);
+        ctx.putImageData(img, 0, 0);
         callback(null);
     });
 };

@@ -7,7 +7,7 @@ module.addCountryConfigurations = function(countries) {
     countries['BA'].fullname = 'Bosnia and Herzegovina';
     countries['BY'].fullname = 'Belarus';
     countries['CH'].fullname = 'Switzerland';
-    countries['CZ'].fullname = 'Czech Republic';
+    countries['CZ'].fullname = 'Czechia';
     countries['DE'].fullname = 'Germany';
     countries['DK'].fullname = 'Denmark';
     countries['ES'].fullname = 'Spain';
@@ -26,7 +26,7 @@ module.addCountryConfigurations = function(countries) {
     countries['LU'].fullname = 'Luxembourg';
     countries['LV'].fullname = 'Latvia';
     countries['MD'].fullname = 'Moldova';
-    countries['MK'].fullname = 'Macedonia (FYROM)';
+    countries['MK'].fullname = 'Rep. of Macedonia (FYROM)';
     countries['ME'].fullname = 'Montenegro';
     countries['NL'].fullname = 'Netherlands';
     countries['NO'].fullname = 'Norway';
@@ -48,7 +48,7 @@ module.addCountryConfigurations = function(countries) {
         hydro: 3622 + 2271 + 5161,
         oil: 288,
         solar: 814,
-        wind: 2306,
+        wind: 2556,
     };
     countries['BE'].capacity = {
         biomass: 710 + 368,
@@ -126,7 +126,7 @@ module.addCountryConfigurations = function(countries) {
         oil: 6670,
         coal: 2930,
         hydro: 10326 + 8204 + 4965,
-        gas: 6121,
+        gas: 10909,
         wind: 10358,
         solar: 6580
     };

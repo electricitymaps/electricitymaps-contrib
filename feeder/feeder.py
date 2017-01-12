@@ -76,6 +76,7 @@ CONSUMPTION_PARSERS = {
     'IE': ENTSOE.fetch_consumption,
     'IT': ENTSOE.fetch_consumption,
     'LT': ENTSOE.fetch_consumption,
+    'LU': ENTSOE.fetch_consumption,
     'LV': ENTSOE.fetch_consumption,
     'NL': ENTSOE.fetch_consumption,
     'NO': ENTSOE.fetch_consumption,
@@ -100,10 +101,11 @@ PRODUCTION_PARSERS = {
     'FR': FR.fetch_production,
     'GB': ENTSOE.fetch_production,
     'GR': ENTSOE.fetch_production,
-    'HU': HU.fetch_production,
+    'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
     'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
+    'LU': ENTSOE.fetch_production,
     'LV': ENTSOE.fetch_production,
     'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
@@ -133,6 +135,9 @@ EXCHANGE_PARSERS = {
     'BG->MK': ENTSOE.fetch_exchange,
     'BG->RO': RO.fetch_exchange,
     'BG->RS': ENTSOE.fetch_exchange,
+    'BG->TR': ENTSOE.fetch_exchange,
+    # BY
+    'BY->LT': ENTSOE.fetch_exchange,
     # CH
     'CH->DE': ENTSOE.fetch_exchange,
     'CH->FR': ENTSOE.fetch_exchange,
@@ -151,12 +156,14 @@ EXCHANGE_PARSERS = {
     'DK->NO': ENTSOE.fetch_exchange,
     'DK->SE': ENTSOE.fetch_exchange,
     # EE
-    # 'EE->LV': ENTSOE.fetch_exchange, # No data for now
+    'EE->FI': ENTSOE.fetch_exchange,
+    'EE->LV': ENTSOE.fetch_exchange,
     # ES
     'ES->FR': ENTSOE.fetch_exchange,
     'ES->PT': ENTSOE.fetch_exchange,
     # FI
     'FI->NO': ENTSOE.fetch_exchange,
+    'FI->RU': ENTSOE.fetch_exchange,
     'FI->SE': ENTSOE.fetch_exchange,
     # FR
     'FR->GB': ENTSOE.fetch_exchange,
@@ -167,7 +174,7 @@ EXCHANGE_PARSERS = {
     # GR
     'GR->IT': ENTSOE.fetch_exchange,
     'GR->MK': ENTSOE.fetch_exchange,
-    # 'GR->TR': ENTSOE.fetch_exchange,
+    'GR->TR': ENTSOE.fetch_exchange,
     # HR
     'HR->HU': ENTSOE.fetch_exchange,
     # HU
@@ -181,9 +188,14 @@ EXCHANGE_PARSERS = {
     # LT
     'LT->LV': ENTSOE.fetch_exchange,
     'LT->PL': ENTSOE.fetch_exchange,
+    'LT->RU': ENTSOE.fetch_exchange,
     'LT->SE': ENTSOE.fetch_exchange,
+    # LV
+    'LV->RU': ENTSOE.fetch_exchange,
     # MD
     'MD->RO': RO.fetch_exchange,
+    # NL
+    'NL->NO': ENTSOE.fetch_exchange,
     # NO
     'NO->SE': ENTSOE.fetch_exchange,
     # PL
