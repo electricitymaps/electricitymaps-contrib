@@ -4,6 +4,7 @@ Cython==0.23.4
 opbeat==3.5.1
 pandas==0.16.2
 pygrib==2.0.1
+pyiso==0.3.15
 pymemcache==1.4.0
 pymongo==3.2.2
 python-snappy==0.5

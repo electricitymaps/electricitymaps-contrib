@@ -10,6 +10,7 @@ from pymemcache.client.base import Client
 
 from parsers import EE, FR, HU, RO
 from parsers import ENTSOE
+from parsers import PYISO
 from parsers import weather
 from migrate_db import migrate
 
