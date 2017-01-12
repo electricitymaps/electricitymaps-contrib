@@ -101,7 +101,7 @@ PRODUCTION_PARSERS = {
     'FR': FR.fetch_production,
     'GB': ENTSOE.fetch_production,
     'GR': ENTSOE.fetch_production,
-    'HU': HU.fetch_production,
+    'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
     'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
