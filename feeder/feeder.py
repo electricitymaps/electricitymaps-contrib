@@ -8,7 +8,7 @@ import snappy
 from bson.binary import Binary
 from pymemcache.client.base import Client
 
-from parsers import EE, FR, HU, RO
+from parsers import FR
 from parsers import ENTSOE
 from parsers import weather
 from migrate_db import migrate
@@ -66,13 +66,13 @@ CONSUMPTION_PARSERS = {
     'CZ': ENTSOE.fetch_consumption,
     'DE': ENTSOE.fetch_consumption,
     'DK': ENTSOE.fetch_consumption,
-    # 'EE': EE.fetch_consumption,
+    'EE': ENTSOE.fetch_consumption,
     'ES': ENTSOE.fetch_consumption,
     'FI': ENTSOE.fetch_consumption,
     # 'FR': FR.fetch_consumption,
     'GB': ENTSOE.fetch_consumption,
     'GR': ENTSOE.fetch_consumption,
-    # 'HU': HU.fetch_consumption,
+    'HU': ENTSOE.fetch_consumption,
     'IE': ENTSOE.fetch_consumption,
     'IT': ENTSOE.fetch_consumption,
     'LT': ENTSOE.fetch_consumption,
@@ -82,7 +82,8 @@ CONSUMPTION_PARSERS = {
     'NO': ENTSOE.fetch_consumption,
     'PL': ENTSOE.fetch_consumption,
     'PT': ENTSOE.fetch_consumption,
-    # 'RO': RO.fetch_consumption,
+    'RO': ENTSOE.fetch_consumption,
+    'RS': ENTSOE.fetch_consumption,
     'SE': ENTSOE.fetch_consumption,
     'SI': ENTSOE.fetch_consumption,
     'SK': ENTSOE.fetch_consumption,
@@ -95,7 +96,7 @@ PRODUCTION_PARSERS = {
     'CZ': ENTSOE.fetch_production,
     'DE': ENTSOE.fetch_production,
     'DK': ENTSOE.fetch_production,
-    'EE': EE.fetch_production,
+    'EE': ENTSOE.fetch_production,
     'ES': ENTSOE.fetch_production,
     'FI': ENTSOE.fetch_production,
     'FR': FR.fetch_production,
@@ -111,7 +112,8 @@ PRODUCTION_PARSERS = {
     'NO': ENTSOE.fetch_production,
     'PL': ENTSOE.fetch_production,
     'PT': ENTSOE.fetch_production,
-    'RO': RO.fetch_production,
+    'RO': ENTSOE.fetch_production,
+    'RS': ENTSOE.fetch_production,
     'SE': ENTSOE.fetch_production,
     'SI': ENTSOE.fetch_production,
     'SK': ENTSOE.fetch_production,
@@ -120,6 +122,7 @@ PRODUCTION_PARSERS = {
 EXCHANGE_PARSERS = {
     # AL
     'AL->GR': ENTSOE.fetch_exchange,
+    'AL->RS': ENTSOE.fetch_exchange,
     # AT
     'AT->CH': ENTSOE.fetch_exchange,
     'AT->CZ': ENTSOE.fetch_exchange,
@@ -127,13 +130,15 @@ EXCHANGE_PARSERS = {
     'AT->HU': ENTSOE.fetch_exchange,
     'AT->IT': ENTSOE.fetch_exchange,
     'AT->SI': ENTSOE.fetch_exchange,
+    # BA
+    'BA->RS': ENTSOE.fetch_exchange,
     # BE
     'BE->FR': ENTSOE.fetch_exchange,
     'BE->NL': ENTSOE.fetch_exchange,
     # BG
     'BG->GR': ENTSOE.fetch_exchange,
     'BG->MK': ENTSOE.fetch_exchange,
-    'BG->RO': RO.fetch_exchange,
+    'BG->RO': ENTSOE.fetch_exchange,
     'BG->RS': ENTSOE.fetch_exchange,
     'BG->TR': ENTSOE.fetch_exchange,
     # BY
@@ -158,6 +163,7 @@ EXCHANGE_PARSERS = {
     # EE
     'EE->FI': ENTSOE.fetch_exchange,
     'EE->LV': ENTSOE.fetch_exchange,
+    'EE->RU': ENTSOE.fetch_exchange,
     # ES
     'ES->FR': ENTSOE.fetch_exchange,
     'ES->PT': ENTSOE.fetch_exchange,
@@ -177,8 +183,9 @@ EXCHANGE_PARSERS = {
     'GR->TR': ENTSOE.fetch_exchange,
     # HR
     'HR->HU': ENTSOE.fetch_exchange,
+    'HR->RS': ENTSOE.fetch_exchange,
     # HU
-    'HU->RO': RO.fetch_exchange,
+    'HU->RO': ENTSOE.fetch_exchange,
     'HU->RS': ENTSOE.fetch_exchange,
     'HU->SK': ENTSOE.fetch_exchange,
     # 'HU->UA': ENTSOE.fetch_exchange,
@@ -193,7 +200,9 @@ EXCHANGE_PARSERS = {
     # LV
     'LV->RU': ENTSOE.fetch_exchange,
     # MD
-    'MD->RO': RO.fetch_exchange,
+    'MD->RO': ENTSOE.fetch_exchange,
+    # MK
+    'MK->RS': ENTSOE.fetch_exchange,
     # NL
     'NL->NO': ENTSOE.fetch_exchange,
     # NO
@@ -202,8 +211,8 @@ EXCHANGE_PARSERS = {
     'PL->SE': ENTSOE.fetch_exchange,
     'PL->SK': ENTSOE.fetch_exchange,
     # RO
-    'RO->RS': RO.fetch_exchange,
-    'RO->UA': RO.fetch_exchange,
+    'RO->RS': ENTSOE.fetch_exchange,
+    # 'RO->UA': ENTSOE.fetch_exchange,
     # SK
     # 'SK->UA': ENTSOE.fetch_exchange,
 }
