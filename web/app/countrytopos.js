@@ -85,6 +85,10 @@ exports.addCountryTopos = function(countries) {
     countries['XX'] = getCountry('CYN');
     countries['XK'] = getCountry('KOS');
 
+    countries['CA'] = getCountry('CAN');
+    countries['US'] = getCountry('USA');
+    countries['MX'] = getCountry('MEX');
+
     // Clear memory
     topos = [];
 

@@ -29,8 +29,10 @@ CountryMap.prototype.render = function() {
     var computedMapWidth = this.root.node().getBoundingClientRect().width,
         computedMapHeight = this.root.node().getBoundingClientRect().height;
 
-    var scale = Math.max(1100, 0.8 * computedMapWidth);
-    var center = [0, 54];
+    //var scale = Math.max(1100, 0.8 * computedMapWidth);
+    //var center = [0, 54];
+    var scale = 1000;
+    var center = [-110, 45];
     this._projection = d3.geoTransverseMercator()
         .rotate([-center[0], -center[1]])
         .translate([0.5 * computedMapWidth, 0.5 * computedMapHeight])
