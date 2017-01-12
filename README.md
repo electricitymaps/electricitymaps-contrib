@@ -155,3 +155,5 @@ Once you're done doing your changes, submit a [pull request](https://help.github
 - `KeyError: 'ENTSOE_TOKEN'`: in order to request data from the ENTSOE, you need an API key. You can create an account and request your API key by [following this link](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html). Once you have it, add it to your `secrets.env` file.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
+
+- `ERROR: for mongo  Cannot create container for service mongo: C:/ drive is not shared. Please share it in Docker for Windows Settings` Docker for Windows requires setting up shared drives [(instructions here)](https://docs.docker.com/docker-for-windows/#shared-drives) but if after entering your Windows system username and password nothing happens (not even an error message) you might need to **run Docker for Windows as administrator**.
