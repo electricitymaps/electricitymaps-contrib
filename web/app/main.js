@@ -356,7 +356,7 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.select('#mode').text(d.mode);
+            tooltip.selectAll('#mode').text(d.mode);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
