@@ -206,14 +206,14 @@
     },
     "PL": {
         "capacity": {
-            "biomass": 435,
+            "biomass": 1273,
             "oil": 345,
             "coal": 26962,
-            "hydro": 2321,
+            "hydro": 987,
             "nuclear": 0,
             "gas": 1460,
-            "wind": 5494,
-            "solar": 77
+            "wind": 5560,
+            "solar": 92
         }
     },
     "PT": {
