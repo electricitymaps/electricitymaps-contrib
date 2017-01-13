@@ -196,14 +196,20 @@ solarCanvas.attr('height', height);
 solarCanvas.attr('width', width);
 
 // Prepare data
-var countries = zones;
-d3.entries(capacities).forEach(function(d) {
+var countries = CountryTopos.addCountryTopos({});
+// Add configurations
+d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
     zone.countryCode = d.key; // TODO: Rename to zoneId
+    d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
+    zone.maxCapacity = d3.max(d3.values(zone.capacity));
+});
+// Add capacities
+d3.entries(capacities).forEach(function(d) {
+    var zone = countries[d.key];
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
 });
-CountryTopos.addCountryTopos(countries);
 var exchanges = {};
 ExchangeConfig.addExchangesConfiguration(exchanges);
 d3.entries(exchanges).forEach(function(entry) {
@@ -420,8 +426,8 @@ function dataLoaded(err, state, argSolar, argWind) {
             return d.production;
         }).sort(function(x, y) {
             if (!x.co2intensity && !x.countryCode)
-                return d3.ascending(x.fullname || x.countryCode,
-                    y.fullname || y.countryCode);
+                return d3.ascending(x.shortname || x.countryCode,
+                    y.shortname || y.countryCode);
             else
                 return d3.ascending(x.co2intensity || Infinity,
                     y.co2intensity || Infinity);
@@ -440,7 +446,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             .append('i').attr('id', 'country-flag')
         var selector = enterA.merge(selector);
         selector.select('text')
-            .text(function(d) { return ' ' + (d.fullname || d.countryCode) + ' '; })
+            .text(function(d) { return ' ' + (d.shortname || d.countryCode) + ' '; })
         selector.select('div.emission-rect')
             .style('background-color', function(d) {
                 return d.co2intensity ? co2color(d.co2intensity) : 'gray';
