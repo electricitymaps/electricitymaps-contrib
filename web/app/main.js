@@ -200,7 +200,6 @@ var countries = CountryTopos.addCountryTopos({});
 // Add configurations
 d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
-    zone.countryCode = d.key; // TODO: Rename to zoneId
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
 });
@@ -210,6 +209,11 @@ d3.entries(capacities).forEach(function(d) {
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
 });
+// Add id to each zone
+d3.entries(countries).forEach(function(d) {
+    var zone = countries[d.key];
+    zone.countryCode = d.key; // TODO: Rename to zoneId
+})
 var exchanges = {};
 ExchangeConfig.addExchangesConfiguration(exchanges);
 d3.entries(exchanges).forEach(function(entry) {
