@@ -1,0 +1,167 @@
+{
+  "AL": {
+    "country_iso_a2": "AL",
+    "shortname": "Albania"
+  },
+  "AT": {
+    "country_iso_a2": "AT",
+    "shortname": "Austria"
+  },
+  "BA": {
+    "country_iso_a2": "BA",
+    "shortname": "Bosnia and Herzegovina"
+  },
+  "BE": {
+    "country_iso_a2": "BE",
+    "shortname": "Belgium"
+  },
+  "BG": {
+    "country_iso_a2": "BG",
+    "shortname": "Bulgaria"
+  },
+  "BY": {
+    "country_iso_a2": "BY",
+    "shortname": "Belarus"
+  },
+  "CH": {
+    "country_iso_a2": "CH",
+    "shortname": "Switzerland"
+  },
+  "CZ": {
+    "country_iso_a2": "CZ",
+    "shortname": "Czechia"
+  },
+  "DE": {
+    "country_iso_a2": "DE",
+    "shortname": "Germany"
+  },
+  "DK": {
+    "country_iso_a2": "DK",
+    "shortname": "Denmark"
+  },
+  "EE": {
+    "country_iso_a2": "EE",
+    "shortname": "Estonia"
+  },
+  "ES": {
+    "country_iso_a2": "ES",
+    "shortname": "Spain"
+  },
+  "FI": {
+    "country_iso_a2": "FI",
+    "shortname": "Finland"
+  },
+  "FR": {
+    "country_iso_a2": "FR",
+    "shortname": "France"
+  },
+  "GB": {
+    "country_iso_a2": "GB",
+    "shortname": "Great Britain",
+    "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
+  },
+  "GB-NIR": {
+    "country_iso_a2": "GB",
+    "shortname": "Northern Ireland"
+  },
+  "GR": {
+    "country_iso_a2": "GR",
+    "shortname": "Greece"
+  },
+  "HR": {
+    "country_iso_a2": "HR",
+    "shortname": "Croatia"
+  },
+  "HU": {
+    "country_iso_a2": "HU",
+    "shortname": "Hungary"
+  },
+  "IE": {
+    "country_iso_a2": "IE",
+    "shortname": "Ireland"
+  },
+  "IT": {
+    "country_iso_a2": "IT",
+    "shortname": "Italy"
+  },
+  "LT": {
+    "country_iso_a2": "LT",
+    "shortname": "Lithuania"
+  },
+  "LU": {
+    "country_iso_a2": "LU",
+    "shortname": "Luxembourg"
+  },
+  "LV": {
+    "country_iso_a2": "LV",
+    "shortname": "Latvia"
+  },
+  "MK": {
+    "country_iso_a2": "MK",
+    "shortname": "Rep. of Macedonia (FYROM)"
+  },
+  "MT": {
+  },
+  "NL": {
+    "country_iso_a2": "NL",
+    "shortname": "Netherlands"
+  },
+  "NO": {
+    "country_iso_a2": "NO",
+    "shortname": "Norway"
+  },
+  "PL": {
+    "country_iso_a2": "PL",
+    "shortname": "Poland"
+  },
+  "PT": {
+    "country_iso_a2": "PT",
+    "shortname": "Portugal"
+  },
+  "RO": {
+    "country_iso_a2": "RO",
+    "shortname": "Romania"
+  },
+  "RS": {
+    "country_iso_a2": "RS",
+    "shortname": "Serbia"
+  },
+  "RU": {
+    "country_iso_a2": "RU",
+    "shortname": "Russia"
+  },
+  "SE": {
+    "country_iso_a2": "SE",
+    "shortname": "Sweden"
+  },
+  "SI": {
+    "country_iso_a2": "SI",
+    "shortname": "Slovenia"
+  },
+  "SK": {
+    "country_iso_a2": "SK",
+    "shortname": "Slovakia"
+  },
+  "TR": {
+  },
+  "IS": {
+    "country_iso_a2": "IS",
+    "shortname": "Iceland"
+  },
+  "MD": {
+    "country_iso_a2": "MD",
+    "shortname": "Moldova"
+  },
+  "ME": {
+    "country_iso_a2": "ME",
+    "shortname": "Montenegro"
+  },
+  "UA": {
+    "country_iso_a2": "UA",
+    "shortname": "Ukraine"
+  },
+  "XK": {
+    "country_iso_a2": "XK",
+    "shortname": "Kosovo"
+  }
+}

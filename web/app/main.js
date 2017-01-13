@@ -5,7 +5,6 @@ var moment = require('moment');
 
 // Modules
 var co2eq_parameters = require('./co2eq_parameters');
-var CountryConfig = require('./countryconfig');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -17,6 +16,10 @@ var HorizontalColorbar = require('./horizontalcolorbar');
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Wind = require('./wind');
+
+// Configs
+var capacities = require('json-loader!./configs/capacities.json');
+var zones = require('json-loader!./configs/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -193,13 +196,19 @@ solarCanvas.attr('height', height);
 solarCanvas.attr('width', width);
 
 // Prepare data
-var countries = {};
-CountryTopos.addCountryTopos(countries);
-CountryConfig.addCountryConfigurations(countries);
-d3.entries(countries).forEach(function (o) {
-    var country = o.value;
-    country.maxCapacity = d3.max(d3.values(country.capacity));
-    country.countryCode = o.key;
+var countries = CountryTopos.addCountryTopos({});
+// Add configurations
+d3.entries(zones).forEach(function(d) {
+    var zone = countries[d.key];
+    zone.countryCode = d.key; // TODO: Rename to zoneId
+    d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
+    zone.maxCapacity = d3.max(d3.values(zone.capacity));
+});
+// Add capacities
+d3.entries(capacities).forEach(function(d) {
+    var zone = countries[d.key];
+    zone.capacity = d.value.capacity;
+    zone.maxCapacity = d3.max(d3.values(zone.capacity));
 });
 var exchanges = {};
 ExchangeConfig.addExchangesConfiguration(exchanges);
@@ -403,6 +412,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                 console.warn(countryCode + ' is missing production of ' + mode);
             else if (!country.capacity || country.capacity[mode] === undefined)
                 console.warn(countryCode + ' is missing capacity of ' + mode);
+            else if (country.production[mode] > country.capacity[mode])
+                console.error(countryCode + ' produces more than its capacity of ' + mode);
         });
         if (!country.exchange || !d3.keys(country.exchange).length)
             console.warn(countryCode + ' is missing exchanges');
@@ -415,8 +426,8 @@ function dataLoaded(err, state, argSolar, argWind) {
             return d.production;
         }).sort(function(x, y) {
             if (!x.co2intensity && !x.countryCode)
-                return d3.ascending(x.fullname || x.countryCode,
-                    y.fullname || y.countryCode);
+                return d3.ascending(x.shortname || x.countryCode,
+                    y.shortname || y.countryCode);
             else
                 return d3.ascending(x.co2intensity || Infinity,
                     y.co2intensity || Infinity);
@@ -435,7 +446,7 @@ function dataLoaded(err, state, argSolar, argWind) {
             .append('i').attr('id', 'country-flag')
         var selector = enterA.merge(selector);
         selector.select('text')
-            .text(function(d) { return ' ' + (d.fullname || d.countryCode) + ' '; })
+            .text(function(d) { return ' ' + (d.shortname || d.countryCode) + ' '; })
         selector.select('div.emission-rect')
             .style('background-color', function(d) {
                 return d.co2intensity ? co2color(d.co2intensity) : 'gray';
