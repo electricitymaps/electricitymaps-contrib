@@ -43,6 +43,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
     'GB': '10YGB----------A',
+    'GB-NIR': '10Y1001A1001A016',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
