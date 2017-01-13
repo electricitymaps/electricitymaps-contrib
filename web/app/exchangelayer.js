@@ -5,8 +5,8 @@ function ExchangeLayer(selector, co2Color) {
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.STROKE_CO2_THRESHOLD = 550;
     this.exchangeAnimationDurationScale = d3.scaleLinear()
-        .domain([500, 4000])
-        .range([1500, 10])
+        .domain([500, 5000])
+        .range([1500, 50])
         .clamp(true);
     this.co2Color = co2Color;
 
