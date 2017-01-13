@@ -1,183 +1,146 @@
 {
   "AL": {
-    "ENTSOE_ID": "10YAL-KESH-----5"
   },
   "AT": {
-    "ENTSOE_ID": "10YAT-APG------L",
     "country_iso_a2": "AT",
     "shortname": "Austria"
   },
   "BA": {
-    "ENTSOE_ID": "10YBA-JPCC-----D",
     "country_iso_a2": "BA",
     "shortname": "Bosnia and Herzegovina"
   },
   "BE": {
-    "ENTSOE_ID": "10YBE----------2",
     "country_iso_a2": "BE",
     "shortname": "Belgium"
   },
   "BG": {
-    "ENTSOE_ID": "10YCA-BULGARIA-R",
     "country_iso_a2": "BG",
     "shortname": "Bulgaria"
   },
   "BY": {
-    "ENTSOE_ID": "10Y1001A1001A51S",
     "country_iso_a2": "BY",
     "shortname": "Belarus"
   },
   "CH": {
-    "ENTSOE_ID": "10YCH-SWISSGRIDZ",
     "country_iso_a2": "CH",
     "shortname": "Switzerland"
   },
   "CZ": {
-    "ENTSOE_ID": "10YCZ-CEPS-----N",
     "country_iso_a2": "CZ",
     "shortname": "Czechia"
   },
   "DE": {
-    "ENTSOE_ID": "10Y1001A1001A83F",
     "country_iso_a2": "DE",
     "shortname": "Germany"
   },
   "DK": {
-    "ENTSOE_ID": "10Y1001A1001A65H",
     "country_iso_a2": "DK",
     "shortname": "Denmark"
   },
   "EE": {
-    "ENTSOE_ID": "10Y1001A1001A39I",
     "country_iso_a2": "EE",
     "shortname": "Estonia"
   },
   "ES": {
-    "ENTSOE_ID": "10YES-REE------0",
     "country_iso_a2": "ES",
     "shortname": "Spain"
   },
   "FI": {
-    "ENTSOE_ID": "10YFI-1--------U",
     "country_iso_a2": "FI",
     "shortname": "Finland"
   },
   "FR": {
-    "ENTSOE_ID": "10YFR-RTE------C",
     "country_iso_a2": "FR",
     "shortname": "France"
   },
   "GB": {
-    "ENTSOE_ID": "10YGB----------A",
     "country_iso_a2": "GB",
     "shortname": "Great Britain",
     "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
   },
   "GB-NIR": {
-    "ENTSOE_ID": "10Y1001A1001A016",
     "country_iso_a2": "GB",
     "shortname": "Northern Ireland"
   },
   "GR": {
-    "ENTSOE_ID": "10YGR-HTSO-----Y",
     "country_iso_a2": "GR",
     "shortname": "Greece"
   },
   "HR": {
-    "ENTSOE_ID": "10YHR-HEP------M",
     "country_iso_a2": "HR",
     "shortname": "Croatia"
   },
   "HU": {
-    "ENTSOE_ID": "10YHU-MAVIR----U",
     "country_iso_a2": "HU",
     "shortname": "Hungary"
   },
   "IE": {
-    "ENTSOE_ID": "10YIE-1001A00010",
     "country_iso_a2": "IE",
     "shortname": "Ireland"
   },
   "IT": {
-    "ENTSOE_ID": "10YIT-GRTN-----B",
     "country_iso_a2": "IT",
     "shortname": "Italy"
   },
   "LT": {
-    "ENTSOE_ID": "10YLT-1001A0008Q",
     "country_iso_a2": "LT",
     "shortname": "Lithuania"
   },
   "LU": {
-    "ENTSOE_ID": "10YLU-CEGEDEL-NQ",
     "country_iso_a2": "LU",
     "shortname": "Luxembourg"
   },
   "LV": {
-    "ENTSOE_ID": "10YLV-1001A00074",
     "country_iso_a2": "LV",
     "shortname": "Latvia"
   },
   "MK": {
-    "ENTSOE_ID": "10YMK-MEPSO----8",
     "country_iso_a2": "MK",
     "shortname": "Rep. of Macedonia (FYROM)"
   },
   "MT": {
-    "ENTSOE_ID": "10Y1001A1001A93C"
   },
   "NL": {
-    "ENTSOE_ID": "10YNL----------L",
     "country_iso_a2": "NL",
     "shortname": "Netherlands"
   },
   "NO": {
-    "ENTSOE_ID": "10YNO-0--------C",
     "country_iso_a2": "NO",
     "shortname": "Norway"
   },
   "PL": {
-    "ENTSOE_ID": "10YPL-AREA-----S",
     "country_iso_a2": "PL",
     "shortname": "Poland"
   },
   "PT": {
-    "ENTSOE_ID": "10YPT-REN------W",
     "country_iso_a2": "PT",
     "shortname": "Portugal"
   },
   "RO": {
-    "ENTSOE_ID": "10YRO-TEL------P",
     "country_iso_a2": "RO",
     "shortname": "Romania"
   },
   "RS": {
-    "ENTSOE_ID": "10YCS-SERBIATSOV",
     "country_iso_a2": "RS",
     "shortname": "Serbia"
   },
   "RU": {
-    "ENTSOE_ID": "10Y1001A1001A49F",
     "country_iso_a2": "RU",
     "shortname": "Russia"
   },
   "SE": {
-    "ENTSOE_ID": "10YSE-1--------K",
     "country_iso_a2": "SE",
     "shortname": "Sweden"
   },
   "SI": {
-    "ENTSOE_ID": "10YSI-ELES-----O",
     "country_iso_a2": "SI",
     "shortname": "Slovenia"
   },
   "SK": {
-    "ENTSOE_ID": "10YSK-SEPS-----K",
     "country_iso_a2": "SK",
     "shortname": "Slovakia"
   },
   "TR": {
-    "ENTSOE_ID": "10YTR-TEIAS----W"
   },
   "IS": {
     "country_iso_a2": "IS",
