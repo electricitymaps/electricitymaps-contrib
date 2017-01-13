@@ -267,3 +267,11 @@ hr {
     background-repeat: no-repeat;
     float: left;
 }
+
+#current-datetime {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    color: lightgrey;
+    text-align: center;
+}

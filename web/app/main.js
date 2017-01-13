@@ -24,10 +24,14 @@ var zones = require('json-loader!./configs/zones.json');
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
+// History state init (state that is reflected in the url)
+history.replaceState({}, '', '');
+
 // Global State
 var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
+var timelineEnabled = false;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -44,7 +48,8 @@ function isSmallScreen() {
             forceRemoteEndpoint = kv[1] == 'true';
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
-            console.log('** Custom date: ' + customDate + ' **');
+        } else if (kv[0] == 'timeline') {
+            timelineEnabled = kv[1] == 'true';
         }
     });
 })();
@@ -182,6 +187,27 @@ window.toggleSource = function() {
         .style('display', tableDisplayEmissions ? 'none' : 'block');
     d3.select('.country-show-electricity')
         .style('display', tableDisplayEmissions ? 'block' : 'none');
+}
+
+// TODO: put in a module
+function appendQueryString(url, key, value) {
+    return (url == '?' ? url : url + '&') + key + '=' + value;
+}
+function getHistoryStateURL() {
+    var url = '?';
+    if (history.state.customDate)
+        url = appendQueryString(url, 'datetime', history.state.customDate);
+    return (url == '?' ? '' : url);
+}
+function replaceHistoryState(key, value) {
+    history.state[key] = value;
+    history.replaceState(history.state, '', getHistoryStateURL());
+}
+
+window.setCustomDatetime = function(datetime) {
+    customDate = datetime;
+    replaceHistoryState('customDate', datetime);
+    fetch(false);
 }
 
 var width = window.innerWidth;
@@ -395,6 +421,17 @@ function dataLoaded(err, state, argSolar, argWind) {
         console.error(err);
         return;
     }
+
+    // Render simple components
+    var currentMoment = (customDate && moment(customDate) || moment());
+    d3.select('#current-date').text(
+        currentMoment.format('LL' + (!customDate ? ' [UTC]Z' : '')));
+    d3.select('#current-time')
+        .text(currentMoment.format('LT') + ' (' + currentMoment.fromNow() + ')')
+        .style('color', 'darkred')
+        .transition()
+            .duration(800)
+            .style('color', 'lightgrey');
 
     // Populate with realtime country data
     d3.entries(state.countries).forEach(function(entry) {
