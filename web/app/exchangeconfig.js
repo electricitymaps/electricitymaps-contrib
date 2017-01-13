@@ -184,6 +184,10 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [3.3, 52.4],
         rotation: 90
     };
+    exchanges['GB->GB-NIR'] = {
+        lonlat: [-5.428149, 54.878260],
+        rotation: -110
+    }
     // GR
     exchanges['GR->IT'] = {
         lonlat: [18.759248, 38.902132],

@@ -198,14 +198,12 @@ solarCanvas.attr('width', width);
 // Prepare data
 var countries = zones;
 d3.entries(capacities).forEach(function(d) {
-    console.log(d.key, countries[d.key])
-    countries[d.key].capacity = d.value.capacity;
+    var zone = countries[d.key];
+    zone.countryCode = d.key; // TODO: Rename to zoneId
+    zone.capacity = d.value.capacity;
+    zone.maxCapacity = d3.max(d3.values(zone.capacity));
 });
-d3.entries(countries).forEach(function (o) {
-    var country = o.value;
-    country.maxCapacity = d3.max(d3.values(country.capacity));
-    country.countryCode = o.key;
-});
+CountryTopos.addCountryTopos(countries);
 var exchanges = {};
 ExchangeConfig.addExchangesConfiguration(exchanges);
 d3.entries(exchanges).forEach(function(entry) {
