@@ -97,7 +97,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Biomass: [Ure.gov.pl](https://www.ure.gov.pl/pl/rynki-energii/energia-elektryczna/odnawialne-zrodla-ener/potencjal-krajowy-oze/5753,Moc-zainstalowana-MW.html)
   - Hydro: [Ure.gov.pl](https://www.ure.gov.pl/pl/rynki-energii/energia-elektryczna/odnawialne-zrodla-ener/potencjal-krajowy-oze/5753,Moc-zainstalowana-MW.html)
   - Solar: [Ure.gov.pl](https://www.ure.gov.pl/pl/rynki-energii/energia-elektryczna/odnawialne-zrodla-ener/potencjal-krajowy-oze/5753,Moc-zainstalowana-MW.html)
-  - Wind: [Ure.gov.pl](https://www.ure.gov.pl/pl/rynki-energii/energia-elektryczna/odnawialne-zrodla-ener/potencjal-krajowy-oze/5753,Moc-zainstalowana-MW.html)
+  - Wind: [Ure.gov.pl](https://www.ure.gov.pl/pl/rynki-energii/energia-elektryczna/odnawialne-zrodla-ener/potencjal-krajowy-oze/5753,Moc-zainstalowana-MW.html)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
