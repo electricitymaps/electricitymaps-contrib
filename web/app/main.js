@@ -5,7 +5,6 @@ var moment = require('moment');
 
 // Modules
 var co2eq_parameters = require('./co2eq_parameters');
-var CountryConfig = require('./countryconfig');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -17,6 +16,10 @@ var HorizontalColorbar = require('./horizontalcolorbar');
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Wind = require('./wind');
+
+// Configs
+var capacities = require('json-loader!./configs/capacities.json');
+var zones = require('json-loader!./configs/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -193,9 +196,11 @@ solarCanvas.attr('height', height);
 solarCanvas.attr('width', width);
 
 // Prepare data
-var countries = {};
-CountryTopos.addCountryTopos(countries);
-CountryConfig.addCountryConfigurations(countries);
+var countries = zones;
+d3.entries(capacities).forEach(function(d) {
+    console.log(d.key, countries[d.key])
+    countries[d.key].capacity = d.value.capacity;
+});
 d3.entries(countries).forEach(function (o) {
     var country = o.value;
     country.maxCapacity = d3.max(d3.values(country.capacity));
@@ -403,6 +408,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                 console.warn(countryCode + ' is missing production of ' + mode);
             else if (!country.capacity || country.capacity[mode] === undefined)
                 console.warn(countryCode + ' is missing capacity of ' + mode);
+            else if (country.production[mode] > country.capacity[mode])
+                console.error(countryCode + ' produces more than its capacity of ' + mode);
         });
         if (!country.exchange || !d3.keys(country.exchange).length)
             console.warn(countryCode + ' is missing exchanges');
