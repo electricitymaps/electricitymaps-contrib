@@ -31,7 +31,7 @@ function CountryTable(selector, co2Color) {
         'unknown': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
-    this.POWER_FORMAT = function(d) { return d3.format('.0s')(d * 1000000) + 'W'; };
+    this.POWER_FORMAT = function(d) { return d3.format('.3s')(d * 1000000) + 'W'; };
 
     // State
     this._displayByEmissions = false;
@@ -226,7 +226,7 @@ CountryTable.prototype.data = function(arg) {
         // Prepare axis
         if (that._displayByEmissions)
             this.axis = d3.axisTop(this.co2Scale)
-                .tickFormat(function (d) { return d3.format('.0s')(d) + 't/h'; });
+                .tickFormat(function (d) { return d3.format('.3s')(d) + 't/h'; });
         else
             this.axis = d3.axisTop(this.powerScale)
                 .tickFormat(this.POWER_FORMAT)
@@ -242,7 +242,7 @@ CountryTable.prototype.data = function(arg) {
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')
-            .attr('font-size', '0.7em')
+            .attr('font-size', '0.9em')
         this.gPowerAxis.selectAll('.tick line')
                 .style('stroke', 'gray')
                 .style('stroke-width', 1)

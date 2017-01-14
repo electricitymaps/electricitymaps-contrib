@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="512" width="512" version="1">
+  <path fill="grey" d="M512 0H0v512h512z"/>
+  <g font-size="200" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+    <text x="256" y="256" dy="73" style="fill:red;">?</text>
+  </g>
+</svg>

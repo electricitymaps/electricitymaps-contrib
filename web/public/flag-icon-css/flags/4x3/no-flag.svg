@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" version="1">
+  <path fill="grey" d="M640 0H0v480h640z"/>
+  <g font-size="200" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+    <text x="320" y="240" dy="73" style="fill:red;">?</text>
+  </g>
+</svg>
