@@ -40,7 +40,11 @@ from utils import get_production
 df_production = get_production(['DE','FR'], '2016-12-23', '2016-12-24', 1440)
 
 df_production.head()
+```
 
+Returns :
+
+```
   country  production  sources                  timestamp
 0      DE         NaN      oil  2016-12-23T00:00:00+00:00
 1      DE      7562.0  nuclear  2016-12-23T00:00:00+00:00
