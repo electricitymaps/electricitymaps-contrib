@@ -1,0 +1,3 @@
+arrow==0.10.0
+pandas==0.18.1
+requests==2.7.0
