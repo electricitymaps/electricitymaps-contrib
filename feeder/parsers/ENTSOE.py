@@ -30,6 +30,7 @@ ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
+    'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
     'BY': '10Y1001A1001A51S',
@@ -42,6 +43,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
     'GB': '10YGB----------A',
+    'GB-NIR': '10Y1001A1001A016',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
