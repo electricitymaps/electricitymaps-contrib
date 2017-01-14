@@ -382,24 +382,25 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.select('#mode').text(d.mode);
+            tooltip.selectAll('#mode').text(d.mode);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
             var capacityFactor = Math.round(d.production / d.capacity * 100) || '?';
-            tooltip.select('#capacity-factor').text(
-                capacityFactor + ' %' +
-                ' (' + (formatPower(d.production) || '?') + ' ' +
+            tooltip.select('#capacity-factor').text(capacityFactor + ' %');
+            tooltip.select('#capacity-factor-detail').text(
+                (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(d.capacity) || '?') + ')');
+                (formatPower(d.capacity) || '?'));
             var totalProduction = countries[countryCode].totalProduction;
             var productionProportion = Math.round(d.production / totalProduction * 100) || '?';
             tooltip.select('#production-proportion').text(
-                productionProportion + ' %' +
-                ' (' + (formatPower(d.production) || '?') + ' ' +
+                productionProportion + ' %');
+            tooltip.select('#production-proportion-detail').text(
+                (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(totalProduction) || '?') + ')');
+                (formatPower(totalProduction) || '?'))
         })
         .onProductionMouseMove(function(d) {
             d3.select('#countrypanel-production-tooltip')
