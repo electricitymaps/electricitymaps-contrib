@@ -152,16 +152,16 @@ html, body {
 }
 
 .co2-legend > .colorbar-unit {
-    color: black;
+    color: lightgrey;
 }
 .co2-legend .x.axis text {
-    fill: black !important;
+    fill: lightgrey !important;
 }
 .co2-legend .x.axis line {
-    stroke: black !important;
+    stroke: lightgrey !important;
 }
 .co2-legend rect.border {
-    stroke: black !important;
+    stroke: lightgrey !important;
 }
 
 a {
