@@ -1,6 +1,7 @@
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
+var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
@@ -204,11 +205,18 @@ function replaceHistoryState(key, value) {
     history.replaceState(history.state, '', getHistoryStateURL());
 }
 
+// Time travel
 window.setCustomDatetime = function(datetime) {
     customDate = datetime;
     replaceHistoryState('customDate', datetime);
     fetch(false);
 }
+var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
+    enableTime: true,
+    static: true
+    //clickOpens: false // disable opening calendar by clicking on input
+});
+window.flatpickr = flatpickr;
 
 var width = window.innerWidth;
 var height = window.innerHeight;
