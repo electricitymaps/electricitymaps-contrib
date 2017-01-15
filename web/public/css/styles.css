@@ -147,8 +147,7 @@ html, body {
     height: 100%;
     width: 150px;
     text-align: right;
-    font-size: 0.6em;
-    line-height: 1.5em;
+    font-size: 0.7em;
 }
 
 .co2-legend > .colorbar-unit {
