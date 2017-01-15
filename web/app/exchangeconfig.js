@@ -206,6 +206,10 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [17.407365, 45.967775],
         rotation: 30
     };
+    exchanges['HR->RS'] = {
+      lonlat: [19.021212, 45.354302],
+      rotation: 90
+    };
     // HU
     exchanges['HU->SK'] = {
         lonlat: [19.615617, 48.204006],
