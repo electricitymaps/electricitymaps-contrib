@@ -41,19 +41,40 @@ function isSmallScreen() {
     // Should be in sync with media queries in CSS
     return window.innerWidth < 750;
 }
-(function readQueryString() {
-    args = location.search.replace('\?','').split('&');
-    args.forEach(function(arg) {
-        kv = arg.split('=');
-        if (kv[0] == 'remote') {
-            forceRemoteEndpoint = kv[1] == 'true';
-        } else if (kv[0] == 'datetime') {
-            customDate = kv[1];
-        } else if (kv[0] == 'timeline') {
-            timelineEnabled = kv[1] == 'true';
-        }
+
+// History state
+// TODO: put in a module
+function appendQueryString(url, key, value) {
+    return (url == '?' ? url : url + '&') + key + '=' + value;
+}
+function getHistoryStateURL() {
+    var url = '?';
+    d3.entries(history.state).forEach(function(d) {
+        url = appendQueryString(url, d.key, d.value);
     });
-})();
+    debugger
+    return (url == '?' ? '' : url);
+}
+function replaceHistoryState(key, value) {
+    history.state[key] = value;
+    history.replaceState(history.state, '', getHistoryStateURL());
+}
+
+// Read query string
+args = location.search.replace('\?','').split('&');
+args.forEach(function(arg) {
+    kv = arg.split('=');
+    if (kv[0] == 'remote') {
+        forceRemoteEndpoint = kv[1] == 'true';
+        replaceHistoryState('forceRemoteEndpoint', forceRemoteEndpoint);
+    } else if (kv[0] == 'datetime') {
+        customDate = kv[1];
+        replaceHistoryState('datetime', customDate);
+    } else if (kv[0] == 'timeline') {
+        timelineEnabled = kv[1] == 'true';
+        replaceHistoryState('timeline', timelineEnabled);
+    }
+});
 
 // Computed State
 var showWindOption = !isSmallScreen();
@@ -190,36 +211,19 @@ window.toggleSource = function() {
         .style('display', tableDisplayEmissions ? 'block' : 'none');
 }
 
-// TODO: put in a module
-function appendQueryString(url, key, value) {
-    return (url == '?' ? url : url + '&') + key + '=' + value;
-}
-function getHistoryStateURL() {
-    var url = '?';
-    if (history.state.customDate)
-        url = appendQueryString(url, 'datetime', history.state.customDate);
-    return (url == '?' ? '' : url);
-}
-function replaceHistoryState(key, value) {
-    history.state[key] = value;
-    history.replaceState(history.state, '', getHistoryStateURL());
-}
-
-// Time travel
-window.setCustomDatetime = function(datetime) {
+// Timeline
+d3.select('.time-travel').style('display', timelineEnabled ? 'block' : 'none');
+function setCustomDatetime(datetime) {
     customDate = datetime;
-    replaceHistoryState('customDate', datetime);
+    replaceHistoryState('datetime', datetime);
     fetch(false);
 }
 var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
     enableTime: true,
-    static: true,
     onClose: function(selectedDates, dateStr, instance) {
         setCustomDatetime(moment(dateStr).toISOString());
     }
-    //clickOpens: false // disable opening calendar by clicking on input
 });
-window.flatpickr = flatpickr;
 
 var width = window.innerWidth;
 var height = window.innerHeight;
