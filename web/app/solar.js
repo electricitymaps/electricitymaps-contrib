@@ -13,6 +13,10 @@ function bilinearInterpolate(x, y, x1, x2, y1, y2, Q11, Q12, Q21, Q22) {
     return ((y2 - y)/(y2 - y1))*R1 + ((y - y1)/(y2 - y1))*R2;
 }
 
+exports.isExpired = function(now, grib1, grib2) {
+    return grib.getTargetTime(grib2) <= moment(now) || grib.getTargetTime(grib1) > moment(now);
+}
+
 exports.draw = function(canvasSelector, now, grib1, grib2, solarColor, projection, callback) {
     // Interpolates between two solar forecasts
     var t_before = grib.getTargetTime(grib1);

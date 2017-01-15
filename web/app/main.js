@@ -305,8 +305,9 @@ if (isSmallScreen()) {
     d3.select('#checkbox-wind').on('change', function() {
         windEnabled = !windEnabled;
         Cookies.set('windEnabled', windEnabled);
+        var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (windEnabled) {
-            if (!wind || grib.getTargetTime(wind.forecasts[1][0]) < moment.utc()) {
+            if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
                 fetch(true);
             } else {
                 Wind.show();
@@ -318,8 +319,9 @@ if (isSmallScreen()) {
     d3.select('#checkbox-solar').on('change', function() {
         solarEnabled = !solarEnabled;
         Cookies.set('solarEnabled', solarEnabled);
+        var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (solarEnabled) {
-            if (!solar || grib.getTargetTime(solar.forecasts[1]) < moment.utc()) {
+            if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 fetch(true);
             } else {
                 Solar.show();
@@ -332,7 +334,7 @@ if (isSmallScreen()) {
         if (windEnabled && wind && coordinates) {
             var lonlat = countryMap.projection().invert(coordinates);
             var now = customDate ? moment(customDate) : (new Date()).getTime();
-            if (moment(now) <= moment(grib.getTargetTime(wind.forecasts[1][0]))) {
+            if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
                 var u = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, wind.forecasts[0][0], wind.forecasts[1][0]);
                 var v = grib.getInterpolatedValueAtLonLat(lonlat, 
@@ -345,7 +347,7 @@ if (isSmallScreen()) {
         if (solarEnabled && solar && coordinates) {
             var lonlat = countryMap.projection().invert(coordinates);
             var now = customDate ? moment(customDate) : (new Date()).getTime();
-            if (moment(now) <= moment(grib.getTargetTime(solar.forecasts[1]))) {
+            if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 var val = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, solar.forecasts[0], solar.forecasts[1]);
                 solarColorbar.currentMarker(val);
@@ -665,10 +667,6 @@ function dataLoaded(err, state, argSolar, argWind) {
         LoadingService.stopLoading();
     } else {
         Wind.hide();
-        if (windEnabled) {
-            windEnabled = false;
-            d3.select('#checkbox-wind').attr('checked', false);
-        }
     }
 
     if (!showSolarOption)
@@ -695,10 +693,6 @@ function dataLoaded(err, state, argSolar, argWind) {
             });
     } else {
         Solar.hide();
-        if (solarEnabled) {
-            solarEnabled = false;
-            d3.select('#checkbox-solar').attr('checked', false);
-        }
     }
 };
 
@@ -779,17 +773,19 @@ function fetch(showLoading, callback) {
     var Q = d3.queue();
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
+    var now = customDate || new Date();
+
     if (!solarEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!solar || grib.getTargetTime(solar.forecasts[1]) <= moment.utc())
-        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', customDate || new Date());
+    else if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
+        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
     else
         Q.defer(function(cb) { return cb(null, solar); });
 
     if (!windEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!wind || grib.getTargetTime(wind.forecasts[1][0]) <= moment.utc())
-        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', customDate || new Date());
+    else if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
+        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
     else
         Q.defer(function(cb) { return cb(null, wind); });
 
