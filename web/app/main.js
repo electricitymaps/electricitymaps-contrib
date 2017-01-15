@@ -213,7 +213,10 @@ window.setCustomDatetime = function(datetime) {
 }
 var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
     enableTime: true,
-    static: true
+    static: true,
+    onClose: function(selectedDates, dateStr, instance) {
+        setCustomDatetime(moment(dateStr).toISOString());
+    }
     //clickOpens: false // disable opening calendar by clicking on input
 });
 window.flatpickr = flatpickr;
@@ -436,11 +439,24 @@ function dataLoaded(err, state, argSolar, argWind) {
     d3.select('#current-date').text(
         currentMoment.format('LL' + (!customDate ? ' [UTC]Z' : '')));
     d3.select('#current-time')
-        .text(currentMoment.format('LT') + ' (' + currentMoment.fromNow() + ')')
+        .text(currentMoment.format('LT'));
+    d3.selectAll('#current-date, #current-time')
         .style('color', 'darkred')
         .transition()
             .duration(800)
             .style('color', 'lightgrey');
+    flatpickr.setDate(moment(customDate).toDate());
+
+    // Reset all data
+    d3.entries(countries).forEach(function(entry) {
+        entry.value.co2intensity = undefined;
+        entry.value.exchange = {};
+        entry.value.production = {};
+        entry.value.source = undefined;
+    });
+    d3.entries(exchanges).forEach(function(entry) {
+        entry.value.netFlow = undefined;
+    });
 
     // Populate with realtime country data
     d3.entries(state.countries).forEach(function(entry) {
