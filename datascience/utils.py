@@ -16,6 +16,8 @@ def date_range(start_date, end_date, delta):
         time_span.append(t)
     return time_span
 
+# get_production
+
 def fetch_production(country_code, t, delta):
     endpoint = 'http://electricitymap.tmrow.co'
     url = '%s/v1/production' % endpoint
@@ -41,3 +43,15 @@ def get_production(countries, start_date, end_date, delta):
                               'production': o['production'].values()})
             df = df.append(p)
     return df
+
+# get_exchange
+
+def fetch_exchange(country_code, t):
+    endpoint = 'http://electricitymap.tmrow.co'
+    url = '%s/v1/state' % endpoint
+    params = {
+        'datetime': t.to('utc').isoformat()
+    }
+    obj = r.get(url, params=params).json()
+    if not obj['data']['countries'][country_code]: return
+    return obj['data']['countries'][country_code]
