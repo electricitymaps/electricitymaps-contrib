@@ -274,3 +274,7 @@ hr {
     color: lightgrey;
     text-align: center;
 }
+
+.time-travel {
+    display: none;
+}
