@@ -6,6 +6,26 @@ html, body {
     background-color: #283640;
 }
 
+a {
+    text-decoration: none;
+    color: lightblue;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, iframe.twitter-follow-button, .slack-button {
+    vertical-align: middle
+}
+
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
+/* ** IDs ** */
 #connection-warning {
     position: fixed;
     display: block;
@@ -15,15 +35,12 @@ html, body {
     transition: all 0.5s ease;
     width: 100%;
 }
-
 #connection-warning.show {
     top: 0;
 }
-
 #connection-warning.hide {
     top: -60px; 
 }
-
 #connection-warning .inner {
     display: block;
     margin: 0 auto;
@@ -37,104 +54,15 @@ html, body {
     max-width: 750px;
 }
 
-.watermark {
-    padding: 18px;
-    opacity: 0.5;
-    transition: all 0.5s ease;
-    vertical-align: bottom;
-}
-.watermark:hover {
-    opacity: 1;
-}
-.overlay {
-    width: 100%;
-    height: 100%;
+#current-datetime {
     position: absolute;
-    top: 0px;
-}
-.loading {
-    opacity: 0.7;
-    background: black url('../images/loading.svg') no-repeat center center;
-}
-.map {
+    top: 10px;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-}
-.land {
-    fill: #ccc;
-    fill-opacity: 0.8;
-    stroke: #3b3b3b;
-}
-.sea {
-    background-color: #283640;
-}
-.wind {
-    pointer-events: none;
-    opacity: 0;
-}
-.solar {
-    pointer-events: none;
-    opacity: 0;
-}
-.graticule {
-    fill: none;
-    stroke: #185c96;
-    stroke-width: 0.7px;
+    color: lightgrey;
+    text-align: center;
 }
 
-.content {
-}
-.panel {
-    background-color: rgba(70, 70, 70, 0.95);
-    border: 1px solid grey;
-    color: lightgray;
-    font-size: 0.7em;
-}
-.panel-container {
-    margin: 10px;
-    padding: 10px;
-    line-height: 1.7em;
-}
-.panel-container h1 {
-    line-height: 1.3;
-    color: white;
-    font-size: 1.6em;
-    margin: 0px;
-}
-.panel-container > svg {
-    display: block;
-}
-.panel-container, panel-container.text {
-    color: lightgray;
-    fill: lightgray;
-}
-.country-table {
-    width: 100%;
-}
-.country-table-initial-text {
-    font-size: 1.1em;
-    color: darkgrey;
-}
-.country-emission-intensity, .emission-intensity, #exchange-tooltip .flow {
-    font-weight: bold;
-}
-.emission-rect {
-    display: inline-block;
-    border: 1px solid gray;
-    width: 8px;
-    height: 8px;
-}
-
-/* ** LEGEND ** */
-.legend {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 10px;
-    width: 460px;
-}
+/* ** CLASSES ** */
 .colorbar {
     height: 30px;
     /* This will make sure childs are relative to 1em */
@@ -163,70 +91,11 @@ html, body {
     stroke: lightgrey !important;
 }
 
-a {
-    text-decoration: none;
-    color: lightblue;
-}
-a:hover {
-    text-decoration: underline;
+.content {
 }
 
-@keyframes appear-from-top {
-  0% {
-    top: -40px;
-  }
-  15%,85% {
-    top: 0px;
-  }
-  100% {
-    top: -40px;
-  }
-}
-
-div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, iframe.twitter-follow-button, .slack-button {
-    vertical-align: middle
-}
-
-.tooltip {
-    color: darkgrey;
-    display: none;
-    padding: 5px;
-    position: absolute;
-}
-
-@media screen and (min-width: 750px) {
-    .small-screen-visible {
-        display: none;
-    }
-    .panel {
-        position: absolute;
-        top: 0px;
-    }
-    .watermark {
-        position: absolute;
-        bottom: 0px;
-    }
-}
-@media screen and (max-width: 750px) {
-    .large-screen-visible {
-        display: none;
-    }
-    .content {
-        display: table;
-    }
-    .panel {
-        position: relative;
-    }
-    .watermark {
-        /* display: table-footer-group; */
-    }
-}
-
-hr {
-    background-color: gray;
-    color: gray;
-    border: none;
-    height: 1px;
+.country-emission-intensity, .emission-intensity, #exchange-tooltip .flow {
+    font-weight: bold;
 }
 
 .country-picker-container p {
@@ -235,6 +104,90 @@ hr {
 }
 .country-picker-container a {
     display: block;
+}
+
+.country-table {
+    width: 100%;
+}
+.country-table-initial-text {
+    font-size: 1.1em;
+    color: darkgrey;
+}
+
+.emission-rect {
+    display: inline-block;
+    border: 1px solid gray;
+    width: 8px;
+    height: 8px;
+}
+
+.graticule {
+    fill: none;
+    stroke: #185c96;
+    stroke-width: 0.7px;
+}
+
+.land {
+    fill: #ccc;
+    fill-opacity: 0.8;
+    stroke: #3b3b3b;
+}
+
+/* ** LEGEND ** */
+.legend {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 10px;
+    width: 460px;
+}
+
+.loading {
+    opacity: 0.7;
+    background: black url('../images/loading.svg') no-repeat center center;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+}
+
+.panel {
+    background-color: rgba(70, 70, 70, 0.95);
+    border: 1px solid grey;
+    color: lightgray;
+    font-size: 0.7em;
+}
+.panel-container {
+    margin: 10px;
+    padding: 10px;
+    line-height: 1.7em;
+}
+.panel-container h1 {
+    line-height: 1.3;
+    color: white;
+    font-size: 1.6em;
+    margin: 0px;
+}
+.panel-container > svg {
+    display: block;
+}
+.panel-container, panel-container.text {
+    color: lightgray;
+    fill: lightgray;
+}
+
+.sea {
+    background-color: #283640;
 }
 
 .slack-button {
@@ -267,14 +220,73 @@ hr {
     float: left;
 }
 
-#current-datetime {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    color: lightgrey;
-    text-align: center;
+.solar {
+    pointer-events: none;
+    opacity: 0;
 }
 
 .time-travel {
     display: none;
+}
+
+.tooltip {
+    color: darkgrey;
+    display: none;
+    padding: 5px;
+    position: absolute;
+}
+
+.wind {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.watermark {
+    padding: 18px;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+    vertical-align: bottom;
+}
+.watermark:hover {
+    opacity: 1;
+}
+
+@keyframes appear-from-top {
+  0% {
+    top: -40px;
+  }
+  15%,85% {
+    top: 0px;
+  }
+  100% {
+    top: -40px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+    .small-screen-visible {
+        display: none;
+    }
+    .panel {
+        position: absolute;
+        top: 0px;
+    }
+    .watermark {
+        position: absolute;
+        bottom: 0px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .large-screen-visible {
+        display: none;
+    }
+    .content {
+        display: table;
+    }
+    .panel {
+        position: relative;
+    }
+    .watermark {
+        /* display: table-footer-group; */
+    }
 }
