@@ -126,7 +126,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
 
 var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
-    .range(['green', 'orange', 'black'])
+    .range(['green', 'orange', 'rgb(26,13,0)'])
     .clamp(true);
 var maxWind = 15;
 var windColor = d3.scaleLinear()
