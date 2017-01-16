@@ -55,3 +55,19 @@ def fetch_exchange(country_code, t):
     obj = r.get(url, params=params).json()
     if not obj['data']['countries'][country_code]: return
     return obj['data']['countries'][country_code]
+
+def get_production(countries, start_date, end_date):
+    delta = 1440 # Only return exchange for an entire day
+    df = pd.DataFrame(columns=['country','timestamp','country_exchange','value'])
+    time_span = date_range(start_date, end_date,delta)
+    for country in countries:
+        print 'Fetching country %s..' % country
+        for t in time_span:
+            print 'Fetching time %s..' % t
+            o = fetch_exchange(country, t)
+            p = pd.DataFrame({'country': country,
+                              'timestamp': t ,
+                              'country_exchange': o['exchange'].keys(),
+                              'value': o['exchange'].values()})
+            df = df.append(p)
+    return df
