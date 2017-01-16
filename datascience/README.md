@@ -6,16 +6,30 @@ In this section we present a set of Python functions that let you pull this data
 
 ### Setup
 
-If you use pip, you can install dependencies by running :
+If you use pip, you can install dependencies by running:
 
 ```
 pip install -r requirements.txt
 ```
 
-You can then import `utils` function in your python file :
+You can then import `utils` function in your python file:
 
 ```
 from utils import *
+```
+
+### Examples
+We recommend you to use [Jupyter Notebooks](http://jupyter.org/) to explore the datasets.
+It can be installed by running:
+
+```
+pip install jupyter
+```
+
+You can then run the notebook server by running this command from the datascience folder:
+
+```
+jupyter notebook
 ```
 
 ### Documentation
