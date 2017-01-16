@@ -52,3 +52,34 @@ Returns :
 3      DE      4229.0  biomass  2016-12-23T00:00:00+00:00
 4      DE     19919.0     coal  2016-12-23T00:00:00+00:00
 ```
+
+#### get_exchange(countries, start_date, end_date)
+
+This function returns for each day between `start_date` and `end_date`, the electricity production exchanges for each country defined in `countries`. Data are returned as a [pandas DataFrame](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
+
+Parameters :
+
+- countries (*list*) - a list of country codes to pull.
+- start_date (*string*) - start date. Date format is `YYYY-MM-DD`.
+- end_date (*string*) - end date. Date format is `YYYY-MM-DD`.
+
+Example :
+
+```python
+from utils import get_exchange
+
+df_exchange = get_exchange(['DE','FR'], '2016-12-23', '2016-12-24')
+
+df_exchange.head()
+```
+
+Returns :
+
+```
+  country country_exchange                  timestamp   value
+0      DE               FR  2016-12-23T00:00:00+00:00   176.0
+1      DE               CH  2016-12-23T00:00:00+00:00 -2320.0
+2      DE               NL  2016-12-23T00:00:00+00:00 -1840.0
+3      DE               DK  2016-12-23T00:00:00+00:00   -79.0
+4      DE               CZ  2016-12-23T00:00:00+00:00  -476.0
+```
