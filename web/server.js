@@ -11,6 +11,7 @@ if (isProduction) {
 }
 
 var async = require('async');
+var co2eq_parameters = require('./app/co2eq_parameters');
 var co2lib = require('./app/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
@@ -105,7 +106,7 @@ function processDatabaseResults(countries, exchanges) {
         });
     });
     // Compute aggregates
-    d3.values(countries).forEach(function (country) {
+    d3.values(countries).forEach(function(country) {
         country.maxProduction =
             d3.max(d3.values(country.production));
         country.totalProduction =
@@ -138,6 +139,11 @@ function computeCo2(countries, exchanges) {
             country.exchangeCo2Intensities[k] =
                 country.exchange[k] > 0 ? assignments[k] : country.co2intensity;
         });
+        country.productionCo2Intensities = {};
+        d3.keys(country.production).forEach(function(k) {
+            country.productionCo2Intensities[k] = co2eq_parameters.footprintOf(
+                k, country.countryCode);
+        })
     });
     d3.values(exchanges).forEach(function(exchange) {
         exchange.co2intensity = countries[exchange.countryCodes[exchange.netFlow > 0 ? 0 : 1]].co2intensity;
