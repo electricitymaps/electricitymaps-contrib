@@ -56,7 +56,7 @@ def fetch_exchange(country_code, t):
     if not obj['data']['countries'][country_code]: return
     return obj['data']['countries'][country_code]
 
-def get_production(countries, start_date, end_date):
+def get_exchange(countries, start_date, end_date):
     delta = 1440 # Only return exchange for an entire day
     df = pd.DataFrame(columns=['country','timestamp','country_exchange','value'])
     time_span = date_range(start_date, end_date,delta)
