@@ -32,6 +32,13 @@ Parameters :
 - end_date (*string*) - end date. Date format is `YYYY-MM-DD`.
 - delta(*int*) - interval of timestamp between `start_date` and `end_date`. In minutes.
 
+Data returned :
+
+- country - country that was passed in the `countries` parameter list.
+- production - amount of electricity that was produced (in MW).
+- sources - sources of electricity (oil,nuclear,gas,biomass,coal,solar,wind,hydro).
+- timestamp - timestamp at which the fetch was performed.
+
 Example :
 
 ```python
@@ -62,6 +69,13 @@ Parameters :
 - countries (*list*) - a list of country codes to pull.
 - start_date (*string*) - start date. Date format is `YYYY-MM-DD`.
 - end_date (*string*) - end date. Date format is `YYYY-MM-DD`.
+
+Data returned :
+
+- country - country that was passed in the `countries` parameter list.
+- country_exchange - country with which the electricity was exchanged.
+- timestamp - date for which the electricity exchange was computed.
+- value - amount of electricity that was exchanged (in MW). Negative value are export of country to country_exchange. Positive value are import of country from country_exchange.
 
 Example :
 
