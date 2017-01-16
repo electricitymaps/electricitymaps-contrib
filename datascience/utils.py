@@ -71,10 +71,12 @@ def get_exchange(countries, start_date, end_date, delta):
         for t in time_span:
             print 'Fetching time %s..' % t
             o = fetch_exchange(country, t)
+            if not o: continue
+            country_exchanges = o['exchange'].keys()
             p = pd.DataFrame({'country': country,
                               'timestamp': pd.Timestamp(t.datetime),
-                              'country_exchange': o['exchange'].keys(),
-                              'net_flow': o['exchange'].values()})
+                              'country_exchange': country_exchanges,
+                              'net_flow': map(lambda k: o['exchange'][k], country_exchanges)})
             if df is not None: df = df.append(p)
             else: df = p
     return df
