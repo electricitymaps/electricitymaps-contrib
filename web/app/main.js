@@ -494,7 +494,7 @@ function dataLoaded(err, state, argSolar, argWind) {
     // Render country picker if we're on mobile
     if (isSmallScreen()) {
         var validCountries = d3.values(countries).filter(function(d) {
-            return d.source;
+            return d.co2intensity;
         }).sort(function(x, y) {
             if (!x.co2intensity && !x.countryCode)
                 return d3.ascending(x.shortname || x.countryCode,
