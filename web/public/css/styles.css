@@ -21,7 +21,7 @@ html, body {
 }
 
 #connection-warning.hide {
-    top: -60px; 
+    top: -60px;
 }
 
 #connection-warning .inner {
@@ -147,21 +147,20 @@ html, body {
     height: 100%;
     width: 150px;
     text-align: right;
-    font-size: 0.6em;
-    line-height: 1.5em;
+    font-size: 0.7em;
 }
 
 .co2-legend > .colorbar-unit {
-    color: black;
+    color: lightgrey;
 }
 .co2-legend .x.axis text {
-    fill: black !important;
+    fill: lightgrey !important;
 }
 .co2-legend .x.axis line {
-    stroke: black !important;
+    stroke: lightgrey !important;
 }
 .co2-legend rect.border {
-    stroke: black !important;
+    stroke: lightgrey !important;
 }
 
 a {
@@ -274,4 +273,8 @@ hr {
     width: 100%;
     color: lightgrey;
     text-align: center;
+}
+
+.time-travel {
+    display: none;
 }

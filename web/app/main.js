@@ -1,6 +1,7 @@
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
+var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
@@ -40,19 +41,39 @@ function isSmallScreen() {
     // Should be in sync with media queries in CSS
     return window.innerWidth < 750;
 }
-(function readQueryString() {
-    args = location.search.replace('\?','').split('&');
-    args.forEach(function(arg) {
-        kv = arg.split('=');
-        if (kv[0] == 'remote') {
-            forceRemoteEndpoint = kv[1] == 'true';
-        } else if (kv[0] == 'datetime') {
-            customDate = kv[1];
-        } else if (kv[0] == 'timeline') {
-            timelineEnabled = kv[1] == 'true';
-        }
+
+// History state
+// TODO: put in a module
+function appendQueryString(url, key, value) {
+    return (url == '?' ? url : url + '&') + key + '=' + value;
+}
+function getHistoryStateURL() {
+    var url = '?';
+    d3.entries(history.state).forEach(function(d) {
+        url = appendQueryString(url, d.key, d.value);
     });
-})();
+    return (url == '?' ? '' : url);
+}
+function replaceHistoryState(key, value) {
+    history.state[key] = value;
+    history.replaceState(history.state, '', getHistoryStateURL());
+}
+
+// Read query string
+args = location.search.replace('\?','').split('&');
+args.forEach(function(arg) {
+    kv = arg.split('=');
+    if (kv[0] == 'remote') {
+        forceRemoteEndpoint = kv[1] == 'true';
+        replaceHistoryState('forceRemoteEndpoint', forceRemoteEndpoint);
+    } else if (kv[0] == 'datetime') {
+        customDate = kv[1];
+        replaceHistoryState('datetime', customDate);
+    } else if (kv[0] == 'timeline') {
+        timelineEnabled = kv[1] == 'true';
+        replaceHistoryState('timeline', timelineEnabled);
+    }
+});
 
 // Computed State
 var showWindOption = !isSmallScreen();
@@ -105,7 +126,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
 
 var co2color = d3.scaleLinear()
     .domain([0, 350, 700])
-    .range(['green', 'orange', 'black'])
+    .range(['green', 'orange', 'rgb(26,13,0)'])
     .clamp(true);
 var maxWind = 15;
 var windColor = d3.scaleLinear()
@@ -189,26 +210,19 @@ window.toggleSource = function() {
         .style('display', tableDisplayEmissions ? 'block' : 'none');
 }
 
-// TODO: put in a module
-function appendQueryString(url, key, value) {
-    return (url == '?' ? url : url + '&') + key + '=' + value;
-}
-function getHistoryStateURL() {
-    var url = '?';
-    if (history.state.customDate)
-        url = appendQueryString(url, 'datetime', history.state.customDate);
-    return (url == '?' ? '' : url);
-}
-function replaceHistoryState(key, value) {
-    history.state[key] = value;
-    history.replaceState(history.state, '', getHistoryStateURL());
-}
-
-window.setCustomDatetime = function(datetime) {
+// Timeline
+d3.select('.time-travel').style('display', timelineEnabled ? 'block' : 'none');
+function setCustomDatetime(datetime) {
     customDate = datetime;
-    replaceHistoryState('customDate', datetime);
+    replaceHistoryState('datetime', datetime);
     fetch(false);
 }
+var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
+    enableTime: true,
+    onClose: function(selectedDates, dateStr, instance) {
+        setCustomDatetime(moment(dateStr).toISOString());
+    }
+});
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -291,8 +305,9 @@ if (isSmallScreen()) {
     d3.select('#checkbox-wind').on('change', function() {
         windEnabled = !windEnabled;
         Cookies.set('windEnabled', windEnabled);
+        var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (windEnabled) {
-            if (!wind || grib.getTargetTime(wind.forecasts[1][0]) < moment.utc()) {
+            if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
                 fetch(true);
             } else {
                 Wind.show();
@@ -304,8 +319,9 @@ if (isSmallScreen()) {
     d3.select('#checkbox-solar').on('change', function() {
         solarEnabled = !solarEnabled;
         Cookies.set('solarEnabled', solarEnabled);
+        var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (solarEnabled) {
-            if (!solar || grib.getTargetTime(solar.forecasts[1]) < moment.utc()) {
+            if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 fetch(true);
             } else {
                 Solar.show();
@@ -318,7 +334,7 @@ if (isSmallScreen()) {
         if (windEnabled && wind && coordinates) {
             var lonlat = countryMap.projection().invert(coordinates);
             var now = customDate ? moment(customDate) : (new Date()).getTime();
-            if (moment(now) <= moment(grib.getTargetTime(wind.forecasts[1][0]))) {
+            if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
                 var u = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, wind.forecasts[0][0], wind.forecasts[1][0]);
                 var v = grib.getInterpolatedValueAtLonLat(lonlat, 
@@ -331,7 +347,7 @@ if (isSmallScreen()) {
         if (solarEnabled && solar && coordinates) {
             var lonlat = countryMap.projection().invert(coordinates);
             var now = customDate ? moment(customDate) : (new Date()).getTime();
-            if (moment(now) <= moment(grib.getTargetTime(solar.forecasts[1]))) {
+            if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 var val = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, solar.forecasts[0], solar.forecasts[1]);
                 solarColorbar.currentMarker(val);
@@ -382,24 +398,25 @@ if (isSmallScreen()) {
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.select('#mode').text(d.mode);
+            tooltip.selectAll('#mode').text(d.mode);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
             var capacityFactor = Math.round(d.production / d.capacity * 100) || '?';
-            tooltip.select('#capacity-factor').text(
-                capacityFactor + ' %' +
-                ' (' + (formatPower(d.production) || '?') + ' ' +
+            tooltip.select('#capacity-factor').text(capacityFactor + ' %');
+            tooltip.select('#capacity-factor-detail').text(
+                (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(d.capacity) || '?') + ')');
+                (formatPower(d.capacity) || '?'));
             var totalProduction = countries[countryCode].totalProduction;
             var productionProportion = Math.round(d.production / totalProduction * 100) || '?';
             tooltip.select('#production-proportion').text(
-                productionProportion + ' %' +
-                ' (' + (formatPower(d.production) || '?') + ' ' +
+                productionProportion + ' %');
+            tooltip.select('#production-proportion-detail').text(
+                (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(totalProduction) || '?') + ')');
+                (formatPower(totalProduction) || '?'))
         })
         .onProductionMouseMove(function(d) {
             d3.select('#countrypanel-production-tooltip')
@@ -427,11 +444,24 @@ function dataLoaded(err, state, argSolar, argWind) {
     d3.select('#current-date').text(
         currentMoment.format('LL' + (!customDate ? ' [UTC]Z' : '')));
     d3.select('#current-time')
-        .text(currentMoment.format('LT') + ' (' + currentMoment.fromNow() + ')')
+        .text(currentMoment.format('LT'));
+    d3.selectAll('#current-date, #current-time')
         .style('color', 'darkred')
         .transition()
             .duration(800)
             .style('color', 'lightgrey');
+    flatpickr.setDate(moment(customDate).toDate());
+
+    // Reset all data
+    d3.entries(countries).forEach(function(entry) {
+        entry.value.co2intensity = undefined;
+        entry.value.exchange = {};
+        entry.value.production = {};
+        entry.value.source = undefined;
+    });
+    d3.entries(exchanges).forEach(function(entry) {
+        entry.value.netFlow = undefined;
+    });
 
     // Populate with realtime country data
     d3.entries(state.countries).forEach(function(entry) {
@@ -637,10 +667,6 @@ function dataLoaded(err, state, argSolar, argWind) {
         LoadingService.stopLoading();
     } else {
         Wind.hide();
-        if (windEnabled) {
-            windEnabled = false;
-            d3.select('#checkbox-wind').attr('checked', false);
-        }
     }
 
     if (!showSolarOption)
@@ -667,10 +693,6 @@ function dataLoaded(err, state, argSolar, argWind) {
             });
     } else {
         Solar.hide();
-        if (solarEnabled) {
-            solarEnabled = false;
-            d3.select('#checkbox-solar').attr('checked', false);
-        }
     }
 };
 
@@ -751,17 +773,19 @@ function fetch(showLoading, callback) {
     var Q = d3.queue();
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
+    var now = customDate || new Date();
+
     if (!solarEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!solar || grib.getTargetTime(solar.forecasts[1]) <= moment.utc())
-        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', customDate || new Date());
+    else if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
+        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
     else
         Q.defer(function(cb) { return cb(null, solar); });
 
     if (!windEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!wind || grib.getTargetTime(wind.forecasts[1][0]) <= moment.utc())
-        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', customDate || new Date());
+    else if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
+        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
     else
         Q.defer(function(cb) { return cb(null, wind); });
 

@@ -214,11 +214,11 @@
             Carbon intensity of <span id="mode" style="font-weight: bold;"></span>:<br />
             <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
             <br />
-            Proportion of total production:<br />
-            <div id="production-proportion"></div>
+            <span id="production-proportion"></span> of total production<br />
+            <small>(<span id="production-proportion-detail"></span>)</small><br />
             <br />
-            Capacity factor:<br />
-            <div id="capacity-factor"></div>
+            <span id="capacity-factor"></span> of installed <span id="mode"></span> capacity<br />
+            <small>(<span id="capacity-factor-detail"></span>)</small>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
             Carbon intensity of <span id="label"></span><br />
@@ -227,6 +227,11 @@
         <div id="current-datetime" class="large-screen-visible">
             <small><div id="current-date"></div></small>
             <div id="current-time"></div>
+            <div class="time-travel">
+                <!-- TODO: CHANGE (don't load like this) -->
+                <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+                <input type="text" class="flatpickr" />
+            </div>
         </div>
     </body>
 </html>
