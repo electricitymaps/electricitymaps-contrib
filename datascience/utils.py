@@ -53,8 +53,8 @@ def fetch_exchange(country_code, t):
         'datetime': t.to('utc').isoformat()
     }
     obj = r.get(url, params=params).json()
-    if not obj['data']['countries'].get('country_code', None): return
-    return obj['data']['countries'].get('country_code', None)
+    if not obj['data']['countries'].get(country_code, None): return
+    return obj['data']['countries'].get(country_code, None)
 
 def get_exchange(countries, start_date, end_date):
     delta = 1440 # Only return exchange for an entire day
