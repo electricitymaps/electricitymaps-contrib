@@ -35,7 +35,7 @@ Parameters :
 Data returned :
 
 - country - country that was passed in the `countries` parameter list.
-- production - amount of electricity that was produced (in MW).
+- production - power produced (in MW).
 - sources - sources of electricity (oil,nuclear,gas,biomass,coal,solar,wind,hydro).
 - timestamp - timestamp at which the fetch was performed.
 
@@ -90,7 +90,7 @@ df_exchange.head()
 Returns :
 
 ```
-  country country_exchange                  timestamp   value
+  country_from country_to                  timestamp   net_flow
 0      DE               FR  2016-12-23T00:00:00+00:00   176.0
 1      DE               CH  2016-12-23T00:00:00+00:00 -2320.0
 2      DE               NL  2016-12-23T00:00:00+00:00 -1840.0
