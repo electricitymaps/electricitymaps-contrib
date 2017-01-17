@@ -58,7 +58,7 @@ def fetch_exchange(country_code, t):
 
 def get_exchange(countries, start_date, end_date):
     delta = 1440 # Only return exchange for an entire day
-    df = pd.DataFrame(columns=['country', 'timestamp', 'country_exchange', 'value'])
+    df = pd.DataFrame(columns=['country_from', 'timestamp', 'country_to', 'net_flow'])
     time_span = date_range(start_date, end_date, delta)
     for country in countries:
         print 'Fetching country %s..' % country
