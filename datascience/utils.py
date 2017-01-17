@@ -53,21 +53,21 @@ def fetch_exchange(country_code, t):
         'datetime': t.to('utc').isoformat()
     }
     obj = r.get(url, params=params).json()
-    if not obj['data']['countries'][country_code]: return
-    return obj['data']['countries'][country_code]
+    if not obj['data']['countries'].get('country_code', None): return
+    return obj['data']['countries'].get('country_code', None)
 
 def get_exchange(countries, start_date, end_date):
     delta = 1440 # Only return exchange for an entire day
-    df = pd.DataFrame(columns=['country','timestamp','country_exchange','value'])
-    time_span = date_range(start_date, end_date,delta)
+    df = pd.DataFrame(columns=['country', 'timestamp', 'country_exchange', 'value'])
+    time_span = date_range(start_date, end_date, delta)
     for country in countries:
         print 'Fetching country %s..' % country
         for t in time_span:
             print 'Fetching time %s..' % t
             o = fetch_exchange(country, t)
-            p = pd.DataFrame({'country': country,
-                              'timestamp': t ,
-                              'country_exchange': o['exchange'].keys(),
-                              'value': o['exchange'].values()})
+            p = pd.DataFrame({'country_from': country,
+                              'timestamp': t,
+                              'country_to': o['exchange'].keys(),
+                              'net_flow': o['exchange'].values()})
             df = df.append(p)
     return df
