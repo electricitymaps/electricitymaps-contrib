@@ -10,6 +10,8 @@ dependencies:
     - '~/docker'
   override:
     - touch secrets.env
+    - docker pull $(head -n 1 web/Dockerfile | cut -f 2 -d ' ')
+    - docker pull $(head -n 1 feeder/Dockerfile | cut -f 2 -d ' ')
     - if [[ -e ~/docker/web.tar ]]; then docker load -i ~/docker/web.tar; fi
     - if [[ -e ~/docker/feeder.tar ]]; then docker load -i ~/docker/feeder.tar; fi
     - docker-compose build
