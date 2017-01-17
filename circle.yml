@@ -6,20 +6,14 @@ machine:
   services:
     - docker
 dependencies:
-  cache_directories:
-    - '~/docker'
   override:
     - touch secrets.env
-    # - if [[ -e ~/docker/web.tar ]]; then docker load -i ~/docker/web.tar; fi
-    # - if [[ -e ~/docker/feeder.tar ]]; then docker load -i ~/docker/feeder.tar; fi
-    # - docker-compose build
-    # - mkdir -p ~/docker; docker save electricitymap_web > ~/docker/web.tar
-    # - mkdir -p ~/docker; docker save electricitymap_feeder > ~/docker/feeder.tar
-    # - docker-compose run web npm run build-release
-    # - docker-compose up -d
-    # - sleep 20
-    # - docker-compose logs web
-    # - curl --fail -i http://localhost:8000/
+    - docker-compose build
+    - docker-compose run web npm run build-release
+    - docker-compose up -d
+    - sleep 20
+    - docker-compose logs web
+    - curl --fail -i http://localhost:8000/
 test:
   override:
     - echo "no test"
