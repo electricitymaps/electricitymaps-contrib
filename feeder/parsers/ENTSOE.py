@@ -53,6 +53,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'LU': '10YLU-CEGEDEL-NQ',
     'LV': '10YLV-1001A00074',
     # 'MD': 'MD',
+    'ME': '10YCS-CG-TSO---S',
     'MK': '10YMK-MEPSO----8',
     'MT': '10Y1001A1001A93C',
     'NL': '10YNL----------L',
