@@ -585,7 +585,7 @@ app.get('/v2/co2LastDay', function(req, res) {
                         handleError(err);
                     }
                 });
-                returnObj(data, false);
+                returnData(data, false);
             });
         }
     });
