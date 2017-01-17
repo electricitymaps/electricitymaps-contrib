@@ -205,10 +205,11 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
             exchanges = results[1];
             // This can crash, so we to try/catch
             try {
-                callback(err, processDatabaseResults(countries, exchanges));
+                result = processDatabaseResults(countries, exchanges);
             } catch(err) {
                 callback(err);
             }
+            callback(err, result);
         });
     });
 }
@@ -530,6 +531,59 @@ function handleForecastQuery(key, req, res) {
 }
 app.get('/v2/gfs/:key', function(req, res) {
     return handleForecastQuery(req.params.key, req, res);
+});
+
+app.get('/v2/co2LastDay', function(req, res) {
+    var countryCode = req.query.countryCode;
+    if (!countryCode) return res.status(400).send('countryCode required');
+    var cacheKey = 'co2LastDay_' + countryCode;
+
+    function returnData(data, cached) {
+        res.json({
+            'data': data,
+            'cached': cached
+        })
+    };
+
+    return memcachedClient.get(cacheKey, function (err, data) {
+        if (err) { 
+            if (opbeat) 
+                opbeat.captureError(err); 
+            console.error(err);
+        }
+        if (data) returnData(data, true);
+        else {
+            var now = moment();
+            var before = moment(now).subtract(1, 'day');
+            var dates = [now];
+            while (dates[dates.length - 1] > before)
+                dates.push(moment(dates[dates.length - 1]).subtract(1, 'hour'));
+            var tasks = dates.map(function(d) {
+                return function(callback) {
+                    return queryLastValuesBeforeDatetime(d, callback)
+                };
+            });
+            return async.parallel(tasks, function(err, objs) {
+                if (err) {
+                    handleError(err);
+                    return res.status(500).send('Unknown server error');
+                }
+                // Find unique entries
+                var dict = {};
+                objs.forEach(function(d) {
+                    if (d.countries[countryCode])
+                        dict[d.countries[countryCode].datetime] = d.countries[countryCode];
+                });
+                var data = d3.values(dict).sort(function(x, y) { return d3.ascending(x.datetime, y.datetime); });
+                memcachedClient.set(cacheKey, data, 5 * 60, function(err) {
+                    if (err) {
+                        handleError(err);
+                    }
+                });
+                returnObj(data, false);
+            });
+        }
+    });
 });
 
 // *** UNVERSIONED ***
