@@ -121,6 +121,10 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
+// Set proper locale
+var locale = window.navigator.userLanguage || window.navigator.language;
+moment.locale(locale);
+
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 

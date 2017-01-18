@@ -562,7 +562,7 @@ app.get('/v2/co2LastDay', function(req, res) {
             var before = moment(now).subtract(1, 'day');
             var dates = [now];
             while (dates[dates.length - 1] > before)
-                dates.push(moment(dates[dates.length - 1]).subtract(15, 'minute'));
+                dates.push(moment(dates[dates.length - 1]).subtract(30, 'minute'));
             var tasks = dates.map(function(d) {
                 return function(callback) {
                     return queryLastValuesBeforeDatetime(d, callback)
