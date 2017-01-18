@@ -580,7 +580,7 @@ app.get('/v2/co2LastDay', function(req, res) {
                         dict[d.countries[countryCode].datetime] = d.countries[countryCode];
                 });
                 var data = d3.values(dict).sort(function(x, y) { return d3.ascending(x.datetime, y.datetime); });
-                memcachedClient.set(cacheKey, data, 5 * 60, function(err) {
+                memcachedClient.set(cacheKey, data, 15 * 60, function(err) {
                     if (err) {
                         handleError(err);
                     }
