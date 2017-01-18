@@ -6,3 +6,4 @@ grib2json
 web/public/dist
 web/node_modules
 .ipynb_checkpoints/
+*.pyproj

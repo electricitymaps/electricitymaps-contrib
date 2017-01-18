@@ -224,6 +224,11 @@ EXCHANGE_PARSERS = {
     # 'SK->UA':     ENTSOE.fetch_exchange,
 }
 
+PRICE_PARSERS = {
+    'RTE': FR.fetch_prices,
+}
+
+
 # Set up stats
 import statsd
 statsd.init_statsd({
@@ -238,12 +243,14 @@ col_consumption = db['consumption']
 col_gfs = db['gfs']
 col_production = db['production']
 col_exchange = db['exchange']
+col_price = db['price']
 # Set up indices
 col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', 1), ('key', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', -1), ('key', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
+col_price.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
@@ -343,6 +350,21 @@ def fetch_exchanges():
             statsd.increment('fetch_one_exchange_error')
             logger.exception('Exception while fetching exchange of %s' % k)
 
+def fetch_prices():
+    for authority, parser in PRICE_PARSERS.iteritems():
+        try:
+            with statsd.StatsdTimer('fetch_one_price'):
+                obj = parser(session)
+                if not obj: continue
+                # validate_price(obj)
+                # Database insert
+                for row in obj:
+                    result = db_upsert(col_price, row, 'countryCode')
+                    if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+        except:
+            statsd.increment('fetch_one_consumption_error')
+            logger.exception('Exception while fetching pricing of %s' % authority)
+
 def db_upsert_forecast(col, obj, database_key):
     now = arrow.now().datetime
     query = {
@@ -421,11 +443,13 @@ schedule.every(15).minutes.do(fetch_weather)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_prices)
 
 fetch_weather()
 fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
+fetch_prices()
 
 while True:
     schedule.run_pending()
