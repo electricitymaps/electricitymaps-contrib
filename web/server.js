@@ -380,6 +380,9 @@ app.get('/v1/state', function(req, res) {
         //statsdClient.timing('state_GET', deltaMs);
     }
     if (req.query.datetime) {
+        // Ignore requests in the future
+        if (moment(req.query.datetime) > moment.now())
+            returnObj({countries: {}, exchanges: {}}, false);
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 //statsdClient.increment('state_GET_ERROR');
