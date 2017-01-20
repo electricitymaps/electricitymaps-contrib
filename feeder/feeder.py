@@ -225,8 +225,38 @@ EXCHANGE_PARSERS = {
 }
 
 PRICE_PARSERS = {
-    'RTE': FR.fetch_prices,
+    
+    'FR': FR.fetch_prices,
+    'AT': ENTSOE.fetch_prices,
+    'BE': ENTSOE.fetch_prices,
+    'BG': ENTSOE.fetch_prices,
+    'CH': ENTSOE.fetch_prices,
+    'CZ': ENTSOE.fetch_prices,
+    'DE': ENTSOE.fetch_prices,
+    'DK': ENTSOE.fetch_prices,
+    'EE': ENTSOE.fetch_prices,
+    'ES': ENTSOE.fetch_prices,
+    'FI': ENTSOE.fetch_prices,
+    'GB': ENTSOE.fetch_prices,
+    'GB-NIR': ENTSOE.fetch_prices,
+    'GR': ENTSOE.fetch_prices,
+    'HU': ENTSOE.fetch_prices,
+    'IE': ENTSOE.fetch_prices,
+    'IT': ENTSOE.fetch_prices,
+    'LT': ENTSOE.fetch_prices,
+    'LU': ENTSOE.fetch_prices,
+    'LV': ENTSOE.fetch_prices,
+    'NL': ENTSOE.fetch_prices,
+    'NO': ENTSOE.fetch_prices,
+    'PL': ENTSOE.fetch_prices,
+    'PT': ENTSOE.fetch_prices,
+    'RO': ENTSOE.fetch_prices,
+    'RS': ENTSOE.fetch_prices,
+    'SE': ENTSOE.fetch_prices,
+    'SI': ENTSOE.fetch_prices,
+    'SK': ENTSOE.fetch_prices,
 }
+
 
 
 # Set up stats
@@ -351,19 +381,18 @@ def fetch_exchanges():
             logger.exception('Exception while fetching exchange of %s' % k)
 
 def fetch_prices():
-    for authority, parser in PRICE_PARSERS.iteritems():
+    for country_code, parser in PRICE_PARSERS.iteritems():
         try:
             with statsd.StatsdTimer('fetch_one_price'):
-                obj = parser(session)
+                obj = parser(country_code,session)
                 if not obj: continue
                 # validate_price(obj)
                 # Database insert
-                for row in obj:
-                    result = db_upsert(col_price, row, 'countryCode')
-                    if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+                result = db_upsert(col_price,obj, 'countryCode')
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_consumption_error')
-            logger.exception('Exception while fetching pricing of %s' % authority)
+            statsd.increment('fetch_one_price_error')
+            logger.exception('Exception while fetching pricing of %s' % country_code)
 
 def db_upsert_forecast(col, obj, database_key):
     now = arrow.now().datetime

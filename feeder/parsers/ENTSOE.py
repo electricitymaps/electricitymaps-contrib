@@ -120,6 +120,19 @@ def query_exchange(in_domain, out_domain, session):
         soup = BeautifulSoup(response.text, 'html.parser')
         raise Exception('Failed to get exchange. Reason: %s' % soup.find_all('text')[0].contents[0])
 
+def query_price(domain, session):
+    params = {
+        'documentType': 'A44',
+        'in_Domain': domain,
+        'out_Domain': domain,
+    }
+    response = query_ENTSOE(session, params)
+    if response.ok: return response.text
+    else:
+        # Grab the error if possible
+        soup = BeautifulSoup(response.text, 'html.parser')
+        raise Exception('Failed to get price. Reason: %s' % soup.find_all('text')[0].contents[0])
+
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
     if m:
@@ -191,6 +204,21 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
                 quantities.append(quantity)
                 datetimes.append(datetime)
     return quantities, datetimes
+
+def parse_prices(xml_text):
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    prices = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            prices.append(float(entry.find_all('price.amount')[0].contents[0]))
+            position = int(entry.find_all('position')[0].contents[0])
+            datetimes.append(datetime_from_position(datetime_start, position, resolution))
+    return prices, datetimes
 
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
@@ -330,3 +358,19 @@ def fetch_exchange(country_code1, country_code2, session=None):
         'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
         'source': 'entsoe.eu'
     }
+
+def fetch_prices(country_code, session=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_prices(query_price(domain, session))
+    if parsed:
+        prices, datetimes = parsed
+        data = {
+            'countryCode': country_code,
+            'datetime': datetimes[-1].datetime,
+            'price': prices[-1],
+            'source': 'entsoe.eu'
+        }
+
+        return data

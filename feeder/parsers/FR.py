@@ -62,8 +62,7 @@ def fetch_production(country_code='FR', session=None):
 
     return data
 
-
-def fetch_prices(session=None,from_date=None,to_date=None):
+def fetch_prices(country_code,session=None,from_date=None,to_date=None):
     r = session or requests.session()
     formatted_from = from_date or arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     formatted_to = to_date or arrow.now(tz='Europe/Paris').replace(days=+1).format('DD/MM/YYYY')
@@ -72,27 +71,28 @@ def fetch_prices(session=None,from_date=None,to_date=None):
     obj = ET.fromstring(response.content)
     mixtr = obj[5]
 
-    data=[]
+    prices = []
+    datetimes = []
+
     date_str = mixtr.get('date')
     date = arrow.get(arrow.get(date_str).datetime, 'Europe/Paris')
     for country_item  in mixtr.getchildren():
         if country_item.get('granularite') != 'Global': continue
-        country_code=country_item.get('perimetre')
+        country_c=country_item.get('perimetre')
+        if(country_code!=country_c): continue
         value = None
         for value in country_item.getchildren():
             if(value.text=='ND'): continue
-            datarow = {
-                'countryCode':{},
-                'datetime':{},
-                'price':{},
-                'source': 'rte-france.com'
-            }
-            datarow['countryCode'] = country_code
-            datarow['datetime'] = date.replace(hours=+int(value.attrib['periode'])).datetime
-            datarow['price'] = float(value.text)
-            data.append(datarow)
+            datetimes.append(date.replace(hours=+int(value.attrib['periode'])).datetime)
+            prices.append(float(value.text))
+    
+    data = {
+        'countryCode': country_code,
+        'datetime': datetimes[-1],
+        'price': prices[-1],
+        'source': 'rte-france.com',
+    }
     return data
-
 
 if __name__ == '__main__':
     print fetch_production()

@@ -7,3 +7,5 @@ web/public/dist
 web/node_modules
 .ipynb_checkpoints/
 *.pyproj
+*.sln
+*.suo
