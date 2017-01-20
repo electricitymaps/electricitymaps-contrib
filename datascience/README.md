@@ -86,17 +86,10 @@ Parameters :
 
 Data returned :
 
-<<<<<<< HEAD
-- country - country that was passed in the `countries` parameter list.
-- country_exchange - country with which the electricity was exchanged.
-- timestamp - date for which the electricity exchange was computed.
-- net_flow - amount of electricity that was exchanged (in MW). Negative value are export of country to country_exchange. Positive value are import of country from country_exchange.
-=======
 - country_from - country that was passed in the `countries` parameter list.
 - country_to - country with which the electricity was exchanged.
 - timestamp - date for which the electricity exchange was computed.
 - net_flow - power exchanged (in MW). Negative value are export of `country_from` to `country_to`. Positive value are import of `country_from` from `country_to`.
->>>>>>> master
 
 Example :
 
