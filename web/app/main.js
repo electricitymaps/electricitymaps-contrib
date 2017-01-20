@@ -121,6 +121,10 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
+// Set proper locale
+var locale = window.navigator.userLanguage || window.navigator.language;
+moment.locale(locale);
+
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
@@ -379,6 +383,32 @@ if (isSmallScreen()) {
                 .text(Math.round(co2intensity) || '?');
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.key.toLowerCase());
+            tooltip.select('#import-detail').style('display', 
+                isExport ? 'none' : undefined);
+            tooltip.select('#export-detail').style('display', 
+                isExport ? undefined : 'none');
+            var totalProduction = countries[countryCode].totalProduction;
+            var absFlow = Math.abs(d.value);
+            if (isExport) {
+                // Proportion compared to production
+                var exportProportion = Math.round(absFlow / totalProduction * 100) || '?';
+                tooltip.select('#export-proportion-production').text(exportProportion + ' %');
+                tooltip.select('#export-proportion-production-detail').text(
+                    (formatPower(absFlow) || '?') + ' ' +
+                    ' / ' + 
+                    (formatPower(totalProduction) || '?'));
+            } else {
+                // Proportion compared to consumption
+                var netExchange = countries[countryCode].totalNetExchange;
+                var totalConsumption = totalProduction + netExchange;
+                var importProportion = Math.round(absFlow / totalConsumption * 100) || '?';
+                tooltip.select('#import-proportion-consumption').text(importProportion + ' %');
+                tooltip.select('#import-proportion-consumption-detail').text(
+                    (formatPower(absFlow) || '?') + ' ' +
+                    ' / ' + 
+                    (formatPower(totalConsumption) || '?'));
+            }
+            tooltip.selectAll('.country-code').text(countryCode);
         })
         .onExchangeMouseOut(function (d) {
             co2Colorbar.currentMarker(undefined);
@@ -409,14 +439,18 @@ if (isSmallScreen()) {
                 (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
                 (formatPower(d.capacity) || '?'));
+            // Calculate total power available in zone
             var totalProduction = countries[countryCode].totalProduction;
-            var productionProportion = Math.round(d.production / totalProduction * 100) || '?';
+            var netExchange = countries[countryCode].totalNetExchange;
+            var totalConsumption = totalProduction + netExchange;
+            var productionProportion = Math.round(d.production / totalConsumption * 100) || '?';
             tooltip.select('#production-proportion').text(
                 productionProportion + ' %');
             tooltip.select('#production-proportion-detail').text(
                 (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(totalProduction) || '?'))
+                (formatPower(totalConsumption) || '?'));
+            tooltip.select('.country-code').text(countryCode);
         })
         .onProductionMouseMove(function(d) {
             d3.select('#countrypanel-production-tooltip')
@@ -494,7 +528,7 @@ function dataLoaded(err, state, argSolar, argWind) {
     // Render country picker if we're on mobile
     if (isSmallScreen()) {
         var validCountries = d3.values(countries).filter(function(d) {
-            return d.production;
+            return d.co2intensity;
         }).sort(function(x, y) {
             if (!x.co2intensity && !x.countryCode)
                 return d3.ascending(x.shortname || x.countryCode,

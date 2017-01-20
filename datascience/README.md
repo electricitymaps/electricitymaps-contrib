@@ -49,7 +49,7 @@ Parameters :
 Data returned :
 
 - country - country that was passed in the `countries` parameter list.
-- production - amount of electricity that was produced (in MW).
+- production - power produced (in MW).
 - mode - production mode of electricity (oil,nuclear,gas,biomass,coal,solar,wind,hydro).
 - timestamp - timestamp at which the fetch was performed.
 
@@ -86,10 +86,17 @@ Parameters :
 
 Data returned :
 
+<<<<<<< HEAD
 - country - country that was passed in the `countries` parameter list.
 - country_exchange - country with which the electricity was exchanged.
 - timestamp - date for which the electricity exchange was computed.
 - net_flow - amount of electricity that was exchanged (in MW). Negative value are export of country to country_exchange. Positive value are import of country from country_exchange.
+=======
+- country_from - country that was passed in the `countries` parameter list.
+- country_to - country with which the electricity was exchanged.
+- timestamp - date for which the electricity exchange was computed.
+- net_flow - power exchanged (in MW). Negative value are export of `country_from` to `country_to`. Positive value are import of `country_from` from `country_to`.
+>>>>>>> master
 
 Example :
 
@@ -104,10 +111,10 @@ df_exchange.head()
 Returns :
 
 ```
-  country country_exchange                  timestamp net_flow
-0      DE               FR  2016-12-23T00:00:00+00:00    176.0
-1      DE               CH  2016-12-23T00:00:00+00:00  -2320.0
-2      DE               NL  2016-12-23T00:00:00+00:00  -1840.0
-3      DE               DK  2016-12-23T00:00:00+00:00    -79.0
-4      DE               CZ  2016-12-23T00:00:00+00:00   -476.0
+  country_from country_to                  timestamp net_flow
+0      DE              FR  2016-12-23T00:00:00+00:00    176.0
+1      DE              CH  2016-12-23T00:00:00+00:00  -2320.0
+2      DE              NL  2016-12-23T00:00:00+00:00  -1840.0
+3      DE              DK  2016-12-23T00:00:00+00:00    -79.0
+4      DE              CZ  2016-12-23T00:00:00+00:00   -476.0
 ```

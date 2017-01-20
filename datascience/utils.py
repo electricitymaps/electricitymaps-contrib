@@ -80,3 +80,31 @@ def get_exchange(countries, start_date, end_date, delta):
             if df is not None: df = df.append(p)
             else: df = p
     return df
+
+# get_exchange
+
+def fetch_exchange(country_code, t):
+    endpoint = 'http://electricitymap.tmrow.co'
+    url = '%s/v1/state' % endpoint
+    params = {
+        'datetime': t.to('utc').isoformat()
+    }
+    obj = r.get(url, params=params).json()
+    if not obj['data']['countries'].get(country_code, None): return
+    return obj['data']['countries'].get(country_code, None)
+
+def get_exchange(countries, start_date, end_date):
+    delta = 1440 # Only return exchange for an entire day
+    df = pd.DataFrame(columns=['country_from', 'timestamp', 'country_to', 'net_flow'])
+    time_span = date_range(start_date, end_date, delta)
+    for country in countries:
+        print 'Fetching country %s..' % country
+        for t in time_span:
+            print 'Fetching time %s..' % t
+            o = fetch_exchange(country, t)
+            p = pd.DataFrame({'country_from': country,
+                              'timestamp': t,
+                              'country_to': o['exchange'].keys(),
+                              'net_flow': o['exchange'].values()})
+            df = df.append(p)
+    return df

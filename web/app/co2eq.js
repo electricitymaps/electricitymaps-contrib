@@ -11,7 +11,8 @@ exports.compute = function(countries) {
         .filter(function (d) {
             // Double check that total production + import >= export
             return (d.totalProduction + d.totalImport) >= d.totalExport;
-        });
+        })
+        .filter(function (d) { return d.countryCode != 'NL'; });
     var validCountryKeys = validCountries.map(function (d) { return d.countryCode });
     // x_i: unknown co2 (consumption) footprint of i-th country
     // f_ij: known co2 footprint of j-th system of i-th country

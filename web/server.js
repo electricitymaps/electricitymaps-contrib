@@ -11,6 +11,7 @@ if (isProduction) {
 }
 
 var async = require('async');
+var co2eq_parameters = require('./app/co2eq_parameters');
 var co2lib = require('./app/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
@@ -29,6 +30,11 @@ var server = http.Server(app);
 // * Common
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 // * Static and templating
 var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
@@ -105,7 +111,7 @@ function processDatabaseResults(countries, exchanges) {
         });
     });
     // Compute aggregates
-    d3.values(countries).forEach(function (country) {
+    d3.values(countries).forEach(function(country) {
         country.maxProduction =
             d3.max(d3.values(country.production));
         country.totalProduction =
@@ -138,6 +144,11 @@ function computeCo2(countries, exchanges) {
             country.exchangeCo2Intensities[k] =
                 country.exchange[k] > 0 ? assignments[k] : country.co2intensity;
         });
+        country.productionCo2Intensities = {};
+        d3.keys(country.production).forEach(function(k) {
+            country.productionCo2Intensities[k] = co2eq_parameters.footprintOf(
+                k, country.countryCode);
+        })
     });
     d3.values(exchanges).forEach(function(exchange) {
         exchange.co2intensity = countries[exchange.countryCodes[exchange.netFlow > 0 ? 0 : 1]].co2intensity;
@@ -199,10 +210,11 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
             exchanges = results[1];
             // This can crash, so we to try/catch
             try {
-                callback(err, processDatabaseResults(countries, exchanges));
+                result = processDatabaseResults(countries, exchanges);
             } catch(err) {
                 callback(err);
             }
+            callback(err, result);
         });
     });
 }
@@ -368,6 +380,9 @@ app.get('/v1/state', function(req, res) {
         //statsdClient.timing('state_GET', deltaMs);
     }
     if (req.query.datetime) {
+        // Ignore requests in the future
+        if (moment(req.query.datetime) > moment.now())
+            returnObj({countries: {}, exchanges: {}}, false);
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 //statsdClient.increment('state_GET_ERROR');
@@ -524,6 +539,59 @@ function handleForecastQuery(key, req, res) {
 }
 app.get('/v2/gfs/:key', function(req, res) {
     return handleForecastQuery(req.params.key, req, res);
+});
+
+app.get('/v2/co2LastDay', function(req, res) {
+    var countryCode = req.query.countryCode;
+    if (!countryCode) return res.status(400).send('countryCode required');
+    var cacheKey = 'co2LastDay_' + countryCode;
+
+    function returnData(data, cached) {
+        res.json({
+            'data': data,
+            'cached': cached
+        })
+    };
+
+    return memcachedClient.get(cacheKey, function (err, data) {
+        if (err) { 
+            if (opbeat) 
+                opbeat.captureError(err); 
+            console.error(err);
+        }
+        if (data) returnData(data, true);
+        else {
+            var now = moment();
+            var before = moment(now).subtract(1, 'day');
+            var dates = [now];
+            while (dates[dates.length - 1] > before)
+                dates.push(moment(dates[dates.length - 1]).subtract(30, 'minute'));
+            var tasks = dates.map(function(d) {
+                return function(callback) {
+                    return queryLastValuesBeforeDatetime(d, callback)
+                };
+            });
+            return async.parallel(tasks, function(err, objs) {
+                if (err) {
+                    handleError(err);
+                    return res.status(500).send('Unknown server error');
+                }
+                // Find unique entries
+                var dict = {};
+                objs.forEach(function(d) {
+                    if (d.countries[countryCode])
+                        dict[d.countries[countryCode].datetime] = d.countries[countryCode];
+                });
+                var data = d3.values(dict).sort(function(x, y) { return d3.ascending(x.datetime, y.datetime); });
+                memcachedClient.set(cacheKey, data, 15 * 60, function(err) {
+                    if (err) {
+                        handleError(err);
+                    }
+                });
+                returnData(data, false);
+            });
+        }
+    });
 });
 
 // *** UNVERSIONED ***
