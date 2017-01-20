@@ -141,8 +141,12 @@ function computeCo2(countries, exchanges) {
     d3.values(countries).forEach(function(country) {
         country.exchangeCo2Intensities = {};
         d3.keys(country.exchange).forEach(function(k) {
+            // Note that for imports of countries with unknown co2intensity
+            // the current country co2intensity is used (see co2eq.js)
             country.exchangeCo2Intensities[k] =
-                country.exchange[k] > 0 ? assignments[k] : country.co2intensity;
+                country.exchange[k] > 0 ?
+                    (assignments[k] || country.co2intensity) :
+                    country.co2intensity;
         });
         country.productionCo2Intensities = {};
         d3.keys(country.production).forEach(function(k) {
