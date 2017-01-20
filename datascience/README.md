@@ -83,6 +83,7 @@ Parameters :
 - countries (*list*) - a list of country codes to pull.
 - start_date (*string*) - start date. Date format is `YYYY-MM-DD`.
 - end_date (*string*) - end date. Date format is `YYYY-MM-DD`.
+- delta(*int*) - interval of timestamp between `start_date` and `end_date`. In minutes.
 
 Data returned :
 
@@ -96,7 +97,7 @@ Example :
 ```python
 from utils import get_exchange
 
-df_exchange = get_exchange(['DE','FR'], '2016-12-23', '2016-12-24')
+df_exchange = get_exchange(['DE','FR'], '2016-12-23', '2016-12-24', 1440)
 
 df_exchange.head()
 ```

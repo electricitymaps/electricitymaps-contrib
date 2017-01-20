@@ -36,7 +36,6 @@ def get_production(countries, start_date, end_date, delta):
     for country in countries:
         print 'Fetching country %s..' % country
         for t in time_span:
-            print 'Fetching time %s..' % t
             o = fetch_production(country, t, delta)
             if not o: continue
             modes = o['production'].keys()
@@ -69,7 +68,6 @@ def get_exchange(countries, start_date, end_date, delta):
     for country in countries:
         print 'Fetching country %s..' % country
         for t in time_span:
-            print 'Fetching time %s..' % t
             o = fetch_exchange(country, t)
             if not o: continue
             country_exchanges = o['exchange'].keys()
@@ -93,14 +91,12 @@ def fetch_exchange(country_code, t):
     if not obj['data']['countries'].get(country_code, None): return
     return obj['data']['countries'].get(country_code, None)
 
-def get_exchange(countries, start_date, end_date):
-    delta = 1440 # Only return exchange for an entire day
+def get_exchange(countries, start_date, end_date, delta):
     df = pd.DataFrame(columns=['country_from', 'timestamp', 'country_to', 'net_flow'])
     time_span = date_range(start_date, end_date, delta)
     for country in countries:
         print 'Fetching country %s..' % country
         for t in time_span:
-            print 'Fetching time %s..' % t
             o = fetch_exchange(country, t)
             p = pd.DataFrame({'country_from': country,
                               'timestamp': t,
