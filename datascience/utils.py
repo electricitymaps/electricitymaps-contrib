@@ -59,8 +59,7 @@ def fetch_exchange(country_code, t):
         'datetime': t.isoformat()
     }
     obj = r.get(url, params=params).json()
-    if not obj['data']['countries'][country_code]: return
-    return obj['data']['countries'][country_code]
+    return obj['data']['countries'].get(country_code, None)
 
 def get_exchange(countries, start_date, end_date, delta):
     df = None
@@ -71,9 +70,9 @@ def get_exchange(countries, start_date, end_date, delta):
             o = fetch_exchange(country, t)
             if not o: continue
             country_exchanges = o['exchange'].keys()
-            p = pd.DataFrame({'country': country,
+            p = pd.DataFrame({'country_from': country,
                               'timestamp': pd.Timestamp(t.datetime),
-                              'country_exchange': country_exchanges,
+                              'country_to': country_exchanges,
                               'net_flow': map(lambda k: o['exchange'][k], country_exchanges)})
             if df is not None: df = df.append(p)
             else: df = p
