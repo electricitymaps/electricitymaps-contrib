@@ -74,7 +74,7 @@ Returns :
 4      DE     19919.0     coal  2016-12-23T00:00:00+00:00
 ```
 
-#### get_exchange(countries, start_date, end_date)
+#### get_exchange(countries, start_date, end_date, delta)
 
 This function returns for each day between `start_date` and `end_date`, the electricity production exchanges for each country defined in `countries`. Data are returned as a [pandas DataFrame](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
 
