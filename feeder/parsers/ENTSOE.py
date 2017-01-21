@@ -215,10 +215,10 @@ def parse_price(xml_text):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
+            position = int(entry.find_all('position')[0].contents[0])
             datetime=datetime_from_position(datetime_start, position, resolution)
             if datetime > arrow.now(tz='Europe/Paris'): continue
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
-            position = int(entry.find_all('position')[0].contents[0])
             datetimes.append(datetime)
     return prices, datetimes
 
