@@ -64,8 +64,8 @@ def fetch_production(country_code='FR', session=None):
 
 def fetch_price(country_code, session=None, from_date=None, to_date=None):
     r = session or requests.session()
-    dt_now=arrow.now(tz='Europe/Paris')
-    formatted_from = from_date or dt_now.replace(days=-1).format('DD/MM/YYYY')
+    dt_now = arrow.now(tz='Europe/Paris')
+    formatted_from = from_date or dt_now.format('DD/MM/YYYY')
     formatted_to = to_date or dt_now.format('DD/MM/YYYY')
     
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_from, formatted_to)
