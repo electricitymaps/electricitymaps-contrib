@@ -10,7 +10,8 @@ exports.compute = function(countries) {
         .filter(function (d) { return d.countryCode && d.production; })
         .filter(function (d) {
             // Double check that total production + import >= export
-            return (d.totalProduction + d.totalImport) >= d.totalExport;
+            return (d.totalProduction + d.totalImport) >= d.totalExport &&
+                d.totalProduction > 0;
         })
         .filter(function (d) { return d.countryCode != 'NL'; });
     var validCountryKeys = validCountries.map(function (d) { return d.countryCode });
@@ -31,11 +32,12 @@ exports.compute = function(countries) {
 
     validCountries.forEach(function (country, i) {
         A.set([i, i], country.totalProduction + country.totalImport);
-        // Intern
+        // Production
         d3.entries(country.production).forEach(function (production) {
             var footprint = co2eq_parameters.footprintOf(production.key, country.countryCode);
             if (footprint === undefined) {
-                console.warn(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
+                // This is a fatal error: we shouldn't proceed beyond that point.
+                console.error(country.countryCode + ' CO2 footprint of ' + production.key + ' is unknown');
                 return;
             }
             // Accumulate
@@ -44,15 +46,17 @@ exports.compute = function(countries) {
         // Exchanges
         if (country.exchange) {
             d3.entries(country.exchange).forEach(function (exchange) {
+                // Only look at imports (exports cancel out)
                 if (exchange.value > 0) {
                     var j = validCountryKeys.indexOf(exchange.key);
                     if (j < 0) {
-                        if (typeof require == 'undefined')
-                            console.warn(country.countryCode + ' neighbor ' + exchange.key + ' has no co2 data');
-                        return;
+                        // The country we're importing from is not one
+                        // we're solving for.
+                        // Let's therefore give it the footprint of this country.
+                        A.set([i, i], A.get([i, i]) - exchange.value);
+                    } else {
+                        A.set([i, j], -exchange.value);
                     }
-                    // Import
-                    A.set([i, j], -exchange.value);
                 }
             });
         }

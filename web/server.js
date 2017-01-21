@@ -141,8 +141,12 @@ function computeCo2(countries, exchanges) {
     d3.values(countries).forEach(function(country) {
         country.exchangeCo2Intensities = {};
         d3.keys(country.exchange).forEach(function(k) {
+            // Note that for imports of countries with unknown co2intensity
+            // the current country co2intensity is used (see co2eq.js)
             country.exchangeCo2Intensities[k] =
-                country.exchange[k] > 0 ? assignments[k] : country.co2intensity;
+                country.exchange[k] > 0 ?
+                    (assignments[k] || country.co2intensity) :
+                    country.co2intensity;
         });
         country.productionCo2Intensities = {};
         d3.keys(country.production).forEach(function(k) {
@@ -380,6 +384,9 @@ app.get('/v1/state', function(req, res) {
         //statsdClient.timing('state_GET', deltaMs);
     }
     if (req.query.datetime) {
+        // Ignore requests in the future
+        if (moment(req.query.datetime) > moment.now())
+            returnObj({countries: {}, exchanges: {}}, false);
         queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 //statsdClient.increment('state_GET_ERROR');
@@ -562,7 +569,7 @@ app.get('/v2/co2LastDay', function(req, res) {
             var before = moment(now).subtract(1, 'day');
             var dates = [now];
             while (dates[dates.length - 1] > before)
-                dates.push(moment(dates[dates.length - 1]).subtract(1, 'hour'));
+                dates.push(moment(dates[dates.length - 1]).subtract(30, 'minute'));
             var tasks = dates.map(function(d) {
                 return function(callback) {
                     return queryLastValuesBeforeDatetime(d, callback)
@@ -580,7 +587,7 @@ app.get('/v2/co2LastDay', function(req, res) {
                         dict[d.countries[countryCode].datetime] = d.countries[countryCode];
                 });
                 var data = d3.values(dict).sort(function(x, y) { return d3.ascending(x.datetime, y.datetime); });
-                memcachedClient.set(cacheKey, data, 5 * 60, function(err) {
+                memcachedClient.set(cacheKey, data, 15 * 60, function(err) {
                     if (err) {
                         handleError(err);
                     }
