@@ -205,7 +205,7 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
                 datetimes.append(datetime)
     return quantities, datetimes
 
-def parse_prices(xml_text):
+def parse_price(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
@@ -215,9 +215,11 @@ def parse_prices(xml_text):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
+            datetime=datetime_from_position(datetime_start, position, resolution)
+            if datetime > arrow.now(tz='Europe/Paris'): continue
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
             position = int(entry.find_all('position')[0].contents[0])
-            datetimes.append(datetime_from_position(datetime_start, position, resolution))
+            datetimes.append(datetime)
     return prices, datetimes
 
 def get_biomass(values):
@@ -359,11 +361,11 @@ def fetch_exchange(country_code1, country_code2, session=None):
         'source': 'entsoe.eu'
     }
 
-def fetch_prices(country_code, session=None):
+def fetch_price(country_code, session=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_prices(query_price(domain, session))
+    parsed = parse_price(query_price(domain, session))
     if parsed:
         prices, datetimes = parsed
         data = {

@@ -225,39 +225,36 @@ EXCHANGE_PARSERS = {
 }
 
 PRICE_PARSERS = {
-    
-    'FR': FR.fetch_prices,
-    'AT': ENTSOE.fetch_prices,
-    'BE': ENTSOE.fetch_prices,
-    'BG': ENTSOE.fetch_prices,
-    'CH': ENTSOE.fetch_prices,
-    'CZ': ENTSOE.fetch_prices,
-    'DE': ENTSOE.fetch_prices,
-    'DK': ENTSOE.fetch_prices,
-    'EE': ENTSOE.fetch_prices,
-    'ES': ENTSOE.fetch_prices,
-    'FI': ENTSOE.fetch_prices,
-    'GB': ENTSOE.fetch_prices,
-    'GB-NIR': ENTSOE.fetch_prices,
-    'GR': ENTSOE.fetch_prices,
-    'HU': ENTSOE.fetch_prices,
-    'IE': ENTSOE.fetch_prices,
-    'IT': ENTSOE.fetch_prices,
-    'LT': ENTSOE.fetch_prices,
-    'LU': ENTSOE.fetch_prices,
-    'LV': ENTSOE.fetch_prices,
-    'NL': ENTSOE.fetch_prices,
-    'NO': ENTSOE.fetch_prices,
-    'PL': ENTSOE.fetch_prices,
-    'PT': ENTSOE.fetch_prices,
-    'RO': ENTSOE.fetch_prices,
-    'RS': ENTSOE.fetch_prices,
-    'SE': ENTSOE.fetch_prices,
-    'SI': ENTSOE.fetch_prices,
-    'SK': ENTSOE.fetch_prices,
+    'AT': ENTSOE.fetch_price,
+    'BE': ENTSOE.fetch_price,
+    'BG': ENTSOE.fetch_price,
+    'CH': ENTSOE.fetch_price,
+    'CZ': ENTSOE.fetch_price,
+    'DE': ENTSOE.fetch_price,
+    'DK': ENTSOE.fetch_price,
+    'EE': ENTSOE.fetch_price,
+    'ES': ENTSOE.fetch_price,
+    'FR': FR.fetch_price,
+    'FI': ENTSOE.fetch_price,
+    'GB': ENTSOE.fetch_price,
+    'GB-NIR': ENTSOE.fetch_price,
+    'GR': ENTSOE.fetch_price,
+    'HU': ENTSOE.fetch_price,
+    'IE': ENTSOE.fetch_price,
+    'IT': ENTSOE.fetch_price,
+    'LT': ENTSOE.fetch_price,
+    'LU': ENTSOE.fetch_price,
+    'LV': ENTSOE.fetch_price,
+    'NL': ENTSOE.fetch_price,
+    'NO': ENTSOE.fetch_price,
+    'PL': ENTSOE.fetch_price,
+    'PT': ENTSOE.fetch_price,
+    'RO': ENTSOE.fetch_price,
+    'RS': ENTSOE.fetch_price,
+    'SE': ENTSOE.fetch_price,
+    'SI': ENTSOE.fetch_price,
+    'SK': ENTSOE.fetch_price,
 }
-
-
 
 # Set up stats
 import statsd
@@ -380,13 +377,12 @@ def fetch_exchanges():
             statsd.increment('fetch_one_exchange_error')
             logger.exception('Exception while fetching exchange of %s' % k)
 
-def fetch_prices():
+def fetch_price():
     for country_code, parser in PRICE_PARSERS.iteritems():
         try:
             with statsd.StatsdTimer('fetch_one_price'):
                 obj = parser(country_code,session)
                 if not obj: continue
-                # validate_price(obj)
                 # Database insert
                 result = db_upsert(col_price,obj, 'countryCode')
                 if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
@@ -472,13 +468,13 @@ schedule.every(15).minutes.do(fetch_weather)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_prices)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_price)
 
 fetch_weather()
 fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
-fetch_prices()
+fetch_price()
 
 while True:
     schedule.run_pending()
