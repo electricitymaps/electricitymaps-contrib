@@ -194,7 +194,8 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     position: absolute;
 }
 
-@media screen and (min-width: 750px) {
+/* Small devices (phones, etc.) */
+@media (max-width: 768px) {
     .small-screen-visible {
         display: none;
     }
@@ -207,7 +208,9 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
         bottom: 0px;
     }
 }
-@media screen and (max-width: 750px) {
+
+/* Medium and large devices (tablets, desktops, etc.) */
+@media (min-width: 768px) {
     .large-screen-visible {
         display: none;
     }
