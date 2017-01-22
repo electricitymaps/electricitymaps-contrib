@@ -195,7 +195,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 }
 
 /* Small devices (phones, etc.) */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .small-screen-visible {
         display: none;
     }
@@ -210,7 +210,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .large-screen-visible {
         display: none;
     }
