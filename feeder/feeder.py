@@ -207,7 +207,7 @@ EXCHANGE_PARSERS = {
     # LV
     'LV->RU':     ENTSOE.fetch_exchange,
     # MD
-    'MD->RO':     ENTSOE.fetch_exchange,
+    # 'MD->RO':     ENTSOE.fetch_exchange,
     # MK
     'MK->RS':     ENTSOE.fetch_exchange,
     # NL
