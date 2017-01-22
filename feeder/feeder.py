@@ -224,6 +224,38 @@ EXCHANGE_PARSERS = {
     # 'SK->UA':     ENTSOE.fetch_exchange,
 }
 
+PRICE_PARSERS = {
+    'AT': ENTSOE.fetch_price,
+    'BE': ENTSOE.fetch_price,
+    'BG': ENTSOE.fetch_price,
+    'CH': ENTSOE.fetch_price,
+    'CZ': ENTSOE.fetch_price,
+    'DE': ENTSOE.fetch_price,
+    'DK': ENTSOE.fetch_price,
+    'EE': ENTSOE.fetch_price,
+    'ES': ENTSOE.fetch_price,
+    'FI': ENTSOE.fetch_price,
+    'FR': FR.fetch_price,
+    'GB': ENTSOE.fetch_price,
+    'GB-NIR': ENTSOE.fetch_price,
+    'GR': ENTSOE.fetch_price,
+    'HU': ENTSOE.fetch_price,
+    'IE': ENTSOE.fetch_price,
+    'IT': ENTSOE.fetch_price,
+    'LT': ENTSOE.fetch_price,
+    'LU': ENTSOE.fetch_price,
+    'LV': ENTSOE.fetch_price,
+    'NL': ENTSOE.fetch_price,
+    'NO': ENTSOE.fetch_price,
+    'PL': ENTSOE.fetch_price,
+    'PT': ENTSOE.fetch_price,
+    'RO': ENTSOE.fetch_price,
+    'RS': ENTSOE.fetch_price,
+    'SE': ENTSOE.fetch_price,
+    'SI': ENTSOE.fetch_price,
+    'SK': ENTSOE.fetch_price,
+}
+
 # Set up stats
 import statsd
 statsd.init_statsd({
@@ -238,12 +270,14 @@ col_consumption = db['consumption']
 col_gfs = db['gfs']
 col_production = db['production']
 col_exchange = db['exchange']
+col_price = db['price']
 # Set up indices
 col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', 1), ('key', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', -1), ('key', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
+col_price.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
@@ -343,6 +377,19 @@ def fetch_exchanges():
             statsd.increment('fetch_one_exchange_error')
             logger.exception('Exception while fetching exchange of %s' % k)
 
+def fetch_price():
+    for country_code, parser in PRICE_PARSERS.iteritems():
+        try:
+            with statsd.StatsdTimer('fetch_one_price'):
+                obj = parser(country_code,session)
+                if not obj: continue
+                # Database insert
+                result = db_upsert(col_price,obj, 'countryCode')
+                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+        except:
+            statsd.increment('fetch_one_price_error')
+            logger.exception('Exception while fetching pricing of %s' % country_code)
+
 def db_upsert_forecast(col, obj, database_key):
     now = arrow.now().datetime
     query = {
@@ -421,11 +468,13 @@ schedule.every(15).minutes.do(fetch_weather)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
 schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_price)
 
 fetch_weather()
 fetch_consumptions()
 fetch_productions()
 fetch_exchanges()
+fetch_price()
 
 while True:
     schedule.run_pending()
