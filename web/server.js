@@ -501,6 +501,40 @@ app.get('/v1/co2', function(req, res) {
         res.status(400).json({'error': 'Missing arguments "lon" and "lat" or "countryCode"'})
     }
 });
+app.get('/v1/exchanges', function(req, res) {
+    var countryCode = req.query.countryCode;
+    var datetime = req.query.datetime;
+    if (!countryCode) {
+        res.status(400).json({'error': 'Missing argument "countryCode"'});
+        return;
+    }
+    var maxDate = datetime ? new Date(datetime) : undefined;
+    var minDate = (moment(maxDate) || moment.utc()).subtract(24, 'hours').toDate();
+    mongoExchangeCollection.distinct('sortedCountryCodes',
+        {datetime: rangeQuery(minDate, maxDate)},
+        function(err, sortedCountryCodes) {
+            if (err) {
+                handleError(err);
+                res.status(500).json({error: 'Unknown database error'});
+            } else {
+                sortedCountryCodes = sortedCountryCodes.filter(function(d) {
+                    var arr = d.split('->')
+                    var from = arr[0]; var to = arr[1];
+                    return (from === countryCode || to === countryCode);
+                });
+                queryElements('sortedCountryCodes', sortedCountryCodes,
+                    mongoExchangeCollection, minDate, maxDate,
+                    function(err, data) {
+                        if (err) {
+                            handleError(err);
+                            res.status(500).json({error: 'Unknown database error'});
+                        } else {
+                            res.json({status: 'ok', data: data});
+                        }
+                    });
+            }
+        })
+});
 app.get('/v1/production', function(req, res) {
     var countryCode = req.query.countryCode;
     var datetime = req.query.datetime;
