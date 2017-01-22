@@ -212,6 +212,8 @@ def parse_price(xml_text):
     prices = []
     datetimes = []
     for timeseries in soup.find_all('timeseries'):
+        currency = timeseries.find_all('currency_unit.name')[0].contents[0]
+        if currency != 'EUR': raise Exception('Currency %s is not recognised' % currency)
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
