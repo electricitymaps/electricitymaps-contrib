@@ -117,7 +117,7 @@ html, body {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity, .emission-intensity, #exchange-tooltip .flow {
+.country-emission-intensity, .country-spot-price, .emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
 .emission-rect {
