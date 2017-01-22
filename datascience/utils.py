@@ -64,20 +64,26 @@ def fetch_exchange(country_code, t):
 def get_exchange(countries, start_date, end_date, delta):
     df = None
     time_span = date_range(start_date, end_date, delta)
-    for country in countries:
-        print 'Fetching country %s..' % country
+    for country_code in countries:
+        print 'Fetching country %s..' % country_code
         for t in time_span:
-            o = fetch_exchange(country, t)
+            o = fetch_exchange(country_code, t)
             if not o: continue
             country_exchanges = o.values()
-            country_froms = map(lambda x: x['sortedCountryCodes'].split('->')[0],
-                country_exchanges)
-            country_tos = map(lambda x: x['sortedCountryCodes'].split('->')[1],
-                country_exchanges)
-            net_flows = map(lambda x: x['netFlow'], country_exchanges)
+            # Make sure `from` is always `country_code`
+            country_tos = []
+            net_flows = []
+            for item in country_exchanges:
+                sorted_country_codes = item['sortedCountryCodes'].split('->')
+                if sorted_country_codes[0] == country_code:
+                    country_tos.append(sorted_country_codes[1])
+                    net_flows.append(item['netFlow'])
+                else:
+                    country_tos.append(sorted_country_codes[0])
+                    net_flows.append(-1 * item['netFlow'])
             timestamps = map(lambda x: pd.Timestamp(arrow.get(x['datetime']).datetime),
                 country_exchanges)
-            p = pd.DataFrame({'country_from': country_froms,
+            p = pd.DataFrame({'country_from': country_code,
                               'timestamp': timestamps,
                               'country_to': country_tos,
                               'net_flow': net_flows})
