@@ -13,7 +13,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['AL->RS'] = {
         lonlat: [20.160588, 42.762233],
         rotation: 0
-    }
+    };
     // AT
     exchanges['AT->CH'] = {
         lonlat: [9.597882, 47.079455],
@@ -47,7 +47,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['BA->RS'] = {
         lonlat: [19.127873, 44.377951],
         rotation: 90
-    },
+    };
     // BE
     exchanges['BE->FR'] = {
         lonlat: [4.137165, 50.255806],

@@ -126,6 +126,7 @@ PRODUCTION_PARSERS = {
 EXCHANGE_PARSERS = {
     # AL
     'AL->GR':     ENTSOE.fetch_exchange,
+    'AL->ME':     ENTSOE.fetch_exchange,
     'AL->RS':     ENTSOE.fetch_exchange,
     # AT
     'AT->CH':     ENTSOE.fetch_exchange,
@@ -135,6 +136,7 @@ EXCHANGE_PARSERS = {
     'AT->IT':     ENTSOE.fetch_exchange,
     'AT->SI':     ENTSOE.fetch_exchange,
     # BA
+    'BA->ME':     ENTSOE.fetch_exchange,
     'BA->RS':     ENTSOE.fetch_exchange,
     # BE
     'BE->FR':     ENTSOE.fetch_exchange,
@@ -207,8 +209,6 @@ EXCHANGE_PARSERS = {
     # LV
     'LV->RU':     ENTSOE.fetch_exchange,
     # ME
-    'ME->AL':     ENTSOE.fetch_exchange,
-    'ME->BA':     ENTSOE.fetch_exchange,
     'ME->RS':     ENTSOE.fetch_exchange,
     # MD
     'MD->RO':     ENTSOE.fetch_exchange,
