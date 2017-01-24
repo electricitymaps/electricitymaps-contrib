@@ -285,16 +285,17 @@ function selectCountry(countryCode) {
             .data(countries[countryCode]);
         selectedCountryCode = countryCode;
     }
-    if (isSmallScreen())
-        d3.select('#country-table-back-button').style('display',
-            selectedCountryCode ? 'block' : 'none');
+    d3.select('#country-table-back-button').style('display',
+        selectedCountryCode ? 'block' : 'none');
 }
+
+
+d3.select('#country-table-back-button')
+    .on('click', function() { selectCountry(undefined); });
 
 // Mobile
 if (isSmallScreen()) {
     d3.select('.map').selectAll('*').remove();
-    d3.select('#country-table-back-button')
-        .on('click', function() { selectCountry(undefined); });
 } else {
     d3.select('.panel-container')
         .style('width', '330px');
