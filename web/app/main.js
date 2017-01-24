@@ -39,7 +39,7 @@ function isMobile() {
 }
 function isSmallScreen() {
     // Should be in sync with media queries in CSS
-    return window.innerWidth < 750;
+    return window.innerWidth < 768;
 }
 
 // History state
@@ -285,16 +285,17 @@ function selectCountry(countryCode) {
             .data(countries[countryCode]);
         selectedCountryCode = countryCode;
     }
-    if (isSmallScreen())
-        d3.select('#country-table-back-button').style('display',
-            selectedCountryCode ? 'block' : 'none');
+    d3.select('#country-table-back-button').style('display',
+        selectedCountryCode ? 'block' : 'none');
 }
+
+
+d3.select('#country-table-back-button')
+    .on('click', function() { selectCountry(undefined); });
 
 // Mobile
 if (isSmallScreen()) {
     d3.select('.map').selectAll('*').remove();
-    d3.select('#country-table-back-button')
-        .on('click', function() { selectCountry(undefined); });
 } else {
     d3.select('.panel-container')
         .style('width', '330px');
@@ -584,6 +585,9 @@ function dataLoaded(err, state, argSolar, argWind) {
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
                 .text(Math.round(d.co2intensity) || '?');
+            tooltip.select('.country-spot-price')
+                .text(Math.round((d.price || {}).value) || '?')
+                .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
         })
         .onCountryMouseMove(function (d) {
             var tooltip = d3.select('#country-tooltip');

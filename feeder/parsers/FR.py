@@ -62,5 +62,41 @@ def fetch_production(country_code='FR', session=None):
 
     return data
 
+def fetch_price(country_code, session=None, from_date=None, to_date=None):
+    r = session or requests.session()
+    dt_now = arrow.now(tz='Europe/Paris')
+    formatted_from = from_date or dt_now.format('DD/MM/YYYY')
+    formatted_to = to_date or dt_now.format('DD/MM/YYYY')
+    
+    url = 'http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_from, formatted_to)
+    response = r.get(url)
+    obj = ET.fromstring(response.content)
+    mixtr = obj[5]
+
+    prices = []
+    datetimes = []
+
+    date_str = mixtr.get('date')
+    date = arrow.get(arrow.get(date_str).datetime, 'Europe/Paris')
+    for country_item in mixtr.getchildren():
+        if country_item.get('granularite') != 'Global': continue
+        country_c=country_item.get('perimetre')
+        if country_code != country_c: continue
+        value = None
+        for value in country_item.getchildren():
+            if value.text == 'ND': continue
+            datetime=date.replace(hours=+int(value.attrib['periode'])).datetime
+            if datetime > dt_now: continue
+            datetimes.append(datetime)
+            prices.append(float(value.text))
+    
+    data = {
+        'countryCode': country_code,
+        'datetime': datetimes[-1],
+        'price': prices[-1],
+        'source': 'rte-france.com',
+    }
+    return data
+
 if __name__ == '__main__':
     print fetch_production()

@@ -219,18 +219,22 @@ CountryTable.prototype.data = function(arg) {
         // Prepare axis
         var ticks = 4;
         if (that._displayByEmissions) {
-            var p = d3.precisionRound(
-                (d3.max(this.co2Scale.domain()) - d3.min(this.co2Scale.domain())) / ticks,
-                d3.max(this.co2Scale.domain()));
+            var value = d3.max(this.co2Scale.domain());
+            var p = d3.precisionPrefix(
+                (d3.max(this.co2Scale.domain()) - d3.min(this.co2Scale.domain())) / (ticks - 1),
+                value);
+            var f = d3.formatPrefix('.' + p, value);
             this.axis = d3.axisTop(this.co2Scale)
-                .tickFormat(function (d) { return d3.format('.' + p + 's')(d) + 't/min'; });
+                .tickFormat(function (d) { return f(d) + 't/min'; });
         }
         else {
-            var p = d3.precisionRound(
-                (d3.max(this.powerScale.domain()) - d3.min(this.powerScale.domain())) / ticks * 1e6,
-                d3.max(this.powerScale.domain()) * 1e6);
+            var value = d3.max(this.powerScale.domain()) * 1e6;
+            var p = d3.precisionPrefix(
+                (d3.max(this.powerScale.domain()) - d3.min(this.powerScale.domain())) / (ticks - 1) * 1e6,
+                value);
+            var f = d3.formatPrefix('.' + p, value);
             this.axis = d3.axisTop(this.powerScale)
-                .tickFormat(function (d) { return d3.format('.' + p + 's')(d * 1e6) + 'W'; });
+                .tickFormat(function (d) { return f(d * 1e6) + 'W'; });
         }
 
         this.axis
@@ -416,6 +420,9 @@ CountryTable.prototype.data = function(arg) {
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
+        d3.select('.country-spot-price')
+            .text(Math.round((this._data.price || {}).value) || '?')
+            .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);
         d3.select('#country-emission-rect')
             .transition()
             .style('background-color',

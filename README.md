@@ -105,6 +105,9 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 
+### Electricity prices (day-ahead) data sources
+- France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
+- Other: [ENTSO-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)
 
 ### Real-time weather data sources
 We use the [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)'s GFS 0.25 Degree Hourly data.
@@ -134,7 +137,7 @@ To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) t
 
 The frontend will need compiling. In order to do this, open a terminal and run
 ```
-docker-compose run web npm run watch
+docker-compose run --rm web npm run watch
 ```
 This will watch over source file changes, and recompile if needed.
 
