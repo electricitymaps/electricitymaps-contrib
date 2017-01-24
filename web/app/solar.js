@@ -50,7 +50,10 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var solarScale = solarColor.domain()[solarColor.domain().length - 1];
 
     var k = (now - t_before) / (t_after - t_before);
-    if (!k || !isFinite(k)) k = 0;
+    if (!k || !isFinite(k)) {
+        console.warn("The start and end forecast are identical !");
+        k = 0;
+    }
 
     var Nx = grib1.header.nx;
     var Ny = grib1.header.ny;
@@ -61,7 +64,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
 
     var BLUR_RADIUS = 20;
 
-    var alphas = solarColor.range().map(function (d) {
+    var alphas = solarColor.range().map(function(d) {
         return parseFloat(d
             .replace('(', '')
             .replace(')', '')
@@ -75,7 +78,6 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     realH = solarCanvas.node().getBoundingClientRect().height;
     var w = realW,
         h = realH;
-
 
     // Set our domain
     var NE = projection.invert([realW, 0])
