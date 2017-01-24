@@ -63,6 +63,7 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
     console.log('Connected to database');
     mongoGfsCollection = db.collection('gfs');
     mongoExchangeCollection = db.collection('exchange');
+    mongoPriceCollection = db.collection('price');
     mongoProductionCollection = db.collection('production');
 
     // Start the application
@@ -81,7 +82,7 @@ MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
 // });
 
 // * Database methods
-function processDatabaseResults(countries, exchanges) {
+function processDatabaseResults(countries, exchanges, prices) {
     // Assign exchanges to countries
     d3.entries(exchanges).forEach(function(entry) {
         sortedCountryCodes = entry.key.split('->');
@@ -100,6 +101,15 @@ function processDatabaseResults(countries, exchanges) {
         country2.exchange[sortedCountryCodes[0]] = entry.value.netFlow;
     });
 
+    // Assign prices to countries
+    d3.entries(prices).forEach(function(entry) {
+        countries[entry.key].price = {
+            datetime: entry.value.datetime,
+            value: entry.value.price
+        }
+    });
+
+    // Quality check
     d3.keys(countries).forEach(function(k) {
         if (!countries[k])
             countries[k] = {countryCode: k};
@@ -184,7 +194,7 @@ function queryElements(keyName, keyValues, collection, minDate, maxDate, callbac
 function queryLastValuesBeforeDatetime(datetime, callback) {
     var minDate = (moment(datetime) || moment.utc()).subtract(24, 'hours').toDate();
     var maxDate = datetime ? new Date(datetime) : undefined;
-    // Get list of countries & exchanges in db
+    // Get list of countries, exchanges, and prices in db
     return async.parallel([
         function(callback) {
             mongoProductionCollection.distinct('countryCode',
@@ -194,27 +204,37 @@ function queryLastValuesBeforeDatetime(datetime, callback) {
             mongoExchangeCollection.distinct('sortedCountryCodes',
                 {datetime: rangeQuery(minDate, maxDate)}, callback);
         },
+        function(callback) {
+            mongoPriceCollection.distinct('countryCode',
+                {datetime: rangeQuery(minDate, maxDate)}, callback);
+        },
     ], function(err, results) {
         if (err) return callback(err);
-        countryCodes = results[0]; // production keys
+        productionCountryCodes = results[0]; // production keys
         sortedCountryCodes = results[1]; // exchange keys
+        priceCountryCodes = results[2]; // price keys
         // Query productions + exchanges
         async.parallel([
             function(callback) {
-                return queryElements('countryCode', countryCodes,
+                return queryElements('countryCode', productionCountryCodes,
                     mongoProductionCollection, minDate, maxDate, callback);
             },
             function(callback) {
                 return queryElements('sortedCountryCodes', sortedCountryCodes,
                     mongoExchangeCollection, minDate, maxDate, callback);
-            }
+            },
+            function(callback) {
+                return queryElements('countryCode', priceCountryCodes,
+                    mongoPriceCollection, minDate, maxDate, callback);
+            },
         ], function(err, results) {
             if (err) return callback(err);
             countries = results[0];
             exchanges = results[1];
+            prices = results[2];
             // This can crash, so we to try/catch
             try {
-                result = processDatabaseResults(countries, exchanges);
+                result = processDatabaseResults(countries, exchanges, prices);
             } catch(err) {
                 callback(err);
             }
@@ -480,6 +500,40 @@ app.get('/v1/co2', function(req, res) {
     } else {
         res.status(400).json({'error': 'Missing arguments "lon" and "lat" or "countryCode"'})
     }
+});
+app.get('/v1/exchanges', function(req, res) {
+    var countryCode = req.query.countryCode;
+    var datetime = req.query.datetime;
+    if (!countryCode) {
+        res.status(400).json({'error': 'Missing argument "countryCode"'});
+        return;
+    }
+    var maxDate = datetime ? new Date(datetime) : undefined;
+    var minDate = (moment(maxDate) || moment.utc()).subtract(24, 'hours').toDate();
+    mongoExchangeCollection.distinct('sortedCountryCodes',
+        {datetime: rangeQuery(minDate, maxDate)},
+        function(err, sortedCountryCodes) {
+            if (err) {
+                handleError(err);
+                res.status(500).json({error: 'Unknown database error'});
+            } else {
+                sortedCountryCodes = sortedCountryCodes.filter(function(d) {
+                    var arr = d.split('->')
+                    var from = arr[0]; var to = arr[1];
+                    return (from === countryCode || to === countryCode);
+                });
+                queryElements('sortedCountryCodes', sortedCountryCodes,
+                    mongoExchangeCollection, minDate, maxDate,
+                    function(err, data) {
+                        if (err) {
+                            handleError(err);
+                            res.status(500).json({error: 'Unknown database error'});
+                        } else {
+                            res.json({status: 'ok', data: data});
+                        }
+                    });
+            }
+        })
 });
 app.get('/v1/production', function(req, res) {
     var countryCode = req.query.countryCode;

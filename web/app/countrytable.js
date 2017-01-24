@@ -416,6 +416,9 @@ CountryTable.prototype.data = function(arg) {
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
+        d3.select('.country-spot-price')
+            .text(Math.round((this._data.price || {}).value) || '?')
+            .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);
         d3.select('#country-emission-rect')
             .transition()
             .style('background-color',
