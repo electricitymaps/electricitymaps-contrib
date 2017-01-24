@@ -105,7 +105,7 @@
                     Live CO2 emissions of the European electricity consumption
                 </h1>
                 <p>
-                    <span id="country-table-back-button" style="display: none" class="small-screen-visible"><a href="#"><< back</a></span>
+                    <span id="country-table-back-button" style="display: none"><a href="#"><< back</a></span>
                 </p>
                 <hr />
                 <div class="country-table-header" style="display: none">
@@ -117,7 +117,7 @@
                         (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
                         <br />
                         Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
-                        Electricity spot price: <span class="country-spot-price"></span> &euro;/MWh<br />
+                        Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
                         <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
                         <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
                     </span>
@@ -158,6 +158,7 @@
                     Like the visualization? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
                     Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
                     This project is <span style="color: lightgray;">Open Source</span>: contribute on <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">GitHub</a>.<br />
+                    All data sources and model explanations can be found <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank">here</a>.<br />
                     <br />
                     <!-- Facebook share -->
                     <div class="fb-share-button" 
@@ -204,7 +205,7 @@
             <i id="country-flag"></i> <span id="country-code"></span>: 
             <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
             <br />
-            Electricity spot price: <span class="country-spot-price"></span> &euro;/MWh
+            Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh
         </div>
         <div id="exchange-tooltip" class="tooltip panel">
             Cross-border export:<br />
