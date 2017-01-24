@@ -133,7 +133,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         for (var x = 0; x < realW; ++x) {
             var p = projection.invert([x, y]), lon = p[0], lat = p[1];
             if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat) { i += 4; continue; }
-            var q = ((maxLat - lat) / (maxLat - minLat) * h | 0) * w + ((lon - minLon) / (maxLon - minLon) * w | 0) << 2;
+            var q = Math.round(((maxLat - lat) / (maxLat - minLat) * h | 0)) * w + (Math.round((lon - minLon) / (maxLon - minLon) * w) | 0) << 2;
             i += 3;
             q += 2;
             targetData[++i] = sourceData[++q];
