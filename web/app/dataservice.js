@@ -6,13 +6,13 @@ var moment = require('moment');
 // GFS Parameters
 var GFS_STEP_ORIGIN  = 6; // hours
 var GFS_STEP_HORIZON = 1; // hours
-var fetchForecast = exports.fetchForecast = function(endpoint, key, refTime, targetTime, tryOlderRefTime, callback) {
+var fetchForecast = exports.fetchForecast = function(endpoint, key, refTime, targetTime, tryEarlierRefTime, callback) {
     refTime = moment(refTime);
     targetTime = moment(targetTime);
     return d3.json(endpoint + '/v2/gfs/' + key + '?' + 
         'refTime=' + refTime.toISOString() + '&' +
         'targetTime=' + targetTime.toISOString(), function(err, obj) {
-            if (err && tryOlderRefTime)
+            if (err && tryEarlierRefTime)
                 return fetchForecast(endpoint, key, refTime.subtract(GFS_STEP_ORIGIN, 'hour'),
                     targetTime, false, callback);
             else
