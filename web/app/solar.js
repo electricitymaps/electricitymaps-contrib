@@ -39,15 +39,17 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         return console.error('Error while interpolating solar because current time is out of bounds');
     }
 
-
     var k = (now - t_before) / (t_after - t_before);
-    var buckets = d3.range(solarColor.range().length)
+    
+	var buckets = d3.range(solarColor.range().length)
         .map(function (d) { return []; });
-    var bucketIndex = d3.scaleLinear()
+    
+	var bucketIndex = d3.scaleLinear()
         .rangeRound(d3.range(buckets.length))
         .domain(solarColor.domain())
         .clamp(true);
-    var solarScale = solarColor.domain()[solarColor.domain().length - 1];
+    
+	var solarScale = solarColor.domain()[solarColor.domain().length - 1];
 
     var k = (now - t_before) / (t_after - t_before);
     if (!k || !isFinite(k)) {
@@ -62,6 +64,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var dx = grib1.header.dx;
     var dy = grib1.header.dy;
 
+	// ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
     var BLUR_RADIUS = 20;
 
     var alphas = solarColor.range().map(function(d) {
@@ -86,7 +89,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var SE = projection.invert([0, realH])
     var S = projection.invert([realW / 2, realH])
     var N = projection.invert([realW / 2, 0])
-    N[1] = 80;
+    N[1] = 80; //Don't know why North is not correctly picked up, but got empty space on top of the map otherwise
 
     var minLat = Math.ceil(SE[1]);
     var maxLat = Math.floor(N[1]);
@@ -96,8 +99,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     w = maxLon - minLon;
 
     var dt = new Date().getTime();
-    console.log('Draw solar start:' + new Date())
-
+	
     // Draw initial image (1px 1deg) from grib
     var imgGrib = ctx.createImageData(w, h);
     d3.range(minLat, maxLat).forEach(function (y) {
@@ -130,15 +132,26 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var sourceData = ctx.getImageData(0, 0, w, h).data,
         target = ctx.createImageData(realW, realH),
         targetData = target.data;
-
+	
+	// From https://bl.ocks.org/mbostock/4329423
+	// x and y are the coordinate on the new image
+	// i is the new image 1D normalized index (R G B Alpha for each pixel)
+	// q is the 1D normalize index for the source map
     for (var y = 0, i = -1; y < realH; ++y) {
         for (var x = 0; x < realW; ++x) {
-            var p = projection.invert([x, y]), lon = p[0], lat = p[1];
-            if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat) { i += 4; continue; }
-            var q = Math.round(((maxLat - lat) / (maxLat - minLat) * h | 0)) * w + (Math.round((lon - minLon) / (maxLon - minLon) * w) | 0) << 2;
-            i += 3;
-            q += 2;
-            targetData[++i] = sourceData[++q];
+			// We shift the lat/lon so that the truncation result in a rounding
+			var p = projection.invert([x, y]), lon = p[0]+0.5, lat = p[1]-0.5;
+            
+			if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat) 
+			{ i += 4; continue; }
+            
+			var q = (((maxLat - lat) / (maxLat - minLat)) * h | 0) * w + (((lon - minLon) / (maxLon - minLon)) * w | 0) << 2;
+            
+			// Since we are reading the map pixel by pixel we go to the next Alpha channel
+			i += 4;
+			// Shift source index to alpha
+            q += 3;
+            targetData[i] = sourceData[q];
         }
     }
 
@@ -176,6 +189,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         console.log('Level time:' + (new Date().getTime() - dt));
     }
 
+	// (This callback could potentially be done before effects)
     callback(null);
 };
 
