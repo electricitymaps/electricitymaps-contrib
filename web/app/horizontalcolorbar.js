@@ -132,7 +132,7 @@ HorizontalColorbar.prototype.render = function() {
     // Draw the horizontal axis
     var axis = d3.axisBottom(this.scale)
         .tickSizeInner(this.colorbarHeight / 2.0)
-        .tickPadding(3);
+        .tickPadding(3).ticks(7);
     if (this.d3TickFormat)
         axis.tickFormat(this.d3TickFormat);
     if (this.d3TickValues)
