@@ -9,3 +9,5 @@ web/node_modules
 *.pyproj
 *.sln
 *.suo
+*.user
+/.vs/config
