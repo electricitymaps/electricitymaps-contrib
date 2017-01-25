@@ -103,10 +103,11 @@ function processDatabaseResults(countries, exchanges, prices) {
 
     // Assign prices to countries
     d3.entries(prices).forEach(function(entry) {
-        countries[entry.key].price = {
-            datetime: entry.value.datetime,
-            value: entry.value.price
-        }
+        if (countries[entry.key])
+            countries[entry.key].price = {
+                datetime: entry.value.datetime,
+                value: entry.value.price
+            }
     });
 
     // Quality check
