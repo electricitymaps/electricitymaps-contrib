@@ -8,7 +8,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     };
     exchanges['AL->ME'] = {
       lonlat: [19.500384, 42.428871],
-      rotation: 125
+      rotation: -55
     };
     exchanges['AL->RS'] = {
         lonlat: [20.160588, 42.762233],
