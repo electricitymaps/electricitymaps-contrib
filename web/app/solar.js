@@ -24,7 +24,13 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
 
     // Control the rendering
     var gaussianBlur = true;
-    var levels = false;
+    var continuousScale = true;
+	// ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
+    var BLUR_RADIUS = 20;
+	var SOLAR_SCALE = 1360;
+    var MAX_OPACITY = 0.85;
+	
+    var maxOpacityPix = 256*MAX_OPACITY;
 
     // Interpolates between two solar forecasts<
     var t_before = grib.getTargetTime(grib1);
@@ -41,39 +47,18 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
 
     var k = (now - t_before) / (t_after - t_before);
     
-	var buckets = d3.range(solarColor.range().length)
-        .map(function (d) { return []; });
-    
-	var bucketIndex = d3.scaleLinear()
-        .rangeRound(d3.range(buckets.length))
-        .domain(solarColor.domain())
-        .clamp(true);
-    
-	var solarScale = solarColor.domain()[solarColor.domain().length - 1];
-
-    var k = (now - t_before) / (t_after - t_before);
-    if (!k || !isFinite(k)) {
+	if (!k || !isFinite(k)) {
         console.warn("The start and end forecast are identical !");
         k = 0;
     }
 
+	// Grib constants
     var Nx = grib1.header.nx;
     var Ny = grib1.header.ny;
     var lo1 = grib1.header.lo1;
     var la1 = grib1.header.la1;
     var dx = grib1.header.dx;
     var dy = grib1.header.dy;
-
-	// ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
-    var BLUR_RADIUS = 20;
-
-    var alphas = solarColor.range().map(function(d) {
-        return parseFloat(d
-            .replace('(', '')
-            .replace(')', '')
-            .replace('rgba', '')
-            .split(', ')[3])
-    });
 
     solarCanvas = d3.select(canvasSelector);
     var ctx = solarCanvas.node().getContext('2d');
@@ -82,15 +67,17 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var w = realW,
         h = realH;
 
-    // Set our domain
+    // Set our visible domain
     var NE = projection.invert([realW, 0])
     var NW = projection.invert([0, 0])
     var SW = projection.invert([realW, realH])
     var SE = projection.invert([0, realH])
     var S = projection.invert([realW / 2, realH])
     var N = projection.invert([realW / 2, 0])
-    N[1] = 80; //Don't know why North is not correctly picked up, but got empty space on top of the map otherwise
-
+    //Don't know why North is not correctly picked up, but got empty space on top of the map otherwise
+	N[1] = 80;
+	
+	// Convert to grib points
     var minLat = Math.ceil(SE[1]);
     var maxLat = Math.floor(N[1]);
     var minLon = Math.ceil(NW[0]);
@@ -99,7 +86,6 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     w = maxLon - minLon;
 
     var dt = new Date().getTime();
-	
     // Draw initial image (1px 1deg) from grib
     var imgGrib = ctx.createImageData(w, h);
     d3.range(minLat, maxLat).forEach(function (y) {
@@ -114,17 +100,11 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
             var pix_y = h - (y - minLat);
 
             if (levels)
-                imgGrib.data[[((pix_y * (imgGrib.width * 4)) + (pix_x * 4)) + 3]] = parseInt(val / solarScale * 255);
+                imgGrib.data[[((pix_y * (imgGrib.width * 4)) + (pix_x * 4)) + 3]] = parseInt(val / SOLAR_SCALE * 255);
             else
-                imgGrib.data[[((pix_y * (imgGrib.width * 4)) + (pix_x * 4)) + 3]] = parseInt((0.85 - val / solarScale) * 255);
+                imgGrib.data[[((pix_y * (imgGrib.width * 4)) + (pix_x * 4)) + 3]] = parseInt((0.85 - val / SOLAR_SCALE) * 255);
         });
     });
-    solarCanvas.attr('height', h);
-    solarCanvas.attr('width', w);
-
-    ctx.clearRect(0, 0, h, w);
-    ctx.putImageData(imgGrib, 0, 0);
-
     console.log('Extract grib:' + (new Date().getTime() - dt));
     dt = new Date().getTime();
 
@@ -169,7 +149,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         console.log('Blur time:' + (new Date().getTime() - dt));
     }
 
-    // Apply level of opacity rather than continous scale
+    // Apply the opacity/colour continous scale
     if (levels) {
         dt = new Date().getTime();
 
@@ -180,13 +160,24 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         var i = 3;
         d3.range(realH).forEach(function (y) {
             d3.range(realW).forEach(function (x) {
-                targetData[i] = parseInt(alphas[bucketIndex(bluredData[i] * solarScale / 255)] * 255);
+				// The bluredData correspond to the solar value projected from 0 to 255 hence, 128 is mid-scale
+				if (bluredData[i] > 128) {
+                    // Gold
+                    targetData[i - 3] = 255;
+                    targetData[i - 2] = 215;
+                    targetData[i - 1] = 0;
+                    targetData[i] = maxOpacityPix * (bluredData[i] / 128 - 1);
+                }
+                else {
+                    targetData[i] = maxOpacityPix * (1 - bluredData[i] / 128);
+                }
+
                 i += 4;
             });
         });
         ctx.clearRect(0, 0, realW, realH);
         ctx.putImageData(target, 0, 0);
-        console.log('Level time:' + (new Date().getTime() - dt));
+        console.log('Shading time:' + (new Date().getTime() - dt));
     }
 
 	// (This callback could potentially be done before effects)
