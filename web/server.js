@@ -35,6 +35,18 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+app.use(function(req, res, next) {
+    // On electricitymap.tmrow.co,
+    // redirect everyone except the Facebook crawler,
+    // else, we will lose all likes
+    var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
+    if (isSubDomain && req.headers['user-agent'] !== 'facebookexternalhit/1.1') {
+        // Redirect
+        res.redirect(301, 'http://www.electricitymap.org' + req.path);
+    } else {
+        next();     
+    }
+});
 
 // * Static and templating
 var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
@@ -672,14 +684,8 @@ app.get('/health', function(req, res) {
     });
 });
 app.get('/', function(req, res) {
-    // Redirect everyone except the Facebook crawler,
-    // else, we will lose all likes
-    if (req.headers['user-agent'] === 'facebookexternalhit/1.1') {
-        res.render('pages/index', {
-            'bundleHash': BUNDLE_HASH,
-            useAnalytics: req.get('host').indexOf('electricitymap') != -1
-        });
-    } else {
-
-    }
+    res.render('pages/index', {
+        'bundleHash': BUNDLE_HASH,
+        useAnalytics: req.get('host').indexOf('electricitymap') != -1
+    });
 });
