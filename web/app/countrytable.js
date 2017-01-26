@@ -196,7 +196,10 @@ CountryTable.prototype.data = function(arg) {
         this.powerScale
             .domain([
                 -this._data.maxExport || 0,
-                Math.max(this._data.maxCapacity || 0, this._data.maxProduction || 0)
+                Math.max(
+                    this._data.maxCapacity || 0,
+                    this._data.maxProduction || 0,
+                    this._data.maxImport || 0)
             ]);
         // co2 scale in tCO2eq/min
         var maxCO2eqExport = d3.max(this._exchangeData, function (d) {

@@ -150,6 +150,8 @@ function processDatabaseResults(countries, exchanges, prices) {
         country.totalNetExchange = country.totalImport - country.totalExport;
         country.maxExport =
             -Math.min(d3.min(d3.values(country.exchange)), 0) || 0;
+        country.maxImport =
+            Math.max(d3.max(d3.values(country.exchange)), 0) || 0;
     });
 
     computeCo2(countries, exchanges);
