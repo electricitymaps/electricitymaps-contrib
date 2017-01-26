@@ -11,8 +11,8 @@ if (isProduction) {
 }
 
 var async = require('async');
-var co2eq_parameters = require('./app/co2eq_parameters');
-var co2lib = require('./app/co2eq');
+var co2eq_parameters = require('../shared/co2eq_parameters');
+var co2lib = require('../shared/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');

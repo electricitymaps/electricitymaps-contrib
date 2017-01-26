@@ -1,9 +1,10 @@
 FROM node:6.9.2
-WORKDIR /home
+WORKDIR /home/web
 EXPOSE 8000
-ADD package.json /home/package.json
+ADD web/package.json /home/web/package.json
 RUN npm install
-ADD . /home
+ADD web /home/web
+ADD shared /home/shared
 RUN npm run build-release
 CMD node server.js
 # Healthcheck removed for now because Docker > 1.10 not supported by circle ci
