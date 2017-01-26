@@ -5,7 +5,7 @@ A real-time visualisation of the GHG and CO2 footprint of electricity generation
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png)
 
-Consider [contributing](#contribute) or submit ideas, feature requests or bugs on the [issues](issues) page.
+Consider [contributing](#contribute) or submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
 
 
 ## Data sources
@@ -13,9 +13,9 @@ Consider [contributing](#contribute) or submit ideas, feature requests or bugs o
 ### GreenHouse Gas footprint calcuation and data source
 The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). 
 
-The GHG footprint of each production mode takes into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources) and [co2eq.js](blob/master/shared/co2eq.js)).
+The GHG footprint of each production mode takes into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources) and [co2eq.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq.js)).
 
-Each country has a GHG mass flow that depends on neighboring countries. In order to determine the GHG footprint of each country, the set of coupled GHG mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of GHG exchanges (see [co2eq.js](blob/master/shared/co2eq.js)).
+Each country has a GHG mass flow that depends on neighboring countries. In order to determine the GHG footprint of each country, the set of coupled GHG mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of GHG exchanges (see [co2eq.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq.js)).
 
 
 ### Real-time electricity data sources
@@ -123,9 +123,9 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 ## Contribute
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 In the meantime, here's some things you can do:
-- check out the [issues](issues)
-- add your country by writing a [parser](tree/master/feeder/parsers)
-- update an existing [parser](tree/master/feeder/parsers) with a different API if you know one with more data or closer to real-time
+- check out the [issues](https://github.com/corradio/electricitymap/issues)
+- add your country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers)
+- update an existing [parser](https://github.com/corradio/electricitymap/tree/master/feeder/parsers) with a different API if you know one with more data or closer to real-time
 - optimise the code, correct inaccuracies...
 
 You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
