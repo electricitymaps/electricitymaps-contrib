@@ -2,6 +2,7 @@ import arrow
 import pandas as pd
 import requests
 
+endpoint = 'http://www.electricitymap.org'
 r = requests.session()
 
 def date_range(start_date, end_date, delta):
@@ -20,7 +21,6 @@ def date_range(start_date, end_date, delta):
 # get_production
 
 def fetch_production(country_code, t, delta):
-    endpoint = 'http://electricitymap.tmrow.co'
     url = '%s/v1/production' % endpoint
     params = {
         'countryCode': country_code,
@@ -41,7 +41,7 @@ def get_production(countries, start_date, end_date, delta):
             modes = o['production'].keys()
             p = pd.DataFrame(
                 data={
-                    'timestamp': pd.Timestamp(t.datetime),
+                    'timestamp': pd.Timestamp(arrow.get(o['datetime']).datetime),
                     'country': country,
                     'mode': modes,
                     'production': map(lambda k: o['production'][k], modes),
@@ -53,27 +53,40 @@ def get_production(countries, start_date, end_date, delta):
 # get_exchange
 
 def fetch_exchange(country_code, t):
-    endpoint = 'http://electricitymap.tmrow.co'
-    url = '%s/v1/state' % endpoint
+    url = '%s/v1/exchanges' % endpoint
     params = {
-        'datetime': t.isoformat()
+        'datetime': t.isoformat(),
+        'countryCode': country_code
     }
     obj = r.get(url, params=params).json()
-    return obj['data']['countries'].get(country_code, None)
+    return obj['data']
 
 def get_exchange(countries, start_date, end_date, delta):
     df = None
     time_span = date_range(start_date, end_date, delta)
-    for country in countries:
-        print 'Fetching country %s..' % country
+    for country_code in countries:
+        print 'Fetching country %s..' % country_code
         for t in time_span:
-            o = fetch_exchange(country, t)
+            o = fetch_exchange(country_code, t)
             if not o: continue
-            country_exchanges = o['exchange'].keys()
-            p = pd.DataFrame({'country_from': country,
-                              'timestamp': pd.Timestamp(t.datetime),
-                              'country_to': country_exchanges,
-                              'net_flow': map(lambda k: o['exchange'][k], country_exchanges)})
+            country_exchanges = o.values()
+            # Make sure `from` is always `country_code`
+            country_tos = []
+            net_flows = []
+            for item in country_exchanges:
+                sorted_country_codes = item['sortedCountryCodes'].split('->')
+                if sorted_country_codes[0] == country_code:
+                    country_tos.append(sorted_country_codes[1])
+                    net_flows.append(item['netFlow'])
+                else:
+                    country_tos.append(sorted_country_codes[0])
+                    net_flows.append(-1 * item['netFlow'])
+            timestamps = map(lambda x: pd.Timestamp(arrow.get(x['datetime']).datetime),
+                country_exchanges)
+            p = pd.DataFrame({'country_from': country_code,
+                              'timestamp': timestamps,
+                              'country_to': country_tos,
+                              'net_flow': net_flows})
             if df is not None: df = df.append(p)
             else: df = p
     return df
