@@ -82,7 +82,7 @@ var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || fals
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
+var REMOTE_ENDPOINT = '//www.electricitymap.org';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
