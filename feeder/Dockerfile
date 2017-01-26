@@ -1,5 +1,7 @@
 FROM python:2.7
-RUN apt-get update
+# Install node
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    apt-get install -y nodejs
 # Install pygrib dependencies manually
 RUN apt-get install -y libgrib-api-dev libsnappy-dev && \
     pip install numpy==1.10.1 pyproj==1.9.4
