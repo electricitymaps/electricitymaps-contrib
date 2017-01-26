@@ -5,7 +5,6 @@ var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
-var co2eq_parameters = require('./co2eq_parameters');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -435,7 +434,7 @@ if (isSmallScreen()) {
                     ')');
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2intensity = co2eq_parameters.footprintOf(d.mode, countryCode);
+            var co2intensity = countries[countryCode].productionCo2Intensities[d.mode];
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
