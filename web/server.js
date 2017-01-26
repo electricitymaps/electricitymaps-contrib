@@ -672,8 +672,14 @@ app.get('/health', function(req, res) {
     });
 });
 app.get('/', function(req, res) {
-    res.render('pages/index', {
-        'bundleHash': BUNDLE_HASH,
-        useAnalytics: req.get('host').indexOf('electricitymap') != -1
-    });
+    // Redirect everyone except the Facebook crawler,
+    // else, we will lose all likes
+    if (req.headers['user-agent'] === 'facebookexternalhit/1.1') {
+        res.render('pages/index', {
+            'bundleHash': BUNDLE_HASH,
+            useAnalytics: req.get('host').indexOf('electricitymap') != -1
+        });
+    } else {
+
+    }
 });
