@@ -186,7 +186,7 @@
     "ME": {
         "capacity": {
             "coal": 210,
-            "hydro": 342
+            "hydro": 652
         }
     },
     "NL": {
@@ -247,9 +247,9 @@
     },
     "RS": {
         "capacity": {
-            "coal": 5644,
-            "hydro": 3006,
-            "unknown": 428
+            "coal": 5666,
+            "gas": 424,
+            "hydro": 2917
         }
     },
     "SE": {
