@@ -5,7 +5,6 @@ var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
-var co2eq_parameters = require('./co2eq_parameters');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -95,7 +94,7 @@ else
     console.warn('Opbeat could not be initialized!');
 
 function catchError(e) {
-    console.error(e);
+    console.error('Error Caught! ' + e);
     if (!isLocalhost) {
         if(typeof _opbeat !== 'undefined')
             _opbeat('captureException', e);
@@ -227,6 +226,17 @@ var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
     }
 });
 
+// Tooltips
+function placeTooltip(selector, d3Event) {
+    var tooltip = d3.select(selector);
+    var w = tooltip.node().getBoundingClientRect().width;
+    var h = tooltip.node().getBoundingClientRect().height;
+    var x = d3Event.pageX - w - 5;
+    var y = d3Event.pageY - h - 5; if (y <= 50) y = d3Event.pageY + 5;
+    tooltip
+        .style('transform',
+            'translate(' + x + 'px' + ',' + y + 'px' + ')');
+}
 var width = window.innerWidth;
 var height = window.innerHeight;
 
@@ -424,7 +434,7 @@ if (isSmallScreen()) {
                     ')');
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2intensity = co2eq_parameters.footprintOf(d.mode, countryCode);
+            var co2intensity = countries[countryCode].productionCo2Intensities[d.mode];
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
@@ -588,16 +598,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                 .text(Math.round((d.price || {}).value) || '?')
                 .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
         })
-        .onCountryMouseMove(function (d) {
-            var tooltip = d3.select('#country-tooltip');
-            var w = tooltip.node().getBoundingClientRect().width;
-            var h = tooltip.node().getBoundingClientRect().height;
-            tooltip
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX - w - 5) + 'px' + ',' + 
-                        (d3.event.pageY - h - 5) + 'px' +
-                    ')');
+        .onCountryMouseMove(function () {
+            placeTooltip("#country-tooltip", d3.event);
         })
         .onCountryMouseOut(function (d) { 
             d3.select(this)
@@ -639,16 +641,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .style('cursor', 'pointer');
                 if (d.co2intensity)
                     co2Colorbar.currentMarker(d.co2intensity);
-                d3.select('#exchange-tooltip')
-                    .style('display', 'inline');
-            })
-            .onExchangeMouseMove(function (d) {
                 var tooltip = d3.select('#exchange-tooltip');
-                var w = tooltip.node().getBoundingClientRect().width;
-                var h = tooltip.node().getBoundingClientRect().height;
-                tooltip
-                    .style('left', (d3.event.pageX - w - 5) + 'px')
-                    .style('top', (d3.event.pageY - h - 5) + 'px');
+                tooltip.style('display', 'inline');
                 tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
@@ -664,6 +658,9 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
                 tooltip.select('.country-emission-intensity')
                     .text(Math.round(d.co2intensity) || '?');
+            })
+            .onExchangeMouseMove(function () {
+                placeTooltip("#exchange-tooltip", d3.event);
             })
             .onExchangeMouseOut(function (d) {
                 d3.select(this)
@@ -771,11 +768,16 @@ var connectionWarningTimeout = null;
 function handleConnectionReturnCode(err) {
     if (err) {
         if (err.target) {
-            catchError(Error(
-                'HTTPError ' +
-                err.target.status + ' ' + err.target.statusText + ' at ' + 
-                err.target.responseURL + ': ' +
-                err.target.responseText));
+            // Avoid catching HTTPError 0
+            // The error will be empty, and we can't catch any more info
+            // for security purposes
+            // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
+            if (err.target.status)
+                catchError(Error(
+                    'HTTPError ' +
+                    err.target.status + ' ' + err.target.statusText + ' at ' + 
+                    err.target.responseURL + ': ' +
+                    err.target.responseText));
         } else {
             catchError(err);
         }

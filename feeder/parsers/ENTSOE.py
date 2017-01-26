@@ -89,7 +89,9 @@ def query_consumption(domain, session):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        raise Exception('Failed to get consumption. Reason: %s' % soup.find_all('text')[0].contents[0])
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get consumption. Reason: %s' % error_text)
 
 def query_production(psr_type, in_domain, session):
     params = {
@@ -104,8 +106,10 @@ def query_production(psr_type, in_domain, session):
         return # Return by default
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
         print 'Failed for psr %s' % psr_type
-        print 'Reason:', soup.find_all('text')[0].contents[0]
+        print 'Reason:', error_text
 
 def query_exchange(in_domain, out_domain, session):
     params = {
@@ -118,7 +122,9 @@ def query_exchange(in_domain, out_domain, session):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        raise Exception('Failed to get exchange. Reason: %s' % soup.find_all('text')[0].contents[0])
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get exchange. Reason: %s' % error_text)
 
 def query_price(domain, session):
     params = {
@@ -131,7 +137,9 @@ def query_price(domain, session):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        raise Exception('Failed to get price. Reason: %s' % soup.find_all('text')[0].contents[0])
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get price. Reason: %s' % error_text)
 
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)

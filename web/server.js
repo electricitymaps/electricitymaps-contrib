@@ -10,9 +10,8 @@ if (isProduction) {
     });
 }
 
+// Modules
 var async = require('async');
-var co2eq_parameters = require('./app/co2eq_parameters');
-var co2lib = require('./app/co2eq');
 var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');
@@ -23,6 +22,11 @@ var moment = require('moment');
 var MongoClient = require('mongodb').MongoClient;
 //var statsd = require('node-statsd'); // TODO: Remove
 var snappy = require('snappy');
+
+// Custom modules
+global.__base = __dirname;
+var co2eq_parameters = require('../shared/co2eq_parameters');
+var co2lib = require('../shared/co2eq');
 
 var app = express();
 var server = http.Server(app);
@@ -40,7 +44,7 @@ app.use(function(req, res, next) {
     // redirect everyone except the Facebook crawler,
     // else, we will lose all likes
     var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
-    if (isSubDomain && req.headers['user-agent'].indexOf('facebookexternalhit') == -1) {
+    if (isSubDomain && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
         // Redirect
         res.redirect(301, 'http://www.electricitymap.org' + req.path);
     } else {
@@ -150,6 +154,8 @@ function processDatabaseResults(countries, exchanges, prices) {
         country.totalNetExchange = country.totalImport - country.totalExport;
         country.maxExport =
             -Math.min(d3.min(d3.values(country.exchange)), 0) || 0;
+        country.maxImport =
+            Math.max(d3.max(d3.values(country.exchange)), 0) || 0;
     });
 
     computeCo2(countries, exchanges);
