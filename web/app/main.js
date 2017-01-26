@@ -227,6 +227,17 @@ var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
     }
 });
 
+// Tooltips
+function placeTooltip(selector, d3Event) {
+    var tooltip = d3.select(selector);
+    var w = tooltip.node().getBoundingClientRect().width;
+    var h = tooltip.node().getBoundingClientRect().height;
+    var x = d3Event.pageX - w - 5;
+    var y = d3Event.pageY - h - 5; if (y <= 50) y = d3Event.pageY + 5;
+    tooltip
+        .style('transform',
+            'translate(' + x + 'px' + ',' + y + 'px' + ')');
+}
 var width = window.innerWidth;
 var height = window.innerHeight;
 
@@ -588,16 +599,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                 .text(Math.round((d.price || {}).value) || '?')
                 .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
         })
-        .onCountryMouseMove(function (d) {
-            var tooltip = d3.select('#country-tooltip');
-            var w = tooltip.node().getBoundingClientRect().width;
-            var h = tooltip.node().getBoundingClientRect().height;
-            tooltip
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX - w - 5) + 'px' + ',' + 
-                        (d3.event.pageY - h - 5) + 'px' +
-                    ')');
+        .onCountryMouseMove(function () {
+            placeTooltip("#country-tooltip", d3.event);
         })
         .onCountryMouseOut(function (d) { 
             d3.select(this)
@@ -639,16 +642,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .style('cursor', 'pointer');
                 if (d.co2intensity)
                     co2Colorbar.currentMarker(d.co2intensity);
-                d3.select('#exchange-tooltip')
-                    .style('display', 'inline');
-            })
-            .onExchangeMouseMove(function (d) {
                 var tooltip = d3.select('#exchange-tooltip');
-                var w = tooltip.node().getBoundingClientRect().width;
-                var h = tooltip.node().getBoundingClientRect().height;
-                tooltip
-                    .style('left', (d3.event.pageX - w - 5) + 'px')
-                    .style('top', (d3.event.pageY - h - 5) + 'px');
+                tooltip.style('display', 'inline');
                 tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
@@ -664,6 +659,9 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
                 tooltip.select('.country-emission-intensity')
                     .text(Math.round(d.co2intensity) || '?');
+            })
+            .onExchangeMouseMove(function () {
+                placeTooltip("#exchange-tooltip", d3.event);
             })
             .onExchangeMouseOut(function (d) {
                 d3.select(this)

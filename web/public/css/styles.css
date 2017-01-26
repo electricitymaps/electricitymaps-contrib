@@ -276,6 +276,7 @@ hr {
     width: 100%;
     color: lightgrey;
     text-align: center;
+    pointer-events: none;
 }
 
 .time-travel {
