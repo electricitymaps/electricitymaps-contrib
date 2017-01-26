@@ -40,11 +40,11 @@ app.use(function(req, res, next) {
     // redirect everyone except the Facebook crawler,
     // else, we will lose all likes
     var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
-    if (isSubDomain && req.headers['user-agent'] !== 'facebookexternalhit/1.1') {
+    if (isSubDomain && req.headers['user-agent'].indexOf('facebookexternalhit') == -1) {
         // Redirect
         res.redirect(301, 'http://www.electricitymap.org' + req.path);
     } else {
-        next();     
+        next();
     }
 });
 
