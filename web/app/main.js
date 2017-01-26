@@ -82,7 +82,7 @@ var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || fals
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
+var REMOTE_ENDPOINT = '//www.electricitymap.org';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
@@ -188,11 +188,10 @@ var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 var solarColorbarColor = d3.scaleLinear()
-    .domain([0, minDayDSWRF, maxSolarDSWRF])
-    .range(['black', 'black', 'white'])
-    .clamp(solarColor.clamp());
+    .domain([0, 1360/2, 1360])
+    .range(['black', 'white', 'gold'])
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
-    .markerColor('red');
+    .markerColor('red')
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 

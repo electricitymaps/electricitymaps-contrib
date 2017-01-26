@@ -35,6 +35,18 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+app.use(function(req, res, next) {
+    // On electricitymap.tmrow.co,
+    // redirect everyone except the Facebook crawler,
+    // else, we will lose all likes
+    var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
+    if (isSubDomain && req.headers['user-agent'].indexOf('facebookexternalhit') == -1) {
+        // Redirect
+        res.redirect(301, 'http://www.electricitymap.org' + req.path);
+    } else {
+        next();
+    }
+});
 
 // * Static and templating
 var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
@@ -103,10 +115,11 @@ function processDatabaseResults(countries, exchanges, prices) {
 
     // Assign prices to countries
     d3.entries(prices).forEach(function(entry) {
-        countries[entry.key].price = {
-            datetime: entry.value.datetime,
-            value: entry.value.price
-        }
+        if (countries[entry.key])
+            countries[entry.key].price = {
+                datetime: entry.value.datetime,
+                value: entry.value.price
+            }
     });
 
     // Quality check

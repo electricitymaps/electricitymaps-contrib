@@ -137,7 +137,7 @@ To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) t
 
 The frontend will need compiling. In order to do this, open a terminal and run
 ```
-docker-compose run web npm run watch
+docker-compose run --rm web npm run watch
 ```
 This will watch over source file changes, and recompile if needed.
 
