@@ -2,7 +2,7 @@ import arrow
 import pandas as pd
 import requests
 
-endpoint = 'http://electricitymap.tmrow.co'
+endpoint = 'http://www.electricitymap.org'
 r = requests.session()
 
 def date_range(start_date, end_date, delta):
