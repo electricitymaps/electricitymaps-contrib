@@ -95,7 +95,7 @@ else
     console.warn('Opbeat could not be initialized!');
 
 function catchError(e) {
-    console.error(e);
+    console.error('Error Caught! ' + e);
     if (!isLocalhost) {
         if(typeof _opbeat !== 'undefined')
             _opbeat('captureException', e);
@@ -771,11 +771,16 @@ var connectionWarningTimeout = null;
 function handleConnectionReturnCode(err) {
     if (err) {
         if (err.target) {
-            catchError(Error(
-                'HTTPError ' +
-                err.target.status + ' ' + err.target.statusText + ' at ' + 
-                err.target.responseURL + ': ' +
-                err.target.responseText));
+            // Avoid catching HTTPError 0
+            // The error will be empty, and we can't catch any more info
+            // for security purposes
+            // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
+            if (err.target.status)
+                catchError(Error(
+                    'HTTPError ' +
+                    err.target.status + ' ' + err.target.statusText + ' at ' + 
+                    err.target.responseURL + ': ' +
+                    err.target.responseText));
         } else {
             catchError(err);
         }
