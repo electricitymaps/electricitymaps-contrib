@@ -119,6 +119,16 @@
             "solar": 8780
         }
     },
+    "GB-NIR": {
+        "capacity": {
+            "wind": 863,
+            "gas": 1004,
+            "solar": 77,
+            "coal": 764,
+            "biomass": 35,
+            "oil": 415
+        }
+    },
     "GR": {
         "capacity": {
             "biomass": 51,
