@@ -180,7 +180,8 @@ CountryTable.prototype.data = function(arg) {
         // Construct a list having each production in the same order as
         // `this.PRODUCTION_MODES`
         var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
-            var footprint = that._data.productionCo2Intensities[d];
+            var footprint = that._data.productionCo2Intensities ? 
+                that._data.productionCo2Intensities[d] : undefined;
             var production = arg.production ? arg.production[d] : undefined;
             return {
                 production: production,
