@@ -112,11 +112,16 @@
     },
     "GB": {
         "capacity": {
-            "wind": 13500,
-            "nuclear": 9000,
-            "hydro": 1550,
-            "gas": 38000,
-            "solar": 8780
+            "wind": 13573,
+            "nuclear": 8981,
+            "hydro": 4284,
+            "gas": 25702,
+            "solar": 8780,
+            "coal": 14889,
+            "biomass": 1890,
+            "oil": 792,
+            "solar": 3954,
+            "other": 4501
         }
     },
     "GB-NIR": {
