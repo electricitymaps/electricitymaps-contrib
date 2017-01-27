@@ -21,7 +21,7 @@ function CountryTable(selector, co2Color) {
         'wind': '#74cdb9',
         'solar': '#f27406',
         'hydro': '#2772b2',
-        'pumped hydro': '#1e1e84',
+        'pumped hydro': '#2a48ab',
         'biomass': '#166a57',
         'nuclear': '#AEB800',
         'gas': '#bb2f51',
@@ -189,7 +189,7 @@ CountryTable.prototype.data = function(arg) {
                 capacity: arg.capacity ? arg.capacity[d] : undefined,
                 mode: d,
                 gCo2eqPerkWh: footprint,
-                gCo2eqPerH: footprint * 1000.0 * production
+                gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
             };
         });
 
