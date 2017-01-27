@@ -21,7 +21,7 @@ function CountryTable(selector, co2Color) {
         'wind': '#74cdb9',
         'solar': '#f27406',
         'hydro': '#2772b2',
-        'pumped hydro': 'darkblue',
+        'pumped hydro': '#1e1e84',
         'biomass': '#166a57',
         'nuclear': '#AEB800',
         'gas': '#bb2f51',
