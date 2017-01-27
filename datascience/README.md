@@ -114,6 +114,6 @@ Returns :
 ```
 
 #### Export as CSV to use in Excel
-Use .to_csv on the dataframe to export it to csv format on your computeur. For instance:
+Use .to_csv on the dataframe to export it to csv format on your computer. For instance:
 python -c "from utils import get_exchange; get_exchange(['DE','FR'], '2016-12-23', '2016-12-24', 1440).to_csv('myfilename.csv')"
-This should create a new file "myfilename.csv" in the local directory of your computeur from where you launched the jupyter nobook
+This should create a new file "myfilename.csv" in the local directory of your computer from where you launched the jupyter nobook
