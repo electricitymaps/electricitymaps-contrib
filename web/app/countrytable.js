@@ -23,9 +23,9 @@ function CountryTable(selector, co2Color) {
         'hydro': '#2772b2',
         'biomass': '#166a57',
         'nuclear': '#AEB800',
-        'gas': '#f30a0a',
+        'gas': '#bb2f51',
         'coal': '#ac8c35',
-        'oil': '#8356a2',
+        'oil': '#867d66',
         'unknown': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
