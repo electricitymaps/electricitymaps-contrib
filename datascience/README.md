@@ -112,3 +112,12 @@ Returns :
 3           DE         DK  2016-12-23T00:00:00+00:00    -79.0
 4           DE         CZ  2016-12-23T00:00:00+00:00   -476.0
 ```
+
+#### Export as CSV to use in Excel
+Use .to_csv on the dataframe to export it to csv format on your computeur. For instance:
+```python
+from utils import get_exchange
+df_exchange = get_exchange(['DE','FR'], '2016-12-23', '2016-12-24', 1440)
+df_exchange.to_csv('myfilename.csv')
+```
+This should create a new file "myfilename.csv" in the local directory of your computeur from where you launched the jupyter nobook
