@@ -13,7 +13,7 @@ function CountryTable(selector, co2Color) {
     // Constants
     this.ROW_HEIGHT = 10;
     this.RECT_OPACITY = 0.8;
-    this.LABEL_MAX_WIDTH = 70;
+    this.LABEL_MAX_WIDTH = 80;
     this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
     this.TEXT_ADJUST_Y = 9; // To align properly on a line
@@ -196,7 +196,9 @@ CountryTable.prototype.data = function(arg) {
         // update scales
         this.powerScale
             .domain([
-                -this._data.maxExport || 0,
+                Math.min(
+                    -this._data.maxExport || 0,
+                    -this._data.maxStorage || 0),
                 Math.max(
                     this._data.maxCapacity || 0,
                     this._data.maxProduction || 0,
