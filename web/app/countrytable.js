@@ -13,7 +13,7 @@ function CountryTable(selector, co2Color) {
     // Constants
     this.ROW_HEIGHT = 10;
     this.RECT_OPACITY = 0.8;
-    this.LABEL_MAX_WIDTH = 60;
+    this.LABEL_MAX_WIDTH = 70;
     this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
     this.TEXT_ADJUST_Y = 9; // To align properly on a line
@@ -21,6 +21,7 @@ function CountryTable(selector, co2Color) {
         'wind': '#74cdb9',
         'solar': '#f27406',
         'hydro': '#2772b2',
+        'pumped hydro': 'darkblue',
         'biomass': '#166a57',
         'nuclear': '#AEB800',
         'gas': '#bb2f51',
@@ -246,7 +247,9 @@ CountryTable.prototype.data = function(arg) {
 
         this.gPowerAxis
             .transition()
-            .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
+            // We offset by just one pixel because it looks better when
+            // the rectangles don't start exactly on the axis.
+            .attr('transform', 'translate(' + (this.powerScale.range()[0] - 1 + this.LABEL_MAX_WIDTH) + ', 24)')
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')

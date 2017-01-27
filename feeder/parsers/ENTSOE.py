@@ -249,11 +249,9 @@ def get_gas(values):
             values.get('Fossil Gas', 0)
 
 def get_hydro(values):
-    if 'Hydro Pumped Storage' in values \
-        or 'Hydro Run-of-river and poundage' in values \
+    if 'Hydro Run-of-river and poundage' in values \
         or 'Hydro Water Reservoir' in values:
-        return max(values.get('Hydro Pumped Storage', 0), 0) + \
-            values.get('Hydro Run-of-river and poundage', 0) + \
+        return values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
 
 def get_oil(values):
@@ -326,6 +324,7 @@ def fetch_production(country_code, session=None):
             'hydro': get_hydro(values),
             'nuclear': values.get('Nuclear', None),
             'oil': get_oil(values),
+            'pumped hydro': values.get('Hydro Pumped Storage', None),
             'solar': values.get('Solar', None),
             'wind': get_wind(values),
             'unknown': get_unknown(values)

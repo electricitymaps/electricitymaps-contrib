@@ -114,23 +114,21 @@ function processDatabaseResults(countries, exchanges, prices) {
             }
     });
 
-    // Quality check
+    // Add countryCode
     d3.keys(countries).forEach(function(k) {
         if (!countries[k])
             countries[k] = {countryCode: k};
         country = countries[k];
-        // Truncate negative production values
-        d3.keys(country.production).forEach(function(k) {
-            if (country.production[k] !== null)
-                country.production[k] = Math.max(0, country.production[k]);
-        });
     });
     // Compute aggregates
     d3.values(countries).forEach(function(country) {
         country.maxProduction =
             d3.max(d3.values(country.production));
         country.totalProduction =
-            d3.sum(d3.values(country.production));
+            d3.sum(d3.values(country.production), function(d) {
+                // Ignore negative production units which count as storage
+                return Math.max(0, d);
+            });
         country.totalImport =
             d3.sum(d3.values(country.exchange), function(d) {
                 return d >= 0 ? d : 0;

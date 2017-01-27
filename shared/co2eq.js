@@ -32,6 +32,8 @@ exports.compute = function(countries) {
     var b = mathjs.zeros(n);
 
     validCountries.forEach(function (country, i) {
+        // Note that `totalProduction` is the sum of all *positive* production
+        // which excludes all storage units
         A.set([i, i], country.totalProduction + country.totalImport);
         // Production
         d3.entries(country.production).forEach(function (production) {
