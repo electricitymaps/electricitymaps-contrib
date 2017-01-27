@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 
+if (__base) module.paths.push(__base + '/node_modules');
 var d3 = require('d3');
 var mathjs = require('mathjs');
 
