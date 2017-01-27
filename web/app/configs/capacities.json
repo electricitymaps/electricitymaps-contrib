@@ -183,6 +183,12 @@
             "wind": 55
         }
     },
+    "ME": {
+        "capacity": {
+            "coal": 210,
+            "hydro": 652
+        }
+    },
     "NL": {
         "capacity": {
             "biomass": 1072,
@@ -237,6 +243,13 @@
             "nuclear": 1298,
             "solar": 1152,
             "wind": 2938
+        }
+    },
+    "RS": {
+        "capacity": {
+            "coal": 5666,
+            "gas": 424,
+            "hydro": 2917
         }
     },
     "SE": {
