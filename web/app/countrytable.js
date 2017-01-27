@@ -25,7 +25,7 @@ function CountryTable(selector, co2Color) {
         'nuclear': '#AEB800',
         'gas': '#f30a0a',
         'coal': '#ac8c35',
-        'oil': '#8356a2',
+        'oil': '#94855b',
         'unknown': 'gray'
     };
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
