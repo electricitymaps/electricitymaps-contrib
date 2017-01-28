@@ -10,12 +10,17 @@ function formatPower(d, numDigits) {
     return d3.format('.' + numDigits + 's')(d * 1e6) + 'W';
 }
 
+function getConsumption(country) {
+    return country.totalProduction - country.totalStorage + country.totalNetExchange;
+}
+
 // ** Country table
 exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color) {
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
             var isExport = d.value < 0;
             var o = d.value < 0 ? countryCode : d.key;
+            var country = countries[countryCode];
             var co2intensity = countries[o].co2intensity;
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
@@ -28,31 +33,28 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .text(Math.round(co2intensity) || '?');
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.key.toLowerCase());
-            tooltip.select('#import-detail').style('display', 
-                isExport ? 'none' : undefined);
-            tooltip.select('#export-detail').style('display', 
-                isExport ? undefined : 'none');
-            var totalProduction = countries[countryCode].totalProduction;
+            var totalConsumption = getConsumption(country);
+            var totalPositive = country.totalProduction + country.totalImport;
+
+            // The consumer's point of view is taken
+            // For positive values (import), we want to know how much of the consumption
+            // comes from this particular import.
+            // For negative values (export), the consumer's point of view can't be taken.
+            // Instead, we look at the amount of electricity produced or imported.
+            // % of available BEFORE export, i.e.
+            // % of (production w/o storage + import) ----- without exports (and storage)
+            var domain = isExport ? totalPositive : totalConsumption;
+            var domainName = isExport ? 'production/import' : 'consumption';
+
             var absFlow = Math.abs(d.value);
-            if (isExport) {
-                // Proportion compared to production
-                var exportProportion = Math.round(absFlow / totalProduction * 100) || '?';
-                tooltip.select('#export-proportion-production').text(exportProportion + ' %');
-                tooltip.select('#export-proportion-production-detail').text(
-                    (formatPower(absFlow) || '?') + ' ' +
-                    ' / ' + 
-                    (formatPower(totalProduction) || '?'));
-            } else {
-                // Proportion compared to consumption
-                var netExchange = countries[countryCode].totalNetExchange;
-                var totalConsumption = totalProduction + netExchange;
-                var importProportion = Math.round(absFlow / totalConsumption * 100) || '?';
-                tooltip.select('#import-proportion-consumption').text(importProportion + ' %');
-                tooltip.select('#import-proportion-consumption-detail').text(
-                    (formatPower(absFlow) || '?') + ' ' +
-                    ' / ' + 
-                    (formatPower(totalConsumption) || '?'));
-            }
+            var exchangeProportion = Math.round(absFlow / domain * 100) || '?';
+            tooltip.select('#exchange-proportion').text(exchangeProportion + ' %');
+            tooltip.select('#exchange-proportion-detail').text(
+                (formatPower(absFlow) || '?') + ' ' +
+                ' / ' + 
+                (formatPower(domain) || '?'));
+            tooltip.select('#domain-name').text(domainName);
+
             tooltip.selectAll('.country-code').text(countryCode);
         })
         .onExchangeMouseOut(function (d) {
@@ -69,7 +71,8 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                     ')');
         })
         .onProductionMouseOver(function (d, countryCode) {
-            var co2intensity = countries[countryCode].productionCo2Intensities[d.mode];
+            var country = countries[countryCode];
+            var co2intensity = country.productionCo2Intensities[d.mode];
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
@@ -84,17 +87,29 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
                 (formatPower(d.capacity) || '?'));
-            // Calculate total power available in zone
-            var totalProduction = countries[countryCode].totalProduction;
-            var netExchange = countries[countryCode].totalNetExchange;
-            var totalConsumption = totalProduction + netExchange;
-            var productionProportion = Math.round(d.production / totalConsumption * 100) || '?';
+            var totalConsumption = getConsumption(country);
+            var totalPositive = country.totalProduction + country.totalImport;
+            var value = d.isStorage ? d.storage : d.production;
+
+            // The consumer's point of view is taken
+            // For positive values (import), we want to know how much of the consumption
+            // comes from this particular import.
+            // For negative values (export), the consumer's point of view can't be taken.
+            // Instead, we look at the amount of electricity produced or imported.
+            // % of available BEFORE export, i.e.
+            // % of (production w/o storage + import) ----- without exports (and storage)
+            var domain = d.isStorage ? totalPositive : totalConsumption;
+            var domainName = d.isStorage ? 'production/import' : 'consumption';
+
+            var productionProportion = Math.round(d.production / domain * 100) || '?';
             tooltip.select('#production-proportion').text(
                 productionProportion + ' %');
             tooltip.select('#production-proportion-detail').text(
                 (formatPower(d.production) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(totalConsumption) || '?'));
+                (formatPower(domain) || '?'));
+            tooltip.select('#domain-name').text(domainName);
+
             tooltip.select('.country-code').text(countryCode);
         })
         .onProductionMouseMove(function(d) {

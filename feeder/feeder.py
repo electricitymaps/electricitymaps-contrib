@@ -299,7 +299,7 @@ def validate_production(obj, country_code):
         country_code not in ['CH', 'NO']:
         raise Exception("Coal or unknown production value is required for %s" % (country_code))
     for k, v in obj['production'].iteritems():
-        if v is None or k in ['pumped hydro']: continue
+        if v is None: continue
         if v < 0: raise ValueError('%s: key %s has negative value %s' % (country_code, k, v))
 
 def db_upsert(col, obj, database_key):
