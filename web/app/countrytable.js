@@ -345,7 +345,9 @@ CountryTable.prototype.data = function(arg) {
                     // color by Co2 Intensity
                     // return that.co2Color(that._data.productionCo2Intensities[d.mode, that._data.countryCode]);
                     // color by production mode
-                    return that.PRODUCTION_COLORS[d.mode];
+                    return d.isStorage ?
+                        that.STORAGE_COLORS[d.mode] :
+                        that.PRODUCTION_COLORS[d.mode];
                 })
                 .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
                 .attr('width', function (d) {
@@ -355,7 +357,7 @@ CountryTable.prototype.data = function(arg) {
             selection.select('rect.production')
                 .transition()
                 .attr('fill', function (d) {
-                    return d.storage != undefined ?
+                    return d.isStorage ?
                         that.STORAGE_COLORS[d.mode] :
                         that.PRODUCTION_COLORS[d.mode];
                 })
