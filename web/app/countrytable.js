@@ -373,10 +373,9 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('display', function (d) {
-                return d.capacity > 0 && 
+                return (d.capacity == undefined || d.capacity > 0) && 
                     d.mode != 'unknown' && 
-                    d.storage === undefined &&
-                    (d.production === undefined || d.production === null) ? 
+                    (d.isStorage ? d.storage == undefined : d.production == undefined) ?
                     'block' : 'none';
             });
 
