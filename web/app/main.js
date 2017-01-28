@@ -501,6 +501,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         entry.value.co2intensity = undefined;
         entry.value.exchange = {};
         entry.value.production = {};
+        entry.value.storage = {};
         entry.value.source = undefined;
     });
     d3.entries(exchanges).forEach(function(entry) {
@@ -523,12 +524,28 @@ function dataLoaded(err, state, argSolar, argWind) {
         if (!country.production) return;
         countryTable.PRODUCTION_MODES.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown') return;
-            if (country.production[mode] === undefined)
-                console.warn(countryCode + ' is missing production of ' + mode);
-            else if (!country.capacity || country.capacity[mode] === undefined)
+            // Check missing values
+            if (country.production[mode] === undefined && country.storage[mode] === undefined)
+                console.warn(countryCode + ' is missing production or storage of ' + mode);
+            // Check validity of production
+            if (country.production[mode] !== undefined && country.production[mode] < 0)
+                console.error(countryCode + ' has negative production of ' + mode);
+            // Check validity of storage
+            if (country.storage[mode] !== undefined && country.storage[mode] < 0)
+                console.error(countryCode + ' has negative storage of ' + mode);
+            // Check missing capacities
+            if (country.production[mode] !== undefined &&
+                (country.capacity || {})[mode] === undefined)
+            {
                 console.warn(countryCode + ' is missing capacity of ' + mode);
-            else if (country.production[mode] > country.capacity[mode])
+            }
+            // Check load factors > 1
+            if (country.production[mode] !== undefined &&
+                (country.capacity || {})[mode] !== undefined &&
+                country.production[mode] > country.capacity[mode])
+            {
                 console.error(countryCode + ' produces more than its capacity of ' + mode);
+            }
         });
         if (!country.exchange || !d3.keys(country.exchange).length)
             console.warn(countryCode + ' is missing exchanges');

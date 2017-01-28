@@ -249,10 +249,16 @@ def get_gas(values):
             values.get('Fossil Gas', 0)
 
 def get_hydro(values):
-    if 'Hydro Run-of-river and poundage' in values \
+    if 'Hydro Pumped Storage' in values \
+        or 'Hydro Run-of-river and poundage' in values \
         or 'Hydro Water Reservoir' in values:
-        return values.get('Hydro Run-of-river and poundage', 0) + \
+        return max(0, values.get('Hydro Pumped Storage', 0)) + \
+            values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
+
+def get_hydro_storage(values):
+    if 'Hydro Pumped Storage' in values:
+        return max(0, -1 * values.get('Hydro Pumped Storage', 0))
 
 def get_oil(values):
     if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
@@ -324,10 +330,12 @@ def fetch_production(country_code, session=None):
             'hydro': get_hydro(values),
             'nuclear': values.get('Nuclear', None),
             'oil': get_oil(values),
-            'pumped hydro': values.get('Hydro Pumped Storage', None),
             'solar': values.get('Solar', None),
             'wind': get_wind(values),
             'unknown': get_unknown(values)
+        },
+        'storage': {
+            'hydro': get_hydro_storage(values),
         },
         'source': 'entsoe.eu'
     }

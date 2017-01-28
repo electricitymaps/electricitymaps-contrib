@@ -125,15 +125,11 @@ function processDatabaseResults(countries, exchanges, prices) {
         country.maxProduction =
             d3.max(d3.values(country.production));
         country.totalProduction =
-            d3.sum(d3.values(country.production), function(d) {
-                // Ignore negative production units which count as storage
-                return Math.max(0, d);
-            });
+            d3.sum(d3.values(country.production));
+        country.maxStorage =
+            d3.max(d3.values(country.storage || {}));
         country.totalStorage =
-            d3.sum(d3.values(country.production), function(d) {
-                // Ignore negative production units which count as storage
-                return -Math.min(0, d);
-            });
+            d3.sum(d3.values(country.storage || {}));
         country.totalImport =
             d3.sum(d3.values(country.exchange), function(d) {
                 return d >= 0 ? d : 0;

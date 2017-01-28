@@ -10,8 +10,10 @@ MAP_GENERATION = {
     'Hydraulique': 'hydro',
     'Eolien': 'wind',
     'Solaire': 'solar',
-    'Pompage': 'pumped hydro',
     'Autres': 'biomass'
+}
+MAP_STORAGE = {
+    'Pompage': 'hydro',
 }
 
 def fetch_production(country_code='FR', session=None):
@@ -24,7 +26,7 @@ def fetch_production(country_code='FR', session=None):
     data = {
         'countryCode': country_code,
         'production': {},
-        'consumption': {},
+        'storage': {},
         'source': 'rte-france.com',
     }
     for item in mixtr.getchildren():
@@ -34,6 +36,8 @@ def fetch_production(country_code='FR', session=None):
         for value in item.getchildren(): pass
         if key in MAP_GENERATION:
             data['production'][MAP_GENERATION[key]] = float(value.text)
+        elif key in MAP_STORAGE:
+            data['storage'][MAP_STORAGE[key]] = -1 * float(value.text)
 
     data['datetime'] = arrow.get(arrow.get(obj[1].text).datetime, 
         'Europe/Paris').replace(minutes=+(int(value.attrib['periode']) * 15.0)).datetime
