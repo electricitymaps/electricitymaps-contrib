@@ -5,7 +5,6 @@ defaultCo2eqFootprint = {
     'coal': 820,
     'gas': 490,
     'hydro': 24,
-    'pumped hydro': 24,
     'nuclear': 12,
     'oil': 650,
     'solar': 45,
