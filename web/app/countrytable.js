@@ -362,7 +362,7 @@ CountryTable.prototype.data = function(arg) {
                         that.PRODUCTION_COLORS[d.mode];
                 })
                 .attr('x', function (d) {
-                    var value = d.production != undefined ? d.production : -1 * d.storage;
+                    var value = (!d.isStorage) ? d.production : -1 * d.storage;
                     return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
                 })
                 .attr('width', function (d) {
