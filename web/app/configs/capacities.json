@@ -112,11 +112,25 @@
     },
     "GB": {
         "capacity": {
-            "wind": 13500,
-            "nuclear": 9000,
-            "hydro": 1550,
-            "gas": 38000,
-            "solar": 8780
+            "wind": 15621,
+            "nuclear": 8985,
+            "hydro": 4269,
+            "gas": 27688,
+            "solar": 8566,
+            "coal": 11097,
+            "biomass": 2119,
+            "oil": 759,
+            "unknown": 8186
+        }
+    },
+    "GB-NIR": {
+        "capacity": {
+            "wind": 863,
+            "gas": 1004,
+            "solar": 77,
+            "coal": 764,
+            "biomass": 35,
+            "oil": 415
         }
     },
     "GR": {
@@ -183,6 +197,12 @@
             "wind": 55
         }
     },
+    "ME": {
+        "capacity": {
+            "coal": 210,
+            "hydro": 652
+        }
+    },
     "NL": {
         "capacity": {
             "biomass": 1072,
@@ -237,6 +257,13 @@
             "nuclear": 1298,
             "solar": 1152,
             "wind": 2938
+        }
+    },
+    "RS": {
+        "capacity": {
+            "coal": 5666,
+            "gas": 424,
+            "hydro": 2917
         }
     },
     "SE": {
