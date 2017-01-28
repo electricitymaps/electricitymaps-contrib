@@ -100,14 +100,15 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             // % of (production w/o storage + import) ----- without exports (and storage)
             var domain = d.isStorage ? totalPositive : totalConsumption;
             var domainName = d.isStorage ? 'production/import' : 'consumption';
+            var isNull = !isFinite(value) || value == undefined;
 
-            var productionProportion = Math.round(d.production / domain * 100) || '?';
+            var productionProportion = Math.round(value / domain * 100) || '?';
             tooltip.select('#production-proportion').text(
                 productionProportion + ' %');
             tooltip.select('#production-proportion-detail').text(
-                (formatPower(d.production) || '?') + ' ' +
+                (!isNull ? formatPower(value) : '?') + ' ' +
                 ' / ' + 
-                (formatPower(domain) || '?'));
+                (!isNull ? formatPower(domain) : '?'));
             tooltip.select('#domain-name').text(domainName);
 
             tooltip.select('.country-code').text(countryCode);
