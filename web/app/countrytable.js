@@ -330,9 +330,11 @@ CountryTable.prototype.data = function(arg) {
             selection.select('rect.production')
                 .transition()
                 .attr('fill', function (d) { return that.PRODUCTION_COLORS[d.mode]; })
-                .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+                .attr('x', function (d) {
+                    return d.production === undefined ? 0 : that.LABEL_MAX_WIDTH + that.powerScale(Math.min(0, d.production));
+                })
                 .attr('width', function (d) {
-                    return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
+                    return d.production === undefined ? 0 : Math.abs(that.powerScale(d.production) - that.powerScale(0));
                 });
         selection.select('text.unknown')
             .transition()
