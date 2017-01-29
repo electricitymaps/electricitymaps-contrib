@@ -38,10 +38,11 @@ exports.getCached = function (key, callback, cacheSeconds, asyncComputeFunction)
             return callback(err, obj);
         } else {
             return asyncComputeFunction(function (err, obj) {
-                if (!err)
+                if (!err) {
                     memcachedClient.set(key, obj, cacheSeconds, function (err) {
                         if (err) console.error(err);
-                    })
+                    });
+                }
                 return callback(err, obj);
             });
         }
