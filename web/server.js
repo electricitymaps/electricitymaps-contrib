@@ -254,7 +254,7 @@ app.get('/v1/exchanges', function(req, res) {
     var maxDate = datetime ? new Date(datetime) : undefined;
     var minDate = (moment(maxDate) || moment.utc()).subtract(24, 'hours').toDate();
     mongoExchangeCollection.distinct('sortedCountryCodes',
-        {datetime: rangeQuery(minDate, maxDate)},
+        {datetime: db.rangeQuery(minDate, maxDate)},
         function(err, sortedCountryCodes) {
             if (err) {
                 handleError(err);
@@ -265,7 +265,7 @@ app.get('/v1/exchanges', function(req, res) {
                     var from = arr[0]; var to = arr[1];
                     return (from === countryCode || to === countryCode);
                 });
-                queryElements('sortedCountryCodes', sortedCountryCodes,
+                db.queryElements('sortedCountryCodes', sortedCountryCodes,
                     mongoExchangeCollection, minDate, maxDate,
                     function(err, data) {
                         if (err) {
@@ -288,7 +288,7 @@ app.get('/v1/production', function(req, res) {
     var maxDate = datetime ? new Date(datetime) : undefined;
     var minDate = (moment(maxDate) || moment.utc()).subtract(24, 'hours').toDate();
     mongoProductionCollection.findOne(
-        elementQuery('countryCode', countryCode, minDate, maxDate),
+        db.elementQuery('countryCode', countryCode, minDate, maxDate),
         { sort: [['datetime', -1]] },
         function(err, doc) {
             if (err) { 

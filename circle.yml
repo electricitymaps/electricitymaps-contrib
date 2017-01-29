@@ -14,6 +14,11 @@ dependencies:
     - sleep 20
     - docker-compose logs web
     - curl --fail -i http://localhost:8000/
+    - curl --fail -i http://localhost:8000/health
+    - curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
+    - curl --fail -i http://localhost:8000/v1/exchanges?countryCode=FR
+    - curl --fail -i http://localhost:8000/v1/production?countryCode=FR
+    - curl --fail -i http://localhost:8000/v1/co2LastDay?countryCode=FR
 test:
   override:
     - echo "no test"

@@ -137,23 +137,23 @@ function computeCo2(countries, exchanges) {
         exchange.co2intensity = countries[exchange.countryCodes[exchange.netFlow > 0 ? 0 : 1]].co2intensity;
     });
 }
-function elementQuery(keyName, keyValue, minDate, maxDate) {
-    var query = { datetime: rangeQuery(minDate, maxDate) };
+exports.elementQuery = function (keyName, keyValue, minDate, maxDate) {
+    var query = { datetime: exports.rangeQuery(minDate, maxDate) };
     query[keyName] = keyValue
     return query;
 }
-function rangeQuery(minDate, maxDate) {
+exports.rangeQuery = function (minDate, maxDate) {
     var query = { };
     if (minDate) query['$gte'] = minDate;
     if (maxDate) query['$lte'] = maxDate;
     return query;
 }
-function queryElements(keyName, keyValues, collection, minDate, maxDate, callback) {
+exports.queryElements = function (keyName, keyValues, collection, minDate, maxDate, callback) {
     tasks = {};
     keyValues.forEach(function(k) {
         tasks[k] = function(callback) { 
             return collection.findOne(
-                elementQuery(keyName, k, minDate, maxDate),
+                exports.elementQuery(keyName, k, minDate, maxDate),
                 { sort: [['datetime', -1]] },
                 callback);
         };
@@ -167,15 +167,15 @@ exports.queryLastValuesBeforeDatetime = function (datetime, callback) {
     return async.parallel([
         function(callback) {
             mongoProductionCollection.distinct('countryCode',
-                {datetime: rangeQuery(minDate, maxDate)}, callback);
+                {datetime: exports.rangeQuery(minDate, maxDate)}, callback);
         },
         function(callback) {
             mongoExchangeCollection.distinct('sortedCountryCodes',
-                {datetime: rangeQuery(minDate, maxDate)}, callback);
+                {datetime: exports.rangeQuery(minDate, maxDate)}, callback);
         },
         function(callback) {
             mongoPriceCollection.distinct('countryCode',
-                {datetime: rangeQuery(minDate, maxDate)}, callback);
+                {datetime: exports.rangeQuery(minDate, maxDate)}, callback);
         },
     ], function(err, results) {
         if (err) return callback(err);
@@ -185,15 +185,15 @@ exports.queryLastValuesBeforeDatetime = function (datetime, callback) {
         // Query productions + exchanges
         async.parallel([
             function(callback) {
-                return queryElements('countryCode', productionCountryCodes,
+                return exports.queryElements('countryCode', productionCountryCodes,
                     mongoProductionCollection, minDate, maxDate, callback);
             },
             function(callback) {
-                return queryElements('sortedCountryCodes', sortedCountryCodes,
+                return exports.queryElements('sortedCountryCodes', sortedCountryCodes,
                     mongoExchangeCollection, minDate, maxDate, callback);
             },
             function(callback) {
-                return queryElements('countryCode', priceCountryCodes,
+                return exports.queryElements('countryCode', priceCountryCodes,
                     mongoPriceCollection, minDate, maxDate, callback);
             },
         ], function(err, results) {
@@ -221,14 +221,14 @@ function queryGfsAt(key, refTime, targetTime, callback) {
 }
 function queryLastGfsBefore(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        { key, targetTime: rangeQuery(
+        { key, targetTime: exports.rangeQuery(
             moment(datetime).subtract(2, 'hours').toDate(), datetime) },
         { sort: [['refTime', -1], ['targetTime', -1]] },
         callback);
 }
 function queryLastGfsAfter(key, datetime, callback) {
     return mongoGfsCollection.findOne(
-        { key, targetTime: rangeQuery(datetime,
+        { key, targetTime: exports.rangeQuery(datetime,
             moment(datetime).add(2, 'hours').toDate()) },
         { sort: [['refTime', -1], ['targetTime', 1]] },
         callback);
