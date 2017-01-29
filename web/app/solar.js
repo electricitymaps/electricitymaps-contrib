@@ -18,7 +18,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var continuousScale = true;
     // ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
     var BLUR_RADIUS = 20;
-    var SOLAR_SCALE = 1360;
+    var SOLAR_SCALE = 1000;
     var MAX_OPACITY = 0.85;
 
     var maxOpacityPix = 256 * MAX_OPACITY;
