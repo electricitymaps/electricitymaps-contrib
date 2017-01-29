@@ -34,15 +34,15 @@ exports.getCached = function (key, callback, cacheSeconds, asyncComputeFunction)
         if (err && asyncComputeFunction) {
             console.error(err);
         }
-        if (!asyncComputeFunction) {
+        if (!asyncComputeFunction || obj) {
             return callback(err, obj);
         } else {
             return asyncComputeFunction(function (err, obj) {
-                if (err || obj) return callback(err, obj);
-                else
+                if (!err)
                     memcachedClient.set(key, obj, cacheSeconds, function (err) {
-                        return callback(err, obj);
+                        if (err) console.error(err);
                     })
+                return callback(err, obj);
             });
         }
     });
