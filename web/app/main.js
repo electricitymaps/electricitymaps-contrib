@@ -149,9 +149,9 @@ var windColor = d3.scaleLinear()
     ])
     .clamp(true);
 // ** Solar Scale **
-var maxSolarDSWRF = 400;
-var minDayDSWRF = 5;
-var nightOpacity = 0.8;
+var maxSolarDSWRF = 1000;
+var minDayDSWRF = 0;
+// var nightOpacity = 0.8;
 var minSolarDayOpacity = 0.6;
 var maxSolarDayOpacity = 0.0;
 var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)); } );
@@ -161,8 +161,8 @@ var solarRange = d3.range(10).map(function (i) {
     return 'rgba(' + c + ', ' + c + ', ' + c + ', ' + a + ')';
 });
 // Insert the night (DWSWRF \in [0, minDayDSWRF]) domain
-solarDomain.splice(0, 0, 0);
-solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
+// solarDomain.splice(0, 0, 0);
+// solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
 var solarColor = d3.scaleLinear()
     .domain(solarDomain)
@@ -180,7 +180,7 @@ var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 var solarColorbarColor = d3.scaleLinear()
-    .domain([0, 1360/2, 1360])
+    .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
     .range(['black', 'white', 'gold'])
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
     .markerColor('red')

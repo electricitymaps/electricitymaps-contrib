@@ -1,7 +1,8 @@
 var d3 = require('d3');
 
 function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) {
-    this.PADDING_X = 10; // Inner padding allow place for the axis text
+    this.PADDING_X = 13; // Inner padding allow place for the axis text
+    this.PADDING_Y = 10; // Inner padding allow place for the axis text
 
     this.root = d3.select(selector);
     this.scale = d3ColorScale.copy();
@@ -71,7 +72,7 @@ HorizontalColorbar.prototype.render = function() {
     this.height = this.root.node().getBoundingClientRect().height;
 
     this.colorbarWidth = this.width - 2 * this.PADDING_X;
-    this.colorbarHeight = this.height - 2 * this.PADDING_X;
+    this.colorbarHeight = this.height - 2 * this.PADDING_Y;
 
     var that = this;
 
