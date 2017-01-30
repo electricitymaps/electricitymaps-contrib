@@ -274,9 +274,10 @@ CountryTable.prototype.data = function(arg) {
 
         this.gPowerAxis
             .transition()
-            // We offset by just one pixel because it looks better when
-            // the rectangles don't start exactly on the axis.
-            .attr('transform', 'translate(' + (this.powerScale.range()[0] - 1 + this.LABEL_MAX_WIDTH) + ', 24)')
+            // TODO: We should offset by just one pixel because it looks better when
+            // the rectangles don't start exactly on the axis...
+            // But we should also handle "negative" rects
+            .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')
