@@ -35,4 +35,10 @@ def migrate(db, validate_production):
     #     except:
     #         print 'Warning: row %s did not pass validation' % row['_id']
     #         print row
+    # ** 2017-01-28 Add storage
+    for row in col_production.find({'countryCode': 'FR', 'consumption': {'$exists': True}}):
+        print 'Migrating %s' % row['datetime']
+        row['storage'] = row['consumption']
+        del row['consumption']
+        col_production.update_one({'_id': row['_id']}, {'$set': row}, upsert=False)
     print 'Migration done.'
