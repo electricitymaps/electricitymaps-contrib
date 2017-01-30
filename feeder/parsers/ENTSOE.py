@@ -169,7 +169,8 @@ def parse_production(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
-    quantities = []
+    productions = []
+    storages = []
     datetimes = []
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
@@ -177,18 +178,19 @@ def parse_production(xml_text):
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
-            # If this is not a production, then it is storage (consumption)
-            if not is_production: quantity *= -1
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
-            # Find out whether or not we should update the net production
             try:
                 i = datetimes.index(datetime)
-                quantities[i] += quantity
+                if is_production:
+                    productions[i] = quantity
+                else:
+                    storages[i] = quantity
             except ValueError: # Not in list
-                quantities.append(quantity)
                 datetimes.append(datetime)
-    return quantities, datetimes
+                productions.append(quantity if is_production else 0)
+                storages.append(quantity if not is_production else 0)
+    return productions, storages, datetimes
 
 def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     if not xml_text: return None
@@ -256,6 +258,10 @@ def get_hydro(values):
             values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
 
+def get_hydro_storage(storage_values):
+    if 'Hydro Pumped Storage' in storage_values:
+        return max(0, storage_values.get('Hydro Pumped Storage', 0))
+
 def get_oil(values):
     if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
         value = values.get('Fossil Oil', 0) + values.get('Fossil Oil shale', 0)
@@ -300,9 +306,9 @@ def fetch_production(country_code, session=None):
     for k in ENTSOE_PARAMETER_DESC.keys():
         parsed = parse_production(query_production(k, domain, session))
         if parsed:
-            quantities, datetimes = parsed
-            for i in range(len(quantities)):
-                production_hashmap[datetimes[i]][k] = quantities[i]
+            productions, storages, datetimes = parsed
+            for i in range(len(datetimes)):
+                production_hashmap[datetimes[i]][k] = (productions[i], storages[i])
 
 
     # Take the last production date that is present for all parameters
@@ -314,21 +320,25 @@ def fetch_production(country_code, session=None):
         production_dates)
     production_date = production_dates[production_dates_with_counts.index(max(production_dates_with_counts))]
 
-    values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].iteritems()}
+    production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
+    storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
 
     data = {
         'countryCode': country_code,
         'datetime': production_date.datetime,
         'production': {
-            'biomass': values.get('Biomass', None),
-            'coal': get_coal(values),
-            'gas': get_gas(values),
-            'hydro': get_hydro(values),
-            'nuclear': values.get('Nuclear', None),
-            'oil': get_oil(values),
-            'solar': values.get('Solar', None),
-            'wind': get_wind(values),
-            'unknown': get_unknown(values)
+            'biomass': production_values.get('Biomass', None),
+            'coal': get_coal(production_values),
+            'gas': get_gas(production_values),
+            'hydro': get_hydro(production_values),
+            'nuclear': production_values.get('Nuclear', None),
+            'oil': get_oil(production_values),
+            'solar': production_values.get('Solar', None),
+            'wind': get_wind(production_values),
+            'unknown': get_unknown(production_values)
+        },
+        'storage': {
+            'hydro': get_hydro_storage(storage_values),
         },
         'source': 'entsoe.eu'
     }
