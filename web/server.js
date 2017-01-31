@@ -60,12 +60,10 @@ function handleError(err) {
 // * Database
 var mongoProductionCollection;
 var mongoExchangeCollection;
-MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
+db.connect(function(err, db) {
     if (err) throw (err);
     console.log('Connected to database');
-    mongoGfsCollection = db.collection('gfs');
     mongoExchangeCollection = db.collection('exchange');
-    mongoPriceCollection = db.collection('price');
     mongoProductionCollection = db.collection('production');
 
     // Start the application
@@ -345,9 +343,8 @@ app.get('/v2/gfs/:key', function(req, res) {
 app.get('/v2/co2LastDay', function(req, res) {
     var countryCode = req.query.countryCode;
     if (!countryCode) return res.status(400).send('countryCode required');
-    var cacheKey = 'co2LastDay_' + countryCode;
 
-    return db.getCached(cacheKey,
+    return db.getCached('HISTORY_CO2_' + countryCode,
         function (err, data) {
             if (err) {
                 if (opbeat)
@@ -357,32 +354,6 @@ app.get('/v2/co2LastDay', function(req, res) {
             } else {
                 res.json({ 'data': data })
             }
-        },
-        15 * 60,
-        function (callback) {
-            var now = moment();
-            var before = moment(now).subtract(1, 'day');
-            var dates = d3.timeMinute.every(30).range(before.toDate(), now.toDate());
-            console.log(dates)
-            var tasks = dates.map(function(d) {
-                return function(callback) {
-                    return db.queryLastValuesBeforeDatetime(d, callback)
-                };
-            });
-            return async.parallel(tasks, function(err, objs) {
-                if (err) {
-                    handleError(err);
-                    return res.status(500).send('Unknown server error');
-                }
-                // Find unique entries
-                var dict = {};
-                objs.forEach(function(d) {
-                    if (d.countries[countryCode])
-                        dict[d.countries[countryCode].datetime] = d.countries[countryCode];
-                });
-                var data = d3.values(dict).sort(function(x, y) { return d3.ascending(x.datetime, y.datetime); });
-                callback(null, data);
-            });
         });
 });
 

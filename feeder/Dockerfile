@@ -9,6 +9,9 @@ WORKDIR /home/feeder
 # Only add requirements to enable cached builds when it is unchanged
 ADD feeder/requirements.txt /home/feeder/requirements.txt
 RUN pip install -r requirements.txt
+# Same with package.json
+ADD feeder/package.json /home/feeder/package.json
+RUN npm install
 # Add the rest
 ADD feeder /home/feeder
 ADD shared /home/shared

@@ -17,16 +17,21 @@ var co2lib = require('./co2eq');
 memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
 
 // * Database
-var mongoProductionCollection;
+var mongoGfsCollection;
 var mongoExchangeCollection;
-require('mongodb').MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
-    if (err) throw (err);
-    console.log('Connected to database');
-    mongoGfsCollection = db.collection('gfs');
-    mongoExchangeCollection = db.collection('exchange');
-    mongoPriceCollection = db.collection('price');
-    mongoProductionCollection = db.collection('production');
-});
+var mongoPriceCollection;
+var mongoProductionCollection;
+exports.connect = function (callback) {
+    require('mongodb').MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
+        if (err) throw (err);
+        console.log('Connected to database');
+        mongoGfsCollection = db.collection('gfs');
+        mongoExchangeCollection = db.collection('exchange');
+        mongoPriceCollection = db.collection('price');
+        mongoProductionCollection = db.collection('production');
+        callback(err, db);
+    });
+}
 
 // * Cache methods
 exports.getCached = function (key, callback, cacheSeconds, asyncComputeFunction) {
@@ -46,6 +51,11 @@ exports.getCached = function (key, callback, cacheSeconds, asyncComputeFunction)
                 return callback(err, obj);
             });
         }
+    });
+}
+exports.setCache = function (key, obj, cacheSeconds, callback) {
+    return memcachedClient.set(key, obj, cacheSeconds, function (err) {
+        callback(err);
     });
 }
 
