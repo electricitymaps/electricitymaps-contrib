@@ -254,7 +254,7 @@ def get_hydro(values):
     if 'Hydro Pumped Storage' in values \
         or 'Hydro Run-of-river and poundage' in values \
         or 'Hydro Water Reservoir' in values:
-        return max(0, values.get('Hydro Pumped Storage', 0)) + \
+        return max(values.get('Hydro Pumped Storage', 0), 0) + \
             values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
 
@@ -339,9 +339,6 @@ def fetch_production(country_code, session=None):
         },
         'storage': {
             'hydro': get_hydro_storage(storage_values),
-        },
-        'storage': {
-            'hydro': get_hydro_storage(values),
         },
         'source': 'entsoe.eu'
     }
