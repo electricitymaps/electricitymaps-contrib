@@ -45,14 +45,15 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             // % of (production w/o storage + import) ----- without exports (and storage)
             var domain = isExport ? totalPositive : totalConsumption;
             var domainName = isExport ? 'production/import' : 'consumption';
+            var isNull = !isFinite(d.value) || d.value == undefined;
 
             var absFlow = Math.abs(d.value);
-            var exchangeProportion = Math.round(absFlow / domain * 100) || '?';
+            var exchangeProportion = !isNull ? Math.round(absFlow / domain * 100) : '?';
             tooltip.select('#exchange-proportion').text(exchangeProportion + ' %');
             tooltip.select('#exchange-proportion-detail').text(
-                (formatPower(absFlow) || '?') + ' ' +
+                (!isNull ? formatPower(absFlow) : '?') + ' ' +
                 ' / ' + 
-                (formatPower(domain) || '?'));
+                (!isNull ? formatPower(domain) : '?'));
             tooltip.select('#domain-name').text(domainName);
 
             tooltip.selectAll('.country-code').text(countryCode);
@@ -102,7 +103,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var domainName = d.isStorage ? 'production/import' : 'consumption';
             var isNull = !isFinite(value) || value == undefined;
 
-            var productionProportion = Math.round(value / domain * 100) || '?';
+            var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
             tooltip.select('#production-proportion').text(
                 productionProportion + ' %');
             tooltip.select('#production-proportion-detail').text(

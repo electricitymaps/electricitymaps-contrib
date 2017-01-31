@@ -274,9 +274,10 @@ CountryTable.prototype.data = function(arg) {
 
         this.gPowerAxis
             .transition()
-            // We offset by just one pixel because it looks better when
-            // the rectangles don't start exactly on the axis.
-            .attr('transform', 'translate(' + (this.powerScale.range()[0] - 1 + this.LABEL_MAX_WIDTH) + ', 24)')
+            // TODO: We should offset by just one pixel because it looks better when
+            // the rectangles don't start exactly on the axis...
+            // But we should also handle "negative" rects
+            .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')
@@ -362,7 +363,7 @@ CountryTable.prototype.data = function(arg) {
                         that.PRODUCTION_COLORS[d.mode];
                 })
                 .attr('x', function (d) {
-                    var value = d.production != undefined ? d.production : -1 * d.storage;
+                    var value = (!d.isStorage) ? d.production : -1 * d.storage;
                     return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
                 })
                 .attr('width', function (d) {
@@ -373,10 +374,9 @@ CountryTable.prototype.data = function(arg) {
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('display', function (d) {
-                return d.capacity > 0 && 
+                return (d.capacity == undefined || d.capacity > 0) && 
                     d.mode != 'unknown' && 
-                    d.storage === undefined &&
-                    (d.production === undefined || d.production === null) ? 
+                    (d.isStorage ? d.storage == undefined : d.production == undefined) ?
                     'block' : 'none';
             });
 
