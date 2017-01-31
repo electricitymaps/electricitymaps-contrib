@@ -347,26 +347,23 @@ app.get('/v2/co2LastDay', function(req, res) {
     if (!countryCode) return res.status(400).send('countryCode required');
     var cacheKey = 'co2LastDay_' + countryCode;
 
-    function returnData(data, cached) {
-        res.json({
-            'data': data,
-            'cached': cached
-        })
-    };
-
-    return memcachedClient.get(cacheKey, function (err, data) {
-        if (err) { 
-            if (opbeat) 
-                opbeat.captureError(err); 
-            console.error(err);
-        }
-        if (data) returnData(data, true);
-        else {
+    return db.getCached(cacheKey,
+        function (err, data) {
+            if (err) {
+                if (opbeat)
+                    opbeat.captureError(err); 
+                console.error(err);
+                res.status(500).send('Unknown database error');
+            } else {
+                res.json({ 'data': data })
+            }
+        },
+        15 * 60,
+        function (callback) {
             var now = moment();
             var before = moment(now).subtract(1, 'day');
-            var dates = [now];
-            while (dates[dates.length - 1] > before)
-                dates.push(moment(dates[dates.length - 1]).subtract(30, 'minute'));
+            var dates = d3.timeMinute.every(30).range(before.toDate(), now.toDate());
+            console.log(dates)
             var tasks = dates.map(function(d) {
                 return function(callback) {
                     return db.queryLastValuesBeforeDatetime(d, callback)
@@ -384,15 +381,9 @@ app.get('/v2/co2LastDay', function(req, res) {
                         dict[d.countries[countryCode].datetime] = d.countries[countryCode];
                 });
                 var data = d3.values(dict).sort(function(x, y) { return d3.ascending(x.datetime, y.datetime); });
-                memcachedClient.set(cacheKey, data, 15 * 60, function(err) {
-                    if (err) {
-                        handleError(err);
-                    }
-                });
-                returnData(data, false);
+                callback(null, data);
             });
-        }
-    });
+        });
 });
 
 // *** UNVERSIONED ***
