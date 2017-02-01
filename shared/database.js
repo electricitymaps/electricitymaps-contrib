@@ -24,7 +24,6 @@ var mongoProductionCollection;
 exports.connect = function (callback) {
     require('mongodb').MongoClient.connect(process.env['MONGO_URL'], function(err, db) {
         if (err) throw (err);
-        console.log('Connected to database');
         mongoGfsCollection = db.collection('gfs');
         mongoExchangeCollection = db.collection('exchange');
         mongoPriceCollection = db.collection('price');

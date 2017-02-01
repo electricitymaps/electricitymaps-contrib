@@ -341,16 +341,22 @@ app.get('/v2/gfs/:key', function(req, res) {
 });
 
 app.get('/v2/co2LastDay', function(req, res) {
+    // TODO: Remove
+    res.redirect(301, '/v2/history?countryCode=' + req.query.countryCode);
+});
+app.get('/v2/history', function(req, res) {
     var countryCode = req.query.countryCode;
     if (!countryCode) return res.status(400).send('countryCode required');
 
-    return db.getCached('HISTORY_CO2_' + countryCode,
+    return db.getCached('HISTORY_' + countryCode,
         function (err, data) {
             if (err) {
                 if (opbeat)
                     opbeat.captureError(err); 
                 console.error(err);
                 res.status(500).send('Unknown database error');
+            // } else if (!data) {
+            //     res.status(500).send('No data was found');
             } else {
                 res.json({ 'data': data })
             }
