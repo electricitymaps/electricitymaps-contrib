@@ -21,7 +21,7 @@ html, body {
 }
 
 #connection-warning.hide {
-    top: -60px; 
+    top: -60px;
 }
 
 #connection-warning .inner {
@@ -117,7 +117,7 @@ html, body {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity, .emission-intensity, #exchange-tooltip .flow {
+.country-emission-intensity, .country-spot-price, .emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
 .emission-rect {
@@ -147,21 +147,20 @@ html, body {
     height: 100%;
     width: 150px;
     text-align: right;
-    font-size: 0.6em;
-    line-height: 1.5em;
+    font-size: 0.7em;
 }
 
 .co2-legend > .colorbar-unit {
-    color: black;
+    color: lightgrey;
 }
 .co2-legend .x.axis text {
-    fill: black !important;
+    fill: lightgrey !important;
 }
 .co2-legend .x.axis line {
-    stroke: black !important;
+    stroke: lightgrey !important;
 }
 .co2-legend rect.border {
-    stroke: black !important;
+    stroke: lightgrey !important;
 }
 
 a {
@@ -195,7 +194,8 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     position: absolute;
 }
 
-@media screen and (min-width: 750px) {
+/* Small devices (phones, etc.) */
+@media (min-width: 768px) {
     .small-screen-visible {
         display: none;
     }
@@ -208,7 +208,9 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
         bottom: 0px;
     }
 }
-@media screen and (max-width: 750px) {
+
+/* Medium and large devices (tablets, desktops, etc.) */
+@media (max-width: 768px) {
     .large-screen-visible {
         display: none;
     }
@@ -266,4 +268,17 @@ hr {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     float: left;
+}
+
+#current-datetime {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    color: lightgrey;
+    text-align: center;
+    pointer-events: none;
+}
+
+.time-travel {
+    display: none;
 }

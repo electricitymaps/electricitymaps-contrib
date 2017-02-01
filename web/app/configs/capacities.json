@@ -1,0 +1,289 @@
+{
+    "AT": {
+        "capacity": {
+            "biomass": 393,
+            "coal": 819,
+            "gas": 4187,
+            "hydro": 11054,
+            "oil": 288,
+            "solar": 814,
+            "wind": 2556
+        }
+    },
+    "BE": {
+        "capacity": {
+            "biomass": 1078,
+            "nuclear": 5919,
+            "oil": 145,
+            "coal": 470,
+            "hydro": 1425,
+            "gas": 5303,
+            "wind": 1961,
+            "solar": 2953
+        }
+    },
+    "BG": {
+        "capacity": {
+            "hydro": 1980,
+            "nuclear": 3780,
+            "wind": 691
+        }
+    },
+    "CH": {
+        "capacity": {
+            "hydro": 9170,
+            "nuclear": 3375
+        }
+    },
+    "CZ": {
+        "capacity": {
+            "biomass": 350,
+            "coal": 9914,
+            "gas": 1226,
+            "hydro": 2253,
+            "nuclear": 4040,
+            "oil": 0,
+            "solar": 2067,
+            "wind": 277
+        }
+    },
+    "DE": {
+        "capacity": {
+            "biomass": 8190,
+            "coal": 50685,
+            "gas": 26767,
+            "hydro": 12932,
+            "nuclear": 10952,
+            "oil": 3745,
+            "solar": 38994,
+            "wind": 43193
+        }
+    },
+    "DK": {
+        "capacity": {
+            "biomass": 197,
+            "coal": 4847,
+            "gas": 2941,
+            "hydro": 0,
+            "nuclear": 0,
+            "solar": 601,
+            "wind": 4845
+        }
+    },
+    "EE": {
+        "capacity": {
+            "biomass": 97,
+            "coal": 0,
+            "gas": 205,
+            "hydro": 0,
+            "oil": 1975,
+            "nuclear": 0,
+            "solar": 1,
+            "wind": 375
+        }
+    },
+    "ES": {
+        "capacity": {
+            "coal": 11482,
+            "gas": 30704,
+            "hydro": 19893,
+            "nuclear": 7866,
+            "solar": 6972,
+            "wind": 23002
+        }
+    },
+    "FI": {
+        "capacity": {
+            "hydro": 3080,
+            "nuclear": 2860,
+            "wind": 1000
+        }
+    },
+    "FR": {
+        "capacity": {
+            "nuclear": 63130,
+            "oil": 6670,
+            "coal": 2930,
+            "hydro": 23495,
+            "gas": 10909,
+            "wind": 10358,
+            "solar": 6580
+        }
+    },
+    "GB": {
+        "capacity": {
+            "wind": 15621,
+            "nuclear": 8985,
+            "hydro": 4269,
+            "gas": 27688,
+            "solar": 8566,
+            "coal": 11097,
+            "biomass": 2119,
+            "oil": 759,
+            "unknown": 8186
+        }
+    },
+    "GB-NIR": {
+        "capacity": {
+            "wind": 863,
+            "gas": 1004,
+            "solar": 77,
+            "coal": 764,
+            "biomass": 35,
+            "oil": 415
+        }
+    },
+    "GR": {
+        "capacity": {
+            "biomass": 51,
+            "coal": 3912,
+            "hydro": 3401,
+            "oil": 0,
+            "nuclear": 0,
+            "unknown": 69,
+            "gas": 5396,
+            "wind": 1875,
+            "solar": 2441
+        }
+    },
+    "HU": {
+        "capacity": {
+            "biomass": 274,
+            "coal": 1007,
+            "gas": 4124,
+            "hydro": 57,
+            "nuclear": 1887,
+            "oil": 410,
+            "solar": 29,
+            "wind": 328
+        }
+    },
+    "IE": {
+        "capacity": {
+            "biomass": 344,
+            "oil": 811,
+            "coal": 855,
+            "hydro": 508,
+            "nuclear": 0,
+            "gas": 3801,
+            "unknown": 647,
+            "solar": 0,
+            "wind": 3025
+        }
+    },
+    "IT": {
+        "capacity": {
+            "hydro": 22382,
+            "nuclear": 0,
+            "solar": 18420,
+            "wind": 8561
+        }
+    },
+    "LT": {
+        "capacity": {
+            "biomass": 86,
+            "gas": 1719,
+            "hydro": 1028,
+            "oil": 160,
+            "solar": 69,
+            "wind": 366
+        }
+    },
+    "LV": {
+        "capacity": {
+            "biomass": 102,
+            "gas": 1103,
+            "hydro": 1537,
+            "wind": 55
+        }
+    },
+    "ME": {
+        "capacity": {
+            "coal": 210,
+            "hydro": 652
+        }
+    },
+    "NL": {
+        "capacity": {
+            "biomass": 1072,
+            "coal": 5658,
+            "gas": 19914,
+            "hydro": 38,
+            "nuclear": 486,
+            "solar": 1429,
+            "wind": 3641
+        }
+    },
+    "NO": {
+        "capacity": {
+            "coal": 0,
+            "gas": 1777,
+            "hydro": 36531,
+            "nuclear": 0,
+            "solar": 0,
+            "wind": 856
+        }
+    },
+    "PL": {
+        "capacity": {
+            "biomass": 435,
+            "oil": 345,
+            "coal": 26962,
+            "hydro": 2321,
+            "nuclear": 0,
+            "gas": 1460,
+            "wind": 5494,
+            "solar": 77
+        }
+    },
+    "PT": {
+        "capacity": {
+            "biomass": 582,
+            "oil": 0,
+            "coal": 1756,
+            "gas": 4695,
+            "hydro": 6121,
+            "nuclear": 0,
+            "solar": 251,
+            "wind": 4617
+        }
+    },
+    "RO": {
+        "capacity": {
+            "biomass": 95,
+            "coal": 5894,
+            "gas": 4879,
+            "hydro": 6703,
+            "nuclear": 1298,
+            "solar": 1152,
+            "wind": 2938
+        }
+    },
+    "RS": {
+        "capacity": {
+            "coal": 5666,
+            "gas": 424,
+            "hydro": 2917
+        }
+    },
+    "SE": {
+        "capacity": {
+            "hydro": 16200,
+            "nuclear": 8849,
+            "solar": 79,
+            "wind": 6025
+        }
+    },
+    "SI": {
+        "capacity": {
+            "biomass": 57,
+            "nuclear": 696,
+            "coal": 921,
+            "oil": 0,
+            "hydro": 1233,
+            "gas": 491,
+            "wind": 3,
+            "solar": 263
+        }
+    }
+}

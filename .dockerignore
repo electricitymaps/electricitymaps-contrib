@@ -1,0 +1,14 @@
+.git
+*.tar.gz
+*.json
+*secrets*
+*.env
+
+datascience
+
+feeder/node_modules
+
+web/node_modules
+web/build
+web/public/dist
+web/world_*.json

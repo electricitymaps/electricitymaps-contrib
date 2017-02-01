@@ -7,9 +7,9 @@ services:
       - ENV=production
       - MEMCACHED_HOST=memcached
       - MONGO_URL=mongodb://mongo:27017/electricity
-      - VIRTUAL_HOST=electricitymap.tmrow.co
+      - VIRTUAL_HOST=electricitymap.org,www.electricitymap.org,electricitymap.tmrow.co
     image: eu.gcr.io/tmrow-152415/electricitymap_web:production
-    mem_limit: 100M
+    mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     volumes:
       - /home/shared/electricitymap/static/dist:/home/public/dist

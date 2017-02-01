@@ -7,6 +7,7 @@
         <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png" />
         <meta property="og:title" content="Electricity Map | Live CO2 emissions of the European electricity consumption" />
         <meta property="og:type" content="website" />
+        <!-- It's import to keep the old og:url, else, likes will not accumulate properly -->
         <meta property="og:url" content="http://electricitymap.tmrow.co" />
         <meta property="fb:app_id" content="1267173759989113" />
         <meta name="twitter:card" content="summary_large_image">
@@ -105,7 +106,7 @@
                     Live CO2 emissions of the European electricity consumption
                 </h1>
                 <p>
-                    <span id="country-table-back-button" style="display: none" class="small-screen-visible"><a href="#"><< back</a></span>
+                    <span id="country-table-back-button" style="display: none"><a href="#"><< back</a></span>
                 </p>
                 <hr />
                 <div class="country-table-header" style="display: none">
@@ -117,6 +118,7 @@
                         (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
                         <br />
                         Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
+                        Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
                         <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
                         <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
                     </span>
@@ -131,6 +133,9 @@
                     </p class="small-screen-visible">
                     <p class="large-screen-visible">
                         We take into account electricity <span style="color: lightgray">imports and exports</span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> between countries.
+                    </p>
+                    <p>
+                        This project is <a href="https://github.com/corradio/electricitymap" target="_blank">Open Source</a> (see <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank">data sources</a>).
                     </p>
                     <p>
                         <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span>
@@ -156,17 +161,18 @@
                     <hr />
                     Like the visualization? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
                     Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
-                    This project is <span style="color: lightgray;">Open Source</span>: contribute on <a href="https://github.com/corradio/electricitymap#contribute" target="_blank">GitHub</a>.<br />
-                    <br />
+                    <p>
+                        Check out how our <a href="http://www.co2signal.com">CO2 Signal</a> can help your devices and electric vehicle consume electricity at the right time.
+                    </p>
                     <!-- Facebook share -->
                     <div class="fb-share-button" 
-                        data-href="http://electricitymap.tmrow.co" 
+                        data-href="http://www.electricitymap.org" 
                         data-layout="button_count">
                     </div>
                     <!-- Twitter share -->
                     <a class="twitter-share-button"
                         data-via="tmrowco"
-                        data-url="http://electricitymap.tmrow.co">
+                        data-url="http://www.electricitymap.org">
                     Tweet</a>
                     <!-- Slack -->
                     <span class="slack-button">
@@ -195,13 +201,15 @@
         </div>
         <div class="loading overlay"></div>
         <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
-            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://electricitymap.tmrow.co" target="_blank">http://electricitymap.tmrow.co</a>.<br />
+            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">http://www.electricitymap.org</a>.<br />
             Please contact us at <a href="mailto:hello@tmrow.co">hello@tmrow.co</a> for more information.
         </div>
         <div id="country-tooltip" class="tooltip panel">
             Carbon intensity:<br />
             <i id="country-flag"></i> <span id="country-code"></span>: 
-            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh
+            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
+            <br />
+            Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh
         </div>
         <div id="exchange-tooltip" class="tooltip panel">
             Cross-border export:<br />
@@ -212,17 +220,29 @@
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
             Carbon intensity of <span id="mode" style="font-weight: bold;"></span>:<br />
-            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: IPCC 2014)</small><br />
             <br />
-            Proportion of total production:<br />
-            <div id="production-proportion"></div>
+            <span id="production-proportion"></span> of <strong><span class="country-code"></span></strong> <span id="domain-name"></span><br />
+            <small>(<span id="production-proportion-detail"></span>)</small><br />
             <br />
-            Capacity factor:<br />
-            <div id="capacity-factor"></div>
+            <span id="capacity-factor"></span> of installed <span id="mode"></span> capacity<br />
+            <small>(<span id="capacity-factor-detail"></span>)</small>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
             Carbon intensity of <span id="label"></span><br />
-            <i id="country-flag"></i> <span id="country-code"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh
+            <i id="country-flag"></i> <span id="country-code"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+            <br />
+            <span id="exchange-proportion"></span> of <strong><span class="country-code"></span></strong> <span id="domain-name"></span><br />
+            <small>(<span id="exchange-proportion-detail"></span>)</small>
+        </div>
+        <div id="current-datetime" class="large-screen-visible">
+            <small><div id="current-date"></div></small>
+            <div id="current-time"></div>
+            <div class="time-travel">
+                <!-- TODO: CHANGE (don't load like this) -->
+                <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+                <input type="text" class="flatpickr" />
+            </div>
         </div>
     </body>
 </html>

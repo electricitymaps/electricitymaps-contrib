@@ -1,9 +1,9 @@
 var d3 = require('d3');
 var moment = require('moment');
 
-var co2eq_parameters = require('./co2eq_parameters');
-
 function CountryTable(selector, co2Color) {
+    var that = this;
+
     this.root = d3.select(selector);
     this.co2Color = co2Color;
 
@@ -15,7 +15,7 @@ function CountryTable(selector, co2Color) {
     // Constants
     this.ROW_HEIGHT = 10;
     this.RECT_OPACITY = 0.8;
-    this.LABEL_MAX_WIDTH = 60;
+    this.LABEL_MAX_WIDTH = 80;
     this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
     this.TEXT_ADJUST_Y = 9; // To align properly on a line
@@ -25,13 +25,32 @@ function CountryTable(selector, co2Color) {
         'hydro': '#2772b2',
         'biomass': '#166a57',
         'nuclear': '#AEB800',
-        'gas': '#f30a0a',
+        'gas': '#bb2f51',
         'coal': '#ac8c35',
-        'oil': '#8356a2',
-        'unknown': 'gray'
+        'oil': '#867d66',
+        'unknown': 'lightgray'
     };
+    this.STORAGE_COLORS = {
+        'hydro storage': this.PRODUCTION_COLORS['hydro']
+    }
     this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
-    this.POWER_FORMAT = function(d) { return d3.format('.0s')(d * 1000000) + 'W'; };
+    this.STORAGE_MODES = d3.keys(this.STORAGE_COLORS);
+    this.MODES = [];
+    // Display order is defined here
+    [
+        'wind',
+        'solar',
+        'hydro',
+        'hydro storage',
+        'biomass',
+        'nuclear',
+        'gas',
+        'coal',
+        'oil',
+        'unknown'
+    ].forEach(function(k) {
+        that.MODES.push({'mode': k, 'isStorage': k.indexOf('storage') != -1});
+    });
 
     // State
     this._displayByEmissions = false;
@@ -57,7 +76,7 @@ CountryTable.prototype.render = function() {
 
     // ** Production labels and rects **
     var gNewRow = this.productionRoot.selectAll('.row')
-        .data(this.PRODUCTION_MODES)
+        .data(this.MODES)
         .enter()
         .append('g')
             .attr('class', 'row')
@@ -65,15 +84,12 @@ CountryTable.prototype.render = function() {
                 return 'translate(0,' + (i * (that.ROW_HEIGHT + that.PADDING_Y)) + ')';
             });
     gNewRow.append('text')
-        .text(function(d) { return d; })
+        .text(function(d) { return d.mode })
         .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
-        .attr('fill', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('fill-opacity', 0.2)
-        .attr('stroke', function (d) { return that.PRODUCTION_COLORS[d]; })
-        .attr('stroke-width', 1.0)
+        .attr('fill-opacity', 0.4)
         .attr('opacity', 0.3)
         .attr('shape-rendering', 'crispEdges');
     gNewRow.append('rect')
@@ -135,15 +151,9 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
     return this;
 }
 
-CountryTable.prototype.powerFormat = function(arg) {
-    if (!arg) return this.POWER_FORMAT;
-    else this.POWER_FORMAT = arg;
-    return this;
-}
-
 CountryTable.prototype.resize = function() {
     this.headerHeight = 2 * this.ROW_HEIGHT;
-    this.productionHeight = this.PRODUCTION_MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
+    this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
     this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
     this.yProduction = this.headerHeight + this.ROW_HEIGHT;
@@ -187,62 +197,91 @@ CountryTable.prototype.data = function(arg) {
             });
 
         // Construct a list having each production in the same order as
-        // `this.PRODUCTION_MODES`
-        var sortedProductionData = this.PRODUCTION_MODES.map(function (d) {
-            var footprint = co2eq_parameters.footprintOf(d, that._data.countryCode);
-            var production = arg.production ? arg.production[d] : undefined;
+        // `PRODUCTION_MODES` merged with `STORAGE_MODES`
+        var sortedProductionData = this.MODES.map(function (d) {
+            var footprint = !d.isStorage ? 
+                that._data.productionCo2Intensities ? 
+                    that._data.productionCo2Intensities[d.mode] :
+                    undefined :
+                0;
+            var production = !d.isStorage ? (that._data.production || {})[d.mode] : undefined;
+            var storage = d.isStorage ? (that._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
+            var capacity = !d.isStorage ? (that._data.capacity || {})[d.mode] : undefined;
             return {
                 production: production,
-                capacity: arg.capacity ? arg.capacity[d] : undefined,
-                mode: d,
+                storage: storage,
+                isStorage: d.isStorage,
+                capacity: capacity,
+                mode: d.mode,
                 gCo2eqPerkWh: footprint,
-                gCo2eqPerH: footprint * 1000.0 * production
+                gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
             };
         });
 
         // update scales
         this.powerScale
             .domain([
-                -this._data.maxExport || 0,
-                Math.max(this._data.maxCapacity || 0, this._data.maxProduction || 0)
+                Math.min(
+                    -this._data.maxExport || 0,
+                    -this._data.maxStorage || 0),
+                Math.max(
+                    this._data.maxCapacity || 0,
+                    this._data.maxProduction || 0,
+                    this._data.maxImport || 0)
             ]);
-        // co2 scale in tCO2eq/s
+        // co2 scale in tCO2eq/min
         var maxCO2eqExport = d3.max(this._exchangeData, function (d) {
-            return d.value >= 0 ? 0 : (that._data.co2intensity / 1000.0 * -d.value || 0);
+            return d.value >= 0 ? 0 : (that._data.co2intensity / 1e3 * -d.value / 60.0 || 0);
         });
         var maxCO2eqImport = d3.max(this._exchangeData, function (d) {
             if (!that._data.exchangeCo2Intensities) return 0;
-            return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1000.0 * d.value;
+            return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
         });
-        this.co2Scale
+        this.co2Scale // in tCO2eq/min
             .domain([
                 -maxCO2eqExport || 0,
                 Math.max(
-                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH / 1000000.0; }) || 0,
+                    d3.max(sortedProductionData, function (d) { return d.gCo2eqPerH / 1e6 / 60.0; }) || 0,
                     maxCO2eqImport || 0
                 )
             ]);
 
         // Prepare axis
-        if (that._displayByEmissions)
+        var ticks = 4;
+        if (that._displayByEmissions) {
+            var value = d3.max(this.co2Scale.domain());
+            var p = d3.precisionPrefix(
+                (d3.max(this.co2Scale.domain()) - d3.min(this.co2Scale.domain())) / (ticks - 1),
+                value);
+            var f = d3.formatPrefix('.' + p, value);
             this.axis = d3.axisTop(this.co2Scale)
-                .tickFormat(function (d) { return d3.format('.0s')(d) + 't/h'; });
-        else
+                .tickFormat(function (d) { return f(d) + 't/min'; });
+        }
+        else {
+            var value = d3.max(this.powerScale.domain()) * 1e6;
+            var p = d3.precisionPrefix(
+                (d3.max(this.powerScale.domain()) - d3.min(this.powerScale.domain())) / (ticks - 1) * 1e6,
+                value);
+            var f = d3.formatPrefix('.' + p, value);
             this.axis = d3.axisTop(this.powerScale)
-                .tickFormat(this.POWER_FORMAT)
+                .tickFormat(function (d) { return f(d * 1e6) + 'W'; });
+        }
 
         this.axis
             .tickSizeInner(-250)
             .tickSizeOuter(0)
-            .ticks(4, 's');
+            .ticks(ticks);
 
         this.gPowerAxis
             .transition()
+            // TODO: We should offset by just one pixel because it looks better when
+            // the rectangles don't start exactly on the axis...
+            // But we should also handle "negative" rects
             .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
             .call(this.axis);
         this.gPowerAxis.selectAll('.tick text')
             .attr('fill', 'gray')
-            .attr('font-size', '0.7em')
+            .attr('font-size', '0.9em')
         this.gPowerAxis.selectAll('.tick line')
                 .style('stroke', 'gray')
                 .style('stroke-width', 1)
@@ -278,7 +317,7 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
                 .attr('width', function (d) {
-                    return (d.capacity == null || d.production == null) ? 0 : (that.powerScale(d.capacity) - that.powerScale(0));
+                    return d.capacity !== undefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
                 })
                 .on('end', function () { d3.select(this).style('display', 'block'); });
         // Add event handlers
@@ -296,7 +335,7 @@ CountryTable.prototype.data = function(arg) {
                     that.productionMouseMoveHandler.call(this, d);
             })
             .on('click', function (d) {
-                console.log(d.gCo2eqPerH / 1000000.0, 'tCO2eq/h');
+                console.log(d.gCo2eqPerH / 1e6 / 60.0, 'tCO2eq/min');
             })
         /*selection.select('rect.production')
             .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
@@ -305,27 +344,40 @@ CountryTable.prototype.data = function(arg) {
                 .transition()
                 .attr('fill', function (d) {
                     // color by Co2 Intensity
-                    // return that.co2Color(co2eq_parameters.footprintOf(d.mode, that._data.countryCode));
+                    // return that.co2Color(that._data.productionCo2Intensities[d.mode, that._data.countryCode]);
                     // color by production mode
-                    return that.PRODUCTION_COLORS[d.mode];
+                    return d.isStorage ?
+                        that.STORAGE_COLORS[d.mode] :
+                        that.PRODUCTION_COLORS[d.mode];
                 })
                 .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
                 .attr('width', function (d) {
-                    return !isFinite(d.gCo2eqPerH) ? 0 : (that.co2Scale(d.gCo2eqPerH / 1000000.0) - that.co2Scale(0));
+                    return !isFinite(d.gCo2eqPerH) ? 0 : (that.co2Scale(d.gCo2eqPerH / 1e6 / 60.0) - that.co2Scale(0));
                 });
         else
             selection.select('rect.production')
                 .transition()
-                .attr('fill', function (d) { return that.PRODUCTION_COLORS[d.mode]; })
-                .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+                .attr('fill', function (d) {
+                    return d.isStorage ?
+                        that.STORAGE_COLORS[d.mode] :
+                        that.PRODUCTION_COLORS[d.mode];
+                })
+                .attr('x', function (d) {
+                    var value = (!d.isStorage) ? d.production : -1 * d.storage;
+                    return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
+                })
                 .attr('width', function (d) {
-                    return d.production === undefined ? 0 : (that.powerScale(d.production) - that.powerScale(0));
+                    var value = d.production != undefined ? d.production : -1 * d.storage;
+                    return (value == undefined || !isFinite(value)) ? 0 : Math.abs(that.powerScale(value) - that.powerScale(0));
                 });
         selection.select('text.unknown')
             .transition()
             .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
             .style('display', function (d) {
-                return d.capacity != 0 && d.mode != 'unknown' && (d.production === undefined || d.production === null) ? 'block' : 'none';
+                return (d.capacity == undefined || d.capacity > 0) && 
+                    d.mode != 'unknown' && 
+                    (d.isStorage ? d.storage == undefined : d.production == undefined) ?
+                    'block' : 'none';
             });
 
         // Construct exchanges
@@ -394,7 +446,7 @@ CountryTable.prototype.data = function(arg) {
                     if (getExchangeCo2eq(d) === undefined)
                         return that.LABEL_MAX_WIDTH;
                     else
-                        return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value / 1000.0 * co2intensity, 0));
+                        return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value / 1e3 / 60.0 * co2intensity, 0));
                 }
                 else
                     return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
@@ -405,7 +457,7 @@ CountryTable.prototype.data = function(arg) {
                     if (getExchangeCo2eq(d) === undefined)
                         return 0;
                     else
-                        return Math.abs(that.co2Scale(d.value / 1000.0 * co2intensity) - that.co2Scale(0));
+                        return Math.abs(that.co2Scale(d.value / 1e3 / 60.0 * co2intensity) - that.co2Scale(0));
                 }
                 else
                     return Math.abs(that.powerScale(d.value) - that.powerScale(0));
@@ -414,6 +466,9 @@ CountryTable.prototype.data = function(arg) {
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
+        d3.select('.country-spot-price')
+            .text(Math.round((this._data.price || {}).value) || '?')
+            .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);
         d3.select('#country-emission-rect')
             .transition()
             .style('background-color',

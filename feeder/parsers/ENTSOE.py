@@ -30,6 +30,7 @@ ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
+    'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
     'BY': '10Y1001A1001A51S',
@@ -42,6 +43,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'FI': '10YFI-1--------U',
     'FR': '10YFR-RTE------C',
     'GB': '10YGB----------A',
+    'GB-NIR': '10Y1001A1001A016',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
@@ -51,6 +53,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'LU': '10YLU-CEGEDEL-NQ',
     'LV': '10YLV-1001A00074',
     # 'MD': 'MD',
+    'ME': '10YCS-CG-TSO---S',
     'MK': '10YMK-MEPSO----8',
     'MT': '10Y1001A1001A93C',
     'NL': '10YNL----------L',
@@ -86,7 +89,9 @@ def query_consumption(domain, session):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        raise Exception('Failed to get consumption. Reason: %s' % soup.find_all('text')[0].contents[0])
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get consumption. Reason: %s' % error_text)
 
 def query_production(psr_type, in_domain, session):
     params = {
@@ -101,8 +106,10 @@ def query_production(psr_type, in_domain, session):
         return # Return by default
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
         print 'Failed for psr %s' % psr_type
-        print 'Reason:', soup.find_all('text')[0].contents[0]
+        print 'Reason:', error_text
 
 def query_exchange(in_domain, out_domain, session):
     params = {
@@ -115,7 +122,24 @@ def query_exchange(in_domain, out_domain, session):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        raise Exception('Failed to get exchange. Reason: %s' % soup.find_all('text')[0].contents[0])
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get exchange. Reason: %s' % error_text)
+
+def query_price(domain, session):
+    params = {
+        'documentType': 'A44',
+        'in_Domain': domain,
+        'out_Domain': domain,
+    }
+    response = query_ENTSOE(session, params)
+    if response.ok: return response.text
+    else:
+        # Grab the error if possible
+        soup = BeautifulSoup(response.text, 'html.parser')
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get price. Reason: %s' % error_text)
 
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
@@ -145,7 +169,8 @@ def parse_production(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
-    quantities = []
+    productions = []
+    storages = []
     datetimes = []
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
@@ -153,18 +178,19 @@ def parse_production(xml_text):
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
-            # If this is not a production, then it is storage (consumption)
-            if not is_production: quantity *= -1
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
-            # Find out whether or not we should update the net production
             try:
                 i = datetimes.index(datetime)
-                quantities[i] += quantity
+                if is_production:
+                    productions[i] = quantity
+                else:
+                    storages[i] = quantity
             except ValueError: # Not in list
-                quantities.append(quantity)
                 datetimes.append(datetime)
-    return quantities, datetimes
+                productions.append(quantity if is_production else 0)
+                storages.append(quantity if not is_production else 0)
+    return productions, storages, datetimes
 
 def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     if not xml_text: return None
@@ -189,6 +215,25 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
                 datetimes.append(datetime)
     return quantities, datetimes
 
+def parse_price(xml_text):
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    prices = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        currency = timeseries.find_all('currency_unit.name')[0].contents[0]
+        if currency != 'EUR': raise Exception('Currency %s is not recognised' % currency)
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime=datetime_from_position(datetime_start, position, resolution)
+            if datetime > arrow.now(tz='Europe/Paris'): continue
+            prices.append(float(entry.find_all('price.amount')[0].contents[0]))
+            datetimes.append(datetime)
+    return prices, datetimes
+
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
         return values.get('Biomass', 0) + \
@@ -212,6 +257,10 @@ def get_hydro(values):
         return max(values.get('Hydro Pumped Storage', 0), 0) + \
             values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
+
+def get_hydro_storage(storage_values):
+    if 'Hydro Pumped Storage' in storage_values:
+        return max(0, storage_values.get('Hydro Pumped Storage', 0))
 
 def get_oil(values):
     if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
@@ -257,9 +306,9 @@ def fetch_production(country_code, session=None):
     for k in ENTSOE_PARAMETER_DESC.keys():
         parsed = parse_production(query_production(k, domain, session))
         if parsed:
-            quantities, datetimes = parsed
-            for i in range(len(quantities)):
-                production_hashmap[datetimes[i]][k] = quantities[i]
+            productions, storages, datetimes = parsed
+            for i in range(len(datetimes)):
+                production_hashmap[datetimes[i]][k] = (productions[i], storages[i])
 
 
     # Take the last production date that is present for all parameters
@@ -271,21 +320,25 @@ def fetch_production(country_code, session=None):
         production_dates)
     production_date = production_dates[production_dates_with_counts.index(max(production_dates_with_counts))]
 
-    values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].iteritems()}
+    production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
+    storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
 
     data = {
         'countryCode': country_code,
         'datetime': production_date.datetime,
         'production': {
-            'biomass': values.get('Biomass', None),
-            'coal': get_coal(values),
-            'gas': get_gas(values),
-            'hydro': get_hydro(values),
-            'nuclear': values.get('Nuclear', None),
-            'oil': get_oil(values),
-            'solar': values.get('Solar', None),
-            'wind': get_wind(values),
-            'unknown': get_unknown(values)
+            'biomass': production_values.get('Biomass', None),
+            'coal': get_coal(production_values),
+            'gas': get_gas(production_values),
+            'hydro': get_hydro(production_values),
+            'nuclear': production_values.get('Nuclear', None),
+            'oil': get_oil(production_values),
+            'solar': production_values.get('Solar', None),
+            'wind': get_wind(production_values),
+            'unknown': get_unknown(production_values)
+        },
+        'storage': {
+            'hydro': get_hydro_storage(storage_values),
         },
         'source': 'entsoe.eu'
     }
@@ -327,3 +380,19 @@ def fetch_exchange(country_code1, country_code2, session=None):
         'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
         'source': 'entsoe.eu'
     }
+
+def fetch_price(country_code, session=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_price(query_price(domain, session))
+    if parsed:
+        prices, datetimes = parsed
+        data = {
+            'countryCode': country_code,
+            'datetime': datetimes[-1].datetime,
+            'price': prices[-1],
+            'source': 'entsoe.eu'
+        }
+
+        return data
