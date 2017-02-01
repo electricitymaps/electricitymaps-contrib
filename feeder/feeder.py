@@ -1,7 +1,7 @@
 import arrow
 import glob
 import pymongo
-import json, logging, os, schedule, time
+import json, logging, os, schedule, subprocess, time
 import requests
 import snappy
 
@@ -447,19 +447,27 @@ def fetch_weather():
     except:
         logger.exception('fetch_weather()')
 
+def postprocess():
+    try:
+        subprocess.check_call(['node', 'push_cache.js'], shell=False)
+    except:
+        logger.exception('postprocess()')
+
+def fetch_electricity():
+    # Fetch all electricity data
+    fetch_weather()
+    fetch_consumptions()
+    fetch_productions()
+    fetch_exchanges()
+    fetch_price()
+    postprocess()
+
 migrate(db, validate_production)
 
 schedule.every(15).minutes.do(fetch_weather)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_price)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_electricity)
 
-fetch_weather()
-fetch_consumptions()
-fetch_productions()
-fetch_exchanges()
-fetch_price()
+fetch_electricity()
 
 while True:
     schedule.run_pending()
