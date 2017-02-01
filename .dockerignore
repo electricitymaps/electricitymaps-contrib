@@ -6,6 +6,8 @@
 
 datascience
 
+feeder/node_modules
+
 web/node_modules
 web/build
 web/public/dist
