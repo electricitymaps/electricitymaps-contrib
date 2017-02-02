@@ -8,6 +8,7 @@ import snappy
 from bson.binary import Binary
 from pymemcache.client.base import Client
 
+from parsers import IS
 from parsers import FR
 from parsers import ENTSOE
 from parsers import weather
@@ -105,6 +106,7 @@ PRODUCTION_PARSERS = {
     'GR': ENTSOE.fetch_production,
     'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
+    'IS': IS.fetch_production,
     'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
     'LU': ENTSOE.fetch_production,
@@ -300,7 +302,7 @@ def validate_production(obj, country_code):
         raise Exception("Data from %s can't be in the future" % country_code)
     if obj.get('production', {}).get('unknown', None) is None and \
         obj.get('production', {}).get('coal', None) is None and \
-        country_code not in ['CH', 'NO']:
+        country_code not in ['CH', 'NO', 'IS']:
         raise Exception("Coal or unknown production value is required for %s" % (country_code))
     for k, v in obj['production'].iteritems():
         if v is None: continue
