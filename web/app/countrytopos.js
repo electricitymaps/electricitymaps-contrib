@@ -22,8 +22,9 @@ exports.addCountryTopos = function(countries) {
         }));
     }
 
-    // Map between "countries" iso_a2 and adm0_a3 in order to support XK, GB etc..
+    // Map between "countries" iso_a2 and adm0_a3 in order to support XX, GB etc..
     // Note that the definition of "countries" is very vague here..
+    // Specific case of Kosovo and Serbia: considered as a whole as long as they will be reported together in ENTSO-E. 
     countries['AL'] = getCountry('ALB');
     countries['AM'] = getCountry('ARM');
     countries['AT'] = getCountry('AUT');
