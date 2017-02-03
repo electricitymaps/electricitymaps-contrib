@@ -16,6 +16,11 @@ exports.addCountryTopos = function(countries) {
             return d.id == id;
         }));
     }
+    function getMergedCountries(ids) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return ids.indexOf(d.id) != -1;
+        }));
+    }
 
     // Map between "countries" iso_a2 and adm0_a3 in order to support XK, GB etc..
     // Note that the definition of "countries" is very vague here..
@@ -70,7 +75,7 @@ exports.addCountryTopos = function(countries) {
     countries['PT'] = getCountry('PRT');
     countries['RO'] = getCountry('ROU');
     countries['RU'] = getCountry('RUS');
-    countries['RS'] = getCountry('SRB');
+    countries['RS'] = getMergedCountries(['SRB','KOS']);
     countries['SA'] = getCountry('SAU');
     countries['SK'] = getCountry('SVK');
     countries['SI'] = getCountry('SVN');
@@ -83,7 +88,7 @@ exports.addCountryTopos = function(countries) {
     countries['UZ'] = getCountry('UZB');
 
     countries['XX'] = getCountry('CYN');
-    countries['XK'] = getCountry('KOS');
+    
 
     // Clear memory
     topos = [];
