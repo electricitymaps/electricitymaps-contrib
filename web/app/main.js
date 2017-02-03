@@ -314,12 +314,15 @@ if (isSmallScreen()) {
         Cookies.set('windEnabled', windEnabled);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (windEnabled) {
+            d3.select('.wind-colorbar').style('display', 'block');
+            windColorbar.render()
             if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
                 fetch(true);
             } else {
                 Wind.show();
             }
         } else {
+            d3.select('.wind-colorbar').style('display', 'none');
             Wind.hide();
         }
     });
@@ -328,12 +331,15 @@ if (isSmallScreen()) {
         Cookies.set('solarEnabled', solarEnabled);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (solarEnabled) {
+            d3.select('.solar-colorbar').style('display', 'block');
+            solarColorbar.render()
             if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 fetch(true);
             } else {
                 Solar.show();
             }
         } else {
+            d3.select('.solar-colorbar').style('display', 'none');
             Solar.hide();
         }
     });
@@ -777,8 +783,6 @@ function redraw() {
     if (!isSmallScreen()) {
         countryMap.render();
         co2Colorbar.render();
-        windColorbar.render();
-        solarColorbar.render();
         exchangeLayer
             .projection(countryMap.projection())
             .render();
