@@ -763,10 +763,13 @@ function fetch(showLoading, callback) {
     }
 };
 
-function fetchAndReschedule() { 
-    return fetch(false, function() { 
+function fetchAndReschedule() {
+    if (!customDate)
+        return fetch(false, function() { 
+            setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+        });
+    else
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
-    });
 };
 
 function redraw() {
