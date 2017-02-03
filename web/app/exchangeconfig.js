@@ -199,7 +199,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     // GR
     exchanges['GR->IT'] = {
         lonlat: [18.759248, 38.902132],
-        rotation: 90
+        rotation: -90
     };
     exchanges['GR->MK'] = {
         lonlat: [22.011736, 41.160374],
