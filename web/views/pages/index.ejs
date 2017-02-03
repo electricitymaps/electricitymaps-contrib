@@ -117,7 +117,7 @@
                     <span style="color: darkgray;">
                         (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
                         <br />
-                        Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh<br />
+                        Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
                         Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
                         <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
                         <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
@@ -219,21 +219,21 @@
             <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO2eq/kWh
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
-            Carbon intensity of <span id="mode" style="font-weight: bold;"></span>:<br />
-            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: IPCC 2014)</small><br />
-            <br />
-            <span id="production-proportion"></span> of <strong><span class="country-code"></span></strong> <span id="domain-name"></span><br />
+            <span id="production-proportion"></span> of <i id="country-flag"></i> <span class="country-code"></span> <span id="domain-name"></span><br />
             <small>(<span id="production-proportion-detail"></span>)</small><br />
             <br />
-            <span id="capacity-factor"></span> of installed <span id="mode"></span> capacity<br />
-            <small>(<span id="capacity-factor-detail"></span>)</small>
+            utilizing <span id="capacity-factor"></span> of installed capacity<br />
+            <small>(<span id="capacity-factor-detail"></span>)</small><br />
+            <br />
+            with a carbon intensity of<br />
+            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: IPCC 2014)</small>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
-            Carbon intensity of <span id="label"></span><br />
-            <i id="country-flag"></i> <span id="country-code"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+            <span id="exchange-proportion"></span> of <i class="country-flag"></i> <span class="country-code"></span> <span id="domain-name"></span> <i class="country-exchange-flag"></i> <span class="country-exchange-code"></span><br />
+            <small>(<span id="exchange-proportion-detail"></span>)</small><br />
             <br />
-            <span id="exchange-proportion"></span> of <strong><span class="country-code"></span></strong> <span id="domain-name"></span><br />
-            <small>(<span id="exchange-proportion-detail"></span>)</small>
+            with a carbon intensity of<br />
+            <i class="country-exchange-source-flag"></i> <span class="country-exchange-source-code"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
         </div>
         <div id="current-datetime" class="large-screen-visible">
             <small><div id="current-date"></div></small>
