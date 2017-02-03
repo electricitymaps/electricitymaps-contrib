@@ -307,14 +307,14 @@ function handleForecastQuery(key, req, res) {
         return res.status(400).json({'error': 'Parameter `refTime` is missing'});
     if (!req.query.targetTime)
         return res.status(400).json({'error': 'Parameter `targetTime` is missing'});
-    queryGfsAt(key, req.query.refTime, req.query.targetTime, (err, obj) => {
+    db.queryGfsAt(key, req.query.refTime, req.query.targetTime, (err, obj) => {
         if (err) {
             handleError(err);
             return res.status(500).send('Unknown server error');
         } else if (!obj) {
             return res.status(404).send('Forecast was not found');
         } else {
-            return decompressGfs(obj['data'].buffer, (err, result) => {
+            return db.decompressGfs(obj['data'].buffer, (err, result) => {
                 if (err) {
                     handleError(err);
                     return res.status(500).send('Unknown server error');

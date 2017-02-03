@@ -224,7 +224,7 @@ exports.queryLastValuesBeforeDatetime = function (datetime, callback) {
 exports.queryLastValues = function (callback) {
     return exports.queryLastValuesBeforeDatetime(undefined, callback);
 }
-function queryGfsAt(key, refTime, targetTime, callback) {
+exports.queryGfsAt = function (key, refTime, targetTime, callback) {
     refTime = moment(refTime).toDate();
     targetTime = moment(targetTime).toDate();
     return mongoGfsCollection.findOne({ key, refTime, targetTime }, callback);
@@ -243,7 +243,7 @@ function queryLastGfsAfter(key, datetime, callback) {
         { sort: [['refTime', -1], ['targetTime', 1]] },
         callback);
 }
-function decompressGfs(obj, callback) {
+exports.decompressGfs = function (obj, callback) {
     if (!obj) return callback(null, null);
     return snappy.uncompress(obj, { asBuffer: true }, function (err, obj) {
         if (err) return callback(err);
@@ -284,8 +284,8 @@ function getParsedForecasts(key, datetime, useCache, callback) {
                 }
                 // Decompress
                 return async.parallel([
-                    function(callback) { return decompressGfs(objs[0]['data'].buffer, callback); },
-                    function(callback) { return decompressGfs(objs[1]['data'].buffer, callback); }
+                    function(callback) { return exports.decompressGfs(objs[0]['data'].buffer, callback); },
+                    function(callback) { return exports.decompressGfs(objs[1]['data'].buffer, callback); }
                 ], function(err, objs) {
                     if (err) return callback(err);
                     // Return to sender
@@ -295,8 +295,8 @@ function getParsedForecasts(key, datetime, useCache, callback) {
         } else {
             // Decompress data, to be able to reconstruct a database object
             return async.parallel([
-                function(callback) { return decompressGfs(data[kb], callback); },
-                function(callback) { return decompressGfs(data[ka], callback); }
+                function(callback) { return exports.decompressGfs(data[kb], callback); },
+                function(callback) { return exports.decompressGfs(data[ka], callback); }
             ], function(err, objs) {
                 if (err) return callback(err);
                 // Reconstruct database object and return to sender
