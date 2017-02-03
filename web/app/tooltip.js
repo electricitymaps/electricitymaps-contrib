@@ -31,20 +31,15 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
-            tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + d.key.toLowerCase());
+            tooltip.selectAll('i.country-exchange-flag')
+                .attr('class', 'country-exchange-flag flag-icon flag-icon-' + d.key.toLowerCase());
+            tooltip.selectAll('i.country-flag')
+                .attr('class', 'country-flag flag-icon flag-icon-' + countryCode.toLowerCase());
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
-            // The consumer's point of view is taken
-            // For positive values (import), we want to know how much of the consumption
-            // comes from this particular import.
-            // For negative values (export), the consumer's point of view can't be taken.
-            // Instead, we look at the amount of electricity produced or imported.
-            // % of available BEFORE export, i.e.
-            // % of (production w/o storage + import) ----- without exports (and storage)
-            var domain = isExport ? totalPositive : totalConsumption;
-            var domainName = isExport ? 'production/import' : 'consumption';
+            var domain = isExport ? totalPositive : totalPositive;
+            var domainName = !isExport ? 'electricity comes from' : 'electricity is exported to';
             var isNull = !isFinite(d.value) || d.value == undefined;
 
             var absFlow = Math.abs(d.value);
@@ -56,7 +51,17 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 (!isNull ? formatPower(domain) : '?'));
             tooltip.select('#domain-name').text(domainName);
 
-            tooltip.selectAll('.country-code').text(countryCode);
+            tooltip.selectAll('.country-code')
+                .text(countryCode)
+                .style('font-weight', 'bold');
+            tooltip.selectAll('.country-exchange-code')
+                .text(d.key)
+                .style('font-weight', 'bold');
+            tooltip.selectAll('.country-exchange-source-code')
+                .text(o)
+                .style('font-weight', 'bold');
+            tooltip.selectAll('i.country-exchange-source-flag')
+                .attr('class', 'country-exchange-source-flag flag-icon flag-icon-' + o.toLowerCase());
         })
         .onExchangeMouseOut(function (d) {
             co2Colorbar.currentMarker(undefined);
@@ -92,15 +97,8 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var totalPositive = country.totalProduction + country.totalImport;
             var value = d.isStorage ? d.storage : d.production;
 
-            // The consumer's point of view is taken
-            // For positive values (import), we want to know how much of the consumption
-            // comes from this particular import.
-            // For negative values (export), the consumer's point of view can't be taken.
-            // Instead, we look at the amount of electricity produced or imported.
-            // % of available BEFORE export, i.e.
-            // % of (production w/o storage + import) ----- without exports (and storage)
-            var domain = d.isStorage ? totalPositive : totalConsumption;
-            var domainName = d.isStorage ? 'production/import' : 'consumption';
+            var domain = d.isStorage ? totalPositive : totalPositive;
+            var domainName = d.isStorage ? ('electricity is stored using ' + d.mode) : ('electricity comes from ' + d.mode);
             var isNull = !isFinite(value) || value == undefined;
 
             var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
@@ -112,7 +110,11 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 (!isNull ? formatPower(domain) : '?'));
             tooltip.select('#domain-name').text(domainName);
 
-            tooltip.select('.country-code').text(countryCode);
+            tooltip.select('.country-code')
+                .text(countryCode)
+                .style('font-weight', 'bold');
+            tooltip.select('i#country-flag')
+                .attr('class', 'flag-icon flag-icon-' + countryCode.toLowerCase());
         })
         .onProductionMouseMove(function(d) {
             d3.select('#countrypanel-production-tooltip')

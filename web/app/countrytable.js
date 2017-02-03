@@ -466,6 +466,17 @@ CountryTable.prototype.data = function(arg) {
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
+        var hasFossilFuelData = 
+            ((this._data.production || {}).gas  != null) || 
+            ((this._data.production || {}).coal != null) || 
+            ((this._data.production || {}).oil  != null);
+        var fossilFuelPercent = (
+            ((this._data.production || {}).gas || 0) + 
+            ((this._data.production || {}).coal || 0) + 
+            ((this._data.production || {}).oil || 0)
+        ) / (this._data.totalProduction + this._data.totalImport) * 100;
+        d3.select('.fossil-fuel-percentage')
+            .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
         d3.select('.country-spot-price')
             .text(Math.round((this._data.price || {}).value) || '?')
             .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);
