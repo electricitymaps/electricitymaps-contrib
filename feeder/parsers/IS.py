@@ -7,7 +7,7 @@ import json
 STATIONS = {
 
     # http://www.landsvirkjun.com/company/powerstations/
-    'Bjarnaflag': 'unknown',    # Geothermal (no data?)
+    'Bjarnaflag': 'geothermal',    # No data?
     'BLANDA_F': 'hydro',
     'BUDAR_O': 'hydro',
     'BURF_F': 'hydro',
@@ -15,7 +15,7 @@ STATIONS = {
     'Hafio': 'wind',            # No data?
     'HRAUN_F': 'hydro',
     'IRAFOS_F': 'hydro',
-    'KRAFLA_F': 'unknown',      # Geothermal
+    'KRAFLA_F': 'geothermal',
     'LAXA_F': 'hydro',
     'LAXARVAT': 'hydro',
     'laxa': 'hydro',            # No data?
@@ -26,12 +26,12 @@ STATIONS = {
     'VATNSHAM': 'hydro',
 
     # https://en.wikipedia.org/wiki/List_of_power_stations_in_Iceland
-    'KOLVID': 'unknown',        # Geothermal
+    'KOLVID': 'geothermal',
     'LAGARF': 'hydro',
     'MJOLKA': 'hydro',
-    'REY': 'unknown',           # Geothermal
-    'X_NESJAV': 'unknown',      # Geothermal
-    'SVA': 'unknown',           # Geothermal 
+    'REY': 'geothermal',
+    'X_NESJAV': 'geothermal',
+    'SVA': 'geothermal',
 }
 
 def fetch_production(country_code='IS', session=None):
