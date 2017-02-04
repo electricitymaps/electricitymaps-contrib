@@ -188,6 +188,13 @@ app.get('/v1/co2', function(req, res) {
     var t0 = new Date().getTime();
     var countryCode = req.query.countryCode;
 
+    function getCachedState(callback) {
+        return db.getCached('state',
+            callback,
+            5 * 60,
+            db.queryLastValues);
+    }
+
     // TODO: Rewrite this api with two promises [geocoder, state]
     function onCo2Computed(err, obj) {
         var countries = obj.countries;
@@ -200,7 +207,7 @@ app.get('/v1/co2', function(req, res) {
             responseObject = {
                 status: 'ok',
                 countryCode: countryCode,
-                co2intensity: countries[countryCode].co2intensity,
+                co2intensity: (countries[countryCode] || {}).co2intensity,
                 unit: 'gCo2eq/kWh',
                 data: countries[countryCode]
             };
@@ -223,7 +230,7 @@ app.get('/v1/co2', function(req, res) {
                             .filter(function(d) { return d.types.indexOf('country') != -1; });
                         if (obj.length) {
                             countryCode = obj[0].short_name;
-                            db.queryLastValues(onCo2Computed);
+                            getCachedState(onCo2Computed);
                         }
                         else {
                             console.error('Geocoder returned no usable results');
@@ -236,7 +243,7 @@ app.get('/v1/co2', function(req, res) {
                 res.status(500).json({error: 'Error while geocoding'});
             });
         } else {
-            db.queryLastValues(onCo2Computed);
+            getCachedState(onCo2Computed);
         }
     } else {
         res.status(400).json({'error': 'Missing arguments "lon" and "lat" or "countryCode"'})
