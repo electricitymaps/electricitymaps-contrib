@@ -271,13 +271,15 @@ def get_wind(values):
     if 'Wind Onshore' in values or 'Wind Offshore' in values:
         return values.get('Wind Onshore', 0) + values.get('Wind Offshore', 0)
 
+def get_geothermal(values):
+    if 'Geothermal' in values:
+        return values.get('Geothermal', 0);
+
 def get_unknown(values):
-    if 'Geothermal' in values \
-        or 'Marine' in values \
+    if 'Marine' in values \
         or 'Other renewable' in values \
         or 'Other' in values:
-        return values.get('Geothermal', 0) + \
-            values.get('Marine', 0) + \
+        return values.get('Marine', 0) + \
             values.get('Other renewable', 0) + \
             values.get('Other', 0)
 
@@ -335,6 +337,7 @@ def fetch_production(country_code, session=None):
             'oil': get_oil(production_values),
             'solar': production_values.get('Solar', None),
             'wind': get_wind(production_values),
+            'geothermal': get_geothermal(production_values),
             'unknown': get_unknown(production_values)
         },
         'storage': {

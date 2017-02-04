@@ -8,6 +8,7 @@ import snappy
 from bson.binary import Binary
 from pymemcache.client.base import Client
 
+from parsers import IS
 from parsers import FR
 from parsers import ENTSOE
 from parsers import weather
@@ -105,6 +106,7 @@ PRODUCTION_PARSERS = {
     'GR': ENTSOE.fetch_production,
     'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
+    'IS': IS.fetch_production,
     'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
     'LU': ENTSOE.fetch_production,
