@@ -327,7 +327,7 @@ def fetch_production(country_code, session=None):
         'countryCode': country_code,
         'datetime': production_date.datetime,
         'production': {
-            'biomass': production_values.get('Biomass', None),
+            'biomass': get_biomass(production_values),
             'coal': get_coal(production_values),
             'gas': get_gas(production_values),
             'hydro': get_hydro(production_values),
