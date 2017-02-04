@@ -179,11 +179,13 @@ var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
+d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
 var solarColorbarColor = d3.scaleLinear()
     .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
     .range(['black', 'white', 'gold'])
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
-    .markerColor('red')
+    .markerColor('red');
+d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
