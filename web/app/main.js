@@ -512,7 +512,8 @@ function dataLoaded(err, state, argSolar, argWind) {
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
             tooltip.select('#country-code')
-                .text(d.countryCode);
+                .text(d.countryCode)
+                .style('font-weight', 'bold');
             tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
@@ -520,6 +521,17 @@ function dataLoaded(err, state, argSolar, argWind) {
             tooltip.select('.country-spot-price')
                 .text(Math.round((d.price || {}).value) || '?')
                 .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
+            var hasFossilFuelData = 
+                ((d.production || {}).gas  != null) || 
+                ((d.production || {}).coal != null) || 
+                ((d.production || {}).oil  != null);
+            var fossilFuelPercent = (
+                ((d.production || {}).gas || 0) + 
+                ((d.production || {}).coal || 0) + 
+                ((d.production || {}).oil || 0)
+            ) / (d.totalProduction + d.totalImport) * 100;
+            tooltip.select('.fossil-fuel-percentage')
+                .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
         })
         .onCountryMouseMove(function () {
             placeTooltip("#country-tooltip", d3.event);
