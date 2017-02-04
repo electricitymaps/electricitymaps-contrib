@@ -9,7 +9,6 @@ if (isProduction) {
         organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
         secretToken: process.env['OPBEAT_SECRET']
     });
-    app.use(opbeat.middleware.express())
 }
 function handleError(err) {
     if (!err) return;
