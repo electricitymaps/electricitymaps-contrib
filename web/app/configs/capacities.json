@@ -94,9 +94,14 @@
     },
     "FI": {
         "capacity": {
-            "hydro": 3080,
-            "nuclear": 2860,
-            "wind": 1000
+            "hydro": 3207,
+            "unknown": 648,
+            "nuclear": 2782,
+            "wind": 1432,
+            "biomass": 2866,
+            "coal": 2854,
+            "oil": 1427,
+            "gas": 1795
         }
     },
     "FR": {
