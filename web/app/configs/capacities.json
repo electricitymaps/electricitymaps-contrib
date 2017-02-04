@@ -171,6 +171,20 @@
             "wind": 3025
         }
     },
+    "IS": {
+        "capacity": {
+            "biomass": 0,
+            "oil": 117,
+            "coal": 0,
+            "hydro": 1986,
+            "geothermal": 665,
+            "nuclear": 0,
+            "gas": 0,
+            "unknown": 0,
+            "solar": 0,
+            "wind": 3
+        }
+    },
     "IT": {
         "capacity": {
             "hydro": 22382,
