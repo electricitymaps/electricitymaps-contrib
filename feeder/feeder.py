@@ -302,7 +302,7 @@ def validate_production(obj, country_code):
         raise Exception("Data from %s can't be in the future" % country_code)
     if obj.get('production', {}).get('unknown', None) is None and \
         obj.get('production', {}).get('coal', None) is None and \
-        country_code not in ['CH', 'NO', 'IS']:
+        country_code not in ['CH', 'NO']:
         raise Exception("Coal or unknown production value is required for %s" % (country_code))
     for k, v in obj['production'].iteritems():
         if v is None: continue

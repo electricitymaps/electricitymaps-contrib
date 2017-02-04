@@ -42,9 +42,17 @@ def fetch_production(country_code='IS', session=None):
     response = r.get(url)
     json_obj = json.loads(response.text)
 
+    # Set zero values for energy sources Iceland doesn't use at all
+    # Iceland does use some wind and gas but we don't have data for those
     production = defaultdict(float)
+    production["solar"] = 0;
+    production["biomass"] = 0;
+    production["nuclear"] = 0;
+    production["coal"] = 0;
 
     # Calculate production values for each power station
+    # The Landsnet API includes measurements for non-generating
+    # stations (e.g. capacitor banks) so ignore any not in our list
     for key, value in STATIONS.items():
         items = [item for item in json_obj if item["substation"] == key and item["MW"] >= 0]
         mw = sum(item['MW'] for item in items)
