@@ -5,6 +5,7 @@ var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
+var AreaGraph = require('./areagraph');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -180,6 +181,7 @@ var solarColor = d3.scaleLinear()
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color);
+var countryHistoryGraph = new AreaGraph('.country-history');
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')
@@ -281,7 +283,7 @@ var wind, solar;
 function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
         // Unselected
-        d3.select('.country-table-initial-text')
+        d3.select('.left-panel-initial-text')
             .style('display', 'block');
         countryTable.hide();
         selectedCountryCode = undefined;
@@ -290,7 +292,7 @@ function selectCountry(countryCode, notrack) {
         console.log(countries[countryCode]);
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
-        d3.select('.country-table-initial-text')
+        d3.select('.left-panel-initial-text')
             .style('display', 'none');
         countryTable
             .show()
@@ -815,4 +817,12 @@ window.onresize = function () {
 // Later `fetchAndReschedule` won't show loading screen
 fetch(true, function() { 
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+});
+
+// Populate data manually
+d3.json('http://localhost:8000/v2/history?countryCode=FR', function(err, obj) {
+    if (err) return console.error(err);
+    countryHistoryGraph
+        .data(obj.data)
+        .render();
 });

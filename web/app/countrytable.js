@@ -173,6 +173,8 @@ CountryTable.prototype.show = function() {
     this.root.style('display', 'block');
     d3.select('.country-table-header')
         .style('display', 'block');
+    d3.select('.country-history')
+        .style('display', 'block');
     this.render();
     return this;
 }
@@ -180,6 +182,8 @@ CountryTable.prototype.show = function() {
 CountryTable.prototype.hide = function() {
     this.root.style('display', 'none');
     d3.select('.country-table-header')
+        .style('display', 'none');
+    d3.select('.country-history')
         .style('display', 'none');
     return this;
 }

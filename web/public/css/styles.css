@@ -120,7 +120,11 @@ html, body {
 .country-table {
     width: 100%;
 }
-.country-table-initial-text {
+.country-graph {
+    width: 100%;
+    height: 100rem;
+}
+.left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
 }
