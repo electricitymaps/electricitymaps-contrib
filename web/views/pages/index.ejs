@@ -100,104 +100,113 @@
             <div class="colorbar-unit">Carbon intensity<br />(gCO2eq/kWh)</div>
             <svg class="co2-colorbar colorbar"></svg>
         </div>
-        <div class="content">
-            <div class="panel panel-container">
-                <h1>
-                    Live CO2 emissions of the European electricity consumption
-                </h1>
-                <p>
-                    <span id="country-table-back-button" style="display: none"><a href="#"><< back</a></span>
-                </p>
-                <hr />
-                <div class="country-table-header" style="display: none">
-                    <i id="country-flag"></i>
-                    <b>
-                        <span class="country-name"></span>
-                    </b>
-                    <span style="color: darkgray;">
-                        (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
-                        <br />
-                        Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
-                        Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
-                        <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
-                        <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
-                    </span>
-                </div>
-                <svg class="country-table" style="display: none"></svg>
-                <div class="country-table-initial-text">
-                    <p class="small-screen-visible" style="font-style: italic">
-                        You're currently seeing a <span style="color: lightgray">limited mobile version</span>. For the <span style="color: lightgray">full experience</span>, visit this page on your computer.
-                    </p>
-                    <p class="large-screen-visible">
-                        This shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
-                    </p class="small-screen-visible">
-                    <p class="large-screen-visible">
-                        We take into account electricity <span style="color: lightgray">imports and exports</span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> between countries.
-                    </p>
-                    <p>
-                        This project is <a href="https://github.com/corradio/electricitymap" target="_blank">Open Source</a> (see <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank">data sources</a>).
-                    </p>
-                    <p>
-                        <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span>
-                    </p>
-                    <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
-                        <p></p>
-                    </div>
-                    <div class="layer-toggles large-screen-visible">
-                        <hr />
-                        <p>
-                            <input type="checkbox" id="checkbox-wind" />
-                            <label for="checkbox-wind">Wind power potential <span style="color: darkgrey">(m/s)</span> 💨</label>
-                            <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="checkbox-solar" />
-                            <label for="checkbox-solar">Solar power potential <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
-                            <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
-                        </p>
-                    </div>
-                </div>
+        <div class="panel left-panel">
+            <h1>
+                Live CO2 emissions of the European electricity consumption
+            </h1>
+            <div id="current-datetime" class="large-screen-visible">
                 <div>
-                    <hr />
-                    Like the visualization? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
-                    Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
-                    <p>
-                        Check out how our <a href="http://www.co2signal.com">CO2 Signal</a> can help your devices and electric vehicle consume electricity at the right time.
-                    </p>
-                    <!-- Facebook share -->
-                    <div class="fb-share-button" 
-                        data-href="http://www.electricitymap.org" 
-                        data-layout="button_count">
-                    </div>
-                    <!-- Twitter share -->
-                    <a class="twitter-share-button"
-                        data-via="tmrowco"
-                        data-url="http://www.electricitymap.org">
-                    Tweet</a>
-                    <!-- Slack -->
-                    <span class="slack-button">
-                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                            <span class="slack-ico"></span>
-                            <span class="slack-text">Slack</span>
-                        </a>
-                    </span>
+                    <span id="current-date"></span>
+                    <span id="current-time"></span>
+                </div>
+                <div class="time-travel">
+                    <!-- TODO: CHANGE (don't load like this) -->
+                    <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+                    <input type="text" class="flatpickr" />
                 </div>
             </div>
-            <div class="watermark">
-                <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank"><img src="images/tomorrow_logo_open_source.svg" style="width:160px"/></a>
-                <br />
-                <div class="fb-like" 
-                    data-href="https://www.facebook.com/tmrowco" 
-                    data-layout="button" 
-                    data-action="like"
-                    data-size="small" 
-                    data-show-faces="false">
-                </div>&nbsp;<a class="twitter-follow-button"
-                    href="https://twitter.com/tmrowco"
-                    data-show-screen-name="false"
-                    data-show-count="false">
-                Follow @tmrowco</a>
+            <p>
+                <span id="country-table-back-button" style="display: none"><a href="#"><< back</a></span>
+            </p>
+            <hr />
+            <div class="country-table-header" style="display: none">
+                <i id="country-flag"></i>
+                <b>
+                    <span class="country-name"></span>
+                </b>
+                <span style="color: darkgray;">
+                    (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
+                    <br />
+                    Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
+                    Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
+                    <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
+                    <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
+                </span>
             </div>
+            <svg class="country-table" style="display: none"></svg>
+            <div class="country-table-initial-text">
+                <p class="small-screen-visible" style="font-style: italic">
+                    You're currently seeing a <span style="color: lightgray">limited mobile version</span>. For the <span style="color: lightgray">full experience</span>, visit this page on your computer.
+                </p>
+                <p class="large-screen-visible">
+                    This shows in real-time <span style="color: lightgray">where your electricity comes from</span> and <span style="color: lightgray">how much CO2</span> was emitted to produce it.
+                </p class="small-screen-visible">
+                <p class="large-screen-visible">
+                    We take into account electricity <span style="color: lightgray">imports and exports</span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> between countries.
+                </p>
+                <p>
+                    This project is <a href="https://github.com/corradio/electricitymap" target="_blank">Open Source</a> (see <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank">data sources</a>).
+                </p>
+                <p>
+                    <span style="color: lightgray; font-size: 14px; color: white;"><i>Tip: Click on a country to start exploring ⟶</i></span>
+                </p>
+                <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
+                    <p></p>
+                </div>
+                <div class="layer-toggles large-screen-visible">
+                    <hr />
+                    <p>
+                        <input type="checkbox" id="checkbox-wind" />
+                        <label for="checkbox-wind">Wind power potential <span style="color: darkgrey">(m/s)</span> 💨</label>
+                        <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="checkbox-solar" />
+                        <label for="checkbox-solar">Solar power potential <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
+                        <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <hr />
+                Like the visualization? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">We would love to hear your feedback</a>!<br />
+                Found bugs or have ideas? Report them <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank">here</a>.<br />
+                <p>
+                    Check out how our <a href="http://www.co2signal.com">CO2 Signal</a> can help your devices and electric vehicle consume electricity at the right time.
+                </p>
+            </div>
+            <!-- Facebook share -->
+            <div class="fb-share-button" 
+                data-href="http://www.electricitymap.org" 
+                data-layout="button_count">
+            </div>
+            <!-- Twitter share -->
+            <a class="twitter-share-button"
+                data-via="tmrowco"
+                data-url="http://www.electricitymap.org">
+            Tweet</a>
+            <!-- Slack -->
+            <span class="slack-button">
+                <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                    <span class="slack-ico"></span>
+                    <span class="slack-text">Slack</span>
+                </a>
+            </span>
+        </div>
+        <div class="watermark">
+            <a class="tomorrow-link" href="http://www.tmrow.co" target="_blank"><img src="images/tomorrow_logo_open_source.svg" style="width:160px"/></a>
+            <br />
+            <div class="fb-like" 
+                data-href="https://www.facebook.com/tmrowco" 
+                data-layout="button" 
+                data-action="like"
+                data-size="small" 
+                data-show-faces="false">
+            </div>&nbsp;<a class="twitter-follow-button"
+                href="https://twitter.com/tmrowco"
+                data-show-screen-name="false"
+                data-show-count="false">
+            Follow @tmrowco</a>
         </div>
         <div class="loading overlay"></div>
         <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
@@ -234,15 +243,6 @@
             <br />
             with a carbon intensity of<br />
             <i class="country-exchange-source-flag"></i> <span class="country-exchange-source-code"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
-        </div>
-        <div id="current-datetime" class="large-screen-visible">
-            <small><div id="current-date"></div></small>
-            <div id="current-time"></div>
-            <div class="time-travel">
-                <!-- TODO: CHANGE (don't load like this) -->
-                <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-                <input type="text" class="flatpickr" />
-            </div>
         </div>
     </body>
 </html>

@@ -297,12 +297,10 @@ function selectCountry(countryCode) {
 d3.select('#country-table-back-button')
     .on('click', function() { selectCountry(undefined); });
 
-// Mobile
 if (isSmallScreen()) {
+    // Mobile
     d3.select('.map').selectAll('*').remove();
 } else {
-    d3.select('.panel-container')
-        .style('width', '330px');
     // Now that the width is set, we can render the legends
     windColorbar.render();
     solarColorbar.render();
@@ -391,10 +389,8 @@ function dataLoaded(err, state, argSolar, argWind) {
 
     // Render simple components
     var currentMoment = (customDate && moment(customDate) || moment());
-    d3.select('#current-date').text(
-        currentMoment.format('LL' + (!customDate ? ' [UTC]Z' : '')));
-    d3.select('#current-time')
-        .text(currentMoment.format('LT'));
+    d3.select('#current-date').text(currentMoment.format('LL'));
+    d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')
         .style('color', 'darkred')
         .transition()
