@@ -4,6 +4,8 @@ moment = require('moment');
 function AreaGraph(selector, modeColor, modeOrder) {
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
+    this.verticalLine = this.rootElement.append('line')
+        .style('display', 'none');
 
     // Create scales
     this.x = d3.scaleTime();
@@ -46,7 +48,8 @@ AreaGraph.prototype.data = function (arg) {
 
 AreaGraph.prototype.render = function () {
     // Convenience
-    var x = this.x,
+    var that = this,
+        x = this.x,
         y = this.y,
         z = this.z,
         stack = this.stack,
@@ -72,8 +75,36 @@ AreaGraph.prototype.render = function () {
     layer.append('path')
         .attr('class', 'area')
         .style('fill', function(d) { return z(d.key); })
-        .attr('d', area);
+        .attr('d', area)
+        .on('mouseover', function (d) {
+            if (that.mouseOverHandler)
+                that.mouseOverHandler.call(this, d);
+        })
+        .on('mouseout', function (d) {
+            if (that.mouseOutHandler)
+                that.mouseOutHandler.call(this, d);
+        })
+        .on('mousemove', function (d) {
+            if (that.mouseMoveHandler)
+                that.mouseMoveHandler.call(this, d);
+        });
 
+    return this;
+}
+
+AreaGraph.prototype.onMouseOver = function(arg) {
+    if (!arg) return this.mouseOverHandler;
+    else this.mouseOverHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onMouseOut = function(arg) {
+    if (!arg) return this.mouseOutHandler;
+    else this.mouseOutHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onMouseMove = function(arg) {
+    if (!arg) return this.mouseMoveHandler;
+    else this.mouseMoveHandler = arg;
     return this;
 }
 
