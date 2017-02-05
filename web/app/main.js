@@ -34,6 +34,7 @@ var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
 var timelineEnabled = false;
+var currentMoment;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -332,6 +333,22 @@ function selectCountry(countryCode, notrack) {
             if (err) return console.error(err);
             countryHistoryGraph
                 .data(obj.data)
+                .onMouseMove(function(d) {
+                    countryTable
+                        .data(d);
+                    d3.select('#current-date')
+                        .text(moment(d.datetime).format('LL'));
+                    d3.select('#current-time')
+                        .text(moment(d.datetime).format('LT [UTC]Z'));
+                })
+                .onMouseOut(function() {
+                    countryTable
+                        .data(countries[countryCode]);
+                    d3.select('#current-date')
+                        .text(currentMoment.format('LL'));
+                    d3.select('#current-time')
+                        .text(currentMoment.format('LT [UTC]Z'));
+                })
                 .render();
         });
     }
@@ -434,8 +451,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         return;
     }
 
-    // Render simple components
-    var currentMoment = (customDate && moment(customDate) || moment());
+    currentMoment = (customDate && moment(customDate) || moment());
     d3.select('#current-date').text(currentMoment.format('LL'));
     d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')

@@ -5,7 +5,10 @@ function AreaGraph(selector, modeColor, modeOrder) {
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
     this.verticalLine = this.rootElement.append('line')
-        .style('display', 'none');
+        .style('display', 'none')
+        .style('pointer-events', 'none')
+        .style('stroke-width', 1)
+        .style('stroke', 'lightgrey');
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
@@ -37,6 +40,8 @@ AreaGraph.prototype.data = function (arg) {
         };
         // Add production
         d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value; });
+        // Keep a pointer to original data
+        obj._countryData = d;
         return obj;
     });
 
@@ -71,6 +76,10 @@ AreaGraph.prototype.render = function () {
     x.range([0, width]);
     y.range([height, X_AXIS_HEIGHT + X_AXIS_PADDING]);
 
+    this.verticalLine
+        .attr('y1', 0)
+        .attr('y2', height);
+
     var area = d3.area()
         .x(function(d, i) { return x(d.data.datetime); })
         .y0(function(d) { return y(d[0]); })
@@ -85,21 +94,32 @@ AreaGraph.prototype.render = function () {
     layer.append('path')
         .attr('class', 'area')
     layer.merge(selection).select('path.area')
-        .on('mouseover', function (d) {
-            if (that.mouseOverHandler)
-                that.mouseOverHandler.call(this, d);
-        })
-        .on('mouseout', function (d) {
-            if (that.mouseOutHandler)
-                that.mouseOutHandler.call(this, d);
-        })
-        .on('mousemove', function (d) {
-            if (that.mouseMoveHandler)
-                that.mouseMoveHandler.call(this, d);
-        })
         .transition()
         .style('fill', function(d) { return z(d.key); })
         .attr('d', area);
+
+    this.graphElement
+        .on('mouseover', function () {
+            that.verticalLine.style('display', 'block');
+            if (that.mouseOverHandler)
+                that.mouseOverHandler.call(this);
+        })
+        .on('mouseout', function () {
+            that.verticalLine.style('display', 'none');
+            if (that.mouseOutHandler)
+                that.mouseOutHandler.call(this);
+        })
+        .on('mousemove', function () {
+            var dx = d3.event.x - this.getBoundingClientRect().left;
+            var datetime = x.invert(dx);
+            // Find data point closest to
+            var i = d3.bisect(data.map(function(d) { return d.datetime; }), datetime);
+            that.verticalLine
+                .attr('x1', x(data[i].datetime))
+                .attr('x2', x(data[i].datetime));
+            if (that.mouseMoveHandler)
+                that.mouseMoveHandler.call(this, data[i]._countryData);
+        })
 
     // x axis
     var xAxis = d3.axisTop(x)

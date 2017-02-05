@@ -369,7 +369,9 @@ CountryTable.prototype.data = function(arg) {
         gNewRow.append('rect')
             .attr('height', this.ROW_HEIGHT)
             .attr('opacity', this.RECT_OPACITY)
-            .style('transform-origin', 'left')
+            .attr('x', that.LABEL_MAX_WIDTH + 
+                (this._displayByEmissions ? this.co2Scale(0) : this.powerScale(0)))
+            .style('transform-origin', 'left');
         gNewRow.merge(selection).select('text.unknown')
             .transition()
             .attr('transform', 'translate(' + (that.LABEL_MAX_WIDTH + that.co2Scale(0)) + ', ' + this.TEXT_ADJUST_Y + ')')
