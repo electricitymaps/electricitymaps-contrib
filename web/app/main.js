@@ -5,7 +5,8 @@ var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
-var AreaGraph = require('./areagraph');
+//var AreaGraph = require('./areagraph');
+var LineGraph = require('./linegraph');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -210,7 +211,11 @@ var modeOrder = [
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
-var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
+//var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
+var countryHistoryGraph = new LineGraph('.country-history',
+    function(d) { return moment(d.datetime).toDate(); },
+    function(d) { return d.co2intensity; },
+    function(d) { return d.co2intensity != null; });
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')
