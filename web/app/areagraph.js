@@ -113,7 +113,8 @@ AreaGraph.prototype.render = function () {
             var dx = d3.event.x - this.getBoundingClientRect().left;
             var datetime = x.invert(dx);
             // Find data point closest to
-            var i = d3.bisect(data.map(function(d) { return d.datetime; }), datetime);
+            var i = d3.bisectLeft(data.map(function(d) { return d.datetime; }), datetime);
+            if (datetime - data[i-1].datetime < data[i].datetime - datetime) i--;
             that.verticalLine
                 .attr('x1', x(data[i].datetime))
                 .attr('x2', x(data[i].datetime));
