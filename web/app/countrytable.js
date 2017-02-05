@@ -259,20 +259,6 @@ CountryTable.prototype.data = function(arg) {
             // But we should also handle "negative" rects
             .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
             .call(this.axis);
-        this.gPowerAxis.selectAll('.tick text')
-            .attr('fill', 'gray')
-            .attr('font-size', '0.9em')
-        this.gPowerAxis.selectAll('.tick line')
-                .style('stroke', 'gray')
-                .style('stroke-width', 1)
-                .attr('opacity', 0.3)
-                .attr('shape-rendering', 'crispEdges')
-        this.gPowerAxis.select('path')
-                .style('fill', 'none')
-                .style('stroke', 'gray')
-                .attr('opacity', 0.3)
-                .attr('shape-rendering', 'crispEdges')
-
 
         // Set header
         var header = d3.select('.country-table-header');

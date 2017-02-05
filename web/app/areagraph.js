@@ -7,6 +7,10 @@ function AreaGraph(selector, modeColor, modeOrder) {
     this.verticalLine = this.rootElement.append('line')
         .style('display', 'none');
 
+    // Create axis
+    this.xAxisElement = this.rootElement.append('g')
+        .attr('class', 'x axis');
+
     // Create scales
     this.x = d3.scaleTime();
     this.y = d3.scaleLinear();
@@ -27,7 +31,7 @@ AreaGraph.prototype.data = function (arg) {
     }
 
     // Parse data
-    data = this._data = arg.map(function(d) {
+    this._data = data = arg.map(function(d) {
         var obj = {
             datetime: moment(d.datetime).toDate()
         };
@@ -38,9 +42,13 @@ AreaGraph.prototype.data = function (arg) {
 
     // Set domains
     this.x.domain(d3.extent(data, function(d) { return d.datetime; }));
-    this.y.domain([
+    /*this.y.domain([
         d3.min(arg, function(d) { return d.totalExport; }),
         d3.max(arg, function(d) { return d.totalImport + d.totalProduction; })
+    ]);*/
+    this.y.domain([
+        0,
+        d3.max(arg, function(d) { return d.totalProduction; })
     ]);
 
     return this;
@@ -58,24 +66,25 @@ AreaGraph.prototype.render = function () {
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
         height = this.rootElement.node().getBoundingClientRect().height;
+    var X_AXIS_HEIGHT = 20;
+    var X_AXIS_PADDING = 4;
     x.range([0, width]);
-    y.range([height, 0]);
+    y.range([height, X_AXIS_HEIGHT + X_AXIS_PADDING]);
 
     var area = d3.area()
         .x(function(d, i) { return x(d.data.datetime); })
         .y0(function(d) { return y(d[0]); })
         .y1(function(d) { return y(d[1]); });
 
-    var layer = this.graphElement
+    var selection = this.graphElement
         .selectAll('.layer')
         .data(stack(data))
-        .enter().append('g')
-            .attr('class', 'layer');
+    var layer = selection.enter().append('g')
+        .attr('class', 'layer');
 
     layer.append('path')
         .attr('class', 'area')
-        .style('fill', function(d) { return z(d.key); })
-        .attr('d', area)
+    layer.merge(selection).select('path.area')
         .on('mouseover', function (d) {
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this, d);
@@ -87,7 +96,19 @@ AreaGraph.prototype.render = function () {
         .on('mousemove', function (d) {
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, d);
-        });
+        })
+        .transition()
+        .style('fill', function(d) { return z(d.key); })
+        .attr('d', area);
+
+    // x axis
+    var xAxis = d3.axisTop(x)
+        .ticks(6)
+        .tickFormat(function(d) { return moment(d).format('LT'); });
+    this.xAxisElement
+        .transition()
+        .style('transform', 'translate(0, ' + X_AXIS_HEIGHT + 'px)')
+        .call(xAxis);
 
     return this;
 }

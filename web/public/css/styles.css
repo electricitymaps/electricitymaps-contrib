@@ -13,6 +13,11 @@ html, body {
     background-color: #283640;
 }
 
+.axis path,
+.axis line {
+    shape-rendering: crispEdges;
+}
+
 #connection-warning {
     position: fixed;
     display: block;
@@ -117,12 +122,29 @@ html, body {
     color: lightgray;
     fill: lightgray;
 }
+.left-panel .axis .tick line {
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: gray;
+    stroke-width: 1;
+}
+.left-panel .axis .tick text {
+    fill: gray;
+    font-size: 0.6rem;
+}
+.left-panel .axis path.domain {
+    fill: none;
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: gray;
+}
 .country-table {
     width: 100%;
 }
-.country-graph {
+.country-history {
     width: 100%;
-    height: 100rem;
+    height: 10rem;
+    margin-top: 1rem;
 }
 .left-panel-initial-text {
     font-size: 1.1em;

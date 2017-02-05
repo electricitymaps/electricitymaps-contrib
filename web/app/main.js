@@ -326,6 +326,14 @@ function selectCountry(countryCode, notrack) {
             .show()
             .data(countries[countryCode]);
         selectedCountryCode = countryCode;
+
+        // Load graph
+        d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
+            if (err) return console.error(err);
+            countryHistoryGraph
+                .data(obj.data)
+                .render();
+        });
     }
     replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
@@ -845,12 +853,4 @@ window.onresize = function () {
 // Later `fetchAndReschedule` won't show loading screen
 fetch(true, function() { 
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
-});
-
-// Populate data manually
-d3.json('http://localhost:8000/v2/history?countryCode=FR', function(err, obj) {
-    if (err) return console.error(err);
-    countryHistoryGraph
-        .data(obj.data)
-        .render();
 });

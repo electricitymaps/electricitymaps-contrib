@@ -124,7 +124,7 @@ ExchangeLayer.prototype.render = function() {
     var newGradients = appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
         .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
-    var animate = !isMobile();
+    var animate = !isMobile() && false;
     
     if (animate) {
         // Add animations
