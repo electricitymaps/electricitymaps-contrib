@@ -52,10 +52,14 @@ function getHistoryStateURL() {
     d3.entries(history.state).forEach(function(d) {
         url = appendQueryString(url, d.key, d.value);
     });
-    return (url == '?' ? '' : url);
+    return url;
 }
 function replaceHistoryState(key, value) {
-    history.state[key] = value;
+    if (value == null) {
+        delete history.state[key];
+    } else {
+        history.state[key] = value;
+    }
     history.replaceState(history.state, '', getHistoryStateURL());
 }
 
@@ -72,6 +76,9 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'timeline') {
         timelineEnabled = kv[1] == 'true';
         replaceHistoryState('timeline', timelineEnabled);
+    } else if (kv[0] == 'countryCode') {
+        selectedCountryCode = kv[1];
+        replaceHistoryState('countryCode', selectedCountryCode);
     }
 });
 
@@ -271,7 +278,7 @@ d3.entries(exchanges).forEach(function(entry) {
 });
 var wind, solar;
 
-function selectCountry(countryCode) {
+function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
         // Unselected
         d3.select('.country-table-initial-text')
@@ -281,7 +288,8 @@ function selectCountry(countryCode) {
     } else {
         // Selected
         console.log(countries[countryCode]);
-        trackAnalyticsEvent('countryClick', {countryCode: countryCode});
+        if (!notrack)
+            trackAnalyticsEvent('countryClick', {countryCode: countryCode});
         d3.select('.country-table-initial-text')
             .style('display', 'none');
         countryTable
@@ -289,11 +297,12 @@ function selectCountry(countryCode) {
             .data(countries[countryCode]);
         selectedCountryCode = countryCode;
     }
+    replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
         selectedCountryCode ? 'block' : 'none');
 }
-
-
+// Set initial
+selectCountry(selectedCountryCode, true);
 d3.select('#country-table-back-button')
     .on('click', function() { selectCountry(undefined); });
 
@@ -476,7 +485,6 @@ function dataLoaded(err, state, argSolar, argWind) {
         enterA
             .append('text')
         enterA
-            .attr('href', '#')
             .append('i').attr('id', 'country-flag')
         var selector = enterA.merge(selector);
         selector.select('text')
