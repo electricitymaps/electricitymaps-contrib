@@ -153,31 +153,31 @@ app.get('/v1/state', function(req, res) {
     var t0 = new Date().getTime();
     function returnObj(obj, cached) {
         var deltaMs = new Date().getTime() - t0;
-        res.json({status: 'ok', data: obj, took: deltaMs + 'ms'});
+        res.json({status: 'ok', data: obj, took: deltaMs + 'ms', cached: cached});
     }
     if (req.query.datetime) {
         // Ignore requests in the future
         if (moment(req.query.datetime) > moment.now())
-            returnObj({countries: {}, exchanges: {}});
+            returnObj({countries: {}, exchanges: {}}, false);
         db.queryLastValuesBeforeDatetime(req.query.datetime, function (err, result) {
             if (err) {
                 //statsdClient.increment('state_GET_ERROR');
                 handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
-                returnObj(result);
+                returnObj(result, false);
             }
         });
     } else {
         return db.getCached('state',
-            function (err, data) {
+            function (err, data, cached) {
                 if (err) {
                     if (opbeat) 
                         opbeat.captureError(err);
                     console.error(err);
                     res.status(500).json({error: 'Unknown database error'});
                 }
-                if (data) returnObj(data);
+                if (data) returnObj(data, cached);
             },
             5 * 60,
             db.queryLastValues);
@@ -196,7 +196,7 @@ app.get('/v1/co2', function(req, res) {
     }
 
     // TODO: Rewrite this api with two promises [geocoder, state]
-    function onCo2Computed(err, obj) {
+    function onCo2Computed(err, obj, cached) {
         var countries = obj.countries;
         if (err) {
             //statsdClient.increment('co2_GET_ERROR');
@@ -209,7 +209,8 @@ app.get('/v1/co2', function(req, res) {
                 countryCode: countryCode,
                 co2intensity: (countries[countryCode] || {}).co2intensity,
                 unit: 'gCo2eq/kWh',
-                data: countries[countryCode]
+                data: countries[countryCode],
+                cached: cached
             };
             responseObject.took = deltaMs + 'ms';
             res.json(responseObject);
@@ -356,7 +357,7 @@ app.get('/v2/history', function(req, res) {
     if (!countryCode) return res.status(400).send('countryCode required');
 
     return db.getCached('HISTORY_' + countryCode,
-        function (err, data) {
+        function (err, data, cached) {
             if (err) {
                 if (opbeat)
                     opbeat.captureError(err); 
@@ -365,7 +366,7 @@ app.get('/v2/history', function(req, res) {
             // } else if (!data) {
             //     res.status(500).send('No data was found');
             } else {
-                res.json({ 'data': data })
+                res.json({ 'data': data, 'cached': cached })
             }
         });
 });
