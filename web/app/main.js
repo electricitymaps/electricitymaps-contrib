@@ -52,7 +52,7 @@ function getHistoryStateURL() {
     d3.entries(history.state).forEach(function(d) {
         url = appendQueryString(url, d.key, d.value);
     });
-    return url;
+    return (url == '?' ? '.' : url);
 }
 function replaceHistoryState(key, value) {
     if (value == null) {
