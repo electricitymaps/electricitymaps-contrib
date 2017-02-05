@@ -269,8 +269,12 @@ CountryTable.prototype.data = function(arg) {
                 .tickFormat(function (d) { return f(d * 1e6) + 'W'; });
         }
 
+        var axisHeight = 
+            (this.MODES.length + this._exchangeData.length + 1) * (this.ROW_HEIGHT + this.PADDING_Y)
+            + this.PADDING_Y;
+
         this.axis
-            .tickSizeInner(-250)
+            .tickSizeInner(-1 * axisHeight)
             .tickSizeOuter(0)
             .ticks(ticks);
 
