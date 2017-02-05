@@ -13,6 +13,11 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .style('pointer-events', 'none')
         .style('stroke-width', 1)
         .style('stroke', 'lightgrey');
+    this.markerElement = this.rootElement.append('circle')
+        .style('fill', 'lightgrey')
+        .style('pointer-events', 'none')
+        .attr('r', 4)
+        .style('display', 'none');
 
     this.xAccessor = xAccessor;
     this.yAccessor = yAccessor;
@@ -80,8 +85,9 @@ LineGraph.prototype.render = function () {
     layer.append('path')
         .attr('class', 'line')
         .style('fill', 'none')
-        .style('stroke', 'white')
-        .style('stroke-width', 2)
+        .style('stroke', 'lightgrey')
+        .style('stroke-width', 1)
+        .style('pointer-events', 'none');
     layer.merge(selection).select('path.line')
         .transition()
         .attr('d', this.line);
@@ -89,11 +95,13 @@ LineGraph.prototype.render = function () {
     this.interactionRect
         .on('mouseover', function () {
             that.verticalLine.style('display', 'block');
+            that.markerElement.style('display', 'block');
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this);
         })
         .on('mouseout', function () {
             that.verticalLine.style('display', 'none');
+            that.markerElement.style('display', 'none');
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this);
         })
@@ -107,6 +115,9 @@ LineGraph.prototype.render = function () {
             that.verticalLine
                 .attr('x1', x(that.xAccessor(data[i])))
                 .attr('x2', x(that.xAccessor(data[i])));
+            that.markerElement
+                .attr('cx', x(that.xAccessor(data[i])))
+                .attr('cy', y(that.yAccessor(data[i])));
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]);
         });
