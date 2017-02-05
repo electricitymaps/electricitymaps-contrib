@@ -177,11 +177,39 @@ var solarColor = d3.scaleLinear()
     .range(solarRange)
     .clamp(true);
 
+// Production/imports-exports mode
+var modeColor = {
+    'wind': '#74cdb9',
+    'solar': '#f27406',
+    'hydro': '#2772b2',
+    'hydro storage': '#2772b2',
+    'biomass': '#166a57',
+    'geothermal': 'yellow',
+    'nuclear': '#AEB800',
+    'gas': '#bb2f51',
+    'coal': '#ac8c35',
+    'oil': '#867d66',
+    'unknown': 'lightgray'
+};
+var modeOrder = [
+    'wind',
+    'solar',
+    'hydro',
+    'hydro storage',
+    'geothermal',
+    'biomass',
+    'nuclear',
+    'gas',
+    'coal',
+    'oil',
+    'unknown'
+];
+
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color);
-var countryHistoryGraph = new AreaGraph('.country-history');
+var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
+var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')
@@ -435,7 +463,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         });
         // Validate data
         if (!country.production) return;
-        countryTable.PRODUCTION_MODES.forEach(function (mode) {
+        modeOrder.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown') return;
             // Check missing values
             if (country.production[mode] === undefined && country.storage[mode] === undefined)

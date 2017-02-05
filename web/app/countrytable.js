@@ -1,7 +1,7 @@
 var d3 = require('d3');
 var moment = require('moment');
 
-function CountryTable(selector, co2Color) {
+function CountryTable(selector, co2Color, modeColor, modeOrder) {
     var that = this;
 
     this.root = d3.select(selector);
@@ -19,38 +19,9 @@ function CountryTable(selector, co2Color) {
     this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
     this.TEXT_ADJUST_Y = 9; // To align properly on a line
-    this.PRODUCTION_COLORS = {
-        'wind': '#74cdb9',
-        'solar': '#f27406',
-        'hydro': '#2772b2',
-        'biomass': '#166a57',
-        'geothermal': 'yellow',
-        'nuclear': '#AEB800',
-        'gas': '#bb2f51',
-        'coal': '#ac8c35',
-        'oil': '#867d66',
-        'unknown': 'lightgray'
-    };
-    this.STORAGE_COLORS = {
-        'hydro storage': this.PRODUCTION_COLORS['hydro']
-    }
-    this.PRODUCTION_MODES = d3.keys(this.PRODUCTION_COLORS);
-    this.STORAGE_MODES = d3.keys(this.STORAGE_COLORS);
+    this.MODE_COLORS = modeColor;
     this.MODES = [];
-    // Display order is defined here
-    [
-        'wind',
-        'solar',
-        'hydro',
-        'hydro storage',
-        'geothermal',
-        'biomass',
-        'nuclear',
-        'gas',
-        'coal',
-        'oil',
-        'unknown'
-    ].forEach(function(k) {
+    modeOrder.forEach(function(k) {
         that.MODES.push({'mode': k, 'isStorage': k.indexOf('storage') != -1});
     });
 
@@ -202,8 +173,7 @@ CountryTable.prototype.data = function(arg) {
                 return d3.ascending(x.key, y.key);
             });
 
-        // Construct a list having each production in the same order as
-        // `PRODUCTION_MODES` merged with `STORAGE_MODES`
+        // Construct a list having each production in the same order as this.MODES.
         var sortedProductionData = this.MODES.map(function (d) {
             var footprint = !d.isStorage ? 
                 that._data.productionCo2Intensities ? 
@@ -356,9 +326,7 @@ CountryTable.prototype.data = function(arg) {
                     // color by Co2 Intensity
                     // return that.co2Color(that._data.productionCo2Intensities[d.mode, that._data.countryCode]);
                     // color by production mode
-                    return d.isStorage ?
-                        that.STORAGE_COLORS[d.mode] :
-                        that.PRODUCTION_COLORS[d.mode];
+                    return that.MODE_COLORS[d.mode];
                 })
                 .attr('x', that.LABEL_MAX_WIDTH + that.co2Scale(0))
                 .attr('width', function (d) {
@@ -368,9 +336,7 @@ CountryTable.prototype.data = function(arg) {
             selection.select('rect.production')
                 .transition()
                 .attr('fill', function (d) {
-                    return d.isStorage ?
-                        that.STORAGE_COLORS[d.mode] :
-                        that.PRODUCTION_COLORS[d.mode];
+                    return that.MODE_COLORS[d.mode];
                 })
                 .attr('x', function (d) {
                     var value = (!d.isStorage) ? d.production : -1 * d.storage;
