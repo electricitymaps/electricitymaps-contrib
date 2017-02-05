@@ -34,12 +34,13 @@ exports.connect = function (callback) {
 
 // * Cache methods
 exports.getCached = function (key, callback, cacheSeconds, asyncComputeFunction) {
+    // Callback has arguments (err, obj, cached)
     memcachedClient.get(key, function (err, obj) {
         if (err && asyncComputeFunction) {
             console.error(err);
         }
         if (!asyncComputeFunction || obj) {
-            return callback(err, obj);
+            return callback(err, obj, true);
         } else {
             return asyncComputeFunction(function (err, obj) {
                 if (!err) {
@@ -47,7 +48,7 @@ exports.getCached = function (key, callback, cacheSeconds, asyncComputeFunction)
                         if (err) console.error(err);
                     });
                 }
-                return callback(err, obj);
+                return callback(err, obj, false);
             });
         }
     });

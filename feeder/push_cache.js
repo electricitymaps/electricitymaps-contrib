@@ -35,23 +35,21 @@ db.connect(function (err, _) {
     var before = moment(now).subtract(1, 'day');
     var dates = d3.timeMinute.every(5).range(before.toDate(), now.toDate());
 
-    var tasks = dates.map(function(d) {
+    var queryTasks = dates.map(function(d) {
         return function (callback) {
             return db.queryLastValuesBeforeDatetime(d, callback)
         };
     });
-    // Use a `series` call to avoid running out of memory
     console.log('Querying state history..');
-    return async.series(tasks, function (err, objs) {
+    return async.parallel(queryTasks, function (err, objs) {
         if (err) {
             return handleError(err);
         }
         // Iterate for each country
-        console.log('Pushing CO2 histories..');
+        console.log('Pushing histories..');
         countryCodes = d3.keys(objs[objs.length - 1].countries);
-        countryCodes.forEach(function (countryCode) {
-            // Get a timeseries of CO2
-            // and dedup by datetime
+        var insertTasks = countryCodes.map(function (countryCode) {
+            // Dedup by datetime
             var dict = {};
             objs.forEach(function (d) {
                 var c = d.countries[countryCode];
@@ -61,16 +59,17 @@ db.connect(function (err, _) {
             var ts = d3.values(dict)
                 .sort(function (x, y) { return d3.ascending(x.datetime, y.datetime); });
             // Push to cache
-            db.setCache(
-                CACHE_KEY_PREFIX_HISTORY_CO2 + countryCode,
-                ts, 24 * 3600,
-                function (err) {
-                    if (err) handleError(err);
-                });
+            return function (callback) {
+                db.setCache(
+                    CACHE_KEY_PREFIX_HISTORY_CO2 + countryCode,
+                    ts, 24 * 3600,
+                    callback);
+            }
         });
-        // done
-        console.log('Done.')
-        process.exit();
+        async.parallel(insertTasks, function (err) {
+            // done
+            console.log('..done')
+            process.exit();
+        });
     });
-
 });
