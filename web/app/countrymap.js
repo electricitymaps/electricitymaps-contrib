@@ -60,13 +60,16 @@ CountryMap.prototype.render = function() {
                 .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('fill', getCo2Color)
                 .on('mouseover', function (d, i) {
-                    return that.countryMouseOverHandler.call(this, d, i);
+                    if (that.countryMouseOverHandler)
+                        return that.countryMouseOverHandler.call(this, d, i);
                 })
                 .on('mouseout', function (d, i) {
-                    return that.countryMouseOutHandler.call(this, d, i);
+                    if (that.countryMouseOutHandler)
+                        return that.countryMouseOutHandler.call(this, d, i);
                 })
                 .on('mousemove', function (d, i) {
-                    return that.countryMouseMoveHandler.call(this, d, i);
+                    if (that.countryMouseMoveHandler)
+                        return that.countryMouseMoveHandler.call(this, d, i);
                 })
                 .on('touchstart click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea

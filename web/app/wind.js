@@ -48,8 +48,8 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
 };
 
 exports.show = function() {
-    var width = parseInt(windCanvas.attr('width'));
-    var height = parseInt(windCanvas.attr('height'));
+    var width = parseInt(windCanvas.node().getBoundingClientRect().width);
+    var height = parseInt(windCanvas.node().getBoundingClientRect().height);
     var sw = projection.invert([0, height]);
     var ne = projection.invert([width, 0]);
     windCanvas.transition().style('opacity', WIND_OPACITY);

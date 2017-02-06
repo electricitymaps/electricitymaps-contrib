@@ -30,14 +30,13 @@ db.connect(function (err, _) {
     // cache key accessors
     var CACHE_KEY_PREFIX_HISTORY_CO2 = 'HISTORY_';
 
-    // Compute values for the last 24 hours, step 5min
     var now = moment();
     var before = moment(now).subtract(1, 'day');
-    var dates = d3.timeMinute.every(5).range(before.toDate(), now.toDate());
+    var dates = d3.timeMinute.every(15).range(before.toDate(), now.toDate());
 
     var queryTasks = dates.map(function(d) {
         return function (callback) {
-            return db.queryLastValuesBeforeDatetime(d, callback)
+            return db.queryLastValuesBeforeDatetimeWithExpiration(d, 2 * 60, callback)
         };
     });
     console.log('Querying state history..');
@@ -49,15 +48,15 @@ db.connect(function (err, _) {
         console.log('Pushing histories..');
         countryCodes = d3.keys(objs[objs.length - 1].countries);
         var insertTasks = countryCodes.map(function (countryCode) {
-            // Dedup by datetime
-            var dict = {};
-            objs.forEach(function (d) {
-                var c = d.countries[countryCode];
-                if (!c) return;
-                dict[c.datetime] = c;
+            // The datetime used is the datetime of the query
+            // because we query the best known state of the whole grid
+            // not just that specific country
+            var ts = objs.map(function (d, i) {
+                var country = d.countries[countryCode] || {};
+                // Add a marker representing the query time
+                country.stateDatetime = dates[i];
+                return country;
             });
-            var ts = d3.values(dict)
-                .sort(function (x, y) { return d3.ascending(x.datetime, y.datetime); });
             // Push to cache
             return function (callback) {
                 db.setCache(
