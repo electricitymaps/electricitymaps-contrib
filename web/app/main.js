@@ -908,11 +908,12 @@ function fetchAndReschedule() {
 };
 
 function redraw() {
-    countryTable.render();
-    countryHistoryGraph.render();
+    if (selectedCountryCode) {
+        countryTable.render();
+        countryHistoryGraph.render();
+    }
     if (!isSmallScreen()) {
         countryMap.render();
-        co2Colorbar.render();
         exchangeLayer
             .projection(countryMap.projection())
             .render();
