@@ -30,14 +30,13 @@ db.connect(function (err, _) {
     // cache key accessors
     var CACHE_KEY_PREFIX_HISTORY_CO2 = 'HISTORY_';
 
-    // Compute values for the last 24 hours, step 5min
     var now = moment();
     var before = moment(now).subtract(1, 'day');
     var dates = d3.timeMinute.every(15).range(before.toDate(), now.toDate());
 
     var queryTasks = dates.map(function(d) {
         return function (callback) {
-            return db.queryLastValuesBeforeDatetime(d, callback)
+            return db.queryLastValuesBeforeDatetimeWithExpiration(d, 2 * 60, callback)
         };
     });
     console.log('Querying state history..');
@@ -53,7 +52,7 @@ db.connect(function (err, _) {
             // because we query the best known state of the whole grid
             // not just that specific country
             var ts = objs.map(function (d, i) {
-                var country = d.countries[countryCode];
+                var country = d.countries[countryCode] || {};
                 // Add a marker representing the query time
                 country.stateDatetime = dates[i];
                 return country;
