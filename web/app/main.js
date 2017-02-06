@@ -322,9 +322,6 @@ function selectCountry(countryCode, notrack) {
         // Unselected
         d3.select('.left-panel-initial-text')
             .style('display', 'block');
-        countryTable.hide();
-        d3.select('.country-history')
-            .style('display', 'none');
         selectedCountryCode = undefined;
     } else {
         // Selected
@@ -334,30 +331,22 @@ function selectCountry(countryCode, notrack) {
         d3.select('.left-panel-initial-text')
             .style('display', 'none');
         countryTable
-            .show()
-            .data(countries[countryCode]);
+            .data(countries[countryCode])
+            .render();
         selectedCountryCode = countryCode;
 
         function updateGraph(countryHistory) {
-            d3.select('.country-history')
-                .style('display', 'block');
             countryHistoryGraph
                 .data(countryHistory)
                 .onMouseMove(function(d) {
                     countryTable
-                        .data(d);
-                    d3.select('#current-date')
-                        .text(moment(d.stateDatetime).format('LL'));
-                    d3.select('#current-time')
-                        .text(moment(d.stateDatetime).format('LT [UTC]Z'));
+                        .data(d)
+                        .render();
                 })
                 .onMouseOut(function() {
                     countryTable
-                        .data(countries[countryCode]);
-                    d3.select('#current-date')
-                        .text(currentMoment.format('LL'));
-                    d3.select('#current-time')
-                        .text(currentMoment.format('LT [UTC]Z'));
+                        .data(countries[countryCode])
+                        .render();
                 })
                 .render();
         }
@@ -394,6 +383,8 @@ function selectCountry(countryCode, notrack) {
     replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
         selectedCountryCode ? 'block' : 'none');
+    d3.select('.country-panel')
+        .style('display', selectedCountryCode ? 'block' : 'none');
 }
 // Set initial
 selectCountry(selectedCountryCode, true);

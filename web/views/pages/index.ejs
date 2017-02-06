@@ -119,22 +119,24 @@
                 <span id="country-table-back-button" style="display: none"><a><< back</a></span>
             </p>
             <hr />
-            <div class="country-table-header" style="display: none">
-                <i id="country-flag"></i>
-                <b>
-                    <span class="country-name"></span>
-                </b>
-                <span style="color: darkgray;">
-                    (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
-                    <br />
-                    Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
-                    Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
-                    <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
-                    <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
-                </span>
+            <div class="country-panel" style="display: none">
+                <div class="country-table-header">
+                    <i id="country-flag"></i>
+                    <b>
+                        <span class="country-name"></span>
+                    </b>
+                    <span style="color: darkgray;">
+                        (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
+                        <br />
+                        Carbon intensity:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
+                        Electricity price (day-ahead): <span class="country-spot-price"></span> &euro;/MWh<br />
+                        <span class="country-show-emissions">Electricity production (<a href="javascript:toggleSource();">show emissions</a>) by source:</span>
+                        <span class="country-show-electricity" style="display: none;">Emissions (<a href="javascript:toggleSource();">show electricity</a>) by source:</span>
+                    </span>
+                </div>
+                <svg class="country-table"></svg>
+                <svg class="country-history"></svg>
             </div>
-            <svg class="country-table" style="display: none"></svg>
-            <svg class="country-history" style="display: none"></svg>
             <div class="left-panel-initial-text">
                 <p class="small-screen-visible" style="font-style: italic">
                     You're currently seeing a <span style="color: lightgray">limited mobile version</span>. For the <span style="color: lightgray">full experience</span>, visit this page on your computer.
