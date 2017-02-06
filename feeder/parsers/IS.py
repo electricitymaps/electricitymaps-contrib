@@ -35,6 +35,8 @@ STATIONS = {
 }
 
 def fetch_production(country_code='IS', session=None):
+    # Disabled for now due to https://github.com/corradio/electricitymap/issues/140
+    return
 
     # Query Landsnet for latest power production data for Iceland
     r = session or requests.session()
