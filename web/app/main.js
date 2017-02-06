@@ -373,7 +373,9 @@ function selectCountry(countryCode, notrack) {
         }
 
         // Load graph
-        if (!histories[countryCode])
+        if (customDate)
+            console.error('Can\'t fetch history when a custom date is provided!');
+        else if (!histories[countryCode])
             d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
                 if (err) console.error(err);
                 if (!obj.data) console.warn('Empty history received for ' + countryCode);
