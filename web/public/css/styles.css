@@ -13,6 +13,18 @@ html, body {
     background-color: #283640;
 }
 
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
+.axis path,
+.axis line {
+    shape-rendering: crispEdges;
+}
+
 #connection-warning {
     position: fixed;
     display: block;
@@ -45,13 +57,7 @@ html, body {
 }
 
 .watermark {
-    padding: 18px;
-    opacity: 0.5;
-    transition: all 0.5s ease;
     vertical-align: bottom;
-}
-.watermark:hover {
-    opacity: 1;
 }
 .overlay {
     width: 100%;
@@ -97,12 +103,15 @@ html, body {
     font-size: 0.7rem;
 }
 .left-panel {
-    padding: 10px;
-    line-height: 1.7em;
+    padding: 1rem;
+    line-height: 1.2rem;
     height: 100%;
-    width: 20rem;
+    width: 22rem;
     position: relative;
     overflow-y: scroll;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
 }
 .left-panel h1 {
     line-height: 1.3;
@@ -117,10 +126,30 @@ html, body {
     color: lightgray;
     fill: lightgray;
 }
+.left-panel .axis .tick line {
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: gray;
+    stroke-width: 1;
+}
+.left-panel .axis .tick text {
+    fill: gray;
+    font-size: 0.6rem;
+}
+.left-panel .axis path.domain {
+    fill: none;
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: gray;
+}
 .country-table {
     width: 100%;
 }
-.country-table-initial-text {
+.country-history {
+    width: 100%;
+    height: 10rem;
+}
+.left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
 }
@@ -135,41 +164,14 @@ html, body {
 }
 
 /* ** LEGEND ** */
-.legend {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 10px;
-    width: 460px;
+.layer-toggle {
+    font-size: 0.7rem;
 }
 .colorbar {
     height: 30px;
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
 }
-.colorbar-unit {
-    color: darkgray;
-    overflow: auto;
-    display: inline-block;
-    height: 100%;
-    width: 150px;
-    text-align: right;
-    font-size: 0.7em;
-}
-
-.co2-legend > .colorbar-unit {
-    color: lightgrey;
-}
-.co2-legend .x.axis text {
-    fill: lightgrey !important;
-}
-.co2-legend .x.axis line {
-    stroke: lightgrey !important;
-}
-.co2-legend rect.border {
-    stroke: lightgrey !important;
-}
-
 a {
     text-decoration: none;
     color: lightblue;
@@ -203,18 +205,20 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     left: 0px;
 }
 
-/* Small devices (phones, etc.) */
+/* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
         display: none;
     }
     .watermark {
-        position: absolute;
+        position: fixed;
         bottom: 0px;
+        right: 0px;
+        padding: 18px;
     }
 }
 
-/* Medium and large devices (tablets, desktops, etc.) */
+/* Small devices (phones, etc.) */
 @media (max-width: 768px) {
     .large-screen-visible {
         display: none;
@@ -223,15 +227,8 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
         width: 100%;
     }
     .watermark {
-        /* display: table-footer-group; */
+        margin-top: 2rem;
     }
-}
-
-hr {
-    background-color: gray;
-    color: gray;
-    border: none;
-    height: 1px;
 }
 
 .country-picker-container p {
