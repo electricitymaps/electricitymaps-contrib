@@ -5,9 +5,7 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
-        .style('opacity', 0)
-        .style('width', '100%')
-        .style('height', '100%');
+        .style('opacity', 0);
     this.verticalLine = this.rootElement.append('line')
         .style('display', 'none')
         .style('pointer-events', 'none')
@@ -25,7 +23,11 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
-        .attr('class', 'x axis');
+        .attr('class', 'x axis')
+        .style('pointer-events', 'none');
+    this.yAxisElement = this.rootElement.append('g')
+        .attr('class', 'y axis')
+        .style('pointer-events', 'none');
 
     // Create scales
     this.x = x = d3.scaleTime();
@@ -49,6 +51,9 @@ LineGraph.prototype.data = function (arg) {
 
     this._data = data = arg;
 
+    // Cache xAccessor
+    this.datetimes = data.map(this.xAccessor);
+
     // Set domains
     this.x.domain(d3.extent(data, this.xAccessor));
 
@@ -62,15 +67,18 @@ LineGraph.prototype.render = function () {
         y = this.y,
         z = this.z,
         stack = this.stack,
-        data = this._data;
+        data = this._data,
+        datetimes = this.datetimes;
 
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
         height = this.rootElement.node().getBoundingClientRect().height;
     var X_AXIS_HEIGHT = 20;
     var X_AXIS_PADDING = 4;
-    x.range([0, width]);
-    y.range([height, X_AXIS_HEIGHT + X_AXIS_PADDING]);
+    var Y_AXIS_WIDTH = 25;
+    var Y_AXIS_PADDING = 4;
+    x.range([0, width - Y_AXIS_WIDTH]);
+    y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
 
     this.verticalLine
         .attr('y1', 0)
@@ -92,6 +100,10 @@ LineGraph.prototype.render = function () {
         .attr('d', this.line);
 
     this.interactionRect
+        .attr('x', x.range()[0])
+        .attr('y', y.range()[1])
+        .attr('width', x.range()[1] - x.range()[0])
+        .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
             that.verticalLine.style('display', 'block');
             that.markerElement.style('display', 'block');
@@ -108,27 +120,36 @@ LineGraph.prototype.render = function () {
             var dx = d3.event.x - this.getBoundingClientRect().left;
             var datetime = x.invert(dx);
             // Find data point closest to
-            var i = d3.bisectLeft(data.map(that.xAccessor), datetime);
-            if (i > 0 && datetime - that.xAccessor(data[i-1]) < that.xAccessor(data[i]) - datetime)
+            var i = d3.bisectLeft(datetimes, datetime);
+            if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
                 i--;
             that.verticalLine
-                .attr('x1', x(that.xAccessor(data[i])))
-                .attr('x2', x(that.xAccessor(data[i])));
+                .attr('x1', x(datetimes[i]))
+                .attr('x2', x(datetimes[i]));
             that.markerElement
-                .attr('cx', x(that.xAccessor(data[i])))
+                .attr('cx', x(datetimes[i]))
                 .attr('cy', y(that.yAccessor(data[i])));
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]);
         });
 
     // x axis
-    var xAxis = d3.axisTop(x)
+    var xAxis = d3.axisBottom(x)
         .ticks(6)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
         .transition()
-        .style('transform', 'translate(0, ' + X_AXIS_HEIGHT + 'px)')
+        // Need to remove 1px in order to see the 1px line
+        .style('transform', 'translate(0, ' + (height - X_AXIS_HEIGHT) + 'px)')
         .call(xAxis);
+
+    // y axis
+    var yAxis = d3.axisRight(y)
+        .ticks(6)
+    this.yAxisElement
+        .transition()
+        .style('transform', 'translate(' + (width - Y_AXIS_WIDTH) + 'px, 0)')
+        .call(yAxis);
 
     return this;
 }

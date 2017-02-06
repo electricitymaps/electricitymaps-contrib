@@ -213,7 +213,7 @@ var exchangeLayer = new ExchangeLayer('.map', co2color);
 var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
 //var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
-    function(d) { return moment(d.datetime).toDate(); },
+    function(d) { return moment(d.stateDatetime).toDate(); },
     function(d) { return d.co2intensity; },
     function(d) { return d.co2intensity != null; },
     co2color);
@@ -347,9 +347,9 @@ function selectCountry(countryCode, notrack) {
                     countryTable
                         .data(d);
                     d3.select('#current-date')
-                        .text(moment(d.datetime).format('LL'));
+                        .text(moment(d.stateDatetime).format('LL'));
                     d3.select('#current-time')
-                        .text(moment(d.datetime).format('LT [UTC]Z'));
+                        .text(moment(d.stateDatetime).format('LT [UTC]Z'));
                 })
                 .onMouseOut(function() {
                     countryTable
@@ -381,9 +381,6 @@ function selectCountry(countryCode, notrack) {
                         d.maxCapacity = maxCapacity;
                     });
                 }
-
-                // Add current state
-                obj.data.push(countries[countryCode]);
 
                 // Save to local cache
                 histories[countryCode] = obj.data;
