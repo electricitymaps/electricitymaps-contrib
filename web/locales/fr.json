@@ -16,7 +16,7 @@
 	"visitoncomputer": "visitez ce site depuis un ordinateur",
 	"thisshowsrealtime": "Cette carte indique",
 	"whereelectricitycomesfrom": "de quelles sources provient votre électricité",
-	"and": "et",
+	"and": "et",	
 	"homuchco2": "quelle quantité de CO2",
 	"wasemitted": "a été émise pour la produire",
 	"takeinaccount": "Elle prend en compte les",
@@ -39,7 +39,11 @@
 	"carbonintensityexport": "Intensité carbone de l export",
 	"of":"de",
 	"ofconsumption": "de la consomation",
-	"ofinstalled": "de la capacité installée en",
+	"ofinstalled": "de la capacité installée",
+	"ofelectricity": "de l électricité de",
+	"comesfrom": "est produite par",
 	"capacity": " ",
+	"utilizing": "utilisant",
+	"withcarbonintensity": "avec une intensité carbone de",
 	"back": "retour"
 }
