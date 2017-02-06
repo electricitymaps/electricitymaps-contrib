@@ -31,6 +31,7 @@ function CountryTable(selector, co2Color, modeColor, modeOrder) {
         that.MODES.push({'mode': k, 'isStorage': k.indexOf('storage') != -1});
     });
     this.SCALE_TICKS = 4;
+    this.TRANSITION_DURATION = 250;
 
     // State
     this._displayByEmissions = false;
@@ -75,7 +76,7 @@ function CountryTable(selector, co2Color, modeColor, modeOrder) {
         .style('display', 'none');
 }
 
-CountryTable.prototype.render = function() {
+CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
     var width = this.root.node().getBoundingClientRect().width;
@@ -100,6 +101,7 @@ CountryTable.prototype.render = function() {
 
     this.gPowerAxis
         .transition()
+        .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         // TODO: We should offset by just one pixel because it looks better when
         // the rectangles don't start exactly on the axis...
         // But we should also handle "negative" rects
@@ -123,10 +125,12 @@ CountryTable.prototype.render = function() {
     if (that._displayByEmissions)
         selection.select('rect.capacity')
             .transition()
+            .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
             .style('display', 'none')
     else
         selection.select('rect.capacity')
             .transition()
+            .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
             .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
             .attr('width', function (d) {
                 return d.capacity !== undefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
@@ -154,6 +158,7 @@ CountryTable.prototype.render = function() {
     if (that._displayByEmissions)
         selection.select('rect.production')
             .transition()
+            .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
             .attr('fill', function (d) {
                 // color by Co2 Intensity
                 // return that.co2Color(that._data.productionCo2Intensities[d.mode, that._data.countryCode]);
@@ -167,6 +172,7 @@ CountryTable.prototype.render = function() {
     else
         selection.select('rect.production')
             .transition()
+            .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
             .attr('fill', function (d) {
                 return that.MODE_COLORS[d.mode];
             })
@@ -180,6 +186,7 @@ CountryTable.prototype.render = function() {
             });
     selection.select('text.unknown')
         .transition()
+        .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
         .style('display', function (d) {
             return (d.capacity == undefined || d.capacity > 0) && 
@@ -220,6 +227,7 @@ CountryTable.prototype.render = function() {
         .style('transform-origin', 'left');
     gNewRow.merge(selection).select('text.unknown')
         .transition()
+        .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .attr('transform', 'translate(' + (that.LABEL_MAX_WIDTH + that.co2Scale(0)) + ', ' + this.TEXT_ADJUST_Y + ')')
         .style('display', function(d) {
             return (that._displayByEmissions && getExchangeCo2eq(d) === undefined) ? 'block' : 'none';
@@ -242,6 +250,7 @@ CountryTable.prototype.render = function() {
                 that.exchangeMouseMoveHandler.call(this, d);
         })
         .transition()
+        .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .attr('fill', function (d, i) {
             if (that._displayByEmissions)
                 return 'gray';
@@ -292,6 +301,7 @@ CountryTable.prototype.render = function() {
         .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);
     d3.select('#country-emission-rect')
         .transition()
+        .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',
             this._data.co2intensity ?
                 that.co2Color(this._data.co2intensity) : 'gray');

@@ -341,7 +341,7 @@ function selectCountry(countryCode, notrack) {
                 .onMouseMove(function(d) {
                     countryTable
                         .data(d)
-                        .render();
+                        .render(true);
                 })
                 .onMouseOut(function() {
                     countryTable
