@@ -102,10 +102,10 @@ html, body {
     font-size: 0.7rem;
 }
 .left-panel {
-    padding: 10px;
-    line-height: 1.7em;
+    padding: 1rem;
+    line-height: 1.2rem;
     height: 100%;
-    width: 20rem;
+    width: 22rem;
     position: relative;
     overflow-y: scroll;
 }

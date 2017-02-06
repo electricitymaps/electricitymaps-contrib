@@ -403,7 +403,7 @@ CountryTable.prototype.data = function(arg) {
 
     // update scales
     this.powerScale
-        .domain([
+        .domain(this._powerScaleDomain || [
             Math.min(
                 -this._data.maxExport || 0,
                 -this._data.maxStorage || 0),
@@ -451,5 +451,12 @@ CountryTable.prototype.data = function(arg) {
 
     return this;
 };
+
+// Hack to fix the scale at a minimum value
+CountryTable.prototype.powerScaleDomain = function(arg) {
+    if (arg === undefined) return this._powerScaleDomain;
+    this._powerScaleDomain = arg;
+    return this;
+}
 
 module.exports = CountryTable;

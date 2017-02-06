@@ -340,10 +340,26 @@ function selectCountry(countryCode, notrack) {
         selectedCountryCode = countryCode;
 
         function updateGraph(countryHistory) {
+            // No export capacities are defined, and they are thus
+            // varying the scale.
+            // Here's a hack to fix it.
+            var lo = d3.min(countryHistory, function(d) {
+                return Math.min(
+                    -d.maxExport || 0,
+                    -d.maxStorage || 0);
+            });
+            var hi = d3.max(countryHistory, function(d) {
+                return Math.max(
+                    d.maxCapacity || 0,
+                    d.maxProduction || 0,
+                    d.maxImport || 0)
+            });
+
             countryHistoryGraph
                 .data(countryHistory)
                 .onMouseMove(function(d) {
                     countryTable
+                        .powerScaleDomain([lo, hi])
                         .data(d)
                         .render(true);
                 })
