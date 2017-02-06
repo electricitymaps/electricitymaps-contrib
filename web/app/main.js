@@ -72,7 +72,7 @@ args.forEach(function(arg) {
     kv = arg.split('=');
     if (kv[0] == 'remote') {
         forceRemoteEndpoint = kv[1] == 'true';
-        replaceHistoryState('forceRemoteEndpoint', forceRemoteEndpoint);
+        replaceHistoryState('remote', forceRemoteEndpoint);
     } else if (kv[0] == 'datetime') {
         customDate = kv[1];
         replaceHistoryState('datetime', customDate);
@@ -320,6 +320,8 @@ function selectCountry(countryCode, notrack) {
         d3.select('.left-panel-initial-text')
             .style('display', 'block');
         countryTable.hide();
+        d3.select('.country-history')
+            .style('display', 'none');
         selectedCountryCode = undefined;
     } else {
         // Selected
@@ -335,7 +337,16 @@ function selectCountry(countryCode, notrack) {
 
         // Load graph
         d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
-            if (err) return console.error(err);
+            if (err) console.error(err);
+            if (!obj.data) console.error('Empty history received');
+            if (err || !obj.data) {
+                d3.select('.country-history')
+                    .style('display', 'none');
+                return;
+            }
+
+            d3.select('.country-history')
+                .style('display', 'block');
             countryHistoryGraph
                 .data(obj.data)
                 .onMouseMove(function(d) {
@@ -371,8 +382,8 @@ if (isSmallScreen()) {
     d3.select('.map').selectAll('*').remove();
 } else {
     // Now that the width is set, we can render the legends
-    windColorbar.render();
-    solarColorbar.render();
+    if (windEnabled) windColorbar.render();
+    if (solarEnabled) solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
