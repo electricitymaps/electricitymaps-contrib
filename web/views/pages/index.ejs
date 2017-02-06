@@ -96,10 +96,10 @@
         <svg class="map sea"></svg>
         <canvas class="map wind"></canvas>
         <canvas class="map solar"></canvas>
-        <div class="legend co2-legend large-screen-visible colorbar">
+        <!--<div class="legend co2-legend large-screen-visible colorbar">
             <div class="colorbar-unit">Carbon intensity<br />(gCO2eq/kWh)</div>
             <svg class="co2-colorbar colorbar"></svg>
-        </div>
+        </div>-->
         <div class="panel left-panel">
             <h1>
                 Live CO2 emissions of the European electricity consumption
@@ -142,7 +142,7 @@
                 </span>
                 <svg class="country-history"></svg>
                 <p>
-                    Our <a href="http://www.co2signal.com">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time.
+                    Our <a href="http://www.co2signal.com">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.
                 </p>
             </div>
             <div class="left-panel-initial-text">
@@ -166,6 +166,10 @@
                 </div>
                 <div class="layer-toggles large-screen-visible">
                     <hr />
+                    <p>
+                        Carbon intensity <span style="color: darkgrey">(gCO2eq/kWh)</span>
+                        <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
+                    </p>
                     <p>
                         <input type="checkbox" id="checkbox-wind" />
                         <label for="checkbox-wind">Wind power potential <span style="color: darkgrey">(m/s)</span> 💨</label>

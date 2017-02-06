@@ -114,18 +114,21 @@ LineGraph.prototype.render = function () {
         .attr('y1', y.range()[0])
         .attr('y2', y.range()[1]);
 
+    isMobile = 
+        (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+
     this.interactionRect
         .attr('x', x.range()[0])
         .attr('y', y.range()[1])
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
-        .on('mouseover', function () {
+        .on(isMobile ? 'touchstart' : 'mouseover', function () {
             if (!datetimes.length) return;
             that.verticalLine.style('display', 'block');
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this);
         })
-        .on('mouseout', function () {
+        .on(isMobile ? 'touchend' : 'mouseout', function () {
             if (!datetimes.length) return;
             that.verticalLine.style('display', 'none');
             that.markerElement
@@ -137,14 +140,16 @@ LineGraph.prototype.render = function () {
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this);
         })
-        .on('mousemove', function () {
+        .on(isMobile ? 'touchmove' : 'mousemove', function () {
             if (!datetimes.length) return;
-            var dx = d3.event.x - this.getBoundingClientRect().left;
+            var dx = d3.event.x ? (d3.event.x - this.getBoundingClientRect().left) :
+                (d3.touches(this)[0][0]);
             var datetime = x.invert(dx);
             // Find data point closest to
             var i = d3.bisectLeft(datetimes, datetime);
             if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
                 i--;
+            if (i > datetimes.length - 1) i = datetimes.length - 1;
             that.verticalLine
                 .attr('x1', x(datetimes[i]))
                 .attr('x2', x(datetimes[i]));

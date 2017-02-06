@@ -903,6 +903,7 @@ function fetchAndReschedule() {
 
 function redraw() {
     countryTable.render();
+    countryHistoryGraph.render();
     if (!isSmallScreen()) {
         countryMap.render();
         co2Colorbar.render();

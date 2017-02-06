@@ -149,10 +149,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .on('mousemove', function (d) {
             if (that.productionMouseMoveHandler)
                 that.productionMouseMoveHandler.call(this, d);
-        })
-        .on('click', function (d) {
-            console.log(d.gCo2eqPerH / 1e6 / 60.0, 'tCO2eq/min');
-        })
+        });
     /*selection.select('rect.production')
         .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
     if (that._displayByEmissions)

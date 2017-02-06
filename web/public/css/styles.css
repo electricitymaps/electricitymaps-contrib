@@ -13,6 +13,13 @@ html, body {
     background-color: #283640;
 }
 
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
 .axis path,
 .axis line {
     shape-rendering: crispEdges;
@@ -51,12 +58,7 @@ html, body {
 
 .watermark {
     padding: 18px;
-    opacity: 0.5;
-    transition: all 0.5s ease;
     vertical-align: bottom;
-}
-.watermark:hover {
-    opacity: 1;
 }
 .overlay {
     width: 100%;
@@ -163,41 +165,14 @@ html, body {
 }
 
 /* ** LEGEND ** */
-.legend {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 10px;
-    width: 460px;
+.layer-toggle {
+    font-size: 0.7rem;
 }
 .colorbar {
     height: 30px;
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
 }
-.colorbar-unit {
-    color: darkgray;
-    overflow: auto;
-    display: inline-block;
-    height: 100%;
-    width: 150px;
-    text-align: right;
-    font-size: 0.7em;
-}
-
-.co2-legend > .colorbar-unit {
-    color: lightgrey;
-}
-.co2-legend .x.axis text {
-    fill: lightgrey !important;
-}
-.co2-legend .x.axis line {
-    stroke: lightgrey !important;
-}
-.co2-legend rect.border {
-    stroke: lightgrey !important;
-}
-
 a {
     text-decoration: none;
     color: lightblue;
@@ -238,7 +213,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     }
     .watermark {
         position: absolute;
-        top: 0px;
+        bottom: 0px;
         right: 0px;
     }
 }
@@ -254,13 +229,6 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     .watermark {
         /* display: table-footer-group; */
     }
-}
-
-hr {
-    background-color: gray;
-    color: gray;
-    border: none;
-    height: 1px;
 }
 
 .country-picker-container p {
