@@ -153,11 +153,18 @@ LineGraph.prototype.render = function () {
             that.verticalLine
                 .attr('x1', x(datetimes[i]))
                 .attr('x2', x(datetimes[i]));
-            that.markerElement
-                .attr('cx', x(datetimes[i]))
-                .attr('cy', y(that.yAccessor(data[i])))
-                .style('fill', that.yColorScale(
-                    that.yAccessor(data[i])));
+            if (!that.definedAccessor(data[i])) {
+                // Not defined, hide the marker
+                that.markerElement
+                    .style('display', 'none');
+            } else {
+                that.markerElement
+                    .style('display', 'block')
+                    .attr('cx', x(datetimes[i]))
+                    .attr('cy', y(that.yAccessor(data[i])))
+                    .style('fill', that.yColorScale(
+                        that.yAccessor(data[i])));
+            }
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]);
         });
