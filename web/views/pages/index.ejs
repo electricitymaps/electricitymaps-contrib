@@ -124,7 +124,7 @@
                 <span style="color: darkgray;">
                     (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">source</a>]
                     <br />
-                    <%= __('carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
+                    <%= __('carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%=__('fossilfuels')%>)<br />
                     <%= __('electricityprice') %>: <span class="country-spot-price"></span> &euro;/MWh<br />
                     <span class="country-show-emissions"><%= __('electricityproduction') %> (<a href="javascript:toggleSource();"><%= __('showemissions')%></a>) <%= __('bysource')%>:</span>
                     <span class="country-show-electricity" style="display: none;"><%= __('emissions') %> (<a href="javascript:toggleSource();"><%= __('showelectricity') %></a>) <%= __('bysource')%>:</span>
@@ -211,7 +211,7 @@
         <div id="country-tooltip" class="tooltip panel">
             <%= __('carbonintensity') %>:<br />
             <i id="country-flag"></i> <span id="country-code"></span>: 
-            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % fossil fuels)<br />
+            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('fossilfuels')%>)<br />
             <br />
             <%= __('electricityprice') %>: <span class="country-spot-price"></span> &euro;/MWh
         </div>

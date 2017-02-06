@@ -4,6 +4,7 @@
 	"maintitle": "Live CO2 emissions of the European electricity consumption",
 	"source": "source",
 	"electricityprice": "Electricity price (day-ahead)",
+	"fossilfuels": "fossil fuels",
 	"electricityproduction": "Electricity production",
 	"showemissions": "show emissions",
 	"bysource": "by source",

@@ -4,6 +4,7 @@
 	"maintitle": "Emissions de CO2 de la production électrique Européene en temps réel",
 	"source": "sources",
 	"electricityprice": "Prix de l'électricité (day-ahead)",
+	"fossilfuels": "carburants fossiles",
 	"electricityproduction": "Production électrique",
 	"showemissions": "montrer les émissions",
 	"bysource": "par source",
