@@ -365,6 +365,7 @@ function selectCountry(countryCode, notrack) {
                 })
                 .onMouseOut(function() {
                     countryTable
+                        .powerScaleDomain(null)
                         .data(countries[countryCode])
                         .render();
                 })
@@ -375,10 +376,9 @@ function selectCountry(countryCode, notrack) {
         if (!histories[countryCode])
             d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
                 if (err) console.error(err);
-                if (!obj.data) console.error('Empty history received');
+                if (!obj.data) console.warn('Empty history received for ' + countryCode);
                 if (err || !obj.data) {
-                    d3.select('.country-history')
-                        .style('display', 'none');
+                    updateGraph([]);
                     return;
                 }
 

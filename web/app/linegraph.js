@@ -48,10 +48,6 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
 
 LineGraph.prototype.data = function (arg) {
     if (!arg) return this._data;
-    if (!arg.length) {
-        this._data = [];
-        return this;
-    }
 
     this._data = data = arg;
 
@@ -104,12 +100,15 @@ LineGraph.prototype.render = function () {
     layer.merge(selection).select('path.line')
         .attr('d', this.line);
 
-    this.markerElement
-        .attr('cx', x(datetimes[datetimes.length - 1]))
-        .attr('cy', y(that.yAccessor(data[data.length - 1])))
-        .transition()
-        .style('fill', that.yColorScale(
-            that.yAccessor(data[data.length - 1])));
+    if (datetimes.length)
+        this.markerElement
+            .style('display', 'block')
+            .attr('cx', x(datetimes[datetimes.length - 1]))
+            .attr('cy', y(that.yAccessor(data[data.length - 1])))
+            .style('fill', that.yColorScale(
+                that.yAccessor(data[data.length - 1])));
+    else
+        this.markerElement.style('display', 'none');
 
     this.verticalLine
         .attr('y1', y.range()[0])
@@ -121,11 +120,13 @@ LineGraph.prototype.render = function () {
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
+            if (!datetimes.length) return;
             that.verticalLine.style('display', 'block');
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this);
         })
         .on('mouseout', function () {
+            if (!datetimes.length) return;
             that.verticalLine.style('display', 'none');
             that.markerElement
                 .transition()
@@ -137,6 +138,7 @@ LineGraph.prototype.render = function () {
                 that.mouseOutHandler.call(this);
         })
         .on('mousemove', function () {
+            if (!datetimes.length) return;
             var dx = d3.event.x - this.getBoundingClientRect().left;
             var datetime = x.invert(dx);
             // Find data point closest to
