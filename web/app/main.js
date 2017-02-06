@@ -345,6 +345,15 @@ function selectCountry(countryCode, notrack) {
                 return;
             }
 
+            // Add capacities
+            if (capacities[countryCode]) {
+                var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
+                obj.data.forEach(function(d) {
+                    d.capacity = capacities[countryCode].capacity;
+                    d.maxCapacity = maxCapacity;
+                });
+            }
+
             d3.select('.country-history')
                 .style('display', 'block');
             countryHistoryGraph

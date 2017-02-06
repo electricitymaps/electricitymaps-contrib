@@ -50,7 +50,7 @@ LineGraph.prototype.data = function (arg) {
 
     // Set domains
     this.x.domain(d3.extent(data, this.xAccessor));
-    this.y.domain(d3.extent(data, this.yAccessor));
+    this.y.domain([0, 700]);
 
     return this;
 }
@@ -89,7 +89,6 @@ LineGraph.prototype.render = function () {
         .style('stroke-width', 1)
         .style('pointer-events', 'none');
     layer.merge(selection).select('path.line')
-        .transition()
         .attr('d', this.line);
 
     this.interactionRect
