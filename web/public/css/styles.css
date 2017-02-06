@@ -57,7 +57,6 @@ hr {
 }
 
 .watermark {
-    padding: 18px;
     vertical-align: bottom;
 }
 .overlay {
@@ -212,9 +211,10 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
         display: none;
     }
     .watermark {
-        position: absolute;
+        position: fixed;
         bottom: 0px;
         right: 0px;
+        padding: 18px;
     }
 }
 
@@ -227,7 +227,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
         width: 100%;
     }
     .watermark {
-        /* display: table-footer-group; */
+        margin-top: 2rem;
     }
 }
 

@@ -610,7 +610,10 @@ function dataLoaded(err, state, argSolar, argWind) {
         .data(d3.values(countries))
         .onSeaClick(function () { selectCountry(undefined); })
         .onCountryClick(function (d) { selectCountry(d.countryCode); })
-        .onCountryMouseOver(function (d) { 
+        .render();
+    // Only add mouse over handlers if not on mobile
+    if (!isMobile()) {
+        countryMap.onCountryMouseOver(function (d) { 
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer')
@@ -654,11 +657,11 @@ function dataLoaded(err, state, argSolar, argWind) {
             d3.select('#country-tooltip')
                 .style('display', 'none');
         })
-        .render();
+    }
 
-        // Render country table if it already was visible
-        if (selectedCountryCode)
-            countryTable.data(countries[selectedCountryCode]).render()
+    // Re-render country table if it already was visible
+    if (selectedCountryCode)
+        countryTable.data(countries[selectedCountryCode]).render()
 
     if (!isSmallScreen()) {
         // Populate exchange pairs for arrows
