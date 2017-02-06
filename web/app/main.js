@@ -381,8 +381,8 @@ function selectCountry(countryCode, notrack) {
         else if (!histories[countryCode])
             d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
                 if (err) console.error(err);
-                if (!obj.data) console.warn('Empty history received for ' + countryCode);
-                if (err || !obj.data) {
+                if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
+                if (err || !obj || !obj.data) {
                     updateGraph([]);
                     return;
                 }
