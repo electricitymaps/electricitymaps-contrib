@@ -215,7 +215,8 @@ var countryTable = new CountryTable('.country-table', co2color, modeColor, modeO
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.datetime).toDate(); },
     function(d) { return d.co2intensity; },
-    function(d) { return d.co2intensity != null; });
+    function(d) { return d.co2intensity != null; },
+    co2color);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')

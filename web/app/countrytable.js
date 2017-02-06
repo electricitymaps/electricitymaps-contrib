@@ -162,9 +162,6 @@ CountryTable.prototype.data = function(arg) {
     else {
         this._data = arg;
         this._exchangeData = d3.entries(this._data.exchange)
-            .filter(function(d) {
-                return d.value !== 0;
-            })
             .sort(function(x, y) {
                 return d3.ascending(x.key, y.key);
             });

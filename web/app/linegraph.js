@@ -1,7 +1,7 @@
 d3 = require('d3');
 moment = require('moment');
 
-function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
+function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale) {
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
@@ -29,7 +29,8 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
 
     // Create scales
     this.x = x = d3.scaleTime();
-    this.y = y = d3.scaleLinear();
+    this.y = y = d3.scaleLinear()
+        .domain(d3.extent(yColorScale.domain()));
 
     // Create line
     this.line = d3.line()
@@ -50,7 +51,6 @@ LineGraph.prototype.data = function (arg) {
 
     // Set domains
     this.x.domain(d3.extent(data, this.xAccessor));
-    this.y.domain([0, 700]);
 
     return this;
 }
