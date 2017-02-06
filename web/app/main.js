@@ -315,6 +315,8 @@ d3.entries(exchanges).forEach(function(entry) {
 });
 var wind, solar;
 
+var histories = {};
+
 function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
         // Unselected
@@ -336,29 +338,11 @@ function selectCountry(countryCode, notrack) {
             .data(countries[countryCode]);
         selectedCountryCode = countryCode;
 
-        // Load graph
-        d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
-            if (err) console.error(err);
-            if (!obj.data) console.error('Empty history received');
-            if (err || !obj.data) {
-                d3.select('.country-history')
-                    .style('display', 'none');
-                return;
-            }
-
-            // Add capacities
-            if (capacities[countryCode]) {
-                var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
-                obj.data.forEach(function(d) {
-                    d.capacity = capacities[countryCode].capacity;
-                    d.maxCapacity = maxCapacity;
-                });
-            }
-
+        function updateGraph(countryHistory) {
             d3.select('.country-history')
                 .style('display', 'block');
             countryHistoryGraph
-                .data(obj.data)
+                .data(countryHistory)
                 .onMouseMove(function(d) {
                     countryTable
                         .data(d);
@@ -376,7 +360,39 @@ function selectCountry(countryCode, notrack) {
                         .text(currentMoment.format('LT [UTC]Z'));
                 })
                 .render();
-        });
+        }
+
+        // Load graph
+        if (!histories[countryCode])
+            d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
+                if (err) console.error(err);
+                if (!obj.data) console.error('Empty history received');
+                if (err || !obj.data) {
+                    d3.select('.country-history')
+                        .style('display', 'none');
+                    return;
+                }
+
+                // Add capacities
+                if (capacities[countryCode]) {
+                    var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
+                    obj.data.forEach(function(d) {
+                        d.capacity = capacities[countryCode].capacity;
+                        d.maxCapacity = maxCapacity;
+                    });
+                }
+
+                // Add current state
+                obj.data.push(countries[countryCode]);
+
+                // Save to local cache
+                histories[countryCode] = obj.data;
+
+                // Show
+                updateGraph(histories[countryCode]);
+            });
+        else
+            updateGraph(histories[countryCode]);
     }
     replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
@@ -498,6 +514,7 @@ function dataLoaded(err, state, argSolar, argWind) {
     d3.entries(exchanges).forEach(function(entry) {
         entry.value.netFlow = undefined;
     });
+    histories = {};
 
     // Populate with realtime country data
     d3.entries(state.countries).forEach(function(entry) {
