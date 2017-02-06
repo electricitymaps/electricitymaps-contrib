@@ -19,10 +19,9 @@ services:
     environment:
       - ENV=production
       - MEMCACHED_HOST=memcached
-      - MONGO_URL=mongodb://mongo:27017
-      - PROMETHEUS_HOST=prometheus.infrastructure_default
+      - MONGO_URL=mongodb://mongo:27017/electricity
     image: eu.gcr.io/tmrow-152415/electricitymap_feeder:production
-    mem_limit: 200M
+    mem_limit: 400M
     networks: [default, infrastructure] # required to be able to com' with statsd
     restart: unless-stopped
   memcached:
