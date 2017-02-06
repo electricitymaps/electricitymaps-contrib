@@ -21,6 +21,7 @@ var Wind = require('./wind');
 // Configs
 var capacities = require('json-loader!./configs/capacities.json');
 var zones = require('json-loader!./configs/zones.json');
+var lang = require('json-loader!./configs/lang.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -33,6 +34,7 @@ var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
 var timelineEnabled = false;
+var reqLang = 'en';
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -79,6 +81,8 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'countryCode') {
         selectedCountryCode = kv[1];
         replaceHistoryState('countryCode', selectedCountryCode);
+    } else if(kv[0] == 'lang'){
+		reqLang = kv[1];
     }
 });
 
@@ -179,7 +183,7 @@ var solarColor = d3.scaleLinear()
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color);
+var countryTable = new CountryTable('.country-table', co2color, lang[reqLang]);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')
@@ -188,18 +192,10 @@ var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
 var solarColorbarColor = d3.scaleLinear()
-<<<<<<< HEAD
-    .domain([0, 1360/2, 1360])
-    .range(['black', 'white', 'gold'])
-var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
-    .markerColor('red')
-=======
     .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
     .range(['black', 'white', 'gold'])
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
-    .markerColor('red');
-d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
->>>>>>> refs/remotes/corradio/master
+    .markerColor('red')
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -394,7 +390,7 @@ if (isSmallScreen()) {
         });
 
     // Tooltip setup
-    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
+    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color, lang[reqLang] );
 }
 
 function dataLoaded(err, state, argSolar, argWind) {

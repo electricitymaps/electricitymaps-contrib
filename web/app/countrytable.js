@@ -1,7 +1,7 @@
 var d3 = require('d3');
 var moment = require('moment');
 
-function CountryTable(selector, co2Color) {
+function CountryTable(selector, co2Color, lang) {
     var that = this;
 
     this.root = d3.select(selector);
@@ -86,7 +86,6 @@ CountryTable.prototype.render = function() {
                 return 'translate(0,' + (i * (that.ROW_HEIGHT + that.PADDING_Y)) + ')';
             });
     gNewRow.append('text')
-        .text(function(d) { return d.mode })
         .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')

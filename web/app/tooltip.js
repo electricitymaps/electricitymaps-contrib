@@ -15,7 +15,7 @@ function getConsumption(country) {
 }
 
 // ** Country table
-exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color) {
+exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color,lang) {
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
             var isExport = d.value < 0;
@@ -25,7 +25,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.select('#label').text(isExport ? 'export to' : 'import from');
+            tooltip.select('#label').text(isExport ? lang['exportto'] : lang['importfrom']);
             tooltip.select('#country-code').text(d.key);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
@@ -82,7 +82,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.selectAll('#mode').text(d.mode);
+            tooltip.selectAll('#mode').text(d.text || d.mode);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')

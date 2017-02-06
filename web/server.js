@@ -20,6 +20,8 @@ var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
 var MongoClient = require('mongodb').MongoClient;
+var i18n = require('i18n');
+
 //var statsd = require('node-statsd'); // TODO: Remove
 
 // Custom modules
@@ -41,6 +43,17 @@ app.use(function(req, res, next) {
 // * Static and templating
 var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
 app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '0'}));
+//multi-language
+i18n.configure({
+    // where to store json files - defaults to './locales' relative to modules directory
+    locales:['en', 'fr'],
+    directory: __dirname + '/locales',
+    defaultLocale: 'en',
+    queryParameter: 'lang'
+    // sets a custom cookie name to parse locale settings from  - defaults to NULL
+    //cookie: 'lang',
+});
+app.use(i18n.init);
 app.set('view engine', 'ejs');
 var BUNDLE_HASH = !isProduction ? 'dev' : 
     JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
