@@ -14,7 +14,10 @@
     "exportto": "of export to",
     "importfrom":"of import from",
     "productionimport":"production/import",
-    "consumption":"consumption"
+    "consumption":"consumption",
+	"electricityfrom":"electricity comes from",
+	"electricityto":"electricity is exported to",
+	"electricitystored":"electricity is stored using";
   },
   "fr": {
     "wind": "éolien",
@@ -30,6 +33,9 @@
     "exportto": "exportée vers",
     "importfrom":" importée depuis",
     "productionimport":"production/import",
-    "consumption":"consommation"
+    "consumption":"consommation",
+	"electricityfrom":"électricité importée depuis",
+	"electricityto":"électricité exportée vers",
+	"electricitystored":"électricité stockée dans";
   }
 }

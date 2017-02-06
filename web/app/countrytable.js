@@ -24,7 +24,6 @@ function CountryTable(selector, co2Color, lang) {
         'solar': '#f27406',
         'hydro': '#2772b2',
         'biomass': '#166a57',
-        'geothermal': 'yellow',
         'nuclear': '#AEB800',
         'gas': '#bb2f51',
         'coal': '#ac8c35',
@@ -43,7 +42,6 @@ function CountryTable(selector, co2Color, lang) {
         'solar',
         'hydro',
         'hydro storage',
-        'geothermal',
         'biomass',
         'nuclear',
         'gas',
@@ -54,6 +52,9 @@ function CountryTable(selector, co2Color, lang) {
         that.MODES.push({'mode': k, 'isStorage': k.indexOf('storage') != -1});
     });
 
+
+    this.LANG = lang;
+console.log('a',this.LANG);
     // State
     this._displayByEmissions = false;
 
@@ -86,6 +87,7 @@ CountryTable.prototype.render = function() {
                 return 'translate(0,' + (i * (that.ROW_HEIGHT + that.PADDING_Y)) + ')';
             });
     gNewRow.append('text')
+        .text(function(d) { return that.LANG[d.mode] || d.mode })
         .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')
@@ -185,7 +187,7 @@ CountryTable.prototype.hide = function() {
 
 CountryTable.prototype.data = function(arg) {
     var that = this;
-
+	console.log(this._data);
     if (!arg) return this._data;
     else {
         this._data = arg;
@@ -200,6 +202,7 @@ CountryTable.prototype.data = function(arg) {
         // Construct a list having each production in the same order as
         // `PRODUCTION_MODES` merged with `STORAGE_MODES`
         var sortedProductionData = this.MODES.map(function (d) {
+
             var footprint = !d.isStorage ? 
                 that._data.productionCo2Intensities ? 
                     that._data.productionCo2Intensities[d.mode] :
@@ -208,12 +211,14 @@ CountryTable.prototype.data = function(arg) {
             var production = !d.isStorage ? (that._data.production || {})[d.mode] : undefined;
             var storage = d.isStorage ? (that._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
             var capacity = !d.isStorage ? (that._data.capacity || {})[d.mode] : undefined;
+	    var text = that.LANG[d.mode];
             return {
                 production: production,
                 storage: storage,
                 isStorage: d.isStorage,
                 capacity: capacity,
                 mode: d.mode,
+		text: text,
                 gCo2eqPerkWh: footprint,
                 gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
             };
@@ -268,12 +273,8 @@ CountryTable.prototype.data = function(arg) {
                 .tickFormat(function (d) { return f(d * 1e6) + 'W'; });
         }
 
-        var axisHeight = 
-            (this.MODES.length + this._exchangeData.length + 1) * (this.ROW_HEIGHT + this.PADDING_Y)
-            + this.PADDING_Y;
-
         this.axis
-            .tickSizeInner(-1 * axisHeight)
+            .tickSizeInner(-250)
             .tickSizeOuter(0)
             .ticks(ticks);
 
@@ -467,21 +468,13 @@ CountryTable.prototype.data = function(arg) {
                 else
                     return Math.abs(that.powerScale(d.value) - that.powerScale(0));
             })
+
+
+
         gNewRow.merge(selection).select('text')
             .text(function(d) { return d.key; });
         d3.select('.country-emission-intensity')
             .text(Math.round(this._data.co2intensity) || '?');
-        var hasFossilFuelData = 
-            ((this._data.production || {}).gas  != null) || 
-            ((this._data.production || {}).coal != null) || 
-            ((this._data.production || {}).oil  != null);
-        var fossilFuelPercent = (
-            ((this._data.production || {}).gas || 0) + 
-            ((this._data.production || {}).coal || 0) + 
-            ((this._data.production || {}).oil || 0)
-        ) / (this._data.totalProduction + this._data.totalImport) * 100;
-        d3.select('.fossil-fuel-percentage')
-            .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
         d3.select('.country-spot-price')
             .text(Math.round((this._data.price || {}).value) || '?')
             .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);

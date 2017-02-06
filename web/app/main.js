@@ -195,7 +195,8 @@ var solarColorbarColor = d3.scaleLinear()
     .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
     .range(['black', 'white', 'gold'])
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
-    .markerColor('red')
+    .markerColor('red');
+d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -314,8 +315,8 @@ if (isSmallScreen()) {
     d3.select('.map').selectAll('*').remove();
 } else {
     // Now that the width is set, we can render the legends
-    windColorbar.render();
-    solarColorbar.render();
+    if (windEnabled) windColorbar.render();
+    if (solarEnabled) solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
