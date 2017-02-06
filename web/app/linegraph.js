@@ -132,7 +132,6 @@ LineGraph.prototype.render = function () {
             if (!datetimes.length) return;
             that.verticalLine.style('display', 'none');
             that.markerElement
-                .transition()
                 .attr('cx', x(datetimes[datetimes.length - 1]))
                 .attr('cy', y(that.yAccessor(data[data.length - 1])))
                 .style('fill', that.yColorScale(
@@ -142,7 +141,7 @@ LineGraph.prototype.render = function () {
         })
         .on(isMobile ? 'touchmove' : 'mousemove', function () {
             if (!datetimes.length) return;
-            var dx = d3.event.x ? (d3.event.x - this.getBoundingClientRect().left) :
+            var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
                 (d3.touches(this)[0][0]);
             var datetime = x.invert(dx);
             // Find data point closest to
