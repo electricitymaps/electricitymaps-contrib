@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 
+if (__base) module.paths.push(__base + '/node_modules');
 var d3 = require('d3');
 var mathjs = require('mathjs');
 
@@ -31,6 +32,8 @@ exports.compute = function(countries) {
     var b = mathjs.zeros(n);
 
     validCountries.forEach(function (country, i) {
+        // Note that `totalProduction` is the sum of all *positive* production
+        // which excludes all storage units
         A.set([i, i], country.totalProduction + country.totalImport);
         // Production
         d3.entries(country.production).forEach(function (production) {

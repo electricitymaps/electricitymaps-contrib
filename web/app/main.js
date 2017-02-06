@@ -5,7 +5,6 @@ var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
-var co2eq_parameters = require('./co2eq_parameters');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -16,6 +15,7 @@ var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
+var Tooltip = require('./tooltip');
 var Wind = require('./wind');
 
 // Configs
@@ -52,10 +52,14 @@ function getHistoryStateURL() {
     d3.entries(history.state).forEach(function(d) {
         url = appendQueryString(url, d.key, d.value);
     });
-    return (url == '?' ? '' : url);
+    return (url == '?' ? '.' : url);
 }
 function replaceHistoryState(key, value) {
-    history.state[key] = value;
+    if (value == null) {
+        delete history.state[key];
+    } else {
+        history.state[key] = value;
+    }
     history.replaceState(history.state, '', getHistoryStateURL());
 }
 
@@ -72,6 +76,9 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'timeline') {
         timelineEnabled = kv[1] == 'true';
         replaceHistoryState('timeline', timelineEnabled);
+    } else if (kv[0] == 'countryCode') {
+        selectedCountryCode = kv[1];
+        replaceHistoryState('countryCode', selectedCountryCode);
     }
 });
 
@@ -82,7 +89,7 @@ var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || fals
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//electricitymap.tmrow.co';
+var REMOTE_ENDPOINT = '//www.electricitymap.org';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
     '' : REMOTE_ENDPOINT;
 
@@ -95,7 +102,7 @@ else
     console.warn('Opbeat could not be initialized!');
 
 function catchError(e) {
-    console.error(e);
+    console.error('Error Caught! ' + e);
     if (!isLocalhost) {
         if(typeof _opbeat !== 'undefined')
             _opbeat('captureException', e);
@@ -149,9 +156,9 @@ var windColor = d3.scaleLinear()
     ])
     .clamp(true);
 // ** Solar Scale **
-var maxSolarDSWRF = 400;
-var minDayDSWRF = 5;
-var nightOpacity = 0.8;
+var maxSolarDSWRF = 1000;
+var minDayDSWRF = 0;
+// var nightOpacity = 0.8;
 var minSolarDayOpacity = 0.6;
 var maxSolarDayOpacity = 0.0;
 var solarDomain = d3.range(10).map(function (i) { return d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)); } );
@@ -161,21 +168,13 @@ var solarRange = d3.range(10).map(function (i) {
     return 'rgba(' + c + ', ' + c + ', ' + c + ', ' + a + ')';
 });
 // Insert the night (DWSWRF \in [0, minDayDSWRF]) domain
-solarDomain.splice(0, 0, 0);
-solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
+// solarDomain.splice(0, 0, 0);
+// solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
 var solarColor = d3.scaleLinear()
     .domain(solarDomain)
     .range(solarRange)
     .clamp(true);
-
-// Create power formatting
-function formatPower(d, numDigits) {
-    // Assume MW input
-    if (d == null || d == NaN) return d;
-    if (numDigits == null) numDigits = 3;
-    return d3.format('.' + numDigits + 's')(d * 1e6) + 'W';
-}
 
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
@@ -187,11 +186,20 @@ var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
+d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
 var solarColorbarColor = d3.scaleLinear()
+<<<<<<< HEAD
     .domain([0, 1360/2, 1360])
     .range(['black', 'white', 'gold'])
 var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
     .markerColor('red')
+=======
+    .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
+    .range(['black', 'white', 'gold'])
+var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
+    .markerColor('red');
+d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
+>>>>>>> refs/remotes/corradio/master
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
 
@@ -227,6 +235,17 @@ var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
     }
 });
 
+// Tooltips
+function placeTooltip(selector, d3Event) {
+    var tooltip = d3.select(selector);
+    var w = tooltip.node().getBoundingClientRect().width;
+    var h = tooltip.node().getBoundingClientRect().height;
+    var x = d3Event.pageX - w - 5;
+    var y = d3Event.pageY - h - 5; if (y <= 50) y = d3Event.pageY + 5;
+    tooltip
+        .style('transform',
+            'translate(' + x + 'px' + ',' + y + 'px' + ')');
+}
 var width = window.innerWidth;
 var height = window.innerHeight;
 
@@ -266,7 +285,7 @@ d3.entries(exchanges).forEach(function(entry) {
 });
 var wind, solar;
 
-function selectCountry(countryCode) {
+function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
         // Unselected
         d3.select('.country-table-initial-text')
@@ -276,7 +295,8 @@ function selectCountry(countryCode) {
     } else {
         // Selected
         console.log(countries[countryCode]);
-        trackAnalyticsEvent('countryClick', {countryCode: countryCode});
+        if (!notrack)
+            trackAnalyticsEvent('countryClick', {countryCode: countryCode});
         d3.select('.country-table-initial-text')
             .style('display', 'none');
         countryTable
@@ -284,20 +304,19 @@ function selectCountry(countryCode) {
             .data(countries[countryCode]);
         selectedCountryCode = countryCode;
     }
+    replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
         selectedCountryCode ? 'block' : 'none');
 }
-
-
+// Set initial
+selectCountry(selectedCountryCode, true);
 d3.select('#country-table-back-button')
     .on('click', function() { selectCountry(undefined); });
 
-// Mobile
 if (isSmallScreen()) {
+    // Mobile
     d3.select('.map').selectAll('*').remove();
 } else {
-    d3.select('.panel-container')
-        .style('width', '330px');
     // Now that the width is set, we can render the legends
     windColorbar.render();
     solarColorbar.render();
@@ -311,12 +330,15 @@ if (isSmallScreen()) {
         Cookies.set('windEnabled', windEnabled);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (windEnabled) {
+            d3.select('.wind-colorbar').style('display', 'block');
+            windColorbar.render()
             if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
                 fetch(true);
             } else {
                 Wind.show();
             }
         } else {
+            d3.select('.wind-colorbar').style('display', 'none');
             Wind.hide();
         }
     });
@@ -325,12 +347,15 @@ if (isSmallScreen()) {
         Cookies.set('solarEnabled', solarEnabled);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (solarEnabled) {
+            d3.select('.solar-colorbar').style('display', 'block');
+            solarColorbar.render()
             if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 fetch(true);
             } else {
                 Solar.show();
             }
         } else {
+            d3.select('.solar-colorbar').style('display', 'none');
             Solar.hide();
         }
     });
@@ -367,104 +392,9 @@ if (isSmallScreen()) {
         .on('mouseout', function() {
             mapMouseOver(undefined);
         });
-    countryTable
-        .onExchangeMouseOver(function (d, countryCode) {
-            var isExport = d.value < 0;
-            var o = d.value < 0 ? countryCode : d.key;
-            var co2intensity = countries[o].co2intensity;
-            co2Colorbar.currentMarker(co2intensity);
-            var tooltip = d3.select('#countrypanel-exchange-tooltip');
-            tooltip.style('display', 'inline');
-            tooltip.select('#label').text(isExport ? 'export to' : 'import from');
-            tooltip.select('#country-code').text(d.key);
-            tooltip.select('.emission-rect')
-                .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
-            tooltip.select('.emission-intensity')
-                .text(Math.round(co2intensity) || '?');
-            tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + d.key.toLowerCase());
-            tooltip.select('#import-detail').style('display', 
-                isExport ? 'none' : undefined);
-            tooltip.select('#export-detail').style('display', 
-                isExport ? undefined : 'none');
-            var totalProduction = countries[countryCode].totalProduction;
-            var absFlow = Math.abs(d.value);
-            if (isExport) {
-                // Proportion compared to production
-                var exportProportion = Math.round(absFlow / totalProduction * 100) || '?';
-                tooltip.select('#export-proportion-production').text(exportProportion + ' %');
-                tooltip.select('#export-proportion-production-detail').text(
-                    (formatPower(absFlow) || '?') + ' ' +
-                    ' / ' + 
-                    (formatPower(totalProduction) || '?'));
-            } else {
-                // Proportion compared to consumption
-                var netExchange = countries[countryCode].totalNetExchange;
-                var totalConsumption = totalProduction + netExchange;
-                var importProportion = Math.round(absFlow / totalConsumption * 100) || '?';
-                tooltip.select('#import-proportion-consumption').text(importProportion + ' %');
-                tooltip.select('#import-proportion-consumption-detail').text(
-                    (formatPower(absFlow) || '?') + ' ' +
-                    ' / ' + 
-                    (formatPower(totalConsumption) || '?'));
-            }
-            tooltip.selectAll('.country-code').text(countryCode);
-        })
-        .onExchangeMouseOut(function (d) {
-            co2Colorbar.currentMarker(undefined);
-            d3.select('#countrypanel-exchange-tooltip')
-                .style('display', 'none');
-        })
-        .onExchangeMouseMove(function(d) {
-            d3.select('#countrypanel-exchange-tooltip')
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX + 15) + 'px' + ',' + 
-                        (d3.event.pageY + 15) + 'px' +
-                    ')');
-        })
-        .onProductionMouseOver(function (d, countryCode) {
-            var co2intensity = co2eq_parameters.footprintOf(d.mode, countryCode);
-            co2Colorbar.currentMarker(co2intensity);
-            var tooltip = d3.select('#countrypanel-production-tooltip');
-            tooltip.style('display', 'inline');
-            tooltip.selectAll('#mode').text(d.mode);
-            tooltip.select('.emission-rect')
-                .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
-            tooltip.select('.emission-intensity')
-                .text(Math.round(co2intensity) || '?');
-            var capacityFactor = Math.round(d.production / d.capacity * 100) || '?';
-            tooltip.select('#capacity-factor').text(capacityFactor + ' %');
-            tooltip.select('#capacity-factor-detail').text(
-                (formatPower(d.production) || '?') + ' ' +
-                ' / ' + 
-                (formatPower(d.capacity) || '?'));
-            // Calculate total power available in zone
-            var totalProduction = countries[countryCode].totalProduction;
-            var netExchange = countries[countryCode].totalNetExchange;
-            var totalConsumption = totalProduction + netExchange;
-            var productionProportion = Math.round(d.production / totalConsumption * 100) || '?';
-            tooltip.select('#production-proportion').text(
-                productionProportion + ' %');
-            tooltip.select('#production-proportion-detail').text(
-                (formatPower(d.production) || '?') + ' ' +
-                ' / ' + 
-                (formatPower(totalConsumption) || '?'));
-            tooltip.select('.country-code').text(countryCode);
-        })
-        .onProductionMouseMove(function(d) {
-            d3.select('#countrypanel-production-tooltip')
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX + 10) + 'px' + ',' + 
-                        (d3.event.pageY + 10) + 'px' +
-                    ')');
-        })
-        .onProductionMouseOut(function (d) {
-            co2Colorbar.currentMarker(undefined);
-            d3.select('#countrypanel-production-tooltip')
-                .style('display', 'none');
-        });
+
+    // Tooltip setup
+    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
 }
 
 function dataLoaded(err, state, argSolar, argWind) {
@@ -475,10 +405,8 @@ function dataLoaded(err, state, argSolar, argWind) {
 
     // Render simple components
     var currentMoment = (customDate && moment(customDate) || moment());
-    d3.select('#current-date').text(
-        currentMoment.format('LL' + (!customDate ? ' [UTC]Z' : '')));
-    d3.select('#current-time')
-        .text(currentMoment.format('LT'));
+    d3.select('#current-date').text(currentMoment.format('LL'));
+    d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')
         .style('color', 'darkred')
         .transition()
@@ -491,6 +419,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         entry.value.co2intensity = undefined;
         entry.value.exchange = {};
         entry.value.production = {};
+        entry.value.storage = {};
         entry.value.source = undefined;
     });
     d3.entries(exchanges).forEach(function(entry) {
@@ -513,12 +442,28 @@ function dataLoaded(err, state, argSolar, argWind) {
         if (!country.production) return;
         countryTable.PRODUCTION_MODES.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown') return;
-            if (country.production[mode] === undefined)
-                console.warn(countryCode + ' is missing production of ' + mode);
-            else if (!country.capacity || country.capacity[mode] === undefined)
+            // Check missing values
+            if (country.production[mode] === undefined && country.storage[mode] === undefined)
+                console.warn(countryCode + ' is missing production or storage of ' + mode);
+            // Check validity of production
+            if (country.production[mode] !== undefined && country.production[mode] < 0)
+                console.error(countryCode + ' has negative production of ' + mode);
+            // Check validity of storage
+            if (country.storage[mode] !== undefined && country.storage[mode] < 0)
+                console.error(countryCode + ' has negative storage of ' + mode);
+            // Check missing capacities
+            if (country.production[mode] !== undefined &&
+                (country.capacity || {})[mode] === undefined)
+            {
                 console.warn(countryCode + ' is missing capacity of ' + mode);
-            else if (country.production[mode] > country.capacity[mode])
+            }
+            // Check load factors > 1
+            if (country.production[mode] !== undefined &&
+                (country.capacity || {})[mode] !== undefined &&
+                country.production[mode] > country.capacity[mode])
+            {
                 console.error(countryCode + ' produces more than its capacity of ' + mode);
+            }
         });
         if (!country.exchange || !d3.keys(country.exchange).length)
             console.warn(countryCode + ' is missing exchanges');
@@ -547,7 +492,6 @@ function dataLoaded(err, state, argSolar, argWind) {
         enterA
             .append('text')
         enterA
-            .attr('href', '#')
             .append('i').attr('id', 'country-flag')
         var selector = enterA.merge(selector);
         selector.select('text')
@@ -579,7 +523,8 @@ function dataLoaded(err, state, argSolar, argWind) {
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
             tooltip.select('#country-code')
-                .text(d.countryCode);
+                .text(d.countryCode)
+                .style('font-weight', 'bold');
             tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
@@ -587,17 +532,20 @@ function dataLoaded(err, state, argSolar, argWind) {
             tooltip.select('.country-spot-price')
                 .text(Math.round((d.price || {}).value) || '?')
                 .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
+            var hasFossilFuelData = 
+                ((d.production || {}).gas  != null) || 
+                ((d.production || {}).coal != null) || 
+                ((d.production || {}).oil  != null);
+            var fossilFuelPercent = (
+                ((d.production || {}).gas || 0) + 
+                ((d.production || {}).coal || 0) + 
+                ((d.production || {}).oil || 0)
+            ) / (d.totalProduction + d.totalImport) * 100;
+            tooltip.select('.fossil-fuel-percentage')
+                .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
         })
-        .onCountryMouseMove(function (d) {
-            var tooltip = d3.select('#country-tooltip');
-            var w = tooltip.node().getBoundingClientRect().width;
-            var h = tooltip.node().getBoundingClientRect().height;
-            tooltip
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX - w - 5) + 'px' + ',' + 
-                        (d3.event.pageY - h - 5) + 'px' +
-                    ')');
+        .onCountryMouseMove(function () {
+            placeTooltip("#country-tooltip", d3.event);
         })
         .onCountryMouseOut(function (d) { 
             d3.select(this)
@@ -639,16 +587,8 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .style('cursor', 'pointer');
                 if (d.co2intensity)
                     co2Colorbar.currentMarker(d.co2intensity);
-                d3.select('#exchange-tooltip')
-                    .style('display', 'inline');
-            })
-            .onExchangeMouseMove(function (d) {
                 var tooltip = d3.select('#exchange-tooltip');
-                var w = tooltip.node().getBoundingClientRect().width;
-                var h = tooltip.node().getBoundingClientRect().height;
-                tooltip
-                    .style('left', (d3.event.pageX - w - 5) + 'px')
-                    .style('top', (d3.event.pageY - h - 5) + 'px');
+                tooltip.style('display', 'inline');
                 tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
@@ -664,6 +604,9 @@ function dataLoaded(err, state, argSolar, argWind) {
                     .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
                 tooltip.select('.country-emission-intensity')
                     .text(Math.round(d.co2intensity) || '?');
+            })
+            .onExchangeMouseMove(function () {
+                placeTooltip("#exchange-tooltip", d3.event);
             })
             .onExchangeMouseOut(function (d) {
                 d3.select(this)
@@ -771,11 +714,16 @@ var connectionWarningTimeout = null;
 function handleConnectionReturnCode(err) {
     if (err) {
         if (err.target) {
-            catchError(Error(
-                'HTTPError ' +
-                err.target.status + ' ' + err.target.statusText + ' at ' + 
-                err.target.responseURL + ': ' +
-                err.target.responseText));
+            // Avoid catching HTTPError 0
+            // The error will be empty, and we can't catch any more info
+            // for security purposes
+            // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
+            if (err.target.status)
+                catchError(Error(
+                    'HTTPError ' +
+                    err.target.status + ' ' + err.target.statusText + ' at ' + 
+                    err.target.responseURL + ': ' +
+                    err.target.responseText));
         } else {
             catchError(err);
         }
@@ -846,10 +794,13 @@ function fetch(showLoading, callback) {
     }
 };
 
-function fetchAndReschedule() { 
-    return fetch(false, function() { 
+function fetchAndReschedule() {
+    if (!customDate)
+        return fetch(false, function() { 
+            setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+        });
+    else
         setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
-    });
 };
 
 function redraw() {
@@ -857,8 +808,6 @@ function redraw() {
     if (!isSmallScreen()) {
         countryMap.render();
         co2Colorbar.render();
-        windColorbar.render();
-        solarColorbar.render();
         exchangeLayer
             .projection(countryMap.projection())
             .render();

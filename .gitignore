@@ -3,6 +3,7 @@
 mongodata
 src
 grib2json
+feeder/node_modules
 web/public/dist
 web/node_modules
 .ipynb_checkpoints/

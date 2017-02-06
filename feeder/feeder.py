@@ -1,13 +1,14 @@
 import arrow
 import glob
 import pymongo
-import json, logging, os, schedule, time
+import json, logging, os, schedule, subprocess, time
 import requests
 import snappy
 
 from bson.binary import Binary
 from pymemcache.client.base import Client
 
+from parsers import IS
 from parsers import FR
 from parsers import ENTSOE
 from parsers import weather
@@ -50,8 +51,6 @@ if not ENV == 'development':
     )
     smtp_handler.setLevel(logging.WARN)
     logger.addHandler(smtp_handler)
-    # Add statsd
-    logging.getLogger('statsd').addHandler(stdout_handler)
 else:
     logger.setLevel(logging.DEBUG)
 
@@ -107,6 +106,7 @@ PRODUCTION_PARSERS = {
     'GR': ENTSOE.fetch_production,
     'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
+    'IS': IS.fetch_production,
     'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
     'LU': ENTSOE.fetch_production,
@@ -126,6 +126,7 @@ PRODUCTION_PARSERS = {
 EXCHANGE_PARSERS = {
     # AL
     'AL->GR':     ENTSOE.fetch_exchange,
+    'AL->ME':     ENTSOE.fetch_exchange,
     'AL->RS':     ENTSOE.fetch_exchange,
     # AT
     'AT->CH':     ENTSOE.fetch_exchange,
@@ -135,6 +136,7 @@ EXCHANGE_PARSERS = {
     'AT->IT':     ENTSOE.fetch_exchange,
     'AT->SI':     ENTSOE.fetch_exchange,
     # BA
+    'BA->ME':     ENTSOE.fetch_exchange,
     'BA->RS':     ENTSOE.fetch_exchange,
     # BE
     'BE->FR':     ENTSOE.fetch_exchange,
@@ -206,6 +208,8 @@ EXCHANGE_PARSERS = {
     'LT->SE':     ENTSOE.fetch_exchange,
     # LV
     'LV->RU':     ENTSOE.fetch_exchange,
+    # ME
+    'ME->RS':     ENTSOE.fetch_exchange,
     # MD
     # 'MD->RO':     ENTSOE.fetch_exchange,
     # MK
@@ -255,13 +259,6 @@ PRICE_PARSERS = {
     'SI': ENTSOE.fetch_price,
     'SK': ENTSOE.fetch_price,
 }
-
-# Set up stats
-import statsd
-statsd.init_statsd({
-    'STATSD_HOST': os.environ.get('STATSD_HOST', 'localhost'),
-    'STATSD_BUCKET_PREFIX': 'electricymap_feeder'
-})
 
 # Set up database
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
@@ -330,64 +327,56 @@ def db_upsert(col, obj, database_key):
 def fetch_consumptions():
     for country_code, parser in CONSUMPTION_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_consumption'):
-                obj = parser(country_code, session)
-                if not obj: continue
-                validate_consumption(obj, country_code)
-                # Database insert
-                result = db_upsert(col_consumption, obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            obj = parser(country_code, session)
+            if not obj: continue
+            validate_consumption(obj, country_code)
+            # Database insert
+            result = db_upsert(col_consumption, obj, 'countryCode')
+            if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_consumption_error')
             logger.exception('Exception while fetching consumption of %s' % country_code)
 
 def fetch_productions():
     for country_code, parser in PRODUCTION_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_production'):
-                obj = parser(country_code, session)
-                if not obj: continue
-                validate_production(obj, country_code)
-                # Database insert
-                result = db_upsert(col_production, obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            obj = parser(country_code, session)
+            if not obj: continue
+            validate_production(obj, country_code)
+            # Database insert
+            result = db_upsert(col_production, obj, 'countryCode')
+            if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_production_error')
             logger.exception('Exception while fetching production of %s' % country_code)
 
 def fetch_exchanges():
     for k, parser in EXCHANGE_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_exchange'):
-                country_code1, country_code2 = k.split('->')
-                if sorted([country_code1, country_code2])[0] != country_code1:
-                    raise Exception('Exchange key pair %s is not ordered alphabetically' % k)
-                obj = parser(country_code1, country_code2, session)
-                if not obj: continue
-                if obj.get('sortedCountryCodes', None) != k:
-                    raise Exception("Sorted country codes %s and %s don't match" % (obj.get('sortedCountryCodes', None), k))
-                if not 'datetime' in obj:
-                    raise Exception('datetime was not returned for %s' % k)
-                if arrow.get(obj['datetime']) > arrow.now():
-                    raise Exception("Data from %s can't be in the future" % k)
-                # Database insert
-                result = db_upsert(col_exchange, obj, 'sortedCountryCodes')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            country_code1, country_code2 = k.split('->')
+            if sorted([country_code1, country_code2])[0] != country_code1:
+                raise Exception('Exchange key pair %s is not ordered alphabetically' % k)
+            obj = parser(country_code1, country_code2, session)
+            if not obj: continue
+            if obj.get('sortedCountryCodes', None) != k:
+                raise Exception("Sorted country codes %s and %s don't match" % (obj.get('sortedCountryCodes', None), k))
+            if not 'datetime' in obj:
+                raise Exception('datetime was not returned for %s' % k)
+            if arrow.get(obj['datetime']) > arrow.now():
+                raise Exception("Data from %s can't be in the future" % k)
+            # Database insert
+            result = db_upsert(col_exchange, obj, 'sortedCountryCodes')
+            if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_exchange_error')
             logger.exception('Exception while fetching exchange of %s' % k)
 
 def fetch_price():
     for country_code, parser in PRICE_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_price'):
-                obj = parser(country_code,session)
-                if not obj: continue
-                # Database insert
-                result = db_upsert(col_price,obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            obj = parser(country_code,session)
+            if not obj: continue
+            # Database insert
+            result = db_upsert(col_price,obj, 'countryCode')
+            if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_price_error')
             logger.exception('Exception while fetching pricing of %s' % country_code)
 
 def db_upsert_forecast(col, obj, database_key):
@@ -441,40 +430,46 @@ def fetch_next_forecasts(now=None, lookahead=6, cached=False):
 
 def fetch_weather():
     try:
-        with statsd.StatsdTimer('fetch_weather'):
-            objs = fetch_next_forecasts(cached=True)
-            for obj in objs:
-                wind = {
-                    'refTime': obj['refTime'],
-                    'targetTime': obj['targetTime'],
-                    'data': Binary(snappy.compress(json.dumps(obj['wind']))),
-                    'key': 'wind'
-                }
-                solar = {
-                    'refTime': obj['refTime'],
-                    'targetTime': obj['targetTime'],
-                    'data': Binary(snappy.compress(json.dumps(obj['solar']))),
-                    'key': 'solar'
-                }
-                db_upsert_forecast(col_gfs, wind, 'key')
-                db_upsert_forecast(col_gfs, solar, 'key')
+        objs = fetch_next_forecasts(cached=True)
+        for obj in objs:
+            wind = {
+                'refTime': obj['refTime'],
+                'targetTime': obj['targetTime'],
+                'data': Binary(snappy.compress(json.dumps(obj['wind']))),
+                'key': 'wind'
+            }
+            solar = {
+                'refTime': obj['refTime'],
+                'targetTime': obj['targetTime'],
+                'data': Binary(snappy.compress(json.dumps(obj['solar']))),
+                'key': 'solar'
+            }
+            db_upsert_forecast(col_gfs, wind, 'key')
+            db_upsert_forecast(col_gfs, solar, 'key')
     except:
-        statsd.increment('fetch_weather_error')
         logger.exception('fetch_weather()')
+
+def postprocess():
+    try:
+        subprocess.check_call(['node', 'push_cache.js'], shell=False)
+    except:
+        logger.exception('postprocess()')
+
+def fetch_electricity():
+    # Fetch all electricity data
+    fetch_weather()
+    fetch_consumptions()
+    fetch_productions()
+    fetch_exchanges()
+    fetch_price()
+    postprocess()
 
 migrate(db, validate_production)
 
 schedule.every(15).minutes.do(fetch_weather)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_price)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_electricity)
 
-fetch_weather()
-fetch_consumptions()
-fetch_productions()
-fetch_exchanges()
-fetch_price()
+fetch_electricity()
 
 while True:
     schedule.run_pending()

@@ -1,0 +1,21 @@
+{
+  "name": "electricitymap-feeder",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "async": "^2.0.1",
+    "d3": "^4.4.0",
+    "mathjs": "^3.5.1",
+    "memcached": "^2.2.2",
+    "moment": "^2.15.2",
+    "mongodb": "^2.2.9",
+    "opbeat": "^3.21.0",
+    "snappy": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corradio/electricitymap.git"
+  },
+  "scripts": {
+  }
+}

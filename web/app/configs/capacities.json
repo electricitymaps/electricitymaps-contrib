@@ -94,9 +94,14 @@
     },
     "FI": {
         "capacity": {
-            "hydro": 3080,
-            "nuclear": 2860,
-            "wind": 1000
+            "hydro": 3207,
+            "unknown": 648,
+            "nuclear": 2782,
+            "wind": 1432,
+            "biomass": 2866,
+            "coal": 2854,
+            "oil": 1427,
+            "gas": 1795
         }
     },
     "FR": {
@@ -112,11 +117,25 @@
     },
     "GB": {
         "capacity": {
-            "wind": 13500,
-            "nuclear": 9000,
-            "hydro": 1550,
-            "gas": 38000,
-            "solar": 8780
+            "wind": 15621,
+            "nuclear": 8985,
+            "hydro": 4269,
+            "gas": 27688,
+            "solar": 8566,
+            "coal": 11097,
+            "biomass": 2119,
+            "oil": 759,
+            "unknown": 8186
+        }
+    },
+    "GB-NIR": {
+        "capacity": {
+            "wind": 863,
+            "gas": 1004,
+            "solar": 77,
+            "coal": 764,
+            "biomass": 35,
+            "oil": 415
         }
     },
     "GR": {
@@ -157,6 +176,20 @@
             "wind": 3025
         }
     },
+    "IS": {
+        "capacity": {
+            "biomass": 0,
+            "oil": 117,
+            "coal": 0,
+            "hydro": 1986,
+            "geothermal": 665,
+            "nuclear": 0,
+            "gas": 0,
+            "unknown": 0,
+            "solar": 0,
+            "wind": 3
+        }
+    },
     "IT": {
         "capacity": {
             "hydro": 22382,
@@ -181,6 +214,12 @@
             "gas": 1103,
             "hydro": 1537,
             "wind": 55
+        }
+    },
+    "ME": {
+        "capacity": {
+            "coal": 210,
+            "hydro": 652
         }
     },
     "NL": {
@@ -237,6 +276,13 @@
             "nuclear": 1298,
             "solar": 1152,
             "wind": 2938
+        }
+    },
+    "RS": {
+        "capacity": {
+            "coal": 5666,
+            "gas": 424,
+            "hydro": 2917
         }
     },
     "SE": {
