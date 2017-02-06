@@ -10,16 +10,20 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
         .style('display', 'none')
         .style('pointer-events', 'none')
         .style('stroke-width', 1)
+        .style('opacity', 0.3)
+        .style('shape-rendering', 'crispEdges')
         .style('stroke', 'lightgrey');
     this.markerElement = this.rootElement.append('circle')
         .style('fill', 'lightgrey')
         .style('pointer-events', 'none')
-        .attr('r', 4)
-        .style('display', 'none');
+        .attr('r', 5)
+        .style('stroke', 'lightgrey')
+        .style('stroke-width', 1);
 
     this.xAccessor = xAccessor;
     this.yAccessor = yAccessor;
     this.definedAccessor = definedAccessor;
+    this.yColorScale = yColorScale;
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
@@ -95,9 +99,21 @@ LineGraph.prototype.render = function () {
         .style('fill', 'none')
         .style('stroke', 'lightgrey')
         .style('stroke-width', 1)
+        .style('opacity', 0.7)
         .style('pointer-events', 'none');
     layer.merge(selection).select('path.line')
         .attr('d', this.line);
+
+    this.markerElement
+        .attr('cx', x(datetimes[datetimes.length - 1]))
+        .attr('cy', y(that.yAccessor(data[data.length - 1])))
+        .transition()
+        .style('fill', that.yColorScale(
+            that.yAccessor(data[data.length - 1])));
+
+    this.verticalLine
+        .attr('y1', y.range()[0])
+        .attr('y2', y.range()[1]);
 
     this.interactionRect
         .attr('x', x.range()[0])
@@ -106,13 +122,17 @@ LineGraph.prototype.render = function () {
         .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
             that.verticalLine.style('display', 'block');
-            that.markerElement.style('display', 'block');
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this);
         })
         .on('mouseout', function () {
             that.verticalLine.style('display', 'none');
-            that.markerElement.style('display', 'none');
+            that.markerElement
+                .transition()
+                .attr('cx', x(datetimes[datetimes.length - 1]))
+                .attr('cy', y(that.yAccessor(data[data.length - 1])))
+                .style('fill', that.yColorScale(
+                    that.yAccessor(data[data.length - 1])));
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this);
         })
@@ -128,7 +148,9 @@ LineGraph.prototype.render = function () {
                 .attr('x2', x(datetimes[i]));
             that.markerElement
                 .attr('cx', x(datetimes[i]))
-                .attr('cy', y(that.yAccessor(data[i])));
+                .attr('cy', y(that.yAccessor(data[i])))
+                .style('fill', that.yColorScale(
+                    that.yAccessor(data[i])));
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]);
         });
@@ -138,16 +160,14 @@ LineGraph.prototype.render = function () {
         .ticks(6)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
-        .transition()
         // Need to remove 1px in order to see the 1px line
         .style('transform', 'translate(0, ' + (height - X_AXIS_HEIGHT) + 'px)')
         .call(xAxis);
 
     // y axis
     var yAxis = d3.axisRight(y)
-        .ticks(6)
+        .ticks(6);
     this.yAxisElement
-        .transition()
         .style('transform', 'translate(' + (width - Y_AXIS_WIDTH) + 'px, 0)')
         .call(yAxis);
 

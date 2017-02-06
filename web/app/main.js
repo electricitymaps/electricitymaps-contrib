@@ -139,7 +139,7 @@ moment.locale(locale);
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 var co2color = d3.scaleLinear()
-    .domain([0, 350, 700])
+    .domain([0, 375, 725, 800])
     .range(['green', 'orange', 'rgb(26,13,0)'])
     .clamp(true);
 var maxWind = 15;
@@ -270,8 +270,8 @@ function placeTooltip(selector, d3Event) {
     var tooltip = d3.select(selector);
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
-    var x = d3Event.pageX - w - 5;
-    var y = d3Event.pageY - h - 5; if (y <= 50) y = d3Event.pageY + 5;
+    var x = d3Event.pageX + 5; if (window.innerWidth - x <= w) x = d3Event.pageX - w - 5;
+    var y = d3Event.pageY - h - 5; if (y <= 5) y = d3Event.pageY + 5;
     tooltip
         .style('transform',
             'translate(' + x + 'px' + ',' + y + 'px' + ')');
@@ -322,6 +322,8 @@ function selectCountry(countryCode, notrack) {
         // Unselected
         d3.select('.left-panel-initial-text')
             .style('display', 'block');
+        d3.select('.country-panel')
+            .style('display', 'none');
         selectedCountryCode = undefined;
     } else {
         // Selected
@@ -330,6 +332,8 @@ function selectCountry(countryCode, notrack) {
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
         d3.select('.left-panel-initial-text')
             .style('display', 'none');
+        d3.select('.country-panel')
+            .style('display', 'block');
         countryTable
             .data(countries[countryCode])
             .render();
@@ -383,8 +387,6 @@ function selectCountry(countryCode, notrack) {
     replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
         selectedCountryCode ? 'block' : 'none');
-    d3.select('.country-panel')
-        .style('display', selectedCountryCode ? 'block' : 'none');
 }
 // Set initial
 selectCountry(selectedCountryCode, true);
