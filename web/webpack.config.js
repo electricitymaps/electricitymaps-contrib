@@ -1,10 +1,20 @@
 var webpack = require('webpack');
 var fs = require('fs');
+var glob = require('glob');
 
 module.exports = {
   devtool: (process.env.BUILD === 'debug' ? 'eval' : 'sourcemap'),
   entry: './app/main.js',
   plugins: [
+    function() {
+      this.plugin('emit', function(compilation, callback) {
+        compilation.fileDependencies.push(__dirname + '/public/css/styles.css');
+        glob(__dirname + '/../shared/**/*.js', function(err, files) {
+          files.forEach(function(f) { compilation.fileDependencies.push(f); });
+        })
+        callback();
+      });
+    },
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

@@ -12,7 +12,7 @@ services:
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     volumes:
-      - /home/shared/electricitymap/static/dist:/home/public/dist
+      - /home/shared/electricitymap/static/dist:/home/web/public/dist
   feeder:
     depends_on: [mongo]
     env_file: [./mailgun.env, ./secrets.env]
