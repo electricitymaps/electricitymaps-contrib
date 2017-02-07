@@ -5,6 +5,15 @@
     -webkit-box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: lightblue;
+}
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 html, body {
     margin: 0 !important;
     padding: 0 !important;
@@ -25,7 +34,7 @@ hr {
     shape-rendering: crispEdges;
 }
 
-#connection-warning {
+.flash-message {
     position: fixed;
     display: block;
     z-index: 99;
@@ -33,20 +42,11 @@ hr {
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
+    top: -60px; /* hidden state */
 }
-
-#connection-warning.show {
-    top: 0;
-}
-
-#connection-warning.hide {
-    top: -60px;
-}
-
-#connection-warning .inner {
+.flash-message .inner {
     display: block;
     margin: 0 auto;
-    background-color: red;
     padding: 10px;
     text-align: center;
     color: white;
@@ -54,6 +54,13 @@ hr {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     max-width: 750px;
+}
+
+#connection-warning .inner {
+    background-color: red;
+}
+#new-version .inner {
+    background-color: #3F51B5;
 }
 
 .watermark {
@@ -171,13 +178,6 @@ hr {
     height: 30px;
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
-}
-a {
-    text-decoration: none;
-    color: lightblue;
-}
-a:hover {
-    text-decoration: underline;
 }
 
 @keyframes appear-from-top {
