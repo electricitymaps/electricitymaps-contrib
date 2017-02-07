@@ -93,7 +93,6 @@
         <svg class="map sea"></svg>
         <canvas class="map wind"></canvas>
         <canvas class="map solar"></canvas>
-
         <div class="panel left-panel">
             <h1>
                 <%= __('maintitle') %>
@@ -139,26 +138,28 @@
                     Our <a href="http://www.co2signal.com">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.
                 </p>
             </div>
-
             <div class="country-table-initial-text">
-                    <p class="small-screen-visible" style="font-style: italic">
-                        <%= __('youareseeing') %> <span style="color: lightgray"><%= __('limitedversion') %></span>. <%= __('forthe') %> <span style="color: lightgray"><%= __('fullversion') %></span>, <%= __('visitoncomputer') %>.
-                    </p>
-                    <p class="large-screen-visible">
-                        <%= __('thisshowsrealtime') %> <span style="color: lightgray"><%= __('whereelectricitycomesfrom') %></span> <%= __('and') %> <span style="color: lightgray"><%= __('homuchco2') %></span> <%= __('wasemitted') %>.
-                    </p class="small-screen-visible">
-                    <p class="large-screen-visible">
-                        <%= __('takeinaccount') %> <span style="color: lightgray"><%= __('importexport') %></span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> <%= __('betweencountries') %>.
-                    </p>
-                    <p>
-                        <%= __('thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%= __('opensource') %></a> <%= __('see') %> (<a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%= __('datasources') %></a>).
-                    </p>
-                    <p>
-                        <span style="color: lightgray; font-size: 14px; color: white;"><i><%= __('tip') %> ⟶</i></span>
-                    </p>
-					<div class="country-picker-container small-screen-visible" style="margin-left: 20px">
+                <p class="small-screen-visible" style="font-style: italic">
+                    <%= __('youareseeing') %> <span style="color: lightgray"><%= __('limitedversion') %></span>. <%= __('forthe') %> <span style="color: lightgray"><%= __('fullversion') %></span>, <%= __('visitoncomputer') %>.
+                </p>
+                <p class="large-screen-visible">
+                    <%= __('thisshowsrealtime') %> <span style="color: lightgray"><%= __('whereelectricitycomesfrom') %></span> <%= __('and') %> <span style="color: lightgray"><%= __('homuchco2') %></span> <%= __('wasemitted') %>.
+                </p class="small-screen-visible">
+                <p class="large-screen-visible">
+                    <%= __('takeinaccount') %> <span style="color: lightgray"><%= __('importexport') %></span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> <%= __('betweencountries') %>.
+                </p>
+                <p>
+                    <%= __('thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%= __('opensource') %></a> <%= __('see') %> (<a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%= __('datasources') %></a>).
+                </p>
+                <p>
+                    <span style="color: lightgray; font-size: 14px; color: white;"><i><%= __('tip') %> ⟶</i></span>
+                </p>
+                <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                     <p></p>
                 </div>
+                <p>
+                    This project is <a href="https://github.com/corradio/electricitymap" target="_blank">Open Source</a> (see <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank">data sources</a>).
+                </p>
                 <div class="layer-toggles large-screen-visible">
                     <hr />
                     <p>
