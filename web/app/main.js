@@ -23,6 +23,7 @@ var Wind = require('./wind');
 // Configs
 var capacities = require('json-loader!./configs/capacities.json');
 var zones = require('json-loader!./configs/zones.json');
+var lang = require('json-loader!./configs/lang.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -35,7 +36,9 @@ var selectedCountryCode;
 var forceRemoteEndpoint = false;
 var customDate;
 var timelineEnabled = false;
+var reqLang = 'en';
 var currentMoment;
+
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -82,6 +85,8 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'countryCode') {
         selectedCountryCode = kv[1];
         replaceHistoryState('countryCode', selectedCountryCode);
+    } else if(kv[0] == 'lang'){
+		reqLang = kv[1];
     }
 });
 
@@ -133,6 +138,13 @@ function trackAnalyticsEvent(eventName, paramObj) {
 
 // Set proper locale
 var locale = window.navigator.userLanguage || window.navigator.language;
+if (locale !== "en" && reqLang == "en") {
+    var redirect = window.location.href;
+    if (redirect.indexOf('?') < 0) redirect += '?';
+    redirect = appendQueryString(redirect, 'lang', locale);
+    console.log('Redirecting to ' + locale + ' version',redirect);
+    window.location.href = redirect;
+}
 moment.locale(locale);
 
 // Display embedded warning
@@ -210,7 +222,7 @@ var modeOrder = [
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
+var countryTable = new CountryTable('.country-table', co2color, lang[reqLang], modeColor, modeOrder);
 //var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.stateDatetime).toDate(); },
@@ -499,7 +511,7 @@ if (isSmallScreen()) {
         });
 
     // Tooltip setup
-    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
+    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color, lang[reqLang]);
 }
 
 function dataLoaded(err, clientVersion, state, argSolar, argWind) {
