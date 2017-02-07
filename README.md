@@ -144,7 +144,7 @@ Now that the frontend is compiled, you can run the whole application, consisting
 docker-compose up --build
 ```
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note: you can also use remote server data using [http://localhost:8000/?remote=true](http://localhost:8000/?remote=true).
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated.
 

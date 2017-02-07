@@ -100,15 +100,16 @@ LineGraph.prototype.render = function () {
     layer.merge(selection).select('path.line')
         .attr('d', this.line);
 
-    if (datetimes.length)
+    if (data.length && that.definedAccessor(data[data.length - 1])) {
         this.markerElement
             .style('display', 'block')
             .attr('cx', x(datetimes[datetimes.length - 1]))
             .attr('cy', y(that.yAccessor(data[data.length - 1])))
             .style('fill', that.yColorScale(
                 that.yAccessor(data[data.length - 1])));
-    else
+    } else {
         this.markerElement.style('display', 'none');
+    }
 
     this.verticalLine
         .attr('y1', y.range()[0])
@@ -131,11 +132,13 @@ LineGraph.prototype.render = function () {
         .on(isMobile ? 'touchend' : 'mouseout', function () {
             if (!datetimes.length) return;
             that.verticalLine.style('display', 'none');
-            that.markerElement
-                .attr('cx', x(datetimes[datetimes.length - 1]))
-                .attr('cy', y(that.yAccessor(data[data.length - 1])))
-                .style('fill', that.yColorScale(
-                    that.yAccessor(data[data.length - 1])));
+            if (that.definedAccessor(data[data.length - 1])) {
+                that.markerElement
+                    .attr('cx', x(datetimes[datetimes.length - 1]))
+                    .attr('cy', y(that.yAccessor(data[data.length - 1])))
+                    .style('fill', that.yColorScale(
+                        that.yAccessor(data[data.length - 1])));
+            }
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this);
         })
