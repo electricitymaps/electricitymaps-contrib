@@ -109,7 +109,7 @@ function catchError(e) {
     if (!isLocalhost) {
         if(typeof _opbeat !== 'undefined')
             _opbeat('captureException', e);
-        trackAnalyticsEvent('error', {name: e.name, stack: e.stack});
+        trackAnalyticsEvent('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
     }
 }
 

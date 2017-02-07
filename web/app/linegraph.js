@@ -134,10 +134,14 @@ LineGraph.prototype.render = function () {
             that.verticalLine.style('display', 'none');
             if (that.definedAccessor(data[data.length - 1])) {
                 that.markerElement
+                    .style('display', 'block')
                     .attr('cx', x(datetimes[datetimes.length - 1]))
                     .attr('cy', y(that.yAccessor(data[data.length - 1])))
                     .style('fill', that.yColorScale(
                         that.yAccessor(data[data.length - 1])));
+            } else {
+                that.markerElement
+                    .style('display', 'none');
             }
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this);
