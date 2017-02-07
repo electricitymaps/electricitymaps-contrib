@@ -292,6 +292,10 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [20.614102, 49.359467],
         rotation: 180
     };
+    exchanges['PL->UA'] = {
+        lonlat: [24.097224, 50.664587],
+        rotation: 90
+    }
     // RO
     exchanges['RO->UA'] = {
         lonlat: [24.821959, 47.768595],
