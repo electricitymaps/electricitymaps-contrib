@@ -26,6 +26,11 @@
         <script defer src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js"></script>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
 
+        <!-- Set Global Variables -->
+        <script>
+            var bundleHash = '<%= bundleHash %>';
+        </script>
+
         <% if (useAnalytics) { %>
         <!-- start GA -->
         <script>
@@ -90,8 +95,11 @@
             }(document, 'script', 'facebook-jssdk'));
         </script>
         <!-- end FB analytics -->
-        <div id="connection-warning" class="hide">
+        <div id="connection-warning" class="flash-message">
             <div class="inner">Oops! We're having trouble reaching the server. We'll try again in a few seconds.</div>
+        </div>
+        <div id="new-version" class="flash-message">
+            <div class="inner">A new version is available! Press <a onClick="location.reload(true);">here</a> to reload.</div>
         </div>
         <svg class="map sea"></svg>
         <canvas class="map wind"></canvas>
