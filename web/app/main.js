@@ -218,8 +218,10 @@ var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return d.co2intensity != null; },
     co2color);
 
-var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-    .markerColor('white')
+if (!isSmallScreen())
+    var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+        .markerColor('white')
+        .render();
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
@@ -630,7 +632,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer')
-            if (d.co2intensity)
+            if (d.co2intensity && co2Colorbar)
                 co2Colorbar.currentMarker(d.co2intensity);
             var tooltip = d3.select('#country-tooltip');
             tooltip.style('display', 'inline');
@@ -665,7 +667,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             d3.select(this)
                 .style('opacity', 1)
                 .style('cursor', 'auto')
-            if (d.co2intensity)
+            if (d.co2intensity && co2Colorbar)
                 co2Colorbar.currentMarker(undefined);
             d3.select('#country-tooltip')
                 .style('display', 'none');
@@ -699,7 +701,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 d3.select(this)
                     .style('opacity', 0.8)
                     .style('cursor', 'pointer');
-                if (d.co2intensity)
+                if (d.co2intensity && co2Colorbar)
                     co2Colorbar.currentMarker(d.co2intensity);
                 var tooltip = d3.select('#exchange-tooltip');
                 tooltip.style('display', 'inline');
@@ -726,7 +728,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 d3.select(this)
                     .style('opacity', 1)
                     .style('cursor', 'auto')
-                if (d.co2intensity)
+                if (d.co2intensity && co2Colorbar)
                     co2Colorbar.currentMarker(undefined);
                 d3.select('#exchange-tooltip')
                     .style('display', 'none');

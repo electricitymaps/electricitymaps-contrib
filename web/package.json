@@ -33,7 +33,7 @@
     "build-debug": "BUILD=debug npm run build",
     "build-release": "BUILD=release npm run build",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
-    "server-dev": "nodemon server.js",
+    "server-dev": "nodemon --watch ../shared server.js",
     "watch": "BUILD=debug webpack --watch --progress"
   }
 }

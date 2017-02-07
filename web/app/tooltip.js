@@ -23,7 +23,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var o = d.value < 0 ? countryCode : d.key;
             var country = countries[countryCode];
             var co2intensity = countries[o].co2intensity;
-            co2Colorbar.currentMarker(co2intensity);
+            if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
             tooltip.select('#label').text(isExport ? lang['exportto'] : lang['importfrom']);
@@ -65,7 +65,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .attr('class', 'country-exchange-source-flag flag-icon flag-icon-' + o.toLowerCase());
         })
         .onExchangeMouseOut(function (d) {
-            co2Colorbar.currentMarker(undefined);
+            if (co2Colorbar) co2Colorbar.currentMarker(undefined);
             d3.select('#countrypanel-exchange-tooltip')
                 .style('display', 'none');
         })
@@ -80,7 +80,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
         .onProductionMouseOver(function (d, countryCode) {
             var country = countries[countryCode];
             var co2intensity = country.productionCo2Intensities[d.mode];
-            co2Colorbar.currentMarker(co2intensity);
+            if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
             tooltip.selectAll('#mode').text(d.text || d.mode);
@@ -126,7 +126,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                     ')');
         })
         .onProductionMouseOut(function (d) {
-            co2Colorbar.currentMarker(undefined);
+            if (co2Colorbar) co2Colorbar.currentMarker(undefined);
             d3.select('#countrypanel-production-tooltip')
                 .style('display', 'none');
         });

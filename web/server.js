@@ -52,7 +52,8 @@ i18n.configure({
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
-    objectNotation: true
+    objectNotation: true,
+    updateFiles: false // whether to write new locale information to disk - defaults to true
 });
 app.use(i18n.init);
 FB_LOCALES = {
