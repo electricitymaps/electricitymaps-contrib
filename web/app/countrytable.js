@@ -32,10 +32,8 @@ function CountryTable(selector, co2Color, lang, modeColor, modeOrder) {
     });
     this.SCALE_TICKS = 4;
     this.TRANSITION_DURATION = 250;
-
-
     this.LANG = lang;
-console.log('a',this.LANG);
+	
     // State
     this._displayByEmissions = false;
 
@@ -371,7 +369,6 @@ CountryTable.prototype.resize = function() {
 
 CountryTable.prototype.data = function(arg) {
     var that = this;
-	console.log(this._data);
     if (!arg) return this._data;
 
     this._data = arg;
