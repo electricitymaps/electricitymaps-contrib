@@ -172,7 +172,11 @@ exports.queryElements = function (keyName, keyValues, collection, minDate, maxDa
     return async.parallel(tasks, callback);
 }
 exports.queryLastValuesBeforeDatetime = function (datetime, callback) {
-    var minDate = (moment(datetime) || moment.utc()).subtract(24, 'hours').toDate();
+    return exports.queryLastValuesBeforeDatetimeWithExpiration(
+        datetime, 24 * 3600, callback);
+}
+exports.queryLastValuesBeforeDatetimeWithExpiration = function (datetime, expirationMinutes, callback) {
+    var minDate = (moment(datetime) || moment.utc()).subtract(expirationMinutes, 'minutes').toDate();
     var maxDate = datetime ? new Date(datetime) : undefined;
     // Get list of countries, exchanges, and prices in db
     return async.parallel([

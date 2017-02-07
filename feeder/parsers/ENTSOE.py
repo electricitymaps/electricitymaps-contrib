@@ -67,7 +67,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
     'TR': '10YTR-TEIAS----W',
-    # 'UA': 'UA'
+    'UA': '10Y1001A1001A869'
 }
 def query_ENTSOE(session, params):
     now = arrow.utcnow()

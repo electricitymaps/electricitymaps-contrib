@@ -614,11 +614,13 @@ function dataLoaded(err, state, argSolar, argWind) {
     }
 
     // Render country map
-    countryMap
-        .data(d3.values(countries))
-        .onSeaClick(function () { selectCountry(undefined); })
-        .onCountryClick(function (d) { selectCountry(d.countryCode); })
-        .render();
+    if (!isSmallScreen())
+        countryMap
+            .data(d3.values(countries))
+            .onSeaClick(function () { selectCountry(undefined); })
+            .onCountryClick(function (d) { selectCountry(d.countryCode); })
+            .render();
+
     // Only add mouse over handlers if not on mobile
     if (!isMobile()) {
         countryMap.onCountryMouseOver(function (d) { 

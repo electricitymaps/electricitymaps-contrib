@@ -18,7 +18,7 @@ dependencies:
     - curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
     - curl --fail -i http://localhost:8000/v1/exchanges?countryCode=FR
     - curl --fail -i http://localhost:8000/v1/production?countryCode=FR
-    - curl --fail -i http://localhost:8000/v2/co2LastDay?countryCode=FR
+    - curl --fail -i http://localhost:8000/v2/history?countryCode=FR
 test:
   override:
     - echo "no test"
