@@ -15,7 +15,7 @@ function getConsumption(country) {
 }
 
 // ** Country table
-exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color) {
+exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color, lang) {
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
             var isExport = d.value < 0;
@@ -25,7 +25,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.select('#label').text(isExport ? 'export to' : 'import from');
+            tooltip.select('#label').text(isExport ? lang['exportto'] : lang['importfrom']);
             tooltip.select('#country-code').text(d.key);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
@@ -38,8 +38,8 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
-            var domain = isExport ? totalPositive : totalPositive;
-            var domainName = !isExport ? 'electricity comes from' : 'electricity is exported to';
+            var domain = isExport ? totalPositive : totalConsumption;
+            var domainName = isExport ? lang['electricityfrom'] : lang['electricityto'];
             var isNull = !isFinite(d.value) || d.value == undefined;
 
             var absFlow = Math.abs(d.value);
@@ -82,7 +82,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.selectAll('#mode').text(d.mode);
+            tooltip.selectAll('#mode').text(d.text || d.mode);
             tooltip.select('.emission-rect')
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
@@ -98,7 +98,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var value = d.isStorage ? d.storage : d.production;
 
             var domain = d.isStorage ? totalPositive : totalPositive;
-            var domainName = d.isStorage ? ('electricity is stored using ' + d.mode) : ('electricity comes from ' + d.mode);
+            var domainName = d.isStorage ? ( lang['electricitystored'] +' ' + (d.text || d.mode)) : ( lang['electricityfrom'] + ' ' + (d.text || d.mode));
             var isNull = !isFinite(value) || value == undefined;
 
             var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';

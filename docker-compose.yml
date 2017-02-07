@@ -19,6 +19,7 @@ services:
       - './web/server.js:/home/web/server.js'
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
+      - './web/locales:/home/web/locales'
   feeder:
     build:
       context: .

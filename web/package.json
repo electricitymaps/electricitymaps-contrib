@@ -17,7 +17,8 @@
     "mongodb": "^2.2.9",
     "opbeat": "^3.21.0",
     "snappy": "^5.0.5",
-    "topojson": "^2.2.0"
+    "topojson": "^2.2.0",
+    "i18n":"^0.8.3"
   },
   "devDependencies": {
     "nodemon": "^1.10.2",
