@@ -197,7 +197,7 @@ EXCHANGE_PARSERS = {
     'HU->RO':     ENTSOE.fetch_exchange,
     'HU->RS':     ENTSOE.fetch_exchange,
     'HU->SK':     ENTSOE.fetch_exchange,
-    # 'HU->UA':     ENTSOE.fetch_exchange,
+    'HU->UA':     ENTSOE.fetch_exchange,
     # IT
     'IT->MT':     ENTSOE.fetch_exchange,
     'IT->SI':     ENTSOE.fetch_exchange,
@@ -221,11 +221,12 @@ EXCHANGE_PARSERS = {
     # PL
     'PL->SE':     ENTSOE.fetch_exchange,
     'PL->SK':     ENTSOE.fetch_exchange,
+    'PL->UA':     ENTSOE.fetch_exchange,
     # RO
     'RO->RS':     ENTSOE.fetch_exchange,
-    # 'RO->UA':     ENTSOE.fetch_exchange,
+    'RO->UA':     ENTSOE.fetch_exchange,
     # SK
-    # 'SK->UA':     ENTSOE.fetch_exchange,
+    'SK->UA':     ENTSOE.fetch_exchange,
 }
 
 PRICE_PARSERS = {
