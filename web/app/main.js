@@ -23,7 +23,6 @@ var Wind = require('./wind');
 // Configs
 var capacities = require('json-loader!./configs/capacities.json');
 var zones = require('json-loader!./configs/zones.json');
-var lang = require('json-loader!./configs/lang.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -211,7 +210,7 @@ var modeOrder = [
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color, lang[locale], modeColor, modeOrder);
+var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
 //var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.stateDatetime).toDate(); },
@@ -499,7 +498,7 @@ if (isSmallScreen()) {
         });
 
     // Tooltip setup
-    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color, lang[locale]);
+    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
 }
 
 function dataLoaded(err, clientVersion, state, argSolar, argWind) {

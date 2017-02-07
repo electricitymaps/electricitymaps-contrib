@@ -1,6 +1,7 @@
 exports = module.exports = {};
 
 var d3 = require('d3');
+var lang = require('json-loader!./configs/lang.json')[locale];
 
 // Create power formatting
 function formatPower(d, numDigits) {
@@ -15,7 +16,7 @@ function getConsumption(country) {
 }
 
 // ** Country table
-exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color, lang) {
+exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color) {
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
             var isExport = d.value < 0;
