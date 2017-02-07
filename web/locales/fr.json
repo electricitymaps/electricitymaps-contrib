@@ -2,6 +2,7 @@
   "oops": "Oops! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
   "carbonintensity": "Intensité carbone",
   "maintitle": "Emissions de CO2 de la production électrique Européene en temps réel",
+  "lastupdate": "Mis à jour",
   "source": "sources",
   "electricityprice": "Prix de l'électricité (day-ahead)",
   "fossilfuels": "carburants fossiles",
@@ -46,5 +47,6 @@
   "capacity": " ",
   "utilizing": "utilisant",
   "withcarbonintensity": "avec une intensité carbone de",
+  "carbonintensity24h": "Intensité carbone sur les dernières 24 heures",
   "back": "retour"
 }

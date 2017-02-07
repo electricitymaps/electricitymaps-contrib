@@ -100,7 +100,7 @@
             </h1>
             <div id="current-datetime" class="large-screen-visible">
                 <div>
-                    Last update: 
+                    <%= __('lastupdate') %>: 
                     <span id="current-date"></span>
                     <span id="current-time"></span>
                 </div>
@@ -132,7 +132,7 @@
                 <svg class="country-table"></svg>
                 <hr />
                 <span style="color: darkgray;">
-                    Carbon intensity in the last 24 hours:
+                    <%= __('carbonintensity24h') %>:
                 </span>
                 <svg class="country-history"></svg>
                 <p>
@@ -158,9 +158,6 @@
                 <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                     <p></p>
                 </div>
-                <p>
-                    This project is <a href="https://github.com/corradio/electricitymap" target="_blank">Open Source</a> (see <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank">data sources</a>).
-                </p>
                 <div class="layer-toggles large-screen-visible">
                     <hr />
                     <p>

@@ -46,9 +46,9 @@ app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '
 //multi-language
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales:['en', 'fr'],
+    locales: ['en', 'fr'],
     directory: __dirname + '/locales',
-    defaultLocale: 'en',
+    //defaultLocale: 'en',
     queryParameter: 'lang'
     // sets a custom cookie name to parse locale settings from  - defaults to NULL
     //cookie: 'lang',

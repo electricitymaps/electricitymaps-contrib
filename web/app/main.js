@@ -138,6 +138,13 @@ function trackAnalyticsEvent(eventName, paramObj) {
 
 // Set proper locale
 var locale = window.navigator.userLanguage || window.navigator.language;
+if (locale !== "en" && reqLang == "en") {
+    var redirect = window.location.href;
+    if (redirect.indexOf('?') < 0) redirect += '?';
+    redirect = appendQueryString(redirect, 'lang', locale);
+    console.log('Redirecting to ' + locale + ' version',redirect);
+    window.location.href = redirect;
+}
 moment.locale(locale);
 
 // Display embedded warning
@@ -500,7 +507,7 @@ if (isSmallScreen()) {
         });
 
     // Tooltip setup
-    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color, lang[reqLang] );
+    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color, lang[reqLang]);
 }
 
 function dataLoaded(err, state, argSolar, argWind) {

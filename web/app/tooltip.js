@@ -15,7 +15,7 @@ function getConsumption(country) {
 }
 
 // ** Country table
-exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color,lang) {
+exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color, lang) {
     countryTable
         .onExchangeMouseOver(function (d, countryCode) {
             var isExport = d.value < 0;
