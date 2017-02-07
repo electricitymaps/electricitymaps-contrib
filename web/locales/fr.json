@@ -53,11 +53,10 @@
         "fossilfuels": "énergies fossiles",
         "crossborderexport": "Export transfrontalier",
         "carbonintensityexport": "Intensité carbone de l'export",
-        "of": "de",
+        "of": "de l'électricité",
         "ofconsumption": "de la consomation",
         "ofinstalled": "de la capacité installée",
-        "ofelectricity": "de l électricité de",
-        "comesfrom": "est produite par",
+        "ofelectricity": "de l'électricité",
         "capacity": " ",
         "utilizing": "utilisant",
         "withcarbonintensity": "avec une intensité carbone de"

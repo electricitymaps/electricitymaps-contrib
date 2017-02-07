@@ -35,8 +35,8 @@
     "importfrom": " importée depuis",
     "productionimport": "production/import",
     "consumption": "consommation",
-    "electricityfrom": "électricité importée depuis",
-    "electricityto": "électricité exportée vers",
-    "electricitystored": "électricité stockée dans"
+    "electricityfrom": "est produite par",
+    "electricityto": "est exportée vers",
+    "electricitystored": "est stockée par"
   }
 }

@@ -99,7 +99,9 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var value = d.isStorage ? d.storage : d.production;
 
             var domain = d.isStorage ? totalPositive : totalPositive;
-            var domainName = d.isStorage ? (lang['electricitystored'] + ' ' + (d.text || d.mode)) : (lang['electricityfrom'] + ' ' + (d.text || d.mode));
+            var domainName = d.isStorage ?
+                (lang['electricitystored'] + ' ' + (d.text || d.mode)) :
+                (lang['electricityfrom']   + ' ' + (d.text || d.mode));
             var isNull = !isFinite(value) || value == undefined;
 
             var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
@@ -109,7 +111,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 (!isNull ? formatPower(value) : '?') + ' ' +
                 ' / ' + 
                 (!isNull ? formatPower(domain) : '?'));
-            tooltip.select('#domain-name').text(domainName);
+            tooltip.selectAll('#domain-name').text(domainName);
 
             tooltip.select('.country-code')
                 .text(countryCode)
