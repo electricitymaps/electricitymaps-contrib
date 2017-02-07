@@ -390,6 +390,9 @@ app.get('/health', function(req, res) {
         }
     });
 });
+app.get('/clientVersion', function(req, res) {
+    res.send(BUNDLE_HASH);
+});
 app.get('/', function(req, res) {
     // On electricitymap.tmrow.co,
     // redirect everyone except the Facebook crawler,

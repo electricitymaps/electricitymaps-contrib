@@ -502,11 +502,15 @@ if (isSmallScreen()) {
     Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
 }
 
-function dataLoaded(err, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     if (err) {
         console.error(err);
         return;
     }
+
+    // Is there a new version?
+    d3.select('#new-version')
+        .style('top', (clientVersion === bundleHash) ? undefined : 0);
 
     currentMoment = (customDate && moment(customDate) || moment());
     d3.select('#current-date').text(currentMoment.format('LL'));
@@ -838,9 +842,9 @@ function handleConnectionReturnCode(err) {
         } else {
             catchError(err);
         }
-        document.getElementById('connection-warning').className = "show";
+        d3.select('#connection-warning').style('top', 0);
     } else {
-        document.getElementById('connection-warning').className = "hide";
+        d3.select('#connection-warning').style('top', undefined);
         clearInterval(connectionWarningTimeout);
     }
 }
@@ -862,11 +866,12 @@ function ignoreError(func) {
 function fetch(showLoading, callback) {
     if (!showLoading) showLoading = false;
     if (showLoading) LoadingService.startLoading();
-    // If data doesn't load in 30 secs, show connection warning
+    // If data doesn't load in 15 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
-        document.getElementById('connection-warning').className = "show";
+        d3.select('#connection-warning').style('top', 0);
     }, 15 * 1000);
     var Q = d3.queue();
+    Q.defer(d3.text, ENDPOINT + '/clientVersion');
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
     var now = customDate || new Date();
@@ -887,18 +892,18 @@ function fetch(showLoading, callback) {
 
     if (isMobile()) {
         Q.defer(geolocaliseCountryCode);
-        Q.await(function(err, state, solar, wind, geolocalisedCountryCode) {
+        Q.await(function(err, clientVersion, state, solar, wind, geolocalisedCountryCode) {
             handleConnectionReturnCode(err);
             if (!err)
-                dataLoaded(err, state.data, solar, wind);
+                dataLoaded(err, clientVersion, state.data, solar, wind);
             if (showLoading) LoadingService.stopLoading();
             if (callback) callback();
         });
     } else {
-        Q.await(function(err, state, solar, wind) {
+        Q.await(function(err, clientVersion, state, solar, wind) {
             handleConnectionReturnCode(err);
             if (!err)
-                dataLoaded(err, state.data, solar, wind);
+                dataLoaded(err, clientVersion, state.data, solar, wind);
             if (showLoading) LoadingService.stopLoading();
             if (callback) callback();
         });
