@@ -37,7 +37,6 @@ var customDate;
 var timelineEnabled = false;
 var currentMoment;
 
-
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }

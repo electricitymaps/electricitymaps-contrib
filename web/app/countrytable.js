@@ -33,7 +33,7 @@ function CountryTable(selector, co2Color, modeColor, modeOrder) {
     });
     this.SCALE_TICKS = 4;
     this.TRANSITION_DURATION = 250;
-	
+
     // State
     this._displayByEmissions = false;
 

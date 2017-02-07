@@ -66,10 +66,12 @@
             js.id = id;
             js.src = "https://platform.twitter.com/widgets.js";
             fjs.parentNode.insertBefore(js, fjs);
+
             t._e = [];
             t.ready = function(f) {
                 t._e.push(f);
             };
+
             return t;
             }(document, "script", "twitter-wjs"));
         </script>
@@ -88,6 +90,7 @@
                 FB.AppEvents.logPageView('pageview');
                 <% } %>
             };
+
             (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {return;}
@@ -98,7 +101,7 @@
         </script>
         <!-- end FB analytics -->
         <div id="connection-warning" class="flash-message">
-            <div class="inner"><%= __('oops') %></div>
+            <div class="inner"><%= __('misc.oops') %></div>
         </div>
         <div id="new-version" class="flash-message">
             <div class="inner"><%- __('misc.newversion') %></div>
@@ -157,8 +160,8 @@
                     <%= __('panel-initial-text.youareseeing') %> <span style="color: lightgray"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: lightgray"><%= __('fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
                 </p>
                 <p class="large-screen-visible">
-                    <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
-                </p class="small-screen-visible">
+                    <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
+                </p>
                 <p class="large-screen-visible">
                     <%= __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%= __('panel-initial-text.importexport') %></span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> <%= __('panel-initial-text.betweencountries') %>.
                 </p>
