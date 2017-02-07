@@ -43,18 +43,19 @@ app.use(function(req, res, next) {
 // * Static and templating
 var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
 app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '0'}));
-//multi-language
+app.set('view engine', 'ejs');
+
+// * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
     locales: ['en', 'fr'],
     directory: __dirname + '/locales',
-    //defaultLocale: 'en',
+    defaultLocale: 'en',
     queryParameter: 'lang'
-    // sets a custom cookie name to parse locale settings from  - defaults to NULL
-    //cookie: 'lang',
 });
 app.use(i18n.init);
-app.set('view engine', 'ejs');
+
+// * Long-term caching
 var BUNDLE_HASH = !isProduction ? 'dev' : 
     JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
 
@@ -410,15 +411,17 @@ app.get('/', function(req, res) {
     // On electricitymap.tmrow.co,
     // redirect everyone except the Facebook crawler,
     // else, we will lose all likes
-    console.log(res.__('electricityprice'))
-    // TODO: Set FACEBOOK
     var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
     if (isSubDomain && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
         // Redirect
         res.redirect(301, 'http://www.electricitymap.org' + req.path);
     } else {
+        // Set locale if facebook requests it
+        if (req.query.fb_locale) res.setLocale(fb_locale);
         res.render('pages/index', {
-            'bundleHash': BUNDLE_HASH,
+            bundleHash: BUNDLE_HASH,
+            locale: res.locale,
+            supportedLocales: i18n.getLocales(),
             useAnalytics: req.get('host').indexOf('electricitymap') != -1
         });
     }
