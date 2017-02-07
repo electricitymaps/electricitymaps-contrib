@@ -396,6 +396,10 @@ function selectCountry(countryCode, notrack) {
                     });
                 }
 
+                // Push current state if present
+                if (countries[countryCode].datetime)
+                    obj.data.push(countries[countryCode]);
+
                 // Save to local cache
                 histories[countryCode] = obj.data;
 
@@ -543,7 +547,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         // Validate data
         if (!country.production) return;
         modeOrder.forEach(function (mode) {
-            if (mode == 'other' || mode == 'unknown') return;
+            if (mode == 'other' || mode == 'unknown' || !country.datetime) return;
             // Check missing values
             if (country.production[mode] === undefined && country.storage[mode] === undefined)
                 console.warn(countryCode + ' is missing production or storage of ' + mode);
