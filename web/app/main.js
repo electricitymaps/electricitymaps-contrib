@@ -519,6 +519,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         entry.value.co2intensity = undefined;
         entry.value.exchange = {};
         entry.value.production = {};
+        entry.value.productionCo2Intensities = {};
         entry.value.storage = {};
         entry.value.source = undefined;
     });
