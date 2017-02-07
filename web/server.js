@@ -51,9 +51,14 @@ i18n.configure({
     locales: ['en', 'fr'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
-    queryParameter: 'lang'
+    queryParameter: 'lang',
+    objectNotation: true
 });
 app.use(i18n.init);
+FB_LOCALES = {
+    'en': 'en_US',
+    'fr': 'fr_FR'
+};
 
 // * Long-term caching
 var BUNDLE_HASH = !isProduction ? 'dev' : 
@@ -417,11 +422,19 @@ app.get('/', function(req, res) {
         res.redirect(301, 'http://www.electricitymap.org' + req.path);
     } else {
         // Set locale if facebook requests it
-        if (req.query.fb_locale) res.setLocale(fb_locale);
+        if (req.query.fb_locale) {
+            // Locales are formatted according to 
+            // https://developers.facebook.com/docs/internationalization/#locales
+            lr = req.query.fb_locale.split('_', 2);
+            res.setLocale(lr[0]);
+        }
         res.render('pages/index', {
             bundleHash: BUNDLE_HASH,
             locale: res.locale,
-            supportedLocales: i18n.getLocales(),
+            FBLocale: FB_LOCALES[res.locale],
+            supportedFBLocales: i18n.getLocales()
+                .map(function(d) { return FB_LOCALES[d] })
+                .filter(function(d) { return d }),
             useAnalytics: req.get('host').indexOf('electricitymap') != -1
         });
     }

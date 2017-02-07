@@ -46,5 +46,8 @@
   "utilizing": "utilisant",
   "withcarbonintensity": "avec une intensité carbone de",
   "carbonintensity24h": "Intensité carbone sur les dernières 24 heures",
-  "back": "retour"
+  "back": "retour",
+  "misc": {
+      "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger."
+  }
 }
