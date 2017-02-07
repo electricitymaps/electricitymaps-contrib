@@ -175,9 +175,10 @@ app.get('/v1/state', function(req, res) {
                     if (opbeat) 
                         opbeat.captureError(err);
                     console.error(err);
-                    res.status(500).json({error: 'Unknown database error'});
+                    return res.status(500)
+                        .json({error: 'Unknown database error'});
                 }
-                if (data) returnObj(data, cached);
+                returnObj(data || {'countries': [], 'exchanges': []}, cached);
             },
             5 * 60,
             db.queryLastValues);

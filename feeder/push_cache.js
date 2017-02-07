@@ -30,45 +30,61 @@ db.connect(function (err, _) {
     // cache key accessors
     var CACHE_KEY_PREFIX_HISTORY_CO2 = 'HISTORY_';
 
-    var now = moment();
-    var before = moment(now).subtract(1, 'day');
-    var dates = d3.timeMinute.every(15).range(before.toDate(), now.toDate());
+    return async.series([
+        // 1 -- Set current state
+        function(callback) {
+            console.log('Querying current state..');
+            return db.queryLastValues(function (err, obj) {
+                console.log('Pushing current state..');
+                return db.setCache('cache',
+                    obj, 24 * 3600, callback);
+            })
+        },
+        // 2 -- Set state history
+        function(callback) {
+            console.log('Querying state history..');
+            var now = moment();
+            var before = moment(now).subtract(1, 'day');
+            var dates = d3.timeMinute.every(15).range(before.toDate(), now.toDate());
 
-    var queryTasks = dates.map(function(d) {
-        return function (callback) {
-            return db.queryLastValuesBeforeDatetimeWithExpiration(d, 2 * 60, callback)
-        };
-    });
-    console.log('Querying state history..');
-    return async.parallel(queryTasks, function (err, objs) {
-        if (err) {
-            return handleError(err);
-        }
-        // Iterate for each country
-        console.log('Pushing histories..');
-        countryCodes = d3.keys(objs[objs.length - 1].countries);
-        var insertTasks = countryCodes.map(function (countryCode) {
-            // The datetime used is the datetime of the query
-            // because we query the best known state of the whole grid
-            // not just that specific country
-            var ts = objs.map(function (d, i) {
-                var country = d.countries[countryCode] || {};
-                // Add a marker representing the query time
-                country.stateDatetime = dates[i];
-                return country;
+            var queryTasks = dates.map(function(d) {
+                return function (callback) {
+                    return db.queryLastValuesBeforeDatetimeWithExpiration(d, 2 * 60, callback)
+                };
             });
-            // Push to cache
-            return function (callback) {
-                db.setCache(
-                    CACHE_KEY_PREFIX_HISTORY_CO2 + countryCode,
-                    ts, 24 * 3600,
-                    callback);
-            }
-        });
-        async.parallel(insertTasks, function (err) {
-            // done
-            console.log('..done')
-            process.exit();
-        });
+            // Do a series call to avoid too much work on the database
+            return async.series(queryTasks, function (err, objs) {
+                if (err) {
+                    return handleError(err);
+                }
+                // Iterate for each country
+                console.log('Pushing histories..');
+                countryCodes = d3.keys(objs[objs.length - 1].countries);
+                var insertTasks = countryCodes.map(function (countryCode) {
+                    // The datetime used is the datetime of the query
+                    // because we query the best known state of the whole grid
+                    // not just that specific country
+                    var ts = objs.map(function (d, i) {
+                        var country = d.countries[countryCode] || {};
+                        // Add a marker representing the query time
+                        country.stateDatetime = dates[i];
+                        return country;
+                    });
+                    // Push to cache
+                    return function (callback) {
+                        db.setCache(
+                            CACHE_KEY_PREFIX_HISTORY_CO2 + countryCode,
+                            ts, 24 * 3600,
+                            callback);
+                    }
+                });
+                return async.parallel(insertTasks, callback);
+            });
+        }
+    ], function(err) {
+        if (err) handleError(err);
+        // done
+        console.log('..done')
+        process.exit();
     });
 });
