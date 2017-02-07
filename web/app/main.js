@@ -401,6 +401,10 @@ function selectCountry(countryCode, notrack) {
                     });
                 }
 
+                // Push current state if present
+                if (countries[countryCode].datetime)
+                    obj.data.push(countries[countryCode]);
+
                 // Save to local cache
                 histories[countryCode] = obj.data;
 
@@ -524,6 +528,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         entry.value.co2intensity = undefined;
         entry.value.exchange = {};
         entry.value.production = {};
+        entry.value.productionCo2Intensities = {};
         entry.value.storage = {};
         entry.value.source = undefined;
     });
@@ -547,7 +552,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         // Validate data
         if (!country.production) return;
         modeOrder.forEach(function (mode) {
-            if (mode == 'other' || mode == 'unknown') return;
+            if (mode == 'other' || mode == 'unknown' || !country.datetime) return;
             // Check missing values
             if (country.production[mode] === undefined && country.storage[mode] === undefined)
                 console.warn(countryCode + ' is missing production or storage of ' + mode);
