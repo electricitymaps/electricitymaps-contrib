@@ -1,6 +1,5 @@
 {
-  "en": 
-  {
+  "en": {
     "wind": "wind",
     "solar": "solar",
     "hydro": "hydro",
@@ -12,12 +11,12 @@
     "oil": "oil",
     "unknown": "unknown",
     "exportto": "of export to",
-    "importfrom":"of import from",
-    "productionimport":"production/import",
-    "consumption":"consumption",
-	"electricityfrom":"electricity comes from",
-	"electricityto":"electricity is exported to",
-	"electricitystored":"electricity is stored using";
+    "importfrom": "of import from",
+    "productionimport": "production/import",
+    "consumption": "consumption",
+    "electricityfrom": "electricity comes from",
+    "electricityto": "electricity is exported to",
+    "electricitystored": "electricity is stored using"
   },
   "fr": {
     "wind": "éolien",
@@ -31,11 +30,11 @@
     "oil": "fioul",
     "unknown": "inconnu",
     "exportto": "exportée vers",
-    "importfrom":" importée depuis",
-    "productionimport":"production/import",
-    "consumption":"consommation",
-	"electricityfrom":"électricité importée depuis",
-	"electricityto":"électricité exportée vers",
-	"electricitystored":"électricité stockée dans";
+    "importfrom": " importée depuis",
+    "productionimport": "production/import",
+    "consumption": "consommation",
+    "electricityfrom": "électricité importée depuis",
+    "electricityto": "électricité exportée vers",
+    "electricitystored": "électricité stockée dans"
   }
 }

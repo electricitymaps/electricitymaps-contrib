@@ -5,6 +5,8 @@ var Flatpickr = require('flatpickr');
 var moment = require('moment');
 
 // Modules
+//var AreaGraph = require('./areagraph');
+var LineGraph = require('./linegraph');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
@@ -35,6 +37,8 @@ var forceRemoteEndpoint = false;
 var customDate;
 var timelineEnabled = false;
 var reqLang = 'en';
+var currentMoment;
+
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -71,7 +75,7 @@ args.forEach(function(arg) {
     kv = arg.split('=');
     if (kv[0] == 'remote') {
         forceRemoteEndpoint = kv[1] == 'true';
-        replaceHistoryState('forceRemoteEndpoint', forceRemoteEndpoint);
+        replaceHistoryState('remote', forceRemoteEndpoint);
     } else if (kv[0] == 'datetime') {
         customDate = kv[1];
         replaceHistoryState('datetime', customDate);
@@ -140,7 +144,7 @@ moment.locale(locale);
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 var co2color = d3.scaleLinear()
-    .domain([0, 350, 700])
+    .domain([0, 375, 725, 800])
     .range(['green', 'orange', 'rgb(26,13,0)'])
     .clamp(true);
 var maxWind = 15;
@@ -180,10 +184,44 @@ var solarColor = d3.scaleLinear()
     .range(solarRange)
     .clamp(true);
 
+// Production/imports-exports mode
+var modeColor = {
+    'wind': '#74cdb9',
+    'solar': '#f27406',
+    'hydro': '#2772b2',
+    'hydro storage': '#2772b2',
+    'biomass': '#166a57',
+    'geothermal': 'yellow',
+    'nuclear': '#AEB800',
+    'gas': '#bb2f51',
+    'coal': '#ac8c35',
+    'oil': '#867d66',
+    'unknown': 'lightgray'
+};
+var modeOrder = [
+    'wind',
+    'solar',
+    'hydro',
+    'hydro storage',
+    'geothermal',
+    'biomass',
+    'nuclear',
+    'gas',
+    'coal',
+    'oil',
+    'unknown'
+];
+
 // Set up objects
 var countryMap = new CountryMap('.map', co2color);
 var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color, lang[reqLang]);
+var countryTable = new CountryTable('.country-table', co2color, lang[reqLang], modeColor, modeOrder);
+//var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
+var countryHistoryGraph = new LineGraph('.country-history',
+    function(d) { return moment(d.stateDatetime).toDate(); },
+    function(d) { return d.co2intensity; },
+    function(d) { return d.co2intensity != null; },
+    co2color);
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')
@@ -237,8 +275,8 @@ function placeTooltip(selector, d3Event) {
     var tooltip = d3.select(selector);
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
-    var x = d3Event.pageX - w - 5;
-    var y = d3Event.pageY - h - 5; if (y <= 50) y = d3Event.pageY + 5;
+    var x = d3Event.pageX + 5; if (window.innerWidth - x <= w) x = d3Event.pageX - w - 5;
+    var y = d3Event.pageY - h - 5; if (y <= 5) y = d3Event.pageY + 5;
     tooltip
         .style('transform',
             'translate(' + x + 'px' + ',' + y + 'px' + ')');
@@ -282,24 +320,95 @@ d3.entries(exchanges).forEach(function(entry) {
 });
 var wind, solar;
 
+var histories = {};
+
 function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
         // Unselected
-        d3.select('.country-table-initial-text')
+        d3.select('.left-panel-initial-text')
             .style('display', 'block');
-        countryTable.hide();
+        d3.select('.country-panel')
+            .style('display', 'none');
         selectedCountryCode = undefined;
     } else {
         // Selected
         console.log(countries[countryCode]);
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
-        d3.select('.country-table-initial-text')
+        d3.select('.left-panel-initial-text')
             .style('display', 'none');
+        d3.select('.country-panel')
+            .style('display', 'block');
         countryTable
-            .show()
-            .data(countries[countryCode]);
+            .data(countries[countryCode])
+            .render();
         selectedCountryCode = countryCode;
+
+        function updateGraph(countryHistory) {
+            // No export capacities are defined, and they are thus
+            // varying the scale.
+            // Here's a hack to fix it.
+            var lo = d3.min(countryHistory, function(d) {
+                return Math.min(
+                    -d.maxExport || 0,
+                    -d.maxStorage || 0);
+            });
+            var hi = d3.max(countryHistory, function(d) {
+                return Math.max(
+                    d.maxCapacity || 0,
+                    d.maxProduction || 0,
+                    d.maxImport || 0)
+            });
+
+            countryHistoryGraph
+                .data(countryHistory)
+                .onMouseMove(function(d) {
+                    // In case of missing data
+                    if (!d.countryCode)
+                        d.countryCode = countryCode;
+                    countryTable
+                        .powerScaleDomain([lo, hi])
+                        .data(d)
+                        .render(true);
+                })
+                .onMouseOut(function() {
+                    countryTable
+                        .powerScaleDomain(null)
+                        .data(countries[countryCode])
+                        .render();
+                })
+                .render();
+        }
+
+        // Load graph
+        if (customDate)
+            console.error('Can\'t fetch history when a custom date is provided!');
+        else if (!histories[countryCode])
+            d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
+                if (err) console.error(err);
+                if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
+                if (err || !obj || !obj.data) {
+                    updateGraph([]);
+                    return;
+                }
+
+                // Add capacities
+                if (capacities[countryCode]) {
+                    var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
+                    obj.data.forEach(function(d) {
+                        d.capacity = capacities[countryCode].capacity;
+                        d.maxCapacity = maxCapacity;
+                    });
+                }
+
+                // Save to local cache
+                histories[countryCode] = obj.data;
+
+                // Show
+                updateGraph(histories[countryCode]);
+            });
+        else
+            updateGraph(histories[countryCode]);
     }
     replaceHistoryState('countryCode', selectedCountryCode);
     d3.select('#country-table-back-button').style('display',
@@ -400,8 +509,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         return;
     }
 
-    // Render simple components
-    var currentMoment = (customDate && moment(customDate) || moment());
+    currentMoment = (customDate && moment(customDate) || moment());
     d3.select('#current-date').text(currentMoment.format('LL'));
     d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')
@@ -422,6 +530,7 @@ function dataLoaded(err, state, argSolar, argWind) {
     d3.entries(exchanges).forEach(function(entry) {
         entry.value.netFlow = undefined;
     });
+    histories = {};
 
     // Populate with realtime country data
     d3.entries(state.countries).forEach(function(entry) {
@@ -437,7 +546,7 @@ function dataLoaded(err, state, argSolar, argWind) {
         });
         // Validate data
         if (!country.production) return;
-        countryTable.PRODUCTION_MODES.forEach(function (mode) {
+        modeOrder.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown') return;
             // Check missing values
             if (country.production[mode] === undefined && country.storage[mode] === undefined)
@@ -509,7 +618,10 @@ function dataLoaded(err, state, argSolar, argWind) {
         .data(d3.values(countries))
         .onSeaClick(function () { selectCountry(undefined); })
         .onCountryClick(function (d) { selectCountry(d.countryCode); })
-        .onCountryMouseOver(function (d) { 
+        .render();
+    // Only add mouse over handlers if not on mobile
+    if (!isMobile()) {
+        countryMap.onCountryMouseOver(function (d) { 
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer')
@@ -553,11 +665,11 @@ function dataLoaded(err, state, argSolar, argWind) {
             d3.select('#country-tooltip')
                 .style('display', 'none');
         })
-        .render();
+    }
 
-        // Render country table if it already was visible
-        if (selectedCountryCode)
-            countryTable.data(countries[selectedCountryCode]).render()
+    // Re-render country table if it already was visible
+    if (selectedCountryCode)
+        countryTable.data(countries[selectedCountryCode]).render()
 
     if (!isSmallScreen()) {
         // Populate exchange pairs for arrows
@@ -801,10 +913,12 @@ function fetchAndReschedule() {
 };
 
 function redraw() {
-    countryTable.render();
+    if (selectedCountryCode) {
+        countryTable.render();
+        countryHistoryGraph.render();
+    }
     if (!isSmallScreen()) {
         countryMap.render();
-        co2Colorbar.render();
         exchangeLayer
             .projection(countryMap.projection())
             .render();
