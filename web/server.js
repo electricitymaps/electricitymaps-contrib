@@ -410,6 +410,8 @@ app.get('/', function(req, res) {
     // On electricitymap.tmrow.co,
     // redirect everyone except the Facebook crawler,
     // else, we will lose all likes
+    console.log(res.__('electricityprice'))
+    // TODO: Set FACEBOOK
     var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
     if (isSubDomain && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
         // Redirect

@@ -85,8 +85,6 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'countryCode') {
         selectedCountryCode = kv[1];
         replaceHistoryState('countryCode', selectedCountryCode);
-    } else if(kv[0] == 'lang'){
-		reqLang = kv[1];
     }
 });
 
@@ -137,15 +135,15 @@ function trackAnalyticsEvent(eventName, paramObj) {
 }
 
 // Set proper locale
-var locale = window.navigator.userLanguage || window.navigator.language;
-if (locale !== "en" && reqLang == "en") {
-    var redirect = window.location.href;
-    if (redirect.indexOf('?') < 0) redirect += '?';
-    redirect = appendQueryString(redirect, 'lang', locale);
-    console.log('Redirecting to ' + locale + ' version',redirect);
-    window.location.href = redirect;
-}
-moment.locale(locale);
+// var locale = window.navigator.userLanguage || window.navigator.language;
+// if (locale !== "en" && reqLang == "en") {
+//     var redirect = window.location.href;
+//     if (redirect.indexOf('?') < 0) redirect += '?';
+//     redirect = appendQueryString(redirect, 'lang', locale);
+//     console.log('Redirecting to ' + locale + ' version',redirect);
+//     window.location.href = redirect;
+// }
+// moment.locale(locale);
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
@@ -232,7 +230,6 @@ var countryHistoryGraph = new LineGraph('.country-history',
 
 var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
     .markerColor('white')
-    .render(); // Already render because the size is fixed
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
@@ -938,6 +935,7 @@ function redraw() {
     }
     if (!isSmallScreen()) {
         countryMap.render();
+        co2Colorbar.render();
         exchangeLayer
             .projection(countryMap.projection())
             .render();

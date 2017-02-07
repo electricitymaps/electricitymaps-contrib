@@ -118,7 +118,7 @@
                     <input type="text" class="flatpickr" />
                 </div>
             </div>
-			<p>
+            <p>
                 <span id="country-table-back-button" style="display: none"><a><< <%= __('back') %></a></span>
             </p>
             <hr />
@@ -147,7 +147,7 @@
                     Our <a href="http://www.co2signal.com">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.
                 </p>
             </div>
-            <div class="country-table-initial-text">
+            <div class="left-panel-initial-text">
                 <p class="small-screen-visible" style="font-style: italic">
                     <%= __('youareseeing') %> <span style="color: lightgray"><%= __('limitedversion') %></span>. <%= __('forthe') %> <span style="color: lightgray"><%= __('fullversion') %></span>, <%= __('visitoncomputer') %>.
                 </p>
@@ -158,21 +158,21 @@
                     <%= __('takeinaccount') %> <span style="color: lightgray"><%= __('importexport') %></span><span class="large-screen-visible"> <svg id="example-arrow" style="width: 1em; height: 1em"></svg></span> <%= __('betweencountries') %>.
                 </p>
                 <p>
-                    <%= __('thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%= __('opensource') %></a> <%= __('see') %> (<a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%= __('datasources') %></a>).
-                </p>
-                <p>
                     <span style="color: lightgray; font-size: 14px; color: white;"><i><%= __('tip') %> ⟶</i></span>
                 </p>
                 <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                     <p></p>
                 </div>
+                <p>
+                    <%= __('thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%= __('opensource') %></a> <%= __('see') %> (<a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%= __('datasources') %></a>).
+                </p>
                 <div class="layer-toggles large-screen-visible">
                     <hr />
                     <p>
                         <%= __('carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh)</span>
                         <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                     </p>
-          			<p>
+                    <p>
                         <input type="checkbox" id="checkbox-wind" />
                         <label for="checkbox-wind"><%= __('windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
                         <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
@@ -186,12 +186,8 @@
             </div>
             <div>
                 <hr />
-
-				<%= __('likethisvisu') %> <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank"><%= __('loveyourfeedback') %></a>!<br />
-				<%= __('foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%= __('here') %></a>.<br />
-				<p>
-					<%= __('co2signalprefix') %> <a href="http://www.co2signal.com">CO2 Signal</a> <%= __('co2signalsuffix') %>.
-				</p>
+                <%= __('foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%= __('here') %></a>.<br />
+                <%= __('likethisvisu') %> <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank"><%= __('loveyourfeedback') %></a>!
             </div>
             <p>
                 <!-- Facebook share -->
