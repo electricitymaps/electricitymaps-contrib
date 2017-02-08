@@ -1,4 +1,5 @@
 var d3 = require('d3');
+var lang = require('json-loader!./configs/lang.json')[locale];
 var moment = require('moment');
 
 // TODO:
@@ -55,7 +56,7 @@ function CountryTable(selector, co2Color, modeColor, modeOrder) {
                 return 'translate(0,' + (i * (that.ROW_HEIGHT + that.PADDING_Y)) + ')';
             });
     gNewRow.append('text')
-        .text(function(d) { return d.mode })
+        .text(function(d) { return lang[d.mode] || d.mode })
         .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')
@@ -368,7 +369,6 @@ CountryTable.prototype.resize = function() {
 
 CountryTable.prototype.data = function(arg) {
     var that = this;
-
     if (!arg) return this._data;
 
     this._data = arg;
@@ -393,6 +393,7 @@ CountryTable.prototype.data = function(arg) {
             isStorage: d.isStorage,
             capacity: capacity,
             mode: d.mode,
+            text: lang[d.mode],
             gCo2eqPerkWh: footprint,
             gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
         };
