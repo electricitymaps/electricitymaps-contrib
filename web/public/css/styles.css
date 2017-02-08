@@ -115,7 +115,7 @@ hr {
     height: 100%;
     width: 22rem;
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-top: none;
     border-left: none;
     border-bottom: none;
