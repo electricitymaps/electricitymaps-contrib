@@ -46,7 +46,7 @@
     },
     "legends": {
         "windpotential": "Potenziale eolico",
-        "solarpotential": "Potenziale solare"
+        "solarpotential": "Potenziale fotovoltaico"
     },
     "tooltips": {
         "electricityprice": "Prezzo dell'elettricità (Al giorno)",
