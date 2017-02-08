@@ -15,6 +15,7 @@ var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
 var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
+var lang = require('json-loader!./configs/lang.json')[locale];
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Tooltip = require('./tooltip');
@@ -294,6 +295,8 @@ d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
+    // Add translation
+    zone.shortname = lang.zoneShortName[d.key];
 });
 // Add capacities
 d3.entries(capacities).forEach(function(d) {
