@@ -19,7 +19,7 @@
         "thisproject": "Ceci est un projet",
         "opensource": "Open Source",
         "see": "voir",
-        "datasources": "data sources",
+        "datasources": "source des données",
 
         "tip": "Cliquez sur un pays pour explorer"
     },
@@ -39,7 +39,7 @@
         "carbonintensity24h": "Intensité carbone des 24 dernières heures"
     },
     "footer": {
-        "likethisvisu": "Vous aimez cette carte intéractive?",
+        "likethisvisu": "Vous aimez cette visualisation?",
         "loveyourfeedback": "Envoyez-nous vos commentaires",
         "foundbugs": "Un bug ? Une idée ? Cliquez",
         "here": "ici"
