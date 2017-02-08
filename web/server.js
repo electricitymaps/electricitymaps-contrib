@@ -20,6 +20,8 @@ var http = require('http');
 var Memcached = require('memcached');
 var moment = require('moment');
 var MongoClient = require('mongodb').MongoClient;
+var i18n = require('i18n');
+
 //var statsd = require('node-statsd'); // TODO: Remove
 
 // Custom modules
@@ -42,6 +44,24 @@ app.use(function(req, res, next) {
 var STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
 app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '0'}));
 app.set('view engine', 'ejs');
+
+// * i18n
+i18n.configure({
+    // where to store json files - defaults to './locales' relative to modules directory
+    locales: ['en', 'fr'],
+    directory: __dirname + '/locales',
+    defaultLocale: 'en',
+    queryParameter: 'lang',
+    objectNotation: true,
+    updateFiles: false // whether to write new locale information to disk - defaults to true
+});
+app.use(i18n.init);
+FB_LOCALES = {
+    'en': 'en_US',
+    'fr': 'fr_FR'
+};
+
+// * Long-term caching
 var BUNDLE_HASH = !isProduction ? 'dev' : 
     JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
 
@@ -402,8 +422,20 @@ app.get('/', function(req, res) {
         // Redirect
         res.redirect(301, 'http://www.electricitymap.org' + req.path);
     } else {
+        // Set locale if facebook requests it
+        if (req.query.fb_locale) {
+            // Locales are formatted according to 
+            // https://developers.facebook.com/docs/internationalization/#locales
+            lr = req.query.fb_locale.split('_', 2);
+            res.setLocale(lr[0]);
+        }
         res.render('pages/index', {
-            'bundleHash': BUNDLE_HASH,
+            bundleHash: BUNDLE_HASH,
+            locale: res.locale,
+            FBLocale: FB_LOCALES[res.locale],
+            supportedFBLocales: i18n.getLocales()
+                .map(function(d) { return FB_LOCALES[d] })
+                .filter(function(d) { return d }),
             useAnalytics: req.get('host').indexOf('electricitymap') != -1
         });
     }

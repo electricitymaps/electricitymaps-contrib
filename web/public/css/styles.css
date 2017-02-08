@@ -42,7 +42,7 @@ hr {
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
-    top: -60px; /* hidden state */
+    top: -70px; /* hidden state */
 }
 .flash-message .inner {
     display: block;

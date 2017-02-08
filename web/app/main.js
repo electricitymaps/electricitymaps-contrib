@@ -15,6 +15,7 @@ var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
 var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
+var lang = require('json-loader!./configs/lang.json')[locale];
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Tooltip = require('./tooltip');
@@ -132,7 +133,6 @@ function trackAnalyticsEvent(eventName, paramObj) {
 }
 
 // Set proper locale
-var locale = window.navigator.userLanguage || window.navigator.language;
 moment.locale(locale);
 
 // Display embedded warning
@@ -218,9 +218,10 @@ var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return d.co2intensity != null; },
     co2color);
 
-var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-    .markerColor('white')
-    .render(); // Already render because the size is fixed
+if (!isSmallScreen())
+    var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+        .markerColor('white')
+        .render();
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
@@ -294,6 +295,8 @@ d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
+    // Add translation
+    zone.shortname = lang.zoneShortName[d.key];
 });
 // Add capacities
 d3.entries(capacities).forEach(function(d) {
@@ -510,7 +513,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 
     // Is there a new version?
     d3.select('#new-version')
-        .style('top', (clientVersion === bundleHash) ? undefined : 0);
+        .style('top', (clientVersion === bundleHash || forceRemoteEndpoint) ? undefined : 0);
 
     currentMoment = (customDate && moment(customDate) || moment());
     d3.select('#current-date').text(currentMoment.format('LL'));
@@ -631,7 +634,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer')
-            if (d.co2intensity)
+            if (d.co2intensity && co2Colorbar)
                 co2Colorbar.currentMarker(d.co2intensity);
             var tooltip = d3.select('#country-tooltip');
             tooltip.style('display', 'inline');
@@ -666,7 +669,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             d3.select(this)
                 .style('opacity', 1)
                 .style('cursor', 'auto')
-            if (d.co2intensity)
+            if (d.co2intensity && co2Colorbar)
                 co2Colorbar.currentMarker(undefined);
             d3.select('#country-tooltip')
                 .style('display', 'none');
@@ -700,7 +703,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 d3.select(this)
                     .style('opacity', 0.8)
                     .style('cursor', 'pointer');
-                if (d.co2intensity)
+                if (d.co2intensity && co2Colorbar)
                     co2Colorbar.currentMarker(d.co2intensity);
                 var tooltip = d3.select('#exchange-tooltip');
                 tooltip.style('display', 'inline');
@@ -727,7 +730,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 d3.select(this)
                     .style('opacity', 1)
                     .style('cursor', 'auto')
-                if (d.co2intensity)
+                if (d.co2intensity && co2Colorbar)
                     co2Colorbar.currentMarker(undefined);
                 d3.select('#exchange-tooltip')
                     .style('display', 'none');
@@ -926,6 +929,7 @@ function redraw() {
     }
     if (!isSmallScreen()) {
         countryMap.render();
+        co2Colorbar.render();
         exchangeLayer
             .projection(countryMap.projection())
             .render();

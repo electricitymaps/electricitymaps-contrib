@@ -12,3 +12,5 @@ web/node_modules
 *.suo
 *.user
 /.vs/config
+/App_Data/PublishProfiles
+*.publishproj
