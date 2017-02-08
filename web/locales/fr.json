@@ -7,10 +7,10 @@
         "visitoncomputer": "visitez ce site depuis un ordinateur",
 
         "thisshowsrealtime": "Cette carte indique",
-        "whereelectricitycomesfrom": "de quelles sources provient votre électricité",
+        "whereelectricitycomesfrom": "d'où provient votre électricité",
         "and": "et",
-        "homuchco2": "quelle quantité de CO2",
-        "wasemitted": "a été émise pour la produire",
+        "howmuchco2": "combien de CO2",
+        "wasemitted": "a été émis pour la produire",
 
         "takeinaccount": "Elle prend en compte les",
         "importexport": "imports et exports",
@@ -21,7 +21,7 @@
         "see": "voir",
         "datasources": "data sources",
 
-        "tip": "Tip: Cliquez sur un pays pour explorer"
+        "tip": "Cliquez sur un pays pour explorer"
     },
     "country-panel": {
         "back": "retour",
