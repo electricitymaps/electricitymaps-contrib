@@ -40,7 +40,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             var totalPositive = country.totalProduction + country.totalImport;
 
             var domain = isExport ? totalPositive : totalConsumption;
-            var domainName = isExport ? lang['electricityfrom'] : lang['electricityto'];
+            var domainName = isExport ? lang['electricityto'] : lang['electricityfrom'];
             var isNull = !isFinite(d.value) || d.value == undefined;
 
             var absFlow = Math.abs(d.value);
