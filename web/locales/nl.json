@@ -61,10 +61,10 @@
         "withcarbonintensity": "met een koolstof intensiteit van"
     },
     "misc": {
-        "carbonintensity": "Carbon intensity",
-        "maintitle": "Live CO2 emissions of the European electricity consumption",
-        "lastupdate": "Last update",
-        "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-        "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload."
+        "carbonintensity": "Koolstof intensiteit",
+        "maintitle": "Live CO2 uitstoot van het Europese elektriciteitsverbruik",
+        "lastupdate": "Laatst bijgewerkt",
+        "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
+        "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
     }
 }
