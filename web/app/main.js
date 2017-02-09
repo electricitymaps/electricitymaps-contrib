@@ -363,6 +363,7 @@ function selectCountry(countryCode, notrack) {
             countryHistoryGraph
                 .data(countryHistory)
                 .onMouseMove(function(d) {
+                    if (!d) return;
                     // In case of missing data
                     if (!d.countryCode)
                         d.countryCode = countryCode;
