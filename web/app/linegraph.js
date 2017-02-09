@@ -113,6 +113,9 @@ LineGraph.prototype.render = function () {
             .attr('cy', y(that.yAccessor(data[i])))
             .style('fill', that.yColorScale(
                 that.yAccessor(data[i])));
+        that.verticalLine
+            .attr('x1', x(datetimes[i]))
+            .attr('x2', x(datetimes[i]));
     } else {
         this.markerElement.style('display', 'none');
     }
@@ -124,6 +127,34 @@ LineGraph.prototype.render = function () {
     isMobile = 
         (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 
+    function drag() {
+        if (!datetimes.length) return;
+        var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
+            (d3.touches(this)[0][0]);
+        var datetime = x.invert(dx);
+        // Find data point closest to
+        var i = d3.bisectLeft(datetimes, datetime);
+        if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
+            i--;
+        if (i > datetimes.length - 1) i = datetimes.length - 1;
+        that.selectedIndex = i;
+        that.verticalLine
+            .attr('x1', x(datetimes[i]))
+            .attr('x2', x(datetimes[i]));
+        if (!that.definedAccessor(data[i])) {
+            // Not defined, hide the marker
+            that.markerElement
+                .style('display', 'none');
+        } else {
+            that.markerElement
+                .style('display', 'block')
+                .attr('cx', x(datetimes[i]))
+                .attr('cy', y(that.yAccessor(data[i])))
+                .style('fill', that.yColorScale(
+                    that.yAccessor(data[i])));
+        }
+    }
+
     this.interactionRect
         .attr('x', x.range()[0])
         .attr('y', y.range()[1])
@@ -131,6 +162,10 @@ LineGraph.prototype.render = function () {
         .attr('height', y.range()[0] - y.range()[1])
         .on(isMobile ? 'touchstart' : 'mouseover', function () {
             if (!datetimes.length) return;
+            // Always unfreeze on mobile
+            if (isMobile) {
+                that.frozen = true; that.togglefreeze();
+            }
             that.verticalLine.style('display', 'block');
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this);
@@ -138,6 +173,11 @@ LineGraph.prototype.render = function () {
         .on(isMobile ? 'touchend' : 'mouseout', function () {
             if (!datetimes.length) return;
             if (that.frozen) return;
+            // Always freeze on mobile
+            if (isMobile) {
+                that.frozen = false; that.togglefreeze();
+                return;
+            }
             that.verticalLine.style('display', 'none');
             if (that.definedAccessor(data[data.length - 1])) {
                 that.markerElement
@@ -154,43 +194,25 @@ LineGraph.prototype.render = function () {
                 that.mouseOutHandler.call(this);
         })
         .on(isMobile ? 'touchmove' : 'mousemove', function () {
-            if (!datetimes.length) return;
             if (that.frozen) return;
-            var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
-                (d3.touches(this)[0][0]);
-            var datetime = x.invert(dx);
-            // Find data point closest to
-            var i = d3.bisectLeft(datetimes, datetime);
-            if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
-                i--;
-            if (i > datetimes.length - 1) i = datetimes.length - 1;
-            that.selectedIndex = i;
-            that.verticalLine
-                .attr('x1', x(datetimes[i]))
-                .attr('x2', x(datetimes[i]));
-            if (!that.definedAccessor(data[i])) {
-                // Not defined, hide the marker
-                that.markerElement
-                    .style('display', 'none');
-            } else {
-                that.markerElement
-                    .style('display', 'block')
-                    .attr('cx', x(datetimes[i]))
-                    .attr('cy', y(that.yAccessor(data[i])))
-                    .style('fill', that.yColorScale(
-                        that.yAccessor(data[i])));
-            }
+            drag.call(this);
             if (that.mouseMoveHandler)
-                that.mouseMoveHandler.call(this, data[i]);
+                that.mouseMoveHandler.call(this, data[that.selectedIndex]);
+        })
+        .on('click', function() {
+            if (!isMobile) {
+                that.togglefreeze();
+                if (!that.frozen) {
+                    drag.call(this);
+                    if (that.mouseMoveHandler)
+                        that.mouseMoveHandler.call(this, data[that.selectedIndex]);
+                }
+            } else {
+                drag.call(this);
+                if (that.mouseMoveHandler)
+                    that.mouseMoveHandler.call(this, data[that.selectedIndex]);
+            }
         });
-    if (!isMobile) {
-        this.interactionRect.on('click', function() {
-            that.frozen = !that.frozen;
-            if (!that.frozen) that.selectedIndex = undefined;
-            that.markerElement.style('stroke',
-                that.frozen ? 'black' : 'lightgrey');
-        });
-    }
 
     // x axis
     var xAxis = d3.axisBottom(x)
@@ -208,6 +230,14 @@ LineGraph.prototype.render = function () {
         .style('transform', 'translate(' + (width - Y_AXIS_WIDTH) + 'px, 0)')
         .call(yAxis);
 
+    return this;
+}
+
+LineGraph.prototype.togglefreeze = function() {
+    this.frozen = !this.frozen;
+    if (!this.frozen) this.selectedIndex = undefined;
+    this.markerElement.style('stroke',
+        this.frozen ? 'black' : 'lightgrey');
     return this;
 }
 
