@@ -5,6 +5,7 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
+        .style('cursor', 'pointer')
         .style('opacity', 0);
     this.verticalLine = this.rootElement.append('line')
         .style('display', 'none')
@@ -44,6 +45,10 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
         .y(function(d, i) { return y(yAccessor(d, i)); })
         .defined(definedAccessor)
         .curve(d3.curveMonotoneX);
+
+    // Interaction state
+    this.frozen = false;
+    this.selectedIndex;
 }
 
 LineGraph.prototype.data = function (arg) {
@@ -100,13 +105,14 @@ LineGraph.prototype.render = function () {
     layer.merge(selection).select('path.line')
         .attr('d', this.line);
 
-    if (data.length && that.definedAccessor(data[data.length - 1])) {
+    var i = this.selectedIndex || (data.length - 1);
+    if (data.length && that.definedAccessor(data[i])) {
         this.markerElement
             .style('display', 'block')
-            .attr('cx', x(datetimes[datetimes.length - 1]))
-            .attr('cy', y(that.yAccessor(data[data.length - 1])))
+            .attr('cx', x(datetimes[i]))
+            .attr('cy', y(that.yAccessor(data[i])))
             .style('fill', that.yColorScale(
-                that.yAccessor(data[data.length - 1])));
+                that.yAccessor(data[i])));
     } else {
         this.markerElement.style('display', 'none');
     }
@@ -131,6 +137,7 @@ LineGraph.prototype.render = function () {
         })
         .on(isMobile ? 'touchend' : 'mouseout', function () {
             if (!datetimes.length) return;
+            if (that.frozen) return;
             that.verticalLine.style('display', 'none');
             if (that.definedAccessor(data[data.length - 1])) {
                 that.markerElement
@@ -148,6 +155,7 @@ LineGraph.prototype.render = function () {
         })
         .on(isMobile ? 'touchmove' : 'mousemove', function () {
             if (!datetimes.length) return;
+            if (that.frozen) return;
             var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
                 (d3.touches(this)[0][0]);
             var datetime = x.invert(dx);
@@ -156,6 +164,7 @@ LineGraph.prototype.render = function () {
             if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
                 i--;
             if (i > datetimes.length - 1) i = datetimes.length - 1;
+            that.selectedIndex = i;
             that.verticalLine
                 .attr('x1', x(datetimes[i]))
                 .attr('x2', x(datetimes[i]));
@@ -174,6 +183,14 @@ LineGraph.prototype.render = function () {
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]);
         });
+    if (!isMobile) {
+        this.interactionRect.on('click', function() {
+            that.frozen = !that.frozen;
+            if (!that.frozen) that.selectedIndex = undefined;
+            that.markerElement.style('stroke',
+                that.frozen ? 'black' : 'lightgrey');
+        });
+    }
 
     // x axis
     var xAxis = d3.axisBottom(x)
