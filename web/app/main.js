@@ -28,9 +28,6 @@ var zones = require('json-loader!./configs/zones.json');
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
-// History state init (state that is reflected in the url)
-history.replaceState({}, '', '');
-
 // Global State
 var selectedCountryCode;
 var forceRemoteEndpoint = false;
@@ -48,29 +45,34 @@ function isSmallScreen() {
 
 // History state
 // TODO: put in a module
+
+// History state init (state that is reflected in the url)
+var historyState = {};
 function appendQueryString(url, key, value) {
     return (url == '?' ? url : url + '&') + key + '=' + value;
 }
 function getHistoryStateURL() {
     var url = '?';
-    d3.entries(history.state).forEach(function(d) {
+    d3.entries(historyState).forEach(function(d) {
         url = appendQueryString(url, d.key, d.value);
     });
     return (url == '?' ? '.' : url);
 }
 function replaceHistoryState(key, value) {
     if (value == null) {
-        delete history.state[key];
+        delete historyState[key];
     } else {
-        history.state[key] = value;
+        historyState[key] = value;
     }
-    history.replaceState(history.state, '', getHistoryStateURL());
+    history.replaceState(historyState, '', getHistoryStateURL());
 }
 
 // Read query string
 args = location.search.replace('\?','').split('&');
 args.forEach(function(arg) {
     kv = arg.split('=');
+    // Store in history state to be able to reconstruct
+    replaceHistoryState(kv[0], kv[1]);
     if (kv[0] == 'remote') {
         forceRemoteEndpoint = kv[1] == 'true';
         replaceHistoryState('remote', forceRemoteEndpoint);
