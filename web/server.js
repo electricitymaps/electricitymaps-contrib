@@ -48,7 +48,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['en', 'fr', 'it'],
+    locales: ['en', 'fr', 'it', 'nl'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -59,7 +59,8 @@ app.use(i18n.init);
 FB_LOCALES = {
     'en': 'en_US',
     'fr': 'fr_FR',
-    'it': 'it_IT'
+    'it': 'it_IT',
+    'nl': 'nl_NL'
 };
 
 // * Long-term caching
