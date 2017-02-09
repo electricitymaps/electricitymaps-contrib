@@ -204,9 +204,9 @@
     "importfrom": "invoer van",
     "productionimport": "productie/invoer",
     "consumption": "verbruik",
-    "electricityfrom": "l'elettricità proviene dalla ",
-    "electricityto": "l'elettricità è esportata in",
-    "electricitystored": "l'elettricità è immagazzinata utilizzando",
+    "electricityfrom": "elektriciteit is afkomstig van",
+    "electricityto": "elektriciteit wordt uitgevoerd naar",
+    "electricitystored": "elektriciteit wordt opgeslagen dmv",
     "zoneShortName": {
         "AL": "Albanië",
         "AT": "Oostenrijk",
