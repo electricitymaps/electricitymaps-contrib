@@ -48,7 +48,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['en', 'fr', 'it'],
+    locales: ['en', 'fr', 'it', 'nl'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -56,11 +56,28 @@ i18n.configure({
     updateFiles: false // whether to write new locale information to disk - defaults to true
 });
 app.use(i18n.init);
-FB_LOCALES = {
+LOCALE_TO_FB_LOCALE = {
     'en': 'en_US',
     'fr': 'fr_FR',
-    'it': 'it_IT'
+    'it': 'it_IT',
+    'nl': 'nl_NL'
 };
+// Populate using
+// https://www.facebook.com/translations/FacebookLocales.xml |grep 'en_'
+// and re-crawl using
+// http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
+SUPPORTED_FB_LOCALES = [
+    'en_GB',
+    'en_IN',
+    'en_PI',
+    'en_UD',
+    'en_US',
+    'fr_CA',
+    'fr_FR',
+    'it_IT',
+    'nl_BE',
+    'nl_NL',
+];
 
 // * Long-term caching
 var BUNDLE_HASH = !isProduction ? 'dev' : 
@@ -433,10 +450,8 @@ app.get('/', function(req, res) {
         res.render('pages/index', {
             bundleHash: BUNDLE_HASH,
             locale: res.locale,
-            FBLocale: FB_LOCALES[res.locale],
-            supportedFBLocales: i18n.getLocales()
-                .map(function(d) { return FB_LOCALES[d] })
-                .filter(function(d) { return d }),
+            FBLocale: LOCALE_TO_FB_LOCALE[res.locale],
+            supportedFBLocales: SUPPORTED_FB_LOCALES,
             useAnalytics: req.get('host').indexOf('electricitymap') != -1
         });
     }
