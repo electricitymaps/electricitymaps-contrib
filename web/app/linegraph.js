@@ -106,7 +106,7 @@ LineGraph.prototype.render = function () {
         .attr('d', this.line);
 
     var i = this.selectedIndex || (data.length - 1);
-    if (data.length && that.definedAccessor(data[i])) {
+    if (data.length && data[i] && that.definedAccessor(data[i])) {
         this.markerElement
             .style('display', 'block')
             .attr('cx', x(datetimes[i]))
