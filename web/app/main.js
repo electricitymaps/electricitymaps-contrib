@@ -341,6 +341,7 @@ function selectCountry(countryCode, notrack) {
             .style('display', 'block');
         countryTable
             .data(countries[countryCode])
+            .powerScaleDomain(null) // Always reset scale if click on a new country
             .render();
         selectedCountryCode = countryCode;
 
