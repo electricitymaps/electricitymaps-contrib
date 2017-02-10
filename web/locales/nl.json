@@ -31,9 +31,9 @@
         "electricityproduction": "Elektriciteitsproductie",
         "showemissions": "toon uitstoot",
         "bysource": "per bron",
-        "emissions": "uitstoot",
+        "emissions": "Uitstoot",
         "showelectricity": "toon elektriciteit",
-        "co2signal": "Ons product <a href=\"http://www.co2signal.com\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
+        "co2signal": "Ons product <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
     },
     "country-history": {
         "carbonintensity24h": "Koolstof intensiteit van de laatste 24 uren"
@@ -56,7 +56,7 @@
         "of": "van de",
         "ofconsumption": "van consumptie",
         "ofinstalled": "van de geïnstalleerde capaciteit",
-        "ofelectricity": "",
+        "ofelectricity": "van de",
         "utilizing": "werkt aan",
         "withcarbonintensity": "met een koolstof intensiteit van"
     },
