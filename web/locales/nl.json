@@ -36,7 +36,7 @@
         "co2signal": "Ons product <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
     },
     "country-history": {
-        "carbonintensity24h": "Koolstof intensiteit van de laatste 24 uren"
+        "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
     },
     "footer": {
         "likethisvisu": "Vind je de visualisatie super?",
@@ -52,16 +52,16 @@
         "electricityprice": "Elektriciteitsprijs (day-ahead)",
         "fossilfuels": "fossiele brandstoffen",
         "crossborderexport": "uitvoer over de landsgrenzen",
-        "carbonintensityexport": "Koolstof intensiteit van uitvoer",
+        "carbonintensityexport": "Koolstofintensiteit van uitvoer",
         "of": "van de",
         "ofconsumption": "van consumptie",
         "ofinstalled": "van de geïnstalleerde capaciteit",
         "ofelectricity": "van de",
         "utilizing": "werkt aan",
-        "withcarbonintensity": "met een koolstof intensiteit van"
+        "withcarbonintensity": "met een koolstofintensiteit van"
     },
     "misc": {
-        "carbonintensity": "Koolstof intensiteit",
+        "carbonintensity": "Koolstofintensiteit",
         "maintitle": "Live CO2 uitstoot van het Europese elektriciteitsverbruik",
         "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
