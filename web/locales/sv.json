@@ -1,70 +1,70 @@
 {
     "panel-initial-text": {
-        "youareseeing": "Du ser fˆr tillf‰llet en",
-        "limitedversion": "begr‰nsad mobilversion",
-        "forthe": "Fˆr",
-        "fullversion": "b‰sta upplevelse",
-        "visitoncomputer": "besˆk denna sidan pÂ din dator",
+        "youareseeing": "Du ser f√∂r tillf√§llet en",
+        "limitedversion": "begr√§nsad mobilversion",
+        "forthe": "F√∂r",
+        "fullversion": "b√§sta upplevelse",
+        "visitoncomputer": "bes√∂k denna sidan p√• din dator",
 
         "thisshowsrealtime": "Detta visar i realtid",
-        "whereelectricitycomesfrom": "var din el kommer frÂn",
+        "whereelectricitycomesfrom": "var din el kommer fr√•n",
         "and": "och",
         "howmuchco2": "hur mycket CO2",
-        "wasemitted": "som sl‰pptes ut fˆr att producera den",
+        "wasemitted": "som sl√§pptes ut f√∂r att producera den",
 
-        "takeinaccount": "Vi tar h‰nsyn till",
+        "takeinaccount": "Vi tar h√§nsyn till",
         "importexport": "import och export",
-        "betweencountries": "av el mellan l‰nder",
+        "betweencountries": "av el mellan l√§nder",
 
         "thisproject": "Detta projekt har",
-        "opensource": "ˆppen k‰llkod",
+        "opensource": "√∂ppen k√§llkod",
         "see": "se",
-        "datasources": "datak‰llor",
+        "datasources": "datak√§llor",
 
-        "tip": "Tips: Klicka pÂ ett land fˆr att bˆrja utforska"
+        "tip": "Tips: Klicka p√• ett land f√∂r att b√∂rja utforska"
     },
     "country-panel": {
         "back": "tillbaka",
-        "source": "k‰lla",
-        "fossilfuels": "fosila br‰nslen",
-        "electricityprice": "Elpris (n‰sta dag)",
+        "source": "k√§lla",
+        "fossilfuels": "fosila br√§nslen",
+        "electricityprice": "Elpris (n√§sta dag)",
         "electricityproduction": "Elproduktion",
-        "showemissions": "visa utsl‰pp",
-        "bysource": "per k‰lla",
-        "emissions": "Utsl‰pp",
+        "showemissions": "visa utsl√§pp",
+        "bysource": "per k√§lla",
+        "emissions": "Utsl√§pp",
         "showelectricity": "visa elproduktion",
-        "co2signal": "VÂr <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hj‰lper elutrustning och elfordon att konsumera el vid r‰tt tid, speciellt n‰r landsgr‰nser passeras."
+        "co2signal": "V√•r <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hj√§lper elutrustning och elfordon att konsumera el vid r√§tt tid, speciellt n√§r landsgr√§nser passeras."
     },
     "country-history": {
-        "carbonintensity24h": "Utsl‰pp av koldioxid under de senaste 24 timmarna"
+        "carbonintensity24h": "Utsl√§pp av koldioxid under de senaste 24 timmarna"
     },
     "footer": {
         "likethisvisu": "Gillar du visualiseringen?",
-        "loveyourfeedback": "Ber‰tta g‰rna vad du tycker",
-        "foundbugs": "Hittat buggar eller har idÈer? Rapportera dem",
-        "here": "h‰r"
+        "loveyourfeedback": "Ber√§tta g√§rna vad du tycker",
+        "foundbugs": "Hittat buggar eller har id√©er? Rapportera dem",
+        "here": "h√§r"
     },
     "legends": {
-        "windpotential": "Mˆjlighet fˆr vindkraft",
-        "solarpotential": "Mˆjlighet fˆr solkraft"
+        "windpotential": "M√∂jlighet f√∂r vindkraft",
+        "solarpotential": "M√∂jlighet f√∂r solkraft"
     },
     "tooltips": {
-        "electricityprice": "Elpris (n‰sta dag)",
-        "fossilfuels": "fosila br‰nslen",
-        "crossborderexport": "Gr‰nsˆverskridande export",
-        "carbonintensityexport": "Utsl‰pp av koldioxid fˆr export",
+        "electricityprice": "Elpris (n√§sta dag)",
+        "fossilfuels": "fosila br√§nslen",
+        "crossborderexport": "Gr√§ns√∂verskridande export",
+        "carbonintensityexport": "Utsl√§pp av koldioxid f√∂r export",
         "of": "av",
         "ofconsumption": "av",
         "ofinstalled": "av installerad kapacitet",
         "ofelectricity": "av",
         "utilizing": "Utnyttjar",
-        "withcarbonintensity": "med ett utsl‰pp av koldioxid pÂ"
+        "withcarbonintensity": "med ett utsl√§pp av koldioxid p√•"
     },
     "misc": {
-        "carbonintensity": "Utsl‰pp av koldioxid",
-        "maintitle": "Aktuellt CO2-utsl‰pp frÂn den europeiska elproduktionen",
+        "carbonintensity": "Utsl√§pp av koldioxid",
+        "maintitle": "Aktuellt CO2-utsl√§pp fr√•n den europeiska elproduktionen",
         "lastupdate": "Senaste uppdateringen",
-        "oops": "Aj dÂ! Vi har problem att nÂ servern. Vi kommer att fˆrsˆka igen om nÂgra sekunder.",
-        "newversion": "En ny version ‰r tillg‰nglig! Tryck <a onClick=\"location.reload(true);\">h‰r</a> fˆr att ladda om."
+        "oops": "Aj d√•! Vi har problem att n√• servern. Vi kommer att f√∂rs√∂ka igen om n√•gra sekunder.",
+        "newversion": "En ny version √§r tillg√§nglig! Tryck <a onClick=\"location.reload(true);\">h√§r</a> f√∂r att ladda om."
     }
 }
