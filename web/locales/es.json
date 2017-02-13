@@ -1,0 +1,70 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "Actualmente estás viendo ",
+        "limitedversion": "versión para móvil limitada",
+        "forthe": "Para el",
+        "fullversion": "experiencia completa",
+        "visitoncomputer": "visita esta página en tu ordenador",
+
+        "thisshowsrealtime": "Esto muestra en tiempo real",
+        "whereelectricitycomesfrom": "de dónde proviene tu electricidad",
+        "and": "y",
+        "howmuchco2": "cuanto CO2",
+        "wasemitted": "fue emitido para producirlo",
+
+        "takeinaccount": "Tenemos en cuenta la electricidad",
+        "importexport": "importada y exportada",
+        "betweencountries": "entre países",
+
+        "thisproject": "Este proyecto es",
+        "opensource": "Código abierto",
+        "see": "ver",
+        "datasources": "fuente de datos",
+
+        "tip": "Consejo: Haz click sobre un país para comenzar a explorar"
+    },
+    "country-panel": {
+        "back": "atrás",
+        "source": "fuente",
+        "fossilfuels": "combustibles fósiles",
+        "electricityprice": "Precio de la electricidad (en 1 día)",
+        "electricityproduction": "Producción de electricidad",
+        "showemissions": "mostrar emisiones",
+        "bysource": "por la fuente",
+        "emissions": "Emisiones",
+        "showelectricity": "mostrar electricidad",
+        "co2signal": "Nuestro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> ayuda a dispositivos y vehículos eléctricos a consumir electricidad en el momento adecuado, especialmente cuando se cruzan los bordes."
+    },
+    "country-history": {
+        "carbonintensity24h": "Intensidad del carbón en las últimas 24 horas"
+    },
+    "footer": {
+        "likethisvisu": "Te gusta la visualización?",
+        "loveyourfeedback": "Nos encantaría que nos comentaras",
+        "foundbugs": "Encontraste algún error o tienes una sugerencia? Dínoslo",
+        "here": "aquí"
+    },
+    "legends": {
+        "windpotential": "Potencial de la fuerza del viento",
+        "solarpotential": "Potencial solar"
+    },
+    "tooltips": {
+        "electricityprice": "Precio de la electricidad (en 1 día)",
+        "fossilfuels": "combustibles fósiles",
+        "crossborderexport": "Exportación de fronteras",
+        "carbonintensityexport": "Intensidad de carbón en la exportación",
+        "of": "de",
+        "ofconsumption": "de",
+        "ofinstalled": "de la capacidad instalada",
+        "ofelectricity": "de",
+        "utilizing": "utilizando",
+        "withcarbonintensity": "con una intensidad del carbón de"
+    },
+    "misc": {
+        "carbonintensity": "Intensidad del carbón",
+        "maintitle": "Emisiones de CO2 del consumo eléctrico europeo en tiempo real",
+        "lastupdate": "Última actualización",
+        "oops": "¡Ups! Estamos teniendo probleams con el servidor. Lo intentaremos de nuevo en unos segundos.",
+        "newversion": "¡Está disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar."
+    }
+}
