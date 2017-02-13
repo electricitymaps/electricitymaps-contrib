@@ -69,7 +69,6 @@ LOCALE_TO_FB_LOCALE = {
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 SUPPORTED_FB_LOCALES = [
     'en_GB',
-    'en_IN',
     'en_PI',
     'en_UD',
     'en_US',
