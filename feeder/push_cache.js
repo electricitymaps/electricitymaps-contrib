@@ -49,7 +49,7 @@ db.connect(function (err, _) {
 
             var queryTasks = dates.map(function(d) {
                 return function (callback) {
-                    return db.queryLastValuesBeforeDatetimeWithExpiration(d, 2 * 60, callback)
+                    return db.queryLastValuesBeforeDatetimeWithExpiration(d, 2 * 3600, callback)
                 };
             });
             // Do a series call to avoid too much work on the database
