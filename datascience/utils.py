@@ -109,13 +109,16 @@ def get_state(countries, start_date, end_date, delta):
         o = fetch_state(t, delta)
         if not o: continue
         for countryCode in countries:
+            if not countryCode in o['countries']: continue
             d = o['countries'][countryCode]
+            if not 'datetime' in d: continue
             p = pd.DataFrame(
                 data={
                     'timestamp': pd.Timestamp(arrow.get(d['datetime']).datetime),
-                    'country': countries,
-                    'co2intensity': d['co2intensity'],
-                })
-        if df is not None: df = df.append(p)
-        else: df = p
+                    'country': countryCode,
+                    'co2intensity': d.get('co2intensity', None),
+                },
+                index=[0])
+            if df is not None: df = df.append(p)
+            else: df = p
     return df
