@@ -175,8 +175,8 @@ exports.queryLastValuesBeforeDatetime = function (datetime, callback) {
     return exports.queryLastValuesBeforeDatetimeWithExpiration(
         datetime, 24 * 3600, callback);
 }
-exports.queryLastValuesBeforeDatetimeWithExpiration = function (datetime, expirationMinutes, callback) {
-    var minDate = (moment(datetime) || moment.utc()).subtract(expirationMinutes, 'minutes').toDate();
+exports.queryLastValuesBeforeDatetimeWithExpiration = function (datetime, expirationSeconds, callback) {
+    var minDate = (moment(datetime) || moment.utc()).subtract(expirationSeconds, 'seconds').toDate();
     var maxDate = datetime ? new Date(datetime) : undefined;
     // Get list of countries, exchanges, and prices in db
     return async.parallel([
