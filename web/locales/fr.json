@@ -25,7 +25,7 @@
     },
     "country-panel": {
         "back": "retour",
-        "source": "sources",
+        "source": "source",
         "fossilfuels": "énergies fossiles",
         "electricityprice": "Prix de l'électricité (day-ahead)",
         "electricityproduction": "Production électrique",
