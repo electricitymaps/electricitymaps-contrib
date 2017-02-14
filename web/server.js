@@ -81,7 +81,7 @@ SUPPORTED_FB_LOCALES = [
 ];
 
 // * Long-term caching
-var BUNDLE_HASH = !isProduction ? 'dev' : 
+var BUNDLE_HASH = !isProduction ? 'dev' :
     JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
 
 // * Cache
@@ -99,11 +99,13 @@ function handleError(err) {
 // * Database
 var mongoProductionCollection;
 var mongoExchangeCollection;
+var mongoPriceCollection;
 db.connect(function(err, db) {
     if (err) throw (err);
     console.log('Connected to database');
     mongoExchangeCollection = db.collection('exchange');
     mongoProductionCollection = db.collection('production');
+    mongoPriceCollection = db.collection('price');
 
     // Start the application
     server.listen(8000, function() {
@@ -211,7 +213,7 @@ app.get('/v1/state', function(req, res) {
         return db.getCached('state',
             function (err, data, cached) {
                 if (err) {
-                    if (opbeat) 
+                    if (opbeat)
                         opbeat.captureError(err);
                     console.error(err);
                     return res.status(500)
@@ -337,7 +339,29 @@ app.get('/v1/production', function(req, res) {
         db.elementQuery('countryCode', countryCode, minDate, maxDate),
         { sort: [['datetime', -1]] },
         function(err, doc) {
-            if (err) { 
+            if (err) {
+                handleError(err);
+                res.status(500).json({error: 'Unknown database error'});
+            } else {
+                res.json(doc);
+            }
+        })
+});
+
+app.get('/v1/price', function(req, res) {
+    var countryCode = req.query.countryCode;
+    var datetime = req.query.datetime;
+    if (!countryCode) {
+        res.status(400).json({'error': 'Missing argument "countryCode"'});
+        return;
+    }
+    var maxDate = datetime ? new Date(datetime) : undefined;
+    var minDate = (moment(maxDate) || moment.utc()).subtract(24, 'hours').toDate();
+    mongoPriceCollection.findOne(
+        db.elementQuery('countryCode', countryCode, minDate, maxDate),
+        { sort: [['datetime', -1]] },
+        function(err, doc) {
+            if (err) {
                 handleError(err);
                 res.status(500).json({error: 'Unknown database error'});
             } else {
@@ -400,7 +424,7 @@ app.get('/v2/history', function(req, res) {
         function (err, data, cached) {
             if (err) {
                 if (opbeat)
-                    opbeat.captureError(err); 
+                    opbeat.captureError(err);
                 console.error(err);
                 res.status(500).send('Unknown database error');
             // } else if (!data) {
@@ -443,7 +467,7 @@ app.get('/', function(req, res) {
     } else {
         // Set locale if facebook requests it
         if (req.query.fb_locale) {
-            // Locales are formatted according to 
+            // Locales are formatted according to
             // https://developers.facebook.com/docs/internationalization/#locales
             lr = req.query.fb_locale.split('_', 2);
             res.setLocale(lr[0]);
