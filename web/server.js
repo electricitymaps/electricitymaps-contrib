@@ -72,7 +72,6 @@ SUPPORTED_FB_LOCALES = [
     'es_ES',
     'es_LA',
     'es_MX',
-    'es_VE',
     'en_GB',
     'en_PI',
     'en_UD',
