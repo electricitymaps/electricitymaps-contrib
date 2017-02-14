@@ -69,7 +69,6 @@ LOCALE_TO_FB_LOCALE = {
 // and re-crawl using
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 SUPPORTED_FB_LOCALES = [
-    'es_CO',
     'es_ES',
     'es_LA',
     'es_MX',
