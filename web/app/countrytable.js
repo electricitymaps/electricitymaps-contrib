@@ -303,6 +303,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('background-color',
             this._data.co2intensity ?
                 that.co2Color(this._data.co2intensity) : 'gray');
+    d3.select('.country-data-source')
+        .text(this._data.source || '?');
 
     this.resize();
 }
