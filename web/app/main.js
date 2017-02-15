@@ -362,7 +362,14 @@ function selectCountry(countryCode, notrack) {
             });
 
             countryHistoryGraph
-                .data(countryHistory)
+                .data(countryHistory);
+            if (countryHistoryGraph.frozen) {
+                countryTable
+                    .data(countryHistoryGraph.data()[countryHistoryGraph.selectedIndex])
+                    .powerScaleDomain([lo, hi])
+                    .render()
+            }
+            countryHistoryGraph
                 .onMouseMove(function(d) {
                     if (!d) return;
                     // In case of missing data
@@ -681,7 +688,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     }
 
     // Re-render country table if it already was visible
-    if (selectedCountryCode)
+    if (selectedCountryCode && !countryHistoryGraph.frozen)
         countryTable.data(countries[selectedCountryCode]).render()
 
     if (!isSmallScreen()) {
