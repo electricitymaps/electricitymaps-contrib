@@ -132,7 +132,10 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         selection.select('rect.capacity')
             .transition()
             .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
-            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+            .attr('x', function(d) {
+                var value = (!d.isStorage) ? d.capacity : -1 * d.capacity;
+                return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
+            })
             .attr('width', function (d) {
                 return d.capacity !== undefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
             })
@@ -390,7 +393,7 @@ CountryTable.prototype.data = function(arg) {
             0;
         var production = !d.isStorage ? (that._data.production || {})[d.mode] : undefined;
         var storage = d.isStorage ? (that._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
-        var capacity = !d.isStorage ? (that._data.capacity || {})[d.mode] : undefined;
+        var capacity = (that._data.capacity || {})[d.mode];
         return {
             production: production,
             storage: storage,
@@ -407,8 +410,9 @@ CountryTable.prototype.data = function(arg) {
     this.powerScale
         .domain(this._powerScaleDomain || [
             Math.min(
-                -this._data.maxExport || 0,
-                -this._data.maxStorage || 0),
+                -this._data.maxStorageCapacity || 0,
+                -this._data.maxStorage || 0,
+                -this._data.maxExport || 0),
             Math.max(
                 this._data.maxCapacity || 0,
                 this._data.maxProduction || 0,

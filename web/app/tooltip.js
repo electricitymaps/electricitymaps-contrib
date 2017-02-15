@@ -86,15 +86,15 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
-            var capacityFactor = Math.round(d.production / d.capacity * 100) || '?';
+            var value = d.isStorage ? d.storage : d.production;
+            var capacityFactor = Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
             tooltip.select('#capacity-factor-detail').text(
-                (formatPower(d.production) || '?') + ' ' +
+                (formatPower(value) || '?') + ' ' +
                 ' / ' + 
                 (formatPower(d.capacity) || '?'));
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
-            var value = d.isStorage ? d.storage : d.production;
 
             var domain = d.isStorage ? totalPositive : totalPositive;
             var domainName = d.isStorage ?

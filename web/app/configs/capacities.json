@@ -37,14 +37,16 @@
     },
     "CZ": {
         "capacity": {
-            "biomass": 350,
-            "coal": 9914,
-            "gas": 1226,
-            "hydro": 2253,
-            "nuclear": 4040,
+            "biomass": 495,
+            "coal": 10244,
+            "gas": 2223.2,
+            "geothermal": 0,
+            "hydro": 1087.5,
+            "hydro storage": 1171.5,
+            "nuclear": 4290,
             "oil": 0,
-            "solar": 2067,
-            "wind": 277
+            "solar": 2074.9,
+            "wind": 280.6
         }
     },
     "DE": {
