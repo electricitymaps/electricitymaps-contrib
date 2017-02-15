@@ -307,6 +307,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(this._data.source || '?');
 
     this.resize();
+
+    return this;
 }
 
 CountryTable.prototype.displayByEmissions = function(arg) {
