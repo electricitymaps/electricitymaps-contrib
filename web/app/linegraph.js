@@ -38,6 +38,8 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
     this.x = x = d3.scaleTime();
     this.y = y = d3.scaleLinear()
         .domain(d3.extent(yColorScale.domain()));
+    // Override domain
+    y.domain([y.domain()[0], 750]);
 
     // Create line
     this.line = d3.line()

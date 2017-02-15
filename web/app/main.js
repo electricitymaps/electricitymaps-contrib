@@ -140,9 +140,9 @@ moment.locale(locale);
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
-var co2color = d3.scaleLinear()
-    .domain([0, 375, 725, 800])
-    .range(['green', 'orange', 'rgb(26,13,0)'])
+var maxCo2 = 800;
+var co2color = d3.scaleSequential(d3.interpolateMagma)
+    .domain([2000, 0])
     .clamp(true);
 var maxWind = 15;
 var windColor = d3.scaleLinear()
@@ -223,6 +223,7 @@ var countryHistoryGraph = new LineGraph('.country-history',
 if (!isSmallScreen())
     var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
         .markerColor('white')
+        .domain([0, maxCo2])
         .render();
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
