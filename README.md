@@ -55,7 +55,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Belgium: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
-- Czech Republic: ERU 2015 Yearly Report on the Operation of the Czech Electricity Grid
+- Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
@@ -66,9 +66,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_by_country)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
   - Other: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
-- Germany: 
-  - [Fraunhofer ISE](https://www.energy-charts.de/power_inst.htm)
-  - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Germany: [Fraunhoffer] (https://energy-charts.de/power_inst.htm)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -83,7 +81,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Montenegro: [ENTSO-E] (https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
+- Montenegro: [EPCG] (http://www.epcg.com/en/about-us/production-facilities)
 - Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Norway
   - Gas: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -93,7 +91,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Poland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Serbia: [ENTSO-E] (https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Serbia: [EPS] (http://www.eps.rs/Eng/Tehnicki%20Izvestaji/TEHNICKI%20GODISNJAK%20WEB%202015%20E.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
 - Sweden
