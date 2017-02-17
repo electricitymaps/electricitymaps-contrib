@@ -48,7 +48,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['en', 'es', 'fr', 'it', 'nl', 'sv', 'de'],
+    locales: ['de', 'en', 'es', 'fr', 'it', 'nl', 'sv'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -57,19 +57,20 @@ i18n.configure({
 });
 app.use(i18n.init);
 LOCALE_TO_FB_LOCALE = {
+    'de': 'de_DE',
     'en': 'en_US',
     'es': 'es_ES',
     'fr': 'fr_FR',
     'it': 'it_IT',
     'nl': 'nl_NL',
-    'sv': 'sv_SE',
-    'de': 'de_DE'
+    'sv': 'sv_SE'
 };
 // Populate using
 // https://www.facebook.com/translations/FacebookLocales.xml |grep 'en_'
 // and re-crawl using
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 SUPPORTED_FB_LOCALES = [
+    'de_DE',
     'es_ES',
     'es_LA',
     'es_MX',
@@ -82,8 +83,7 @@ SUPPORTED_FB_LOCALES = [
     'it_IT',
     'nl_BE',
     'nl_NL',
-    'sv_SE',
-    'de_DE'
+    'sv_SE'
 ];
 
 // * Long-term caching
