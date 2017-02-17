@@ -1,0 +1,70 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "Du siehst jetzt eine",
+        "limitedversion": "limitierte Mobilversion",
+        "forthe": "Für eine",
+        "fullversion": "uneingeschränkte Version",
+        "visitoncomputer": "besuch diese Seite auf Deinem Computer",
+
+        "thisshowsrealtime": "Hier siehst Du in Echtzeit",
+        "whereelectricitycomesfrom": "wo Deine Elektrizität herkommt",
+        "and": "und",
+        "howmuchco2": "wieviel CO2",
+        "wasemitted": "emittiert wurde um sie zu produzieren",
+
+        "takeinaccount": "Wir berücksichtigen Elektrizitäts",
+        "importexport": "-Imports und -Exports",
+        "betweencountries": "zwischen Ländern",
+
+        "thisproject": "Dieses Projekt ist",
+        "opensource": "Open Source",
+        "see": "siehe",
+        "datasources": "Datenquellen",
+
+        "tip": "Tipp: Klicke auf ein Land um zu beginnen"
+    },
+    "country-panel": {
+        "back": "zurück",
+        "source": "Quelle",
+        "fossilfuels": "fossile Brennstoffe",
+        "electricityprice": "Elektrizitätspreis (day-ahead)",
+        "electricityproduction": "Elektrizitätsproduktion",
+        "showemissions": "zeige Emissionen",
+        "bysource": "nach Quelle",
+        "emissions": "Emissionen",
+        "showelectricity": "zeige Elektrizität",
+        "co2signal": "Unser <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hilft Geräten und elektrischen Fahrzeugen Elektrizität zur richtigen Zeit zu konsumieren, insbesondere bei Grenzübertritt."
+    },
+    "country-history": {
+        "carbonintensity24h": "CO2 Konzentration in the letzten 24 Stunden"
+    },
+    "footer": {
+        "likethisvisu": "Findest Du die Visualisierung gut?",
+        "loveyourfeedback": "Wir freuen uns über Dein Feedback",
+        "foundbugs": "Hast Du Bugs gefunden oder Ideen zur Verbesserung der Karte? Lass es uns wissen",
+        "here": "hier"
+    },
+    "legends": {
+        "windpotential": "Potenzial Windenergie",
+        "solarpotential": "Potenzial Solarenergie"
+    },
+    "tooltips": {
+        "electricityprice": "Elektrizitätspreis (day-ahead)",
+        "fossilfuels": "fossile Brennstoffe",
+        "crossborderexport": "Export über Ländergrenzen",
+        "carbonintensityexport": "CO2 Konzentration des Exports",
+        "of": "von",
+        "ofconsumption": "des",
+        "ofinstalled": "der installierten Leistung",
+        "ofelectricity": "der",
+        "utilizing": "durch Verwendung von",
+        "withcarbonintensity": "mit einer CO2 Konzentration von"
+    },
+    "misc": {
+        "carbonintensity": "CO2 Konzentration",
+        "maintitle": "CO2 Emissionen der europäischen Elektrizitätsproduktion in Echtzeit",
+        "lastupdate": "Letzte Aktualisierung",
+        "oops": "Oops! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden nochmal.",
+        "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a> um sie zu laden."
+    }
+}
