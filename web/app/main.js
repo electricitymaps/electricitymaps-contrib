@@ -296,7 +296,6 @@ var countries = CountryTopos.addCountryTopos({});
 d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
-    zone.maxCapacity = d3.max(d3.values(zone.capacity));
     // Add translation
     zone.shortname = lang.zoneShortName[d.key];
 });
@@ -305,6 +304,9 @@ d3.entries(capacities).forEach(function(d) {
     var zone = countries[d.key];
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
+    zone.maxStorageCapacity = d3.max(d3.entries(zone.capacity), function(d) {
+        return (d.key.indexOf('storage') != -1) ? d.value : 0;
+    });
 });
 // Add id to each zone
 d3.entries(countries).forEach(function(d) {
@@ -362,7 +364,14 @@ function selectCountry(countryCode, notrack) {
             });
 
             countryHistoryGraph
-                .data(countryHistory)
+                .data(countryHistory);
+            if (countryHistoryGraph.frozen) {
+                countryTable
+                    .data(countryHistoryGraph.data()[countryHistoryGraph.selectedIndex])
+                    .powerScaleDomain([lo, hi])
+                    .render()
+            }
+            countryHistoryGraph
                 .onMouseMove(function(d) {
                     if (!d) return;
                     // In case of missing data
@@ -681,7 +690,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     }
 
     // Re-render country table if it already was visible
-    if (selectedCountryCode)
+    if (selectedCountryCode && !countryHistoryGraph.frozen)
         countryTable.data(countries[selectedCountryCode]).render()
 
     if (!isSmallScreen()) {

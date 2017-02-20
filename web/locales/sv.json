@@ -1,0 +1,70 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "Du ser för tillfället en",
+        "limitedversion": "begränsad mobilversion",
+        "forthe": "För",
+        "fullversion": "bästa upplevelse",
+        "visitoncomputer": "besök denna sidan på din dator",
+
+        "thisshowsrealtime": "Detta visar i realtid",
+        "whereelectricitycomesfrom": "var din el kommer från",
+        "and": "och",
+        "howmuchco2": "hur mycket CO2",
+        "wasemitted": "som släpptes ut för att producera den",
+
+        "takeinaccount": "Vi tar hänsyn till",
+        "importexport": "import och export",
+        "betweencountries": "av el mellan länder",
+
+        "thisproject": "Detta projekt har",
+        "opensource": "öppen källkod",
+        "see": "se",
+        "datasources": "datakällor",
+
+        "tip": "Tips: Klicka på ett land för att börja utforska"
+    },
+    "country-panel": {
+        "back": "tillbaka",
+        "source": "källa",
+        "fossilfuels": "fosila bränslen",
+        "electricityprice": "Elpris (nästa dag)",
+        "electricityproduction": "Elproduktion",
+        "showemissions": "visa utsläpp",
+        "bysource": "per källa",
+        "emissions": "Utsläpp",
+        "showelectricity": "visa elproduktion",
+        "co2signal": "Vår <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
+    },
+    "country-history": {
+        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna"
+    },
+    "footer": {
+        "likethisvisu": "Gillar du visualiseringen?",
+        "loveyourfeedback": "Berätta gärna vad du tycker",
+        "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
+        "here": "här"
+    },
+    "legends": {
+        "windpotential": "Möjlighet för vindkraft",
+        "solarpotential": "Möjlighet för solkraft"
+    },
+    "tooltips": {
+        "electricityprice": "Elpris (nästa dag)",
+        "fossilfuels": "fosila bränslen",
+        "crossborderexport": "Gränsöverskridande export",
+        "carbonintensityexport": "Utsläpp av koldioxid för export",
+        "of": "av",
+        "ofconsumption": "av",
+        "ofinstalled": "av installerad kapacitet",
+        "ofelectricity": "av",
+        "utilizing": "Utnyttjar",
+        "withcarbonintensity": "med ett utsläpp av koldioxid på"
+    },
+    "misc": {
+        "carbonintensity": "Utsläpp av koldioxid",
+        "maintitle": "Aktuellt CO2-utsläpp från den europeiska elproduktionen",
+        "lastupdate": "Senaste uppdateringen",
+        "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
+        "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om."
+    }
+}

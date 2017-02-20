@@ -132,7 +132,10 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         selection.select('rect.capacity')
             .transition()
             .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
-            .attr('x', that.LABEL_MAX_WIDTH + that.powerScale(0))
+            .attr('x', function(d) {
+                var value = (!d.isStorage) ? d.capacity : -1 * d.capacity;
+                return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
+            })
             .attr('width', function (d) {
                 return d.capacity !== undefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
             })
@@ -141,15 +144,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     selection.selectAll('rect.capacity,rect.production')
         .on('mouseover', function (d) {
             if (that.productionMouseOverHandler)
-                that.productionMouseOverHandler.call(this, d, that._data.countryCode);
+                that.productionMouseOverHandler.call(this, d, that._data);
         })
         .on('mouseout', function (d) {
             if (that.productionMouseOutHandler)
-                that.productionMouseOutHandler.call(this, d);
+                that.productionMouseOutHandler.call(this, d, that._data);
         })
         .on('mousemove', function (d) {
             if (that.productionMouseMoveHandler)
-                that.productionMouseMoveHandler.call(this, d);
+                that.productionMouseMoveHandler.call(this, d, that._data);
         });
     /*selection.select('rect.production')
         .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
@@ -237,15 +240,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     gNewRow.merge(selection).select('rect')
         .on('mouseover', function (d) {
             if (that.exchangeMouseOverHandler)
-                that.exchangeMouseOverHandler.call(this, d, that._data.countryCode);
+                that.exchangeMouseOverHandler.call(this, d, that._data);
         })
         .on('mouseout', function (d) {
             if (that.exchangeMouseOutHandler)
-                that.exchangeMouseOutHandler.call(this, d);
+                that.exchangeMouseOutHandler.call(this, d, that._data);
         })
         .on('mousemove', function (d) {
             if (that.exchangeMouseMoveHandler)
-                that.exchangeMouseMoveHandler.call(this, d);
+                that.exchangeMouseMoveHandler.call(this, d, that._data);
         })
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
@@ -303,8 +306,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('background-color',
             this._data.co2intensity ?
                 that.co2Color(this._data.co2intensity) : 'gray');
+    d3.select('.country-data-source')
+        .text(this._data.source || '?');
 
     this.resize();
+
+    return this;
 }
 
 CountryTable.prototype.displayByEmissions = function(arg) {
@@ -386,7 +393,7 @@ CountryTable.prototype.data = function(arg) {
             0;
         var production = !d.isStorage ? (that._data.production || {})[d.mode] : undefined;
         var storage = d.isStorage ? (that._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
-        var capacity = !d.isStorage ? (that._data.capacity || {})[d.mode] : undefined;
+        var capacity = (that._data.capacity || {})[d.mode];
         return {
             production: production,
             storage: storage,
@@ -403,8 +410,9 @@ CountryTable.prototype.data = function(arg) {
     this.powerScale
         .domain(this._powerScaleDomain || [
             Math.min(
-                -this._data.maxExport || 0,
-                -this._data.maxStorage || 0),
+                -this._data.maxStorageCapacity || 0,
+                -this._data.maxStorage || 0,
+                -this._data.maxExport || 0),
             Math.max(
                 this._data.maxCapacity || 0,
                 this._data.maxProduction || 0,
