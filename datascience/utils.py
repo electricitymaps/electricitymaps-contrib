@@ -90,3 +90,33 @@ def get_exchange(countries, start_date, end_date, delta):
             if df is not None: df = df.append(p)
             else: df = p
     return df
+
+# get_price
+
+def fetch_price(country_code, t, delta):
+    url = '%s/v1/price' % endpoint
+    params = {
+        'countryCode': country_code,
+        'datetime': t.isoformat()
+    }
+    obj = r.get(url, params=params).json()
+    if not obj: return
+    return obj if (t - arrow.get(obj['datetime'])).total_seconds() < delta * 60.0 else None
+
+def get_price(countries, start_date, end_date, delta):
+    df = None
+    time_span = date_range(start_date, end_date, delta)
+    for country in countries:
+        print 'Fetching country %s..' % country
+        for t in time_span:
+            o = fetch_price(country, t, delta)
+            if not o: continue
+            p = pd.DataFrame(
+                data={
+                    'timestamp': pd.Timestamp(arrow.get(o['datetime']).datetime),
+                    'country': country,
+                    'price': o['price'],
+                }, index = [pd.Timestamp(arrow.get(o['datetime']).datetime)])
+            if df is not None: df = df.append(p)
+            else: df = p
+    return df
