@@ -91,6 +91,38 @@ def get_exchange(countries, start_date, end_date, delta):
             else: df = p
     return df
 
+# get_state
+
+def fetch_state(t, delta):
+    url = '%s/v1/state' % endpoint
+    params = {
+        'datetime': t.isoformat()
+    }
+    obj = r.get(url, params=params).json()
+    if not obj: return
+    return obj['data']
+
+def get_state(countries, start_date, end_date, delta):
+    df = None
+    time_span = date_range(start_date, end_date, delta)
+    for t in time_span:
+        o = fetch_state(t, delta)
+        if not o: continue
+        for countryCode in countries:
+            if not countryCode in o['countries']: continue
+            d = o['countries'][countryCode]
+            if not 'datetime' in d: continue
+            p = pd.DataFrame(
+                data={
+                    'timestamp': pd.Timestamp(arrow.get(d['datetime']).datetime),
+                    'country': countryCode,
+                    'co2intensity': d.get('co2intensity', None),
+                },
+                index=[0])
+            if df is not None: df = df.append(p)
+            else: df = p
+    return df
+
 # get_price
 
 def fetch_price(country_code, t, delta):
