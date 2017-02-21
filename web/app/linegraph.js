@@ -216,7 +216,7 @@ LineGraph.prototype.render = function () {
 
     // x axis
     var xAxis = d3.axisBottom(x)
-        .ticks(6)
+        .ticks(5)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
         // Need to remove 1px in order to see the 1px line

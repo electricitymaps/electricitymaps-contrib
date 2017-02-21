@@ -18,11 +18,10 @@ function getConsumption(country) {
 // ** Country table
 exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color) {
     countryTable
-        .onExchangeMouseOver(function (d, countryCode) {
+        .onExchangeMouseOver(function (d, country) {
             var isExport = d.value < 0;
-            var o = d.value < 0 ? countryCode : d.key;
-            var country = countries[countryCode];
-            var co2intensity = countries[o].co2intensity;
+            var o = d.value < 0 ? country.countryCode : d.key;
+            var co2intensity = country.exchangeCo2Intensities[d.key];
             if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
@@ -35,7 +34,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             tooltip.selectAll('i.country-exchange-flag')
                 .attr('class', 'country-exchange-flag flag-icon flag-icon-' + d.key.toLowerCase());
             tooltip.selectAll('i.country-flag')
-                .attr('class', 'country-flag flag-icon flag-icon-' + countryCode.toLowerCase());
+                .attr('class', 'country-flag flag-icon flag-icon-' + country.countryCode.toLowerCase());
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
@@ -53,7 +52,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             tooltip.select('#domain-name').text(domainName);
 
             tooltip.selectAll('.country-code')
-                .text(countryCode)
+                .text(country.countryCode)
                 .style('font-weight', 'bold');
             tooltip.selectAll('.country-exchange-code')
                 .text(d.key)
@@ -77,8 +76,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                         (d3.event.pageY + 15) + 'px' +
                     ')');
         })
-        .onProductionMouseOver(function (d, countryCode) {
-            var country = countries[countryCode];
+        .onProductionMouseOver(function (d, country) {
             var co2intensity = country.productionCo2Intensities[d.mode];
             if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
@@ -88,15 +86,15 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
-            var capacityFactor = Math.round(d.production / d.capacity * 100) || '?';
+            var value = d.isStorage ? d.storage : d.production;
+            var capacityFactor = Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
             tooltip.select('#capacity-factor-detail').text(
-                (formatPower(d.production) || '?') + ' ' +
+                (formatPower(value) || '?') + ' ' +
                 ' / ' + 
                 (formatPower(d.capacity) || '?'));
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
-            var value = d.isStorage ? d.storage : d.production;
 
             var domain = d.isStorage ? totalPositive : totalPositive;
             var domainName = d.isStorage ?
@@ -114,10 +112,10 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
             tooltip.selectAll('#domain-name').text(domainName);
 
             tooltip.select('.country-code')
-                .text(countryCode)
+                .text(country.countryCode)
                 .style('font-weight', 'bold');
             tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + countryCode.toLowerCase());
+                .attr('class', 'flag-icon flag-icon-' + country.countryCode.toLowerCase());
         })
         .onProductionMouseMove(function(d) {
             d3.select('#countrypanel-production-tooltip')
