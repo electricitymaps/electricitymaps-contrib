@@ -456,9 +456,9 @@
     "importfrom": "Żródło importu",
     "productionimport": "Produkcja/Import",
     "consumption": "Konsumpcja",
-    "electricityfrom": "Żródło elektryczności",
-    "electricityto": "Elektryczność wysyłana do",
-    "electricitystored": "Elektryczność przetrzymywana w",
+    "electricityfrom": "elektryczności pochodzi z",
+    "electricityto": "elektryczności wysyłana do",
+    "electricitystored": "elektryczności przetrzymywana w",
     "zoneShortName": {
         "AL": "Albania",
         "AT": "Austria",
