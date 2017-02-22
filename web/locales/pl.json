@@ -13,8 +13,8 @@
         "wasemitted": "zostały wyemitowane do jej produkcji",
 
         "takeinaccount": "Bierzemy pod uwagę",
-        "importexport": "import i eksport energii elektrycznej",
-        "betweencountries": "pomiędzy krajami",
+        "importexport": "import i eksport",
+        "betweencountries": "energii elektrycznej pomiędzy krajami",
 
         "thisproject": "Ten projekt jest",
         "opensource": "Open Source",
@@ -30,17 +30,17 @@
         "electricityprice": "Cena energii elektrycznej (wyprzedzenie jednodniowe)",
         "electricityproduction": "Produkcja energii elektrycznej",
         "showemissions": "Pokaż emisje",
-        "bysource": "według źródeł",
+        "bysource": "według źródeł energii",
         "emissions": "Emisje",
         "showelectricity": "pokaż energię elektryczną",
         "co2signal": "Nasz <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic."
     },
     "country-history": {
-        "carbonintensity24h": "Emisja C02 w ostatnich 24 godzinach"
+        "carbonintensity24h": "Emisja CO2 w ostatnich 24 godzinach"
     },
     "footer": {
         "likethisvisu": "Podoba Ci się nasza wizualizacja?",
-        "loveyourfeedback": "Podziel się z nami Twoją opinią!",
+        "loveyourfeedback": "Podziel się z nami Twoją opinią",
         "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
         "here": "tutaj"
     },
@@ -61,8 +61,8 @@
         "withcarbonintensity": "z emisją CO2 wynoszącą"
     },
     "misc": {
-        "carbonintensity": "Emisja C02",
-        "maintitle": "Emisja C02 europejskiej konsumpcji energii elektrycznej w czasie rzeczywistym",
+        "carbonintensity": "Emisja CO2",
+        "maintitle": "Emisja CO2 europejskiej konsumpcji energii elektrycznej w czasie rzeczywistym",
         "lastupdate": "Ostatnia aktualizacja",
         "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
         "newversion": "Nowa wersja jest dostępna! Kliknij <a onClick=\"location.reload(true);\">tutaj</a> by odświeżyć."
