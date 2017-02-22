@@ -1,6 +1,5 @@
 var exports = module.exports = {};
 
-//test
 exports.addExchangesConfiguration = function(exchanges) {
     // AL
     exchanges['AL->GR'] = {
