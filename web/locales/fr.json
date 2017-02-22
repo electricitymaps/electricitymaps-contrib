@@ -1,0 +1,71 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "Vous voyez actuellement",
+        "limitedversion": "une version mobile limitée",
+        "forthe": "Pour une",
+        "fullversion": "meilleure expérience",
+        "visitoncomputer": "visitez ce site depuis un ordinateur",
+
+        "thisshowsrealtime": "Cette carte indique",
+        "whereelectricitycomesfrom": "d'où provient votre électricité",
+        "and": "et",
+        "howmuchco2": "quelle quantité de CO2",
+        "wasemitted": "a été émise pour la produire",
+
+        "takeinaccount": "Elle prend en compte les",
+        "importexport": "imports et exports",
+        "betweencountries": "entre pays",
+
+        "thisproject": "Ceci est un projet",
+        "opensource": "Open Source",
+        "see": "voir",
+        "datasources": "source des données",
+
+        "tip": "Cliquez sur un pays pour explorer"
+    },
+    "country-panel": {
+        "back": "retour",
+        "source": "source",
+        "fossilfuels": "énergies fossiles",
+        "electricityprice": "Prix de l'électricité (day-ahead)",
+        "electricityproduction": "Production électrique",
+        "showemissions": "montrer les émissions",
+        "bysource": "par source",
+        "emissions": "Emissions",
+        "showelectricity": "montrer la production électrique",
+        "co2signal": "Notre <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> permet aux appareils et voitures électriques de consommer au bon moment."
+    },
+    "country-history": {
+        "carbonintensity24h": "Intensité carbone des 24 dernières heures"
+    },
+    "footer": {
+        "likethisvisu": "Vous aimez cette visualisation?",
+        "loveyourfeedback": "Envoyez-nous vos commentaires",
+        "foundbugs": "Un bug ? Une idée ? Cliquez",
+        "here": "ici"
+    },
+    "legends": {
+        "windpotential": "Potentiel éolien",
+        "solarpotential": "Potentiel solaire"
+    },
+    "tooltips": {
+        "electricityprice": "Prix de l'électricité (day-ahead)",
+        "fossilfuels": "énergies fossiles",
+        "crossborderexport": "Export transfrontalier",
+        "carbonintensityexport": "Intensité carbone de l'export",
+        "of": "de l'électricité",
+        "ofconsumption": "de la consomation",
+        "ofinstalled": "de la capacité installée",
+        "ofelectricity": "de l'électricité",
+        "capacity": " ",
+        "utilizing": "utilisant",
+        "withcarbonintensity": "avec une intensité carbone de"
+    },
+    "misc": {
+        "carbonintensity": "Intensité carbone",
+        "maintitle": "Emissions de CO2 de la production électrique Européenne en temps réel",
+        "lastupdate": "Dernière mise à jour",
+        "oops": "Oops! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
+        "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger."
+    }
+}

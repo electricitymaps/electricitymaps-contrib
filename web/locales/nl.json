@@ -1,0 +1,70 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "Je ziet momenteel een",
+        "limitedversion": "beperkte mobiele versie",
+        "forthe": "Voor de",
+        "fullversion": "volledige ervaring",
+        "visitoncomputer": "kan je deze pagina bekijken via een computer",
+
+        "thisshowsrealtime": "Dit toont live",
+        "whereelectricitycomesfrom": "waar je elektriciteit vandaan komt",
+        "and": "en",
+        "howmuchco2": "hoeveel CO2",
+        "wasemitted": "werd uitgestoten bij de productie ervan",
+
+        "takeinaccount": "We nemen de elektriciteit in beschouwing afkomstig van",
+        "importexport": "invoer en uitvoer",
+        "betweencountries": "tussen landen",
+
+        "thisproject": "Dit project is",
+        "opensource": "Open Source",
+        "see": "zie",
+        "datasources": "data sources",
+
+        "tip": "Tip: Klik op een land om alle informatie te ontdekken"
+    },
+    "country-panel": {
+        "back": "terug",
+        "source": "bron",
+        "fossilfuels": "fossiele brandstoffen",
+        "electricityprice": "Elektriciteitsprijs (day-ahead)",
+        "electricityproduction": "Elektriciteitsproductie",
+        "showemissions": "toon uitstoot",
+        "bysource": "per bron",
+        "emissions": "Uitstoot",
+        "showelectricity": "toon elektriciteit",
+        "co2signal": "Ons product <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
+    },
+    "country-history": {
+        "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
+    },
+    "footer": {
+        "likethisvisu": "Vind je de visualisatie super?",
+        "loveyourfeedback": "We krijgen graag feedback",
+        "foundbugs": "Ondervind je problemen of heb je ideëen? Meld ze",
+        "here": "hier"
+    },
+    "legends": {
+        "windpotential": "potentieel aan Windenergie",
+        "solarpotential": "potentieel aan Zonne-energie"
+    },
+    "tooltips": {
+        "electricityprice": "Elektriciteitsprijs (day-ahead)",
+        "fossilfuels": "fossiele brandstoffen",
+        "crossborderexport": "uitvoer over de landsgrenzen",
+        "carbonintensityexport": "Koolstofintensiteit van uitvoer",
+        "of": "van de",
+        "ofconsumption": "van consumptie",
+        "ofinstalled": "van de geïnstalleerde capaciteit",
+        "ofelectricity": "van de",
+        "utilizing": "werkt aan",
+        "withcarbonintensity": "met een koolstofintensiteit van"
+    },
+    "misc": {
+        "carbonintensity": "Koolstofintensiteit",
+        "maintitle": "Live CO2 uitstoot van het Europese elektriciteitsverbruik",
+        "lastupdate": "Laatst bijgewerkt",
+        "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
+        "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
+    }
+}

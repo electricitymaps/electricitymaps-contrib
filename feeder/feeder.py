@@ -1,14 +1,15 @@
 import arrow
 import glob
 import pymongo
-import json, logging, os, schedule, time
+import json, logging, os, schedule, subprocess, time
 import requests
 import snappy
 
 from bson.binary import Binary
 from pymemcache.client.base import Client
 
-from parsers import EE, FR, HU, RO
+from parsers import IS
+from parsers import FR
 from parsers import ENTSOE
 from parsers import weather
 from migrate_db import migrate
@@ -50,8 +51,6 @@ if not ENV == 'development':
     )
     smtp_handler.setLevel(logging.WARN)
     logger.addHandler(smtp_handler)
-    # Add statsd
-    logging.getLogger('statsd').addHandler(stdout_handler)
 else:
     logger.setLevel(logging.DEBUG)
 
@@ -66,23 +65,26 @@ CONSUMPTION_PARSERS = {
     'CZ': ENTSOE.fetch_consumption,
     'DE': ENTSOE.fetch_consumption,
     'DK': ENTSOE.fetch_consumption,
-    # 'EE': EE.fetch_consumption,
+    'EE': ENTSOE.fetch_consumption,
     'ES': ENTSOE.fetch_consumption,
     'FI': ENTSOE.fetch_consumption,
     # 'FR': FR.fetch_consumption,
     'GB': ENTSOE.fetch_consumption,
+    'GB-NIR': ENTSOE.fetch_consumption,
     'GR': ENTSOE.fetch_consumption,
-    # 'HU': HU.fetch_consumption,
+    'HU': ENTSOE.fetch_consumption,
     'IE': ENTSOE.fetch_consumption,
     'IT': ENTSOE.fetch_consumption,
     'LT': ENTSOE.fetch_consumption,
     'LU': ENTSOE.fetch_consumption,
     'LV': ENTSOE.fetch_consumption,
+    'ME': ENTSOE.fetch_consumption,
     'NL': ENTSOE.fetch_consumption,
     'NO': ENTSOE.fetch_consumption,
     'PL': ENTSOE.fetch_consumption,
     'PT': ENTSOE.fetch_consumption,
-    # 'RO': RO.fetch_consumption,
+    'RO': ENTSOE.fetch_consumption,
+    'RS': ENTSOE.fetch_consumption,
     'SE': ENTSOE.fetch_consumption,
     'SI': ENTSOE.fetch_consumption,
     'SK': ENTSOE.fetch_consumption,
@@ -95,23 +97,27 @@ PRODUCTION_PARSERS = {
     'CZ': ENTSOE.fetch_production,
     'DE': ENTSOE.fetch_production,
     'DK': ENTSOE.fetch_production,
-    'EE': EE.fetch_production,
+    'EE': ENTSOE.fetch_production,
     'ES': ENTSOE.fetch_production,
     'FI': ENTSOE.fetch_production,
     'FR': FR.fetch_production,
     'GB': ENTSOE.fetch_production,
+    'GB-NIR': ENTSOE.fetch_production,
     'GR': ENTSOE.fetch_production,
-    'HU': HU.fetch_production,
+    'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
+    'IS': IS.fetch_production,
     'IT': ENTSOE.fetch_production,
     'LT': ENTSOE.fetch_production,
     'LU': ENTSOE.fetch_production,
     'LV': ENTSOE.fetch_production,
+    'ME': ENTSOE.fetch_production,
     'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
     'PL': ENTSOE.fetch_production,
     'PT': ENTSOE.fetch_production,
-    'RO': RO.fetch_production,
+    'RO': ENTSOE.fetch_production,
+    'RS': ENTSOE.fetch_production,
     'SE': ENTSOE.fetch_production,
     'SI': ENTSOE.fetch_production,
     'SK': ENTSOE.fetch_production,
@@ -119,99 +125,141 @@ PRODUCTION_PARSERS = {
 # Keys are unique because both countries are sorted alphabetically
 EXCHANGE_PARSERS = {
     # AL
-    'AL->GR': ENTSOE.fetch_exchange,
+    'AL->GR':     ENTSOE.fetch_exchange,
+    'AL->ME':     ENTSOE.fetch_exchange,
+    'AL->RS':     ENTSOE.fetch_exchange,
     # AT
-    'AT->CH': ENTSOE.fetch_exchange,
-    'AT->CZ': ENTSOE.fetch_exchange,
-    'AT->DE': ENTSOE.fetch_exchange,
-    'AT->HU': ENTSOE.fetch_exchange,
-    'AT->IT': ENTSOE.fetch_exchange,
-    'AT->SI': ENTSOE.fetch_exchange,
+    'AT->CH':     ENTSOE.fetch_exchange,
+    'AT->CZ':     ENTSOE.fetch_exchange,
+    'AT->DE':     ENTSOE.fetch_exchange,
+    'AT->HU':     ENTSOE.fetch_exchange,
+    'AT->IT':     ENTSOE.fetch_exchange,
+    'AT->SI':     ENTSOE.fetch_exchange,
+    # BA
+    'BA->ME':     ENTSOE.fetch_exchange,
+    'BA->RS':     ENTSOE.fetch_exchange,
     # BE
-    'BE->FR': ENTSOE.fetch_exchange,
-    'BE->NL': ENTSOE.fetch_exchange,
+    'BE->FR':     ENTSOE.fetch_exchange,
+    'BE->NL':     ENTSOE.fetch_exchange,
     # BG
-    'BG->GR': ENTSOE.fetch_exchange,
-    'BG->MK': ENTSOE.fetch_exchange,
-    'BG->RO': RO.fetch_exchange,
-    'BG->RS': ENTSOE.fetch_exchange,
-    'BG->TR': ENTSOE.fetch_exchange,
+    'BG->GR':     ENTSOE.fetch_exchange,
+    'BG->MK':     ENTSOE.fetch_exchange,
+    'BG->RO':     ENTSOE.fetch_exchange,
+    'BG->RS':     ENTSOE.fetch_exchange,
+    'BG->TR':     ENTSOE.fetch_exchange,
     # BY
-    'BY->LT': ENTSOE.fetch_exchange,
+    'BY->LT':     ENTSOE.fetch_exchange,
     # CH
-    'CH->DE': ENTSOE.fetch_exchange,
-    'CH->FR': ENTSOE.fetch_exchange,
-    'CH->IT': ENTSOE.fetch_exchange,
+    'CH->DE':     ENTSOE.fetch_exchange,
+    'CH->FR':     ENTSOE.fetch_exchange,
+    'CH->IT':     ENTSOE.fetch_exchange,
     # CZ
-    'CZ->SK': ENTSOE.fetch_exchange,
-    'CZ->PL': ENTSOE.fetch_exchange,
-    'CZ->DE': ENTSOE.fetch_exchange,
+    'CZ->SK':     ENTSOE.fetch_exchange,
+    'CZ->PL':     ENTSOE.fetch_exchange,
+    'CZ->DE':     ENTSOE.fetch_exchange,
     # DE
-    'DE->DK': ENTSOE.fetch_exchange,
-    'DE->FR': ENTSOE.fetch_exchange,
-    'DE->PL': ENTSOE.fetch_exchange,
-    'DE->NL': ENTSOE.fetch_exchange,
-    'DE->SE': ENTSOE.fetch_exchange,
+    'DE->DK':     ENTSOE.fetch_exchange,
+    'DE->FR':     ENTSOE.fetch_exchange,
+    'DE->PL':     ENTSOE.fetch_exchange,
+    'DE->NL':     ENTSOE.fetch_exchange,
+    'DE->SE':     ENTSOE.fetch_exchange,
     # DK
-    'DK->NO': ENTSOE.fetch_exchange,
-    'DK->SE': ENTSOE.fetch_exchange,
+    'DK->NO':     ENTSOE.fetch_exchange,
+    'DK->SE':     ENTSOE.fetch_exchange,
     # EE
-    'EE->FI': ENTSOE.fetch_exchange,
-    'EE->LV': ENTSOE.fetch_exchange,
+    'EE->FI':     ENTSOE.fetch_exchange,
+    'EE->LV':     ENTSOE.fetch_exchange,
+    'EE->RU':     ENTSOE.fetch_exchange,
     # ES
-    'ES->FR': ENTSOE.fetch_exchange,
-    'ES->PT': ENTSOE.fetch_exchange,
+    'ES->FR':     ENTSOE.fetch_exchange,
+    'ES->PT':     ENTSOE.fetch_exchange,
     # FI
-    'FI->NO': ENTSOE.fetch_exchange,
-    'FI->RU': ENTSOE.fetch_exchange,
-    'FI->SE': ENTSOE.fetch_exchange,
+    'FI->NO':     ENTSOE.fetch_exchange,
+    'FI->RU':     ENTSOE.fetch_exchange,
+    'FI->SE':     ENTSOE.fetch_exchange,
     # FR
-    'FR->GB': ENTSOE.fetch_exchange,
-    'FR->IT': ENTSOE.fetch_exchange,
+    'FR->GB':     ENTSOE.fetch_exchange,
+    'FR->IT':     ENTSOE.fetch_exchange,
     # GB
-    'GB->IE': ENTSOE.fetch_exchange,
-    'GB->NL': ENTSOE.fetch_exchange,
+    'GB->IE':     ENTSOE.fetch_exchange,
+    'GB->GB-NIR': ENTSOE.fetch_exchange,
+    'GB->NL':     ENTSOE.fetch_exchange,
+    # GB-NIR
+    'GB-NIR->IE': ENTSOE.fetch_exchange,
     # GR
-    'GR->IT': ENTSOE.fetch_exchange,
-    'GR->MK': ENTSOE.fetch_exchange,
-    'GR->TR': ENTSOE.fetch_exchange,
+    'GR->IT':     ENTSOE.fetch_exchange,
+    'GR->MK':     ENTSOE.fetch_exchange,
+    'GR->TR':     ENTSOE.fetch_exchange,
     # HR
-    'HR->HU': ENTSOE.fetch_exchange,
+    'HR->HU':     ENTSOE.fetch_exchange,
+    'HR->RS':     ENTSOE.fetch_exchange,
     # HU
-    'HU->RO': RO.fetch_exchange,
-    'HU->RS': ENTSOE.fetch_exchange,
-    'HU->SK': ENTSOE.fetch_exchange,
-    # 'HU->UA': ENTSOE.fetch_exchange,
+    'HU->RO':     ENTSOE.fetch_exchange,
+    'HU->RS':     ENTSOE.fetch_exchange,
+    'HU->SK':     ENTSOE.fetch_exchange,
+    'HU->UA':     ENTSOE.fetch_exchange,
     # IT
-    'IT->MT': ENTSOE.fetch_exchange,
-    'IT->SI': ENTSOE.fetch_exchange,
+    'IT->MT':     ENTSOE.fetch_exchange,
+    'IT->SI':     ENTSOE.fetch_exchange,
     # LT
-    'LT->LV': ENTSOE.fetch_exchange,
-    'LT->PL': ENTSOE.fetch_exchange,
-    'LT->RU': ENTSOE.fetch_exchange,
-    'LT->SE': ENTSOE.fetch_exchange,
+    'LT->LV':     ENTSOE.fetch_exchange,
+    'LT->PL':     ENTSOE.fetch_exchange,
+    'LT->RU':     ENTSOE.fetch_exchange,
+    'LT->SE':     ENTSOE.fetch_exchange,
     # LV
-    'LV->RU': ENTSOE.fetch_exchange,
+    'LV->RU':     ENTSOE.fetch_exchange,
+    # ME
+    'ME->RS':     ENTSOE.fetch_exchange,
     # MD
-    'MD->RO': RO.fetch_exchange,
+    # 'MD->RO':     ENTSOE.fetch_exchange,
+    # MK
+    'MK->RS':     ENTSOE.fetch_exchange,
+    # NL
+    'NL->NO':     ENTSOE.fetch_exchange,
     # NO
-    'NO->SE': ENTSOE.fetch_exchange,
+    'NO->SE':     ENTSOE.fetch_exchange,
     # PL
-    'PL->SE': ENTSOE.fetch_exchange,
-    'PL->SK': ENTSOE.fetch_exchange,
+    'PL->SE':     ENTSOE.fetch_exchange,
+    'PL->SK':     ENTSOE.fetch_exchange,
+    'PL->UA':     ENTSOE.fetch_exchange,
     # RO
-    'RO->RS': RO.fetch_exchange,
-    'RO->UA': RO.fetch_exchange,
+    'RO->RS':     ENTSOE.fetch_exchange,
+    'RO->UA':     ENTSOE.fetch_exchange,
     # SK
-    # 'SK->UA': ENTSOE.fetch_exchange,
+    'SK->UA':     ENTSOE.fetch_exchange,
 }
 
-# Set up stats
-import statsd
-statsd.init_statsd({
-    'STATSD_HOST': os.environ.get('STATSD_HOST', 'localhost'),
-    'STATSD_BUCKET_PREFIX': 'electricymap_feeder'
-})
+PRICE_PARSERS = {
+    'AT': ENTSOE.fetch_price,
+    'BE': ENTSOE.fetch_price,
+    'BG': ENTSOE.fetch_price,
+    'CH': ENTSOE.fetch_price,
+    'CZ': ENTSOE.fetch_price,
+    'DE': ENTSOE.fetch_price,
+    'DK': ENTSOE.fetch_price,
+    'EE': ENTSOE.fetch_price,
+    'ES': ENTSOE.fetch_price,
+    'FI': ENTSOE.fetch_price,
+    'FR': FR.fetch_price,
+    'GB': ENTSOE.fetch_price,
+    'GB-NIR': ENTSOE.fetch_price,
+    'GR': ENTSOE.fetch_price,
+    'HU': ENTSOE.fetch_price,
+    'IE': ENTSOE.fetch_price,
+    'IT': ENTSOE.fetch_price,
+    'LT': ENTSOE.fetch_price,
+    'LU': ENTSOE.fetch_price,
+    'LV': ENTSOE.fetch_price,
+    'NL': ENTSOE.fetch_price,
+    'NO': ENTSOE.fetch_price,
+    'PL': ENTSOE.fetch_price,
+    'PT': ENTSOE.fetch_price,
+    'RO': ENTSOE.fetch_price,
+    'RS': ENTSOE.fetch_price,
+    'SE': ENTSOE.fetch_price,
+    'SI': ENTSOE.fetch_price,
+    'SK': ENTSOE.fetch_price,
+}
 
 # Set up database
 client = pymongo.MongoClient(os.environ.get('MONGO_URL', 'mongodb://localhost:27017'))
@@ -220,12 +268,14 @@ col_consumption = db['consumption']
 col_gfs = db['gfs']
 col_production = db['production']
 col_exchange = db['exchange']
+col_price = db['price']
 # Set up indices
 col_consumption.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', 1), ('key', 1)], unique=True)
 col_gfs.create_index([('refTime', -1), ('targetTime', -1), ('key', 1)], unique=True)
 col_production.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 col_exchange.create_index([('datetime', -1), ('sortedCountryCodes', 1)], unique=True)
+col_price.create_index([('datetime', -1), ('countryCode', 1)], unique=True)
 
 # Set up memcached
 MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', None)
@@ -278,52 +328,57 @@ def db_upsert(col, obj, database_key):
 def fetch_consumptions():
     for country_code, parser in CONSUMPTION_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_consumption'):
-                obj = parser(country_code, session)
-                if not obj: continue
-                validate_consumption(obj, country_code)
-                # Database insert
-                result = db_upsert(col_consumption, obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            obj = parser(country_code, session)
+            if not obj: continue
+            validate_consumption(obj, country_code)
+            # Database insert
+            result = db_upsert(col_consumption, obj, 'countryCode')
+            if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_consumption_error')
             logger.exception('Exception while fetching consumption of %s' % country_code)
 
 def fetch_productions():
     for country_code, parser in PRODUCTION_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_production'):
-                obj = parser(country_code, session)
-                if not obj: continue
-                validate_production(obj, country_code)
-                # Database insert
-                result = db_upsert(col_production, obj, 'countryCode')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            obj = parser(country_code, session)
+            if not obj: continue
+            validate_production(obj, country_code)
+            # Database insert
+            result = db_upsert(col_production, obj, 'countryCode')
+            if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_production_error')
             logger.exception('Exception while fetching production of %s' % country_code)
 
 def fetch_exchanges():
     for k, parser in EXCHANGE_PARSERS.iteritems():
         try:
-            with statsd.StatsdTimer('fetch_one_exchange'):
-                country_code1, country_code2 = k.split('->')
-                if sorted([country_code1, country_code2])[0] != country_code1:
-                    raise Exception('Exchange key pair %s is not ordered alphabetically' % k)
-                obj = parser(country_code1, country_code2, session)
-                if not obj: continue
-                if obj.get('sortedCountryCodes', None) != k:
-                    raise Exception("Sorted country codes %s and %s don't match" % (obj.get('sortedCountryCodes', None), k))
-                if not 'datetime' in obj:
-                    raise Exception('datetime was not returned for %s' % k)
-                if arrow.get(obj['datetime']) > arrow.now():
-                    raise Exception("Data from %s can't be in the future" % k)
-                # Database insert
-                result = db_upsert(col_exchange, obj, 'sortedCountryCodes')
-                if (result.modified_count or result.upserted_id) and cache: cache.delete(MEMCACHED_STATE_KEY)
+            country_code1, country_code2 = k.split('->')
+            if sorted([country_code1, country_code2])[0] != country_code1:
+                raise Exception('Exchange key pair %s is not ordered alphabetically' % k)
+            obj = parser(country_code1, country_code2, session)
+            if not obj: continue
+            if obj.get('sortedCountryCodes', None) != k:
+                raise Exception("Sorted country codes %s and %s don't match" % (obj.get('sortedCountryCodes', None), k))
+            if not 'datetime' in obj:
+                raise Exception('datetime was not returned for %s' % k)
+            if arrow.get(obj['datetime']) > arrow.now():
+                raise Exception("Data from %s can't be in the future" % k)
+            # Database insert
+            result = db_upsert(col_exchange, obj, 'sortedCountryCodes')
+            if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
         except:
-            statsd.increment('fetch_one_exchange_error')
             logger.exception('Exception while fetching exchange of %s' % k)
+
+def fetch_price():
+    for country_code, parser in PRICE_PARSERS.iteritems():
+        try:
+            obj = parser(country_code,session)
+            if not obj: continue
+            # Database insert
+            result = db_upsert(col_price,obj, 'countryCode')
+            if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
+        except:
+            logger.exception('Exception while fetching pricing of %s' % country_code)
 
 def db_upsert_forecast(col, obj, database_key):
     now = arrow.now().datetime
@@ -376,38 +431,47 @@ def fetch_next_forecasts(now=None, lookahead=6, cached=False):
 
 def fetch_weather():
     try:
-        with statsd.StatsdTimer('fetch_weather'):
-            objs = fetch_next_forecasts(cached=True)
-            for obj in objs:
-                wind = {
-                    'refTime': obj['refTime'],
-                    'targetTime': obj['targetTime'],
-                    'data': Binary(snappy.compress(json.dumps(obj['wind']))),
-                    'key': 'wind'
-                }
-                solar = {
-                    'refTime': obj['refTime'],
-                    'targetTime': obj['targetTime'],
-                    'data': Binary(snappy.compress(json.dumps(obj['solar']))),
-                    'key': 'solar'
-                }
-                db_upsert_forecast(col_gfs, wind, 'key')
-                db_upsert_forecast(col_gfs, solar, 'key')
+        objs = fetch_next_forecasts(cached=True)
+        for obj in objs:
+            wind = {
+                'refTime': obj['refTime'],
+                'targetTime': obj['targetTime'],
+                'data': Binary(snappy.compress(json.dumps(obj['wind']))),
+                'key': 'wind'
+            }
+            solar = {
+                'refTime': obj['refTime'],
+                'targetTime': obj['targetTime'],
+                'data': Binary(snappy.compress(json.dumps(obj['solar']))),
+                'key': 'solar'
+            }
+            db_upsert_forecast(col_gfs, wind, 'key')
+            db_upsert_forecast(col_gfs, solar, 'key')
     except:
-        statsd.increment('fetch_weather_error')
         logger.exception('fetch_weather()')
 
+def push_cache():
+    try:
+        subprocess.check_call(['node', 'push_cache.js'], shell=False)
+    except:
+        logger.exception('push_cache()')
+
+def fetch_electricity():
+    # Fetch all electricity data
+    fetch_weather()
+    fetch_consumptions()
+    fetch_productions()
+    fetch_exchanges()
+    fetch_price()
+    push_cache()
+
 migrate(db, validate_production)
+push_cache()
 
 schedule.every(15).minutes.do(fetch_weather)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_consumptions)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_productions)
-schedule.every(INTERVAL_SECONDS).seconds.do(fetch_exchanges)
+schedule.every(INTERVAL_SECONDS).seconds.do(fetch_electricity)
 
-fetch_weather()
-fetch_consumptions()
-fetch_productions()
-fetch_exchanges()
+fetch_electricity()
 
 while True:
     schedule.run_pending()

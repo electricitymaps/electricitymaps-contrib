@@ -1,3 +1,19 @@
+* {
+    /* Force width to include padding */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: lightblue;
+}
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 html, body {
     margin: 0 !important;
     padding: 0 !important;
@@ -6,7 +22,19 @@ html, body {
     background-color: #283640;
 }
 
-#connection-warning {
+hr {
+    background-color: gray;
+    color: gray;
+    border: none;
+    height: 1px;
+}
+
+.axis path,
+.axis line {
+    shape-rendering: crispEdges;
+}
+
+.flash-message {
     position: fixed;
     display: block;
     z-index: 99;
@@ -14,20 +42,11 @@ html, body {
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
+    top: -70px; /* hidden state */
 }
-
-#connection-warning.show {
-    top: 0;
-}
-
-#connection-warning.hide {
-    top: -60px; 
-}
-
-#connection-warning .inner {
+.flash-message .inner {
     display: block;
     margin: 0 auto;
-    background-color: red;
     padding: 10px;
     text-align: center;
     color: white;
@@ -37,14 +56,15 @@ html, body {
     max-width: 750px;
 }
 
-.watermark {
-    padding: 18px;
-    opacity: 0.5;
-    transition: all 0.5s ease;
-    vertical-align: bottom;
+#connection-warning .inner {
+    background-color: red;
 }
-.watermark:hover {
-    opacity: 1;
+#new-version .inner {
+    background-color: #3F51B5;
+}
+
+.watermark {
+    vertical-align: bottom;
 }
 .overlay {
     width: 100%;
@@ -83,41 +103,64 @@ html, body {
     stroke: #185c96;
     stroke-width: 0.7px;
 }
-
-.content {
-}
 .panel {
     background-color: rgba(70, 70, 70, 0.95);
     border: 1px solid grey;
     color: lightgray;
-    font-size: 0.7em;
+    font-size: 0.7rem;
 }
-.panel-container {
-    margin: 10px;
-    padding: 10px;
-    line-height: 1.7em;
+.left-panel {
+    padding: 1rem;
+    line-height: 1.2rem;
+    height: 100%;
+    width: 22rem;
+    position: relative;
+    overflow-y: auto;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
 }
-.panel-container h1 {
+.left-panel h1 {
     line-height: 1.3;
     color: white;
     font-size: 1.6em;
     margin: 0px;
 }
-.panel-container > svg {
+.left-panel > svg {
     display: block;
 }
-.panel-container, panel-container.text {
+.left-panel, left-panel.text {
     color: lightgray;
     fill: lightgray;
+}
+.left-panel .axis .tick line {
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: gray;
+    stroke-width: 1;
+}
+.left-panel .axis .tick text {
+    fill: gray;
+    font-size: 0.6rem;
+}
+.left-panel .axis path.domain {
+    fill: none;
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: gray;
 }
 .country-table {
     width: 100%;
 }
-.country-table-initial-text {
+.country-history {
+    width: 100%;
+    height: 10rem;
+}
+.left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity, .emission-intensity, #exchange-tooltip .flow {
+.country-emission-intensity, .country-spot-price, .emission-intensity, #exchange-tooltip .flow {
     font-weight: bold;
 }
 .emission-rect {
@@ -128,48 +171,13 @@ html, body {
 }
 
 /* ** LEGEND ** */
-.legend {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 10px;
-    width: 460px;
+.layer-toggle {
+    font-size: 0.7rem;
 }
 .colorbar {
     height: 30px;
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
-}
-.colorbar-unit {
-    color: darkgray;
-    overflow: auto;
-    display: inline-block;
-    height: 100%;
-    width: 150px;
-    text-align: right;
-    font-size: 0.6em;
-    line-height: 1.5em;
-}
-
-.co2-legend > .colorbar-unit {
-    color: black;
-}
-.co2-legend .x.axis text {
-    fill: black !important;
-}
-.co2-legend .x.axis line {
-    stroke: black !important;
-}
-.co2-legend rect.border {
-    stroke: black !important;
-}
-
-a {
-    text-decoration: none;
-    color: lightblue;
-}
-a:hover {
-    text-decoration: underline;
 }
 
 @keyframes appear-from-top {
@@ -193,41 +201,34 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     display: none;
     padding: 5px;
     position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
-@media screen and (min-width: 750px) {
+/* Medium and large devices (tablets, desktops, etc.) */
+@media (min-width: 768px) {
     .small-screen-visible {
         display: none;
     }
-    .panel {
-        position: absolute;
-        top: 0px;
-    }
     .watermark {
-        position: absolute;
+        position: fixed;
         bottom: 0px;
-    }
-}
-@media screen and (max-width: 750px) {
-    .large-screen-visible {
-        display: none;
-    }
-    .content {
-        display: table;
-    }
-    .panel {
-        position: relative;
-    }
-    .watermark {
-        /* display: table-footer-group; */
+        right: 0px;
+        padding: 18px;
     }
 }
 
-hr {
-    background-color: gray;
-    color: gray;
-    border: none;
-    height: 1px;
+/* Small devices (phones, etc.) */
+@media (max-width: 768px) {
+    .large-screen-visible {
+        display: none;
+    }
+    .left-panel {
+        width: 100%;
+    }
+    .watermark {
+        margin-top: 2rem;
+    }
 }
 
 .country-picker-container p {
@@ -266,4 +267,12 @@ hr {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     float: left;
+}
+
+#current-datetime {
+    color: lightgrey;
+}
+
+.time-travel {
+    display: none;
 }

@@ -1,7 +1,9 @@
 version: '2'
 services:
   web:
-    build: web
+    build:
+      context: .
+      dockerfile: web/Dockerfile
     command: npm run server-dev
     depends_on: [mongo, memcached]
     environment:
@@ -10,14 +12,18 @@ services:
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     ports: ['8000:8000']
     volumes:
-      - './web/app:/home/app'
-      - './web/package.json:/home/package.json'
-      - './web/public:/home/public'
-      - './web/server.js:/home/server.js'
-      - './web/views:/home/views'
-      - './web/webpack.config.js:/home/webpack.config.js'
+      - './shared:/home/shared'
+      - './web/app:/home/web/app'
+      - './web/package.json:/home/web/package.json'
+      - './web/public:/home/web/public'
+      - './web/server.js:/home/web/server.js'
+      - './web/views:/home/web/views'
+      - './web/webpack.config.js:/home/web/webpack.config.js'
+      - './web/locales:/home/web/locales'
   feeder:
-    build: feeder
+    build:
+      context: .
+      dockerfile: feeder/Dockerfile
     depends_on: [mongo]
     env_file: ./secrets.env
     environment:
@@ -25,8 +31,8 @@ services:
       - MEMCACHED_HOST=memcached
       - 'MONGO_URL=mongodb://mongo:27017/electricity'
     volumes:
-      - './feeder/feeder.py:/home/feeder.py'
-      - './feeder/parsers:/home/parsers'
+      - './feeder:/home/feeder'
+      - './shared:/home/shared'
   memcached:
     image: memcached
   mongo:

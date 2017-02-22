@@ -9,6 +9,7 @@ defaultCo2eqFootprint = {
     'oil': 650,
     'solar': 45,
     'wind': 12,
+    'geothermal': 24,
     'unknown': 700, // assume conventional
     'other': 700 // same as 'unknown'. Here for backward compatibility
 }; // in gCo2eq/kWh

@@ -4,10 +4,10 @@ function ExchangeLayer(selector, co2Color) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.STROKE_CO2_THRESHOLD = 550;
-    this.exchangeAnimationDurationScale = d3.scalePow()
-        .exponent(2)
-        .domain([500, 6000])
-        .range([2000, 10]);
+    this.exchangeAnimationDurationScale = d3.scaleLinear()
+        .domain([500, 5000])
+        .range([1500, 50])
+        .clamp(true);
     this.co2Color = co2Color;
 
     this.root = d3.select(selector);
@@ -54,9 +54,12 @@ ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
             .on('start', function repeat() {
                 d3.active(this)
                     .attr('stop-color', function(i) { 
-                        if (i == 2)
-                            return d3.hsl(d3.rgb(color)).l > 0.1 ? d3.rgb(color).brighter(2) : d3.rgb('lightgray')
-                        else
+                        if (i == 2) {
+                            if (d3.hsl(d3.rgb(color)).l > 0.2)
+                                return d3.rgb(color).brighter(2);
+                            else
+                                return d3.rgb('lightgray');
+                        } else
                             return color;
                     })
                     .transition()

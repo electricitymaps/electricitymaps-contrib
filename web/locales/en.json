@@ -1,0 +1,70 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "You're currently seeing a ",
+        "limitedversion": "limited mobile version",
+        "forthe": "For the",
+        "fullversion": "full experience",
+        "visitoncomputer": "visit this page on your computer",
+
+        "thisshowsrealtime": "This shows in real-time",
+        "whereelectricitycomesfrom": "where your electricity comes from",
+        "and": "and",
+        "howmuchco2": "how much CO2",
+        "wasemitted": "was emitted to produce it",
+
+        "takeinaccount": "We take into account electricity",
+        "importexport": "imports and exports",
+        "betweencountries": "between countries",
+
+        "thisproject": "This project is",
+        "opensource": "Open Source",
+        "see": "see",
+        "datasources": "data sources",
+
+        "tip": "Tip: Click on a country to start exploring"
+    },
+    "country-panel": {
+        "back": "back",
+        "source": "source",
+        "fossilfuels": "fossil fuels",
+        "electricityprice": "Electricity price (day-ahead)",
+        "electricityproduction": "Electricity production",
+        "showemissions": "show emissions",
+        "bysource": "by source",
+        "emissions": "Emissions",
+        "showelectricity": "show electricity",
+        "co2signal": "Our <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
+    },
+    "country-history": {
+        "carbonintensity24h": "Carbon intensity in the last 24 hours"
+    },
+    "footer": {
+        "likethisvisu": "Like the visualization?",
+        "loveyourfeedback": "We'd love your feedback",
+        "foundbugs": "Found bugs or have ideas? Report them",
+        "here": "here"
+    },
+    "legends": {
+        "windpotential": "Wind power potential",
+        "solarpotential": "Solar power potential"
+    },
+    "tooltips": {
+        "electricityprice": "Electricity price (day-ahead)",
+        "fossilfuels": "fossil fuels",
+        "crossborderexport": "Cross-border export",
+        "carbonintensityexport": "Carbon intensity of export",
+        "of": "of",
+        "ofconsumption": "of",
+        "ofinstalled": "of installed capacity",
+        "ofelectricity": "of",
+        "utilizing": "utilizing",
+        "withcarbonintensity": "with a carbon intensity of"
+    },
+    "misc": {
+        "carbonintensity": "Carbon intensity",
+        "maintitle": "Live CO2 emissions of the European electricity consumption",
+        "lastupdate": "Last update",
+        "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
+        "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload."
+    }
+}
