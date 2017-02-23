@@ -309,5 +309,17 @@
             "wind": 3,
             "solar": 263
         }
+    },
+    "SK": {
+        "capacity": {
+            "biomass": 363,
+            "nuclear": 1940,
+            "coal": 1008,
+	          "gas" : 1093,
+            "oil": 195,
+            "hydro": 2533,
+            "wind": 3,
+            "solar": 532
+        }
     }
 }
