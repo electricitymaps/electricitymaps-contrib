@@ -289,10 +289,13 @@
     },
     "SE": {
         "capacity": {
-            "hydro": 16200,
-            "nuclear": 8849,
+            "hydro": 15945,
+            "nuclear": 9100,
             "solar": 79,
-            "wind": 6025
+            "wind": 5960,
+            "biomass": 220,
+            "gas": 698,
+            "oil": 2251
         }
     },
     "SI": {
@@ -305,6 +308,18 @@
             "gas": 491,
             "wind": 3,
             "solar": 263
+        }
+    },
+    "SK": {
+        "capacity": {
+            "biomass": 363,
+            "nuclear": 1940,
+            "coal": 1008,
+	          "gas" : 1093,
+            "oil": 195,
+            "hydro": 2533,
+            "wind": 3,
+            "solar": 532
         }
     }
 }

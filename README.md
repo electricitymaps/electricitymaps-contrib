@@ -92,13 +92,10 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
 - Portugal: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Serbia: [EPS] (http://www.eps.rs/Eng/Tehnicki%20Izvestaji/TEHNICKI%20GODISNJAK%20WEB%202015%20E.pdf)
+- Slovakia: [SEPS] (https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
-- Sweden
-  - Hydro: [worldenergy.org](https://www.worldenergy.org/data/resources/country/sweden/hydropower/)
-  - Nuclear: [world-nuclear.org](http://www.world-nuclear.org/information-library/country-profiles/countries-o-s/sweden.aspx)
-  - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Sweden)
-  - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
+- Sweden [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 
 ### Electricity prices (day-ahead) data sources
