@@ -446,8 +446,8 @@ app.get('/health', function(req, res) {
     //statsdClient.increment('health_GET');
     var EXPIRATION_SECONDS = 30 * 60.0;
     mongoProductionCollection.findOne({}, {sort: [['datetime', -1]]}, function (err, doc) {
-        if (err) {
-            console.error(err);
+        if (err || !doc) {
+            console.error(err || 'No data found');
             handleError(err);
             res.status(500).json({error: 'Unknown database error'});
         } else {
