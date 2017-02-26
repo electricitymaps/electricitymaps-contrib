@@ -35,3 +35,4 @@ stages:
           curl --fail -i http://localhost:8000/v1/production?countryCode=FR
           curl --fail -i http://localhost:8000/v1/price?countryCode=FR
           curl --fail -i http://localhost:8000/v2/history?countryCode=FR
+          docker-compose logs web
