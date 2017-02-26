@@ -11,6 +11,5 @@ RUN npm run build-release
 
 EXPOSE 8000
 CMD node server.js
-# Healthcheck removed for now because Docker > 1.10 not supported by circle ci
-# HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
 
+HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1

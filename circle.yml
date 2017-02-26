@@ -9,11 +9,29 @@ stages:
     steps:
       - type: checkout
       - type: shell
-        name: Verify Docker Works
+        name: Show versions
         command: |
           docker --version
           docker-compose --version
-          docker run hello-world
+      - type: shell
+        name: Build
+        command: |
+          touch secrets.env
+          docker-compose build
+          docker-compose run web npm run build-release
+      - type: shell
+        name: Test
+        command: |
+          docker-compose up -d
+          sleep 20
+          docker-compose logs web
+          curl --fail -i http://localhost:8000/
+          curl --fail -i http://localhost:8000/health
+          curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/exchanges?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/production?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/price?countryCode=FR
+          curl --fail -i http://localhost:8000/v2/history?countryCode=FR
 # machine:
 #   pre:
 #     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
