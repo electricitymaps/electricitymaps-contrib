@@ -663,15 +663,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             tooltip.select('.country-spot-price')
                 .text(Math.round((d.price || {}).value) || '?')
                 .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
-            var hasFossilFuelData = 
-                ((d.production || {}).gas  != null) || 
-                ((d.production || {}).coal != null) || 
-                ((d.production || {}).oil  != null);
-            var fossilFuelPercent = (
-                ((d.production || {}).gas || 0) + 
-                ((d.production || {}).coal || 0) + 
-                ((d.production || {}).oil || 0)
-            ) / (d.totalProduction + d.totalImport) * 100;
+            var hasFossilFuelData = d.fossilFuelRatio != null;
+            var fossilFuelPercent = d.fossilFuelRatio * 100;
             tooltip.select('.fossil-fuel-percentage')
                 .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
         })

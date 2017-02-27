@@ -12,6 +12,7 @@ var moment = require('moment');
 // * Custom
 var co2eq_parameters = require('./co2eq_parameters');
 var co2lib = require('./co2eq');
+var fossilfuelslib = require('./fossilfuels');
 
 // * Cache
 memcachedClient = new Memcached(process.env['MEMCACHED_HOST']);
@@ -124,9 +125,11 @@ function processDatabaseResults(countries, exchanges, prices) {
     return {countries: countries, exchanges: exchanges};
 }
 function computeCo2(countries, exchanges) {
-    var assignments = co2lib.compute(countries);
+    var co2Assignments = co2lib.compute(countries);
+    var fossilfuelsAssignments = fossilfuelslib.compute(countries);
     d3.entries(countries).forEach(function(o) {
-        o.value.co2intensity = assignments[o.key];
+        o.value.co2intensity = co2Assignments[o.key];
+        o.value.fossilFuelRatio = fossilfuelsAssignments[o.key];
     });
     d3.values(countries).forEach(function(country) {
         country.exchangeCo2Intensities = {};
@@ -135,7 +138,7 @@ function computeCo2(countries, exchanges) {
             // the current country co2intensity is used (see co2eq.js)
             country.exchangeCo2Intensities[k] =
                 country.exchange[k] > 0 ?
-                    (assignments[k] || country.co2intensity) :
+                    (co2Assignments[k] || country.co2intensity) :
                     country.co2intensity;
         });
         country.productionCo2Intensities = {};
