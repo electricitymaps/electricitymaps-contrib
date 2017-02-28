@@ -360,15 +360,17 @@ def fetch_exchanges():
                 raise Exception('Exchange key pair %s is not ordered alphabetically' % k)
             obj = parser(country_code1, country_code2, session)
             if not obj: continue
-            if obj.get('sortedCountryCodes', None) != k:
-                raise Exception("Sorted country codes %s and %s don't match" % (obj.get('sortedCountryCodes', None), k))
-            if not 'datetime' in obj:
-                raise Exception('datetime was not returned for %s' % k)
-            if arrow.get(obj['datetime']) > arrow.now():
-                raise Exception("Data from %s can't be in the future" % k)
-            # Database insert
-            result = db_upsert(col_exchange, obj, 'sortedCountryCodes')
-            if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
+            if type(obj) != list: obj = [obj]
+            for item in obj:
+                if item.get('sortedCountryCodes', None) != k:
+                    raise Exception("Sorted country codes %s and %s don't match" % (item.get('sortedCountryCodes', None), k))
+                if not 'datetime' in item:
+                    raise Exception('datetime was not returned for %s' % k)
+                if arrow.get(item['datetime']) > arrow.now():
+                    raise Exception("Data from %s can't be in the future" % k)
+                # Database insert
+                result = db_upsert(col_exchange, item, 'sortedCountryCodes')
+                if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
         except:
             logger.exception('Exception while fetching exchange of %s' % k)
 
