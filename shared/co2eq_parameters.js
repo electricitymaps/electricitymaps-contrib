@@ -21,6 +21,9 @@ countryCo2eqFootprint = {
     'DK': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
     },
+    'EE': function (productionMode) {
+        return (productionMode == 'oil') ? 1515 : null; // Estonian Shale Oil LCA emissions. Source: Issue #278; EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience",
+    },
     'FI': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? 700 : null;
     },
