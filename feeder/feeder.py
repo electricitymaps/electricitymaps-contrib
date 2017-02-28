@@ -342,10 +342,13 @@ def fetch_productions():
         try:
             obj = parser(country_code, session)
             if not obj: continue
-            validate_production(obj, country_code)
-            # Database insert
-            result = db_upsert(col_production, obj, 'countryCode')
-            if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
+            if type(obj) != list: obj = [obj]
+            for item in obj:
+                if not item: continue
+                validate_production(item, country_code)
+                # Database insert
+                result = db_upsert(col_production, item, 'countryCode')
+                if (result.modified_count or result.upserted_id) and cache and ENV == 'development': cache.delete(MEMCACHED_STATE_KEY)
         except:
             logger.exception('Exception while fetching production of %s' % country_code)
 
