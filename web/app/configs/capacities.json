@@ -282,9 +282,11 @@
     },
     "RS": {
         "capacity": {
-            "coal": 4032,
-            "gas": 424,
-            "hydro": 2936
+            "coal": 5644,
+            "wind": 17,
+            "gas": 375,
+            "hydro": 3006,
+            "biomass": 6
         }
     },
     "SE": {
