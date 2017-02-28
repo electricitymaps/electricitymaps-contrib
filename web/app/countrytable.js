@@ -292,7 +292,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
     d3.select('.country-spot-price')
         .text(Math.round((this._data.price || {}).value) || '?')
-        .style('color', ((this._data.price || {}).value || 0) < 0 ? 'darkred' : undefined);
+        .style('color', ((this._data.price || {}).value || 0) < 0 ? 'red' : undefined);
     d3.select('#country-emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)

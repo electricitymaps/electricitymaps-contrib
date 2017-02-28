@@ -313,38 +313,37 @@ def fetch_production(country_code, session=None):
                 production_hashmap[datetimes[i]][k] = (productions[i], storages[i])
 
 
-    # Take the last production date that is present for all parameters
-    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
     # Remove all dates in the future
+    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
     production_dates = filter(lambda x: x <= arrow.now(), production_dates)
     if not len(production_dates): return None
-    production_dates_with_counts = map(lambda date: len(production_hashmap[date].keys()),
-        production_dates)
-    production_date = production_dates[production_dates_with_counts.index(max(production_dates_with_counts))]
+    
+    data = []
+    for production_date in production_dates:
 
-    production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
-    storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
+        storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
 
-    data = {
-        'countryCode': country_code,
-        'datetime': production_date.datetime,
-        'production': {
-            'biomass': get_biomass(production_values),
-            'coal': get_coal(production_values),
-            'gas': get_gas(production_values),
-            'hydro': get_hydro(production_values),
-            'nuclear': production_values.get('Nuclear', None),
-            'oil': get_oil(production_values),
-            'solar': production_values.get('Solar', None),
-            'wind': get_wind(production_values),
-            'geothermal': get_geothermal(production_values),
-            'unknown': get_unknown(production_values)
-        },
-        'storage': {
-            'hydro': get_hydro_storage(storage_values),
-        },
-        'source': 'entsoe.eu'
-    }
+        data.append({
+            'countryCode': country_code,
+            'datetime': production_date.datetime,
+            'production': {
+                'biomass': get_biomass(production_values),
+                'coal': get_coal(production_values),
+                'gas': get_gas(production_values),
+                'hydro': get_hydro(production_values),
+                'nuclear': production_values.get('Nuclear', None),
+                'oil': get_oil(production_values),
+                'solar': production_values.get('Solar', None),
+                'wind': get_wind(production_values),
+                'geothermal': get_geothermal(production_values),
+                'unknown': get_unknown(production_values)
+            },
+            'storage': {
+                'hydro': get_hydro_storage(storage_values),
+            },
+            'source': 'entsoe.eu'
+        })
 
     return data
 
