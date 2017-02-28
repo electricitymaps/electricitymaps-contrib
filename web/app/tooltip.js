@@ -78,6 +78,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
         })
         .onProductionMouseOver(function (d, country) {
             var co2intensity = country.productionCo2Intensities[d.mode];
+            var co2intensitySource = country.productionCo2IntensitySources[d.mode];
             if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
@@ -86,6 +87,8 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
+            tooltip.select('.emission-source')
+                .text(co2intensitySource || '?');
             var value = d.isStorage ? d.storage : d.production;
             var capacityFactor = Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
