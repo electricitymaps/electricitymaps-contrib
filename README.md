@@ -10,10 +10,12 @@ Consider [contributing](#contribute) or submit ideas, feature requests or bugs o
 
 ## Data sources
 
-### GreenHouse Gas footprint calcuation and data source
-The GreenHouse Gas (GHG) footprint of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country, in the gCO2eq unit (meaning each GHG is converted to its CO2 equivalent in terms of global warming potential). 
+### GreenHouse Gas intensity calcuation and data source
+The GreenHouse Gas (GHG) intensity of each country is measured from the perspective of a consumer. It represents the GHG footprint of 1 kWh consumed inside a given country. The GHG footprint is measured in  gCO2eq (grammes CO2 equivalent), meaning each GHG is converted to its CO2 equivalent in terms of global warming potential over 100 year (for instance, 1 gramme of methane emitted has the same global warming impact after 100 years to that of ~20 grammes of CO2).
 
-The GHG footprint of each production mode takes into account the construction of production units and their usual lifetimes as calculated by the 2014 IPCC report (see [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources) and [co2eq.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq.js)).
+The GHG intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). GHG intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq_parameters.js). These numbers comes from the following scientific peer reviewed litterature: 
+- IPCC 2014 Assessment Report is used as reference in most instances (see a summary in [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
+- Estonia: Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
 
 Each country has a GHG mass flow that depends on neighboring countries. In order to determine the GHG footprint of each country, the set of coupled GHG mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of GHG exchanges (see [co2eq.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq.js)).
 
