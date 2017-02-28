@@ -142,8 +142,11 @@ function computeCo2(countries, exchanges) {
                     country.co2intensity;
         });
         country.productionCo2Intensities = {};
+        country.productionCo2IntensitySources = {};
         d3.keys(country.production).forEach(function(k) {
             country.productionCo2Intensities[k] = co2eq_parameters.footprintOf(
+                k, country.countryCode);
+            country.productionCo2IntensitySources[k] = co2eq_parameters.sourceOf(
                 k, country.countryCode);
         })
     });
