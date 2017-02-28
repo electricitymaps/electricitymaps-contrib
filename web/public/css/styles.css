@@ -65,6 +65,7 @@ hr {
 
 .watermark {
     vertical-align: bottom;
+    text-align: right;
 }
 .overlay {
     width: 100%;
