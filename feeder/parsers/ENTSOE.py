@@ -313,38 +313,42 @@ def fetch_production(country_code, session=None):
                 production_hashmap[datetimes[i]][k] = (productions[i], storages[i])
 
 
-    # Take the last production date that is present for all parameters
-    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
     # Remove all dates in the future
+    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
     production_dates = filter(lambda x: x <= arrow.now(), production_dates)
     if not len(production_dates): return None
-    production_dates_with_counts = map(lambda date: len(production_hashmap[date].keys()),
+    # Only take fully observed elements
+    max_counts = max(map(lambda date: len(production_hashmap[date].keys()),
+        production_dates))
+    production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
         production_dates)
-    production_date = production_dates[production_dates_with_counts.index(max(production_dates_with_counts))]
+    
+    data = []
+    for production_date in production_dates:
 
-    production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
-    storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
+        storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
 
-    data = {
-        'countryCode': country_code,
-        'datetime': production_date.datetime,
-        'production': {
-            'biomass': get_biomass(production_values),
-            'coal': get_coal(production_values),
-            'gas': get_gas(production_values),
-            'hydro': get_hydro(production_values),
-            'nuclear': production_values.get('Nuclear', None),
-            'oil': get_oil(production_values),
-            'solar': production_values.get('Solar', None),
-            'wind': get_wind(production_values),
-            'geothermal': get_geothermal(production_values),
-            'unknown': get_unknown(production_values)
-        },
-        'storage': {
-            'hydro': get_hydro_storage(storage_values),
-        },
-        'source': 'entsoe.eu'
-    }
+        data.append({
+            'countryCode': country_code,
+            'datetime': production_date.datetime,
+            'production': {
+                'biomass': get_biomass(production_values),
+                'coal': get_coal(production_values),
+                'gas': get_gas(production_values),
+                'hydro': get_hydro(production_values),
+                'nuclear': production_values.get('Nuclear', None),
+                'oil': get_oil(production_values),
+                'solar': production_values.get('Solar', None),
+                'wind': get_wind(production_values),
+                'geothermal': get_geothermal(production_values),
+                'unknown': get_unknown(production_values)
+            },
+            'storage': {
+                'hydro': get_hydro_storage(storage_values),
+            },
+            'source': 'entsoe.eu'
+        })
 
     return data
 
@@ -369,20 +373,21 @@ def fetch_exchange(country_code1, country_code2, session=None):
             for i in range(len(quantities)):
                 exchange_hashmap[datetimes[i]] = quantities[i]
 
-    # Find the closest matching exchange
+    # Remove all dates in the future
     sorted_country_codes = sorted([country_code1, country_code2])
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    # Remove all dates in the future
     exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
     if not len(exchange_dates): return None
-    exchange_date = exchange_dates[0]
-    netFlow = exchange_hashmap[exchange_date]
-    return {
-        'sortedCountryCodes': '->'.join(sorted_country_codes),
-        'datetime': exchange_date.datetime,
-        'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
-        'source': 'entsoe.eu'
-    }
+    data = []
+    for exchange_date in exchange_dates:
+        netFlow = exchange_hashmap[exchange_date]
+        data.append({
+            'sortedCountryCodes': '->'.join(sorted_country_codes),
+            'datetime': exchange_date.datetime,
+            'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
+            'source': 'entsoe.eu'
+        })
+    return data
 
 def fetch_price(country_code, session=None):
     if not session: session = requests.session()

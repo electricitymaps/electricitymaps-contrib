@@ -65,6 +65,7 @@ hr {
 
 .watermark {
     vertical-align: bottom;
+    text-align: right;
 }
 .overlay {
     width: 100%;
@@ -123,7 +124,7 @@ hr {
     padding: 1rem;
     line-height: 1.2rem;
     height: 100%;
-    width: 22rem;
+    width: 24rem;
     position: relative;
     overflow-y: auto;
     border-top: none;

@@ -179,6 +179,7 @@ LineGraph.prototype.render = function () {
                 return;
             }
             that.verticalLine.style('display', 'none');
+            that.selectedIndex = undefined;
             if (that.definedAccessor(data[data.length - 1])) {
                 that.markerElement
                     .style('display', 'block')
