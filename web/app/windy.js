@@ -156,10 +156,10 @@ var Windy = function( params ){
    * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
    * vector is modified in place and returned by this function.
    */
-  var distort = function(projection, λ, φ, x, y, scale, wind, windy) {
+  var distort = function(λ, φ, x, y, scale, wind, windy) {
       var u = wind[0] * scale;
       var v = wind[1] * scale;
-      var d = distortion(projection, λ, φ, x, y, windy);
+      var d = distortion(λ, φ, x, y, windy);
 
       // Scale distortion vectors by u and v, then add.
       wind[0] = d[0] * u + d[2] * v;
@@ -167,7 +167,7 @@ var Windy = function( params ){
       return wind;
   };
 
-  var distortion = function(projection, λ, φ, x, y, windy) {
+  var distortion = function(λ, φ, x, y, windy) {
       var τ = 2 * Math.PI;
       var H = Math.pow(10, -5.2);
       var hλ = λ < 0 ? H : -H;
@@ -256,8 +256,6 @@ var Windy = function( params ){
 
 
   var interpolateField = function( grid, bounds, extent, callback ) {
-
-    var projection = {};
     var velocityScale = bounds.height * VELOCITY_SCALE;
 
     var columns = [];
@@ -272,7 +270,7 @@ var Windy = function( params ){
                     if (isFinite(λ)) {
                         var wind = grid.interpolate(λ, φ);
                         if (wind) {
-                            wind = distort(projection, λ, φ, x, y, velocityScale, wind, extent);
+                            wind = distort(λ, φ, x, y, velocityScale, wind, extent);
                             column[y+1] = column[y] = wind;
 
                         }

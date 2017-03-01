@@ -46,7 +46,8 @@
     },
     "legends": {
         "windpotential": "Potenzial Windenergie",
-        "solarpotential": "Potenzial Solarenergie"
+        "solarpotential": "Potenzial Solarenergie",
+        "colorblindmode": "farbenblind Modus"
     },
     "tooltips": {
         "electricityprice": "Elektrizitätspreis (day-ahead)",
