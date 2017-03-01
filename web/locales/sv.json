@@ -46,7 +46,8 @@
     },
     "legends": {
         "windpotential": "Möjlighet för vindkraft",
-        "solarpotential": "Möjlighet för solkraft"
+        "solarpotential": "Möjlighet för solkraft",
+        "colorblindmode": "färgblinda läge"
     },
     "tooltips": {
         "electricityprice": "Elpris (nästa dag)",

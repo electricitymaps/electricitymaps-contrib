@@ -8,11 +8,10 @@ var moment = require('moment');
 // This means drawing them once at `.data()` or at construction, and not
 // during `render()`
 
-function CountryTable(selector, co2Color, modeColor, modeOrder) {
+function CountryTable(selector, modeColor, modeOrder) {
     var that = this;
 
     this.root = d3.select(selector);
-    this.co2Color = co2Color;
 
     // Create containers
     this.headerRoot = this.root.append('g');
@@ -124,8 +123,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
     /*selection.select('rect.capacity')
-        .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); })
-        .attr('stroke', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
+        .attr('fill', function (d) { return that.co2color()(d.gCo2eqPerkWh); })
+        .attr('stroke', function (d) { return that.co2color()(d.gCo2eqPerkWh); });*/
     if (that._displayByEmissions)
         selection.select('rect.capacity')
             .transition()
@@ -158,14 +157,14 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 that.productionMouseMoveHandler.call(this, d, that._data);
         });
     /*selection.select('rect.production')
-        .attr('fill', function (d) { return that.co2Color(d.gCo2eqPerkWh); });*/
+        .attr('fill', function (d) { return that.co2color()(d.gCo2eqPerkWh); });*/
     if (that._displayByEmissions)
         selection.select('rect.production')
             .transition()
             .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
             .attr('fill', function (d) {
                 // color by Co2 Intensity
-                // return that.co2Color(that._data.productionCo2Intensities[d.mode, that._data.countryCode]);
+                // return that.co2color()(that._data.productionCo2Intensities[d.mode, that._data.countryCode]);
                 // color by production mode
                 return that.MODE_COLORS[d.mode];
             })
@@ -260,7 +259,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 return 'gray';
             else {
                 var co2intensity = getExchangeCo2eq(d);
-                return (co2intensity !== undefined) ? that.co2Color(co2intensity) : 'gray';
+                return (co2intensity !== undefined) ? that.co2color()(co2intensity) : 'gray';
             }
         })
         .attr('x', function (d) {
@@ -301,7 +300,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',
             this._data.co2intensity ?
-                that.co2Color(this._data.co2intensity) : 'gray');
+                that.co2color()(this._data.co2intensity) : 'gray');
     d3.select('.country-data-source')
         .text(this._data.source || '?');
 
@@ -460,5 +459,11 @@ CountryTable.prototype.powerScaleDomain = function(arg) {
     this._powerScaleDomain = arg;
     return this;
 }
+
+CountryTable.prototype.co2color = function(arg) {
+    if (!arg) return this._co2color;
+    else this._co2color = arg;
+    return this;
+};
 
 module.exports = CountryTable;

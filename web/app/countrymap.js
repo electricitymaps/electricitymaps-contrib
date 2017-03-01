@@ -10,7 +10,6 @@ function CountryMap(selector, co2color) {
 
     this.root = d3.select(selector)
         .data([ {'x':0, 'y':0} ]); // For dragging
-    this.co2color = co2color;
     this.graticule = this.root
         .on('touchstart click', function (d, i) {
             if (that.selectedCountry !== undefined) {
@@ -96,7 +95,7 @@ CountryMap.prototype.render = function() {
     var that = this;
     if (this._data) {
         var getCo2Color = function (d) {
-            return (d.co2intensity !== undefined) ? that.co2color(d.co2intensity) : 'gray';
+            return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'gray';
         };
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
@@ -138,6 +137,12 @@ CountryMap.prototype.render = function() {
                 .attr('fill', getCo2Color);
     }
 }
+
+CountryMap.prototype.co2color = function(arg) {
+    if (!arg) return this._co2color;
+    else this._co2color = arg;
+    return this;
+};
 
 CountryMap.prototype.projection = function(arg) {
     if (!arg) return this._projection;
