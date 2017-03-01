@@ -137,7 +137,7 @@
                         <span class="country-name"></span>
                     </b>
                     <span style="color: darkgray;">
-                        (<span class="country-last-update">?</span>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
+                        (<span class="country-last-update">?</span>, <small><span class="country-time"></span></small>) [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
                         <br />
                         <%= __('misc.carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%=__('country-panel.fossilfuels')%>)<br />
                         <%= __('country-panel.electricityprice') %>: <span class="country-spot-price"></span> &euro;/MWh<br />
@@ -237,7 +237,7 @@
         </div>
         <div id="country-tooltip" class="tooltip panel">
             <%= __('misc.carbonintensity') %>:<br />
-            <i id="country-flag"></i> <span id="country-code"></span>: 
+            <i id="country-flag"></i> <span id="country-name"></span>: 
             <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
             <br />
             <%= __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> &euro;/MWh
