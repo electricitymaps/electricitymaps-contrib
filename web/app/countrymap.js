@@ -31,9 +31,17 @@ function CountryMap(selector, co2color) {
             d3.select(this).style('cursor', 'move');
         })
         .on('drag', function(d, i) {
-            //console.log(d);
+            // Do not allow dragging outside of bounds
             d.x += d3.event.dx;
             d.y += d3.event.dy;
+            if (d.x < -1 * (that.mapWidth - that.containerWidth))
+                d.x = -1 * (that.mapWidth - that.containerWidth);
+            else if (d.x > 0)
+                d.x = 0;
+            if (d.y < -1 * (that.mapHeight - that.containerHeight))
+                d.y = -1 * (that.mapHeight - that.containerHeight);
+            else if (d.y > 0)
+                d.y = 0;
             d3.select(this).style('transform', function(d, i) {
                 return 'translate(' + d.x + 'px' + ',' + d.y + 'px' + ')';
             });
@@ -68,17 +76,19 @@ CountryMap.prototype.render = function() {
     var nw = [sw[0], ne[1]];
     var projected_se = this._projection(se);
     var projected_nw = this._projection(nw);
-    var mapWidth = Math.max(projected_ne[0], projected_se[0]) -
+    this.mapWidth = Math.max(projected_ne[0], projected_se[0]) -
         Math.min(projected_sw[0], projected_nw[0]); // TODO: Never do width < 100% !
-    var mapHeight = Math.max(projected_sw[1], projected_se[1]) -
+    this.mapHeight = Math.max(projected_sw[1], projected_se[1]) -
         Math.min(projected_ne[1], projected_nw[1]);
     // Width and height should nevertheless never be smaller than the container
-    mapWidth  = Math.max(mapWidth,  this.root.node().parentNode.getBoundingClientRect().width);
-    mapHeight = Math.max(mapHeight, this.root.node().parentNode.getBoundingClientRect().height);
+    this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
+    this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
+    this.mapWidth  = Math.max(this.mapWidth,  this.containerWidth);
+    this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
 
     this.root
-        .style('height', mapHeight)
-        .style('width', mapWidth);
+        .style('height', this.mapHeight)
+        .style('width', this.mapWidth);
     this._projection
         .translate([0.5 * projected_sw[0], 0.5 * projected_sw[1]]);
 
