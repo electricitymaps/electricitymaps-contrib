@@ -1,6 +1,6 @@
 var d3 = require('d3');
 
-function ExchangeLayer(selector, co2Color) {
+function ExchangeLayer(selector) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.STROKE_CO2_THRESHOLD = 550;
@@ -8,7 +8,6 @@ function ExchangeLayer(selector, co2Color) {
         .domain([500, 5000])
         .range([1500, 50])
         .clamp(true);
-    this.co2Color = co2Color;
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = this.root.append('g');
@@ -130,7 +129,7 @@ ExchangeLayer.prototype.render = function() {
         // Add animations
         var gradients = newGradients.merge(exchangeGradients);
         gradients.each(function(d) {
-            var color = (d.co2intensity && d.netFlow) && that.co2Color(d.co2intensity) || 'gray';
+            var color = (d.co2intensity && d.netFlow) && that.co2color()(d.co2intensity) || 'gray';
             var duration = d.netFlow && that.exchangeAnimationDurationScale(Math.abs(d.netFlow)) || 2000;
             that.animateGradient(d3.select(this), color, duration);
         });
@@ -147,7 +146,7 @@ ExchangeLayer.prototype.render = function() {
         .append('path')
             .attr('d', function(d) { return that.trianglePath(); })
             .attr('fill', function (d, i) { 
-                var color = (d.co2intensity && d.netFlow) && that.co2Color(d.co2intensity) || 'gray';
+                var color = (d.co2intensity && d.netFlow) && that.co2color()(d.co2intensity) || 'gray';
                 return !animate ? color : 'url(#exchange-gradient-' + i + ')';
             })
             .attr('stroke-width', 0.1)
@@ -197,6 +196,12 @@ ExchangeLayer.prototype.onExchangeMouseMove = function(arg) {
 ExchangeLayer.prototype.onExchangeMouseOut = function(arg) {
     if (!arg) return this.exchangeMouseOutHandler;
     else this.exchangeMouseOutHandler = arg;
+    return this;
+};
+
+ExchangeLayer.prototype.co2color = function(arg) {
+    if (!arg) return this._co2color;
+    else this._co2color = arg;
     return this;
 };
 

@@ -46,7 +46,8 @@
     },
     "legends": {
         "windpotential": "potentieel aan Windenergie",
-        "solarpotential": "potentieel aan Zonne-energie"
+        "solarpotential": "potentieel aan Zonne-energie",
+        "colorblindmode": "kleurenblind modus"
     },
     "tooltips": {
         "electricityprice": "Elektriciteitsprijs (day-ahead)",
