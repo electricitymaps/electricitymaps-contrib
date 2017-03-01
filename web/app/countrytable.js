@@ -114,9 +114,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     header.select('i#country-flag')
         .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
     header.select('span.country-name')
-        .text(this._data.countryCode);
+        .text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    var datetime = this._data.stateDatetime || this._data.datetime;
     header.select('span.country-last-update')
-        .text(this._data.datetime ? moment(this._data.datetime).fromNow() : '? minutes ago')
+        .text(datetime ? moment(datetime).fromNow() : '? minutes ago')
+    header.select('span.country-time')
+        .text(datetime ? moment(datetime).format('LT') : '?')
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);

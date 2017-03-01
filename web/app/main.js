@@ -333,6 +333,9 @@ function selectCountry(countryCode, notrack) {
         d3.select('.country-panel')
             .style('display', 'none');
         selectedCountryCode = undefined;
+        // If the default display is shown and it was never rendered before
+        // then we need to render it
+        redraw();
     } else {
         // Selected
         console.log(countries[countryCode]);
@@ -412,10 +415,6 @@ function selectCountry(countryCode, notrack) {
                         d.maxCapacity = maxCapacity;
                     });
                 }
-
-                // Push current state if present
-                if (countries[countryCode].datetime)
-                    obj.data.push(countries[countryCode]);
 
                 // Save to local cache
                 histories[countryCode] = obj.data;
@@ -654,8 +653,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             tooltip.style('display', 'inline');
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
-            tooltip.select('#country-code')
-                .text(d.countryCode)
+            tooltip.select('#country-name')
+                .text(lang.zoneShortName[d.countryCode] || d.countryCode)
                 .style('font-weight', 'bold');
             tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
@@ -717,10 +716,12 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
+                var ctrFrom = d.countryCodes[i];
                 tooltip.selectAll('span#from')
-                    .text(d.countryCodes[i]);
+                    .text(lang.zoneShortName[ctrFrom] || ctrFrom);
+                var ctrTo = d.countryCodes[(i + 1) % 2];
                 tooltip.select('span#to')
-                    .text(d.countryCodes[(i + 1) % 2]);
+                    .text(lang.zoneShortName[ctrTo] || ctrTo);
                 tooltip.select('span#flow')
                     .text(Math.abs(Math.round(d.netFlow)));
                 tooltip.selectAll('i#from')
