@@ -412,10 +412,6 @@ function selectCountry(countryCode, notrack) {
                     });
                 }
 
-                // Push current state if present
-                if (countries[countryCode].datetime)
-                    obj.data.push(countries[countryCode]);
-
                 // Save to local cache
                 histories[countryCode] = obj.data;
 
@@ -653,8 +649,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             tooltip.style('display', 'inline');
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
-            tooltip.select('#country-code')
-                .text(d.countryCode)
+            tooltip.select('#country-name')
+                .text(lang.zoneShortName[d.countryCode] || d.countryCode)
                 .style('font-weight', 'bold');
             tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
