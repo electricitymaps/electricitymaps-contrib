@@ -34,6 +34,7 @@ var forceRemoteEndpoint = false;
 var customDate;
 var timelineEnabled = false;
 var currentMoment;
+var colorBlindModeEnabled = false;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -93,6 +94,7 @@ var showWindOption = !isSmallScreen();
 var showSolarOption = !isSmallScreen();
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
+var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
 var REMOTE_ENDPOINT = '//www.electricitymap.org';
@@ -140,10 +142,44 @@ moment.locale(locale);
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
+// Prepare co2 scale
 var maxCo2 = 800;
-var co2color = d3.scaleSequential(d3.interpolateMagma)
-    .domain([2000, 0])
-    .clamp(true);
+var co2color;
+var co2Colorbar;
+function updateCo2Scale() {
+  if (colorBlindModeEnabled) {
+    co2color = d3.scaleSequential(d3.interpolateMagma)
+      .domain([2000, 0]);
+  } else {
+    co2color = d3.scaleLinear()
+      .domain([0, 375, 725, 800])
+      .range(['green', 'orange', 'rgb(26,13,0)'])
+  }
+
+  co2color.clamp(true);
+  if (!isSmallScreen()) {
+      co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+        .markerColor('white')
+        .domain([0, maxCo2])
+        .render();
+  }
+  if (countryMap) countryMap.co2color(co2color).render();
+  if (countryTable) countryTable.co2color(co2color).render();
+  if (countryHistoryGraph) countryHistoryGraph.yColorScale(co2color);
+  if (exchangeLayer) exchangeLayer.co2color(co2color).render();
+  if (tooltip)
+    tooltip
+      .co2color(co2color)
+      .co2Colorbar(co2Colorbar);
+}
+d3.select('#checkbox-colorblind').node().checked = colorBlindModeEnabled;
+d3.select('#checkbox-colorblind').on('change', function() {
+    colorBlindModeEnabled = !colorBlindModeEnabled;
+    Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
+    updateCo2Scale();
+});
+updateCo2Scale();
+
 var maxWind = 15;
 var windColor = d3.scaleLinear()
     .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
@@ -210,21 +246,19 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('.map', co2color);
-var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
+var countryMap = new CountryMap('.map').co2color(co2color);
+var exchangeLayer = new ExchangeLayer('.map', co2color).co2color(co2color);
+var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
+var tooltip = new Tooltip(countryTable, countries)
+    .co2color(co2color)
+    .co2Colorbar(co2Colorbar);
 //var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.stateDatetime).toDate(); },
     function(d) { return d.co2intensity; },
-    function(d) { return d.co2intensity != null; },
-    co2color);
+    function(d) { return d.co2intensity != null; }).yColorScale(co2color);
+countryHistoryGraph.y.domain([0, maxCo2]);
 
-if (!isSmallScreen())
-    var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-        .markerColor('white')
-        .domain([0, maxCo2])
-        .render();
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
@@ -513,9 +547,6 @@ if (isSmallScreen()) {
         .on('mouseout', function() {
             mapMouseOver(undefined);
         });
-
-    // Tooltip setup
-    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
 }
 
 function dataLoaded(err, clientVersion, state, argSolar, argWind) {

@@ -5,6 +5,7 @@ function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) 
     this.PADDING_Y = 10; // Inner padding allow place for the axis text
 
     this.root = d3.select(selector);
+    this.root.selectAll('*').remove();
     this.d3TickFormat = d3TickFormat;
     this.d3TickValues = d3TickValues;
     this.originalColorScale = d3ColorScale;
