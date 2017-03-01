@@ -28,32 +28,60 @@ function CountryMap(selector, co2color) {
     // Prepare drag
     this.drag = d3.drag()
         .on('start', function() {
-            console.log('start', d3.event);
+            //console.log('start', d3.event);
+            d3.select(this).style('cursor', 'move');
         })
         .on('drag', function(d, i) {
-            console.log(d);
+            //console.log(d);
             d.x += d3.event.dx;
             d.y += d3.event.dy;
             d3.select(this).style('transform', function(d, i) {
                 return 'translate(' + d.x + 'px' + ',' + d.y + 'px' + ')';
-            })
+            });
         })
         .on('end', function() {
-            console.log('end', d3.event);
+            //console.log('end', d3.event);
+            d3.select(this).style('cursor', undefined);
         });
+
     this.root.call(this.drag);
 }
 
 CountryMap.prototype.render = function() {
-    var computedMapWidth = this.root.node().getBoundingClientRect().width,
-        computedMapHeight = this.root.node().getBoundingClientRect().height;
+    var clientWidth = document.body.clientWidth;
+    var clientHeight = document.body.clientHeight;
 
-    var scale = Math.max(1100, 0.8 * computedMapWidth);
+    // Center of the map
     var center = [0, 54];
+    // Determine scale (i.e. zoom) based on the shortest dimension
+    var scale = Math.max(1100, 0.8 * Math.min(clientWidth, clientHeight));
+    // Determine map width and height based on bounding box of Europe
+    var sw = [-10, 34.7];
+    var ne = [34, 72];
     this._projection = d3.geoTransverseMercator()
         .rotate([-center[0], -center[1]])
-        .translate([0.5 * computedMapWidth, 0.5 * computedMapHeight])
         .scale(scale);
+    var projected_sw = this._projection(sw);
+    var projected_ne = this._projection(ne);
+    // This is a curved representation, so take all 4 corners in order to make
+    // sure we include them all
+    var se = [ne[0], sw[1]];
+    var nw = [sw[0], ne[1]];
+    var projected_se = this._projection(se);
+    var projected_nw = this._projection(nw);
+    var mapWidth = Math.max(projected_ne[0], projected_se[0]) -
+        Math.min(projected_sw[0], projected_nw[0]); // TODO: Never do width < 100% !
+    var mapHeight = Math.max(projected_sw[1], projected_se[1]) -
+        Math.min(projected_ne[1], projected_nw[1]);
+    // Width and height should nevertheless never be smaller than the container
+    mapWidth  = Math.max(mapWidth,  this.root.node().parentNode.getBoundingClientRect().width);
+    mapHeight = Math.max(mapHeight, this.root.node().parentNode.getBoundingClientRect().height);
+
+    this.root
+        .style('height', mapHeight)
+        .style('width', mapWidth);
+    this._projection
+        .translate([0.5 * projected_sw[0], 0.5 * projected_sw[1]]);
 
     this.path = d3.geoPath()
         .projection(this._projection);
