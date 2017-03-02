@@ -561,7 +561,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     d3.select('#new-version')
         .style('top', (clientVersion === bundleHash || forceRemoteEndpoint) ? undefined : 0);
 
-    currentMoment = (customDate && moment(customDate) || moment());
+    currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.select('#current-date').text(currentMoment.format('LL'));
     d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')
@@ -597,6 +597,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         d3.keys(entry.value).forEach(function(k) {
             country[k] = entry.value[k];
         });
+        // Set date
+        country.datetime = state.datetime;
         // Validate data
         if (!country.production) return;
         modeOrder.forEach(function (mode) {
