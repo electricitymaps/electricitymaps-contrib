@@ -79,10 +79,9 @@ CountryMap.prototype.render = function() {
     var upperleft = [
         Math.min(projected_sw[0], projected_nw[0]),
         Math.min(projected_nw[1], projected_ne[1])
-    ]
+    ];
     this._projection
-        .translate([-upperleft[0], -upperleft[1]])
-    console.error('RENDERMAP')
+        .translate([-upperleft[0], -upperleft[1]]);
 
     this.zoom
         .scaleExtent([1, 5])
