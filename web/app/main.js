@@ -246,8 +246,8 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('.map').co2color(co2color);
-var exchangeLayer = new ExchangeLayer('.map', co2color).co2color(co2color);
+var countryMap = new CountryMap('#map').co2color(co2color);
+var exchangeLayer = new ExchangeLayer('#map', co2color).co2color(co2color);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
 var tooltip = new Tooltip(countryTable, countries)
     .co2color(co2color)
@@ -314,16 +314,10 @@ function placeTooltip(selector, d3Event) {
         .style('transform',
             'translate(' + x + 'px' + ',' + y + 'px' + ')');
 }
-var width = window.innerWidth;
-var height = window.innerHeight;
 
 var windCanvas = d3.select('.wind');
-windCanvas.attr('height', height);
-windCanvas.attr('width', width);
 
 var solarCanvas = d3.select('.solar');
-solarCanvas.attr('height', height);
-solarCanvas.attr('width', width);
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});

@@ -87,19 +87,12 @@ hr {
     overflow: hidden;
     height: 100%;
 }
-.map {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    top: 0px;
-}
-.land {
-    fill: #ccc;
-    fill-opacity: 0.8;
-    stroke: #3b3b3b;
-}
-.sea {
+#map {
     background-color: #283640;
+}
+.map-layer {
+    position: absolute;
+    top: 0px;
 }
 .wind {
     pointer-events: none;

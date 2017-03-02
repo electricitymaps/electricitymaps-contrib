@@ -48,10 +48,12 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
 
     solarCanvas = d3.select(canvasSelector);
     var ctx = solarCanvas.node().getContext('2d');
-    realW = solarCanvas.node().getBoundingClientRect().width,
-    realH = solarCanvas.node().getBoundingClientRect().height;
-    var w = realW,
-        h = realH;
+    var realW = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().width);
+    var realH = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().height);
+    // Canvas needs to have it's width and height attribute set
+    solarCanvas
+        .attr('width', realW)
+        .attr('height', realH);
 
     // Set our visible domain
     var NE = projection.invert([realW, 0])
@@ -151,8 +153,6 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         });
         target = next;
     }
-    solarCanvas.attr('height', realH);
-    solarCanvas.attr('width', realW);
     ctx.clearRect(0, 0, realW, realH);
     ctx.putImageData(target, 0, 0);
 

@@ -9,8 +9,9 @@ function CountryMap(selector, co2color) {
     this.selectedCountry = undefined;
 
     this.root = d3.select(selector)
-        .attr('transform-origin', '0px 0px 0px');
-    this.graticule = this.root
+        .style('transform-origin', '0px 0px 0px');
+    this.svg = this.root.append('svg')
+        .attr('class', 'map-layer')
         .on('touchstart click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
@@ -19,14 +20,21 @@ function CountryMap(selector, co2color) {
             }
             if (that.seaClickHandler)
                 that.seaClickHandler.call(this, d, i);
-        })
-        .append('path')
-            .attr('class', 'graticule');
-    this.land = this.root.append('g');
+        });
+
+    // Add SVG layer
+    this.graticule = this.svg.append('g').append('path')
+        .attr('class', 'graticule');
+    this.land = this.svg.append('g')
+        .attr('class', 'land');
+    // Add other layers
+    this.root.append('canvas').attr('class', 'wind map-layer');
+    this.root.append('canvas').attr('class', 'solar map-layer');
 
     this.zoom = d3.zoom()
         .on('zoom', function() {
-            that.root.attr('transform', d3.event.transform);
+          var transform = d3.event.transform;
+          that.root.style("transform", "translate(" + transform.x + "px," + transform.y + "px) scale(" + transform.k + ")");
         })
         .on('start', function() {
             d3.select(this).style('cursor', 'move');
@@ -71,8 +79,11 @@ CountryMap.prototype.render = function() {
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
 
     this.root
-        .style('height', this.mapHeight)
-        .style('width', this.mapWidth);
+        .style('height', this.mapHeight + 'px')
+        .style('width', this.mapWidth + 'px');
+    this.svg
+        .style('height', this.mapHeight + 'px')
+        .style('width', this.mapWidth + 'px');
 
     // Set proper translation now that we have all information needed
     // Right now we set the upper left point to be at (0, 0)
