@@ -42,16 +42,16 @@ CountryMap.prototype.render = function() {
     var clientWidth = document.body.clientWidth;
     var clientHeight = document.body.clientHeight;
 
-    // Center of the map
-    var center = [0, 54];
     // Determine scale (i.e. zoom) based on the shortest dimension
     var scale = Math.max(1100, 0.8 * Math.min(clientWidth, clientHeight));
     // Determine map width and height based on bounding box of Europe
-    var sw = [-10, 34.7];
+    var sw = [-15, 34.7];
     var ne = [34, 72];
+    var center = [0, 50]; // Center of the map projection
     this._projection = d3.geoTransverseMercator()
         .rotate([-center[0], -center[1]])
-        .scale(scale);
+        .scale(scale)
+        .translate([0, 0]); // Warning, default translation is [480, 250]
     var projected_sw = this._projection(sw);
     var projected_ne = this._projection(ne);
     // This is a curved representation, so take all 4 corners in order to make
@@ -70,15 +70,23 @@ CountryMap.prototype.render = function() {
     this.mapWidth  = Math.max(this.mapWidth,  this.containerWidth);
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
 
-    this.zoom
-        .scaleExtent([1, 5])
-        .translateExtent([[0, 0], [this.mapWidth, this.mapHeight]]);
-
     this.root
         .style('height', this.mapHeight)
         .style('width', this.mapWidth);
+
+    // Set proper translation now that we have all information needed
+    // Right now we set the upper left point to be at (0, 0)
+    var upperleft = [
+        Math.min(projected_sw[0], projected_nw[0]),
+        Math.min(projected_nw[1], projected_ne[1])
+    ]
     this._projection
-        .translate([0.5 * projected_sw[0], 0.5 * projected_sw[1]]);
+        .translate([-upperleft[0], -upperleft[1]])
+    console.error('RENDERMAP')
+
+    this.zoom
+        .scaleExtent([1, 5])
+        .translateExtent([[0, 0], [this.mapWidth, this.mapHeight]]);
 
     this.path = d3.geoPath()
         .projection(this._projection);
