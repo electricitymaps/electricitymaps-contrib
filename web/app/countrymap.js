@@ -9,7 +9,7 @@ function CountryMap(selector, co2color) {
     this.selectedCountry = undefined;
 
     this.root = d3.select(selector)
-        .data([ {'x':0, 'y':0} ]); // For dragging
+        .attr('transform-origin', '0px 0px 0px');
     this.graticule = this.root
         .on('touchstart click', function (d, i) {
             if (that.selectedCountry !== undefined) {
@@ -23,35 +23,19 @@ function CountryMap(selector, co2color) {
         .append('path')
             .attr('class', 'graticule');
     this.land = this.root.append('g');
-    
-    // Prepare drag
-    this.drag = d3.drag()
+
+    this.zoom = d3.zoom()
+        .on('zoom', function() {
+            that.root.attr('transform', d3.event.transform);
+        })
         .on('start', function() {
-            //console.log('start', d3.event);
             d3.select(this).style('cursor', 'move');
         })
-        .on('drag', function(d, i) {
-            // Do not allow dragging outside of bounds
-            d.x += d3.event.dx;
-            d.y += d3.event.dy;
-            if (d.x < -1 * (that.mapWidth - that.containerWidth))
-                d.x = -1 * (that.mapWidth - that.containerWidth);
-            else if (d.x > 0)
-                d.x = 0;
-            if (d.y < -1 * (that.mapHeight - that.containerHeight))
-                d.y = -1 * (that.mapHeight - that.containerHeight);
-            else if (d.y > 0)
-                d.y = 0;
-            d3.select(this).style('transform', function(d, i) {
-                return 'translate(' + d.x + 'px' + ',' + d.y + 'px' + ')';
-            });
-        })
         .on('end', function() {
-            //console.log('end', d3.event);
             d3.select(this).style('cursor', undefined);
         });
 
-    this.root.call(this.drag);
+    d3.select(this.root.node().parentNode).call(this.zoom);
 }
 
 CountryMap.prototype.render = function() {
@@ -85,6 +69,10 @@ CountryMap.prototype.render = function() {
     this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
     this.mapWidth  = Math.max(this.mapWidth,  this.containerWidth);
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
+
+    this.zoom
+        .scaleExtent([1, 5])
+        .translateExtent([[0, 0], [this.mapWidth, this.mapHeight]]);
 
     this.root
         .style('height', this.mapHeight)

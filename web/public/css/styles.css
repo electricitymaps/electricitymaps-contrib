@@ -73,6 +73,7 @@ hr {
     height: 100%;
     position: absolute;
     top: 0px;
+    z-index: 99;
 }
 .loading {
     opacity: 0.7;
