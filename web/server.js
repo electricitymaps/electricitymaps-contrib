@@ -81,6 +81,7 @@ SUPPORTED_FB_LOCALES = [
     'fr_CA',
     'fr_FR',
     'it_IT',
+    'it_CH',
     'nl_BE',
     'nl_NL',
     'sv_SE'
