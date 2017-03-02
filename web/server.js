@@ -130,6 +130,7 @@ db.connect(function(err, db) {
 
 // * Routes
 app.get('/v1/wind', function(req, res) {
+    if (req.query.datetime) return res.status(401).send('Unauthorized. Please contact admin@tmrow.co');
     var t0 = (new Date().getTime());
     //statsdClient.increment('v1_wind_GET');
     var cacheQuery = false;//req.query.datetime == null;
@@ -163,6 +164,7 @@ app.get('/v1/wind', function(req, res) {
     });
 });
 app.get('/v1/solar', function(req, res) {
+    if (req.query.datetime) return res.status(401).send('Unauthorized. Please contact admin@tmrow.co');
     var t0 = (new Date().getTime());
     //statsdClient.increment('v1_solar_GET');
     var cacheQuery = false;//req.query.datetime == null;
@@ -196,6 +198,7 @@ app.get('/v1/solar', function(req, res) {
     });
 });
 app.get('/v1/state', function(req, res) {
+    if (req.query.datetime) return res.status(401).send('Unauthorized. Please contact admin@tmrow.co');
     //statsdClient.increment('v1_state_GET');
     var t0 = new Date().getTime();
     function returnObj(obj, cached) {
@@ -299,6 +302,7 @@ app.get('/v1/co2', function(req, res) {
     }
 });
 app.get('/v1/exchanges', function(req, res) {
+    if (req.query.datetime) return res.status(401).send('Unauthorized. Please contact admin@tmrow.co');
     var countryCode = req.query.countryCode;
     var datetime = req.query.datetime;
     if (!countryCode) {
@@ -333,6 +337,7 @@ app.get('/v1/exchanges', function(req, res) {
         })
 });
 app.get('/v1/production', function(req, res) {
+    if (req.query.datetime) return res.status(401).send('Unauthorized. Please contact admin@tmrow.co');
     var countryCode = req.query.countryCode;
     var datetime = req.query.datetime;
     if (!countryCode) {
@@ -355,6 +360,7 @@ app.get('/v1/production', function(req, res) {
 });
 
 app.get('/v1/price', function(req, res) {
+    if (req.query.datetime) return res.status(401).send('Unauthorized. Please contact admin@tmrow.co');
     var countryCode = req.query.countryCode;
     var datetime = req.query.datetime;
     if (!countryCode) {
