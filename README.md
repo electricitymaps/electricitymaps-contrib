@@ -85,7 +85,7 @@ Each country has a GHG mass flow that depends on neighboring countries. In order
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Lithuania: [ENMIN](https://enmin.lrv.lt/en/sectoral-policy/renewable-energy-sources)
 - Montenegro: [EPCG] (http://www.epcg.com/en/about-us/production-facilities)
 - Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Norway
