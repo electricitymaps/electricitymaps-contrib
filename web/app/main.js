@@ -246,8 +246,8 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('.map').co2color(co2color);
-var exchangeLayer = new ExchangeLayer('.map', co2color).co2color(co2color);
+var countryMap = new CountryMap('#map').co2color(co2color);
+var exchangeLayer = new ExchangeLayer('svg.map-layer', co2color).co2color(co2color);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
 var tooltip = new Tooltip(countryTable, countries)
     .co2color(co2color)
@@ -314,16 +314,6 @@ function placeTooltip(selector, d3Event) {
         .style('transform',
             'translate(' + x + 'px' + ',' + y + 'px' + ')');
 }
-var width = window.innerWidth;
-var height = window.innerHeight;
-
-var windCanvas = d3.select('.wind');
-windCanvas.attr('height', height);
-windCanvas.attr('width', width);
-
-var solarCanvas = d3.select('.solar');
-solarCanvas.attr('height', height);
-solarCanvas.attr('width', width);
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
@@ -367,9 +357,11 @@ function selectCountry(countryCode, notrack) {
         d3.select('.country-panel')
             .style('display', 'none');
         selectedCountryCode = undefined;
-        // If the default display is shown and it was never rendered before
+        // If the introductory panel was never rendered before
         // then we need to render it
-        redraw();
+        co2Colorbar.render();
+        if (windEnabled) windColorbar.render();
+        if (solarEnabled) solarColorbar.render();
     } else {
         // Selected
         console.log(countries[countryCode]);
@@ -473,8 +465,8 @@ if (isSmallScreen()) {
     d3.select('.map').selectAll('*').remove();
 } else {
     // Now that the width is set, we can render the legends
-    if (windEnabled) windColorbar.render();
-    if (solarEnabled) solarColorbar.render();
+    if (windEnabled && !selectedCountryCode) windColorbar.render();
+    if (solarEnabled && !selectedCountryCode) solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
@@ -523,7 +515,8 @@ if (isSmallScreen()) {
                     now, wind.forecasts[0][0], wind.forecasts[1][0]);
                 var v = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, wind.forecasts[0][1], wind.forecasts[1][1]);
-                windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+                if (!selectedCountryCode)
+                  windColorbar.currentMarker(Math.sqrt(u * u + v * v));
             }
         } else {
             windColorbar.currentMarker(undefined);
@@ -534,7 +527,8 @@ if (isSmallScreen()) {
             if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 var val = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, solar.forecasts[0], solar.forecasts[1]);
-                solarColorbar.currentMarker(val);
+                if (!selectedCountryCode)
+                  solarColorbar.currentMarker(val);
             }
         } else {
             solarColorbar.currentMarker(undefined);
