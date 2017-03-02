@@ -78,7 +78,7 @@ LineGraph.prototype.render = function () {
         height = this.rootElement.node().getBoundingClientRect().height;
     var X_AXIS_HEIGHT = 20;
     var X_AXIS_PADDING = 4;
-    var Y_AXIS_WIDTH = 25;
+    var Y_AXIS_WIDTH = 35;
     var Y_AXIS_PADDING = 4;
     x.range([0, width - Y_AXIS_WIDTH]);
     y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);

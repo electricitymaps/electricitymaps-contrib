@@ -393,6 +393,12 @@ function selectCountry(countryCode, notrack) {
                     d.maxImport || 0)
             });
 
+            // Figure out the highest CO2 emissions
+            var hi_co2 = d3.max(countryHistory, function(d) {
+                return d.co2intensity;
+            });
+            countryHistoryGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
+
             countryHistoryGraph
                 .data(countryHistory);
             if (countryHistoryGraph.frozen) {
