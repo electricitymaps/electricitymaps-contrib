@@ -359,9 +359,9 @@ function selectCountry(countryCode, notrack) {
         selectedCountryCode = undefined;
         // If the introductory panel was never rendered before
         // then we need to render it
-        co2Colorbar.render();
-        if (windEnabled) windColorbar.render();
-        if (solarEnabled) solarColorbar.render();
+        if (co2Colorbar) co2Colorbar.render();
+        if (windColorbar && windEnabled) windColorbar.render();
+        if (solarColorbar && solarEnabled) solarColorbar.render();
     } else {
         // Selected
         console.log(countries[countryCode]);
