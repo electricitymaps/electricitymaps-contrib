@@ -121,7 +121,10 @@ app.get('/', function(req, res) {
         });
     }
 });
-app.get('/*', function(req, res) {
+app.get('/v1/*', function(req, res) {
+  return res.redirect(301, 'https://api.electricitymap.org' + req.path);
+});
+app.get('/v2/*', function(req, res) {
   return res.redirect(301, 'https://api.electricitymap.org' + req.path);
 });
 
