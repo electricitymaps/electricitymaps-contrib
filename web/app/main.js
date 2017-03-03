@@ -30,7 +30,7 @@ var REFRESH_TIME_MINUTES = 5;
 
 // Global State
 var selectedCountryCode;
-var forceRemoteEndpoint = false;
+var useRemoteEndpoint = true;
 var customDate;
 var timelineEnabled = false;
 var currentMoment;
@@ -75,8 +75,8 @@ args.forEach(function(arg) {
     // Store in history state to be able to reconstruct
     replaceHistoryState(kv[0], kv[1]);
     if (kv[0] == 'remote') {
-        forceRemoteEndpoint = kv[1] == 'true';
-        replaceHistoryState('remote', forceRemoteEndpoint);
+        useRemoteEndpoint = kv[1] == 'true';
+        replaceHistoryState('remote', useRemoteEndpoint);
     } else if (kv[0] == 'datetime') {
         customDate = kv[1];
         replaceHistoryState('datetime', customDate);
@@ -97,9 +97,10 @@ var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || f
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//www.electricitymap.org';
-var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
-    '' : REMOTE_ENDPOINT;
+var REMOTE_ENDPOINT = '//api.electricitymap.org';
+var LOCAL_ENDPOINT = '//localhost:9000';
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
+    LOCAL_ENDPOINT : REMOTE_ENDPOINT;
 
 if (!isLocalhost) {
   if (typeof _opbeat !== 'undefined')
@@ -559,7 +560,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 
     // Is there a new version?
     d3.select('#new-version')
-        .style('top', (clientVersion === bundleHash || forceRemoteEndpoint) ? undefined : 0);
+        .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
 
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.select('#current-date').text(currentMoment.format('LL'));

@@ -1,34 +1,14 @@
 version: '2'
 services:
   web:
-    depends_on: [mongo, memcached]
-    env_file: [./mailgun.env, ./secrets.env]
     environment:
       - ENV=production
-      - MEMCACHED_HOST=memcached
-      - MONGO_URL=mongodb://mongo:27017/electricity
       - VIRTUAL_HOST=electricitymap.org,www.electricitymap.org,electricitymap.tmrow.co
     image: eu.gcr.io/tmrow-152415/electricitymap_web:production
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
     volumes:
       - /home/shared/electricitymap/static/dist:/home/web/public/dist
-  feeder:
-    depends_on: [mongo]
-    env_file: [./mailgun.env, ./secrets.env]
-    environment:
-      - ENV=production
-      - MEMCACHED_HOST=memcached
-      - MONGO_URL=mongodb://mongo:27017/electricity
-    image: eu.gcr.io/tmrow-152415/electricitymap_feeder:production
-    mem_limit: 400M
-    networks: [default, infrastructure] # required to be able to com' with statsd
-    restart: unless-stopped
-  memcached:
-    image: memcached
-  mongo:
-    image: mongo
-    volumes: ['/home/shared/electricitymap/mongodata:/data/db']
 
 networks:
   infrastructure:
