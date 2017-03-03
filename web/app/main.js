@@ -918,7 +918,7 @@ function fetch(showLoading, callback) {
         d3.select('#connection-warning').style('top', 0);
     }, 15 * 1000);
     var Q = d3.queue();
-    Q.defer(d3.text, ENDPOINT + '/clientVersion');
+    Q.defer(d3.text, '/clientVersion');
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
     var now = customDate || new Date();
