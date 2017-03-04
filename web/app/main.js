@@ -584,6 +584,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         entry.value.exchange = {};
         entry.value.production = {};
         entry.value.productionCo2Intensities = {};
+        entry.value.productionCo2IntensitySources = {};
         entry.value.storage = {};
         entry.value.source = undefined;
     });
