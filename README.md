@@ -16,7 +16,7 @@ The GreenHouse Gas (GHG) intensity of each country is measured from the perspect
 The GHG intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). GHG intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature: 
 - IPCC 2014 Assessment Report is used as reference in most instances (see a summary in [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
-Country specific emissions:
+Country-specific powerplant carbon-intensity factors:
 - Estonia:
   - Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
 - Norway:
