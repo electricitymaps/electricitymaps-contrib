@@ -82,13 +82,13 @@ var BUNDLE_HASH = !isProduction ? 'dev' :
     JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
 
 // * Opbeat
-// if (isProduction)
-//     app.use(opbeat.middleware.express())
-// function handleError(err) {
-//     if (!err) return;
-//     if (opbeat) opbeat.captureError(err);
-//     console.error(err);
-// }
+if (isProduction)
+    app.use(opbeat.middleware.express())
+function handleError(err) {
+    if (!err) return;
+    if (opbeat) opbeat.captureError(err);
+    console.error(err);
+}
 
 app.get('/health', function(req, res) {
     return res.json({status: 'ok'});
