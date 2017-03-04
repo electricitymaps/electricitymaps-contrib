@@ -30,7 +30,7 @@ var REFRESH_TIME_MINUTES = 5;
 
 // Global State
 var selectedCountryCode;
-var forceRemoteEndpoint = false;
+var useRemoteEndpoint = true;
 var customDate;
 var timelineEnabled = false;
 var currentMoment;
@@ -75,8 +75,8 @@ args.forEach(function(arg) {
     // Store in history state to be able to reconstruct
     replaceHistoryState(kv[0], kv[1]);
     if (kv[0] == 'remote') {
-        forceRemoteEndpoint = kv[1] == 'true';
-        replaceHistoryState('remote', forceRemoteEndpoint);
+        useRemoteEndpoint = kv[1] == 'true';
+        replaceHistoryState('remote', useRemoteEndpoint);
     } else if (kv[0] == 'datetime') {
         customDate = kv[1];
         replaceHistoryState('datetime', customDate);
@@ -97,17 +97,27 @@ var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || f
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//www.electricitymap.org';
-var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
-    '' : REMOTE_ENDPOINT;
+var REMOTE_ENDPOINT = '//api.electricitymap.org';
+var LOCAL_ENDPOINT = '//localhost:9000';
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
+    LOCAL_ENDPOINT : REMOTE_ENDPOINT;
 
-if (typeof _opbeat !== 'undefined')
-    _opbeat('config', {
-        orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
-        appId: 'f40cef4b37'
-    });
-else
-    console.warn('Opbeat could not be initialized!');
+if (!isLocalhost) {
+  _opbeat = window._opbeat || function() {
+      (window._opbeat.q = window._opbeat.q || []).push(arguments)
+  };
+  if (typeof _opbeat !== 'undefined') {
+      _opbeat('config', {
+          orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
+          appId: 'f40cef4b37'
+      });
+      _opbeat('setExtraContext', {
+          bundleHash: bundleHash
+      });
+  } else {
+      console.warn('Opbeat could not be initialized!');
+  }
+}
 
 function catchError(e) {
     console.error('Error Caught! ' + e);
@@ -359,9 +369,9 @@ function selectCountry(countryCode, notrack) {
         selectedCountryCode = undefined;
         // If the introductory panel was never rendered before
         // then we need to render it
-        co2Colorbar.render();
-        if (windEnabled) windColorbar.render();
-        if (solarEnabled) solarColorbar.render();
+        if (co2Colorbar) co2Colorbar.render();
+        if (windColorbar && windEnabled) windColorbar.render();
+        if (solarColorbar && solarEnabled) solarColorbar.render();
     } else {
         // Selected
         console.log(countries[countryCode]);
@@ -557,9 +567,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 
     // Is there a new version?
     d3.select('#new-version')
-        .style('top', (clientVersion === bundleHash || forceRemoteEndpoint) ? undefined : 0);
+        .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
 
-    currentMoment = (customDate && moment(customDate) || moment());
+    currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.select('#current-date').text(currentMoment.format('LL'));
     d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')
@@ -575,6 +585,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         entry.value.exchange = {};
         entry.value.production = {};
         entry.value.productionCo2Intensities = {};
+        entry.value.productionCo2IntensitySources = {};
         entry.value.storage = {};
         entry.value.source = undefined;
     });
@@ -595,6 +606,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         d3.keys(entry.value).forEach(function(k) {
             country[k] = entry.value[k];
         });
+        // Set date
+        country.datetime = state.datetime;
         // Validate data
         if (!country.production) return;
         modeOrder.forEach(function (mode) {
@@ -913,7 +926,7 @@ function fetch(showLoading, callback) {
         d3.select('#connection-warning').style('top', 0);
     }, 15 * 1000);
     var Q = d3.queue();
-    Q.defer(d3.text, ENDPOINT + '/clientVersion');
+    Q.defer(d3.text, '/clientVersion');
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
     var now = customDate || new Date();

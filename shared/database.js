@@ -224,7 +224,8 @@ exports.queryLastValuesBeforeDatetimeWithExpiration = function (datetime, expira
             prices = results[2];
             // This can crash, so we to try/catch
             try {
-                result = processDatabaseResults(countries, exchanges, prices);
+                var result = processDatabaseResults(countries, exchanges, prices);
+                result.datetime = maxDate || new Date();
             } catch(err) {
                 callback(err);
             }
