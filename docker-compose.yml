@@ -5,14 +5,10 @@ services:
       context: .
       dockerfile: web/Dockerfile
     command: npm run server-dev
-    depends_on: [mongo, memcached]
     environment:
       - ENV=development
-      - MEMCACHED_HOST=memcached
-      - 'MONGO_URL=mongodb://mongo:27017/electricity'
     ports: ['8000:8000']
     volumes:
-      - './shared:/home/shared'
       - './web/app:/home/web/app'
       - './web/package.json:/home/web/package.json'
       - './web/public:/home/web/public'
@@ -20,21 +16,3 @@ services:
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
       - './web/locales:/home/web/locales'
-  feeder:
-    build:
-      context: .
-      dockerfile: feeder/Dockerfile
-    depends_on: [mongo]
-    env_file: ./secrets.env
-    environment:
-      - ENV=development
-      - MEMCACHED_HOST=memcached
-      - 'MONGO_URL=mongodb://mongo:27017/electricity'
-    volumes:
-      - './feeder:/home/feeder'
-      - './shared:/home/shared'
-  memcached:
-    image: memcached
-  mongo:
-    image: mongo
-    volumes: ['/data/db']

@@ -7,7 +7,7 @@ STEP_ORIGIN  = 6 # hours
 STEP_HORIZON = 1 # hours
 GRID_DELTA = 0.25 # degrees
 GRID_COMPRESSION_FACTOR = 4 # will multiply delta by this factor
-SW = [-48.66, 28.17]
+SW = [-48.66, 32]
 NE = [37.45, 67.71]
 
 TMP_FILENAME = 'tmp.grb2'
