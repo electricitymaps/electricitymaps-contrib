@@ -202,12 +202,12 @@
     },
     "LT": {
         "capacity": {
-            "biomass": 86,
+            "biomass": 100,
             "gas": 1719,
             "hydro": 1028,
             "oil": 160,
-            "solar": 69,
-            "wind": 366
+            "solar": 73,
+            "wind": 499
         }
     },
     "LV": {
