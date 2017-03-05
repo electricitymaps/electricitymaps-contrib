@@ -155,6 +155,8 @@ ExchangeLayer.prototype.render = function() {
         .attr('transform', 'scale(0.1818)')
         .attr('x', -24)
         .attr('y', -37)
+        .attr('width', 49)
+        .attr('height', 81)
         .on('mouseover', function (d, i) {
             return that.exchangeMouseOverHandler.call(this, d, i);
         })
