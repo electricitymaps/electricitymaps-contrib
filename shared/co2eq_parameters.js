@@ -37,7 +37,12 @@ var countryCo2eqFootprint = {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 300, source: null} : null;
     },
     'NO': function (productionMode) {
-        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 700, source: null} : null;
+        if (productionMode == 'hydro') {
+            // Source: Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"
+            return {value: 1.9, source: 'Ostford Research 2015'};
+        } else if (productionMode == 'unknown' || productionMode == 'other') {
+            return {value: 700, source: null};
+        };
     },
     'SE': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 700, source: null} : null;
