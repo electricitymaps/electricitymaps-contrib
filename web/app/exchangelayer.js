@@ -43,6 +43,7 @@ function appendGradient(element, triangleHeight) {
 }
 
 ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
+    return;
     var that = this;
     var stops = element.selectAll('stop')
         .data(d3.range(5));
@@ -81,12 +82,6 @@ ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }
-
-function getTransform(d) {
-    var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-    var scale = 4.5;
-    return 'rotate(' + rotation + '), scale(' + scale + ')';
-};
 
 ExchangeLayer.prototype.renderOne = function(selector) {
     var color = 'orange';
@@ -142,40 +137,35 @@ ExchangeLayer.prototype.render = function() {
     var newArrows = exchangeArrows.enter()
         .append('g') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow')
-    newArrows
-        .append('path')
-            .attr('d', function(d) { return that.trianglePath(); })
-            .attr('fill', function (d, i) { 
-                var color = (d.co2intensity && d.netFlow) && that.co2color()(d.co2intensity) || 'gray';
-                return !animate ? color : 'url(#exchange-gradient-' + i + ')';
-            })
-            .attr('stroke-width', 0.1)
-            .attr('transform', getTransform)
-            .attr('transform-origin', '0 0')
-            .on('mouseover', function (d, i) {
-                return that.exchangeMouseOverHandler.call(this, d, i);
-            })
-            .on('mouseout', function (d, i) {
-                return that.exchangeMouseOutHandler.call(this, d, i);
-            })
-            .on('mousemove', function (d, i) {
-                return that.exchangeMouseMoveHandler.call(this, d, i);
-            })
-            .on('click', function (d) { console.log(d); });
-    newArrows.merge(exchangeArrows)
         .attr('transform', function (d) {
             var center = that.projection()(d.lonlat);
-            return 'translate(' + center[0] + ',' + center[1] + ')';
-        })
-        .attr('stroke', function (d, i) {
-            if (!d.co2intensity) return 'black';
-            return d.co2intensity > that.STROKE_CO2_THRESHOLD ? 'lightgray' : 'black';
+            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+            return 'translate(' + center[0] + ',' + center[1] + '), ' + 'rotate(' + rotation + ')';
         })
         .style('display', function (d) { return (d.netFlow || 0) == 0 ? 'none' : 'block'; })
-        .select('path')
-            .transition()
-            .duration(2000)
-            .attr('transform', getTransform);
+    const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
+    const maxCarbonIntensity = 800; // we only have arrows up to a certain point
+    newArrows
+        .append('image')
+        .attr('xlink:href', d => {
+            let intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
+            if(isNaN(intensity)) intensity = 'nan';
+            return `images/arrow-${intensity}-animated-normal.gif`;
+        })
+        .attr('transform', 'scale(0.1818)')
+        .attr('x', -24)
+        .attr('y', -37)
+        .on('mouseover', function (d, i) {
+            return that.exchangeMouseOverHandler.call(this, d, i);
+        })
+        .on('mouseout', function (d, i) {
+            return that.exchangeMouseOutHandler.call(this, d, i);
+        })
+        .on('mousemove', function (d, i) {
+            return that.exchangeMouseMoveHandler.call(this, d, i);
+        })
+        .on('click', function (d) { console.log(d); });
+    newArrows.merge(exchangeArrows).select('path')
 
     return this;
 }
