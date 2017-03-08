@@ -28,9 +28,9 @@ function CountryMap(selector, co2color) {
     this.land = this.svg.append('g')
         .attr('class', 'land');
     // Add other layers
+    this.root.append('div').attr('class', 'arrows-layer');
     this.root.append('canvas').attr('class', 'wind map-layer');
     this.root.append('canvas').attr('class', 'solar map-layer');
-    this.root.append('div').attr('class', 'arrows-layer');
 
     this.zoom = d3.zoom()
         .on('zoom', function() {
