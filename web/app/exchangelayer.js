@@ -42,43 +42,6 @@ function appendGradient(element, triangleHeight) {
         .attr('x2', 0).attr('y2', triangleHeight + 1);
 }
 
-ExchangeLayer.prototype.animateGradient = function(element, color, duration) {
-    return;
-    var that = this;
-    var stops = element.selectAll('stop')
-        .data(d3.range(5));
-    var newStops = stops.enter()
-        .append('stop')
-        newStops.merge(stops)
-            .transition()
-            .on('start', function repeat() {
-                d3.active(this)
-                    .attr('stop-color', function(i) { 
-                        if (i == 2) {
-                            if (d3.hsl(d3.rgb(color)).l > 0.2)
-                                return d3.rgb(color).brighter(2);
-                            else
-                                return d3.rgb('lightgray');
-                        } else
-                            return color;
-                    })
-                    .transition()
-                    .duration(duration)
-                    .ease(d3.easeLinear)
-                    .attrTween('offset', function(i, _, a) {
-                        // Only animate the middle color
-                        if (i == 0 || i == 4)
-                            return function (t) { return i == 4 ? 1 : 0; };
-                        else {
-                            return function (t) {
-                                return t + (i - 2) * that.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT;
-                            };
-                        }
-                    })
-                    .on('start', repeat);
-            });
-}
-
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 }
@@ -101,9 +64,6 @@ ExchangeLayer.prototype.renderOne = function(selector) {
         })
         .attr('transform-origin', '0 0')
         .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
-
-    if (!isMobile())
-        that.animateGradient(gradient, color, 2000);
 
     return element;
 };
