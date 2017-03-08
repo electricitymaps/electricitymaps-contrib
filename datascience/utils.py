@@ -1,9 +1,12 @@
 import arrow
+import os
 import pandas as pd
 import requests
 
-endpoint = 'http://www.electricitymap.org'
+endpoint = 'http://api.electricitymap.org'
 r = requests.session()
+
+ELECTRICITYMAP_TOKEN = os.environ['ELECTRICITYMAP_TOKEN']
 
 def date_range(start_date, end_date, delta):
     start, end = [
@@ -26,7 +29,7 @@ def fetch_production(country_code, t, delta):
         'countryCode': country_code,
         'datetime': t.isoformat()
     }
-    obj = r.get(url, params=params).json()
+    obj = r.get(url, params=params, headers={'ELECTRICITYMAP-TOKEN': ELECTRICITYMAP_TOKEN}).json()
     if not obj: return
     return obj if (t - arrow.get(obj['datetime'])).total_seconds() < delta * 60.0 else None
 
@@ -58,7 +61,7 @@ def fetch_exchange(country_code, t):
         'datetime': t.isoformat(),
         'countryCode': country_code
     }
-    obj = r.get(url, params=params).json()
+    obj = r.get(url, params=params, headers={'ELECTRICITYMAP-TOKEN': ELECTRICITYMAP_TOKEN}).json()
     return obj['data']
 
 def get_exchange(countries, start_date, end_date, delta):
@@ -98,7 +101,7 @@ def fetch_state(t, delta):
     params = {
         'datetime': t.isoformat()
     }
-    obj = r.get(url, params=params).json()
+    obj = r.get(url, params=params, headers={'ELECTRICITYMAP-TOKEN': ELECTRICITYMAP_TOKEN}).json()
     if not obj: return
     return obj['data']
 
@@ -114,7 +117,7 @@ def get_state(countries, start_date, end_date, delta):
             if not 'datetime' in d: continue
             p = pd.DataFrame(
                 data={
-                    'timestamp': pd.Timestamp(arrow.get(d['datetime']).datetime),
+                    'timestamp': pd.Timestamp(t.datetime),
                     'country': countryCode,
                     'co2intensity': d.get('co2intensity', None),
                 },
@@ -131,7 +134,7 @@ def fetch_price(country_code, t, delta):
         'countryCode': country_code,
         'datetime': t.isoformat()
     }
-    obj = r.get(url, params=params).json()
+    obj = r.get(url, params=params, headers={'ELECTRICITYMAP-TOKEN': ELECTRICITYMAP_TOKEN}).json()
     if not obj: return
     return obj if (t - arrow.get(obj['datetime'])).total_seconds() < delta * 60.0 else None
 

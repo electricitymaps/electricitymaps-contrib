@@ -48,11 +48,8 @@ function CountryMap(selector, co2color) {
 }
 
 CountryMap.prototype.render = function() {
-    var clientWidth = document.body.clientWidth;
-    var clientHeight = document.body.clientHeight;
-
-    // Determine scale (i.e. zoom) based on the shortest dimension
-    var scale = Math.max(1100, 0.8 * Math.min(clientWidth, clientHeight));
+    // Determine scale (i.e. zoom) based on the height
+    var scale = this.root.node().parentNode.getBoundingClientRect().height * 1.4;
     // Determine map width and height based on bounding box of Europe
     var sw = [-15, 34.7];
     var ne = [34, 72];
@@ -134,7 +131,7 @@ CountryMap.prototype.render = function() {
                     if (that.countryMouseMoveHandler)
                         return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('touchstart click', function (d, i) {
+                .on('click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
                     if (that.selectedCountry !== undefined) {
                         that.selectedCountry
