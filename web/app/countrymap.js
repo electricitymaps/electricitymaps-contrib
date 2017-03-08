@@ -130,7 +130,7 @@ CountryMap.prototype.render = function() {
                     if (that.countryMouseMoveHandler)
                         return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('touchstart click', function (d, i) {
+                .on('click', function (d, i) {
                     d3.event.stopPropagation(); // To avoid call click on sea
                     if (that.selectedCountry !== undefined) {
                         that.selectedCountry
