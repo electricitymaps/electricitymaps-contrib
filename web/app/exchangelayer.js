@@ -42,13 +42,7 @@ function appendGradient(element, triangleHeight) {
         .attr('x2', 0).attr('y2', triangleHeight + 1);
 }
 
-function isMobile() {
-    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-}
-
 ExchangeLayer.prototype.renderOne = function(selector) {
-    var color = 'orange';
-
     var element = d3.select(selector);
     var id = String(parseInt(Math.random()*10000));
     var gradient = appendGradient(
@@ -60,7 +54,7 @@ ExchangeLayer.prototype.renderOne = function(selector) {
         .append('path')
         .attr('d', function(d) { return that.trianglePath(); })
         .attr('fill', function (d, i) { 
-            return isMobile() ? color : 'url(#' + id + ')';
+            return 'url(#' + id + ')';
         })
         .attr('transform-origin', '0 0')
         .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
@@ -75,8 +69,6 @@ ExchangeLayer.prototype.render = function() {
         .selectAll('.exchange-gradient')
         .data(this._data)
     exchangeGradients.exit().remove();
-
-    var animate = !isMobile();
 
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
