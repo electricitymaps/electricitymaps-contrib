@@ -12,7 +12,7 @@ function CountryMap(selector, co2color) {
         .style('transform-origin', '0px 0px 0px');
     this.svg = this.root.append('svg')
         .attr('class', 'map-layer')
-        .on('touchstart click', function (d, i) {
+        .on('click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
                     .style('stroke', that.STROKE_COLOR)
@@ -48,8 +48,10 @@ function CountryMap(selector, co2color) {
 }
 
 CountryMap.prototype.render = function() {
-    // Determine scale (i.e. zoom) based on the height
-    var scale = this.root.node().parentNode.getBoundingClientRect().height * 1.4;
+    // Determine scale (i.e. zoom) based on the size
+    var scale = Math.max(
+      this.root.node().parentNode.getBoundingClientRect().height,
+      this.root.node().parentNode.getBoundingClientRect().width) * 1.4;
     // Determine map width and height based on bounding box of Europe
     var sw = [-15, 34.7];
     var ne = [34, 72];
