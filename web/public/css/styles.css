@@ -284,10 +284,9 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 
 .arrows-layer {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 0;
+    height: 0;
     transform: translateZ(0);
-    pointer-events: none;
 }
 
 .arrows-layer .exchange-arrow {

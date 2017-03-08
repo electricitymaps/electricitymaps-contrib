@@ -6,7 +6,7 @@ function ExchangeLayer(selector, arrowsSelector) {
     this.STROKE_CO2_THRESHOLD = 550;
     this.exchangeAnimationDurationScale = d3.scaleLinear()
         .domain([500, 5000])
-        .range([1500, 50])
+        .rangeRound([0, 2])
         .clamp(true);
 
     this.root = d3.select(selector);
@@ -90,7 +90,7 @@ ExchangeLayer.prototype.render = function() {
         .attr('src', d => {
             let intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
             if(isNaN(intensity)) intensity = 'nan';
-            return `images/arrow-${intensity}-animated-normal.gif`;
+            return 'images/arrow-'+intensity+'-animated-'+this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
         })
         .attr('width', 49)
         .attr('height', 81)

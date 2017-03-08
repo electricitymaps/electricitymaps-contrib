@@ -46,32 +46,34 @@ for(let co2value in colors) {
 
       // todo: generate 3 speeds:
       // apply highlight and generate GIF
-      const args = [
-        '-dispose', 'none',
-        '-delay', '0',
-        `public/images/arrow-${co2value}-outline.png`,
-        '-dispose', 'previous',
-        '-delay', '16x1000',
-        '-loop', '0',
-        '-page', `45x77+${outlineSize}+${outlineSize}`,
-        'public/images/arrow-highlights/*.png',
-        '-layers', 'coalesce',
-        `public/images/arrow-${co2value}-animated-normal.gif`
-      ];
-      const child = child_process.spawn('convert', args);
-      child.on('close', (code) => {
-        if(code !== 0) {
-          console.log('child exited with code', code, 'for args', args);
-          console.log('command: ', 'convert ' + args.join(' '));
-          return;
-        }
+      [15, 10, 5].forEach((speed, index) => {
+        const args = [
+          '-dispose', 'none',
+          '-delay', '0',
+          `public/images/arrow-${co2value}-outline.png`,
+          '-dispose', 'previous',
+          '-delay', `${speed}`,
+          '-loop', '0',
+          '-page', `45x77+${outlineSize}+${outlineSize}`,
+          'public/images/arrow-highlights/*.png',
+          '-layers', 'coalesce',
+          `public/images/arrow-${co2value}-animated-${index}.gif`
+        ];
+        const child = child_process.spawn('convert', args);
+        child.on('close', (code) => {
+          if(code !== 0) {
+            console.log('child exited with code', code, 'for args', args);
+            console.log('command: ', 'convert ' + args.join(' '));
+            return;
+          }
 
-        fs.unlink(`public/images/arrow-${co2value}.png`, () => {});
-        fs.unlink(`public/images/arrow-${co2value}-outline.png`, () => {});
-      })
+          fs.unlink(`public/images/arrow-${co2value}.png`, () => {});
+          fs.unlink(`public/images/arrow-${co2value}-outline.png`, () => {});
+        })
 
-      child.stderr.on('data', (data) => {
-        console.log('stderr:', data);
+        child.stderr.on('data', (data) => {
+          console.log('stderr:', data);
+        });
       });
     })
   });
