@@ -1,6 +1,6 @@
 var d3 = require('d3');
 
-function ExchangeLayer(selector) {
+function ExchangeLayer(selector, arrowsSelector) {
     this.TRIANGLE_HEIGHT = 1.0;
     this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
     this.STROKE_CO2_THRESHOLD = 550;
@@ -10,7 +10,7 @@ function ExchangeLayer(selector) {
         .clamp(true);
 
     this.root = d3.select(selector);
-    this.exchangeArrowsContainer = this.root.append('g');
+    this.exchangeArrowsContainer = d3.select(arrowsSelector);
     this.exchangeGradientsContainer = this.root.append('g');
 
     this.trianglePath = function() {
@@ -115,46 +115,31 @@ ExchangeLayer.prototype.render = function() {
         .selectAll('.exchange-gradient')
         .data(this._data)
     exchangeGradients.exit().remove();
-    var newGradients = appendGradient(exchangeGradients.enter(), this.TRIANGLE_HEIGHT)
-        .attr('id', function (d, i) { return 'exchange-gradient-' + i; });
 
     var animate = !isMobile();
-    
-    if (animate) {
-        // Add animations
-        var gradients = newGradients.merge(exchangeGradients);
-        gradients.each(function(d) {
-            var color = (d.co2intensity && d.netFlow) && that.co2color()(d.co2intensity) || 'gray';
-            var duration = d.netFlow && that.exchangeAnimationDurationScale(Math.abs(d.netFlow)) || 2000;
-            that.animateGradient(d3.select(this), color, duration);
-        });
-    }
 
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
         .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1]; });
     exchangeArrows.exit().remove();
     var newArrows = exchangeArrows.enter()
-        .append('g') // Add a group so we can animate separately
+        .append('div') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow')
-        .attr('transform', function (d) {
+        .attr('style', function (d) {
             var center = that.projection()(d.lonlat);
             var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            return 'translate(' + center[0] + ',' + center[1] + '), ' + 'rotate(' + rotation + ')';
+            var displayState = (d.netFlow || 0) == 0 ? 'display:none;' : '';
+            return displayState+' transform: translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
         })
-        .style('display', function (d) { return (d.netFlow || 0) == 0 ? 'none' : 'block'; })
     const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
     const maxCarbonIntensity = 800; // we only have arrows up to a certain point
     newArrows
-        .append('image')
-        .attr('xlink:href', d => {
+        .append('img')
+        .attr('src', d => {
             let intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
             if(isNaN(intensity)) intensity = 'nan';
             return `images/arrow-${intensity}-animated-normal.gif`;
         })
-        .attr('transform', 'scale(0.1818)')
-        .attr('x', -24)
-        .attr('y', -37)
         .attr('width', 49)
         .attr('height', 81)
         .on('mouseover', function (d, i) {
