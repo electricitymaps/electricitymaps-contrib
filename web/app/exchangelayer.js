@@ -131,8 +131,8 @@ ExchangeLayer.prototype.render = function() {
             var displayState = (d.netFlow || 0) == 0 ? 'display:none;' : '';
             return displayState+' transform: translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
         })
-    const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
-    const maxCarbonIntensity = 800; // we only have arrows up to a certain point
+    var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
+    var maxCarbonIntensity = 800; // we only have arrows up to a certain point
     newArrows
         .append('img')
         .attr('src', d => {
