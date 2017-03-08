@@ -257,7 +257,7 @@ var modeOrder = [
 
 // Set up objects
 var countryMap = new CountryMap('#map').co2color(co2color);
-var exchangeLayer = new ExchangeLayer('svg.map-layer', co2color).co2color(co2color);
+var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
 var tooltip = new Tooltip(countryTable, countries)
     .co2color(co2color)

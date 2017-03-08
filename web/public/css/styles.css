@@ -281,3 +281,22 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 .time-travel {
     display: none;
 }
+
+.arrows-layer {
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform: translateZ(0);
+}
+
+.arrows-layer .exchange-arrow {
+    position: absolute;
+}
+
+.arrows-layer .exchange-arrow img {
+    position: absolute;
+    left: -25px;
+    top: -41px;
+    transform: scale(0.1818);
+}
+
