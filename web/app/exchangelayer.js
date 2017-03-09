@@ -97,11 +97,13 @@ ExchangeLayer.prototype.render = function() {
     // This object refers to all arrows
     // Here we add all dynamic properties (i.e. that depend on data)
     newArrows.merge(exchangeArrows)
-        .attr('style', function (d) {
+        .style('display', function (d) {
+            return (d.netFlow || 0) == 0 ? 'display:none;' : '';
+        })
+        .style('transform', function (d) {
             var center = that.projection()(d.lonlat);
             var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            var displayState = (d.netFlow || 0) == 0 ? 'display:none;' : '';
-            return displayState+' transform: translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
+            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
         })
         .select('img')
         .attr('src', function (d) {
