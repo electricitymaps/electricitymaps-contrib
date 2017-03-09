@@ -231,6 +231,10 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     }
     .left-panel {
         width: 100%;
+        display: none;
+    }
+    #map-container {
+        width: 100%;
     }
 }
 

@@ -76,6 +76,7 @@ LineGraph.prototype.render = function () {
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
         height = this.rootElement.node().getBoundingClientRect().height;
+    if (!width || !height) return this;
     var X_AXIS_HEIGHT = 20;
     var X_AXIS_PADDING = 4;
     var Y_AXIS_WIDTH = 35;

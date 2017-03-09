@@ -312,11 +312,25 @@ function placeTooltip(selector, d3Event) {
     var tooltip = d3.select(selector);
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
-    var x = d3Event.pageX + 5; if (window.innerWidth - x <= w) x = d3Event.pageX - w - 5;
-    var y = d3Event.pageY - h - 5; if (y <= 5) y = d3Event.pageY + 5;
-    tooltip
-        .style('transform',
-            'translate(' + x + 'px' + ',' + y + 'px' + ')');
+    var margin = 5;
+    // On very small screens
+    if (w > window.innerWidth) {
+        tooltip
+            .style('width', '100%');
+    }
+    else {
+        var x = 0;
+        if (w > window.innerWidth / 2 - 5) {
+            // Tooltip won't fit on any side, so don't translate x
+            x = 0.5 * (window.innerWidth - w);
+        } else {
+            x = d3Event.pageX + margin; if (window.innerWidth - x <= w) x = d3Event.pageX - w - margin;
+        }
+        var y = d3Event.pageY - h - margin; if (y <= margin) y = d3Event.pageY + margin;
+        tooltip
+            .style('transform',
+                'translate(' + x + 'px' + ',' + y + 'px' + ')');
+    }
 }
 
 // Prepare data
