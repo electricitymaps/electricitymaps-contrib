@@ -3,6 +3,7 @@ var Cookies = require('js-cookie');
 var d3 = require('d3');
 var Flatpickr = require('flatpickr');
 var moment = require('moment');
+var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
 // Modules
 //var AreaGraph = require('./areagraph');
@@ -613,8 +614,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         modeOrder.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown' || !country.datetime) return;
             // Check missing values
-            if (country.production[mode] === undefined && country.storage[mode] === undefined)
-                console.warn(countryCode + ' is missing production or storage of ' + mode);
+            // if (country.production[mode] === undefined && country.storage[mode] === undefined)
+            //    console.warn(countryCode + ' is missing production or storage of ' + mode);
             // Check validity of production
             if (country.production[mode] !== undefined && country.production[mode] < 0)
                 console.error(countryCode + ' has negative production of ' + mode);
@@ -622,11 +623,11 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             if (country.storage[mode] !== undefined && country.storage[mode] < 0)
                 console.error(countryCode + ' has negative storage of ' + mode);
             // Check missing capacities
-            if (country.production[mode] !== undefined &&
-                (country.capacity || {})[mode] === undefined)
-            {
-                console.warn(countryCode + ' is missing capacity of ' + mode);
-            }
+            // if (country.production[mode] !== undefined &&
+            //     (country.capacity || {})[mode] === undefined)
+            // {
+            //     console.warn(countryCode + ' is missing capacity of ' + mode);
+            // }
             // Check load factors > 1
             if (country.production[mode] !== undefined &&
                 (country.capacity || {})[mode] !== undefined &&
@@ -704,9 +705,13 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
                 .text(Math.round(d.co2intensity) || '?');
+            var priceData = d.price || {};
+            var hasPrice = priceData.value != null;
             tooltip.select('.country-spot-price')
-                .text(Math.round((d.price || {}).value) || '?')
-                .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
+                .text(hasPrice ? Math.round(priceData.value) : '?')
+                .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
+            tooltip.select('.country-spot-price-currency')
+                .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
             var hasFossilFuelData = d.fossilFuelRatio != null;
             var fossilFuelPercent = d.fossilFuelRatio * 100;
             tooltip.select('.fossil-fuel-percentage')

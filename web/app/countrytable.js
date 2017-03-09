@@ -1,4 +1,5 @@
 var d3 = require('d3');
+var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 var lang = require('json-loader!./configs/lang.json')[locale];
 var moment = require('moment');
 
@@ -292,9 +293,13 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
     d3.select('.fossil-fuel-percentage')
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+    var priceData = this._data.price || {};
+    var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
-        .text(Math.round((this._data.price || {}).value) || '?')
-        .style('color', ((this._data.price || {}).value || 0) < 0 ? 'red' : undefined);
+        .text(hasPrice ? Math.round(priceData.value) : '?')
+        .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
+    d3.select('.country-spot-price-currency')
+        .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
     d3.select('#country-emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)

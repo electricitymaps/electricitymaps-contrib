@@ -138,7 +138,7 @@
                             [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
                             <br />
                             <%= __('misc.carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%=__('country-panel.fossilfuels')%>)<br />
-                            <%= __('country-panel.electricityprice') %>: <span class="country-spot-price"></span> &euro;/MWh<br />
+                            <%= __('country-panel.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh<br />
                             <span class="country-show-emissions"><%= __('country-panel.electricityproduction') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showemissions')%></a>) <%= __('country-panel.bysource')%>:</span>
                             <span class="country-show-electricity" style="display: none;"><%= __('country-panel.emissions') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showelectricity') %></a>) <%= __('country-panel.bysource')%>:</span>
                         </span>
@@ -242,7 +242,7 @@
             <i id="country-flag"></i> <span id="country-name"></span>: 
             <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
             <br />
-            <%= __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> &euro;/MWh
+            <%= __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh
         </div>
         <div id="exchange-tooltip" class="tooltip panel">
             <%= __('tooltips.crossborderexport') %>:<br />
