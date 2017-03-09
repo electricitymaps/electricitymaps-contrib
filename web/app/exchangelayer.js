@@ -118,7 +118,7 @@ ExchangeLayer.prototype.render = function() {
         .select('img')
         .style('transform', 'scale(' + this.arrowScale() + ')')
         .attr('src', function (d) {
-            let intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
+            var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
             if(isNaN(intensity)) intensity = 'nan';
             return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
         });
