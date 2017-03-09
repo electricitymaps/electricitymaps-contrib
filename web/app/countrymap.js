@@ -40,8 +40,7 @@ function CountryMap(selector, co2color) {
           // Scale the arrows differently
           that.root.selectAll('.arrows-layer .exchange-arrow img')
               .style('transform', function() {
-                  // Warning: the constant is taken from the CSS definition
-                  return 'scale(' + (0.1818 / transform.k) + ')';
+                  return 'scale(' + (that.exchangeLayer().arrowScale() / transform.k) + ')';
               });
         })
         .on('start', function() {
@@ -162,6 +161,12 @@ CountryMap.prototype.render = function() {
 CountryMap.prototype.co2color = function(arg) {
     if (!arg) return this._co2color;
     else this._co2color = arg;
+    return this;
+};
+
+CountryMap.prototype.exchangeLayer = function(arg) {
+    if (!arg) return this._exchangeLayer;
+    else this._exchangeLayer = arg;
     return this;
 };
 
