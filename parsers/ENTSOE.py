@@ -220,10 +220,10 @@ def parse_price(xml_text):
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     prices = []
+    currencies = []
     datetimes = []
     for timeseries in soup.find_all('timeseries'):
         currency = timeseries.find_all('currency_unit.name')[0].contents[0]
-        if currency != 'EUR': raise Exception('Currency %s is not recognised' % currency)
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
@@ -232,7 +232,8 @@ def parse_price(xml_text):
             if datetime > arrow.now(tz='Europe/Paris'): continue
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
             datetimes.append(datetime)
-    return prices, datetimes
+            currencies.append(currency)
+    return prices, currencies, datetimes
 
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
@@ -395,10 +396,11 @@ def fetch_price(country_code, session=None):
     # Grab consumption
     parsed = parse_price(query_price(domain, session))
     if parsed:
-        prices, datetimes = parsed
+        prices, currencies, datetimes = parsed
         data = {
             'countryCode': country_code,
             'datetime': datetimes[-1].datetime,
+            'currency': currencies[-1],
             'price': prices[-1],
             'source': 'entsoe.eu'
         }
