@@ -74,24 +74,12 @@ ExchangeLayer.prototype.render = function() {
         .selectAll('.exchange-arrow')
         .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1]; });
     exchangeArrows.exit().remove();
+    // This object refers to arrows created
+    // Add all static properties
     var newArrows = exchangeArrows.enter()
         .append('div') // Add a group so we can animate separately
-        .attr('class', 'exchange-arrow')
-        .attr('style', function (d) {
-            var center = that.projection()(d.lonlat);
-            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            var displayState = (d.netFlow || 0) == 0 ? 'display:none;' : '';
-            return displayState+' transform: translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
-        })
-    var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
-    var maxCarbonIntensity = 800; // we only have arrows up to a certain point
-    newArrows
-        .append('img')
-        .attr('src', d => {
-            let intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-            if(isNaN(intensity)) intensity = 'nan';
-            return 'images/arrow-'+intensity+'-animated-'+this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
-        })
+        .attr('class', 'exchange-arrow');
+    newArrows.append('img')
         .attr('width', 49)
         .attr('height', 81)
         .on('mouseover', function (d, i) {
@@ -104,7 +92,23 @@ ExchangeLayer.prototype.render = function() {
             return that.exchangeMouseMoveHandler.call(this, d, i);
         })
         .on('click', function (d) { console.log(d); });
-    newArrows.merge(exchangeArrows).select('path')
+    var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
+    var maxCarbonIntensity = 800; // we only have arrows up to a certain point
+    // This object refers to all arrows
+    // Here we add all dynamic properties (i.e. that depend on data)
+    newArrows.merge(exchangeArrows)
+        .attr('style', function (d) {
+            var center = that.projection()(d.lonlat);
+            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+            var displayState = (d.netFlow || 0) == 0 ? 'display:none;' : '';
+            return displayState+' transform: translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
+        })
+        .select('img')
+        .attr('src', function (d) {
+            let intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
+            if(isNaN(intensity)) intensity = 'nan';
+            return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
+        });
 
     return this;
 }
