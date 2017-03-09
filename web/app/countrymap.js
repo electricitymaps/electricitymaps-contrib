@@ -9,7 +9,8 @@ function CountryMap(selector, co2color) {
     this.selectedCountry = undefined;
 
     this.root = d3.select(selector)
-        .style('transform-origin', '0px 0px 0px');
+        .style('transform-origin', '0px 0px');
+    // Add SVG layer
     this.svg = this.root.append('svg')
         .attr('class', 'map-layer')
         .on('click', function (d, i) {
@@ -21,21 +22,27 @@ function CountryMap(selector, co2color) {
             if (that.seaClickHandler)
                 that.seaClickHandler.call(this, d, i);
         });
-
-    // Add SVG layer
+    // Add SVG elements
     this.graticule = this.svg.append('g').append('path')
         .attr('class', 'graticule');
     this.land = this.svg.append('g')
         .attr('class', 'land');
     // Add other layers
-    this.root.append('div').attr('class', 'arrows-layer');
+    this.root.append('div').attr('class', 'arrows-layer map-layer');
     this.root.append('canvas').attr('class', 'wind map-layer');
     this.root.append('canvas').attr('class', 'solar map-layer');
 
     this.zoom = d3.zoom()
         .on('zoom', function() {
           var transform = d3.event.transform;
-          that.root.style("transform", "translate(" + transform.x + "px," + transform.y + "px) scale(" + transform.k + ")");
+          that.root
+              .style('transform', 'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') ');
+          // Scale the arrows differently
+          that.root.selectAll('.arrows-layer .exchange-arrow img')
+              .style('transform', function() {
+                  // Warning: the constant is taken from the CSS definition
+                  return 'scale(' + (0.1818 / transform.k) + ')';
+              });
         })
         .on('start', function() {
             d3.select(this).style('cursor', 'move');
