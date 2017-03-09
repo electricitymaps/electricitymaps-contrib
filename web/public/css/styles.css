@@ -210,16 +210,17 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     left: 0px;
 }
 
+.watermark {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding: 18px;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
         display: none;
-    }
-    .watermark {
-        position: fixed;
-        bottom: 0px;
-        right: 0px;
-        padding: 18px;
     }
 }
 
@@ -230,9 +231,6 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     }
     .left-panel {
         width: 100%;
-    }
-    .watermark {
-        margin-top: 2rem;
     }
 }
 

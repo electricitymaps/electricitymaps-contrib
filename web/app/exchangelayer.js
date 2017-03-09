@@ -42,26 +42,6 @@ function appendGradient(element, triangleHeight) {
         .attr('x2', 0).attr('y2', triangleHeight + 1);
 }
 
-ExchangeLayer.prototype.renderOne = function(selector) {
-    var element = d3.select(selector);
-    var id = String(parseInt(Math.random()*10000));
-    var gradient = appendGradient(
-        element.append('g').attr('class', 'exchange-gradient'),
-        this.TRIANGLE_HEIGHT
-    ).attr('id', id);
-    var that = this;
-    element
-        .append('path')
-        .attr('d', function(d) { return that.trianglePath(); })
-        .attr('fill', function (d, i) { 
-            return 'url(#' + id + ')';
-        })
-        .attr('transform-origin', '0 0')
-        .style('transform', 'translate(6px,8px) scale(4.5) rotate(-90deg)')
-
-    return element;
-};
-
 ExchangeLayer.prototype.render = function() {
     if (!this._data) { return; }
     var that = this;
