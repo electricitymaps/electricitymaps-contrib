@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var fs = require('fs');
 var glob = require('glob');
+var path = require('path');
+var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
   devtool: (process.env.BUILD === 'debug' ? 'eval' : 'sourcemap'),
@@ -15,8 +17,10 @@ module.exports = {
         callback();
       });
     },
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new ServiceWorkerWebpackPlugin({
+        entry: path.join(__dirname, 'app/sw.js'),
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
           warnings: false
@@ -41,8 +45,5 @@ module.exports = {
   output: {
     filename: 'bundle.' + (process.env.BUILD === 'debug' ? 'dev' : '[hash]') + '.js',
     path: __dirname + '/public/dist/'
-  },
-  resolve: {
-    moduleDirectories: ['node_modules']
   }
 };

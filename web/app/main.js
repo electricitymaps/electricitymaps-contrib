@@ -4,6 +4,7 @@ var d3 = require('d3');
 var Flatpickr = require('flatpickr');
 var moment = require('moment');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
+var runtime = require ('serviceworker-webpack-plugin/lib/runtime');
 
 // Modules
 //var AreaGraph = require('./areagraph');
@@ -43,6 +44,11 @@ function isMobile() {
 function isSmallScreen() {
     // Should be in sync with media queries in CSS
     return window.innerWidth < 768;
+}
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+    var registration = runtime.register();
 }
 
 // History state
