@@ -3,6 +3,7 @@ var Cookies = require('js-cookie');
 var d3 = require('d3');
 var Flatpickr = require('flatpickr');
 var moment = require('moment');
+var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
 // Modules
 //var AreaGraph = require('./areagraph');
@@ -30,10 +31,11 @@ var REFRESH_TIME_MINUTES = 5;
 
 // Global State
 var selectedCountryCode;
-var forceRemoteEndpoint = false;
+var useRemoteEndpoint = true;
 var customDate;
 var timelineEnabled = false;
 var currentMoment;
+var colorBlindModeEnabled = false;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -74,8 +76,8 @@ args.forEach(function(arg) {
     // Store in history state to be able to reconstruct
     replaceHistoryState(kv[0], kv[1]);
     if (kv[0] == 'remote') {
-        forceRemoteEndpoint = kv[1] == 'true';
-        replaceHistoryState('remote', forceRemoteEndpoint);
+        useRemoteEndpoint = kv[1] == 'true';
+        replaceHistoryState('remote', useRemoteEndpoint);
     } else if (kv[0] == 'datetime') {
         customDate = kv[1];
         replaceHistoryState('datetime', customDate);
@@ -93,19 +95,30 @@ var showWindOption = !isSmallScreen();
 var showSolarOption = !isSmallScreen();
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
+var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
 var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//www.electricitymap.org';
-var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !forceRemoteEndpoint) ?
-    '' : REMOTE_ENDPOINT;
+var REMOTE_ENDPOINT = '//api.electricitymap.org';
+var LOCAL_ENDPOINT = '//localhost:9000';
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
+    LOCAL_ENDPOINT : REMOTE_ENDPOINT;
 
-if (typeof _opbeat !== 'undefined')
-    _opbeat('config', {
-        orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
-        appId: 'f40cef4b37'
-    });
-else
-    console.warn('Opbeat could not be initialized!');
+if (!isLocalhost) {
+  _opbeat = window._opbeat || function() {
+      (window._opbeat.q = window._opbeat.q || []).push(arguments)
+  };
+  if (typeof _opbeat !== 'undefined') {
+      _opbeat('config', {
+          orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
+          appId: 'f40cef4b37'
+      });
+      _opbeat('setExtraContext', {
+          bundleHash: bundleHash
+      });
+  } else {
+      console.warn('Opbeat could not be initialized!');
+  }
+}
 
 function catchError(e) {
     console.error('Error Caught! ' + e);
@@ -140,10 +153,44 @@ moment.locale(locale);
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
-var co2color = d3.scaleLinear()
-    .domain([0, 375, 725, 800])
-    .range(['green', 'orange', 'rgb(26,13,0)'])
-    .clamp(true);
+// Prepare co2 scale
+var maxCo2 = 800;
+var co2color;
+var co2Colorbar;
+function updateCo2Scale() {
+  if (colorBlindModeEnabled) {
+    co2color = d3.scaleSequential(d3.interpolateMagma)
+      .domain([2000, 0]);
+  } else {
+    co2color = d3.scaleLinear()
+      .domain([0, 375, 725, 800])
+      .range(['green', 'orange', 'rgb(26,13,0)'])
+  }
+
+  co2color.clamp(true);
+  if (!isSmallScreen()) {
+      co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+        .markerColor('white')
+        .domain([0, maxCo2])
+        .render();
+  }
+  if (countryMap) countryMap.co2color(co2color).render();
+  if (countryTable) countryTable.co2color(co2color).render();
+  if (countryHistoryGraph) countryHistoryGraph.yColorScale(co2color);
+  if (exchangeLayer) exchangeLayer.co2color(co2color).render();
+  if (tooltip)
+    tooltip
+      .co2color(co2color)
+      .co2Colorbar(co2Colorbar);
+}
+d3.select('#checkbox-colorblind').node().checked = colorBlindModeEnabled;
+d3.select('#checkbox-colorblind').on('change', function() {
+    colorBlindModeEnabled = !colorBlindModeEnabled;
+    Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
+    updateCo2Scale();
+});
+updateCo2Scale();
+
 var maxWind = 15;
 var windColor = d3.scaleLinear()
     .domain(d3.range(10).map( function (i) { return d3.interpolate(0, maxWind)(i / (10 - 1)); } ))
@@ -210,20 +257,20 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('.map', co2color);
-var exchangeLayer = new ExchangeLayer('.map', co2color);
-var countryTable = new CountryTable('.country-table', co2color, modeColor, modeOrder);
+var countryMap = new CountryMap('#map').co2color(co2color)
+var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
+countryMap.exchangeLayer(exchangeLayer);
+var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
+var tooltip = new Tooltip(countryTable, countries)
+    .co2color(co2color)
+    .co2Colorbar(co2Colorbar);
 //var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.stateDatetime).toDate(); },
     function(d) { return d.co2intensity; },
-    function(d) { return d.co2intensity != null; },
-    co2color);
+    function(d) { return d.co2intensity != null; }).yColorScale(co2color);
+countryHistoryGraph.y.domain([0, maxCo2]);
 
-if (!isSmallScreen())
-    var co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
-        .markerColor('white')
-        .render();
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
 d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
@@ -279,16 +326,6 @@ function placeTooltip(selector, d3Event) {
         .style('transform',
             'translate(' + x + 'px' + ',' + y + 'px' + ')');
 }
-var width = window.innerWidth;
-var height = window.innerHeight;
-
-var windCanvas = d3.select('.wind');
-windCanvas.attr('height', height);
-windCanvas.attr('width', width);
-
-var solarCanvas = d3.select('.solar');
-solarCanvas.attr('height', height);
-solarCanvas.attr('width', width);
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
@@ -332,6 +369,11 @@ function selectCountry(countryCode, notrack) {
         d3.select('.country-panel')
             .style('display', 'none');
         selectedCountryCode = undefined;
+        // If the introductory panel was never rendered before
+        // then we need to render it
+        if (co2Colorbar) co2Colorbar.render();
+        if (windColorbar && windEnabled) windColorbar.render();
+        if (solarColorbar && solarEnabled) solarColorbar.render();
     } else {
         // Selected
         console.log(countries[countryCode]);
@@ -362,6 +404,12 @@ function selectCountry(countryCode, notrack) {
                     d.maxProduction || 0,
                     d.maxImport || 0)
             });
+
+            // Figure out the highest CO2 emissions
+            var hi_co2 = d3.max(countryHistory, function(d) {
+                return d.co2intensity;
+            });
+            countryHistoryGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
 
             countryHistoryGraph
                 .data(countryHistory);
@@ -412,10 +460,6 @@ function selectCountry(countryCode, notrack) {
                     });
                 }
 
-                // Push current state if present
-                if (countries[countryCode].datetime)
-                    obj.data.push(countries[countryCode]);
-
                 // Save to local cache
                 histories[countryCode] = obj.data;
 
@@ -439,8 +483,8 @@ if (isSmallScreen()) {
     d3.select('.map').selectAll('*').remove();
 } else {
     // Now that the width is set, we can render the legends
-    if (windEnabled) windColorbar.render();
-    if (solarEnabled) solarColorbar.render();
+    if (windEnabled && !selectedCountryCode) windColorbar.render();
+    if (solarEnabled && !selectedCountryCode) solarColorbar.render();
 
     // Set example arrow
     exchangeLayer.renderOne('svg#example-arrow');
@@ -489,7 +533,8 @@ if (isSmallScreen()) {
                     now, wind.forecasts[0][0], wind.forecasts[1][0]);
                 var v = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, wind.forecasts[0][1], wind.forecasts[1][1]);
-                windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+                if (!selectedCountryCode)
+                  windColorbar.currentMarker(Math.sqrt(u * u + v * v));
             }
         } else {
             windColorbar.currentMarker(undefined);
@@ -500,7 +545,8 @@ if (isSmallScreen()) {
             if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
                 var val = grib.getInterpolatedValueAtLonLat(lonlat, 
                     now, solar.forecasts[0], solar.forecasts[1]);
-                solarColorbar.currentMarker(val);
+                if (!selectedCountryCode)
+                  solarColorbar.currentMarker(val);
             }
         } else {
             solarColorbar.currentMarker(undefined);
@@ -513,9 +559,6 @@ if (isSmallScreen()) {
         .on('mouseout', function() {
             mapMouseOver(undefined);
         });
-
-    // Tooltip setup
-    Tooltip.setupCountryTable(countryTable, countries, co2Colorbar, co2color);
 }
 
 function dataLoaded(err, clientVersion, state, argSolar, argWind) {
@@ -526,9 +569,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 
     // Is there a new version?
     d3.select('#new-version')
-        .style('top', (clientVersion === bundleHash || forceRemoteEndpoint) ? undefined : 0);
+        .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
 
-    currentMoment = (customDate && moment(customDate) || moment());
+    currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.select('#current-date').text(currentMoment.format('LL'));
     d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
     d3.selectAll('#current-date, #current-time')
@@ -544,6 +587,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         entry.value.exchange = {};
         entry.value.production = {};
         entry.value.productionCo2Intensities = {};
+        entry.value.productionCo2IntensitySources = {};
         entry.value.storage = {};
         entry.value.source = undefined;
     });
@@ -564,13 +608,15 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         d3.keys(entry.value).forEach(function(k) {
             country[k] = entry.value[k];
         });
+        // Set date
+        country.datetime = state.datetime;
         // Validate data
         if (!country.production) return;
         modeOrder.forEach(function (mode) {
             if (mode == 'other' || mode == 'unknown' || !country.datetime) return;
             // Check missing values
-            if (country.production[mode] === undefined && country.storage[mode] === undefined)
-                console.warn(countryCode + ' is missing production or storage of ' + mode);
+            // if (country.production[mode] === undefined && country.storage[mode] === undefined)
+            //    console.warn(countryCode + ' is missing production or storage of ' + mode);
             // Check validity of production
             if (country.production[mode] !== undefined && country.production[mode] < 0)
                 console.error(countryCode + ' has negative production of ' + mode);
@@ -578,11 +624,11 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             if (country.storage[mode] !== undefined && country.storage[mode] < 0)
                 console.error(countryCode + ' has negative storage of ' + mode);
             // Check missing capacities
-            if (country.production[mode] !== undefined &&
-                (country.capacity || {})[mode] === undefined)
-            {
-                console.warn(countryCode + ' is missing capacity of ' + mode);
-            }
+            // if (country.production[mode] !== undefined &&
+            //     (country.capacity || {})[mode] === undefined)
+            // {
+            //     console.warn(countryCode + ' is missing capacity of ' + mode);
+            // }
             // Check load factors > 1
             if (country.production[mode] !== undefined &&
                 (country.capacity || {})[mode] !== undefined &&
@@ -653,25 +699,22 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             tooltip.style('display', 'inline');
             tooltip.select('i#country-flag')
                 .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
-            tooltip.select('#country-code')
-                .text(d.countryCode)
+            tooltip.select('#country-name')
+                .text(lang.zoneShortName[d.countryCode] || d.countryCode)
                 .style('font-weight', 'bold');
             tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             tooltip.select('.country-emission-intensity')
                 .text(Math.round(d.co2intensity) || '?');
+            var priceData = d.price || {};
+            var hasPrice = priceData.value != null;
             tooltip.select('.country-spot-price')
-                .text(Math.round((d.price || {}).value) || '?')
-                .style('color', ((d.price || {}).value || 0) < 0 ? 'darkred' : undefined);
-            var hasFossilFuelData = 
-                ((d.production || {}).gas  != null) || 
-                ((d.production || {}).coal != null) || 
-                ((d.production || {}).oil  != null);
-            var fossilFuelPercent = (
-                ((d.production || {}).gas || 0) + 
-                ((d.production || {}).coal || 0) + 
-                ((d.production || {}).oil || 0)
-            ) / (d.totalProduction + d.totalImport) * 100;
+                .text(hasPrice ? Math.round(priceData.value) : '?')
+                .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
+            tooltip.select('.country-spot-price-currency')
+                .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
+            var hasFossilFuelData = d.fossilFuelRatio != null;
+            var fossilFuelPercent = d.fossilFuelRatio * 100;
             tooltip.select('.fossil-fuel-percentage')
                 .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
         })
@@ -723,10 +766,12 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 tooltip.select('.emission-rect')
                     .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
                 var i = d.netFlow > 0 ? 0 : 1;
+                var ctrFrom = d.countryCodes[i];
                 tooltip.selectAll('span#from')
-                    .text(d.countryCodes[i]);
+                    .text(lang.zoneShortName[ctrFrom] || ctrFrom);
+                var ctrTo = d.countryCodes[(i + 1) % 2];
                 tooltip.select('span#to')
-                    .text(d.countryCodes[(i + 1) % 2]);
+                    .text(lang.zoneShortName[ctrTo] || ctrTo);
                 tooltip.select('span#flow')
                     .text(Math.abs(Math.round(d.netFlow)));
                 tooltip.selectAll('i#from')
@@ -887,7 +932,7 @@ function fetch(showLoading, callback) {
         d3.select('#connection-warning').style('top', 0);
     }, 15 * 1000);
     var Q = d3.queue();
-    Q.defer(d3.text, ENDPOINT + '/clientVersion');
+    Q.defer(d3.text, '/clientVersion');
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
     var now = customDate || new Date();

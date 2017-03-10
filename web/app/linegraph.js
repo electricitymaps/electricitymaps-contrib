@@ -1,7 +1,7 @@
 d3 = require('d3');
 moment = require('moment');
 
-function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale) {
+function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
@@ -24,7 +24,6 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
     this.xAccessor = xAccessor;
     this.yAccessor = yAccessor;
     this.definedAccessor = definedAccessor;
-    this.yColorScale = yColorScale;
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
@@ -36,8 +35,7 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yColorScale)
 
     // Create scales
     this.x = x = d3.scaleTime();
-    this.y = y = d3.scaleLinear()
-        .domain(d3.extent(yColorScale.domain()));
+    this.y = y = d3.scaleLinear();
 
     // Create line
     this.line = d3.line()
@@ -80,7 +78,7 @@ LineGraph.prototype.render = function () {
         height = this.rootElement.node().getBoundingClientRect().height;
     var X_AXIS_HEIGHT = 20;
     var X_AXIS_PADDING = 4;
-    var Y_AXIS_WIDTH = 25;
+    var Y_AXIS_WIDTH = 35;
     var Y_AXIS_PADDING = 4;
     x.range([0, width - Y_AXIS_WIDTH]);
     y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
@@ -111,7 +109,7 @@ LineGraph.prototype.render = function () {
             .style('display', 'block')
             .attr('cx', x(datetimes[i]))
             .attr('cy', y(that.yAccessor(data[i])))
-            .style('fill', that.yColorScale(
+            .style('fill', that.yColorScale()(
                 that.yAccessor(data[i])));
         that.verticalLine
             .attr('x1', x(datetimes[i]))
@@ -150,7 +148,7 @@ LineGraph.prototype.render = function () {
                 .style('display', 'block')
                 .attr('cx', x(datetimes[i]))
                 .attr('cy', y(that.yAccessor(data[i])))
-                .style('fill', that.yColorScale(
+                .style('fill', that.yColorScale()(
                     that.yAccessor(data[i])));
         }
     }
@@ -179,12 +177,13 @@ LineGraph.prototype.render = function () {
                 return;
             }
             that.verticalLine.style('display', 'none');
+            that.selectedIndex = undefined;
             if (that.definedAccessor(data[data.length - 1])) {
                 that.markerElement
                     .style('display', 'block')
                     .attr('cx', x(datetimes[datetimes.length - 1]))
                     .attr('cy', y(that.yAccessor(data[data.length - 1])))
-                    .style('fill', that.yColorScale(
+                    .style('fill', that.yColorScale()(
                         that.yAccessor(data[data.length - 1])));
             } else {
                 that.markerElement
@@ -232,6 +231,12 @@ LineGraph.prototype.render = function () {
 
     return this;
 }
+
+LineGraph.prototype.yColorScale = function(arg) {
+    if (!arg) return this._yColorScale;
+    else this._yColorScale = arg;
+    return this;
+};
 
 LineGraph.prototype.togglefreeze = function() {
     this.frozen = !this.frozen;

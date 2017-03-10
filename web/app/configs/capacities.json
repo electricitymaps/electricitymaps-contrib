@@ -37,28 +37,28 @@
     },
     "CZ": {
         "capacity": {
-            "biomass": 495,
-            "coal": 10244,
-            "gas": 2223.2,
+            "biomass": 450,
+            "coal": 9534,
+            "gas": 1606,
             "geothermal": 0,
-            "hydro": 1087.5,
+            "hydro": 1081,
             "hydro storage": 1171.5,
-            "nuclear": 4290,
+            "nuclear": 4040,
             "oil": 0,
-            "solar": 2074.9,
-            "wind": 280.6
+            "solar": 2067,
+            "wind": 277
         }
     },
     "DE": {
         "capacity": {
-            "biomass": 8190,
-            "coal": 50685,
-            "gas": 26767,
-            "hydro": 12932,
-            "nuclear": 10952,
-            "oil": 3745,
-            "solar": 38994,
-            "wind": 43193
+            "biomass": 7060,
+            "coal": 49280,
+            "gas": 28270,
+            "hydro": 5590,
+            "nuclear": 10800,
+            "oil": 4190,
+            "solar": 40850,
+            "wind": 49640
         }
     },
     "DK": {
@@ -202,12 +202,12 @@
     },
     "LT": {
         "capacity": {
-            "biomass": 86,
+            "biomass": 100,
             "gas": 1719,
             "hydro": 1028,
             "oil": 160,
-            "solar": 69,
-            "wind": 366
+            "solar": 73,
+            "wind": 499
         }
     },
     "LV": {
@@ -220,8 +220,8 @@
     },
     "ME": {
         "capacity": {
-            "coal": 210,
-            "hydro": 652
+            "coal": 218,
+            "hydro": 649
         }
     },
     "NL": {
@@ -282,9 +282,11 @@
     },
     "RS": {
         "capacity": {
-            "coal": 5666,
-            "gas": 424,
-            "hydro": 2917
+            "coal": 5644,
+            "wind": 17,
+            "gas": 375,
+            "hydro": 3006,
+            "biomass": 6
         }
     },
     "SE": {
@@ -308,6 +310,18 @@
             "gas": 491,
             "wind": 3,
             "solar": 263
+        }
+    },
+    "SK": {
+        "capacity": {
+            "biomass": 363,
+            "nuclear": 1940,
+            "coal": 1008,
+	          "gas" : 1093,
+            "oil": 195,
+            "hydro": 2533,
+            "wind": 3,
+            "solar": 532
         }
     }
 }

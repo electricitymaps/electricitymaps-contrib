@@ -1,5 +1,3 @@
-exports = module.exports = {};
-
 var d3 = require('d3');
 var lang = require('json-loader!./configs/lang.json')[locale];
 
@@ -15,20 +13,21 @@ function getConsumption(country) {
     return country.totalProduction - country.totalStorage + country.totalNetExchange;
 }
 
-// ** Country table
-exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2color) {
+function Tooltip(countryTable, countries) {
+    var that = this;
+    // ** Country table
     countryTable
         .onExchangeMouseOver(function (d, country) {
             var isExport = d.value < 0;
             var o = d.value < 0 ? country.countryCode : d.key;
             var co2intensity = country.exchangeCo2Intensities[d.key];
-            if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
+            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
             tooltip.select('#label').text(isExport ? lang['exportto'] : lang['importfrom']);
             tooltip.select('#country-code').text(d.key);
             tooltip.select('.emission-rect')
-                .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
+                .style('background-color', co2intensity ? that.co2color()(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
             tooltip.selectAll('i.country-exchange-flag')
@@ -64,7 +63,7 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                 .attr('class', 'country-exchange-source-flag flag-icon flag-icon-' + o.toLowerCase());
         })
         .onExchangeMouseOut(function (d) {
-            if (co2Colorbar) co2Colorbar.currentMarker(undefined);
+            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
             d3.select('#countrypanel-exchange-tooltip')
                 .style('display', 'none');
         })
@@ -78,14 +77,17 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
         })
         .onProductionMouseOver(function (d, country) {
             var co2intensity = country.productionCo2Intensities[d.mode];
-            if (co2Colorbar) co2Colorbar.currentMarker(co2intensity);
+            var co2intensitySource = country.productionCo2IntensitySources[d.mode];
+            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
             tooltip.selectAll('#mode').text(d.text || d.mode);
             tooltip.select('.emission-rect')
-                .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
+                .style('background-color', co2intensity ? that.co2color()(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
+            tooltip.select('.emission-source')
+                .text(co2intensitySource || '?');
             var value = d.isStorage ? d.storage : d.production;
             var capacityFactor = Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
@@ -126,8 +128,25 @@ exports.setupCountryTable = function (countryTable, countries, co2Colorbar, co2c
                     ')');
         })
         .onProductionMouseOut(function (d) {
-            if (co2Colorbar) co2Colorbar.currentMarker(undefined);
+            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
             d3.select('#countrypanel-production-tooltip')
                 .style('display', 'none');
         });
+    return this;
 }
+
+
+Tooltip.prototype.co2color = function(arg) {
+    if (!arg) return this._co2color;
+    else this._co2color = arg;
+    return this;
+};
+
+
+Tooltip.prototype.co2Colorbar = function(arg) {
+    if (!arg) return this._co2Colorbar;
+    else this._co2Colorbar = arg;
+    return this;
+};
+
+module.exports = Tooltip;

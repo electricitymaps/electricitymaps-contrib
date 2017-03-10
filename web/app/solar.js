@@ -48,26 +48,20 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
 
     solarCanvas = d3.select(canvasSelector);
     var ctx = solarCanvas.node().getContext('2d');
-    realW = solarCanvas.node().getBoundingClientRect().width,
-    realH = solarCanvas.node().getBoundingClientRect().height;
-    var w = realW,
-        h = realH;
+    var realW = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().width);
+    var realH = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().height);
+    // Canvas needs to have it's width and height attribute set
+    solarCanvas
+        .attr('width', realW)
+        .attr('height', realH);
 
-    // Set our visible domain
-    var NE = projection.invert([realW, 0])
-    var NW = projection.invert([0, 0])
-    var SW = projection.invert([realW, realH])
-    var SE = projection.invert([0, realH])
-    var S = projection.invert([realW / 2, realH])
-    var N = projection.invert([realW / 2, 0])
-    //Don't know why North is not correctly picked up, but got empty space on top of the map otherwise
-    N[1] = 80;
-
-    // Convert to grib points
-    var minLat = Math.ceil(SE[1]);
-    var maxLat = Math.floor(N[1]);
-    var minLon = Math.ceil(NW[0]);
-    var maxLon = Math.floor(NE[0]);
+    // Warning: the bounding box in lonlat might be smaller than in px,
+    // because of the projection.
+    // Here everything is hardcoded
+    var minLat = 30;
+    var maxLat = 80;
+    var minLon = -40;
+    var maxLon = 70;
     h = maxLat - minLat;
     w = maxLon - minLon;
 
@@ -151,8 +145,6 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         });
         target = next;
     }
-    solarCanvas.attr('height', realH);
-    solarCanvas.attr('width', realW);
     ctx.clearRect(0, 0, realW, realH);
     ctx.putImageData(target, 0, 0);
 

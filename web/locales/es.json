@@ -46,7 +46,8 @@
     },
     "legends": {
         "windpotential": "Potencial de la fuerza del viento",
-        "solarpotential": "Potencial solar"
+        "solarpotential": "Potencial solar",
+        "colorblindmode": "modo daltónico"
     },
     "tooltips": {
         "electricityprice": "Precio de la electricidad (en 1 día)",

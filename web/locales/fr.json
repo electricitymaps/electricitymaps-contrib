@@ -46,7 +46,8 @@
     },
     "legends": {
         "windpotential": "Potentiel éolien",
-        "solarpotential": "Potentiel solaire"
+        "solarpotential": "Potentiel solaire",
+        "colorblindmode": "mode daltonien"
     },
     "tooltips": {
         "electricityprice": "Prix de l'électricité (day-ahead)",
