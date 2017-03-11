@@ -155,8 +155,8 @@ Head over to [http://localhost:8000/](http://localhost:8000/) and you should see
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
-### Troubleshooting
+### Risoluzione dei problemi
 
-- `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
+- `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. Se ottieni questo errore dopo aver utilizzato il comando `docker-compose up` su Windows, dovresti impostare il comando `docker-compose` in modo che capisca i percorsi di Windows impostando la variabile ambientale `COMPOSE_CONVERT_WINDOWS_PATHS` su `0` digitando il comando `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. Avrai bisogno di una versione recente del comando `docker-compose`. La versione con cui questo ha più successo è la [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). Per più informazioni: https://github.com/docker/compose/issues/4274.
 
-- No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
+- Nessun sito web all'indirizzo `http://localhost:8000`: Questo può accadere se hai Docker su una macchina virtuale. Trova l'indirizzo IP Docker usando il comando `docker-machine ip default`, e sostituisci `localhost` con il tuo IP Docker quando ti connetti.
