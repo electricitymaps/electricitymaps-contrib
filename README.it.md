@@ -1,12 +1,12 @@
 # electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co)
  
-A real-time visualisation of the Greenhouse Gas (in terms of CO2 equivalent) footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://www.electricitymap.org](http://www.electricitymap.org).
+Una visualizzazione in tempo reale del footprint dei gas serra (in termini di CO2 equivalente) per la generazione di elettricità, costruito con [d3.js](https://d3js.org/), ottimizzato per Google Chrome. Visitaci all'indirizzo [http://www.electricitymap.org](http://www.electricitymap.org).
 
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png)
 
-You can [contribute](#contribute) by correcting data sources, translating the map or by writing a parser to add a new country on the map. See the [contributing](#contribute) section.
-You can also submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
+Puoi [contribuire](#contribuisci) correggendo le fonti dei dati, traducendo la mappa o scrivendo un parser per aggiungere una nuova nazione sulla mappa. See the [contributing](#contribute) section.
+Puoi anche inviare idee, richieste di funzioni, o bug sulla pagina dei [problemi](https://github.com/corradio/electricitymap/issues).
 
 
 ## Fonti dei dati
@@ -122,7 +122,7 @@ In order to obtain an estimate of those values at current time, an interpolation
 
 
 ### Topologia dei dati
-We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/) country subdivisions (map admin subunits).
+Utilizziamo le sottodivisioni delle nazioni fornite da [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/).
 
 
 ## Contribuisci
@@ -151,9 +151,9 @@ Adesso che il progetto è compilato, puoi avviare l'applicazione (che utilizzer�
 docker-compose up --build
 ```
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
+Adesso apri l'indirizzo [http://localhost:8000/](http://localhost:8000/) e dovresti vedere la mappa!
 
-Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
+Una volta fatti i cambiamenti, invia una [pull request](https://help.github.com/articles/using-pull-requests/) per integrarlo nel progetto principale.
 
 ### Risoluzione dei problemi
 
