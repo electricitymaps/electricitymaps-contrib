@@ -137,16 +137,16 @@ Puoi anche vedere una lista delle informazioni mancanti guardando nella console 
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
-### Getting started
-To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). 
+### Come iniziare
+Per iniziare, clona o fai un [fork](https://help.github.com/articles/fork-a-repo/) della repository, e installa [Docker](https://docs.docker.com/engine/installation/). 
 
-The frontend will need compiling. In order to do this, open a terminal and run
+Il progetto ha bisogno di essere compilato. Per farlo, apri un terminale ed avvia il comando
 ```
 docker-compose run --rm web npm run watch
 ```
-This will watch over source file changes, and recompile if needed.
+Questo vedrà se ci sono dei cambiamenti nei file sorgente, e li ricompilerà se necessario.
 
-Now that the frontend is compiled, you can run the application (which will use our existing backend to pull data), by running the following command in a new terminal:
+Adesso che il progetto è compilato, puoi avviare l'applicazione (che utilizzerà i dati già preesistenti), digitando questo comando in un nuovo terminale:
 ```
 docker-compose up --build
 ```
