@@ -5,25 +5,25 @@ Una visualizzazione in tempo reale del footprint dei gas serra (in termini di CO
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png)
 
-Puoi [contribuire](#contribuisci) correggendo le fonti dei dati, traducendo la mappa o scrivendo un parser per aggiungere una nuova nazione sulla mappa. See the [contributing](#contribute) section.
+Puoi [contribuire](#contribuisci) correggendo le fonti dei dati, traducendo la mappa o scrivendo un parser per aggiungere una nuova nazione sulla mappa. Vedi la sezione per [contribuire](#contribuisci) section.
 Puoi anche inviare idee, richieste di funzioni, o bug sulla pagina dei [problemi](https://github.com/corradio/electricitymap/issues).
 
 
 ## Fonti dei dati
 
-### Carbon intensity calcuation and data source
-The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO2eq (grams CO2 equivalent), meaning each greenhouse gas is converted to its CO2 equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO2 over the same period).
+### Fonti dei dati e calcolo dell'intensità del carbonio
+L'intensità del carbonio di ogni nazione è misurata dalla prospettiva di un consumatore. Rappresenta il footprint dei gas serra di 1 kWh consumato dentro quella nazione. Il footprint è misurato in gCO2eq (grams CO2 equivalent), e ciò vuol dire che ogni gas serra è convertito nel suo equivalente in CO2 in termini di potenziale di riscaldamento globale negli ultimi 100 anni (1 grammo di metano emesso ha lo stesso impatto sul riscaldamento globale negli ultimi 100 anni come ~20 grammi di CO2 nello stesso periodo).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). Carbon-intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature: 
-- IPCC 2014 Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
+L'intensità del carbonio per ogni tipo di energia prende tutti i cicli della vita di quel tipo di energia (costruzione, produzione di carburante, emissioni operative, e decommissionamento). I fattori dell'intensità del carbonio utilizzati nella mappa sono nel file [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq_parameters.js). Questi numeri provengono da riviste specializzate: 
+- L'IPCC 2014 Assessment Report è utilizzato nella maggior parte dei casi (vedi un sommario nella [voce su wikipedia](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
-Country-specific carbon-intensity factors:
+Fattori specifici per nazioni sull'intensità del carbonio:
 - Estonia:
-  - Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
-- Norway:
-  - Hydro: [Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"](http://ostfoldforskning.no/en/publications/Publication/?id=1236)
+  - Petrolio di scisto: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
+- Norvegia:
+  - Idroelettrico: [Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"](http://ostfoldforskning.no/en/publications/Publication/?id=1236)
 
-Each country has a CO2 mass flow that depends on neighboring countries. In order to determine the carbon footprint of each country, the set of coupled CO2 mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of GHG exchanges. Take a look at this [notebook](https://github.com/corradio/electricitymap/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
+Ogni nazione ha il suo flusso di CO2 che dipende sulle nazioni vicine. Per determinare il footprint del carbonio di ogni nazione il sistema deve bilanciare delle equazioni. Questo è fatto risolvendo un sistema lineare di equazioni che definiscono la rete di scambi GHG. Guarda questo [notebook](https://github.com/corradio/electricitymap/blob/master/CO2eq%20Model%20Explanation.ipynb) per una spiegazione più approfondita.
 
 
 ### Fonti dei dati sull'elettricità in tempo reale
@@ -114,11 +114,11 @@ Le capacità produttive sono centralizzate nel file [capacities.json](https://gi
 - Francia: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
 - Altri: [ENTSO-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)
 
-### Real-time weather data sources
-We use the [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)'s GFS 0.25 Degree Hourly data.
-Forecasts are made every 6 hours, with a 1 hour time step.
-The values extracted are wind speed and direction at 10m altitude, and ground solar irradiance (DSWRF - Downward Short-Wave Radiation Flux), which takes into account cloud coverage.
-In order to obtain an estimate of those values at current time, an interpolation is made between two forecasts (the one at the beginning of the hour, and the one at the end of the hour).
+### Fonti dei dati sul clima in tempo reale
+Utilizziamo il [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/).
+Le previsioni sono fatte ogni 6 ore, con un intervallo di un'ora.
+I valori estratti sono la velocità del vento e la direzione a 10m d'altezza, e l'irradiazione solare (DSWRF - Downward Short-Wave Radiation Flux), che tiene conto della copertura delle nubi.
+Per ottenere una stima dei valori all'ora attuale, viene fatta un'interpolazione delle due privisioni (una all'inizio dell'ora e l'altra alla fine).
 
 
 ### Topologia dei dati
