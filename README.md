@@ -41,7 +41,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Iceland [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
+- Iceland: [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
