@@ -27,7 +27,7 @@ Each country has a CO2 mass flow that depends on neighboring countries. In order
 
 
 ### Fonti dei dati sull'elettricità in tempo reale
-Real-time electricity data is obtained using [parsers](https://github.com/corradio/electricitymap/tree/master/parsers)
+I dati sull'elettricità in tempo reale sono ottenuti utilizzando dei [parser](https://github.com/corradio/electricitymap/tree/master/parsers)
 
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Belgio: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -59,60 +59,60 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Svezia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Svizzera: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 
-### Production capacity data sources
-Production capacities are centralized in the [capacities.json](https://github.com/corradio/electricitymap/blob/master/web/app/configs/capacities.json) file.
+### Fonti dei dati sulla capacità produttiva
+Le capacità produttive sono centralizzate nel file [capacities.json](https://github.com/corradio/electricitymap/blob/master/web/app/configs/capacities.json).
 
 - Austria: 
-  - Wind: [IGWindKraft](https://www.igwindkraft.at)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Belgium: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Eolico: [IGWindKraft](https://www.igwindkraft.at)
+  - Altro: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Belgio: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
-- Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Denmark
-  - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
-  - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Repubblica Ceca: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Danimarca
+  - Fotovoltaico: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
+  - Eolico: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
+  - Altro: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- France
-  - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_by_country)
-  - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
-  - Other: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
-- Germany: [Fraunhoffer] (https://energy-charts.de/power_inst.htm)
-- Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Iceland: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
+- Finlandia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Francia
+  - Fotovoltaico: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_by_country)
+  - Eolico: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
+  - Altro: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
+- Germania: [Fraunhoffer] (https://energy-charts.de/power_inst.htm)
+- Gran Bretagna: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Grecia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Ungheria: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Islanda: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
 - Ireland
-  - All production types: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Wind: [IWEA](http://www.iwea.com/index.cfm/page/windenergyfaqs?#q21)
-- Italy
-  - Hydro: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
-  - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
-  - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
-  - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
+  - Tutti i tipi di produzione: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Eolico: [IWEA](http://www.iwea.com/index.cfm/page/windenergyfaqs?#q21)
+- Italia
+  - Idroelettrico: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
+  - Nucleare: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
+  - Fotovoltaico: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
+  - Eolico: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Lithuania: [ENMIN](https://enmin.lrv.lt/en/sectoral-policy/renewable-energy-sources)
+- Lituania: [ENMIN](https://enmin.lrv.lt/en/sectoral-policy/renewable-energy-sources)
 - Montenegro: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
-- Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Norway
+- Olanda: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Norvegia
   - Gas: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Hydro: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Wind: [ieawind.org](http://www.ieawind.org/countries/norway.html)  
-- Northern Ireland: [EIR Grid](http://www.eirgridgroup.com/site-files/library/EirGrid/Generation_Capacity_Statement_20162025_FINAL.pdf)
-- Poland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Portugal: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Idroelettrico: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Eolico: [ieawind.org](http://www.ieawind.org/countries/norway.html)  
+- Irlanda del Nord: [EIR Grid](http://www.eirgridgroup.com/site-files/library/EirGrid/Generation_Capacity_Statement_20162025_FINAL.pdf)
+- Polonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Portogallo: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
+- Slovacchia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Spain: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
-- Sweden [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Spagna: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
+- Svezia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Svizzera: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 
-### Electricity prices (day-ahead) data sources
-- France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
-- Other: [ENTSO-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)
+### Fonti dei dati sul prezzo dell'elettricità (al giorno)
+- Francia: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
+- Altri: [ENTSO-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)
 
 ### Real-time weather data sources
 We use the [US National Weather Service's Global Forecast System (GFS)](http://nomads.ncep.noaa.gov/)'s GFS 0.25 Degree Hourly data.
@@ -121,19 +121,19 @@ The values extracted are wind speed and direction at 10m altitude, and ground so
 In order to obtain an estimate of those values at current time, an interpolation is made between two forecasts (the one at the beginning of the hour, and the one at the end of the hour).
 
 
-### Topology data
+### Topologia dei dati
 We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/) country subdivisions (map admin subunits).
 
 
-## Contribute
-Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
-In the meantime, here's some things you can do:
-- check out the [issues](https://github.com/corradio/electricitymap/issues)
-- add a new country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/parsers)
-- add a new [translation](https://github.com/corradio/electricitymap/tree/master/web/locales) of the map
-- optimise the code, correct inaccuracies...
+## Contribuisci
+Vuoi aiutarci? Vieni da noi sul nostro Slack all'indirizzo [http://slack.tmrow.co](http://slack.tmrow.co).
+Nel frattempo, ecco alcune cose che puoi fare:
+- Controlla i [problemi](https://github.com/corradio/electricitymap/issues)
+- Aggiungi una nuova nazione scrivendo un [parser](https://github.com/corradio/electricitymap/tree/master/parsers)
+- Aggiungi una nuova [traduzione](https://github.com/corradio/electricitymap/tree/master/web/locales) della mappa
+- Ottimizza il codice, correggi le inaccuratezze...
 
-You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
+Puoi anche vedere una lista delle informazioni mancanti guardando nella console sviluppatore, o con i punti interrogativi nel pannello della nazione:
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
