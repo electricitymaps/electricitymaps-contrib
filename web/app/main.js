@@ -163,8 +163,9 @@ function updateCo2Scale() {
       .domain([2000, 0]);
   } else {
     co2color = d3.scaleLinear()
-      .domain([0, 375, 725, 800])
-      .range(['green', 'orange', 'rgb(26,13,0)'])
+      .domain([0, 400, 800])
+      .range(['#4ACF34', '#FFC14F', 'rgb(26,13,0)'])
+      //.range(['green', 'orange', 'rgb(26,13,0)'])
   }
 
   co2color.clamp(true);
@@ -578,7 +579,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .style('color', 'darkred')
         .transition()
             .duration(800)
-            .style('color', 'lightgrey');
+            .style('color', undefined);
     flatpickr.setDate(moment(customDate).toDate());
 
     // Reset all data

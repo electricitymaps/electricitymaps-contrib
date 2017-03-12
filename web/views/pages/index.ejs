@@ -133,7 +133,7 @@
                         <b>
                             <span class="country-name"></span>
                         </b>
-                        <span style="color: darkgray;">
+                        <span>
                             (<span class="country-last-update">?</span>, <small><span class="country-time"></span></small>)
                             [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
                             <br />
@@ -145,7 +145,7 @@
                     </div>
                     <svg class="country-table"></svg>
                     <hr />
-                    <span style="color: darkgray;">
+                    <span style="color: black;">
                         <%= __('country-history.carbonintensity24h') %>:
                     </span>
                     <svg class="country-history"></svg>
@@ -155,16 +155,16 @@
                 </div>
                 <div class="left-panel-initial-text">
                     <p class="small-screen-visible" style="font-style: italic">
-                        <%= __('panel-initial-text.youareseeing') %> <span style="color: lightgray"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: lightgray"><%= __('panel-initial-text.fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
+                        <%= __('panel-initial-text.youareseeing') %> <span style="color: black"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: black"><%= __('panel-initial-text.fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
                     </p>
                     <p class="large-screen-visible">
-                        <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
+                        <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: black"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: black"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
                     </p>
                     <p class="large-screen-visible">
-                        <%= __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%= __('panel-initial-text.importexport') %></span><span class="large-screen-visible"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 1em;" /></span> <%= __('panel-initial-text.betweencountries') %>.
+                        <%= __('panel-initial-text.takeinaccount') %> <span style="color: black"><%= __('panel-initial-text.importexport') %></span><span class="large-screen-visible"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 1em;" /></span> <%= __('panel-initial-text.betweencountries') %>.
                     </p>
                     <p>
-                        <span style="color: lightgray; font-size: 14px; color: white;"><i><%= __('panel-initial-text.tip') %> ⟶</i></span>
+                        <span style="font-size: 1.2em;"><i><%= __('panel-initial-text.tip') %> ⟶</i></span>
                     </p>
                     <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                         <p></p>
@@ -175,17 +175,17 @@
                     <div class="layer-toggles large-screen-visible">
                         <hr />
                         <p>
-                            <%= __('misc.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
+                            <%= __('misc.carbonintensity')%> <span style="color: black">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
                             <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                         </p>
                         <p>
                             <input type="checkbox" id="checkbox-wind" />
-                            <label for="checkbox-wind"><%= __('legends.windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
+                            <label for="checkbox-wind"><%= __('legends.windpotential') %> <span style="color: black">(m/s)</span> 💨</label>
                             <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
                         </p>
                         <p>
                             <input type="checkbox" id="checkbox-solar" />
-                            <label for="checkbox-solar"><%= __('legends.solarpotential') %> <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
+                            <label for="checkbox-solar"><%= __('legends.solarpotential') %> <span style="color: black">(W/m<sup>2</sup>)</span> ☀️</label>
                             <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
                         </p>
                     </div>
