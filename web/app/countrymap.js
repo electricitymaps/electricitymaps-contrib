@@ -9,7 +9,8 @@ function CountryMap(selector, co2color) {
     this.selectedCountry = undefined;
 
     this.root = d3.select(selector)
-        .style('transform-origin', '0px 0px');
+        .style('transform-origin', '0px 0px')
+        .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
     // Add SVG layer
     this.svg = this.root.append('svg')
         .attr('class', 'map-layer')

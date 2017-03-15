@@ -371,6 +371,7 @@ var histories = {};
 
 function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
+        showPage();
         // Unselected
         d3.select('.left-panel-initial-text')
             .style('display', 'block');
@@ -382,7 +383,9 @@ function selectCountry(countryCode, notrack) {
         if (co2Colorbar) co2Colorbar.render();
         if (windColorbar && windEnabled) windColorbar.render();
         if (solarColorbar && solarEnabled) solarColorbar.render();
+
     } else {
+        showPage('country');
         // Selected
         console.log(countries[countryCode]);
         if (!notrack)
@@ -478,13 +481,20 @@ function selectCountry(countryCode, notrack) {
             updateGraph(histories[countryCode]);
     }
     replaceHistoryState('countryCode', selectedCountryCode);
-    d3.select('#country-table-back-button').style('display',
-        selectedCountryCode ? 'block' : 'none');
+    d3.select('#left-panel-country-back').style('display', selectedCountryCode ? 'block' : 'none');
+    d3.select('#country-table-back-button').style('display', selectedCountryCode ? 'block' : 'none');
 }
 // Set initial
 selectCountry(selectedCountryCode, true);
-d3.select('#country-table-back-button')
-    .on('click', function() { selectCountry(undefined); });
+d3.selectAll('#country-table-back-button,#left-panel-country-back').on('click', function() { selectCountry(undefined); });
+
+function showPage(pageName) {
+    if(pageName === undefined)
+        pageName = 'welcome';
+
+    d3.selectAll('.left-panel').style('display', 'none');
+    d3.selectAll('.left-panel-'+pageName).style('display', '');
+}
 
 // Now that the width is set, we can render the legends
 if (windEnabled && !selectedCountryCode) windColorbar.render();
@@ -692,7 +702,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         if (d.co2intensity && co2Colorbar)
             co2Colorbar.currentMarker(d.co2intensity);
         var tooltip = d3.select('#country-tooltip');
-        tooltip.style('display', 'inline');
+        tooltip.classed('country-tooltip-visible', true);
         tooltip.select('i#country-flag')
             .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
         tooltip.select('#country-name')
@@ -724,8 +734,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             .style('cursor', 'auto')
         if (d.co2intensity && co2Colorbar)
             co2Colorbar.currentMarker(undefined);
-        d3.select('#country-tooltip')
-            .style('display', 'none');
+        d3.select('#country-tooltip').classed('country-tooltip-visible', false);
     });
 
     // Re-render country table if it already was visible

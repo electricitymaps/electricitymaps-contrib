@@ -217,6 +217,13 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     padding: 18px;
 }
 
+#country-tooltip {
+    display: none;
+}
+#country-tooltip.country-tooltip-visible {
+    display: inline;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
@@ -231,6 +238,11 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     }
     .left-panel {
         width: 100%;
+    }
+    .left-panel-welcome {
+        display: none;
+    }
+    #country-tooltip.country-tooltip-visible {
         display: none;
     }
     #map-container {

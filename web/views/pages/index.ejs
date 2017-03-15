@@ -107,7 +107,10 @@
             <div class="inner"><%- __('misc.newversion') %></div>
         </div>
         <div id="main">
-            <div class="panel left-panel">
+            <div class="panel left-panel left-panel-welcome">
+                <p>
+                    <span id="country-table-back-button" style="display: none"><a>&lt;&lt; <%= __('country-panel.back') %></a></span>
+                </p>
                 <h1>
                     <%= __('misc.maintitle') %>
                 </h1>
@@ -123,36 +126,8 @@
                         <input type="text" class="flatpickr" />
                     </div>
                 </div>
-                <p>
-                    <span id="country-table-back-button" style="display: none"><a><< <%= __('country-panel.back') %></a></span>
-                </p>
                 <hr />
-                <div class="country-panel" style="display: none">
-                    <div class="country-table-header">
-                        <i id="country-flag"></i>
-                        <b>
-                            <span class="country-name"></span>
-                        </b>
-                        <span style="color: darkgray;">
-                            (<span class="country-last-update">?</span>, <small><span class="country-time"></span></small>)
-                            [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
-                            <br />
-                            <%= __('misc.carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%=__('country-panel.fossilfuels')%>)<br />
-                            <%= __('country-panel.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh<br />
-                            <span class="country-show-emissions"><%= __('country-panel.electricityproduction') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showemissions')%></a>) <%= __('country-panel.bysource')%>:</span>
-                            <span class="country-show-electricity" style="display: none;"><%= __('country-panel.emissions') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showelectricity') %></a>) <%= __('country-panel.bysource')%>:</span>
-                        </span>
-                    </div>
-                    <svg class="country-table"></svg>
-                    <hr />
-                    <span style="color: darkgray;">
-                        <%= __('country-history.carbonintensity24h') %>:
-                    </span>
-                    <svg class="country-history"></svg>
-                    <p>
-                        <%- __('country-panel.co2signal') %>
-                    </p>
-                </div>
+            
                 <div class="left-panel-initial-text">
                     <p class="small-screen-visible" style="font-style: italic">
                         <%= __('panel-initial-text.youareseeing') %> <span style="color: lightgray"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: lightgray"><%= __('panel-initial-text.fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
@@ -190,6 +165,7 @@
                         </p>
                     </div>
                 </div>
+
                 <div>
                     <hr />
                     <%= __('footer.foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%= __('footer.here') %></a>.<br />
@@ -213,6 +189,44 @@
                     </span>
                 </p>
             </div>
+
+            <div class="panel left-panel left-panel-country">
+                <p>
+                    <span id="left-panel-country-back" style="display: none"><a>&lt;&lt; Back</a></span>
+                </p>
+                <hr />
+                <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
+                    <p></p>
+                </div>
+                <div class="country-panel" style="display: none">
+                    <div class="country-table-header">
+                        <i id="country-flag"></i>
+                        <b>
+                            <span class="country-name"></span>
+                        </b>
+                        <span style="color: darkgray;">
+                            (<span class="country-last-update">?</span>, <small><span class="country-time"></span></small>)
+                            [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
+                            <br />
+                            <%= __('misc.carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%=__('country-panel.fossilfuels')%>)<br />
+                            <%= __('country-panel.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh<br />
+                            <span class="country-show-emissions"><%= __('country-panel.electricityproduction') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showemissions')%></a>) <%= __('country-panel.bysource')%>:</span>
+                            <span class="country-show-electricity" style="display: none;"><%= __('country-panel.emissions') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showelectricity') %></a>) <%= __('country-panel.bysource')%>:</span>
+                        </span>
+                    </div>
+                    <svg class="country-table"></svg>
+                    <hr />
+                    <span style="color: darkgray;">
+                        <%= __('country-history.carbonintensity24h') %>:
+                    </span>
+                    <svg class="country-history"></svg>
+                    <p>
+                        <%- __('country-panel.co2signal') %>
+                    </p>
+                </div>
+            </div>
+
+
             <div id="map-container">
                 <div id="map"></div>
                 <div id="country-tooltip" class="tooltip panel">
