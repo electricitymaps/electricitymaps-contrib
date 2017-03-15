@@ -191,22 +191,20 @@
             </div>
 
             <div class="panel left-panel left-panel-country">
-                <p>
-                    <span id="left-panel-country-back" style="display: none"><a>&lt;&lt; Back</a></span>
-                </p>
-                <hr />
+                <div class="left-panel-country-toolbar">
+                    <span id="left-panel-country-back" style="display: none">❌</span>
+                    <div class="country-name-time">
+                        <div class="country-name"></div>
+                        <div class="country-last-update">?</div>
+                    </div>
+                    <i id="country-flag"></i>
+                </div>
                 <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
                     <p></p>
                 </div>
                 <div class="country-panel" style="display: none">
                     <div class="country-table-header">
-                        <i id="country-flag"></i>
-                        <b>
-                            <span class="country-name"></span>
-                        </b>
                         <span style="color: darkgray;">
-                            (<span class="country-last-update">?</span>, <small><span class="country-time"></span></small>)
-                            [<a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><%=__('country-panel.source')%></a>: <span class="country-data-source"></span>]
                             <br />
                             <%= __('misc.carbonintensity') %>:  <div id="country-emission-rect" class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%=__('country-panel.fossilfuels')%>)<br />
                             <%= __('country-panel.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh<br />
@@ -216,6 +214,15 @@
                     </div>
                     <svg class="country-table"></svg>
                     <hr />
+                    <div class="left-panel-country-metadata">
+                        , <small><span class="country-time"></span></small>
+                        <div class="left-panel-country-metadata-source">
+                            <%=__('country-panel.source')%>:
+                            <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">
+                                <span class="country-data-source"></span>
+                            </a>
+                        </div>
+                    </div>
                     <span style="color: darkgray;">
                         <%= __('country-history.carbonintensity24h') %>:
                     </span>

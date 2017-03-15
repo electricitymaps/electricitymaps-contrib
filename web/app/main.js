@@ -481,7 +481,7 @@ function selectCountry(countryCode, notrack) {
             updateGraph(histories[countryCode]);
     }
     replaceHistoryState('countryCode', selectedCountryCode);
-    d3.select('#left-panel-country-back').style('display', selectedCountryCode ? 'block' : 'none');
+    d3.select('#left-panel-country-back').style('display', selectedCountryCode ? '' : 'none');
     d3.select('#country-table-back-button').style('display', selectedCountryCode ? 'block' : 'none');
 }
 // Set initial

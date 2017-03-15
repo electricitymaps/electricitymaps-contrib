@@ -170,7 +170,6 @@ hr {
 }
 .emission-rect {
     display: inline-block;
-    border: 1px solid gray;
     width: 8px;
     height: 8px;
 }
@@ -313,3 +312,36 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     top: -41px;
 }
 
+.left-panel-country-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 1rem;
+    position: relative;
+}
+#left-panel-country-back {
+    padding: 1.25rem;
+    line-height: 1;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+}
+#left-panel-country-back:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+.left-panel-country .country-name {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+.left-panel-country .flag-icon {
+    font-size: 2rem;
+    width: 4rem;
+}
+.country-name-time {
+    text-align: center;
+    margin: 0rem 0.5rem;
+}
+
+.left-panel-country-metadata .left-panel-country-metadata-source {
+    float: right;
+}

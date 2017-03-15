@@ -111,15 +111,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     // Set header
     var header = d3.select('.country-table-header');
-    header.select('i#country-flag')
-        .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
-    header.select('span.country-name')
-        .text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
-    header.select('span.country-last-update')
-        .text(datetime ? moment(datetime).fromNow() : '? minutes ago')
-    header.select('span.country-time')
-        .text(datetime ? moment(datetime).format('LT') : '?')
+    panel.select('#country-flag').attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
+    panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago')
+    panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?')
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
