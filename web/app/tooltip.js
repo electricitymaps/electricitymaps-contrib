@@ -89,12 +89,16 @@ function Tooltip(countryTable, countries) {
             tooltip.select('.emission-source')
                 .text(co2intensitySource || '?');
             var value = d.isStorage ? d.storage : d.production;
-            var capacityFactor = Math.round(value / d.capacity * 100) || '?';
+
+            // Capacity
+            var hasCapacity = d.capacity !== undefined && d.capacity >= (d.production || 0);
+            var capacityFactor = hasCapacity && Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
             tooltip.select('#capacity-factor-detail').text(
                 (formatPower(value) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(d.capacity) || '?'));
+                (hasCapacity && formatPower(d.capacity) || '?'));
+
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
