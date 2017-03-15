@@ -108,7 +108,7 @@ hr {
     stroke-width: 0.7px;
 }
 .panel {
-    background-color: rgba(70, 70, 70, 0.95);
+    background-color: rgb(70, 70, 70);
     border: 1px solid grey;
     color: lightgray;
     font-size: 0.7rem;
