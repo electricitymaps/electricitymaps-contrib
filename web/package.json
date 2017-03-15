@@ -5,6 +5,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "compression": "^1.6.2",
+    "currency-symbol-map": "^3.1.0",
     "d3": "^4.4.0",
     "ejs": "^2.5.5",
     "express": "^4.10.2",
