@@ -202,7 +202,7 @@ hr {
 }
 .country-col .country-col-headline {
     text-transform: capitalize;
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1;
 }
 .country-col .country-col-headline + div {
@@ -227,6 +227,24 @@ hr {
 .country-col.country-col-fossilpct .country-col-box {
     border:1px solid #000;
     background: #000;
+}
+.country-toggle-emissions {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+}
+.country-toggle-emissions a {
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    text-transform: capitalize;
+}
+.country-toggle-emissions a:hover {
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.2);
+}
+.country-show-emissions,
+.country-show-electricity {
+    font-size: 1rem;
 }
 
 .country-price-wrap,

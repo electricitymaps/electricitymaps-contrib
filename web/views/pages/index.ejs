@@ -204,7 +204,7 @@
                 </div>
                 <div class="country-panel" style="display: none">
                     <div class="country-table-header">
-                        <div style="display: flex; flex-basis: 33.3%; justify-content: space-between; color: darkgray; margin: 0 0 1rem;">
+                        <div style="display: flex; flex-basis: 33.3%; justify-content: space-between; margin: 0 0 1rem;">
                             <div class="country-col country-emission-intensity-wrap">
                                 <div class="country-col-headline"><%= __('misc.carbonintensity') %></div>
                                 <div id="country-emission-rect" class="country-col-box emission-rect">
@@ -233,8 +233,20 @@
                         </div>
                     </div>
                     <div>
-                        <span class="country-show-emissions"><%= __('country-panel.electricityproduction') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showemissions')%></a>) <%= __('country-panel.bysource')%>:</span>
-                        <span class="country-show-electricity" style="display: none;"><%= __('country-panel.emissions') %> (<a href="javascript:toggleSource();"><%= __('country-panel.showelectricity') %></a>) <%= __('country-panel.bysource')%>:</span>
+                        <div class="country-toggle-emissions">
+                            <a class="" href="javascript:toggleSource(true);"><%= __('country-panel.showemissions')%></a>
+                            <a class="" href="javascript:toggleSource(false);"><%= __('country-panel.showelectricity')%></a>
+                        </div>
+
+                        <span class="country-show-emissions">
+                            <%= __('country-panel.electricityproduction') %>
+                            <%= __('country-panel.bysource') %>:
+                        </span>
+
+                        <span class="country-show-electricity" style="display: none;">
+                            <%= __('country-panel.emissions') %>
+                            <%= __('country-panel.bysource') %>:
+                        </span>
                     </div>
                     <svg class="country-table"></svg>
                     <hr />
