@@ -165,13 +165,73 @@ hr {
     font-size: 1.1em;
     color: darkgrey;
 }
-.country-emission-intensity, .country-spot-price, .emission-intensity, #exchange-tooltip .flow {
+.country-emission-intensity,
+.country-spot-price,
+.emission-intensity,
+#exchange-tooltip .flow {
     font-weight: bold;
 }
 .emission-rect {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 3rem;
+    height: 3rem;
+    display: inline-flex;
+    font-size: 1rem;
+    border-radius: 0.125rem;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+}
+.country-spot-price {
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+}
+.country-spot-price-wrap {
+    border: 1px solid white;
+    color: white;
+    border-radius: 0.125rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.country-col {
+    text-align: center;
+}
+.country-col .country-col-headline {
+    text-transform: capitalize;
+    font-size: 0.875rem;
+    line-height: 1;
+}
+.country-col .country-col-headline + div {
+    margin-top: 0.375rem;
+}
+.country-col .country-col-subtext {
+    margin-top: 0.375rem;
+    font-size: 0.5rem;
+    line-height: 0.5rem;
+}
+.country-col .country-col-box {
+    margin: 0 auto;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    border-radius: 0.125rem;
+}
+.country-col.country-col-fossilpct .country-col-box {
+    border:1px solid #000;
+    background: #000;
+}
+
+.country-price-wrap,
+.country-emission-intensity-wrap {
+    text-align: center;
 }
 
 /* ** LEGEND ** */
