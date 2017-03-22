@@ -36,6 +36,9 @@
         "showelectricity": "mostra elettricità",
         "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
     },
+    "rankings-panel": {
+        "country-rankings": "Country rankings"
+    },
     "country-history": {
         "carbonintensity24h": "Itensità del carbonio nelle ultime 24 ore"
     },

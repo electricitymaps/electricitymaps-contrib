@@ -86,6 +86,7 @@ hr {
     width: auto;
     overflow: hidden;
     height: 100%;
+    position: relative;
 }
 #map {
     background-color: #283640;
@@ -295,10 +296,24 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 }
 
 .watermark {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     right: 0;
     padding: 18px;
+}
+
+.highscore-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+}
+.highscore-button:hover {
+    background: rgba(0, 0, 0, 0.4);
 }
 
 #country-tooltip {
@@ -334,12 +349,56 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     }
 }
 
+.country-picker-container {
+    /*height: 80%;*/
+    height: 390px;
+}
 .country-picker-container p {
-    column-count: 2;
-    line-height: 2em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    counter-reset: section;
 }
 .country-picker-container a {
-    display: block;
+    display: flex;
+    width: 45%;
+    font-size: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 2.5% 0.25rem;
+    box-sizing: content-box;
+}
+.country-picker-container a:hover {
+    text-decoration: none;
+    background: rgba(255,255,255,0.1)
+}
+.country-picker-container .emission-rect {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.25rem;
+}
+/*
+.country-picker-container a .emission-rect:before {
+  counter-increment: section;
+  content: "";
+  font-size: 0.5rem;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  color: #000;
+}
+.country-picker-container a:hover .emission-rect:before {
+  content: "" counter(section) ". ";
+}*/
+
+.country-picker-container a > span {
+    flex-grow: 1;
+    line-height: 1.2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .slack-button {
@@ -397,6 +456,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     top: -41px;
 }
 
+.left-panel-toolbar,
 .left-panel-country-toolbar {
     display: flex;
     align-items: center;
@@ -404,6 +464,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     margin: 0 0 1rem;
     position: relative;
 }
+.left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-country-back {
     padding: 1.25rem;
     line-height: 1;
@@ -411,13 +472,16 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     border-radius: 3px;
     cursor: pointer;
 }
+.left-panel-toolbar .left-panel-toolbar-back:hover,
 #left-panel-country-back:hover {
     background: rgba(0, 0, 0, 0.2);
 }
+.left-panel .left-panel-toolbar-title,
 .left-panel-country .country-name {
     font-size: 1.5rem;
     line-height: 1.5rem;
 }
+.left-panel-toolbar .flag-icon,
 .left-panel-country .flag-icon {
     font-size: 2rem;
     width: 4rem;

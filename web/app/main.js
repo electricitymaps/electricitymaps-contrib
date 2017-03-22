@@ -282,8 +282,10 @@ d3.select('#checkbox-wind').node().checked = windEnabled;
 d3.select('#checkbox-solar').node().checked = solarEnabled;
 d3.select('.layer-toggles').style('display', !showWindOption && !showSolarOption ? 'none' : null);
 
-window.toggleSource = function() {
-    tableDisplayEmissions = !tableDisplayEmissions;
+window.toggleSource = function(state) {
+    if(state === undefined)
+        state = !tableDisplayEmissions;
+    tableDisplayEmissions = state;
     trackAnalyticsEvent(
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
         {countryCode: countryTable.data().countryCode});
@@ -370,6 +372,7 @@ var wind, solar;
 var histories = {};
 
 function selectCountry(countryCode, notrack) {
+    console.log('selectCountry', arguments);
     if (!countryCode || !countries[countryCode]) {
         showPage();
         // Unselected
@@ -486,11 +489,16 @@ function selectCountry(countryCode, notrack) {
 }
 // Set initial
 selectCountry(selectedCountryCode, true);
-d3.selectAll('#country-table-back-button,#left-panel-country-back').on('click', function() { selectCountry(undefined); });
+d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back').on('click', function() { selectCountry(undefined); });
+d3.select('.highscore-button').on('click', function() {
+  showPage('highscore');
+});
 
 function showPage(pageName) {
     if(pageName === undefined)
         pageName = 'welcome';
+
+    // d3.select('#map-container').style('display', pageName === 'welcome' ? '' : 'none');
 
     d3.selectAll('.left-panel').style('display', 'none');
     d3.selectAll('.left-panel-'+pageName).style('display', '');
@@ -671,11 +679,11 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .append('div')
         .attr('class', 'emission-rect')
     enterA
-        .append('text')
+        .append('span')
     enterA
         .append('i').attr('id', 'country-flag')
     var selector = enterA.merge(selector);
-    selector.select('text')
+    selector.select('span')
         .text(function(d) { return ' ' + (d.shortname || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
         .style('background-color', function(d) {

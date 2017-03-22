@@ -141,9 +141,6 @@
                     <p>
                         <span style="color: lightgray; font-size: 14px; color: white;"><i><%= __('panel-initial-text.tip') %> ⟶</i></span>
                     </p>
-                    <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
-                        <p></p>
-                    </div>
                     <div class="layer-toggles large-screen-visible">
                         <hr />
                         <p>
@@ -198,9 +195,6 @@
                         <div class="country-last-update">?</div>
                     </div>
                     <i id="country-flag"></i>
-                </div>
-                <div class="country-picker-container small-screen-visible" style="margin-left: 20px">
-                    <p></p>
                 </div>
                 <div class="country-panel" style="display: none">
                     <div class="country-table-header">
@@ -268,6 +262,19 @@
                 </div>
             </div>
 
+            <div class="panel left-panel left-panel-highscore">
+                <div class="left-panel-toolbar">
+                    <span id="left-panel-highscore-back" class="left-panel-toolbar-back">×</span>
+                    <div class="left-panel-toolbar-title">
+                        <%- __('rankings-panel.country-rankings') %>
+                    </div>
+                    <i id="country-flag"></i>
+                </div>
+
+                <div class="country-picker-container">
+                    <p></p>
+                </div>
+            </div>
 
             <div id="map-container">
                 <div id="map"></div>
@@ -299,6 +306,9 @@
                         data-show-screen-name="false"
                         data-show-count="false"
                         data-lang="<%= locale %>"></a>
+                </div>
+                <div class="highscore-button">
+                    Show ranking
                 </div>
             </div>
         </div>
