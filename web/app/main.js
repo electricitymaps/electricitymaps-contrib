@@ -376,7 +376,6 @@ var wind, solar;
 var histories = {};
 
 function selectCountry(countryCode, notrack) {
-    console.log('selectCountry', arguments);
     if (!countryCode || !countries[countryCode]) {
         showPage();
         // Unselected
@@ -394,7 +393,6 @@ function selectCountry(countryCode, notrack) {
     } else {
         showPage('country');
         // Selected
-        console.log(countries[countryCode]);
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
         d3.select('.left-panel-initial-text')
@@ -665,7 +663,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         if (!country.exchange || !d3.keys(country.exchange).length)
             console.warn(countryCode + ' is missing exchanges');
     });
-    console.log('countries', countries);
 
     // Render country list
     var validCountries = d3.values(countries).filter(function(d) {
@@ -768,7 +765,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             exchange[k] = obj.value[k];
         });
     });
-    console.log('exchanges', exchanges);
 
     // Render exchanges
     exchangeLayer
@@ -822,7 +818,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     if (!showWindOption)
         d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
     if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        console.log('wind', wind);
         LoadingService.startLoading();
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
@@ -846,7 +841,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     if (!showSolarOption)
         d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        console.log('solar', solar);
         LoadingService.startLoading();
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
