@@ -36,6 +36,7 @@ var customDate;
 var timelineEnabled = false;
 var currentMoment;
 var colorBlindModeEnabled = false;
+var showPageState = undefined;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -83,6 +84,9 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'countryCode') {
         selectedCountryCode = kv[1];
         replaceHistoryState('countryCode', selectedCountryCode);
+    } else if (kv[0] == 'page') {
+        showPageState = kv[1];
+        replaceHistoryState('page', showPageState);
     }
 });
 
@@ -491,14 +495,17 @@ function selectCountry(countryCode, notrack) {
 selectCountry(selectedCountryCode, true);
 d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back').on('click', function() { selectCountry(undefined); });
 d3.select('.highscore-button').on('click', function() {
-  showPage('highscore');
+    showPage('highscore');
 });
+if(showPageState) {
+    showPage(showPageState);
+}
 
 function showPage(pageName) {
+    replaceHistoryState('page', pageName);
+
     if(pageName === undefined)
         pageName = 'welcome';
-
-    // d3.select('#map-container').style('display', pageName === 'welcome' ? '' : 'none');
 
     d3.selectAll('.left-panel').style('display', 'none');
     d3.selectAll('.left-panel-'+pageName).style('display', '');

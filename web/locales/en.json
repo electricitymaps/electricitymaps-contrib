@@ -37,7 +37,8 @@
         "co2signal": "Our <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
     },
     "rankings-panel": {
-        "country-rankings": "Country rankings"
+        "country-ranking": "Country Ranking",
+        "show-ranking": "Show ranking"
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours"

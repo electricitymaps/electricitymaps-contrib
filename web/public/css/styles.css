@@ -350,8 +350,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 }
 
 .country-picker-container {
-    /*height: 80%;*/
-    height: 390px;
+    height: 380px;
 }
 .country-picker-container p {
     display: flex;
@@ -359,6 +358,7 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
     flex-wrap: wrap;
     height: 100%;
     counter-reset: section;
+    margin: -0.25rem 0 0;
 }
 .country-picker-container a {
     display: flex;
@@ -480,6 +480,9 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 .left-panel-country .country-name {
     font-size: 1.5rem;
     line-height: 1.5rem;
+}
+.left-panel-toolbar-right-placeholder {
+    width: 2.875rem;
 }
 .left-panel-toolbar .flag-icon,
 .left-panel-country .flag-icon {
