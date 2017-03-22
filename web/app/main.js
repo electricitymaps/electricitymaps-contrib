@@ -321,20 +321,24 @@ function placeTooltip(selector, d3Event) {
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
     var margin = 5;
+    var mapWidth = d3.select('.map-layer').node().getBoundingClientRect().width;
     // On very small screens
-    if (w > window.innerWidth) {
+    if (w > mapWidth) {
         tooltip
             .style('width', '100%');
     }
     else {
         var x = 0;
-        if (w > window.innerWidth / 2 - 5) {
+        if (w > mapWidth / 2 - 5) {
             // Tooltip won't fit on any side, so don't translate x
-            x = 0.5 * (window.innerWidth - w);
+            x = 0.5 * (mapWidth - w);
         } else {
-            x = d3Event.pageX + margin; if (window.innerWidth - x <= w) x = d3Event.pageX - w - margin;
+            x = d3Event.layerX + margin;
+            if (mapWidth - x <= w) {
+                x = d3Event.layerX - w - margin;
+            }
         }
-        var y = d3Event.pageY - h - margin; if (y <= margin) y = d3Event.pageY + margin;
+        var y = d3Event.layerY - h - margin; if (y <= margin) y = d3Event.layerY + margin;
         tooltip
             .style('transform',
                 'translate(' + x + 'px' + ',' + y + 'px' + ')');
