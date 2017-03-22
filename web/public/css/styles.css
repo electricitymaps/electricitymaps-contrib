@@ -187,12 +187,12 @@ hr {
     width: 8px;
     height: 8px;
 }
-.country-spot-price {
+.left-panel .country-spot-price {
     font-size: 1rem;
     display: block;
     width: 100%;
 }
-.country-spot-price-wrap {
+.left-panel .country-spot-price-wrap {
     border: 1px solid white;
     color: white;
     border-radius: 0.125rem;
