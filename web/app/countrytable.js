@@ -137,7 +137,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
             })
             .attr('width', function (d) {
-                return d.capacity !== undefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
+                var isDefined = d.capacity !== undefined && d.capacity >= (d.production || 0);
+                return isDefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
             })
             .on('end', function () { d3.select(this).style('display', 'block'); });
     // Add event handlers

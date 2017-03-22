@@ -58,7 +58,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     // Warning: the bounding box in lonlat might be smaller than in px,
     // because of the projection.
     // Here everything is hardcoded
-    var minLat = 30;
+    var minLat = 20;
     var maxLat = 80;
     var minLon = -40;
     var maxLon = 70;

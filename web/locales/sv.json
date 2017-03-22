@@ -51,7 +51,7 @@
     "legends": {
         "windpotential": "Möjlighet för vindkraft",
         "solarpotential": "Möjlighet för solkraft",
-        "colorblindmode": "färgblinda läge"
+        "colorblindmode": "anpassning för färgblinda"
     },
     "tooltips": {
         "electricityprice": "Elpris (nästa dag)",
@@ -68,7 +68,7 @@
     "misc": {
         "carbonintensity": "Utsläpp av koldioxid",
         "maintitle": "Aktuellt CO2-utsläpp från den europeiska elproduktionen",
-        "lastupdate": "Senaste uppdateringen",
+        "lastupdate": "Senast uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om."
     }
