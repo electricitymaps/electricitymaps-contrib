@@ -171,7 +171,7 @@ hr {
 #exchange-tooltip .flow {
     font-weight: bold;
 }
-.emission-rect {
+.emission-rect-overview {
     width: 3rem;
     height: 3rem;
     display: inline-flex;
@@ -180,6 +180,11 @@ hr {
     color: #fff;
     flex-direction: column;
     justify-content: center;
+}
+.emission-rect {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
 }
 .country-spot-price {
     font-size: 1rem;
