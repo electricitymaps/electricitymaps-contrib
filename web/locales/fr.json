@@ -27,13 +27,17 @@
         "back": "retour",
         "source": "source",
         "fossilfuels": "énergies fossiles",
-        "electricityprice": "Prix de l'électricité (day-ahead)",
+        "electricityprice": "Prix de l'électricité",
+        "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Production électrique",
         "showemissions": "montrer les émissions",
         "bysource": "par source",
         "emissions": "Emissions",
         "showelectricity": "montrer la production électrique",
         "co2signal": "Notre <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> permet aux appareils et voitures électriques de consommer au bon moment."
+    },
+    "rankings-panel": {
+        "country-ranking": "Country ranking"
     },
     "country-history": {
         "carbonintensity24h": "Intensité carbone des 24 dernières heures"

@@ -27,13 +27,17 @@
         "back": "tillbaka",
         "source": "källa",
         "fossilfuels": "fosila bränslen",
-        "electricityprice": "Elpris (nästa dag)",
+        "electricityprice": "Elpris",
+        "electricityprice-dayahead": "nästa dag",
         "electricityproduction": "Elproduktion",
         "showemissions": "visa utsläpp",
         "bysource": "per källa",
         "emissions": "Utsläpp",
         "showelectricity": "visa elproduktion",
         "co2signal": "Vår <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
+    },
+    "rankings-panel": {
+        "country-ranking": "Country ranking"
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna"

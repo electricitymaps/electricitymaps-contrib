@@ -106,20 +106,17 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         // TODO: We should offset by just one pixel because it looks better when
         // the rectangles don't start exactly on the axis...
         // But we should also handle "negative" rects
-        .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
+        .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 15)')
         .call(this.axis);
 
     // Set header
     var header = d3.select('.country-table-header');
-    header.select('i#country-flag')
-        .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
-    header.select('span.country-name')
-        .text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
-    header.select('span.country-last-update')
-        .text(datetime ? moment(datetime).fromNow() : '? minutes ago')
-    header.select('span.country-time')
-        .text(datetime ? moment(datetime).format('LT') : '?')
+    panel.select('#country-flag').attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
+    panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago')
+    panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?')
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
@@ -294,6 +291,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
     d3.select('.fossil-fuel-percentage')
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+    d3.select('.fossil-fuel-percentage').node().parentNode.style.setProperty('background-color', 'rgba(0,0,0,'+this._data.fossilFuelRatio+')');
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
@@ -364,7 +362,7 @@ CountryTable.prototype.resize = function() {
     this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
     this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
-    this.yProduction = this.headerHeight + this.ROW_HEIGHT;
+    this.yProduction = this.headerHeight;
     this.productionRoot
         .attr('transform', 'translate(0,' + this.yProduction + ')');
     this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;

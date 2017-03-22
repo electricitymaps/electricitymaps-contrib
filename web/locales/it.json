@@ -27,13 +27,17 @@
         "back": "indietro",
         "source": "fonte",
         "fossilfuels": "carburanti fossili",
-        "electricityprice": "Prezzo dell'elettricità (Al giorno)",
+        "electricityprice": "Prezzo dell'elettricità",
+        "electricityprice-dayahead": "Al giorno",
         "electricityproduction": "Produzione di elettricità",
         "showemissions": "mostra emissioni",
         "bysource": "per fonte",
         "emissions": "Emissioni",
         "showelectricity": "mostra elettricità",
         "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
+    },
+    "rankings-panel": {
+        "country-ranking": "Country ranking"
     },
     "country-history": {
         "carbonintensity24h": "Itensità del carbonio nelle ultime 24 ore"
