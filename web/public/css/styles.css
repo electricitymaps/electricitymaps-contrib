@@ -158,6 +158,11 @@ hr {
 .country-table {
     width: 100%;
 }
+.country-table-header-inner {
+    display: flex;
+    flex-basis: 33.3%;
+    justify-content: space-between;
+}
 .country-history {
     width: 100%;
     height: 10rem;
@@ -250,9 +255,17 @@ hr {
     text-decoration: none;
     background: rgba(0, 0, 0, 0.2);
 }
+.country-show-emissions-wrap {
+    margin: 1rem 0 0;
+}
 .country-show-emissions,
 .country-show-electricity {
     font-size: 1rem;
+}
+.country-show-emissions a,
+.country-show-electricity a {
+    padding: 0.75rem 0;
+    display: inline-block;
 }
 
 .country-price-wrap,
