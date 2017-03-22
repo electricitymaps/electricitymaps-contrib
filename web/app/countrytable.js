@@ -291,6 +291,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
     d3.select('.fossil-fuel-percentage')
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+    d3.select('.fossil-fuel-percentage').node().parentNode.style.setProperty('background-color', 'rgba(0,0,0,'+this._data.fossilFuelRatio+')');
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
