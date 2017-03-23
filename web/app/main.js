@@ -96,7 +96,7 @@ var showSolarOption = true;
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
-var isLocalhost = window.location.href.indexOf('//electricitymap') == -1;
+var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
 var REMOTE_ENDPOINT = '//api.electricitymap.org';
 var LOCAL_ENDPOINT = '//localhost:9000';
@@ -557,9 +557,9 @@ function mapMouseOver(coordinates) {
         var lonlat = countryMap.projection().invert(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-            var u = grib.getInterpolatedValueAtLonLat(lonlat, 
+            var u = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, wind.forecasts[0][0], wind.forecasts[1][0]);
-            var v = grib.getInterpolatedValueAtLonLat(lonlat, 
+            var v = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, wind.forecasts[0][1], wind.forecasts[1][1]);
             if (!selectedCountryCode)
               windColorbar.currentMarker(Math.sqrt(u * u + v * v));
@@ -571,7 +571,7 @@ function mapMouseOver(coordinates) {
         var lonlat = countryMap.projection().invert(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-            var val = grib.getInterpolatedValueAtLonLat(lonlat, 
+            var val = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, solar.forecasts[0], solar.forecasts[1]);
             if (!selectedCountryCode)
               solarColorbar.currentMarker(val);
@@ -698,7 +698,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             return d.co2intensity ? co2color(d.co2intensity) : 'gray';
         });
     selector.select('i#country-flag')
-        .attr('class', function(d) { 
+        .attr('class', function(d) {
             return 'flag-icon flag-icon-' + d.countryCode.toLowerCase();
         })
     selector.on('click', function(d) { return selectCountry(d.countryCode); });
@@ -711,7 +711,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .render();
 
     // Add mouse over handlers
-    countryMap.onCountryMouseOver(function (d) { 
+    countryMap.onCountryMouseOver(function (d) {
         d3.select(this)
             .style('opacity', 0.8)
             .style('cursor', 'pointer')
@@ -744,7 +744,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     .onCountryMouseMove(function () {
         placeTooltip("#country-tooltip", d3.event);
     })
-    .onCountryMouseOut(function (d) { 
+    .onCountryMouseOut(function (d) {
         d3.select(this)
             .style('opacity', 1)
             .style('cursor', 'auto')
@@ -774,7 +774,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     exchangeLayer
         .data(d3.values(exchanges))
         .projection(countryMap.projection())
-        .onExchangeMouseOver(function (d) { 
+        .onExchangeMouseOver(function (d) {
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer');
@@ -890,7 +890,7 @@ function geolocaliseCountryCode(callback) {
                     callback(null, null);
                 }
             });
-        }, function(err) { 
+        }, function(err) {
             console.warn(err);
             callback(null, null);
         });
@@ -913,7 +913,7 @@ function handleConnectionReturnCode(err) {
             if (err.target.status)
                 catchError(Error(
                     'HTTPError ' +
-                    err.target.status + ' ' + err.target.statusText + ' at ' + 
+                    err.target.status + ' ' + err.target.statusText + ' at ' +
                     err.target.responseURL + ': ' +
                     err.target.responseText));
         } else {
@@ -979,7 +979,7 @@ function fetch(showLoading, callback) {
 
 function fetchAndReschedule() {
     if (!customDate)
-        return fetch(false, function() { 
+        return fetch(false, function() {
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
         });
     else
@@ -1004,6 +1004,6 @@ window.onresize = function () {
 
 // Start a fetch showing loading.
 // Later `fetchAndReschedule` won't show loading screen
-fetch(true, function() { 
+fetch(true, function() {
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 });
