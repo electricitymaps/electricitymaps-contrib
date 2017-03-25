@@ -27,6 +27,7 @@
         "back": "zurück",
         "source": "Quelle",
         "fossilfuels": "fossile Brennstoffe",
+        "carbonintensity": "CO2 Konzentration",
         "electricityprice": "Elektrizitätspreis",
         "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Elektrizitätsproduktion",
@@ -51,11 +52,13 @@
     "legends": {
         "windpotential": "Potenzial Windenergie",
         "solarpotential": "Potenzial Solarenergie",
-        "colorblindmode": "farbenblind Modus"
+        "colorblindmode": "farbenblind Modus",
+        "carbonintensity": "CO2 Konzentration"
     },
     "tooltips": {
         "electricityprice": "Elektrizitätspreis (day-ahead)",
         "fossilfuels": "fossile Brennstoffe",
+        "carbonintensity": "CO2 Konzentration",
         "crossborderexport": "Export über Ländergrenzen",
         "carbonintensityexport": "CO2 Konzentration des Exports",
         "of": "von",
@@ -66,7 +69,6 @@
         "withcarbonintensity": "mit einer CO2 Konzentration von"
     },
     "misc": {
-        "carbonintensity": "CO2 Konzentration",
         "maintitle": "CO2 Emissionen der europäischen Elektrizitätsproduktion in Echtzeit",
         "lastupdate": "Letzte Aktualisierung",
         "oops": "Oops! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden nochmal.",

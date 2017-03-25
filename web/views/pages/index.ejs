@@ -144,7 +144,7 @@
                     <div class="layer-toggles large-screen-visible">
                         <hr />
                         <p>
-                            <%= __('misc.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
+                            <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
                             <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                         </p>
                         <p>
@@ -200,7 +200,7 @@
                     <div class="country-table-header">
                         <div class="country-table-header-inner">
                             <div class="country-col country-emission-intensity-wrap">
-                                <div class="country-col-headline"><%= __('misc.carbonintensity') %></div>
+                                <div class="country-col-headline"><%= __('country-panel.carbonintensity') %></div>
                                 <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
                                     <div><span class="country-emission-intensity"></span>g</div>
                                 </div>
@@ -274,7 +274,7 @@
             <div id="map-container">
                 <div id="map"></div>
                 <div id="country-tooltip" class="tooltip panel">
-                    <%= __('misc.carbonintensity') %>:<br />
+                    <%= __('tooltips.carbonintensity') %>:<br />
                     <i id="country-flag"></i> <span id="country-name"></span>:
                     <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
                     <br />
