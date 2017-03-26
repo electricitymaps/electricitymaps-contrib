@@ -58,7 +58,7 @@
     },
     "tooltips": {
         "electricityprice": "Prix de l'électricité (day-ahead)",
-        "fossilfuels": "énergies fossiles",
+        "fossilfuels": "Energies fossiles",
         "carbonintensity": "Intensité carbone",
         "crossborderexport": "Export transfrontalier",
         "carbonintensityexport": "Intensité carbone de l'export",
