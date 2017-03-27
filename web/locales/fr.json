@@ -27,6 +27,7 @@
         "back": "retour",
         "source": "source",
         "fossilfuels": "énergies fossiles",
+        "carbonintensity": "Intensité carbone",
         "electricityprice": "Prix de l'électricité",
         "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Production électrique",
@@ -52,11 +53,13 @@
     "legends": {
         "windpotential": "Potentiel éolien",
         "solarpotential": "Potentiel solaire",
-        "colorblindmode": "mode daltonien"
+        "colorblindmode": "mode daltonien",
+        "carbonintensity": "Intensité carbone"
     },
     "tooltips": {
         "electricityprice": "Prix de l'électricité (day-ahead)",
-        "fossilfuels": "énergies fossiles",
+        "fossilfuels": "Energies fossiles",
+        "carbonintensity": "Intensité carbone",
         "crossborderexport": "Export transfrontalier",
         "carbonintensityexport": "Intensité carbone de l'export",
         "of": "de l'électricité",
@@ -68,7 +71,6 @@
         "withcarbonintensity": "avec une intensité carbone de"
     },
     "misc": {
-        "carbonintensity": "Intensité carbone",
         "maintitle": "Emissions de CO2 de la production électrique Européenne en temps réel",
         "lastupdate": "Dernière mise à jour",
         "oops": "Oops! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",

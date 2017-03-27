@@ -27,6 +27,7 @@
         "back": "terug",
         "source": "bron",
         "fossilfuels": "fossiele brandstoffen",
+        "carbonintensity": "Koolstofintensiteit",
         "electricityprice": "Elektriciteitsprijs",
         "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Elektriciteitsproductie",
@@ -51,11 +52,13 @@
     "legends": {
         "windpotential": "potentieel aan Windenergie",
         "solarpotential": "potentieel aan Zonne-energie",
-        "colorblindmode": "kleurenblind modus"
+        "colorblindmode": "kleurenblind modus",
+        "carbonintensity": "Koolstofintensiteit"
     },
     "tooltips": {
         "electricityprice": "Elektriciteitsprijs (day-ahead)",
         "fossilfuels": "fossiele brandstoffen",
+        "carbonintensity": "Koolstofintensiteit",
         "crossborderexport": "uitvoer over de landsgrenzen",
         "carbonintensityexport": "Koolstofintensiteit van uitvoer",
         "of": "van de",
@@ -66,7 +69,6 @@
         "withcarbonintensity": "met een koolstofintensiteit van"
     },
     "misc": {
-        "carbonintensity": "Koolstofintensiteit",
         "maintitle": "Live CO2 uitstoot van het Europese elektriciteitsverbruik",
         "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",

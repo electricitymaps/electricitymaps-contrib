@@ -26,7 +26,8 @@
     "country-panel": {
         "back": "tillbaka",
         "source": "källa",
-        "fossilfuels": "fosila bränslen",
+        "fossilfuels": "Fosila bränslen",
+        "carbonintensity": "Utsläpp av koldioxid",
         "electricityprice": "Elpris",
         "electricityprice-dayahead": "nästa dag",
         "electricityproduction": "Elproduktion",
@@ -52,11 +53,13 @@
     "legends": {
         "windpotential": "Möjlighet för vindkraft",
         "solarpotential": "Möjlighet för solkraft",
-        "colorblindmode": "anpassning för färgblinda"
+        "colorblindmode": "anpassning för färgblinda",
+        "carbonintensity": "Utsläpp av koldioxid"
     },
     "tooltips": {
         "electricityprice": "Elpris (nästa dag)",
         "fossilfuels": "fosila bränslen",
+        "carbonintensity": "Utsläpp av koldioxid",
         "crossborderexport": "Gränsöverskridande export",
         "carbonintensityexport": "Utsläpp av koldioxid för export",
         "of": "av",
@@ -67,7 +70,6 @@
         "withcarbonintensity": "med ett utsläpp av koldioxid på"
     },
     "misc": {
-        "carbonintensity": "Utsläpp av koldioxid",
         "maintitle": "Aktuellt CO2-utsläpp från den europeiska elproduktionen",
         "lastupdate": "Senast uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
