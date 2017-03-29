@@ -33,23 +33,19 @@ function CountryMap(selector, co2color) {
     this.root.append('canvas').attr('class', 'wind map-layer');
     this.root.append('canvas').attr('class', 'solar map-layer');
 
-    this.zoom = d3.zoom()
-        .on('zoom', function() {
-          var transform = d3.event.transform;
-          that.root
-              .style('transform', 'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') ');
-          // Scale the arrows differently
-          that.root.selectAll('.arrows-layer .exchange-arrow img')
-              .style('transform', function() {
-                  return 'scale(' + (that.exchangeLayer().arrowScale() / transform.k) + ')';
-              });
-        })
-        .on('start', function() {
-            d3.select(this).style('cursor', 'move');
-        })
-        .on('end', function() {
-            d3.select(this).style('cursor', undefined);
-        });
+    this.zoom = d3.zoom().on('zoom', function() {
+        var transform = d3.event.transform;
+        that.root.style(
+            'transform',
+            'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') '
+        );
+    })
+    .on('start', function() {
+        d3.select(this).style('cursor', 'move');
+    })
+    .on('end', function() {
+        d3.select(this).style('cursor', undefined);
+    });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
 }
