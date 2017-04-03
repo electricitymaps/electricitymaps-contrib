@@ -61,7 +61,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var minLat = 20;
     var maxLat = 80;
     var minLon = -40;
-    var maxLon = 70;
+    var maxLon = 110;
     h = maxLat - minLat;
     w = maxLon - minLon;
 
