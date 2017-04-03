@@ -14,8 +14,8 @@
         "capacity": {
             "biomass": 1078,
             "nuclear": 5919,
-            "oil": 145,
-            "coal": 470,
+            "oil": 0,
+            "coal": 0,
             "hydro": 1425,
             "gas": 5303,
             "wind": 1961,
