@@ -15,7 +15,9 @@
     "json-loader": "git://github.com/webpack/json-loader.git#780f438d6e47155496d0b8ac7a9a3b35edc65e9a",
     "moment": "^2.15.2",
     "opbeat": "^4.11.0",
-    "topojson": "^2.2.0"
+    "serviceworker-webpack-plugin": "^0.2.0",
+    "topojson": "^2.2.0",
+    "webpack": "^2.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.10.2",
