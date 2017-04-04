@@ -105,9 +105,9 @@ CountryMap.prototype.render = function() {
     var graticuleData = d3.geoGraticule()
         .step([5, 5]);
         
-    this.graticule
-        .datum(graticuleData)
-        .attr('d', this.path);
+    // this.graticule
+    //     .datum(graticuleData)
+    //     .attr('d', this.path);
 
     var that = this;
     if (this._data) {
