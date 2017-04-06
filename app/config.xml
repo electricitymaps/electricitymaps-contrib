@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.tmrow.electricitymap" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Electricity Map</name>
+    <description>
+        Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
+    </description>
+    <author email="hello@tmrow.co" href="https://www.tmrow.co">
+        Tomorrow
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <!-- Required to avoid having Facebook complain -->
+    <allow-navigation href="*" />
+
+    <platform name="android">
+        <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <preference name="CodePushDeploymentKey" value="4uQpHGlWRd7qOyIq-JNAhvjsYXcsEJ-bjzkpG" />
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-code-push" spec="~1.9.3-beta" />
+</widget>

@@ -117,8 +117,7 @@ app.get('/', function(req, res) {
             bundleHash: BUNDLE_HASH,
             locale: res.locale,
             FBLocale: LOCALE_TO_FB_LOCALE[res.locale],
-            supportedFBLocales: SUPPORTED_FB_LOCALES,
-            useAnalytics: req.get('host').indexOf('electricitymap') != -1
+            supportedFBLocales: SUPPORTED_FB_LOCALES
         });
     }
 });

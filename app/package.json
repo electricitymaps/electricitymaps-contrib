@@ -1,0 +1,16 @@
+{
+  "name": "electricitymap-app",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "i18n": "^0.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corradio/electricitymap.git"
+  },
+  "scripts": {
+    "build": "bash build.sh"
+  }
+}
