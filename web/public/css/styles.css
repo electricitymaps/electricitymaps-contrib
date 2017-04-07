@@ -297,6 +297,15 @@ hr {
 div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, iframe.twitter-follow-button, .slack-button {
     vertical-align: middle
 }
+div.fb-like span {
+  /* Don't ask - it fixes a bug in Cordova */
+  width: 51px !important;
+  height: 20px !important;
+}
+div.fb-like span iframe {
+  width: unset !important;
+  height: unset !important;
+}
 
 .tooltip {
     color: darkgrey;

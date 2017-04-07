@@ -55,7 +55,8 @@ function getHistoryStateURL() {
     d3.entries(historyState).forEach(function(d) {
         url = appendQueryString(url, d.key, d.value);
     });
-    return (url == '?' ? '.' : url);
+    // '.' is not supported when serving from file://
+    return (url == '?' ? '?' : url);
 }
 function replaceHistoryState(key, value) {
     if (value == null) {
@@ -98,10 +99,65 @@ var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || f
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
 var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = '//api.electricitymap.org';
-var LOCAL_ENDPOINT = '//localhost:9000';
+var REMOTE_ENDPOINT = 'https://api.electricitymap.org';
+var LOCAL_ENDPOINT = 'http://localhost:9000';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
     LOCAL_ENDPOINT : REMOTE_ENDPOINT;
+
+
+// Twitter
+window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    };
+
+    return t;
+}(document, "script", "twitter-wjs"));
+
+// Facebook
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '1267173759989113',
+        xfbml      : true,
+        version    : 'v2.8'
+    });
+    if (!isLocalhost) {
+        FB.AppEvents.logPageView('pageview');
+    }
+};
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/" + FBLocale + "/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+if (!isLocalhost) {
+    // Mixpanel
+    (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+    mixpanel.init('f350f1ec866f4737a5f69497e58cf67d');
+    mixpanel.track('Visit', {'bundleVersion': bundleHash});
+
+    // Google Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-79729918-1', 'auto');
+      ga('send', 'pageview');
+}
 
 if (!isLocalhost) {
   _opbeat = window._opbeat || function() {
@@ -146,6 +202,24 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
+
+// Initialise mobile app (cordova)
+var app = {
+    // Application Constructor
+    initialize: function() {
+        document.addEventListener("deviceready", this.onDeviceReady, false);
+        document.addEventListener("resume", this.onResume, false);
+    },
+
+    onDeviceReady: function() {
+        // We will init / bootstrap our application here
+    },
+
+    onResume: function() {
+        codePush.sync();
+    }
+};
+app.initialize();
 
 // Set proper locale
 moment.locale(locale);
@@ -948,7 +1022,8 @@ function fetch(showLoading, callback) {
         d3.select('#connection-warning').style('top', 0);
     }, 15 * 1000);
     var Q = d3.queue();
-    Q.defer(d3.text, '/clientVersion');
+    // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
+    Q.defer(ignoreError(d3.text), '/clientVersion');
     Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
 
     var now = customDate || new Date();

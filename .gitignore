@@ -11,3 +11,4 @@ web/node_modules
 /.vs/config
 /App_Data/PublishProfiles
 *.publishproj
+.DS_Store
