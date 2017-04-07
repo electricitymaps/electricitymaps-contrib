@@ -17,7 +17,10 @@
     <allow-intent href="geo:*" />
 
     <!-- Required to avoid having Facebook complain -->
-    <allow-navigation href="*" />
+    <allow-navigation href="https://www.facebook.com/v*/plugins/*" />
+    <allow-navigation href="https://platform.twitter.com/*" />
+
+    <icon src="res/icon.png" />
 
     <platform name="android">
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
