@@ -203,6 +203,24 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
+// Initialise mobile app (cordova)
+var app = {
+    // Application Constructor
+    initialize: function() {
+        document.addEventListener("deviceready", this.onDeviceReady, false);
+        document.addEventListener("resume", this.onResume, false);
+    },
+
+    onDeviceReady: function() {
+        // We will init / bootstrap our application here
+    },
+
+    onResume: function() {
+        codePush.sync();
+    }
+};
+app.initialize();
+
 // Set proper locale
 moment.locale(locale);
 
