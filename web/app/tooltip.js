@@ -13,6 +13,35 @@ function getConsumption(country) {
     return country.totalProduction - country.totalStorage + country.totalNetExchange;
 }
 
+function placeTooltip(selector, d3Event) {
+    var tooltip = d3.select(selector);
+    var w = tooltip.node().getBoundingClientRect().width;
+    var h = tooltip.node().getBoundingClientRect().height;
+    var margin = 7;
+    var screenWidth = screen.width;
+    // On very small screens
+    if (w > screenWidth) {
+        tooltip
+            .style('width', '100%');
+    }
+    else {
+        var x = 0;
+        if (w > screenWidth / 2 - 5) {
+            // Tooltip won't fit on any side, so don't translate x
+            x = 0.5 * (screenWidth - w);
+        } else {
+            x = d3Event.layerX + margin;
+            if (screenWidth - x <= w) {
+                x = d3Event.layerX - w - margin;
+            }
+        }
+        var y = d3Event.layerY - h - margin; if (y <= margin) y = d3Event.layerY + margin;
+        tooltip
+            .style('transform',
+                'translate(' + x + 'px' + ',' + y + 'px' + ')');
+    }
+}
+
 function Tooltip(countryTable, countries) {
     var that = this;
     // ** Country table
@@ -68,12 +97,7 @@ function Tooltip(countryTable, countries) {
                 .style('display', 'none');
         })
         .onExchangeMouseMove(function(d) {
-            d3.select('#countrypanel-exchange-tooltip')
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX + 15) + 'px' + ',' + 
-                        (d3.event.pageY + 15) + 'px' +
-                    ')');
+            placeTooltip('#countrypanel-exchange-tooltip', d3.event);
         })
         .onProductionMouseOver(function (d, country) {
             var co2intensity = country.productionCo2Intensities[d.mode];
@@ -124,12 +148,7 @@ function Tooltip(countryTable, countries) {
                 .attr('class', 'flag-icon flag-icon-' + country.countryCode.toLowerCase());
         })
         .onProductionMouseMove(function(d) {
-            d3.select('#countrypanel-production-tooltip')
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX + 10) + 'px' + ',' + 
-                        (d3.event.pageY + 10) + 'px' +
-                    ')');
+            placeTooltip('#countrypanel-production-tooltip', d3.event);
         })
         .onProductionMouseOut(function (d) {
             if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);

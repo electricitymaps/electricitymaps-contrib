@@ -65,9 +65,7 @@ var showPageState = undefined;
 var showWindOption = true;
 var showSolarOption = true;
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
-replaceHistoryState('wind', windEnabled);
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
-replaceHistoryState('solar', solarEnabled);
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -91,6 +89,7 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'countryCode') {
         selectedCountryCode = kv[1];
         replaceHistoryState('countryCode', selectedCountryCode);
+        console.log(historyState);
     } else if (kv[0] == 'page') {
         showPageState = kv[1];
         replaceHistoryState('page', showPageState);
@@ -112,6 +111,9 @@ var LOCAL_ENDPOINT = 'http://localhost:9000';
 var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
     LOCAL_ENDPOINT : REMOTE_ENDPOINT;
 
+// Set history state of remaining variables
+replaceHistoryState('wind', windEnabled);
+replaceHistoryState('solar', solarEnabled);
 
 // Twitter
 window.twttr = (function(d, s, id) {
@@ -398,6 +400,7 @@ var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
 });
 
 // Tooltips
+// TODO: Move to module together with countrymap tooltip
 function placeTooltip(selector, d3Event) {
     var tooltip = d3.select(selector);
     var w = tooltip.node().getBoundingClientRect().width;
