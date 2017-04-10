@@ -487,11 +487,12 @@ div.fb-like span iframe {
 }
 .left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-country-back {
-    padding: 1.25rem;
+    padding: 0.4rem 1rem 0.5rem 1rem;
     line-height: 1;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     cursor: pointer;
+    font-size: 2rem;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
 #left-panel-country-back:hover {
