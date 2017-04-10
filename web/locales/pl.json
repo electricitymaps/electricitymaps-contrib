@@ -1,0 +1,70 @@
+{
+    "panel-initial-text": {
+        "youareseeing": "W tej chwili oglądasz ",
+        "limitedversion": "ograniczoną wersję mobilną",
+        "forthe": "By zobaczyć",
+        "fullversion": "pełną wersję",
+        "visitoncomputer": "wejdź na tę stronę ze swojego komputera",
+
+        "thisshowsrealtime": "Projekt pokazuje w czasie rzeczywistym",
+        "whereelectricitycomesfrom": "skąd pochodzi używana przez Ciebie energia elektryczna",
+        "and": "oraz",
+        "howmuchco2": "jakie ilości CO2",
+        "wasemitted": "zostały wyemitowane do jej produkcji",
+
+        "takeinaccount": "Bierzemy pod uwagę",
+        "importexport": "import i eksport",
+        "betweencountries": "energii elektrycznej pomiędzy krajami",
+
+        "thisproject": "Ten projekt jest",
+        "opensource": "Open Source",
+        "see": "zobacz",
+        "datasources": "źródła danych",
+
+        "tip": "Wskazówka: Kliknij na kraj by dowiedzieć się więcej"
+    },
+    "country-panel": {
+        "back": "Cofnij",
+        "source": "źródło",
+        "fossilfuels": "paliwa kopalne",
+        "electricityprice": "Cena energii elektrycznej (wyprzedzenie jednodniowe)",
+        "electricityproduction": "Produkcja energii elektrycznej",
+        "showemissions": "Pokaż emisje",
+        "bysource": "według źródeł energii",
+        "emissions": "Emisje",
+        "showelectricity": "pokaż energię elektryczną",
+        "co2signal": "Nasz <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic."
+    },
+    "country-history": {
+        "carbonintensity24h": "Emisja CO2 w ostatnich 24 godzinach"
+    },
+    "footer": {
+        "likethisvisu": "Podoba Ci się nasza wizualizacja?",
+        "loveyourfeedback": "Podziel się z nami Twoją opinią",
+        "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
+        "here": "tutaj"
+    },
+    "legends": {
+        "windpotential": "Potencjał wiatrowy",
+        "solarpotential": "Potencjał słoneczny"
+    },
+    "tooltips": {
+        "electricityprice": "Cena energii elektrycznej (wyprzedzenie jednodniowe)",
+        "fossilfuels": "paliwa kopalne",
+        "crossborderexport": "Eksport transgraniczny",
+        "carbonintensityexport": "Emisja CO2 eksportu",
+        "of": " ",
+        "ofconsumption": " ",
+        "ofinstalled": "zainstalowanej mocy",
+        "ofelectricity": " ",
+        "utilizing": "wykorzystując",
+        "withcarbonintensity": "z emisją CO2 wynoszącą"
+    },
+    "misc": {
+        "carbonintensity": "Emisja CO2",
+        "maintitle": "Emisja CO2 europejskiej konsumpcji energii elektrycznej w czasie rzeczywistym",
+        "lastupdate": "Ostatnia aktualizacja",
+        "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
+        "newversion": "Nowa wersja jest dostępna! Kliknij <a onClick=\"location.reload(true);\">tutaj</a> by odświeżyć."
+    }
+}

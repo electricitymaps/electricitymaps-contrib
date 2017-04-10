@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['de', 'en', 'es', 'fr', 'it', 'nl', 'sv'],
+    locales: ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -54,6 +54,7 @@ LOCALE_TO_FB_LOCALE = {
     'fr': 'fr_FR',
     'it': 'it_IT',
     'nl': 'nl_NL',
+    'pl': 'pl_PL',
     'sv': 'sv_SE'
 };
 // Populate using
@@ -74,6 +75,7 @@ SUPPORTED_FB_LOCALES = [
     'it_IT',
     'nl_BE',
     'nl_NL',
+    'pl_PL',
     'sv_SE'
 ];
 
