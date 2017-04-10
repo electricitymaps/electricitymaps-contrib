@@ -662,7 +662,7 @@ d3.select('.map')
         mapMouseOver(undefined);
     });
 
-function dataLoaded(err, clientVersion, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
     if (err) {
         console.error(err);
         return;
@@ -782,7 +782,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .data(d3.values(countries))
         .onSeaClick(function () { selectCountry(undefined); })
         .onCountryClick(function (d) { selectCountry(d.countryCode); })
-        .render();
+        .render()
+        .center(geolocation || [12.54, 55.69]);
 
     // Add mouse over handlers
     countryMap.onCountryMouseOver(function (d) {
@@ -943,27 +944,12 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 };
 
 // Get geolocation is on mobile (in order to select country)
-function geolocaliseCountryCode(callback) {
-    // Deactivated for now (UX was confusing)
-    callback(null, null);
-    return;
+function geolocalise(callback) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude, function (err, response) {
-                if (err) {
-                    console.warn(err);
-                    callback(null, null);
-                    return;
-                }
-                var obj = response.results[0].address_components
-                    .filter(function(d) { return d.types.indexOf('country') != -1; });
-                if (obj.length)
-                    callback(null, obj[0].short_name);
-                else {
-                    console.warn(Error('Invalid geocoder response'), response);
-                    callback(null, null);
-                }
-            });
+            var lonlat = [position.coords.longitude, position.coords.latitude];
+            console.log('Current position is', lonlat);
+            callback(null, lonlat);
         }, function(err) {
             console.warn(err);
             callback(null, null);
@@ -972,6 +958,27 @@ function geolocaliseCountryCode(callback) {
         console.warn(Error('Browser geolocation is not supported'));
         callback(null, null);
     }
+}
+function getCountryCode(lonlat, callback) {
+    // Deactivated for now (UX was confusing)
+    callback(null, null);
+    return;
+
+    d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lonlat[1] + ',' + lonlat[1], function (err, response) {
+        if (err) {
+            console.warn(err);
+            callback(null, null);
+            return;
+        }
+        var obj = response.results[0].address_components
+            .filter(function(d) { return d.types.indexOf('country') != -1; });
+        if (obj.length)
+            callback(null, obj[0].short_name);
+        else {
+            console.warn(Error('Invalid geocoder response'), response);
+            callback(null, null);
+        }
+    }); 
 }
 
 // Periodically load data
@@ -1042,11 +1049,11 @@ function fetch(showLoading, callback) {
     else
         Q.defer(function(cb) { return cb(null, wind); });
 
-    Q.defer(geolocaliseCountryCode);
-    Q.await(function(err, clientVersion, state, solar, wind, geolocalisedCountryCode) {
+    Q.defer(geolocalise);
+    Q.await(function(err, clientVersion, state, solar, wind, geolocation) {
         handleConnectionReturnCode(err);
         if (!err)
-            dataLoaded(err, clientVersion, state.data, solar, wind);
+            dataLoaded(err, clientVersion, state.data, solar, wind, geolocation);
         if (showLoading) LoadingService.stopLoading();
         if (callback) callback();
     });

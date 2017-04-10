@@ -7,6 +7,7 @@ function CountryMap(selector, co2color) {
     this.STROKE_COLOR = '#555555';
 
     this.selectedCountry = undefined;
+    this._center = undefined;
 
     this.root = d3.select(selector)
         .style('transform-origin', '0px 0px')
@@ -52,7 +53,9 @@ function CountryMap(selector, co2color) {
 
 CountryMap.prototype.render = function() {
     // Determine scale (i.e. zoom) based on the size
-    var scale = this.root.node().parentNode.getBoundingClientRect().height * 1.4;
+    this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
+    this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
+    var scale = this.containerHeight * 1.5;
     // Determine map width and height based on bounding box of Europe
     var sw = [-15, 34.7];
     var ne = [34, 72];
@@ -74,8 +77,6 @@ CountryMap.prototype.render = function() {
     this.mapHeight = Math.max(projected_sw[1], projected_se[1]) -
         Math.min(projected_ne[1], projected_nw[1]);
     // Width and height should nevertheless never be smaller than the container
-    this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
-    this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
     this.mapWidth  = Math.max(this.mapWidth,  this.containerWidth);
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
 
@@ -153,6 +154,8 @@ CountryMap.prototype.render = function() {
                 .duration(2000)
                 .attr('fill', getCo2Color);
     }
+
+    return this;
 }
 
 CountryMap.prototype.co2color = function(arg) {
@@ -211,5 +214,20 @@ CountryMap.prototype.data = function(data) {
     }
     return this;
 };
+
+CountryMap.prototype.center = function(center) {
+    if (!center) {
+        return this._center;
+    } else {
+        var p = this._projection(center);
+        this.zoom
+            .translateBy(d3.select(this.root.node().parentNode), // WARNING, this is accumulative.
+              -1 * p[0] + 0.5 * this.containerWidth,
+              -1 * p[1] + 0.5 * this.containerHeight
+            );
+        this._center = center;
+    }
+    return this;
+}
 
 module.exports = CountryMap;
