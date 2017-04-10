@@ -945,6 +945,10 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
 
 // Get geolocation is on mobile (in order to select country)
 function geolocalise(callback) {
+    // Deactivated for now (too slow)
+    callback(null, null);
+    return;
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var lonlat = [position.coords.longitude, position.coords.latitude];
