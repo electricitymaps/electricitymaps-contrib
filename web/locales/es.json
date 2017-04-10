@@ -69,7 +69,7 @@
         "withcarbonintensity": "con una intensidad del carbón de"
     },
     "misc": {
-        "maintitle": "Emisiones de CO2 del consumo eléctrico europeo en tiempo real",
+        "maintitle": "Emisiones de CO2 del consumo eléctrico en tiempo real",
         "lastupdate": "Última actualización",
         "oops": "¡Ups! Estamos teniendo probleams con el servidor. Lo intentaremos de nuevo en unos segundos.",
         "newversion": "¡Está disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar."

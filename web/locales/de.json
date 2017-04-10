@@ -69,7 +69,7 @@
         "withcarbonintensity": "mit einer CO2 Konzentration von"
     },
     "misc": {
-        "maintitle": "CO2 Emissionen der europäischen Elektrizitätsproduktion in Echtzeit",
+        "maintitle": "CO2 Emissionen der Elektrizitätsproduktion in Echtzeit",
         "lastupdate": "Letzte Aktualisierung",
         "oops": "Oops! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden nochmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a> um sie zu laden."

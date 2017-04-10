@@ -1,6 +1,6 @@
 ## Data Science
 
-The Electricity Map collects a unique dataset on the state of European Electricity Production. [Learn more on data sources per country here](https://github.com/corradio/electricitymap#data-sources).  
+The Electricity Map collects a unique dataset on the state of Electricity Production. [Learn more on data sources per country here](https://github.com/corradio/electricitymap#data-sources).  
 
 In this section we present a set of Python functions that let you pull this data locally and run your own analysis.
 

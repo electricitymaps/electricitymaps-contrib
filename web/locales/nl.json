@@ -69,7 +69,7 @@
         "withcarbonintensity": "met een koolstofintensiteit van"
     },
     "misc": {
-        "maintitle": "Live CO2 uitstoot van het Europese elektriciteitsverbruik",
+        "maintitle": "Live CO2 uitstoot van het elektriciteitsverbruik",
         "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
