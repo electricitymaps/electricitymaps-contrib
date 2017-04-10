@@ -29,19 +29,6 @@ var zones = require('json-loader!./configs/zones.json');
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
-// Global State
-var selectedCountryCode;
-var useRemoteEndpoint = true;
-var customDate;
-var timelineEnabled = false;
-var currentMoment;
-var colorBlindModeEnabled = false;
-var showPageState = undefined;
-
-function isMobile() {
-    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-}
-
 // History state
 // TODO: put in a module
 
@@ -67,6 +54,25 @@ function replaceHistoryState(key, value) {
     history.replaceState(historyState, '', getHistoryStateURL());
 }
 
+// Global State
+var selectedCountryCode;
+var useRemoteEndpoint = true;
+var customDate;
+var timelineEnabled = false;
+var currentMoment;
+var colorBlindModeEnabled = false;
+var showPageState = undefined;
+var showWindOption = true;
+var showSolarOption = true;
+var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
+replaceHistoryState('wind', windEnabled);
+var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
+replaceHistoryState('solar', solarEnabled);
+
+function isMobile() {
+    return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+}
+
 // Read query string
 args = location.search.replace('\?','').split('&');
 args.forEach(function(arg) {
@@ -88,14 +94,16 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'page') {
         showPageState = kv[1];
         replaceHistoryState('page', showPageState);
+    } else if (kv[0] == 'solar') {
+        solarEnabled = kv[1] == 'true';
+        replaceHistoryState('solar', solarEnabled);
+    } else if (kv[0] == 'wind') {
+        windEnabled = kv[1] == 'true';
+        replaceHistoryState('wind', windEnabled);
     }
 });
 
 // Computed State
-var showWindOption = true;
-var showSolarOption = true;
-var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
-var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
 var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
@@ -594,6 +602,7 @@ if (solarEnabled && !selectedCountryCode) solarColorbar.render();
 // Attach event handlers
 d3.select('#checkbox-wind').on('change', function() {
     windEnabled = !windEnabled;
+    replaceHistoryState('wind', windEnabled);
     Cookies.set('windEnabled', windEnabled);
     var now = customDate ? moment(customDate) : (new Date()).getTime();
     if (windEnabled) {
@@ -611,6 +620,7 @@ d3.select('#checkbox-wind').on('change', function() {
 });
 d3.select('#checkbox-solar').on('change', function() {
     solarEnabled = !solarEnabled;
+    replaceHistoryState('solar', solarEnabled);
     Cookies.set('solarEnabled', solarEnabled);
     var now = customDate ? moment(customDate) : (new Date()).getTime();
     if (solarEnabled) {
@@ -948,7 +958,7 @@ function geolocalise(callback) {
     // Deactivated for now (too slow)
     callback(null, null);
     return;
-    
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var lonlat = [position.coords.longitude, position.coords.latitude];
