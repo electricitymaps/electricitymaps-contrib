@@ -857,7 +857,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
 
     // Render exchanges
     exchangeLayer
-        .data(d3.values(exchanges))
+        .data(d3.values(exchanges).filter(function(d) {
+            return d.netFlow != 0 && d.netFlow != null;
+        }))
         .projection(countryMap.projection())
         .onExchangeMouseOver(function (d) {
             d3.select(this)
