@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['de', 'en', 'es', 'fr', 'it', 'nl', 'sv'],
+    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'sv'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -48,6 +48,7 @@ i18n.configure({
 });
 app.use(i18n.init);
 LOCALE_TO_FB_LOCALE = {
+    'da': 'da_DK',
     'de': 'de_DE',
     'en': 'en_US',
     'es': 'es_ES',
@@ -61,6 +62,7 @@ LOCALE_TO_FB_LOCALE = {
 // and re-crawl using
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 SUPPORTED_FB_LOCALES = [
+    'da_DK',
     'de_DE',
     'es_ES',
     'es_LA',
