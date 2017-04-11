@@ -223,6 +223,7 @@ var app = {
 
     onDeviceReady: function() {
         // We will init / bootstrap our application here
+        codePush.sync();
     },
 
     onResume: function() {
@@ -692,7 +693,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
         .style('color', 'darkred')
         .transition()
             .duration(800)
-            .style('color', 'lightgrey');
+            .style('color', undefined);
     flatpickr.setDate(moment(customDate).toDate());
 
     // Reset all data

@@ -94,9 +94,6 @@ line, path {
     height: 100%;
     position: relative;
 }
-#map {
-    background-color: #283640;
-}
 .map-layer {
     position: absolute;
     top: 0;
@@ -116,7 +113,6 @@ line, path {
 }
 .panel {
     background-color: rgb(70, 70, 70);
-    border: 1px solid grey;
     color: lightgray;
     font-size: 0.7rem;
 }
@@ -131,6 +127,7 @@ line, path {
     border-top: none;
     border-left: none;
     border-bottom: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 .left-panel h1 {
     line-height: 1.3;
@@ -314,6 +311,7 @@ div.fb-like span iframe {
 }
 
 .tooltip {
+    border: 1px solid grey;
     color: darkgrey;
     display: none;
     padding: 5px;
@@ -456,10 +454,6 @@ div.fb-like span iframe {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     float: left;
-}
-
-#current-datetime {
-    color: lightgrey;
 }
 
 .time-travel {
