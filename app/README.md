@@ -26,4 +26,5 @@ cordova build ios --release
 To push a new release:
 ```
 code-push release-cordova electricitymap-{ios,android} {ios,android}
+code-push promote electricitymap-{ios,android} Staging Production
 ```

@@ -25,21 +25,34 @@ function CountryMap(selector, co2color) {
                 that.seaClickHandler.call(this, d, i);
         });
     // Add SVG elements
-    this.graticule = this.svg.append('g').append('path')
-        .attr('class', 'graticule');
+    // this.graticule = this.svg.append('g').append('path')
+    //     .attr('class', 'graticule');
     this.land = this.svg.append('g')
         .attr('class', 'land');
     // Add other layers
-    this.root.append('div').attr('class', 'arrows-layer map-layer');
-    this.root.append('canvas').attr('class', 'wind map-layer');
-    this.root.append('canvas').attr('class', 'solar map-layer');
+    this.arrowsLayer = this.root.append('div')
+        .attr('class', 'arrows-layer map-layer')
+        .style('transform-origin', '0px 0px');
+    this.windLayer = this.root.append('canvas')
+        .attr('class', 'wind map-layer')
+        .style('transform-origin', '0px 0px');
+    this.sunLayer = this.root.append('canvas')
+        .attr('class', 'solar map-layer')
+        .style('transform-origin', '0px 0px');
 
     this.zoom = d3.zoom().on('zoom', function() {
         var transform = d3.event.transform;
-        that.root.style(
-            'transform',
-            'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') '
-        );
+        // Scale the svg g elements in order to keep control over stroke width
+        // See https://github.com/tmrowco/electricitymap/issues/471
+        that.land.attr('transform', transform);
+        // that.graticule.attr('transform', transform);
+
+        // Apply CSS transforms
+        [that.arrowsLayer, that.windLayer, that.sunLayer].forEach(function (e) {
+            e.style('transform',
+                'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') '
+            );
+        });
     })
     .on('start', function() {
         d3.select(this).style('cursor', 'move');

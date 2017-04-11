@@ -30,6 +30,12 @@ hr {
     height: 1px;
 }
 
+line, path {
+    /*shape-rendering: crispEdges;*/
+    /* will keep strokes unchanged after css transform (i.e. scale) */
+    vector-effect: non-scaling-stroke;
+}
+
 .axis path,
 .axis line {
     shape-rendering: crispEdges;
