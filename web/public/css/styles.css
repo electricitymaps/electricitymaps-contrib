@@ -375,23 +375,18 @@ div.fb-like span iframe {
 }
 
 .country-picker-container {
-    height: 380px;
 }
 .country-picker-container p {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 100%;
+    column-count: 2;
     counter-reset: section;
     margin: -0.25rem 0 0;
 }
 .country-picker-container a {
-    display: flex;
-    width: 45%;
+    display: block;
     font-size: 1rem;
     justify-content: space-between;
-    align-items: center;
-    padding: 0.25rem 2.5% 0.25rem;
+    align-items: baseline;
+    line-height: 1.8rem;
     box-sizing: content-box;
 }
 .country-picker-container a:hover {
@@ -399,9 +394,8 @@ div.fb-like span iframe {
     background: rgba(255,255,255,0.1)
 }
 .country-picker-container .emission-rect {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin-right: 0.25rem;
+    width: 0.8rem;
+    height: 0.8rem;
 }
 /*
 .country-picker-container a .emission-rect:before {
