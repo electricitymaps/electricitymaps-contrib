@@ -1,7 +1,6 @@
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
-var Flatpickr = require('flatpickr');
 var moment = require('moment');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
@@ -58,7 +57,6 @@ function replaceHistoryState(key, value) {
 var selectedCountryCode;
 var useRemoteEndpoint = true;
 var customDate;
-var timelineEnabled = false;
 var currentMoment;
 var colorBlindModeEnabled = false;
 var showPageState = undefined;
@@ -83,9 +81,6 @@ args.forEach(function(arg) {
     } else if (kv[0] == 'datetime') {
         customDate = kv[1];
         replaceHistoryState('datetime', customDate);
-    } else if (kv[0] == 'timeline') {
-        timelineEnabled = kv[1] == 'true';
-        replaceHistoryState('timeline', timelineEnabled);
     } else if (kv[0] == 'countryCode') {
         selectedCountryCode = kv[1];
         replaceHistoryState('countryCode', selectedCountryCode);
@@ -385,20 +380,6 @@ window.toggleSource = function(state) {
     d3.select('.country-show-electricity')
         .style('display', tableDisplayEmissions ? 'block' : 'none');
 }
-
-// Timeline
-d3.select('.time-travel').style('display', timelineEnabled ? 'block' : 'none');
-function setCustomDatetime(datetime) {
-    customDate = datetime;
-    replaceHistoryState('datetime', datetime);
-    fetch(false);
-}
-var flatpickr = new Flatpickr(d3.select('.flatpickr').node(), {
-    enableTime: true,
-    onClose: function(selectedDates, dateStr, instance) {
-        setCustomDatetime(moment(dateStr).toISOString());
-    }
-});
 
 // Tooltips
 // TODO: Move to module together with countrymap tooltip
@@ -703,7 +684,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
         .transition()
             .duration(800)
             .style('color', undefined);
-    flatpickr.setDate(moment(customDate).toDate());
 
     // Reset all data
     d3.entries(countries).forEach(function(entry) {
