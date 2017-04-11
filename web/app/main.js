@@ -520,10 +520,19 @@ function selectCountry(countryCode, notrack) {
             countryHistoryGraph
                 .data(countryHistory);
             if (countryHistoryGraph.frozen) {
-                countryTable
-                    .data(countryHistoryGraph.data()[countryHistoryGraph.selectedIndex])
-                    .powerScaleDomain([lo, hi])
-                    .render()
+                var data = countryHistoryGraph.data()[countryHistoryGraph.selectedIndex];
+                if (!data) {
+                    // This country has no history at this time
+                    // Reset view
+                    countryTable
+                        .data({countryCode: countryCode})
+                        .render()
+                } else {
+                    countryTable
+                        .data(data)
+                        .powerScaleDomain([lo, hi])
+                        .render()
+                }
             }
             countryHistoryGraph
                 .onMouseMove(function(d) {
