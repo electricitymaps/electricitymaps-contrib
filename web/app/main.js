@@ -364,7 +364,9 @@ var tableDisplayEmissions = countryTable.displayByEmissions();
 
 // Set weather checkboxes
 d3.select('#checkbox-wind').node().checked = windEnabled;
+d3.selectAll('.wind-toggle').classed('active', windEnabled);
 d3.select('#checkbox-solar').node().checked = solarEnabled;
+d3.selectAll('.solar-toggle').classed('active', solarEnabled);
 d3.select('.layer-toggles').style('display', !showWindOption && !showSolarOption ? 'none' : null);
 
 window.toggleSource = function(state) {
@@ -613,10 +615,11 @@ if (windEnabled && !selectedCountryCode) windColorbar.render();
 if (solarEnabled && !selectedCountryCode) solarColorbar.render();
 
 // Attach event handlers
-d3.select('#checkbox-wind').on('change', function() {
+function toggleWind() {
     windEnabled = !windEnabled;
     replaceHistoryState('wind', windEnabled);
     Cookies.set('windEnabled', windEnabled);
+    d3.select('.wind-toggle').classed('active', windEnabled);
     var now = customDate ? moment(customDate) : (new Date()).getTime();
     if (windEnabled) {
         d3.select('.wind-colorbar').style('display', 'block');
@@ -630,11 +633,15 @@ d3.select('#checkbox-wind').on('change', function() {
         d3.select('.wind-colorbar').style('display', 'none');
         Wind.hide();
     }
-});
-d3.select('#checkbox-solar').on('change', function() {
+}
+d3.select('#checkbox-wind').on('change', toggleWind);
+d3.select('.wind-toggle').on('click', toggleWind);
+
+function toggleSolar() {
     solarEnabled = !solarEnabled;
     replaceHistoryState('solar', solarEnabled);
     Cookies.set('solarEnabled', solarEnabled);
+    d3.select('.solar-toggle').classed('active', solarEnabled);
     var now = customDate ? moment(customDate) : (new Date()).getTime();
     if (solarEnabled) {
         d3.select('.solar-colorbar').style('display', 'block');
@@ -648,7 +655,10 @@ d3.select('#checkbox-solar').on('change', function() {
         d3.select('.solar-colorbar').style('display', 'none');
         Solar.hide();
     }
-});
+}
+d3.select('#checkbox-solar').on('change', toggleSolar);
+d3.select('.solar-toggle').on('click', toggleSolar);
+
 function mapMouseOver(coordinates) {
     if (windEnabled && wind && coordinates) {
         var lonlat = countryMap.projection().invert(coordinates);

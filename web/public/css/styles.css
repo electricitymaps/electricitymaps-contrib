@@ -394,48 +394,6 @@ div.highscore-button {
     display: inline;
 }
 
-/* Medium and large devices (tablets, desktops, etc.) */
-@media (min-width: 768px) {
-    .small-screen-visible {
-        display: none;
-    }
-    .left-panel, #map-container {
-        height: 100%;
-    }
-    #bottom-menu {
-        display: none;
-    }
-}
-
-/* Small devices (phones, etc.) */
-@media (max-width: 768px) {
-    .large-screen-visible {
-        display: none;
-    }
-    .left-panel {
-        width: 100%;
-    }
-    .left-panel-welcome {
-        display: none;
-    }
-    #country-tooltip.country-tooltip-visible {
-        display: none;
-    }
-    #map-container {
-        width: 100%;
-    }
-    div.highscore-button {
-        display: none;
-    }
-    .left-panel, #map-container {
-    height: 88%;
-    }
-    #bottom-menu {
-        display: flex;
-        height: 12%;
-    }
-}
-
 .country-picker-container {
 }
 .country-picker-container p {
@@ -527,9 +485,11 @@ div.highscore-button {
 #bottom-menu .list-item {
     background-color: rgb(70, 70, 70);
     display: flex;
+
     align-items: center;
     justify-content: center;
     text-align: center;
+
     width: 50%;
     line-height: 1.5rem;
 }
@@ -543,4 +503,74 @@ div.highscore-button {
 #bottom-menu a:hover {
     color: white;
     text-decoration: none;
+}
+
+.weather-buttons {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 0.5rem;
+}
+.weather-buttons a {
+    border-radius: 15%;
+    background-color: lightgray;
+    margin: 0.3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 2.3rem;
+    height: 2.3rem;
+}
+.weather-buttons img {
+    height: 1.5rem;
+    filter: unset;
+}
+.weather-buttons .active img {
+    filter: brightness(0%);
+}
+
+/* Medium and large devices (tablets, desktops, etc.) */
+@media (min-width: 768px) {
+    .small-screen-visible {
+        display: none;
+    }
+    .left-panel, #map-container {
+        height: 100%;
+    }
+    #bottom-menu {
+        display: none;
+    }
+}
+
+/* Small devices (phones, etc.) */
+@media (max-width: 768px) {
+    .large-screen-visible {
+        display: none;
+    }
+    .left-panel {
+        width: 100%;
+    }
+    .left-panel-welcome {
+        display: none;
+    }
+    #country-tooltip.country-tooltip-visible {
+        display: none;
+    }
+    #map-container {
+        width: 100%;
+    }
+    div.highscore-button {
+        display: none;
+    }
+    .left-panel, #map-container {
+    height: 88%;
+    }
+    #bottom-menu {
+        display: flex;
+        height: 12%;
+    }
 }
