@@ -114,7 +114,7 @@ line, path {
 .panel {
     background-color: rgb(70, 70, 70);
     color: lightgray;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 .left-panel {
     float: left;
@@ -157,6 +157,9 @@ line, path {
     opacity: 0.3;
     shape-rendering: crispEdges;
     stroke: gray;
+}
+.country-time {
+  white-space: nowrap;
 }
 .country-table {
     width: 100%;

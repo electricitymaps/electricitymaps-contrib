@@ -20,12 +20,13 @@ function CountryTable(selector, modeColor, modeOrder) {
     this.exchangeRoot = this.root.append('g');
 
     // Constants
-    this.ROW_HEIGHT = 10;
+    this.ROW_HEIGHT = 13; // Height of the rects
     this.RECT_OPACITY = 0.8;
-    this.LABEL_MAX_WIDTH = 80;
-    this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
+    this.LABEL_MAX_WIDTH = 102;
+    this.PADDING_X = 5; this.PADDING_Y = 7; // Inner paddings
     this.FLAG_SIZE_MULTIPLIER = 3;
-    this.TEXT_ADJUST_Y = 9; // To align properly on a line
+    this.TEXT_ADJUST_Y = 11; // To align properly on a line
+    this.X_AXIS_HEIGHT = 15;
     this.MODE_COLORS = modeColor;
     this.MODES = [];
     modeOrder.forEach(function(k) {
@@ -57,7 +58,8 @@ function CountryTable(selector, modeColor, modeOrder) {
             });
     gNewRow.append('text')
         .text(function(d) { return lang[d.mode] || d.mode })
-        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
+        .style('text-anchor', 'end') // right align
+        .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
@@ -106,7 +108,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         // TODO: We should offset by just one pixel because it looks better when
         // the rectangles don't start exactly on the axis...
         // But we should also handle "negative" rects
-        .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 15)')
+        .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', ' + this.X_AXIS_HEIGHT +')')
         .call(this.axis);
 
     // Set header
@@ -213,10 +215,13 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         });
     gNewRow.append('image')
         .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
-        .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER);
+        .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
+        .attr('y', 2);
     gNewRow.append('text')
-        .attr('x', 4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_X)
-        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
+        .style('text-anchor', 'end') // right align
+        .attr('transform', 
+            'translate(' + (this.LABEL_MAX_WIDTH - 2.0 * this.PADDING_X) + ', ' +
+                this.TEXT_ADJUST_Y + ')');
     gNewRow.append('text')
         .attr('class', 'unknown')
         .style('fill', 'darkgray')
@@ -234,7 +239,9 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('display', function(d) {
             return (that._displayByEmissions && getExchangeCo2eq(d) === undefined) ? 'block' : 'none';
         });
+    var labelLength = d3.max(this._exchangeData, function(d) { return d.key.length }) * 8;
     gNewRow.merge(selection).select('image')
+        .attr('x', this.LABEL_MAX_WIDTH - 4.0 * this.PADDING_X - 4 * this.FLAG_SIZE_MULTIPLIER - labelLength)
         .attr('xlink:href', function (d) {
             return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
         })
@@ -284,6 +291,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 return Math.abs(that.powerScale(d.value) - that.powerScale(0));
         })
     gNewRow.merge(selection).select('text')
+        //.text(function(d) { return lang.zoneShortName[d.key] || d.key; });
         .text(function(d) { return d.key; });
     d3.select('.country-emission-intensity')
         .text(Math.round(this._data.co2intensity) || '?');
@@ -358,11 +366,10 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
 }
 
 CountryTable.prototype.resize = function() {
-    this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
     this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
-    this.yProduction = this.headerHeight;
+    this.yProduction = this.X_AXIS_HEIGHT + this.PADDING_Y;
     this.productionRoot
         .attr('transform', 'translate(0,' + this.yProduction + ')');
     this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;

@@ -82,11 +82,11 @@ function Tooltip(countryTable, countries) {
             tooltip.selectAll('.country-code')
                 .text(country.countryCode)
                 .style('font-weight', 'bold');
-            tooltip.selectAll('.country-exchange-code')
-                .text(d.key)
+            tooltip.selectAll('.country-exchange-name')
+                .text(lang.zoneShortName[d.key] || d.key)
                 .style('font-weight', 'bold');
-            tooltip.selectAll('.country-exchange-source-code')
-                .text(o)
+            tooltip.selectAll('.country-exchange-source-name')
+                .text(lang.zoneShortName[o] || o)
                 .style('font-weight', 'bold');
             tooltip.selectAll('i.country-exchange-source-flag')
                 .attr('class', 'country-exchange-source-flag flag-icon flag-icon-' + o.toLowerCase());
