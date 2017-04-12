@@ -572,9 +572,13 @@ function selectCountry(countryCode, notrack) {
 }
 // Set initial
 selectCountry(selectedCountryCode, true);
-d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back').on('click', function() { selectCountry(undefined); });
-d3.select('.highscore-button').on('click', function() {
+d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
+    .on('click', function() { selectCountry(undefined); });
+d3.selectAll('.highscore-button').on('click', function() {
     showPage('highscore');
+});
+d3.selectAll('.map-button').on('click', function() {
+    showPage('map');
 });
 if(showPageState) {
     showPage(showPageState);
@@ -584,10 +588,24 @@ function showPage(pageName) {
     replaceHistoryState('page', pageName);
 
     if(pageName === undefined)
-        pageName = 'welcome';
+        pageName = 'map';
 
     d3.selectAll('.left-panel').style('display', 'none');
-    d3.selectAll('.left-panel-'+pageName).style('display', '');
+    if(pageName == 'map')
+        d3.selectAll('.left-panel-welcome').style('display', undefined);
+    else
+        d3.selectAll('.left-panel-'+pageName).style('display', undefined);
+    
+    // Hide map on small screens
+    // Important: we should make sure the map was rendered before we hide it
+    // If that's not the case, the map won't show properly when we show it again
+    if(pageName == 'country' || pageName == 'highscore')
+        d3.selectAll('#map-container').classed('large-screen-visible', true);
+    else
+        d3.selectAll('#map-container').classed('large-screen-visible', false);
+
+    d3.selectAll('#bottom-menu .map-button').classed('active', pageName == 'map');
+    d3.selectAll('#bottom-menu .highscore-button').classed('active', pageName == 'highscore');
 }
 
 // Now that the width is set, we can render the legends

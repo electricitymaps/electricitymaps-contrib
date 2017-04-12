@@ -93,9 +93,9 @@ line, path {
     height: 100%;
 }
 #map-container {
+    height: 100%;
     width: auto;
     overflow: hidden;
-    height: 100%;
     position: relative;
 }
 .map-layer {
@@ -132,6 +132,8 @@ line, path {
     border-left: none;
     border-bottom: none;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 .left-panel h1 {
     line-height: 1.3;
@@ -161,6 +163,43 @@ line, path {
     opacity: 0.3;
     shape-rendering: crispEdges;
     stroke: gray;
+}
+.left-panel-toolbar,
+.left-panel-country-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 1rem;
+    position: relative;
+}
+.left-panel-toolbar .left-panel-toolbar-back,
+#left-panel-country-back {
+    padding: 0.4rem 1rem 0.5rem 1rem;
+    line-height: 1;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.left-panel-toolbar .left-panel-toolbar-back:hover,
+#left-panel-country-back:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+.left-panel .left-panel-toolbar-title,
+.left-panel-country .country-name {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+.left-panel-toolbar-right-placeholder {
+    width: 2.875rem;
+}
+.left-panel-country-metadata .left-panel-country-metadata-source {
+    float: right;
+}
+
+.country-name-time {
+    text-align: center;
+    margin: 0rem 0.5rem;
 }
 .country-time {
   white-space: nowrap;
@@ -334,7 +373,7 @@ div.fb-like span iframe {
     padding: 18px;
 }
 
-.highscore-button {
+div.highscore-button {
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -360,6 +399,12 @@ div.fb-like span iframe {
     .small-screen-visible {
         display: none;
     }
+    .left-panel, #map-container {
+        height: 100%;
+    }
+    #bottom-menu {
+        display: none;
+    }
 }
 
 /* Small devices (phones, etc.) */
@@ -378,6 +423,16 @@ div.fb-like span iframe {
     }
     #map-container {
         width: 100%;
+    }
+    div.highscore-button {
+        display: none;
+    }
+    .left-panel, #map-container {
+    height: 88%;
+    }
+    #bottom-menu {
+        display: flex;
+        height: 12%;
     }
 }
 
@@ -404,20 +459,6 @@ div.fb-like span iframe {
     width: 0.8rem;
     height: 0.8rem;
 }
-/*
-.country-picker-container a .emission-rect:before {
-  counter-increment: section;
-  content: "";
-  font-size: 0.5rem;
-  text-align: center;
-  width: 100%;
-  display: inline-block;
-  vertical-align: top;
-  color: #000;
-}
-.country-picker-container a:hover .emission-rect:before {
-  content: "" counter(section) ". ";
-}*/
 
 .country-picker-container a > span {
     flex-grow: 1;
@@ -457,10 +498,6 @@ div.fb-like span iframe {
     float: left;
 }
 
-.time-travel {
-    display: none;
-}
-
 .arrows-layer {
     position: absolute;
     width: 0;
@@ -478,40 +515,32 @@ div.fb-like span iframe {
     top: -41px;
 }
 
-.left-panel-toolbar,
-.left-panel-country-toolbar {
+#bottom-menu {
+    width: 100%;
+
+    /* Shadow */
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    position: relative; z-index: 999; /* to appear on top of all */
+}
+#bottom-menu .list-item {
+    background-color: rgb(70, 70, 70);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 0 0 1rem;
-    position: relative;
-}
-.left-panel-toolbar .left-panel-toolbar-back,
-#left-panel-country-back {
-    padding: 0.4rem 1rem 0.5rem 1rem;
-    line-height: 1;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 2rem;
-}
-.left-panel-toolbar .left-panel-toolbar-back:hover,
-#left-panel-country-back:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-.left-panel .left-panel-toolbar-title,
-.left-panel-country .country-name {
-    font-size: 1.5rem;
+    justify-content: center;
+    text-align: center;
+    width: 50%;
     line-height: 1.5rem;
 }
-.left-panel-toolbar-right-placeholder {
-    width: 2.875rem;
+#bottom-menu .list-item.active {
+    background-color: rgb(50, 50, 50);
+    color: white;
 }
-.country-name-time {
-    text-align: center;
-    margin: 0rem 0.5rem;
+#bottom-menu a {
+    color: lightgrey;
 }
-
-.left-panel-country-metadata .left-panel-country-metadata-source {
-    float: right;
+#bottom-menu a:hover {
+    color: white;
+    text-decoration: none;
 }

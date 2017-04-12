@@ -47,6 +47,7 @@
         <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js" async></script>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
@@ -210,7 +211,6 @@
 
             <div class="panel left-panel left-panel-highscore">
                 <div class="left-panel-toolbar">
-                    <span id="left-panel-highscore-back" class="left-panel-toolbar-back">×</span>
                     <div class="left-panel-toolbar-title">
                         <%- __('rankings-panel.country-ranking') %>
                     </div>
@@ -221,7 +221,6 @@
                     <p></p>
                 </div>
             </div>
-
             <div id="map-container">
                 <div id="map"></div>
                 <div id="country-tooltip" class="tooltip panel">
@@ -256,6 +255,18 @@
                 <div class="highscore-button">
                     <%- __('rankings-panel.show-ranking') %>
                 </div>
+            </div>
+            <div id="bottom-menu">
+                <a class="list-item map-button">
+                    <div>
+                        <i class="fa fa-map-o" aria-hidden="true"></i><br />Map View
+                    </div>
+                </a>
+                <a class="list-item highscore-button">
+                    <div>
+                        <i class="fa fa-list" aria-hidden="true"></i><br />List View
+                    </div>
+                </a>
             </div>
         </div>
         <div class="loading overlay"></div>
