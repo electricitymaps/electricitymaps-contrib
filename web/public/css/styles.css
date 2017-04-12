@@ -483,7 +483,8 @@ div.highscore-button {
     position: relative; z-index: 999; /* to appear on top of all */
 }
 #bottom-menu .list-item {
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(50, 50, 50);
+    font-size: 0.8rem;
     display: flex;
 
     align-items: center;
@@ -491,14 +492,13 @@ div.highscore-button {
     text-align: center;
 
     width: 50%;
-    line-height: 1.5rem;
+    line-height: 1.2rem;
 }
 #bottom-menu .list-item.active {
-    background-color: rgb(50, 50, 50);
     color: white;
 }
 #bottom-menu a {
-    color: lightgrey;
+    color: darkgrey;
 }
 #bottom-menu a:hover {
     color: white;
@@ -567,10 +567,10 @@ div.highscore-button {
         display: none;
     }
     .left-panel, #map-container {
-    height: 88%;
+    height: 90%;
     }
     #bottom-menu {
         display: flex;
-        height: 12%;
+        height: 10%;
     }
 }
