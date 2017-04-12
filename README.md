@@ -138,7 +138,7 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 
 ### Adding a new country
-It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/corradio/electricitymap/tree/master/parsers) directory).
+It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/corradio/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
 A parser is a python script that is expected to return the following datastructure:
 
