@@ -1,13 +1,22 @@
 # electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co)
  
-A real-time visualisation of the Greenhouse Gas (in terms of CO2 equivalent) footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://www.electricitymap.org](http://www.electricitymap.org).
+A real-time visualisation of the Greenhouse Gas (in terms of CO2 equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://www.electricitymap.org](http://www.electricitymap.org).
 
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png)
 
-You can [contribute](#contribute) by correcting data sources, translating the map or by writing a parser to add a new country on the map. See the [contributing](#contribute) section.
-You can also submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
+You can [contribute](#contribute) by
+- **[adding a new country on the map](#adding-a-new-country)**
+- correcting data sources
+- [translating](https://github.com/corradio/electricitymap/tree/master/web/locales) the map
+- fixing existing [issues](https://github.com/corradio/electricitymap/issues)
+- submitting ideas, feature requests, or bugs in the [issues](https://github.com/corradio/electricitymap/issues) section.
 
+You can also see a list of missing datas displayed as warnings in the developer console, or question marks in the country panel:
+
+![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
+
+Check the [contributing](#contribute) section for more details.
 
 ## Data sources
 
@@ -127,17 +136,42 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 
 ## Contribute
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
-In the meantime, here's some things you can do:
-- check out the [issues](https://github.com/corradio/electricitymap/issues)
-- add a new country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/parsers)
-- add a new [translation](https://github.com/corradio/electricitymap/tree/master/web/locales) of the map
-- optimise the code, correct inaccuracies...
 
-You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
+### Adding a new country
+It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/corradio/electricitymap/tree/master/parsers) directory).
 
-![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
+A parser is a python script that is expected to return the following datastructure:
 
-### Getting started
+```python
+{
+  'countryCode': 'FR',
+  'datetime': '2017-01-01T00:00:00Z',
+  'production': {
+      'biomass': 0.0,
+      'coal': 0.0,
+      'gas': 0.0,
+      'hydro': 0.0,
+      'nuclear': null,
+      'oil': 0.0,
+      'solar': 0.0,
+      'wind': 0.0,
+      'geothermal': 0.0,
+      'unknown': 0.0
+  },
+  'storage': {
+      'hydro': -10.0,
+  },
+  'source': 'mysource.com'
+}
+```
+
+The production values should never be negative. Use `null`, or ommit the key, if a specific production mode is not known.
+Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
+
+The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
+
+### Frontend contributions
+
 To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). 
 
 The frontend will need compiling. In order to do this, open a terminal and run
