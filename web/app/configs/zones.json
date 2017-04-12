@@ -46,7 +46,8 @@
     "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
   },
   "GB-NIR": {
-    "country_iso_a2": "GB"
+    "country_iso_a2": "GB",
+    "flag_file_name": "_Northern%20Ireland.png"
   },
   "GR": {
     "country_iso_a2": "GR"

@@ -47,7 +47,6 @@
         <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
-        <link rel="stylesheet" type="text/css" href="flag-icon-css/css/flag-icon.min.css">
 
         <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js" async></script>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
@@ -146,7 +145,7 @@
                         <div class="country-name"></div>
                         <div class="country-last-update">?</div>
                     </div>
-                    <i id="country-flag"></i>
+                    <img id="country-flag" class="flag"></img>
                 </div>
                 <div class="country-panel" style="display: none">
                     <div class="country-table-header">
@@ -227,14 +226,14 @@
                 <div id="map"></div>
                 <div id="country-tooltip" class="tooltip panel">
                     <%= __('tooltips.carbonintensity') %>:<br />
-                    <i id="country-flag"></i> <span id="country-name"></span>:
+                    <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
                     <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
                     <br />
                     <%= __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh
                 </div>
                 <div id="exchange-tooltip" class="tooltip panel">
                     <%= __('tooltips.crossborderexport') %>:<br />
-                    <i id="from"></i> <span id="from"></span> → <i id="to"></i> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
+                    <img id="from" class="flag"></img> <span id="from"></span> → <img mgid="to" class="flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
                     <br />
                     <%= __('tooltips.carbonintensityexport') %>:<br />
                     <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO2eq/kWh
@@ -265,7 +264,7 @@
             Please contact us at <a href="mailto:hello@tmrow.co">hello@tmrow.co</a> for more information.
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
-            <span id="production-proportion"></span> <%= __('tooltips.ofelectricity') %> <i id="country-flag"></i> <span class="country-code"></span> <span id="domain-name"></span><br />
+            <span id="production-proportion"></span> <%= __('tooltips.ofelectricity') %> <img id="country-flag" class="flag"></img> <span class="country-code"></span> <span id="domain-name"></span><br />
             <small>(<span id="production-proportion-detail"></span>)</small><br />
             <br />
             <%= __('tooltips.utilizing') %> <span id="capacity-factor"></span> <%= __('tooltips.ofinstalled') %><br />
@@ -275,11 +274,11 @@
             <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: <span class="emission-source"></span>)</small>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
-            <span id="exchange-proportion"></span> <%= __('tooltips.of') %> <i class="country-flag"></i> <span class="country-code"></span> <span id="domain-name"></span> <i class="country-exchange-flag"></i> <span class="country-exchange-name"></span><br />
+            <span id="exchange-proportion"></span> <%= __('tooltips.of') %> <img class="country-flag flag"></img> <span class="country-code"></span> <span id="domain-name"></span> <img class="country-exchange-flag flag"></img> <span class="country-exchange-name"></span><br />
             <small>(<span id="exchange-proportion-detail"></span>)</small><br />
             <br />
             <%= __('tooltips.withcarbonintensity') %><br />
-            <i class="country-exchange-source-flag"></i> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+            <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
         </div>
     </body>
     <script type="text/javascript" src="cordova.js"></script>

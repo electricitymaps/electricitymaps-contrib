@@ -2,6 +2,7 @@ var d3 = require('d3');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 var lang = require('json-loader!./configs/lang.json')[locale];
 var moment = require('moment');
+var flags = require('./flags');
 
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
@@ -24,7 +25,7 @@ function CountryTable(selector, modeColor, modeOrder) {
     this.RECT_OPACITY = 0.8;
     this.LABEL_MAX_WIDTH = 102;
     this.PADDING_X = 5; this.PADDING_Y = 7; // Inner paddings
-    this.FLAG_SIZE_MULTIPLIER = 3;
+    this.FLAG_SIZE = 16;
     this.TEXT_ADJUST_Y = 11; // To align properly on a line
     this.X_AXIS_HEIGHT = 15;
     this.MODE_COLORS = modeColor;
@@ -115,7 +116,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var header = d3.select('.country-table-header');
     var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
-    panel.select('#country-flag').attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
+    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 64));
     panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
     panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago')
     panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?')
@@ -214,9 +215,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
             return 'translate(0,' + i * (that.ROW_HEIGHT + that.PADDING_Y) + ')';
         });
     gNewRow.append('image')
-        .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
-        .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER)
-        .attr('y', 2);
+        .attr('width', this.FLAG_SIZE)
+        .attr('height', this.FLAG_SIZE);
     gNewRow.append('text')
         .style('text-anchor', 'end') // right align
         .attr('transform', 
@@ -241,9 +241,9 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         });
     var labelLength = d3.max(this._exchangeData, function(d) { return d.key.length }) * 8;
     gNewRow.merge(selection).select('image')
-        .attr('x', this.LABEL_MAX_WIDTH - 4.0 * this.PADDING_X - 4 * this.FLAG_SIZE_MULTIPLIER - labelLength)
+        .attr('x', this.LABEL_MAX_WIDTH - 4.0 * this.PADDING_X - this.FLAG_SIZE - labelLength)
         .attr('xlink:href', function (d) {
-            return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
+            return flags.flagUri(d.key, that.FLAG_SIZE);
         })
     gNewRow.merge(selection).select('rect')
         .on('mouseover', function (d) {

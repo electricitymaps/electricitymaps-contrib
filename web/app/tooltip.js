@@ -1,5 +1,8 @@
 var d3 = require('d3');
+var flags = require('./flags');
 var lang = require('json-loader!./configs/lang.json')[locale];
+
+var FLAG_SIZE = 16;
 
 // Create power formatting
 function formatPower(d, numDigits) {
@@ -59,10 +62,10 @@ function Tooltip(countryTable, countries) {
                 .style('background-color', co2intensity ? that.co2color()(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
-            tooltip.selectAll('i.country-exchange-flag')
-                .attr('class', 'country-exchange-flag flag-icon flag-icon-' + d.key.toLowerCase());
-            tooltip.selectAll('i.country-flag')
-                .attr('class', 'country-flag flag-icon flag-icon-' + country.countryCode.toLowerCase());
+            tooltip.selectAll('.country-exchange-flag')
+                .attr('src', flags.flagUri(d.key, FLAG_SIZE));
+            tooltip.selectAll('.country-flag')
+                .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
@@ -88,8 +91,8 @@ function Tooltip(countryTable, countries) {
             tooltip.selectAll('.country-exchange-source-name')
                 .text(lang.zoneShortName[o] || o)
                 .style('font-weight', 'bold');
-            tooltip.selectAll('i.country-exchange-source-flag')
-                .attr('class', 'country-exchange-source-flag flag-icon flag-icon-' + o.toLowerCase());
+            tooltip.selectAll('.country-exchange-source-flag')
+                .attr('src', flags.flagUri(o, FLAG_SIZE));
         })
         .onExchangeMouseOut(function (d) {
             if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
@@ -144,8 +147,8 @@ function Tooltip(countryTable, countries) {
             tooltip.select('.country-code')
                 .text(country.countryCode)
                 .style('font-weight', 'bold');
-            tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + country.countryCode.toLowerCase());
+            tooltip.select('#country-flag')
+                .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
         })
         .onProductionMouseMove(function(d) {
             placeTooltip('#countrypanel-production-tooltip', d3.event);

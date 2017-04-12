@@ -13,6 +13,7 @@ var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
 var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
+var flags = require('./flags');
 var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
 var lang = require('json-loader!./configs/lang.json')[locale];
@@ -766,7 +767,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
     enterA
         .append('span')
     enterA
-        .append('i').attr('id', 'country-flag')
+        .append('img')
+            .attr('class', 'flag')
     var selector = enterA.merge(selector);
     selector.select('span')
         .text(function(d) { return ' ' + (d.shortname || d.countryCode) + ' '; })
@@ -774,10 +776,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
         .style('background-color', function(d) {
             return d.co2intensity ? co2color(d.co2intensity) : 'gray';
         });
-    selector.select('i#country-flag')
-        .attr('class', function(d) {
-            return 'flag-icon flag-icon-' + d.countryCode.toLowerCase();
-        })
+    selector.select('.flag')
+        .attr('src', function(d) { return flags.flagUri(d.countryCode, 16); });
     selector.on('click', function(d) { return selectCountry(d.countryCode); });
 
     // Render country map
@@ -797,8 +797,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
             co2Colorbar.currentMarker(d.co2intensity);
         var tooltip = d3.select('#country-tooltip');
         tooltip.classed('country-tooltip-visible', true);
-        tooltip.select('i#country-flag')
-            .attr('class', 'flag-icon flag-icon-' + d.countryCode.toLowerCase())
+        tooltip.select('#country-flag')
+            .attr('src', flags.flagUri(d.countryCode, 16));
         tooltip.select('#country-name')
             .text(lang.zoneShortName[d.countryCode] || d.countryCode)
             .style('font-weight', 'bold');

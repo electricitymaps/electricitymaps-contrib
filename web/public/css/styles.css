@@ -41,6 +41,10 @@ line, path {
     shape-rendering: crispEdges;
 }
 
+.flag {
+    vertical-align: sub;
+}
+
 .flash-message {
     position: fixed;
     display: block;
@@ -502,11 +506,6 @@ div.fb-like span iframe {
 }
 .left-panel-toolbar-right-placeholder {
     width: 2.875rem;
-}
-.left-panel-toolbar .flag-icon,
-.left-panel-country .flag-icon {
-    font-size: 2rem;
-    width: 4rem;
 }
 .country-name-time {
     text-align: center;
