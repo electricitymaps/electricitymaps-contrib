@@ -69,7 +69,7 @@
         "withcarbonintensity": "med ett utsläpp av koldioxid på"
     },
     "misc": {
-        "maintitle": "Aktuellt CO2-utsläpp från den elproduktionen",
+        "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
         "lastupdate": "Senast uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om."
