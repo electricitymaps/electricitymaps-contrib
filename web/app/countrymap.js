@@ -68,6 +68,11 @@ CountryMap.prototype.render = function() {
     // Determine scale (i.e. zoom) based on the size
     this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
     this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
+
+    // Nothing to render
+    if (!this.containerHeight || !this.containerWidth)
+        return this;
+
     var scale = this.containerHeight * 1.5;
     // Determine map width and height based on bounding box of Europe
     var sw = [-15, 34.7];
@@ -231,6 +236,11 @@ CountryMap.prototype.data = function(data) {
 CountryMap.prototype.center = function(center) {
     if (!center) {
         return this._center;
+    } else if (this._center) {
+        // Only allow setting the center once in order to avoid
+        // quirky UX due to sporadic re-centering
+        console.warn('Center has already been set.');
+        return this;
     } else {
         var p = this._projection(center);
         this.zoom

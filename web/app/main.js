@@ -219,11 +219,11 @@ var app = {
 
     onDeviceReady: function() {
         // We will init / bootstrap our application here
-        codePush.sync();
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     },
 
     onResume: function() {
-        codePush.sync();
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
 };
 app.initialize();
@@ -417,6 +417,9 @@ function placeTooltip(selector, d3Event) {
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
+// Assign data
+countryMap
+    .data(d3.values(countries))
 // Add configurations
 d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
@@ -574,6 +577,10 @@ function selectCountry(countryCode, notrack) {
 }
 // Set initial
 selectCountry(selectedCountryCode, true);
+// Bind
+countryMap
+    .onSeaClick(function () { selectCountry(undefined); })
+    .onCountryClick(function (d) { selectCountry(d.countryCode); });
 d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
     .on('click', function() { selectCountry(undefined); });
 d3.selectAll('.highscore-button').on('click', function() {
@@ -593,8 +600,10 @@ function showPage(pageName) {
         pageName = 'map';
 
     d3.selectAll('.left-panel').style('display', 'none');
-    if(pageName == 'map')
+    if(pageName == 'map') {
         d3.selectAll('.left-panel-welcome').style('display', undefined);
+        countryMap.render()
+    }
     else
         d3.selectAll('.left-panel-'+pageName).style('display', undefined);
     
@@ -811,8 +820,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
     // Render country map
     countryMap
         .data(d3.values(countries))
-        .onSeaClick(function () { selectCountry(undefined); })
-        .onCountryClick(function (d) { selectCountry(d.countryCode); })
         .render()
         .center(geolocation || [12.54, 55.69]);
 
