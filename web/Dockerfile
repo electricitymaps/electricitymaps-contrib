@@ -5,7 +5,7 @@ ADD web/package.json /home/web/package.json
 RUN npm install
 
 ADD web /home/web
-ADD shared /home/shared
+ADD config /home/config
 
 RUN npm run build-release
 

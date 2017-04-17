@@ -23,8 +23,8 @@ var Tooltip = require('./tooltip');
 var Wind = require('./wind');
 
 // Configs
-var capacities = require('json-loader!./configs/capacities.json');
-var zones = require('json-loader!./configs/zones.json');
+var capacities = require('json-loader!../../config/capacities.json');
+var zones = require('json-loader!../../configs/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;

@@ -9,7 +9,7 @@ module.exports = {
     function() {
       this.plugin('emit', function(compilation, callback) {
         compilation.fileDependencies.push(__dirname + '/public/css/styles.css');
-        glob(__dirname + '/../shared/**/*.js', function(err, files) {
+        glob(__dirname + '/../config/**/*.js', function(err, files) {
           files.forEach(function(f) { compilation.fileDependencies.push(f); });
         })
         callback();

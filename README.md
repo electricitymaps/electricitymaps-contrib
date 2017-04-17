@@ -23,7 +23,7 @@ Check the [contributing](#contribute) section for more details.
 ### Carbon intensity calcuation and data source
 The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO2eq (grams CO2 equivalent), meaning each greenhouse gas is converted to its CO2 equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO2 over the same period).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). Carbon-intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature: 
+The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). Carbon-intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature: 
 - IPCC 2014 Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
 Country-specific carbon-intensity factors:
@@ -140,30 +140,33 @@ Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co)
 ### Adding a new country
 It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/corradio/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
-A parser is a python script that is expected to return the following datastructure:
+A parser is a python script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
 ```python
-{
-  'countryCode': 'FR',
-  'datetime': '2017-01-01T00:00:00Z',
-  'production': {
-      'biomass': 0.0,
-      'coal': 0.0,
-      'gas': 0.0,
-      'hydro': 0.0,
-      'nuclear': null,
-      'oil': 0.0,
-      'solar': 0.0,
-      'wind': 0.0,
-      'geothermal': 0.0,
-      'unknown': 0.0
-  },
-  'storage': {
-      'hydro': -10.0,
-  },
-  'source': 'mysource.com'
-}
+def fetch_production(country_code='FR', session=None):
+    return {
+      'countryCode': 'FR',
+      'datetime': '2017-01-01T00:00:00Z',
+      'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': null,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
+      'storage': {
+          'hydro': -10.0,
+      },
+      'source': 'mysource.com'
+    }
 ```
+
+The `session` object is a python request session that you can re-use to make HTTP requests.
 
 The production values should never be negative. Use `null`, or ommit the key, if a specific production mode is not known.
 Storage values can be both positive (when storing energy) or negative (when the storage is emptied).

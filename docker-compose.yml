@@ -16,3 +16,4 @@ services:
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
       - './web/locales:/home/web/locales'
+      - './config:/home/config'
