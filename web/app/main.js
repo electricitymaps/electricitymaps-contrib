@@ -24,7 +24,7 @@ var Wind = require('./wind');
 
 // Configs
 var capacities = require('json-loader!../../config/capacities.json');
-var zones = require('json-loader!../../configs/zones.json');
+var zones = require('json-loader!../../config/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -821,7 +821,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
     countryMap
         .data(d3.values(countries))
         .render()
-        .center(geolocation || [12.54, 55.69]);
+    if (!countryMap.center())
+        countryMap.center(geolocation || [12.54, 55.69]);
 
     // Add mouse over handlers
     countryMap.onCountryMouseOver(function (d) {
