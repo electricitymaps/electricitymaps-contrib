@@ -998,10 +998,10 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
                 .text(lang.zoneShortName[ctrTo] || ctrTo);
             tooltip.select('span#flow')
                 .text(Math.abs(Math.round(d.netFlow)));
-            tooltip.selectAll('i#from')
-                .attr('class', 'flag-icon flag-icon-' + d.countryCodes[i].toLowerCase());
-            tooltip.select('i#to')
-                .attr('class', 'flag-icon flag-icon-' + d.countryCodes[(i + 1) % 2].toLowerCase());
+            tooltip.select('img.flag.from')
+                .attr('src', flags.flagUri(d.countryCodes[i], 16));
+            tooltip.select('img.flag.to')
+                .attr('src', flags.flagUri(d.countryCodes[(i + 1) % 2], 16));
             tooltip.select('.country-emission-intensity')
                 .text(Math.round(d.co2intensity) || '?');
         })
