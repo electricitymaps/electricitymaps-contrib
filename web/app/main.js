@@ -266,6 +266,11 @@ function updateCo2Scale() {
       tooltip
         .co2color(co2color)
         .co2Colorbar(co2Colorbar);
+    if (countryListSelector)
+        countryListSelector.select('div.emission-rect')
+            .style('background-color', function(d) {
+                return d.co2intensity ? co2color(d.co2intensity) : 'gray';
+            });
 }
 d3.select('#checkbox-colorblind').node().checked = colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', function() {
@@ -459,11 +464,6 @@ var histories = {};
 
 function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
-        // Unselected
-        d3.select('.left-panel-initial-text')
-            .style('display', 'block');
-        d3.select('.country-panel')
-            .style('display', 'none');
         // If the introductory panel was never rendered before
         // then we need to render it
         if (co2Colorbar) co2Colorbar.render();
@@ -474,10 +474,6 @@ function selectCountry(countryCode, notrack) {
         // Selected
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
-        d3.select('.left-panel-initial-text')
-            .style('display', 'none');
-        d3.select('.country-panel')
-            .style('display', 'block');
         countryTable
             .data(countries[countryCode])
             .powerScaleDomain(null) // Always reset scale if click on a new country
@@ -771,6 +767,8 @@ function renderMap() {
     }
 }
 
+var countryListSelector;
+
 function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation) {
     if (err) {
         console.error(err);
@@ -874,6 +872,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         .append('img')
             .attr('class', 'flag')
     var selector = enterA.merge(selector);
+    countryListSelector = selector;
     selector.select('span')
         .text(function(d) { return ' ' + (d.shortname || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
