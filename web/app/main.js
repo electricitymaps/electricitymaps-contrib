@@ -501,6 +501,13 @@ function selectCountry(countryCode, notrack) {
             });
             countryHistoryGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
 
+            // Set x domain based on current time
+            if (countryHistory.length && currentMoment)
+                countryHistoryGraph.x.domain(
+                    d3.extent([
+                      countryHistoryGraph.xAccessor(countryHistory[0]),
+                      currentMoment.toDate()]));
+
             countryHistoryGraph
                 .data(countryHistory);
             if (countryHistoryGraph.frozen) {
@@ -940,6 +947,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     // Re-render country table if it already was visible
     if (selectedCountryCode && !countryHistoryGraph.frozen)
         countryTable.data(countries[selectedCountryCode]).render()
+    selectCountry(selectedCountryCode, true);
 
     // Populate exchange pairs for arrows
     d3.entries(state.exchanges).forEach(function(obj) {
