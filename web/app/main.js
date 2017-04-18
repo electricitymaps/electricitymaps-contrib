@@ -60,7 +60,7 @@ var useRemoteEndpoint = true;
 var customDate;
 var currentMoment;
 var colorBlindModeEnabled = false;
-var showPageState = undefined;
+var showPageState = 'map';
 var previousShowPageState = undefined;
 var showWindOption = true;
 var showSolarOption = true;
