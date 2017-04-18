@@ -598,6 +598,13 @@ function showPage(pageName) {
     d3.selectAll('.left-panel > div').style('display', 'none');
     d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
 
+    // Hide info screen on large screen only
+    d3.selectAll('.left-panel .left-panel-info')
+        // Only show on info or map
+        .style('display', (pageName == 'info' || pageName == 'map') ? undefined : 'none')
+        // but hide for small screens on all but info
+        .classed('large-screen-visible', pageName != 'info');
+
     // Hide map on small screens
     // It's important we show the map before rendering it to make sure 
     // sizes are set properly
