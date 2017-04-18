@@ -19,7 +19,7 @@ html, body {
     padding: 0 !important;
     height: 100%;
     font-family: sans-serif;
-    background-color: #e5effb;
+    background-color: #dbe2e6;
     overflow: hidden;
 }
 
@@ -133,9 +133,11 @@ line, path {
     border-top: none;
     border-left: none;
     border-bottom: none;
+
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 999; /* required such that shadow is over the rest */
 }
 .left-panel h1 {
     line-height: 1.3;
