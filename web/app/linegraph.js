@@ -175,6 +175,7 @@ LineGraph.prototype.render = function () {
             // Always freeze on mobile
             if (isMobile) {
                 that.frozen = false; that.togglefreeze();
+
                 return;
             }
             that.verticalLine.style('display', 'none');
@@ -240,6 +241,10 @@ LineGraph.prototype.yColorScale = function(arg) {
 };
 
 LineGraph.prototype.togglefreeze = function() {
+    if (!this.frozen && !this.selectedIndex) {
+        console.warn('Can only freeze if a selectedIndex is provided');
+        return this;
+    }
     this.frozen = !this.frozen;
     if (!this.frozen) this.selectedIndex = undefined;
     this.markerElement.style('stroke',
