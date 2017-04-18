@@ -24,6 +24,8 @@
 
     <platform name="android">
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
+        <preference name="AndroidLaunchMode" value="singleInstance" />
+
         <allow-intent href="market:*" />
 
         <icon src="res/android/mipmap-ldpi/ic_launcher.png" density="ldpi" />
@@ -69,4 +71,11 @@
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-code-push" spec="~1.9.3-beta" />
+
+    <universal-links>
+        <host name="electricitymap.org" scheme="https" />
+        <host name="electricitymap.org" scheme="http" />
+        <host name="www.electricitymap.org" scheme="https" />
+        <host name="www.electricitymap.org" scheme="http" />
+    </universal-links>
 </widget>

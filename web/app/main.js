@@ -72,32 +72,62 @@ function isMobile() {
 }
 
 // Read query string
-args = location.search.replace('\?','').split('&');
-args.forEach(function(arg) {
-    kv = arg.split('=');
-    // Store in history state to be able to reconstruct
-    replaceHistoryState(kv[0], kv[1]);
-    if (kv[0] == 'remote') {
-        useRemoteEndpoint = kv[1] == 'true';
-        replaceHistoryState('remote', useRemoteEndpoint);
-    } else if (kv[0] == 'datetime') {
-        customDate = kv[1];
-        replaceHistoryState('datetime', customDate);
-    } else if (kv[0] == 'countryCode') {
-        selectedCountryCode = kv[1];
-        replaceHistoryState('countryCode', selectedCountryCode);
-        console.log(historyState);
-    } else if (kv[0] == 'page') {
-        showPageState = kv[1];
-        replaceHistoryState('page', showPageState);
-    } else if (kv[0] == 'solar') {
-        solarEnabled = kv[1] == 'true';
-        replaceHistoryState('solar', solarEnabled);
-    } else if (kv[0] == 'wind') {
-        windEnabled = kv[1] == 'true';
-        replaceHistoryState('wind', windEnabled);
+function parseQueryString(querystring) {
+    args = querystring.replace('\?','').split('&');
+    args.forEach(function(arg) {
+        kv = arg.split('=');
+        // Store in history state to be able to reconstruct
+        replaceHistoryState(kv[0], kv[1]);
+        if (kv[0] == 'remote') {
+            useRemoteEndpoint = kv[1] == 'true';
+            replaceHistoryState('remote', useRemoteEndpoint);
+        } else if (kv[0] == 'datetime') {
+            customDate = kv[1];
+            replaceHistoryState('datetime', customDate);
+        } else if (kv[0] == 'countryCode') {
+            selectedCountryCode = kv[1];
+            replaceHistoryState('countryCode', selectedCountryCode);
+        } else if (kv[0] == 'page') {
+            showPageState = kv[1];
+            replaceHistoryState('page', showPageState);
+            if (showPage) showPage(showPageState);
+        } else if (kv[0] == 'solar') {
+            solarEnabled = kv[1] == 'true';
+            replaceHistoryState('solar', solarEnabled);
+        } else if (kv[0] == 'wind') {
+            windEnabled = kv[1] == 'true';
+            replaceHistoryState('wind', windEnabled);
+        }
+    });
+}
+parseQueryString(location.search);
+
+// Initialise mobile app (cordova)
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+
+    bindEvents: function () {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('resume', this.onResume, false);
+    },
+
+    onDeviceReady: function() {
+        // We will init / bootstrap our application here
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        universalLinks.subscribe(null, function (eventData) {
+            // do some work
+            parseQueryString(eventData.url.split('?')[1] || eventData.url);
+        });
+    },
+
+    onResume: function() {
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
-});
+};
+app.initialize();
 
 // Computed State
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
@@ -209,29 +239,6 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
-
-// Initialise mobile app (cordova)
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-
-    bindEvents: function () {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('resume', this.onResume, false);
-    },
-
-    onDeviceReady: function() {
-        // We will init / bootstrap our application here
-        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
-    },
-
-    onResume: function() {
-        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
-    }
-};
-app.initialize();
 
 // Set proper locale
 moment.locale(locale);
