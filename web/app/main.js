@@ -1165,9 +1165,11 @@ function redraw() {
     }
     countryMap.render();
     co2Colorbar.render();
-    exchangeLayer
-        .projection(countryMap.projection())
-        .render();
+    if (countryMap.projection()) {
+        exchangeLayer
+            .projection(countryMap.projection())
+            .render();
+    }
 };
 
 window.onresize = function () {
