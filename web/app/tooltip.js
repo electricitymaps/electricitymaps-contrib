@@ -21,7 +21,7 @@ function placeTooltip(selector, d3Event) {
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
     var margin = 7;
-    var screenWidth = screen.width;
+    var screenWidth = window.innerWidth;
     // On very small screens
     if (w > screenWidth) {
         tooltip
