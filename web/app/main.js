@@ -214,8 +214,12 @@ function trackAnalyticsEvent(eventName, paramObj) {
 var app = {
     // Application Constructor
     initialize: function() {
-        document.addEventListener("deviceready", this.onDeviceReady, false);
-        document.addEventListener("resume", this.onResume, false);
+        this.bindEvents();
+    },
+
+    bindEvents: function () {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('resume', this.onResume, false);
     },
 
     onDeviceReady: function() {
@@ -598,7 +602,8 @@ function showPage(pageName) {
         pageName = 'map';
 
     // Hide all panels - we will show only the ones we need
-    d3.selectAll('.left-panel').style('display', 'none');
+    d3.selectAll('.left-panel > div').style('display', 'none');
+    d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
 
     // Hide map on small screens
     // It's important we show the map before rendering it to make sure 
@@ -609,12 +614,14 @@ function showPage(pageName) {
         d3.selectAll('#map-container').classed('large-screen-visible', false);
 
     if(pageName == 'map') {
+        d3.select('.left-panel').classed('large-screen-visible', true);
         d3.selectAll('.left-panel-welcome').classed('large-screen-visible', true);
         d3.selectAll('.left-panel-welcome').style('display', undefined);
         selectCountry(undefined);
         renderMap();
     }
     else {
+        d3.select('.left-panel').classed('large-screen-visible', false);
         d3.selectAll('.left-panel-'+pageName).style('display', undefined);
         if (pageName == 'country') {
             selectCountry(selectedCountryCode);

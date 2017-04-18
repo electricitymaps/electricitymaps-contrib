@@ -67,160 +67,166 @@
             <div class="inner"><%- __('misc.newversion') %></div>
         </div>
         <div id="main">
-            <div class="panel left-panel left-panel-welcome">
-                <h1>
-                    <%= __('misc.maintitle') %>
-                </h1>
-                <div id="current-datetime" class="large-screen-visible">
+            <div class="panel left-panel">
+                <div class="left-panel-welcome">
+                    <h1>
+                        <%= __('misc.maintitle') %>
+                    </h1>
+                    <div id="current-datetime" class="large-screen-visible">
+                        <div>
+                            <%= __('misc.lastupdate') %>:
+                            <span id="current-date"></span>
+                            <span id="current-time"></span>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="left-panel-initial-text">
+                        <p class="small-screen-visible" style="font-style: italic">
+                            <%= __('panel-initial-text.youareseeing') %> <span style="color: lightgray"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: lightgray"><%= __('panel-initial-text.fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
+                        </p>
+                        <p class="large-screen-visible">
+                            <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
+                        </p>
+                        <p class="large-screen-visible">
+                            <%= __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%= __('panel-initial-text.importexport') %></span><span class="large-screen-visible"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 1em;" /></span> <%= __('panel-initial-text.betweencountries') %>.
+                        </p>
+                        <p>
+                            <span style="font-size: 1.2em; color: white;"><i><%= __('panel-initial-text.tip') %> ⟶</i></span>
+                        </p>
+                        <div class="layer-toggles large-screen-visible">
+                            <hr />
+                            <p>
+                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
+                                <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="checkbox-wind" />
+                                <label for="checkbox-wind"><%= __('legends.windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
+                                <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="checkbox-solar" />
+                                <label for="checkbox-solar"><%= __('legends.solarpotential') %> <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
+                                <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
+                            </p>
+                        </div>
+                    </div>
+
                     <div>
-                        <%= __('misc.lastupdate') %>:
-                        <span id="current-date"></span>
-                        <span id="current-time"></span>
-                    </div>
-                </div>
-                <hr />
-
-                <div class="left-panel-initial-text">
-                    <p class="small-screen-visible" style="font-style: italic">
-                        <%= __('panel-initial-text.youareseeing') %> <span style="color: lightgray"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: lightgray"><%= __('panel-initial-text.fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
-                    </p>
-                    <p class="large-screen-visible">
-                        <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
-                    </p>
-                    <p class="large-screen-visible">
-                        <%= __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%= __('panel-initial-text.importexport') %></span><span class="large-screen-visible"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 1em;" /></span> <%= __('panel-initial-text.betweencountries') %>.
-                    </p>
-                    <p>
-                        <span style="font-size: 1.2em; color: white;"><i><%= __('panel-initial-text.tip') %> ⟶</i></span>
-                    </p>
-                    <div class="layer-toggles large-screen-visible">
                         <hr />
+                        <%= __('footer.foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%= __('footer.here') %></a>.<br />
                         <p>
-                            <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
-                            <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
+                            <%= __('panel-initial-text.thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%= __('panel-initial-text.opensource') %></a> (<%= __('panel-initial-text.see') %> <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%= __('panel-initial-text.datasources') %></a>).
                         </p>
+                        <%= __('footer.likethisvisu') %> <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank"><%= __('footer.loveyourfeedback') %></a>!
+                    </div>
+                </div>
+
+                <div class="left-panel-country">
+                    <div class="left-panel-country-toolbar">
+                        <span id="left-panel-country-back" style="display: none">×</span>
+                        <div class="country-name-time">
+                            <div class="country-name"></div>
+                            <div class="country-last-update">?</div>
+                        </div>
+                        <img id="country-flag" class="flag"></img>
+                    </div>
+                    <div class="country-panel" style="display: none">
+                        <div class="country-table-header">
+                            <div class="country-table-header-inner">
+                                <div class="country-col country-emission-intensity-wrap">
+                                    <div class="country-col-headline"><%= __('country-panel.carbonintensity') %></div>
+                                    <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
+                                        <div><span class="country-emission-intensity"></span>g</div>
+                                    </div>
+                                    <div class="country-col-subtext">(CO2eq/kWh)</div>
+                                </div>
+                                <div class="country-col country-col-fossilpct">
+                                    <div class="country-col-headline"><%=__('country-panel.fossilfuels')%></div>
+                                    <div class="country-col-box" style="">
+                                        <span class="fossil-fuel-percentage"></span>%
+                                    </div>
+                                    <div class="country-col-subtext">
+                                    </div>
+                                </div>
+                                <div class="country-col country-price-wrap">
+                                    <div class="country-col-headline"><%= __('country-panel.electricityprice') %></div>
+                                    <div class="country-col-box country-spot-price-wrap">
+                                        <div class="country-spot-price"></div>
+                                        <div style="font-size: 0.5rem; line-height: 0.5rem;"><span class="country-spot-price-currency"></span>/MWh</div>
+                                    </div>
+                                    <div class="country-col-subtext">
+                                        (<%= __('country-panel.electricityprice-dayahead') %>)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="country-show-emissions-wrap">
+                           <div class="country-show-emissions">
+                                <a href="javascript:toggleSource(true)"><%= __('country-panel.electricityproduction') %></a>
+                                <%= __('country-panel.bysource') %>:
+                            </div>
+
+                            <div class="country-show-electricity" style="display: none;">
+                                <a href="javascript:toggleSource(false)"><%= __('country-panel.emissions') %></a>
+                                <%= __('country-panel.bysource') %>:
+                            </div>
+                        </div>
+                        <svg class="country-table"></svg>
+                        <hr />
+                        <div class="left-panel-country-metadata">
+                            <div class="left-panel-country-metadata-source">
+                                <%=__('country-panel.source')%>:
+                                <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">
+                                    <span class="country-data-source"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <span style="color: darkgray;">
+                            <%= __('country-history.carbonintensity24h') %> (<span class="country-time"></span>):
+                        </span>
+                        <svg class="country-history"></svg>
                         <p>
-                            <input type="checkbox" id="checkbox-wind" />
-                            <label for="checkbox-wind"><%= __('legends.windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
-                            <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="checkbox-solar" />
-                            <label for="checkbox-solar"><%= __('legends.solarpotential') %> <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
-                            <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
+                            <%- __('country-panel.co2signal') %>
                         </p>
                     </div>
                 </div>
 
-                <div>
-                    <hr />
-                    <%= __('footer.foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%= __('footer.here') %></a>.<br />
+                <div class="left-panel-highscore">
+                    <div class="left-panel-toolbar">
+                        <div class="left-panel-toolbar-title">
+                            <%- __('rankings-panel.country-ranking') %>
+                        </div>
+                        <div class="left-panel-toolbar-right-placeholder"></div>
+                    </div>
+
+                    <div class="country-picker-container">
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="left-panel-social">
                     <p>
-                        <%= __('panel-initial-text.thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%= __('panel-initial-text.opensource') %></a> (<%= __('panel-initial-text.see') %> <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%= __('panel-initial-text.datasources') %></a>).
-                    </p>
-                    <%= __('footer.likethisvisu') %> <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank"><%= __('footer.loveyourfeedback') %></a>!
-                </div>
-                <p>
-                    <!-- Facebook share -->
-                    <div class="fb-share-button"
-                         data-layout="button_count">
-                    </div>
-                    <!-- Twitter share -->
-                    <a class="twitter-share-button"
-                       data-via="tmrowco"
-                       data-lang="<%= locale %>"></a>
-                    <!-- Slack -->
-                    <span class="slack-button">
-                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                            <span class="slack-ico"></span>
-                            <span class="slack-text">Slack</span>
-                        </a>
-                    </span>
-                </p>
-            </div>
-
-            <div class="panel left-panel left-panel-country">
-                <div class="left-panel-country-toolbar">
-                    <span id="left-panel-country-back" style="display: none">×</span>
-                    <div class="country-name-time">
-                        <div class="country-name"></div>
-                        <div class="country-last-update">?</div>
-                    </div>
-                    <img id="country-flag" class="flag"></img>
-                </div>
-                <div class="country-panel" style="display: none">
-                    <div class="country-table-header">
-                        <div class="country-table-header-inner">
-                            <div class="country-col country-emission-intensity-wrap">
-                                <div class="country-col-headline"><%= __('country-panel.carbonintensity') %></div>
-                                <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
-                                    <div><span class="country-emission-intensity"></span>g</div>
-                                </div>
-                                <div class="country-col-subtext">(CO2eq/kWh)</div>
-                            </div>
-                            <div class="country-col country-col-fossilpct">
-                                <div class="country-col-headline"><%=__('country-panel.fossilfuels')%></div>
-                                <div class="country-col-box" style="">
-                                    <span class="fossil-fuel-percentage"></span>%
-                                </div>
-                                <div class="country-col-subtext">
-                                </div>
-                            </div>
-                            <div class="country-col country-price-wrap">
-                                <div class="country-col-headline"><%= __('country-panel.electricityprice') %></div>
-                                <div class="country-col-box country-spot-price-wrap">
-                                    <div class="country-spot-price"></div>
-                                    <div style="font-size: 0.5rem; line-height: 0.5rem;"><span class="country-spot-price-currency"></span>/MWh</div>
-                                </div>
-                                <div class="country-col-subtext">
-                                    (<%= __('country-panel.electricityprice-dayahead') %>)
-                                </div>
-                            </div>
+                        <!-- Facebook share -->
+                        <div class="fb-share-button"
+                             data-layout="button_count">
                         </div>
-                    </div>
-                    <div class="country-show-emissions-wrap">
-                       <div class="country-show-emissions">
-                            <a href="javascript:toggleSource(true)"><%= __('country-panel.electricityproduction') %></a>
-                            <%= __('country-panel.bysource') %>:
-                        </div>
-
-                        <div class="country-show-electricity" style="display: none;">
-                            <a href="javascript:toggleSource(false)"><%= __('country-panel.emissions') %></a>
-                            <%= __('country-panel.bysource') %>:
-                        </div>
-                    </div>
-                    <svg class="country-table"></svg>
-                    <hr />
-                    <div class="left-panel-country-metadata">
-                        <div class="left-panel-country-metadata-source">
-                            <%=__('country-panel.source')%>:
-                            <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">
-                                <span class="country-data-source"></span>
+                        <!-- Twitter share -->
+                        <a class="twitter-share-button"
+                           data-via="tmrowco"
+                           data-lang="<%= locale %>"></a>
+                        <!-- Slack -->
+                        <span class="slack-button">
+                            <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                <span class="slack-ico"></span>
+                                <span class="slack-text">Slack</span>
                             </a>
-                        </div>
-                    </div>
-                    <span style="color: darkgray;">
-                        <%= __('country-history.carbonintensity24h') %> (<span class="country-time"></span>):
-                    </span>
-                    <svg class="country-history"></svg>
-                    <p>
-                        <%- __('country-panel.co2signal') %>
+                        </span>
                     </p>
                 </div>
             </div>
 
-            <div class="panel left-panel left-panel-highscore">
-                <div class="left-panel-toolbar">
-                    <div class="left-panel-toolbar-title">
-                        <%- __('rankings-panel.country-ranking') %>
-                    </div>
-                    <div class="left-panel-toolbar-right-placeholder"></div>
-                </div>
-
-                <div class="country-picker-container">
-                    <p></p>
-                </div>
-            </div>
             <div id="map-container">
                 <div id="map"></div>
                 <div id="country-tooltip" class="tooltip panel">
