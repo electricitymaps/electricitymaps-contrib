@@ -582,12 +582,9 @@ countryMap
     .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
 d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
     .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
-d3.selectAll('.highscore-button').on('click', function() {
-    showPage('highscore');
-});
-d3.selectAll('.map-button').on('click', function() {
-    showPage('map');
-});
+d3.selectAll('.highscore-button').on('click', function() { showPage('highscore'); });
+d3.selectAll('.map-button').on('click', function() { showPage('map'); });
+d3.selectAll('.info-button').on('click', function() { showPage('info'); });
 if(showPageState) {
     showPage(showPageState);
 }
@@ -608,15 +605,10 @@ function showPage(pageName) {
     // Hide map on small screens
     // It's important we show the map before rendering it to make sure 
     // sizes are set properly
-    if(pageName == 'country' || pageName == 'highscore')
-        d3.selectAll('#map-container').classed('large-screen-visible', true);
-    else
-        d3.selectAll('#map-container').classed('large-screen-visible', false);
+    d3.selectAll('#map-container').classed('large-screen-visible', pageName != 'map');
 
     if(pageName == 'map') {
         d3.select('.left-panel').classed('large-screen-visible', true);
-        d3.selectAll('.left-panel-welcome').classed('large-screen-visible', true);
-        d3.selectAll('.left-panel-welcome').style('display', undefined);
         selectCountry(undefined);
         renderMap();
     }
@@ -627,9 +619,9 @@ function showPage(pageName) {
             selectCountry(selectedCountryCode);
         }
     }
-    
-    d3.selectAll('#bottom-menu .map-button').classed('active', pageName == 'map');
-    d3.selectAll('#bottom-menu .highscore-button').classed('active', pageName == 'highscore');
+ 
+    d3.selectAll('#bottom-menu .list-item').classed('active', false);   
+    d3.selectAll('#bottom-menu .' + pageName + '-button').classed('active', true);
 }
 
 // Now that the width is set, we can render the legends

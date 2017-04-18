@@ -68,7 +68,7 @@
         </div>
         <div id="main">
             <div class="panel left-panel">
-                <div class="left-panel-welcome">
+                <div class="left-panel-info">
                     <h1>
                         <%= __('misc.maintitle') %>
                     </h1>
@@ -82,19 +82,16 @@
                     <hr />
 
                     <div class="left-panel-initial-text">
-                        <p class="small-screen-visible" style="font-style: italic">
-                            <%= __('panel-initial-text.youareseeing') %> <span style="color: lightgray"><%= __('panel-initial-text.limitedversion') %></span>. <%= __('panel-initial-text.forthe') %> <span style="color: lightgray"><%= __('panel-initial-text.fullversion') %></span>, <%= __('panel-initial-text.visitoncomputer') %>.
-                        </p>
-                        <p class="large-screen-visible">
+                        <p>
                             <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
                         </p>
-                        <p class="large-screen-visible">
+                        <p>
                             <%= __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%= __('panel-initial-text.importexport') %></span><span class="large-screen-visible"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 1em;" /></span> <%= __('panel-initial-text.betweencountries') %>.
                         </p>
-                        <p>
+                        <p class="large-screen-visible">
                             <span style="font-size: 1.2em; color: white;"><i><%= __('panel-initial-text.tip') %> ⟶</i></span>
                         </p>
-                        <div class="layer-toggles large-screen-visible">
+                        <div class="layer-toggles">
                             <hr />
                             <p>
                                 <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
@@ -275,6 +272,11 @@
                 <a class="list-item highscore-button">
                     <div>
                         <i class="fa fa-list" aria-hidden="true"></i><br />List View
+                    </div>
+                </a>
+                <a class="list-item info-button">
+                    <div>
+                        <i class="fa fa-info" aria-hidden="true"></i><br />Info
                     </div>
                 </a>
             </div>
