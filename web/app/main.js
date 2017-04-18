@@ -61,6 +61,7 @@ var customDate;
 var currentMoment;
 var colorBlindModeEnabled = false;
 var showPageState = undefined;
+var previousShowPageState = undefined;
 var showWindOption = true;
 var showSolarOption = true;
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
@@ -448,19 +449,17 @@ d3.entries(exchanges).forEach(function(entry) {
     if (entry.key.split('->')[0] != entry.value.countryCodes[0])
         console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
-var wind, solar;
+var wind, solar, geolocation;
 
 var histories = {};
 
 function selectCountry(countryCode, notrack) {
     if (!countryCode || !countries[countryCode]) {
-        showPage();
         // Unselected
         d3.select('.left-panel-initial-text')
             .style('display', 'block');
         d3.select('.country-panel')
             .style('display', 'none');
-        selectedCountryCode = undefined;
         // If the introductory panel was never rendered before
         // then we need to render it
         if (co2Colorbar) co2Colorbar.render();
@@ -468,7 +467,6 @@ function selectCountry(countryCode, notrack) {
         if (solarColorbar && solarEnabled) solarColorbar.render();
 
     } else {
-        showPage('country');
         // Selected
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
@@ -480,7 +478,6 @@ function selectCountry(countryCode, notrack) {
             .data(countries[countryCode])
             .powerScaleDomain(null) // Always reset scale if click on a new country
             .render();
-        selectedCountryCode = countryCode;
 
         function updateGraph(countryHistory) {
             // No export capacities are defined, and they are thus
@@ -575,14 +572,12 @@ function selectCountry(countryCode, notrack) {
     d3.select('#left-panel-country-back').style('display', selectedCountryCode ? '' : 'none');
     d3.select('#country-table-back-button').style('display', selectedCountryCode ? 'block' : 'none');
 }
-// Set initial
-selectCountry(selectedCountryCode, true);
 // Bind
 countryMap
-    .onSeaClick(function () { selectCountry(undefined); })
-    .onCountryClick(function (d) { selectCountry(d.countryCode); });
+    .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
+    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
 d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
-    .on('click', function() { selectCountry(undefined); });
+    .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
 d3.selectAll('.highscore-button').on('click', function() {
     showPage('highscore');
 });
@@ -594,27 +589,38 @@ if(showPageState) {
 }
 
 function showPage(pageName) {
-    replaceHistoryState('page', pageName);
+    if (showPageState != 'country')
+        previousShowPageState = showPageState;
+    showPageState = pageName;
+    replaceHistoryState('page', showPageState);
 
     if(pageName === undefined)
         pageName = 'map';
 
+    // Hide all panels - we will show only the ones we need
     d3.selectAll('.left-panel').style('display', 'none');
-    if(pageName == 'map') {
-        d3.selectAll('.left-panel-welcome').style('display', undefined);
-        countryMap.render()
-    }
-    else
-        d3.selectAll('.left-panel-'+pageName).style('display', undefined);
-    
+
     // Hide map on small screens
-    // Important: we should make sure the map was rendered before we hide it
-    // If that's not the case, the map won't show properly when we show it again
+    // It's important we show the map before rendering it to make sure 
+    // sizes are set properly
     if(pageName == 'country' || pageName == 'highscore')
         d3.selectAll('#map-container').classed('large-screen-visible', true);
     else
         d3.selectAll('#map-container').classed('large-screen-visible', false);
 
+    if(pageName == 'map') {
+        d3.selectAll('.left-panel-welcome').classed('large-screen-visible', true);
+        d3.selectAll('.left-panel-welcome').style('display', undefined);
+        selectCountry(undefined);
+        renderMap();
+    }
+    else {
+        d3.selectAll('.left-panel-'+pageName).style('display', undefined);
+        if (pageName == 'country') {
+            selectCountry(selectedCountryCode);
+        }
+    }
+    
     d3.selectAll('#bottom-menu .map-button').classed('active', pageName == 'map');
     d3.selectAll('#bottom-menu .highscore-button').classed('active', pageName == 'highscore');
 }
@@ -704,7 +710,69 @@ d3.select('.map')
         mapMouseOver(undefined);
     });
 
-function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
+function renderMap() {
+
+    countryMap.render();
+    if (!countryMap.projection()) {
+        return;
+    }
+
+    if (!countryMap.center())
+        countryMap.center(geolocation || [12.54, 55.69]);
+    exchangeLayer
+        .projection(countryMap.projection())
+        .render();
+
+    if (!showWindOption)
+        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
+    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
+        LoadingService.startLoading();
+        // Make sure to disable wind if the drawing goes wrong
+        Cookies.set('windEnabled', false);
+        Wind.draw('.wind',
+            customDate ? moment(customDate) : moment(new Date()),
+            wind.forecasts[0],
+            wind.forecasts[1],
+            windColor,
+            countryMap.projection());
+        if (windEnabled)
+            Wind.show();
+        else
+            Wind.hide();
+        // Restore setting
+        Cookies.set('windEnabled', windEnabled);
+        LoadingService.stopLoading();
+    } else {
+        Wind.hide();
+    }
+
+    if (!showSolarOption)
+        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
+    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
+        LoadingService.startLoading();
+        // Make sure to disable solar if the drawing goes wrong
+        Cookies.set('solarEnabled', false);
+        Solar.draw('.solar',
+            customDate ? moment(customDate) : moment(new Date()),
+            solar.forecasts[0],
+            solar.forecasts[1],
+            solarColor,
+            countryMap.projection(),
+            function() {
+                if (solarEnabled)
+                    Solar.show();
+                else
+                    Solar.hide();
+                // Restore setting
+                Cookies.set('solarEnabled', solarEnabled);
+                LoadingService.stopLoading();
+            });
+    } else {
+        Solar.hide();
+    }
+}
+
+function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation) {
     if (err) {
         console.error(err);
         return;
@@ -815,14 +883,11 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
         });
     selector.select('.flag')
         .attr('src', function(d) { return flags.flagUri(d.countryCode, 16); });
-    selector.on('click', function(d) { return selectCountry(d.countryCode); });
+    selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
-    // Render country map
+    // Assign country map data
     countryMap
         .data(d3.values(countries))
-        .render()
-    if (!countryMap.center())
-        countryMap.center(geolocation || [12.54, 55.69]);
 
     // Add mouse over handlers
     countryMap.onCountryMouseOver(function (d) {
@@ -885,11 +950,13 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
     });
 
     // Render exchanges
+    if (countryMap.projection()) {
+        exchangeLayer.projection(countryMap.projection())
+    }
     exchangeLayer
         .data(d3.values(exchanges).filter(function(d) {
             return d.netFlow != 0 && d.netFlow != null;
         }))
-        .projection(countryMap.projection())
         .onExchangeMouseOver(function (d) {
             d3.select(this)
                 .style('opacity', 0.8)
@@ -934,54 +1001,10 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, geolocation) {
     // Do not overwrite with null/undefined
     if (argWind) wind = argWind;
     if (argSolar) solar = argSolar;
+    if (argGeolocation) geolocation = argGeolocation;
 
-    if (!showWindOption)
-        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
-    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        LoadingService.startLoading();
-        // Make sure to disable wind if the drawing goes wrong
-        Cookies.set('windEnabled', false);
-        Wind.draw('.wind',
-            customDate ? moment(customDate) : moment(new Date()),
-            wind.forecasts[0],
-            wind.forecasts[1],
-            windColor,
-            countryMap.projection());
-        if (windEnabled)
-            Wind.show();
-        else
-            Wind.hide();
-        // Restore setting
-        Cookies.set('windEnabled', windEnabled);
-        LoadingService.stopLoading();
-    } else {
-        Wind.hide();
-    }
-
-    if (!showSolarOption)
-        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
-    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        LoadingService.startLoading();
-        // Make sure to disable solar if the drawing goes wrong
-        Cookies.set('solarEnabled', false);
-        Solar.draw('.solar',
-            customDate ? moment(customDate) : moment(new Date()),
-            solar.forecasts[0],
-            solar.forecasts[1],
-            solarColor,
-            countryMap.projection(),
-            function() {
-                if (solarEnabled)
-                    Solar.show();
-                else
-                    Solar.hide();
-                // Restore setting
-                Cookies.set('solarEnabled', solarEnabled);
-                LoadingService.stopLoading();
-            });
-    } else {
-        Solar.hide();
-    }
+    // Update pages that need to be updated
+    renderMap();
 };
 
 // Get geolocation is on mobile (in order to select country)

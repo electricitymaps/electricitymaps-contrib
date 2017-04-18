@@ -241,6 +241,9 @@ CountryMap.prototype.center = function(center) {
         // quirky UX due to sporadic re-centering
         console.warn('Center has already been set.');
         return this;
+    } else if (!this._projection) {
+        console.warn('Can\'t change center when projection is not already set.');
+        return this;
     } else {
         var p = this._projection(center);
         this.zoom

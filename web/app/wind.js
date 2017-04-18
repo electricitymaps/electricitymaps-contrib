@@ -10,6 +10,8 @@ var windCanvas;
 var projection;
 var windLayer;
 
+var lastDraw;
+
 var WIND_OPACITY = 0.53;
 
 exports.isExpired = function(now, grib1, grib2) {
@@ -19,6 +21,13 @@ exports.isExpired = function(now, grib1, grib2) {
 exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProjection) {
     if (!argProjection)
         throw Error('Projection can\'t be null/undefined');
+
+    // Only redraw after 5min
+    if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+        return;
+    }
+
+    lastDraw = new Date().getTime();
 
     var t_before = grib.getTargetTime(gribs1[0]);
     var t_after = grib.getTargetTime(gribs2[0]);

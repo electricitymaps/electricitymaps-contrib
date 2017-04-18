@@ -50,6 +50,8 @@ function appendGradient(element, triangleHeight) {
 
 ExchangeLayer.prototype.render = function() {
     if (!this._data) { return; }
+    // Abort if projection has not been set
+    if (!this._projection) { return; }
     var that = this;
     var exchangeGradients = this.exchangeGradientsContainer
         .selectAll('.exchange-gradient')
