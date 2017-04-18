@@ -256,8 +256,9 @@ function updateCo2Scale() {
         .domain([2000, 0]);
     } else {
       co2color = d3.scaleLinear()
-        .domain([0, 375, 725, 800])
-        .range(['green', 'orange', 'rgb(26,13,0)'])
+        .domain([0, 400, 800])
+        //.range(['#4ACF34', '#FFC14F', 'rgb(26,13,0)'])
+        .range(['#23634f', '#fffff0', '#952e07']); // this is the uber movement scale
     }
 
     co2color.clamp(true);

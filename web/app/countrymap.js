@@ -4,7 +4,6 @@ function CountryMap(selector, co2color) {
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
-    this.STROKE_COLOR = '#555555';
 
     this.selectedCountry = undefined;
     this._center = undefined;
@@ -18,7 +17,7 @@ function CountryMap(selector, co2color) {
         .on('click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
-                    .style('stroke', that.STROKE_COLOR)
+                    .style('stroke', undefined)
                     .style('stroke-width', that.STROKE_WIDTH);
             }
             if (that.seaClickHandler)
@@ -123,8 +122,8 @@ CountryMap.prototype.render = function() {
     this.path = d3.geoPath()
         .projection(this._projection);
         
-    var graticuleData = d3.geoGraticule()
-        .step([5, 5]);
+    // var graticuleData = d3.geoGraticule()
+    //     .step([5, 5]);
         
     // this.graticule
     //     .datum(graticuleData)
@@ -133,14 +132,13 @@ CountryMap.prototype.render = function() {
     var that = this;
     if (this._data) {
         var getCo2Color = function (d) {
-            return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'gray';
+            return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'lightgray';
         };
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
         selector.enter()
             .append('path')
                 .attr('class', 'country')
-                .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('fill', getCo2Color)
                 .on('mouseover', function (d, i) {
