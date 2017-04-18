@@ -470,6 +470,7 @@ var wind, solar, geolocation;
 var histories = {};
 
 function selectCountry(countryCode, notrack) {
+    if (!countries) { return; }
     if (!countryCode || !countries[countryCode]) {
         // If the introductory panel was never rendered before
         // then we need to render it
@@ -727,6 +728,7 @@ d3.select('.map')
     });
 
 function renderMap() {
+    if (!countryMap) { return ; }
 
     countryMap.render();
     if (!countryMap.projection()) {

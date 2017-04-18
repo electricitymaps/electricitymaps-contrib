@@ -355,6 +355,15 @@ div.fb-like span iframe {
   width: unset !important;
   height: unset !important;
 }
+div.fb-share-button span {
+  /* Don't ask - it fixes a bug in Cordova */
+  width: 83px !important;
+  height: 20px !important;
+}
+div.fb-share-button span iframe {
+  width: unset !important;
+  height: unset !important;
+}
 
 .tooltip {
     border: 1px solid grey;
