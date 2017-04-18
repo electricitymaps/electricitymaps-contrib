@@ -50,9 +50,11 @@ function CountryMap(selector, co2color) {
         // Apply CSS transforms
         [that.arrowsLayer, that.windLayer, that.sunLayer].forEach(function (e) {
             e.style('transform',
-                'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') '
+                'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
             );
         });
+        // If we don't want to scale the layer in order to keep the arrow size constant,
+        // we will need to translate every arrow element by it's original dX multiplied by transform.k
     })
     .on('start', function() {
         d3.select(this).style('cursor', 'move');
