@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.tmrow.electricitymap",
+               "sha256_cert_fingerprints": ["9D:79:DE:40:8C:0F:6A:E6:6E:EC:63:FC:2B:7E:C4:37:D5:FB:92:FD"] }
+}]

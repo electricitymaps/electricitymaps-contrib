@@ -1,11 +1,5 @@
 {
     "panel-initial-text": {
-        "youareseeing": "Vous voyez actuellement",
-        "limitedversion": "une version mobile limitée",
-        "forthe": "Pour une",
-        "fullversion": "meilleure expérience",
-        "visitoncomputer": "visitez ce site depuis un ordinateur",
-
         "thisshowsrealtime": "Cette carte indique",
         "whereelectricitycomesfrom": "d'où provient votre électricité",
         "and": "et",
@@ -24,16 +18,21 @@
         "tip": "Cliquez sur un pays pour explorer"
     },
     "country-panel": {
-        "back": "retour",
         "source": "source",
         "fossilfuels": "énergies fossiles",
-        "electricityprice": "Prix de l'électricité (day-ahead)",
+        "carbonintensity": "Intensité carbone",
+        "electricityprice": "Prix de l'électricité",
+        "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Production électrique",
         "showemissions": "montrer les émissions",
         "bysource": "par source",
         "emissions": "Emissions",
         "showelectricity": "montrer la production électrique",
         "co2signal": "Notre <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> permet aux appareils et voitures électriques de consommer au bon moment."
+    },
+    "rankings-panel": {
+	       "country-ranking": "Classement par pays",
+	       "show-ranking": "Montrer classement"
     },
     "country-history": {
         "carbonintensity24h": "Intensité carbone des 24 dernières heures"
@@ -47,11 +46,13 @@
     "legends": {
         "windpotential": "Potentiel éolien",
         "solarpotential": "Potentiel solaire",
-        "colorblindmode": "mode daltonien"
+        "colorblindmode": "mode daltonien",
+        "carbonintensity": "Intensité carbone"
     },
     "tooltips": {
         "electricityprice": "Prix de l'électricité (day-ahead)",
-        "fossilfuels": "énergies fossiles",
+        "fossilfuels": "Energies fossiles",
+        "carbonintensity": "Intensité carbone",
         "crossborderexport": "Export transfrontalier",
         "carbonintensityexport": "Intensité carbone de l'export",
         "of": "de l'électricité",
@@ -63,8 +64,7 @@
         "withcarbonintensity": "avec une intensité carbone de"
     },
     "misc": {
-        "carbonintensity": "Intensité carbone",
-        "maintitle": "Emissions de CO2 de la production électrique Européenne en temps réel",
+        "maintitle": "Emissions de CO2 de la production électrique en temps réel",
         "lastupdate": "Dernière mise à jour",
         "oops": "Oops! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger."

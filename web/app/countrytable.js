@@ -2,6 +2,7 @@ var d3 = require('d3');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 var lang = require('json-loader!./configs/lang.json')[locale];
 var moment = require('moment');
+var flags = require('./flags');
 
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
@@ -20,12 +21,13 @@ function CountryTable(selector, modeColor, modeOrder) {
     this.exchangeRoot = this.root.append('g');
 
     // Constants
-    this.ROW_HEIGHT = 10;
+    this.ROW_HEIGHT = 13; // Height of the rects
     this.RECT_OPACITY = 0.8;
-    this.LABEL_MAX_WIDTH = 80;
-    this.PADDING_X = 5; this.PADDING_Y = 5; // Inner paddings
-    this.FLAG_SIZE_MULTIPLIER = 3;
-    this.TEXT_ADJUST_Y = 9; // To align properly on a line
+    this.LABEL_MAX_WIDTH = 102;
+    this.PADDING_X = 5; this.PADDING_Y = 7; // Inner paddings
+    this.FLAG_SIZE = 16;
+    this.TEXT_ADJUST_Y = 11; // To align properly on a line
+    this.X_AXIS_HEIGHT = 15;
     this.MODE_COLORS = modeColor;
     this.MODES = [];
     modeOrder.forEach(function(k) {
@@ -57,7 +59,8 @@ function CountryTable(selector, modeColor, modeOrder) {
             });
     gNewRow.append('text')
         .text(function(d) { return lang[d.mode] || d.mode })
-        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')');
+        .style('text-anchor', 'end') // right align
+        .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
@@ -106,20 +109,17 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         // TODO: We should offset by just one pixel because it looks better when
         // the rectangles don't start exactly on the axis...
         // But we should also handle "negative" rects
-        .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', 24)')
+        .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', ' + this.X_AXIS_HEIGHT +')')
         .call(this.axis);
 
     // Set header
     var header = d3.select('.country-table-header');
-    header.select('i#country-flag')
-        .attr('class', 'flag-icon flag-icon-' + this._data.countryCode.toLowerCase())
-    header.select('span.country-name')
-        .text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
-    header.select('span.country-last-update')
-        .text(datetime ? moment(datetime).fromNow() : '? minutes ago')
-    header.select('span.country-time')
-        .text(datetime ? moment(datetime).format('LT') : '?')
+    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 64));
+    panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago')
+    panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?')
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
@@ -140,7 +140,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
             })
             .attr('width', function (d) {
-                return d.capacity !== undefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
+                var isDefined = d.capacity !== undefined && d.capacity >= (d.production || 0);
+                return isDefined ? (that.powerScale(d.capacity) - that.powerScale(0)) : 0;
             })
             .on('end', function () { d3.select(this).style('display', 'block'); });
     // Add event handlers
@@ -214,11 +215,13 @@ CountryTable.prototype.render = function(ignoreTransitions) {
             return 'translate(0,' + i * (that.ROW_HEIGHT + that.PADDING_Y) + ')';
         });
     gNewRow.append('image')
-        .attr('width', 4 * this.FLAG_SIZE_MULTIPLIER)
-        .attr('height', 3 * this.FLAG_SIZE_MULTIPLIER);
+        .attr('width', this.FLAG_SIZE)
+        .attr('height', this.FLAG_SIZE);
     gNewRow.append('text')
-        .attr('x', 4 * this.FLAG_SIZE_MULTIPLIER + this.PADDING_X)
-        .attr('transform', 'translate(0, ' + this.TEXT_ADJUST_Y + ')'); // TODO: Translate by the right amount of em
+        .style('text-anchor', 'end') // right align
+        .attr('transform', 
+            'translate(' + (this.LABEL_MAX_WIDTH - 2.0 * this.PADDING_X) + ', ' +
+                this.TEXT_ADJUST_Y + ')');
     gNewRow.append('text')
         .attr('class', 'unknown')
         .style('fill', 'darkgray')
@@ -236,9 +239,11 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('display', function(d) {
             return (that._displayByEmissions && getExchangeCo2eq(d) === undefined) ? 'block' : 'none';
         });
+    var labelLength = d3.max(this._exchangeData, function(d) { return d.key.length }) * 8;
     gNewRow.merge(selection).select('image')
+        .attr('x', this.LABEL_MAX_WIDTH - 4.0 * this.PADDING_X - this.FLAG_SIZE - labelLength)
         .attr('xlink:href', function (d) {
-            return 'flag-icon-css/flags/4x3/' + d.key.toLowerCase() + '.svg';
+            return flags.flagUri(d.key, that.FLAG_SIZE);
         })
     gNewRow.merge(selection).select('rect')
         .on('mouseover', function (d) {
@@ -286,6 +291,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 return Math.abs(that.powerScale(d.value) - that.powerScale(0));
         })
     gNewRow.merge(selection).select('text')
+        //.text(function(d) { return lang.zoneShortName[d.key] || d.key; });
         .text(function(d) { return d.key; });
     d3.select('.country-emission-intensity')
         .text(Math.round(this._data.co2intensity) || '?');
@@ -293,6 +299,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
     d3.select('.fossil-fuel-percentage')
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+    d3.select('.fossil-fuel-percentage').node().parentNode.style.setProperty('background-color', 'rgba(0,0,0,'+this._data.fossilFuelRatio+')');
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
@@ -359,11 +366,10 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
 }
 
 CountryTable.prototype.resize = function() {
-    this.headerHeight = 2 * this.ROW_HEIGHT;
     this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
     this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
-    this.yProduction = this.headerHeight + this.ROW_HEIGHT;
+    this.yProduction = this.X_AXIS_HEIGHT + this.PADDING_Y;
     this.productionRoot
         .attr('transform', 'translate(0,' + this.yProduction + ')');
     this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;

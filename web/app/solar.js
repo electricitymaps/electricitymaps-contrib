@@ -6,12 +6,20 @@ var moment = require('moment');
 var grib = require('./grib');
 
 var solarCanvas;
+var lastDraw;
 
 exports.isExpired = function (now, grib1, grib2) {
     return grib.getTargetTime(grib2) <= moment(now) || grib.getTargetTime(grib1) > moment(now);
 }
 
 exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projection, callback) {
+
+    // Only redraw after 5min
+    if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+        return callback(null);
+    }
+
+    lastDraw = new Date().getTime();
 
     // Control the rendering
     var gaussianBlur = true;
@@ -58,10 +66,10 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     // Warning: the bounding box in lonlat might be smaller than in px,
     // because of the projection.
     // Here everything is hardcoded
-    var minLat = 30;
+    var minLat = 20;
     var maxLat = 80;
     var minLon = -40;
-    var maxLon = 70;
+    var maxLon = 110;
     h = maxLat - minLat;
     w = maxLon - minLon;
 

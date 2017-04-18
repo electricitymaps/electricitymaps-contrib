@@ -1,20 +1,29 @@
 # electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co)
  
-A real-time visualisation of the Greenhouse Gas (in terms of CO2 equivalent) footprint of electricity generation built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://www.electricitymap.org](http://www.electricitymap.org).
+A real-time visualisation of the Greenhouse Gas (in terms of CO2 equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://www.electricitymap.org](http://www.electricitymap.org).
 
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png)
 
-You can [contribute](#contribute) by correcting data sources, translating the map or by writing a parser to add a new country on the map. See the [contributing](#contribute) section.
-You can also submit ideas, feature requests or bugs on the [issues](https://github.com/corradio/electricitymap/issues) page.
+You can [contribute](#contribute) by
+- **[adding a new country on the map](#adding-a-new-country)**
+- correcting data sources
+- [translating](https://github.com/corradio/electricitymap/tree/master/web/locales) the map
+- fixing existing [issues](https://github.com/corradio/electricitymap/issues)
+- submitting ideas, feature requests, or bugs in the [issues](https://github.com/corradio/electricitymap/issues) section.
 
+You can also see a list of missing datas displayed as warnings in the developer console, or question marks in the country panel:
+
+![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
+
+Check the [contributing](#contribute) section for more details.
 
 ## Data sources
 
 ### Carbon intensity calcuation and data source
 The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO2eq (grams CO2 equivalent), meaning each greenhouse gas is converted to its CO2 equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO2 over the same period).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). Carbon-intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/shared/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature: 
+The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecyle of the plant (construction, fuel production, operational emissions, and decomissioning). Carbon-intensity factors used in the map are detailed in [co2eq-parameters.js](https://github.com/corradio/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature: 
 - IPCC 2014 Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
 Country-specific carbon-intensity factors:
@@ -41,7 +50,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Iceland [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
+- Iceland: [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -107,7 +116,7 @@ Production capacities are centralized in the [capacities.json](https://github.co
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain: [ree.es](http://www.ree.es/sites/default/files/downloadable/preliminary_report_2014.pdf)
-- Sweden [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Sweden: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 
 ### Electricity prices (day-ahead) data sources
@@ -127,17 +136,45 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 
 ## Contribute
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
-In the meantime, here's some things you can do:
-- check out the [issues](https://github.com/corradio/electricitymap/issues)
-- add a new country by writing a [parser](https://github.com/corradio/electricitymap/tree/master/parsers)
-- add a new [translation](https://github.com/corradio/electricitymap/tree/master/web/locales) of the map
-- optimise the code, correct inaccuracies...
 
-You can also see a list of missing informations displayed as warnings in the developer console, or question marks in the country panel:
+### Adding a new country
+It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/corradio/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
-![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
+A parser is a python script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
-### Getting started
+```python
+def fetch_production(country_code='FR', session=None):
+    return {
+      'countryCode': 'FR',
+      'datetime': '2017-01-01T00:00:00Z',
+      'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': null,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
+      'storage': {
+          'hydro': -10.0,
+      },
+      'source': 'mysource.com'
+    }
+```
+
+The `session` object is a python request session that you can re-use to make HTTP requests.
+
+The production values should never be negative. Use `null`, or ommit the key, if a specific production mode is not known.
+Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
+
+The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
+
+### Frontend contributions
+
 To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/). 
 
 The frontend will need compiling. In order to do this, open a terminal and run

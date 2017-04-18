@@ -6,9 +6,11 @@ function CountryMap(selector, co2color) {
     this.STROKE_WIDTH = 0.3;
 
     this.selectedCountry = undefined;
+    this._center = undefined;
 
     this.root = d3.select(selector)
-        .style('transform-origin', '0px 0px');
+        .style('transform-origin', '0px 0px')
+        .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
     // Add SVG layer
     this.svg = this.root.append('svg')
         .attr('class', 'map-layer')
@@ -27,34 +29,52 @@ function CountryMap(selector, co2color) {
     this.land = this.svg.append('g')
         .attr('class', 'land');
     // Add other layers
-    this.root.append('div').attr('class', 'arrows-layer map-layer').style('display', 'none');
-    this.root.append('canvas').attr('class', 'wind map-layer');
-    this.root.append('canvas').attr('class', 'solar map-layer');
+    this.arrowsLayer = this.root.append('div')
+        .attr('class', 'arrows-layer map-layer')
+        .style('transform-origin', '0px 0px');
+    this.windLayer = this.root.append('canvas')
+        .attr('class', 'wind map-layer')
+        .style('transform-origin', '0px 0px');
+    this.sunLayer = this.root.append('canvas')
+        .attr('class', 'solar map-layer')
+        .style('transform-origin', '0px 0px');
 
-    this.zoom = d3.zoom()
-        .on('zoom', function() {
-          var transform = d3.event.transform;
-          that.root
-              .style('transform', 'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ') ');
-          // Scale the arrows differently
-          that.root.selectAll('.arrows-layer .exchange-arrow img')
-              .style('transform', function() {
-                  return 'scale(' + (that.exchangeLayer().arrowScale() / transform.k) + ')';
-              });
-        })
-        .on('start', function() {
-            d3.select(this).style('cursor', 'move');
-        })
-        .on('end', function() {
-            d3.select(this).style('cursor', undefined);
+    this.zoom = d3.zoom().on('zoom', function() {
+        var transform = d3.event.transform;
+        // Scale the svg g elements in order to keep control over stroke width
+        // See https://github.com/tmrowco/electricitymap/issues/471
+        that.land.attr('transform', transform);
+        // that.graticule.attr('transform', transform);
+
+        // Apply CSS transforms
+        [that.arrowsLayer, that.windLayer, that.sunLayer].forEach(function (e) {
+            e.style('transform',
+                'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+            );
         });
+        // If we don't want to scale the layer in order to keep the arrow size constant,
+        // we will need to translate every arrow element by it's original dX multiplied by transform.k
+    })
+    .on('start', function() {
+        d3.select(this).style('cursor', 'move');
+    })
+    .on('end', function() {
+        d3.select(this).style('cursor', undefined);
+    });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
 }
 
 CountryMap.prototype.render = function() {
     // Determine scale (i.e. zoom) based on the size
-    var scale = this.root.node().parentNode.getBoundingClientRect().height * 1.4;
+    this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
+    this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
+
+    // Nothing to render
+    if (!this.containerHeight || !this.containerWidth)
+        return this;
+
+    var scale = this.containerHeight * 1.5;
     // Determine map width and height based on bounding box of Europe
     var sw = [-15, 34.7];
     var ne = [34, 72];
@@ -76,8 +96,6 @@ CountryMap.prototype.render = function() {
     this.mapHeight = Math.max(projected_sw[1], projected_se[1]) -
         Math.min(projected_ne[1], projected_nw[1]);
     // Width and height should nevertheless never be smaller than the container
-    this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
-    this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
     this.mapWidth  = Math.max(this.mapWidth,  this.containerWidth);
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
 
@@ -154,6 +172,8 @@ CountryMap.prototype.render = function() {
                 .duration(2000)
                 .attr('fill', getCo2Color);
     }
+
+    return this;
 }
 
 CountryMap.prototype.co2color = function(arg) {
@@ -212,5 +232,28 @@ CountryMap.prototype.data = function(data) {
     }
     return this;
 };
+
+CountryMap.prototype.center = function(center) {
+    if (!center) {
+        return this._center;
+    } else if (this._center) {
+        // Only allow setting the center once in order to avoid
+        // quirky UX due to sporadic re-centering
+        console.warn('Center has already been set.');
+        return this;
+    } else if (!this._projection) {
+        console.warn('Can\'t change center when projection is not already set.');
+        return this;
+    } else {
+        var p = this._projection(center);
+        this.zoom
+            .translateBy(d3.select(this.root.node().parentNode), // WARNING, this is accumulative.
+              -1 * p[0] + 0.5 * this.containerWidth,
+              -1 * p[1] + 0.5 * this.containerHeight
+            );
+        this._center = center;
+    }
+    return this;
+}
 
 module.exports = CountryMap;

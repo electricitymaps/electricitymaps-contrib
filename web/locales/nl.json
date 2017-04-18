@@ -1,11 +1,5 @@
 {
     "panel-initial-text": {
-        "youareseeing": "Je ziet momenteel een",
-        "limitedversion": "beperkte mobiele versie",
-        "forthe": "Voor de",
-        "fullversion": "volledige ervaring",
-        "visitoncomputer": "kan je deze pagina bekijken via een computer",
-
         "thisshowsrealtime": "Dit toont live",
         "whereelectricitycomesfrom": "waar je elektriciteit vandaan komt",
         "and": "en",
@@ -24,16 +18,20 @@
         "tip": "Tip: Klik op een land om alle informatie te ontdekken"
     },
     "country-panel": {
-        "back": "terug",
         "source": "bron",
         "fossilfuels": "fossiele brandstoffen",
-        "electricityprice": "Elektriciteitsprijs (day-ahead)",
+        "carbonintensity": "Koolstofintensiteit",
+        "electricityprice": "Elektriciteitsprijs",
+        "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Elektriciteitsproductie",
         "showemissions": "toon uitstoot",
         "bysource": "per bron",
         "emissions": "Uitstoot",
         "showelectricity": "toon elektriciteit",
         "co2signal": "Ons product <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
+    },
+    "rankings-panel": {
+        "country-ranking": "Country ranking"
     },
     "country-history": {
         "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
@@ -47,11 +45,13 @@
     "legends": {
         "windpotential": "potentieel aan Windenergie",
         "solarpotential": "potentieel aan Zonne-energie",
-        "colorblindmode": "kleurenblind modus"
+        "colorblindmode": "kleurenblind modus",
+        "carbonintensity": "Koolstofintensiteit"
     },
     "tooltips": {
         "electricityprice": "Elektriciteitsprijs (day-ahead)",
         "fossilfuels": "fossiele brandstoffen",
+        "carbonintensity": "Koolstofintensiteit",
         "crossborderexport": "uitvoer over de landsgrenzen",
         "carbonintensityexport": "Koolstofintensiteit van uitvoer",
         "of": "van de",
@@ -62,8 +62,7 @@
         "withcarbonintensity": "met een koolstofintensiteit van"
     },
     "misc": {
-        "carbonintensity": "Koolstofintensiteit",
-        "maintitle": "Live CO2 uitstoot van het Europese elektriciteitsverbruik",
+        "maintitle": "Live CO2 uitstoot van het elektriciteitsverbruik",
         "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."

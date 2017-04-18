@@ -4,6 +4,8 @@
 *secrets*
 *.env
 
+mobileapp
+
 datascience
 
 web/node_modules

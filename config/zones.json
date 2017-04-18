@@ -1,0 +1,127 @@
+{
+    "AL": {
+        "country_iso_a2": "AL"
+    },
+    "AT": {
+        "country_iso_a2": "AT"
+    },
+    "BA": {
+        "country_iso_a2": "BA"
+    },
+    "BE": {
+        "country_iso_a2": "BE"
+    },
+    "BG": {
+        "country_iso_a2": "BG"
+    },
+    "BY": {
+        "country_iso_a2": "BY"
+    },
+    "CH": {
+        "country_iso_a2": "CH"
+    },
+    "CZ": {
+        "country_iso_a2": "CZ"
+    },
+    "DE": {
+        "country_iso_a2": "DE"
+    },
+    "DK": {
+        "country_iso_a2": "DK"
+    },
+    "EE": {
+        "country_iso_a2": "EE"
+    },
+    "ES": {
+        "country_iso_a2": "ES"
+    },
+    "FI": {
+        "country_iso_a2": "FI"
+    },
+    "FR": {
+        "country_iso_a2": "FR"
+    },
+    "GB": {
+        "country_iso_a2": "GB",
+        "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
+    },
+    "GB-NIR": {
+        "country_iso_a2": "GB",
+        "flag_file_name": "_Northern%20Ireland.png"
+    },
+    "GR": {
+        "country_iso_a2": "GR"
+    },
+    "HR": {
+        "country_iso_a2": "HR"
+    },
+    "HU": {
+        "country_iso_a2": "HU"
+    },
+    "IE": {
+        "country_iso_a2": "IE"
+    },
+    "IS": {
+        "country_iso_a2": "IS"
+    },
+    "IT": {
+        "country_iso_a2": "IT"
+    },
+    "LT": {
+        "country_iso_a2": "LT"
+    },
+    "LU": {
+        "country_iso_a2": "LU"
+    },
+    "LV": {
+        "country_iso_a2": "LV"
+    },
+    "MD": {
+        "country_iso_a2": "MD"
+    },
+    "ME": {
+        "country_iso_a2": "ME"
+    },
+    "MK": {
+        "country_iso_a2": "MK"
+    },
+    "MT": {
+        "country_iso_a2": "MT"
+    },
+    "NL": {
+        "country_iso_a2": "NL"
+    },
+    "NO": {
+        "country_iso_a2": "NO"
+    },
+    "PL": {
+        "country_iso_a2": "PL"
+    },
+    "PT": {
+        "country_iso_a2": "PT"
+    },
+    "RO": {
+        "country_iso_a2": "RO"
+    },
+    "RS": {
+        "country_iso_a2": "RS"
+    },
+    "RU": {
+        "country_iso_a2": "RU"
+    },
+    "SE": {
+        "country_iso_a2": "SE"
+    },
+    "SI": {
+        "country_iso_a2": "SI"
+    },
+    "SK": {
+        "country_iso_a2": "SK"
+    },
+    "TR": {
+        "country_iso_a2": "TR"
+    },
+    "UA": {
+        "country_iso_a2": "UA"
+    }
+}

@@ -1,5 +1,8 @@
 var d3 = require('d3');
+var flags = require('./flags');
 var lang = require('json-loader!./configs/lang.json')[locale];
+
+var FLAG_SIZE = 16;
 
 // Create power formatting
 function formatPower(d, numDigits) {
@@ -11,6 +14,35 @@ function formatPower(d, numDigits) {
 
 function getConsumption(country) {
     return country.totalProduction - country.totalStorage + country.totalNetExchange;
+}
+
+function placeTooltip(selector, d3Event) {
+    var tooltip = d3.select(selector);
+    var w = tooltip.node().getBoundingClientRect().width;
+    var h = tooltip.node().getBoundingClientRect().height;
+    var margin = 7;
+    var screenWidth = window.innerWidth;
+    // On very small screens
+    if (w > screenWidth) {
+        tooltip
+            .style('width', '100%');
+    }
+    else {
+        var x = 0;
+        if (w > screenWidth / 2 - 5) {
+            // Tooltip won't fit on any side, so don't translate x
+            x = 0.5 * (screenWidth - w);
+        } else {
+            x = d3Event.layerX + margin;
+            if (screenWidth - x <= w) {
+                x = d3Event.layerX - w - margin;
+            }
+        }
+        var y = d3Event.layerY - h - margin; if (y <= margin) y = d3Event.layerY + margin;
+        tooltip
+            .style('transform',
+                'translate(' + x + 'px' + ',' + y + 'px' + ')');
+    }
 }
 
 function Tooltip(countryTable, countries) {
@@ -30,10 +62,10 @@ function Tooltip(countryTable, countries) {
                 .style('background-color', co2intensity ? that.co2color()(co2intensity) : 'gray');
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
-            tooltip.selectAll('i.country-exchange-flag')
-                .attr('class', 'country-exchange-flag flag-icon flag-icon-' + d.key.toLowerCase());
-            tooltip.selectAll('i.country-flag')
-                .attr('class', 'country-flag flag-icon flag-icon-' + country.countryCode.toLowerCase());
+            tooltip.selectAll('.country-exchange-flag')
+                .attr('src', flags.flagUri(d.key, FLAG_SIZE));
+            tooltip.selectAll('.country-flag')
+                .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
@@ -53,14 +85,14 @@ function Tooltip(countryTable, countries) {
             tooltip.selectAll('.country-code')
                 .text(country.countryCode)
                 .style('font-weight', 'bold');
-            tooltip.selectAll('.country-exchange-code')
-                .text(d.key)
+            tooltip.selectAll('.country-exchange-name')
+                .text(lang.zoneShortName[d.key] || d.key)
                 .style('font-weight', 'bold');
-            tooltip.selectAll('.country-exchange-source-code')
-                .text(o)
+            tooltip.selectAll('.country-exchange-source-name')
+                .text(lang.zoneShortName[o] || o)
                 .style('font-weight', 'bold');
-            tooltip.selectAll('i.country-exchange-source-flag')
-                .attr('class', 'country-exchange-source-flag flag-icon flag-icon-' + o.toLowerCase());
+            tooltip.selectAll('.country-exchange-source-flag')
+                .attr('src', flags.flagUri(o, FLAG_SIZE));
         })
         .onExchangeMouseOut(function (d) {
             if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
@@ -68,12 +100,7 @@ function Tooltip(countryTable, countries) {
                 .style('display', 'none');
         })
         .onExchangeMouseMove(function(d) {
-            d3.select('#countrypanel-exchange-tooltip')
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX + 15) + 'px' + ',' + 
-                        (d3.event.pageY + 15) + 'px' +
-                    ')');
+            placeTooltip('#countrypanel-exchange-tooltip', d3.event);
         })
         .onProductionMouseOver(function (d, country) {
             var co2intensity = country.productionCo2Intensities[d.mode];
@@ -89,12 +116,16 @@ function Tooltip(countryTable, countries) {
             tooltip.select('.emission-source')
                 .text(co2intensitySource || '?');
             var value = d.isStorage ? d.storage : d.production;
-            var capacityFactor = Math.round(value / d.capacity * 100) || '?';
+
+            // Capacity
+            var hasCapacity = d.capacity !== undefined && d.capacity >= (d.production || 0);
+            var capacityFactor = hasCapacity && Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
             tooltip.select('#capacity-factor-detail').text(
                 (formatPower(value) || '?') + ' ' +
                 ' / ' + 
-                (formatPower(d.capacity) || '?'));
+                (hasCapacity && formatPower(d.capacity) || '?'));
+
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
@@ -116,16 +147,11 @@ function Tooltip(countryTable, countries) {
             tooltip.select('.country-code')
                 .text(country.countryCode)
                 .style('font-weight', 'bold');
-            tooltip.select('i#country-flag')
-                .attr('class', 'flag-icon flag-icon-' + country.countryCode.toLowerCase());
+            tooltip.select('#country-flag')
+                .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
         })
         .onProductionMouseMove(function(d) {
-            d3.select('#countrypanel-production-tooltip')
-                .style('transform',
-                    'translate(' +
-                        (d3.event.pageX + 10) + 'px' + ',' + 
-                        (d3.event.pageY + 10) + 'px' +
-                    ')');
+            placeTooltip('#countrypanel-production-tooltip', d3.event);
         })
         .onProductionMouseOut(function (d) {
             if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);

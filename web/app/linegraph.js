@@ -76,6 +76,7 @@ LineGraph.prototype.render = function () {
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
         height = this.rootElement.node().getBoundingClientRect().height;
+    if (!width || !height) return this;
     var X_AXIS_HEIGHT = 20;
     var X_AXIS_PADDING = 4;
     var Y_AXIS_WIDTH = 35;
@@ -174,6 +175,7 @@ LineGraph.prototype.render = function () {
             // Always freeze on mobile
             if (isMobile) {
                 that.frozen = false; that.togglefreeze();
+
                 return;
             }
             that.verticalLine.style('display', 'none');
@@ -239,6 +241,10 @@ LineGraph.prototype.yColorScale = function(arg) {
 };
 
 LineGraph.prototype.togglefreeze = function() {
+    if (!this.frozen && !this.selectedIndex) {
+        console.warn('Can only freeze if a selectedIndex is provided');
+        return this;
+    }
     this.frozen = !this.frozen;
     if (!this.frozen) this.selectedIndex = undefined;
     this.markerElement.style('stroke',
