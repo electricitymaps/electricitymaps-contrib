@@ -348,8 +348,8 @@ div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, if
 }
 div.fb-like span {
   /* Don't ask - it fixes a bug in Cordova */
-  width: 51px !important;
-  height: 20px !important;
+  /*width: 51px !important;
+  height: 20px !important;*/
 }
 div.fb-like span iframe {
   width: unset !important;
@@ -417,6 +417,11 @@ div.highscore-button {
     align-items: baseline;
     line-height: 1.8rem;
     box-sizing: content-box;
+
+    /* formatting */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .country-picker-container a:hover {
     text-decoration: none;
