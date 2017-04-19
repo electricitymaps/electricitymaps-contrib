@@ -176,7 +176,10 @@ window.fbAsyncInit = function() {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
     js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/" + FBLocale + "/sdk.js";
+    //js.src = "https://connect.facebook.net/" + FBLocale + "/sdk.js";
+    // Do not translate facebook because we fixed the size of buttons
+    // because of a cordova bug serving from file://
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -408,7 +411,11 @@ function placeTooltip(selector, d3Event) {
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
     var margin = 5;
-    var mapWidth = d3.select('.map-layer').node().getBoundingClientRect().width;
+    var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
+
+    // TODO: d3Event.layerY does not return the proper cursor coordinates.
+    // or it needs to be remapped to container coordinates..
+
     // On very small screens
     if (w > mapWidth) {
         tooltip
