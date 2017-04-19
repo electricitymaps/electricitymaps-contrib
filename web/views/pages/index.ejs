@@ -56,6 +56,9 @@
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/www.electricitymap.org" />
 
         <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js" async></script>
+        <% if (typeof isCordova !== 'undefined' && isCordova) { %>
+        <script src="../cordova.js"></script>
+        <% } %>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
 
         <!-- Set Global Variables -->
@@ -312,5 +315,4 @@
             <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
         </div>
     </body>
-    <script type="text/javascript" src="cordova.js"></script>
 </html>
