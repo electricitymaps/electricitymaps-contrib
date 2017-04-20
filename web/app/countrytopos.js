@@ -96,14 +96,15 @@ exports.addCountryTopos = function(countries) {
     countries['XX'] = getCountry('CYN');
 
     // Australia
-    countries['AUS-TAS'] = getState('AUS', 'AU.TS');
-    countries['AUS-NSW'] = getState('AUS', 'AU.NS');
-    countries['AUS-QLD'] = getState('AUS', 'AU.QL');
-    countries['AUS-SA'] = getState('AUS', 'AU.SA');
-    countries['AUS-VIC'] = getState('AUS', 'AU.VI');
-    countries['AUS-WA'] = getState('AUS', 'AU.WA');
-    countries['AUS-NT'] = getState('AUS', 'AU.NT');
-    countries['AUS-ACT'] = getState('AUS', 'AU.AC');
+    countries['AU'] = getCountry('AUS');
+    // countries['AUS-TAS'] = getState('AUS', 'AU.TS');
+    // countries['AUS-NSW'] = getState('AUS', 'AU.NS');
+    // countries['AUS-QLD'] = getState('AUS', 'AU.QL');
+    // countries['AUS-SA'] = getState('AUS', 'AU.SA');
+    // countries['AUS-VIC'] = getState('AUS', 'AU.VI');
+    // countries['AUS-WA'] = getState('AUS', 'AU.WA');
+    // countries['AUS-NT'] = getState('AUS', 'AU.NT');
+    // countries['AUS-ACT'] = getState('AUS', 'AU.AC');
 
     // North America
     countries['US'] = getCountry('USA');

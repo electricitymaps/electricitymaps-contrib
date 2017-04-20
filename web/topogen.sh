@@ -5,7 +5,7 @@ COUNTRIES_FILENAME=ne_50m_admin_0_map_subunits
 # COUNTRIES_FILTER='...'
 
 STATES_FILENAME=ne_50m_admin_1_states_provinces_lakes
-STATES_FILTER='AUS\|CAN'
+STATES_FILTER='CAN' # Use '\|' to separate entries
 
 # To install tools:
 # npm install -g d3-geo-projection ndjson-cli shapefile topojson
