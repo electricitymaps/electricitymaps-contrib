@@ -642,6 +642,10 @@ function showPage(pageName) {
         d3.selectAll('.left-panel-'+pageName).style('display', undefined);
         if (pageName == 'country') {
             selectCountry(selectedCountryCode);
+        } else if (pageName == 'info') {
+            co2Colorbar.render();
+            if (windEnabled) windColorbar.render();
+            if (solarEnabled) solarColorbar.render();
         }
     }
  
@@ -659,6 +663,7 @@ function toggleWind() {
     replaceHistoryState('wind', windEnabled);
     Cookies.set('windEnabled', windEnabled);
     d3.select('.wind-toggle').classed('active', windEnabled);
+    d3.select('#checkbox-wind').node().checked = windEnabled;
     var now = customDate ? moment(customDate) : (new Date()).getTime();
     if (windEnabled) {
         d3.select('.wind-colorbar').style('display', 'block');
@@ -681,6 +686,7 @@ function toggleSolar() {
     replaceHistoryState('solar', solarEnabled);
     Cookies.set('solarEnabled', solarEnabled);
     d3.select('.solar-toggle').classed('active', solarEnabled);
+    d3.select('#checkbox-solar').node().checked = solarEnabled;
     var now = customDate ? moment(customDate) : (new Date()).getTime();
     if (solarEnabled) {
         d3.select('.solar-colorbar').style('display', 'block');
