@@ -305,4 +305,13 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [21.469049, 44.947107],
         rotation: -140
     };
+    // ** Canada
+    exchanges['CA-AB->CA-BC'] = {
+        lonlat: [-119.811359, 53.797027],
+        rotation: 0
+    };
+    exchanges['CA-BC->US'] = {
+        lonlat: [-119.300532, 49.044392],
+        rotation: 180
+    };
 }
