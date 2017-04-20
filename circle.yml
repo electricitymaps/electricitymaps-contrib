@@ -11,6 +11,12 @@ stages:
           docker --version
           docker-compose --version
       - type: shell
+        name: Lint
+        command: |
+          set -exu
+          pip install pylint
+          pylint -E parsers
+      - type: shell
         name: Build
         command: |
           set -exu
@@ -27,9 +33,6 @@ stages:
       - type: shell
         name: Run tests
         command: |
-          set -exu
-          pip install pylint
-          pylint -E parsers
           docker-compose ps
           curl --fail -i http://localhost:8000/
           curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
