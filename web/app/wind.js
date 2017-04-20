@@ -57,6 +57,7 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
 };
 
 exports.show = function() {
+    if (windLayer.started) { return; }
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
     var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
     // Canvas needs to have it's width and height attribute set

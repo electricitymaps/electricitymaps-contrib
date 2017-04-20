@@ -432,6 +432,8 @@ var Windy = function( params ){
     frame();
   }
 
+  var windy;
+
   var start = function( bounds, width, height, extent ){
 
     var mapBounds = {
@@ -444,6 +446,7 @@ var Windy = function( params ){
     };
 
     stop();
+    windy.started = true;
 
     // build grid
     buildGrid( params.data, function(grid){
@@ -461,13 +464,15 @@ var Windy = function( params ){
     if (windy.field) windy.field.release();
     if (windy.animationRequest)
       cancelAnimationFrame(windy.animationRequest);
+    windy.started = false;
   };
 
 
-  var windy = {
+  windy = {
     params: params,
     start: start,
-    stop: stop
+    stop: stop,
+    started: false
   };
 
   return windy;
