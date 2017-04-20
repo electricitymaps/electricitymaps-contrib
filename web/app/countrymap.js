@@ -9,6 +9,19 @@ function CountryMap(selector, co2color) {
     this.selectedCountry = undefined;
     this._center = undefined;
 
+    this.regionParams = {
+        'europe': {
+            'sw': [-15, 34.7],
+            'ne': [34, 72],
+            'center': [0, 50]
+        },
+        'australia': {
+            'sw': [110.47, -44.30],
+            'ne': [155.55, -7.30],
+            'center': [115.17, -24.98]
+        }
+    }
+
     this.root = d3.select(selector)
         .style('transform-origin', '0px 0px')
         .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
@@ -77,9 +90,9 @@ CountryMap.prototype.render = function() {
 
     var scale = this.containerHeight * 1.5;
     // Determine map width and height based on bounding box of Europe
-    var sw = [-15, 34.7];
-    var ne = [34, 72];
-    var center = [0, 50]; // Center of the map projection
+    var sw = this.regionParams[this.region()].sw;
+    var ne = this.regionParams[this.region()].ne;
+    var center = this.regionParams[this.region()].center; // Center of the map projection
     this._projection = d3.geoTransverseMercator()
         .rotate([-center[0], -center[1]])
         .scale(scale)
@@ -223,6 +236,15 @@ CountryMap.prototype.onCountryMouseMove = function(arg) {
 CountryMap.prototype.onCountryMouseOut = function(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
+};
+
+CountryMap.prototype.region = function(region) {
+    if (!region) {
+        return this._region;
+    } else {
+        this._region = region;
+    }
     return this;
 };
 

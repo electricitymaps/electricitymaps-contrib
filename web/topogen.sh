@@ -1,25 +1,48 @@
 #!/bin/bash
 set -eu -o pipefail
 
-FILENAME=ne_50m_admin_0_map_subunits
-#Check ne_50m_admin_1_states_provinces_lakes for US & Canada provinces.
+COUNTRIES_FILENAME=ne_50m_admin_0_map_subunits
+# COUNTRIES_FILTER='...'
+
+STATES_FILENAME=ne_50m_admin_1_states_provinces_lakes
+STATES_FILTER='AUS'
 
 # To install tools:
 # npm install -g d3-geo-projection ndjson-cli shapefile topojson
 
 mkdir -p build
-curl -z build/${FILENAME}.zip -o build/${FILENAME}.zip http://naciscdn.org/naturalearth/50m/cultural/${FILENAME}.zip
-unzip -od build build/${FILENAME}.zip
-chmod a-x build/${FILENAME}.*
+curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip http://naciscdn.org/naturalearth/50m/cultural/${COUNTRIES_FILENAME}.zip
+unzip -od build build/${COUNTRIES_FILENAME}.zip
+curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip http://naciscdn.org/naturalearth/50m/cultural/${STATES_FILENAME}.zip
+unzip -od build build/${STATES_FILENAME}.zip
 
-geo2topo -q 1e5 -n countries=<( \
-  shp2json -n build/${FILENAME}.shp \
-    | ndjson-map '(d.id = d.properties.adm0_a3, d.subid = d.properties.su_a3, delete d.properties, d)' \
-    | geostitch -n) \
+# Clear tmp.json
+> build/tmp.json
+
+# Parse countries
+(shp2json -n build/${COUNTRIES_FILENAME}.shp \
+| ndjson-map '(d.id = d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
+#| grep $COUNTRIES_FILTER
+)>> build/tmp.json
+
+# Parse states
+(shp2json -n build/${STATES_FILENAME}.shp \
+| ndjson-map '(d.id = d.properties.sr_adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
+| grep $STATES_FILTER
+)>> build/tmp.json
+
+# Merge
+geo2topo -q 1e5 -n countries=<(cat build/tmp.json | geostitch -n) \
 | topomerge land=countries \
 > app/world_50m.json
 
-shp2json -n build/${FILENAME}.shp \
-| ndjson-map 'd.properties' \
-> world_50m_props.json
+(shp2json -n build/${STATES_FILENAME}.shp \
+  | ndjson-map 'd.properties' \
+  | grep $STATES_FILTER \
+)> world_states_50m_props.json
+(shp2json -n build/${COUNTRIES_FILENAME}.shp \
+  | ndjson-map 'd.properties' \
+  #| grep $COUNTRIES_FILTER \
+)> world_countries_50m_props.json
+
 rm -rvf build

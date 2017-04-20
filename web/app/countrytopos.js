@@ -8,7 +8,12 @@ var exports = module.exports = {};
 exports.addCountryTopos = function(countries) {
     function getSubUnits(ids) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
-            return ids.indexOf(d.subid) != -1;
+            return ids.indexOf(d.properties.subid) != -1;
+        }));
+    }
+    function getState(countryId, code_hasc) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return d.id == countryId && d.properties.code_hasc == code_hasc;
         }));
     }
     function getCountry(id) {
@@ -89,6 +94,16 @@ exports.addCountryTopos = function(countries) {
     countries['UZ'] = getCountry('UZB');
 
     countries['XX'] = getCountry('CYN');
+
+    // Australia
+    countries['AUS-TAS'] = getState('AUS', 'AU.TS');
+    countries['AUS-NSW'] = getState('AUS', 'AU.NS');
+    countries['AUS-QLD'] = getState('AUS', 'AU.QL');
+    countries['AUS-SA'] = getState('AUS', 'AU.SA');
+    countries['AUS-VIC'] = getState('AUS', 'AU.VI');
+    countries['AUS-WA'] = getState('AUS', 'AU.WA');
+    countries['AUS-NT'] = getState('AUS', 'AU.NT');
+    countries['AUS-ACT'] = getState('AUS', 'AU.AC');
     
 
     // Clear memory

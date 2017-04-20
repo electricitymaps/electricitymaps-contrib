@@ -66,6 +66,7 @@ var showWindOption = true;
 var showSolarOption = true;
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
+var region = 'europe';
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -97,6 +98,10 @@ function parseQueryString(querystring) {
         } else if (kv[0] == 'wind') {
             windEnabled = kv[1] == 'true';
             replaceHistoryState('wind', windEnabled);
+        } else if (kv[0] == 'region') {
+            region = kv[1];
+            replaceHistoryState('region', region);
+            // WARNING: Deeplink might not work if region is set after everything is rendered
         }
     });
 }
@@ -141,6 +146,7 @@ var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap
 // Set history state of remaining variables
 replaceHistoryState('wind', windEnabled);
 replaceHistoryState('solar', solarEnabled);
+replaceHistoryState('region', region);
 
 // Twitter
 window.twttr = (function(d, s, id) {
@@ -356,7 +362,9 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map').co2color(co2color)
+var countryMap = new CountryMap('#map')
+    .co2color(co2color)
+    .region(region);
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
@@ -1040,6 +1048,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
 
     // Update pages that need to be updated
     renderMap();
+
+    // Debug
+    console.log(countries)
 };
 
 // Get geolocation is on mobile (in order to select country)
