@@ -92,6 +92,7 @@ def fetch_price(country_code, session=None, from_date=None, to_date=None):
     
     data = {
         'countryCode': country_code,
+        'currency': 'EUR',
         'datetime': datetimes[-1],
         'price': prices[-1],
         'source': 'rte-france.com',

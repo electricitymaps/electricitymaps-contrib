@@ -168,12 +168,14 @@ def fetch_production(country_code='FR', session=None):
     }
 ```
 
-The `session` object is a python request session that you can re-use to make HTTP requests.
+The `session` object is a [python request](http://docs.python-requests.org/en/master/) session that you can re-use to make HTTP requests.
 
 The production values should never be negative. Use `null`, or ommit the key, if a specific production mode is not known.
 Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
 
 The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
+
+For more info, check out the [example](https://github.com/corradio/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/corradio/electricitymap/tree/master/parsers).
 
 ### Frontend contributions
 
