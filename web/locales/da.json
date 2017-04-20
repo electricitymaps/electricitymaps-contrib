@@ -67,5 +67,10 @@
         "lastupdate": "Sidst opdateret",
         "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
         "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere."
+        },
+    "menu": {
+        "mapview": "Kort",
+        "listview": "Liste",
+        "info": "Info"
     }
 }
