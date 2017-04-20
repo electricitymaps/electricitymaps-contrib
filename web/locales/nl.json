@@ -66,5 +66,10 @@
         "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
+    },
+    "menu": {
+        "mapview": "Kaart",
+        "listview": "Lijst",
+        "info": "Info"
     }
 }
