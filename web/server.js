@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'sv'],
+    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -47,7 +47,7 @@ i18n.configure({
     updateFiles: false // whether to write new locale information to disk - defaults to true
 });
 app.use(i18n.init);
-LOCALE_TO_FB_LOCALE = {
+var LOCALE_TO_FB_LOCALE = {
     'da': 'da_DK',
     'de': 'de_DE',
     'en': 'en_US',
@@ -55,13 +55,14 @@ LOCALE_TO_FB_LOCALE = {
     'fr': 'fr_FR',
     'it': 'it_IT',
     'nl': 'nl_NL',
+    'pl': 'pl_PL',
     'sv': 'sv_SE'
 };
 // Populate using
 // https://www.facebook.com/translations/FacebookLocales.xml |grep 'en_'
 // and re-crawl using
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
-SUPPORTED_FB_LOCALES = [
+var SUPPORTED_FB_LOCALES = [
     'da_DK',
     'de_DE',
     'es_ES',
@@ -76,6 +77,7 @@ SUPPORTED_FB_LOCALES = [
     'it_IT',
     'nl_BE',
     'nl_NL',
+    'pl_PL',
     'sv_SE'
 ];
 
