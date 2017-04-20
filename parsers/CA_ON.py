@@ -128,7 +128,7 @@ def fetch_price(country_code='CA-ON', session=None):
     return data
 
 
-def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
+def fetch_exchange(country_code1, country_code2, session=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
@@ -145,7 +145,38 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     }
     """
 
-    return None
+    r = session or requests.session()
+    url = 'http://live.gridwatch.ca/WebServices/GridWatchWebApp.asmx/GetHomeViewData_v2'
+    response = r.get(url)
+    obj = response.json()
+    exchanges = obj['intertieLineData']
+    
+    sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
+    # Everything -> CA_ON corresponds to an import to ON
+    # In the data, "net" represents an export
+    # So everything -> CA_ON must be reversed
+    if sortedCountryCodes == 'CA-MB->CA-ON':
+        keys = ['MANITOBA', 'MANITOBA SK']
+        direction = -1
+    elif sortedCountryCodes == 'CA-ON->US':
+        keys = ['MICHIGAN', 'MINNESOTA', 'NEW-YORK']
+        direction = 1
+    elif sortedCountryCodes == 'CA-ON->CA-QC':
+        keys = filter(lambda k: k[:2] == 'PQ', exchanges.keys())
+        direction = 1
+    else:
+        raise NotImplementedError('This exchange pair is not implemented')
+
+    data = {
+        'datetime': max(map(lambda x: arrow.get(arrow.get(
+            exchanges[x]['dateReported']).datetime, timezone).datetime, keys)),
+        'sortedCountryCodes': sortedCountryCodes,
+        'netFlow': sum(map(lambda x: float(exchanges[x]['net']), keys)) * direction,
+        'source': 'gridwatch.ca'
+    }
+
+
+    return data
 
 
 if __name__ == '__main__':

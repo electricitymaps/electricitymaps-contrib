@@ -37,7 +37,7 @@ def fetch_production(country_code='FR', session=None):
     r = session or requests.session()
     url = 'https://api.someservice.com/v1/productionmix/latest'
     response = r.get(url)
-    obj = r.json()
+    obj = response.json()
 
     data = {
         'countryCode': country_code,
@@ -82,7 +82,7 @@ def fetch_price(country_code='FR', session=None):
     r = session or requests.session()
     url = 'https://api.someservice.com/v1/price/latest'
     response = r.get(url)
-    obj = r.json()
+    obj = response.json()
 
     data = {
         'countryCode': country_code,
@@ -117,7 +117,7 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     r = session or requests.session()
     url = 'https://api.someservice.com/v1/exchange/latest?from=%s&to=%s' % (country_code1, country_code2)
     response = r.get(url)
-    obj = r.json()
+    obj = response.json()
 
     data = {
         'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
