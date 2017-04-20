@@ -918,7 +918,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     var selector = enterA.merge(selector);
     countryListSelector = selector;
     selector.select('span')
-        .text(function(d) { return ' ' + (d.shortname || d.countryCode) + ' '; })
+        .text(function(d) { return ' ' + (lang.zoneShortName[d.countryCode] || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
         .style('background-color', function(d) {
             return d.co2intensity ? co2color(d.co2intensity) : 'gray';

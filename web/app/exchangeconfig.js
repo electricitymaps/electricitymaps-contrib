@@ -314,4 +314,16 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [-119.300532, 49.044392],
         rotation: 180
     };
+    exchanges['CA-MB->CA-ON'] = {
+        lonlat: [-95.177354, 52.802819],
+        rotation: 90
+    };
+    exchanges['CA-ON->CA-QC'] = {
+        lonlat: [-79.494485, 48.798268],
+        rotation: 90
+    };
+    exchanges['CA-ON->US'] = {
+        lonlat: [-92.722024, 48.566155],
+        rotation: 180
+    };
 }
