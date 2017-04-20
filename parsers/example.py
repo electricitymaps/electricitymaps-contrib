@@ -35,7 +35,6 @@ def fetch_production(country_code='FR', session=None):
     }
     """
     r = session or requests.session()
-    formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'https://api.someservice.com/v1/productionmix/latest'
     response = r.get(url)
     obj = r.json()
@@ -81,7 +80,6 @@ def fetch_price(country_code='FR', session=None):
     """
 
     r = session or requests.session()
-    formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'https://api.someservice.com/v1/price/latest'
     response = r.get(url)
     obj = r.json()
@@ -117,7 +115,6 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     """
 
     r = session or requests.session()
-    formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'https://api.someservice.com/v1/exchange/latest?from=%s&to=%s' % (country_code1, country_code2)
     response = r.get(url)
     obj = r.json()
