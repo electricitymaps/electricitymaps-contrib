@@ -28,6 +28,7 @@ ISO_LIST = ISO_LIST.values()
 
 def fetch_production(country_code='US', session=None):
     obj = {
+        'countryCode': country_code,
         'production': {},
         'source': 'github.com/WattTime/pyiso'
     }
@@ -37,9 +38,9 @@ def fetch_production(country_code='US', session=None):
             # Set datetime
             # TODO: Check that datetime is not too old compared to now
             if not 'datetime' in obj:
-                obj['datetime'] = arrow.get(item['timestamp'])
+                obj['datetime'] = arrow.get(item['timestamp']).datetime
             else:
-                obj['datetime'] = max(obj['datetime'], arrow.get(item['timestamp']))
+                obj['datetime'] = max(obj['datetime'], arrow.get(item['timestamp']).datetime)
             
             if not item['fuel_name'] in MAP_FUEL_NAME:
                 key = 'unknown'
