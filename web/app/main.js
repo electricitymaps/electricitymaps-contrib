@@ -756,8 +756,8 @@ function renderMap() {
         return;
     }
 
-    if (!countryMap.center())
-        countryMap.center(geolocation || [12.54, 55.69]);
+    if (!countryMap.center() && geolocation)
+        countryMap.center(geolocation);
     exchangeLayer
         .projection(countryMap.projection())
         .render();
