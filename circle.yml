@@ -15,6 +15,7 @@ stages:
         command: |
           set -exu
           pip install pylint
+          apt-get install libxml2-dev libxslt1-dev python-dev
           pip install -r parsers/requirements.txt
           pylint -E parsers/*.py
       - type: shell
