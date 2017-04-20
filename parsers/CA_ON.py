@@ -66,7 +66,9 @@ def fetch_production(country_code='CA-ON', session=None):
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
                     'countryCode': country_code,
-                    'production': {},
+                    'production': {
+                        'coal': 0
+                    },
                     'storage': {},
                     'source': 'ieso.ca',
                 }

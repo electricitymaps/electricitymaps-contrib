@@ -31,24 +31,24 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
     response = r.get(url)
     obj = response.text.split('\r\n')[1].replace('\r', '').split(',')
 
-    datetime = arrow.get(arrow.get(obj[0], 'DD-MMM-YY HH:mm:ss').datetime, timezone)
+    datetime = arrow.get(
+        arrow.get(obj[0], 'DD-MMM-YY HH:mm:ss').datetime, timezone).datetime
 
-    data = [
-        {
-            'datetime': datetime,
-            'sortedCountryCodes': 'CA-BC->US',
-            'netFlow': float(obj[1]),
-            'source': 'bchydro.com',
-        },
-        {
-            'datetime': datetime,
-            'sortedCountryCodes': 'CA-AB->CA-BC',
-            'netFlow': -1 * float(obj[2]),
-            'source': 'bchydro.com',
-        }
-    ]
+    if (country_code1 == 'CA-BC' and country_code2 == 'US'):
+        sortedCountryCodes = 'CA-BC->US'
+        netFlow = float(obj[1])
+    elif (country_code1 == 'CA-AB' and country_code2 == 'CA-BC'):
+        sortedCountryCodes = 'CA-AB->CA-BC'
+        netFlow = -1 * float(obj[2])
+    else:
+        raise NotImplementedError('This exchange pair is not implemented')
 
-    return data
+    return {
+        'datetime': datetime,
+        'sortedCountryCodes': sortedCountryCodes,
+        'netFlow': netFlow,
+        'source': 'bchydro.com',
+    }
 
 
 if __name__ == '__main__':
