@@ -1,14 +1,17 @@
 var d3 = require('d3');
 
 function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) {
-    this.PADDING_X = 10; // Inner padding allow place for the axis text
+    this.PADDING_X = 13; // Inner padding allow place for the axis text
+    this.PADDING_Y = 10; // Inner padding allow place for the axis text
 
     this.root = d3.select(selector);
-    this.scale = d3ColorScale.copy();
-    this.colors = d3ColorScale.range();
-    this.domain = d3ColorScale.domain();
+    this.root.selectAll('*').remove();
     this.d3TickFormat = d3TickFormat;
     this.d3TickValues = d3TickValues;
+    this.originalColorScale = d3ColorScale;
+    this._setDomainAndRange(
+        d3ColorScale.domain(),
+        d3ColorScale.range ? d3ColorScale.range() : undefined)
 
     this.gColorbar = this.root.append('g')
         .attr('transform', 'translate(' + this.PADDING_X + ', 0)');
@@ -69,19 +72,20 @@ function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) 
 HorizontalColorbar.prototype.render = function() {
     this.width = this.root.node().getBoundingClientRect().width;
     this.height = this.root.node().getBoundingClientRect().height;
+    if (!this.width || !this.height) return this;
 
     this.colorbarWidth = this.width - 2 * this.PADDING_X;
-    this.colorbarHeight = this.height - 2 * this.PADDING_X;
+    this.colorbarHeight = this.height - 2 * this.PADDING_Y;
 
     var that = this;
 
     if (this.scale.ticks) {
         // Linear scale
         var pixelRelativeScale = d3.scaleLinear()
-            .domain([d3.min(this.domain), d3.max(this.domain)])
+            .domain([d3.min(this._domain), d3.max(this._domain)])
             .range([0, 1]);
         this.scale
-            .range(this.domain.map(function (d, i) {
+            .range(this._domain.map(function (d, i) {
                 return pixelRelativeScale(d) * that.colorbarWidth;
             }));
 
@@ -92,7 +96,7 @@ HorizontalColorbar.prototype.render = function() {
             .append('stop')
         .merge(stops)
             .attr('offset', function(d, i) { 
-                return pixelRelativeScale(that.domain[i]);
+                return i / (that.colors.length - 1);
             })
             .attr('stop-color', function (d) { return d; });
         // Add a rect with the gradient
@@ -132,7 +136,7 @@ HorizontalColorbar.prototype.render = function() {
     // Draw the horizontal axis
     var axis = d3.axisBottom(this.scale)
         .tickSizeInner(this.colorbarHeight / 2.0)
-        .tickPadding(3);
+        .tickPadding(3).ticks(7);
     if (this.d3TickFormat)
         axis.tickFormat(this.d3TickFormat);
     if (this.d3TickValues)
@@ -156,6 +160,10 @@ HorizontalColorbar.prototype.render = function() {
 }
 
 HorizontalColorbar.prototype.currentMarker = function(d) {
+    this.width = this.root.node().getBoundingClientRect().width;
+    this.height = this.root.node().getBoundingClientRect().height;
+    if (!this.width || !this.height) return this;
+
     if (d !== undefined) {
         if (this.scale.ticks) {
             // Linear
@@ -174,12 +182,34 @@ HorizontalColorbar.prototype.currentMarker = function(d) {
         this.gColorbar.select('.marker')
             .style('display', 'none')
     }
+    return this;
 }
 
 HorizontalColorbar.prototype.markerColor = function(arg) {
     this.gColorbar.select('.marker')
         .style('stroke', arg);
     return this;
+}
+
+HorizontalColorbar.prototype.domain = function(arg) {
+    if (!arg) return this._domain;
+    this._setDomainAndRange(arg, undefined);
+    return this;
+}
+
+HorizontalColorbar.prototype._setDomainAndRange = function(d, r) {
+    var that = this;
+
+    this._domain = d;
+    this.colors = r ?
+        r :
+        d3.range(10).map(function(i) { 
+            var e = d3.extent(that._domain);
+            return that.originalColorScale(d3.interpolate(e[0], e[1])(i / (10 - 1)));
+        });
+    this.scale = d3.scaleLinear()
+        .range(this.colors)
+        .domain(this._domain);
 }
 
 module.exports = HorizontalColorbar;

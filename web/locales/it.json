@@ -1,0 +1,76 @@
+{
+    "panel-initial-text": {
+        "thisshowsrealtime": "Questo mostra in tempo reale",
+        "whereelectricitycomesfrom": "da dove viene la tua elettricità",
+        "and": "e",
+        "howmuchco2": "quanta CO2",
+        "wasemitted": "è stata emessa per produrla",
+
+        "takeinaccount": "Seguendo le frecce vedrai quale elettricità",
+        "importexport": "è importata ed esportata",
+        "betweencountries": "attraverso le nazioni",
+
+        "thisproject": "Questo progetto è",
+        "opensource": "libero",
+        "see": "vedi",
+        "datasources": "le fonti dei dati",
+
+        "tip": "Consiglio: Clicca su una nazione per iniziare l'esplorazione"
+    },
+    "country-panel": {
+        "source": "fonte",
+        "fossilfuels": "carburanti fossili",
+        "carbonintensity": "Intensità del carbonio",
+        "electricityprice": "Prezzo dell'elettricità",
+        "electricityprice-dayahead": "Al giorno",
+        "electricityproduction": "Produzione di elettricità",
+        "showemissions": "mostra emissioni",
+        "bysource": "per fonte",
+        "emissions": "Emissioni",
+        "showelectricity": "mostra elettricità",
+        "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
+    },
+    "rankings-panel": {
+        "country-ranking": "Classifica dei paesi",
+        "show-ranking": "Mostra la classifica"
+    },
+    "country-history": {
+        "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore"
+    },
+    "footer": {
+        "likethisvisu": "Ti piace la vista?",
+        "loveyourfeedback": "Amiamo avere delle opinioni",
+        "foundbugs": "Hai trovato dei problemi o hai delle idee? Segnalali ",
+        "here": "qua"
+    },
+    "legends": {
+        "windpotential": "Potenziale eolico",
+        "solarpotential": "Potenziale fotovoltaico",
+        "colorblindmode": "modalità daltonico",
+        "carbonintensity": "Intensità del carbonio"
+    },
+    "tooltips": {
+        "electricityprice": "Prezzo dell'elettricità (Al giorno)",
+        "fossilfuels": "carburanti fossili",
+        "carbonintensity": "Intensità del carbonio",
+        "crossborderexport": "Esportazione tra confini",
+        "carbonintensityexport": "Intensità del carbonio nell'esportazione",
+        "of": "di",
+        "ofconsumption": "di",
+        "ofinstalled": "della capacità installata",
+        "ofelectricity": "di",
+        "utilizing": "utilizzando",
+        "withcarbonintensity": "con un'intensità del carbonio di "
+    },
+    "misc": {
+        "maintitle": "Emissioni CO2 in tempo reale del consumo elettrico",
+        "lastupdate": "Ultimo aggiornamento",
+        "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
+        "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare."
+        },
+    "menu": {
+        "mapview": "Mappa",
+        "listview": "Lista",
+        "info": "Info"
+    }
+}

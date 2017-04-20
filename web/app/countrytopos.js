@@ -8,7 +8,12 @@ var exports = module.exports = {};
 exports.addCountryTopos = function(countries) {
     function getSubUnits(ids) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
-            return ids.indexOf(d.subid) != -1;
+            return ids.indexOf(d.properties.subid) != -1;
+        }));
+    }
+    function getState(countryId, code_hasc) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return d.id == countryId && d.properties.code_hasc == code_hasc;
         }));
     }
     function getCountry(id) {
@@ -16,9 +21,15 @@ exports.addCountryTopos = function(countries) {
             return d.id == id;
         }));
     }
+    function getMergedCountries(ids) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return ids.indexOf(d.id) != -1;
+        }));
+    }
 
-    // Map between "countries" iso_a2 and adm0_a3 in order to support XK, GB etc..
+    // Map between "countries" iso_a2 and adm0_a3 in order to support XX, GB etc..
     // Note that the definition of "countries" is very vague here..
+    // Specific case of Kosovo and Serbia: considered as a whole as long as they will be reported together in ENTSO-E. 
     countries['AL'] = getCountry('ALB');
     countries['AM'] = getCountry('ARM');
     countries['AT'] = getCountry('AUT');
@@ -62,7 +73,7 @@ exports.addCountryTopos = function(countries) {
     countries['MK'] = getCountry('MKD');
     countries['ME'] = getCountry('MNE');
     countries['MT'] = getCountry('MLT');
-    countries['NIR'] = getSubUnits(['NIR']);
+    countries['GB-NIR'] = getSubUnits(['NIR']);
     countries['NL'] = getCountry('NLD');
     countries['NO'] = getCountry('NOR');
     countries['PL'] = getCountry('POL');
@@ -70,7 +81,7 @@ exports.addCountryTopos = function(countries) {
     countries['PT'] = getCountry('PRT');
     countries['RO'] = getCountry('ROU');
     countries['RU'] = getCountry('RUS');
-    countries['RS'] = getCountry('SRB');
+    countries['RS'] = getMergedCountries(['SRB','KOS']);
     countries['SA'] = getCountry('SAU');
     countries['SK'] = getCountry('SVK');
     countries['SI'] = getCountry('SVN');
@@ -83,7 +94,17 @@ exports.addCountryTopos = function(countries) {
     countries['UZ'] = getCountry('UZB');
 
     countries['XX'] = getCountry('CYN');
-    countries['XK'] = getCountry('KOS');
+
+    // Australia
+    countries['AUS-TAS'] = getState('AUS', 'AU.TS');
+    countries['AUS-NSW'] = getState('AUS', 'AU.NS');
+    countries['AUS-QLD'] = getState('AUS', 'AU.QL');
+    countries['AUS-SA'] = getState('AUS', 'AU.SA');
+    countries['AUS-VIC'] = getState('AUS', 'AU.VI');
+    countries['AUS-WA'] = getState('AUS', 'AU.WA');
+    countries['AUS-NT'] = getState('AUS', 'AU.NT');
+    countries['AUS-ACT'] = getState('AUS', 'AU.AC');
+    
 
     // Clear memory
     topos = [];

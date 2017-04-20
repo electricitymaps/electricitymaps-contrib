@@ -1,0 +1,8 @@
+.code-push.config
+node_modules
+
+locales
+plugins
+platforms
+
+www/electricitymap

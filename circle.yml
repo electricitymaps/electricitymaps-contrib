@@ -1,25 +1,43 @@
-machine:
-  pre:
-    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-    - sudo curl -L -o /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.9.0/docker-compose-`uname -s`-`uname -m`
-    - sudo chmod +x /usr/local/bin/docker-compose
-  services:
-    - docker
-dependencies:
-  cache_directories:
-    - '~/docker'
-  override:
-    - touch secrets.env
-    - if [[ -e ~/docker/web.tar ]]; then docker load -i ~/docker/web.tar; fi
-    - if [[ -e ~/docker/feeder.tar ]]; then docker load -i ~/docker/feeder.tar; fi
-    - docker-compose build
-    - mkdir -p ~/docker; docker save electricitymap_web:latest > ~/docker/web.tar
-    - mkdir -p ~/docker; docker save electricitymap_feeder:latest > ~/docker/feeder.tar
-    - docker-compose run web npm run build-release
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose logs web
-    - curl --fail -i http://localhost:8000/
-test:
-  override:
-    - echo "no test"
+version: 2
+executorType: machine
+stages:
+  build:
+    workDir: ~/electricitymap
+    steps:
+      - type: checkout
+      - type: shell
+        name: Show versions
+        command: |
+          docker --version
+          docker-compose --version
+      - type: shell
+        name: Lint
+        command: |
+          set -exu
+          pip install pylint
+          pip install -r parsers/requirements.txt
+          pylint -E parsers
+      - type: shell
+        name: Build
+        command: |
+          set -exu
+          touch secrets.env
+          docker-compose build
+          docker-compose run web npm run build-release
+      - type: shell
+        name: Start environment
+        command: |
+          set -exu
+          docker-compose up -d
+          sleep 20
+          docker-compose logs web
+      - type: shell
+        name: Run tests
+        command: |
+          docker-compose ps
+          curl --fail -i http://localhost:8000/
+          curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/exchanges?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/production?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/price?countryCode=FR
+          curl --fail -i http://localhost:8000/v2/history?countryCode=FR

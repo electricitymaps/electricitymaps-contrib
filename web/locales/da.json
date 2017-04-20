@@ -1,0 +1,76 @@
+{
+    "panel-initial-text": {
+        "thisshowsrealtime": "Dette viser i realtid",
+        "whereelectricitycomesfrom": "hvor din elektricitet kommer fra",
+        "and": "og",
+        "howmuchco2": "hvor meget CO2",
+        "wasemitted": "der er blevet udledt for at producere det",
+
+        "takeinaccount": "Vi medtager",
+        "importexport": "import og eksport af elektricitet",
+        "betweencountries": "mellem lande",
+
+        "thisproject": "Projektet er",
+        "opensource": "Open Source",
+        "see": "se",
+        "datasources": "kildekode",
+
+        "tip": "Tip: Klik på et land for at udforske"
+    },
+    "country-panel": {
+        "source": "kilde",
+        "fossilfuels": "Fossile brændsler",
+        "carbonintensity": "CO2 intensitet",
+        "electricityprice": "Elpris",
+        "electricityprice-dayahead": "næste-dags pris",
+        "electricityproduction": "Elproduktion",
+        "showemissions": "vis CO2 udledning",
+        "bysource": "efter kilde",
+        "emissions": "Udledning",
+        "showelectricity": "vis el",
+        "co2signal": "Vores <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjælper elektriske apparater og elbiler med at bruge elektricitet på rette tidspunkt, især på tværs af grænserne."
+    },
+    "rankings-panel": {
+        "country-ranking": "Landerangering",
+        "show-ranking": "Vis rangering"
+    },
+    "country-history": {
+        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer"
+    },
+    "footer": {
+        "likethisvisu": "Kan du lide visualiseringen?",
+        "loveyourfeedback": "Vi værdsætter din mening",
+        "foundbugs": "Har du fundet fejl eller har du ideer? Skriv",
+        "here": "her"
+    },
+    "legends": {
+        "windpotential": "Vindpotentiale",
+        "solarpotential": "Solpotentiale",
+        "colorblindmode": "farveblind indstilling",
+        "carbonintensity": "CO2 intensitet"
+    },
+    "tooltips": {
+        "electricityprice": "Elpris (næste-dag)",
+        "fossilfuels": "fossile brændsler",
+        "carbonintensity": "CO2 intensitet",
+        "crossborderexport": "Eksport til udlandet",
+        "carbonintensityexport": "Eksport CO2 intensitet",
+        "of": "af",
+        "ofconsumption": "af",
+        "ofinstalled": "af installeret kapacitet",
+        "ofelectricity": "af",
+        "utilizing": "udnytter",
+        "withcarbonintensity": "med en CO2 intensitet på"
+    },
+    "misc": {
+        "maintitle": "Realtids CO2-udledning af elforbruget",
+        "lastupdate": "Sidst opdateret",
+        "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
+        "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere."
+        },
+    "menu": {
+        "mapview": "Kort",
+        "listview": "Liste",
+        "info": "Info"
+    }
+}

@@ -10,11 +10,24 @@ var windCanvas;
 var projection;
 var windLayer;
 
+var lastDraw;
+
 var WIND_OPACITY = 0.53;
+
+exports.isExpired = function(now, grib1, grib2) {
+    return grib.getTargetTime(grib2[0]) <= moment(now) || grib.getTargetTime(grib1[0]) > moment(now);
+}
 
 exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProjection) {
     if (!argProjection)
         throw Error('Projection can\'t be null/undefined');
+
+    // Only redraw after 5min
+    if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+        return;
+    }
+
+    lastDraw = new Date().getTime();
 
     var t_before = grib.getTargetTime(gribs1[0]);
     var t_after = grib.getTargetTime(gribs2[0]);
@@ -44,8 +57,13 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
 };
 
 exports.show = function() {
-    var width = parseInt(windCanvas.attr('width'));
-    var height = parseInt(windCanvas.attr('height'));
+    if (windLayer.started) { return; }
+    var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
+    var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
+    // Canvas needs to have it's width and height attribute set
+    windCanvas
+        .attr('width', width)
+        .attr('height', height);
     var sw = projection.invert([0, height]);
     var ne = projection.invert([width, 0]);
     windCanvas.transition().style('opacity', WIND_OPACITY);
