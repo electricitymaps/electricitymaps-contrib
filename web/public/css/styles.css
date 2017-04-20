@@ -367,6 +367,7 @@ div.fb-share-button span, div.fb-share-button span iframe {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 9;
 }
 
 .watermark {

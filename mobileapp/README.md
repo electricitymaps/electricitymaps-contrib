@@ -18,7 +18,7 @@ To do a release build (android):
 cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey
 ```
 
-To do a release build (android):
+To do a release build (ios):
 ```
 cordova build ios --release
 ```
