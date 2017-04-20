@@ -16,7 +16,7 @@ stages:
           set -exu
           pip install pylint
           pip install -r parsers/requirements.txt
-          pylint -E parsers
+          pylint -E parsers/*.py
       - type: shell
         name: Build
         command: |

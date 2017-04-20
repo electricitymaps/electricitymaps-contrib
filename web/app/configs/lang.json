@@ -153,6 +153,12 @@
             "BE": "Belgium",
             "BG": "Bulgaria",
             "BY": "Belarus",
+            "CA-AB": "Canada (Alberta)",
+            "CA-BC": "Canada (British Columbia)",
+            "CA-MB": "Canada (Manitoba)",
+            "CA-NS": "Canada (Nova Scotia)",
+            "CA-ON": "Canada (Ontario)",
+            "CA-QC": "Canada (Québec)",
             "CH": "Switzerland",
             "CY": "Cyprus",
             "CZ": "Czechia",
@@ -206,6 +212,7 @@
             "TN": "Tunisia",
             "TR": "Turkey",
             "UA": "Ukraine",
+            "US": "United States of America",
             "UZ": "Uzbekistan"
         }
     },

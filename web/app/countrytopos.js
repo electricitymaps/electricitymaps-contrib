@@ -106,11 +106,24 @@ exports.addCountryTopos = function(countries) {
     countries['AUS-ACT'] = getState('AUS', 'AU.AC');
 
     // North America
-    countries['CA'] = getCountry('CAN');
     countries['US'] = getCountry('USA');
     countries['MX'] = getCountry('MEX');
     countries['CU'] = getCountry('CUB');
     countries['DO'] = getCountry('DOM');
+    // countries['CA'] = getCountry('CAN');
+    countries['CA-AB'] = getState('CAN', 'CA.AB');
+    countries['CA-BC'] = getState('CAN', 'CA.BC');
+    countries['CA-MB'] = getState('CAN', 'CA.MB');
+    countries['CA-NB'] = getState('CAN', 'CA.NB');
+    countries['CA-NL'] = getState('CAN', 'CA.NL');
+    countries['CA-NS'] = getState('CAN', 'CA.NS');
+    countries['CA-ON'] = getState('CAN', 'CA.ON');
+    countries['CA-PE'] = getState('CAN', 'CA.PE');
+    countries['CA-QC'] = getState('CAN', 'CA.QC');
+    countries['CA-SK'] = getState('CAN', 'CA.SK');
+    countries['CA-NT'] = getState('CAN', 'CA.NT');
+    countries['CA-NU'] = getState('CAN', 'CA.NU');
+    countries['CA-YT'] = getState('CAN', 'CA.YT');
     
 
     // Clear memory
