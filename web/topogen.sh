@@ -21,7 +21,7 @@ unzip -od build build/${STATES_FILENAME}.zip
 
 # Parse countries
 (shp2json -n build/${COUNTRIES_FILENAME}.shp \
-| ndjson-map '(d.id = d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
+| ndjson-map '(d.id = (d.properties.iso_a3 != "-99") ? d.properties.iso_a3 : d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
 #| grep "$COUNTRIES_FILTER"
 )>> build/tmp.json
 

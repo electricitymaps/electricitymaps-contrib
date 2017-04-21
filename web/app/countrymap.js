@@ -9,27 +9,6 @@ function CountryMap(selector, co2color) {
     this.selectedCountry = undefined;
     this._center = undefined;
 
-    this.regionParams = {
-        'europe': {
-            'sw': [-15, 34.7],
-            'ne': [34, 72],
-            'center': [0, 50],
-            'scale': 1.5
-        },
-        'oceania': {
-            'sw': [105, -47],
-            'ne': [165.55, 0],
-            'center': [115.17, -24.98],
-            'scale': 0.6
-        },
-        'northamerica': {
-            'sw': [-125, 25],
-            'ne': [-65.537169,  70.547190],
-            'center': [-101.748106, 36.812391],
-            'scale': 1.0
-        }
-    }
-
     this.root = d3.select(selector)
         .style('transform-origin', '0px 0px')
         .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
@@ -96,30 +75,39 @@ CountryMap.prototype.render = function() {
     if (!this.containerHeight || !this.containerWidth)
         return this;
 
-    var scale = this.containerHeight * this.regionParams[this.region()].scale;
-    // Determine map width and height based on bounding box of Europe
-    var sw = this.regionParams[this.region()].sw;
-    var ne = this.regionParams[this.region()].ne;
-    var center = this.regionParams[this.region()].center; // Center of the map projection
-    this._projection = d3.geoTransverseMercator()
-        .rotate([-center[0], -center[1]])
+    var scale = 200;
+    this._projection = d3.geoMercator()
+        .rotate([0,0])
         .scale(scale)
-        .translate([0, 0]); // Warning, default translation is [480, 250]
-    var projected_sw = this._projection(sw);
-    var projected_ne = this._projection(ne);
-    // This is a curved representation, so take all 4 corners in order to make
-    // sure we include them all
-    var se = [ne[0], sw[1]];
-    var nw = [sw[0], ne[1]];
-    var projected_se = this._projection(se);
-    var projected_nw = this._projection(nw);
-    this.mapWidth = Math.max(projected_ne[0], projected_se[0]) -
-        Math.min(projected_sw[0], projected_nw[0]); // TODO: Never do width < 100% !
-    this.mapHeight = Math.max(projected_sw[1], projected_se[1]) -
-        Math.min(projected_ne[1], projected_nw[1]);
+        .translate([scale * Math.PI, scale * Math.PI]); // Warning, default translation is [480, 250]
+
+    // taken from http://bl.ocks.org/patricksurry/6621971
+
+    // find the top left and bottom right of current projection
+    function mercatorBounds(projection, maxlat) {
+        var yaw = projection.rotate()[0],
+            xymax = projection([-yaw+180-1e-6,-maxlat]),
+            xymin = projection([-yaw-180+1e-6, maxlat]);
+        
+        return [xymin,xymax];
+    }
+
+    var maxlat = 83; // clip northern and southern poles (infinite in mercator)
+    var b = mercatorBounds(this._projection, maxlat);
+    this.mapWidth = b[1][0] - b[0][0];
+    this.mapHeight = b[1][1] - b[0][1];
+
+    if (this.mapHeight == 0 || this.mapWidth == 0) {
+        throw Error('Invalid map dimensions');
+    }
+
     // Width and height should nevertheless never be smaller than the container
     this.mapWidth  = Math.max(this.mapWidth,  this.containerWidth);
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
+
+    this.zoom
+        .scaleExtent([1, 6])
+        .translateExtent([[0, 0], [this.mapWidth, this.mapHeight]]);
 
     this.root
         .style('height', this.mapHeight + 'px')
@@ -128,24 +116,11 @@ CountryMap.prototype.render = function() {
         .style('height', this.mapHeight + 'px')
         .style('width', this.mapWidth + 'px');
 
-    // Set proper translation now that we have all information needed
-    // Right now we set the upper left point to be at (0, 0)
-    var upperleft = [
-        Math.min(projected_sw[0], projected_nw[0]),
-        Math.min(projected_nw[1], projected_ne[1])
-    ];
-    this._projection
-        .translate([-upperleft[0], -upperleft[1]]);
-
-    this.zoom
-        .scaleExtent([1, 5])
-        .translateExtent([[0, 0], [this.mapWidth, this.mapHeight]]);
-
     this.path = d3.geoPath()
         .projection(this._projection);
         
-    var graticuleData = d3.geoGraticule()
-        .step([5, 5]);
+    // var graticuleData = d3.geoGraticule()
+    //     .step([5, 5]);
         
     // this.graticule
     //     .datum(graticuleData)
@@ -244,15 +219,6 @@ CountryMap.prototype.onCountryMouseMove = function(arg) {
 CountryMap.prototype.onCountryMouseOut = function(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
-    return this;
-};
-
-CountryMap.prototype.region = function(region) {
-    if (!region) {
-        return this._region;
-    } else {
-        this._region = region;
-    }
     return this;
 };
 

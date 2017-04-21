@@ -67,7 +67,7 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     // because of the projection.
     // Here everything is hardcoded
     var minLAt, maxLat, minLon, maxLon
-    if (region == 'europe') {
+    if (region == 'europe' || region == undefined) {
         minLat = 20;
         maxLat = 80;
         minLon = -40;
