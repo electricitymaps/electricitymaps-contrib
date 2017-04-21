@@ -749,8 +749,18 @@ function renderMap() {
         return;
     }
 
-    if (!countryMap.center())
-        countryMap.center(geolocation || [0, 50]);
+    if (!countryMap.center()) {
+        if (geolocation) {
+            countryMap.center(geolocation);
+        } else if (selectedCountryCode) {
+            var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
+            var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
+            console.log(lon, lat)
+            countryMap.center([lon, lat]);
+        } else {
+            countryMap.center([0, 50]);
+        }
+    }
     exchangeLayer
         .projection(countryMap.projection())
         .render();
