@@ -14,6 +14,7 @@
         "opensource": "Open Source",
         "see": "zie",
         "datasources": "data sources",
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
 
         "tip": "Tip: Klik op een land om alle informatie te ontdekken"
     },
@@ -28,6 +29,7 @@
         "bysource": "per bron",
         "emissions": "Uitstoot",
         "showelectricity": "toon elektriciteit",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Ons product <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
     },
     "rankings-panel": {

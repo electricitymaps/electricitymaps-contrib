@@ -195,9 +195,6 @@ line, path {
 .left-panel-toolbar-right-placeholder {
     width: 2.875rem;
 }
-.left-panel-country-metadata .left-panel-country-metadata-source {
-    float: right;
-}
 
 .country-name-time {
     text-align: center;

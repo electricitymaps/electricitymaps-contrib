@@ -14,6 +14,7 @@
         "opensource": "Open Source",
         "see": "voir",
         "datasources": "source des données",
+        "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>",
 
         "tip": "Cliquez sur un pays pour explorer"
     },
@@ -28,6 +29,7 @@
         "bysource": "par source",
         "emissions": "Emissions",
         "showelectricity": "montrer la production électrique",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Notre <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> permet aux appareils et voitures électriques de consommer au bon moment."
     },
     "rankings-panel": {

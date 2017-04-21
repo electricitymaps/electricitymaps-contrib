@@ -14,6 +14,7 @@
         "opensource": "öppen källkod",
         "see": "se",
         "datasources": "datakällor",
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
 
         "tip": "Tips: Klicka på ett land för att börja utforska"
     },
@@ -28,6 +29,7 @@
         "bysource": "per källa",
         "emissions": "Utsläpp",
         "showelectricity": "visa elproduktion",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Vår <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
     },
     "rankings-panel": {

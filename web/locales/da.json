@@ -14,6 +14,7 @@
         "opensource": "Open Source",
         "see": "se",
         "datasources": "kildekode",
+        "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit land</a>",
 
         "tip": "Tip: Klik på et land for at udforske"
     },
@@ -28,6 +29,7 @@
         "bysource": "efter kilde",
         "emissions": "Udledning",
         "showelectricity": "vis el",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
         "co2signal": "Vores <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjælper elektriske apparater og elbiler med at bruge elektricitet på rette tidspunkt, især på tværs af grænserne."
     },
     "rankings-panel": {
