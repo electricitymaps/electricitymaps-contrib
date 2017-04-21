@@ -113,11 +113,13 @@ def fetch_exchange(country_code1='NZ-NZN', country_code2='NZ-NZS', session=None)
     datetime_start = arrow.get(arrow.now().datetime, 'Pacific/Auckland').floor('day')
     data = []
     for item in obj['data']['mw_north']:
-        datetime = datetime_start.replace(minutes=+item[0]).datetime
+        datetime = datetime_start.replace(minutes=+item[0])
+        if datetime > arrow.get() or item[1] is None:
+            continue
         netFlow = item[1]
         data.append({
-              'sortedCountryCode': 'NZ-NZN->NZ-NZS',
-              'datetime': datetime,
+              'sortedCountryCodes': 'NZ-NZN->NZ-NZS',
+              'datetime': datetime.datetime,
               'netFlow': -1 * netFlow,
               'source': 'transpower.co.nz'
           })
