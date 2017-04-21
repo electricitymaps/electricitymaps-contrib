@@ -12,7 +12,7 @@ exports.isExpired = function (now, grib1, grib2) {
     return grib.getTargetTime(grib2) <= moment(now) || grib.getTargetTime(grib1) > moment(now);
 }
 
-exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projection, region, callback) {
+exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projection, callback) {
 
     // Only redraw after 5min
     if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
@@ -66,23 +66,10 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     // Warning: the bounding box in lonlat might be smaller than in px,
     // because of the projection.
     // Here everything is hardcoded
-    var minLAt, maxLat, minLon, maxLon
-    if (region == 'europe' || region == undefined) {
-        minLat = 20;
-        maxLat = 80;
-        minLon = -40;
-        maxLon = 110;
-    } else if (region == 'oceania') {
-        minLat = -60;
-        maxLat = 10;
-        minLon = 100;
-        maxLon = 170;
-    } else if (region = 'northamerica') {
-        minLat = 20;
-        maxLat = 80;
-        minLon = -125;
-        maxLon = -60;
-    }
+    var minLat = -180;
+    var maxLat = 180;
+    var minLon = -180;
+    var maxLon = 180;
     h = maxLat - minLat;
     w = maxLon - minLon;
 

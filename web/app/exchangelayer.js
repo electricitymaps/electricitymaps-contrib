@@ -84,7 +84,7 @@ ExchangeLayer.prototype.render = function() {
     var maxCarbonIntensity = 800; // we only have arrows up to a certain point
     // Calculate arrow scale
     // Note: the scaling should be based on the same metric as countryMap
-    this.arrowScale(0.05);
+    this.arrowScale(0.1);
 
     // This object refers to all arrows
     // Here we add all dynamic properties (i.e. that depend on data)

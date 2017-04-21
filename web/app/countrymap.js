@@ -75,7 +75,7 @@ CountryMap.prototype.render = function() {
     if (!this.containerHeight || !this.containerWidth)
         return this;
 
-    var scale = 200;
+    var scale = 400;
     this._projection = d3.geoMercator()
         .rotate([0,0])
         .scale(scale)
@@ -106,7 +106,7 @@ CountryMap.prototype.render = function() {
     this.mapHeight = Math.max(this.mapHeight, this.containerHeight);
 
     this.zoom
-        .scaleExtent([1, 6])
+        .scaleExtent([0.5, 6])
         .translateExtent([[0, 0], [this.mapWidth, this.mapHeight]]);
 
     this.root

@@ -790,7 +790,6 @@ function renderMap() {
             solar.forecasts[1],
             solarColor,
             countryMap.projection(),
-            region,
             function() {
                 if (solarEnabled)
                     Solar.show();
