@@ -326,4 +326,9 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [-92.722024, 48.566155],
         rotation: 180
     };
+    // ** Oceania
+    exchanges['NZ-NZN->NZ-NZS'] = {
+        lonlat: [174.424066, -41.140732],
+        rotation: 90
+    };
 }
