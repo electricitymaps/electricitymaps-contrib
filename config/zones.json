@@ -107,6 +107,12 @@
     "NL": {
         
     },
+    "NZ-NZN": {
+        "flag_file_name": "nz.png"
+    },
+    "NZ-NZS": {
+        "flag_file_name": "nz.png"
+    },
     "NO": {
         
     },

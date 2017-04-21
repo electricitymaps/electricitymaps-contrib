@@ -13,17 +13,20 @@ function CountryMap(selector, co2color) {
         'europe': {
             'sw': [-15, 34.7],
             'ne': [34, 72],
-            'center': [0, 50]
+            'center': [0, 50],
+            'scale': 1.5
         },
-        'australia': {
-            'sw': [110.47, -44.30],
-            'ne': [155.55, -7.30],
-            'center': [115.17, -24.98]
+        'oceania': {
+            'sw': [105, -47],
+            'ne': [165.55, 0],
+            'center': [115.17, -24.98],
+            'scale': 0.6
         },
         'northamerica': {
             'sw': [-125, 25],
             'ne': [-65.537169,  70.547190],
-            'center': [-101.748106, 36.812391]
+            'center': [-101.748106, 36.812391],
+            'scale': 1.0
         }
     }
 
@@ -93,7 +96,7 @@ CountryMap.prototype.render = function() {
     if (!this.containerHeight || !this.containerWidth)
         return this;
 
-    var scale = this.containerHeight * 1.5;
+    var scale = this.containerHeight * this.regionParams[this.region()].scale;
     // Determine map width and height based on bounding box of Europe
     var sw = this.regionParams[this.region()].sw;
     var ne = this.regionParams[this.region()].ne;
