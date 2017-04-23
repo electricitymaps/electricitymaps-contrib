@@ -609,8 +609,15 @@ if(showPageState) {
 }
 
 function showPage(pageName) {
+
+    if (showPageState == previousShowPageState && pageName != 'country') {
+        // Nothing changed. Return early.
+        return;
+    }
+
     if (showPageState != 'country')
         previousShowPageState = showPageState;
+
     showPageState = pageName;
     replaceHistoryState('page', showPageState);
 
