@@ -31,10 +31,11 @@ unzip -od build build/${STATES_FILENAME}.zip
 | grep "$STATES_FILTER"
 )>> build/tmp.json
 
-# Merge
-geo2topo -q 1e5 -n countries=<(cat build/tmp.json | geostitch -n) \
+# Merge & simplify
+(geo2topo -q 1e5 -n countries=<(cat build/tmp.json | geostitch -n) \
 | topomerge land=countries \
-> app/world_50m.json
+| toposimplify -f -p 0.01
+)> app/world_50m.json
 
 (shp2json -n build/${STATES_FILENAME}.shp \
   | ndjson-map 'd.properties' \
