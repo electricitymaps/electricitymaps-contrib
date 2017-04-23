@@ -81,11 +81,11 @@
                     <h1>
                         <%= __('misc.maintitle') %>
                     </h1>
-                    <div id="current-datetime" class="large-screen-visible">
+                    <div class="large-screen-visible">
                         <div>
                             <%= __('misc.lastupdate') %>:
-                            <span id="current-date"></span>
-                            <span id="current-time"></span>
+                            <span class="current-datetime"></span>
+                            <small>(<span class="current-datetime-from-now"></span>)</small>
                         </div>
                     </div>
                     <hr />
@@ -181,6 +181,9 @@
                         </div>
                         <svg class="country-table"></svg>
                         <p>
+                            <%= __('misc.lastupdate') %>:
+                            <span class="current-datetime"></span>
+                            <small>(<span class="current-datetime-from-now"></span>)</small><br />
                             <%=__('country-panel.source')%>:
                             <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">
                                 <span class="country-data-source"></span>

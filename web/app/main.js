@@ -633,6 +633,9 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
+        if (co2Colorbar) co2Colorbar.render();
+        if (windEnabled) windColorbar.render();
+        if (solarEnabled) solarColorbar.render();
     }
     else {
         d3.select('.left-panel').classed('large-screen-visible', false);
@@ -836,9 +839,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
 
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
-    d3.select('#current-date').text(currentMoment.format('LL'));
-    d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
-    d3.selectAll('#current-date, #current-time')
+    d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
+    d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
+    d3.selectAll('#current-datetime, #current-datetime-from-now')
         .style('color', 'darkred')
         .transition()
             .duration(800)

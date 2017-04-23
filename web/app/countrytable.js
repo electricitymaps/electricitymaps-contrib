@@ -118,8 +118,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var datetime = this._data.stateDatetime || this._data.datetime;
     panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 64));
     panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
-    panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago')
-    panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?')
+    panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago');
+    panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?');
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
