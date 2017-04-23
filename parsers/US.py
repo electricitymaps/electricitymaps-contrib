@@ -11,7 +11,8 @@ MAP_FUEL_NAME = {
     'oil': 'oil',
     'refuse': 'biomass',
     'solar': 'solar',
-    'wind': 'wind'
+    'wind': 'wind',
+    'other': 'unknown'
 }
 
 # Note: the list of ISOs is taken from https://github.com/WattTime/pyiso/blob/master/pyiso/__init__.py#L20
@@ -42,10 +43,14 @@ def fetch_production(country_code='US', session=None):
             else:
                 obj['datetime'] = max(obj['datetime'], arrow.get(item['timestamp']).datetime)
             
-            if not item['fuel_name'] in MAP_FUEL_NAME:
+            fuel_name = item['fuel_name']
+            if not fuel_name in MAP_FUEL_NAME:
+                # print 'Warning: %s in %s is an unknown fuel type' % (fuel_name, iso)
                 key = 'unknown'
+                pass
             else:
-                key = MAP_FUEL_NAME[item['fuel_name']]
+                # print '%s in %s' % (fuel_name, iso)
+                key = MAP_FUEL_NAME[fuel_name]
             obj['production'][key] = obj['production'].get(key, 0.0) + item['gen_MW']
     return obj
 
