@@ -7,7 +7,12 @@ function CountryMap(selector, co2color) {
     this.STROKE_COLOR = '#555555';
 
     this.selectedCountry = undefined;
+
     this._center = undefined;
+
+    this.getCo2Color = function (d) {
+        return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'gray';
+    };
 
     this.root = d3.select(selector)
         .style('transform-origin', '0px 0px')
@@ -128,9 +133,6 @@ CountryMap.prototype.render = function() {
 
     var that = this;
     if (this._data) {
-        var getCo2Color = function (d) {
-            return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'gray';
-        };
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
         selector.enter()
@@ -138,7 +140,8 @@ CountryMap.prototype.render = function() {
                 .attr('class', 'country')
                 .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
-                .attr('fill', getCo2Color)
+                .attr('fill', this.getCo2Color)
+                .attr('d', this.path) // path is only assigned on create
                 .on('mouseover', function (d, i) {
                     if (that.countryMouseOverHandler)
                         return that.countryMouseOverHandler.call(this, d, i);
@@ -165,10 +168,9 @@ CountryMap.prototype.render = function() {
                     return that.countryClickHandler.call(this, d, i);
                 })
             .merge(selector)
-                .attr('d', this.path)
                 .transition()
                 .duration(2000)
-                .attr('fill', getCo2Color);
+                .attr('fill', this.getCo2Color);
     }
 
     return this;
