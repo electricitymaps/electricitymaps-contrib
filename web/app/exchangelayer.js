@@ -11,7 +11,6 @@ function ExchangeLayer(selector, arrowsSelector) {
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = d3.select(arrowsSelector);
-    this.exchangeGradientsContainer = this.root.append('g');
 
     this.trianglePath = function() {
         var hh = this.TRIANGLE_HEIGHT / 2.0; // half-height
@@ -53,15 +52,36 @@ ExchangeLayer.prototype.render = function() {
     // Abort if projection has not been set
     if (!this._projection) { return; }
     var that = this;
-    var exchangeGradients = this.exchangeGradientsContainer
-        .selectAll('.exchange-gradient')
-        .data(this._data)
-    exchangeGradients.exit().remove();
 
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
-        .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1]; });
+        .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1] + '-' + d._id; });
     exchangeArrows.exit().remove();
+
+    // Calculate arrow scale
+    // Note: the scaling should be based on the same metric as countryMap
+    this.arrowScale(0.1);
+
+    function updateArrows(selector) {
+        var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
+        var maxCarbonIntensity = 800; // we only have arrows up to a certain point
+
+        selector.style('display', function (d) {
+            return (d.netFlow || 0) == 0 ? 'none' : '';
+        })
+        .style('transform', function (d) {
+            var center = that.projection()(d.lonlat);
+            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
+        })
+        .select('img')
+        .attr('src', function (d) {
+            var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
+            if(isNaN(intensity)) intensity = 'nan';
+            return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
+        });
+    }
+
     // This object refers to arrows created
     // Add all static properties
     var newArrows = exchangeArrows.enter()
@@ -70,6 +90,7 @@ ExchangeLayer.prototype.render = function() {
     newArrows.append('img')
         .attr('width', 49)
         .attr('height', 81)
+        .style('transform', 'scale(' + this.arrowScale() + ')')
         .on('mouseover', function (d, i) {
             return that.exchangeMouseOverHandler.call(this, d, i);
         })
@@ -80,30 +101,10 @@ ExchangeLayer.prototype.render = function() {
             return that.exchangeMouseMoveHandler.call(this, d, i);
         })
         .on('click', function (d) { console.log(d); });
-    var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
-    var maxCarbonIntensity = 800; // we only have arrows up to a certain point
-    // Calculate arrow scale
-    // Note: the scaling should be based on the same metric as countryMap
-    this.arrowScale(0.1);
 
-    // This object refers to all arrows
-    // Here we add all dynamic properties (i.e. that depend on data)
-    newArrows.merge(exchangeArrows)
-        .style('display', function (d) {
-            return (d.netFlow || 0) == 0 ? 'display:none;' : '';
-        })
-        .style('transform', function (d) {
-            var center = that.projection()(d.lonlat);
-            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
-        })
-        .select('img')
-        .style('transform', 'scale(' + this.arrowScale() + ')')
-        .attr('src', function (d) {
-            var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-            if(isNaN(intensity)) intensity = 'nan';
-            return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
-        });
+    // Because each key is unique, new elements will be added and old ones will be destroyed
+    // This allows us to avoid re-rendering when the same element subsides between renders
+    updateArrows(newArrows)
 
     return this;
 }

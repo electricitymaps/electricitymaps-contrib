@@ -479,14 +479,7 @@ var histories = {};
 
 function selectCountry(countryCode, notrack) {
     if (!countries) { return; }
-    if (!countryCode || !countries[countryCode]) {
-        // If the introductory panel was never rendered before
-        // then we need to render it
-        if (co2Colorbar) co2Colorbar.render();
-        if (windColorbar && windEnabled) windColorbar.render();
-        if (solarColorbar && solarEnabled) solarColorbar.render();
-
-    } else {
+    if (countryCode && countries[countryCode]) {
         // Selected
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
@@ -610,19 +603,15 @@ if(showPageState) {
 
 function showPage(pageName) {
 
-    if (showPageState == previousShowPageState && pageName != 'country') {
-        // Nothing changed. Return early.
-        return;
-    }
+    if(pageName === undefined)
+        pageName = 'map';
+
+    showPageState = pageName;
 
     if (showPageState != 'country')
         previousShowPageState = showPageState;
 
-    showPageState = pageName;
     replaceHistoryState('page', showPageState);
-
-    if(pageName === undefined)
-        pageName = 'map';
 
     // Hide all panels - we will show only the ones we need
     d3.selectAll('.left-panel > div').style('display', 'none');
@@ -651,7 +640,7 @@ function showPage(pageName) {
         if (pageName == 'country') {
             selectCountry(selectedCountryCode);
         } else if (pageName == 'info') {
-            co2Colorbar.render();
+            if (co2Colorbar) co2Colorbar.render();
             if (windEnabled) windColorbar.render();
             if (solarEnabled) solarColorbar.render();
         }
@@ -752,6 +741,7 @@ function renderMap() {
     if (!countryMap) { return ; }
 
     countryMap.render();
+    
     if (!countryMap.projection()) {
         return;
     }
@@ -762,12 +752,12 @@ function renderMap() {
         } else if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
             var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
-            console.log(lon, lat)
             countryMap.center([lon, lat]);
         } else {
             countryMap.center([0, 50]);
         }
     }
+
     exchangeLayer
         .projection(countryMap.projection())
         .render();

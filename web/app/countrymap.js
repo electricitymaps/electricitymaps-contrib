@@ -140,7 +140,6 @@ CountryMap.prototype.render = function() {
                 .attr('class', 'country')
                 .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
-                .attr('fill', this.getCo2Color)
                 .attr('d', this.path) // path is only assigned on create
                 .on('mouseover', function (d, i) {
                     if (that.countryMouseOverHandler)

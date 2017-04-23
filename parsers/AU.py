@@ -79,7 +79,10 @@ def fetch_production(country_code='AU', session=None):
     data = {
         'countryCode': country_code,
         'capacity': {},
-        'production': {},
+        'production': {
+            'geothermal': 0,
+            'nuclear': 0
+        },
         'storage': {},
         'source': 'aremi.nationalmap.gov.au',
     }
