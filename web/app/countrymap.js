@@ -61,6 +61,8 @@ function CountryMap(selector, co2color) {
         .attr('class', 'solar map-layer')
         .style('transform-origin', '0px 0px');
 
+    var that = this;
+
     this.zoom = d3.zoom().on('zoom', function() {
         var transform = d3.event.transform;
         // Scale the svg g elements in order to keep control over stroke width
@@ -82,6 +84,7 @@ function CountryMap(selector, co2color) {
     })
     .on('end', function() {
         d3.select(this).style('cursor', undefined);
+        that.exchangeLayer().render();
     });
 
     d3.select(this.root.node().parentNode).call(this.zoom);

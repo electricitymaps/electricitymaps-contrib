@@ -88,9 +88,16 @@ ExchangeLayer.prototype.render = function() {
 
     // This object refers to all arrows
     // Here we add all dynamic properties (i.e. that depend on data)
+    var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
+    var mapTranslation = d3.select('.arrows-layer').style('transform').replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
     newArrows.merge(exchangeArrows)
         .style('display', function (d) {
-            return (d.netFlow || 0) == 0 ? 'display:none;' : '';
+            var center = that.projection()(d.lonlat);
+            var hasLowFlow = (d.netFlow || 0) == 0;
+            var mapTranslationX = mapTranslation[4];
+            var centerX = center[0] - Math.abs(mapTranslationX);
+            var isOffscreen = centerX < 0 || centerX > mapWidth;
+            return (hasLowFlow || isOffscreen) ? 'none' : '';
         })
         .style('transform', function (d) {
             var center = that.projection()(d.lonlat);
