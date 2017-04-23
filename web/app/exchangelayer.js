@@ -55,7 +55,7 @@ ExchangeLayer.prototype.render = function() {
 
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
-        .data(this._data, function(d) { return d.countryCodes[0] + '-' + d.countryCodes[1] + '-' + d._id; });
+        .data(this._data, function(d) { return d; });
     exchangeArrows.exit().remove();
 
     // Calculate arrow scale
@@ -104,7 +104,7 @@ ExchangeLayer.prototype.render = function() {
 
     // Because each key is unique, new elements will be added and old ones will be destroyed
     // This allows us to avoid re-rendering when the same element subsides between renders
-    updateArrows(newArrows)
+    updateArrows(newArrows);
 
     return this;
 }

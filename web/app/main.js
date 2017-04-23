@@ -819,6 +819,18 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         return;
     }
 
+    // Debug: randomly generate data
+    // Object.keys(exchanges).forEach(function(k) {
+    //     if (state.exchanges[k]) {
+    //         state.exchanges[k].netFlow = Math.random() * 1500 - 700;
+    //         state.exchanges[k].co2intensity = Math.random() * 800;
+    //     }
+    // });
+    // Object.keys(countries).forEach(function(k) {
+    //     if (state.countries[k])
+    //         state.countries[k].co2intensity = Math.random() * 800;
+    // });
+
     // Is there a new version?
     d3.select('#new-version')
         .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
