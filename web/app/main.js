@@ -449,6 +449,14 @@ function placeTooltip(selector, d3Event) {
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
+// Validate selected country
+if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
+    selectedCountryCode = undefined;
+    if (showPageState == 'country') {
+        showPageState = 'map';
+        replaceHistoryState('page', showPageState);
+    }
+}
 // Assign data
 countryMap
     .data(d3.values(countries))
