@@ -756,8 +756,10 @@ function renderMap() {
         return;
     }
 
-    if (!countryMap.center())
-        countryMap.center(geolocation || countryMap.regionParams[countryMap.region()].center);
+    if (!countryMap.center()) {
+        regionParams = countryMap.regionParams[countryMap.region()] || countryMap.regionParams['europe'];
+        countryMap.center(geolocation || regionParams.center);
+    }
     exchangeLayer
         .projection(countryMap.projection())
         .render();
