@@ -326,7 +326,7 @@
     },
     "US": {    
         "capacity": {
-            "_comment": "distributed PV: 9778MW, not included above"
+            "_comment": "distributed PV: 9778MW, not included below"
             "biomass": 16099,
             "nuclear": 103860,
             "coal": 304789,
