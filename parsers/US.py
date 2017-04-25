@@ -45,11 +45,11 @@ def fetch_production(country_code='US', session=None):
             
             fuel_name = item['fuel_name']
             if not fuel_name in MAP_FUEL_NAME:
-                # print 'Warning: %s in %s is an unknown fuel type' % (fuel_name, iso)
+                # print 'Warning: %s (%s MW) in %s is an unknown fuel type' % (fuel_name, item['gen_MW'], iso)
                 key = 'unknown'
                 pass
             else:
-                # print '%s in %s' % (fuel_name, iso)
+                # print '%s in %s: %s MW' % (fuel_name, iso, item['gen_MW'])
                 key = MAP_FUEL_NAME[fuel_name]
             obj['production'][key] = obj['production'].get(key, 0.0) + item['gen_MW']
     return obj
