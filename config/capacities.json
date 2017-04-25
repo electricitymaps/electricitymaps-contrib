@@ -29,6 +29,45 @@
             "wind": 691
         }
     },
+    "CA-NB": {
+        "_comment": "gas includes an 88 MW cogeneration plant; unknown is diesel",
+        "capacity": {
+            "coal": 467,
+            "gas": 378,
+            "oil": 972,
+            "nuclear": 660,
+            "hydro": 950,
+            "wind": 332,
+            "unknown": 525
+        }
+    },
+    "CA-NL": {
+        "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets; unknown is diesel",
+        "capacity": {
+            "hydro": 6726.806,
+            "wind": 54.3,
+            "biomass": 15,
+            "unknown": 100,
+            "oil": 490
+        }
+    },
+    "CA-NS": {
+        "capacity": {
+            "biomass": 90.1,
+            "coal": 1232,
+            "oil": 637,
+            "hydro": 418,
+            "wind": 138.7
+        }
+    },
+    "CA-PE": {
+        "_comment": "unknown is diesel",
+        "capacity": {
+            "wind": 160.6,
+            "oil": 112,
+            "unknown": 67
+        }
+    },
     "CH": {
         "capacity": {
             "hydro": 9170,
