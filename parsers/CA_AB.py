@@ -129,7 +129,7 @@ def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None):
     flows = {
         'CA-AB->CA-BC': df_exchanges[1][1]['British Columbia'],
         'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
-        'CA-AB->US-MT': df_exchanges[1][1]['Montana']
+        'CA-AB->US': df_exchanges[1][1]['Montana']
     }
     sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
     if sortedCountryCodes not in flows:
