@@ -1,0 +1,151 @@
+import datetime
+
+# The request library is used to fetch content through HTTP
+import requests
+
+
+timezone = 'Canada/Atlantic'
+
+
+def _get_pei_info(requests_obj):
+    """
+    Gets current electricity flows in and out of New Brunswick.
+
+    There is no reported data timestamp in the page. The page returns
+    current time and says "Times at which values are sampled may vary by
+    as much as 5 minutes."
+    """
+
+    url = 'http://www.gov.pe.ca/energy/js/chart-values.php'
+    response = requests_obj.get(url)
+
+    raw_data = response.json()[0]
+
+    # Comparing timestamp in source of http://www.gov.pe.ca/windenergy/chart.php
+    # and timestamp in the JSON response, the JSON one is 5 hours ahead of the HTML
+    # on 25 April 2017 (when timezone should be UTC-3).
+    # So, the JSON one is two hours ahead of UTC/GMT.
+    # Implement this naively since I'm not sure what exact they're doing here.
+    # TODO: double check this looks valid-ish when out of daylight savings.
+    api_datetime = datetime.datetime.fromtimestamp(raw_data['updateDate'])
+    utc_datetime = api_datetime - datetime.timedelta(hours=2)
+
+    # meaning of keys per https://ruk.ca/content/open-data-pei-electricity
+    data = {
+        'pei_load': raw_data['data1'],
+        'pei_wind_gen': raw_data['data2'],
+        'pei_fossil_gen': raw_data['data3'],  # "Fossil Fueled Generation"
+        'pei_wind_used': raw_data['data4'],
+        'pei_wind_exported': raw_data['data5'],
+        'utc_datetime': utc_datetime
+    }
+
+    return data
+
+
+def fetch_production(country_code='CA-PE', session=None):
+    """Requests the last known production mix (in MW) of a given country
+
+    Arguments:
+    country_code       -- ignored here, only information for CA-PE is returned
+    session (optional) -- request session passed in order to re-use an existing session
+
+    Return:
+    A dictionary in the form:
+    {
+      'countryCode': 'FR',
+      'datetime': '2017-01-01T00:00:00Z',
+      'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': null,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
+      'storage': {
+          'hydro': -10.0,
+      },
+      'source': 'mysource.com'
+    }
+    """
+
+    requests_obj = session or requests.session()
+    raw_info = _get_pei_info(requests_obj)
+
+    data = {
+        'datetime': raw_info['utc_datetime'],  # TODO: should this be UTC or server time or local time?
+        'countryCode': country_code,
+        'production': {
+            'wind': raw_info['pei_wind_gen'],
+
+            # generators specified as "heavy fuel oil" and "diesel"
+            # on Wikipedia
+            'unknown': raw_info['pei_fossil_gen']
+        },
+        'storage': {},
+        'source': 'www.gov.pe.ca/windenergy'
+    }
+
+    return data
+
+
+def fetch_exchange(country_code1, country_code2, session=None):
+    """Requests the last known power exchange (in MW) between two regions
+
+    Arguments:
+    country_code1           -- the first country code (use format like "CA-QC" for sub-country regions)
+    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+
+    Return:
+    A dictionary in the form:
+    {
+      'sortedCountryCodes': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    """
+    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
+
+    if sorted_country_codes != 'CA-NB->CA-PE':
+        raise NotImplementedError('This exchange pair is not implemented')
+
+    requests_obj = session or requests.session()
+    raw_data = _get_pei_info(requests_obj)
+
+    # PEI imports most of its electricity. Everything not generated on island
+    # is imported from New Brunswick.
+    # In case of wind, some is "exported" even if there is a net import,
+    # and 'pei_wind_used' indicates their accounting of part of the load
+    # served by non-exported wind.
+    imported_from_nb = (raw_data['pei_load'] - raw_data['pei_fossil_gen'] - raw_data['pei_wind_used'])
+
+    # In expected result, "net" represents an export.
+    # We have sorted_country_codes 'CA-NB->CA-PE', so it's export *from* NB,
+    # and import *to* PEI.
+    flow = imported_from_nb - raw_data['pei_wind_exported']
+
+    data = {
+        'datetime': raw_data['utc_datetime'],  # TODO: should this be UTC or server time or local time?
+        'sortedCountryCodes': sorted_country_codes,
+        'netFlow': flow,
+        'source': 'www.gov.pe.ca/windenergy'
+    }
+
+    return data
+
+
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+
+    print('fetch_production() ->')
+    print(fetch_production())
+
+    print('fetch_exchange("CA-PE", "CA-NB") ->')
+    print(fetch_exchange("CA-PE", "CA-NB"))
