@@ -1,4 +1,5 @@
-import datetime
+# The arrow library is used to handle datetimes consistently with other parsers
+import arrow
 
 # The request library is used to fetch content through HTTP
 import requests
@@ -86,7 +87,7 @@ def fetch_production(country_code='CA-NB', session=None):
                  + flows['QUEBEC'])
 
     data = {
-        'datetime': datetime.datetime.utcnow(),  # TODO: should this be UTC or server time or local time?
+        'datetime': arrow.utcnow().datetime,
         'countryCode': country_code,
         'production': {
             'unknown': generated
@@ -139,7 +140,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
         raise NotImplementedError('This exchange pair is not implemented')
 
     data = {
-        'datetime': datetime.datetime.now(),  # TODO: should this be UTC or server time or local time?
+        'datetime': arrow.utcnow().datetime,
         'sortedCountryCodes': sorted_country_codes,
         'netFlow': value,
         'source': 'tso.nbpower.com'

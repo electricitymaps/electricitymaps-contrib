@@ -1,3 +1,6 @@
+# The arrow library is used to handle datetimes consistently with other parsers
+import arrow
+
 import datetime
 
 # The request library is used to fetch content through HTTP
@@ -21,15 +24,6 @@ def _get_pei_info(requests_obj):
 
     raw_data = response.json()[0]
 
-    # Comparing timestamp in source of http://www.gov.pe.ca/windenergy/chart.php
-    # and timestamp in the JSON response, the JSON one is 5 hours ahead of the HTML
-    # on 25 April 2017 (when timezone should be UTC-3).
-    # So, the JSON one is two hours ahead of UTC/GMT.
-    # Implement this naively since I'm not sure what exact they're doing here.
-    # TODO: double check this looks valid-ish when out of daylight savings.
-    api_datetime = datetime.datetime.fromtimestamp(raw_data['updateDate'])
-    utc_datetime = api_datetime - datetime.timedelta(hours=2)
-
     # meaning of keys per https://ruk.ca/content/open-data-pei-electricity
     data = {
         'pei_load': raw_data['data1'],
@@ -37,7 +31,7 @@ def _get_pei_info(requests_obj):
         'pei_fossil_gen': raw_data['data3'],  # "Fossil Fueled Generation"
         'pei_wind_used': raw_data['data4'],
         'pei_wind_exported': raw_data['data5'],
-        'utc_datetime': utc_datetime
+        'utc_datetime': arrow.get(raw_data['updateDate']).datetime
     }
 
     return data
@@ -78,7 +72,7 @@ def fetch_production(country_code='CA-PE', session=None):
     raw_info = _get_pei_info(requests_obj)
 
     data = {
-        'datetime': raw_info['utc_datetime'],  # TODO: should this be UTC or server time or local time?
+        'datetime': raw_info['utc_datetime'],
         'countryCode': country_code,
         'production': {
             'wind': raw_info['pei_wind_gen'],
@@ -132,7 +126,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     flow = imported_from_nb - raw_data['pei_wind_exported']
 
     data = {
-        'datetime': raw_data['utc_datetime'],  # TODO: should this be UTC or server time or local time?
+        'datetime': raw_data['utc_datetime'],
         'sortedCountryCodes': sorted_country_codes,
         'netFlow': flow,
         'source': 'www.gov.pe.ca/windenergy'
