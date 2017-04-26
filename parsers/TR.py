@@ -56,7 +56,7 @@ def fetch_production(country_code='TR', session=None):
       'source': 'ytbs.teias.gov.tr',
       'datetime': tr_datetime
     }
-    response = r.get(URL)
+    response = r.get(URL, verify=False)
     str_data = re.search(SEARCH_DATA, response.text)
     if str_data:
         productions = json.loads(str_data.group('data'), object_hook=as_float)['yuk']
