@@ -449,6 +449,14 @@ function placeTooltip(selector, d3Event) {
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
+// Validate selected country
+if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
+    selectedCountryCode = undefined;
+    if (showPageState == 'country') {
+        showPageState = 'map';
+        replaceHistoryState('page', showPageState);
+    }
+}
 // Assign data
 countryMap
     .data(d3.values(countries))
@@ -756,8 +764,10 @@ function renderMap() {
         return;
     }
 
-    if (!countryMap.center())
-        countryMap.center(geolocation || countryMap.regionParams[countryMap.region()].center);
+    if (!countryMap.center()) {
+        regionParams = countryMap.regionParams[countryMap.region()] || countryMap.regionParams['europe'];
+        countryMap.center(geolocation || regionParams.center);
+    }
     exchangeLayer
         .projection(countryMap.projection())
         .render();

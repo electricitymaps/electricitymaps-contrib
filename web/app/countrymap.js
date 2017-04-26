@@ -96,11 +96,12 @@ CountryMap.prototype.render = function() {
     if (!this.containerHeight || !this.containerWidth)
         return this;
 
-    var scale = this.containerHeight * this.regionParams[this.region()].scale;
+    var regionParams = this.regionParams[this.region()] || this.regionParams['europe'];
+    var scale = this.containerHeight * regionParams.scale;
     // Determine map width and height based on bounding box of Europe
-    var sw = this.regionParams[this.region()].sw;
-    var ne = this.regionParams[this.region()].ne;
-    var center = this.regionParams[this.region()].center; // Center of the map projection
+    var sw = regionParams.sw;
+    var ne = regionParams.ne;
+    var center = regionParams.center; // Center of the map projection
     this._projection = d3.geoTransverseMercator()
         .rotate([-center[0], -center[1]])
         .scale(scale)
