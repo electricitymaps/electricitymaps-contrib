@@ -5,6 +5,30 @@
     "AT": {
         
     },
+    "AUS-ACT": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-NSW": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-NT": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-QLD": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-SA": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-TAS": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-VIC": {
+        "flag_file_name": "au.png"
+    },
+    "AUS-WA": {
+        "flag_file_name": "au.png"
+    },
     "BA": {
         
     },

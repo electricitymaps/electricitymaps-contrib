@@ -1,7 +1,7 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 
-var topos = require('json-loader!./world_50m.json');
+var topos = require('json-loader!./world.json');
 
 var exports = module.exports = {};
 
@@ -46,15 +46,15 @@ exports.addCountryTopos = function(countries) {
     countries['AR'] = getCountry('ARG')
     countries['AM'] = getCountry('ARM')
     countries['AW'] = getCountry('ABW')
-    countries['AU'] = getCountry('AUS');
-    // countries['AUS-TAS'] = getState('AUS', 'AU.TS');
-    // countries['AUS-NSW'] = getState('AUS', 'AU.NS');
-    // countries['AUS-QLD'] = getState('AUS', 'AU.QL');
-    // countries['AUS-SA'] = getState('AUS', 'AU.SA');
-    // countries['AUS-VIC'] = getState('AUS', 'AU.VI');
-    // countries['AUS-WA'] = getState('AUS', 'AU.WA');
-    // countries['AUS-NT'] = getState('AUS', 'AU.NT');
-    // countries['AUS-ACT'] = getState('AUS', 'AU.AC');
+    // countries['AU'] = getCountry('AUS');
+    countries['AUS-ACT'] = getState('AUS', 'AU.AC');
+    countries['AUS-NSW'] = getState('AUS', 'AU.NS');
+    countries['AUS-NT'] = getState('AUS', 'AU.NT');
+    countries['AUS-QLD'] = getState('AUS', 'AU.QL');
+    countries['AUS-SA'] = getState('AUS', 'AU.SA');
+    countries['AUS-TAS'] = getState('AUS', 'AU.TS');
+    countries['AUS-VIC'] = getState('AUS', 'AU.VI');
+    countries['AUS-WA'] = getState('AUS', 'AU.WA');
     countries['AT'] = getCountry('AUT')
     countries['AZ'] = getCountry('AZE')
     countries['BS'] = getCountry('BHS')

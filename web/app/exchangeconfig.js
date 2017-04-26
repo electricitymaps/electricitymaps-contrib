@@ -335,6 +335,22 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: 180
     };
     // ** Oceania
+    exchanges['AUS-NSW->AUS-QLD'] = {
+        lonlat: [146.503228, -29.054874],
+        rotation: 0
+    }
+    exchanges['AUS-NSW->AUS-VIC'] = {
+        lonlat: [145.308829, -35.850801],
+        rotation: 180
+    }
+    exchanges['AUS-SA->AUS-VIC'] = {
+        lonlat: [140.965561, -35.784766],
+        rotation: 90
+    }
+    exchanges['AUS-TAS->AUS-VIC'] = {
+        lonlat: [146.096047, -39.836207],
+        rotation: 0
+    }
     exchanges['NZ-NZN->NZ-NZS'] = {
         lonlat: [174.424066, -41.140732],
         rotation: 90
