@@ -52,10 +52,11 @@
         }
     },
     "CA-NS": {
+        "_comment": "http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW, the below add up to 2526.8 MW. That's probably close enough.",
         "capacity": {
             "biomass": 90.1,
             "coal": 1232,
-            "oil": 637,
+            "gas": 637,
             "hydro": 418,
             "wind": 138.7
         }
