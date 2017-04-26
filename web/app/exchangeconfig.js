@@ -326,6 +326,22 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [-92.722024, 48.566155],
         rotation: 180
     };
+    exchanges['CA-NB->CA-NS'] = {
+        lonlat: [-65.7552, 45.0425],
+        rotation: 90
+    };
+    exchanges['CA-NB->CA-PE'] = {
+        lonlat: [-64.5739, 46.7349],
+        rotation: 90
+    };
+    exchanges['CA-NB->CA-QC'] = {
+        lonlat: [-67.2344, 47.8871],
+        rotation: -45
+    };
+    exchanges['CA-NB->US'] = {
+        lonlat: [-67.7771, 46.1390],
+        rotation: 135
+    };
     // ** Oceania
     exchanges['NZ-NZN->NZ-NZS'] = {
         lonlat: [174.424066, -41.140732],
