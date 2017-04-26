@@ -442,6 +442,14 @@ function placeTooltip(selector, d3Event) {
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
+// Validate selected country
+if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
+    selectedCountryCode = undefined;
+    if (showPageState == 'country') {
+        showPageState = 'map';
+        replaceHistoryState('page', showPageState);
+    }
+}
 // Assign data
 countryMap
     .data(d3.values(countries))
@@ -634,8 +642,8 @@ function showPage(pageName) {
         selectCountry(undefined);
         renderMap();
         if (co2Colorbar) co2Colorbar.render();
-        if (windEnabled) windColorbar.render();
-        if (solarEnabled) solarColorbar.render();
+        if (windEnabled) if (windColorbar) windColorbar.render();
+        if (solarEnabled) if (solarColorbar) solarColorbar.render();
     }
     else {
         d3.select('.left-panel').classed('large-screen-visible', false);
@@ -644,8 +652,8 @@ function showPage(pageName) {
             selectCountry(selectedCountryCode);
         } else if (pageName == 'info') {
             if (co2Colorbar) co2Colorbar.render();
-            if (windEnabled) windColorbar.render();
-            if (solarEnabled) solarColorbar.render();
+            if (windEnabled) if (windColorbar) windColorbar.render();
+            if (solarEnabled) if (solarColorbar) solarColorbar.render();
         }
     }
  
@@ -760,7 +768,6 @@ function renderMap() {
             countryMap.center([0, 50]);
         }
     }
-
     exchangeLayer
         .projection(countryMap.projection())
         .render();

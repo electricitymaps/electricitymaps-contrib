@@ -58,6 +58,10 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var ctx = solarCanvas.node().getContext('2d');
     var realW = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().width);
     var realH = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().height);
+    if (!realW || !realH) {
+        // Don't draw as the canvas has 0 size
+        return callback(null);
+    }
     // Canvas needs to have it's width and height attribute set
     solarCanvas
         .attr('width', realW)
