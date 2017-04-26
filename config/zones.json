@@ -29,16 +29,31 @@
     "CA-MB": {
         "flag_file_name": "ca.png"
     },
+    "CA-NB": {
+        "flag_file_name": "ca.png"
+    },
     "CA-NS": {
         "flag_file_name": "ca.png"
     },
+    "CA-NT": {
+        "flag_file_name": "ca.png"
+    },
+    "CA-NU": {
+        "flag_file_name": "ca.png"
+    },
     "CA-ON": {
+        "flag_file_name": "ca.png"
+    },
+    "CA-PE": {
         "flag_file_name": "ca.png"
     },
     "CA-QC": {
         "flag_file_name": "ca.png"
     },
     "CA-SK": {
+        "flag_file_name": "ca.png"
+    },
+    "CA-YT": {
         "flag_file_name": "ca.png"
     },
     "CZ": {
