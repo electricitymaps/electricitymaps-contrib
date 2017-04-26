@@ -115,28 +115,30 @@ def get_state(countries, start_date, end_date, delta):
             if not countryCode in o['countries']: continue
             d = o['countries'][countryCode]
             if not 'datetime' in d: continue
-            p = pd.DataFrame(
-                data={
-                    'timestamp': pd.Timestamp(t.datetime),
-                    'country': countryCode,
-                    'co2intensity': d.get('co2intensity', None),
-                    'fossilFuelRatio': d.get('fossilFuelRatio', None),
-                    'totalImport': d.get('totalImport', None),
-                    'totalExport': d.get('totalExport', None),
-                    'totalProduction': d.get('totalProduction', None),
-                    # Production
-                    'wind': d.get('production', {}).get('wind', None),
-                    'solar': d.get('production', {}).get('solar', None),
-                    'hydro': d.get('production', {}).get('hydro', None),
-                    'geothermal': d.get('production', {}).get('geothermal', None),
-                    'biomass': d.get('production', {}).get('biomass', None),
-                    'nuclear': d.get('production', {}).get('nuclear', None),
-                    'gas': d.get('production', {}).get('gas', None),
-                    'coal': d.get('production', {}).get('coal', None),
-                    'oil': d.get('production', {}).get('oil', None),
-                    'unknown': d.get('production', {}).get('unknown', None)
-                },
-                index=[0])
+            data = {
+                'timestamp': pd.Timestamp(t.datetime),
+                'country': countryCode,
+                'co2intensity': d.get('co2intensity', None),
+                'fossilFuelRatio': d.get('fossilFuelRatio', None),
+                'totalImport': d.get('totalImport', None),
+                'totalExport': d.get('totalExport', None),
+                'totalProduction': d.get('totalProduction', None),
+                # Production
+                'wind': d.get('production', {}).get('wind', None),
+                'solar': d.get('production', {}).get('solar', None),
+                'hydro': d.get('production', {}).get('hydro', None),
+                'geothermal': d.get('production', {}).get('geothermal', None),
+                'biomass': d.get('production', {}).get('biomass', None),
+                'nuclear': d.get('production', {}).get('nuclear', None),
+                'gas': d.get('production', {}).get('gas', None),
+                'coal': d.get('production', {}).get('coal', None),
+                'oil': d.get('production', {}).get('oil', None),
+                'unknown': d.get('production', {}).get('unknown', None)
+            }
+            # Add exchanges
+            for k, v in d.get('exchange', {}).iteritems():
+                data['import_%s' % k] = v 
+            p = pd.DataFrame(data, index=[0])
             if df is not None: df = df.append(p)
             else: df = p
     return df

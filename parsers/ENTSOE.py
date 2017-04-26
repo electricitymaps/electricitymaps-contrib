@@ -69,8 +69,8 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'TR': '10YTR-TEIAS----W',
     'UA': '10Y1001A1001A869'
 }
-def query_ENTSOE(session, params):
-    now = arrow.utcnow()
+def query_ENTSOE(session, params, now=None):
+    if now is None: now = arrow.utcnow()
     params['periodStart'] = now.replace(hours=-24).format('YYYYMMDDHH00')
     params['periodEnd'] = now.replace(hours=+24).format('YYYYMMDDHH00')
     if not 'ENTSOE_TOKEN' in os.environ:
@@ -97,7 +97,7 @@ def query_production(psr_type, in_domain, session):
     params = {
         'psrType': psr_type,
         'documentType': 'A75',
-        'processType': 'A16',
+        'processType': 'A16', # Realised
         'in_Domain': in_domain,
     }
     response = query_ENTSOE(session, params)
@@ -126,6 +126,21 @@ def query_exchange(in_domain, out_domain, session):
         if 'No matching data found' in error_text: return
         raise Exception('Failed to get exchange. Reason: %s' % error_text)
 
+def query_exchange_forecast(in_domain, out_domain, session, now=None):
+    params = {
+        'documentType': 'A09', # Finalised schedule
+        'in_Domain': in_domain,
+        'out_Domain': out_domain,
+    }
+    response = query_ENTSOE(session, params, now)
+    if response.ok: return response.text
+    else:
+        # Grab the error if possible
+        soup = BeautifulSoup(response.text, 'html.parser')
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        raise Exception('Failed to get exchange. Reason: %s' % error_text)
+
 def query_price(domain, session):
     params = {
         'documentType': 'A44',
@@ -140,6 +155,23 @@ def query_price(domain, session):
         error_text = soup.find_all('text')[0].contents[0]
         if 'No matching data found' in error_text: return
         raise Exception('Failed to get price. Reason: %s' % error_text)
+
+def query_generation_forecast(in_domain, session):
+    # Note: this does not give a breakdown of the production
+    params = {
+        'documentType': 'A71', # Generation Forecast
+        'processType': 'A01', # Realised
+        'in_Domain': in_domain,
+    }
+    response = query_ENTSOE(session, params)
+    if response.ok: return response.text
+    else:
+        return # Return by default
+        # Grab the error if possible
+        soup = BeautifulSoup(response.text, 'html.parser')
+        error_text = soup.find_all('text')[0].contents[0]
+        if 'No matching data found' in error_text: return
+        print 'Reason:', error_text
 
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
@@ -229,11 +261,27 @@ def parse_price(xml_text):
         for entry in timeseries.find_all('point'):
             position = int(entry.find_all('position')[0].contents[0])
             datetime=datetime_from_position(datetime_start, position, resolution)
-            if datetime > arrow.now(tz='Europe/Paris'): continue
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
             datetimes.append(datetime)
             currencies.append(currency)
     return prices, currencies, datetimes
+
+def parse_generation_forecast(xml_text):
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    values = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            position = int(entry.find_all('position')[0].contents[0])
+            value = float(entry.find_all('quantity')[0].contents[0])
+            datetime=datetime_from_position(datetime_start, position, resolution)
+            values.append(value)
+            datetimes.append(datetime)
+    return values, datetimes
 
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
@@ -390,19 +438,78 @@ def fetch_exchange(country_code1, country_code2, session=None):
         })
     return data
 
+def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None):
+    if not session: session = requests.session()
+    domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
+    domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
+    # Create a hashmap with key (datetime)
+    exchange_hashmap = {}
+    # Grab exchange
+    # Import
+    parsed = parse_exchange(
+        query_exchange_forecast(domain1, domain2, session, now),
+        is_import=True)
+    if parsed:
+        # Export
+        parsed = parse_exchange(
+            xml_text=query_exchange_forecast(domain2, domain1, session, now),
+            is_import=False, quantities=parsed[0], datetimes=parsed[1])
+        if parsed:
+            quantities, datetimes = parsed
+            for i in range(len(quantities)):
+                exchange_hashmap[datetimes[i]] = quantities[i]
+
+    # Remove all dates in the future
+    sorted_country_codes = sorted([country_code1, country_code2])
+    exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
+    exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
+    if not len(exchange_dates): return None
+    data = []
+    for exchange_date in exchange_dates:
+        netFlow = exchange_hashmap[exchange_date]
+        data.append({
+            'sortedCountryCodes': '->'.join(sorted_country_codes),
+            'datetime': exchange_date.datetime,
+            'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
+            'source': 'entsoe.eu'
+        })
+    return data
+
 def fetch_price(country_code, session=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_price(query_price(domain, session))
     if parsed:
+        data = []
         prices, currencies, datetimes = parsed
-        data = {
-            'countryCode': country_code,
-            'datetime': datetimes[-1].datetime,
-            'currency': currencies[-1],
-            'price': prices[-1],
-            'source': 'entsoe.eu'
-        }
+        for i in range(len(prices)):
+            data.append({
+                'countryCode': country_code,
+                'datetime': datetimes[i].datetime,
+                'currency': currencies[i],
+                'price': prices[i],
+                'source': 'entsoe.eu'
+            })
 
         return data
+
+def fetch_generation_forecast(country_code, session=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_generation_forecast(query_generation_forecast(domain, session))
+    if parsed:
+        data = []
+        values, datetimes = parsed
+        for i in range(len(values)):
+            data.append({
+                'countryCode': country_code,
+                'datetime': datetimes[i].datetime,
+                'value': values[i],
+                'source': 'entsoe.eu'
+            })
+
+        return data
+
+
