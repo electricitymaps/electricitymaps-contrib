@@ -37,21 +37,37 @@ def fetch_production(country_code='CA-NS', session=None):
     }
     """
     r = session or requests.session()
-    url = 'http://www.nspower.ca/system_report/today/currentmix.json'
-    response = r.get(url)
+    mix_url = 'http://www.nspower.ca/system_report/today/currentmix.json'
+    mix_data = r.get(mix_url).json()
+
+    load_url = 'http://www.nspower.ca/system_report/today/currentload.json'
+    load_data = r.get(load_url).json()
+
     data = []
-    for obj in response.json():
+    for mix in mix_data:
+        corresponding_load = [load_period for load_period in load_data
+                              if load_period['datetime'] == mix['datetime']]
+
+        # in mix_data, the values are expressed as percentages,
+        # e.g. "Solid Fuel":  45.76 meaning 45.76%
+        # Divide load by 100.0 to simplify calculations later on.
+        if corresponding_load:
+            load = corresponding_load[0]['Base Load'] / 100.0
+        else:
+            # if not found, assume 1500 MW, based on total available capacity of around 2500 MW
+            load = 1500 / 100.0
+
         data.append({
             'countryCode': country_code,
             'datetime': arrow.get(
-                int(re.search('\d+', obj['datetime']).group(0)) / 1000.0).datetime,
+                int(re.search('\d+', mix['datetime']).group(0)) / 1000.0).datetime,
             'production': {
-                'coal': obj['Solid Fuel'],
-                'gas': obj['HFO/Natural Gas'] + obj['CT\'s'] + obj['LM 6000\'s'],
-                'biomass': obj['Biomass'],
-                'hydro': obj['Hydro'],
-                'wind': obj['Wind'],
-                'unknown': obj['Imports']
+                'coal': (mix['Solid Fuel'] * load),
+                'gas': ((mix['HFO/Natural Gas'] + mix['CT\'s'] + mix['LM 6000\'s']) * load),
+                'biomass': (mix['Biomass'] * load),
+                'hydro': (mix['Hydro'] * load),
+                'wind': (mix['Wind'] * load),
+                'unknown': (mix['Imports'] * load)
             },
             'storage': {},
             'source': 'nspower.ca',
