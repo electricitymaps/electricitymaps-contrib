@@ -49,7 +49,7 @@ def fetch_production(country_code='US', session=None):
                 # According to http://www.caiso.com/Documents/2015AnnualReportonMarketIssuesandPerformance.pdf
                 # we break down other in gas, oil, coil, other, nuclear, large hydro
                 # TODO: CHANGE THIS WHEN DATA IS AVAIALABLE
-                sum_other = 40 + 0.5 + 0.5 + 18 + 8 + 5 + 5 + 2
+                sum_other = 40 + 0.5 + 0.5 + 8 + 5 + 5 + 2
                 obj['production']['gas']     = obj['production'].get('gas', 0.0) + float(item['gen_MW']) * 40 / sum_other
                 obj['production']['oil']     = obj['production'].get('oil', 0.0) + float(item['gen_MW']) * 0.5 / sum_other
                 obj['production']['coal']    = obj['production'].get('coal', 0.0) + float(item['gen_MW']) * 0.5 / sum_other
