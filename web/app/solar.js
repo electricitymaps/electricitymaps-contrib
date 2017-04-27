@@ -7,12 +7,16 @@ var grib = require('./grib');
 
 var solarCanvas;
 var lastDraw;
+var hidden = true;
+
+var projection;
+var grib1, grib2, k;
 
 exports.isExpired = function (now, grib1, grib2) {
     return grib.getTargetTime(grib2) <= moment(now) || grib.getTargetTime(grib1) > moment(now);
 }
 
-exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projection, callback) {
+exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, argProjection, callback) {
 
     // Only redraw after 5min
     if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
@@ -21,15 +25,10 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
 
     lastDraw = new Date().getTime();
 
-    // Control the rendering
-    var gaussianBlur = true;
-    var continuousScale = true;
-    // ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
-    var BLUR_RADIUS = 20;
-    var SOLAR_SCALE = 1000;
-    var MAX_OPACITY = 0.85;
-
-    var maxOpacityPix = 256 * MAX_OPACITY;
+    projection = argProjection;
+    grib1 = argGrib1;
+    grib2 = argGrib2;
+    solarCanvas = d3.select(canvasSelector);
 
     // Interpolates between two solar forecasts<
     var t_before = grib.getTargetTime(grib1);
@@ -44,7 +43,23 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
         return console.error('Error while interpolating solar because current time is out of bounds');
     }
 
-    var k = (now - t_before) / (t_after - t_before);
+    k = (now - t_before) / (t_after - t_before);
+
+    // (This callback could potentially be done before effects)
+    callback(null);
+};
+
+exports.zoomend = function() {
+    if (hidden) { return; }
+    // Control the rendering
+    var gaussianBlur = true;
+    var continuousScale = true;
+    // ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
+    var BLUR_RADIUS = 20;
+    var SOLAR_SCALE = 1000;
+    var MAX_OPACITY = 0.85;
+
+    var maxOpacityPix = 256 * MAX_OPACITY;
 
     // Grib constants
     var Nx = grib1.header.nx;
@@ -54,41 +69,51 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     var dx = grib1.header.dx;
     var dy = grib1.header.dy;
 
-    solarCanvas = d3.select(canvasSelector);
     var ctx = solarCanvas.node().getContext('2d');
     var realW = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().width);
     var realH = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().height);
+
     if (!realW || !realH) {
         // Don't draw as the canvas has 0 size
-        return callback(null);
+        return;
     }
     // Canvas needs to have it's width and height attribute set
     solarCanvas
         .attr('width', realW)
         .attr('height', realH);
 
-    // Warning: the bounding box in lonlat might be smaller than in px,
-    // because of the projection.
-    // Here everything is hardcoded
-    var minLat = -180;
-    var maxLat = 180;
-    var minLon = -180;
-    var maxLon = 180;
-    h = maxLat - minLat;
-    w = maxLon - minLon;
+    var ul = projection.invert([0, 0]);
+    var br = projection.invert([realW, realH]);
 
-    // Draw initial image (1px 1deg) from grib
+    // ** Those need to be integers **
+    var minLon = parseInt(Math.floor(ul[0]));
+    var maxLon = parseInt(Math.ceil(br[0]));
+    var minLat = parseInt(Math.floor(br[1]));
+    var maxLat = parseInt(Math.ceil(ul[1]));
+
+    h = 100; // number of points in longitude space
+    w = 100; // number of points in latitude space
+
+    // ** Note **
+    // We would need better than 1deg data to see the effects at lower scales.
+
+    // Draw initial image
     var imgGrib = ctx.createImageData(w, h);
-    d3.range(minLat, maxLat).forEach(function (y) {
-        d3.range(minLon, maxLon).forEach(function (x) {
+    // Iterate over lon, lat
+    d3.range(0, h).forEach(function (yi) {
+        d3.range(0, w).forEach(function (xi) {
+            // (x, y) are in (lon, lat) space
+            var x = d3.interpolate(minLon, maxLon)((xi + 1) / w);
+            var y = d3.interpolate(minLat, maxLat)((yi + 1) / h);
 
-            var i = parseInt(x - lo1) / dx;
-            var j = parseInt(la1 - y) / dy;
+            var i = parseInt(x - lo1 / dx);
+            var j = parseInt(la1 - y / dy);
             var n = i + Nx * j;
             var val = d3.interpolate(grib1.data[n], grib2.data[n])(k);
 
-            var pix_x = x - minLon;
-            var pix_y = h - (y - minLat);
+            // (pix_x, pix_y) are in pixel space
+            var pix_x = xi;
+            var pix_y = h - yi;
 
             if (continuousScale)
                 imgGrib.data[[((pix_y * (imgGrib.width * 4)) + (pix_x * 4)) + 3]] = parseInt(val / SOLAR_SCALE * 255);
@@ -108,12 +133,17 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     // q is the 1D normalize index for the source map
     for (var y = 0, i = -1; y < realH; ++y) {
         for (var x = 0; x < realW; ++x) {
+            // (x, y) is in the (final) pixel space
+
             // We shift the lat/lon so that the truncation result in a rounding
-            var p = projection.invert([x, y]), lon = p[0] + 0.5, lat = p[1] - 0.5;
+            // p represents the (lon, lat) point we wish to obtain a value for
+            var p = projection.invert([x, y])//, lon = p[0] + 0.5, lat = p[1] - 0.5;
+            var lon = p[0], lat = p[1];
 
-            if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat)
-            { i += 4; continue; }
+            // if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat)
+            // { i += 4; continue; }
 
+            // q is the index of the associated data point in the other space
             var q = (((maxLat - lat) / (maxLat - minLat)) * h | 0) * w + (((lon - minLon) / (maxLon - minLon)) * w | 0) << 2;
 
             // Since we are reading the map pixel by pixel we go to the next Alpha channel
@@ -159,17 +189,17 @@ exports.draw = function (canvasSelector, now, grib1, grib2, solarColor, projecti
     }
     ctx.clearRect(0, 0, realW, realH);
     ctx.putImageData(target, 0, 0);
-
-    // (This callback could potentially be done before effects)
-    callback(null);
-};
+}
 
 exports.show = function () {
-    solarCanvas.transition().style('opacity', 1);
+    if (solarCanvas) solarCanvas.transition().style('opacity', 1);
+    hidden = false;
+    exports.zoomend();
 }
 
 exports.hide = function () {
     if (solarCanvas) solarCanvas.transition().style('opacity', 0);
+    hidden = true;
 }
 
 

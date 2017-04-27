@@ -1,6 +1,6 @@
 var d3 = require('d3');
 
-function CountryMap(selector, wind, windCanvasSelector) {
+function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelector) {
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
@@ -16,6 +16,7 @@ function CountryMap(selector, wind, windCanvasSelector) {
     };
 
     this.windCanvas = d3.select(windCanvasSelector);
+    this.solarCanvas = d3.select(solarCanvasSelector);
 
     this.root = d3.select(selector)
         .style('transform-origin', '0px 0px')
@@ -41,9 +42,6 @@ function CountryMap(selector, wind, windCanvasSelector) {
     this.arrowsLayer = this.root.append('div')
         .attr('class', 'arrows-layer map-layer')
         .style('transform-origin', '0px 0px');
-    this.sunLayer = this.root.append('canvas')
-        .attr('class', 'solar map-layer')
-        .style('transform-origin', '0px 0px');
 
     var dragStartTransform;
 
@@ -56,33 +54,38 @@ function CountryMap(selector, wind, windCanvasSelector) {
         }
 
         var transform = d3.event.transform;
+
         // Scale the svg g elements in order to keep control over stroke width
         // See https://github.com/tmrowco/electricitymap/issues/471
         that.land.attr('transform', transform);
         // that.graticule.attr('transform', transform);
 
-        // Apply CSS transforms
-        [that.arrowsLayer, that.sunLayer].forEach(function (e) {
-            e.style('transform',
-                'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
-            );
-        });
-
-        var windScale = transform.k / dragStartTransform.k;
-        that.windCanvas.style('transform',
-            'translate(' +
-            (transform.x - dragStartTransform.x * windScale) + 'px,' +
-            (transform.y - dragStartTransform.y * windScale) + 'px)' +
-            'scale(' + windScale + ')'
-        );
         // If we don't want to scale the layer in order to keep the arrow size constant,
         // we will need to translate every arrow element by it's original dX multiplied by transform.k
+        // Apply CSS transforms
+        that.arrowsLayer.style('transform',
+            'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+        );
+
+        var incrementalScale = transform.k / dragStartTransform.k;
+        [that.windCanvas, that.solarCanvas].forEach(function(e) {
+            e.style('transform',
+                'translate(' +
+                (transform.x - dragStartTransform.x * incrementalScale) + 'px,' +
+                (transform.y - dragStartTransform.y * incrementalScale) + 'px)' +
+                'scale(' + incrementalScale + ')'
+            );
+        });
+        
     })
     .on('end', function() {
         // Return in case no dragging was started
         // That's because 'end' is triggered on mouseup (i.e. click)
         if (!dragStartTransform) { return; }
+        
         that.windCanvas.style('transform', undefined);
+        that.solarCanvas.style('transform', undefined);
+
         wind.pause(false);
         d3.select(this).style('cursor', undefined);
 
@@ -100,6 +103,7 @@ function CountryMap(selector, wind, windCanvasSelector) {
 
         // Notify. This is where we would need a Reactive / Pub-Sub system instead.
         wind.zoomend();
+        solar.zoomend();
         dragStartTransform = undefined;
     });
 

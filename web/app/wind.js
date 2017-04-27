@@ -62,7 +62,6 @@ exports.zoomend = function() {
     // We need to re-update change the projection
     if (!projection || !windLayer || hidden) { return; }
 
-    // ** TEMP
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
     var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
 

@@ -356,7 +356,7 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map', Wind, '.wind')
+var countryMap = new CountryMap('#map', Wind, '.wind', Solar, '.solar')
     .co2color(co2color);
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
@@ -809,7 +809,7 @@ function renderMap() {
             solar.forecasts[0],
             solar.forecasts[1],
             solarColor,
-            countryMap.projection(),
+            countryMap.absProjection(),
             function() {
                 if (solarEnabled)
                     Solar.show();
