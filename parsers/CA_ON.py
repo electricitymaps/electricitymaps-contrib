@@ -171,7 +171,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
         'datetime': max(map(lambda x: arrow.get(arrow.get(
             exchanges[x]['dateReported']).datetime, timezone).datetime, keys)),
         'sortedCountryCodes': sortedCountryCodes,
-        'netFlow': sum(map(lambda x: float(exchanges[x]['net']), keys)) * direction,
+        'netFlow': sum(map(lambda x: float(exchanges[x]['net'].replace(',', '')), keys)) * direction,
         'source': 'gridwatch.ca'
     }
 
