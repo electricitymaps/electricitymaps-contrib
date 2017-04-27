@@ -11,6 +11,7 @@ var projection;
 var windLayer;
 
 var lastDraw;
+var hidden = true;
 
 var WIND_OPACITY = 0.53;
 
@@ -59,7 +60,7 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
 exports.zoomend = function() {
     // Called when the dragging / zooming is done.
     // We need to re-update change the projection
-    if (!projection || !windLayer) { return; }
+    if (!projection || !windLayer || hidden) { return; }
 
     // ** TEMP
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
@@ -99,9 +100,11 @@ exports.show = function() {
         height,
         [sw, ne]
     );
+    hidden = false;
 };
 
 exports.hide = function() { 
     if (windCanvas) windCanvas.transition().style('opacity', 0);
     if (windLayer) windLayer.stop();
+    hidden = true;
 };
