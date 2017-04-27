@@ -6,6 +6,10 @@ var topos = require('json-loader!./world.json');
 var exports = module.exports = {};
 
 exports.addCountryTopos = function(countries) {
+
+    // OPTIMIZATION:
+    // A hash map would probably be much faster than doing a `filter`
+    // for all countries O(n) instead of O(n^2)
     function getSubUnits(ids) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
             return ids.indexOf(d.properties.subid) != -1;

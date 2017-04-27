@@ -356,7 +356,7 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map', Wind)
+var countryMap = new CountryMap('#map', Wind, '.wind')
     .co2color(co2color);
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
@@ -786,7 +786,7 @@ function renderMap() {
             wind.forecasts[0],
             wind.forecasts[1],
             windColor,
-            countryMap.projection());
+            countryMap.absProjection());
         if (windEnabled)
             Wind.show();
         else

@@ -349,7 +349,7 @@ var Windy = function( params ){
 
     var particleCount = Math.round(bounds.width * PARTICLE_MULTIPLIER);
     if (isMobile()) {
-      particleCount *= PARTICLE_REDUCTION;
+        particleCount *= PARTICLE_REDUCTION;
     }
 
     var particles = [];
@@ -427,7 +427,9 @@ var Windy = function( params ){
     function frame() {
       if (!windy.paused) {
         evolve();
-        draw(); 
+        draw();
+      } else {
+        lastFrameTime = Date.now();
       }
       windy.animationRequest = requestAnimationFrame(frame);
     };

@@ -1,6 +1,6 @@
 var d3 = require('d3');
 
-function CountryMap(selector, wind) {
+function CountryMap(selector, wind, windCanvasSelector) {
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
@@ -9,10 +9,13 @@ function CountryMap(selector, wind) {
     this.selectedCountry = undefined;
 
     this._center = undefined;
+    this.startScale = 400;
 
     this.getCo2Color = function (d) {
         return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'gray';
     };
+
+    this.windCanvas = d3.select(windCanvasSelector);
 
     this.root = d3.select(selector)
         .style('transform-origin', '0px 0px')
@@ -38,14 +41,20 @@ function CountryMap(selector, wind) {
     this.arrowsLayer = this.root.append('div')
         .attr('class', 'arrows-layer map-layer')
         .style('transform-origin', '0px 0px');
-    this.windLayer = this.root.append('canvas')
-        .attr('class', 'wind map-layer')
-        .style('transform-origin', '0px 0px');
     this.sunLayer = this.root.append('canvas')
         .attr('class', 'solar map-layer')
         .style('transform-origin', '0px 0px');
 
+    var dragStartTransform;
+
     this.zoom = d3.zoom().on('zoom', function() {
+        if (!dragStartTransform) {
+            // Zoom start
+            dragStartTransform = d3.event.transform;
+            wind.pause(true);
+            d3.select(this).style('cursor', 'move');
+        }
+
         var transform = d3.event.transform;
         // Scale the svg g elements in order to keep control over stroke width
         // See https://github.com/tmrowco/electricitymap/issues/471
@@ -53,21 +62,45 @@ function CountryMap(selector, wind) {
         // that.graticule.attr('transform', transform);
 
         // Apply CSS transforms
-        [that.arrowsLayer, that.windLayer, that.sunLayer].forEach(function (e) {
+        [that.arrowsLayer, that.sunLayer].forEach(function (e) {
             e.style('transform',
                 'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
             );
         });
+
+        var windScale = transform.k / dragStartTransform.k;
+        that.windCanvas.style('transform',
+            'translate(' +
+            (transform.x - dragStartTransform.x * windScale) + 'px,' +
+            (transform.y - dragStartTransform.y * windScale) + 'px)' +
+            'scale(' + windScale + ')'
+        );
         // If we don't want to scale the layer in order to keep the arrow size constant,
         // we will need to translate every arrow element by it's original dX multiplied by transform.k
     })
-    .on('start', function() {
-        wind.pause(true);
-        d3.select(this).style('cursor', 'move');
-    })
     .on('end', function() {
+        // Return in case no dragging was started
+        // That's because 'end' is triggered on mouseup (i.e. click)
+        if (!dragStartTransform) { return; }
+        that.windCanvas.style('transform', undefined);
         wind.pause(false);
         d3.select(this).style('cursor', undefined);
+
+        // Here we need to update the (absolute) projection in order to be used by other systems
+        // that would like to overlay the map
+        projection = that._absProjection;
+        if (!projection) { return; }
+        var transform = d3.event.transform;
+        var scale = that.startScale * transform.k;
+        projection
+            .scale(scale)
+            .translate([
+                scale * Math.PI + transform.x,
+                scale * Math.PI + transform.y]);
+
+        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
+        wind.zoomend();
+        dragStartTransform = undefined;
     });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
@@ -82,14 +115,21 @@ CountryMap.prototype.render = function() {
     if (!this.containerHeight || !this.containerWidth)
         return this;
 
-    var scale = 400;
-    this._projection = d3.geoMercator()
-        .rotate([0,0])
-        .scale(scale)
-        .translate([scale * Math.PI, scale * Math.PI]); // Warning, default translation is [480, 250]
+    // The projection shouldn't change
+    if (!this._projection || !this._absProjection) {
+        var scale = this.startScale;
+        this._projection = d3.geoMercator()
+            .rotate([0,0])
+            .scale(scale)
+            .translate([scale * Math.PI, scale * Math.PI]); // Warning, default translation is [480, 250]
+        // There's no clone function unfortunately
+        this._absProjection = d3.geoMercator()
+            .rotate([0,0])
+            .scale(scale)
+            .translate([scale * Math.PI, scale * Math.PI]); // Warning, default translation is [480, 250]
+    }
 
     // taken from http://bl.ocks.org/patricksurry/6621971
-
     // find the top left and bottom right of current projection
     function mercatorBounds(projection, maxlat) {
         var yaw = projection.rotate()[0],
@@ -195,6 +235,12 @@ CountryMap.prototype.projection = function(arg) {
     return this;
 };
 
+CountryMap.prototype.absProjection = function(arg) {
+    if (!arg) return this._absProjection;
+    else this._absProjection = arg;
+    return this;
+};
+
 CountryMap.prototype.onSeaClick = function(arg) {
     if (!arg) return this.seaClickHandler;
     else this.seaClickHandler = arg;
@@ -247,12 +293,28 @@ CountryMap.prototype.center = function(center) {
         return this;
     } else {
         var p = this._projection(center);
+        var dx = -1 * p[0] + 0.5 * this.containerWidth;
+        var dy = -1 * p[1] + 0.5 * this.containerHeight;
+
+        var scale = this.startScale;
+
+        // Clip
+        if (dx > 0) dx = 0;
+        if (dx < this.containerWidth - this.mapWidth) dx = this.containerWidth - this.mapWidth;
+        if (dy > 0) dy = 0;
+        if (dy < this.containerHeight - this.mapHeight) dy = this.containerHeight - this.mapHeight;
+
         this.zoom
             .translateBy(d3.select(this.root.node().parentNode), // WARNING, this is accumulative.
-              -1 * p[0] + 0.5 * this.containerWidth,
-              -1 * p[1] + 0.5 * this.containerHeight
-            );
+                dx, dy);
         this._center = center;
+
+        // Update absolute projection
+        this._absProjection
+            .translate([
+                scale * Math.PI + dx,
+                scale * Math.PI + dy,
+            ]);
     }
     return this;
 }

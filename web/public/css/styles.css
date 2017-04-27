@@ -102,6 +102,7 @@ line, path {
 .map-layer {
     position: absolute;
     top: 0;
+    transform-origin: 0px 0px 0px;
 }
 .wind {
     pointer-events: none;

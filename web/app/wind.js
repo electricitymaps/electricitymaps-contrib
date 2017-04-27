@@ -56,19 +56,40 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
     }
 };
 
+exports.zoomend = function() {
+    // Called when the dragging / zooming is done.
+    // We need to re-update change the projection
+    if (!projection || !windLayer) { return; }
+
+    // ** TEMP
+    var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
+    var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
+
+    var sw = projection.invert([0, height]);
+    var ne = projection.invert([width, 0]);
+
+    windLayer.start(
+        [[0, 0], [width, height]], 
+        width,
+        height,
+        [sw, ne]
+    );
+}
+
 exports.pause = function(arg) {
     if (windLayer)
         windLayer.paused = arg;
 }
 
 exports.show = function() {
-    if (windLayer.started) { return; }
+    if (windLayer && windLayer.started) { return; }
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
     var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
     // Canvas needs to have it's width and height attribute set
     windCanvas
         .attr('width', width)
         .attr('height', height);
+
     var sw = projection.invert([0, height]);
     var ne = projection.invert([width, 0]);
     windCanvas.transition().style('opacity', WIND_OPACITY);
