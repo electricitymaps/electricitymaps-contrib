@@ -93,7 +93,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Devils Gate Power Station': 'AUS-TAS',
   'Dry Creek Gas Turbine Station': 'AUS-SA',
   'Eastern Creek Power Station': 'AUS-NSW',
-  'Eildon Pondage Hydro Power Station': 'AUS-VIC',
+  'Eildon Power Station': 'AUS-VIC',
   'Eraring Power Station': 'AUS-NSW',
   'Fisher Power Station': 'AUS-TAS',
   'Broken Hill Gas Turbines': 'AUS-NSW',
@@ -424,13 +424,13 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
         interconnector = filter(lambda f: f['name'] == interconnector_name, flows)[0]
         direction = mapping['directions'][i]
         netFlow += direction * interconnector['value']
-        importCapacity += direction * interconnector['exportlimit' if direction else 'importlimit']
-        exportCapacity += direction * interconnector['importlimit' if direction else 'exportlimit']
+        importCapacity += direction * interconnector['importlimit' if direction == 1 else 'exportlimit']
+        exportCapacity += direction * interconnector['exportlimit' if direction == 1 else 'importlimit']
 
     data = {
         'sortedCountryCodes': sorted_country_codes,
         'netFlow': netFlow,
-        'capacity': [exportCapacity, importCapacity], # first one should be negative
+        'capacity': [importCapacity, exportCapacity], # first one should be negative
         'source': 'aemo.com.au',
         'datetime': arrow.get(arrow.get(obj['SETTLEMENTDATE']).datetime, 'Australia/NSW').replace(minutes=-5).datetime
     }
@@ -486,8 +486,8 @@ def fetch_price(country_code=None, session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production("AUS-TAS") ->'
-    print fetch_production('AUS-TAS')
+    print 'fetch_production("AUS-VIC") ->'
+    print fetch_production('AUS-VIC')
     print "fetch_exchange('AUS-NSW', 'AUS-QLD') ->"
     print fetch_exchange('AUS-NSW', 'AUS-QLD')
     print "fetch_exchange('AUS-NSW', 'AUS-VIC') ->"
