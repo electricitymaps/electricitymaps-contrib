@@ -1,6 +1,6 @@
 var d3 = require('d3');
 
-function CountryMap(selector, co2color) {
+function CountryMap(selector, wind) {
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
@@ -62,9 +62,11 @@ function CountryMap(selector, co2color) {
         // we will need to translate every arrow element by it's original dX multiplied by transform.k
     })
     .on('start', function() {
+        wind.pause(true);
         d3.select(this).style('cursor', 'move');
     })
     .on('end', function() {
+        wind.pause(false);
         d3.select(this).style('cursor', undefined);
     });
 

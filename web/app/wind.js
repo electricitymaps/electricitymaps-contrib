@@ -56,6 +56,11 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
     }
 };
 
+exports.pause = function(arg) {
+    if (windLayer)
+        windLayer.paused = arg;
+}
+
 exports.show = function() {
     if (windLayer.started) { return; }
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
