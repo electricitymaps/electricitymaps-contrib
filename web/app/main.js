@@ -497,19 +497,22 @@ function selectCountry(countryCode, notrack) {
             .render();
 
         function updateGraph(countryHistory) {
-            // No export capacities are defined, and they are thus
+            // No export capacities are not always defined, and they are thus
             // varying the scale.
             // Here's a hack to fix it.
             var lo = d3.min(countryHistory, function(d) {
                 return Math.min(
+                    -d.maxStorageCapacity || 0,
+                    -d.maxStorage || 0,
                     -d.maxExport || 0,
-                    -d.maxStorage || 0);
+                    -d.maxExportCapacity || 0);
             });
             var hi = d3.max(countryHistory, function(d) {
                 return Math.max(
                     d.maxCapacity || 0,
                     d.maxProduction || 0,
-                    d.maxImport || 0)
+                    d.maxImport || 0,
+                    d.maxImportCapacity || 0);
             });
 
             // Figure out the highest CO2 emissions
@@ -599,7 +602,7 @@ function selectCountry(countryCode, notrack) {
 // Bind
 countryMap
     .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
-    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
+    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; console.log(d); showPage('country'); });
 d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
     .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
 d3.selectAll('.highscore-button').on('click', function() { showPage('highscore'); });

@@ -209,6 +209,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var selection = this.exchangeRoot.selectAll('.row')
         .data(this._exchangeData);
     selection.exit().remove();
+
     var gNewRow = selection.enter().append('g')
         .attr('class', 'row')
         .attr('transform', function (d, i) {
@@ -227,11 +228,43 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('fill', 'darkgray')
         .text('?');
     gNewRow.append('rect')
+        .attr('class', 'capacity')
+        .attr('height', this.ROW_HEIGHT)
+        .attr('fill-opacity', 0.4)
+        .attr('opacity', 0.3)
+        .attr('shape-rendering', 'crispEdges')
+        .attr('x', that.LABEL_MAX_WIDTH + 
+            (this._displayByEmissions ? this.co2Scale(0) : this.powerScale(0)))
+        .style('transform-origin', 'left');
+    gNewRow.append('rect')
+        .attr('class', 'exchange')
         .attr('height', this.ROW_HEIGHT)
         .attr('opacity', this.RECT_OPACITY)
         .attr('x', that.LABEL_MAX_WIDTH + 
             (this._displayByEmissions ? this.co2Scale(0) : this.powerScale(0)))
         .style('transform-origin', 'left');
+
+
+    if (that._displayByEmissions)
+        gNewRow.merge(selection).select('rect.capacity')
+            .transition()
+            .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
+            .style('display', 'none')
+    else
+        gNewRow.merge(selection).select('rect.capacity')
+            .transition()
+            .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
+            .attr('x', function(d) {
+                var value = ((that._data.exchangeCapacities || {})[d.key] || [undefined, undefined])[0];
+                return that.LABEL_MAX_WIDTH + ((value == undefined || !isFinite(value)) ? that.powerScale(0) : that.powerScale(Math.min(0, value)));
+            })
+            .attr('width', function (d) {
+                var capacity = (that._data.exchangeCapacities || {})[d.key];
+                if (!capacity) return 0;
+                return that.powerScale(capacity[1] - capacity[0]) - that.powerScale(0);
+            })
+            .on('end', function () { d3.select(this).style('display', 'block'); });
+
     gNewRow.merge(selection).select('text.unknown')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
@@ -245,19 +278,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .attr('xlink:href', function (d) {
             return flags.flagUri(d.key, that.FLAG_SIZE);
         })
-    gNewRow.merge(selection).select('rect')
-        .on('mouseover', function (d) {
-            if (that.exchangeMouseOverHandler)
-                that.exchangeMouseOverHandler.call(this, d, that._data);
-        })
-        .on('mouseout', function (d) {
-            if (that.exchangeMouseOutHandler)
-                that.exchangeMouseOutHandler.call(this, d, that._data);
-        })
-        .on('mousemove', function (d) {
-            if (that.exchangeMouseMoveHandler)
-                that.exchangeMouseMoveHandler.call(this, d, that._data);
-        })
+    gNewRow.merge(selection).select('rect.exchange')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .attr('fill', function (d, i) {
@@ -290,6 +311,22 @@ CountryTable.prototype.render = function(ignoreTransitions) {
             else
                 return Math.abs(that.powerScale(d.value) - that.powerScale(0));
         })
+
+    // Add event handlers
+    selection.selectAll('rect.capacity,rect.exchange')
+        .on('mouseover', function (d) {
+            if (that.exchangeMouseOverHandler)
+                that.exchangeMouseOverHandler.call(this, d, that._data);
+        })
+        .on('mouseout', function (d) {
+            if (that.exchangeMouseOutHandler)
+                that.exchangeMouseOutHandler.call(this, d, that._data);
+        })
+        .on('mousemove', function (d) {
+            if (that.exchangeMouseMoveHandler)
+                that.exchangeMouseMoveHandler.call(this, d, that._data);
+        });
+
     gNewRow.merge(selection).select('text')
         //.text(function(d) { return lang.zoneShortName[d.key] || d.key; });
         .text(function(d) { return d.key; });
@@ -418,11 +455,13 @@ CountryTable.prototype.data = function(arg) {
             Math.min(
                 -this._data.maxStorageCapacity || 0,
                 -this._data.maxStorage || 0,
-                -this._data.maxExport || 0),
+                -this._data.maxExport || 0,
+                -this._data.maxExportCapacity || 0),
             Math.max(
                 this._data.maxCapacity || 0,
                 this._data.maxProduction || 0,
-                this._data.maxImport || 0)
+                this._data.maxImport || 0,
+                this._data.maxImportCapacity || 0)
         ]);
     // co2 scale in tCO2eq/min
     var maxCO2eqExport = d3.max(this._exchangeData, function (d) {
