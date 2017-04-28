@@ -48,7 +48,7 @@ def get_last_data_idx(productions):
 
 def fetch_production(country_code='TR', session=None):
     r = session or requests.session()
-    tr_datetime = arrow.now(tz=TIMEZONE).datetime
+    tr_datetime = arrow.now().to('Europe/Istanbul').floor('day')
     data = {
       'countryCode': country_code,
       'production': {},
@@ -67,7 +67,7 @@ def fetch_production(country_code='TR', session=None):
             for prod_type, prod_val in last_prod.items():
                 if prod_type in MAP_GENERATION.keys():
                     data['production'][MAP_GENERATION[prod_type]] += prod_val
-            data['datetime'] = tr_datetime.replace(hour=last_data_index)
+            data['datetime'] = tr_datetime.replace(hour=last_data_index).datetime
     return data
 
 if __name__ == '__main__':
