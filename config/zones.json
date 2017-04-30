@@ -56,6 +56,9 @@
     "CA-NB": {
         "flag_file_name": "ca.png"
     },
+    "CA-NF": {
+        "flag_file_name": "ca.png"
+    },
     "CA-NS": {
         "flag_file_name": "ca.png"
     },
