@@ -66,8 +66,7 @@ def fetch_production(country_code='CA-NS', session=None):
                 'gas': ((mix['HFO/Natural Gas'] + mix['CT\'s'] + mix['LM 6000\'s']) * load),
                 'biomass': (mix['Biomass'] * load),
                 'hydro': (mix['Hydro'] * load),
-                'wind': (mix['Wind'] * load),
-                'unknown': (mix['Imports'] * load)
+                'wind': (mix['Wind'] * load)
             },
             'storage': {},
             'source': 'nspower.ca',
