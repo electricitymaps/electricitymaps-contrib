@@ -313,7 +313,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         })
 
     // Add event handlers
-    selection.selectAll('rect.capacity,rect.exchange')
+    gNewRow.merge(selection).selectAll('rect.capacity,rect.exchange')
         .on('mouseover', function (d) {
             if (that.exchangeMouseOverHandler)
                 that.exchangeMouseOverHandler.call(this, d, that._data);
