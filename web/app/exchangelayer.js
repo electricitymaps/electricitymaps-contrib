@@ -106,6 +106,22 @@ ExchangeLayer.prototype.render = function() {
     // This allows us to avoid re-rendering when the same element subsides between renders
     updateArrows(newArrows);
 
+    // However, set the visibility
+    var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
+    var layerTransform = d3.select('.arrows-layer').style('transform').replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
+    
+    newArrows.merge(exchangeArrows)
+        .style('display', function(d) {
+            var arrowCenter = that.projection()(d.lonlat);
+            var layerTranslateX = layerTransform[4];
+            var mapScale = layerTransform[3];
+            var centerX = (arrowCenter[0] * mapScale) - Math.abs(layerTranslateX);
+
+            var isOffscreen = centerX < 0 || centerX > mapWidth;
+            var hasLowFlow = (d.netFlow || 0) == 0;
+            return (hasLowFlow || isOffscreen) ? 'none' : '';
+        })
+
     return this;
 }
 

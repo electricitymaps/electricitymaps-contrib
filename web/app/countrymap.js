@@ -45,6 +45,8 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
 
     var dragStartTransform;
 
+    var that = this;
+
     this.zoom = d3.zoom().on('zoom', function() {
         if (!dragStartTransform) {
             // Zoom start
@@ -86,6 +88,7 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         that.windCanvas.style('transform', undefined);
         that.solarCanvas.style('transform', undefined);
 
+        that.exchangeLayer().render();
         wind.pause(false);
         d3.select(this).style('cursor', undefined);
 
