@@ -194,7 +194,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Roghan Road LFG Power Plant': 'AUS-QLD',
   'Roma Gas Turbine Station': 'AUS-QLD',
   'Rowallan Power Station': 'AUS-TAS',
-  'Royalla Solar Farm': 'AUS-ACT',
+  'Royalla Solar Farm': 'AUS-NSW',
   'Rocky Point Cogeneration Plant': 'AUS-QLD',
   'Shepparton Wastewater Treatment Facility': 'AUS-VIC',
   'Bendeela / Kangaroo Valley Pumps': 'AUS-NSW',
