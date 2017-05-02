@@ -116,7 +116,7 @@ AMEO_LOCATION_DICTIONARY = {
   'South East Water - Hallam Hydro Plant': 'AUS-VIC',
   'Hume Power Station': 'AUS-NSW',
   'Hunter Valley Gas Turbine ': 'AUS-NSW',
-  'Hazelwood Power Station': 'AUS-VIC',
+  'Hazelwood Power Station': None, # Closed
   'ISIS Central Sugar Mill Co-generation Plant': 'AUS-QLD',
   'Invicta Sugar Mill': 'AUS-QLD',
   'Jacks Gully Landfill Gas Power Station': 'AUS-NSW',
@@ -167,7 +167,7 @@ AMEO_LOCATION_DICTIONARY = {
   'North Brown Hill Wind Farm': 'AUS-SA',
   'Nine Network Willoughby Plant ': 'AUS-NSW',
   'Newport Power Station': 'AUS-VIC',
-  'Northern Power Station': 'AUS-SA',
+  'Northern Power Station': None, # Closed
   'Nyngan Solar Plant': 'AUS-NSW',
   'Oakey Power Station': 'AUS-QLD',
   'Oaklands Hill Wind Farm': 'AUS-VIC',
@@ -177,7 +177,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Paloona Power Station': 'AUS-TAS',
   'Pedler Creek Landfill Gas Power Station Units 1-3': 'AUS-SA',
   'Pindari Hydro Power Station': 'AUS-NSW',
-  'Playford B Power Station': 'AUS-SA',
+  'Playford B Power Station': None, # Closed
   'Poatina Power Station': 'AUS-TAS',
   'Port Lincoln Gas Turbine': 'AUS-SA',
   'Port Latta Diesel Generation': 'AUS-TAS',
