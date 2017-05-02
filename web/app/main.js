@@ -717,7 +717,7 @@ d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(coordinates) {
     if (windEnabled && wind && coordinates) {
-        var lonlat = countryMap.projection().invert(coordinates);
+        var lonlat = countryMap._absProjection.invert(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
             var u = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -731,7 +731,7 @@ function mapMouseOver(coordinates) {
         windColorbar.currentMarker(undefined);
     }
     if (solarEnabled && solar && coordinates) {
-        var lonlat = countryMap.projection().invert(coordinates);
+        var lonlat = countryMap._absProjection.invert(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
             var val = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -743,7 +743,7 @@ function mapMouseOver(coordinates) {
         solarColorbar.currentMarker(undefined);
     }
 }
-d3.select('.map')
+d3.select('.map-layer')
     .on('mousemove', function() {
         mapMouseOver(d3.mouse(this));
     })
