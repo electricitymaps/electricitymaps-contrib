@@ -77,9 +77,9 @@ def fetch_production(country_code='CA-PE', session=None):
         'production': {
             'wind': raw_info['pei_wind_gen'],
 
-            # generators specified as "heavy fuel oil" and "diesel"
-            # on Wikipedia
-            'unknown': raw_info['pei_fossil_gen']
+            # These are oil-fueled ("heavy fuel oil" and "diesel") generators
+            # used as peakers and back-up
+            'oil': raw_info['pei_fossil_gen']
         },
         'storage': {},
         'source': 'www.gov.pe.ca/windenergy'
@@ -115,20 +115,26 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     # PEI imports most of its electricity. Everything not generated on island
     # is imported from New Brunswick.
-    # In case of wind, some is "exported" even if there is a net import,
-    # and 'pei_wind_used' indicates their accounting of part of the load
+    # In case of wind, some is paper-"exported" even if there is a net import,
+    # and 'pei_wind_used'/'data5' indicates their accounting of part of the load
     # served by non-exported wind.
-    imported_from_nb = (raw_data['pei_load'] - raw_data['pei_fossil_gen'] - raw_data['pei_wind_used'])
+    # # http://www.gov.pe.ca/windenergy/chart.php says:
+    # "Wind Power Exported Off-Island is that portion of wind generation that is supplying
+    # contracts elsewhere. The actual electricity from this portion of wind generation
+    # may stay within PEI but is satisfying a contractual arrangement in another jurisdiction."
+    # We are ignoring these paper exports, as they are an accounting/legal detail
+    # that doesn't actually reflect what happens on the wires.
+    # (New Brunswick being the only interconnection with PEI, "exporting" wind power to NB
+    # then "importing" a balance of NB electricity likely doesn't actually happen.)
+    imported_from_nb = (raw_data['pei_load'] - raw_data['pei_fossil_gen'] - raw_data['pei_wind_gen'])
 
     # In expected result, "net" represents an export.
     # We have sorted_country_codes 'CA-NB->CA-PE', so it's export *from* NB,
     # and import *to* PEI.
-    flow = imported_from_nb - raw_data['pei_wind_exported']
-
     data = {
         'datetime': raw_data['utc_datetime'],
         'sortedCountryCodes': sorted_country_codes,
-        'netFlow': flow,
+        'netFlow': imported_from_nb,
         'source': 'www.gov.pe.ca/windenergy'
     }
 
