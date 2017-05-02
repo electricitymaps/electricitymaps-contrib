@@ -60,6 +60,7 @@
         "ofconsumption": "de",
         "ofinstalled": "de la capacidad instalada",
         "ofelectricity": "de",
+		"the": "The",
         "utilizing": "utilizando",
         "withcarbonintensity": "con una intensidad de emisión de CO2 de"
     },
@@ -73,5 +74,11 @@
         "mapview": "Mapa",
         "listview": "Lista",
         "info": "Info"
-    }
+    },
+	"embedding": {
+		"deactivated": "Embedding of the ElectricityMap has been deactivated",
+		"stillaccess": "You can still access it at",
+		"contactus": "Please contact us at",
+		"moreinformation": "for more information"
+	}
 }

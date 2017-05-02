@@ -61,6 +61,7 @@
         "ofconsumption": "av",
         "ofinstalled": "av installerad kapacitet",
         "ofelectricity": "av",
+		"the": "The",
         "utilizing": "Utnyttjar",
         "withcarbonintensity": "med ett utsläpp av koldioxid på"
     },
@@ -74,5 +75,11 @@
         "mapview": "Karta",
         "listview": "Lista",
         "info": "Info"
-    }
+    },
+	"embedding": {
+		"deactivated": "Embedding of the ElectricityMap has been deactivated",
+		"stillaccess": "You can still access it at",
+		"contactus": "Please contact us at",
+		"moreinformation": "for more information"
+	}
 }

@@ -60,6 +60,7 @@
         "ofconsumption": "des",
         "ofinstalled": "der installierten Leistung",
         "ofelectricity": "der",
+		"the": "The",
         "utilizing": "durch Verwendung von",
         "withcarbonintensity": "mit einer CO2 Konzentration von"
     },
@@ -73,5 +74,11 @@
         "mapview": "Karte",
         "listview": "Liste",
         "info": "Info"
-    }
+    },
+	"embedding": {
+		"deactivated": "Embedding of the ElectricityMap has been deactivated",
+		"stillaccess": "You can still access it at",
+		"contactus": "Please contact us at",
+		"moreinformation": "for more information"
+	}
 }

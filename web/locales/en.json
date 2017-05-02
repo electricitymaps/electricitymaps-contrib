@@ -61,6 +61,7 @@
         "ofconsumption": "of",
         "ofinstalled": "of installed capacity",
         "ofelectricity": "of",
+		"the": "The",
         "utilizing": "utilizing",
         "withcarbonintensity": "with a carbon intensity of"
     },
@@ -74,5 +75,11 @@
         "mapview": "Map View",
         "listview": "List View",
         "info": "Info"
-    }
+    },
+	"embedding": {
+		"deactivated": "Embedding of the ElectricityMap has been deactivated",
+		"stillaccess": "You can still access it at",
+		"contactus": "Please contact us at",
+		"moreinformation": "for more information"
+	}
 }
