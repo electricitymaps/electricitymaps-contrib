@@ -47,6 +47,7 @@ def get_last_data_idx(productions):
 
 
 def fetch_production(country_code='TR', session=None):
+    session = None # Explicitely make a new session to avoid caching from their server...
     r = session or requests.session()
     tr_datetime = arrow.now().to('Europe/Istanbul').floor('day')
     data = {
