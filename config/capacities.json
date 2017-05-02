@@ -10,6 +10,16 @@
             "wind": 2556
         }
     },
+    "CA-ON": {    
+        "capacity": {
+            "biomass": 495,
+            "nuclear": 12978,
+            "gas" : 9943,
+            "hydro": 8451,
+            "wind": 3923,
+            "solar": 280
+        }
+    },
     "BE": {
         "capacity": {
             "biomass": 1078,
@@ -317,7 +327,7 @@
             "biomass": 363,
             "nuclear": 1940,
             "coal": 1008,
-	          "gas" : 1093,
+            "gas" : 1093,
             "oil": 195,
             "hydro": 2533,
             "wind": 3,
