@@ -386,7 +386,7 @@ EXCHANGE_MAPPING_DICTIONARY = {
     'AUS-TAS->AUS-VIC': {
         'region_id': 'VIC1',
         'interconnector_names': ['T-V-MNSP1'],
-        'directions': [-1]
+        'directions': [1]
     },
 }
 
