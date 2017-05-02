@@ -66,7 +66,6 @@ var showWindOption = true;
 var showSolarOption = true;
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
-var region = 'europe';
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -98,10 +97,6 @@ function parseQueryString(querystring) {
         } else if (kv[0] == 'wind') {
             windEnabled = kv[1] == 'true';
             replaceHistoryState('wind', windEnabled);
-        } else if (kv[0] == 'region') {
-            region = kv[1];
-            replaceHistoryState('region', region);
-            // WARNING: Deeplink might not work if region is set after everything is rendered
         }
     });
 }
@@ -146,7 +141,6 @@ var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap
 // Set history state of remaining variables
 replaceHistoryState('wind', windEnabled);
 replaceHistoryState('solar', solarEnabled);
-replaceHistoryState('region', region);
 
 // Twitter
 window.twttr = (function(d, s, id) {
@@ -362,9 +356,8 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map')
-    .co2color(co2color)
-    .region(region);
+var countryMap = new CountryMap('#map', Wind, '.wind', Solar, '.solar')
+    .co2color(co2color);
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
@@ -449,6 +442,14 @@ function placeTooltip(selector, d3Event) {
 
 // Prepare data
 var countries = CountryTopos.addCountryTopos({});
+// Validate selected country
+if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
+    selectedCountryCode = undefined;
+    if (showPageState == 'country') {
+        showPageState = 'map';
+        replaceHistoryState('page', showPageState);
+    }
+}
 // Assign data
 countryMap
     .data(d3.values(countries))
@@ -486,14 +487,7 @@ var histories = {};
 
 function selectCountry(countryCode, notrack) {
     if (!countries) { return; }
-    if (!countryCode || !countries[countryCode]) {
-        // If the introductory panel was never rendered before
-        // then we need to render it
-        if (co2Colorbar) co2Colorbar.render();
-        if (windColorbar && windEnabled) windColorbar.render();
-        if (solarColorbar && solarEnabled) solarColorbar.render();
-
-    } else {
+    if (countryCode && countries[countryCode]) {
         // Selected
         if (!notrack)
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
@@ -503,19 +497,22 @@ function selectCountry(countryCode, notrack) {
             .render();
 
         function updateGraph(countryHistory) {
-            // No export capacities are defined, and they are thus
+            // No export capacities are not always defined, and they are thus
             // varying the scale.
             // Here's a hack to fix it.
             var lo = d3.min(countryHistory, function(d) {
                 return Math.min(
+                    -d.maxStorageCapacity || 0,
+                    -d.maxStorage || 0,
                     -d.maxExport || 0,
-                    -d.maxStorage || 0);
+                    -d.maxExportCapacity || 0);
             });
             var hi = d3.max(countryHistory, function(d) {
                 return Math.max(
                     d.maxCapacity || 0,
                     d.maxProduction || 0,
-                    d.maxImport || 0)
+                    d.maxImport || 0,
+                    d.maxImportCapacity || 0);
             });
 
             // Figure out the highest CO2 emissions
@@ -605,7 +602,7 @@ function selectCountry(countryCode, notrack) {
 // Bind
 countryMap
     .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
-    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
+    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; console.log(d); showPage('country'); });
 d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
     .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
 d3.selectAll('.highscore-button').on('click', function() { showPage('highscore'); });
@@ -616,13 +613,16 @@ if(showPageState) {
 }
 
 function showPage(pageName) {
-    if (showPageState != 'country')
-        previousShowPageState = showPageState;
-    showPageState = pageName;
-    replaceHistoryState('page', showPageState);
 
     if(pageName === undefined)
         pageName = 'map';
+
+    showPageState = pageName;
+
+    if (showPageState != 'country')
+        previousShowPageState = showPageState;
+
+    replaceHistoryState('page', showPageState);
 
     // Hide all panels - we will show only the ones we need
     d3.selectAll('.left-panel > div').style('display', 'none');
@@ -644,6 +644,9 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
+        if (co2Colorbar) co2Colorbar.render();
+        if (windEnabled) if (windColorbar) windColorbar.render();
+        if (solarEnabled) if (solarColorbar) solarColorbar.render();
     }
     else {
         d3.select('.left-panel').classed('large-screen-visible', false);
@@ -651,9 +654,9 @@ function showPage(pageName) {
         if (pageName == 'country') {
             selectCountry(selectedCountryCode);
         } else if (pageName == 'info') {
-            co2Colorbar.render();
-            if (windEnabled) windColorbar.render();
-            if (solarEnabled) solarColorbar.render();
+            if (co2Colorbar) co2Colorbar.render();
+            if (windEnabled) if (windColorbar) windColorbar.render();
+            if (solarEnabled) if (solarColorbar) solarColorbar.render();
         }
     }
  
@@ -752,12 +755,22 @@ function renderMap() {
     if (!countryMap) { return ; }
 
     countryMap.render();
+    
     if (!countryMap.projection()) {
         return;
     }
 
-    if (!countryMap.center())
-        countryMap.center(geolocation || countryMap.regionParams[countryMap.region()].center);
+    if (!countryMap.center()) {
+        if (geolocation) {
+            countryMap.center(geolocation);
+        } else if (selectedCountryCode) {
+            var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
+            var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
+            countryMap.center([lon, lat]);
+        } else {
+            countryMap.center([0, 50]);
+        }
+    }
     exchangeLayer
         .projection(countryMap.projection())
         .render();
@@ -773,7 +786,7 @@ function renderMap() {
             wind.forecasts[0],
             wind.forecasts[1],
             windColor,
-            countryMap.projection());
+            countryMap.absProjection());
         if (windEnabled)
             Wind.show();
         else
@@ -796,8 +809,7 @@ function renderMap() {
             solar.forecasts[0],
             solar.forecasts[1],
             solarColor,
-            countryMap.projection(),
-            region,
+            countryMap.absProjection(),
             function() {
                 if (solarEnabled)
                     Solar.show();
@@ -820,14 +832,26 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         return;
     }
 
+    // Debug: randomly generate data
+    // Object.keys(exchanges).forEach(function(k) {
+    //     if (state.exchanges[k]) {
+    //         state.exchanges[k].netFlow = Math.random() * 1500 - 700;
+    //         state.exchanges[k].co2intensity = Math.random() * 800;
+    //     }
+    // });
+    // Object.keys(countries).forEach(function(k) {
+    //     if (state.countries[k])
+    //         state.countries[k].co2intensity = Math.random() * 800;
+    // });
+
     // Is there a new version?
     d3.select('#new-version')
         .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
 
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
-    d3.select('#current-date').text(currentMoment.format('LL'));
-    d3.select('#current-time').text(currentMoment.format('LT [UTC]Z'));
-    d3.selectAll('#current-date, #current-time')
+    d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
+    d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
+    d3.selectAll('#current-datetime, #current-datetime-from-now')
         .style('color', 'darkred')
         .transition()
             .duration(800)

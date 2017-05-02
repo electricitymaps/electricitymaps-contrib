@@ -81,11 +81,11 @@
                     <h1>
                         <%= __('misc.maintitle') %>
                     </h1>
-                    <div id="current-datetime" class="large-screen-visible">
+                    <div class="large-screen-visible">
                         <div>
                             <%= __('misc.lastupdate') %>:
-                            <span id="current-date"></span>
-                            <span id="current-time"></span>
+                            <span class="current-datetime"></span>
+                            <small>(<span class="current-datetime-from-now"></span>)</small>
                         </div>
                     </div>
                     <hr />
@@ -181,6 +181,9 @@
                         </div>
                         <svg class="country-table"></svg>
                         <p>
+                            <%= __('misc.lastupdate') %>:
+                            <span class="current-datetime"></span>
+                            <small>(<span class="current-datetime-from-now"></span>)</small><br />
                             <%=__('country-panel.source')%>:
                             <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">
                                 <span class="country-data-source"></span>
@@ -235,6 +238,8 @@
 
             <div id="map-container">
                 <div id="map"></div>
+                <canvas class="wind map-layer"></canvas>
+                <canvas class="solar map-layer"></canvas>
                 <div id="country-tooltip" class="tooltip panel">
                     <%= __('tooltips.carbonintensity') %>:<br />
                     <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
@@ -254,7 +259,7 @@
                   <a class="solar-toggle"><img src="images/weather/sun.svg"></img></a>
                 </div>
                 <div class="watermark">
-                    <a href="http://www.tmrow.co" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
+                    <a href="http://www.tmrow.com" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
                     <br />
                     <div class="fb-like"
                         data-href="https://www.facebook.com/tmrowco"
@@ -293,7 +298,7 @@
         <div class="loading overlay"></div>
         <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
             Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">http://www.electricitymap.org</a>.<br />
-            Please contact us at <a href="mailto:hello@tmrow.co">hello@tmrow.co</a> for more information.
+            Please contact us at <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> for more information.
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
             <span id="production-proportion"></span> <%= __('tooltips.ofelectricity') %> <img id="country-flag" class="flag"></img> <span class="country-code"></span> <span id="domain-name"></span><br />

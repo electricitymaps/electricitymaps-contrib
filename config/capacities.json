@@ -10,6 +10,16 @@
             "wind": 2556
         }
     },
+    "CA-ON": {    
+        "capacity": {
+            "biomass": 495,
+            "nuclear": 12978,
+            "gas" : 9943,
+            "hydro": 8451,
+            "wind": 3923,
+            "solar": 280
+        }
+    },
     "BE": {
         "capacity": {
             "biomass": 1078,
@@ -317,11 +327,27 @@
             "biomass": 363,
             "nuclear": 1940,
             "coal": 1008,
-	          "gas" : 1093,
+            "gas" : 1093,
             "oil": 195,
             "hydro": 2533,
             "wind": 3,
             "solar": 532
         }
+    },
+    "US": {    
+        "capacity": {
+            "biomass": 16099,
+            "nuclear": 103860,
+            "coal": 304789,
+            "gas" : 506760,
+            "oil": 42321,
+            "hydro": 78956,
+            "hydro storage": 21572,
+            "wind": 73393,
+            "solar": 13758,
+            "geothermal": 3811,
+            "other": 2040
+        },
+        "_comment": "distributed PV: 9778MW, not included below"
     }
 }

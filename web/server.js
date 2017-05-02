@@ -105,9 +105,10 @@ app.get('/', function(req, res) {
     // redirect everyone except the Facebook crawler,
     // else, we will lose all likes
     var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
-    var isNonWWW = req.get('host') === 'electricitymap.org'
-    if ((isNonWWW || isSubDomain) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-        // Redirect all non-facebook
+    var isNonWWW = req.get('host') === 'electricitymap.org';
+    var isStaging = req.get('host') === 'staging.electricitymap.org';
+    if (!isStaging && (isNonWWW || isSubDomain) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
+        // Redirect all non-facebook or non-staging
         res.redirect(301, 'https://www.electricitymap.org' + req.path);
     } else {
         // Set locale if facebook requests it
