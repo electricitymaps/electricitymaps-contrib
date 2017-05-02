@@ -27,7 +27,7 @@
         "electricityproduction": "Electricity production",
         "showemissions": "show emissions",
         "bysource": "by source",
-        "emissions": "Emissions",
+        "emissions": "Carbon emissions",
         "showelectricity": "show electricity",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Our <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
