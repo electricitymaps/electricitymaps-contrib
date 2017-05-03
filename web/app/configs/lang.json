@@ -152,12 +152,6 @@
         "electricityImportedFrom": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> is imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
-
-        "electricityto": "electricity is exported to",
-        "emissionsfrom": "emissions comes from",
-        "emissionsto": "emissions are exported to",
-        "electricitystored": "electricity is stored using",
-
         "zoneShortName": {
             "AL": "Albania",
             "AM": "Armenia",
