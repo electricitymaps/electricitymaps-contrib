@@ -308,7 +308,15 @@ exports.addExchangesConfiguration = function(exchanges) {
     // ** Canada
     exchanges['CA-AB->CA-BC'] = {
         lonlat: [-119.811359, 53.797027],
-        rotation: 0
+        rotation: -90
+    };
+    exchanges['CA-AB->CA-SK'] = {
+        lonlat: [-109.986644, 54.883208],
+        rotation: 90
+    };
+    exchanges['CA-AB->US'] = {
+        lonlat: [-111.920238, 49.016577],
+        rotation: 180
     };
     exchanges['CA-BC->US'] = {
         lonlat: [-119.300532, 49.044392],
@@ -343,6 +351,22 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: 135
     };
     // ** Oceania
+    exchanges['AUS-NSW->AUS-QLD'] = {
+        lonlat: [146.503228, -29.054874],
+        rotation: 0
+    }
+    exchanges['AUS-NSW->AUS-VIC'] = {
+        lonlat: [145.308829, -35.850801],
+        rotation: 180
+    }
+    exchanges['AUS-SA->AUS-VIC'] = {
+        lonlat: [140.965561, -35.784766],
+        rotation: 90
+    }
+    exchanges['AUS-TAS->AUS-VIC'] = {
+        lonlat: [146.096047, -39.836207],
+        rotation: 0
+    }
     exchanges['NZ-NZN->NZ-NZS'] = {
         lonlat: [174.424066, -41.140732],
         rotation: 90
