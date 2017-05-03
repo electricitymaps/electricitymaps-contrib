@@ -20,15 +20,13 @@
     },
     "country-panel": {
         "source": "Quelle",
-        "fossilfuels": "fossile Brennstoffe",
+        "fossilfuels": "Fossile Brennstoffe",
         "carbonintensity": "CO2 Konzentration",
         "electricityprice": "Elektrizitätspreis",
         "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Elektrizitätsproduktion",
-        "showemissions": "zeige Emissionen",
         "bysource": "nach Quelle",
-        "emissions": "Emissionen",
-        "showelectricity": "zeige Elektrizität",
+        "emissions": "Co2 Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Unser <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hilft Geräten und elektrischen Fahrzeugen Elektrizität zur richtigen Zeit zu konsumieren, insbesondere bei Grenzübertritt."
     },
@@ -56,11 +54,9 @@
         "carbonintensity": "CO2 Konzentration",
         "crossborderexport": "Export über Ländergrenzen",
         "carbonintensityexport": "CO2 Konzentration des Exports",
-        "of": "von",
-        "ofconsumption": "des",
+
         "ofinstalled": "der installierten Leistung",
         "ofelectricity": "der",
-		"the": "The",
         "utilizing": "durch Verwendung von",
         "withcarbonintensity": "mit einer CO2 Konzentration von"
     },

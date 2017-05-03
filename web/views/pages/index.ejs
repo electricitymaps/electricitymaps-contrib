@@ -173,14 +173,13 @@
                             </div>
                         </div>
                         <div class="country-show-emissions-wrap">
-                           <div class="country-show-emissions">
-                                <a href="javascript:toggleSource(true)"><%= __('country-panel.electricityproduction') %></a>
-                                <%= __('country-panel.bysource') %>:
+                            <div class="menu">
+                                <a id="production" href="javascript:toggleSource(false)"><%= __('country-panel.electricityproduction') %></a>
+                                |
+                                <a id="emissions" href="javascript:toggleSource(true)"><%= __('country-panel.emissions') %></a>
                             </div>
-
-                            <div class="country-show-electricity" style="display: none;">
-                                <a href="javascript:toggleSource(false)"><%= __('country-panel.emissions') %></a>
-                                <%= __('country-panel.bysource') %>:
+                            <div class="bysource">
+                                <%= __('country-panel.bysource') %>
                             </div>
                         </div>
                         <svg class="country-table"></svg>
@@ -264,18 +263,6 @@
                 </div>
                 <div class="watermark">
                     <a href="http://www.tmrow.com" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
-                    <br />
-                    <div class="fb-like"
-                        data-href="https://www.facebook.com/tmrowco"
-                        data-layout="button"
-                        data-action="like"
-                        data-size="small"
-                        data-show-faces="false">
-                    </div>&nbsp;<a class="twitter-follow-button"
-                        href="https://twitter.com/tmrowco"
-                        data-show-screen-name="false"
-                        data-show-count="false"
-                        data-lang="<%= locale %>"></a>
                 </div>
                 <div class="highscore-button">
                     <%- __('rankings-panel.show-ranking') %>
@@ -305,7 +292,7 @@
             <%= __('embedding.contactus') %> <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> <%= __('embedding.moreinformation') %>.
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
-            <%= __('tooltips.the') %> <span id="production-proportion"></span> <%= __('tooltips.ofelectricity') %> <img id="country-flag" class="flag"></img> <span class="country-code"></span> <span id="domain-name"></span><br />
+            <span id="production-proportion"></span> <%= __('tooltips.ofelectricity') %> <img id="country-flag" class="flag"></img> <span class="country-code"></span> <span id="domain-name"></span><br />
             <small>(<span id="production-proportion-detail"></span>)</small><br />
             <br />
             <%= __('tooltips.utilizing') %> <span id="capacity-factor"></span> <%= __('tooltips.ofinstalled') %><br />
@@ -315,11 +302,29 @@
             <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(<%= __('country-panel.source') %>: <span class="emission-source"></span>)</small>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
-            <%= __('tooltips.the') %> <span id="exchange-proportion"></span> <%= __('tooltips.ofelectricity') %> <img class="country-flag flag"></img> <span class="country-code"></span> <span id="domain-name"></span> <img class="country-exchange-flag flag"></img> <span class="country-exchange-name"></span><br />
+            <span id="exchange-proportion"></span> <%= __('tooltips.ofelectricity') %> <img class="country-flag flag"></img> <span class="country-code"></span> <span id="domain-name"></span> <img class="country-exchange-flag flag"></img> <span class="country-exchange-name"></span><br />
+            <span id="line1"></span><br />
+            <small>(<span id="production-proportion-detail"></span>)</small><br />
+            <span class="production-visible">
+                <br />
+                <%= __('tooltips.utilizing') %> <span id="capacity-factor"></span> <%= __('tooltips.ofinstalled') %><br />
+                <small>(<span id="capacity-factor-detail"></span>)</small><br />
+                <br />
+                <%= __('tooltips.withcarbonintensity') %><br />
+                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: <span class="emission-source"></span>)</small>
+            </span>
+        </div>
+        <div id="countrypanel-exchange-tooltip" class="tooltip panel">
+            <span id="line1"></span><br />
             <small>(<span id="exchange-proportion-detail"></span>)</small><br />
-            <br />
-            <%= __('tooltips.withcarbonintensity') %><br />
-            <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+            <span class="production-visible">
+                <br />
+                <%= __('tooltips.utilizing') %> <span id="capacity-factor"></span> <%= __('tooltips.ofinstalled') %><br />
+                <small>(<span id="capacity-factor-detail"></span>)</small><br />
+                <br />
+                <%= __('tooltips.withcarbonintensity') %><br />
+                <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+            </span>
         </div>
     </body>
 </html>

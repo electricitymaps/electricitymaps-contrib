@@ -25,11 +25,11 @@
         "electricityprice": "Prezzo dell'elettricità",
         "electricityprice-dayahead": "Al giorno",
         "electricityproduction": "Produzione di elettricità",
-        "showemissions": "mostra emissioni",
         "bysource": "per fonte",
         "emissions": "Emissioni",
         "showelectricity": "mostra elettricità",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica la fonte</a>",
+        "emissions": "Emissioni CO2",
         "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
     },
     "rankings-panel": {
@@ -61,9 +61,13 @@
         "ofconsumption": "di",
         "ofinstalled": "della capacità installata",
         "ofelectricity": "dell'elettricità di",
-		"the": "Il",
         "utilizing": "Utilizzando il",
         "withcarbonintensity": "Con un'intensità di carbonio di:"
+        "carbonintensityexport": "Intensità del carbonio nell'esportazione",
+
+        "ofinstalled": "della capacità installata",
+        "utilizing": "utilizzando",
+        "withcarbonintensity": "con un'intensità del carbonio di "
     },
     "misc": {
         "maintitle": "Emissioni CO2 in tempo reale del consumo elettrico",

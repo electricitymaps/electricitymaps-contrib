@@ -25,10 +25,8 @@
         "electricityprice": "Cena energii elektrycznej",
         "electricityprice-dayahead": "następnego dnia",
         "electricityproduction": "Produkcja energii elektrycznej",
-        "showemissions": "Pokaż emisje",
         "bysource": "według źródeł energii",
-        "emissions": "Emisje",
-        "showelectricity": "pokaż energię elektryczną",
+        "emissions": "Emisje CO2",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Nasz <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic."
     },
@@ -57,11 +55,9 @@
         "carbonintensity": "Emisja CO2",
         "crossborderexport": "Eksport transgraniczny",
         "carbonintensityexport": "Emisja CO2 eksportu",
-        "of": " ",
-        "ofconsumption": " ",
+
         "ofinstalled": "zainstalowanej mocy",
         "ofelectricity": " ",
-		"the": "The",
         "utilizing": "wykorzystując",
         "withcarbonintensity": "z emisją CO2 wynoszącą"
     },
