@@ -66,6 +66,7 @@ function Tooltip(countryTable, countries) {
                 .attr('src', flags.flagUri(d.key, FLAG_SIZE));
             tooltip.selectAll('.country-flag')
                 .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
+
             var totalConsumption = getConsumption(country);
             var totalPositive = country.totalProduction + country.totalImport;
 
@@ -81,6 +82,17 @@ function Tooltip(countryTable, countries) {
                 ' / ' + 
                 (!isNull ? formatPower(domain) : '?'));
             tooltip.select('#domain-name').text(domainName);
+
+            // Capacity
+            var absCapacity = Math.abs(
+                ((country.exchangeCapacities || {})[d.key] || [])[isExport ? 0 : 1]);
+            var hasCapacity = absCapacity !== undefined && isFinite(absCapacity);
+            var capacityFactor = hasCapacity && Math.round(absFlow / absCapacity * 100) || '?';
+            tooltip.select('#capacity-factor').text(capacityFactor + ' %');
+            tooltip.select('#capacity-factor-detail').text(
+                (formatPower(absFlow) || '?') + ' ' +
+                ' / ' + 
+                (hasCapacity && formatPower(absCapacity) || '?'));
 
             tooltip.selectAll('.country-code')
                 .text(country.countryCode)

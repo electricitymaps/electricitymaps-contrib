@@ -1170,7 +1170,7 @@ function fetch(showLoading, callback) {
     var Q = d3.queue();
     // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
     Q.defer(ignoreError(d3.text), '/clientVersion');
-    Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
+    Q.defer(DataService.fetchState, ENDPOINT, customDate);
 
     var now = customDate || new Date();
 
