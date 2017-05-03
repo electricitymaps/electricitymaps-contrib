@@ -11,14 +11,6 @@ timezone = 'Canada/Atlantic'
 
 
 def _get_pei_info(requests_obj):
-    """
-    Gets current electricity flows in and out of New Brunswick.
-
-    There is no reported data timestamp in the page. The page returns
-    current time and says "Times at which values are sampled may vary by
-    as much as 5 minutes."
-    """
-
     url = 'http://www.gov.pe.ca/energy/js/chart-values.php'
     response = requests_obj.get(url)
 
@@ -79,7 +71,14 @@ def fetch_production(country_code='CA-PE', session=None):
 
             # These are oil-fueled ("heavy fuel oil" and "diesel") generators
             # used as peakers and back-up
-            'oil': raw_info['pei_fossil_gen']
+            'oil': raw_info['pei_fossil_gen'],
+
+            # specify some sources that definitely aren't present on PEI as zero,
+            # this allows the analyzer to better estimate CO2eq
+            'coal': 0,
+            'hydro': 0,
+            'nuclear': 0,
+            'geothermal': 0
         },
         'storage': {},
         'source': 'www.gov.pe.ca/windenergy'
