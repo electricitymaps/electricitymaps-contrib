@@ -25,10 +25,8 @@
         "electricityprice": "Elpris",
         "electricityprice-dayahead": "nästa dag",
         "electricityproduction": "Elproduktion",
-        "showemissions": "visa utsläpp",
         "bysource": "per källa",
         "emissions": "Utsläpp",
-        "showelectricity": "visa elproduktion",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
         "co2signal": "Vår <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
     },
@@ -57,10 +55,8 @@
         "carbonintensity": "Utsläpp av koldioxid",
         "crossborderexport": "Gränsöverskridande export",
         "carbonintensityexport": "Utsläpp av koldioxid för export",
-        "of": "av",
-        "ofconsumption": "av",
+
         "ofinstalled": "av installerad kapacitet",
-        "ofelectricity": "av",
         "utilizing": "Utnyttjar",
         "withcarbonintensity": "med ett utsläpp av koldioxid på"
     },
