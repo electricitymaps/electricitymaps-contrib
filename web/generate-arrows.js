@@ -30,11 +30,12 @@ for(let co2value in colors) {
 
     // make an outline
     const outlineSize = 2;
+    const whiteArrowAfterCo2Intensity = 640;
     child_process.spawn('convert', [
       `public/images/arrow-${co2value}.png`,
       '-bordercolor', 'none',
       '-border', outlineSize,
-      '\(', '-clone', '0', '-alpha', 'off', '-fill', co2value >= 640 ? 'white' : 'black', '-colorize', '100%', '\)',
+      '\(', '-clone', '0', '-alpha', 'off', '-fill', co2value >= whiteArrowAfterCo2Intensity ? 'white' : 'black', '-colorize', '100%', '\)',
       '\(', '-clone', '0', '-alpha', 'extract', '-morphology', 'edgeout', 'octagon:'+outlineSize, '\)',
       '-compose', 'over',
       '-composite', `public/images/arrow-${co2value}-outline.png`
@@ -44,9 +45,8 @@ for(let co2value in colors) {
         return;
       }
 
-      // todo: generate 3 speeds:
-      // apply highlight and generate GIF
-      [15, 10, 5].forEach((speed, index) => {
+      // Apply highlight and generate GIF
+      [10, 6, 2].forEach((speed, index) => {
         const args = [
           '-dispose', 'none',
           '-delay', '0',
