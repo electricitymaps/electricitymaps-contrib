@@ -11,13 +11,18 @@
         "coal": "Kul",
         "oil": "Olie",
         "unknown": "Ubekendt",
-        "exportto": "af eksport til",
-        "importfrom": "af import fra",
-        "productionimport": "produktion/import",
-        "consumption": "forbrug",
-        "electricityfrom": "elektricitet kommer fra",
-        "electricityto": "elektricitet er eksporteret til",
-        "electricitystored": "elektricitet er lagret vha.",
+
+        "electricityComesFrom": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> kommer fra {3}",
+        "emissionsComeFrom": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> kommer fra {3}",
+        "electricityStoredUsing": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> lagres vha. {3}",
+        "emissionsStoredUsing": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> lagres vha. {3}",
+
+        "electricityExportedTo": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsExportedTo": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "electricityImportedFrom": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsImportedFrom": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+
         "zoneShortName": {
             "AL": "Albanien",
             "AT": "Østrig",
@@ -137,10 +142,6 @@
         "coal": "coal",
         "oil": "oil",
         "unknown": "unknown",
-        "exportto": "of export to",
-        "importfrom": "of import from",
-        "productionimport": "production/import",
-        "consumption": "consumption",
 
         "electricityComesFrom": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> comes from {3}",
         "emissionsComeFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> come from {3}",
