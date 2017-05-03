@@ -25,10 +25,8 @@
         "electricityprice": "Prezzo dell'elettricità",
         "electricityprice-dayahead": "Al giorno",
         "electricityproduction": "Produzione di elettricità",
-        "showemissions": "mostra emissioni",
         "bysource": "per fonte",
-        "emissions": "Emissioni",
-        "showelectricity": "mostra elettricità",
+        "emissions": "Emissioni CO2",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
     },
@@ -57,10 +55,8 @@
         "carbonintensity": "Intensità del carbonio",
         "crossborderexport": "Esportazione tra confini",
         "carbonintensityexport": "Intensità del carbonio nell'esportazione",
-        "of": "di",
-        "ofconsumption": "di",
+
         "ofinstalled": "della capacità installata",
-        "ofelectricity": "di",
         "utilizing": "utilizzando",
         "withcarbonintensity": "con un'intensità del carbonio di "
     },
