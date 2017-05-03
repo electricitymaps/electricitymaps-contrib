@@ -169,14 +169,13 @@
                             </div>
                         </div>
                         <div class="country-show-emissions-wrap">
-                           <div class="country-show-emissions">
-                                <a href="javascript:toggleSource(true)"><%= __('country-panel.electricityproduction') %></a>
-                                <%= __('country-panel.bysource') %>:
+                            <div class="menu">
+                                <a id="production" href="javascript:toggleSource(false)"><%= __('country-panel.electricityproduction') %></a>
+                                |
+                                <a id="emissions" href="javascript:toggleSource(true)"><%= __('country-panel.emissions') %></a>
                             </div>
-
-                            <div class="country-show-electricity" style="display: none;">
-                                <a href="javascript:toggleSource(false)"><%= __('country-panel.emissions') %></a>
-                                <%= __('country-panel.bysource') %>:
+                            <div class="bysource">
+                                <%= __('country-panel.bysource') %>
                             </div>
                         </div>
                         <svg class="country-table"></svg>

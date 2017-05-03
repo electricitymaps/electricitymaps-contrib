@@ -382,6 +382,10 @@ var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor
 d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
+d3.select('.country-show-emissions-wrap a#emissions')
+    .classed('selected', tableDisplayEmissions);
+d3.select('.country-show-emissions-wrap a#production')
+    .classed('selected', !tableDisplayEmissions);
 
 // Set weather checkboxes
 d3.select('#checkbox-wind').node().checked = windEnabled;
@@ -399,10 +403,10 @@ window.toggleSource = function(state) {
         {countryCode: countryTable.data().countryCode});
     countryTable
         .displayByEmissions(tableDisplayEmissions);
-    d3.select('.country-show-emissions')
-        .style('display', tableDisplayEmissions ? 'none' : 'block');
-    d3.select('.country-show-electricity')
-        .style('display', tableDisplayEmissions ? 'block' : 'none');
+    d3.select('.country-show-emissions-wrap a#emissions')
+        .classed('selected', tableDisplayEmissions);
+    d3.select('.country-show-emissions-wrap a#production')
+        .classed('selected', !tableDisplayEmissions);
 }
 
 // Tooltips
