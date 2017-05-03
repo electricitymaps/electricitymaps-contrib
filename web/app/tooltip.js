@@ -1,6 +1,7 @@
 var d3 = require('d3');
 var flags = require('./flags');
 var lang = require('json-loader!./configs/lang.json')[locale];
+var utils = require('./utils');
 
 var FLAG_SIZE = 16;
 
@@ -11,9 +12,23 @@ function formatPower(d, numDigits) {
     if (numDigits == null) numDigits = 3;
     return d3.format('.' + numDigits + 's')(d * 1e6) + 'W';
 }
+function formatCo2(d, numDigits) {
+    // Assume gCO2 / h input
+    d /= 60; // Convert to gCO2 / min
+    d /= 1e6; // Convert to tCO2 / min
+    if (d == null || d == NaN) return d;
+    if (numDigits == null) numDigits = 3;
+    if (d >= 1) // a ton or more
+        return d3.format('.' + numDigits + 's')(d) + 't of CO2eq per minute';
+    else
+        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g of CO2eq per minute';
+}
 
-function getConsumption(country) {
-    return country.totalProduction - country.totalStorage + country.totalNetExchange;
+function getConsumption(country, displayByEmissions) {
+    if (!displayByEmissions)
+        { return country.totalProduction - country.totalStorage + country.totalNetExchange; }
+    else
+        { return country.totalCo2Production - country.totalCo2Storage + country.totalCo2NetExchange; }
 }
 
 function placeTooltip(selector, d3Event) {
@@ -49,39 +64,54 @@ function Tooltip(countryTable, countries) {
     var that = this;
     // ** Country table
     countryTable
-        .onExchangeMouseOver(function (d, country) {
+        .onExchangeMouseOver(function (d, country, displayByEmissions) {
             var isExport = d.value < 0;
-            var o = d.value < 0 ? country.countryCode : d.key;
             var co2intensity = country.exchangeCo2Intensities[d.key];
-            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
-            tooltip.select('#label').text(isExport ? lang['exportto'] : lang['importfrom']);
-            tooltip.select('#country-code').text(d.key);
-            tooltip.select('.emission-rect')
-                .style('background-color', co2intensity ? that.co2color()(co2intensity) : 'gray');
-            tooltip.select('.emission-intensity')
-                .text(Math.round(co2intensity) || '?');
-            tooltip.selectAll('.country-exchange-flag')
-                .attr('src', flags.flagUri(d.key, FLAG_SIZE));
-            tooltip.selectAll('.country-flag')
-                .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
 
-            var totalConsumption = getConsumption(country);
-            var totalPositive = country.totalProduction + country.totalImport;
+            var totalConsumption = getConsumption(country, displayByEmissions);
+            var totalPositive = displayByEmissions ?
+                country.totalCo2Production + country.totalCo2Import :
+                country.totalProduction + country.totalImport;
 
             var domain = isExport ? totalPositive : totalConsumption;
             var domainName = isExport ? lang['electricityto'] : lang['electricityfrom'];
-            var isNull = !isFinite(d.value) || d.value == undefined;
+            var value = displayByEmissions ? (d.value * 1000 * co2intensity) : d.value;
+            var isNull = !isFinite(value) || value == undefined;
 
-            var absFlow = Math.abs(d.value);
+            tooltip.select('.production-visible')
+                .style('display', displayByEmissions ? 'none' : undefined);
+
+            var format = displayByEmissions ? formatCo2 : formatPower;
+
+            var absFlow = Math.abs(value);
             var exchangeProportion = !isNull ? Math.round(absFlow / domain * 100) : '?';
             tooltip.select('#exchange-proportion').text(exchangeProportion + ' %');
             tooltip.select('#exchange-proportion-detail').text(
-                (!isNull ? formatPower(absFlow) : '?') + ' ' +
+                (!isNull ? format(absFlow) : '?') + ' ' +
                 ' / ' + 
-                (!isNull ? formatPower(domain) : '?'));
+                (!isNull ? format(domain) : '?'));
             tooltip.select('#domain-name').text(domainName);
+
+            // Exchange
+            var langString = isExport ?
+                lang[displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo'] :
+                lang[displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom'];
+
+            tooltip.select('#line1')
+                .html(utils.stringFormat(
+                    langString,
+                    exchangeProportion,
+                    lang.zoneShortName[country.countryCode] || country.countryCode,
+                    lang.zoneShortName[d.key] || d.key));
+            tooltip.select('#line1 #country-flag')
+                    .classed('flag', true)
+                    .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
+            tooltip.select('#line1 #country-exchange-flag')
+                    .classed('flag', true)
+                    .attr('src', flags.flagUri(d.key, FLAG_SIZE));
+
 
             // Capacity
             var absCapacity = Math.abs(
@@ -90,21 +120,23 @@ function Tooltip(countryTable, countries) {
             var capacityFactor = hasCapacity && Math.round(absFlow / absCapacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
             tooltip.select('#capacity-factor-detail').text(
-                (formatPower(absFlow) || '?') + ' ' +
+                (format(absFlow) || '?') + ' ' +
                 ' / ' + 
-                (hasCapacity && formatPower(absCapacity) || '?'));
+                (hasCapacity && format(absCapacity) || '?'));
 
-            tooltip.selectAll('.country-code')
-                .text(country.countryCode)
-                .style('font-weight', 'bold');
-            tooltip.selectAll('.country-exchange-name')
-                .text(lang.zoneShortName[d.key] || d.key)
-                .style('font-weight', 'bold');
-            tooltip.selectAll('.country-exchange-source-name')
-                .text(lang.zoneShortName[o] || o)
-                .style('font-weight', 'bold');
+
+            // Carbon intensity
+            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
+            var o = d.value < 0 ? country.countryCode : d.key;
             tooltip.selectAll('.country-exchange-source-flag')
                 .attr('src', flags.flagUri(o, FLAG_SIZE));
+            tooltip.select('.emission-rect')
+                .style('background-color', co2intensity ? that.co2color()(co2intensity) : 'gray');
+            tooltip.select('.emission-intensity')
+                .text(Math.round(co2intensity) || '?');
+            tooltip.select('.country-exchange-source-name')
+                .text(lang.zoneShortName[o] || o)
+                .style('font-weight', 'bold');
         })
         .onExchangeMouseOut(function (d) {
             if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
@@ -114,7 +146,8 @@ function Tooltip(countryTable, countries) {
         .onExchangeMouseMove(function(d) {
             placeTooltip('#countrypanel-exchange-tooltip', d3.event);
         })
-        .onProductionMouseOver(function (d, country) {
+        .onProductionMouseOver(function (d, country, displayByEmissions) {
+
             var co2intensity = country.productionCo2Intensities[d.mode];
             var co2intensitySource = country.productionCo2IntensitySources[d.mode];
             if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
@@ -127,40 +160,51 @@ function Tooltip(countryTable, countries) {
                 .text(Math.round(co2intensity) || '?');
             tooltip.select('.emission-source')
                 .text(co2intensitySource || '?');
-            var value = d.isStorage ? d.storage : d.production;
+            var value = displayByEmissions ?
+                (d.isStorage ? 0 : (d.production * co2intensity * 1000)) :
+                (d.isStorage ? d.storage : d.production);
+
+            tooltip.select('.production-visible')
+                .style('display', displayByEmissions ? 'none' : undefined);
+
+            var format = displayByEmissions ? formatCo2 : formatPower;
 
             // Capacity
             var hasCapacity = d.capacity !== undefined && d.capacity >= (d.production || 0);
             var capacityFactor = hasCapacity && Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
             tooltip.select('#capacity-factor-detail').text(
-                (formatPower(value) || '?') + ' ' +
+                (format(value) || '?') + ' ' +
                 ' / ' + 
-                (hasCapacity && formatPower(d.capacity) || '?'));
+                (hasCapacity && format(d.capacity) || '?'));
 
-            var totalConsumption = getConsumption(country);
-            var totalPositive = country.totalProduction + country.totalImport;
+            var totalConsumption = getConsumption(country, displayByEmissions);
+            var totalPositive = displayByEmissions ?
+                (country.totalCo2Production + country.totalCo2Import) :
+                (country.totalProduction + country.totalImport);
 
-            var domain = d.isStorage ? totalPositive : totalPositive;
-            var domainName = d.isStorage ?
-                (lang['electricitystored'] + ' ' + (d.text || d.mode)) :
-                (lang['electricityfrom']   + ' ' + (d.text || d.mode));
+            var domain = totalPositive;
+            var domainName = d.text || d.mode;
             var isNull = !isFinite(value) || value == undefined;
 
             var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
-            tooltip.select('#production-proportion').text(
-                productionProportion + ' %');
             tooltip.select('#production-proportion-detail').text(
-                (!isNull ? formatPower(value) : '?') + ' ' +
+                (!isNull ? format(value) : '?') + ' ' +
                 ' / ' + 
-                (!isNull ? formatPower(domain) : '?'));
-            tooltip.selectAll('#domain-name').text(domainName);
+                (!isNull ? format(domain) : '?'));
 
-            tooltip.select('.country-code')
-                .text(country.countryCode)
-                .style('font-weight', 'bold');
-            tooltip.select('#country-flag')
-                .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
+            var langString = d.isStorage ?
+                lang[displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing'] :
+                lang[displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'];
+            tooltip.select('#line1')
+                .html(utils.stringFormat(
+                    langString,
+                    productionProportion,
+                    lang.zoneShortName[country.countryCode] || country.countryCode,
+                    domainName))
+                .select('#country-flag')
+                    .classed('flag', true)
+                    .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
         })
         .onProductionMouseMove(function(d) {
             placeTooltip('#countrypanel-production-tooltip', d3.event);

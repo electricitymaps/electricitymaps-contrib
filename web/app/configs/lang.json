@@ -141,9 +141,23 @@
         "importfrom": "of import from",
         "productionimport": "production/import",
         "consumption": "consumption",
-        "electricityfrom": "electricity comes from",
+
+        "electricityComesFrom": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> comes from {3}",
+        "emissionsComeFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> come from {3}",
+        "electricityStoredUsing": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> is stored using {3}",
+        "emissionsStoredUsing": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are stored using {3}",
+
+        "electricityExportedTo": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> is exported to <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsExportedTo": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are exported to <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "electricityImportedFrom": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> is imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsImportedFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+
         "electricityto": "electricity is exported to",
+        "emissionsfrom": "emissions comes from",
+        "emissionsto": "emissions are exported to",
         "electricitystored": "electricity is stored using",
+
         "zoneShortName": {
             "AL": "Albania",
             "AM": "Armenia",
