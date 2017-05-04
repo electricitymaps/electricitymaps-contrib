@@ -309,9 +309,16 @@ def fetch_production(country_code=None, session=None):
     df = pd.read_csv(url)
     data = {
         'countryCode': country_code,
-        'capacity': {},
-        'production': {
+        'capacity': {
+            'coal': 0,
             'geothermal': 0,
+            'hydro': 0,
+            'nuclear': 0,
+        },
+        'production': {
+            'coal': 0,
+            'geothermal': 0,
+            'hydro': 0,
             'nuclear': 0
         },
         'storage': {},
@@ -489,13 +496,13 @@ def fetch_price(country_code=None, session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production("AUS-VIC") ->'
-    print fetch_production('AUS-VIC')
-    print "fetch_exchange('AUS-NSW', 'AUS-QLD') ->"
-    print fetch_exchange('AUS-NSW', 'AUS-QLD')
-    print "fetch_exchange('AUS-NSW', 'AUS-VIC') ->"
-    print fetch_exchange('AUS-NSW', 'AUS-VIC')
-    print "fetch_exchange('AUS-VIC', 'AUS-SA') ->"
-    print fetch_exchange('AUS-VIC', 'AUS-SA')
-    print "fetch_exchange('AUS-VIC', 'AUS-TAS') ->"
-    print fetch_exchange('AUS-VIC', 'AUS-TAS')
+    print 'fetch_production("AUS-SA") ->'
+    print fetch_production('AUS-SA')
+    # print "fetch_exchange('AUS-NSW', 'AUS-QLD') ->"
+    # print fetch_exchange('AUS-NSW', 'AUS-QLD')
+    # print "fetch_exchange('AUS-NSW', 'AUS-VIC') ->"
+    # print fetch_exchange('AUS-NSW', 'AUS-VIC')
+    # print "fetch_exchange('AUS-VIC', 'AUS-SA') ->"
+    # print fetch_exchange('AUS-VIC', 'AUS-SA')
+    # print "fetch_exchange('AUS-VIC', 'AUS-TAS') ->"
+    # print fetch_exchange('AUS-VIC', 'AUS-TAS')
