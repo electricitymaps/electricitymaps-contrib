@@ -304,16 +304,15 @@ line, path {
     background: rgba(0, 0, 0, 0.2);
 }
 .country-show-emissions-wrap {
-    margin: 1rem 0 0;
+    margin: 2.0rem 0 0.5rem;
 }
-.country-show-emissions,
-.country-show-electricity {
+.country-show-emissions-wrap .menu {
     font-size: 1rem;
 }
-.country-show-emissions a,
-.country-show-electricity a {
-    padding: 0.75rem 0;
-    display: inline-block;
+.country-show-emissions-wrap .menu .selected {
+    color: darkgray;
+    font-weight: bold;
+    pointer-events: none;
 }
 
 .country-price-wrap,

@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 
+var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
 
@@ -47,4 +48,9 @@ exports.fetchGfs = function(endpoint, key, datetime, callback) {
 }
 exports.fetchNothing = function(callback) {
     return callback(null, null);
+}
+exports.fetchState = function(endpoint, datetime, callback) {
+    return d3.json(endpoint + '/v1/state' + (datetime ? '?datetime=' + datetime : ''))
+        .header('electricitymap-token', Cookies.get('electricitymap-token'))
+        .get(null, callback);
 }

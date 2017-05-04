@@ -108,7 +108,8 @@ ExchangeLayer.prototype.render = function() {
 
     // However, set the visibility
     var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
-    var layerTransform = d3.select('.arrows-layer').style('transform').replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
+    var layerTransform = (this.exchangeArrowsContainer.style('transform') || "matrix(1, 0, 0, 1, 0, 0)")
+        .replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
     
     newArrows.merge(exchangeArrows)
         .style('display', function(d) {

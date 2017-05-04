@@ -382,6 +382,10 @@ var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor
 d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
+d3.select('.country-show-emissions-wrap a#emissions')
+    .classed('selected', tableDisplayEmissions);
+d3.select('.country-show-emissions-wrap a#production')
+    .classed('selected', !tableDisplayEmissions);
 
 // Set weather checkboxes
 d3.select('#checkbox-wind').node().checked = windEnabled;
@@ -399,10 +403,10 @@ window.toggleSource = function(state) {
         {countryCode: countryTable.data().countryCode});
     countryTable
         .displayByEmissions(tableDisplayEmissions);
-    d3.select('.country-show-emissions')
-        .style('display', tableDisplayEmissions ? 'none' : 'block');
-    d3.select('.country-show-electricity')
-        .style('display', tableDisplayEmissions ? 'block' : 'none');
+    d3.select('.country-show-emissions-wrap a#emissions')
+        .classed('selected', tableDisplayEmissions);
+    d3.select('.country-show-emissions-wrap a#production')
+        .classed('selected', !tableDisplayEmissions);
 }
 
 // Tooltips
@@ -1170,7 +1174,7 @@ function fetch(showLoading, callback) {
     var Q = d3.queue();
     // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
     Q.defer(ignoreError(d3.text), '/clientVersion');
-    Q.defer(d3.json, ENDPOINT + '/v1/state' + (customDate ? '?datetime=' + customDate : ''));
+    Q.defer(DataService.fetchState, ENDPOINT, customDate);
 
     var now = customDate || new Date();
 
