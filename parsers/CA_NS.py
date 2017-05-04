@@ -6,14 +6,17 @@ import requests
 import re
 
 
-def _get_info(requests_obj, country_code):
+def _get_ns_info(requests_obj):
+    country_code = 'CA-NS'
+
     mix_url = 'http://www.nspower.ca/system_report/today/currentmix.json'
     mix_data = requests_obj.get(mix_url).json()
 
     load_url = 'http://www.nspower.ca/system_report/today/currentload.json'
     load_data = requests_obj.get(load_url).json()
 
-    data = []
+    production = []
+    imports = []
     for mix in mix_data:
         corresponding_load = [load_period for load_period in load_data
                               if load_period['datetime'] == mix['datetime']]
@@ -28,10 +31,14 @@ def _get_info(requests_obj, country_code):
             # in 2014 and 2015 (Statistics Canada table Table 127-0008 for Nova Scotia)
             load = 1244 / 100.0
 
-        data.append({
+        # datetime is in format '/Date(1493924400000)/'
+        # get the timestamp 1493924400 (cutting out last three zeros as well)
+        data_timestamp = int(mix['datetime'][6:-5])
+        data_date = arrow.get(data_timestamp).datetime
+
+        production.append({
             'countryCode': country_code,
-            'datetime': arrow.get(
-                int(re.search('\d+', mix['datetime']).group(0)) / 1000.0).datetime,
+            'datetime': data_date,
             'production': {
                 'coal': (mix['Solid Fuel'] * load),
                 'gas': ((mix['HFO/Natural Gas'] + mix['CT\'s'] + mix['LM 6000\'s']) * load),
@@ -39,11 +46,20 @@ def _get_info(requests_obj, country_code):
                 'hydro': (mix['Hydro'] * load),
                 'wind': (mix['Wind'] * load)
             },
-            'import': (mix['Imports'] * load),
             'source': 'nspower.ca',
         })
 
-    return data
+        # In this source, imports are positive. In the expected result for CA-NB->CA-NS,
+        # "net" represents a flow from NB to NS, that is, an import to NS.
+        # So the value can be used directly.
+        # Note that this API only specifies imports. When NS is exporting energy, the API returns 0.
+        imports.append({
+            'datetime': data_date,
+            'netFlow': (mix['Imports'] * load),
+            'source': 'nspower.ca'
+        })
+
+    return production, imports
 
 
 def fetch_production(country_code='CA-NS', session=None):
@@ -78,7 +94,9 @@ def fetch_production(country_code='CA-NS', session=None):
     """
     r = session or requests.session()
 
-    return _get_info(r, country_code)
+    production, imports = _get_ns_info(r)
+
+    return production
 
 
 def fetch_exchange(country_code1, country_code2, session=None):
@@ -96,20 +114,10 @@ def fetch_exchange(country_code1, country_code2, session=None):
         raise NotImplementedError('This exchange pair is not implemented')
 
     requests_obj = session or requests.session()
-    full_data = _get_info(requests_obj, 'CA-NS')
+    _, imports = _get_ns_info(requests_obj)
 
-    latest_data = full_data[-1]
-
-    # In this source, imports are positive. In the expected result for CA-NB->CA-NS,
-    # "net" represents a flow from NB to NS, that is, an import to NS.
-    # So the value can be used directly.
-
-    data = {
-        'sortedCountryCodes': sorted_country_codes,
-        'datetime': latest_data['datetime'],
-        'netFlow': latest_data['import'],
-        'source': latest_data['source']
-    }
+    data = imports[-1]
+    data['sortedCountryCodes'] = sorted_country_codes
 
     return data
 
