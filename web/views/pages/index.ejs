@@ -49,11 +49,17 @@
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
-        <!-- Google App Indexing -->
+        <!-- Google App Indexing (Android) -->
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/electricitymap.org" />
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/electricitymap.org" />
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/www.electricitymap.org" />
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/www.electricitymap.org" />
+
+        <!-- Google App Indexing (iOS) -->
+        <link rel="alternate" href="ios-app://1224594248/https/electricitymap.org" />
+        <link rel="alternate" href="ios-app://1224594248/http/electricitymap.org" />
+        <link rel="alternate" href="ios-app://1224594248/https/www.electricitymap.org" />
+        <link rel="alternate" href="ios-app://1224594248/http/www.electricitymap.org" />
 
         <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js" async></script>
         <% if (typeof isCordova !== 'undefined' && isCordova) { %>
