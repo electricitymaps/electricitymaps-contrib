@@ -662,15 +662,15 @@
         "oil": "olja",
         "unknown": "okänd",
 
-        "electricityComesFrom": "{1} % av el i <img id=\"country-flag\"></img> <b>{2}</b> kommer från {3}",
-        "emissionsComeFrom": "{1} % av emissions i <img id=\"country-flag\"></img> <b>{2}</b> kommer från {3}",
-        "electricityStoredUsing": "{1} % av el i <img id=\"country-flag\"></img> <b>{2}</b> lagras med {3}",
-        "emissionsStoredUsing": "{1} % av emissions i <img id=\"country-flag\"></img> <b>{2}</b> lagras med {3}",
+        "electricityComesFrom": "{1} % av elen i <img id=\"country-flag\"></img> <b>{2}</b> kommer från {3}",
+        "emissionsComeFrom": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> kommer från {3}",
+        "electricityStoredUsing": "{1} % av elen i <img id=\"country-flag\"></img> <b>{2}</b> lagras med {3}",
+        "emissionsStoredUsing": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> lagras med {3}",
 
-        "electricityExportedTo": "{1} % av el i <img id=\"country-flag\"></img> <b>{2}</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-        "emissionsExportedTo": "{1} % av emissions i <img id=\"country-flag\"></img> <b>{2}</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-        "electricityImportedFrom": "{1} % av el i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-        "emissionsImportedFrom": "{1} % av emissions i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "electricityExportedTo": "{1} % av elen i <img id=\"country-flag\"></img> <b>{2}</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsExportedTo": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "electricityImportedFrom": "{1} % av elen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsImportedFrom": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
         "zoneShortName": {
             "AL": "Albanien",
