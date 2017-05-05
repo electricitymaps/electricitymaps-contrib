@@ -39,6 +39,43 @@
             "wind": 691
         }
     },
+    "CA-NB": {
+        "_comment": "gas includes an 88 MW cogeneration plant",
+        "capacity": {
+            "coal": 467,
+            "gas": 378,
+            "oil": 1497,
+            "nuclear": 660,
+            "hydro": 950,
+            "wind": 294,
+            "biomass": 38
+        }
+    },
+    "CA-NL": {
+        "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
+        "capacity": {
+            "hydro": 6726.806,
+            "wind": 54.3,
+            "biomass": 15,
+            "oil": 590
+        }
+    },
+    "CA-NS": {
+        "_comment": "http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW",
+        "capacity": {
+            "biomass": 90.1,
+            "coal": 1232,
+            "gas": 637,
+            "hydro": 418,
+            "wind": 567
+        }
+    },
+    "CA-PE": {
+        "capacity": {
+            "wind": 203.6,
+            "oil": 179
+        }
+    },
     "CH": {
         "capacity": {
             "hydro": 9170,
