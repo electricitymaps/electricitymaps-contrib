@@ -348,7 +348,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     };
     exchanges['CA-NB->US'] = {
         lonlat: [-67.7771, 46.1390],
-        rotation: 135
+        rotation: -90
     };
     // ** Oceania
     exchanges['AUS-NSW->AUS-QLD'] = {
