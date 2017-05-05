@@ -156,14 +156,14 @@ def query_price(domain, session):
         if 'No matching data found' in error_text: return
         raise Exception('Failed to get price. Reason: %s' % error_text)
 
-def query_generation_forecast(in_domain, session):
+def query_generation_forecast(in_domain, session, now=None):
     # Note: this does not give a breakdown of the production
     params = {
         'documentType': 'A71', # Generation Forecast
         'processType': 'A01', # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params)
+    response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
         return # Return by default
@@ -494,11 +494,11 @@ def fetch_price(country_code, session=None):
 
         return data
 
-def fetch_generation_forecast(country_code, session=None):
+def fetch_generation_forecast(country_code, session=None, now=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_generation_forecast(query_generation_forecast(domain, session))
+    parsed = parse_generation_forecast(query_generation_forecast(domain, session, now))
     if parsed:
         data = []
         values, datetimes = parsed
