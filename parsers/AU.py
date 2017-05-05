@@ -364,7 +364,11 @@ def fetch_production(country_code=None, session=None):
         data['capacity'][key] = max(data['capacity'][key], 0)
         
         # Parse the datetime and return a python datetime object
-        datetime = arrow.get(row['Most Recent Output Time (AEST)']).datetime
+        datetime = None
+        try:
+            datetime = arrow.get(row['Most Recent Output Time (AEST)']).datetime
+        except:
+            continue
         # TODO: We should check it's not too old..
         if not 'datetime' in data:
             data['datetime'] = datetime
