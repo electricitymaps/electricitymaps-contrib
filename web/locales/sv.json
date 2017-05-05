@@ -26,7 +26,7 @@
         "electricityprice-dayahead": "nästa dag",
         "electricityproduction": "Elproduktion",
         "bysource": "per källa",
-        "emissions": "Utsläpp",
+        "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
         "co2signal": "Vår <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
     },

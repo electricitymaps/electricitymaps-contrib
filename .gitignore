@@ -12,3 +12,5 @@ web/node_modules
 /App_Data/PublishProfiles
 *.publishproj
 .DS_Store
+/.vs
+Thumbs.db
