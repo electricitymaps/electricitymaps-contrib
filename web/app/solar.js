@@ -54,8 +54,6 @@ exports.zoomend = function() {
     // Control the rendering
     var gaussianBlur = true;
     var continuousScale = true;
-    // ! This 20px is quite arbitrary, seems to be around the average cell size on my screen 
-    var BLUR_RADIUS = 20;
     var SOLAR_SCALE = 1000;
     var MAX_OPACITY = 0.85;
 
@@ -90,6 +88,9 @@ exports.zoomend = function() {
     var maxLon = parseInt(Math.ceil(br[0]));
     var minLat = parseInt(Math.floor(br[1]));
     var maxLat = parseInt(Math.ceil(ul[1]));
+
+    // Blur radius should be about 1deg on screen
+    var BLUR_RADIUS = realW / (maxLon - minLon) * 2;
 
     h = 100; // number of points in longitude space
     w = 100; // number of points in latitude space
