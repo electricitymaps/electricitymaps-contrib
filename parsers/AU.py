@@ -16,7 +16,9 @@ AMEO_CATEGORY_DICTIONARY = {
     'gas': 'gas',
     'Macadamia Nut Shells': 'biomass',
     'hydro': 'hydro',
+    'Hydro': 'hydro',
     'Kerosene': 'oil',
+    'Landfill / Biogas': 'biomass',
     'Landfill / Biogass': 'biomass',
     'Landfill Gas': 'biomass',
     'Landfill Methane / Landfill Gas': 'biomass',
@@ -37,15 +39,18 @@ AMEO_CATEGORY_DICTIONARY = {
 
 AMEO_LOCATION_DICTIONARY = {
   'Hallett Power Station': 'AUS-SA',
-  'West Nowra Landfill Gas Power Generation Facility': 'AUS-NSW',
   'Somerton Power Station': 'AUS-VIC',
+  'AGL SITA Landfill1 Kemps Creek': 'AUS-NSW',
   'Angaston Power Station': 'AUS-SA',
+  'Ararat Wind Farm': 'AUS-VIC',
   'Awaba Power Station': 'AUS-NSW',
   'Bald Hills Wind Farm': 'AUS-VIC',
-  'Bankstown Sports Club Plant Units ': 'AUS-NSW',
+  'Bankstown Sports Club Plant Units': 'AUS-NSW',
   'Banimboola Power Station': 'AUS-VIC',
+  'Barcaldine Power Station': 'AUS-QLD',
   'Barcaldine Solar Farm': 'AUS-QLD',
   'Barron Gorge Power Station': 'AUS-QLD',
+  'Basslink HVDC Link': None,
   'Bastyan Power Station': 'AUS-TAS',
   'Ballarat Base Hospital Plant': 'AUS-VIC',
   'Bell Bay Three Power Station': 'AUS-TAS',
@@ -93,6 +98,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Devils Gate Power Station': 'AUS-TAS',
   'Dry Creek Gas Turbine Station': 'AUS-SA',
   'Eastern Creek Power Station': 'AUS-NSW',
+  'Eildon Pondage Hydro Power Station': 'AUS-VIC',
   'Eildon Power Station': 'AUS-VIC',
   'Eraring Power Station': 'AUS-NSW',
   'Fisher Power Station': 'AUS-TAS',
@@ -124,7 +130,7 @@ AMEO_LOCATION_DICTIONARY = {
   'John Butters Power Station': 'AUS-TAS',
   'Jeeralang "A" Power Station': 'AUS-VIC',
   'Jeeralang "B" Power Station': 'AUS-VIC',
-  'Jindabyne Small Hydro Power Station ': 'AUS-NSW',
+  'Jindabyne Small Hydro Power Station': 'AUS-NSW',
   'Jounama Small Hydro Power Station': 'AUS-NSW',
   'Kareeya Power Station': 'AUS-QLD',
   'Keepit Power Station': 'AUS-NSW',
@@ -163,10 +169,11 @@ AMEO_LOCATION_DICTIONARY = {
   'Millmerran Power Plant': 'AUS-QLD',
   'Mt Stuart Power Station': 'AUS-QLD',
   'Mt Millar Wind Farm': 'AUS-SA',
+  'Mugga Lane Solar Park': 'AUS-NSW',
   'Murray 1 Power Station, Murray 2 Power Station': 'AUS-NSW',
   'Musselroe Wind Farm': 'AUS-TAS',
   'North Brown Hill Wind Farm': 'AUS-SA',
-  'Nine Network Willoughby Plant ': 'AUS-NSW',
+  'Nine Network Willoughby Plant': 'AUS-NSW',
   'Newport Power Station': 'AUS-VIC',
   'Northern Power Station': None, # Closed
   'Nyngan Solar Plant': 'AUS-NSW',
@@ -199,6 +206,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Rocky Point Cogeneration Plant': 'AUS-QLD',
   'Shepparton Wastewater Treatment Facility': 'AUS-VIC',
   'Bendeela / Kangaroo Valley Power Station': 'AUS-NSW',
+  'Bendeela / Kangaroo Valley Pumps': 'AUS-NSW',
   'Smithfield Energy Facility': 'AUS-NSW',
   'South East Water - Hallam Hydro Plant': 'AUS-VIC',
   'Snowtown Wind Farm Stage 2 North': 'AUS-SA',
@@ -219,7 +227,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Tatiara Bordertown Plant': 'AUS-SA',
   'Tatura Biomass Generator': 'AUS-VIC',
   'Tea Tree Gully Landfill Gas Power Station Unit 1': 'AUS-SA',
-  'Teralba Power Station ': 'AUS-NSW',
+  'Teralba Power Station': 'AUS-NSW',
   'Terminal Storage Mini Hydro Power Station': 'AUS-SA',
   'Taralgon Network Support Station': 'AUS-VIC',
   'The Drop Hydro Unit 1': 'AUS-NSW',
@@ -252,6 +260,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Wingfield 1 Landfill Gas Power Station Units 1-4': 'AUS-SA',
   'Wingfield 2 Landfill Gas Power Station Units 1-4': 'AUS-SA',
   'West Kiewa Power Station': 'AUS-VIC',
+  'West Nowra Landfill Gas Power Generation Facility': 'AUS-NSW',
   'Wollert Renewable Energy Facility': 'AUS-SA',
   'Wonthaggi Wind Farm': 'AUS-VIC',
   'Woodlawn Wind Farm':  'AUS-NSW',
@@ -502,8 +511,16 @@ def fetch_price(country_code=None, session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    print 'fetch_production("AUS-NSW") ->'
+    print fetch_production('AUS-NSW')
+    print 'fetch_production("AUS-QLD") ->'
+    print fetch_production('AUS-QLD')
     print 'fetch_production("AUS-SA") ->'
     print fetch_production('AUS-SA')
+    print 'fetch_production("AUS-TAS") ->'
+    print fetch_production('AUS-TAS')
+    print 'fetch_production("AUS-VIC") ->'
+    print fetch_production('AUS-VIC')
     # print "fetch_exchange('AUS-NSW', 'AUS-QLD') ->"
     # print fetch_exchange('AUS-NSW', 'AUS-QLD')
     # print "fetch_exchange('AUS-NSW', 'AUS-VIC') ->"
