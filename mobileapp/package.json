@@ -1,16 +1,24 @@
 {
-  "name": "electricitymap-app",
-  "version": "0.0.1",
-  "description": "",
-  "dependencies": {
-    "ejs": "^2.5.5",
-    "i18n": "^0.8.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/corradio/electricitymap.git"
-  },
-  "scripts": {
-    "build": "bash build.sh"
-  }
+    "name": "electricitymap-app",
+    "version": "0.0.1",
+    "description": "",
+    "dependencies": {
+        "ejs": "^2.5.5",
+        "i18n": "^0.8.3",
+        "cordova-plugin-code-push": "~1.9.3-beta",
+        "cordova-plugin-whitelist": "1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/corradio/electricitymap.git"
+    },
+    "scripts": {
+        "build": "bash build.sh"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-code-push": {},
+            "cordova-plugin-whitelist": {}
+        }
+    }
 }
