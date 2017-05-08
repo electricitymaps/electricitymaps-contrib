@@ -24,13 +24,6 @@ function formatCo2(d, numDigits) {
         return d3.format('.' + numDigits + 's')(d * 1e6) + 'g of CO2eq per minute';
 }
 
-function getConsumption(country, displayByEmissions) {
-    if (!displayByEmissions)
-        { return country.totalProduction - country.totalStorage + country.totalNetExchange; }
-    else
-        { return country.totalCo2Production - country.totalCo2Storage + country.totalCo2NetExchange; }
-}
-
 function placeTooltip(selector, d3Event) {
     var tooltip = d3.select(selector);
     var w = tooltip.node().getBoundingClientRect().width;
@@ -70,12 +63,11 @@ function Tooltip(countryTable, countries) {
             var tooltip = d3.select('#countrypanel-exchange-tooltip');
             tooltip.style('display', 'inline');
 
-            var totalConsumption = getConsumption(country, displayByEmissions);
             var totalPositive = displayByEmissions ?
-                country.totalCo2Production + country.totalCo2Import :
-                country.totalProduction + country.totalImport;
+                (country.totalCo2Production + country.totalCo2Import) :
+                (country.totalProduction + country.totalImport);
 
-            var domain = isExport ? totalPositive : totalConsumption;
+            var domain = totalPositive;
             var domainName = isExport ? lang['electricityto'] : lang['electricityfrom'];
             var value = displayByEmissions ? (d.value * 1000 * co2intensity) : d.value;
             var isNull = !isFinite(value) || value == undefined;
@@ -178,7 +170,6 @@ function Tooltip(countryTable, countries) {
                 ' / ' + 
                 (hasCapacity && format(d.capacity) || '?'));
 
-            var totalConsumption = getConsumption(country, displayByEmissions);
             var totalPositive = displayByEmissions ?
                 (country.totalCo2Production + country.totalCo2Import) :
                 (country.totalProduction + country.totalImport);
