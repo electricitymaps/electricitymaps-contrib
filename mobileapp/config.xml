@@ -55,6 +55,6 @@
         <host name="www.electricitymap.org" scheme="https" />
         <host name="www.electricitymap.org" scheme="http" />
     </universal-links>
-    <plugin name="cordova-plugin-code-push" spec="~1.9.3-beta" />
+    <plugin name="cordova-plugin-code-push" spec="^1.9.3-beta" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
 </widget>
