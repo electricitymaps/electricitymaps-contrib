@@ -1,0 +1,74 @@
+{
+    "panel-initial-text": {
+        "thisshowsrealtime": "即时资讯",
+        "whereelectricitycomesfrom": "电力来自哪裡",
+        "and": "和",
+        "howmuchco2": "多少二氧化碳",
+        "wasemitted": "被排放生产",
+
+        "takeinaccount": "我们考虑到电力",
+        "importexport": "汇入及汇出",
+        "betweencountries": "国家之间",
+
+        "thisproject": "这个项目是",
+        "opensource": "开源资料",
+        "see": "看",
+        "datasources": "数据来源",
+        "contribute": "贡献者 <a href=\"%s\" target=\"_blank\">添加你的国家</a>",
+
+        "tip": "提示：点击一个国家/地区开始探索"
+    },
+    "country-panel": {
+        "source": "来源",
+        "fossilfuels": "化石燃料",
+        "carbonintensity": "碳强度",
+        "electricityprice": "电价",
+        "electricityprice-dayahead": "日前",
+        "electricityproduction": "电力生产",
+        "bysource": "按来源",
+        "emissions": "碳排放量",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或编辑来源</a>",
+        "co2signal": "Our <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
+    },
+    "rankings-panel": {
+        "country-ranking": "国家排名",
+        "show-ranking": "显示排名"
+    },
+    "country-history": {
+        "carbonintensity24h": "过去24小时的碳强度"
+    },
+    "footer": {
+        "likethisvisu": "喜欢这个视觉？",
+        "loveyourfeedback": "我们希望您提供意见",
+        "foundbugs": "发现错误或有其他想法？ 请回报",
+        "here": "这裡"
+    },
+    "legends": {
+        "windpotential": "风力发电潜力",
+        "solarpotential": "太阳能发电潜力",
+        "colorblindmode": "色盲模式",
+        "carbonintensity": "碳强度"
+    },
+    "tooltips": {
+        "electricityprice": "电价（日前）",
+        "fossilfuels": "化石燃料",
+        "carbonintensity": "碳强度",
+        "crossborderexport": "跨境出口",
+        "carbonintensityexport": "出口碳强度",
+
+        "ofinstalled": "的装载容量",
+        "utilizing": "利用",
+        "withcarbonintensity": "具有碳强度"
+    },
+    "misc": {
+        "maintitle": "生活用电二氧化碳排放量",
+        "lastupdate": "最后更新",
+        "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
+        "newversion": "有新版本可用！ 按 <a onClick=\"location.reload(true);\">这里</a> 重新载入。"
+    },
+    "menu": {
+        "mapview": "地图模式",
+        "listview": "列表模式",
+        "info": "资讯"
+    }
+}
