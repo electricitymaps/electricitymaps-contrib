@@ -194,7 +194,7 @@ if (!isLocalhost) {
     mixpanel.track('Visit', {
         'bundleVersion': bundleHash,
         'clientType': clientType,
-        'embeddedUri': isEmbedded ? window.top : null,
+        'embeddedUri': isEmbedded ? document.referrer : null,
         'windEnabled': windEnabled,
         'solarEnabled': solarEnabled
     });
@@ -253,7 +253,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
 }
 
 // Set proper locale
-moment.locale(locale);
+moment.locale(locale.toLowerCase());
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
@@ -471,7 +471,7 @@ d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     // Add translation
-    zone.shortname = lang.zoneShortName[d.key];
+    zone.shortname = lang && lang.zoneShortName[d.key];
 });
 // Add capacities
 d3.entries(capacities).forEach(function(d) {

@@ -58,7 +58,7 @@ function CountryTable(selector, modeColor, modeOrder) {
                 return 'translate(0,' + (i * (that.ROW_HEIGHT + that.PADDING_Y)) + ')';
             });
     gNewRow.append('text')
-        .text(function(d) { return lang[d.mode] || d.mode })
+        .text(function(d) { return lang && lang[d.mode] || d.mode })
         .style('text-anchor', 'end') // right align
         .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')

@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv'],
+    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-TW'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -56,7 +56,8 @@ var LOCALE_TO_FB_LOCALE = {
     'it': 'it_IT',
     'nl': 'nl_NL',
     'pl': 'pl_PL',
-    'sv': 'sv_SE'
+    'sv': 'sv_SE',
+    'zh-TW': 'zh_TW'
 };
 // Populate using
 // https://www.facebook.com/translations/FacebookLocales.xml |grep 'en_'
@@ -78,7 +79,8 @@ var SUPPORTED_FB_LOCALES = [
     'nl_BE',
     'nl_NL',
     'pl_PL',
-    'sv_SE'
+    'sv_SE',
+    'zh_TW'
 ];
 
 // * Long-term caching
@@ -118,10 +120,11 @@ app.get('/', function(req, res) {
             lr = req.query.fb_locale.split('_', 2);
             res.setLocale(lr[0]);
         }
+        var locale = res.locale;
         res.render('pages/index', {
             bundleHash: BUNDLE_HASH,
-            locale: res.locale,
-            FBLocale: LOCALE_TO_FB_LOCALE[res.locale],
+            locale: locale,
+            FBLocale: LOCALE_TO_FB_LOCALE[locale],
             supportedFBLocales: SUPPORTED_FB_LOCALES
         });
     }
