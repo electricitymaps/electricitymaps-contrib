@@ -194,7 +194,7 @@ if (!isLocalhost) {
     mixpanel.track('Visit', {
         'bundleVersion': bundleHash,
         'clientType': clientType,
-        'embeddedUri': isEmbedded ? window.top : null,
+        'embeddedUri': isEmbedded ? document.referrer : null,
         'windEnabled': windEnabled,
         'solarEnabled': solarEnabled
     });
