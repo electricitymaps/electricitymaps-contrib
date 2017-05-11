@@ -18,6 +18,8 @@ var LOCALE_TO_FB_LOCALE = {
     'nl': 'nl_NL',
     'pl': 'pl_PL',
     'sv': 'sv_SE',
+    'zh-CN': 'zh_CN',
+    'zh-HK': 'zh_HK',
     'zh-TW': 'zh_TW'
 };
 var SUPPORTED_FB_LOCALES = [
@@ -37,7 +39,9 @@ var SUPPORTED_FB_LOCALES = [
     'nl_NL',
     'pl_PL',
     'sv_SE',
-    'zh_TW'
+    'zh_CN',
+    'zh_HK',
+    'zh_TW',
 ];
 
 // * i18n
