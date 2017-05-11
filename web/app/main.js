@@ -253,7 +253,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
 }
 
 // Set proper locale
-moment.locale(locale);
+moment.locale(locale.toLowerCase());
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
