@@ -39,7 +39,8 @@ app.set('view engine', 'ejs');
 // * i18n
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
-    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-CN', 'zh-HK', 'zh-TW'],
+    // note: detected locales are always lowercase
+    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'],
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -57,9 +58,9 @@ var LOCALE_TO_FB_LOCALE = {
     'nl': 'nl_NL',
     'pl': 'pl_PL',
     'sv': 'sv_SE',
-    'zh-CN': 'zh_CN',
-    'zh-HK': 'zh_HK',
-    'zh-TW': 'zh_TW'
+    'zh-cn': 'zh_CN',
+    'zh-hk': 'zh_HK',
+    'zh-tw': 'zh_TW'
 };
 // Populate using
 // https://www.facebook.com/translations/FacebookLocales.xml |grep 'en_'
