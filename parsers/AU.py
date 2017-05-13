@@ -5,6 +5,7 @@ import requests
 
 import json
 import pandas as pd
+import math
 
 AMEO_CATEGORY_DICTIONARY = {
     'Bagasse': 'biomass',
@@ -359,7 +360,10 @@ def fetch_production(country_code=None, session=None):
 
         key = AMEO_CATEGORY_DICTIONARY.get(fuelsource, None) or \
             AMEO_STATION_DICTIONARY.get(station)
-        value = float(row['Current Output (MW)']) if row['Current Output (MW)'] != '-' else 0.0
+        if row['Current Output (MW)'] != '-' and not math.isnan(row['Current Output (MW)']):
+            value = float(row['Current Output (MW)'])
+        else:
+            value = 0.0
 
         # Check for negativity, but not too much
         if value < -1:
