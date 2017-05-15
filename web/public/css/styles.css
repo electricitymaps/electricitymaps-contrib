@@ -514,25 +514,26 @@ div.highscore-button {
 .weather-buttons {
     display: flex;
     position: absolute;
-    top: 0px;
+    bottom: 0px;
     left: 0px;
-    margin: 0.5rem;
 }
 .weather-buttons a {
     border-radius: 15%;
     background-color: lightgray;
-    margin: 0.3rem;
+    margin-left: 0.6rem;
+    margin-bottom: 0.6rem;
+    margin-top: 0.6rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 
-    width: 2.3rem;
-    height: 2.3rem;
+    width: 3.0rem;
+    height: 3.0rem;
 }
 .weather-buttons img {
-    height: 1.5rem;
+    height: 1.2rem;
     filter: unset;
 }
 .weather-buttons .active img {
