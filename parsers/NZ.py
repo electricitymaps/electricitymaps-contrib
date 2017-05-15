@@ -72,6 +72,7 @@ def fetch_production(country_code=None, session=None):
         'production': {
             'coal': productions.get('Gas/Coal', {'generation': 0.0})['generation'],
             'oil': productions.get('Diesel/Oil', {'generation': 0.0})['generation'],
+            'gas': productions.get('Gas', {'generation': 0.0})['generation'],
             'geothermal': productions.get('Geothermal', {'generation': 0.0})['generation'],
             'wind': productions.get('Wind', {'generation': 0.0})['generation'],
             'hydro': productions.get('Hydro', {'generation': 0.0})['generation'],
@@ -80,6 +81,7 @@ def fetch_production(country_code=None, session=None):
         'capacity': {
             'coal': productions.get('Gas/Coal', {'capacity': 0.0})['capacity'],
             'oil': productions.get('Diesel/Oil', {'capacity': 0.0})['capacity'],
+            'gas': productions.get('Gas', {'capacity': 0.0})['capacity'],
             'geothermal': productions.get('Geothermal', {'capacity': 0.0})['capacity'],
             'wind': productions.get('Wind', {'capacity': 0.0})['capacity'],
             'hydro': productions.get('Hydro', {'capacity': 0.0})['capacity'],
