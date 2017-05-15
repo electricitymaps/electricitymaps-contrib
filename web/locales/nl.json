@@ -31,7 +31,8 @@
         "co2signal": "Ons product <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
     },
     "rankings-panel": {
-        "country-ranking": "Country ranking"
+        "country-ranking": "Ranking",
+        "show-ranking": "Toon ranking"
     },
     "country-history": {
         "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"

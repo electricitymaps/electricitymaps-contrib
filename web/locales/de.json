@@ -31,7 +31,8 @@
         "co2signal": "Unser <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hilft Geräten und elektrischen Fahrzeugen Elektrizität zur richtigen Zeit zu konsumieren, insbesondere bei Grenzübertritt."
     },
     "rankings-panel": {
-        "country-ranking": "Country ranking"
+        "country-ranking": "Rang",
+        "show-ranking": "Rangliste anzeigen"
     },
     "country-history": {
         "carbonintensity24h": "CO2 Konzentration in den letzten 24 Stunden"
