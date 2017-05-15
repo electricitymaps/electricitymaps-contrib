@@ -79,7 +79,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - United States: [PYISO](https://github.com/WattTime/pyiso)
 
 ### Production capacity data sources
-Production capacities are centralized in the [capacities.json](https://github.com/corradio/electricitymap/blob/master/web/app/configs/capacities.json) file.
+Production capacities are centralized in the [capacities.json](https://github.com/tmrowco/electricitymap/blob/master/config/capacities.json) file.
 
 - Austria: 
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
