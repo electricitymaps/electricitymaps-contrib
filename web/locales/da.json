@@ -56,6 +56,7 @@
         "crossborderexport": "Eksport til udlandet",
         "carbonintensityexport": "Eksport CO2 intensitet",
         "ofinstalled": "af installeret kapacitet",
+        "ofelectricity": "af",
         "utilizing": "udnytter",
         "withcarbonintensity": "med en CO2 intensitet på"
     },
@@ -69,5 +70,11 @@
         "mapview": "Kort",
         "listview": "Liste",
         "info": "Info"
-    }
+    },
+	"embedding": {
+		"deactivated": "Embedding of the ElectricityMap has been deactivated",
+		"stillaccess": "You can still access it at",
+		"contactus": "Please contact us at",
+		"moreinformation": "for more information"
+	}
 }

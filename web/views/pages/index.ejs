@@ -110,10 +110,14 @@
                         <div class="layer-toggles">
                             <hr />
                             <p>
-                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
+                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh): </span>
                                 <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                             </p>
                             <p>
+                                <input type="checkbox" id="checkbox-colorblind" />
+                                <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
+                            </p>
+							<p>
                                 <input type="checkbox" id="checkbox-wind" />
                                 <label for="checkbox-wind"><%= __('legends.windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
                                 <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
@@ -291,10 +295,21 @@
         </div>
         <div class="loading overlay"></div>
         <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
-            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">http://www.electricitymap.org</a>.<br />
-            Please contact us at <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> for more information.
+            <%= __('embedding.deactivated') %>. <%= __('embedding.stillaccess') %> <a href="http://www.electricitymap.org" target="_blank">http://www.electricitymap.org</a>.<br />
+            <%= __('embedding.contactus') %> <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> <%= __('embedding.moreinformation') %>.
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
+            <span id="production-proportion"></span> <%= __('tooltips.ofelectricity') %> <img id="country-flag" class="flag"></img> <span class="country-code"></span> <span id="domain-name"></span><br />
+            <small>(<span id="production-proportion-detail"></span>)</small><br />
+            <br />
+            <%= __('tooltips.utilizing') %> <span id="capacity-factor"></span> <%= __('tooltips.ofinstalled') %><br />
+            <small>(<span id="capacity-factor-detail"></span>)</small><br />
+            <br />
+            <%= __('tooltips.withcarbonintensity') %><br />
+            <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(<%= __('country-panel.source') %>: <span class="emission-source"></span>)</small>
+        </div>
+        <div id="countrypanel-exchange-tooltip" class="tooltip panel">
+            <span id="exchange-proportion"></span> <%= __('tooltips.ofelectricity') %> <img class="country-flag flag"></img> <span class="country-code"></span> <span id="domain-name"></span> <img class="country-exchange-flag flag"></img> <span class="country-exchange-name"></span><br />
             <span id="line1"></span><br />
             <small>(<span id="production-proportion-detail"></span>)</small><br />
             <span class="production-visible">
