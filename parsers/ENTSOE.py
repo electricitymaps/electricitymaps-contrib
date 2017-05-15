@@ -69,10 +69,10 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'TR': '10YTR-TEIAS----W',
     'UA': '10Y1001A1001A869'
 }
-def query_ENTSOE(session, params, now=None):
+def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     if now is None: now = arrow.utcnow()
-    params['periodStart'] = now.replace(hours=-24).format('YYYYMMDDHH00')
-    params['periodEnd'] = now.replace(hours=+24).format('YYYYMMDDHH00')
+    params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
+    params['periodEnd'] = now.replace(hours=+span[1]).format('YYYYMMDDHH00')
     if not 'ENTSOE_TOKEN' in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
@@ -132,7 +132,7 @@ def query_exchange_forecast(in_domain, out_domain, session, now=None):
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, now, span=[-24, 48])
     if response.ok: return response.text
     else:
         # Grab the error if possible
@@ -163,7 +163,7 @@ def query_generation_forecast(in_domain, session, now=None):
         'processType': 'A01', # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, now, span=[-24, 48])
     if response.ok: return response.text
     else:
         return # Return by default
@@ -462,7 +462,6 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     # Remove all dates in the future
     sorted_country_codes = sorted([country_code1, country_code2])
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
     if not len(exchange_dates): return None
     data = []
     for exchange_date in exchange_dates:
