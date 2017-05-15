@@ -609,15 +609,15 @@ function selectCountry(countryCode, notrack) {
             updateGraph(histories[countryCode]);
     }
     replaceHistoryState('countryCode', selectedCountryCode);
-    d3.select('#left-panel-country-back').style('display', selectedCountryCode ? '' : 'none');
-    d3.select('#country-table-back-button').style('display', selectedCountryCode ? 'block' : 'none');
 }
 // Bind
 countryMap
     .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
     .onCountryClick(function (d) { selectedCountryCode = d.countryCode; console.log(d); showPage('country'); });
-d3.selectAll('#country-table-back-button,#left-panel-country-back,.left-panel-toolbar-back')
+d3.selectAll('#left-panel-country-back')
     .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
+d3.selectAll('#left-panel-highscore-back')
+    .on('click', function() { showPage('map'); }); // only triggered on large screens
 d3.selectAll('.highscore-button').on('click', function() { showPage('highscore'); });
 d3.selectAll('.map-button').on('click', function() { showPage('map'); });
 d3.selectAll('.info-button').on('click', function() { showPage('info'); });
