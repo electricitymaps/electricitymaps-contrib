@@ -78,13 +78,13 @@ def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
     return session.get(ENTSOE_ENDPOINT, params=params)
     
-def query_consumption(domain, session):
+def query_consumption(domain, session, now=None):
     params = {
         'documentType': 'A65',
         'processType': 'A16',
         'outBiddingZone_Domain': domain,
     }
-    response = query_ENTSOE(session, params)
+    response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
         # Grab the error if possible
@@ -93,14 +93,14 @@ def query_consumption(domain, session):
         if 'No matching data found' in error_text: return
         raise Exception('Failed to get consumption. Reason: %s' % error_text)
 
-def query_production(psr_type, in_domain, session):
+def query_production(psr_type, in_domain, session, now=None):
     params = {
         'psrType': psr_type,
         'documentType': 'A75',
         'processType': 'A16', # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params)
+    response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
         return # Return by default
@@ -111,13 +111,13 @@ def query_production(psr_type, in_domain, session):
         print 'Failed for psr %s' % psr_type
         print 'Reason:', error_text
 
-def query_exchange(in_domain, out_domain, session):
+def query_exchange(in_domain, out_domain, session, now=None):
     params = {
         'documentType': 'A11',
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
-    response = query_ENTSOE(session, params)
+    response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
         # Grab the error if possible
@@ -348,14 +348,14 @@ def fetch_consumption(country_code, session=None):
 
         return data
 
-def fetch_production(country_code, session=None):
+def fetch_production(country_code, session=None, now=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Create a double hashmap with keys (datetime, parameter)
     production_hashmap = defaultdict(lambda: {})
     # Grab production
     for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(query_production(k, domain, session))
+        parsed = parse_production(query_production(k, domain, session, now))
         if parsed:
             productions, storages, datetimes = parsed
             for i in range(len(datetimes)):
@@ -401,7 +401,7 @@ def fetch_production(country_code, session=None):
 
     return data
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, now=None):
     if not session: session = requests.session()
     domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
     domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
@@ -410,12 +410,12 @@ def fetch_exchange(country_code1, country_code2, session=None):
     # Grab exchange
     # Import
     parsed = parse_exchange(
-        query_exchange(domain1, domain2, session),
+        query_exchange(domain1, domain2, session, now),
         is_import=True)
     if parsed:
         # Export
         parsed = parse_exchange(
-            xml_text=query_exchange(domain2, domain1, session),
+            xml_text=query_exchange(domain2, domain1, session, now),
             is_import=False, quantities=parsed[0], datetimes=parsed[1])
         if parsed:
             quantities, datetimes = parsed
