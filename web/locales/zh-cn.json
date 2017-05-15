@@ -14,7 +14,7 @@
         "opensource": "开源资料",
         "see": "看",
         "datasources": "数据来源",
-        "contribute": "贡献者 <a href=\"%s\" target=\"_blank\">添加你的国家</a>",
+        "contribute": "通过<a href=\"%s\" target=\"_blank\">添加你的国家</a>进行贡献",
 
         "tip": "提示：点击一个国家/地区开始探索"
     },
@@ -40,7 +40,7 @@
     "footer": {
         "likethisvisu": "喜欢这个视觉？",
         "loveyourfeedback": "我们希望您提供意见",
-        "foundbugs": "发现错误或有其他想法？ 请回报",
+        "foundbugs": "发现错误或有其他想法？请回报",
         "here": "这裡"
     },
     "legends": {
@@ -64,7 +64,7 @@
         "maintitle": "生活用电二氧化碳排放量",
         "lastupdate": "最后更新",
         "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
-        "newversion": "有新版本可用！ 按 <a onClick=\"location.reload(true);\">这里</a> 重新载入。"
+        "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">这里</a>重新载入。"
     },
     "menu": {
         "mapview": "地图模式",
