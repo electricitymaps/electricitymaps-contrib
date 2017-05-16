@@ -1,6 +1,7 @@
 from parsers import AU
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE
 from parsers import IS
+from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
 from parsers import NZ
@@ -55,6 +56,7 @@ PRODUCTION_PARSERS = {
     'EE': ENTSOE.fetch_production,
     'ES': ENTSOE.fetch_production,
     'FI': ENTSOE.fetch_production,
+    'FO': FO.fetch_production,
     'FR': FR.fetch_production,
     'GB': ENTSOE.fetch_production,
     'GB-NIR': ENTSOE.fetch_production,
