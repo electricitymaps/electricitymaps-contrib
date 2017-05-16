@@ -349,6 +349,7 @@
             "CA-MB": "Canada (Manitoba)",
             "CA-NS": "Canada (Nouvelle-Écosse)",
             "CA-ON": "Canada (Ontario)",
+            "CA-PE": "Canada (Île-du-Prince-Édouard)",
             "CA-QC": "Canada (Québec)",
             "CA-SK": "Canada (Saskatchewan)",
             "CH": "Suisse",
@@ -358,6 +359,7 @@
             "EE": "Estonie",
             "ES": "Espagne",
             "FI": "Finlande",
+            "FO": "Îles Féroé",
             "FR": "France",
             "GB": "Grande-Bretagne",
             "GB-NIR": "Irlande du Nord",
@@ -376,6 +378,8 @@
             "MT": "Malte",
             "NL": "Pays-Bas",
             "NO": "Norvège",
+            "NZ-NZN": "Nouvelle Zélande (île du Nord)",
+            "NZ-NZS": "Nouvelle Zélande (île du Sud)",
             "PL": "Pologne",
             "PT": "Portugal",
             "RO": "Roumanie",
@@ -385,7 +389,8 @@
             "SI": "Slovénie",
             "SK": "Slovaquie",
             "TR": "Turquie",
-            "UA": "Ukraine"
+            "UA": "Ukraine",
+            "US": "États-Unis d'Amérique"
         }
     },
     "it": {

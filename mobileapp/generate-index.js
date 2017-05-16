@@ -59,12 +59,13 @@ locales.forEach(function(locale) {
     i18n.setLocale(locale);
     var template = ejs.compile(fs.readFileSync('../web/views/pages/index.ejs', 'utf8'));
     var html = template({
-      bundleHash: BUNDLE_HASH,
-      isCordova: true,
-      locale: locale,
-      FBLocale: LOCALE_TO_FB_LOCALE[locale],
-      supportedFBLocales: SUPPORTED_FB_LOCALES,
-      '__': i18n.__
+        bundleHash: BUNDLE_HASH,
+        isCordova: true,
+        locale: locale,
+        FBLocale: LOCALE_TO_FB_LOCALE[locale],
+        supportedLocales: locales,
+        supportedFBLocales: SUPPORTED_FB_LOCALES,
+        '__': i18n.__
     });
 
     fs.writeFileSync('www/electricitymap/index_' + locale + '.html', html);
