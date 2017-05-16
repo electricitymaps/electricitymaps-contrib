@@ -37,10 +37,11 @@ app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '
 app.set('view engine', 'ejs');
 
 // * i18n
+var locales = ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
     // note: detected locales are always lowercase
-    locales: ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'],
+    locales: locales,
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
@@ -129,6 +130,7 @@ app.get('/', function(req, res) {
         res.render('pages/index', {
             bundleHash: BUNDLE_HASH,
             locale: locale,
+            supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],
             supportedFBLocales: SUPPORTED_FB_LOCALES
         });

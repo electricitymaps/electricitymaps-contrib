@@ -49,6 +49,12 @@
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
+        <!-- Language -->
+        <% for(var i=0; i<supportedLocales.length; i++) {%>
+        <link rel="alternate" href="https://www.electricitymap.org/lang=<%= supportedLocales[i] %>" hreflang="<%= supportedLocales[i] %>" />
+        <% } %>
+        <link rel="alternate" href="https://www.electricitymap.org" hreflang="x-default" />
+
         <!-- Google App Indexing (Android) -->
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/electricitymap.org" />
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/electricitymap.org" />
