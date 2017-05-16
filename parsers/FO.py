@@ -45,14 +45,8 @@ def fetch_production(country_code='FO', session=None):
         elif 'VnVand' in item.tag:
             # This is the sum of hydro (Mýrarnar + Fossá + Heygar)
             continue
-        elif item.tag.endswith('Sev_P'):
-            tag = item.tag.replace('Sev_P', '')
-            key = getDataKey(tag)
-            if not key: continue
-            # Capacity value
-            value = float(item.text.replace(',', '.'))
-            data['capacity'][key] = data['capacity'].get(key, 0) + value
         elif item.tag.endswith('Sev_E'):
+            # E stands for Energy
             tag = item.tag.replace('Sev_E', '')
             key = getDataKey(tag)
             if not key: continue
