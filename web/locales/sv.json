@@ -14,9 +14,9 @@
         "opensource": "öppen källkod",
         "see": "se",
         "datasources": "datakällor",
-        "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till ditt land</a>",
+        "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>",
 
-        "tip": "Tips: Klicka på ett land för att börja utforska"
+        "tip": "Tips: Klicka på en region för att börja utforska"
     },
     "country-panel": {
         "source": "källa",
