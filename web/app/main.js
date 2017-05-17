@@ -102,6 +102,25 @@ function parseQueryString(querystring) {
 }
 parseQueryString(location.search);
 
+
+// Computed State
+var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
+var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
+var isEmbedded = window.top !== window.self;
+var REMOTE_ENDPOINT = 'https://api.electricitymap.org';
+var LOCAL_ENDPOINT = 'http://localhost:9000';
+var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
+    LOCAL_ENDPOINT : REMOTE_ENDPOINT;
+
+
+var clientType = 'web';
+if (isCordova) { clientType = 'mobileapp'; }
+
+// Set history state of remaining variables
+replaceHistoryState('wind', windEnabled);
+replaceHistoryState('solar', solarEnabled);
+
+
 // Initialise mobile app (cordova)
 var app = {
     // Application Constructor
@@ -124,23 +143,18 @@ var app = {
     },
 
     onResume: function() {
+        // Count a pageview
+        trackAnalyticsEvent('pageview', {
+            'bundleVersion': bundleHash,
+            'clientType': clientType,
+            'embeddedUri': isEmbedded ? document.referrer : null,
+            'windEnabled': windEnabled,
+            'solarEnabled': solarEnabled
+        });
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
 };
 app.initialize();
-
-// Computed State
-var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
-var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
-var isEmbedded = window.top !== window.self;
-var REMOTE_ENDPOINT = 'https://api.electricitymap.org';
-var LOCAL_ENDPOINT = 'http://localhost:9000';
-var ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
-    LOCAL_ENDPOINT : REMOTE_ENDPOINT;
-
-// Set history state of remaining variables
-replaceHistoryState('wind', windEnabled);
-replaceHistoryState('solar', solarEnabled);
 
 // Twitter
 window.twttr = (function(d, s, id) {
@@ -167,9 +181,6 @@ window.fbAsyncInit = function() {
         xfbml      : true,
         version    : 'v2.8'
     });
-    if (!isLocalhost) {
-        FB.AppEvents.logPageView('pageview');
-    }
 };
 
 (function(d, s, id){
@@ -184,20 +195,10 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 if (!isLocalhost) {
-    var clientType = 'web';
-    if (isCordova) { clientType = 'mobileapp'; }
-
     // Mixpanel
     (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
     mixpanel.init('f350f1ec866f4737a5f69497e58cf67d');
-    mixpanel.track('Visit', {
-        'bundleVersion': bundleHash,
-        'clientType': clientType,
-        'embeddedUri': isEmbedded ? document.referrer : null,
-        'windEnabled': windEnabled,
-        'solarEnabled': solarEnabled
-    });
 
     // Google Analytics
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -205,7 +206,6 @@ if (!isLocalhost) {
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-79729918-1', 'auto');
-      ga('send', 'pageview');
 }
 
 if (!isLocalhost) {
@@ -251,6 +251,14 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
+
+trackAnalyticsEvent('pageview', {
+    'bundleVersion': bundleHash,
+    'clientType': clientType,
+    'embeddedUri': isEmbedded ? document.referrer : null,
+    'windEnabled': windEnabled,
+    'solarEnabled': solarEnabled
+});
 
 // Set proper locale
 moment.locale(locale.toLowerCase());
