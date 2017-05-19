@@ -141,13 +141,13 @@ def query_exchange_forecast(in_domain, out_domain, session, now=None):
         if 'No matching data found' in error_text: return
         raise Exception('Failed to get exchange. Reason: %s' % error_text)
 
-def query_price(domain, session):
+def query_price(domain, session, now=None):
     params = {
         'documentType': 'A44',
         'in_Domain': domain,
         'out_Domain': domain,
     }
-    response = query_ENTSOE(session, params)
+    response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
         # Grab the error if possible
@@ -474,11 +474,11 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
         })
     return data
 
-def fetch_price(country_code, session=None):
+def fetch_price(country_code, session=None, now=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_price(query_price(domain, session))
+    parsed = parse_price(query_price(domain, session, now))
     if parsed:
         data = []
         prices, currencies, datetimes = parsed
