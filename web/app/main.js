@@ -853,6 +853,14 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         return;
     }
 
+    trackAnalyticsEvent('pageview', {
+        'bundleVersion': bundleHash,
+        'clientType': clientType,
+        'embeddedUri': isEmbedded ? document.referrer : null,
+        'windEnabled': windEnabled,
+        'solarEnabled': solarEnabled
+    });
+
     // Debug: randomly generate data
     // Object.keys(exchanges).forEach(function(k) {
     //     if (state.exchanges[k]) {
