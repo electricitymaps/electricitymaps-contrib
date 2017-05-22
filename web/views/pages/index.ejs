@@ -116,9 +116,13 @@
                         <div class="layer-toggles">
                             <hr />
                             <p>
-                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
+                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO<sub>2</sub>eq/kWh):</span>
                                 <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                             </p>
+							<p>
+								<input type="checkbox" id="checkbox-colorblind" />
+								<label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
+							</p>
                             <p>
                                 <input type="checkbox" id="checkbox-wind" />
                                 <label for="checkbox-wind"><%= __('legends.windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
@@ -159,7 +163,7 @@
                                     <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
                                         <div><span class="country-emission-intensity"></span>g</div>
                                     </div>
-                                    <div class="country-col-subtext">(CO2eq/kWh)</div>
+                                    <div class="country-col-subtext">(CO<sub>2</sub>eq/kWh)</div>
                                 </div>
                                 <div class="country-col country-col-fossilpct">
                                     <div class="country-col-headline"><%=__('country-panel.fossilfuels')%></div>
@@ -256,7 +260,7 @@
                 <div id="country-tooltip" class="tooltip panel">
                     <%= __('tooltips.carbonintensity') %>:<br />
                     <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
-                    <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
+                    <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
                     <br />
                     <%= __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh
                 </div>
@@ -265,7 +269,7 @@
                     <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
                     <br />
                     <%= __('tooltips.carbonintensityexport') %>:<br />
-                    <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO2eq/kWh
+                    <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<sub>2</sub>eq/kWh
                 </div>
                 <div class="weather-buttons small-screen-visible">
                   <a class="wind-toggle"><img src="images/weather/wind.svg"></img></a>
@@ -310,7 +314,7 @@
                 <small>(<span id="capacity-factor-detail"></span>)</small><br />
                 <br />
                 <%= __('tooltips.withcarbonintensity') %><br />
-                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: <span class="emission-source"></span>)</small>
+                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<sub>2</sub>eq/kWh <small>(<%= __('country-panel.source') %>: <span class="emission-source"></span>)</small>
             </span>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
@@ -322,7 +326,7 @@
                 <small>(<span id="capacity-factor-detail"></span>)</small><br />
                 <br />
                 <%= __('tooltips.withcarbonintensity') %><br />
-                <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh<br />
+                <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
             </span>
         </div>
     </body>

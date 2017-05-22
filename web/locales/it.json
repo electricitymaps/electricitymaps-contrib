@@ -19,15 +19,15 @@
         "tip": "Consiglio: Clicca su una nazione per iniziare l'esplorazione"
     },
     "country-panel": {
-        "source": "fonte",
-        "fossilfuels": "carburanti fossili",
-        "carbonintensity": "Intensità del carbonio",
+        "source": "Fonte",
+        "fossilfuels": "Carburanti fossili",
+        "carbonintensity": "Intensità di carbonio",
         "electricityprice": "Prezzo dell'elettricità",
         "electricityprice-dayahead": "Al giorno",
         "electricityproduction": "Produzione di elettricità",
-        "bysource": "per fonte",
+        "bysource": "Per fonte",
         "emissions": "Emissioni CO2",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
         "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
     },
     "rankings-panel": {
@@ -46,19 +46,19 @@
     "legends": {
         "windpotential": "Potenziale eolico",
         "solarpotential": "Potenziale fotovoltaico",
-        "colorblindmode": "modalità daltonico",
-        "carbonintensity": "Intensità del carbonio"
+        "colorblindmode": "Modalità daltonico",
+        "carbonintensity": "Intensità di carbonio"
     },
     "tooltips": {
         "electricityprice": "Prezzo dell'elettricità (Al giorno)",
-        "fossilfuels": "carburanti fossili",
-        "carbonintensity": "Intensità del carbonio",
+        "fossilfuels": "Carburanti fossili",
+        "carbonintensity": "Intensità di carbonio",
         "crossborderexport": "Esportazione tra confini",
-        "carbonintensityexport": "Intensità del carbonio nell'esportazione",
+        "carbonintensityexport": "Intensità di carbonio nell'esportazione",
 
         "ofinstalled": "della capacità installata",
-        "utilizing": "utilizzando",
-        "withcarbonintensity": "con un'intensità del carbonio di "
+        "utilizing": "Utilizzando il",
+        "withcarbonintensity": "Con un'intensità di carbonio di:"
     },
     "misc": {
         "maintitle": "Emissioni CO2 in tempo reale del consumo elettrico",
