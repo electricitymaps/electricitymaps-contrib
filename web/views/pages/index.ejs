@@ -116,12 +116,8 @@
                         <div class="layer-toggles">
                             <hr />
                             <p>
-                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO<sub>2</sub>eq/kWh):</span>
+                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh):</span>
                                 <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
-                            </p>
-                            <p>
-                                <input type="checkbox" id="checkbox-colorblind" />
-                                <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
                             </p>
                             <p>
                                 <input type="checkbox" id="checkbox-wind" />
@@ -132,6 +128,10 @@
                                 <input type="checkbox" id="checkbox-solar" />
                                 <label for="checkbox-solar"><%= __('legends.solarpotential') %> <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
                                 <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="checkbox-colorblind" />
+                                <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
                             </p>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                                     <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
                                         <div><span class="country-emission-intensity"></span>g</div>
                                     </div>
-                                    <div class="country-col-subtext">(CO<sub>2</sub>eq/kWh)</div>
+                                    <div class="country-col-subtext">(CO2eq/kWh)</div>
                                 </div>
                                 <div class="country-col country-col-fossilpct">
                                     <div class="country-col-headline"><%=__('country-panel.fossilfuels')%></div>
