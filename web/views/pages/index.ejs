@@ -116,7 +116,7 @@
                         <div class="layer-toggles">
                             <hr />
                             <p>
-                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh) </span><small><input type="checkbox" id="checkbox-colorblind" /><label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label></small>
+                                <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh):</span>
                                 <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                             </p>
                             <p>
@@ -128,6 +128,10 @@
                                 <input type="checkbox" id="checkbox-solar" />
                                 <label for="checkbox-solar"><%= __('legends.solarpotential') %> <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
                                 <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="checkbox-colorblind" />
+                                <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
                             </p>
                         </div>
                     </div>
@@ -310,7 +314,7 @@
                 <small>(<span id="capacity-factor-detail"></span>)</small><br />
                 <br />
                 <%= __('tooltips.withcarbonintensity') %><br />
-                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(source: <span class="emission-source"></span>)</small>
+                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO2eq/kWh <small>(<%= __('country-panel.source') %>: <span class="emission-source"></span>)</small>
             </span>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
