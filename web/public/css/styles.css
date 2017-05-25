@@ -494,7 +494,7 @@ div.highscore-button {
 }
 #bottom-menu .list-item {
     background-color: rgb(50, 50, 50);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     display: flex;
 
     align-items: center;
@@ -507,12 +507,18 @@ div.highscore-button {
 #bottom-menu .list-item.active {
     color: white;
 }
+#bottom-menu div {
+    margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
+}
 #bottom-menu a {
     color: darkgrey;
 }
 #bottom-menu a:hover {
     color: white;
     text-decoration: none;
+}
+#bottom-menu i {
+    font-size: 1.1rem;
 }
 
 .weather-buttons {
