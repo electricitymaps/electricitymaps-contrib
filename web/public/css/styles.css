@@ -190,7 +190,7 @@ line, path {
 }
 .left-panel .left-panel-toolbar-title,
 .left-panel-country .country-name {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 1.5rem;
 }
 .left-panel-toolbar-right-placeholder {
@@ -200,6 +200,7 @@ line, path {
 .country-name-time {
     text-align: center;
     margin: 0rem 0.5rem;
+    font-size: smaller;
 }
 .country-time {
   white-space: nowrap;
@@ -261,7 +262,6 @@ line, path {
     text-align: center;
 }
 .country-col .country-col-headline {
-    font-size: 1rem;
     line-height: 1;
 }
 .country-col .country-col-headline + div {
@@ -304,10 +304,10 @@ line, path {
     background: rgba(0, 0, 0, 0.2);
 }
 .country-show-emissions-wrap {
-    margin: 2.0rem 0 0.5rem;
+    margin: 1.2rem 0 0 0;
 }
-.country-show-emissions-wrap .menu {
-    font-size: 1rem;
+.country-show-emissions-wrap .bysource {
+    font-size: smaller;
 }
 .country-show-emissions-wrap .menu .selected {
     color: darkgray;

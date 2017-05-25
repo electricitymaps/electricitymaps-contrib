@@ -144,7 +144,7 @@ var app = {
 
     onResume: function() {
         // Count a pageview
-        trackAnalyticsEvent('pageview', {
+        trackAnalyticsEvent('Visit', {
             'bundleVersion': bundleHash,
             'clientType': clientType,
             'embeddedUri': isEmbedded ? document.referrer : null,
@@ -252,7 +252,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
     }
 }
 
-trackAnalyticsEvent('pageview', {
+trackAnalyticsEvent('Visit', {
     'bundleVersion': bundleHash,
     'clientType': clientType,
     'embeddedUri': isEmbedded ? document.referrer : null,

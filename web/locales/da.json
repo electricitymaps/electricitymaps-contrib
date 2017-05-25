@@ -4,7 +4,7 @@
         "whereelectricitycomesfrom": "hvor din elektricitet kommer fra",
         "and": "og",
         "howmuchco2": "hvor meget CO2",
-        "wasemitted": "der er blevet udledt for at producere det",
+        "wasemitted": "der er blevet udledt for at producere den",
 
         "takeinaccount": "Vi medtager",
         "importexport": "import og eksport af elektricitet",
@@ -25,7 +25,7 @@
         "electricityprice": "Elpris",
         "electricityprice-dayahead": "næste-dags pris",
         "electricityproduction": "Elproduktion",
-        "bysource": "efter kilde",
+        "bysource": "per kilde",
         "emissions": "CO2 udledning",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
         "co2signal": "Vores <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjælper elektriske apparater og elbiler med at bruge elektricitet på rette tidspunkt, især på tværs af grænserne."
