@@ -149,7 +149,8 @@ var app = {
             'clientType': clientType,
             'embeddedUri': isEmbedded ? document.referrer : null,
             'windEnabled': windEnabled,
-            'solarEnabled': solarEnabled
+            'solarEnabled': solarEnabled,
+            'colorBlindModeEnabled': colorBlindModeEnabled
         });
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
@@ -257,7 +258,8 @@ trackAnalyticsEvent('Visit', {
     'clientType': clientType,
     'embeddedUri': isEmbedded ? document.referrer : null,
     'windEnabled': windEnabled,
-    'solarEnabled': solarEnabled
+    'solarEnabled': solarEnabled,
+    'colorBlindModeEnabled': colorBlindModeEnabled
 });
 
 // Set proper locale
@@ -858,7 +860,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         'clientType': clientType,
         'embeddedUri': isEmbedded ? document.referrer : null,
         'windEnabled': windEnabled,
-        'solarEnabled': solarEnabled
+        'solarEnabled': solarEnabled,
+        'colorBlindModeEnabled': colorBlindModeEnabled
     });
 
     // Debug: randomly generate data

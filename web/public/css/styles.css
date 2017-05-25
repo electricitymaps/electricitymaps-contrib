@@ -356,6 +356,10 @@ div.fb-share-button span, div.fb-share-button span iframe {
   height: 20px !important;
 }
 
+label[for="checkbox-colorblind"] {
+    font-size: smaller;
+}
+
 .tooltip {
     border: 1px solid grey;
     color: darkgrey;
