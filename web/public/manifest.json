@@ -1,6 +1,7 @@
 {
   "short_name": "Electricity Map",
   "name": "Electricity Map",
+  "start_url": "index.html",
   "related_applications": [
     {
       "platform": "play",
