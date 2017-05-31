@@ -115,9 +115,15 @@ app.get('/', function(req, res) {
     var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
     var isNonWWW = req.get('host') === 'electricitymap.org';
     var isStaging = req.get('host') === 'staging.electricitymap.org';
+    var isHTTPS = req.get('protocol') === 'https';
+    var isLocalhost = req.hostname === 'localhost'; // hostname is without port
+
+    // Redirect all non-facebook or non-staging
     if (!isStaging && (isNonWWW || isSubDomain) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-        // Redirect all non-facebook or non-staging
-        res.redirect(301, 'https://www.electricitymap.org' + req.path);
+        res.redirect(301, 'https://www.electricitymap.org' + req.originalUrl);
+    // Redirect all non-HTTPS
+    } else if (!isHTTPS && !isLocalhost) {
+        res.redirect(301, 'https://' + req.get('host') + req.originalUrl);
     } else {
         // Set locale if facebook requests it
         if (req.query.fb_locale) {
@@ -137,10 +143,10 @@ app.get('/', function(req, res) {
     }
 });
 app.get('/v1/*', function(req, res) {
-  return res.redirect(301, 'https://api.electricitymap.org' + req.path);
+  return res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl);
 });
 app.get('/v2/*', function(req, res) {
-  return res.redirect(301, 'https://api.electricitymap.org' + req.path);
+  return res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl);
 });
 
 // Start the application
