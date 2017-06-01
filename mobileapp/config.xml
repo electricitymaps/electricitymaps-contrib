@@ -20,6 +20,7 @@
     <platform name="android">
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
         <preference name="AndroidLaunchMode" value="singleInstance" />
+        <preference name="SplashMaintainAspectRatio" value="true" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/android/mipmap-ldpi/ic_launcher.png" />
         <icon density="mdpi" src="res/android/mipmap-mdpi/ic_launcher.png" />
