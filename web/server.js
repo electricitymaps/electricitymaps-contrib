@@ -112,18 +112,20 @@ app.get('/', function(req, res) {
     // On electricitymap.tmrow.co,
     // redirect everyone except the Facebook crawler,
     // else, we will lose all likes
-    var isSubDomain = req.get('host').indexOf('electricitymap.tmrow.co') != -1;
+    var isSubDomain = req.get('host').indexOf('electricitymap.tmrow') != -1;
     var isNonWWW = req.get('host') === 'electricitymap.org';
     var isStaging = req.get('host') === 'staging.electricitymap.org';
-    var isHTTPS = req.get('protocol') === 'https';
-    var isLocalhost = req.hostname === 'localhost'; // hostname is without port
+    var isHTTPS = req.secure;
+    var isLocalhost = req.hostname == 'localhost'; // hostname is without port
 
-    // Redirect all non-facebook or non-staging
+    // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
     if (!isStaging && (isNonWWW || isSubDomain) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
         res.redirect(301, 'https://www.electricitymap.org' + req.originalUrl);
-    // Redirect all non-HTTPS
-    } else if (!isHTTPS && !isLocalhost) {
-        res.redirect(301, 'https://' + req.get('host') + req.originalUrl);
+    // Redirect all non-HTTPS and non localhost
+    // Warning: this can't happen here because Cloudfare is the HTTPS proxy.
+    // Node only receives HTTP traffic.
+    } else if (false && !isHTTPS && !isLocalhost) {
+        res.redirect(301, 'https://www.electricitymap.org' + req.originalUrl);
     } else {
         // Set locale if facebook requests it
         if (req.query.fb_locale) {
