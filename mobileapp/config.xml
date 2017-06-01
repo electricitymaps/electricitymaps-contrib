@@ -32,6 +32,7 @@
         <preference name="CodePushDeploymentKey" value="4uQpHGlWRd7qOyIq-JNAhvjsYXcsEJ-bjzkpG" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
         <icon height="180" src="res/ios/Icon-App-60x60@3x.png" width="180" />
         <icon height="60" src="res/ios/Icon-App-60x60@1x.png" width="60" />
         <icon height="120" src="res/ios/Icon-App-60x60@2x.png" width="120" />
@@ -56,8 +57,10 @@
         <host name="www.electricitymap.org" scheme="http" />
     </universal-links>
     <engine name="android" spec="^6.2.3" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-code-push" spec="^1.9.4-beta" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.6" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
 </widget>

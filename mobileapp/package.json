@@ -6,11 +6,12 @@
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-code-push": "^1.9.4-beta",
+        "cordova-plugin-globalization": "~1.0.6",
+        "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-whitelist": "1",
         "cordova-universal-links-plugin": "^1.2.1",
         "ejs": "^2.5.5",
-        "i18n": "^0.8.3",
-        "cordova-plugin-globalization": "~1.0.6"
+        "i18n": "^0.8.3"
     },
     "repository": {
         "type": "git",
@@ -24,10 +25,12 @@
             "cordova-plugin-code-push": {},
             "cordova-plugin-whitelist": {},
             "cordova-universal-links-plugin": {},
-            "cordova-plugin-globalization": {}
+            "cordova-plugin-globalization": {},
+            "cordova-plugin-splashscreen": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }
