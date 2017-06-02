@@ -16,4 +16,5 @@ docker cp $CONTAINER_ID:/home/web/locales/ .
 docker rm $CONTAINER_ID
 
 # Run node in order to build index.html
+echo 'Generating index pages..'
 node generate-index.js
