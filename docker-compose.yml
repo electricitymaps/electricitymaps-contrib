@@ -6,7 +6,7 @@ services:
       dockerfile: web/Dockerfile
     command: npm run server-dev
     environment:
-      - ENV=development
+      - NODE_ENV=development
     ports: ['8000:8000']
     volumes:
       - './web/app:/home/web/app'

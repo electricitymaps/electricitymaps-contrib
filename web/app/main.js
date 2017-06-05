@@ -16,15 +16,15 @@ var ExchangeLayer = require('./exchangelayer');
 var flags = require('./flags');
 var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
-var lang = require('json-loader!./configs/lang.json')[locale];
+var lang = require('./configs/lang.json')[locale];
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Tooltip = require('./tooltip');
 var Wind = require('./wind');
 
 // Configs
-var capacities = require('json-loader!../../config/capacities.json');
-var zones = require('json-loader!../../config/zones.json');
+var capacities = require('../../config/capacities.json');
+var zones = require('../../config/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;

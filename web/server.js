@@ -1,4 +1,4 @@
-var isProduction = process.env.ENV === 'production';
+var isProduction = process.env.NODE_ENV === 'production';
 
 // * Opbeat (must be the first thing started)
 if (isProduction) {
@@ -11,7 +11,6 @@ if (isProduction) {
 }
 
 // Modules
-var async = require('async');
 var compression = require('compression');
 var d3 = require('d3');
 var express = require('express');

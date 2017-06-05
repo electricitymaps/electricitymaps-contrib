@@ -15,8 +15,7 @@ module.exports = {
         callback();
       });
     },
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
           warnings: false
@@ -41,8 +40,5 @@ module.exports = {
   output: {
     filename: 'bundle.' + (process.env.BUILD === 'debug' ? 'dev' : '[hash]') + '.js',
     path: __dirname + '/public/dist/'
-  },
-  resolve: {
-    moduleDirectories: ['node_modules']
   }
 };

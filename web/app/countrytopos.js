@@ -1,7 +1,7 @@
 var d3 = require('d3');
 var topojson = require('topojson');
 
-var topos = require('json-loader!./world.json');
+var topos = require('./world.json');
 
 var exports = module.exports = {};
 
