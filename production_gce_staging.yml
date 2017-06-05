@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     environment:
-      - ENV=production
+      - NODE_ENV=production
       - VIRTUAL_HOST=staging.electricitymap.org
     image: eu.gcr.io/tmrow-152415/electricitymap_web:staging
     mem_limit: 200M
