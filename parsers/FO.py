@@ -57,6 +57,9 @@ def fetch_production(country_code='FO', session=None):
             # print 'Unhandled key %s' % item.tag
             pass
 
+    # At least 10MW should be produced
+    if sum([v for k, v in data['production'].iteritems()]) < 10: return None
+
     return data
 
 print fetch_production()
