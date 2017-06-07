@@ -7,7 +7,7 @@
         "wasemitted": "a été émise pour la produire",
 
         "takeinaccount": "Elle prend en compte les",
-        "importexport": "imports et exports",
+        "importexport": "importations et exportations",
         "betweencountries": "entre pays",
 
         "thisproject": "Ceci est un projet",
@@ -16,7 +16,7 @@
         "datasources": "source des données",
         "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>",
 
-        "tip": "Cliquez sur un pays pour explorer"
+        "tip": "Cliquez sur une zone pour explorer"
     },
     "country-panel": {
         "source": "source",
@@ -61,7 +61,7 @@
         "withcarbonintensity": "avec une intensité carbone de"
     },
     "misc": {
-        "maintitle": "Emissions de CO2 de la consommation électrique en temps réel",
+        "maintitle": "Emissions CO2 de la consommation électrique en temps réel",
         "lastupdate": "Dernière mise à jour",
         "oops": "Oops! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger."
