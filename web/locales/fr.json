@@ -61,7 +61,7 @@
         "withcarbonintensity": "avec une intensité carbone de"
     },
     "misc": {
-        "maintitle": "Emissions de CO2 de la production électrique en temps réel",
+        "maintitle": "Emissions de CO2 de la consommation électrique en temps réel",
         "lastupdate": "Dernière mise à jour",
         "oops": "Oops! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger."
