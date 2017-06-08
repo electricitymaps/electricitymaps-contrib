@@ -3,7 +3,7 @@ var fs = require('fs');
 var glob = require('glob');
 
 module.exports = {
-  devtool: (process.env.BUILD === 'debug' ? 'eval' : 'sourcemap'),
+  devtool: (process.env.NODE_ENV === 'production' ? 'sourcemap' : 'eval'),
   entry: './app/main.js',
   plugins: [
     function() {
@@ -16,17 +16,12 @@ module.exports = {
       });
     },
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-          warnings: false
-      }
-    }),
     function() {
       this.plugin('done', function(stats) {
         fs.createReadStream(__dirname + '/public/css/styles.css')
           .pipe(fs.createWriteStream(
             __dirname + '/public/dist/styles.' + 
-              (process.env.BUILD === 'debug' ? 'dev' : stats.hash) + '.css'));
+              (process.env.NODE_ENV === 'production' ? stats.hash : 'dev') + '.css'));
       });
     },
     function() {
@@ -38,7 +33,7 @@ module.exports = {
     }
   ],
   output: {
-    filename: 'bundle.' + (process.env.BUILD === 'debug' ? 'dev' : '[hash]') + '.js',
+    filename: 'bundle.' + (process.env.NODE_ENV === 'production' ? '[hash]' : 'dev') + '.js',
     path: __dirname + '/public/dist/'
   }
 };

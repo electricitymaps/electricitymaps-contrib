@@ -23,11 +23,10 @@
     "url": "https://github.com/corradio/electricitymap.git"
   },
   "scripts": {
-    "build": "webpack --bail --progress",
-    "build-debug": "BUILD=debug npm run build",
-    "build-release": "BUILD=release npm run build",
+    "build-debug": "webpack --bail --progress",
+    "build-release": "NODE_ENV=production webpack --bail --progress -p",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "server-dev": "nodemon server.js",
-    "watch": "BUILD=debug webpack --watch --progress"
+    "watch": "webpack --watch --progress"
   }
 }
