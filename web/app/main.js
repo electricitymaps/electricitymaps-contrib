@@ -600,6 +600,9 @@ function selectCountry(countryCode, notrack) {
                     return;
                 }
 
+                // Add current data point
+                obj.data.push(countries[countryCode]);
+
                 // Add capacities
                 if (capacities[countryCode]) {
                     var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
