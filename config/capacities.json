@@ -371,6 +371,18 @@
             "solar": 532
         }
     },
+	"TW": {
+        "capacity": {
+            "nuclear": 5144.0,
+            "coal": 12297.2,
+            "gas" : 15245.0,
+            "oil": 2750.0,
+            "hydro": 2602.0,
+            "wind": 688.0,
+            "solar": 1072.4, 
+			"other": 623.3
+        }
+    },
     "US": {    
         "capacity": {
             "biomass": 16099,
