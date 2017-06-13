@@ -56,7 +56,7 @@ def fetch_production(country_code='TW', session=None):
         'other': round(production.ix['Co-Gen'].output,1)
         },
         'storage': {},
-        'source': 'http://www.taipower.com.tw/',
+        'source': 'http://www.taipower.com.tw/'
     }
 
     return returndata
