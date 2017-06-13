@@ -62,4 +62,6 @@ def fetch_production(country_code='FO', session=None):
 
     return data
 
-print fetch_production()
+
+if __name__ == '__main__':
+    print fetch_production()
