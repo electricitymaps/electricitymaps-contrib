@@ -35,7 +35,7 @@ def fetch_production(country_code='TW', session=None):
 
     coal_production = production.ix['Coal'].output + production.ix['IPP-Coal'].output
     gas_production = production.ix['LNG'].output + production.ix['IPP-LNG'].output
-    hydro_production = production.ix['Pumping Gen'].output - production.ix['Pumping Load'].output
+    hydro_production = production.ix['Pumping Gen'].output
     oil_production = production.ix['Oil'].output + production.ix['Diesel'].output
 
     returndata = {
