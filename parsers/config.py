@@ -7,7 +7,7 @@ from parsers import ENTSOE
 from parsers import NZ
 from parsers import TR
 from parsers import US
-
+from parsers import TW
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -47,6 +47,7 @@ CONSUMPTION_PARSERS = {
 }
 PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
+    'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
     'BG': ENTSOE.fetch_production,
     'CH': ENTSOE.fetch_production,
@@ -79,6 +80,7 @@ PRODUCTION_PARSERS = {
     'SI': ENTSOE.fetch_production,
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
+    'TW': TW.fetch_production,
     'US': US.fetch_production,
     # ** Canada
     'CA-AB': CA_AB.fetch_production,
@@ -109,6 +111,7 @@ EXCHANGE_PARSERS = {
     'AT->IT':     ENTSOE.fetch_exchange,
     'AT->SI':     ENTSOE.fetch_exchange,
     # BA
+    'BA->HR':     ENTSOE.fetch_exchange,
     'BA->ME':     ENTSOE.fetch_exchange,
     'BA->RS':     ENTSOE.fetch_exchange,
     # BE
