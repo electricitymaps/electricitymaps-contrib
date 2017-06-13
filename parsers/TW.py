@@ -35,8 +35,11 @@ def fetch_production(country_code='TW', session=None):
 
     coal_production = production.ix['Coal'].output + production.ix['IPP-Coal'].output
     gas_production = production.ix['LNG'].output + production.ix['IPP-LNG'].output
-    hydro_production = production.ix['Pumping Gen'].output
+    hydro_production = production.ix['Hydro'].output
     oil_production = production.ix['Oil'].output + production.ix['Diesel'].output
+
+    # For storage, note that load will be negative, and generation positive.
+    # We require the opposite
 
     returndata = {
     		'countryCode': country_code,
@@ -52,7 +55,7 @@ def fetch_production(country_code='TW', session=None):
             'other': production.ix['Co-Gen'].output
         },
         'storage': {
-            'hydro': production.ix['Pumping Load'].output
+            'hydro': -1 * production.ix['Pumping Load'].output - production.ix['Pumping Gen'].output
         },
         'source': 'taipower.com.tw'
     }
