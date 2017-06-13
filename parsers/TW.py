@@ -19,7 +19,7 @@ def fetch_production(country_code='TW', session=None):
     
     tz = 'Asia/Taipei'
     dumpDate = arrow.get(dumpDate, 'YYYY-MM-DD HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
-        
+ 
     objData = pandas.DataFrame(prodData);
 
     objData.columns = ['fueltype','name','capacity','output','percentage','additional']
@@ -43,10 +43,10 @@ def fetch_production(country_code='TW', session=None):
     production.ix['Hydro'] = [0,hydro_production]
 
     returndata = {
-        'countryCode': country_code,
+		'countryCode': country_code,
     'datetime': str(dumpDate.format('YYYY-MM-DDTHH:mm:ssZZ')),
-        'production': {
-            'coal': round(production.ix['Coal'].output,1),
+		'production': {
+			'coal': round(production.ix['Coal'].output,1),
             'gas': round(production.ix['Gas'].output,1),
             'oil': round(production.ix['Oil'].output,1),
         'hydro' : round(production.ix['Hydro'].output,1),
