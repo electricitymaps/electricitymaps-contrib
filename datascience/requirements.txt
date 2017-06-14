@@ -1,5 +1,0 @@
-arrow==0.10.0
-ggplot==0.11.5
-matplotlib==1.4.3
-pandas==0.18.1
-requests==2.13.0
