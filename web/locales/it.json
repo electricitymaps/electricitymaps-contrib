@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Questo mostra in tempo reale",
+        "thisshowsrealtime": "Questo progeetto ti mostra in tempo reale",
         "whereelectricitycomesfrom": "da dove viene la tua elettricità",
         "and": "e",
         "howmuchco2": "quanta CO2",
@@ -12,7 +12,7 @@
 
         "thisproject": "Questo progetto è",
         "opensource": "libero",
-        "see": "vedi",
+        "see": "Vedi",
         "datasources": "le fonti dei dati",
         "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo la tua nazione</a>",
 
@@ -38,15 +38,15 @@
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore"
     },
     "footer": {
-        "likethisvisu": "Ti piace la vista?",
-        "loveyourfeedback": "Amiamo avere delle opinioni",
-        "foundbugs": "Hai trovato dei problemi o hai delle idee? Segnalali ",
+        "likethisvisu": "Ti piace questo progetto?",
+        "loveyourfeedback": "Dicci cosa ne pensi",
+        "foundbugs": "Hai delle idee o hai trovato dei problemi? Scrivici ",
         "here": "qua"
     },
     "legends": {
         "windpotential": "Potenziale eolico",
         "solarpotential": "Potenziale fotovoltaico",
-        "colorblindmode": "Modalità daltonico",
+        "colorblindmode": "Modalità per daltonici",
         "carbonintensity": "Intensità di carbonio"
     },
     "tooltips": {
@@ -61,7 +61,7 @@
         "withcarbonintensity": "Con un'intensità di carbonio di:"
     },
     "misc": {
-        "maintitle": "Emissioni CO2 in tempo reale del consumo elettrico",
+        "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
         "lastupdate": "Ultimo aggiornamento",
         "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare."
