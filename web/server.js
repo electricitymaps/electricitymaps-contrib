@@ -143,7 +143,7 @@ app.get('/', function(req, res) {
                     if (Object.keys(req.query).length) {
                         return fullUrl + '&lang=' + l;
                     } else {
-                        return fullUrl + '?lang=' + l;
+                        return fullUrl.replace('?', '') + '?lang=' + l;
                     }
                 }
             }),
