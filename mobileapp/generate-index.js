@@ -59,6 +59,7 @@ locales.forEach(function(locale) {
     i18n.setLocale(locale);
     var template = ejs.compile(fs.readFileSync('../web/views/pages/index.ejs', 'utf8'));
     var html = template({
+        alternateUrls: [],
         bundleHash: BUNDLE_HASH,
         isCordova: true,
         locale: locale,

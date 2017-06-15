@@ -134,8 +134,21 @@ app.get('/', function(req, res) {
             res.setLocale(lr[0]);
         }
         var locale = res.locale;
+        var fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
         res.render('pages/index', {
+            alternateUrls: locales.map(function(l) {
+                if (fullUrl.indexOf('lang') != -1) {
+                    return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
+                } else {
+                    if (Object.keys(req.query).length) {
+                        return fullUrl + '&lang=' + l;
+                    } else {
+                        return fullUrl + '?lang=' + l;
+                    }
+                }
+            }),
             bundleHash: BUNDLE_HASH,
+            fullUrl: fullUrl,
             locale: locale,
             supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],

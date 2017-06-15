@@ -50,10 +50,12 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <!-- Language -->
-        <% for(var i=0; i<supportedLocales.length; i++) {%>
-        <link rel="alternate" href="" hreflang="<%= supportedLocales[i] %>" />
+        <% for(var i=0; i<alternateUrls.length; i++) {%>
+        <link rel="alternate" href="<%- alternateUrls[i] %>" hreflang="<%= supportedLocales[i] %>" />
         <% } %>
-        <link rel="alternate" href="" hreflang="x-default" />
+        <% if (typeof fullUrl != 'undefined') { %>
+        <link rel="canonical" href="<%- fullUrl %>" />
+        <% } %>
 
         <!-- Google App Indexing (Android) -->
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/electricitymap.org" />
@@ -68,7 +70,7 @@
         <link rel="alternate" href="ios-app://1224594248/http/www.electricitymap.org" />
 
         <script src="https://d3tvtfb6518e3e.cloudfront.net/3/opbeat.min.js" async></script>
-        <% if (typeof isCordova !== 'undefined' && isCordova) { %>
+        <% if (typeof isCordova != 'undefined' && isCordova) { %>
         <script src="../cordova.js"></script>
         <% } %>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
