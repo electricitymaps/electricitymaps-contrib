@@ -91,6 +91,7 @@ Production capacities are centralized in the [capacities.json](https://github.co
 - Canada (New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
     [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Ontario): [Gridwatch](http://live.gridwatch.ca/total-capacity.html)
+- Canada Québec: [Hydro-Québec](http://www.hydroquebec.com/generation/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
