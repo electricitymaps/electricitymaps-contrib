@@ -506,20 +506,24 @@ div.highscore-button {
     top: -41px;
 }
 
-#bottom-menu {
+#footer {
     display: table-row;
     height: 1px;
     z-index: 1;
+    background-color: rgb(50, 50, 50);
 
     /* Shadow */
     box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
 }
-#bottom-menu .list-item {
-    background-color: rgb(50, 50, 50);
+#footer-content {
+    display: flex;
+    padding: 0.5rem;
+}
+#footer #footer-content .list-item {
     font-size: 0.7rem;
-    /*display: flex;*/
+    display: flex;
 
     align-items: center;
     justify-content: center;
@@ -528,20 +532,20 @@ div.highscore-button {
     width: 50%;
     line-height: 1.2rem;
 }
-#bottom-menu .list-item.active {
+#footer #footer-content .list-item.active {
     color: white;
 }
-#bottom-menu div {
+#footer #footer-content div {
     margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
 }
-#bottom-menu a {
+#footer #footer-content a {
     color: darkgrey;
 }
-#bottom-menu a:hover {
+#footer #footer-content a:hover {
     color: white;
     text-decoration: none;
 }
-#bottom-menu i {
+#footer #footer-content i {
     font-size: 1.1rem;
 }
 
