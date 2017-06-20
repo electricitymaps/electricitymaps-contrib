@@ -19,6 +19,7 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     this.solarCanvas = d3.select(solarCanvasSelector);
 
     this.root = d3.select(selector)
+        .style('position', 'absolute')
         .style('transform-origin', '0px 0px')
         .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
     // Add SVG layer

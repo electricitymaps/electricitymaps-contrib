@@ -92,13 +92,38 @@ line, path {
 #main {
     width: 100%;
     height: 100%;
+    display: table;
 }
 #map-container {
     height: 100%;
-    width: auto;
+    width: 100%;
     overflow: hidden;
+    display: block;
     position: relative;
 }
+#header {
+    display: table-row;
+    height: 1px;
+    background-color: white;
+    z-index: 1;
+}
+#header #header-content {
+    font-size: 0.9rem;
+    line-height: 100%;
+    padding: 0.2rem 1rem 0.2rem 1rem; /* top right bottom left */
+}
+#header-content img.logo {
+    height: 32px;
+}
+#header-content * {
+    vertical-align: middle;
+}
+
+#inner {
+    display: table-row;
+    position: relative;
+}
+
 .map-layer {
     position: absolute;
     top: 0;
@@ -123,12 +148,11 @@ line, path {
     font-size: 0.8rem;
 }
 .left-panel {
-    float: left;
     padding: 1rem;
     line-height: 1.2rem;
     height: 100%;
     width: 24rem;
-    position: relative;
+    position: absolute;
     overflow-y: auto;
     border-top: none;
     border-left: none;
@@ -136,7 +160,7 @@ line, path {
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    z-index: 9;
+    z-index: 1;
 }
 .left-panel h1 {
     line-height: 1.3;
@@ -368,7 +392,6 @@ label[for="checkbox-colorblind"] {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9;
 }
 
 .watermark {
@@ -484,18 +507,19 @@ div.highscore-button {
 }
 
 #bottom-menu {
-    width: 100%;
+    display: table-row;
+    height: 1px;
+    z-index: 1;
 
     /* Shadow */
     box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
-    position: relative; z-index: 99; /* to appear on top of all */
 }
 #bottom-menu .list-item {
     background-color: rgb(50, 50, 50);
     font-size: 0.7rem;
-    display: flex;
+    /*display: flex;*/
 
     align-items: center;
     justify-content: center;
@@ -555,9 +579,6 @@ div.highscore-button {
     .small-screen-visible {
         display: none;
     }
-    .left-panel, #map-container {
-        height: 100%;
-    }
     #bottom-menu {
         display: none;
     }
@@ -568,7 +589,7 @@ div.highscore-button {
     .large-screen-visible {
         display: none;
     }
-    .left-panel {
+    .left-panel, #map-container {
         width: 100%;
     }
     .left-panel-welcome {
@@ -577,17 +598,10 @@ div.highscore-button {
     #country-tooltip.country-tooltip-visible {
         display: none;
     }
-    #map-container {
-        width: 100%;
-    }
     div.highscore-button {
         display: none;
     }
-    .left-panel, #map-container {
-    height: 90%;
-    }
     #bottom-menu {
-        display: flex;
-        height: 10%;
+        display: table-row;
     }
 }
