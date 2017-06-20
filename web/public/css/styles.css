@@ -96,9 +96,7 @@ line, path {
 }
 #map-container {
     height: 100%;
-    width: 100%;
     overflow: hidden;
-    display: block;
     position: relative;
 }
 #header {
@@ -148,11 +146,12 @@ line, path {
     font-size: 0.8rem;
 }
 .left-panel {
+    float: left;
     padding: 1rem;
     line-height: 1.2rem;
     height: 100%;
     width: 24rem;
-    position: absolute;
+    position: relative;
     overflow-y: auto;
     border-top: none;
     border-left: none;
@@ -583,7 +582,7 @@ div.highscore-button {
     .small-screen-visible {
         display: none;
     }
-    #bottom-menu {
+    #footer {
         display: none;
     }
 }
@@ -605,7 +604,7 @@ div.highscore-button {
     div.highscore-button {
         display: none;
     }
-    #bottom-menu {
+    #footer {
         display: table-row;
     }
 }
