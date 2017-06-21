@@ -102,19 +102,40 @@ line, path {
 #header {
     display: table-cell;
     height: 1px;
-    background-color: white;
+    background-color: rgb(50, 50, 50);
     z-index: 2;
     position: relative;
+    color: lightgray;
+
+    /* Shadow */
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
 }
 #header #header-content {
+    display: table;
+    width: 100%;
     font-size: 0.9rem;
-    line-height: 100%;
-    padding: 0.2rem 1rem 0.2rem 1rem; /* top right bottom left */
+    padding: 0.2rem 1.2rem 0.2rem 1.2rem; /* top right bottom left */
 }
-#header-content img.logo {
+#header-content .logo {
+    display: table-cell;
+    font-family: "Catamaran", sans-serif;
+}
+#header-content .logo * {
+    vertical-align: middle;
+}
+#header-content .logo img {
     height: 32px;
+    filter: invert();
+    padding-right: 0.2rem;
 }
-#header-content * {
+#header-content .right-header {
+    display: table-cell;
+    text-align: right;
+    font-size: 0.7em;
+}
+#header-content div {
     vertical-align: middle;
 }
 

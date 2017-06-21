@@ -46,8 +46,12 @@
         <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
+        <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
 
         <!-- Language -->
         <% for(var i=0; i<alternateUrls.length; i++) {%>
@@ -94,8 +98,15 @@
         <div id="main">
             <div id="header">
                 <div id="header-content">
-                    <img class="logo" src="images/icon_noborder_small.png" />
-                    <span>Electricity Map</span>
+                    <div class="logo">
+                      <img src="images/icon_noborder_small.png" />
+                      <span>Electricity Map</span>
+                    </div>
+
+                    <div class="right-header">
+                        <%= __('misc.lastupdate') %> <span class="current-datetime-from-now"></span><br />
+                        <span class="current-datetime"></span>
+                    </div>
                 </div>
             </div>
             <div id="inner">
@@ -105,13 +116,6 @@
                         <h1>
                             <%= __('misc.maintitle') %>
                         </h1>
-                        <div class="large-screen-visible">
-                            <div>
-                                <%= __('misc.lastupdate') %>:
-                                <span class="current-datetime"></span>
-                                <small>(<span class="current-datetime-from-now"></span>)</small>
-                            </div>
-                        </div>
                         <hr />
 
                         <div class="left-panel-initial-text">
@@ -160,7 +164,7 @@
                             <span id="left-panel-country-back">×</span>
                             <div class="country-name-time">
                                 <div class="country-name"></div>
-                                <div class="country-last-update">?</div>
+                                <div class="country-time">?</div>
                             </div>
                             <img id="country-flag" class="flag"></img>
                         </div>
