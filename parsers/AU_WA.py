@@ -7,7 +7,7 @@ import dateutil
 from collections import defaultdict
 import datetime
  
-def fetch_production(country_code=None, session=None):
+def fetch_production(country_code='AU-WA', session=None):
     r = session or requests.session()
    
     urlMeta = 'http://wa.aemo.com.au/aemo/data/wa/infographic/facility-meta.csv'
