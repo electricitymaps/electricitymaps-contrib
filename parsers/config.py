@@ -94,6 +94,7 @@ PRODUCTION_PARSERS = {
     'AUS-SA': AU.fetch_production,
     'AUS-TAS': AU.fetch_production,
     'AUS-VIC': AU.fetch_production,
+    'AUS-WA': AU_WA.fetch_production,
     'NZ-NZN': NZ.fetch_production,
     'NZ-NZS': NZ.fetch_production,
 }
