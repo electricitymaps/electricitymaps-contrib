@@ -100,10 +100,11 @@ line, path {
     position: relative;
 }
 #header {
-    display: table-row;
+    display: table-cell;
     height: 1px;
     background-color: white;
-    z-index: 1;
+    z-index: 2;
+    position: relative;
 }
 #header #header-content {
     font-size: 0.9rem;
@@ -424,8 +425,6 @@ div.highscore-button {
 .country-picker-container {
 }
 .country-picker-container p {
-    column-count: 2;
-    counter-reset: section;
     margin: -0.25rem 0 0;
 }
 .country-picker-container a {
@@ -506,9 +505,10 @@ div.highscore-button {
 }
 
 #footer {
-    display: table-row;
+    display: table-cell;
     height: 1px;
-    z-index: 1;
+    z-index: 2;
+    position: relative;
     background-color: rgb(50, 50, 50);
 
     /* Shadow */
@@ -605,6 +605,6 @@ div.highscore-button {
         display: none;
     }
     #footer {
-        display: table-row;
+        display: table-cell;
     }
 }
