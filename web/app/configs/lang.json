@@ -409,15 +409,15 @@
         "oil": "Petrolio",
         "unknown": "Sconosciuto",
 
-        "electricityComesFrom": "Il {1} % dell'elettricità in <img id=\"country-flag\"></img> <b>{2}</b> proviene dal/dalla {3}",
-        "emissionsComeFrom": "Il {1} % delle emissioni di CO2 in <img id=\"country-flag\"></img> <b>{2}</b> proviene dal/dalla {3}",
-        "electricityStoredUsing": "Il {1} % dell'elettricità in <img id=\"country-flag\"></img> <b>{2}</b> è accumulato usando il/la {3}",
-        "emissionsStoredUsing": "Il {1} % delle emissioni di CO2 in <img id=\"country-flag\"></img> <b>{2}</b> è accumulato usando il/la {3}",
+        "electricityComesFrom": "Il {1} % dell'elettricità di <img id=\"country-flag\"></img> <b>{2}</b> proviene dal/dalla {3}",
+        "emissionsComeFrom": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> proviene dal/dalla {3}",
+        "electricityStoredUsing": "Il {1} % dell'elettricità di <img id=\"country-flag\"></img> <b>{2}</b> è accumulato usando il/la {3}",
+        "emissionsStoredUsing": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è accumulato usando il/la {3}",
 
-        "electricityExportedTo": "Il {1} % dell'elettricità in <img id=\"country-flag\"></img> <b>{2}</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-        "emissionsExportedTo": "Il {1} % delle emissioni di CO2 in <img id=\"country-flag\"></img> <b>{2}</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-        "electricityImportedFrom": "Il {1} % dell'elettricità in <img id=\"country-flag\"></img> <b>{2}</b> importato dalla <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-        "emissionsImportedFrom": "Il {1} % delle emissioni di CO2 in <img id=\"country-flag\"></img> <b>{2}</b> importato dalla <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "electricityExportedTo": "Il {1} % dell'elettricità di <img id=\"country-flag\"></img> <b>{2}</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsExportedTo": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "electricityImportedFrom": "Il {1} % dell'elettricità di <img id=\"country-flag\"></img> <b>{2}</b> è importato da <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+        "emissionsImportedFrom": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è importato da <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
         "zoneShortName": {
             "AE": "Emirati Arabi Uniti",
