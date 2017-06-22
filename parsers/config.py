@@ -1,4 +1,5 @@
 from parsers import AU
+from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE
 from parsers import IS
 from parsers import FO
@@ -96,6 +97,7 @@ PRODUCTION_PARSERS = {
     'AUS-SA': AU.fetch_production,
     'AUS-TAS': AU.fetch_production,
     'AUS-VIC': AU.fetch_production,
+    'AUS-WA': AU_WA.fetch_production,
     'NZ-NZN': NZ.fetch_production,
     'NZ-NZS': NZ.fetch_production,
 }

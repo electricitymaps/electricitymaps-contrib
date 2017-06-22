@@ -698,6 +698,7 @@
             "MT": "Malta",
             "NL": "Nederland",
             "NO": "Noorwegen",
+			"PE": "Peru",
             "PL": "Polen",
             "PT": "Portugal",
             "RO": "Roemenië",
@@ -707,6 +708,7 @@
             "SI": "Slovenië",
             "SK": "Slowakije",
             "TR": "Turkije",
+			"TW": "Taiwan",
             "UA": "Oekraïne"
         }
     },
