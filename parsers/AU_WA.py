@@ -33,22 +33,21 @@ def fetch_production(country_code='AU-WA', session=None):
     returndata = {}
     for timestamp in ts:
         tz = 'Australia/Perth'
-		
         dumpDate = arrow.get(str(pd.Timestamp(timestamp)), 'YYYY-MM-DD HH:mm:ss').replace(tzinfo=dateutil.tz.gettz(tz))
-        #print dumpDate
+
         tempdf = dfCombined.loc[dfCombined['PERIOD'] == timestamp] 
         production = pd.DataFrame(tempdf.groupby('PRIMARY_FUEL').sum())
         production.columns = ['production', 'capacity']
         
         for key in production:    
             production['capacity'] *=  2
-        production = production.round(1)
        
-        production.ix['Oil'] = production.ix['Distillate']
+        production.ix['oil'] = production.ix['Distillate']
         production.drop('Distillate', inplace=True)
-        production.ix['Other'] = production.ix['Landfill Gas']
+        production.ix['other'] = production.ix['Landfill Gas']
         production.drop('Landfill Gas', inplace=True)
-                
+        production.index = production.index.str.lower()
+        
         rptData = production.to_dict()
         data = {
             'countryCode': country_code,
@@ -58,9 +57,7 @@ def fetch_production(country_code='AU-WA', session=None):
             'storage': {},
             'source': 'wa.aemo.com.au',
         }
-        
     return data
-      
    
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
