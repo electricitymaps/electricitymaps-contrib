@@ -6,9 +6,10 @@ from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
 from parsers import NZ
+from parsers import PE
 from parsers import TR
-from parsers import US
 from parsers import TW
+from parsers import US
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -73,6 +74,7 @@ PRODUCTION_PARSERS = {
     'ME': ENTSOE.fetch_production,
     'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
+    'PE': PE.fetch_production,
     'PL': ENTSOE.fetch_production,
     'PT': ENTSOE.fetch_production,
     'RO': ENTSOE.fetch_production,
