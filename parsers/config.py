@@ -8,6 +8,7 @@ from parsers import NZ
 from parsers import PE
 from parsers import TR
 from parsers import TW
+from parsers import UA
 from parsers import US
 # 
 # Ideally, we would merge this file with a json file in the config directory
@@ -83,6 +84,7 @@ PRODUCTION_PARSERS = {
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
     'TW': TW.fetch_production,
+    'UA': UA.fetch_production,
     'US': US.fetch_production,
     # ** Canada
     'CA-AB': CA_AB.fetch_production,
