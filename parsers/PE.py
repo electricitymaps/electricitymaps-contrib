@@ -26,8 +26,8 @@ def fetch_production(country_code='PE', session=None):
     r = session or requests.session()
     url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
     response = r.post(url, data={
-      'fechaInicial': arrow.now(tz=tz).replace(days=-1).format('DD/MM/YYYY'),
-      'fechaFinal': arrow.now(tz=tz).format('DD/MM/YYYY'),
+      'fechaInicial': arrow.now(tz=tz).format('DD/MM/YYYY'),
+      'fechaFinal': arrow.now(tz=tz).replace(days=+1).format('DD/MM/YYYY'),
       'indicador': 0
     })
     obj = response.json()['GraficoTipoCombustible']['Series']
