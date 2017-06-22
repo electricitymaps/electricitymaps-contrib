@@ -13,7 +13,7 @@ MAP_GENERATION = {
   'CARBÓN': 'coal',
   'GAS': 'gas',
   'HÍDRICO': 'hydro',
-  'BIOGÁS': 'other',
+  'BIOGÁS': 'unknown',
   'BAGAZO': 'biomass',
   'SOLAR': 'solar',
   'EÓLICA': 'wind'

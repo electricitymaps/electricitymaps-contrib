@@ -44,7 +44,7 @@ def fetch_production(country_code='AU-WA', session=None):
        
         production.ix['oil'] = production.ix['Distillate']
         production.drop('Distillate', inplace=True)
-        production.ix['other'] = production.ix['Landfill Gas']
+        production.ix['unknown'] = production.ix['Landfill Gas']
         production.drop('Landfill Gas', inplace=True)
         production.index = production.index.str.lower()
         

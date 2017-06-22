@@ -10,6 +10,7 @@ from parsers import PE
 from parsers import TR
 from parsers import TW
 from parsers import US
+from parsers import UY
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -85,6 +86,7 @@ PRODUCTION_PARSERS = {
     'TR': TR.fetch_production,
     'TW': TW.fetch_production,
     'US': US.fetch_production,
+    'UY': UY.fetch_production,
     # ** Canada
     'CA-AB': CA_AB.fetch_production,
     'CA-NB': CA_NB.fetch_production,
