@@ -26,15 +26,12 @@ def fetch_production(country_code='CA-YT', session=None):
 
     See schema of the grid at http://www.atcoelectricyukon.com/About-Us/
 
-    The grid covers about 80% of Yukon's population. The remainder has diesel generators.
-
     Per https://en.wikipedia.org/wiki/Yukon#Municipalities_by_population
     of total population 35874 (2016 census), 28238 are in municipalities
     that are connected to the grid - that is 78.7%.
 
-    We assume that the off-grid uses electricity at roughly the same rate as grid,
-    this assumption is probably a bit pessimistic but not too far off.
-    Off-grid generation is with diesel generators.
+    Off-grid generation is with diesel generators, this is not reported online as of 2017-06-23
+    and is not included in this calculation.
 
     Yukon Energy reports only "hydro" vs "thermal" generation.
     Per http://www.yukonenergy.ca/ask-janet/lng-and-boil-off-gas,
@@ -91,15 +88,11 @@ def fetch_production(country_code='CA-YT', session=None):
         # thermal is not always used and when it's not used, it's not specified in HTML
         thermal_generation = 0
 
-    # Yukon's grid covers about 80% of the population. The remainder has diesel generators.
-    # Assume that the off-grid uses electricity at same rate as grid. See longer comment above.
-    off_grid_use = (hydro_generation + thermal_generation) * 0.2
-
     data = {
         'datetime': datetime_datetime,
         'countryCode': country_code,
         'production': {
-            'oil': thermal_generation + off_grid_use,
+            'oil': thermal_generation,
 
             'hydro': hydro_generation,
 
