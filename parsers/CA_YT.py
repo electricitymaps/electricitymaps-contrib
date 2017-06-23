@@ -79,6 +79,10 @@ def fetch_production(country_code='CA-YT', session=None):
     hydro_text = hydro_div.div.text
     hydro_generation = parse_mw(hydro_text)
 
+    hydro_cap_div = find_div_by_class(soup, 'avail_hydro')
+    hydro_cap_text = hydro_cap_div.div.text
+    hydro_capacity = parse_mw(hydro_cap_text)
+
     thermal_div = find_div_by_class(soup, 'load_thermal')
     if thermal_div.div:
         thermal_text = hydro_div.div.text
@@ -104,6 +108,9 @@ def fetch_production(country_code='CA-YT', session=None):
             'coal': 0,
             'nuclear': 0,
             'geothermal': 0
+        },
+        'capacity': {
+            'hydro': hydro_capacity
         },
         'storage': {},
         'source': 'www.yukonenergy.ca'
