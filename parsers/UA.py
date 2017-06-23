@@ -12,6 +12,7 @@ MAP_GENERATION = {
   'chpp': 'gas',
   'hpp': 'hydro',
   'vde': 'wind',
+  'hour' : 'hour',
   'gesgaes' : 'hydro', #hydro run of river and poundage 
   'consumptiongaespump' : 'consumptiongaespump' # hydro pumped storage
 }
@@ -40,19 +41,22 @@ def fetch_production(country_code='UA', session=None):
             'storage' : {},
             'source': 'ua.energy'
         })
+        i =  len(dataDict)-1
+        del serie['consumption']  # not used, can be safely removed. 
+        
         for key in serie:
-            i =  len(dataDict)-1
             key = key.encode('utf-8')
-            this = str(today) + ' ' + str(serie['hour'])
-            dumpdate = arrow.get(this, 'DD.MM.YYYY HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
-            dataDict[i]['datetime'] = dumpdate.datetime
-            
             if key in MAP_GENERATION:
                 if key == 'consumptiongaespump':
                    dataDict[i]['storage']['hydro'] = serie['consumptiongaespump']
+                elif key == 'hour':
+                    this = str(today) + ' ' + str(serie['hour'])
+                    dumpdate = arrow.get(this, 'DD.MM.YYYY HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
+                    dataDict[i]['datetime'] = dumpdate.datetime
                 else:
                    dataDict[i]['production'][MAP_GENERATION[key]] = serie[key]
-
+            else:
+                raise Exception('key %s is unknown' % key)
     return dataDict  
      
      
