@@ -12,12 +12,8 @@ MAP_GENERATION = {
   'chpp': 'gas',
   'hpp': 'hydro',
   'vde': 'wind',
-  'gesgaes' : 'gesgaes', # hydro pumped storage
-  'consumptiongaespump' :'consumptiongaespump' #hydro run of river and poundage
-}
-MAP_OTHER   = {
-  'consumption' : 'consumption',
-  'hour' : 'hour'
+  'gesgaes' : 'hydro', #hydro run of river and poundage 
+  'consumptiongaespump' : 'consumptiongaespump' # hydro pumped storage
 }
 
 tz = 'Europe/Kiev'
@@ -35,28 +31,29 @@ def fetch_production(country_code='UA', session=None):
     }
     response = r.post(url, postdata)
     obj = response.json()
-    allofit = []
+    
+    dataDict = []    
     for serie in obj:
-        data = []
-        data.append({
+        dataDict.append({
             'countryCode': country_code,
             'production': {},
-            'source': 'ua.energy'            
+            'storage' : {},
+            'source': 'ua.energy'
         })
         for key in serie:
+            i =  len(dataDict)-1
             key = key.encode('utf-8')
+            this = str(today) + ' ' + str(serie['hour'])
+            dumpdate = arrow.get(this, 'DD.MM.YYYY HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
+            dataDict[i]['datetime'] = dumpdate.datetime
+            
             if key in MAP_GENERATION:
-                if key in ('gesgaes', 'consumptiongaespump'):
-                   data[0]['production']['hydro'] = serie['gesgaes'] + serie['consumptiongaespump']
+                if key == 'consumptiongaespump':
+                   dataDict[i]['storage']['hydro'] = serie['consumptiongaespump']
                 else:
-                   data[0]['production'][MAP_GENERATION[key]] = serie[key]
-            if key in MAP_OTHER:
-                this = str(today) + ' ' + str(serie['hour'])
-                dumpdate = arrow.get(this, 'DD.MM.YYYY HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
-                data[0]['datetime'] = dumpdate.datetime
-        allofit.append(data)
+                   dataDict[i]['production'][MAP_GENERATION[key]] = serie[key]
 
-    return allofit  
+    return dataDict  
      
      
 if __name__ == '__main__':
