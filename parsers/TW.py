@@ -45,17 +45,17 @@ def fetch_production(country_code='TW', session=None):
     # We require the opposite
 
     returndata = {
-    		'countryCode': country_code,
+		'countryCode': country_code,
         'datetime': dumpDate.datetime,
-    		'production': {
-    			  'coal': coal_production,
+		'production': {
+	        'coal': coal_production,
             'gas': gas_production,
             'oil': oil_production,
             'hydro' : production.ix['Hydro'].output,
             'nuclear': production.ix['Nuclear'].output,
             'solar': production.ix['Solar'].output,
             'wind': production.ix['Wind'].output,
-            'other': production.ix['Co-Gen'].output
+            'unknown': production.ix['Co-Gen'].output
         },
         'capacity': {
     			  'coal': coal_capacity,
@@ -65,7 +65,7 @@ def fetch_production(country_code='TW', session=None):
             'nuclear': production.ix['Nuclear'].capacity,
             'solar': production.ix['Solar'].capacity,
             'wind': production.ix['Wind'].capacity,
-            'other': production.ix['Co-Gen'].capacity
+            'unknown': production.ix['Co-Gen'].capacity
         },
         'storage': {
             'hydro': -1 * production.ix['Pumping Load'].output - production.ix['Pumping Gen'].output

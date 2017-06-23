@@ -1,4 +1,5 @@
 from parsers import AU
+from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import IS
 from parsers import FO
@@ -9,6 +10,7 @@ from parsers import PE
 from parsers import TR
 from parsers import TW
 from parsers import US
+from parsers import UY
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -84,6 +86,7 @@ PRODUCTION_PARSERS = {
     'TR': TR.fetch_production,
     'TW': TW.fetch_production,
     'US': US.fetch_production,
+    'UY': UY.fetch_production,
     # ** Canada
     'CA-AB': CA_AB.fetch_production,
     'CA-NB': CA_NB.fetch_production,
@@ -97,6 +100,7 @@ PRODUCTION_PARSERS = {
     'AUS-SA': AU.fetch_production,
     'AUS-TAS': AU.fetch_production,
     'AUS-VIC': AU.fetch_production,
+    'AUS-WA': AU_WA.fetch_production,
     'NZ-NZN': NZ.fetch_production,
     'NZ-NZS': NZ.fetch_production,
 }
