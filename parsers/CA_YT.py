@@ -71,7 +71,7 @@ def fetch_production(country_code='CA-YT', session=None):
     # time is specified like "11:55 pm"
     source_time = find_div_by_class(soup, 'current_time').text
     datetime_text = '{} {}'.format(source_date, source_time)
-    datetime_arrow = arrow.get(datetime_text, 'dddd, MMMM D, YYYY hh:mm A')
+    datetime_arrow = arrow.get(datetime_text, 'dddd, MMMM D, YYYY h:mm A')
     datetime_datetime = arrow.get(datetime_arrow.datetime, timezone).datetime
 
     # generation is specified like "37.69 MW - hydro"
