@@ -65,7 +65,8 @@
             "SK": "Slovakiet",
             "TR": "Tyrkiet",
             "TW": "Taiwan",
-            "UA": "Ukraine"
+            "UA": "Ukraine",
+            "UY": "Uruguay"
         }
     },
     "de": {
@@ -241,6 +242,7 @@
             "TW": "Taiwan",
             "UA": "Ukraine",
             "US": "United States of America",
+            "UY": "Uruguay",
             "UZ": "Uzbekistan"
         }
     },
@@ -309,7 +311,8 @@
             "SI": "Eslovenia",
             "SK": "Eslovaquia",
             "TR": "Turquía",
-            "UA": "Ucrania"
+            "UA": "Ucrania",
+            "UY": "Uruguay"
         }
     },
     "fr": {
@@ -397,7 +400,8 @@
             "TR": "Turquie",
             "TW": "Taiwan",
             "UA": "Ukraine",
-            "US": "États-Unis d'Amérique"
+            "US": "États-Unis d'Amérique",
+            "UY": "Uruguay"
         }
     },
     "it": {
@@ -698,6 +702,7 @@
             "MT": "Malta",
             "NL": "Nederland",
             "NO": "Noorwegen",
+			"PE": "Peru",
             "PL": "Polen",
             "PT": "Portugal",
             "RO": "Roemenië",
@@ -707,6 +712,7 @@
             "SI": "Slovenië",
             "SK": "Slowakije",
             "TR": "Turkije",
+			"TW": "Taiwan",
             "UA": "Oekraïne"
         }
     },

@@ -41,6 +41,7 @@ Each country has a CO2 mass flow that depends on neighboring countries. In order
 Real-time electricity data is obtained using [parsers](https://github.com/corradio/electricitymap/tree/master/parsers)
 
 - Australia: [AREMI National Map](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all)
+- Australia (Western): [AEMO](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -82,6 +83,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
 - Ukraine: [UKRENERGO] (https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States: [PYISO](https://github.com/WattTime/pyiso)
+- Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 
 ### Production capacity data sources
 Production capacities are centralized in the [capacities.json](https://github.com/tmrowco/electricitymap/blob/master/config/capacities.json) file.
