@@ -48,7 +48,7 @@ def fetch_production(country_code='UA', session=None):
             key = key.encode('utf-8')
             if key in MAP_GENERATION:
                 if key == 'consumptiongaespump':
-                   dataDict[i]['storage']['hydro'] = serie['consumptiongaespump']
+                   dataDict[i]['storage']['hydro'] = serie['consumptiongaespump'] * -1
                 elif key == 'hour':
                     this = str(today) + ' ' + str(serie['hour'])
                     dumpdate = arrow.get(this, 'DD.MM.YYYY HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
