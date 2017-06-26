@@ -8,15 +8,15 @@
 
         "takeinaccount": "Bierzemy pod uwagę",
         "importexport": "import i eksport",
-        "betweencountries": "energii elektrycznej pomiędzy krajami",
+        "betweencountries": "energii elektrycznej pomiędzy regionami",
 
         "thisproject": "Ten projekt jest",
         "opensource": "Open Source",
         "see": "zobacz",
         "datasources": "źródła danych",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
+        "contribute": "Pomóż nam <a href=\"%s\" target=\"_blank\">dodając więcej regionów</a>",
 
-        "tip": "Wskazówka: Kliknij na kraj by dowiedzieć się więcej"
+        "tip": "Wskazówka: Kliknij na region by dowiedzieć się więcej"
     },
     "country-panel": {
         "source": "źródło",
@@ -27,7 +27,7 @@
         "electricityproduction": "Produkcja energii elektrycznej",
         "bysource": "według źródeł energii",
         "emissions": "Emisje CO2",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
         "co2signal": "Nasz <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic."
     },
     "rankings-panel": {
@@ -61,10 +61,10 @@
         "withcarbonintensity": "z emisją CO2 wynoszącą"
     },
     "misc": {
-        "maintitle": "Emisja CO2 europejskiej konsumpcji energii elektrycznej w czasie rzeczywistym",
+        "maintitle": "Emisja CO2 konsumpcji energii elektrycznej w czasie rzeczywistym",
         "lastupdate": "Ostatnia aktualizacja",
         "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
-        "newversion": "Nowa wersja jest dostępna! Kliknij <a onClick=\"location.reload(true);\">tutaj</a> by odświeżyć."
+        "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>."
     },
     "menu": {
         "mapview": "Mapa",
