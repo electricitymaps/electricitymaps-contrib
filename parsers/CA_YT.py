@@ -33,10 +33,11 @@ def fetch_production(country_code='CA-YT', session=None):
     Off-grid generation is with diesel generators, this is not reported online as of 2017-06-23
     and is not included in this calculation.
 
-    Yukon Energy reports only "hydro" vs "thermal" generation.
+    Yukon Energy reports only "hydro" and "thermal" generation.
     Per http://www.yukonenergy.ca/ask-janet/lng-and-boil-off-gas,
     in 2016 the thermal generation was about 50% diesel and 50% LNG.
-    But since Yukon Energy doesn't break it down on their website, we assume all oil.
+    But since Yukon Energy doesn't break it down on their website,
+    we return all thermal as "unknown".
 
     Per https://en.wikipedia.org/wiki/List_of_generating_stations_in_Yukon
     Yukon Energy operates about 98% of Yukon's hydro capacity, the only exception is
@@ -65,7 +66,7 @@ def fetch_production(country_code='CA-YT', session=None):
     # date is specified like "Thursday, June 22, 2017"
     source_date = find_div_by_class(soup, 'current_date').text
 
-    # time is specified like "11:55 pm"
+    # time is specified like "11:55 pm" or "2:25 am"
     source_time = find_div_by_class(soup, 'current_time').text
     datetime_text = '{} {}'.format(source_date, source_time)
     datetime_arrow = arrow.get(datetime_text, 'dddd, MMMM D, YYYY h:mm A')
@@ -92,7 +93,7 @@ def fetch_production(country_code='CA-YT', session=None):
         'datetime': datetime_datetime,
         'countryCode': country_code,
         'production': {
-            'oil': thermal_generation,
+            'unknown': thermal_generation,
 
             'hydro': hydro_generation,
 
