@@ -26,8 +26,8 @@ def parse_page(session):
     soup = BeautifulSoup(response.text, 'html.parser')
 
     datefield = soup.find('span', attrs={'id': 'ctl00_ContentPlaceHolder1_lblUltFecScada'})
-    datestr = re.findall('\d\d/\d\d/\d\d\d\d \d\d:\d\d', str(datefield.contents[0]))[0]
-    date = arrow.get(datestr, 'DD/MM/YYYY hh:mm').replace(tzinfo=dateutil.tz.gettz(tz))
+    datestr = re.findall('\d\d/\d\d/\d\d\d\d \d+:\d\d', str(datefield.contents[0]))[0]
+    date = arrow.get(datestr, 'DD/MM/YYYY h:mm').replace(tzinfo=dateutil.tz.gettz(tz))
 
     table = soup.find('table', attrs={'id': 'ctl00_ContentPlaceHolder1_gridPotenciasNivel1'})
 

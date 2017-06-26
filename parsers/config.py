@@ -9,6 +9,7 @@ from parsers import NZ
 from parsers import PE
 from parsers import TR
 from parsers import TW
+from parsers import UA
 from parsers import US
 from parsers import UY
 # 
@@ -85,6 +86,7 @@ PRODUCTION_PARSERS = {
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
     'TW': TW.fetch_production,
+    'UA': UA.fetch_production,
     'US': US.fetch_production,
     'UY': UY.fetch_production,
     # ** Canada
@@ -187,7 +189,7 @@ EXCHANGE_PARSERS = {
     # LT
     'LT->LV':     ENTSOE.fetch_exchange,
     'LT->PL':     ENTSOE.fetch_exchange,
-    'LT->RU':     ENTSOE.fetch_exchange,
+    'LT->RU-KGD': ENTSOE.fetch_exchange,
     'LT->SE':     ENTSOE.fetch_exchange,
     # LV
     'LV->RU':     ENTSOE.fetch_exchange,
@@ -213,7 +215,7 @@ EXCHANGE_PARSERS = {
     # ** Canada
     'CA-AB->CA-BC': CA_AB.fetch_exchange,
     'CA-AB->CA-SK': CA_AB.fetch_exchange,
-    'CA-AB->US': CA_AB.fetch_exchange,
+    'CA-AB->US':    CA_AB.fetch_exchange,
     'CA-BC->US':    CA_BC.fetch_exchange,
     'CA-MB->CA-ON': CA_ON.fetch_exchange,
     'CA-ON->CA-QC': CA_ON.fetch_exchange,
