@@ -133,12 +133,17 @@
     },
     "ES": {
         "capacity": {
-            "coal": 11482,
-            "gas": 30704,
-            "hydro": 19893,
-            "nuclear": 7866,
-            "solar": 6972,
-            "wind": 23002
+	    "biomass": 1077,
+            "coal": 9535,
+            "gas": 30723,
+            "hydro": 20269,
+	    "hydro storage": 5645,
+            "nuclear": 7572,
+	    "oil": 715,
+            "solar": 6720,
+            "wind": 22813,
+	    "geothermal": 0,
+	    "unknown": 360
         }
     },
     "FI": {
