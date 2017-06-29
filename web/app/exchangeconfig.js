@@ -49,9 +49,13 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: 90
     };
     // BE
-    exchanges['BE->FR'] = {
-        lonlat: [4.137165, 50.255806],
-        rotation: -135
+    exchanges['BE->FR-ACA'] = {
+        lonlat: [5.3, 49.6],
+        rotation: -170
+    };
+    exchanges['BE->FR-NPP'] = {
+        lonlat: [3.3, 50.5],
+        rotation: -125
     };
     exchanges['BE->NL'] = {
         lonlat: [5.026873, 51.425174],
@@ -88,9 +92,17 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [8.806354, 47.667048],
         rotation: 0
     };
-    exchanges['CH->FR'] = {
-        lonlat: [6.5, 46.7],
-        rotation: -90
+    exchanges['CH->FR-ACA'] = {
+        lonlat: [7.4, 47.46],
+        rotation: -15
+    };
+    exchanges['CH->FR-ARA'] = {
+        lonlat: [6.8, 46.2],
+        rotation: -120
+    };
+    exchanges['CH->FR-BFC'] = {
+        lonlat: [6.78, 47.1],
+        rotation: -45
     };
     exchanges['CH->IT'] = {
         lonlat: [9.047334, 46.113596],
@@ -131,8 +143,12 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: 0
     };
     // ES
-    exchanges['ES->FR'] = {
-        lonlat: [0.3, 42.9],
+    exchanges['ES->FR-ALP'] = {
+        lonlat: [-1.07, 42.9],
+        rotation: 10
+    };
+    exchanges['ES->FR-LRM'] = {
+        lonlat: [1.67, 42.5],
         rotation: 20
     };
     exchanges['ES->PT'] = {
@@ -175,11 +191,103 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: -50
     };
     // FR
-    exchanges['FR->GB'] = {
-        lonlat: [0, 50.4],
+    exchanges['FR-NPP->GB'] = {
+        lonlat: [1.6, 50.8],
+        rotation: -25
+    };
+    exchanges['FR-ACA->FR-NPP'] = {
+        lonlat: [3.98, 49.4],
+        rotation: -40
+    };
+    exchanges['FR-ACA->FR-IDF'] = {
+        lonlat: [3.46, 48.63],
+        rotation: -90
+    };
+    exchanges['FR-ACA->FR-BFC'] = {
+        lonlat: [5.25, 47.5],
+        rotation: -170
+    };
+    exchanges['FR-ALP->FR-ARA'] = {
+        lonlat: [2.48, 45.8],
+        rotation: 100
+    };
+    exchanges['FR-ALP->FR-CEN'] = {
+        lonlat: [1, 46.5],
+        rotation: 30
+    };
+    exchanges['FR-ALP->FR-LRM'] = {
+        lonlat: [1, 44.4],
+        rotation: 120
+    };
+    exchanges['FR-ALP->FR-PLO'] = {
+        lonlat: [-0.65, 46.7],
+        rotation: -24
+    };
+    exchanges['FR-ARA->FR-BFC'] = {
+        lonlat: [4.87, 46.41],
+        rotation: 15
+    };
+    exchanges['FR-ARA->FR-CEN'] = {
+        lonlat: [2.7, 46.7],
+        rotation: -45
+    };
+    exchanges['FR-ARA->FR-LRM'] = {
+        lonlat: [3.67, 44.83],
+        rotation: -140
+    };
+    exchanges['FR-ARA->IT'] = {
+        lonlat: [7.11, 45.4],
+        rotation: 105
+    };
+    exchanges['FR-BFC->FR-CEN'] = {
+        lonlat: [2.94, 47.5],
+        rotation: -90
+    };
+    exchanges['FR-BFC->FR-IDF'] = {
+        lonlat: [3.17, 48.36],
         rotation: -20
     };
-    exchanges['FR->IT'] = {
+    exchanges['FR-BRE->FR-CEN'] = {
+        lonlat: [1.05, 48.7],
+        rotation: -15
+    };
+    exchanges['FR-BRE->FR-IDF'] = {
+        lonlat: [1.64, 49.1],
+        rotation: -45
+    };
+    exchanges['FR-BRE->FR-NOR'] = {
+        lonlat: [-1.47, 48.52],
+        rotation: 45
+    };
+    exchanges['FR-BRE->FR-PLO'] = {
+        lonlat: [-1.6, 47.7],
+        rotation: 120
+    };
+    exchanges['FR-CEN->FR-IDF'] = {
+        lonlat: [2.17, 48.3],
+        rotation: 10
+    };
+    exchanges['FR-CEN->FR-PLO'] = {
+        lonlat: [0.5, 47.6],
+        rotation: -75
+    };
+    exchanges['FR-IDF->FR-NPP'] = {
+        lonlat: [2.62, 49.07],
+        rotation: 5
+    };
+    exchanges['FR-LRM->FR-PAC'] = {
+        lonlat: [4.75, 43.9],
+        rotation: -90
+    };
+    exchanges['FR-NOR->FR-NPP'] = {
+        lonlat: [1.7, 49.66],
+        rotation: 70
+    };
+    exchanges['FR-NOR->FR-PLO'] = {
+        lonlat: [-0.2, 48.5],
+        rotation: -170
+    };
+    exchanges['FR-PAC->IT'] = {
         lonlat: [6.9, 44.4],
         rotation: 70
     };

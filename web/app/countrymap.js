@@ -78,13 +78,13 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
                 'scale(' + incrementalScale + ')'
             );
         });
-        
+
     })
     .on('end', function() {
         // Return in case no dragging was started
         // That's because 'end' is triggered on mouseup (i.e. click)
         if (!dragStartTransform) { return; }
-        
+
         that.windCanvas.style('transform', undefined);
         that.solarCanvas.style('transform', undefined);
 
@@ -142,7 +142,7 @@ CountryMap.prototype.render = function() {
         var yaw = projection.rotate()[0],
             xymax = projection([-yaw+180-1e-6,-maxlat]),
             xymin = projection([-yaw-180+1e-6, maxlat]);
-        
+
         return [xymin,xymax];
     }
 
@@ -172,10 +172,10 @@ CountryMap.prototype.render = function() {
 
     this.path = d3.geoPath()
         .projection(this._projection);
-        
+
     // var graticuleData = d3.geoGraticule()
     //     .step([5, 5]);
-        
+
     // this.graticule
     //     .datum(graticuleData)
     //     .attr('d', this.path);
@@ -210,6 +210,8 @@ CountryMap.prototype.render = function() {
                     navigator.userAgent.indexOf('Googlebot') != -1 ?
                         undefined :
                         function (d, i) {
+                            console.log(d3.event)
+                            console.log(that.absProjection().invert([d3.event.layerX, d3.event.layerY]))
                             d3.event.stopPropagation(); // To avoid call click on sea
                             if (that.selectedCountry !== undefined) {
                                 that.selectedCountry
