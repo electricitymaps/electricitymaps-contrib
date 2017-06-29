@@ -2,6 +2,22 @@ var d3 = require('d3');
 var topojson = require('topojson');
 
 var topos = require('./world.json');
+var regions_FR = require('./FR_regions.json');
+
+var regions_FR_MAPPING = {
+    'FR-ACA': 'Grand Est',
+    'FR-ALP': 'Nouvelle-Aquitaine',
+    'FR-ARA': 'Auvergne-Rhône-Alpes',
+    'FR-BFC': 'Bourgogne-Franche-Comté',
+    'FR-BRE': 'Bretagne',
+    'FR-CEN': 'Centre-Val de Loire',
+    'FR-IDF': 'Île-de-France',
+    'FR-LRM': 'Occitanie',
+    'FR-NOR': 'Normandie',
+    'FR-NPP': 'Hauts-de-France',
+    'FR-PAC': 'Provence-Alpes-Côte d\'Azur',
+    'FR-PLO': 'Pays de la Loire'
+}
 
 var exports = module.exports = {};
 
@@ -29,6 +45,22 @@ exports.addCountryTopos = function(countries) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
             return ids.indexOf(d.id) != -1;
         }));
+    }
+    console.log(regions_FR.features.map(function(d) { return d.properties.nom}))
+    function getFRARegion(id) {
+        return regions_FR.features.filter(function(d) {
+            return d.properties.nom == regions_FR_MAPPING[id];
+        }).map(function(geom) {
+            return {
+              type: "Feature",
+              // id: geom.id,
+              properties: geom.properties || {},
+              geometry: {
+                type: geom.geometry.type,
+                coordinates: geom.geometry.coordinates
+              }
+            };
+        })[0];
     }
 
     // Map between "countries" iso_a2 and adm0_a3 in order to support XX, GB etc..
@@ -135,7 +167,19 @@ exports.addCountryTopos = function(countries) {
     countries['FO'] = getCountry('FRO')
     countries['FJ'] = getCountry('FJI')
     countries['FI'] = getCountry('FIN')
-    countries['FR'] = getCountry('FRA')
+    // countries['FR'] = getCountry('FRA')
+    countries['FR-ACA'] = getFRARegion('FR-ACA')
+    countries['FR-ALP'] = getFRARegion('FR-ALP')
+    countries['FR-ARA'] = getFRARegion('FR-ARA')
+    countries['FR-BFC'] = getFRARegion('FR-BFC')
+    countries['FR-BRE'] = getFRARegion('FR-BRE')
+    countries['FR-CEN'] = getFRARegion('FR-CEN')
+    countries['FR-IDF'] = getFRARegion('FR-IDF')
+    countries['FR-LRM'] = getFRARegion('FR-LRM')
+    countries['FR-NOR'] = getFRARegion('FR-NOR')
+    countries['FR-NPP'] = getFRARegion('FR-NPP')
+    countries['FR-PAC'] = getFRARegion('FR-PAC')
+    countries['FR-PLO'] = getFRARegion('FR-PLO')
     countries['GF'] = getCountry('GUF')
     countries['PF'] = getCountry('PYF')
     countries['TF'] = getCountry('ATF')

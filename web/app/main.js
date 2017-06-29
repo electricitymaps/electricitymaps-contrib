@@ -479,6 +479,7 @@ countryMap
 // Add configurations
 d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
+    if (!zone) return;
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     // Add translation
     zone.shortname = lang && lang.zoneShortName[d.key];
@@ -486,6 +487,7 @@ d3.entries(zones).forEach(function(d) {
 // Add capacities
 d3.entries(capacities).forEach(function(d) {
     var zone = countries[d.key];
+    if (!zone) return;
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
     zone.maxStorageCapacity = d3.max(d3.entries(zone.capacity), function(d) {
