@@ -16,6 +16,29 @@ from parsers import UY
 # Ideally, we would merge this file with a json file in the config directory
 #
 
+def entsoe_exchange_wrapper(o, d, session):
+    origin = None
+    destination = None
+    if o.split('-')[0] == 'FR':
+        origin = 'FR'
+        destination = d
+    else:
+        origin = o
+        destination = 'FR'
+
+    data = ENTSOE.fetch_exchange(origin, destination, session)
+    if not data: return
+    for item in data:
+        if not item: continue
+        item['sortedCountryCodes'] = '->'.join([o, d])
+        if 'CH' in [o, d]: item['netFlow'] /= 3
+        if 'BE' in [o, d]: item['netFlow'] /= 2
+        if 'ES' in [o, d]: item['netFlow'] /= 2
+        if 'IT' in [o, d]: item['netFlow'] /= 2
+
+    return data
+
+
 # Define all production parsers
 CONSUMPTION_PARSERS = {
     # 'AT': ENTSOE.fetch_consumption,
@@ -62,7 +85,7 @@ PRODUCTION_PARSERS = {
     'ES': ENTSOE.fetch_production,
     'FI': ENTSOE.fetch_production,
     'FO': FO.fetch_production,
-    'FR': FR.fetch_production,
+    # 'FR': FR.fetch_production,
     'FR-ACA': FR.fetch_production_by_region,
     'FR-ALP': FR.fetch_production_by_region,
     'FR-ARA': FR.fetch_production_by_region,
@@ -136,7 +159,9 @@ EXCHANGE_PARSERS = {
     'BA->ME':     ENTSOE.fetch_exchange,
     'BA->RS':     ENTSOE.fetch_exchange,
     # BE
-    'BE->FR':     ENTSOE.fetch_exchange,
+    # 'BE->FR':     ENTSOE.fetch_exchange,
+    'BE->FR-ACA': entsoe_exchange_wrapper,
+    'BE->FR-NPP': entsoe_exchange_wrapper,
     'BE->NL':     ENTSOE.fetch_exchange,
     # BG
     'BG->GR':     ENTSOE.fetch_exchange,
@@ -148,7 +173,10 @@ EXCHANGE_PARSERS = {
     'BY->LT':     ENTSOE.fetch_exchange,
     # CH
     'CH->DE':     ENTSOE.fetch_exchange,
-    'CH->FR':     ENTSOE.fetch_exchange,
+    # 'CH->FR':     ENTSOE.fetch_exchange,
+    'CH->FR-ACA': entsoe_exchange_wrapper,
+    'CH->FR-ARA': entsoe_exchange_wrapper,
+    'CH->FR-BFC': entsoe_exchange_wrapper,
     'CH->IT':     ENTSOE.fetch_exchange,
     # CZ
     'CZ->SK':     ENTSOE.fetch_exchange,
@@ -156,7 +184,8 @@ EXCHANGE_PARSERS = {
     'CZ->DE':     ENTSOE.fetch_exchange,
     # DE
     'DE->DK':     ENTSOE.fetch_exchange,
-    'DE->FR':     ENTSOE.fetch_exchange,
+    # 'DE->FR':     ENTSOE.fetch_exchange,
+    'DE->FR-ACA': entsoe_exchange_wrapper,
     'DE->PL':     ENTSOE.fetch_exchange,
     'DE->NL':     ENTSOE.fetch_exchange,
     'DE->SE':     ENTSOE.fetch_exchange,
@@ -168,15 +197,20 @@ EXCHANGE_PARSERS = {
     'EE->LV':     ENTSOE.fetch_exchange,
     'EE->RU':     ENTSOE.fetch_exchange,
     # ES
-    'ES->FR':     ENTSOE.fetch_exchange,
+    # 'ES->FR':     ENTSOE.fetch_exchange,
+    'ES->FR-ALP': entsoe_exchange_wrapper,
+    'ES->FR-LRM': entsoe_exchange_wrapper,
     'ES->PT':     ENTSOE.fetch_exchange,
     # FI
     'FI->NO':     ENTSOE.fetch_exchange,
     'FI->RU':     ENTSOE.fetch_exchange,
     'FI->SE':     ENTSOE.fetch_exchange,
     # FR
-    'FR->GB':     ENTSOE.fetch_exchange,
-    'FR->IT':     ENTSOE.fetch_exchange,
+    # 'FR->GB':     ENTSOE.fetch_exchange,
+    # 'FR->IT':     ENTSOE.fetch_exchange,
+    'FR-NPP->GB': entsoe_exchange_wrapper,
+    'FR-ARA->IT': entsoe_exchange_wrapper,
+    'FR-PAC->IT': entsoe_exchange_wrapper,
     # GB
     'GB->IE':     ENTSOE.fetch_exchange,
     'GB->GB-NIR': ENTSOE.fetch_exchange,
