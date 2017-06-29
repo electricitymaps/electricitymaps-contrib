@@ -10,11 +10,60 @@ MAP_GENERATION = {
     'Hydraulique': 'hydro',
     'Eolien': 'wind',
     'Solaire': 'solar',
-    'Autres': 'biomass'
+    'Autres': 'biomass',
+    'Thermique': 'unknown'
 }
 MAP_STORAGE = {
     'Pompage': 'hydro',
 }
+
+def fetch_production_by_region(country_code='FR', session=None):
+    r = session or requests.session()
+    formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
+    url = 'http://www.rte-france.com/getEco2MixXml.php?type=region&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
+    response = r.get(url)
+    xml_obj = ET.fromstring(response.content)
+    mixtr = xml_obj[9]
+    data = []
+    datetimes = []
+
+    for item in mixtr.getchildren():
+        if item.get('granularite') != 'Global': continue
+
+        peri = item.get('perimetre')
+
+        if peri == 'France': continue
+        if country_code != 'FR-' + peri: continue
+
+        key = item.get('v')
+
+        for child in item.getchildren():
+
+            datetime = arrow.get(arrow.get(xml_obj[1].text).datetime,
+                'Europe/Paris').replace(minutes=+(int(child.attrib['periode']) * 15.0)).datetime
+
+            try:
+                i = datetimes.index(datetime)
+            except ValueError:
+                i = len(datetimes)
+                datetimes.append(datetime)
+                data.append({
+                    'countryCode': country_code,
+                    'datetime': datetime,
+                    'production': {},
+                    'storage': {},
+                    'source': 'rte-france.com'
+                })
+
+            # print key, '*' + child.text.decode('utf8')+ '*'
+            if key in MAP_GENERATION:
+                data[i]['production'][MAP_GENERATION[key]] = float(child.text.replace('-', '0'))
+            elif key in MAP_STORAGE:
+                data[i]['storage'][MAP_STORAGE[key]] = -1 * float(child.text.replace('-', '0'))
+            elif key == 'Consommation':
+                data[i]['tempconsumption'] = float(child.text.replace('-', '0'))
+
+    return data
 
 def fetch_production(country_code='FR', session=None):
     r = session or requests.session()
