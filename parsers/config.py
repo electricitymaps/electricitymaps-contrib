@@ -1,13 +1,17 @@
 from parsers import AU
-from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE
+from parsers import AU_WA
+from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import IS
 from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
 from parsers import NZ
+from parsers import PE
 from parsers import TR
-from parsers import US
 from parsers import TW
+from parsers import UA
+from parsers import US
+from parsers import UY
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -72,6 +76,7 @@ PRODUCTION_PARSERS = {
     'ME': ENTSOE.fetch_production,
     'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
+    'PE': PE.fetch_production,
     'PL': ENTSOE.fetch_production,
     'PT': ENTSOE.fetch_production,
     'RO': ENTSOE.fetch_production,
@@ -81,19 +86,23 @@ PRODUCTION_PARSERS = {
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
     'TW': TW.fetch_production,
+    'UA': UA.fetch_production,
     'US': US.fetch_production,
+    'UY': UY.fetch_production,
     # ** Canada
     'CA-AB': CA_AB.fetch_production,
     'CA-NB': CA_NB.fetch_production,
     'CA-NS': CA_NS.fetch_production,
     'CA-ON': CA_ON.fetch_production,
     'CA-PE': CA_PE.fetch_production,
+    'CA-YT': CA_YT.fetch_production,
     # ** Oceania
     'AUS-NSW': AU.fetch_production,
     'AUS-QLD': AU.fetch_production,
     'AUS-SA': AU.fetch_production,
     'AUS-TAS': AU.fetch_production,
     'AUS-VIC': AU.fetch_production,
+    'AUS-WA': AU_WA.fetch_production,
     'NZ-NZN': NZ.fetch_production,
     'NZ-NZS': NZ.fetch_production,
 }
@@ -180,7 +189,7 @@ EXCHANGE_PARSERS = {
     # LT
     'LT->LV':     ENTSOE.fetch_exchange,
     'LT->PL':     ENTSOE.fetch_exchange,
-    'LT->RU':     ENTSOE.fetch_exchange,
+    'LT->RU-KGD': ENTSOE.fetch_exchange,
     'LT->SE':     ENTSOE.fetch_exchange,
     # LV
     'LV->RU':     ENTSOE.fetch_exchange,
@@ -206,7 +215,7 @@ EXCHANGE_PARSERS = {
     # ** Canada
     'CA-AB->CA-BC': CA_AB.fetch_exchange,
     'CA-AB->CA-SK': CA_AB.fetch_exchange,
-    'CA-AB->US': CA_AB.fetch_exchange,
+    'CA-AB->US':    CA_AB.fetch_exchange,
     'CA-BC->US':    CA_BC.fetch_exchange,
     'CA-MB->CA-ON': CA_ON.fetch_exchange,
     'CA-ON->CA-QC': CA_ON.fetch_exchange,

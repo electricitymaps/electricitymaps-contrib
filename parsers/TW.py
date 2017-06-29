@@ -33,26 +33,39 @@ def fetch_production(country_code='TW', session=None):
     production = pandas.DataFrame(objData.groupby('fueltype').sum())
     production.columns = ['capacity','output']
 
+    coal_capacity = production.ix['Coal'].capacity + production.ix['IPP-Coal'].capacity
+    gas_capacity = production.ix['LNG'].capacity + production.ix['IPP-LNG'].capacity
+    oil_capacity = production.ix['Oil'].capacity + production.ix['Diesel'].capacity
+
     coal_production = production.ix['Coal'].output + production.ix['IPP-Coal'].output
     gas_production = production.ix['LNG'].output + production.ix['IPP-LNG'].output
-    hydro_production = production.ix['Hydro'].output
     oil_production = production.ix['Oil'].output + production.ix['Diesel'].output
 
     # For storage, note that load will be negative, and generation positive.
     # We require the opposite
 
     returndata = {
-    		'countryCode': country_code,
+		'countryCode': country_code,
         'datetime': dumpDate.datetime,
-    		'production': {
-    			  'coal': coal_production,
+		'production': {
+	        'coal': coal_production,
             'gas': gas_production,
             'oil': oil_production,
-            'hydro' : hydro_production,
+            'hydro' : production.ix['Hydro'].output,
             'nuclear': production.ix['Nuclear'].output,
             'solar': production.ix['Solar'].output,
             'wind': production.ix['Wind'].output,
-            'other': production.ix['Co-Gen'].output
+            'unknown': production.ix['Co-Gen'].output
+        },
+        'capacity': {
+    			  'coal': coal_capacity,
+            'gas': gas_capacity,
+            'oil': oil_capacity,
+            'hydro' : production.ix['Hydro'].capacity,
+            'nuclear': production.ix['Nuclear'].capacity,
+            'solar': production.ix['Solar'].capacity,
+            'wind': production.ix['Wind'].capacity,
+            'unknown': production.ix['Co-Gen'].capacity
         },
         'storage': {
             'hydro': -1 * production.ix['Pumping Load'].output - production.ix['Pumping Gen'].output

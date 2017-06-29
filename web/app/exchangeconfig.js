@@ -249,6 +249,10 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [24.373981, 56.287428],
         rotation: 0
     };
+    exchanges['LT->RU-KGD'] = {
+        lonlat: [21.963913, 55.080726],
+        rotation: -180
+    };
     exchanges['LT->SE'] = {
         lonlat: [18.847674, 55.910978],
         rotation: -90
@@ -304,6 +308,11 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['RO->RS'] = {
         lonlat: [21.469049, 44.947107],
         rotation: -140
+    };
+    // UA
+    exchanges['SK->UA'] = {
+        lonlat: [22.384512, 48.820578],
+        rotation: 90
     };
     // ** Canada
     exchanges['CA-AB->CA-BC'] = {
