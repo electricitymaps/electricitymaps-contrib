@@ -792,9 +792,11 @@ function renderMap() {
         if (geolocation) {
             countryMap.center(geolocation);
         } else if (selectedCountryCode) {
-            var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
-            var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
-            countryMap.center([lon, lat]);
+            var coords = countries[selectedCountryCode].coordinates || countries[selectedCountryCode].geometry.coordinates;
+            var lon = d3.mean(coords[0][0], function(d) { return d[0]; });
+            var lat = d3.mean(coords[0][0], function(d) { return d[1]; });
+            // countryMap.center([lon, lat]);
+            countryMap.center([0, 50]);
         } else {
             countryMap.center([0, 50]);
         }

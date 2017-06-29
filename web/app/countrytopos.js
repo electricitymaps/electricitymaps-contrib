@@ -46,7 +46,6 @@ exports.addCountryTopos = function(countries) {
             return ids.indexOf(d.id) != -1;
         }));
     }
-    console.log(regions_FR.features.map(function(d) { return d.properties.nom}))
     function getFRARegion(id) {
         return regions_FR.features.filter(function(d) {
             return d.properties.nom == regions_FR_MAPPING[id];
