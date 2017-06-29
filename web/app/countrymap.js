@@ -210,8 +210,6 @@ CountryMap.prototype.render = function() {
                     navigator.userAgent.indexOf('Googlebot') != -1 ?
                         undefined :
                         function (d, i) {
-                            console.log(d3.event)
-                            console.log(that.absProjection().invert([d3.event.layerX, d3.event.layerY]))
                             d3.event.stopPropagation(); // To avoid call click on sea
                             if (that.selectedCountry !== undefined) {
                                 that.selectedCountry

@@ -126,7 +126,7 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [9.3, 54.9],
         rotation: 0
     };
-    exchanges['DE->FR'] = {
+    exchanges['DE->FR-ACA'] = {
         lonlat: [8.048297, 48.931337],
         rotation: -110
     };
@@ -277,7 +277,7 @@ exports.addExchangesConfiguration = function(exchanges) {
     };
     exchanges['FR-LRM->FR-PAC'] = {
         lonlat: [4.75, 43.9],
-        rotation: -90
+        rotation: 90
     };
     exchanges['FR-NOR->FR-NPP'] = {
         lonlat: [1.7, 49.66],

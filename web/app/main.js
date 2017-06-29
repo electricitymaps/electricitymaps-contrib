@@ -871,57 +871,57 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         'colorBlindModeEnabled': colorBlindModeEnabled
     });
 
-    // Debug: randomly generate (consistent) data
-    Object.keys(countries).forEach(function(k) {
-        if (state.countries[k])
-            state.countries[k].co2intensity = Math.random() * 800;
-    });
+    // // Debug: randomly generate (consistent) data
+    // Object.keys(countries).forEach(function(k) {
+    //     if (state.countries[k])
+    //         state.countries[k].co2intensity = Math.random() * 800;
+    // });
 
 
-    state.exchanges['FR-NOR->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-IDF->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ACA->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-BRE->FR-NOR'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-BRE->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-BRE->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-BRE->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-CEN->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-BFC->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ACA->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ACA->FR-BFC'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-BFC->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ARA->FR-BFC'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-CEN->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ALP->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ARA->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-NOR->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ALP->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ALP->FR-LRM'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ALP->FR-ARA'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ARA->FR-LRM'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-LRM->FR-PAC'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-ARA->IT'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-PAC->IT'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['ES->FR-ALP'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['ES->FR-LRM'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['CH->FR-ARA'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['CH->FR-ACA'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['CH->FR-BFC'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['BE->FR-ACA'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['BE->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
-    state.exchanges['FR-NPP->GB'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-NOR->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-IDF->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ACA->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-BRE->FR-NOR'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-BRE->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-BRE->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-BRE->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-CEN->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-BFC->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ACA->FR-IDF'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ACA->FR-BFC'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-BFC->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ARA->FR-BFC'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-CEN->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ALP->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ARA->FR-CEN'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-NOR->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ALP->FR-PLO'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ALP->FR-LRM'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ALP->FR-ARA'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ARA->FR-LRM'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-LRM->FR-PAC'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-ARA->IT'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-PAC->IT'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['ES->FR-ALP'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['ES->FR-LRM'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['CH->FR-ARA'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['CH->FR-ACA'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['CH->FR-BFC'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['BE->FR-ACA'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['BE->FR-NPP'] = Object.assign({}, state.exchanges['DE->FR']);
+    // state.exchanges['FR-NPP->GB'] = Object.assign({}, state.exchanges['DE->FR']);
 
 
-    Object.keys(exchanges).forEach(function(k) {
-        if (state.exchanges[k]) {
-            state.exchanges[k].netFlow = Math.random() * 1500 - 700;
-            var countries = state.exchanges[k].countryCodes;
-            var o = countries[(state.exchanges[k].netFlow >= 0) ? 0 : 1]
-            state.exchanges[k].co2intensity = state.countries[o].co2intensity;
-        }
-    });
-    // Debug: expose a fetch method
-    window.forceFetchNow = fetch;
+    // Object.keys(exchanges).forEach(function(k) {
+    //     if (state.exchanges[k]) {
+    //         state.exchanges[k].netFlow = Math.random() * 1500 - 700;
+    //         var countries = state.exchanges[k].countryCodes;
+    //         var o = countries[(state.exchanges[k].netFlow >= 0) ? 0 : 1]
+    //         state.exchanges[k].co2intensity = state.countries[o].co2intensity;
+    //     }
+    // });
+    // // Debug: expose a fetch method
+    // window.forceFetchNow = fetch;
 
     // Is there a new version?
     d3.select('#new-version')
@@ -1154,7 +1154,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     renderMap();
 
     // Debug
-    console.log(countries)
+    console.log(countries, exchanges)
 };
 
 // Get geolocation is on mobile (in order to select country)

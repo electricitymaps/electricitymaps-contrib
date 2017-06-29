@@ -60,7 +60,7 @@ ExchangeLayer.prototype.render = function() {
 
     // Calculate arrow scale
     // Note: the scaling should be based on the same metric as countryMap
-    this.arrowScale(0.1);
+    this.arrowScale(0.05);
 
     function updateArrows(selector) {
         var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
