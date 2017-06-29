@@ -104,6 +104,42 @@
     "FR": {
         
     },
+    "FR-ACA": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-ALP": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-ARA": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-BFC": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-BRE": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-CEN": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-IDF": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-LRM": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-NOR": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-NPP": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-PAC": {
+        "flag_file_name": "fr.png"
+    },
+    "FR-PLO": {
+        "flag_file_name": "fr.png"
+    },
     "GB": {
         "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
     },
