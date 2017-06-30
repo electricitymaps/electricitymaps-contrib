@@ -587,6 +587,15 @@ function selectCountry(countryCode, notrack) {
                         .data(countries[countryCode])
                         .render();
                 })
+                .onClick(function(d) {
+                    if (countryHistoryGraph.frozen) {
+                        customDate = null;
+                        fetch(false);
+                    } else {
+                        customDate = d.stateDatetime;
+                        fetch(false);
+                    }
+                })
                 .render();
         }
 

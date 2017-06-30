@@ -198,6 +198,9 @@ LineGraph.prototype.render = function () {
                 that.mouseMoveHandler.call(this, data[that.selectedIndex]);
         })
         .on('click', function() {
+            if (that.mouseClickHandler)
+                that.mouseClickHandler.call(this, data[that.selectedIndex]);
+
             if (!isMobile) {
                 that.togglefreeze();
                 if (!that.frozen) {
@@ -262,6 +265,11 @@ LineGraph.prototype.onMouseOut = function(arg) {
 LineGraph.prototype.onMouseMove = function(arg) {
     if (!arg) return this.mouseMoveHandler;
     else this.mouseMoveHandler = arg;
+    return this;
+}
+LineGraph.prototype.onClick = function(arg) {
+    if (!arg) return this.mouseClickHandler;
+    else this.mouseClickHandler = arg;
     return this;
 }
 

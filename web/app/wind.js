@@ -24,9 +24,9 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
         throw Error('Projection can\'t be null/undefined');
 
     // Only redraw after 5min
-    if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
-        return;
-    }
+    // if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+    //     return;
+    // }
 
     lastDraw = new Date().getTime();
 

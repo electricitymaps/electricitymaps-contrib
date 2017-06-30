@@ -19,9 +19,9 @@ exports.isExpired = function (now, grib1, grib2) {
 exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, argProjection, callback) {
 
     // Only redraw after 5min
-    if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
-        return callback(null);
-    }
+    // if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+    //     return callback(null);
+    // }
 
     lastDraw = new Date().getTime();
 
