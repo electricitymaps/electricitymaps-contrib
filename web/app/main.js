@@ -269,7 +269,7 @@ moment.locale(locale.toLowerCase());
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 // Prepare co2 scale
-var maxCo2 = 800;
+var maxCo2 = 800/2;
 var co2color;
 var co2Colorbar;
 function updateCo2Scale() {
@@ -278,7 +278,7 @@ function updateCo2Scale() {
         .domain([2000, 0]);
     } else {
       co2color = d3.scaleLinear()
-        .domain([0, 375, 725, 800])
+        .domain([0, 375/2, 725/2, 800/2])
         .range(['green', 'orange', 'rgb(26,13,0)'])
     }
 
@@ -1038,7 +1038,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     // Add mouse over handlers
     countryMap.onCountryMouseOver(function (d) {
         d3.select(this)
-            .style('opacity', 0.8)
+            .style('opacity', function(d) {
+                return d.countryCode.split('-')[0] == 'FR' ? 0.8 : 0.2;
+            })
             .style('cursor', 'pointer')
         if (d.co2intensity && co2Colorbar)
             co2Colorbar.currentMarker(d.co2intensity);
@@ -1071,7 +1073,9 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     })
     .onCountryMouseOut(function (d) {
         d3.select(this)
-            .style('opacity', 1)
+            .style('opacity', function(d) {
+                return d.countryCode.split('-')[0] == 'FR' ? 1 : 0.2;
+            })
             .style('cursor', 'auto')
         if (d.co2intensity && co2Colorbar)
             co2Colorbar.currentMarker(undefined);

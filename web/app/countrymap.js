@@ -189,6 +189,9 @@ CountryMap.prototype.render = function() {
                 .attr('class', 'country')
                 .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
+                .style('opacity', function(d) {
+                    return d.countryCode.split('-')[0] == 'FR' ? 1 : 0.2;
+                })
                 .attr('d', this.path) // path is only assigned on create
                 .on('mouseover', function (d, i) {
                     if (that.countryMouseOverHandler)

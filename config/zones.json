@@ -140,6 +140,9 @@
     "FR-PLO": {
         "flag_file_name": "fr.png"
     },
+    "FR-COR": {
+        "flag_file_name": "fr.png"
+    },
     "GB": {
         "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
     },

@@ -63,8 +63,8 @@ ExchangeLayer.prototype.render = function() {
     this.arrowScale(0.05);
 
     function updateArrows(selector) {
-        var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
-        var maxCarbonIntensity = 800; // we only have arrows up to a certain point
+        var arrowCarbonIntensitySliceSize = 40; // New arrow color at every X rise in co2
+        var maxCarbonIntensity = 800/2; // we only have arrows up to a certain point
 
         selector.style('display', function (d) {
             return (d.netFlow || 0) == 0 ? 'none' : '';

@@ -16,8 +16,11 @@ var regions_FR_MAPPING = {
     'FR-NOR': 'Normandie',
     'FR-NPP': 'Hauts-de-France',
     'FR-PAC': 'Provence-Alpes-Côte d\'Azur',
-    'FR-PLO': 'Pays de la Loire'
+    'FR-PLO': 'Pays de la Loire',
+    'FR-COR': 'Corse' // For viz only
 }
+
+console.log(regions_FR)
 
 var exports = module.exports = {};
 
@@ -179,6 +182,7 @@ exports.addCountryTopos = function(countries) {
     countries['FR-NPP'] = getFRARegion('FR-NPP')
     countries['FR-PAC'] = getFRARegion('FR-PAC')
     countries['FR-PLO'] = getFRARegion('FR-PLO')
+    countries['FR-COR'] = getFRARegion('FR-COR')
     countries['GF'] = getCountry('GUF')
     countries['PF'] = getCountry('PYF')
     countries['TF'] = getCountry('ATF')
