@@ -200,7 +200,7 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: -40
     };
     exchanges['FR-ACA->FR-IDF'] = {
-        lonlat: [3.46, 48.63],
+        lonlat: [3.46, 48.8],
         rotation: -90
     };
     exchanges['FR-ACA->FR-BFC'] = {
@@ -235,6 +235,10 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [3.67, 44.83],
         rotation: -140
     };
+    exchanges['FR-ARA->FR-PAC'] = {
+        lonlat: [5.9, 44.7],
+        rotation: 160
+    };
     exchanges['FR-ARA->IT'] = {
         lonlat: [7.11, 45.4],
         rotation: 105
@@ -247,11 +251,7 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [3.17, 48.36],
         rotation: -20
     };
-    exchanges['FR-BRE->FR-CEN'] = {
-        lonlat: [1.05, 48.7],
-        rotation: -15
-    };
-    exchanges['FR-BRE->FR-IDF'] = {
+    exchanges['FR-IDF->FR-NOR'] = {
         lonlat: [1.64, 49.1],
         rotation: -45
     };
@@ -266,6 +266,10 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['FR-CEN->FR-IDF'] = {
         lonlat: [2.17, 48.3],
         rotation: 10
+    };
+    exchanges['FR-CEN->FR-NOR'] = {
+        lonlat: [1.05, 48.7],
+        rotation: -15
     };
     exchanges['FR-CEN->FR-PLO'] = {
         lonlat: [0.5, 47.6],
