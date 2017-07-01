@@ -120,8 +120,10 @@
                             <hr />
                             <p>
                                 <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh):</span><br />
-                                <input type="checkbox" id="checkbox-colorblind" />
-                                <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
+                                <span style="display: none">
+                                  <input type="checkbox" id="checkbox-colorblind" />
+                                  <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
+                                </span>
                                 <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                             </p>
                             <p>
@@ -137,7 +139,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div style="display: none">
                         <hr />
                         <%= __('footer.foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%= __('footer.here') %></a>.<br />
                         <p>
@@ -231,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="left-panel-social">
+                <div class="left-panel-social" style="display: none">
                     <p>
                         <!-- Facebook share -->
                         <div class="fb-share-button"
@@ -258,20 +260,6 @@
                 <div id="map"></div>
                 <canvas class="wind map-layer"></canvas>
                 <canvas class="solar map-layer"></canvas>
-                <div id="country-tooltip" class="tooltip panel">
-                    <%= __('tooltips.carbonintensity') %>:<br />
-                    <img id="country-flag" class="flag"></img> <span id="country-name"></span>:<br /><br />
-                    <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO2eq/kWh (<span class="fossil-fuel-percentage"></span> % <%= __('tooltips.fossilfuels')%>)<br />
-                    <!--
-                    <br /><%= __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh-->
-                </div>
-                <div id="exchange-tooltip" class="tooltip panel">
-                    <%= __('tooltips.crossborderexport') %>:<br />
-                    <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
-                    <br />
-                    <%= __('tooltips.carbonintensityexport') %>:<br />
-                    <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO2eq/kWh
-                </div>
                 <div class="weather-buttons small-screen-visible">
                   <a class="wind-toggle"><img src="images/weather/wind.svg"></img></a>
                   <a class="solar-toggle"><img src="images/weather/sun.svg"></img></a>

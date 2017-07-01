@@ -343,7 +343,7 @@
         "gas": "gaz",
         "coal": "charbon",
         "oil": "fioul",
-        "unknown": "inconnu",
+        "unknown": "thermique",
 
         "electricityComesFrom": "{1} % de l'électricité en <img id=\"country-flag\"></img> <b>{2}</b> est produite par {3}",
         "emissionsComeFrom": "{1} % des émissions en <img id=\"country-flag\"></img> <b>{2}</b> sont produites par {3}",
