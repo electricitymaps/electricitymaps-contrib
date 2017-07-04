@@ -76,6 +76,14 @@
             "oil": 179
         }
     },
+    "CA-QC": {
+        "_comment": "http://www.hydroquebec.com/generation/",
+        "capacity": {
+            "hydro": 36366,
+            "oil": 130,
+            "gas": 411
+        }
+    },
     "CH": {
         "capacity": {
             "hydro": 9170,
