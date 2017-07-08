@@ -70,6 +70,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Montenegro: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Netherlands: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - New Zealand: [Transpower](https://www.transpower.co.nz/power-system-live-data)
+- Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Peru: [COES](http://www.coes.org.pe/Portal/portalinformacion/Generacion)
 - Poland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)

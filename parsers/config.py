@@ -5,6 +5,7 @@ from parsers import IS
 from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
+from parsers import NI
 from parsers import NZ
 from parsers import PE
 from parsers import TR
@@ -74,6 +75,7 @@ PRODUCTION_PARSERS = {
     'LU': ENTSOE.fetch_production,
     'LV': ENTSOE.fetch_production,
     'ME': ENTSOE.fetch_production,
+    'NI': NI.fetch_production,
     'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
     'PE': PE.fetch_production,
@@ -199,6 +201,9 @@ EXCHANGE_PARSERS = {
     # 'MD->RO':     ENTSOE.fetch_exchange,
     # MK
     'MK->RS':     ENTSOE.fetch_exchange,
+    # NI
+    'CR->NI':     NI.fetch_exchange,
+    'HN->NI':     NI.fetch_exchange,
     # NL
     'NL->NO':     ENTSOE.fetch_exchange,
     # NO
@@ -253,6 +258,7 @@ PRICE_PARSERS = {
     'LT': ENTSOE.fetch_price,
     'LU': ENTSOE.fetch_price,
     'LV': ENTSOE.fetch_price,
+    'NI': NI.fetch_price,
     'NL': ENTSOE.fetch_price,
     'NO': ENTSOE.fetch_price,
     'PL': ENTSOE.fetch_price,
