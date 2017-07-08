@@ -96,6 +96,11 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [9.047334, 46.113596],
         rotation: 180
     };
+    // CR
+    exchanges['CR->NI'] = {
+        lonlat: [-84.7303, 11.0638],
+        rotation: 135
+    };
     // CZ
     exchanges['CZ->SK'] = {
         lonlat: [18.100645, 49.089498],
@@ -217,6 +222,11 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['HR->RS'] = {
       lonlat: [19.021212, 45.354302],
       rotation: 90
+    };
+    // HN
+    exchanges['HN->NI'] = {
+        lonlat: [-85.5782, 14.0209],
+        rotation: 0
     };
     // HU
     exchanges['HU->SK'] = {
