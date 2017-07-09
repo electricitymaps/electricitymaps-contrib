@@ -310,6 +310,15 @@
             "hydro": 649
         }
     },
+    "NI": {
+        "capacity": {
+            "biomass": 133,
+            "geothermal": 154,
+            "hydro": 138,
+            "oil": 732,
+            "wind": 186
+        }
+    },
     "NL": {
         "capacity": {
             "biomass": 1072,
