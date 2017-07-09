@@ -140,6 +140,8 @@ EXCHANGE_PARSERS = {
     'CH->DE':     ENTSOE.fetch_exchange,
     'CH->FR':     ENTSOE.fetch_exchange,
     'CH->IT':     ENTSOE.fetch_exchange,
+    # CR
+    'CR->NI':     NI.fetch_exchange,
     # CZ
     'CZ->SK':     ENTSOE.fetch_exchange,
     'CZ->PL':     ENTSOE.fetch_exchange,
@@ -177,6 +179,8 @@ EXCHANGE_PARSERS = {
     'GR->IT':     ENTSOE.fetch_exchange,
     'GR->MK':     ENTSOE.fetch_exchange,
     'GR->TR':     ENTSOE.fetch_exchange,
+    # HN
+    'HN->NI':     NI.fetch_exchange,
     # HR
     'HR->HU':     ENTSOE.fetch_exchange,
     'HR->RS':     ENTSOE.fetch_exchange,
@@ -201,9 +205,6 @@ EXCHANGE_PARSERS = {
     # 'MD->RO':     ENTSOE.fetch_exchange,
     # MK
     'MK->RS':     ENTSOE.fetch_exchange,
-    # NI
-    'CR->NI':     NI.fetch_exchange,
-    'HN->NI':     NI.fetch_exchange,
     # NL
     'NL->NO':     ENTSOE.fetch_exchange,
     # NO

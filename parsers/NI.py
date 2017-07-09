@@ -200,6 +200,14 @@ def fetch_production(country_code='NI', session=None):
     # in order to get solar production.
     production, data_datetime = get_production_from_summary(requests_obj)
 
+    # Explicitly report types that are not used in Nicaragua as zero.
+    # Source is Climatescope installed capacity for Nicaragua, see link above.
+    production.update({
+        'nuclear': 0,
+        'coal': 0,
+        'gas': 0
+    })
+
     data = {
         'datetime': data_datetime,
         'countryCode': country_code,
