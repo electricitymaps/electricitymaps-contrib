@@ -10,16 +10,6 @@
             "wind": 2556
         }
     },
-    "CA-ON": {    
-        "capacity": {
-            "biomass": 495,
-            "nuclear": 12978,
-            "gas" : 9943,
-            "hydro": 8451,
-            "wind": 3923,
-            "solar": 280
-        }
-    },
     "BE": {
         "capacity": {
             "biomass": 1078,
@@ -37,6 +27,24 @@
             "hydro": 1980,
             "nuclear": 3780,
             "wind": 691
+        }
+    },
+    "CA-BC": {
+        "capacity": {
+            "hydro": 15004,
+            "biomass": 356,
+            "gas": 514,
+            "oil": 46,
+            "wind": 673
+        }
+    },
+    "CA-MB": {
+        "capacity": {
+            "hydro": 5249,
+            "gas": 342,
+            "wind": 237,
+            "coal": 110,
+            "oil": 10
         }
     },
     "CA-NB": {
@@ -70,6 +78,16 @@
             "wind": 567
         }
     },
+    "CA-ON": {
+        "capacity": {
+            "biomass": 495,
+            "nuclear": 12978,
+            "gas" : 9943,
+            "hydro": 8451,
+            "wind": 3923,
+            "solar": 280
+        }
+    },
     "CA-PE": {
         "capacity": {
             "wind": 203.6,
@@ -82,6 +100,14 @@
             "hydro": 36366,
             "oil": 130,
             "gas": 411
+        }
+    },
+    "CA-SK": {
+        "capacity": {
+            "coal": 1530,
+            "gas": 1824,
+            "hydro": 864,
+            "wind": 221
         }
     },
     "CH": {
