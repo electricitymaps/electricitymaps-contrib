@@ -47,7 +47,18 @@ def parse_page(session):
         value = tds[1].find_all('b')
         # Go back one level up if the b tag is not there
         if not len(value): value = tds[1].find_all('font')
-        v = float(value[0].contents[0].replace(',', '.'))
+        v_str = value[0].contents[0]
+        if v_str.find(',') > -1 and v_str.find('.') > -1:
+            # there can be values like "1.012,5"
+            v_str = v_str.replace('.', '')
+            v_str = v_str.replace(',', '.')
+        else:
+            # just replace decimal separator, like "125,2"
+            v_str = v_str.replace(',', '.')
+        v = float(v_str)
+
+        # solar reports -0.1 at night, make it at least 0
+        v = max(v, 0)
 
         obj[k] = v
 
