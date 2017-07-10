@@ -5,6 +5,7 @@ from parsers import IS
 from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
+from parsers import NI
 from parsers import NZ
 from parsers import PE
 from parsers import TR
@@ -74,6 +75,7 @@ PRODUCTION_PARSERS = {
     'LU': ENTSOE.fetch_production,
     'LV': ENTSOE.fetch_production,
     'ME': ENTSOE.fetch_production,
+    'NI': NI.fetch_production,
     'NL': ENTSOE.fetch_production,
     'NO': ENTSOE.fetch_production,
     'PE': PE.fetch_production,
@@ -138,6 +140,8 @@ EXCHANGE_PARSERS = {
     'CH->DE':     ENTSOE.fetch_exchange,
     'CH->FR':     ENTSOE.fetch_exchange,
     'CH->IT':     ENTSOE.fetch_exchange,
+    # CR
+    'CR->NI':     NI.fetch_exchange,
     # CZ
     'CZ->SK':     ENTSOE.fetch_exchange,
     'CZ->PL':     ENTSOE.fetch_exchange,
@@ -175,6 +179,8 @@ EXCHANGE_PARSERS = {
     'GR->IT':     ENTSOE.fetch_exchange,
     'GR->MK':     ENTSOE.fetch_exchange,
     'GR->TR':     ENTSOE.fetch_exchange,
+    # HN
+    'HN->NI':     NI.fetch_exchange,
     # HR
     'HR->HU':     ENTSOE.fetch_exchange,
     'HR->RS':     ENTSOE.fetch_exchange,
@@ -253,6 +259,7 @@ PRICE_PARSERS = {
     'LT': ENTSOE.fetch_price,
     'LU': ENTSOE.fetch_price,
     'LV': ENTSOE.fetch_price,
+    'NI': NI.fetch_price,
     'NL': ENTSOE.fetch_price,
     'NO': ENTSOE.fetch_price,
     'PL': ENTSOE.fetch_price,
