@@ -44,6 +44,21 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .defined(definedAccessor)
         .curve(d3.curveMonotoneX);
 
+    // Create area for gradient
+    this.area = d3.area()
+        .x(function(d, i) { return x(xAccessor(d, i)); })
+        .y0(function(d, i) { return y(0); })
+        .y1(function(d, i) { return y(yAccessor(d, i)); })
+        .defined(definedAccessor)
+        .curve(d3.curveMonotoneX);
+
+    // Create gradient
+    this.gradient = this.rootElement.append('linearGradient')
+        .attr('id', 'linegraph-carbon-gradient')
+        .attr('gradientUnits', 'userSpaceOnUse')
+        .attr('x1', 0)
+        .attr('x2', 0);
+
     // Interaction state
     this.frozen = false;
     this.selectedIndex;
@@ -92,6 +107,15 @@ LineGraph.prototype.render = function () {
         .attr('class', 'layer');
 
     layer.append('path')
+        .attr('class', 'area')
+        .style('stroke', 'none')
+        .style('fill', 'url(#linegraph-carbon-gradient)')
+        .style('opacity', 0.25)
+        .style('pointer-events', 'none');
+    layer.merge(selection).select('path.area')
+        .attr('d', this.area);
+
+    layer.append('path')
         .attr('class', 'line')
         .style('fill', 'none')
         .style('stroke', 'lightgrey')
@@ -119,6 +143,21 @@ LineGraph.prototype.render = function () {
     this.verticalLine
         .attr('y1', y.range()[0])
         .attr('y2', y.range()[1]);
+
+    var selection = this.gradient
+        .attr('y1', y.range()[0])
+        .attr('y2', y.range()[1])
+        .selectAll('stop')
+        .data([
+            {offset: '0%', color: this._yColorScale(y.domain()[1] * 0)},
+            {offset: '50%', color: this._yColorScale(y.domain()[1] * 0.5)},
+            {offset: '100%', color: this._yColorScale(y.domain()[1] * 1)}
+        ])
+    var gradientData = selection
+        .enter().append('stop');
+    gradientData.merge(selection)
+        .attr('offset', function(d) { return d.offset; })
+        .attr('stop-color', function(d) { return d.color; });
 
     isMobile = 
         (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
