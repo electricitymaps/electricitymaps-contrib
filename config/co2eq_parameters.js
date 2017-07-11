@@ -6,10 +6,10 @@ var defaultCo2eqFootprint = {
     'gas': 490,
     'hydro': 24,
     'nuclear': 12,
-    'oil': 650,
+    'oil': 650, // UK Parliamentary Office of Science and Technology (2006) "Carbon footprint of electricity generation"
     'solar': 45,
     'wind': 12,
-    'geothermal': 24,
+    'geothermal': 38,
     'unknown': 700, // assume conventional
     'other': 700 // same as 'unknown'. Here for backward compatibility
 }; // in gCo2eq/kWh
