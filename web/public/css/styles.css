@@ -270,6 +270,9 @@ line, path {
     font-size: 1.1em;
     color: darkgrey;
 }
+.left-panel-initial-text p:first-child {
+    margin-top: 0px;
+}
 .country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
