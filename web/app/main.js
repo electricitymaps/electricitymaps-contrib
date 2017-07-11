@@ -687,8 +687,8 @@ function showPage(pageName) {
         }
     }
  
-    d3.selectAll('#bottom-menu .list-item').classed('active', false);   
-    d3.selectAll('#bottom-menu .' + pageName + '-button').classed('active', true);
+    d3.selectAll('#tab .list-item').classed('active', false);   
+    d3.selectAll('#tab .' + pageName + '-button').classed('active', true);
 }
 
 // Now that the width is set, we can render the legends

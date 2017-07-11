@@ -105,31 +105,31 @@ line, path {
 #header {
     display: table-cell;
     height: 1px;
-    background-color: #222831;
+    background-color: rgb(70, 70, 70);
     z-index: 2;
     position: relative;
     color: lightgray;
 
     /* Shadow */
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
-    -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
 }
 #header #header-content {
     display: table;
     width: 100%;
-    font-size: 0.9rem;
-    padding: 0.2rem 1.2rem 0.2rem 1.2rem; /* top right bottom left */
+    font-size: 1.0rem;
+    padding: 0.5rem 0.5rem 0rem 0.5rem; /* top right bottom left */
 }
 #header-content .logo {
     display: table-cell;
     font-family: "Catamaran", sans-serif;
 }
 #header-content .logo * {
-    vertical-align: middle;
+    vertical-align: top;
 }
 #header-content .logo img {
-    height: 32px;
+    height: 1.4rem;
     filter: invert();
     padding-right: 0.2rem;
 }
@@ -435,7 +435,7 @@ div.highscore-button {
     cursor: pointer;
     color: #fff;
 }
-.highscore-button:hover {
+div.highscore-button: hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
@@ -528,23 +528,13 @@ div.highscore-button {
     top: -41px;
 }
 
-#footer {
-    display: table-cell;
-    height: 1px;
-    z-index: 2;
+#tab {
     position: relative;
-    background-color: rgb(50, 50, 50);
-
-    /* Shadow */
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
-    -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
 }
-#footer-content {
+#tab-content {
     display: flex;
-    padding: 0.5rem;
 }
-#footer #footer-content .list-item {
+#tab #tab-content .list-item {
     font-size: 0.7rem;
     display: flex;
 
@@ -555,20 +545,23 @@ div.highscore-button {
     width: 50%;
     line-height: 1.2rem;
 }
-#footer #footer-content .list-item.active {
+#tab #tab-content .list-item.active {
     color: white;
+    border-bottom: 2px solid white;
 }
-#footer #footer-content div {
+#tab #tab-content div {
     margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
 }
-#footer #footer-content a {
+#tab #tab-content a {
+    padding-top: 0.7rem;
+    padding-bottom: 0.6rem;
     color: darkgrey;
 }
-#footer #footer-content a:hover {
+#tab #tab-content a:hover {
     color: white;
     text-decoration: none;
 }
-#footer #footer-content i {
+#tab #tab-content i {
     font-size: 1.1rem;
 }
 
@@ -606,7 +599,7 @@ div.highscore-button {
     .small-screen-visible {
         display: none;
     }
-    #footer {
+    #tab {
         display: none;
     }
 }

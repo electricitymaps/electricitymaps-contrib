@@ -118,7 +118,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var datetime = this._data.stateDatetime || this._data.datetime;
     panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 48));
     panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
-    panel.selectAll('.country-time').text(datetime ? moment(datetime).format('LT') : '?');
+    panel.selectAll('.country-time')
+        .text(datetime ? moment(datetime).format('LL LT') : '?');
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
