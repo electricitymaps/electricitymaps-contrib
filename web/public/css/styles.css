@@ -22,7 +22,7 @@ html, body {
     padding: 0 !important;
     height: 100%;
     font-family: sans-serif;
-    background-color: #283640;
+    background-color: #32414c;
     overflow: hidden;
 }
 
@@ -105,7 +105,7 @@ line, path {
 #header {
     display: table-cell;
     height: 1px;
-    background-color: rgb(50, 50, 50);
+    background-color: #222831;
     z-index: 2;
     position: relative;
     color: lightgray;
