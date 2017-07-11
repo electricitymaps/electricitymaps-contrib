@@ -150,7 +150,7 @@
                             <div class="layer-toggles">
                                 <hr />
                                 <p>
-                                    <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(gCO2eq/kWh):</span><br />
+                                    <%= __('legends.carbonintensity')%> <span style="color: darkgrey">(CO2eq/kWh):</span><br />
                                     <input type="checkbox" id="checkbox-colorblind" />
                                     <label for="checkbox-colorblind"><%= __('legends.colorblindmode') %></label>
                                     <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
@@ -182,10 +182,12 @@
                         <div class="left-panel-country-toolbar">
                             <span id="left-panel-country-back">×</span>
                             <div class="country-name-time">
-                                <div class="country-name"></div>
+                                <div>
+                                  <img id="country-flag" class="flag"></img>
+                                  &nbsp;<span class="country-name"></span>
+                                </div>
                                 <div class="country-time">?</div>
                             </div>
-                            <img id="country-flag" class="flag"></img>
                         </div>
                         <div class="country-panel">
                             <div class="country-table-header">

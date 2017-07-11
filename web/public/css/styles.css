@@ -45,7 +45,7 @@ line, path {
 }
 
 .flag {
-    vertical-align: sub;
+    vertical-align: top;
 }
 
 .flash-message {
@@ -219,7 +219,6 @@ line, path {
 .left-panel-country-toolbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0 0 1rem;
     position: relative;
 }
@@ -246,7 +245,6 @@ line, path {
 }
 
 .country-name-time {
-    text-align: center;
     margin: 0rem 0.5rem;
     font-size: smaller;
 }

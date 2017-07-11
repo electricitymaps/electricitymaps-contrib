@@ -116,7 +116,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var header = d3.select('.country-table-header');
     var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
-    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 48));
+    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
     panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
     panel.selectAll('.country-time')
         .text(datetime ? moment(datetime).format('LL LT') : '?');
