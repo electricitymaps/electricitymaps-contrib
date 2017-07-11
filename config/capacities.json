@@ -10,16 +10,6 @@
             "wind": 2556
         }
     },
-    "CA-ON": {    
-        "capacity": {
-            "biomass": 495,
-            "nuclear": 12978,
-            "gas" : 9943,
-            "hydro": 8451,
-            "wind": 3923,
-            "solar": 280
-        }
-    },
     "BE": {
         "capacity": {
             "biomass": 1078,
@@ -37,6 +27,24 @@
             "hydro": 1980,
             "nuclear": 3780,
             "wind": 691
+        }
+    },
+    "CA-BC": {
+        "capacity": {
+            "hydro": 15004,
+            "biomass": 356,
+            "gas": 514,
+            "oil": 46,
+            "wind": 673
+        }
+    },
+    "CA-MB": {
+        "capacity": {
+            "hydro": 5249,
+            "gas": 342,
+            "wind": 237,
+            "coal": 110,
+            "oil": 10
         }
     },
     "CA-NB": {
@@ -70,10 +78,36 @@
             "wind": 567
         }
     },
+    "CA-ON": {
+        "capacity": {
+            "biomass": 495,
+            "nuclear": 12978,
+            "gas" : 9943,
+            "hydro": 8451,
+            "wind": 3923,
+            "solar": 280
+        }
+    },
     "CA-PE": {
         "capacity": {
             "wind": 203.6,
             "oil": 179
+        }
+    },
+    "CA-QC": {
+        "_comment": "http://www.hydroquebec.com/generation/",
+        "capacity": {
+            "hydro": 36366,
+            "oil": 130,
+            "gas": 411
+        }
+    },
+    "CA-SK": {
+        "capacity": {
+            "coal": 1530,
+            "gas": 1824,
+            "hydro": 864,
+            "wind": 221
         }
     },
     "CH": {
@@ -133,12 +167,17 @@
     },
     "ES": {
         "capacity": {
-            "coal": 11482,
-            "gas": 30704,
-            "hydro": 19893,
-            "nuclear": 7866,
-            "solar": 6972,
-            "wind": 23002
+	        "biomass": 1077,
+            "coal": 9535,
+            "gas": 30723,
+            "hydro": 20269,
+	        "hydro storage": 5645,
+            "nuclear": 7572,
+	        "oil": 715,
+            "solar": 6720,
+            "wind": 22813,
+	        "geothermal": 0,
+	        "unknown": 360
         }
     },
     "FI": {
@@ -271,6 +310,15 @@
             "hydro": 649
         }
     },
+    "NI": {
+        "capacity": {
+            "biomass": 133,
+            "geothermal": 154,
+            "hydro": 138,
+            "oil": 732,
+            "wind": 186
+        }
+    },
     "NL": {
         "capacity": {
             "biomass": 1072,
@@ -369,18 +417,6 @@
             "hydro": 2533,
             "wind": 3,
             "solar": 532
-        }
-    },
-	"TW": {
-        "capacity": {
-            "nuclear": 5144.0,
-            "coal": 12297.2,
-            "gas" : 15245.0,
-            "oil": 2750.0,
-            "hydro": 2602.0,
-            "wind": 688.0,
-            "solar": 1072.4, 
-            "other": 623.3
         }
     },
     "US": {    

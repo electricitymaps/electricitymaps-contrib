@@ -96,6 +96,11 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [9.047334, 46.113596],
         rotation: 180
     };
+    // CR
+    exchanges['CR->NI'] = {
+        lonlat: [-84.7303, 11.0638],
+        rotation: -45
+    };
     // CZ
     exchanges['CZ->SK'] = {
         lonlat: [18.100645, 49.089498],
@@ -209,6 +214,11 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [26.316812, 41.12620],
         rotation: 90
     };
+    // HN
+    exchanges['HN->NI'] = {
+        lonlat: [-85.5782, 14.0209],
+        rotation: 180
+    };
     // HR
     exchanges['HR->HU'] = {
         lonlat: [17.407365, 45.967775],
@@ -248,6 +258,10 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['LT->LV'] = {
         lonlat: [24.373981, 56.287428],
         rotation: 0
+    };
+    exchanges['LT->RU-KGD'] = {
+        lonlat: [21.963913, 55.080726],
+        rotation: -180
     };
     exchanges['LT->SE'] = {
         lonlat: [18.847674, 55.910978],
@@ -304,6 +318,11 @@ exports.addExchangesConfiguration = function(exchanges) {
     exchanges['RO->RS'] = {
         lonlat: [21.469049, 44.947107],
         rotation: -140
+    };
+    // UA
+    exchanges['SK->UA'] = {
+        lonlat: [22.384512, 48.820578],
+        rotation: 90
     };
     // ** Canada
     exchanges['CA-AB->CA-BC'] = {

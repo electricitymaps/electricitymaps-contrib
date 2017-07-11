@@ -22,7 +22,6 @@ stages:
         name: Build
         command: |
           set -exu
-          touch secrets.env
           docker-compose build
           docker-compose run web npm run build-release
       - type: shell

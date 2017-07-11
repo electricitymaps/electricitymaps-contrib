@@ -206,7 +206,8 @@ if (!isLocalhost) {
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-79729918-1', 'auto');
+    ga('create', 'UA-79729918-1', 'auto');
+    ga('set', 'bundleHash', bundleHash);
 }
 
 if (!isLocalhost) {
@@ -867,17 +868,21 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         'colorBlindModeEnabled': colorBlindModeEnabled
     });
 
-    // Debug: randomly generate data
-    // Object.keys(exchanges).forEach(function(k) {
-    //     if (state.exchanges[k]) {
-    //         state.exchanges[k].netFlow = Math.random() * 1500 - 700;
-    //         state.exchanges[k].co2intensity = Math.random() * 800;
-    //     }
-    // });
+    // // Debug: randomly generate (consistent) data
     // Object.keys(countries).forEach(function(k) {
     //     if (state.countries[k])
     //         state.countries[k].co2intensity = Math.random() * 800;
     // });
+    // Object.keys(exchanges).forEach(function(k) {
+    //     if (state.exchanges[k]) {
+    //         state.exchanges[k].netFlow = Math.random() * 1500 - 700;
+    //         var countries = state.exchanges[k].countryCodes;
+    //         var o = countries[(state.exchanges[k].netFlow >= 0) ? 0 : 1]
+    //         state.exchanges[k].co2intensity = state.countries[o].co2intensity;
+    //     }
+    // });
+    // // Debug: expose a fetch method
+    // window.forceFetchNow = fetch;
 
     // Is there a new version?
     d3.select('#new-version')
