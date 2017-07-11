@@ -181,14 +181,20 @@
                         <div class="left-panel-country-toolbar">
                             <span id="left-panel-country-back" class="large-screen-visible">×</span>
                             <div class="country-name-time">
-                                <div>
-                                  <img id="country-flag" class="flag"></img>
-                                  &nbsp;<span class="country-name"></span>
+                                <div style="display: table">
+                                    <div style="display: table-cell">
+                                        <img id="country-flag" class="flag"></img>
+                                    </div>
+
+                                    <div style="display: table-cell">
+                                        <div class="country-name"></div>
+                                        <div class="country-time">?</div>
+                                    </div>
+
                                 </div>
-                                <div class="country-time">?</div>
                             </div>
                         </div>
-                        
+
                         <div class="country-panel">
                             <div class="country-table-header">
                                 <div class="country-table-header-inner">
@@ -219,6 +225,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="country-show-emissions-wrap">
                                 <div class="menu">
                                     <a id="production" href="javascript:toggleSource(false)"><%= __('country-panel.electricityproduction') %></a>
@@ -248,9 +255,9 @@
                     </div>
 
                     <div class="left-panel-highscore">
-                        <div class="left-panel-toolbar">
+                        <div class="left-panel-toolbar large-screen-visible">
                             <div class="left-panel-toolbar-title">
-                                <span id="left-panel-highscore-back" class="large-screen-visible">×</span>
+                                <span id="left-panel-highscore-back">×</span>
                                 <%- __('rankings-panel.country-ranking') %>
                             </div>
                             <div class="left-panel-toolbar-right-placeholder"></div>

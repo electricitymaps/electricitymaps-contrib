@@ -45,7 +45,7 @@ line, path {
 }
 
 .flag {
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .flash-message {
@@ -136,7 +136,7 @@ line, path {
 #header-content .right-header {
     display: table-cell;
     text-align: right;
-    font-size: 0.7em;
+    font-size: 0.6em;
 }
 #header-content div {
     vertical-align: middle;
@@ -247,6 +247,10 @@ line, path {
 .country-name-time {
     font-size: smaller;
 }
+.country-name-time .flag {
+  vertical-align: bottom;
+  padding-right: 0.8rem;
+}
 .country-time {
   white-space: nowrap;
 }
@@ -269,6 +273,7 @@ line, path {
 .country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
+.fossil-fuel-percentage,
 #exchange-tooltip .flow {
     font-weight: bold;
 }
@@ -288,8 +293,6 @@ line, path {
     height: 8px;
 }
 .left-panel .country-spot-price {
-    font-size: 1rem;
-    display: block;
     width: 100%;
 }
 .left-panel .country-spot-price-wrap {

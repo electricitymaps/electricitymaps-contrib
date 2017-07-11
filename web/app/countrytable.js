@@ -334,9 +334,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(Math.round(this._data.co2intensity) || '?');
     var hasFossilFuelData = this._data.fossilFuelRatio != null;
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.select('.fossil-fuel-percentage')
+    d3.selectAll('.left-panel-country .fossil-fuel-percentage')
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
-    d3.select('.fossil-fuel-percentage').node().parentNode.style.setProperty('background-color', 'rgba(0,0,0,'+this._data.fossilFuelRatio+')');
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
@@ -344,7 +343,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
     d3.select('.country-spot-price-currency')
         .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
-    d3.select('#country-emission-rect')
+    d3.select('#country-emission-rect, .left-panel-country .emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',
