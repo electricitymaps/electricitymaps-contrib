@@ -419,6 +419,7 @@ label[for="checkbox-colorblind"] {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 99;
 }
 
 .watermark {
@@ -547,10 +548,22 @@ div.highscore-button: hover {
 
     width: 50%;
     line-height: 1.2rem;
+
+    margin-bottom: 2px; /* For the border */
 }
 #tab #tab-content .list-item.active {
     color: white;
     border-bottom: 2px solid white;
+    margin-bottom: 0px;
+}
+
+#tab #tab-content .list-item.active img,
+#tab #tab-content a:hover img {
+    filter: brightness(0%) invert(1);
+}
+#tab #tab-content .list-item.active.wind-button,
+#tab #tab-content .list-item.active.solar-button {
+    border-bottom-color: lightgreen;
 }
 #tab #tab-content div {
     margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
@@ -567,34 +580,9 @@ div.highscore-button: hover {
 #tab #tab-content i {
     font-size: 1.1rem;
 }
-
-.weather-buttons {
-    display: flex;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-}
-.weather-buttons a {
-    border-radius: 15%;
-    background-color: lightgray;
-    margin-left: 0.6rem;
-    margin-bottom: 0.6rem;
-    margin-top: 0.6rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    width: 3.0rem;
-    height: 3.0rem;
-}
-.weather-buttons img {
+#tab #tab-content img {
     height: 1.2rem;
     filter: unset;
-}
-.weather-buttons .active img {
-    filter: brightness(0%);
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */

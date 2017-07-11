@@ -680,7 +680,7 @@ function showPage(pageName) {
         }
     }
  
-    d3.selectAll('#tab .list-item').classed('active', false);   
+    d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);   
     d3.selectAll('#tab .' + pageName + '-button').classed('active', true);
 }
 
