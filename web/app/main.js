@@ -545,13 +545,6 @@ function selectCountry(countryCode, notrack) {
             });
             countryHistoryGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
 
-            // Set x domain based on current time
-            if (countryHistory.length && currentMoment)
-                countryHistoryGraph.x.domain(
-                    d3.extent([
-                      countryHistoryGraph.xAccessor(countryHistory[0]),
-                      currentMoment.toDate()]));
-
             countryHistoryGraph
                 .data(countryHistory);
             if (countryHistoryGraph.frozen) {

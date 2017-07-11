@@ -72,6 +72,14 @@ LineGraph.prototype.data = function (arg) {
     // Cache xAccessor
     this.datetimes = data.map(this.xAccessor);
 
+    // Update x-domain based on data
+    if (this._data) {
+        x.domain(
+            d3.extent([
+              this.xAccessor(this._data[0]),
+              this.xAccessor(this._data[this._data.length - 1])]));
+    }
+
     return this;
 }
 
