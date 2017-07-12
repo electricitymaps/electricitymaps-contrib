@@ -129,9 +129,9 @@ line, path {
     vertical-align: top;
 }
 #header-content .logo img {
-    height: 1.4rem;
+    height: 1.1rem;
     filter: invert();
-    padding-right: 0.2rem;
+    margin: 0.2rem;
 }
 #header-content .right-header {
     display: table-cell;
