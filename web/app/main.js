@@ -1000,7 +1000,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
             .style('opacity', 0.8)
             .style('cursor', 'pointer')
         if (d.co2intensity && co2Colorbars)
-            co2Colorbars.forEach(function(d) { d.currentMarker(d.co2intensity) });
+            co2Colorbars.forEach(function(c) { c.currentMarker(d.co2intensity) });
         var tooltip = d3.select('#country-tooltip');
         tooltip.classed('country-tooltip-visible', true);
         tooltip.select('#country-flag')
@@ -1033,7 +1033,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
             .style('opacity', 1)
             .style('cursor', 'auto')
         if (d.co2intensity && co2Colorbars)
-            co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+            co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
         d3.select('#country-tooltip').classed('country-tooltip-visible', false);
     });
 
@@ -1068,7 +1068,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer');
             if (d.co2intensity && co2Colorbars)
-                co2Colorbars.forEach(function(d) { d.currentMarker(d.co2intensity) });
+                co2Colorbars.forEach(function(c) { c.currentMarker(d.co2intensity) });
             var tooltip = d3.select('#exchange-tooltip');
             tooltip.style('display', 'inline');
             tooltip.select('.emission-rect')
@@ -1097,7 +1097,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
                 .style('opacity', 1)
                 .style('cursor', 'auto')
             if (d.co2intensity && co2Colorbars)
-                co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+                co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
             d3.select('#exchange-tooltip')
                 .style('display', 'none');
         })
