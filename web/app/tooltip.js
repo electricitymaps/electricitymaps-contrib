@@ -118,7 +118,7 @@ function Tooltip(countryTable, countries) {
 
 
             // Carbon intensity
-            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
+            if (that.co2Colorbars()) that.co2Colorbars().forEach(function(d) { d.currentMarker(co2intensity) });
             var o = d.value < 0 ? country.countryCode : d.key;
             tooltip.selectAll('.country-exchange-source-flag')
                 .attr('src', flags.flagUri(o, FLAG_SIZE));
@@ -131,7 +131,7 @@ function Tooltip(countryTable, countries) {
                 .style('font-weight', 'bold');
         })
         .onExchangeMouseOut(function (d) {
-            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
+            if (that.co2Colorbars()) that.co2Colorbars().forEach(function(d) { d.currentMarker(undefined) });
             d3.select('#countrypanel-exchange-tooltip')
                 .style('display', 'none');
         })
@@ -142,7 +142,7 @@ function Tooltip(countryTable, countries) {
 
             var co2intensity = country.productionCo2Intensities[d.mode];
             var co2intensitySource = country.productionCo2IntensitySources[d.mode];
-            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(co2intensity);
+            if (that.co2Colorbars()) that.co2Colorbars().forEach(function(d) { d.currentMarker(co2intensity) });
             var tooltip = d3.select('#countrypanel-production-tooltip');
             tooltip.style('display', 'inline');
             tooltip.selectAll('#mode').text(d.text || d.mode);
@@ -201,7 +201,7 @@ function Tooltip(countryTable, countries) {
             placeTooltip('#countrypanel-production-tooltip', d3.event);
         })
         .onProductionMouseOut(function (d) {
-            if (that.co2Colorbar()) that.co2Colorbar().currentMarker(undefined);
+            if (that.co2Colorbars()) that.co2Colorbars().forEach(function(d) { d.currentMarker(undefined) });
             d3.select('#countrypanel-production-tooltip')
                 .style('display', 'none');
         });
@@ -216,9 +216,9 @@ Tooltip.prototype.co2color = function(arg) {
 };
 
 
-Tooltip.prototype.co2Colorbar = function(arg) {
-    if (!arg) return this._co2Colorbar;
-    else this._co2Colorbar = arg;
+Tooltip.prototype.co2Colorbars = function(arg) {
+    if (!arg) return this._co2Colorbars;
+    else this._co2Colorbars = arg;
     return this;
 };
 

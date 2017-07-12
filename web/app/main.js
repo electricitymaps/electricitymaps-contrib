@@ -272,7 +272,7 @@ moment.locale(locale.toLowerCase());
 // Prepare co2 scale
 var maxCo2 = 800;
 var co2color;
-var co2Colorbar;
+var co2Colorbars;
 function updateCo2Scale() {
     if (colorBlindModeEnabled) {
       co2color = d3.scaleSequential(d3.interpolateMagma)
@@ -284,10 +284,15 @@ function updateCo2Scale() {
     }
 
     co2color.clamp(true);
-    co2Colorbar = new HorizontalColorbar('.co2-colorbar', co2color)
+    co2Colorbars = co2Colorbars || [];
+    co2Colorbars.push(new HorizontalColorbar('.layer-toggles .co2-colorbar', co2color)
       .markerColor('white')
       .domain([0, maxCo2])
-      .render();
+      .render());
+    co2Colorbars.push(new HorizontalColorbar('.co2-floating-legend .co2-colorbar', co2color, null, [0, 400, 800])
+      .markerColor('white')
+      .domain([0, maxCo2])
+      .render());
     if (countryMap) countryMap.co2color(co2color).render();
     if (countryTable) countryTable.co2color(co2color).render();
     if (countryHistoryGraph) countryHistoryGraph.yColorScale(co2color);
@@ -295,7 +300,7 @@ function updateCo2Scale() {
     if (tooltip)
       tooltip
         .co2color(co2color)
-        .co2Colorbar(co2Colorbar);
+        .co2Colorbars(co2Colorbars);
     if (countryListSelector)
         countryListSelector.select('div.emission-rect')
             .style('background-color', function(d) {
@@ -383,7 +388,7 @@ countryMap.exchangeLayer(exchangeLayer);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
 var tooltip = new Tooltip(countryTable, countries)
     .co2color(co2color)
-    .co2Colorbar(co2Colorbar);
+    .co2Colorbars(co2Colorbars);
 //var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.stateDatetime).toDate(); },
@@ -664,7 +669,7 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
-        if (co2Colorbar) co2Colorbar.render();
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
         if (windEnabled) if (windColorbar) windColorbar.render();
         if (solarEnabled) if (solarColorbar) solarColorbar.render();
     }
@@ -674,7 +679,7 @@ function showPage(pageName) {
         if (pageName == 'country') {
             selectCountry(selectedCountryCode);
         } else if (pageName == 'info') {
-            if (co2Colorbar) co2Colorbar.render();
+            if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
             if (windEnabled) if (windColorbar) windColorbar.render();
             if (solarEnabled) if (solarColorbar) solarColorbar.render();
         }
@@ -994,8 +999,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         d3.select(this)
             .style('opacity', 0.8)
             .style('cursor', 'pointer')
-        if (d.co2intensity && co2Colorbar)
-            co2Colorbar.currentMarker(d.co2intensity);
+        if (d.co2intensity && co2Colorbars)
+            co2Colorbars.forEach(function(d) { d.currentMarker(d.co2intensity) });
         var tooltip = d3.select('#country-tooltip');
         tooltip.classed('country-tooltip-visible', true);
         tooltip.select('#country-flag')
@@ -1027,8 +1032,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
         d3.select(this)
             .style('opacity', 1)
             .style('cursor', 'auto')
-        if (d.co2intensity && co2Colorbar)
-            co2Colorbar.currentMarker(undefined);
+        if (d.co2intensity && co2Colorbars)
+            co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
         d3.select('#country-tooltip').classed('country-tooltip-visible', false);
     });
 
@@ -1062,8 +1067,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer');
-            if (d.co2intensity && co2Colorbar)
-                co2Colorbar.currentMarker(d.co2intensity);
+            if (d.co2intensity && co2Colorbars)
+                co2Colorbars.forEach(function(d) { d.currentMarker(d.co2intensity) });
             var tooltip = d3.select('#exchange-tooltip');
             tooltip.style('display', 'inline');
             tooltip.select('.emission-rect')
@@ -1091,8 +1096,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
             d3.select(this)
                 .style('opacity', 1)
                 .style('cursor', 'auto')
-            if (d.co2intensity && co2Colorbar)
-                co2Colorbar.currentMarker(undefined);
+            if (d.co2intensity && co2Colorbars)
+                co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
             d3.select('#exchange-tooltip')
                 .style('display', 'none');
         })
@@ -1246,7 +1251,7 @@ function redraw() {
         countryHistoryGraph.render();
     }
     countryMap.render();
-    co2Colorbar.render();
+    co2Colorbars.forEach(function(d) { d.render() });
     if (countryMap.projection()) {
         exchangeLayer
             .projection(countryMap.projection())

@@ -585,6 +585,26 @@ div.highscore-button: hover {
     filter: unset;
 }
 
+.co2-floating-legend {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    float: left;
+}
+.co2-floating-legend div {
+    color: lightgray;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: 0.7rem;
+}
+.co2-floating-legend .tick text {
+    fill: lightgray;
+}
+.co2-floating-legend .tick line,
+.co2-floating-legend rect.border {
+    stroke: none;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {

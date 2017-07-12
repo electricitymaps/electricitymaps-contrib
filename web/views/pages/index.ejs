@@ -337,13 +337,17 @@
                     <div class="highscore-button">
                         <%- __('rankings-panel.show-ranking') %>
                     </div>
+                    <div class="co2-floating-legend">
+                        <div><%= __('legends.carbonintensity')%> <small>(gCO2eq/kWh)</small></div>
+                        <svg class="co2-colorbar colorbar" style="width: 10rem;"></svg>
+                    </div>
                 </div>
 
             </div>
         </div>
         <div class="loading overlay"></div>
         <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
-            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">http://www.electricitymap.org</a>.<br />
+            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">https://www.electricitymap.org</a>.<br />
             Please contact us at <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> for more information.
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
