@@ -119,27 +119,36 @@ line, path {
     display: table;
     width: 100%;
     font-size: 1.0rem;
-    padding: 0.5rem 0.5rem 0rem 0.5rem; /* top right bottom left */
+    padding-top: 0.5rem;
+    padding-bottom: 0.3rem;
+    /* Note: left and right padding are set as a media query */
 }
 #header-content .logo {
     display: table-cell;
     font-family: "Catamaran", sans-serif;
 }
-#header-content .logo * {
-    vertical-align: top;
+#header-content .logo img,
+#header-content .logo div,
+#header-content .logo span {
+    vertical-align: middle;
 }
 #header-content .logo img {
     height: 1.1rem;
     filter: invert();
     margin: 0.2rem;
+    margin-bottom: 0.3rem;
 }
 #header-content .right-header {
     display: table-cell;
     text-align: right;
     font-size: 0.6em;
 }
-#header-content div {
+#header-content div,
+#header-content span {
     vertical-align: middle;
+}
+#header-content .maintitle {
+    color: darkgray;
 }
 
 #inner {
@@ -569,7 +578,7 @@ div.highscore-button: hover {
     margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
 }
 #tab #tab-content a {
-    padding-top: 0.7rem;
+    padding-top: 0.2rem;
     padding-bottom: 0.6rem;
     color: darkgrey;
 }
@@ -607,6 +616,10 @@ div.highscore-button: hover {
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
+    #header-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
     .small-screen-visible {
         display: none;
     }
@@ -617,6 +630,10 @@ div.highscore-button: hover {
 
 /* Small devices (phones, etc.) */
 @media (max-width: 768px) {
+    #header-content {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
     .large-screen-visible {
         display: none;
     }

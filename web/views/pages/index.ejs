@@ -100,7 +100,12 @@
                 <div id="header-content">
                     <div class="logo">
                       <img src="images/icon_noborder_small.png" />
-                      <span>Electricity Map</span>
+                      <span>
+                          <span>Electricity Map</span>
+                          <span class="large-screen-visible maintitle">
+                              | <small><%= __('misc.maintitle') %></small>
+                          </span>
+                      </span>
                     </div>
 
                     <div class="right-header">
@@ -142,11 +147,6 @@
 
                 <div class="panel left-panel">
                     <div class="left-panel-info">
-                        <h1 class="large-screen-visible">
-                            <%= __('misc.maintitle') %>
-                        </h1>
-                        <hr class="large-screen-visible" />
-
                         <div class="left-panel-initial-text">
                             <p>
                                 <%= __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%= __('panel-initial-text.whereelectricitycomesfrom') %></span> <%= __('panel-initial-text.and') %> <span style="color: lightgray"><%= __('panel-initial-text.howmuchco2') %></span> <%= __('panel-initial-text.wasemitted') %>.
@@ -255,7 +255,8 @@
                             </p>
                             <hr />
                             <span style="color: darkgray;">
-                                <%= __('country-history.carbonintensity24h') %> (<span class="country-time"></span>):
+                                <%= __('country-history.carbonintensity24h') %><br />
+                                <small><i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org/carts/new" target="_blank">download full dataset</a> (pro version)</small>
                             </span>
                             <svg class="country-history"></svg>
                             <p>
