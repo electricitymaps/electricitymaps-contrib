@@ -233,16 +233,17 @@ line, path {
 }
 .left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-country-back, #left-panel-highscore-back {
-    padding: 0.4rem 1rem 0.5rem 1rem;
     line-height: 1;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1rem;
+    padding: 0.2rem;
+    right: 0px;
+    top: 0px;
+    position: absolute;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
 #left-panel-country-back:hover, #left-panel-highscore-back:hover {
-    background: rgba(0, 0, 0, 0.2);
+    color: white;
 }
 .left-panel .left-panel-toolbar-title,
 .left-panel-country .country-name {
@@ -440,7 +441,7 @@ label[for="checkbox-colorblind"] {
 
 div.highscore-button {
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     left: 10px;
     padding: 18px;
     background: rgba(0, 0, 0, 0.2);
