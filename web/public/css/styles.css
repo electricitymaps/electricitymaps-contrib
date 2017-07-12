@@ -1,8 +1,4 @@
 * {
-    /* Force width to include padding */
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     /* Remove tap feedback on mobile */
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -moz-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -122,6 +118,11 @@ line, path {
     padding-top: 0.5rem;
     padding-bottom: 0.4rem;
     /* Note: left and right padding are set as a media query */
+
+    /* Force width to include padding */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 #header-content .logo {
     display: table-cell;
@@ -181,7 +182,7 @@ line, path {
 }
 .left-panel {
     float: left;
-    padding: 1rem;
+    /*padding: 1rem;*/
     line-height: 1.2rem;
     height: 100%;
     width: 24rem;
@@ -194,6 +195,10 @@ line, path {
     -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     z-index: 1;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 .left-panel h1 {
     line-height: 1.3;
@@ -203,6 +208,9 @@ line, path {
 }
 .left-panel > svg {
     display: block;
+}
+.left-panel .left-panel-container {
+    padding: 1rem;
 }
 .left-panel, left-panel.text {
     color: lightgray;
