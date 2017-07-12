@@ -615,6 +615,19 @@ div.highscore-button: hover {
     stroke: none;
 }
 
+.premium {
+    border-radius: 0.3rem;
+    background-color: gold;
+    color: rgb(76,76,76);
+    font-weight: bold;
+    padding: 0.15rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
+.premium:hover {
+    color: black;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     #header-content {
