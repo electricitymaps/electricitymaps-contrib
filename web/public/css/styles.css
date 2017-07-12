@@ -120,7 +120,7 @@ line, path {
     width: 100%;
     font-size: 1.0rem;
     padding-top: 0.5rem;
-    padding-bottom: 0.3rem;
+    padding-bottom: 0.4rem;
     /* Note: left and right padding are set as a media query */
 }
 #header-content .logo {
@@ -143,8 +143,8 @@ line, path {
     text-align: right;
     font-size: 0.6em;
 }
-#header-content div,
-#header-content span {
+#header-content > div,
+#header-content > span {
     vertical-align: middle;
 }
 #header-content .maintitle {
