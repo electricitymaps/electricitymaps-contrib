@@ -117,6 +117,7 @@ app.get('/', function(req, res) {
     var isStaging = req.get('host') === 'staging.electricitymap.org';
     var isHTTPS = req.secure;
     var isLocalhost = req.hostname == 'localhost'; // hostname is without port
+    var ip = req.headers['cf-connecting-ip'] || req.ip;
 
     // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
     if (!isStaging && (isNonWWW || isSubDomain) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
@@ -154,7 +155,7 @@ app.get('/', function(req, res) {
             supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],
             supportedFBLocales: SUPPORTED_FB_LOCALES,
-            geo: geoip.lookup(req.ip)
+            geo: geoip.lookup(ip)
         });
     }
 });

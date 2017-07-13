@@ -789,7 +789,6 @@ function renderMap() {
     if (!countryMap.center()) {
         // This should be given by the server
         var geolocation = geo && [geo.ll[1], geo.ll[0]];
-        console.log(geolocation, geo)
         if (geolocation) {
             console.log('Centering on', geolocation);
             countryMap.center(geolocation);
