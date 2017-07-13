@@ -59,7 +59,7 @@ def fetch_production(country_code='ES-CN', session=None):
           'nuclear': 0.0,
           'geothermal': 0.0,
           'unknown': 0.0
-      },
+        },
         'storage': {},
         'source': 'demanda.ree.es',
     }
