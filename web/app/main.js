@@ -505,7 +505,7 @@ d3.entries(exchanges).forEach(function(entry) {
     if (entry.key.split('->')[0] != entry.value.countryCodes[0])
         console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
-var wind, solar, geolocation;
+var wind, solar;
 
 var histories = {};
 
@@ -786,9 +786,12 @@ function renderMap() {
     if (!countryMap.projection()) {
         return;
     }
-
     if (!countryMap.center()) {
+        // This should be given by the server
+        var geolocation = geo && [geo.ll[1], geo.ll[0]];
+        console.log(geolocation, geo)
         if (geolocation) {
+            console.log('Centering on', geolocation);
             countryMap.center(geolocation);
         } else if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
@@ -853,7 +856,7 @@ function renderMap() {
 
 var countryListSelector;
 
-function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation) {
+function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     if (err) {
         console.error(err);
         return;
@@ -1109,7 +1112,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     // Do not overwrite with null/undefined
     if (argWind) wind = argWind;
     if (argSolar) solar = argSolar;
-    if (argGeolocation) geolocation = argGeolocation;
 
     // Update pages that need to be updated
     renderMap();
@@ -1118,26 +1120,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind, argGeolocation
     console.log(countries)
 };
 
-// Get geolocation is on mobile (in order to select country)
-function geolocalise(callback) {
-    // Deactivated for now (too slow)
-    callback(null, null);
-    return;
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var lonlat = [position.coords.longitude, position.coords.latitude];
-            console.log('Current position is', lonlat);
-            callback(null, lonlat);
-        }, function(err) {
-            console.warn(err);
-            callback(null, null);
-        });
-    } else {
-        console.warn(Error('Browser geolocation is not supported'));
-        callback(null, null);
-    }
-}
 function getCountryCode(lonlat, callback) {
     // Deactivated for now (UX was confusing)
     callback(null, null);
@@ -1228,11 +1210,10 @@ function fetch(showLoading, callback) {
     else
         Q.defer(function(cb) { return cb(null, wind); });
 
-    Q.defer(geolocalise);
-    Q.await(function(err, clientVersion, state, solar, wind, geolocation) {
+    Q.await(function(err, clientVersion, state, solar, wind) {
         handleConnectionReturnCode(err);
         if (!err)
-            dataLoaded(err, clientVersion, state.data, solar, wind, geolocation);
+            dataLoaded(err, clientVersion, state.data, solar, wind);
         if (showLoading) LoadingService.stopLoading();
         if (callback) callback();
     });

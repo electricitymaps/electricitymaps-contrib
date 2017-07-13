@@ -17,6 +17,7 @@ var express = require('express');
 var fs = require('fs');
 var http = require('http');
 var i18n = require('i18n');
+var geoip = require('geoip-lite');
 
 var app = express();
 var server = http.Server(app);
@@ -152,7 +153,8 @@ app.get('/', function(req, res) {
             locale: locale,
             supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],
-            supportedFBLocales: SUPPORTED_FB_LOCALES
+            supportedFBLocales: SUPPORTED_FB_LOCALES,
+            geo: geoip.lookup(req.ip)
         });
     }
 });

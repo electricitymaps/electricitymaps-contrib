@@ -82,6 +82,7 @@
             var locale = '<%= locale %>';
             var FBLocale = '<%= FBLocale %>';
             var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
+            var geo = <%- (typeof geo !== 'undefined' && JSON.stringify(geo) || 'undefined') %>;
         </script>
     </head>
     <body>
