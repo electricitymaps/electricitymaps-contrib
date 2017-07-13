@@ -134,6 +134,11 @@ var app = {
     },
 
     onDeviceReady: function() {
+        // Resize if we're on iOS
+        if (cordova.platformId == 'ios') {
+            d3.select('#header')
+                .style('padding-top', '20px');
+        }
         // We will init / bootstrap our application here
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
