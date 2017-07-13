@@ -13,6 +13,7 @@ from parsers import TW
 from parsers import UA
 from parsers import US
 from parsers import UY
+from parsers import ES_CN
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -28,6 +29,7 @@ CONSUMPTION_PARSERS = {
     'DK': ENTSOE.fetch_consumption,
     'EE': ENTSOE.fetch_consumption,
     'ES': ENTSOE.fetch_consumption,
+    'ES-CN': ES_CN.fetch_consumption,
     'FI': ENTSOE.fetch_consumption,
     # 'FR': FR.fetch_consumption,
     'GB': ENTSOE.fetch_consumption,
@@ -61,6 +63,7 @@ PRODUCTION_PARSERS = {
     'DK': ENTSOE.fetch_production,
     'EE': ENTSOE.fetch_production,
     'ES': ENTSOE.fetch_production,
+    'ES-CN': ES_CN.fetch_production,
     'FI': ENTSOE.fetch_production,
     'FO': FO.fetch_production,
     'FR': FR.fetch_production,
