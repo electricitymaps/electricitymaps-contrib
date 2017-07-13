@@ -27,7 +27,7 @@ def fetch_consumption(country_code='ES-CN', session=None):
         'countryCode': country_code,
         'datetime': datetime,
         'consumption': consumption,
-        'source': 'https://demanda.ree.es/movil'
+        'source': 'demanda.ree.es'
     }
 
     return data
@@ -53,9 +53,15 @@ def fetch_production(country_code='ES-CN', session=None):
     data = {
         'countryCode': country_code,
         'datetime': datetime,
-        'production': {},
+        'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'nuclear': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
         'storage': {},
-        'source': 'https://demanda.ree.es/movil',
+        'source': 'demanda.ree.es',
     }
 
     if response:
