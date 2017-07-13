@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tmrow.electricitymap" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tmrow.electricitymap" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Electricity Map</name>
     <description>
         Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
     </description>
-    <author email="hello@tmrow.co" href="https://www.tmrow.co">
+    <author email="hello@tmrow.com" href="https://www.tmrow.co">
         Tomorrow
     </author>
     <content src="index.html" />
