@@ -116,10 +116,10 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var header = d3.select('.country-table-header');
     var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
-    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 48));
+    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
     panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
-    panel.select('.country-last-update').text(datetime ? moment(datetime).fromNow() : '? minutes ago');
-    panel.select('.country-time').text(datetime ? moment(datetime).format('LT') : '?');
+    panel.selectAll('.country-time')
+        .text(datetime ? moment(datetime).format('LL LT') : '?');
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
@@ -334,9 +334,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(Math.round(this._data.co2intensity) || '?');
     var hasFossilFuelData = this._data.fossilFuelRatio != null;
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.select('.fossil-fuel-percentage')
+    d3.selectAll('.left-panel-country .fossil-fuel-percentage')
         .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
-    d3.select('.fossil-fuel-percentage').node().parentNode.style.setProperty('background-color', 'rgba(0,0,0,'+this._data.fossilFuelRatio+')');
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
@@ -344,7 +343,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
     d3.select('.country-spot-price-currency')
         .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
-    d3.select('#country-emission-rect')
+    d3.select('#country-emission-rect, .left-panel-country .emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',

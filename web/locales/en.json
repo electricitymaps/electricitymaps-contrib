@@ -62,13 +62,8 @@
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
-        "lastupdate": "Last update",
+        "lastupdate": "Updated",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload."
-    },
-    "menu": {
-        "mapview": "Map View",
-        "listview": "List View",
-        "info": "Info"
     }
 }

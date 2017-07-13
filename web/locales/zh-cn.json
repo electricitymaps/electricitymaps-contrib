@@ -65,10 +65,5 @@
         "lastupdate": "最后更新",
         "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
         "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">这里</a>重新载入。"
-    },
-    "menu": {
-        "mapview": "地图模式",
-        "listview": "列表模式",
-        "info": "资讯"
     }
 }
