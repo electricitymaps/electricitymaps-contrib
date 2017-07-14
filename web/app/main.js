@@ -655,7 +655,7 @@ function showPage(pageName) {
     replaceHistoryState('page', showPageState);
 
     // Hide all panels - we will show only the ones we need
-    d3.selectAll('.left-panel > div > div').style('display', 'none');
+    d3.selectAll('.left-panel > div').style('display', 'none');
     d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
 
     // Hide info screen on large screen only
