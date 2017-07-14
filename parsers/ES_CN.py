@@ -6,11 +6,10 @@ from reescraper import CanaryIslands, NoDataException, TimestampException
 
 
 def fetch_consumption(country_code='ES-CN', session=None):
-    if not session:
-        session = Session
+    ses = session or session()
 
     try:
-        response = CanaryIslands(session).get()
+        response = CanaryIslands(ses).get()
     except NoDataException:
         response = None
     except TimestampException:
@@ -18,28 +17,26 @@ def fetch_consumption(country_code='ES-CN', session=None):
 
     if not response:
         datetime = utcnow().datetime
-        consumption = None
     else:
         datetime = get(response.timestamp).datetime
-        consumption = response.demand
 
     data = {
         'countryCode': country_code,
         'datetime': datetime,
-        'consumption': consumption,
         'source': 'demanda.ree.es'
     }
+
+    if response:
+        data['consumption'] = response.demand
 
     return data
 
 
 def fetch_production(country_code='ES-CN', session=None):
-
-    if not session:
-        session = Session
+    ses = session or session()
 
     try:
-        response = CanaryIslands(session).get()
+        response = CanaryIslands(ses).get()
     except NoDataException:
         response = None
     except TimestampException:
@@ -57,8 +54,7 @@ def fetch_production(country_code='ES-CN', session=None):
           'biomass': 0.0,
           'coal': 0.0,
           'nuclear': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
+          'geothermal': 0.0
         },
         'storage': {},
         'source': 'demanda.ree.es',
@@ -77,6 +73,8 @@ def fetch_production(country_code='ES-CN', session=None):
         else:
             data['production']['hydro'] = 0.0
             data['storage']['hydro'] = abs(hidro)
+
+        data['production']['unknown'] = response.unknown()
 
     return data
 
