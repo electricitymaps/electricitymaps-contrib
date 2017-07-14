@@ -55,7 +55,7 @@ def fetch_production(country_code='TR', session=None):
       'production': {},
       'storage': {},
       'source': 'ytbs.teias.gov.tr',
-      'datetime': tr_datetime
+      'datetime': tr_datetime.datetime
     }
     response = r.get(URL, verify=False)
     str_data = re.search(SEARCH_DATA, response.text)
