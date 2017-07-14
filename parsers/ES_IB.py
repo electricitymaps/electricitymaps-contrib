@@ -2,17 +2,12 @@
 from arrow import get, utcnow
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import BalearicIslands, NoDataException, TimestampException
+from reescraper import BalearicIslands
 
 
 def fetch_consumption(country_code='ES-IB', session=None):
     ses = session or session()
-    try:
-        response = BalearicIslands(ses).get()
-    except NoDataException:
-        response = None
-    except TimestampException:
-        response = None
+    response = BalearicIslands(ses).get()
 
     if not response:
         datetime = utcnow().datetime
