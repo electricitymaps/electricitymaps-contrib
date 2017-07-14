@@ -31,43 +31,35 @@ def fetch_production(country_code='ES-CN', session=None):
     try:
         response = CanaryIslands(ses).get()
     except NoDataException:
-        response = None
+        return None
     except TimestampException:
-        response = None
-
-    if not response:
-        datetime = utcnow().datetime
-    else:
-        datetime = get(response.timestamp).datetime
+        return None
 
     data = {
         'countryCode': country_code,
-        'datetime': datetime,
+        'datetime': get(response.timestamp).datetime,
         'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'nuclear': 0.0,
-          'geothermal': 0.0
+            'gas': round(response.gas + response.combined, 2),
+            'solar': response.solar,
+            'oil': round(response.vapor + response.diesel, 2),
+            'wind': response.wind,
+            'biomass': 0.0,
+            'coal': 0.0,
+            'nuclear': 0.0,
+            'geothermal': 0.0,
+            'unknown': response.unknown()
         },
         'storage': {},
         'source': 'demanda.ree.es',
     }
 
-    if response:
-        data['production']['gas'] = response.gas + response.combined
-        data['production']['solar'] = response.solar
-        data['production']['oil'] = response.vapor + response.diesel
-        data['production']['wind'] = response.wind
-
-        hidro = response.hydraulic
-        if hidro >= 0.0:
-            data['production']['hydro'] = hidro
-            data['storage']['hydro'] = 0.0
-        else:
-            data['production']['hydro'] = 0.0
-            data['storage']['hydro'] = abs(hidro)
-
-        data['production']['unknown'] = response.unknown()
+    hidro = response.hydraulic
+    if hidro >= 0.0:
+        data['production']['hydro'] = hidro
+        data['storage']['hydro'] = 0.0
+    else:
+        data['production']['hydro'] = 0.0
+        data['storage']['hydro'] = abs(hidro)
 
     return data
 
