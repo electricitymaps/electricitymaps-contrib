@@ -10,20 +10,16 @@ def fetch_consumption(country_code='ES-IB', session=None):
     response = BalearicIslands(ses).get()
 
     if not response:
-        datetime = utcnow().datetime
+        return None
     else:
-        datetime = get(response.timestamp).datetime
+        data = {
+            'countryCode': country_code,
+            'datetime': get(response.timestamp).datetime,
+            'consumption': response.demand,
+            'source': 'demanda.ree.es'
+        }
 
-    data = {
-        'countryCode': country_code,
-        'datetime': datetime,
-        'source': 'demanda.ree.es'
-    }
-
-    if response:
-        data['consumption'] = response.demand
-
-    return data
+        return data
 
 
 def fetch_production(country_code='ES-IB', session=None):
@@ -32,28 +28,26 @@ def fetch_production(country_code='ES-IB', session=None):
     response = BalearicIslands(ses).get()
 
     if not response:
-        datetime = utcnow().datetime
+        return None
     else:
         datetime = get(response.timestamp).datetime
-
-    data = {
-        'countryCode': country_code,
-        'datetime': datetime,
-        'production': {
-          'biomass': 0.0,
-          'nuclear': 0.0,
-          'geothermal': 0.0
-        },
-        'storage': {},
-        'source': 'demanda.ree.es',
-    }
-
-    if response:
-        data['production']['coal'] = response.carbon
-        data['production']['gas'] = response.gas + response.combined
-        data['production']['solar'] = response.solar
-        data['production']['oil'] = response.vapor + response.diesel
-        data['production']['wind'] = response.wind
+        data = {
+            'countryCode': country_code,
+            'datetime': datetime,
+            'production': {
+                'coal': response.carbon,
+                'gas': round(response.gas + response.combined, 2),
+                'solar': response.solar,
+                'oil': round(response.vapor + response.diesel, 2),
+                'wind': response.wind,
+                'biomass': 0.0,
+                'nuclear': 0.0,
+                'geothermal': 0.0,
+                'unknown': response.unknown()
+            },
+            'storage': {},
+            'source': 'demanda.ree.es',
+        }
 
         hidro = response.hydraulic
         if hidro >= 0.0:
@@ -63,9 +57,7 @@ def fetch_production(country_code='ES-IB', session=None):
             data['production']['hydro'] = 0.0
             data['storage']['hydro'] = abs(hidro)
 
-        data['production']['unknown'] = response.unknown()
-
-    return data
+        return data
 
 
 def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None):
@@ -73,23 +65,19 @@ def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None):
     ses = session or session()
     response = BalearicIslands(ses).get()
     if not response:
-        datetime = utcnow().datetime
+        return None
     else:
-        datetime = get(response.timestamp).datetime
-
-    sorted_country_codes = sorted([country_code1, country_code2])
-
-    data = {
-        'sortedCountryCodes': '->'.join(sorted_country_codes),
-        'datetime': datetime,
-        'source': 'demanda.ree.es',
-    }
-
-    if response:
+        sorted_country_codes = sorted([country_code1, country_code2])
         netFlow = response.link['pe_ma']
-        data['netFlow'] = netFlow if country_code1 == sorted_country_codes[0] else -1 * netFlow
 
-    return data
+        data = {
+            'sortedCountryCodes': '->'.join(sorted_country_codes),
+            'datetime': get(response.timestamp).datetime,
+            'netFlow': netFlow if country_code1 == sorted_country_codes[0] else -1 * netFlow,
+            'source': 'demanda.ree.es',
+        }
+
+        return data
 
 
 if __name__ == '__main__':
