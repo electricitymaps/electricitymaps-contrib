@@ -11,23 +11,16 @@ def fetch_consumption(country_code='ES-CN', session=None):
     try:
         response = CanaryIslands(ses).get()
     except NoDataException:
-        response = None
+        return None
     except TimestampException:
-        response = None
-
-    if not response:
-        datetime = utcnow().datetime
-    else:
-        datetime = get(response.timestamp).datetime
+        return None
 
     data = {
         'countryCode': country_code,
-        'datetime': datetime,
+        'datetime': get(response.timestamp).datetime,
+        'consumption': response.demand,
         'source': 'demanda.ree.es'
     }
-
-    if response:
-        data['consumption'] = response.demand
 
     return data
 
