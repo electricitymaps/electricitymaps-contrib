@@ -90,12 +90,6 @@
         </script>
     </head>
     <body>
-        <div id="connection-warning" class="flash-message">
-            <div class="inner"><%= __('misc.oops') %></div>
-        </div>
-        <div id="new-version" class="flash-message">
-            <div class="inner"><%- __('misc.newversion') %></div>
-        </div>
         <div id="main">
             <div id="header">
                 <div id="header-content">
@@ -147,6 +141,18 @@
                 </div>
             </div>
             <div id="inner">
+
+                <div class="loading overlay"></div>
+                <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
+                    Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">https://www.electricitymap.org</a>.<br />
+                    Please contact us at <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> for more information.
+                </div>
+                <div id="connection-warning" class="flash-message">
+                    <div class="inner"><%= __('misc.oops') %> <a href='' onclick='window.retryFetch(); return false;'><%= __('misc.retrynow') %></a>.</div>
+                </div>
+                <div id="new-version" class="flash-message">
+                    <div class="inner"><%- __('misc.newversion') %></div>
+                </div>
 
                 <div class="panel left-panel">
 
@@ -358,11 +364,6 @@
                 </div>
 
             </div>
-        </div>
-        <div class="loading overlay"></div>
-        <div id="embedded-error" class="overlay" style="background-color: grey; display: none">
-            Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">https://www.electricitymap.org</a>.<br />
-            Please contact us at <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> for more information.
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
             <span id="line1"></span><br />

@@ -1163,9 +1163,9 @@ function handleConnectionReturnCode(err) {
         } else {
             catchError(err);
         }
-        d3.select('#connection-warning').style('top', 0);
+        d3.select('#connection-warning').classed('active', true);
     } else {
-        d3.select('#connection-warning').style('top', undefined);
+        d3.select('#connection-warning').classed('active', false);
         clearInterval(connectionWarningTimeout);
     }
 }
@@ -1189,7 +1189,7 @@ function fetch(showLoading, callback) {
     if (showLoading) LoadingService.startLoading();
     // If data doesn't load in 15 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
-        d3.select('#connection-warning').style('top', 0);
+        d3.select('#connection-warning').classed('active', true);
     }, 15 * 1000);
     var Q = d3.queue();
     // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
@@ -1244,9 +1244,14 @@ function redraw() {
     }
 };
 
-window.onresize = function () {
+window.addEventListener('resize', function() {
     redraw();
-};
+});
+window.retryFetch = function() {
+    d3.select('#connection-warning').classed('active', false);
+    clearInterval(connectionWarningTimeout);
+    fetch(false);
+}
 
 // Start a fetch showing loading.
 // Later `fetchAndReschedule` won't show loading screen

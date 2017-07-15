@@ -45,14 +45,13 @@ line, path {
 }
 
 .flash-message {
-    position: fixed;
+    position: absolute;
     display: block;
     z-index: 99;
-    height: 40px;
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
-    top: -70px; /* hidden state */
+    top: -100px; /* hidden state */
 }
 .flash-message .inner {
     display: block;
@@ -64,6 +63,9 @@ line, path {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     max-width: 750px;
+}
+.flash-message.active {
+    top: 0px;
 }
 
 #connection-warning .inner {
