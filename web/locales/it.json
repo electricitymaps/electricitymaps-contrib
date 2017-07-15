@@ -65,5 +65,6 @@
         "lastupdate": "Ultimo aggiornamento",
         "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare."
+        "retrynow": "Riprova ora"
     }
 }
