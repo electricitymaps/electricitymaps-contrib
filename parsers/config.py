@@ -1,6 +1,7 @@
 from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
+from parsers import ES_CN, ES_IB
 from parsers import IS
 from parsers import FO
 from parsers import FR
@@ -13,7 +14,7 @@ from parsers import TW
 from parsers import UA
 from parsers import US
 from parsers import UY
-from parsers import ES_CN
+
 # 
 # Ideally, we would merge this file with a json file in the config directory
 #
@@ -30,6 +31,7 @@ CONSUMPTION_PARSERS = {
     'EE': ENTSOE.fetch_consumption,
     'ES': ENTSOE.fetch_consumption,
     'ES-CN': ES_CN.fetch_consumption,
+    'ES-IB': ES_IB.fetch_consumption,
     'FI': ENTSOE.fetch_consumption,
     # 'FR': FR.fetch_consumption,
     'GB': ENTSOE.fetch_consumption,
@@ -64,6 +66,7 @@ PRODUCTION_PARSERS = {
     'EE': ENTSOE.fetch_production,
     'ES': ENTSOE.fetch_production,
     'ES-CN': ES_CN.fetch_production,
+    'ES-IB': ES_IB.fetch_production,
     'FI': ENTSOE.fetch_production,
     'FO': FO.fetch_production,
     'FR': FR.fetch_production,
@@ -165,6 +168,7 @@ EXCHANGE_PARSERS = {
     # ES
     'ES->FR':     ENTSOE.fetch_exchange,
     'ES->PT':     ENTSOE.fetch_exchange,
+    'ES->ES-IB':  ES_IB.fetch_exchange,
     # FI
     'FI->NO':     ENTSOE.fetch_exchange,
     'FI->RU':     ENTSOE.fetch_exchange,
