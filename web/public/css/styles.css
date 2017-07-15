@@ -87,8 +87,7 @@ line, path {
     z-index: 999;
 }
 .loading {
-    opacity: 0.7;
-    background: black url('../images/loading.svg') no-repeat center center;
+    background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
 }
 #main {
     width: 100%;

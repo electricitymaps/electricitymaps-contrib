@@ -674,9 +674,11 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
+        if (windEnabled) { Wind.show(); }
+        if (solarEnabled) { Solar.show(); }
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
-        if (windEnabled) if (windColorbar) windColorbar.render();
-        if (solarEnabled) if (solarColorbar) solarColorbar.render();
+        if (windEnabled && windColorbar) windColorbar.render();
+        if (solarEnabled && solarColorbar) solarColorbar.render();
     }
     else {
         d3.select('.left-panel').classed('large-screen-visible', false);
