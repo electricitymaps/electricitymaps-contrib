@@ -490,6 +490,10 @@ countryMap
 // Add configurations
 d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
+    if (!zone) {
+        console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..')
+        return;
+    }
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     // Add translation
     zone.shortname = lang && lang.zoneShortName[d.key];
