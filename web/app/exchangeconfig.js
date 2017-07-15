@@ -136,6 +136,10 @@ exports.addExchangesConfiguration = function(exchanges) {
         rotation: 0
     };
     // ES
+    exchanges['ES->ES-IB'] = {
+        lonlat: [1.426204, 39.802782],
+        rotation: 90
+    };
     exchanges['ES->FR'] = {
         lonlat: [0.3, 42.9],
         rotation: 20

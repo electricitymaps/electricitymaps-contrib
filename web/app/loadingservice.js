@@ -2,22 +2,25 @@ var exports = module.exports = {};
 
 var d3 = require('d3');
 
-var stack = [];
+var stack = {};
 
-exports.startLoading = function() {
-    if (!stack.length) {
-        d3.select('.loading')
+exports.startLoading = function(selector) {
+    selector = selector || '#loading';
+    stack[selector] = stack[selector] || [];
+    if (!stack[selector].length) {
+        d3.select(selector)
             .style('display', 'block')
             .transition()
             .style('opacity', 0.8);
     }
-    stack.push(undefined);
+    stack[selector].push(undefined);
 }
 
-exports.stopLoading = function() {
-    stack.pop();
-    if (!stack.length) {
-        d3.select('.loading')
+exports.stopLoading = function(selector) {
+    selector = selector || '#loading';
+    stack[selector].pop();
+    if (!stack[selector].length) {
+        d3.select(selector)
             .transition()
                 .style('opacity', 0)
                 .on('end', function() {

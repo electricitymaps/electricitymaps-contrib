@@ -490,6 +490,10 @@ countryMap
 // Add configurations
 d3.entries(zones).forEach(function(d) {
     var zone = countries[d.key];
+    if (!zone) {
+        console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..')
+        return;
+    }
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     // Add translation
     zone.shortname = lang && lang.zoneShortName[d.key];
@@ -595,8 +599,10 @@ function selectCountry(countryCode, notrack) {
         // Load graph
         if (customDate)
             console.error('Can\'t fetch history when a custom date is provided!');
-        else if (!histories[countryCode])
+        else if (!histories[countryCode]) {
+            LoadingService.startLoading('#country-history-loading');
             d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
+                LoadingService.stopLoading('#country-history-loading');
                 if (err) console.error(err);
                 if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
                 if (err || !obj || !obj.data) {
@@ -622,8 +628,9 @@ function selectCountry(countryCode, notrack) {
                 // Show
                 updateGraph(histories[countryCode]);
             });
-        else
+        } else {
             updateGraph(histories[countryCode]);
+        }
     }
     replaceHistoryState('countryCode', selectedCountryCode);
 }
@@ -674,9 +681,11 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
+        if (windEnabled) { Wind.show(); }
+        if (solarEnabled) { Solar.show(); }
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
-        if (windEnabled) if (windColorbar) windColorbar.render();
-        if (solarEnabled) if (solarColorbar) solarColorbar.render();
+        if (windEnabled && windColorbar) windColorbar.render();
+        if (solarEnabled && solarColorbar) solarColorbar.render();
     }
     else {
         d3.select('.left-panel').classed('large-screen-visible', false);
@@ -891,7 +900,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 
     // Is there a new version?
     d3.select('#new-version')
-        .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
+        .classed('active', (clientVersion != bundleHash && !isLocalhost && !isCordova));
 
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
@@ -1163,9 +1172,9 @@ function handleConnectionReturnCode(err) {
         } else {
             catchError(err);
         }
-        d3.select('#connection-warning').style('top', 0);
+        d3.select('#connection-warning').classed('active', true);
     } else {
-        d3.select('#connection-warning').style('top', undefined);
+        d3.select('#connection-warning').classed('active', false);
         clearInterval(connectionWarningTimeout);
     }
 }
@@ -1189,7 +1198,7 @@ function fetch(showLoading, callback) {
     if (showLoading) LoadingService.startLoading();
     // If data doesn't load in 15 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
-        d3.select('#connection-warning').style('top', 0);
+        d3.select('#connection-warning').classed('active', true);
     }, 15 * 1000);
     var Q = d3.queue();
     // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
@@ -1244,9 +1253,14 @@ function redraw() {
     }
 };
 
-window.onresize = function () {
+window.addEventListener('resize', function() {
     redraw();
-};
+});
+window.retryFetch = function() {
+    d3.select('#connection-warning').classed('active', false);
+    clearInterval(connectionWarningTimeout);
+    fetch(false);
+}
 
 // Start a fetch showing loading.
 // Later `fetchAndReschedule` won't show loading screen
