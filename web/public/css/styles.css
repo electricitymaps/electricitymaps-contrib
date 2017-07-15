@@ -47,7 +47,6 @@ line, path {
 .flash-message {
     position: absolute;
     display: block;
-    z-index: 99;
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
@@ -62,14 +61,15 @@ line, path {
     font-size: 0.8em;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    max-width: 750px;
+    width: 100%;
+    box-sizing: border-box;
 }
 .flash-message.active {
     top: 0px;
 }
 
 #connection-warning .inner {
-    background-color: red;
+    background-color: darkred;
 }
 #new-version .inner {
     background-color: #3F51B5;
@@ -653,6 +653,10 @@ div.highscore-button: hover {
     }
     #tab {
         display: none;
+    }
+    .flash-message {
+        padding-left: 24rem; /* keep in sync with left-panel width */
+        box-sizing: border-box;
     }
 }
 
