@@ -30,32 +30,26 @@ def fetch_production(country_code='ES-IB', session=None):
     if not response:
         return None
     else:
-        datetime = get(response.timestamp).datetime
         data = {
             'countryCode': country_code,
-            'datetime': datetime,
+            'datetime': get(response.timestamp).datetime,
             'production': {
                 'coal': response.carbon,
                 'gas': round(response.gas + response.combined, 2),
                 'solar': response.solar,
                 'oil': round(response.vapor + response.diesel, 2),
                 'wind': response.wind,
+                'hydro': response.hydraulic,
                 'biomass': 0.0,
                 'nuclear': 0.0,
                 'geothermal': 0.0,
                 'unknown': response.unknown()
             },
-            'storage': {},
+            'storage': {
+                'hydro': response.storage
+            },
             'source': 'demanda.ree.es',
         }
-
-        hidro = response.hydraulic
-        if hidro >= 0.0:
-            data['production']['hydro'] = hidro
-            data['storage']['hydro'] = 0.0
-        else:
-            data['production']['hydro'] = 0.0
-            data['storage']['hydro'] = abs(hidro)
 
         return data
 
