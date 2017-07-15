@@ -595,8 +595,10 @@ function selectCountry(countryCode, notrack) {
         // Load graph
         if (customDate)
             console.error('Can\'t fetch history when a custom date is provided!');
-        else if (!histories[countryCode])
+        else if (!histories[countryCode]) {
+            LoadingService.startLoading('#country-history-loading');
             d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
+                LoadingService.stopLoading('#country-history-loading');
                 if (err) console.error(err);
                 if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
                 if (err || !obj || !obj.data) {
@@ -622,8 +624,9 @@ function selectCountry(countryCode, notrack) {
                 // Show
                 updateGraph(histories[countryCode]);
             });
-        else
+        } else {
             updateGraph(histories[countryCode]);
+        }
     }
     replaceHistoryState('countryCode', selectedCountryCode);
 }

@@ -89,6 +89,9 @@ line, path {
 .loading {
     background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
 }
+#country-history-loading {
+    background-size: 1.7rem;
+}
 #main {
     width: 100%;
     height: 100%;
