@@ -19,9 +19,9 @@ function formatCo2(d, numDigits) {
     if (d == null || d == NaN) return d;
     if (numDigits == null) numDigits = 3;
     if (d >= 1) // a ton or more
-        return d3.format('.' + numDigits + 's')(d) + 't of CO2eq per minute';
+        return d3.format('.' + numDigits + 's')(d) + 't of CO<sub>2</sub>eq per minute';
     else
-        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g of CO2eq per minute';
+        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g of CO<sub>2</sub>eq per minute';
 }
 
 function placeTooltip(selector, d3Event) {
@@ -53,6 +53,11 @@ function placeTooltip(selector, d3Event) {
     }
 }
 
+// Format localized strings containing "CO2"
+function co2Sub(str) {
+    return str.replace("CO2", "CO<sub>2</sub>");
+}
+
 function Tooltip(countryTable, countries) {
     var that = this;
     // ** Country table
@@ -80,7 +85,7 @@ function Tooltip(countryTable, countries) {
             var absFlow = Math.abs(value);
             var exchangeProportion = !isNull ? Math.round(absFlow / domain * 100) : '?';
             tooltip.select('#exchange-proportion').text(exchangeProportion + ' %');
-            tooltip.select('#exchange-proportion-detail').text(
+            tooltip.select('#exchange-proportion-detail').html(
                 (!isNull ? format(absFlow) : '?') + ' ' +
                 ' / ' + 
                 (!isNull ? format(domain) : '?'));
@@ -93,7 +98,7 @@ function Tooltip(countryTable, countries) {
 
             tooltip.select('#line1')
                 .html(utils.stringFormat(
-                    langString,
+                    co2Sub(langString),
                     exchangeProportion,
                     lang.zoneShortName[country.countryCode] || country.countryCode,
                     lang.zoneShortName[d.key] || d.key));
@@ -111,7 +116,7 @@ function Tooltip(countryTable, countries) {
             var hasCapacity = absCapacity !== undefined && isFinite(absCapacity);
             var capacityFactor = hasCapacity && Math.round(absFlow / absCapacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
-            tooltip.select('#capacity-factor-detail').text(
+            tooltip.select('#capacity-factor-detail').html(
                 (format(absFlow) || '?') + ' ' +
                 ' / ' + 
                 (hasCapacity && format(absCapacity) || '?'));
@@ -165,7 +170,7 @@ function Tooltip(countryTable, countries) {
             var hasCapacity = d.capacity !== undefined && d.capacity >= (d.production || 0);
             var capacityFactor = hasCapacity && Math.round(value / d.capacity * 100) || '?';
             tooltip.select('#capacity-factor').text(capacityFactor + ' %');
-            tooltip.select('#capacity-factor-detail').text(
+            tooltip.select('#capacity-factor-detail').html(
                 (format(value) || '?') + ' ' +
                 ' / ' + 
                 (hasCapacity && format(d.capacity) || '?'));
@@ -179,7 +184,7 @@ function Tooltip(countryTable, countries) {
             var isNull = !isFinite(value) || value == undefined;
 
             var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
-            tooltip.select('#production-proportion-detail').text(
+            tooltip.select('#production-proportion-detail').html(
                 (!isNull ? format(value) : '?') + ' ' +
                 ' / ' + 
                 (!isNull ? format(domain) : '?'));
@@ -189,7 +194,7 @@ function Tooltip(countryTable, countries) {
                 lang[displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'];
             tooltip.select('#line1')
                 .html(utils.stringFormat(
-                    langString,
+                    co2Sub(langString),
                     productionProportion,
                     lang.zoneShortName[country.countryCode] || country.countryCode,
                     domainName))
