@@ -1,8 +1,8 @@
 # The arrow library is used to handle datetimes
-from arrow import get, utcnow
+from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife, NoDataException, TimestampException
+from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
 
 
 def fetch_consumption(country_code='ES-CN', session=None):
