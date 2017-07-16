@@ -35,7 +35,8 @@
         "show-ranking": "Show ranking"
     },
     "country-history": {
-        "carbonintensity24h": "Carbon intensity in the last 24 hours"
+        "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "downloaddataset": "download full dataset"
     },
     "footer": {
         "likethisvisu": "Like the visualization?",
