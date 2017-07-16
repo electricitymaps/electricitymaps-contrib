@@ -900,7 +900,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
 
     // Is there a new version?
     d3.select('#new-version')
-        .style('top', (clientVersion === bundleHash || useRemoteEndpoint) ? undefined : 0);
+        .classed('active', (clientVersion != bundleHash && !isLocalhost && !isCordova));
 
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
