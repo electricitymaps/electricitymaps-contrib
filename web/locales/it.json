@@ -36,6 +36,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore"
+        "downloaddataset": "Scarica dati completi"
     },
     "footer": {
         "likethisvisu": "Ti piace questo progetto?",
@@ -62,8 +63,9 @@
     },
     "misc": {
         "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
-        "lastupdate": "Ultimo aggiornamento",
+        "lastupdate": "Ultimo aggiornamento:",
         "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
-        "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare."
+        "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
+        "retrynow": "Riprova ora"
     }
 }
