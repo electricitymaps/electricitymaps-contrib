@@ -65,6 +65,7 @@
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
         "lastupdate": "Uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
-        "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om."
+        "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
+        "retrynow": "Försök igen"
     }
 }
