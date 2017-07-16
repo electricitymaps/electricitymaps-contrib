@@ -29,7 +29,7 @@
         "emissions": "Emissioni CO2",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
         "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini.",
-        "dfdataset": "Scarica dati completi"
+        "downloaddataset": "Scarica dati completi"
     },
     "rankings-panel": {
         "country-ranking": "Classifica",
