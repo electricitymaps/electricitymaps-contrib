@@ -20,8 +20,9 @@ function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) 
         // Linear scale
 
         // Create gradient
+        this.gradientId = Math.random() + 'gradient';
         this.gGradient = this.gColorbar.append('linearGradient')
-            .attr('id', selector + 'gradient')
+            .attr('id', this.gradientId)
             .attr('x1', 0)
             .attr('y1', 0)
             .attr('x2', '100%')
@@ -30,7 +31,7 @@ function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) 
         // Create fill
         this.gColorbar.append('rect')
             .attr('class', 'gradient')
-            .style('fill', 'url(#' + selector + 'gradient' + ')');
+            .style('fill', 'url(#' + this.gradientId + ')');
 
         // Prepare an invisible marker
         this.gColorbar.append('line')
@@ -59,7 +60,6 @@ function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) 
         .attr('x', 0)
         .attr('y', 0)
         .style('fill', 'none')
-        .style('stroke', 'gray')
         .style('stroke-width', 1)
         .attr('shape-rendering', 'crispEdges');
 
@@ -146,10 +146,8 @@ HorizontalColorbar.prototype.render = function() {
         .attr('class', 'x axis')
         .attr('transform', 'translate(0, ' + (this.colorbarHeight) + ')')
         .call(axis)
-    this.gColorbarAxis.selectAll('.tick text')
-        .attr('fill', 'gray');
+    this.gColorbarAxis.selectAll('.tick text');
     this.gColorbarAxis.selectAll('.tick line')
-            .style('stroke', 'gray')
             .style('stroke-width', 1)
             .attr('shape-rendering', 'crispEdges')
     this.gColorbarAxis.select('path')

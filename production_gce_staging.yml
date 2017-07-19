@@ -7,8 +7,6 @@ services:
     image: eu.gcr.io/tmrow-152415/electricitymap_web:staging
     mem_limit: 200M
     networks: [default, infrastructure] # required to be able to com' with statsd & nginx
-    volumes:
-      - /home/shared/electricitymap/static/dist:/home/web/public/dist
 
 networks:
   infrastructure:

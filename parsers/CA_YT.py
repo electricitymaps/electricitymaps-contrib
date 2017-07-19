@@ -78,12 +78,16 @@ def fetch_production(country_code='CA-YT', session=None):
     hydro_generation = parse_mw(hydro_text)
 
     hydro_cap_div = find_div_by_class(soup, 'avail_hydro')
-    hydro_cap_text = hydro_cap_div.div.text
-    hydro_capacity = parse_mw(hydro_cap_text)
+    if hydro_cap_div:
+        hydro_cap_text = hydro_cap_div.div.text
+        hydro_capacity = parse_mw(hydro_cap_text)
+    else:
+        # hydro capacity is not provided when thermal is used
+        hydro_capacity = None
 
     thermal_div = find_div_by_class(soup, 'load_thermal')
     if thermal_div.div:
-        thermal_text = hydro_div.div.text
+        thermal_text = thermal_div.div.text
         thermal_generation = parse_mw(thermal_text)
     else:
         # thermal is not always used and when it's not used, it's not specified in HTML
@@ -103,12 +107,16 @@ def fetch_production(country_code='CA-YT', session=None):
             'nuclear': 0,
             'geothermal': 0
         },
-        'capacity': {
-            'hydro': hydro_capacity
-        },
         'storage': {},
         'source': 'www.yukonenergy.ca'
     }
+
+    if hydro_capacity:
+        data.update({
+            'capacity': {
+                'hydro': hydro_capacity
+            }
+        })
 
     return data
 

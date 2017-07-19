@@ -8,6 +8,7 @@
         "cordova-plugin-code-push": "^1.9.4-beta",
         "cordova-plugin-globalization": "~1.0.6",
         "cordova-plugin-splashscreen": "^4.0.3",
+        "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-whitelist": "1",
         "cordova-universal-links-plugin": "^1.2.1",
         "ejs": "^2.5.5",
@@ -26,7 +27,8 @@
             "cordova-plugin-whitelist": {},
             "cordova-universal-links-plugin": {},
             "cordova-plugin-globalization": {},
-            "cordova-plugin-splashscreen": {}
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {}
         },
         "platforms": [
             "android",

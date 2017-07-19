@@ -44,6 +44,14 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .defined(definedAccessor)
         .curve(d3.curveMonotoneX);
 
+    // Create area for fill
+    this.area = d3.area()
+        .x(function(d, i) { return x(xAccessor(d, i)); })
+        .y0(function(d, i) { return y(0); })
+        .y1(function(d, i) { return y(yAccessor(d, i)); })
+        .defined(definedAccessor)
+        .curve(d3.curveMonotoneX);
+
     // Interaction state
     this.frozen = false;
     this.selectedIndex;
@@ -56,6 +64,14 @@ LineGraph.prototype.data = function (arg) {
 
     // Cache xAccessor
     this.datetimes = data.map(this.xAccessor);
+
+    // Update x-domain based on data
+    if (this._data) {
+        x.domain(
+            d3.extent([
+              this.xAccessor(this._data[0]),
+              this.xAccessor(this._data[this._data.length - 1])]));
+    }
 
     return this;
 }
@@ -90,6 +106,13 @@ LineGraph.prototype.render = function () {
         .data([data]) // only one time series for now
     var layer = selection.enter().append('g')
         .attr('class', 'layer');
+
+    layer.append('path')
+        .attr('class', 'area')
+        .style('stroke', 'none')
+        .style('pointer-events', 'none');
+    layer.merge(selection).select('path.area')
+        .attr('d', this.area);
 
     layer.append('path')
         .attr('class', 'line')

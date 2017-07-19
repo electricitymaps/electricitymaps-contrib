@@ -96,7 +96,13 @@
         
     },
     "ES": {
-        
+    	"flag_file_name": "es.png"
+    },
+    "ES-CN": {
+    	"flag_file_name": "es.png"
+    },
+    "ES-IB": {
+    	"flag_file_name": "es.png"
     },
     "FI": {
         
@@ -175,6 +181,9 @@
     },
     "RU": {
         
+    },
+    "RU-KGD": {
+        "flag_file_name": "ru.png"
     },
     "SE": {
         

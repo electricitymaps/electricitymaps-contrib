@@ -14,3 +14,6 @@ web/node_modules
 .DS_Store
 /.vs
 Thumbs.db
+
+## Pycharm IDE
+.idea

@@ -35,7 +35,8 @@
         "show-ranking": "Visa rankning"
     },
     "country-history": {
-        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna"
+        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
+        "downloaddataset": "ladda ned all data" 
     },
     "footer": {
         "likethisvisu": "Gillar du visualiseringen?",
@@ -62,13 +63,9 @@
     },
     "misc": {
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
-        "lastupdate": "Senast uppdaterad",
+        "lastupdate": "Uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
-        "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om."
-    },
-    "menu": {
-        "mapview": "Karta",
-        "listview": "Lista",
-        "info": "Info"
+        "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
+        "retrynow": "Försök igen"
     }
 }

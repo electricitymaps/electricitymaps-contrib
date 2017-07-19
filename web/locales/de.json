@@ -65,10 +65,5 @@
         "lastupdate": "Letzte Aktualisierung",
         "oops": "Oops! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden nochmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a> um sie zu laden."
-    },
-    "menu": {
-        "mapview": "Karte",
-        "listview": "Liste",
-        "info": "Info"
     }
 }

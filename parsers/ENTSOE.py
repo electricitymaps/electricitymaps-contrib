@@ -90,10 +90,12 @@ def query_consumption(domain, session, now=None):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        error_text = soup.find_all('text')[0].contents[0]
-        if 'No matching data found' in error_text: return
-        raise Exception('Failed to get consumption. Reason: %s' % error_text)
-
+        text = soup.find_all('text')
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text: return
+            raise Exception('Failed to get consumption. Reason: %s' % error_text)
+    
 def query_production(psr_type, in_domain, session, now=None):
     params = {
         'psrType': psr_type,
@@ -104,13 +106,14 @@ def query_production(psr_type, in_domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        return # Return by default
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        error_text = soup.find_all('text')[0].contents[0]
-        if 'No matching data found' in error_text: return
-        print 'Failed for psr %s' % psr_type
-        print 'Reason:', error_text
+        text = soup.find_all('text')
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text: return
+            print 'Failed for psr %s' % psr_type
+            print 'Reason:', error_text
 
 def query_exchange(in_domain, out_domain, session, now=None):
     params = {
@@ -123,10 +126,12 @@ def query_exchange(in_domain, out_domain, session, now=None):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        error_text = soup.find_all('text')[0].contents[0]
-        if 'No matching data found' in error_text: return
-        raise Exception('Failed to get exchange. Reason: %s' % error_text)
-
+        text = soup.find_all('text')
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text: return
+            raise Exception('Failed to get exchange. Reason: %s' % error_text)
+    
 def query_exchange_forecast(in_domain, out_domain, session, now=None):
     params = {
         'documentType': 'A09', # Finalised schedule
@@ -138,10 +143,12 @@ def query_exchange_forecast(in_domain, out_domain, session, now=None):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        error_text = soup.find_all('text')[0].contents[0]
-        if 'No matching data found' in error_text: return
-        raise Exception('Failed to get exchange. Reason: %s' % error_text)
-
+        text = soup.find_all('text')
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text: return
+            raise Exception('Failed to get exchange. Reason: %s' % error_text)
+    
 def query_price(domain, session, now=None):
     params = {
         'documentType': 'A44',
@@ -153,10 +160,12 @@ def query_price(domain, session, now=None):
     else:
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        error_text = soup.find_all('text')[0].contents[0]
-        if 'No matching data found' in error_text: return
-        raise Exception('Failed to get price. Reason: %s' % error_text)
-
+        text = soup.find_all('text')
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text: return
+            raise Exception('Failed to get price. Reason: %s' % error_text)
+    
 def query_generation_forecast(in_domain, session, now=None):
     # Note: this does not give a breakdown of the production
     params = {
@@ -167,13 +176,14 @@ def query_generation_forecast(in_domain, session, now=None):
     response = query_ENTSOE(session, params, now, span=[-24, 48])
     if response.ok: return response.text
     else:
-        return # Return by default
         # Grab the error if possible
         soup = BeautifulSoup(response.text, 'html.parser')
-        error_text = soup.find_all('text')[0].contents[0]
-        if 'No matching data found' in error_text: return
-        print 'Reason:', error_text
-
+        text = soup.find_all('text')
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text: return
+            print 'Reason:', error_text
+    
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
     if m:

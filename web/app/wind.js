@@ -82,6 +82,7 @@ exports.pause = function(arg) {
 }
 
 exports.show = function() {
+    if (!windCanvas) { return; }
     if (windLayer && windLayer.started) { return; }
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
     var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
