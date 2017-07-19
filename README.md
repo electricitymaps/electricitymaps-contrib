@@ -40,6 +40,7 @@ Each country has a CO2 mass flow that depends on neighboring countries. In order
 ### Real-time electricity data sources
 Real-time electricity data is obtained using [parsers](https://github.com/corradio/electricitymap/tree/master/parsers)
 
+- Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
 - Australia: [AREMI National Map](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all)
 - Australia (Western): [AEMO](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -92,6 +93,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 ### Production capacity data sources
 Production capacities are centralized in the [capacities.json](https://github.com/tmrowco/electricitymap/blob/master/config/capacities.json) file.
 
+- Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Austria: 
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
