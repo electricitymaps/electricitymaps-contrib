@@ -55,6 +55,7 @@ power_plant_type = {
                      'ARREDI01': 'gas',
                        'ARROHI': 'hydro',
                      'ATUCNUCL': 'nuclear',
+                     'ATU2NUCL': 'nuclear'    
                      'AVALTG21': 'gas',
                      'AVALTG22': 'gas',
                      'AVALTG23': 'gas',
@@ -136,6 +137,7 @@ power_plant_type = {
                      'EBARTG02': 'gas',
                      'ELOMDI01': 'gas',
                      'ENSETG01': 'gas',
+                     'EMBANUCL': 'nuclear',
                        'ESCAHI': 'hydro',
                      'ESQDDI01': 'gas',
                      'FORDDI01': 'gas',
@@ -313,11 +315,11 @@ power_plant_type = {
                      'SMTUTG01': 'gas',
                      'SMTUTG02': 'gas',
                      'SMTUTV01': 'gas',
-                     'SNICTV11': 'gas',
-                     'SNICTV12': 'gas',
-                     'SNICTV13': 'gas',
-                     'SNICTV14': 'gas',
-                     'SNICTV15': 'gas',
+                     'SNICTV11': 'coal',
+                     'SNICTV12': 'coal',
+                     'SNICTV13': 'coal',
+                     'SNICTV14': 'coal',
+                     'SNICTV15': 'coal',
                      'SOESTG03': 'gas',
                      'SOLATG01': 'gas',
                      'SORRTV13': 'gas',
@@ -465,6 +467,7 @@ def get_thermal():
     #total_oil_generation = sum([mapped_data[i] for i in find_oil])
 
     #Assume thermal generation is gas unless specifically mapped to another type.
+    #https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina#Generation
     total_gas_generation = total_thermal_generation - total_nuclear_generation
 
     return {'gas': total_gas_generation, 'nuclear': total_nuclear_generation}
@@ -492,7 +495,6 @@ def get_hydro():
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
-    #mapped_data = [power_plant_type.get(x,x) for x in formatted_data]
     find_hydro = [i+1 for i,x in enumerate(formatted_data) if x == 'Totales ']
     total_hydro_generation = sum([formatted_data[i] for i in find_hydro])
 
