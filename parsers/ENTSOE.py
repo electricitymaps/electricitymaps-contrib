@@ -70,6 +70,12 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'TR': '10YTR-TEIAS----W',
     'UA': '10YUA-WEPS-----0'
 }
+
+ENTSOE_ERROR_MARGIN = {
+    'NL': 1,
+    'CH': 2
+}
+
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     if now is None: now = arrow.utcnow()
     params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
@@ -359,6 +365,20 @@ def fetch_consumption(country_code, session=None):
 
         return data
 
+def get_production_dates(production_hashmap, error=0):
+    # Remove all dates in the future
+    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
+    production_dates = filter(lambda x: x <= arrow.now(), production_dates)
+    if not len(production_dates): return None
+     
+    max_counts = max(map(lambda date: len(production_hashmap[date].keys()), production_dates))
+
+    # Only take fully observed elements with an error margin
+    production_dates = filter(lambda d: len(production_hashmap[d].keys()) >= max_counts - error, production_dates)
+
+    return production_dates
+    
+
 def fetch_production(country_code, session=None, now=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -371,18 +391,12 @@ def fetch_production(country_code, session=None, now=None):
             productions, storages, datetimes = parsed
             for i in range(len(datetimes)):
                 production_hashmap[datetimes[i]][k] = (productions[i], storages[i])
-
-
-    # Remove all dates in the future
-    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = filter(lambda x: x <= arrow.now(), production_dates)
-    if not len(production_dates): return None
-    # Only take fully observed elements
-    max_counts = max(map(lambda date: len(production_hashmap[date].keys()),
-        production_dates))
-    production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
-        production_dates)
+                
+    error = 0
+    if country_code in ENTSOE_ERROR_MARGIN: error = ENTSOE_ERROR_MARGIN[country_code]
     
+    production_dates = get_production_dates(production_hashmap, error)
+
     data = []
     for production_date in production_dates:
 
@@ -523,3 +537,12 @@ def fetch_generation_forecast(country_code, session=None, now=None):
         return data
 
 
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+
+    print 'fetch_production() ->'
+    print fetch_production("DE")
+#    print 'fetch_price() ->'
+#    print fetch_price()
+#    print 'fetch_exchange() ->'
+#    print fetch_exchange()
