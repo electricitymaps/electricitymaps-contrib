@@ -1,18 +1,51 @@
 var exports = module.exports = {};
 
-var defaultCo2eqFootprint = {
-    'biomass': 230,
-    'coal': 820,
-    'gas': 490,
-    'hydro': 24,
-    'nuclear': 12,
-    'oil': 650, // UK Parliamentary Office of Science and Technology (2006) "Carbon footprint of electricity generation"
-    'solar': 45,
-    'wind': 12,
-    'geothermal': 38,
-    'unknown': 700, // assume conventional
-    'other': 700 // same as 'unknown'. Here for backward compatibility
-}; // in gCo2eq/kWh
+var defaultCo2eqFootprint = { // in gCo2eq/kWh
+    'biomass': {
+      'co2eq': 230,
+      'source': defaultCo2eqSource
+    },
+    'coal': {
+      'co2eq': 820,
+      'source': defaultCo2eqSource
+    },
+    'gas': {
+      'co2eq': 490,
+      'source': defaultCo2eqSource
+    },
+    'hydro': {
+      'co2eq': 24,
+      'source': defaultCo2eqSource
+    },
+    'nuclear': {
+      'co2eq': 12,
+      'source': defaultCo2eqSource
+    },
+    'oil': {
+      'co2eq': 650,
+      'source': 'UK POST 2014' // UK Parliamentary Office of Science and Technology (2006) "Carbon footprint of electricity generation"
+    },
+    'solar': {
+      'co2eq': 45,
+      'source': defaultCo2eqSource
+    },
+    'wind': {
+      'co2eq': 12,
+      'source': defaultCo2eqSource
+    },
+    'geothermal': {
+      'co2eq': 38,
+      'source': defaultCo2eqSource
+    },
+    'unknown': {
+      'co2eq': 700, // assume conventional
+      'source': defaultCo2eqSource
+    },
+    'other': {
+      'co2eq': 700, // // same as 'unknown'. Here for backward compatibility
+      'source': defaultCo2eqSource
+    }
+};
 var defaultCo2eqSource = 'IPCC 2014';
 
 var countryCo2eqFootprint = {
@@ -50,13 +83,13 @@ var countryCo2eqFootprint = {
 };
 
 exports.footprintOf = function(productionMode, countryKey) {
-    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode], source: defaultCo2eqSource};
+    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['co2eq'], source: defaultCo2eqFootprint[productionMode]['source']};
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).value;
 };
 exports.sourceOf = function(productionMode, countryKey) {
-    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode], source: defaultCo2eqSource};
+    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['co2eq'], source: defaultCo2eqFootprint[productionMode]['source']};
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).source;
