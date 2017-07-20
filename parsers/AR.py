@@ -486,7 +486,7 @@ def get_thermal():
         text_only = webparser(t)
         if 'Estado' in text_only:
             for item in text_only:
-                if len(item) == 1:
+                if len(item) == 1 and item in string.ascii_letters:
                     text_only.remove(item)
         if 'En Reserva' in text_only:
             break
