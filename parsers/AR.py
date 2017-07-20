@@ -55,7 +55,7 @@ power_plant_type = {
                      'ARREDI01': 'gas',
                        'ARROHI': 'hydro',
                      'ATUCNUCL': 'nuclear',
-                     'ATU2NUCL': 'nuclear'    
+                     'ATU2NUCL': 'nuclear',    
                      'AVALTG21': 'gas',
                      'AVALTG22': 'gas',
                      'AVALTG23': 'gas',
@@ -192,7 +192,7 @@ power_plant_type = {
                      'LDLATG03': 'gas',
                      'LDLATG04': 'gas',
                      'LDLATV01': 'gas',
-                     'LEDETV01': 'biomass'
+                     'LEDETV01': 'biomass',
                      'LEVATG01': 'gas',
                      'LEVATG02': 'gas',
                      'LIBEDI01': 'gas',
@@ -225,7 +225,7 @@ power_plant_type = {
                      'MDPATG22': 'gas',
                      'MDPATG23': 'gas',
                      'MDPATG24': 'gas',
-                     'MDPATV08': 'gas'
+                     'MDPATV08': 'gas',
                      'MIR1DI01': 'gas',
                      'MJUADI01': 'gas',
                      'MMARTG01': 'gas',
@@ -244,7 +244,7 @@ power_plant_type = {
                        'NIH1HI': 'hydro',
                        'NIH4HI': 'hydro',
                      'NOMODI01': 'gas',
-                     'NPOMDI01': 'unknown'
+                     'NPOMDI01': 'unknown',
                      'NPUETV05': 'gas',
                      'NPUETV06': 'gas',
                      'OBERTG01': 'gas',
@@ -373,7 +373,7 @@ power_plant_type = {
                      'TUCUTV01': 'gas',
                        'TUNAHI': 'hydro',
                        'ULLUHI': 'hydro',
-                     'VANGDI01': 'oil'
+                     'VANGDI01': 'oil',
                      'VGADDI01': 'gas',
                      'VGESTG11': 'gas',
                      'VGESTG14': 'gas',
