@@ -40,7 +40,7 @@ power_plant_type = {
                      'AESPTG01': 'gas',
                      'AESPTG02': 'gas',
                      'AESPTV01': 'gas',
-                     'ALEMDI01': 'oil'
+                     'ALEMDI01': 'oil',
                        'ALICHI': 'hydro',
                      'ALOMDI01': 'gas',
                      'ALUMDI01': 'oil',
