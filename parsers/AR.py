@@ -497,17 +497,29 @@ def get_thermal():
     mapped_data = [power_plant_type.get(x,x) for x in formatted_data]
     
     find_totals = [i+1 for i,x in enumerate(mapped_data) if x == 'Totales ']
-    total_thermal_generation = sum([mapped_data[i] for i in find_totals])
+    thermal_generation = sum([mapped_data[i] for i in find_totals])
+    
     find_nuclear = [i+2 for i, x in enumerate(mapped_data) if x == 'nuclear']
-    total_nuclear_generation = sum([mapped_data[i] for i in find_nuclear])
-    #find_oil = [i+2 for i, x in enumerate(mapped_data) if x == 'oil']
-    #total_oil_generation = sum([mapped_data[i] for i in find_oil])
+    nuclear_generation = sum([mapped_data[i] for i in find_nuclear])
+    find_oil = [i+2 for i, x in enumerate(mapped_data) if x == 'oil']
+    oil_generation = sum([mapped_data[i] for i in find_oil])
+    find_coal = [i+2 for i, x in enumerate(mapped_data) if x == 'coal']
+    coal_generation = sum([mapped_data[i] for i in find_coal])
+    find_biomass = [i+2 for i, x in enumerate(mapped_data) if x == 'biomass']
+    biomass_generation = sum([mapped_data[i] for i in find_biomass])
+    find_gas = [i+2 for i, x in enumerate(mapped_data) if x == 'gas']
+    gas_generation = sum([mapped_data[i] for i in find_gas])
+  
+    unknown_generation = (thermal_generation - nuclear_generation - gas_generation \
+                          - oil_generation - coal_generation - biomass_generation)
 
-    #Assume thermal generation is gas unless specifically mapped to another type.
-    #https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina#Generation
-    total_gas_generation = total_thermal_generation - total_nuclear_generation
-
-    return {'gas': total_gas_generation, 'nuclear': total_nuclear_generation}
+    return {'gas': total_gas_generation, 
+            'nuclear': nuclear_generation,
+            'coal': coal_generation,
+            'unknown': unknown_generation,
+            'oil': oil_generation,
+            'biomass': biomass_generation
+           }
 
 
 
@@ -574,16 +586,16 @@ def fetch_production(country_code='AR'):
       'countryCode': country_code,
       'datetime': gdt['datetime'],
       'production': {
-          'biomass': None,
-          'coal': None,
+          'biomass': thermal['biomass'],
+          'coal': thermal['coal'],
           'gas': thermal['gas'],
           'hydro': hydro['hydro'],
           'nuclear': thermal['nuclear'],
-          'oil': None,
+          'oil': thermal['oil],
           'solar': None,
           'wind': None,
-          'geothermal': None,
-          'unknown': None
+          'geothermal': 0.0,
+          'unknown': thermal['unknown']
       },
       'storage': {
           'hydro': None,
