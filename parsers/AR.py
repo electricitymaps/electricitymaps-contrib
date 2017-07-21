@@ -630,7 +630,7 @@ def fetch_production(country_code='AR'):
           'gas': thermal['gas'],
           'hydro': hydro['hydro'],
           'nuclear': thermal['nuclear'],
-          'oil': thermal['oil],
+          'oil': thermal['oil'],
           'solar': None,
           'wind': None,
           'geothermal': 0.0,
