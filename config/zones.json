@@ -171,7 +171,13 @@
         
     },
     "PT": {
-        
+        "flag_file_name": "pt.png"
+    },
+    "PT-AC": {
+        "flag_file_name": "pt.png"
+    },
+    "PT-MA": {
+        "flag_file_name": "pt.png"
     },
     "RO": {
         
