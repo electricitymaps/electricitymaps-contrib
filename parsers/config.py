@@ -2,6 +2,7 @@ from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import ES_CN, ES_IB
+from parsers import ESIOS
 from parsers import IS
 from parsers import FO
 from parsers import FR
@@ -169,6 +170,7 @@ EXCHANGE_PARSERS = {
     'ES->FR':     ENTSOE.fetch_exchange,
     'ES->PT':     ENTSOE.fetch_exchange,
     'ES->ES-IB':  ES_IB.fetch_exchange,
+    'ES->MA':     ESIOS.fetch_exchange,
     # FI
     'FI->NO':     ENTSOE.fetch_exchange,
     'FI->RU':     ENTSOE.fetch_exchange,
