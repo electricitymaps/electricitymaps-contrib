@@ -552,7 +552,7 @@ def get_thermal():
     unknown_generation = (thermal_generation - nuclear_generation - gas_generation \
                           - oil_generation - coal_generation - biomass_generation)
 
-    return {'gas': total_gas_generation, 
+    return {'gas': gas_generation, 
             'nuclear': nuclear_generation,
             'coal': coal_generation,
             'unknown': unknown_generation,
