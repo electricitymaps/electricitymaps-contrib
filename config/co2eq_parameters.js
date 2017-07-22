@@ -4,47 +4,47 @@ var defaultCo2eqSource = 'IPCC 2014';
 
 var defaultCo2eqFootprint = { // in gCo2eq/kWh
     'biomass': {
-      'co2eq': 230,
+      'value': 230,
       'source': defaultCo2eqSource
     },
     'coal': {
-      'co2eq': 820,
+      'value': 820,
       'source': defaultCo2eqSource
     },
     'gas': {
-      'co2eq': 490,
+      'value': 490,
       'source': defaultCo2eqSource
     },
     'hydro': {
-      'co2eq': 24,
+      'value': 24,
       'source': defaultCo2eqSource
     },
     'nuclear': {
-      'co2eq': 12,
+      'value': 12,
       'source': defaultCo2eqSource
     },
     'oil': {
-      'co2eq': 650,
+      'value': 650,
       'source': 'UK POST 2014' // UK Parliamentary Office of Science and Technology (2006) "Carbon footprint of electricity generation"
     },
     'solar': {
-      'co2eq': 45,
+      'value': 45,
       'source': defaultCo2eqSource
     },
     'wind': {
-      'co2eq': 12,
+      'value': 12,
       'source': defaultCo2eqSource
     },
     'geothermal': {
-      'co2eq': 38,
+      'value': 38,
       'source': defaultCo2eqSource
     },
     'unknown': {
-      'co2eq': 700, // assume conventional
+      'value': 700, // assume conventional
       'source': defaultCo2eqSource
     },
     'other': {
-      'co2eq': 700, // // same as 'unknown'. Here for backward compatibility
+      'value': 700, // // same as 'unknown'. Here for backward compatibility
       'source': defaultCo2eqSource
     }
 };
@@ -84,13 +84,13 @@ var countryCo2eqFootprint = {
 };
 
 exports.footprintOf = function(productionMode, countryKey) {
-    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['co2eq'], source: defaultCo2eqFootprint[productionMode]['source']};
+    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['value'], source: defaultCo2eqFootprint[productionMode]['source']};
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).value;
 };
 exports.sourceOf = function(productionMode, countryKey) {
-    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['co2eq'], source: defaultCo2eqFootprint[productionMode]['source']};
+    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['value'], source: defaultCo2eqFootprint[productionMode]['source']};
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).source;
