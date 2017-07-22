@@ -484,7 +484,7 @@ def get_datetime():
     timesoup = BeautifulSoup(rt.content, 'html.parser')
     find_hour = timesoup.find("option", selected = "selected", value = "1" ).getText()
     at = arrow.now('UTC-3')
-    datetime = (at.replace(hour = int(find_hour), minute = 0, second = 0)).format('YYYY-MM-DD HH:mm:ss')
+    datetime = (at.replace(hour = int(find_hour), minute = 0, second = 0)).datetime
 
     return {'datetime': datetime}
 
@@ -639,7 +639,7 @@ def fetch_production(country_code='AR'):
       'storage': {
           'hydro': None,
       },
-      'source': 'portalweb.cammesa.com/Memnet1/default.aspx'
+      'source': 'portalweb.cammesa.com'
     }
 
     return production_mix
