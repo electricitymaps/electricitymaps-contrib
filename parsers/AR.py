@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 
 import arrow
 import string
@@ -467,7 +467,7 @@ def webparser(req):
 
     soup = BeautifulSoup(req.content, 'html.parser')
     figs = soup.find_all("div", class_="r11")
-    data_table = [str(tag.get_text()) for tag in figs]
+    data_table = [unicode(tag.get_text()) for tag in figs]
 
     return data_table
 
