@@ -472,7 +472,7 @@ def webparser(req):
     return data_table
 
 
-def get_datetime():
+def get_datetime(session=None):
     """
     Generation data is updated hourly.  Makes request then finds most recent hour available.
     Returns an arrow datetime object using UTC-3 for timezone and zero for minutes and seconds.
@@ -480,7 +480,8 @@ def get_datetime():
 
     #Argentina does not currently observe daylight savings time.  This may change from year to year!
     #https://en.wikipedia.org/wiki/Time_in_Argentina
-    rt = requests.get(url)
+    s = session or requests.Session()
+    rt = s.get(url)
     timesoup = BeautifulSoup(rt.content, 'html.parser')
     find_hour = timesoup.find("option", selected = "selected", value = "1" ).getText()
     at = arrow.now('UTC-3')
@@ -501,7 +502,7 @@ def dataformat(junk):
     return formatted
 
 
-def get_thermal():
+def get_thermal(session=None):
     """
     Requests thermal generation data then parses and sorts by type.  Nuclear is included.
     Returns a dictionary.
@@ -509,7 +510,7 @@ def get_thermal():
 
     #Need to persist session in order to get ControlID and ReportSession so we can send second request
     #for table data.  Both these variables change on each new request.
-    s = requests.Session()
+    s = session or requests.Session()
     r = s.get(url)
     pat = re.search("ControlID=[^&]*", r.text).group()
     spat = re.search("ReportSession=[^&]*", r.text).group()
@@ -562,10 +563,10 @@ def get_thermal():
 
 
 
-def get_hydro():
+def get_hydro(session=None):
     """Requests hydro generation data then parses, returns a dictionary."""
 
-    s = requests.Session()
+    s = session or requests.Session()
     r = s.get(hurl)
     pat = re.search("ControlID=[^&]*", r.text).group()
     spat = re.search("ReportSession=[^&]*", r.text).group()
@@ -590,7 +591,7 @@ def get_hydro():
 
 
 
-def fetch_production(country_code='AR'):
+def fetch_production(country_code='AR', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -618,9 +619,9 @@ def fetch_production(country_code='AR'):
       'source': 'mysource.com'
     }
     """
-    gdt = get_datetime()
-    thermal = get_thermal()
-    hydro = get_hydro()
+    gdt = get_datetime(session=None)
+    thermal = get_thermal(session=None)
+    hydro = get_hydro(session=None)
     production_mix = {
       'countryCode': country_code,
       'datetime': gdt['datetime'],
