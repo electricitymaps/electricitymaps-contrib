@@ -1,5 +1,7 @@
 var exports = module.exports = {};
 
+var defaultCo2eqSource = 'IPCC 2014';
+
 var defaultCo2eqFootprint = { // in gCo2eq/kWh
     'biomass': {
       'co2eq': 230,
@@ -46,7 +48,6 @@ var defaultCo2eqFootprint = { // in gCo2eq/kWh
       'source': defaultCo2eqSource
     }
 };
-var defaultCo2eqSource = 'IPCC 2014';
 
 var countryCo2eqFootprint = {
     'DE': function (productionMode) {
