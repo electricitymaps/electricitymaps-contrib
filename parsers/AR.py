@@ -13,10 +13,9 @@ import itertools
 #likely to change in the future.
 
 #TODO
-#Improve plant mapping for oil, coal and biomass.  Mention EMBALSE nuclear plant.
+#Improve plant mapping for oil, coal and biomass.
 #Understand if there is a way to get hydro storage.
-#Integrate price MW/MWh, seems to be present in data.
-#Research hydro sharing with Uruguay and Paraguay
+#Research hydro sharing with Uruguay and Paraguay.
 
 #Useful links.
 #https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
@@ -461,6 +460,7 @@ thurl = ('http://portalweb.cammesa.com/Reserved.ReportViewerWebControl.'
          '&ZoomMode=Percent&ZoomPct=100&ReloadDocMap='
          'true&SearchStartPage=0&LinkTarget=_top')
 
+cammesa_url = 'http://portalweb.cammesa.com/default.aspx'
 
 def webparser(req):
     """Takes content from webpage and returns all text as a list of strings"""
@@ -470,6 +470,46 @@ def webparser(req):
     data_table = [unicode(tag.get_text()) for tag in figs]
 
     return data_table
+
+def fetch_price(country_code='AR', session = None):
+    """
+    Requests the last known power price of a given country
+    Arguments:
+    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A dictionary in the form:
+    {
+      'countryCode': 'FR',
+      'currency': EUR,
+      'datetime': '2017-01-01T00:00:00Z',
+      'price': 0.0,
+      'source': 'mysource.com'
+    }
+      """
+    s = session or requests.Session()
+    price_req = s.get(cammesa_url)
+    psoup = BeautifulSoup(price_req.content,'html.parser')
+    find_price = psoup.find('td', class_ = "cssFuncionesLeft", align = "left")
+    price_text = find_price.getText()
+    
+    #Strip all whitespace and isolate number.  Convert to float.
+    price_nws = "".join(price_text.split())
+    lprice = price_nws.rpartition(':')[2]
+    rprice = lprice.split('[')[0]
+    price = float(rprice.replace(',','.'))
+    
+    datetime = arrow.now('UTC-3').datetime
+    
+    data = {
+            'countryCode': country_code,
+            'currency': 'ARS',
+            'datetime': datetime,
+            'price': price,
+            'source': 'portalweb.cammesa.com'
+           }
+    
+    return data
 
 
 def get_datetime(session=None):
@@ -651,4 +691,6 @@ if __name__ ==  '__main__':
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
     
