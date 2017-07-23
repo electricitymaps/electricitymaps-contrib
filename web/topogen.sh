@@ -8,43 +8,53 @@ COUNTRIES_FILENAME=ne_${RESOLUTION}_admin_0_map_subunits
 STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces_lakes
 STATES_FILTER="['CAN', 'AUS']"
 
-# To install tools:
-# npm install -g d3-geo-projection ndjson-cli shapefile topojson
+NODE_MODULES_PATH="node_modules/.bin"
 
-# mkdir -p build
-# curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip http://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${COUNTRIES_FILENAME}.zip
-# unzip -od build build/${COUNTRIES_FILENAME}.zip
-# curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip http://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${STATES_FILENAME}.zip
-# unzip -od build build/${STATES_FILENAME}.zip
+mkdir -p build
+
+if [ ! -e "build/${COUNTRIES_FILENAME}.zip" ]; then
+    echo "Downloading ${COUNTRIES_FILENAME}.zip"
+    curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip http://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${COUNTRIES_FILENAME}.zip
+    unzip -od build build/${COUNTRIES_FILENAME}.zip
+fi
+
+if [ ! -e "build/${STATES_FILENAME}.zip" ]; then
+    curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip http://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${STATES_FILENAME}.zip
+    unzip -od build build/${STATES_FILENAME}.zip
+fi
+
 
 # Extract metadata
-(shp2json -n build/${COUNTRIES_FILENAME}.shp \
-  | ndjson-map 'd.properties' \
-)> world_countries_props.json
-(shp2json -n build/${STATES_FILENAME}.shp \
-  | ndjson-map 'd.properties' \
-)> world_states_props.json
+echo "Extract metadata"
+("$NODE_MODULES_PATH/shp2json" -n build/${COUNTRIES_FILENAME}.shp \
+  | "$NODE_MODULES_PATH/ndjson-map" 'd.properties' \
+)> build/world_countries_props.json
 
-# Clear tmp.json
-> build/tmp.json
+("$NODE_MODULES_PATH/shp2json" -n build/${STATES_FILENAME}.shp \
+  | "$NODE_MODULES_PATH/ndjson-map" 'd.properties' \
+)> build/world_states_props.json
+
 # Parse countries
-echo 'parsing countries..'
-(shp2json -n build/${COUNTRIES_FILENAME}.shp \
-  | ndjson-map '(d.id = (d.properties.ISO_A3 != "-99") ? d.properties.ISO_A3 : d.properties.ADM0_A3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.SU_A3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
-  | ndjson-filter 'd.id' \
-)>> build/tmp.json
+echo 'Parsing countries..'
+("$NODE_MODULES_PATH/shp2json" -n build/${COUNTRIES_FILENAME}.shp \
+  | "$NODE_MODULES_PATH/ndjson-map" '(d.id = (d.properties.ISO_A3 != "-99") ? d.properties.ISO_A3 : d.properties.ADM0_A3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.SU_A3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
+  | "$NODE_MODULES_PATH/ndjson-filter" 'd.id' \
+)> build/tmp.json
+
 # Parse states
-echo 'parsing states..'
-(shp2json -n build/${STATES_FILENAME}.shp \
-  | ndjson-map '(d.id = d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
-  | ndjson-filter "d.id && ${STATES_FILTER}.indexOf(d.id) != -1"
+echo 'Parsing states..'
+("$NODE_MODULES_PATH/shp2json" -n build/${STATES_FILENAME}.shp \
+  | "$NODE_MODULES_PATH/ndjson-map" '(d.id = d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
+  | "$NODE_MODULES_PATH/ndjson-filter" "d.id && ${STATES_FILTER}.indexOf(d.id) != -1"
 )>> build/tmp.json
+
 # Merge & simplify
-echo 'merging and simplifying..'
-(geo2topo -q 1e5 -n countries=<(cat build/tmp.json | geostitch -n) \
-  | topomerge land=countries \
-  | toposimplify -f -p 0.01
+echo 'Merging and simplifying..'
+("$NODE_MODULES_PATH/geo2topo" -q 1e5 -n countries=<(cat build/tmp.json | "$NODE_MODULES_PATH/geostitch" -n) \
+  | "$NODE_MODULES_PATH/topomerge" land=countries \
+  | "$NODE_MODULES_PATH/toposimplify" -f -p 0.01
 )> app/world.json
-echo '..done'
+
+echo 'Done'
 
 #rm -rvf build
