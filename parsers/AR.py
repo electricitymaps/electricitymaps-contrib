@@ -491,13 +491,19 @@ def fetch_price(country_code='AR', session = None):
     price_req = s.get(cammesa_url)
     psoup = BeautifulSoup(price_req.content,'html.parser')
     find_price = psoup.find('td', class_ = "cssFuncionesLeft", align = "left")
-    price_text = find_price.getText()
     
-    #Strip all whitespace and isolate number.  Convert to float.
-    price_nws = "".join(price_text.split())
-    lprice = price_nws.rpartition(':')[2]
-    rprice = lprice.split('[')[0]
-    price = float(rprice.replace(',','.'))
+    try:
+        price_text = find_price.getText()
+
+        #Strip all whitespace and isolate number.  Convert to float.
+        price_nws = "".join(price_text.split())
+        lprice = price_nws.rpartition(':')[2]
+        rprice = lprice.split('[')[0]
+        price = float(rprice.replace(',','.'))
+    
+    except AttributeError, ValueError:
+        #Price element not present or no price stated.
+        price = None
     
     datetime = arrow.now('UTC-3').datetime
     
