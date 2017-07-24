@@ -1,3 +1,4 @@
+from parsers import AR
 from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
@@ -55,6 +56,7 @@ CONSUMPTION_PARSERS = {
     'SK': ENTSOE.fetch_consumption,
 }
 PRODUCTION_PARSERS = {
+    'AR': AR.fetch_production,
     'AT': ENTSOE.fetch_production,
     'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
