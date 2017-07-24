@@ -22,7 +22,6 @@ def fetch_consumption(country_code='IN', session=None):
 
     ## Convert GigaWatts to MegaWatts
     demand = round(float(clean_demand) * 1000, 2)
-    print demand
 
     data = {
         'countryCode': country_code,

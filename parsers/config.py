@@ -3,6 +3,7 @@ from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import ES_CN, ES_IB
+from parsers import IN
 from parsers import IS
 from parsers import FO
 from parsers import FR
@@ -40,6 +41,7 @@ CONSUMPTION_PARSERS = {
     'GR': ENTSOE.fetch_consumption,
     'HU': ENTSOE.fetch_consumption,
     'IE': ENTSOE.fetch_consumption,
+    'IN': IN.fetch_consumption,
     'IT': ENTSOE.fetch_consumption,
     'LT': ENTSOE.fetch_consumption,
     'LU': ENTSOE.fetch_consumption,
