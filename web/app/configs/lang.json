@@ -166,6 +166,7 @@
         "emissionsImportedFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
         "zoneShortName": {
+            "AD": "Andorra",
             "AL": "Albania",
             "AM": "Armenia",
             "AT": "Austria",
@@ -291,7 +292,9 @@
         "emissionsImportedFrom": "{1} % de las emissiones en <img id=\"country-flag\"></img> <b>{2}</b> proviene de <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
         "zoneShortName": {
+            "AD": "Andorra",
             "AL": "Albania",
+            "AM": "Armenia",
             "AT": "Austria",
             "AR": "Argentina",
             "BA": "Bosnia y Herzegovina",
