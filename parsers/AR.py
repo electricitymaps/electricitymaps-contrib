@@ -505,7 +505,7 @@ def fetch_price(country_code='AR', session = None):
         #Price element not present or no price stated.
         price = None
     
-    datetime = arrow.now('UTC-3').datetime
+    datetime = arrow.now('UTC-3').floor('hour').datetime
     
     data = {
             'countryCode': country_code,
