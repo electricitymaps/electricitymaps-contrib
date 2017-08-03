@@ -416,6 +416,12 @@
             "oil": 2251
         }
     },
+    "SG": {
+        "capacity": {
+            "gas": 10344,
+            "biomass": 257
+        }
+    },
     "SI": {
         "capacity": {
             "biomass": 57,
