@@ -10,6 +10,7 @@ from parsers import ENTSOE
 from parsers import NI
 from parsers import NZ
 from parsers import PE
+from parsers import SG
 from parsers import TR
 from parsers import TW
 from parsers import UA
@@ -92,6 +93,7 @@ PRODUCTION_PARSERS = {
     'RO': ENTSOE.fetch_production,
     'RS': ENTSOE.fetch_production,
     'SE': ENTSOE.fetch_production,
+    'SG': SG.fetch_production,
     'SI': ENTSOE.fetch_production,
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
@@ -276,6 +278,7 @@ PRICE_PARSERS = {
     'RO': ENTSOE.fetch_price,
     'RS': ENTSOE.fetch_price,
     'SE': ENTSOE.fetch_price,
+    'SG': SG.fetch_price,
     'SI': ENTSOE.fetch_price,
     'SK': ENTSOE.fetch_price,
     # Canada
