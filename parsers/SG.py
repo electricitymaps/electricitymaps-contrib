@@ -8,9 +8,6 @@ import arrow
 import requests
 
 
-# REMAINING TODO: integrate in other files
-
-
 TIMEZONE = 'Asia/Singapore'
 
 
