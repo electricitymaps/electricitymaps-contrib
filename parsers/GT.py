@@ -22,10 +22,9 @@ def fetch_production(country_code='GT', session=None):
     #output frame
     data = {
         'countryCode': country_code,
-        'datetime': {},
         'production': {},
         'storage': {},
-        'source': 'www.amm.org.gt/',
+        'source': 'www.amm.org.gt',
     }
     #Get actual date
     now = arrow.now(tz=tz_gt)
@@ -34,7 +33,7 @@ def fetch_production(country_code='GT', session=None):
     url_init = 'http://wl.amm.org.gt/AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/' 
     url = url_init + formatted_date
     #Request and rearange in DF
-    r = requests.session()
+    r = session or requests.session()
     response = r.get(url)
     obj = response.json()
     obj_df = pd.DataFrame(obj)
@@ -56,9 +55,8 @@ def fetch_consumption(country_code='GT', session=None):
     #output frame
     data = {
         'countryCode': country_code,
-        'datetime': {},
         'consumption': {},
-        'source': 'www.amm.org.gt/',
+        'source': 'www.amm.org.gt',
     }
     #Get actual date
     now = arrow.now(tz=tz_gt)
@@ -67,7 +65,7 @@ def fetch_consumption(country_code='GT', session=None):
     url_init = 'http://wl.amm.org.gt/AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/' 
     url = url_init + formatted_date
     #Request and rearange in DF
-    r = requests.session()
+    r = session or requests.session()
     response = r.get(url)
     obj = response.json()
     obj_df = pd.DataFrame(obj)
