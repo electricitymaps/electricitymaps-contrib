@@ -84,13 +84,13 @@ var countryCo2eqFootprint = {
 };
 
 exports.footprintOf = function(productionMode, countryKey) {
-    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['value'], source: defaultCo2eqFootprint[productionMode]['source']};
+    var defaultFootprint = defaultCo2eqFootprint[productionMode];
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).value;
 };
 exports.sourceOf = function(productionMode, countryKey) {
-    var defaultFootprint = {value: defaultCo2eqFootprint[productionMode]['value'], source: defaultCo2eqFootprint[productionMode]['source']};
+    var defaultFootprint = defaultCo2eqFootprint[productionMode];
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).source;
