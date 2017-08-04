@@ -62,6 +62,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Guatemala : [AMM](http://www.amm.org.gt)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Iceland: [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
