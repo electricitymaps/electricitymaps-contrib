@@ -7,6 +7,7 @@ from parsers import IS
 from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
+from parsers import GT
 from parsers import NI
 from parsers import NZ
 from parsers import PE
