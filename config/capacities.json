@@ -1,4 +1,15 @@
-{
+{   
+    "AR": {
+        "capacity": {
+            "gas": 18930,
+            "hydro": 11170,
+            "nuclear": 1755,
+            "oil": 1293,
+            "solar": 8,
+            "wind": 187
+        }
+    },
+    
     "AT": {
         "capacity": {
             "biomass": 393,
@@ -403,6 +414,12 @@
             "biomass": 220,
             "gas": 698,
             "oil": 2251
+        }
+    },
+    "SG": {
+        "capacity": {
+            "gas": 10344,
+            "biomass": 257
         }
     },
     "SI": {

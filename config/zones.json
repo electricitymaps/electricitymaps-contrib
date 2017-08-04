@@ -1,9 +1,15 @@
 {
+    "AD": {
+
+    },
     "AL": {
         
     },
     "AT": {
         
+    },
+    "AR": {
+
     },
     "AUS-ACT": {
         "flag_file_name": "au.png"
@@ -56,7 +62,7 @@
     "CA-NB": {
         "flag_file_name": "ca.png"
     },
-    "CA-NF": {
+    "CA-NL": {
         "flag_file_name": "ca.png"
     },
     "CA-NS": {
@@ -171,7 +177,13 @@
         
     },
     "PT": {
-        
+        "flag_file_name": "pt.png"
+    },
+    "PT-AC": {
+        "flag_file_name": "pt.png"
+    },
+    "PT-MA": {
+        "flag_file_name": "pt.png"
     },
     "RO": {
         

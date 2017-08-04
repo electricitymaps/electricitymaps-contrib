@@ -7,8 +7,9 @@ var BUNDLE_HASH = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.j
 // TODO:
 // Currently, those variables are duplicated from server.js
 // We should instead have a central configuration file in the `config` folder
-var locales = ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 var LOCALE_TO_FB_LOCALE = {
+    'ar': 'ar_AR',
     'da': 'da_DK',
     'de': 'de_DE',
     'en': 'en_US',
@@ -23,6 +24,7 @@ var LOCALE_TO_FB_LOCALE = {
     'zh-tw': 'zh_TW'
 };
 var SUPPORTED_FB_LOCALES = [
+    'ar_AR',
     'da_DK',
     'de_DE',
     'es_ES',

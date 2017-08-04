@@ -1,3 +1,4 @@
+from parsers import AR
 from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
@@ -9,6 +10,7 @@ from parsers import ENTSOE
 from parsers import NI
 from parsers import NZ
 from parsers import PE
+from parsers import SG
 from parsers import TR
 from parsers import TW
 from parsers import UA
@@ -55,6 +57,7 @@ CONSUMPTION_PARSERS = {
     'SK': ENTSOE.fetch_consumption,
 }
 PRODUCTION_PARSERS = {
+    'AR': AR.fetch_production,
     'AT': ENTSOE.fetch_production,
     'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
@@ -90,6 +93,7 @@ PRODUCTION_PARSERS = {
     'RO': ENTSOE.fetch_production,
     'RS': ENTSOE.fetch_production,
     'SE': ENTSOE.fetch_production,
+    'SG': SG.fetch_production,
     'SI': ENTSOE.fetch_production,
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
@@ -274,6 +278,7 @@ PRICE_PARSERS = {
     'RO': ENTSOE.fetch_price,
     'RS': ENTSOE.fetch_price,
     'SE': ENTSOE.fetch_price,
+    'SG': SG.fetch_price,
     'SI': ENTSOE.fetch_price,
     'SK': ENTSOE.fetch_price,
     # Canada
