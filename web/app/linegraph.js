@@ -66,7 +66,7 @@ LineGraph.prototype.data = function (arg) {
     this.datetimes = data.map(this.xAccessor);
 
     // Update x-domain based on data
-    if (this._data) {
+    if (this._data && this._data.length) {
         x.domain(
             d3.extent([
               this.xAccessor(this._data[0]),

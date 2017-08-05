@@ -50,7 +50,7 @@ exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, ar
 };
 
 exports.zoomend = function() {
-    if (hidden) { return; }
+    if (hidden || !grib1) { return; }
     // Control the rendering
     var gaussianBlur = true;
     var continuousScale = true;
