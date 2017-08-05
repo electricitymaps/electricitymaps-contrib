@@ -29,7 +29,7 @@ def fetch_hourly_production(country_code, obj, hour, date):
     }
     
     #Fill datetime variable
-    data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(hour=hour).datetime   
+    data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime   
     
     #First add 'Biomasa' and 'Biogas' together to make 'biomass' variable
     data['production']['biomass'] = obj[obj['tipo'] == 'Biomasa'].potencia.iloc[0] + obj[obj['tipo'] == 'Biogas'].potencia.iloc[0]
@@ -86,7 +86,7 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
         'source': 'www.amm.org.gt',
     }
     #Fill datetime variable
-    data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(hour=hour).datetime   
+    data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime   
     #Fill consumption variable
     data['consumption'] = obj[obj['tipo'] == 'Dem SNI'].potencia.iloc[0]
     
