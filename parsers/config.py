@@ -7,6 +7,7 @@ from parsers import IS
 from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
+from parsers import GT
 from parsers import NI
 from parsers import NZ
 from parsers import PE
@@ -39,6 +40,7 @@ CONSUMPTION_PARSERS = {
     'GB': ENTSOE.fetch_consumption,
     'GB-NIR': ENTSOE.fetch_consumption,
     'GR': ENTSOE.fetch_consumption,
+    'GT': GT.fetch_consumption,
     'HU': ENTSOE.fetch_consumption,
     'IE': ENTSOE.fetch_consumption,
     'IT': ENTSOE.fetch_consumption,
@@ -76,6 +78,7 @@ PRODUCTION_PARSERS = {
     'GB': ENTSOE.fetch_production,
     'GB-NIR': ENTSOE.fetch_production,
     'GR': ENTSOE.fetch_production,
+    'GT': GT.fetch_production,
     'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
     'IS': IS.fetch_production,
