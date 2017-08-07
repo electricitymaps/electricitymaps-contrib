@@ -11,8 +11,7 @@ def fetch_exchange(country_code1='ES', country_code2='MA', session=None):
     ## Get ESIOS token
     token = environ.get('ESIOS_TOKEN', "")
     if not token:
-        print '[ERROR]: ESIOS Parser require access token'
-        return None
+        raise Exception("ESIOS Parser require access token")
 
     ses = session or requests.Session()
 
@@ -31,14 +30,12 @@ def fetch_exchange(country_code1='ES', country_code2='MA', session=None):
 
     response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
-        print '[WARNING]: ESIOS Parser Response code:', response.status_code
-        return None
+        raise Exception('ESIOS Parser Response code: {0}'.format(response.status_code))
 
     json = response.json()
     values = json['indicator']['values']
     if not values:
-        print '[WARNING]: ESIOS Parser no values received'
-        return None
+        raise Exception('ESIOS Parser no values received')
     else:
         # Get last value in datasource
         value = values[len(values) - 1]
