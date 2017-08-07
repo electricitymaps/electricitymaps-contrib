@@ -22,7 +22,7 @@ def fetch_exchange(country_code1='ES', country_code2='MA', session=None):
 
     ## Request query url
     utc = arrow.utcnow()
-    start_date = utc.shift(hours=-1).floor('hour').isoformat()
+    start_date = utc.shift(hours=-24).floor('hour').isoformat()
     end_date = utc.ceil('hour').isoformat()
     dates = {'start_date': start_date, 'end_date': end_date}
     query = urllib.urlencode(dates)
@@ -37,19 +37,23 @@ def fetch_exchange(country_code1='ES', country_code2='MA', session=None):
     if not values:
         raise Exception('ESIOS Parser no values received')
     else:
-        # Get last value in datasource
-        value = values[len(values) - 1]
-        datetime = arrow.get(value['datetime_utc']).datetime
-        # Datasource negative value is exporting, positive value is importing
-        netFlow = -value['value']
+        data = []
         sorted_country_codes = sorted([country_code1, country_code2])
 
-        data = {
-            'sortedCountryCodes': '->'.join(sorted_country_codes),
-            'datetime': datetime,
-            'netFlow': netFlow if country_code1 == sorted_country_codes[0] else -1 * netFlow,
-            'source': 'api.esios.ree.es',
-        }
+        for value in values:
+            # Get last value in datasource
+            datetime = arrow.get(value['datetime_utc']).datetime
+            # Datasource negative value is exporting, positive value is importing
+            netFlow = -value['value']
+
+            value_data = {
+                'sortedCountryCodes': '->'.join(sorted_country_codes),
+                'datetime': datetime,
+                'netFlow': netFlow if country_code1 == sorted_country_codes[0] else -1 * netFlow,
+                'source': 'api.esios.ree.es',
+            }
+
+            data.append(value_data)
 
         return data
 
