@@ -271,6 +271,18 @@
             "solar": 2441
         }
     },
+    "GT": {
+        "capacity": {
+            "biomass": 1025.009,
+            "coal": 584.7,
+            "gas": 250.85,
+            "geothermal": 49.2,
+            "hydro": 1417.043,
+            "oil": 711.218,
+            "solar": 91,
+            "wind": 75.9 
+        }
+    },
     "HU": {
         "capacity": {
             "biomass": 274,
