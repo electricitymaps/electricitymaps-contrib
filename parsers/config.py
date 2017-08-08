@@ -3,14 +3,17 @@ from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import ES_CN, ES_IB
+from parsers import ESIOS
 from parsers import IN
 from parsers import IS
 from parsers import FO
 from parsers import FR
 from parsers import ENTSOE
+from parsers import GT
 from parsers import NI
 from parsers import NZ
 from parsers import PE
+from parsers import SG
 from parsers import TR
 from parsers import TW
 from parsers import UA
@@ -39,6 +42,7 @@ CONSUMPTION_PARSERS = {
     'GB': ENTSOE.fetch_consumption,
     'GB-NIR': ENTSOE.fetch_consumption,
     'GR': ENTSOE.fetch_consumption,
+    'GT': GT.fetch_consumption,
     'HU': ENTSOE.fetch_consumption,
     'IE': ENTSOE.fetch_consumption,
     'IN': IN.fetch_consumption,
@@ -77,6 +81,7 @@ PRODUCTION_PARSERS = {
     'GB': ENTSOE.fetch_production,
     'GB-NIR': ENTSOE.fetch_production,
     'GR': ENTSOE.fetch_production,
+    'GT': GT.fetch_production,
     'HU': ENTSOE.fetch_production,
     'IE': ENTSOE.fetch_production,
     'IS': IS.fetch_production,
@@ -94,6 +99,7 @@ PRODUCTION_PARSERS = {
     'RO': ENTSOE.fetch_production,
     'RS': ENTSOE.fetch_production,
     'SE': ENTSOE.fetch_production,
+    'SG': SG.fetch_production,
     'SI': ENTSOE.fetch_production,
     'SK': ENTSOE.fetch_production,
     'TR': TR.fetch_production,
@@ -173,6 +179,7 @@ EXCHANGE_PARSERS = {
     'ES->FR':     ENTSOE.fetch_exchange,
     'ES->PT':     ENTSOE.fetch_exchange,
     'ES->ES-IB':  ES_IB.fetch_exchange,
+    'ES->MA':     ESIOS.fetch_exchange,
     # FI
     'FI->NO':     ENTSOE.fetch_exchange,
     'FI->RU':     ENTSOE.fetch_exchange,
@@ -278,6 +285,7 @@ PRICE_PARSERS = {
     'RO': ENTSOE.fetch_price,
     'RS': ENTSOE.fetch_price,
     'SE': ENTSOE.fetch_price,
+    'SG': SG.fetch_price,
     'SI': ENTSOE.fetch_price,
     'SK': ENTSOE.fetch_price,
     # Canada
