@@ -66,7 +66,7 @@ PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
     'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
-    'B0': BO.fetch_production,
+    'BO': BO.fetch_production,
     'BG': ENTSOE.fetch_production,
     'CH': ENTSOE.fetch_production,
     'CZ': ENTSOE.fetch_production,
