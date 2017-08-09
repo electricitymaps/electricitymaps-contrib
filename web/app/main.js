@@ -180,6 +180,13 @@ window.twttr = (function(d, s, id) {
     return t;
 }(document, "script", "twitter-wjs"));
 
+twttr.ready(function(e) {
+    twttr.events.bind('click', function(event) {
+        // event.region is {tweet,follow}
+        trackAnalyticsEvent(event.region);
+    })
+})
+
 // Facebook
 window.fbAsyncInit = function() {
     FB.init({
