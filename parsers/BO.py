@@ -68,7 +68,7 @@ def fetch_hourly_production(country_code, obj, hour, date):
     return data
 
 
-def fetch_production(country_code='GT', session=None):
+def fetch_production(country_code='BO', session=None):
     #Define output frame
     data = [dict() for h in range(24)]
     
