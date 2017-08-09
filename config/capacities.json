@@ -171,6 +171,17 @@
             "wind": 4845
         }
     },
+    "DO": {
+        "capacity": {
+            "biomass": 30,
+            "coal": 314,
+            "gas": 722,
+            "hydro": 610,
+            "oil": 2200,
+            "solar": 3,
+            "wind": 85
+        }
+    },
     "EE": {
         "capacity": {
             "biomass": 97,
