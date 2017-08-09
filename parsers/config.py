@@ -1,6 +1,7 @@
 from parsers import AR
 from parsers import AU
 from parsers import AU_WA
+from parsers import BO
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import ES_CN, ES_IB
 from parsers import ESIOS
@@ -64,6 +65,7 @@ PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
     'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
+    'B0': BO.fetch_production,
     'BG': ENTSOE.fetch_production,
     'CH': ENTSOE.fetch_production,
     'CZ': ENTSOE.fetch_production,
@@ -299,6 +301,7 @@ PRICE_PARSERS = {
 
 GENERATION_FORECAST_PARSERS = {
     'DK': ENTSOE.fetch_generation_forecast
+    'BO': BO.fetch_generation_forecast
 }
 
 EXCHANGE_FORECAST_PARSERS = {
