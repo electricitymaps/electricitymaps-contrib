@@ -184,6 +184,9 @@ twttr.ready(function(e) {
     twttr.events.bind('click', function(event) {
         // event.region is {tweet,follow}
         trackAnalyticsEvent(event.region);
+        if(typeof ga !== 'undefined') {
+            ga('send', 'social', 'twitter', event.region);
+        }
     })
 })
 
@@ -199,6 +202,9 @@ window.fbAsyncInit = function() {
         // This will happen when they like the page
         if (e == 'https://www.facebook.com/tmrowco') {
             trackAnalyticsEvent('like');
+            if(typeof ga !== 'undefined') {
+                ga('send', 'social', 'facebook', 'like', e);
+            }
         }
     })
     FB.Event.subscribe('edge.remove', function(e) {
@@ -274,7 +280,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Mixpanel error: ' + err); }
         try {
             if(typeof ga !== 'undefined')
-                ga('send', eventName);
+                ga('send', 'event', 'page', eventName);
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
