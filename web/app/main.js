@@ -192,8 +192,21 @@ window.fbAsyncInit = function() {
     FB.init({
         appId      : '1267173759989113',
         xfbml      : true,
-        version    : 'v2.8'
+        version    : 'v2.10'
     });
+
+    FB.Event.subscribe('edge.create', function(e) {
+        // This will happen when they like the page
+        if (e == 'https://www.facebook.com/tmrowco') {
+            trackAnalyticsEvent('like');
+        }
+    })
+    FB.Event.subscribe('edge.remove', function(e) {
+        // This will happen when they unlike the page
+        if (e == 'https://www.facebook.com/tmrowco') {
+            trackAnalyticsEvent('unlike');
+        }
+    })
 };
 
 (function(d, s, id){
