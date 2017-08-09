@@ -302,7 +302,7 @@ PRICE_PARSERS = {
 }
 
 GENERATION_FORECAST_PARSERS = {
-    'DK': ENTSOE.fetch_generation_forecast
+    'DK': ENTSOE.fetch_generation_forecast,
     'BO': BO.fetch_generation_forecast
 }
 
