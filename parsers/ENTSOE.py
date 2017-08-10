@@ -70,6 +70,12 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'TR': '10YTR-TEIAS----W',
     'UA': '10YUA-WEPS-----0'
 }
+
+# Some exchanges require specific domains
+ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
+    'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869']
+}
+
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     if now is None: now = arrow.utcnow()
     params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
@@ -414,8 +420,13 @@ def fetch_production(country_code, session=None, now=None):
 
 def fetch_exchange(country_code1, country_code2, session=None, now=None):
     if not session: session = requests.session()
-    domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
-    domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
+    sorted_country_codes = sorted([country_code1, country_code2])
+    key = '->'.join(sorted_country_codes)
+    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
+        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
+    else:
+        domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
+        domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
     # Create a hashmap with key (datetime)
     exchange_hashmap = {}
     # Grab exchange
@@ -434,7 +445,6 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
                 exchange_hashmap[datetimes[i]] = quantities[i]
 
     # Remove all dates in the future
-    sorted_country_codes = sorted([country_code1, country_code2])
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
     exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
     if not len(exchange_dates): return None
@@ -442,7 +452,7 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedCountryCodes': '->'.join(sorted_country_codes),
+            'sortedCountryCodes': key,
             'datetime': exchange_date.datetime,
             'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
             'source': 'entsoe.eu'
