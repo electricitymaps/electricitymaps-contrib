@@ -47,8 +47,6 @@ POWER_PLANTS = {
     u'Garita': 'hydro',
     u'Guápiles': 'oil',
     u'Hidrozarcas': 'hydro',
-    u'Intercambio Norte': 'unknown',
-    u'Intercambio Sur': 'unknown',
     u'La Esperanza (CoopeL)': 'hydro',
     u'La Joya': 'hydro',
     u'Los Negros': 'hydro',
@@ -97,7 +95,6 @@ POWER_PLANTS = {
     u'Vientos de Miramar': 'wind',
     u'Vientos del Este': 'wind',
     u'Volcán': 'hydro',
-    u'Total': None,
 }
 
 
@@ -115,8 +112,7 @@ def empty_record(country_code):
             'solar': 0.0,
             'wind': 0.0,
             'geothermal': 0.0,
-            'unknown': 0.0,
-            None: 0.0
+            'unknown': 0.0
         },
         'storage': {},
         'source': 'grupoice.com'
@@ -125,6 +121,7 @@ def empty_record(country_code):
 
 def df_to_data(country_code, day, df):
     df = df.dropna(axis=1, how='any')
+    df.drop([u'Intercambio Sur', u'Intercambio Norte', u'Total'], inplace=True)
 
     data = []
     hours = 0
@@ -134,7 +131,7 @@ def df_to_data(country_code, day, df):
             current = len(data) - 1
             source = POWER_PLANTS[index]
             data[current]['datetime'] = day.replace(hours=hours).datetime
-            data[current]['production'][source] += value
+            data[current]['production'][source] += max(0.0, value)
         hours += 1
     return data
 
