@@ -40,6 +40,13 @@
             "wind": 691
         }
     },
+    "BO": {
+        "capacity": {
+            "hydro": 483.22,
+            "unknown" : 1344.55,
+            "wind": 27 
+        }
+    },
     "CA-BC": {
         "capacity": {
             "hydro": 15004,
