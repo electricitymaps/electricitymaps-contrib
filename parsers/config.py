@@ -160,7 +160,7 @@ EXCHANGE_PARSERS = {
     'CH->IT':     ENTSOE.fetch_exchange,
     # CR
     'CR->NI':     NI.fetch_exchange,
-    'CR->PAN':    CR.fetch_exchange,
+    'CR->PA':     CR.fetch_exchange,
     # CZ
     'CZ->SK':     ENTSOE.fetch_exchange,
     'CZ->PL':     ENTSOE.fetch_exchange,

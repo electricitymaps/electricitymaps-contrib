@@ -189,7 +189,7 @@ def fetch_exchange(country_code1='CR', country_code2='NI', session=None):
 
     if sorted_country_codes == 'CR->NI':
         flow = df['NICR'][0]
-    elif sorted_country_codes == 'CR->PAN':
+    elif sorted_country_codes == 'CR->PA':
         flow = -1 * df['CRPA'][0]
     else:
         raise NotImplementedError('This exchange pair is not implemented')
