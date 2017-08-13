@@ -170,6 +170,11 @@ exports.addExchangesConfiguration = function(exchanges) {
         lonlat: [27.468803, 58.545189],
         rotation: 90
     }
+    // ES
+    exchanges['ES->MA'] = {
+        lonlat: [-5.614929, 35.952597],
+        rotation: 180
+    }
     // FI
     exchanges['FI->NO'] = {
         lonlat: [25.351580, 68.862684],
