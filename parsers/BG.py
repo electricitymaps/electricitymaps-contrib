@@ -67,6 +67,7 @@ def fetch_production(country_code='BG', session=None):
                     replace(hour=int(time[0]), minute=int(time[1]), second=int(time[2]))
             except ValueError, e:
                 print str(e)
+                pass
     if not datetime:
         datetime = arrow.now('Europe/Sofia')
 
