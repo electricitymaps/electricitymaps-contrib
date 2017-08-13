@@ -61,8 +61,12 @@ def fetch_production(country_code='BG', session=None):
     local_time = soup.find(id='lblTecDate')
     if local_time:
         time = local_time.string.split(':')
-        if len(time) == 2:
-            datetime = arrow.now('Europe/Sofia').floor('day').replace(hour=time[0], minute=time[1])
+        if len(time) == 3:
+            try:
+                datetime = arrow.now('Europe/Sofia').floor('day').\
+                    replace(hour=int(time[0]), minute=int(time[1]), second=int(time[2]))
+            except ValueError, e:
+                print str(e)
     if not datetime:
         datetime = arrow.now('Europe/Sofia')
 
