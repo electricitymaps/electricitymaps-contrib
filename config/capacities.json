@@ -164,6 +164,17 @@
             "wind": 4845
         }
     },
+    "DO": {
+        "capacity": {
+            "biomass": 30,
+            "coal": 314,
+            "gas": 722,
+            "hydro": 610,
+            "oil": 2200,
+            "solar": 3,
+            "wind": 85
+        }
+    },
     "EE": {
         "capacity": {
             "biomass": 97,
@@ -258,6 +269,18 @@
             "gas": 5396,
             "wind": 1875,
             "solar": 2441
+        }
+    },
+    "GT": {
+        "capacity": {
+            "biomass": 1025.009,
+            "coal": 584.7,
+            "gas": 250.85,
+            "geothermal": 49.2,
+            "hydro": 1417.043,
+            "oil": 711.218,
+            "solar": 91,
+            "wind": 75.9 
         }
     },
     "HU": {

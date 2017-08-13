@@ -180,13 +180,39 @@ window.twttr = (function(d, s, id) {
     return t;
 }(document, "script", "twitter-wjs"));
 
+twttr.ready(function(e) {
+    twttr.events.bind('click', function(event) {
+        // event.region is {tweet,follow}
+        trackAnalyticsEvent(event.region);
+        if(typeof ga !== 'undefined') {
+            ga('send', 'social', 'twitter', event.region);
+        }
+    })
+})
+
 // Facebook
 window.fbAsyncInit = function() {
     FB.init({
         appId      : '1267173759989113',
         xfbml      : true,
-        version    : 'v2.8'
+        version    : 'v2.10'
     });
+
+    FB.Event.subscribe('edge.create', function(e) {
+        // This will happen when they like the page
+        if (e == 'https://www.facebook.com/tmrowco') {
+            trackAnalyticsEvent('like');
+            if(typeof ga !== 'undefined') {
+                ga('send', 'social', 'facebook', 'like', e);
+            }
+        }
+    })
+    FB.Event.subscribe('edge.remove', function(e) {
+        // This will happen when they unlike the page
+        if (e == 'https://www.facebook.com/tmrowco') {
+            trackAnalyticsEvent('unlike');
+        }
+    })
 };
 
 (function(d, s, id){
@@ -254,7 +280,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Mixpanel error: ' + err); }
         try {
             if(typeof ga !== 'undefined')
-                ga('send', eventName);
+                ga('send', 'event', 'page', eventName);
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
