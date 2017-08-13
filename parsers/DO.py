@@ -55,6 +55,8 @@ thermal_plants = {
                  u'MONTE PLATA SOLAR': 'solar',
                  u'MONTE RIO': 'oil',
                  u'PALAMARA': 'oil',
+                 u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
+                 u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
                  u'PIMENTEL 1': 'oil',
                  u'PIMENTEL 2': 'oil',
                  u'PIMENTEL 3': 'oil',
@@ -186,7 +188,7 @@ def thermal_production(df):
             tp[item] = v
 
         current_plants = {k: tp[k] for k in tp if not isnan(tp[k])}
-        mapped_plants = [(thermal_plants[plant], val) for plant, val in current_plants.iteritems()]
+        mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.iteritems()]
 
         thermalDict = defaultdict(lambda: 0.0)
 
