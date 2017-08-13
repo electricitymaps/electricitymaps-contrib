@@ -105,7 +105,8 @@ def fetch_production(country_code='BG', session=None):
             'wind': res.get('wind', 0.0),
             'coal': res.get('coal', 0.0),
             'solar': res.get('solar', 0.0),
-            'gas': res.get('gas', 0.0)
+            'gas': res.get('gas', 0.0),
+            'unknown': res.get('unknown', 0.0)
         },
         'storage': {},
         'source': 'tso.bg',
