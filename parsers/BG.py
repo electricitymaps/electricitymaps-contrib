@@ -110,7 +110,7 @@ def fetch_production(country_code='BG', session=None):
         },
         'storage': {},
         'source': 'tso.bg',
-        'datetime': datetime
+        'datetime': datetime.datetime
     }
 
     return data
