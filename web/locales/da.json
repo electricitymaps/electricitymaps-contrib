@@ -35,7 +35,8 @@
         "show-ranking": "Vis rangering"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer"
+        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer",
+        "downloaddataset": "Download hele datasættet"
     },
     "footer": {
         "likethisvisu": "Kan du lide visualiseringen?",
