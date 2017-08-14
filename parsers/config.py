@@ -2,7 +2,10 @@ from parsers import AR
 from parsers import AU
 from parsers import AU_WA
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
+from parsers import CR
+from parsers import DO
 from parsers import ES_CN, ES_IB
+from parsers import ESIOS
 from parsers import IS
 from parsers import FO
 from parsers import FR
@@ -65,9 +68,11 @@ PRODUCTION_PARSERS = {
     'BE': ENTSOE.fetch_production,
     'BG': ENTSOE.fetch_production,
     'CH': ENTSOE.fetch_production,
+    'CR': CR.fetch_production,
     'CZ': ENTSOE.fetch_production,
     'DE': ENTSOE.fetch_production,
     'DK': ENTSOE.fetch_production,
+    'DO': DO.fetch_production,
     'EE': ENTSOE.fetch_production,
     'ES': ENTSOE.fetch_production,
     'ES-CN': ES_CN.fetch_production,
@@ -155,6 +160,7 @@ EXCHANGE_PARSERS = {
     'CH->IT':     ENTSOE.fetch_exchange,
     # CR
     'CR->NI':     NI.fetch_exchange,
+    'CR->PA':     CR.fetch_exchange,
     # CZ
     'CZ->SK':     ENTSOE.fetch_exchange,
     'CZ->PL':     ENTSOE.fetch_exchange,
@@ -176,6 +182,7 @@ EXCHANGE_PARSERS = {
     'ES->FR':     ENTSOE.fetch_exchange,
     'ES->PT':     ENTSOE.fetch_exchange,
     'ES->ES-IB':  ES_IB.fetch_exchange,
+    'ES->MA':     ESIOS.fetch_exchange,
     # FI
     'FI->NO':     ENTSOE.fetch_exchange,
     'FI->RU':     ENTSOE.fetch_exchange,

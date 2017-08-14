@@ -54,7 +54,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Canada (Prince Edward Island): [Government of PEI](http://www.gov.pe.ca/windenergy/chart.php)
 - Canada (Yukon): [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
 - Denmark: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Faroe Islands: [SEV](https://w3.sev.fo/framleidsla/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -111,6 +113,7 @@ Production capacities are centralized in the [capacities.json](https://github.co
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)  
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France
