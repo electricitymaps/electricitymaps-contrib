@@ -21,9 +21,9 @@
     "country-panel": {
         "source": "fuente",
         "fossilfuels": "combustibles fósiles",
-        "carbonintensity": "Intensidad del carbón",
+        "carbonintensity": "Intensidad de carbono",
         "electricityprice": "Precio de la electricidad",
-        "electricityprice-dayahead": "en 1 día",
+        "electricityprice-dayahead": "día que viene",
         "electricityproduction": "Producción de electricidad",
         "bysource": "por fuente",
         "emissions": "Emisiones",
