@@ -69,7 +69,7 @@ PRODUCTION_PARSERS = {
     'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
     # 'BG': ENTSOE.fetch_production,
-    'BG': BG.fetch_production(),
+    'BG': BG.fetch_production,
     'CH': ENTSOE.fetch_production,
     'CR': CR.fetch_production,
     'CY': CY.fetch_production,
