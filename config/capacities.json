@@ -131,6 +131,14 @@
             "nuclear": 3375
         }
     },
+    "CY": {
+        "capacity": {
+            "biomass": 10,
+            "wind": 158,
+            "oil": 1478,
+            "solar": 115
+        }
+    },
     "CZ": {
         "capacity": {
             "biomass": 450,
