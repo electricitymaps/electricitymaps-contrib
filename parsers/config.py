@@ -1,6 +1,7 @@
 from parsers import AR
 from parsers import AU
 from parsers import AU_WA
+from parsers import BG
 from parsers import CA_AB, CA_BC, CA_NB, CA_NS, CA_ON, CA_PE, CA_YT
 from parsers import CR
 from parsers import DO
@@ -66,7 +67,8 @@ PRODUCTION_PARSERS = {
     'AT': ENTSOE.fetch_production,
     'BA': ENTSOE.fetch_production,
     'BE': ENTSOE.fetch_production,
-    'BG': ENTSOE.fetch_production,
+    # 'BG': ENTSOE.fetch_production,
+    'BG': BG.fetch_production(),
     'CH': ENTSOE.fetch_production,
     'CR': CR.fetch_production,
     'CZ': ENTSOE.fetch_production,
