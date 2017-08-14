@@ -35,7 +35,8 @@
         "show-ranking": "Toon ranking"
     },
     "country-history": {
-        "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
+        "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren",
+        "downloaddataset": "Download historische gegevens"
     },
     "footer": {
         "likethisvisu": "Vind je de visualisatie super?",
