@@ -35,7 +35,8 @@
         "show-ranking": "Rangliste anzeigen"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 Konzentration in den letzten 24 Stunden"
+        "carbonintensity24h": "CO2 Konzentration in den letzten 24 Stunden",
+        "downloaddataset": "historische daten herunterladen"
     },
     "footer": {
         "likethisvisu": "Findest Du die Visualisierung gut?",
