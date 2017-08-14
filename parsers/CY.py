@@ -170,8 +170,8 @@ def fetch_production(country_code='CY', session=None):
                 'unknown': production[time].get('total', 0.0) - production[time].get('solar', 0.0) - production[time].get('wind', 0.0)
             },
             'storage': {},
-            'source': 'http://www.dsm.org.cy',
-            'datetime': time,
+            'source': 'dsm.org.cy',
+            'datetime': time.datetime,
         })
 
     return sorted(data, key=lambda point: point['datetime'])
