@@ -35,9 +35,13 @@
     },
     "BG": {
         "capacity": {
-            "hydro": 1980,
-            "nuclear": 3780,
-            "wind": 691
+            "biomass": 64,
+            "hydro": 2943,
+            "nuclear": 2000,
+            "wind": 701,
+            "coal": 4882,
+            "solar": 1041,
+            "gas": 721
         }
     },
     "CA-BC": {
