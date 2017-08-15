@@ -4,8 +4,18 @@ import arrow
 import requests
 
 import json
+import numpy as np
 import pandas as pd
-import math
+
+try:
+    from . import AU_solar
+except (SystemError, ValueError):
+    print("\n")
+    print("AU.py can no longer be tested with `python AU.py`; run this instead:")
+    print("""PYTHONPATH=.. python -c "from parsers import AU; print(AU.fetch_production('AUS-NSW'))" """)
+    print("\n")
+    exit(1)
+
 
 AMEO_CATEGORY_DICTIONARY = {
     'Bagasse': 'biomass',
@@ -15,7 +25,6 @@ AMEO_CATEGORY_DICTIONARY = {
     'Coal Seam Methane': 'gas',
     'Diesel': 'oil',
     'gas': 'gas',
-    'Macadamia Nut Shells': 'biomass',
     'hydro': 'hydro',
     'Hydro': 'hydro',
     'Kerosene': 'oil',
@@ -321,6 +330,7 @@ def fetch_production(country_code=None, session=None):
     df = pd.read_csv(url)
     data = {
         'countryCode': country_code,
+        'datetime': arrow.get('2001-01-01T00:00:00+1000').datetime,
         'capacity': {
             'coal': 0,
             'geothermal': 0,
@@ -334,61 +344,81 @@ def fetch_production(country_code=None, session=None):
             'nuclear': 0
         },
         'storage': {},
-        'source': 'aremi.nationalmap.gov.au',
+        'source': 'aremi.nationalmap.gov.au, pv-map.apvi.org.au',
     }
+
     for rowIndex, row in df.iterrows():
-        if row['Most Recent Output Time (AEST)'] == '-': continue
-        fuelsource = row['Fuel Source - Descriptor']
         station = row['Station Name']
+        fuelsource = row['Fuel Source - Descriptor']
 
         if station not in AMEO_LOCATION_DICTIONARY:
-            print 'WARNING: station %s does not belong to any state' % station
+            print('WARNING: station %s does not belong to any state' % station)
             continue
 
-        if AMEO_LOCATION_DICTIONARY[station] != country_code: continue
+        if AMEO_LOCATION_DICTIONARY[station] != country_code:
+            continue
 
-        if not fuelsource in AMEO_CATEGORY_DICTIONARY and not station in AMEO_STATION_DICTIONARY:
-            # Only show warning if it actually produces something
-            if float(row['Current Output (MW)']) if row['Current Output (MW)'] != '-' else 0.0:
-                print 'WARNING: key %s is not supported' % fuelsource
-                print row
+        if row['Most Recent Output Time (AEST)'] == '-':
+            continue
+
+        key = AMEO_CATEGORY_DICTIONARY.get(fuelsource, None) or \
+            AMEO_STATION_DICTIONARY.get(station, None)
+
+        value = row['Current Output (MW)']
+        if np.isnan(value):
+            value = 0.0
+        else:
+            try:
+                value = float(row['Current Output (MW)'])
+            except ValueError:
+                value = 0.0
+
+        if not key:
+            # Unrecognized source, ignore
+            if value:
+                # If it had production, show warning
+                print('WARNING: key %s is not supported' % fuelsource)
+                print(row)
             continue
 
         # Skip HVDC links
         if AMEO_CATEGORY_DICTIONARY.get(station, None) == 'Import / Export':
             continue
 
-        key = AMEO_CATEGORY_DICTIONARY.get(fuelsource, None) or \
-            AMEO_STATION_DICTIONARY.get(station)
-        if row['Current Output (MW)'] != '-' and not math.isnan(row['Current Output (MW)']):
-            value = float(row['Current Output (MW)'])
-        else:
-            value = 0.0
-
-        # Check for negativity, but not too much
+        # Disregard substantially negative values, but let slightly negative values through
         if value < -1:
-            print 'Skipping because production can\'t be negative (%s)' % value
-            print row
+            print('Skipping %s because production can\'t be negative (%s)' % (station, value))
+            print(row)
             continue
-        
-        if not key in data['production']: data['production'][key] = 0.0
-        if not key in data['capacity']: data['capacity'][key] = 0.0
+
+        # Initialize key in data dictionaries if not set
+        if key not in data['production']:
+            data['production'][key] = 0.0
+        if key not in data['capacity']:
+            data['capacity'][key] = 0.0
+
         data['production'][key] += value
         data['capacity'][key] += float(row['Max Cap (MW)'])
         data['production'][key] = max(data['production'][key], 0)
         data['capacity'][key] = max(data['capacity'][key], 0)
         
         # Parse the datetime and return a python datetime object
-        datetime = None
         try:
-            datetime = arrow.get(row['Most Recent Output Time (AEST)']).datetime
-        except:
+            plant_timestamp = arrow.get(row['Most Recent Output Time (AEST)']).datetime
+            # TODO: We should check it's not too old..
+        except (OSError, ValueError):
+            # ignore invalid dates, they might be parsed as NaN
             continue
-        # TODO: We should check it's not too old..
-        if not 'datetime' in data:
-            data['datetime'] = datetime
         else:
-            data['datetime'] = max(datetime, data['datetime'])
+            # if plant_timestamp could be parsed successfully,
+            # set to max of plant production timestamp and current max timestamp in dict (if any)
+            data['datetime'] = max(plant_timestamp, data['datetime'])
+
+    # find distributed solar production and add it in
+    session = session or requests.session()
+    distributed_solar_production = AU_solar.fetch_solar_for_date(country_code, data['datetime'], session)
+    if distributed_solar_production:
+        data['production']['solar'] = data['production'].get('solar', 0) + distributed_solar_production
 
     return data
 
@@ -487,7 +517,7 @@ def fetch_price(country_code=None, session=None):
     A dictionary in the form:
     {
       'countryCode': 'FR',
-      'currency': EUR,
+      'currency': 'EUR',
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
       'source': 'mysource.com'
@@ -510,26 +540,3 @@ def fetch_price(country_code=None, session=None):
     }
 
     return data
-
-
-if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
-
-    print 'fetch_production("AUS-NSW") ->'
-    print fetch_production('AUS-NSW')
-    print 'fetch_production("AUS-QLD") ->'
-    print fetch_production('AUS-QLD')
-    print 'fetch_production("AUS-SA") ->'
-    print fetch_production('AUS-SA')
-    print 'fetch_production("AUS-TAS") ->'
-    print fetch_production('AUS-TAS')
-    print 'fetch_production("AUS-VIC") ->'
-    print fetch_production('AUS-VIC')
-    # print "fetch_exchange('AUS-NSW', 'AUS-QLD') ->"
-    # print fetch_exchange('AUS-NSW', 'AUS-QLD')
-    # print "fetch_exchange('AUS-NSW', 'AUS-VIC') ->"
-    # print fetch_exchange('AUS-NSW', 'AUS-VIC')
-    # print "fetch_exchange('AUS-VIC', 'AUS-SA') ->"
-    # print fetch_exchange('AUS-VIC', 'AUS-SA')
-    # print "fetch_exchange('AUS-VIC', 'AUS-TAS') ->"
-    # print fetch_exchange('AUS-VIC', 'AUS-TAS')

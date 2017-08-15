@@ -41,8 +41,11 @@ Each country has a CO2 mass flow that depends on neighboring countries. In order
 Real-time electricity data is obtained using [parsers](https://github.com/corradio/electricitymap/tree/master/parsers)
 
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
-- Australia: [AREMI National Map](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all)
-- Australia (Western): [AEMO](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv)
+- Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
+  ([CSV](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all))
+- Australia (Western): [AEMO](http://wa.aemo.com.au/Electricity/Wholesale-Electricity-Market-WEM/Data-dashboard)
+  ([CSV](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv))
+- Australia (distributed solar generation): [Australian PV Institute](http://pv-map.apvi.org.au/live)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
