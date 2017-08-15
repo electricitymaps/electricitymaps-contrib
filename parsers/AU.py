@@ -7,14 +7,7 @@ import json
 import numpy as np
 import pandas as pd
 
-try:
-    from . import AU_solar
-except (SystemError, ValueError):
-    print("\n")
-    print("AU.py can no longer be tested with `python AU.py`; run this instead:")
-    print("""PYTHONPATH=.. python -c "from parsers import AU; print(AU.fetch_production('AUS-NSW'))" """)
-    print("\n")
-    exit(1)
+from lib import AU_solar
 
 
 AMEO_CATEGORY_DICTIONARY = {
@@ -330,7 +323,6 @@ def fetch_production(country_code=None, session=None):
     df = pd.read_csv(url)
     data = {
         'countryCode': country_code,
-        'datetime': arrow.get('2001-01-01T00:00:00+1000').datetime,
         'capacity': {
             'coal': 0,
             'geothermal': 0,
@@ -412,7 +404,11 @@ def fetch_production(country_code=None, session=None):
         else:
             # if plant_timestamp could be parsed successfully,
             # set to max of plant production timestamp and current max timestamp in dict (if any)
-            data['datetime'] = max(plant_timestamp, data['datetime'])
+            current_datetime = data.get('datetime', None)
+            if current_datetime:
+                data['datetime'] = max(plant_timestamp, current_datetime)
+            else:
+                data['datetime'] = plant_timestamp
 
     # find distributed solar production and add it in
     session = session or requests.session()
@@ -540,3 +536,26 @@ def fetch_price(country_code=None, session=None):
     }
 
     return data
+
+
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+
+    print('fetch_production("AUS-NSW") ->')
+    print(fetch_production('AUS-NSW'))
+    print('fetch_production("AUS-QLD") ->')
+    print(fetch_production('AUS-QLD'))
+    print('fetch_production("AUS-SA") ->')
+    print(fetch_production('AUS-SA'))
+    print('fetch_production("AUS-TAS") ->')
+    print(fetch_production('AUS-TAS'))
+    print('fetch_production("AUS-VIC") ->')
+    print(fetch_production('AUS-VIC'))
+    # print("fetch_exchange('AUS-NSW', 'AUS-QLD') ->")
+    # print(fetch_exchange('AUS-NSW', 'AUS-QLD'))
+    # print("fetch_exchange('AUS-NSW', 'AUS-VIC') ->")
+    # print(fetch_exchange('AUS-NSW', 'AUS-VIC'))
+    # print("fetch_exchange('AUS-VIC', 'AUS-SA') ->")
+    # print(fetch_exchange('AUS-VIC', 'AUS-SA'))
+    # print("fetch_exchange('AUS-VIC', 'AUS-TAS') ->")
+    # print(fetch_exchange('AUS-VIC', 'AUS-TAS'))

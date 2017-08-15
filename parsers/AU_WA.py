@@ -4,14 +4,7 @@ import arrow
 import requests
 import pandas as pd
 
-try:
-    from . import AU_solar
-except (SystemError, ValueError):
-    print("\n")
-    print("AU_WA.py can no longer be tested with `python AU_WA.py`; run this instead:")
-    print("""PYTHONPATH=.. python -c "from parsers import AU_WA; print(AU_WA.fetch_production('AUS-WA'))" """)
-    print("\n")
-    exit(1)
+from lib import AU_solar
 
 
 timezone = 'Australia/Perth'
@@ -84,3 +77,7 @@ def fetch_production(country_code='AUS-WA', session=None):
         result.append(data)
 
     return result
+
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+    print(fetch_production('AUS-WA'))
