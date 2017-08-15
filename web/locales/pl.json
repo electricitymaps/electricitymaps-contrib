@@ -28,7 +28,7 @@
         "bysource": "według źródeł energii",
         "emissions": "Emisje CO2",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
-        "co2signal": "Nasz <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic."
+        "co2signal": "Nasz <a href=\"%s\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic."
     },
     "rankings-panel": {
         "country-ranking": "Ranking",
