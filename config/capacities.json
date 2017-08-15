@@ -136,7 +136,13 @@
             "biomass": 10,
             "wind": 158,
             "oil": 1478,
-            "solar": 115
+            "solar": 115,
+            "hydro": 0,
+            "hydro storage": 0,
+            "geothermal": 0,
+            "nuclear": 0,
+            "gas": 0,
+            "coal": 0
         }
     },
     "CZ": {

@@ -164,10 +164,9 @@ def fetch_production(country_code='CY', session=None):
             'production': {
                 'solar': production[time].get('solar', 0.0),
                 'wind': production[time].get('wind', 0.0),
-                # as discussed in issue 122 on github, put all the non wind/solar as unknown.
-                # it will be assigned a "fossil fuel" co2 emission intensity.
+                # as discussed in issue 122 on github, put all the non wind/solar as oil.
                 # also, as we only have the total production, we should deduce solar and wind
-                'unknown': production[time].get('total', 0.0) - production[time].get('solar', 0.0) - production[time].get('wind', 0.0)
+                'oil': production[time].get('total', 0.0) - production[time].get('solar', 0.0) - production[time].get('wind', 0.0)
             },
             'storage': {},
             'source': 'dsm.org.cy',
