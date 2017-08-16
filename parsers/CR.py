@@ -140,7 +140,8 @@ def df_to_data(country_code, day, df):
 
 
 def fetch_production(country_code='CR', session=None):
-    r = session or requests.session()
+    # Do not use existing session as some amount of cache is taking place
+    r = requests.session()
     url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
     response = r.get(url)
     df_yesterday = pd.read_html(response.text, skiprows=1, index_col=0, header=0)[0]

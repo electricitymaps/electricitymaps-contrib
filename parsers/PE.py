@@ -20,7 +20,7 @@ MAP_GENERATION = {
 }
 
 def validate(datapoint):
-    if sum([v for k,v in datapoint['production'].iteritems()]) > 0:
+    if sum([v for k,v in datapoint['production'].iteritems() if v is not None]) > 0:
         return datapoint
     else: return None
 
