@@ -230,6 +230,13 @@
             "hydro storage": 11.32
         }
     },
+    "FO": {
+        "capacity": {
+            "wind": 18.3,
+            "hydro": 39.4,
+            "oil": 66.7
+        }
+    },
     "FI": {
         "capacity": {
             "hydro": 3207,
