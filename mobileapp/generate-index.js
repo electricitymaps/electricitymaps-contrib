@@ -2,7 +2,10 @@ var ejs = require('ejs');
 var fs = require('fs');
 var i18n = require('i18n');
 
-var BUNDLE_HASH = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.json')).hash;
+var obj = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.json'));
+var BUNDLE_HASH = obj.chunks[0].hash;
+var VENDOR_HASH = obj.chunks[2].hash;
+var STYLES_HASH = obj.chunks[1].hash;
 
 // TODO:
 // Currently, those variables are duplicated from server.js
@@ -63,6 +66,8 @@ locales.forEach(function(locale) {
     var html = template({
         alternateUrls: [],
         bundleHash: BUNDLE_HASH,
+        vendorHash: VENDOR_HASH,
+        stylesHash: STYLES_HASH,
         isCordova: true,
         locale: locale,
         FBLocale: LOCALE_TO_FB_LOCALE[locale],
