@@ -47,7 +47,7 @@
         <meta name="theme-color" content="#ffffff">
 
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="dist/styles.<%= bundleHash %>.css">
+        <link rel="stylesheet" type="text/css" href="dist/styles.<%= stylesHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <!-- Fonts -->
@@ -78,6 +78,7 @@
         <% if (typeof isCordova != 'undefined' && isCordova) { %>
         <script src="../cordova.js"></script>
         <% } %>
+        <script defer src="dist/vendor.<%= vendorHash %>.js"></script>
         <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
 
         <!-- Set Global Variables -->
