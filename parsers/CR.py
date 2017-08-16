@@ -121,6 +121,8 @@ def empty_record(country_code):
 
 def df_to_data(country_code, day, df):
     df = df.dropna(axis=1, how='any')
+    # Check for empty dataframe
+    if df.shape == (1,1): return []
     df = df.drop([u'Intercambio Sur', u'Intercambio Norte', u'Total'])
     df = df.iloc[:, :-1]
 
