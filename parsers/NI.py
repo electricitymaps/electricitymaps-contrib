@@ -56,6 +56,13 @@ PLANT_CLASSIFICATIONS = [
     'hydro'         # C. Fonseca
 ]
 
+REFERENCE_TOTAL_PRODUCTION = 433
+def validate_datapoint(d):
+    total = sum([v for k, v in d['production'].iteritems()])
+    if total > 10 * REFERENCE_TOTAL_PRODUCTION \
+        or total < 0.1 * REFERENCE_TOTAL_PRODUCTION: return d
+    else: return d
+
 
 def extract_text(full_text, start_text, end_text=None):
     start = full_text.find(start_text)
@@ -216,7 +223,7 @@ def fetch_production(country_code='NI', session=None):
         'source': 'cndc.org.ni'
     }
 
-    return data
+    return validate_datapoint(data)
 
 
 def fetch_exchange(country_code1, country_code2, session=None):
