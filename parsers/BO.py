@@ -69,38 +69,40 @@ def fetch_hourly_production(country_code, obj, hour, date):
 
 
 def fetch_production(country_code='BO', session=None):
-    #Define output frame
-    data = [dict() for h in range(24)]
-    
     #Define actual and last day (for midnight data)
-    formatted_date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
+    now = arrow.now(tz=tz_bo)
+    formatted_date = now.format('YYYY-MM-DD')
     past_formatted_date = arrow.get(formatted_date, 'YYYY-MM-DD').shift(days=-1).format('YYYY-MM-DD')
+
+    #Define output frame
+    actual_hour = now.hour
+    data = [dict() for h in range(actual_hour+1)]
     
     #initial path for url to request
     url_init = 'http://www.cndc.bo/media/archivos/graf/gene_hora/despacho_diario.php?fechag=' 
+
     #Start with data for midnight
     url = url_init + past_formatted_date
-    
     #Request and rearange in DF
     r = session or requests.session()
     response = r.get(url)
     obj = webparser(response)
-    #fecth production for corresponding hour
     data_temp = fetch_hourly_production(country_code, obj, 0, formatted_date)
     data[0] = data_temp
     
-    #Fill data for the other hours
-    url = url_init + formatted_date
-    #Request and rearange in DF
-    r = session or requests.session()
-    response = r.get(url)
-    obj = webparser(response)
-    for h in range(1,24):
-        data_temp = fetch_hourly_production(country_code, obj, h, formatted_date)
-        data[h] = data_temp
+    #Fill data for the other hours until actual hour
+    if actual_hour>1:
+        url = url_init + formatted_date
+        #Request and rearange in DF
+        r = session or requests.session()
+        response = r.get(url)
+        obj = webparser(response)
+        for h in range(1, actual_hour+1):
+            data_temp = fetch_hourly_production(country_code, obj, h, formatted_date)
+            data[h] = data_temp
 
     return data
-
+    
 
 def fetch_hourly_generation_forecast(country_code, obj, hour, date):          
     #output frame
@@ -122,35 +124,38 @@ def fetch_hourly_generation_forecast(country_code, obj, hour, date):
 
 
 def fetch_generation_forecast(country_code = 'BO', session=None):
-	#Define output frame
-    data = [dict() for h in range(24)]
-    
+	
     #Define actual and last day (for midnight data)
-    formatted_date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
+    now = arrow.now(tz=tz_bo)
+    formatted_date = now.format('YYYY-MM-DD')
     past_formatted_date = arrow.get(formatted_date, 'YYYY-MM-DD').shift(days=-1).format('YYYY-MM-DD')
-    
+
+    #Define output frame    
+    actual_hour = now.hour
+    data = [dict() for h in range(actual_hour+1)]
+
     #initial path for url to request
     url_init = 'http://www.cndc.bo/media/archivos/graf/gene_hora/despacho_diario.php?fechag=' 
+    
     #Start with data for midnight
     url = url_init + past_formatted_date
-    
     #Request and rearange in DF
     r = session or requests.session()
     response = r.get(url)
     obj = webparser(response)
-    #fecth production for corresponding hour
     data_temp = fetch_hourly_generation_forecast(country_code, obj, 0, formatted_date)
     data[0] = data_temp
     
-    #Fill data for the other hours
-    url = url_init + formatted_date
-    #Request and rearange in DF
-    r = session or requests.session()
-    response = r.get(url)
-    obj = webparser(response)
-    for h in range(1,24):
-        data_temp = fetch_hourly_generation_forecast(country_code, obj, h, formatted_date)
-        data[h] = data_temp
+    #Fill data for the other hours until actual hour
+    if actual_hour>1:
+        url = url_init + formatted_date
+        #Request and rearange in DF
+        r = session or requests.session()
+        response = r.get(url)
+        obj = webparser(response)
+        for h in range(1, actual_hour+1):
+            data_temp = fetch_hourly_generation_forecast(country_code, obj, h, formatted_date)
+            data[h] = data_temp
 
     return data
 
