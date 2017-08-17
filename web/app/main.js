@@ -11,7 +11,6 @@ var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
-var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
 var flags = require('./flags');
 var grib = require('./grib');
@@ -23,7 +22,7 @@ var Tooltip = require('./tooltip');
 var Wind = require('./wind');
 
 // Configs
-var capacities = require('../../config/capacities.json');
+var exchanges = require('../../config/exchanges.json');
 var zones = require('../../config/zones.json');
 
 // Constants

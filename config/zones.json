@@ -1,215 +1,858 @@
 {
-    "AD": {
-
-    },
-    "AL": {
-        
-    },
-    "AT": {
-        
-    },
-    "AR": {
-
-    },
-    "AUS-ACT": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-NSW": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-NT": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-QLD": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-SA": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-TAS": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-VIC": {
-        "flag_file_name": "au.png"
-    },
-    "AUS-WA": {
-        "flag_file_name": "au.png"
-    },
-    "BA": {
-        
-    },
-    "BE": {
-        
-    },
-    "BG": {
-        
-    },
-    "BY": {
-        
-    },
-    "CH": {
-        
-    },
-    "CA-AB": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-BC": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-MB": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-NB": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-NL": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-NS": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-NT": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-NU": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-ON": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-PE": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-QC": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-SK": {
-        "flag_file_name": "ca.png"
-    },
-    "CA-YT": {
-        "flag_file_name": "ca.png"
-    },
-    "CZ": {
-        
-    },
-    "DE": {
-        
-    },
-    "DK": {
-        
-    },
-    "EE": {
-        
-    },
-    "ES": {
-    	"flag_file_name": "es.png"
-    },
-    "ES-CN": {
-    	"flag_file_name": "es.png"
-    },
-    "ES-IB": {
-    	"flag_file_name": "es.png"
-    },
-    "FI": {
-        
-    },
-    "FR": {
-        
-    },
-    "GB": {
-        "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)"
-    },
-    "GB-NIR": {
-        "flag_file_name": "_Northern%20Ireland.png"
-    },
-    "GR": {
-        
-    },
-    "HR": {
-        
-    },
-    "HU": {
-        
-    },
-    "IE": {
-        
-    },
-    "IS": {
-        
-    },
-    "IT": {
-        
-    },
-    "LT": {
-        
-    },
-    "LU": {
-        
-    },
-    "LV": {
-        
-    },
-    "MD": {
-        
-    },
-    "ME": {
-        
-    },
-    "MK": {
-        
-    },
-    "MT": {
-        
-    },
-    "NL": {
-        
-    },
-    "NZ-NZN": {
-        "flag_file_name": "nz.png"
-    },
-    "NZ-NZS": {
-        "flag_file_name": "nz.png"
-    },
-    "NO": {
-        
-    },
-    "PL": {
-        
-    },
-    "PT": {
-        "flag_file_name": "pt.png"
-    },
-    "PT-AC": {
-        "flag_file_name": "pt.png"
-    },
-    "PT-MA": {
-        "flag_file_name": "pt.png"
-    },
-    "RO": {
-        
-    },
-    "RS": {
-        
-    },
-    "RU": {
-        
-    },
-    "RU-KGD": {
-        "flag_file_name": "ru.png"
-    },
-    "SE": {
-        
-    },
-    "SI": {
-        
-    },
-    "SK": {
-        
-    },
-    "TR": {
-        
-    },
-    "UA": {
-        
+  "AD": {},
+  "AL": {},
+  "AR": {
+    "capacity": {
+      "gas": 18930,
+      "hydro": 11170,
+      "nuclear": 1755,
+      "oil": 1293,
+      "solar": 8,
+      "wind": 187
+    },
+    "parsers": {
+      "production": "AR.fetch_production"
     }
+  },
+  "AT": {
+    "capacity": {
+      "biomass": 393,
+      "coal": 819,
+      "gas": 4187,
+      "hydro": 11054,
+      "oil": 288,
+      "solar": 814,
+      "wind": 2556
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "AUS-ACT": {
+    "flag_file_name": "au.png"
+  },
+  "AUS-NSW": {
+    "flag_file_name": "au.png",
+    "parsers": {
+      "price": "AU.fetch_price",
+      "production": "AU.fetch_production"
+    }
+  },
+  "AUS-NT": {
+    "flag_file_name": "au.png"
+  },
+  "AUS-QLD": {
+    "flag_file_name": "au.png",
+    "parsers": {
+      "price": "AU.fetch_price",
+      "production": "AU.fetch_production"
+    }
+  },
+  "AUS-SA": {
+    "flag_file_name": "au.png",
+    "parsers": {
+      "price": "AU.fetch_price",
+      "production": "AU.fetch_production"
+    }
+  },
+  "AUS-TAS": {
+    "flag_file_name": "au.png",
+    "parsers": {
+      "price": "AU.fetch_price",
+      "production": "AU.fetch_production"
+    }
+  },
+  "AUS-VIC": {
+    "flag_file_name": "au.png",
+    "parsers": {
+      "price": "AU.fetch_price",
+      "production": "AU.fetch_production"
+    }
+  },
+  "AUS-WA": {
+    "flag_file_name": "au.png",
+    "parsers": {
+      "production": "AU_WA.fetch_production"
+    }
+  },
+  "BA": {
+    "parsers": {
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "BE": {
+    "capacity": {
+      "biomass": 1078,
+      "coal": 0,
+      "gas": 5303,
+      "hydro": 1425,
+      "nuclear": 5919,
+      "oil": 0,
+      "solar": 2953,
+      "wind": 1961
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "BG": {
+    "capacity": {
+      "biomass": 64,
+      "coal": 4882,
+      "gas": 721,
+      "hydro": 2943,
+      "nuclear": 2000,
+      "solar": 1041,
+      "wind": 701
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "BG.fetch_production"
+    }
+  },
+  "BY": {},
+  "CA-AB": {
+    "flag_file_name": "ca.png",
+    "parsers": {
+      "price": "CA_AB.fetch_price",
+      "production": "CA_AB.fetch_production"
+    }
+  },
+  "CA-BC": {
+    "capacity": {
+      "biomass": 356,
+      "gas": 514,
+      "hydro": 15004,
+      "oil": 46,
+      "wind": 673
+    },
+    "flag_file_name": "ca.png"
+  },
+  "CA-MB": {
+    "capacity": {
+      "coal": 110,
+      "gas": 342,
+      "hydro": 5249,
+      "oil": 10,
+      "wind": 237
+    },
+    "flag_file_name": "ca.png"
+  },
+  "CA-NB": {
+    "_comment": "gas includes an 88 MW cogeneration plant",
+    "capacity": {
+      "biomass": 38,
+      "coal": 467,
+      "gas": 378,
+      "hydro": 950,
+      "nuclear": 660,
+      "oil": 1497,
+      "wind": 294
+    },
+    "flag_file_name": "ca.png",
+    "parsers": {
+      "production": "CA_NB.fetch_production"
+    }
+  },
+  "CA-NL": {
+    "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
+    "capacity": {
+      "biomass": 15,
+      "hydro": 6726.806,
+      "oil": 590,
+      "wind": 54.3
+    },
+    "flag_file_name": "ca.png"
+  },
+  "CA-NS": {
+    "_comment": "http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW",
+    "capacity": {
+      "biomass": 90.1,
+      "coal": 1232,
+      "gas": 637,
+      "hydro": 418,
+      "wind": 567
+    },
+    "flag_file_name": "ca.png",
+    "parsers": {
+      "production": "CA_NS.fetch_production"
+    }
+  },
+  "CA-NT": {
+    "flag_file_name": "ca.png"
+  },
+  "CA-NU": {
+    "flag_file_name": "ca.png"
+  },
+  "CA-ON": {
+    "capacity": {
+      "biomass": 495,
+      "gas": 9943,
+      "hydro": 8451,
+      "nuclear": 12978,
+      "solar": 280,
+      "wind": 3923
+    },
+    "flag_file_name": "ca.png",
+    "parsers": {
+      "price": "CA_ON.fetch_price",
+      "production": "CA_ON.fetch_production"
+    }
+  },
+  "CA-PE": {
+    "capacity": {
+      "oil": 179,
+      "wind": 203.6
+    },
+    "flag_file_name": "ca.png",
+    "parsers": {
+      "production": "CA_PE.fetch_production"
+    }
+  },
+  "CA-QC": {
+    "_comment": "http://www.hydroquebec.com/generation/",
+    "capacity": {
+      "gas": 411,
+      "hydro": 36366,
+      "oil": 130
+    },
+    "flag_file_name": "ca.png"
+  },
+  "CA-SK": {
+    "capacity": {
+      "coal": 1530,
+      "gas": 1824,
+      "hydro": 864,
+      "wind": 221
+    },
+    "flag_file_name": "ca.png"
+  },
+  "CA-YT": {
+    "flag_file_name": "ca.png",
+    "parsers": {
+      "production": "CA_YT.fetch_production"
+    }
+  },
+  "CH": {
+    "capacity": {
+      "hydro": 9170,
+      "nuclear": 3375
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "CR": {
+    "parsers": {
+      "production": "CR.fetch_production"
+    }
+  },
+  "CY": {
+    "capacity": {
+      "biomass": 10,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 1478,
+      "solar": 115,
+      "wind": 158
+    },
+    "parsers": {
+      "production": "CY.fetch_production"
+    }
+  },
+  "CZ": {
+    "capacity": {
+      "biomass": 450,
+      "coal": 9534,
+      "gas": 1606,
+      "geothermal": 0,
+      "hydro": 1081,
+      "hydro storage": 1171.5,
+      "nuclear": 4040,
+      "oil": 0,
+      "solar": 2067,
+      "wind": 277
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "DE": {
+    "capacity": {
+      "biomass": 7060,
+      "coal": 49280,
+      "gas": 28270,
+      "hydro": 5590,
+      "nuclear": 10800,
+      "oil": 4190,
+      "solar": 40850,
+      "wind": 49640
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "DK": {
+    "capacity": {
+      "biomass": 197,
+      "coal": 4847,
+      "gas": 2941,
+      "hydro": 0,
+      "nuclear": 0,
+      "solar": 601,
+      "wind": 4845
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "DO": {
+    "capacity": {
+      "biomass": 30,
+      "coal": 314,
+      "gas": 722,
+      "hydro": 610,
+      "oil": 2200,
+      "solar": 3,
+      "wind": 85
+    },
+    "parsers": {
+      "production": "DO.fetch_production"
+    }
+  },
+  "EE": {
+    "capacity": {
+      "biomass": 97,
+      "coal": 0,
+      "gas": 205,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 1975,
+      "solar": 1,
+      "wind": 375
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "ES": {
+    "capacity": {
+      "biomass": 1077,
+      "coal": 9535,
+      "gas": 30723,
+      "geothermal": 0,
+      "hydro": 20269,
+      "hydro storage": 5645,
+      "nuclear": 7572,
+      "oil": 715,
+      "solar": 6720,
+      "unknown": 360,
+      "wind": 22813
+    },
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "ES-CN": {
+    "capacity": {
+      "hydro storage": 11.32
+    },
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_CN.fetch_consumption",
+      "production": "ES_CN.fetch_production"
+    }
+  },
+  "ES-IB": {
+    "capacity": {
+      "coal": 510
+    },
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    }
+  },
+  "FI": {
+    "capacity": {
+      "biomass": 2866,
+      "coal": 2854,
+      "gas": 1795,
+      "hydro": 3207,
+      "nuclear": 2782,
+      "oil": 1427,
+      "unknown": 648,
+      "wind": 1432
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "FO": {
+    "capacity": {
+      "hydro": 39.4,
+      "oil": 66.7,
+      "wind": 18.3
+    },
+    "parsers": {
+      "production": "FO.fetch_production"
+    }
+  },
+  "FR": {
+    "capacity": {
+      "coal": 2930,
+      "gas": 10909,
+      "hydro": 23495,
+      "nuclear": 63130,
+      "oil": 6670,
+      "solar": 6580,
+      "wind": 10358
+    },
+    "parsers": {
+      "price": "FR.fetch_price",
+      "production": "FR.fetch_production"
+    }
+  },
+  "GB": {
+    "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
+    "capacity": {
+      "biomass": 2119,
+      "coal": 11097,
+      "gas": 27688,
+      "hydro": 4269,
+      "nuclear": 8985,
+      "oil": 759,
+      "solar": 8566,
+      "unknown": 8186,
+      "wind": 15621
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "GB-NIR": {
+    "capacity": {
+      "biomass": 35,
+      "coal": 764,
+      "gas": 1004,
+      "oil": 415,
+      "solar": 77,
+      "wind": 863
+    },
+    "flag_file_name": "_Northern%20Ireland.png",
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "GR": {
+    "capacity": {
+      "biomass": 51,
+      "coal": 3912,
+      "gas": 5396,
+      "hydro": 3401,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 2441,
+      "unknown": 69,
+      "wind": 1875
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "GT": {
+    "capacity": {
+      "biomass": 1025.009,
+      "coal": 584.7,
+      "gas": 250.85,
+      "geothermal": 49.2,
+      "hydro": 1417.043,
+      "oil": 711.218,
+      "solar": 91,
+      "wind": 75.9
+    },
+    "parsers": {
+      "consumption": "GT.fetch_consumption",
+      "production": "GT.fetch_production"
+    }
+  },
+  "HR": {},
+  "HU": {
+    "capacity": {
+      "biomass": 274,
+      "coal": 1007,
+      "gas": 4124,
+      "hydro": 57,
+      "nuclear": 1887,
+      "oil": 410,
+      "solar": 29,
+      "wind": 328
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "IE": {
+    "capacity": {
+      "biomass": 344,
+      "coal": 855,
+      "gas": 3801,
+      "hydro": 508,
+      "nuclear": 0,
+      "oil": 811,
+      "solar": 0,
+      "unknown": 647,
+      "wind": 3025
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "IS": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 665,
+      "hydro": 1986,
+      "nuclear": 0,
+      "oil": 117,
+      "solar": 0,
+      "unknown": 0,
+      "wind": 3
+    },
+    "parsers": {
+      "production": "IS.fetch_production"
+    }
+  },
+  "IT": {
+    "capacity": {
+      "hydro": 22382,
+      "nuclear": 0,
+      "solar": 18420,
+      "wind": 8561
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "LT": {
+    "capacity": {
+      "biomass": 100,
+      "gas": 1719,
+      "hydro": 1028,
+      "oil": 160,
+      "solar": 73,
+      "wind": 499
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "LU": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "LV": {
+    "capacity": {
+      "biomass": 102,
+      "gas": 1103,
+      "hydro": 1537,
+      "wind": 55
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "MD": {},
+  "ME": {
+    "capacity": {
+      "coal": 218,
+      "hydro": 649
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "MK": {},
+  "MT": {},
+  "NI": {
+    "capacity": {
+      "biomass": 133,
+      "geothermal": 154,
+      "hydro": 138,
+      "oil": 732,
+      "wind": 186
+    },
+    "parsers": {
+      "price": "NI.fetch_price",
+      "production": "NI.fetch_production"
+    }
+  },
+  "NL": {
+    "capacity": {
+      "biomass": 1072,
+      "coal": 5658,
+      "gas": 19914,
+      "hydro": 38,
+      "nuclear": 486,
+      "solar": 1429,
+      "wind": 3641
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "NO": {
+    "capacity": {
+      "coal": 0,
+      "gas": 1777,
+      "hydro": 36531,
+      "nuclear": 0,
+      "solar": 0,
+      "wind": 856
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "NZ-NZN": {
+    "flag_file_name": "nz.png",
+    "parsers": {
+      "production": "NZ.fetch_production"
+    }
+  },
+  "NZ-NZS": {
+    "flag_file_name": "nz.png",
+    "parsers": {
+      "production": "NZ.fetch_production"
+    }
+  },
+  "PE": {
+    "parsers": {
+      "production": "PE.fetch_production"
+    }
+  },
+  "PL": {
+    "capacity": {
+      "biomass": 435,
+      "coal": 26962,
+      "gas": 1460,
+      "hydro": 2321,
+      "nuclear": 0,
+      "oil": 345,
+      "solar": 77,
+      "wind": 5494
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "PT": {
+    "capacity": {
+      "biomass": 582,
+      "coal": 1756,
+      "gas": 4695,
+      "hydro": 6121,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 251,
+      "wind": 4617
+    },
+    "flag_file_name": "pt.png",
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "PT-AC": {
+    "flag_file_name": "pt.png"
+  },
+  "PT-MA": {
+    "flag_file_name": "pt.png"
+  },
+  "RO": {
+    "capacity": {
+      "biomass": 95,
+      "coal": 5894,
+      "gas": 4879,
+      "hydro": 6703,
+      "nuclear": 1298,
+      "solar": 1152,
+      "wind": 2938
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "RS": {
+    "capacity": {
+      "biomass": 6,
+      "coal": 5644,
+      "gas": 375,
+      "hydro": 3006,
+      "wind": 17
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "RU": {},
+  "RU-KGD": {
+    "flag_file_name": "ru.png"
+  },
+  "SE": {
+    "capacity": {
+      "biomass": 220,
+      "gas": 698,
+      "hydro": 15945,
+      "nuclear": 9100,
+      "oil": 2251,
+      "solar": 79,
+      "wind": 5960
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "SG": {
+    "capacity": {
+      "biomass": 257,
+      "gas": 10344
+    },
+    "parsers": {
+      "price": "SG.fetch_price",
+      "production": "SG.fetch_production"
+    }
+  },
+  "SI": {
+    "capacity": {
+      "biomass": 57,
+      "coal": 921,
+      "gas": 491,
+      "hydro": 1233,
+      "nuclear": 696,
+      "oil": 0,
+      "solar": 263,
+      "wind": 3
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "SK": {
+    "capacity": {
+      "biomass": 363,
+      "coal": 1008,
+      "gas": 1093,
+      "hydro": 2533,
+      "nuclear": 1940,
+      "oil": 195,
+      "solar": 532,
+      "wind": 3
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    }
+  },
+  "TR": {
+    "parsers": {
+      "production": "TR.fetch_production"
+    }
+  },
+  "TW": {
+    "parsers": {
+      "production": "TW.fetch_production"
+    }
+  },
+  "UA": {
+    "parsers": {
+      "production": "UA.fetch_production"
+    }
+  },
+  "US": {
+    "_comment": "distributed PV: 9778MW, not included below",
+    "capacity": {
+      "biomass": 16099,
+      "coal": 304789,
+      "gas": 506760,
+      "geothermal": 3811,
+      "hydro": 78956,
+      "hydro storage": 21572,
+      "nuclear": 103860,
+      "oil": 42321,
+      "other": 2040,
+      "solar": 13758,
+      "wind": 73393
+    },
+    "parsers": {
+      "production": "US.fetch_production"
+    }
+  },
+  "UY": {
+    "parsers": {
+      "production": "UY.fetch_production"
+    }
+  }
 }
