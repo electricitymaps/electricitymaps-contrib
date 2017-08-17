@@ -11,7 +11,6 @@ var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
-var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
 var flags = require('./flags');
 var grib = require('./grib');
@@ -23,8 +22,8 @@ var Tooltip = require('./tooltip');
 var Wind = require('./wind');
 
 // Configs
-var capacities = require('../../config/capacities.json');
-var zones = require('../../config/zones.json');
+var exchanges_config = require('../../config/exchanges.json');
+var zones_config = require('../../config/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -514,19 +513,14 @@ if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
 countryMap
     .data(d3.values(countries))
 // Add configurations
-d3.entries(zones).forEach(function(d) {
+d3.entries(zones_config).forEach(function(d) {
     var zone = countries[d.key];
     if (!zone) {
         console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..')
         return;
     }
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
-    // Add translation
     zone.shortname = lang && lang.zoneShortName[d.key];
-});
-// Add capacities
-d3.entries(capacities).forEach(function(d) {
-    var zone = countries[d.key];
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
     zone.maxStorageCapacity = d3.max(d3.entries(zone.capacity), function(d) {
@@ -538,13 +532,13 @@ d3.entries(countries).forEach(function(d) {
     var zone = countries[d.key];
     zone.countryCode = d.key; // TODO: Rename to zoneId
 })
-var exchanges = {};
-ExchangeConfig.addExchangesConfiguration(exchanges);
+var exchanges = exchanges_config;
 d3.entries(exchanges).forEach(function(entry) {
     entry.value.countryCodes = entry.key.split('->').sort();
     if (entry.key.split('->')[0] != entry.value.countryCodes[0])
         console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
+
 var wind, solar;
 
 var histories = {};
@@ -1087,7 +1081,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     // Populate exchange pairs for arrows
     d3.entries(state.exchanges).forEach(function(obj) {
         var exchange = exchanges[obj.key];
-        if (!exchange) {
+        if (!exchange || !exchange.lonlat) {
             console.error('Missing exchange configuration for ' + obj.key);
             return;
         }
@@ -1103,7 +1097,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     }
     exchangeLayer
         .data(d3.values(exchanges).filter(function(d) {
-            return d.netFlow != 0 && d.netFlow != null;
+            return d.netFlow != 0 && d.netFlow != null && d.lonlat;
         }))
         .onExchangeMouseOver(function (d) {
             d3.select(this)
