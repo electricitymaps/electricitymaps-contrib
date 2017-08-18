@@ -1,0 +1,932 @@
+{
+  "AL->GR": {
+    "lonlat": [
+      20.689872,
+      40.198219
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 135
+  },
+  "AL->ME": {
+    "lonlat": [
+      19.500384,
+      42.428871
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -55
+  },
+  "AL->RS": {
+    "lonlat": [
+      20.486292,
+      42.323472
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 40
+  },
+  "AT->CH": {
+    "lonlat": [
+      9.597882,
+      47.079455
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "AT->CZ": {
+    "lonlat": [
+      15.486554,
+      48.909846
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "AT->DE": {
+    "lonlat": [
+      12.679547,
+      47.696804
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -30
+  },
+  "AT->HU": {
+    "lonlat": [
+      16.605363,
+      47.444264
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 120
+  },
+  "AT->IT": {
+    "lonlat": [
+      12.344464,
+      46.741723
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -140
+  },
+  "AT->SI": {
+    "lonlat": [
+      15.014142,
+      46.613582
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "AUS-NSW->AUS-QLD": {
+    "lonlat": [
+      146.503228,
+      -29.054874
+    ],
+    "parsers": {
+      "exchange": "AU.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "AUS-NSW->AUS-VIC": {
+    "lonlat": [
+      145.308829,
+      -35.850801
+    ],
+    "parsers": {
+      "exchange": "AU.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "AUS-SA->AUS-VIC": {
+    "lonlat": [
+      140.965561,
+      -35.784766
+    ],
+    "parsers": {
+      "exchange": "AU.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "AUS-TAS->AUS-VIC": {
+    "lonlat": [
+      146.096047,
+      -39.836207
+    ],
+    "parsers": {
+      "exchange": "AU.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "BA->HR": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    }
+  },
+  "BA->ME": {
+    "lonlat": [
+      18.665423,
+      43.042137
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 120
+  },
+  "BA->RS": {
+    "lonlat": [
+      19.127873,
+      44.377951
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "BE->FR": {
+    "lonlat": [
+      4.137165,
+      50.255806
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -135
+  },
+  "BE->NL": {
+    "lonlat": [
+      5.026873,
+      51.425174
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "BG->GR": {
+    "lonlat": [
+      24.1,
+      41.558088
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "BG->MK": {
+    "lonlat": [
+      22.912615,
+      41.86784
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "BG->RO": {
+    "lonlat": [
+      25.609385,
+      43.674878
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "BG->RS": {
+    "lonlat": [
+      22.978533,
+      43.131375
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "BG->TR": {
+    "lonlat": [
+      26.89864,
+      42.002181
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 135
+  },
+  "BY->LT": {
+    "lonlat": [
+      25.756061,
+      54.789457
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "CA-AB->CA-BC": {
+    "lonlat": [
+      -119.811359,
+      53.797027
+    ],
+    "parsers": {
+      "exchange": "CA_AB.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "CA-AB->CA-SK": {
+    "lonlat": [
+      -109.986644,
+      54.883208
+    ],
+    "parsers": {
+      "exchange": "CA_AB.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "CA-AB->US": {
+    "lonlat": [
+      -111.920238,
+      49.016577
+    ],
+    "parsers": {
+      "exchange": "CA_AB.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "CA-BC->US": {
+    "lonlat": [
+      -119.300532,
+      49.044392
+    ],
+    "parsers": {
+      "exchange": "CA_BC.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "CA-MB->CA-ON": {
+    "lonlat": [
+      -95.177354,
+      52.802819
+    ],
+    "parsers": {
+      "exchange": "CA_ON.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "CA-NB->CA-NS": {
+    "lonlat": [
+      -65.7552,
+      45.0425
+    ],
+    "parsers": {
+      "exchange": "CA_NB.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "CA-NB->CA-PE": {
+    "lonlat": [
+      -64.5739,
+      46.7349
+    ],
+    "parsers": {
+      "exchange": "CA_NB.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "CA-NB->CA-QC": {
+    "lonlat": [
+      -67.2344,
+      47.8871
+    ],
+    "parsers": {
+      "exchange": "CA_NB.fetch_exchange"
+    },
+    "rotation": -45
+  },
+  "CA-NB->US": {
+    "lonlat": [
+      -67.7771,
+      46.139
+    ],
+    "parsers": {
+      "exchange": "CA_NB.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "CA-ON->CA-QC": {
+    "lonlat": [
+      -79.494485,
+      48.798268
+    ],
+    "parsers": {
+      "exchange": "CA_ON.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "CA-ON->US": {
+    "lonlat": [
+      -92.722024,
+      48.566155
+    ],
+    "parsers": {
+      "exchange": "CA_ON.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "CH->DE": {
+    "lonlat": [
+      8.806354,
+      47.667048
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "CH->FR": {
+    "lonlat": [
+      6.5,
+      46.7
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "CH->IT": {
+    "lonlat": [
+      9.047334,
+      46.113596
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "CR->NI": {
+    "lonlat": [
+      -84.7303,
+      11.0638
+    ],
+    "parsers": {
+      "exchange": "NI.fetch_exchange"
+    },
+    "rotation": -45
+  },
+  "CR->PA": {
+    "parsers": {
+      "exchange": "CR.fetch_exchange"
+    }
+  },
+  "CZ->DE": {
+    "lonlat": [
+      12.321836,
+      50.227335
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -60
+  },
+  "CZ->PL": {
+    "lonlat": [
+      16.496641,
+      50.269487
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 45
+  },
+  "CZ->SK": {
+    "lonlat": [
+      18.100645,
+      49.089498
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 135
+  },
+  "DE->DK": {
+    "lonlat": [
+      9.3,
+      54.9
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 0
+  },
+  "DE->FR": {
+    "lonlat": [
+      8.048297,
+      48.931337
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -110
+  },
+  "DE->NL": {
+    "lonlat": [
+      6.916521,
+      52.159037
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "DE->PL": {
+    "lonlat": [
+      14.585163,
+      52.410625
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "DE->SE": {
+    "lonlat": [
+      13.552264,
+      54.925814
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "DK->NO": {
+    "lonlat": [
+      8.8,
+      57.7
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -25
+  },
+  "DK->SE": {
+    "lonlat": [
+      11.556268,
+      56.857802
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 70
+  },
+  "EE->FI": {
+    "lonlat": [
+      25.690143,
+      59.923241
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -35
+  },
+  "EE->LV": {
+    "lonlat": [
+      26.041706,
+      57.810982
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "EE->RU": {
+    "lonlat": [
+      27.468803,
+      58.545189
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "ES->ES-IB": {
+    "lonlat": [
+      1.426204,
+      39.802782
+    ],
+    "parsers": {
+      "exchange": "ES_IB.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "ES->FR": {
+    "lonlat": [
+      0.3,
+      42.9
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 20
+  },
+  "ES->MA": {
+    "lonlat": [
+      -5.614929,
+      35.952597
+    ],
+    "parsers": {
+      "exchange": "ESIOS.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "ES->PT": {
+    "lonlat": [
+      -7,
+      40
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "FI->NO": {
+    "lonlat": [
+      25.35158,
+      68.862684
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -30
+  },
+  "FI->RU": {
+    "lonlat": [
+      29.733112,
+      65.422768
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "FI->SE": {
+    "lonlat": [
+      20.979206,
+      63.441789
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -50
+  },
+  "FR->GB": {
+    "lonlat": [
+      0,
+      50.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -20
+  },
+  "FR->IT": {
+    "lonlat": [
+      6.9,
+      44.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 70
+  },
+  "GB->GB-NIR": {
+    "lonlat": [
+      -5.428149,
+      54.87826
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -110
+  },
+  "GB->IE": {
+    "lonlat": [
+      -5.7,
+      53
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -80
+  },
+  "GB->NL": {
+    "lonlat": [
+      3.3,
+      52.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "GB-NIR->IE": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    }
+  },
+  "GR->IT": {
+    "lonlat": [
+      18.759248,
+      38.902132
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "GR->MK": {
+    "lonlat": [
+      22.011736,
+      41.160374
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "GR->TR": {
+    "lonlat": [
+      26.316812,
+      41.1262
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "HN->NI": {
+    "lonlat": [
+      -85.5782,
+      14.0209
+    ],
+    "parsers": {
+      "exchange": "NI.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "HR->HU": {
+    "lonlat": [
+      17.407365,
+      45.967775
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 30
+  },
+  "HR->RS": {
+    "lonlat": [
+      19.021212,
+      45.354302
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "HU->RO": {
+    "lonlat": [
+      21.8074107,
+      47.1141229
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 110
+  },
+  "HU->RS": {
+    "lonlat": [
+      19.494768,
+      46.112673
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "HU->SK": {
+    "lonlat": [
+      19.615617,
+      48.204006
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "HU->UA": {
+    "lonlat": [
+      22.526994,
+      48.240603
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 35
+  },
+  "IT->MT": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    }
+  },
+  "IT->SI": {
+    "lonlat": [
+      13.596393,
+      46.105418
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "LT->LV": {
+    "lonlat": [
+      24.373981,
+      56.287428
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "LT->PL": {
+    "lonlat": [
+      23.308307,
+      54.247411
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "LT->RU-KGD": {
+    "lonlat": [
+      21.963913,
+      55.080726
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -180
+  },
+  "LT->SE": {
+    "lonlat": [
+      18.847674,
+      55.910978
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "LV->RU": {
+    "lonlat": [
+      27.7336,
+      56.87436
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 45
+  },
+  "MD->RO": {
+    "lonlat": [
+      28.009764,
+      47.003312
+    ],
+    "rotation": -120
+  },
+  "ME->RS": {
+    "lonlat": [
+      19.566302,
+      43.242543
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 40
+  },
+  "MK->RS": {
+    "lonlat": [
+      22.03925,
+      42.31702
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "NL->NO": {
+    "lonlat": [
+      5.795449,
+      55.859727
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "NO->SE": {
+    "lonlat": [
+      12.308438,
+      62.19523
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "NZ-NZN->NZ-NZS": {
+    "lonlat": [
+      174.424066,
+      -41.140732
+    ],
+    "parsers": {
+      "exchange": "NZ.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "PL->SE": {
+    "lonlat": [
+      15.969256,
+      55.215172
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -20
+  },
+  "PL->SK": {
+    "lonlat": [
+      20.614102,
+      49.359467
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "PL->UA": {
+    "lonlat": [
+      24.097224,
+      50.664587
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "RO->RS": {
+    "lonlat": [
+      21.469049,
+      44.947107
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -140
+  },
+  "RO->UA": {
+    "lonlat": [
+      24.821959,
+      47.768595
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "SK->UA": {
+    "lonlat": [
+      22.384512,
+      48.820578
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 90
+  }
+}

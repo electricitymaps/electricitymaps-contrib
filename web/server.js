@@ -45,8 +45,7 @@ i18n.configure({
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
-    objectNotation: true,
-    updateFiles: false // whether to write new locale information to disk - defaults to true
+    objectNotation: true
 });
 app.use(i18n.init);
 var LOCALE_TO_FB_LOCALE = {
@@ -92,8 +91,13 @@ var SUPPORTED_FB_LOCALES = [
 ];
 
 // * Long-term caching
-var BUNDLE_HASH = !isProduction ? 'dev' :
-    JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json')).hash;
+var BUNDLE_HASH = VENDOR_HASH = STYLES_HASH = 'dev';
+if (isProduction) {
+    var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
+    BUNDLE_HASH = obj.chunks[0].hash;
+    VENDOR_HASH = obj.chunks[2].hash;
+    STYLES_HASH = obj.chunks[1].hash;
+}
 
 // * Opbeat
 if (isProduction)
@@ -152,6 +156,8 @@ app.get('/', function(req, res) {
                 }
             }),
             bundleHash: BUNDLE_HASH,
+            vendorHash: VENDOR_HASH,
+            stylesHash: STYLES_HASH,
             fullUrl: fullUrl,
             locale: locale,
             supportedLocales: locales,

@@ -463,7 +463,7 @@ div.highscore-button {
     cursor: pointer;
     color: #fff;
 }
-div.highscore-button: hover {
+div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 

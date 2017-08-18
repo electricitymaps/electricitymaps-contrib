@@ -28,7 +28,7 @@
         "bysource": "按来源",
         "emissions": "碳排放量",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或编辑来源</a>",
-        "co2signal": "Our <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
+        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
     },
     "rankings-panel": {
         "country-ranking": "国家排名",
