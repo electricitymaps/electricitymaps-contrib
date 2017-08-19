@@ -625,7 +625,7 @@ def get_hydro(session=None):
     full_table = []
     
 
-    for pagenumber in range(1,2,1):
+    for pagenumber in range(1,5,1):
         t = s.get(thurl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'En Reserva' in text_only:
@@ -676,16 +676,16 @@ def fetch_production(country_code='AR', session=None):
       'countryCode': country_code,
       'datetime': gdt['datetime'],
       'production': {
-          'biomass': thermal['biomass'],
-          'coal': thermal['coal'],
-          'gas': thermal['gas'],
-          'hydro': hydro['hydro'],
-          'nuclear': thermal['nuclear'],
-          'oil': thermal['oil'],
+          'biomass': thermal.get('biomass', 0.0),
+          'coal': thermal.get('coal', 0.0),
+          'gas': thermal.get('gas', 0.0),
+          'hydro': hydro.get('hydro', 0.0),
+          'nuclear': thermal.get('nuclear', 0.0),
+          'oil': thermal.get('oil', 0.0),
           'solar': None,
           'wind': None,
           'geothermal': 0.0,
-          'unknown': thermal['unknown']
+          'unknown': thermal.get('unknown', 0.0)
       },
       'storage': {
           'hydro': None,
