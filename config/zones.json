@@ -123,7 +123,7 @@
     },
     "parsers": {
       "production": "BO.fetch_production",
-      "generationForecast": "BO.fectch_generation_forecast"
+      "generationForecast": "BO.fetch_generation_forecast"
     }
   },
   "BY": {},
