@@ -28,7 +28,7 @@ def fetch_hourly_production(country_code, obj, hour, date):
         'countryCode': country_code,
         'production': {},
         'storage': {},
-        'source': 'www.amm.org.gt',
+        'source': 'amm.org.gt',
     }
     
     #Fill datetime variable
@@ -86,7 +86,7 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
     data = {
         'countryCode': country_code,
         'consumption': {},
-        'source': 'www.amm.org.gt',
+        'source': 'amm.org.gt',
     }
     #Fill datetime variable
     data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime   
