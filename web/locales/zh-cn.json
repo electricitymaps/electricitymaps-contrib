@@ -35,7 +35,8 @@
         "show-ranking": "显示排名"
     },
     "country-history": {
-        "carbonintensity24h": "过去24小时的碳强度"
+        "carbonintensity24h": "过去24小时的碳强度",
+        "downloaddataset": "Download full dataset"
     },
     "footer": {
         "likethisvisu": "喜欢这个视觉？",
