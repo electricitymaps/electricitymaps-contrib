@@ -122,7 +122,7 @@
       "wind": 27 
     },
     "parsers": {
-      "production": "BO.fetch_production"
+      "production": "BO.fetch_production",
       "generationForecast": "BO.fectch_generation_forecast"
     }
   },
