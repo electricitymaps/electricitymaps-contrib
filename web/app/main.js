@@ -634,10 +634,11 @@ function selectCountry(countryCode, notrack) {
                 obj.data.push(countries[countryCode]);
 
                 // Add capacities
-                if (capacities[countryCode]) {
-                    var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
+                if (zones_config[countryCode].capacity) {
+                    var maxCapacity = d3.max(d3.values(
+                        zones_config[countryCode].capacity));
                     obj.data.forEach(function(d) {
-                        d.capacity = capacities[countryCode].capacity;
+                        d.capacity = zones_config[countryCode].capacity;
                         d.maxCapacity = maxCapacity;
                     });
                 }
@@ -973,12 +974,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             // Check validity of storage
             if (country.storage[mode] !== undefined && country.storage[mode] < 0)
                 console.error(countryCode + ' has negative storage of ' + mode);
-            // Check missing capacities
-            // if (country.production[mode] !== undefined &&
-            //     (country.capacity || {})[mode] === undefined)
-            // {
-            //     console.warn(countryCode + ' is missing capacity of ' + mode);
-            // }
             // Check load factors > 1
             if (country.production[mode] !== undefined &&
                 (country.capacity || {})[mode] !== undefined &&
