@@ -570,8 +570,11 @@ def get_thermal(session=None):
 
     #'En Reserva' plants are not generating and can be ignored.
     #The table has an extra column on 'Costo Operativo' page which must be removed to find power generated correctly.
-
-    for pagenumber in range(1,8,1):
+    
+    pagenumber = 1
+    reserves = False
+    
+    while not reserves:
         t = s.get(turl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'Estado' in text_only:
@@ -579,8 +582,10 @@ def get_thermal(session=None):
                 if len(item) == 1 and item in string.ascii_letters:
                     text_only.remove(item)
         if 'En Reserva' in text_only:
-            break
+            reserves = True
+            continue
         full_table.append(text_only)
+        pagenumber += 1
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
