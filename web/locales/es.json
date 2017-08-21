@@ -21,21 +21,22 @@
     "country-panel": {
         "source": "fuente",
         "fossilfuels": "combustibles fósiles",
-        "carbonintensity": "Intensidad del carbón",
+        "carbonintensity": "Intensidad de carbono",
         "electricityprice": "Precio de la electricidad",
-        "electricityprice-dayahead": "en 1 día",
+        "electricityprice-dayahead": "día que viene",
         "electricityproduction": "Producción de electricidad",
         "bysource": "por fuente",
         "emissions": "Emisiones",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o editar fuente de datos</a>",
-        "co2signal": "Nuestro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> ayuda a dispositivos y vehículos eléctricos a consumir electricidad en el momento adecuado, especialmente cuando se cruzan fronteras."
+        "co2signal": "Nuestro <a href=\"%s\" target=\"blank\">CO2 Signal</a> ayuda a dispositivos y vehículos eléctricos a consumir electricidad en el momento adecuado, especialmente cuando se cruzan fronteras."
     },
     "rankings-panel": {
         "country-ranking": "Clasificación",
         "show-ranking": "Mostrar la clasificación"
     },
     "country-history": {
-        "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas"
+        "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas",
+        "downloaddataset": "descargar datos completos"
     },
     "footer": {
         "likethisvisu": "¿Te gusta la visualización?",

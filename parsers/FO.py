@@ -14,6 +14,10 @@ MAP_GENERATION = {
 def getDataKey(tag):
     return MAP_GENERATION.get(tag, None)
 
+def validate_datapoint(d):
+    if d['production'].get('oil', None) is None: return None
+    else: return d
+
 def fetch_production(country_code='FO', session=None):
     r = session or requests.session()
     url = 'https://w3.sev.fo/hagtol/xml/xkiefjSDKFjeijgjdkjf3847tgfjlkfdgnlsnfvm.xml'

@@ -28,7 +28,7 @@
         "bysource": "Per fonte",
         "emissions": "Emissioni CO2",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
-        "co2signal": "Il nostro <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
+        "co2signal": "Il nostro <a href=\"%s\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini."
     },
     "rankings-panel": {
         "country-ranking": "Classifica",
@@ -36,7 +36,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
-        "downloaddataset": "Scarica dati completi"
+        "downloaddataset": "scarica dati completi"
     },
     "footer": {
         "likethisvisu": "Ti piace questo progetto?",

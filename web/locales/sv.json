@@ -28,7 +28,7 @@
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
-        "co2signal": "Vår <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
+        "co2signal": "Vår <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
     },
     "rankings-panel": {
         "country-ranking": "Rankning",
@@ -36,7 +36,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
-        "downloaddataset": "ladda ned all data" 
+        "downloaddataset": "ladda ned all data"
     },
     "footer": {
         "likethisvisu": "Gillar du visualiseringen?",
