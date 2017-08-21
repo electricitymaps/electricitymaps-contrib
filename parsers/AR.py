@@ -624,13 +624,17 @@ def get_hydro(session=None):
     rs = spat.rpartition('=')[2]
     full_table = []
     
-
-    for pagenumber in range(1,5,1):
+    pagenumber = 1
+    reserves = False
+    
+    while not reserves:
         t = s.get(thurl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'En Reserva' in text_only:
-            break
+            reserves = True
+            continue
         full_table.append(text_only)
+        pagenumber += 1
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
