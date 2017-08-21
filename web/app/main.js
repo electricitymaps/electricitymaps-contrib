@@ -634,7 +634,7 @@ function selectCountry(countryCode, notrack) {
                 obj.data.push(countries[countryCode]);
 
                 // Add capacities
-                if (zones_config[countryCode].capacity) {
+                if ((zones_config[countryCode] || {}).capacity) {
                     var maxCapacity = d3.max(d3.values(
                         zones_config[countryCode].capacity));
                     obj.data.forEach(function(d) {

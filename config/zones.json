@@ -115,6 +115,17 @@
       "production": "BG.fetch_production"
     }
   },
+  "BO": {
+    "capacity": {
+      "hydro": 483.22,
+      "unknown" : 1344.55,
+      "wind": 27 
+    },
+    "parsers": {
+      "production": "BO.fetch_production",
+      "generationForecast": "BO.fetch_generation_forecast"
+    }
+  },
   "BY": {},
   "CA-AB": {
     "flag_file_name": "ca.png",
@@ -319,6 +330,7 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     }

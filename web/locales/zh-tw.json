@@ -35,7 +35,8 @@
         "show-ranking": "顯示排名"
     },
     "country-history": {
-        "carbonintensity24h": "過去24小時的碳強度"
+        "carbonintensity24h": "過去24小時的碳強度",
+        "downloaddataset": "Download full dataset"
     },
     "footer": {
         "likethisvisu": "喜歡這個視覺？",
