@@ -53,7 +53,7 @@ def fetch_hourly_production(country_code, obj, hour, date):
         'countryCode': country_code,
         'production': {},
         'storage': {},
-        'source': 'http://www.cndc.bo',
+        'source': 'cndc.bo',
     }
     
     #Fill datetime variable
@@ -109,7 +109,7 @@ def fetch_hourly_generation_forecast(country_code, obj, hour, date):
     data = {
         'countryCode': country_code,
         'value': {},
-        'source': 'http://www.cndc.bo',
+        'source': 'cndc.bo',
     }
     
     #Fill datetime variable
