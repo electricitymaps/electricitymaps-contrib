@@ -26,7 +26,7 @@
         "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Elektrizitätsproduktion",
         "bysource": "nach Quelle",
-        "emissions": "Co2 Emissionen",
+        "emissions": "CO2 Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "co2signal": "Unser <a href=\"%s\" target=\"blank\">CO2 Signal</a> hilft Geräten und elektrischen Fahrzeugen Elektrizität zur richtigen Zeit zu konsumieren, insbesondere bei Grenzübertritt."
     },

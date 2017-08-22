@@ -629,6 +629,10 @@ div.highscore-button:hover {
     stroke: none;
 }
 
+sub {
+    font-size: 60%;
+}
+
 .premium {
     border-radius: 0.3rem;
     background-color: gold;
