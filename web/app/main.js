@@ -11,7 +11,6 @@ var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
-var ExchangeConfig = require('./exchangeconfig');
 var ExchangeLayer = require('./exchangelayer');
 var flags = require('./flags');
 var grib = require('./grib');
@@ -23,8 +22,8 @@ var Tooltip = require('./tooltip');
 var Wind = require('./wind');
 
 // Configs
-var capacities = require('../../config/capacities.json');
-var zones = require('../../config/zones.json');
+var exchanges_config = require('../../config/exchanges.json');
+var zones_config = require('../../config/zones.json');
 
 // Constants
 var REFRESH_TIME_MINUTES = 5;
@@ -180,13 +179,39 @@ window.twttr = (function(d, s, id) {
     return t;
 }(document, "script", "twitter-wjs"));
 
+twttr.ready(function(e) {
+    twttr.events.bind('click', function(event) {
+        // event.region is {tweet,follow}
+        trackAnalyticsEvent(event.region);
+        if(typeof ga !== 'undefined') {
+            ga('send', 'social', 'twitter', event.region);
+        }
+    })
+})
+
 // Facebook
 window.fbAsyncInit = function() {
     FB.init({
         appId      : '1267173759989113',
         xfbml      : true,
-        version    : 'v2.8'
+        version    : 'v2.10'
     });
+
+    FB.Event.subscribe('edge.create', function(e) {
+        // This will happen when they like the page
+        if (e == 'https://www.facebook.com/tmrowco') {
+            trackAnalyticsEvent('like');
+            if(typeof ga !== 'undefined') {
+                ga('send', 'social', 'facebook', 'like', e);
+            }
+        }
+    })
+    FB.Event.subscribe('edge.remove', function(e) {
+        // This will happen when they unlike the page
+        if (e == 'https://www.facebook.com/tmrowco') {
+            trackAnalyticsEvent('unlike');
+        }
+    })
 };
 
 (function(d, s, id){
@@ -254,7 +279,7 @@ function trackAnalyticsEvent(eventName, paramObj) {
         } catch(err) { console.error('Mixpanel error: ' + err); }
         try {
             if(typeof ga !== 'undefined')
-                ga('send', eventName);
+                ga('send', 'event', 'page', eventName);
         } catch(err) { console.error('Google Analytics error: ' + err); }
     }
 }
@@ -488,19 +513,14 @@ if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
 countryMap
     .data(d3.values(countries))
 // Add configurations
-d3.entries(zones).forEach(function(d) {
+d3.entries(zones_config).forEach(function(d) {
     var zone = countries[d.key];
     if (!zone) {
         console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..')
         return;
     }
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
-    // Add translation
     zone.shortname = lang && lang.zoneShortName[d.key];
-});
-// Add capacities
-d3.entries(capacities).forEach(function(d) {
-    var zone = countries[d.key];
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
     zone.maxStorageCapacity = d3.max(d3.entries(zone.capacity), function(d) {
@@ -512,13 +532,13 @@ d3.entries(countries).forEach(function(d) {
     var zone = countries[d.key];
     zone.countryCode = d.key; // TODO: Rename to zoneId
 })
-var exchanges = {};
-ExchangeConfig.addExchangesConfiguration(exchanges);
+var exchanges = exchanges_config;
 d3.entries(exchanges).forEach(function(entry) {
     entry.value.countryCodes = entry.key.split('->').sort();
     if (entry.key.split('->')[0] != entry.value.countryCodes[0])
         console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
+
 var wind, solar;
 
 var histories = {};
@@ -614,10 +634,11 @@ function selectCountry(countryCode, notrack) {
                 obj.data.push(countries[countryCode]);
 
                 // Add capacities
-                if (capacities[countryCode]) {
-                    var maxCapacity = d3.max(d3.values(capacities[countryCode].capacity));
+                if ((zones_config[countryCode] || {}).capacity) {
+                    var maxCapacity = d3.max(d3.values(
+                        zones_config[countryCode].capacity));
                     obj.data.forEach(function(d) {
-                        d.capacity = capacities[countryCode].capacity;
+                        d.capacity = zones_config[countryCode].capacity;
                         d.maxCapacity = maxCapacity;
                     });
                 }
@@ -953,12 +974,6 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             // Check validity of storage
             if (country.storage[mode] !== undefined && country.storage[mode] < 0)
                 console.error(countryCode + ' has negative storage of ' + mode);
-            // Check missing capacities
-            // if (country.production[mode] !== undefined &&
-            //     (country.capacity || {})[mode] === undefined)
-            // {
-            //     console.warn(countryCode + ' is missing capacity of ' + mode);
-            // }
             // Check load factors > 1
             if (country.production[mode] !== undefined &&
                 (country.capacity || {})[mode] !== undefined &&
@@ -1061,7 +1076,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     // Populate exchange pairs for arrows
     d3.entries(state.exchanges).forEach(function(obj) {
         var exchange = exchanges[obj.key];
-        if (!exchange) {
+        if (!exchange || !exchange.lonlat) {
             console.error('Missing exchange configuration for ' + obj.key);
             return;
         }
@@ -1077,7 +1092,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     }
     exchangeLayer
         .data(d3.values(exchanges).filter(function(d) {
-            return d.netFlow != 0 && d.netFlow != null;
+            return d.netFlow != 0 && d.netFlow != null && d.lonlat;
         }))
         .onExchangeMouseOver(function (d) {
             d3.select(this)

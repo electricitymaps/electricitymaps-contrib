@@ -50,6 +50,7 @@ power_plant_type = {
                      'ANCHDI02': 'oil',
                      'ANCHDI03': 'oil',
                      'ANCHDI04': 'oil',
+                     'APARTV01': 'gas',
                        'ARA2EO': 'hydro',
                        'ARAUEO': 'hydro',
                      'ARGETG01': 'gas',
@@ -79,6 +80,8 @@ power_plant_type = {
                      'BRAGTG04': 'gas',
                      'BRAGTG05': 'gas',
                      'BRAGTG06': 'gas',
+                     'BRC1DI01': 'oil',
+                     'BRCHTG01': 'gas',
                      'BROWTG01': 'gas',
                      'BROWTG02': 'gas',
                      'BSASTG01': 'gas',
@@ -244,6 +247,7 @@ power_plant_type = {
                      'MDPATG22': 'gas',
                      'MDPATG23': 'gas',
                      'MDPATG24': 'gas',
+                     'MDPATV07': 'gas',
                      'MDPATV08': 'gas',
                      'MIR1DI01': 'oil',
                      'MJUADI01': 'oil',
@@ -263,7 +267,7 @@ power_plant_type = {
                        'NIH1HI': 'hydro',
                        'NIH4HI': 'hydro',
                      'NOMODI01': 'gas',
-                     'NPOMDI01': 'unknown',
+                     'NPOMDI01': 'gas',
                      'NPUETV05': 'gas',
                      'NPUETV06': 'gas',
                      'OBERTG01': 'gas',
@@ -566,8 +570,11 @@ def get_thermal(session=None):
 
     #'En Reserva' plants are not generating and can be ignored.
     #The table has an extra column on 'Costo Operativo' page which must be removed to find power generated correctly.
-
-    for pagenumber in range(1,8,1):
+    
+    pagenumber = 1
+    reserves = False
+    
+    while not reserves:
         t = s.get(turl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'Estado' in text_only:
@@ -575,8 +582,10 @@ def get_thermal(session=None):
                 if len(item) == 1 and item in string.ascii_letters:
                     text_only.remove(item)
         if 'En Reserva' in text_only:
-            break
+            reserves = True
+            continue
         full_table.append(text_only)
+        pagenumber += 1
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
@@ -620,13 +629,17 @@ def get_hydro(session=None):
     rs = spat.rpartition('=')[2]
     full_table = []
     
-
-    for pagenumber in range(1,2,1):
+    pagenumber = 1
+    reserves = False
+    
+    while not reserves:
         t = s.get(thurl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'En Reserva' in text_only:
-            break
+            reserves = True
+            continue
         full_table.append(text_only)
+        pagenumber += 1
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
@@ -672,16 +685,16 @@ def fetch_production(country_code='AR', session=None):
       'countryCode': country_code,
       'datetime': gdt['datetime'],
       'production': {
-          'biomass': thermal['biomass'],
-          'coal': thermal['coal'],
-          'gas': thermal['gas'],
-          'hydro': hydro['hydro'],
-          'nuclear': thermal['nuclear'],
-          'oil': thermal['oil'],
+          'biomass': thermal.get('biomass', 0.0),
+          'coal': thermal.get('coal', 0.0),
+          'gas': thermal.get('gas', 0.0),
+          'hydro': hydro.get('hydro', 0.0),
+          'nuclear': thermal.get('nuclear', 0.0),
+          'oil': thermal.get('oil', 0.0),
           'solar': None,
           'wind': None,
           'geothermal': 0.0,
-          'unknown': thermal['unknown']
+          'unknown': thermal.get('unknown', 0.0)
       },
       'storage': {
           'hydro': None,

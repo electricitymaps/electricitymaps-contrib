@@ -19,6 +19,11 @@ MAP_GENERATION = {
   'EÓLICA': 'wind'
 }
 
+def validate(datapoint):
+    if sum([v for k,v in datapoint['production'].iteritems() if v is not None]) > 0:
+        return datapoint
+    else: return None
+
 def parse_date(item):
     return arrow.get(item['Nombre'], 'M/D/YYYY h:mm:ss A').replace(tzinfo=dateutil.tz.gettz(tz))
 
@@ -59,7 +64,7 @@ def fetch_production(country_code='PE', session=None):
             data[i]['production'][MAP_GENERATION[k]] = \
                 data[i]['production'].get(MAP_GENERATION[k], 0) + v['Valor'] / interval_hours
 
-    return data
+    return filter(lambda x: validate(x) is not None, data)
 
 
 if __name__ == '__main__':

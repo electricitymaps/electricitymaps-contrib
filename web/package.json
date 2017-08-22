@@ -16,11 +16,14 @@
     "topojson": "^3.0.0"
   },
   "devDependencies": {
+    "css-loader": "^0.28.4",
     "d3-geo-projection": "^2.2.0",
+    "extract-text-webpack-plugin": "^3.0.0",
     "ndjson-cli": "^0.3.1",
     "nodemon": "^1.11.0",
     "shapefile": "^0.6.2",
-    "webpack": "^2.6.1"
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.4"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@ import requests
 
 MAP_GENERATION = {
   'aes': 'nuclear',
-  'tec': 'other', # fossil 
+  'tec': 'unknown', # fossil 
   'tes': 'coal',
   'chpp': 'gas',
   'hpp': 'hydro',
