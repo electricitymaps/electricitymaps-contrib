@@ -56,5 +56,3 @@ echo 'Merging and simplifying..'
 )> app/world.json
 
 echo 'Done'
-
-#rm -rvf build
