@@ -300,6 +300,13 @@ def parse_generation_forecast(xml_text):
             datetimes.append(datetime)
     return values, datetimes
 
+def validate_production(datapoint):
+    if datapoint['countryCode'] == 'BE':
+        p = datapoint['production']
+        return p.get('nuclear', None) is not None and \
+               p.get('gas', None) is not None
+    else: return True
+
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
         return values.get('Biomass', 0) + \
@@ -416,7 +423,7 @@ def fetch_production(country_code, session=None, now=None):
             'source': 'entsoe.eu'
         })
 
-    return data
+    return filter(validate_production, data)
 
 def fetch_exchange(country_code1, country_code2, session=None, now=None):
     if not session: session = requests.session()

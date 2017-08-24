@@ -28,14 +28,15 @@
         "bysource": "per kilde",
         "emissions": "CO2 udledning",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
-        "co2signal": "Vores <a href=\"http://www.co2signal.com\" target=\"blank\">CO2 Signal</a> hjælper elektriske apparater og elbiler med at bruge elektricitet på rette tidspunkt, især på tværs af grænserne."
+        "co2signal": "Vores <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjælper elektriske apparater og elbiler med at bruge elektricitet på rette tidspunkt, især på tværs af grænserne."
     },
     "rankings-panel": {
         "country-ranking": "Rangering",
         "show-ranking": "Vis rangering"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer"
+        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer",
+        "downloaddataset": "Download hele datasættet"
     },
     "footer": {
         "likethisvisu": "Kan du lide visualiseringen?",

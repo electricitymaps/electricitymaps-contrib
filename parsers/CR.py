@@ -121,7 +121,10 @@ def empty_record(country_code):
 
 def df_to_data(country_code, day, df):
     df = df.dropna(axis=1, how='any')
-    df.drop([u'Intercambio Sur', u'Intercambio Norte', u'Total'], inplace=True)
+    # Check for empty dataframe
+    if df.shape == (1,1): return []
+    df = df.drop([u'Intercambio Sur', u'Intercambio Norte', u'Total'])
+    df = df.iloc[:, :-1]
 
     data = []
     hours = 0
@@ -137,7 +140,8 @@ def df_to_data(country_code, day, df):
 
 
 def fetch_production(country_code='CR', session=None):
-    r = session or requests.session()
+    # Do not use existing session as some amount of cache is taking place
+    r = requests.session()
     url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
     response = r.get(url)
     df_yesterday = pd.read_html(response.text, skiprows=1, index_col=0, header=0)[0]
