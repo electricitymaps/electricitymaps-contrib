@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "compression": "^1.6.2",
     "currency-symbol-map": "^3.1.0",
     "d3": "^4.9.1",

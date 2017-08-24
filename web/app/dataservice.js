@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 
+var bcrypt = require('bcryptjs');
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
@@ -10,6 +11,7 @@ var GFS_STEP_HORIZON = 1; // hours
 var fetchForecast = exports.fetchForecast = function(endpoint, key, refTime, targetTime, tryEarlierRefTime, callback) {
     refTime = moment(refTime);
     targetTime = moment(targetTime);
+    // TODO: Add headers
     return d3.json(endpoint + '/v2/gfs/' + key + '?' + 
         'refTime=' + refTime.toISOString() + '&' +
         'targetTime=' + targetTime.toISOString(), function(err, obj) {
@@ -50,7 +52,14 @@ exports.fetchNothing = function(callback) {
     return callback(null, null);
 }
 exports.fetchState = function(endpoint, datetime, callback) {
-    return d3.json(endpoint + '/v1/state' + (datetime ? '?datetime=' + datetime : ''))
-        .header('electricitymap-token', Cookies.get('electricitymap-token'))
-        .get(null, callback);
+    var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
+    var time = new Date().getTime();
+    return bcrypt.hash('abcdef' + path + time, 10, function(err, e) {
+        if (err) { return callback(err); }
+        return d3.json(endpoint + path)
+            .header('electricitymap-token', Cookies.get('electricitymap-token'))
+            .header('x-request-timestamp', time)
+            .header('x-signature', e)
+            .get(null, callback);
+    })
 }
