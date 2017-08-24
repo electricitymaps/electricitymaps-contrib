@@ -28,14 +28,14 @@ def fetch_hourly_production(country_code, obj, hour, date):
         'countryCode': country_code,
         'production': {},
         'storage': {},
-        'source': 'www.amm.org.gt',
+        'source': 'amm.org.gt',
     }
     
     #Fill datetime variable
     data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime   
     
-    #First add 'Biomasa' and 'Biogas' together to make 'biomass' variable
-    data['production']['biomass'] = obj[obj['tipo'] == 'Biomasa'].potencia.iloc[0] + obj[obj['tipo'] == 'Biogas'].potencia.iloc[0]
+    #First add 'Biomasa' and 'Biogas' together to make 'biomass' variable (and avoid negative values)
+    data['production']['biomass'] = max(obj[obj['tipo'] == 'Biomasa'].potencia.iloc[0],0) + max(obj[obj['tipo'] == 'Biogas'].potencia.iloc[0],0)
     #Then fill the other sources directly with the MAP_GENERATION frame
     for i_type in MAP_GENERATION.keys(): 
         data['production'][i_type] = obj[obj['tipo'] == MAP_GENERATION[i_type]].potencia.iloc[0]
@@ -44,13 +44,15 @@ def fetch_hourly_production(country_code, obj, hour, date):
 
 
 def fetch_production(country_code='GT', session=None):
+    #Define actual and last day (for midnight data)
+    now = arrow.now(tz=tz_gt)
+    formatted_date = now.format('DD/MM/YYYY')
+    past_formatted_date = arrow.get(formatted_date, 'DD/MM/YYYY').shift(days=-1).format('DD/MM/YYYY')
     
     #Define output frame
-    data = [dict() for h in range(24)]
+    actual_hour = now.hour
+    data = [dict() for h in range(actual_hour+1)]
 
-    #Define actual and last day (for midnight data)
-    formatted_date = arrow.now(tz=tz_gt).format('DD/MM/YYYY')
-    past_formatted_date = arrow.get(formatted_date, 'DD/MM/YYYY').shift(days=-1).format('DD/MM/YYYY')
     #initial path for url to request
     url_init = 'http://wl.amm.org.gt/AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/' 
 
@@ -62,21 +64,21 @@ def fetch_production(country_code='GT', session=None):
     obj = response.json()
     obj_df = pd.DataFrame(obj)
     obj_h = obj_df[obj_df.hora == '24']
-    #fecth production for corresponding hour
     data_temp = fetch_hourly_production(country_code, obj_h, 0, formatted_date)
     data[0] = data_temp
     
-    #Fill data for the other hours
-    url = url_init + formatted_date
-    #Request and rearange in DF
-    r = session or requests.session()
-    response = r.get(url)
-    obj = response.json()
-    obj_df = pd.DataFrame(obj)
-    for h in range(1,24):
-        obj_h = obj_df[obj_df.hora == str(h)]
-        data_temp = fetch_hourly_production(country_code, obj_h, h, formatted_date)
-        data[h] = data_temp
+    #Fill data for the other hours until actual hour
+    if actual_hour>1:
+        url = url_init + formatted_date
+        #Request and rearange in DF
+        r = session or requests.session()
+        response = r.get(url)
+        obj = response.json()
+        obj_df = pd.DataFrame(obj)
+        for h in range(1,actual_hour+1):
+            obj_h = obj_df[obj_df.hora == str(h)]
+            data_temp = fetch_hourly_production(country_code, obj_h, h, formatted_date)
+            data[h] = data_temp
 
     return data
 
@@ -86,7 +88,7 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
     data = {
         'countryCode': country_code,
         'consumption': {},
-        'source': 'www.amm.org.gt',
+        'source': 'amm.org.gt',
     }
     #Fill datetime variable
     data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime   
@@ -97,11 +99,15 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
 
 
 def fetch_consumption(country_code='GT', session=None):
-    #Define output frame
-    data = [dict() for h in range(24)]
     #Define actual and last day (for midnight data)
-    formatted_date = arrow.now(tz=tz_gt).format('DD/MM/YYYY')
+    now = arrow.now(tz=tz_gt)
+    formatted_date = now.format('DD/MM/YYYY')
     past_formatted_date = arrow.get(formatted_date, 'DD/MM/YYYY').shift(days=-1).format('DD/MM/YYYY')
+    
+    #Define output frame
+    actual_hour = now.hour
+    data = [dict() for h in range(actual_hour+1)]
+
     #initial path for url to request
     url_init = 'http://wl.amm.org.gt/AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/' 
 
@@ -113,21 +119,21 @@ def fetch_consumption(country_code='GT', session=None):
     obj = response.json()
     obj_df = pd.DataFrame(obj)
     obj_h = obj_df[obj_df.hora == '24']
-    #fecth production for corresponding hour
     data_temp = fetch_hourly_consumption(country_code, obj_h, 0, formatted_date)
     data[0] = data_temp
     
-    #Fill data for the other hours
-    url = url_init + formatted_date
-    #Request and rearange in DF
-    r = session or requests.session()
-    response = r.get(url)
-    obj = response.json()
-    obj_df = pd.DataFrame(obj)
-    for h in range(1,24):
-        obj_h = obj_df[obj_df.hora == str(h)]
-        data_temp = fetch_hourly_consumption(country_code, obj_h, h, formatted_date)
-        data[h] = data_temp
+    #Fill data for the other hours until actual hour
+    if actual_hour>1:
+        url = url_init + formatted_date
+        #Request and rearange in DF
+        r = session or requests.session()
+        response = r.get(url)
+        obj = response.json()
+        obj_df = pd.DataFrame(obj)
+        for h in range(1,actual_hour+1):
+            obj_h = obj_df[obj_df.hora == str(h)]
+            data_temp = fetch_hourly_consumption(country_code, obj_h, h, formatted_date)
+            data[h] = data_temp
 
     return data
 

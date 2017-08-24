@@ -55,6 +55,8 @@ thermal_plants = {
                  u'MONTE PLATA SOLAR': 'solar',
                  u'MONTE RIO': 'oil',
                  u'PALAMARA': 'oil',
+                 u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
+                 u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
                  u'PIMENTEL 1': 'oil',
                  u'PIMENTEL 2': 'oil',
                  u'PIMENTEL 3': 'oil',
@@ -138,7 +140,7 @@ def data_formatter(data):
     ufthermal = data[find_thermal_index+3:find_totals_index-59]
     total_data = data[find_totals_index:find_totals_end]
 
-    #Remove all comapany names.
+    #Remove all company names.
     for val in ufthermal:
         if ':' in val:
             i = ufthermal.index(val)
@@ -186,7 +188,7 @@ def thermal_production(df):
             tp[item] = v
 
         current_plants = {k: tp[k] for k in tp if not isnan(tp[k])}
-        mapped_plants = [(thermal_plants[plant], val) for plant, val in current_plants.iteritems()]
+        mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.iteritems()]
 
         thermalDict = defaultdict(lambda: 0.0)
 
@@ -299,11 +301,11 @@ def fetch_production(country_code = 'DO', session = None):
               'biomass': hour.get('biomass', 0.0),
               'coal': hour.get('coal', 0.0),
               'gas': hour.get('gas', 0.0),
-              'hydro': hour['hydro'],
+              'hydro': hour.get('hydro', 0.0),
               'nuclear': 0.0,
               'oil': hour.get('oil', 0.0),
               'solar': None,
-              'wind': hour['wind'],
+              'wind': hour.get('wind', 0.0),
               'geothermal': 0.0,
               'unknown': hour.get('unknown', 0.0)
           },

@@ -463,7 +463,7 @@ div.highscore-button {
     cursor: pointer;
     color: #fff;
 }
-div.highscore-button: hover {
+div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
@@ -627,6 +627,10 @@ div.highscore-button: hover {
 .co2-floating-legend .tick line,
 .co2-floating-legend rect.border {
     stroke: none;
+}
+
+sub {
+    font-size: 60%;
 }
 
 .premium {
