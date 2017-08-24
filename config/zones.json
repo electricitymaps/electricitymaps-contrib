@@ -554,7 +554,9 @@
       "production": "ENTSOE.fetch_production"
     }
   },
-  "IS": {
+  "IN-PB": {
+    "flag_file_name": "in.png"
+  },"IS": {
     "capacity": {
       "biomass": 0,
       "coal": 0,
