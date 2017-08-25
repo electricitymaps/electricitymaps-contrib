@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import re
-import ast
 from collections import defaultdict
 from operator import itemgetter
 
@@ -88,10 +87,9 @@ def data_parser(datareq):
         np = item.split('":')
         diced.append(np[0::2])
 
-    #literal_eval is used to convert a string representation of a list into an actual list.
     clean_data = []
     for item in diced:
-        j = ast.literal_eval(item[0])
+        j = json.loads(item[0])
         k = float(item[1])
         j.append(k)
         clean_data.append(j)
