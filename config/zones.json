@@ -830,6 +830,16 @@
       "production": "ENTSOE.fetch_production"
     }
   },
+  "SV": {
+    "capacity": {
+      "hydro": 472,
+      "geothermal": 204,
+      "unknown": 756
+    },
+    "parsers": {
+      "production": "SV.fetch_production"
+    }
+  },    
   "TR": {
     "parsers": {
       "production": "TR.fetch_production"
