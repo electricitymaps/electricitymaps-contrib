@@ -801,16 +801,18 @@
         "emissionsImportedFrom": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
         "zoneShortName": {
+            "AD": "Andorra",
             "AL": "Albanien",
             "AM": "Armenien",
             "AT": "Österrike",
+            "AR": "Argentina",
             "AUS-NSW": "Australien (New South Wales)",
             "AUS-NT": "Australien (Northern Territory)",
             "AUS-QLD": "Australien (Queensland)",
-            "AUS-SA": "Australien (South Australien)",
+            "AUS-SA": "Australien (South Australia)",
             "AUS-TAS": "Australien (Tasmanien)",
             "AUS-VIC": "Australien (Victoria)",
-            "AUS-WA": "Australien (Western Australien)",
+            "AUS-WA": "Australien (Western Australia)",
             "AZ": "Azerbajdzjan",
             "BA": "Bosnien och Hercegovina",
             "BE": "Belgien",
@@ -835,6 +837,7 @@
             "CZ": "Tjeckien",
             "DE": "Tyskland",
             "DK": "Danmark",
+            "DO": "Dominikanska republiken",
             "DZ": "Algeriet",
             "EE": "Estland",
             "EG": "Egypten",
@@ -854,6 +857,7 @@
             "HU": "Ungern",
             "IE": "Irland",
             "IL": "Israel",
+            "IN-PB": "Indien (Punjab)",
             "IQ": "Irak",
             "IR": "Iran",
             "IS": "Island",
@@ -880,6 +884,8 @@
             "PL": "Polen",
             "PS": "Staten Palestina",
             "PT": "Portugal",
+            "PT-AC": "Portugal (Azorerna)",
+            "PT-MA": "Portugal (Madeira)",
             "RO": "Rumänien",
             "RS": "Serbien",
             "RU": "Ryssland",
@@ -1007,7 +1013,7 @@
             "UY": "Urugwaj"
         }
     },
-        "ar": {
+    "ar": {
         "wind": "رياح",
         "solar": "شمسي",
         "hydro": "المائية",
