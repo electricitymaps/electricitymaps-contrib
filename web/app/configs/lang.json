@@ -22,6 +22,8 @@
         "electricityImportedFrom": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "Albanien",
             "AT": "Østrig",
@@ -92,6 +94,8 @@
         "emissionsExportedTo": "{1} % der CO2 Emissionen im <img id=\"country-flag\"></img> <b>{2}</b> wird exportiert nach <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % der Elektrizität im <img id=\"country-flag\"></img> <b>{2}</b> kommt aus <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % der CO2 Emissionen im <img id=\"country-flag\"></img> <b>{2}</b> kommt aus <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "Albanien",
@@ -166,6 +170,8 @@
         "emissionsExportedTo": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are exported to <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> is imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AD": "Andorra",
@@ -296,6 +302,8 @@
         "electricityImportedFrom": "{1} % de la electricidad en <img id=\"country-flag\"></img> <b>{2}</b> proviene de <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % de las emissiones en <img id=\"country-flag\"></img> <b>{2}</b> proviene de <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AD": "Andorra",
             "AL": "Albania",
@@ -379,6 +387,8 @@
         "emissionsExportedTo": "{1} % des émissions en <img id=\"country-flag\"></img> <b>{2}</b> sont exportées vers <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % de l'électricité en <img id=\"country-flag\"></img> <b>{2}</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % des émissions en <img id=\"country-flag\"></img> <b>{2}</b> sont importées depuis <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "Albanie",
@@ -481,6 +491,8 @@
         "emissionsExportedTo": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "Il {1} % dell'elettricità di <img id=\"country-flag\"></img> <b>{2}</b> è importato da <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è importato da <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AE": "Emirati Arabi Uniti",
@@ -730,6 +742,8 @@
         "electricityImportedFrom": "{1} % van de elektriciteitin <img id=\"country-flag\"></img> <b>{2}</b> invoer van <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % van de emissions in <img id=\"country-flag\"></img> <b>{2}</b> invoer van <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "Albanië",
             "AT": "Oostenrijk",
@@ -799,6 +813,8 @@
         "emissionsExportedTo": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % av elen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "av CO2eq per minut",
 
         "zoneShortName": {
             "AL": "Albanien",
@@ -923,6 +939,8 @@
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b>: {1}% energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b>: {1}% emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "Albania",
             "AR": "Argentyna",
@@ -1007,7 +1025,7 @@
             "UY": "Urugwaj"
         }
     },
-        "ar": {
+    "ar": {
         "wind": "رياح",
         "solar": "شمسي",
         "hydro": "المائية",
@@ -1029,6 +1047,8 @@
         "emissionsExportedTo": "{1} % من الانبعاثات في <img id=\"country-flag\"></img> <b>{2}</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % من الكهرباء في <img id=\"country-flag\"></img> <b>{2}</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % من الانبعاثات في <img id=\"country-flag\"></img> <b>{2}</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AD": "أندورا",
@@ -1156,6 +1176,8 @@
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的電力從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "阿爾巴尼亞",
             "AM": "亞美尼亞",
@@ -1267,6 +1289,8 @@
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的電力從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "阿爾巴尼亞",
             "AM": "亞美尼亞",
@@ -1377,6 +1401,8 @@
         "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量被汇出到 <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的电力从 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 汇入",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量从 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 汇入",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "阿尔巴尼亚",
