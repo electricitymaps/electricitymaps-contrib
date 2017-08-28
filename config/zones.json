@@ -555,7 +555,10 @@
     }
   },
   "IN-PB": {
-    "flag_file_name": "in.png"
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_PB.fetch_production"
+    }
   },"IS": {
     "capacity": {
       "biomass": 0,

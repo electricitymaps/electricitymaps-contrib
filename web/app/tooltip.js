@@ -19,9 +19,9 @@ function formatCo2(d, numDigits) {
     if (d == null || d == NaN) return d;
     if (numDigits == null) numDigits = 3;
     if (d >= 1) // a ton or more
-        return d3.format('.' + numDigits + 's')(d) + 't of CO<sub>2</sub>eq per minute';
+        return d3.format('.' + numDigits + 's')(d) + 't ' + co2Sub(lang['ofCO2eqPerMinute']);
     else
-        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g of CO<sub>2</sub>eq per minute';
+        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + co2Sub(lang['ofCO2eqPerMinute']);
 }
 
 function placeTooltip(selector, d3Event) {
