@@ -47,11 +47,11 @@ def fetch_production(country_code='IN-PB', session=None):
         'datetime': india_date.datetime,
         'production': {
             'biomass': 0.0,
-            'coal': 0.0,
+            'coal': None,
             'gas': 0.0,
             'hydro': float(hydro_value),
             'nuclear': 0.0,
-            'oil': 0.0,
+            'oil': None,
             'solar': float(solar_value),
             'wind': 0.0,
             'geothermal': 0.0,
