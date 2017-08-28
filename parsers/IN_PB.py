@@ -60,7 +60,7 @@ def fetch_production(country_code='IN-PB', session=None):
         'storage': {
             'hydro': 0.0
         },
-        'source': 'www.punjabsldc.org',
+        'source': 'punjasldc.org',
     }
 
     return data
