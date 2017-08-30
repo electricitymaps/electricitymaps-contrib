@@ -162,14 +162,15 @@ def flow_logic(net_production, interconnections):
     HN['SV'] = flipsign(SV['HN'])
     GT['HN'] = plusminus(solution[2])
     HN['GT'] = flipsign(GT['HN'])
-
+    
+    #Flows commented out are disabled until the maths behind determining their direction can be proved satisfactorily.
     flows['HN->NI'] = HN['NI']
     flows['NI->CR'] = NI['CR']
     flows['CR->PA'] = CR['PA']
-    flows['GT->HN'] = GT['HN']
+    #flows['GT->HN'] = GT['HN']
     flows['MX->GT'] = flipsign(GT['MX'])
-    flows['GT->SV'] = GT['SV']
-    flows['SV->HN'] = SV['HN']
+    #flows['GT->SV'] = GT['SV']
+    #flows['SV->HN'] = SV['HN']
     
     return flows
 
