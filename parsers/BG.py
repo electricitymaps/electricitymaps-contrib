@@ -14,7 +14,7 @@ TYPE_MAPPING = {                        # Real values around midnight
     u'ВЕЦ': 'hydro',                    # 7
     u'Малки ВЕЦ': 'hydro',              # 74
     u'ВяЕЦ': 'wind',                    # 488
-    u'ФЕЦ': 'sun',                      # 0
+    u'ФЕЦ': 'solar',                    # 0
     u'Био ТЕЦ': 'biomass',              # 29
     u'Товар РБ': 'consumption',         # 3175
 }
