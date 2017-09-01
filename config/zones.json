@@ -319,6 +319,7 @@
     }
   },
   "DK": {
+    "bounding_box": [[7.60472, 54.509132], [13.30324, 57.751949]],
     "capacity": {
       "biomass": 197,
       "coal": 4847,
@@ -367,6 +368,7 @@
     }
   },
   "ES": {
+    "bounding_box": [[-9.3603515625,35.9957853864],[3.6474609375,43.6758180933]],
     "capacity": {
       "biomass": 1077,
       "coal": 9535,
@@ -383,6 +385,7 @@
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     }
@@ -555,7 +558,10 @@
     }
   },
   "IN-PB": {
-    "flag_file_name": "in.png"
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_PB.fetch_production"
+    }
   },"IS": {
     "capacity": {
       "biomass": 0,
@@ -771,6 +777,7 @@
     "flag_file_name": "ru.png"
   },
   "SE": {
+    "bounding_box": [[11.337890625,55.1788676633],[24.169921875,68.9741635834]],
     "capacity": {
       "biomass": 220,
       "gas": 698,
@@ -782,6 +789,7 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     }
@@ -830,6 +838,16 @@
       "production": "ENTSOE.fetch_production"
     }
   },
+  "SV": {
+    "capacity": {
+      "hydro": 472,
+      "geothermal": 204,
+      "unknown": 756
+    },
+    "parsers": {
+      "production": "SV.fetch_production"
+    }
+  },    
   "TR": {
     "parsers": {
       "production": "TR.fetch_production"

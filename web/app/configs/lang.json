@@ -22,6 +22,8 @@
         "electricityImportedFrom": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "Albanien",
             "AT": "Østrig",
@@ -92,6 +94,8 @@
         "emissionsExportedTo": "{1} % der CO2 Emissionen im <img id=\"country-flag\"></img> <b>{2}</b> wird exportiert nach <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % der Elektrizität im <img id=\"country-flag\"></img> <b>{2}</b> kommt aus <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % der CO2 Emissionen im <img id=\"country-flag\"></img> <b>{2}</b> kommt aus <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "Albanien",
@@ -167,6 +171,8 @@
         "electricityImportedFrom": "{1} % of electricity in <img id=\"country-flag\"></img> <b>{2}</b> is imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % of emissions in <img id=\"country-flag\"></img> <b>{2}</b> are imported from <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AD": "Andorra",
             "AL": "Albania",
@@ -224,7 +230,37 @@
             "HU": "Hungary",
             "IE": "Ireland",
             "IL": "Israel",
+            "IN-AN": "India (Andaman and Nicobar Islands)",
+            "IN-AP": "India (Andhra Pradesh)",
+            "IN-AR": "India (Arunachal Pradesh)",
+            "IN-AS": "India (Assam)",
+            "IN-BR": "India (Bihar)",
+            "IN-CT": "India (Chhattisgarh)",
+            "IN-DL": "India (Delhi)",
+            "IN-GA": "India (Goa)",
+            "IN-GJ": "India (Gujarat)",
+            "IN-HP": "India (Himachal Pradesh)",
+            "IN-HR": "India (Haryana)",
+            "IN-JH": "India (Jharkhand)",
+            "IN-JK": "India (Jammu and Kashmir)",
+            "IN-KA": "India (Karnataka)",
+            "IN-KL": "India (Kerala)",
+            "IN-MH": "India (Maharashtra)",
+            "IN-ML": "India (Meghalaya)",
+            "IN-MN": "India (Manipur)",
+            "IN-MP": "India (Madhya Pradesh)",
+            "IN-MZ": "India (Mizoram)",
+            "IN-NL": "India (Nagaland)",
+            "IN-OR": "India (Orissa)",
             "IN-PB": "India (Punjab)",
+            "IN-PY": "India (Pondicherry)",
+            "IN-RJ": "India (Rajasthan)",
+            "IN-SK": "India (Sikkim)",
+            "IN-TL": "India (Tamil Nadu)",
+            "IN-TR": "India (Tripura)",
+            "IN-UP": "India (Uttar Pradesh)",
+            "IN-UT": "India (Uttarakhand)",
+            "IN-WB": "India (West Bengal)",
             "IQ": "Iraq",
             "IR": "Iran",
             "IS": "Iceland",
@@ -296,6 +332,8 @@
         "electricityImportedFrom": "{1} % de la electricidad en <img id=\"country-flag\"></img> <b>{2}</b> proviene de <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % de las emissiones en <img id=\"country-flag\"></img> <b>{2}</b> proviene de <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AD": "Andorra",
             "AL": "Albania",
@@ -327,7 +365,37 @@
             "IE": "Irlanda",
             "IS": "Islandia",
             "IT": "Italia",
+            "IN-AN": "India (Islas de Andamán y Nicobar)",
+            "IN-AP": "India (Andhra Pradesh)",
+            "IN-AR": "India (Arunachal Pradesh)",
+            "IN-AS": "India (Assam)",
+            "IN-BR": "India (Bihar)",
+            "IN-CT": "India (Chhattisgarh)",
+            "IN-DL": "India (Delhi)",
+            "IN-GA": "India (Goa)",
+            "IN-GJ": "India (Gujarat)",
+            "IN-HP": "India (Himachal Pradesh)",
+            "IN-HR": "India (Haryana)",
+            "IN-JH": "India (Jharkhand)",
+            "IN-JK": "India (Jammu y Cachemira)",
+            "IN-KA": "India (Karnataka)",
+            "IN-KL": "India (Kerala)",
+            "IN-MH": "India (Maharashtra)",
+            "IN-ML": "India (Meghalaya)",
+            "IN-MN": "India (Manipur)",
+            "IN-MP": "India (Madhya Pradesh)",
+            "IN-MZ": "India (Mizoram)",
+            "IN-NL": "India (Nagaland)",
+            "IN-OR": "India (Orissa)",
             "IN-PB": "India (Punjab)",
+            "IN-PY": "India (Pondicherry)",
+            "IN-RJ": "India (Rajasthan)",
+            "IN-SK": "India (Sikkim)",
+            "IN-TL": "India (Tamil Nadu)",
+            "IN-TR": "India (Tripura)",
+            "IN-UP": "India (Uttar Pradesh)",
+            "IN-UT": "India (Uttarakhand)",
+            "IN-WB": "India (Bengala Occidental)",
             "LT": "Lituania",
             "LU": "Luxemburgo",
             "LV": "Letonia",
@@ -379,6 +447,8 @@
         "emissionsExportedTo": "{1} % des émissions en <img id=\"country-flag\"></img> <b>{2}</b> sont exportées vers <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % de l'électricité en <img id=\"country-flag\"></img> <b>{2}</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % des émissions en <img id=\"country-flag\"></img> <b>{2}</b> sont importées depuis <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "Albanie",
@@ -481,6 +551,8 @@
         "emissionsExportedTo": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "Il {1} % dell'elettricità di <img id=\"country-flag\"></img> <b>{2}</b> è importato da <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "Il {1} % delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>{2}</b> è importato da <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AE": "Emirati Arabi Uniti",
@@ -589,7 +661,37 @@
             "IE": "Irlanda",
             "IL": "Israele",
             "IM": "Isola di Man",
-            "IN": "India",
+            "IN-AN": "India (Andamane e Nicobare)",
+            "IN-AP": "India (Andhra Pradesh)",
+            "IN-AR": "India (Arunachal Pradesh)",
+            "IN-AS": "India (Assam)",
+            "IN-BR": "India (Bihar)",
+            "IN-CT": "India (Chhattisgarh)",
+            "IN-DL": "India (Delhi)",
+            "IN-GA": "India (Goa)",
+            "IN-GJ": "India (Gujarat)",
+            "IN-HP": "India (Himachal Pradesh)",
+            "IN-HR": "India (Haryana)",
+            "IN-JH": "India (Jharkhand)",
+            "IN-JK": "India (Jammu e Kashmir)",
+            "IN-KA": "India (Karnataka)",
+            "IN-KL": "India (Kerala)",
+            "IN-MH": "India (Maharashtra)",
+            "IN-ML": "India (Meghalaya)",
+            "IN-MN": "India (Manipur)",
+            "IN-MP": "India (Madhya Pradesh)",
+            "IN-MZ": "India (Mizoram)",
+            "IN-NL": "India (Nagaland)",
+            "IN-OR": "India (Orissa)",
+            "IN-PB": "India (Punjab)",
+            "IN-PY": "India (Pondicherry)",
+            "IN-RJ": "India (Rajasthan)",
+            "IN-SK": "India (Sikkim)",
+            "IN-TL": "India (Tamil Nadu)",
+            "IN-TR": "India (Tripura)",
+            "IN-UP": "India (Uttar Pradesh)",
+            "IN-UT": "India (Uttarakhand)",
+            "IN-WB": "India (Bengala Occidentale)",          
             "IQ": "Iraq",
             "IR": "Iran",
             "IS": "Islanda",
@@ -730,6 +832,8 @@
         "electricityImportedFrom": "{1} % van de elektriciteitin <img id=\"country-flag\"></img> <b>{2}</b> invoer van <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % van de emissions in <img id=\"country-flag\"></img> <b>{2}</b> invoer van <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "Albanië",
             "AT": "Oostenrijk",
@@ -800,17 +904,21 @@
         "electricityImportedFrom": "{1} % av elen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % av utsläppen i <img id=\"country-flag\"></img> <b>{2}</b> importeres från <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
 
+        "ofCO2eqPerMinute": "av CO2eq per minut",
+
         "zoneShortName": {
+            "AD": "Andorra",
             "AL": "Albanien",
             "AM": "Armenien",
             "AT": "Österrike",
+            "AR": "Argentina",
             "AUS-NSW": "Australien (New South Wales)",
             "AUS-NT": "Australien (Northern Territory)",
             "AUS-QLD": "Australien (Queensland)",
-            "AUS-SA": "Australien (South Australien)",
+            "AUS-SA": "Australien (South Australia)",
             "AUS-TAS": "Australien (Tasmanien)",
             "AUS-VIC": "Australien (Victoria)",
-            "AUS-WA": "Australien (Western Australien)",
+            "AUS-WA": "Australien (Western Australia)",
             "AZ": "Azerbajdzjan",
             "BA": "Bosnien och Hercegovina",
             "BE": "Belgien",
@@ -835,6 +943,7 @@
             "CZ": "Tjeckien",
             "DE": "Tyskland",
             "DK": "Danmark",
+            "DO": "Dominikanska republiken",
             "DZ": "Algeriet",
             "EE": "Estland",
             "EG": "Egypten",
@@ -854,6 +963,7 @@
             "HU": "Ungern",
             "IE": "Irland",
             "IL": "Israel",
+            "IN-PB": "Indien (Punjab)",
             "IQ": "Irak",
             "IR": "Iran",
             "IS": "Island",
@@ -880,6 +990,8 @@
             "PL": "Polen",
             "PS": "Staten Palestina",
             "PT": "Portugal",
+            "PT-AC": "Portugal (Azorerna)",
+            "PT-MA": "Portugal (Madeira)",
             "RO": "Rumänien",
             "RS": "Serbien",
             "RU": "Ryssland",
@@ -922,6 +1034,8 @@
         "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>{2}</b>: {1}% emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b>: {1}% energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b>: {1}% emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "Albania",
@@ -1007,7 +1121,7 @@
             "UY": "Urugwaj"
         }
     },
-        "ar": {
+    "ar": {
         "wind": "رياح",
         "solar": "شمسي",
         "hydro": "المائية",
@@ -1029,6 +1143,8 @@
         "emissionsExportedTo": "{1} % من الانبعاثات في <img id=\"country-flag\"></img> <b>{2}</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "{1} % من الكهرباء في <img id=\"country-flag\"></img> <b>{2}</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "emissionsImportedFrom": "{1} % من الانبعاثات في <img id=\"country-flag\"></img> <b>{2}</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AD": "أندورا",
@@ -1156,6 +1272,8 @@
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的電力從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "阿爾巴尼亞",
             "AM": "亞美尼亞",
@@ -1267,6 +1385,8 @@
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的電力從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量從 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 匯入",
 
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
         "zoneShortName": {
             "AL": "阿爾巴尼亞",
             "AM": "亞美尼亞",
@@ -1377,6 +1497,8 @@
         "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量被汇出到 <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
         "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的电力从 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 汇入",
         "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>{2}</b> {1} % 的排放量从 <img id=\"country-exchange-flag\"></img> <b>{3}</b> 汇入",
+
+        "ofCO2eqPerMinute": "of CO2eq per minute",
 
         "zoneShortName": {
             "AL": "阿尔巴尼亚",
