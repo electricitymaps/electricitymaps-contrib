@@ -557,12 +557,30 @@
       "production": "ENTSOE.fetch_production"
     }
   },
+  "IN-AP": {
+	"flag_file_name": "in.png",
+	"capacity": {
+      "biomass": 0,
+      "hydro": 1797.60,
+      "nuclear": 0,
+      "solar": 1201,
+      "wind": 72.04
+    },
+	"parsers": {
+		"consumption": "IN_AP.fetch_consumption",
+		"production": "IN_AP.fetch_production"
+	}
+  },
   "IN-PB": {
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_PB.fetch_production"
     }
-  },"IS": {
+  },
+  "IN-KA": {
+    "flag_file_name": "in.png"
+  },
+  "IS": {
     "capacity": {
       "biomass": 0,
       "coal": 0,
