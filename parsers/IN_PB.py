@@ -68,7 +68,7 @@ def fetch_production(country_code='IN-PB', session=None):
     return data
 
 
-def fetch_consumption(country_code='EN-PB', session=None):
+def fetch_consumption(country_code='IN-PB', session=None):
     """Fetch Punjab consumption"""
     ses = session or Session()
 
