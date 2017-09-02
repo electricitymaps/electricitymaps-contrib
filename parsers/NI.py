@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 import arrow
+from collections import defaultdict
 import requests
 
 
@@ -148,7 +149,8 @@ def get_production_from_summary(requests_obj):
         'SOLAR': 'solar',
 
         # all "thermal" / fossil fuel is oil - see comment at PLANT_CLASSIFICATIONS
-        'TERMICO BUNKER': 'oil'
+        'TERMICO BUNKER': 'oil',
+        'TERMICO DIESEL': 'oil'
     }
 
     response = requests_obj.get(SUMMARY_URL)
@@ -164,7 +166,7 @@ def get_production_from_summary(requests_obj):
     gen_type_text = extract_text(gentype_html, 'Tipo de Generación', 'center:')
     gen_type_text = extract_text(gen_type_text, '[')
 
-    production = {}
+    production = defaultdict(list)
 
     # One of the generation types is featured by default in the pie chart.
     # This makes its HTML/JS specification be different.
@@ -176,8 +178,8 @@ def get_production_from_summary(requests_obj):
     featured_type_name = featured_type_dict['name'].replace('\'', '')
     featured_type_val = float(featured_type_dict['y'])
 
-    featured_type_standard_name = type_translator[featured_type_name]
-    production[featured_type_standard_name] = featured_type_val
+    featured_type_standard_name = type_translator.get(featured_type_name, 'unknown')
+    production[featured_type_standard_name].append(featured_type_val)
 
     # The remaining, non-featured generation types are all formatted the same.
     other_types = extract_text(gen_type_text, '}')
@@ -186,8 +188,10 @@ def get_production_from_summary(requests_obj):
         name = other_type[0]
         val = other_type[1]
         if name:
-            standard_name = type_translator[name.replace('\'', '')]
-            production[standard_name] = float(val.replace(']', '').strip())
+            standard_name = type_translator.get(name.replace('\'', ''), 'unknown')
+            production[standard_name].append(float(val.replace(']', '').strip()))
+
+    production = {k: sum(v) for k, v in production.items()}
 
     return production, datetime_datetime
 
