@@ -75,10 +75,13 @@ def data_parser(datareq):
     data = (json.loads(double_json))
     jsresult = data['result']
 
-    startpoints = [m.end(0) for m in re.finditer('"DataItem0":0},"Data":{"', jsresult)]
+    startpoints = [m.end(0) for m in re.finditer('"Data":{', jsresult)]
     endpoints = [m.start(0) for m in re.finditer('"KeyIds"', jsresult)]
 
-    sliced = jsresult[startpoints[1]:endpoints[2]-4]
+    sliced = jsresult[startpoints[1]:endpoints[2]]
+    sliced = ''.join(sliced.split())
+    sliced = sliced[1:-4]
+
     chopped = sliced.split( ',"')
 
     diced = []
@@ -93,7 +96,7 @@ def data_parser(datareq):
         k = float(item[1])
         j.append(k)
         clean_data.append(j)
-        
+
     return clean_data
 
 
@@ -109,7 +112,7 @@ def data_processer(data):
         newval = {'datetime': val[2], val[0]: val[3]}
         converted.append(newval)
 
-    #Join dicts on 'datetime' key.    
+    #Join dicts on 'datetime' key.
     d = defaultdict(dict)
     for elem in converted:
         d[elem['datetime']].update(elem)
@@ -128,7 +131,7 @@ def data_processer(data):
         mapped_data.append(point)
 
     return mapped_data
-    
+
 
 def fetch_production(country_code = 'SV', session = None):
     """
@@ -185,9 +188,9 @@ def fetch_production(country_code = 'SV', session = None):
           'source': 'ut.com.sv'
         }
         production_mix_by_hour.append(production_mix)
-        
+
     return production_mix_by_hour
-        
+
 
 if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
