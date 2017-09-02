@@ -1,9 +1,11 @@
 from requests import Session
-from re import search, findall
+from re import search, findall, M, S, I, sub
 from arrow import utcnow, get
+from bs4 import BeautifulSoup
 
 
 def fetch_production(country_code='IN-PB', session=None):
+    """Fetch Punjab production"""
     ses = session or Session()
 
     response = ses.get('http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal')
@@ -66,7 +68,54 @@ def fetch_production(country_code='IN-PB', session=None):
     return data
 
 
+def fetch_consumption(country_code='EN-PB', session=None):
+    """Fetch Punjab consumption"""
+    ses = session or Session()
+
+    response = ses.get('http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal')
+    if response.status_code != 200:
+        raise Exception('IN-PB Parser Response code: {0}'.format(response.status_code))
+    if not response.text:
+        raise Exception('IN-PB Parser Response empty')
+
+    date_match = search('(\d+/\d+/\d+)', response.text)
+    if not date_match:
+        raise Exception('IN-PB Parser Not date_match')
+    date_text = date_match.group(0)
+    if not date_text:
+        raise Exception('IN-PB Parser Not date_text')
+
+    time_match = search('(\d+:\d+:\d+)', response.text)
+    if not time_match:
+        raise Exception('IN-PB Parser Not time_match')
+    time_text = time_match.group(0)
+    if not time_text:
+        raise Exception('IN-PB Parser Not time_text')
+
+    india_date_time = date_text + time_text + 'Asia/Kolkata'
+    india_date = get(india_date_time, 'DD/MM/YYYYHH:mm:ssZZZ')
+
+    punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response.text, M|I|S).group(0)
+    punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]
+
+    punjab_text_font_cleaned = sub('<font(.*?)>', '', sub('</font>', '', punjab_tr_text))
+    punjab_text_bold_cleaned = sub('<b>', '', sub('</b>', '', punjab_text_font_cleaned))
+    punjab_text_paragraph_cleaned = sub('<p(.*?)>', '', sub('&nbsp;', '', punjab_text_bold_cleaned))
+
+    punjab_soap = BeautifulSoup(punjab_text_paragraph_cleaned, 'html.parser')
+    consumption_td = punjab_soap.findAll('td')[3]
+
+    data = {
+        'countryCode': country_code,
+        'datetime': india_date.datetime,
+        'consumption': float(consumption_td.text),
+        'source': 'punjasldc.org'
+    }
+
+    return data
+
+
 if __name__ == '__main__':
     session = Session()
     print fetch_production('IN-PB', session)
-
+    print fetch_consumption('IN-PB', session)
