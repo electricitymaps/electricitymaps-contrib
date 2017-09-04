@@ -2,6 +2,8 @@ import unittest
 
 from requests import Session
 from parsers import ES_IB
+from mock import patch
+from reescraper import BalearicIslands
 from parsers.lib.exceptions import ParserException
 
 
@@ -10,7 +12,9 @@ class TestESIB(unittest.TestCase):
     def setUp(self):
         self.session = Session()
 
-    def test_fetch_consumption(self):
+    @patch.object(BalearicIslands, 'get_all')
+    def test_fetch_consumption(self, mocked_get_all):
+        mocked_get_all.return_value = []
         try:
             data_list = ES_IB.fetch_consumption('ES-IB', self.session)
             self.assertIsNotNone(data_list)
