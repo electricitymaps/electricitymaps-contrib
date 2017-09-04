@@ -2,7 +2,7 @@ import unittest
 
 from requests import Session
 from parsers import ES_CN
-from parsers.lib import ParserException
+from parsers.lib.exceptions import ParserException
 
 
 class TestESIB(unittest.TestCase):

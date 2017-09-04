@@ -4,7 +4,7 @@ import urllib
 # The request library is used to fetch content through HTTP
 import requests
 from os import environ
-from parsers.lib import ParserException
+from parsers.lib.exceptions import ParserException
 
 
 def fetch_exchange(country_code1='ES', country_code2='MA', session=None):

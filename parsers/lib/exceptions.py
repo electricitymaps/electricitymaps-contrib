@@ -1,14 +1,24 @@
-
-
 class ParserException(Exception):
+    """Parser Exception
 
-    def __init__(self, parser, message):
+    Args:
+        parser (str): Parser name.
+        message (str): String describing the exception.
+        country_code (str): Country code or sortedCountryCodes.
 
-        # Call the base class constructor with the parameters it needs
+    Attributes:
+        parser (str): Parser name.
+        message (str): String describing the exception.
+        country_code (str): Country code or sortedCountryCodes."""
+
+    def __init__(self, parser, message, country_code=None):
         super(ParserException, self).__init__(message)
-
-        # Now for your custom code...
         self.parser = parser
+        self.country_code = country_code
 
     def __str__(self):
-        return "{0} Parser: {1}".format(self.parser, self.message)
+        if self.country_code:
+            country_code_info = " ({0})".format(self.country_code)
+        else:
+            country_code_info = ""
+        return "{0} Parser{1}: {2}".format(self.parser, country_code_info, self.message)

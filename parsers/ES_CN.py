@@ -3,7 +3,7 @@ from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
 from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
-from parsers.lib import ParserException
+from parsers.lib.exceptions import ParserException
 
 
 def fetch_consumption(country_code='ES-CN', session=None):

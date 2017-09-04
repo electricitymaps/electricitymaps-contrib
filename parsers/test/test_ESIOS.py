@@ -1,7 +1,7 @@
 import unittest
 
 from parsers import ESIOS
-from parsers.lib import ParserException
+from parsers.lib.exceptions import ParserException
 
 
 class TestESIOS(unittest.TestCase):
