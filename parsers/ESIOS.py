@@ -7,10 +7,10 @@ from os import environ
 from parsers.lib.exceptions import ParserException
 
 
-def fetch_exchange(country_code1='ES', country_code2='MA', session=None):
+def fetch_exchange(country_code1='ES', country_code2='MA', session=None, token=None):
 
     ## Get ESIOS token
-    token = environ.get('ESIOS_TOKEN', "")
+    token = environ.get('ESIOS_TOKEN', token)
     if not token:
         raise ParserException("ESIOS", "Require access token")
 
