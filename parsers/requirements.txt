@@ -4,6 +4,6 @@ html5lib==0.999999999
 lxml==3.7.3
 pandas==0.19.2
 pyiso==0.3.18
-reescraper==1.4.0
+reescraper==1.5.1
 requests==2.18.4
 xlrd==1.0.0
