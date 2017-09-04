@@ -1,6 +1,7 @@
 from requests import Session
 from arrow import get
 from bs4 import BeautifulSoup
+from parsers import countrycode
 
 
 def fetch_response(session=None):
@@ -29,8 +30,7 @@ def read_date_time(html):
 
 def fetch_production(country_code='IN-AP', session=None):
     """Fetch Andhra Pradesh  production"""
-    if not country_code and country_code != 'IN-AP':
-        raise Exception('IN-AP Parser country_code isn\'t IN-AP')
+    countrycode.assert_country_code(countrycode, 'IN-AP')
 
     html = fetch_web_html(session)
     india_date = read_date_time(html)

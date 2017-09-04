@@ -1,12 +1,13 @@
 from requests import Session
 from arrow import get
 from bs4 import BeautifulSoup
+from parsers import countrycode
 
 
 def fetch_production(country_code='IN-KA', session=None):
     """Fetch Karnataka  production"""
-    if not country_code and country_code != 'IN-KA':
-        raise Exception('IN-KA Parser country_code isn\'t IN-KA')
+    countrycode.assert_country_code(countrycode, 'IN-AP')
+    countrycode.assert_country_code(countrycode, 'IN-AP')
 
     ses = session or Session()
     response = ses.get('http://kptclsldc.com/StateGen.aspx')
