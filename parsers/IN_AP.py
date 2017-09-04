@@ -1,5 +1,5 @@
 from requests import Session
-from arrow import utcnow, get
+from arrow import get
 from bs4 import BeautifulSoup
 
 
