@@ -3,43 +3,44 @@ from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
 from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
+from parsers.lib import ParserException
 
 
 def fetch_consumption(country_code='ES-CN', session=None):
-    ses = session or session()
+    ses = session or Session()
 
     elhierro = ElHierro(ses).get()
     if not elhierro:
-        return None
+        raise ParserException("ES-CN", "ElHierro not response")
 
     granacanaria = GranCanaria(ses).get()
     if not granacanaria:
-        return None
+        raise ParserException("ES-CN", "GranCanaria not response")
 
     gomera = Gomera(ses).get()
     if not gomera:
-        return None
+        raise ParserException("ES-CN", "Gomera not response")
 
     lanzarotefuerteventura = LanzaroteFuerteventura(ses).get()
     if not lanzarotefuerteventura:
-        return None
+        raise ParserException("ES-CN", "LanzaroteFuerteventura not response")
 
     palma = LaPalma(ses).get()
     if not palma:
-        return None
+        raise ParserException("ES-CN", "LaPalma not response")
 
     tenerife = Tenerife(ses).get()
     if not tenerife:
-        return None
+        raise ParserException("ES-CN", "Tenerife not response")
 
-    ##Compare timestamps
-    ## Return None if timestamps aren't equals
+    ## Compare timestamps
+    ## Raise ParserException if timestamps aren't equals
     if elhierro.timestamp != granacanaria.timestamp \
         and elhierro.timestamp != gomera.timestamp \
         and elhierro.timestamp != lanzarotefuerteventura.timestamp \
         and elhierro.timestamp != palma.timestamp \
         and elhierro.timestamp != tenerife.timestamp:
-        return None
+        raise ParserException("ES-CN", "Response timestamps aren't equals")
 
     demand = round(elhierro.demand + granacanaria.demand + gomera.demand + lanzarotefuerteventura.demand + palma.demand + tenerife.demand, 2)
 
@@ -54,41 +55,40 @@ def fetch_consumption(country_code='ES-CN', session=None):
 
 
 def fetch_production(country_code='ES-CN', session=None):
-    ses = session or session()
+    ses = session or Session()
 
-    ## Get Islands Data
     elhierro = ElHierro(ses).get()
     if not elhierro:
-        return None
+        raise ParserException("ES-CN", "ElHierro not response")
 
     granacanaria = GranCanaria(ses).get()
     if not granacanaria:
-        return None
+        raise ParserException("ES-CN", "GranCanaria not response")
 
     gomera = Gomera(ses).get()
     if not gomera:
-        return None
+        raise ParserException("ES-CN", "Gomera not response")
 
     lanzarotefuerteventura = LanzaroteFuerteventura(ses).get()
     if not lanzarotefuerteventura:
-        return None
+        raise ParserException("ES-CN", "LanzaroteFuerteventura not response")
 
     palma = LaPalma(ses).get()
     if not palma:
-        return None
+        raise ParserException("ES-CN", "LaPalma not response")
 
     tenerife = Tenerife(ses).get()
     if not tenerife:
-        return None
+        raise ParserException("ES-CN", "Tenerife not response")
 
-    ##Compare timestamps
-    ## Return None if timestamps aren't equals
+    ## Compare timestamps
+    ## Raise ParserException if timestamps aren't equals
     if elhierro.timestamp != granacanaria.timestamp \
         and elhierro.timestamp != gomera.timestamp \
         and elhierro.timestamp != lanzarotefuerteventura.timestamp \
         and elhierro.timestamp != palma.timestamp \
         and elhierro.timestamp != tenerife.timestamp:
-        return None
+        raise ParserException("ES-CN", "Response timestamps aren't equals")
 
     ## Gas production
     gas_elhierro = elhierro.gas + elhierro.combined
