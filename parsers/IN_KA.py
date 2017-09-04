@@ -1,22 +1,14 @@
 from requests import Session
 from arrow import get
-from bs4 import BeautifulSoup
+from parsers import web
 from parsers import countrycode
 
 
 def fetch_production(country_code='IN-KA', session=None):
     """Fetch Karnataka  production"""
-    countrycode.assert_country_code(countrycode, 'IN-AP')
-    countrycode.assert_country_code(countrycode, 'IN-AP')
+    countrycode.assert_country_code(country_code, 'IN-KA')
 
-    ses = session or Session()
-    response = ses.get('http://kptclsldc.com/StateGen.aspx')
-    if response.status_code != 200:
-        raise Exception('IN-KA Parser Response code: {0}'.format(response.status_code))
-    if not response.text:
-        raise Exception('IN-KA Parser Response empty')
-
-    html = BeautifulSoup(response.text, 'html.parser')
+    html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateGen.aspx', session)
 
     date_time_span = html.find('span', {'id': 'lbldate'})
     india_date_time_text = date_time_span.text + ' Asia/Kolkata'

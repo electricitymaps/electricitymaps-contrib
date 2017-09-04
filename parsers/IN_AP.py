@@ -1,24 +1,7 @@
 from requests import Session
 from arrow import get
-from bs4 import BeautifulSoup
 from parsers import countrycode
-
-
-def fetch_response(session=None):
-    """Fetch response"""
-    ses = session or Session()
-    response = ses.get('http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx')
-    if response.status_code != 200:
-        raise Exception('IN-AP Parser Response code: {0}'.format(response.status_code))
-    if not response.text:
-        raise Exception('IN-AP Parser Response empty')
-    return response.text
-
-
-def fetch_web_html(session=None):
-    """Fetch web page"""
-    response_text = fetch_response(session)
-    return BeautifulSoup(response_text, 'html.parser')
+from parsers import web
 
 
 def read_date_time(html):
@@ -30,9 +13,10 @@ def read_date_time(html):
 
 def fetch_production(country_code='IN-AP', session=None):
     """Fetch Andhra Pradesh  production"""
-    countrycode.assert_country_code(countrycode, 'IN-AP')
+    countrycode.assert_country_code(country_code, 'IN-AP')
 
-    html = fetch_web_html(session)
+    html = web.get_response_soup(country_code,
+                                 'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = read_date_time(html)
 
     hydro_value = html.find('span', {'id': 'lblHydel'}).text
@@ -73,10 +57,10 @@ def fetch_production(country_code='IN-AP', session=None):
 
 def fetch_consumption(country_code='IN-AP', session=None):
     """Fetch Andhra Pradesh consumption"""
-    if not country_code and country_code != 'IN-AP':
-        raise Exception('IN-AP Parser country_code isn\'t IN-AP')
+    countrycode.assert_country_code(country_code, 'IN-AP')
 
-    html = fetch_web_html(session)
+    html = web.get_response_soup(country_code,
+                                 'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = read_date_time(html)
 
     demand_value = html.find('span', {'id': 'lblGridDemand'}).text
