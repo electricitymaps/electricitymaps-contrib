@@ -6,8 +6,6 @@ def get_response(country_code, url, session=None):
     """Get response"""
     ses = session or Session()
     response = ses.get(url)
-    if not response:
-        raise Exception('{0} Parser not response'.format(country_code))
     if response.status_code != 200:
         raise Exception('{0} Parser Response code: {1}'.format(country_code, response.status_code))
     return response

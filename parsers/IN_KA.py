@@ -1,7 +1,7 @@
 from requests import Session
-from arrow import get
 from parsers import web
 from parsers import countrycode
+from parsers import india
 
 
 def fetch_production(country_code='IN-KA', session=None):
@@ -10,21 +10,16 @@ def fetch_production(country_code='IN-KA', session=None):
 
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateGen.aspx', session)
 
-    date_time_span = html.find('span', {'id': 'lbldate'})
-    india_date_time_text = date_time_span.text + ' Asia/Kolkata'
-    india_date_time = get(india_date_time_text, 'D/M/YYYY h:mm:ss A ZZZ')
+    india_date_time = india.read_datetime_from_span_id(html, 'lbldate', 'D/M/YYYY h:mm:ss A')
 
     # State Production
-    state_span = html.find('span', {'id': 'lblstategen'})
-    state_value = float(state_span.text)
+    state_value = india.read_value_from_span_id(html, 'lblstategen')
 
     # CGS Production
-    cgs_span = html.find('span', {'id': 'lblcgs'})
-    cgs_value = float(cgs_span.text)
+    cgs_value = india.read_value_from_span_id(html, 'lblcgs')
 
     # NCEP Production
-    ncep_span = html.find('span', {'id': 'lblncep'})
-    ncep_value = float(ncep_span.text)
+    ncep_value = india.read_value_from_span_id(html, 'lblncep')
 
     unknown_value = round(cgs_value + ncep_value + state_value, 2)
 
