@@ -18,6 +18,7 @@ stages:
           sudo apt-get install libxml2-dev libxslt1-dev python-dev
           pip install -r parsers/requirements.txt
           pylint -E parsers/*.py
+          ls ~/.cache/pip
       - type: shell
         name: Build
         command: |
