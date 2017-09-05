@@ -20,6 +20,7 @@ stages:
           sudo apt-get install libxml2-dev libxslt1-dev python-dev
           pip install -r parsers/requirements.txt
           pylint -E parsers/*.py
+          python -m unittest discover parsers/test
       - save_cache:
           key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
           paths:
