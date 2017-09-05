@@ -134,15 +134,15 @@ def fetch_production(country_code='IN-KA', session=None):
         'datetime': india_date_time.datetime,
         'production': {
             'biomass': biomass_value,
-            'coal': round(coal_value, 2),
+            'coal': coal_value,
             'gas': 0.0,
-            'hydro': round(hydro_value, 2),
+            'hydro': hydro_value,
             'nuclear': 0.0,
             'oil': 0.0,
             'solar': solar_value,
             'wind': wind_value,
             'geothermal': 0.0,
-            'unknown': round(unknown_value, 2)
+            'unknown': unknown_value
         },
         'storage': {
             'hydro': 0.0
