@@ -20,9 +20,11 @@ MAP_GENERATION = {
 }
 
 def validate(datapoint):
-    if sum([v for k,v in datapoint['production'].iteritems() if v is not None]) > 0:
+    if sum([v for k,v in datapoint['production'].iteritems() if v is not None]) > 0 \
+        and datapoint['production'].get('gas', None) is not None:
         return datapoint
-    else: return None
+    else:
+        return None
 
 def parse_date(item):
     return arrow.get(item['Nombre'], 'M/D/YYYY h:mm:ss A').replace(tzinfo=dateutil.tz.gettz(tz))
