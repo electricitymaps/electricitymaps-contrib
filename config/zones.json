@@ -558,18 +558,30 @@
     }
   },
   "IN-AP": {
-	"flag_file_name": "in.png",
-	"capacity": {
+    "flag_file_name": "in.png",
+    "capacity": {
       "biomass": 0,
       "hydro": 1797.60,
       "nuclear": 0,
       "solar": 1201,
       "wind": 72.04
     },
-	"parsers": {
-		"consumption": "IN_AP.fetch_consumption",
-		"production": "IN_AP.fetch_production"
-	}
+    "parsers": {
+      "consumption": "IN_AP.fetch_consumption",
+      "production": "IN_AP.fetch_production"
+    }
+  },
+  "IN-KA": {
+    "flag_file_name": "in.png",
+    "capacity": {
+      "biomass": 140,
+      "solar": 959,
+      "wind": 3595
+    },
+    "parsers": {
+      "consumption": "IN_KA.fetch_consumption",
+      "production": "IN_KA.fetch_production"
+    }
   },
   "IN-PB": {
     "flag_file_name": "in.png",
@@ -577,9 +589,6 @@
       "consumption": "IN_PB.fetch_consumption",
       "production": "IN_PB.fetch_production"
     }
-  },
-  "IN-KA": {
-    "flag_file_name": "in.png"
   },
   "IS": {
     "capacity": {
