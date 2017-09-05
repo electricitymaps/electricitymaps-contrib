@@ -10,6 +10,8 @@ stages:
         command: |
           docker --version
           docker-compose --version
+      - restore_cache:
+          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
       - type: shell
         name: Lint
         command: |
@@ -18,6 +20,10 @@ stages:
           sudo apt-get install libxml2-dev libxslt1-dev python-dev
           pip install -r parsers/requirements.txt
           pylint -E parsers/*.py
+      - save_cache:
+          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          paths:
+            - "~/.cache/pip"
       - type: shell
         name: Build
         command: |
