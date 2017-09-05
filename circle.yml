@@ -10,6 +10,8 @@ stages:
         command: |
           docker --version
           docker-compose --version
+      - restore_cache:
+          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
       - type: shell
         name: Lint
         command: |
@@ -19,6 +21,10 @@ stages:
           pip install -r parsers/requirements.txt
           pylint -E parsers/*.py
           python -m unittest discover parsers/test
+      - save_cache:
+          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          paths:
+            - "~/.cache/pip"
       - type: shell
         name: Build
         command: |
