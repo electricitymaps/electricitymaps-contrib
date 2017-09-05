@@ -5,7 +5,6 @@ from parsers import ES_IB
 from mock import patch
 from reescraper import BalearicIslands
 from reescraper import Response
-from parsers.lib.exceptions import ParserException
 
 
 class TestESIB(unittest.TestCase):
