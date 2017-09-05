@@ -9,7 +9,6 @@ from parsers.lib.exceptions import ParserException
 def fetch_consumption(country_code='ES-IB', session=None):
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
-
     if not responses:
         raise ParserException("ES-IB", "No response")
     else:
