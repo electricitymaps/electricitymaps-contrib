@@ -29,7 +29,7 @@ def fetch_production(country_code='IN-KA', session=None):
 
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateGen.aspx', session)
 
-    india_date_time = india.read_datetime_from_span_id(html, 'lbldate', 'D/M/YYYY h:mm:ss A')
+    india_date_time = india.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss A')
 
     # RTPS Production: https://en.wikipedia.org/wiki/Raichur_Thermal_Power_Station
     rtps_value = india.read_value_from_span_id(html, 'lblrtptot')
@@ -97,35 +97,50 @@ def fetch_production(country_code='IN-KA', session=None):
     # ALMATTI
     almatti_value = india.read_value_from_span_id(html, 'lblalmttot')
 
-    # Hydro production
-    hydro_value = sharavati_value + nagjhari_value + varahi_value + kodsalli_value \
-                  + kadra_value + gerusoppa_value + jog_value + lph_value + supa_value \
-                  + shimsha_value + shivasamudra_value + manidam_value + munrabad_value \
-                  + bhadra_value + ghataprabha_value + almatti_value
-
     # CGS Production
     # TODO: Search CGS production type
     cgs_value = india.read_value_from_span_id(html, 'lblcgs')
 
     # NCEP Production
-    # TODO: Get NECP production freom http://kptclsldc.com/StateNCEP.aspx
-    ncep_value = india.read_value_from_span_id(html, 'lblncep')
+    ncep_html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateNCEP.aspx', session)
+    ncep_date_time = india.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
+
+    # Check ncep date is similar than state gen date
+    if abs(india_date_time.timestamp - ncep_date_time.timestamp) > 600:
+        raise Exception('IN-KA Parser: NCEP Date is not valid')
+
+    biomass_value = india.read_value_from_span_id(ncep_html, 'lbl_tb')
+
+    # TODO: Cogeneration value production type?
+    cogen_value = india.read_value_from_span_id(ncep_html, 'lbl_tc')
+
+    mini_hydro_value = india.read_value_from_span_id(ncep_html, 'lbl_tm')
+
+    wind_value = india.read_value_from_span_id(ncep_html, 'lbl_tw')
+
+    solar_value = india.read_value_from_span_id(ncep_html, 'lbl_ts')
+
+    # Hydro production
+    hydro_value = sharavati_value + nagjhari_value + varahi_value + kodsalli_value \
+                  + kadra_value + gerusoppa_value + jog_value + lph_value + supa_value \
+                  + shimsha_value + shivasamudra_value + manidam_value + munrabad_value \
+                  + bhadra_value + ghataprabha_value + almatti_value + mini_hydro_value
 
     # Unknown production
-    unknown_value = cgs_value + ncep_value
+    unknown_value = cgs_value + cogen_value
 
     data = {
         'countryCode': country_code,
         'datetime': india_date_time.datetime,
         'production': {
-            'biomass': 0.0,
+            'biomass': biomass_value,
             'coal': round(coal_value, 2),
             'gas': 0.0,
             'hydro': round(hydro_value, 2),
             'nuclear': 0.0,
             'oil': 0.0,
-            'solar': None,
-            'wind': None,
+            'solar': solar_value,
+            'wind': wind_value,
             'geothermal': 0.0,
             'unknown': round(unknown_value, 2)
         },
