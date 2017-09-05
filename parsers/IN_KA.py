@@ -23,6 +23,7 @@ def fetch_consumption(country_code='IN-KA', session=None):
 
     return data
 
+
 def fetch_production(country_code='IN-KA', session=None):
     """Fetch Karnataka  production"""
     countrycode.assert_country_code(country_code, 'IN-KA')
