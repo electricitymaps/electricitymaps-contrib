@@ -12,11 +12,6 @@ import itertools
 #for Argentina.  Currently wind and solar power are small contributors and not monitored but this is
 #likely to change in the future.
 
-#TODO
-#Improve plant mapping for oil, coal and biomass.
-#Understand if there is a way to get hydro storage.
-#Research hydro sharing with Uruguay and Paraguay.
-
 #Useful links.
 #https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
 #https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
@@ -61,7 +56,7 @@ power_plant_type = {
                      'ARREDI01': 'gas',
                        'ARROHI': 'hydro',
                      'ATUCNUCL': 'nuclear',
-                     'ATU2NUCL': 'nuclear',    
+                     'ATU2NUCL': 'nuclear',
                      'AVALTG21': 'gas',
                      'AVALTG22': 'gas',
                      'AVALTG23': 'gas',
@@ -208,6 +203,7 @@ power_plant_type = {
                      'LDLATG02': 'gas',
                      'LDLATG03': 'gas',
                      'LDLATG04': 'gas',
+                     'LDLATG05': 'gas',
                      'LDLATV01': 'gas',
                      'LEDETV01': 'biomass',
                      'LEVADI01': 'oil',
@@ -237,6 +233,16 @@ power_plant_type = {
                      'LVARDI01': 'oil',
                        'LVINHI': 'hydro',
                      'MAGDDI01': 'oil',
+                     'MATETG01': 'gas',
+                     'MATETG02': 'gas',
+                     'MATETG03': 'gas',
+                     'MATETG04': 'gas',
+                     'MATETG05': 'gas',
+                     'MATETG06': 'gas',
+                     'MATETG07': 'gas',
+                     'MATETG08': 'gas',
+                     'MATETG09': 'gas',
+                     'MATETG10': 'gas',
                      'MATHTG01': 'gas',
                      'MATHTG02': 'gas',
                      'MDAJTG17': 'gas',
@@ -244,11 +250,13 @@ power_plant_type = {
                      'MDPATG13': 'gas',
                      'MDPATG19': 'gas',
                      'MDPATG20': 'gas',
+                     'MDPATG21': 'gas',
                      'MDPATG22': 'gas',
                      'MDPATG23': 'gas',
                      'MDPATG24': 'gas',
                      'MDPATV07': 'gas',
                      'MDPATV08': 'gas',
+                     'MESEDI01': 'oil',
                      'MIR1DI01': 'oil',
                      'MJUADI01': 'oil',
                      'MMARTG01': 'gas',
@@ -435,7 +443,7 @@ power_plant_type = {
                      }
 
 
-#URL's for thermal and hydro pages and data sources respectively. 
+#URL's for thermal and hydro pages and data sources respectively.
 
 url = ('http://portalweb.cammesa.com/MEMNet1/Pages/Informes%20por'
        '%20Categor%C3%ADa/Operativos/VisorReporteSinComDesp_minimal.aspx'
@@ -495,7 +503,7 @@ def fetch_price(country_code='AR', session = None):
     price_req = s.get(cammesa_url)
     psoup = BeautifulSoup(price_req.content,'html.parser')
     find_price = psoup.find('td', class_ = "cssFuncionesLeft", align = "left")
-    
+
     try:
         price_text = find_price.getText()
 
@@ -504,13 +512,13 @@ def fetch_price(country_code='AR', session = None):
         lprice = price_nws.rpartition(':')[2]
         rprice = lprice.split('[')[0]
         price = float(rprice.replace(',','.'))
-    
+
     except AttributeError, ValueError:
         #Price element not present or no price stated.
         price = None
-    
+
     datetime = arrow.now('UTC-3').floor('hour').datetime
-    
+
     data = {
             'countryCode': country_code,
             'currency': 'ARS',
@@ -518,7 +526,7 @@ def fetch_price(country_code='AR', session = None):
             'price': price,
             'source': 'portalweb.cammesa.com'
            }
-    
+
     return data
 
 
@@ -547,7 +555,7 @@ def dataformat(junk):
     for item in junk:
         if not any(char in item for char in string.ascii_letters):
             item = float(item.replace(',','.'))
-        formatted.append(item)       
+        formatted.append(item)
 
     return formatted
 
@@ -570,10 +578,10 @@ def get_thermal(session=None):
 
     #'En Reserva' plants are not generating and can be ignored.
     #The table has an extra column on 'Costo Operativo' page which must be removed to find power generated correctly.
-    
+
     pagenumber = 1
     reserves = False
-    
+
     while not reserves:
         t = s.get(turl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
@@ -590,10 +598,10 @@ def get_thermal(session=None):
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
     mapped_data = [power_plant_type.get(x,x) for x in formatted_data]
-    
+
     find_totals = [i+1 for i,x in enumerate(mapped_data) if x == 'Totales ']
     thermal_generation = sum([mapped_data[i] for i in find_totals])
-    
+
     find_nuclear = [i+2 for i, x in enumerate(mapped_data) if x == 'nuclear']
     nuclear_generation = sum([mapped_data[i] for i in find_nuclear])
     find_oil = [i+2 for i, x in enumerate(mapped_data) if x == 'oil']
@@ -604,11 +612,14 @@ def get_thermal(session=None):
     biomass_generation = sum([mapped_data[i] for i in find_biomass])
     find_gas = [i+2 for i, x in enumerate(mapped_data) if x == 'gas']
     gas_generation = sum([mapped_data[i] for i in find_gas])
-  
+
     unknown_generation = (thermal_generation - nuclear_generation - gas_generation \
                           - oil_generation - coal_generation - biomass_generation)
 
-    return {'gas': gas_generation, 
+    if unknown_generation < 0.0:
+        unknown_generation = 0.0                      
+
+    return {'gas': gas_generation,
             'nuclear': nuclear_generation,
             'coal': coal_generation,
             'unknown': unknown_generation,
@@ -628,10 +639,10 @@ def get_hydro(session=None):
     cid = pat.rpartition('=')[2]
     rs = spat.rpartition('=')[2]
     full_table = []
-    
+
     pagenumber = 1
     reserves = False
-    
+
     while not reserves:
         t = s.get(thurl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
@@ -712,4 +723,3 @@ if __name__ ==  '__main__':
     print(fetch_production())
     print('fetch_price() ->')
     print(fetch_price())
-    
