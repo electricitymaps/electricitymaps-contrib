@@ -93,7 +93,7 @@ def fetch_consumption(country_code='IN-PB', session=None):
         raise Exception('IN-PB Parser Not time_text')
 
     india_date_time = date_text + time_text + 'Asia/Kolkata'
-    india_date = get(india_date_time, 'DD/MM/YYYYHH:mm:ssZZZ')
+    india_date = get(india_date_time, 'MM/DD/YYYYHH:mm:ssZZZ')
 
     punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response.text, M|I|S).group(0)
     punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]
