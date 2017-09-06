@@ -574,6 +574,8 @@
   "IN-KA": {
     "flag_file_name": "in.png",
     "capacity": {
+      "coal": 6860,
+      "hydro": 3656.6,
       "biomass": 140,
       "solar": 959,
       "wind": 3595
