@@ -12,4 +12,3 @@ def read_value_from_span_id(html, span_id):
     """Read value from span with id"""
     html_span = html.find('span', {'id': span_id})
     return float(html_span.text)
-
