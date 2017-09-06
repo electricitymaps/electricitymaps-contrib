@@ -654,6 +654,16 @@
       "exchange": "ENTSOE.fetch_exchange"
     }
   },
+  "GT->MX": {
+    "lonlat": [
+      -90.967,
+      16.035
+    ],
+    "parsers": {
+      "exchange": "ENTE.fetch_ENTE_exchange"
+    },
+    "rotation": 125
+  },  
   "GR->IT": {
     "lonlat": [
       18.759248,
@@ -847,16 +857,6 @@
     },
     "rotation": 0
   },
-  "MX->GT": {
-    "lonlat": [
-      -90.967,
-      16.035
-    ],
-    "parsers": {
-      "exchange": "ENTE.fetch_ENTE_exchange"
-    },
-    "rotation": 125
-  },  
   "NL->NO": {
     "lonlat": [
       5.795449,
