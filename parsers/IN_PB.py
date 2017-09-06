@@ -8,17 +8,37 @@ from parsers.lib import web
 from parsers.lib import countrycode
 
 
+def read_text_by_regex(regex, text):
+    date_match = search(regex, text)
+    if not date_match:
+        raise ParserException('IN-PB', 'Not date_match')
+    date_text = date_match.group(0)
+    if not date_text:
+        raise ParserException('IN-PB', 'Not date_text')
+    return date_text
+
+
+def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format):
+    format = date_format + time_format + 'ZZZ'
+    date_time = date_text + time_text + 'Asia/Kolkata'
+    return get(date_time, format)
+
+
+def time_string_to_kolkata_date(utc_actual, time_text, time_format):
+    india_now = utc_actual.to('Asia/Kolkata')
+    time = get(time_text, time_format)
+    india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)
+    if india_date > india_now:
+        india_date = india_date.shift(days=-1)
+    return india_date
+
+
 def fetch_production(country_code='IN-PB', session=None):
     """Fetch Punjab production"""
     countrycode.assert_country_code(country_code, 'IN-PB')
     response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
 
-    time_match = search('(\d+:\d+:\d+)', response_text)
-    if not time_match:
-        raise ParserException('IN-PB', 'Not time_match')
-    time_text = time_match.group(0)
-    if not time_text:
-        raise ParserException('IN-PB', 'Not time_text')
+    time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
     utc = utcnow()
     india_now = utc.to('Asia/Kolkata')
@@ -72,23 +92,10 @@ def fetch_consumption(country_code='IN-PB', session=None):
     countrycode.assert_country_code(country_code, 'IN-PB')
     response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',
                                           session)
+    date_text = read_text_by_regex('(\d+/\d+/\d+)', response_text)
+    time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
-    date_match = search('(\d+/\d+/\d+)', response_text)
-    if not date_match:
-        raise ParserException('IN-PB', 'Not date_match')
-    date_text = date_match.group(0)
-    if not date_text:
-        raise ParserException('IN-PB', 'Not date_text')
-
-    time_match = search('(\d+:\d+:\d+)', response_text)
-    if not time_match:
-        raise ParserException('IN-PB', 'Not time_match')
-    time_text = time_match.group(0)
-    if not time_text:
-        raise ParserException('IN-PB', 'Not time_text')
-
-    india_date_time = date_text + time_text + 'Asia/Kolkata'
-    india_date = get(india_date_time, 'DD/MM/YYYYHH:mm:ssZZZ')
+    india_date = date_time_strings_to_kolkata_date(date_text, "MM/DD/YYYY", time_text, "HH:mm:ss")
 
     punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response_text, M|I|S).group(0)
     punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]
