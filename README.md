@@ -147,6 +147,8 @@ Production capacities are centralized in the [capacities.json](https://github.co
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
 - India (Karnataka): 
+  - Coal: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
+  - Hydro: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
   - Renewables [kptclsldc.com](http://kptclsldc.com/StateNCEP.aspx)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENMIN](https://enmin.lrv.lt/en/sectoral-policy/renewable-energy-sources)
