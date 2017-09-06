@@ -3,23 +3,22 @@ from re import search, findall, M, S, I, sub
 from arrow import utcnow, get
 from bs4 import BeautifulSoup
 
+from parsers.lib.exceptions import ParserException
+from parsers.lib import web
+from parsers.lib import countrycode
+
 
 def fetch_production(country_code='IN-PB', session=None):
     """Fetch Punjab production"""
-    ses = session or Session()
+    countrycode.assert_country_code(country_code, 'IN-PB')
+    response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
 
-    response = ses.get('http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal')
-    if response.status_code != 200:
-        raise Exception('IN-PB Parser Response code: {0}'.format(response.status_code))
-    if not response.text:
-        raise Exception('IN-PB Parser Response empty')
-
-    time_match = search('(\d+:\d+:\d+)', response.text)
+    time_match = search('(\d+:\d+:\d+)', response_text)
     if not time_match:
-        raise Exception('IN-PB Parser Not time_match')
+        raise ParserException('IN-PB', 'Not time_match')
     time_text = time_match.group(0)
     if not time_text:
-        raise Exception('IN-PB Parser Not time_text')
+        raise ParserException('IN-PB', 'Not time_text')
 
     utc = utcnow()
     india_now = utc.to('Asia/Kolkata')
@@ -28,19 +27,19 @@ def fetch_production(country_code='IN-PB', session=None):
     if india_date > india_now:
         india_date.shift(days=-1)
 
-    solar_match = search('Total Solar Generation = \d+', response.text)
+    solar_match = search('Total Solar Generation = \d+', response_text)
     solar_text = solar_match.group(0)
     solar_value = findall('\d+', solar_text)[0]
 
-    hydro_match = search('Total Hydro = \d+', response.text)
+    hydro_match = search('Total Hydro = \d+', response_text)
     hydro_text = hydro_match.group(0)
     hydro_value = findall('\d+', hydro_text)[0]
 
-    thermal_match = search('Total Thermal = \d+', response.text)
+    thermal_match = search('Total Thermal = \d+', response_text)
     thermal_text = thermal_match.group(0)
     thermal_value = findall('\d+', thermal_text)[0]
 
-    ipp_match = search('Total IPPs = \d+', response.text)
+    ipp_match = search('Total IPPs = \d+',response_text)
     ipp_text = ipp_match.group(0)
     ipp_value = findall('\d+', ipp_text)[0]
 
@@ -70,32 +69,28 @@ def fetch_production(country_code='IN-PB', session=None):
 
 def fetch_consumption(country_code='IN-PB', session=None):
     """Fetch Punjab consumption"""
-    ses = session or Session()
+    countrycode.assert_country_code(country_code, 'IN-PB')
+    response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',
+                                          session)
 
-    response = ses.get('http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal')
-    if response.status_code != 200:
-        raise Exception('IN-PB Parser Response code: {0}'.format(response.status_code))
-    if not response.text:
-        raise Exception('IN-PB Parser Response empty')
-
-    date_match = search('(\d+/\d+/\d+)', response.text)
+    date_match = search('(\d+/\d+/\d+)', response_text)
     if not date_match:
-        raise Exception('IN-PB Parser Not date_match')
+        raise ParserException('IN-PB', 'Not date_match')
     date_text = date_match.group(0)
     if not date_text:
-        raise Exception('IN-PB Parser Not date_text')
+        raise ParserException('IN-PB', 'Not date_text')
 
-    time_match = search('(\d+:\d+:\d+)', response.text)
+    time_match = search('(\d+:\d+:\d+)', response_text)
     if not time_match:
-        raise Exception('IN-PB Parser Not time_match')
+        raise ParserException('IN-PB', 'Not time_match')
     time_text = time_match.group(0)
     if not time_text:
-        raise Exception('IN-PB Parser Not time_text')
+        raise ParserException('IN-PB', 'Not time_text')
 
     india_date_time = date_text + time_text + 'Asia/Kolkata'
     india_date = get(india_date_time, 'DD/MM/YYYYHH:mm:ssZZZ')
 
-    punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response.text, M|I|S).group(0)
+    punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response_text, M|I|S).group(0)
     punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]
 
     punjab_text_font_cleaned = sub('<font(.*?)>', '', sub('</font>', '', punjab_tr_text))
