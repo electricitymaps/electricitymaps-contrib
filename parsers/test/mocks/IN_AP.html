@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>
+	CORE DASHBOARD
+</title><link rel="stylesheet" href="../../CORENEW/css/bootstrap.min.css" /><link rel="stylesheet" href="../../CORENEW/css/font-awesome.css" /><link rel="stylesheet" href="../../CORENEW/css/style.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="../../Scripts/jsapi.js"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1', { packages: ['corechart'] });
+        //google.load('visualization', '1', { packages: ['columnchart'] });
+        //google.load('visualization', '1', { packages: ['piechart', 'columnchart'] });
+    </script>
+    <script type="text/javascript">
+        function LoadCharts() {
+            // if (distID == "00") {
+            BindTransactionsChart();  // Pie Chart
+
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (aa != null) {
+            }
+            else {
+                var aa = 0;
+            }
+        });
+
+        var distname = '';
+        //var aa = 0;
+
+        function BindTransactionsChart() {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                url: 'PowerReport.aspx/GetData',
+                data: '{}',
+                success:
+                    function (response) {
+                        aa = response.d;
+                        // BindColumnChart("Ananthapur", 'N');
+                        drawPieChart(response.d);
+
+
+                    },
+                error: function (result) {
+                    ErrorOnFailure('pie_chart');
+                }
+            });
+        }
+
+        var options = {
+
+            pieSliceText: 'percentage',
+
+            is3D: true,
+
+            legend: {
+                position: 'left',
+                alignment: 'center'
+            },
+
+            // legend: { position: 'labeled' },
+
+            // colors: ['#219DB7', '#7AC4D4', '#096189', '#5DADE2', '#78D0FA', '#5DADE2'],
+
+            backgroundColor: { fill: 'none',
+                stroke: 'none',
+                strokeWidth: '2'
+            },
+
+            chartArea: {
+                left: 80, width: "200%", height: "120%"
+            },
+
+            series: {
+                0: { color: '#ff9966' },
+                1: { color: '#ccccff' },
+                2: { color: '#0099ff' },
+                3: { color: '#009999' },
+                4: { color: '#666699' }
+            },
+
+            sliceVisibilityThreshold: 0,
+            slices: { 1: { offset: 0.1 },
+                5: { offset: 0.3 },
+                7: { offset: 0.2 },
+                9: { offset: 0.3 }
+            }
+        };
+
+        function drawPieChart(dataValues) {
+
+            if (dataValues.length > 0) {
+
+                var data = new google.visualization.DataTable();
+
+                data.addColumn('string', 'Generation Details');
+                data.addColumn('number', 'Count');
+
+
+
+                for (var i = 0; i < dataValues.length; i++) {
+                    data.addRow([dataValues[i].DETAILS, dataValues[i].COUNT]);
+                }
+
+                var formatter = new google.visualization.NumberFormat({ pattern: '#,##,###' });
+                formatter.format(data, 1);
+
+                var ann = '';
+                // var view = new google.visualization.DataView(data);
+
+                var view = new google.visualization.DataView(data);
+
+                //               view.setColumns([0,
+                //                       1,2,
+                //                       { calc: "stringify",
+                //                           sourceColumn: 2,
+                //                           type: "string",
+                //                           role: "annotation"
+                //                       }]);
+
+                var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+
+                //                google.visualization.events.addListener(chart, 'onmouseover', function (e) {
+                //                    document.getElementById('bar_chart').innerHTML = "Please wait, Loading.....";
+                //                    var dist = data.getValue(e.row, 0);
+                //                    BindColumnChart(dist, 'Y');
+                //                }
+                //                );
+
+                //               if (document.getElementById('tblCharts').style.display == "none") {
+                //                   document.getElementById('tblCharts').style.display = "block";
+                //               }
+
+
+                chart.draw(data, options);
+                // document.getElementById("tblCharts").style.display = "none";
+
+            } else {
+                document.getElementById('pie_chart').innerHTML = "No Data Available";
+            }
+        }
+
+        // Column Chart - Region
+        //        function BindColumnChart(distid, status) {
+        //            var ss = $.grep(aa, function (n) {
+        //                return n.DISTRICT == distid;
+        //                //return distID;
+        //            })
+        //            drawColumnChart(ss, status);
+        //        }
+
+        // var optionsColumn;
+
+        //        function LoadOptions() {
+        //            optionsColumn = {
+        //                title: distname + '  - Details',
+        //                titleTextStyle: {
+        //                    color: '#0C77A4',
+        //                    fontSize: '14',
+        //                    is3D: true,
+        //                    underline: true
+        //                },
+        //                bar: { groupWidth: '65%' },
+
+        //                legend: {
+        //                    position: "right",
+        //                    alignment: "start",
+        //                    textStyle: {
+        //                        fontName: 'arial',
+        //                        fontSize: '10'
+        //                    }
+        //                },
+
+        //                chartArea: {
+        //                    left: 75, width: 200
+        //                },
+        //                //  is3D: true,
+        //                vAxis: {
+        //                    title: 'Count', titleTextStyle: { italic: false, bold: true },
+        //                    textStyle: { fontName: 'arial',
+        //                        fontSize: '11',
+        //                        bold: true
+        //                    },
+        //                    format: "#,##,###",
+        //                    baseline: 0
+
+        //                },
+
+        //                hAxis: { title: 'District', titleTextStyle: { italic: false, bold: true },
+        //                    textStyle: { fontName: 'arial',
+        //                        fontSize: '11',
+        //                        bold: true
+        //                    },
+        //                    baseline: 0,
+        //                    baselineColor: 'blue'
+
+
+        //                },
+        //                series: {
+        //                    0: { color: '#cc6699' },
+        //                    1: { color: '#FF7F50' }
+        //                },
+        //                backgroundColor: { fill: 'none',
+        //                    stroke: '#000000',
+        //                    strokeWidth: '2'
+        //                }
+        //            };
+        //        }
+
+        //        function drawColumnChart(dataValues, status) {
+
+        //            distname = dataValues[0].DISTRICT;
+
+        //            LoadOptions();
+
+        //            if (dataValues.length > 0) {
+
+        //                var data = new google.visualization.DataTable();
+
+        //                data.addColumn('string', 'District');
+        //                data.addColumn('number', 'No.of Employees Active');
+        //                data.addColumn('number', 'No.of Employees Present');
+
+        //                //               data.addColumn('string', 'PensionType1');
+        //                //               data.addColumn('string', 'PensionType2');
+        //                for (var i = 0; i < dataValues.length; i++) {
+
+
+        //                    data.addRow([dataValues[i].DISTRICT, dataValues[i].NoOfEmp_Active, dataValues[i].NoOfEmp_Present]);
+
+        //                }
+        //                var formatter = new google.visualization.NumberFormat({ pattern: '#,##,###' });
+        //                formatter.format(data, 1);
+        //                formatter.format(data, 2);
+
+        //                //               var view = new google.visualization.DataView(data);
+        //                //               view.setColumns([0,
+        //                //                       1,
+        //                //                       { calc: "stringify",
+        //                //                           sourceColumn: 3,
+        //                //                           type: "string",
+        //                //                           role: "annotation"
+        //                //                       },
+        //                //                       2,
+        //                //                       { calc: "stringify",
+        //                //                           sourceColumn: 4,
+        //                //                           type: "string",
+        //                //                           role: "annotation"
+        //                //                       }]);
+        //                new google.visualization.ColumnChart(document.getElementById('bar_chart')).
+        //                draw(data, optionsColumn);
+
+        //                //               if (status == "N") {
+        //                //                   document.getElementById('tblCharts').style.display = "none";
+        //                //               }
+
+
+        //            } else {
+        //                document.getElementById('bar_chart').innerHTML = "No Data Available";
+        //            }
+        //        }
+        // End of the Region
+    </script>
+    <script type="text/javascript">
+        function ErrorOnFailure(id) {
+            document.getElementById('pie_chart').style.display = "block";
+            document.getElementById(id).innerHTML = "Something went wrong, please try again.";
+        }
+
+    </script>
+
+</head>
+<body>
+    <form method="post" action="./PowerReport.aspx" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTgwMzQ2OTEyNg9kFgICAw9kFjgCAQ8PFgIeBFRleHQFCjA2LzA5LzIwMTdkZAICD2QWAmYPZBYCAgEPZBYCZg9kFgJmD2QWGAIBDw8WAh8ABRAwNi0wOS0yMDE3IDEyOjExZGQCAw8PFgIfAAUENjMzM2RkAgUPDxYCHwAFBTQ5Ljk5ZGQCBw8PFgIfAAUDNDcwZGQCCQ8PFgIfAAUEMjY5M2RkAgsPDxYCHwAFAzE2NmRkAg0PDxYCHwAFAzEyMGRkAg8PDxYCHwAFBDEwOTlkZAIRDw8WAh8ABQMyNzFkZAITDw8WAh8ABQQxNTEzZGQCFQ8PFgIfAAUEMzg5NWRkAhcPDxYCHwAFBDI0MDRkZAIDDw8WAh8ABQowNS0wOS0yMDE3ZGQCBA8PFgIfAAUFMTQ5LjBkZAIFDw8WAh8ABQUxNDkuMGRkAgYPDxYCHwAFAzAuMGRkAgcPDxYCHwAFCjAxLTA5LTIwMTdkZAIIDw8WAh8ABQUxNTQuMGRkAgkPDxYCHwAFBTE1NC4wZGQCCg8PFgIfAAUDMC4wZGQCCw8PFgIfAAUKMDItMDktMjAxN2RkAgwPDxYCHwAFBTE1NC4wZGQCDQ8PFgIfAAUFMTU0LjBkZAIODw8WAh8ABQMwLjBkZAIPDw8WAh8ABQowMy0wOS0yMDE3ZGQCEA8PFgIfAAUFMTUwLjBkZAIRDw8WAh8ABQUxNTAuMGRkAhIPDxYCHwAFAzAuMGRkAhMPDxYCHwAFCjA0LTA5LTIwMTdkZAIUDw8WAh8ABQUxNTEuMGRkAhUPDxYCHwAFBTE1MS4wZGQCFg8PFgIfAAUDMC4wZGQCFw8PFgIfAAUKMDUtMDktMjAxN2RkAhgPDxYCHwAFBTE0OS4wZGQCGQ8PFgIfAAUFMTQ5LjBkZAIaDw8WAh8ABQMwLjBkZAIbDxBkZBYBZmQCHA8PFgQeC18hRGF0YUJvdW5kZx4NVmlld1N0YXRlRGF0YQWQDDw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9InV0Zi0xNiI/Pg0KPENoYXJ0IEVuYWJsZVZpZXdTdGF0ZT0iVHJ1ZSIgV2lkdGg9Ijc1MCIgSGVpZ2h0PSIzNTAiPg0KICA8U2VyaWVzPg0KICAgIDxTZXJpZXMgTmFtZT0iRGVtYW5kIChNVSkiIFhWYWx1ZU1lbWJlcj0iUG93ZXJTaXR1YXRpb25fRGF0ZSIgWVZhbHVlTWVtYmVycz0iUG93ZXJTaXR1YXRpb25fRGVtYW5kIiBMZWdlbmQ9IkxlZ2VuZDEiIFhWYWx1ZVR5cGU9IlN0cmluZyIgWVZhbHVlVHlwZT0iU3RyaW5nIiBDaGFydFR5cGU9IkxpbmUiIENoYXJ0QXJlYT0iQ2hhcnRBcmVhMSIgTGFiZWw9IiNWQUxZIiBCb3JkZXJXaWR0aD0iNSIgVG9vbFRpcD0iI1ZBTFkiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNTQiIEF4aXNMYWJlbD0iMDEtMDktMjAxNyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNTQiIEF4aXNMYWJlbD0iMDItMDktMjAxNyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNTAiIEF4aXNMYWJlbD0iMDMtMDktMjAxNyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNTEiIEF4aXNMYWJlbD0iMDQtMDktMjAxNyIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNDkiIEF4aXNMYWJlbD0iMDUtMDktMjAxNyIgLz4NCiAgICAgIDwvUG9pbnRzPg0KICAgIDwvU2VyaWVzPg0KICAgIDxTZXJpZXMgTmFtZT0iU3VwcGx5IChNVSkiIFlWYWx1ZU1lbWJlcnM9IlBvd2VyU2l0dWF0aW9uX1N1cHBseSIgTGVnZW5kPSJMZWdlbmQxIiBDaGFydFR5cGU9IkxpbmUiIENoYXJ0QXJlYT0iQ2hhcnRBcmVhMSIgTGFiZWw9IiNWQUxZIiBCb3JkZXJXaWR0aD0iNSIgVG9vbFRpcD0iI1ZBTFkiPg0KICAgICAgPFBvaW50cz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNTQiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMTU0IiAvPg0KICAgICAgICA8RGF0YVBvaW50IFlWYWx1ZXM9IjE1MCIgLz4NCiAgICAgICAgPERhdGFQb2ludCBZVmFsdWVzPSIxNTEiIC8+DQogICAgICAgIDxEYXRhUG9pbnQgWVZhbHVlcz0iMTQ5IiAvPg0KICAgICAgPC9Qb2ludHM+DQogICAgPC9TZXJpZXM+DQogIDwvU2VyaWVzPg0KICA8Q2hhcnRBcmVhcz4NCiAgICA8Q2hhcnRBcmVhIE5hbWU9IkNoYXJ0QXJlYTEiPg0KICAgICAgPEF4aXNZIFRpdGxlPSJEZW1hbmQvU3VwcGx5IChNVSkiIFRpdGxlRm9udD0iQXJpYWwsIDEwcHQsIHN0eWxlPUJvbGQiIEludGVydmFsPSI1MCI+DQogICAgICA8L0F4aXNZPg0KICAgICAgPEF4aXNYIElzTGFiZWxBdXRvRml0PSJGYWxzZSIgVGl0bGU9IkRhdGUiIFRpdGxlRm9udD0iQXJpYWwsIDEwcHQsIHN0eWxlPUJvbGQiIEludGVydmFsPSIxIj4NCiAgICAgICAgPExhYmVsU3R5bGUgQW5nbGU9Ii00NSIgLz4NCiAgICAgIDwvQXhpc1g+DQogICAgPC9DaGFydEFyZWE+DQogIDwvQ2hhcnRBcmVhcz4NCiAgPExlZ2VuZHM+DQogICAgPExlZ2VuZCBOYW1lPSJMZWdlbmQxIj4NCiAgICA8L0xlZ2VuZD4NCiAgPC9MZWdlbmRzPg0KPC9DaGFydD5kZGRPP6oLbkpuAV8lhYbWwx4ItITfuhY283kXClDl709/4Q==" />
+
+
+<script src="/CMDashBoard/ScriptResource.axd?d=lR3qgRBo799MF9Y1Xr9i-hESaK8-0jGr5GLZcbd7QDsx4wnf9PLldBjnzUC7LeIqnuyE7fINTQXF-P1zKbao-Q48pmT6EBJ1geWhUYdJqkNSJ3u9KGZl37iMtFJV8z_DMswoJVyR24CS6fZ8RTqR6yTUwEChQnvqx4hj_dAepyu5KJBaKCR8zaD78y6DABPF0&amp;t=ffffffff977ec8ef" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="0E9B638A" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAARjp2Om5yZJzapK5WtCla6Ibz9vPcrtti7GF6tla+wWVH9D8XCUR9/ijX1CzhHvXVzKsz/gQwgOIuDdPGmTfTSoGQcsDON9do/V2UBipZR7DnwAWcsMnaR0MnDJuf3u5ak=" />
+
+    <!--Header Script -->
+    <script language="javascript" src="../../CORENEW/js/innerheader.js"></script>
+    <!--Header Script -->
+    <div>
+        <div class="col-xs-12" style="padding: 0px 10px; margin-top: 15px;">
+            <p class="breadcrumb_div">
+                <a href="../../Index.aspx">Home</a> / <a href="powerform.aspx">Energy</a> / Power
+                Situation Report
+                <br />
+                <br />
+                <span style="font-size: 18px;">Department : Energy </span><span style="float: right;
+                    font-size: 18px;">Date : <b>
+                        <span id="lblDate">06/09/2017</span></b></span>
+            </p>
+        </div>
+        <div class="col-xs-12" style="padding: 0px 10px;">
+            <p class="innercolorheading">
+                Power Situation Report</p>
+        </div>
+        <div class="col-xs-12">
+            <div class="reportrow" style="float: left; width: 100%;margin-bottom:80px;">
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1primary" data-toggle="tab" class="active ">
+                       &nbsp;<span>Daily Status<span class="arrow"></span></span></a></li>
+                        <li class=""><a href="#tab2primary" data-toggle="tab">
+                            &nbsp;<span>Power Supply Gap<span class="arrow"></span></span></a></li>
+                        <li class=""><a href="#tab3primary" data-toggle="tab">
+                            &nbsp;<span>Graph<span class="arrow"></span></span></a></li>
+                        <li class=""><a href="#tab4primary" data-toggle="tab">
+                            &nbsp;<span>More<span class="arrow"></span></span></a></li>
+                    </ul>
+                    <div class="tab-content ">
+                        <div class="tab-pane active" id="tab1primary">
+                            <div class="row-fluid table-responsive">
+                                <table class="table_style" rules="all" style="width: 100%; border-collapse: collapse;"
+                                    cellspacing="0">
+                                    <tr>
+                                        <td class="formbg2" style="vertical-align: top; padding: 0px;">
+                                            <div id="UpdatePanel2">
+
+                                                    <table id="Table2" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td align="center" valign="middle" style="border: 0px gray solid;">
+                                                                <table cellpadding="0" cellspacing="0" border="1" width="70%"  class="table_style table table-striped table-bordered tablestyle">
+                                                                    <tr>
+                                                                        <th class="formminihd">
+                                                                            Power Supply Status on
+                                                                            <span id="lblPowerStatusDate">06-09-2017 12:10</span>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="formbg2" style="padding: 5px;">
+                                                                            <table cellpadding="0" cellspacing="0" border="1" width="100%"  class="table_style table table-striped table-bordered tablestyle">
+                                                                                <tr>
+                                                                                    <td align="left" valign="middle" class="gridbgleft" width="60%" style="font-weight: bold;">
+                                                                                        GRID DEMAND (MW)
+                                                                                    </td>
+                                                                                    <td align="left" valign="middle" class="gridbgright" width="40%">
+                                                                                        <span id="lblGridDemand">6333</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                                        FREQUNCY (HZ)
+                                                                                    </td>
+                                                                                    <td align="left" valign="middle" class="gridbgright">
+                                                                                        <span id="lblFrequency">49.99</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="formbg2" style="padding: 5px;">
+                                                                            <table cellpadding="0" cellspacing="0" border="1" width="100%"  class="table_style table table-striped table-bordered tablestyle">
+                                                                                <tr>
+                                                                                    <th align="left" valign="middle" colspan="2" class="gridhdbg">
+                                                                                        Generation Details
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft" width="60%">
+                                                                                        HYDEL (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright" width="40%">
+                                                                                        <span id="lblHydel">470</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        THERMAL (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblThermal">2693</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        GAS (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblGas">166</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        WIND (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblWind">120</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        SOLAR (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblSolar">1099</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        IPPs & Others (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblIPPS">271</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        CGS Utilization (MW)
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblCGS">1513</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="formbg2" style="padding: 5px;">
+                                                                            <table cellpadding="0" cellspacing="0" border="1" width="100%"  class="table_style table table-striped table-bordered tablestyle">
+                                                                                <tr>
+                                                                                    <th align="left" valign="middle" class="gridhdbg">
+                                                                                        DISCOM
+                                                                                    </th>
+                                                                                    <th align="left" valign="middle" class="gridhdbg">
+                                                                                        ACTUAL (MW)
+                                                                                    </th>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft" width="60%">
+                                                                                        APSPDCL
+                                                                                    </td>
+                                                                                    <td class="gridbgright" width="40%">
+                                                                                        <span id="lblAPSPDCL">3895</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="gridbgleft">
+                                                                                        APEPDCL
+                                                                                    </td>
+                                                                                    <td class="gridbgright">
+                                                                                        <span id="lblAPEPDCL">2404</span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+		</tr>
+	</table>
+
+
+</div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2primary">
+                            <div class="row-fluid">
+                                <table id="Table1" class="table_style" rules="all" style="width: 100%; border-collapse: collapse;"
+                                    cellspacing="0">
+                                    <tr>
+                                        <td align="center" valign="middle" style="border: 1px gray solid;">
+                                            <table cellpadding="0" cellspacing="0" border="1" width="100%" class="table_style table table-striped table-bordered tablestyle">
+
+                                                <tr>
+                                                    <td class="formbg2" style="padding: 5px;">
+                                                        <table cellpadding="0" cellspacing="0" border="1" width="100%" class="table_style table table-striped table-bordered tablestyle">
+                                                            <tr>
+                                                                <th align="left" valign="middle" colspan="3" class="gridhdbg">
+                                                                    Overall State Position (in MU) on&nbsp;<span id="lblYesterdayDate">05-09-2017</span>
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" width="30%" style="font-weight: bold;">
+                                                                    Demand
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbgright" width="30%">
+                                                                    <span id="lblDemand">149.0</span>
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1" width="20%">
+
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/reportPSPpdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Power Supply Position Report</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Supplied
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbgright">
+                                                                    <span id="lblSupplied">149.0</span>
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Power Supply Gap
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbgright">
+                                                                    <span id="lblShortfall">0.0</span>
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="formbg2" style="padding: 5px;">
+                                                        <table cellpadding="0" cellspacing="0" border="1" width="100%" class="table_style table table-striped table-bordered tablestyle">
+                                                            <tr>
+                                                                <th align="left" valign="middle" colspan="4" class="gridhdbg">
+                                                                    Power Situation in the Last Five Days
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="gridhdbg" width="25%">
+                                                                    Date
+                                                                </th>
+                                                                <th class="gridhdbg" width="25%">
+                                                                    Demand (MU)
+                                                                </th>
+                                                                <th class="gridhdbg" width="25%">
+                                                                    Supply (MU)
+                                                                </th>
+                                                                <th class="gridhdbg" width="25%">
+                                                                    Deficit (MU)
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="gridbg1">
+                                                                    <span id="lblPSDate1">01-09-2017</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDemand1">154.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSSupply1">154.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDifict1">0.0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="gridbg1">
+                                                                    <span id="lblPSDate2">02-09-2017</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDemand2">154.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSSupply2">154.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDifict2">0.0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="gridbg1">
+                                                                    <span id="lblPSDate3">03-09-2017</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDemand3">150.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSSupply3">150.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDifict3">0.0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="gridbg1">
+                                                                    <span id="lblPSDate4">04-09-2017</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDemand4">151.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSSupply4">151.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDifict4">0.0</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="gridbg1">
+                                                                    <span id="lblPSDate5">05-09-2017</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDemand5">149.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSSupply5">149.0</span>
+                                                                </td>
+                                                                <td class="gridbgright" align="right">
+                                                                    <span id="lblPSDifict5">0.0</span>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="formbg2" style="padding: 5px;">
+                                                        <table cellpadding="0" cellspacing="0" border="1" width="100%" class="table_style table table-striped table-bordered tablestyle">
+                                                            <tr>
+                                                                <th colspan="2" class="gridhdbg">
+                                                                    Power Supply Position in Different Sectors
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Agriculture
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/agriculturePSPpdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Report</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Domestic &amp; Commercial
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/domComPSPpdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Report</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Industrial
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/industrialPSPpdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Report</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Daily Report of Generation (AP Share)
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/generationsAPdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Report</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Coal Stock Position
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/coalStockPositionpdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Report</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="middle" class="gridbgleft" style="font-weight: bold;">
+                                                                    Daily Report on Feeder Breakdowns
+                                                                </td>
+                                                                <td align="left" valign="middle" class="gridbg1">
+                                                                    <a href="http://43.225.24.70:8080/reports/jsp/fdrsbrkds3311kvpdf.htm?state=AP" class="red-lnk"
+                                                                        target="_blank">Report</a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3primary">
+                            <div class="row-fluid table-responsive">
+                                <table id="Table3" class="table_style table table-striped table-bordered tablestyle" rules="all" style="width: 100%; border-collapse: collapse;"
+                                    cellspacing="0">
+                                    <tr>
+                                        <td align="right">
+                                            <select name="ddlGraphType" id="ddlGraphType">
+	<option selected="selected" value="2">Line</option>
+	<option value="1">Bar</option>
+	<option value="3">Bar - Horizontal</option>
+
+</select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <img id="chartCrop" src="/CMDashBoard/UserInterface/Power/ChartImg.axd?i=charts_0/chart_0_0.png&amp;g=55e8993c8405465f94a0acd786d7cbfa" alt="" usemap="#chartCropImageMap" height="350" width="750" style="border-width:0px;" />
+<map name="chartCropImageMap" id="chartCropImageMap">
+
+	<area shape="poly" coords="461,72,502,74,502,88,461,86" title="149" alt="149" />
+	<area shape="poly" coords="379,72,420,71,420,85,379,86,420,71,461,72,461,86,420,85" title="151" alt="151" />
+	<area shape="poly" coords="297,70,338,72,338,86,297,84,338,72,379,72,379,86,338,86" title="150" alt="150" />
+	<area shape="poly" coords="215,68,256,68,256,82,215,82,256,68,297,70,297,84,256,82" title="154" alt="154" />
+	<area shape="poly" coords="174,68,215,68,215,82,174,82" title="154" alt="154" />
+	<area shape="poly" coords="461,72,502,74,502,88,461,86" title="149" alt="149" />
+	<area shape="poly" coords="379,72,420,71,420,85,379,86,420,71,461,72,461,86,420,85" title="151" alt="151" />
+	<area shape="poly" coords="297,70,338,72,338,86,297,84,338,72,379,72,379,86,338,86" title="150" alt="150" />
+	<area shape="poly" coords="215,68,256,68,256,82,215,82,256,68,297,70,297,84,256,82" title="154" alt="154" />
+	<area shape="poly" coords="174,68,215,68,215,82,174,82" title="154" alt="154" />
+</map>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab4primary">
+                            <div class="row-fluid">
+                            <div class="col-xs-12 col-sm-4  reportbottom_links">
+                                        <p>
+                                            <a href="http://www.apgenco.gov.in/files/4.swf"
+                                                target="_blank"><i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                AP Power Sector Dashboard </a>
+                                        </p>
+                                    </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-12" style="padding-bottom: 10px; margin-bottom: 50px">
+                            <input type="button" class="btn btn-warning pull-right" value="Back" onclick="javascript:window.location.href='/CMDashBoard/userinterface/power/powerform.aspx?back=1'"
+                                style="padding: 2px 12px; margin-top: 13px;" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" src="../../CORENEW/js/innerfooter.js"></script>
+    <script src="../../CORENEW/js/jquery.min.js"></script>
+    <script src="../../CORENEW/js/bootstrap.min.js"></script>
+    <script src="../../CORENEW/js/fontbtn.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            var d = new Date();
+            //alert('Date is: +d');
+            document.getElementById('demo').innerHTML = d.toDateString();
+        });
+    </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+        rel="Stylesheet" type="text/css" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../Scripts/ViewFeedBack.js"></script>
+
+    <script type='text/javascript'>
+
+
+
+
+        $(function () {
+
+            $("[id$=txtInnerSearch]").autocomplete({
+
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '/CMDashBoard/UserInterface/Power/PowerReport.aspx/GetReports',
+                        data: "{ 'prefix': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+
+                            response($.map(data.d, function (item) {
+                                return {
+                                    label: item.split('|')[0],
+                                    val: item.split('|')[1]
+
+
+                                }
+                                alert(item.split('|')[1]);
+                            }))
+
+                            // response(data.d);
+                        },
+
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+
+                    window.location.href = i.item.val;
+                    //$("[id$=hfCustomerId]").val(i.item.val);
+                },
+                minLength: 1
+            });
+        });
+
+    </script>
+
+
+      <script type="text/javascript">
+          $('#icomment').click(function (e) {
+              OpenFeedBackPop();
+              return false;
+
+          });
+
+          function OpenFeedBackPop() {
+              var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+              var height = document.documentElement.clientHeight + document.documentElement.scrollTop;
+              var layer = document.createElement("div");
+              layer.style.zIndex = 2;
+              layer.id = "layer";
+              layer.style.position = "absolute";
+              layer.style.top = "0px";
+              layer.style.left = "0px";
+              layer.style.height = document.documentElement.scrollHeight + "px";
+              layer.style.width = width + "px";
+              layer.style.backgroundColor = "black";
+              layer.style.opacity = "0.75";
+              layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=75)");
+              document.body.style.position = "static";
+              document.body.appendChild(layer);
+              var size = { "height": 300, "width": 430 };
+              var iframe = document.createElement("iframe");
+              var popUrl = '/CMDashBoard/UserInterface/CMFeedBack.aspx';
+              iframe.name = "FeedBackForm";
+              iframe.id = "popup";
+              iframe.src = popUrl;
+              iframe.style.height = size.height + "px";
+              iframe.style.width = size.width + "px";
+              iframe.style.position = "fixed";
+              iframe.style.zIndex = 3;
+              iframe.style.backgroundColor = "white";
+              iframe.style["border-radius"] = "10px";
+              iframe.frameborder = "0";
+              iframe.style.top = "125.5px"; // ((height + document.documentElement.scrollTop) / 2) - (size.height / 2) + "px";
+              iframe.style.left = (width / 2) - (size.width / 2) + "px";
+              document.body.appendChild(iframe);
+          }
+
+
+          function CloseFeedBackPop() {
+              var layer = document.getElementById("layer");
+              var iframe = document.getElementById("popup");
+              document.body.removeChild(layer); // remove layer
+              document.body.removeChild(iframe); // remove div
+          }
+          function CloseFeedbacknOpenView() {
+              CloseFeedBackPop();
+              OpenViewFeedBackPop();
+              return false;
+          }
+          function ViewPopUp() {
+              OpenFeedBackPop();
+              return false;
+          }
+
+    </script>
+
+
+<script>LoadCharts();</script></form>
+</body>
+</html>

@@ -1,13 +1,15 @@
 from requests import Session
 from bs4 import BeautifulSoup
 
+from parsers.lib.exceptions import ParserException
+
 
 def get_response(country_code, url, session=None):
     """Get response"""
     ses = session or Session()
     response = ses.get(url)
     if response.status_code != 200:
-        raise Exception('{0} Parser Response code: {1}'.format(country_code, response.status_code))
+        raise ParserException(country_code, 'Response code: {0}'.format(response.status_code))
     return response
 
 
@@ -15,7 +17,7 @@ def get_response_text(country_code, url, session=None):
     """Get text response"""
     response = get_response(country_code, url, session)
     if not response.text:
-        raise Exception('{0} Parser Response empty'.format(country_code))
+        raise ParserException(country_code, 'Response empty')
     return response.text
 
 

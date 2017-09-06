@@ -1,4 +1,5 @@
 from requests import Session
+from parsers.lib.exceptions import ParserException
 from parsers.lib import web
 from parsers.lib import countrycode
 from parsers.lib import india
@@ -7,7 +8,6 @@ from parsers.lib import india
 def fetch_consumption(country_code='IN-KA', session=None):
     """Fetch Karnataka consumption"""
     countrycode.assert_country_code(country_code, 'IN-KA')
-
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/Default.aspx', session)
 
     india_date_time = india.read_datetime_from_span_id(html, 'Label6', 'DD/MM/YYYY HH:mm')
@@ -108,7 +108,7 @@ def fetch_production(country_code='IN-KA', session=None):
 
     # Check ncep date is similar than state gen date
     if abs(india_date_time.timestamp - ncep_date_time.timestamp) > 600:
-        raise Exception('IN-KA Parser: NCEP Date is not valid')
+        raise ParserException('IN-KA', 'NCEP Date is not valid')
 
     biomass_value = india.read_value_from_span_id(ncep_html, 'lbl_tb')
 
