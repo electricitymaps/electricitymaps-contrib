@@ -87,7 +87,7 @@ function parseQueryString(querystring) {
             selectedCountryCode = kv[1];
             replaceHistoryState('countryCode', selectedCountryCode);
         } else if (kv[0] == 'page') {
-            showPageState = kv[1];
+            showPageState = kv[1].replace('%20', '');
             replaceHistoryState('page', showPageState);
             if (showPage) showPage(showPageState);
         } else if (kv[0] == 'solar') {
