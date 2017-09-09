@@ -390,9 +390,9 @@
       8.9183
     ],
     "parsers": {
-      "exchange": "ENTE.fetch_ENTE_exchange"
+      "exchange": "ENTE.fetch_exchange"
     },
-    "rotation": -50  
+    "rotation": 130
   },
   "CZ->DE": {
     "lonlat": [
@@ -660,10 +660,10 @@
       16.035
     ],
     "parsers": {
-      "exchange": "ENTE.fetch_ENTE_exchange"
+      "exchange": "ENTE.fetch_exchange"
     },
-    "rotation": 125
-  },  
+    "rotation": -55
+  },
   "GR->IT": {
     "lonlat": [
       18.759248,
