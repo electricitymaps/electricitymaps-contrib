@@ -21,19 +21,19 @@ def read_data():
     return df
 
 
-def connections(df):    
+def connections(df):
     """
     Gets values for each interconnection.
     Returns a dictionary.
     """
-    
+
     interconnections = {
-                        'MX->GT': df.iloc[0]['MXGU'],
+                        'GT->MX': df.iloc[0]['MXGU'],
                         'GT->SV': df.iloc[0]['GUES'],
                         'GT->HN': df.iloc[0]['GUHO'],
-                        'SV->HN': df.iloc[0]['ESHO'],
+                        'HN->SV': df.iloc[0]['ESHO'],
                         'HN->NI': df.iloc[0]['HONI'],
-                        'NI->CR': df.iloc[0]['NICR'],
+                        'CR->NI': df.iloc[0]['NICR'],
                         'CR->PA': df.iloc[0]['CRPA']
                         }
 
@@ -103,23 +103,24 @@ def flow_logic(net_production, interconnections):
 
     flows = {
              'HN->NI': 0.0,
-             'NI->CR': 0.0,
+             'CR->NI': 0.0,
              'CR->PA': 0.0,
              'GT->HN': 0.0,
-             'MX->GT': 0.0,
+             'GT->MX': 0.0,
              'GT->SV': 0.0,
-             'SV->HN': 0.0
+             'HN->SV': 0.0
              }
 
     #First we determine whether Mexico is importing or exporting using totals for the SIEPAC system.
-    
+
     if net_production['MX'] < 0:
+        #exporting
         GT['MX'] = -1
     else:
         GT['MX'] = 1
 
     #We then find the direction of the PA by exploiting the fact that it only has one interconnection.
-    
+
     if net_production['PA'] > 0:
         #PA can only export to CR
         PA['CR'] = 1
@@ -130,27 +131,27 @@ def flow_logic(net_production, interconnections):
         CR['PA'] = 1
 
     #Next we can find CR and NI flows using their net productions and process of elimination.
-    
+
     PAN = interconnections['CR->PA']*CR['PA']
-    
-    CR['NI'] = plusminus((net_production['CR']-PAN)/interconnections['NI->CR'])
+
+    CR['NI'] = plusminus((net_production['CR']-PAN)/interconnections['CR->NI'])
     NI['CR'] = flipsign(CR['NI'])
-    NIC = interconnections['NI->CR']*NI['CR']
-    
+    NIC = interconnections['CR->NI']*NI['CR']
+
     NI['HN'] = plusminus((net_production['NI']-NIC)/interconnections['HN->NI'])
     HN['NI'] = flipsign(NI['HN'])
 
     #Now we use 3 simultaneous equations to find the remaining flows.  We can use the fact that
     #several flows are already known to our advantage.
-    
+
     a = interconnections['GT->SV']
-    b = interconnections['SV->HN']
+    b = interconnections['HN->SV']
     c = interconnections['GT->HN']
-    MX = interconnections['MX->GT']*GT['MX']
+    MX = interconnections['GT->MX']*GT['MX']
     HON = interconnections['HN->NI']*HN['NI']
 
     eqs = np.array([[a, b, 0], [a, 0, c], [0, b, c]])
-    res = np.array([net_production['SV'], net_production['GT']-MX, net_production['HN']-HON]) 
+    res = np.array([net_production['SV'], net_production['GT']-MX, net_production['HN']-HON])
 
     solution = np.linalg.solve(eqs, res)
 
@@ -162,37 +163,37 @@ def flow_logic(net_production, interconnections):
     HN['SV'] = flipsign(SV['HN'])
     GT['HN'] = plusminus(solution[2])
     HN['GT'] = flipsign(GT['HN'])
-    
+
     #Flows commented out are disabled until the maths behind determining their direction can be proved satisfactorily.
     flows['HN->NI'] = HN['NI']
-    flows['NI->CR'] = NI['CR']
+    flows['CR->NI'] = CR['NI']
     flows['CR->PA'] = CR['PA']
     #flows['GT->HN'] = GT['HN']
-    flows['MX->GT'] = flipsign(GT['MX'])
+    flows['GT->MX'] = GT['MX']
     #flows['GT->SV'] = GT['SV']
-    #flows['SV->HN'] = SV['HN']
-    
+    #flows['HN->SV'] = SV['HN']
+
     return flows
 
-                   
+
 def net_flow(interconnections, flows):
     """
     Combines interconnection values with flow directions.
     Returns a dictionary.
     """
-    
+
     netflow = {k: interconnections[k]*flows[k] for k in interconnections}
 
     return netflow
 
 
-def fetch_ENTE_exchange():
+def fetch_exchange(country_code1, country_code2):
     """
-    Gets current exchanges from SIEPAC.
+    Gets an exchange pair from the SIEPAC system.
     Return:
-    A list of dictionaries in the form:
+    A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedCountryCodes': 'CR->PA',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -204,24 +205,31 @@ def fetch_ENTE_exchange():
     nt = net(getdata)
     fl = flow_logic(nt, connect)
     netflow = net_flow(connect, fl)
-    
-    data = []
-    dt = arrow.now('UTC-6')
-    
-    for flow in netflow:
-        exchange = {
-                'sortedCountryCodes': flow,
-                'datetime': dt,
-                'netFlow': netflow[flow],
-                'source': 'enteoperador.org'
-                }
-        data.append(exchange)
 
-    return data
+    exchange = {}
+    dt = arrow.now('UTC-6')
+    zones = '->'.join(sorted([country_code1, country_code2]))
+
+    if zones in netflow:
+        exchange['netFlow'] = netflow[zones]
+    else:
+        raise NotImplementedError('This exchange is not implemented.')
+
+    exchange.update(sortedCountryCodes = zones,
+                    datetime = dt,
+                    source = 'enteoperador.org')
+
+    return exchange
 
 
 if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_ENTE_exchange() ->')
-    print fetch_ENTE_exchange()    
+    print('fetch_exchange(CR, PA) ->')
+    print fetch_exchange('CR', 'PA')
+    print('fetch_exchange(CR, NI) ->')
+    print fetch_exchange('CR', 'NI')
+    print('fetch_exchange(HN, NI) ->')
+    print fetch_exchange('HN', 'NI')
+    print('fetch_exchange(GT, MX) ->')
+    print fetch_exchange('GT', 'MX')
