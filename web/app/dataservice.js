@@ -1,8 +1,24 @@
 var exports = module.exports = {};
 
+var bcrypt = require('bcryptjs');
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
+
+// API
+function protectedJsonRequest(endpoint, path, callback) {
+    var t = new Date().getTime();
+    return bcrypt.hash(ELECTRICITYMAP_PUBLIC_TOKEN + path + t, 10,
+        function(err, e) {
+            if (err) { return callback(err); }
+            return d3.json(endpoint + path)
+                .header('electricitymap-token', Cookies.get('electricitymap-token'))
+                .header('x-request-timestamp', t)
+                .header('x-signature', e)
+                .get(null, callback);
+        }
+    )
+}
 
 // GFS Parameters
 var GFS_STEP_ORIGIN  = 6; // hours
@@ -10,7 +26,7 @@ var GFS_STEP_HORIZON = 1; // hours
 var fetchForecast = exports.fetchForecast = function(endpoint, key, refTime, targetTime, tryEarlierRefTime, callback) {
     refTime = moment(refTime);
     targetTime = moment(targetTime);
-    return d3.json(endpoint + '/v2/gfs/' + key + '?' + 
+    return protectedJsonRequest(endpoint, '/v3/gfs/' + key + '?' +
         'refTime=' + refTime.toISOString() + '&' +
         'targetTime=' + targetTime.toISOString(), function(err, obj) {
             if (err && tryEarlierRefTime)
@@ -50,7 +66,6 @@ exports.fetchNothing = function(callback) {
     return callback(null, null);
 }
 exports.fetchState = function(endpoint, datetime, callback) {
-    return d3.json(endpoint + '/v1/state' + (datetime ? '?datetime=' + datetime : ''))
-        .header('electricitymap-token', Cookies.get('electricitymap-token'))
-        .get(null, callback);
+    var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
+    return protectedJsonRequest(endpoint, path, callback);
 }

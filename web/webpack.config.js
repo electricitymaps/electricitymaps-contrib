@@ -36,7 +36,10 @@ module.exports = {
                 __dirname + '/public/dist/manifest.json',
                 JSON.stringify(stats.toJson()));
             });
-        }
+        },
+        new webpack.DefinePlugin({
+            'ELECTRICITYMAP_PUBLIC_TOKEN': `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`
+        }),
     ],
     output: {
         filename: '[name].' + (process.env.NODE_ENV === 'production' ? '[chunkhash]' : 'dev') + '.js',
