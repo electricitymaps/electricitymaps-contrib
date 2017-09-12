@@ -86,7 +86,7 @@ def fetch_production(country_code = 'BR', session = None):
 
     datapoint = {
       'countryCode': country_code,
-      'datetime': generation[0],
+      'datetime': generation[0].datetime,
       'production': generation[1],
       'storage': {
           'hydro': None,
