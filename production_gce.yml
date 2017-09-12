@@ -1,6 +1,9 @@
 version: '2.2'
 services:
   web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
     environment:
       - NODE_ENV=production
       - VIRTUAL_HOST=electricitymap.org,www.electricitymap.org,electricitymap.tmrow.co
