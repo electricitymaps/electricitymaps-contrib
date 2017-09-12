@@ -50,6 +50,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Brazil: [ONS](http://www.ons.org.br/pt/paginas/energia-agora/carga-e-geracao)
 - Bulgaria: [TSO](http://tso.bg/default.aspx/page-707/bg)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet)
 - Canada (New Brunswick): [NB Power](https://tso.nbpower.com/Public/en/op/market/data.aspx)
@@ -112,6 +113,7 @@ Production capacities are centralized in the [capacities.json](https://github.co
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Belgium: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
+- Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
 - Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
     [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
@@ -146,7 +148,7 @@ Production capacities are centralized in the [capacities.json](https://github.co
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Electricity_sector_in_Italy)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
-- India (Karnataka): 
+- India (Karnataka):
   - Coal: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
   - Hydro: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
   - Renewables [kptclsldc.com](http://kptclsldc.com/StateNCEP.aspx)
