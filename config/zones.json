@@ -119,11 +119,23 @@
     "capacity": {
       "hydro": 483.22,
       "unknown" : 1344.55,
-      "wind": 27 
+      "wind": 27
     },
     "parsers": {
       "production": "BO.fetch_production",
       "generationForecast": "BO.fetch_generation_forecast"
+    }
+  },
+  "BR": {
+    "capacity": {
+      "thermal": 33807,
+      "hydro": 102573,
+      "nuclear": 1990,
+      "solar": 69,
+      "wind": 10196
+    },
+    "parsers": {
+      "production": "BR.fetch_production"
     }
   },
   "BY": {},
@@ -877,7 +889,7 @@
     "parsers": {
       "production": "SV.fetch_production"
     }
-  },    
+  },
   "TR": {
     "parsers": {
       "production": "TR.fetch_production"
