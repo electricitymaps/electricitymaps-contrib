@@ -1,6 +1,7 @@
 var exports = module.exports = {};
 
 var defaultCo2eqSource = 'IPCC 2014';
+var defaultCo2eqSourceUnknown = 'assumes thermal fuels (coal/gas/oil/biomass)';
 
 var defaultCo2eqFootprint = { // in gCo2eq/kWh
     'biomass': {
@@ -41,11 +42,11 @@ var defaultCo2eqFootprint = { // in gCo2eq/kWh
     },
     'unknown': {
       'value': 700, // assume conventional
-      'source': defaultCo2eqSource
+      'source': defaultCo2eqSourceUnknown
     },
     'other': {
       'value': 700, // // same as 'unknown'. Here for backward compatibility
-      'source': defaultCo2eqSource
+      'source': defaultCo2eqSourceUnknown
     }
 };
 
