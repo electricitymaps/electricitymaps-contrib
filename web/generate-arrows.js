@@ -1,23 +1,24 @@
+// Requires `brew install imagemagick`
+
 const child_process = require('child_process');
 const fs = require('fs');
+const d3 = require('d3');
 
-const colors = {
-  "nan":   "rgb(128, 128, 128)",
-  "0":   "rgb(0, 128, 0)",
-  "80":  "rgb(54, 136, 0)",
-  "160": "rgb(109, 144, 0)",
-  "240": "rgb(163, 152, 0)",
-  "320": "rgb(218, 160, 0)",
-  "400": "rgb(239, 154, 0)",
-  "480": "rgb(186, 119, 0)",
-  "560": "rgb(134, 85, 0)",
-  "640": "rgb(82, 50, 0)",
-  "720": "rgb(29, 15, 0)",
-  "800": "rgb(26, 13, 0)",
-};
+const numTicks = 11;
+const co2color = d3.scaleLinear()
+    .domain([0, 375, 725, 800])
+    .range(['green', 'orange', 'rgb(26,13,0)']);
+const keys = d3.range(0, 800 + 80, 80);
+const colors = {};
+keys.forEach((k) => { colors[k] = co2color(k) });
 
 for(let co2value in colors) {
   // generate specific color
+  console.log([
+    'public/images/arrow-template.png',
+    '+level-colors', 'transparent,'+colors[co2value],
+    `public/images/arrow-${co2value}.png`
+  ])
   child_process.spawn('convert', [
     'public/images/arrow-template.png',
     '+level-colors', 'transparent,'+colors[co2value],

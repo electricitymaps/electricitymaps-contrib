@@ -4,7 +4,6 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
-    this.STROKE_COLOR = '#555555';
 
     this.selectedCountry = undefined;
 
@@ -30,7 +29,7 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         .on('click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
-                    .style('stroke', that.STROKE_COLOR)
+                    .style('stroke', undefined)
                     .style('stroke-width', that.STROKE_WIDTH);
             }
             if (that.seaClickHandler)
@@ -190,7 +189,6 @@ CountryMap.prototype.render = function() {
         selector.enter()
             .append('path')
                 .attr('class', 'country')
-                .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('d', this.path) // path is only assigned on create
                 .on('mouseover', function (d, i) {
