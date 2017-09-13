@@ -187,7 +187,7 @@ def net_flow(interconnections, flows):
     return netflow
 
 
-def fetch_exchange(country_code1, country_code2):
+def fetch_exchange(country_code1, country_code2, session=None):
     """
     Gets an exchange pair from the SIEPAC system.
     Return:
@@ -216,7 +216,7 @@ def fetch_exchange(country_code1, country_code2):
         raise NotImplementedError('This exchange is not implemented.')
 
     exchange.update(sortedCountryCodes = zones,
-                    datetime = dt,
+                    datetime = dt.datetime,
                     source = 'enteoperador.org')
 
     return exchange
