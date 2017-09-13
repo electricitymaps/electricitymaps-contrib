@@ -924,6 +924,12 @@
       "production": "US.fetch_production"
     }
   },
+  "US-AK": {
+    "flag_file_name": "us.png"
+  },
+  "US-HI": {
+    "flag_file_name": "us.png"
+  },
   "UY": {
     "parsers": {
       "production": "UY.fetch_production"

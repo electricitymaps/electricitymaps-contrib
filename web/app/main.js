@@ -621,7 +621,7 @@ function selectCountry(countryCode, notrack) {
             console.error('Can\'t fetch history when a custom date is provided!');
         else if (!histories[countryCode]) {
             LoadingService.startLoading('#country-history-loading');
-            d3.json(ENDPOINT + '/v2/history?countryCode=' + countryCode, function(err, obj) {
+            DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
                 LoadingService.stopLoading('#country-history-loading');
                 if (err) console.error(err);
                 if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);

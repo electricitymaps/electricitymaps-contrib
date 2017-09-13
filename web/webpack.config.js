@@ -44,5 +44,9 @@ module.exports = {
     output: {
         filename: '[name].' + (process.env.NODE_ENV === 'production' ? '[chunkhash]' : 'dev') + '.js',
         path: __dirname + '/public/dist/'
+    },
+    // The following is required because of https://github.com/webpack-contrib/css-loader/issues/447
+    node: {
+      fs: "empty"
     }
 };

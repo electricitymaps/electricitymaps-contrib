@@ -1,10 +1,7 @@
 #!/bin/bash
 set -eu -o pipefail
 
-# Build assets
-pushd ..
-docker-compose build web
-popd
+# Extract
 CONTAINER_ID=$(docker create electricitymap_web)
 
 rm -rf www/electricitymap || true

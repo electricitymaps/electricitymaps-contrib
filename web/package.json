@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "compression": "^1.6.2",
     "currency-symbol-map": "^3.1.0",
     "d3": "^4.9.1",
@@ -13,6 +12,7 @@
     "i18n": "^0.8.3",
     "js-cookie": "^2.1.4",
     "moment": "^2.18.1",
+    "node-forge": "^0.7.1",
     "opbeat": "^4.14.0",
     "topojson": "^3.0.0"
   },
@@ -24,7 +24,7 @@
     "nodemon": "^1.11.0",
     "shapefile": "^0.6.2",
     "style-loader": "^0.18.2",
-    "webpack": "^3.5.4"
+    "webpack": "^3.5.6"
   },
   "repository": {
     "type": "git",
