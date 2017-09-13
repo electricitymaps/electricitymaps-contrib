@@ -57,11 +57,11 @@ PLANT_CLASSIFICATIONS = [
     'hydro'         # C. Fonseca
 ]
 
-REFERENCE_TOTAL_PRODUCTION = 433
+REFERENCE_TOTAL_PRODUCTION = 433 # MW
 def validate_datapoint(d):
     total = sum([v for k, v in d['production'].iteritems()])
-    if total > 10 * REFERENCE_TOTAL_PRODUCTION \
-        or total < 0.1 * REFERENCE_TOTAL_PRODUCTION: return d
+    if total > 5 * REFERENCE_TOTAL_PRODUCTION \
+        or total < 1.0 / 5 * REFERENCE_TOTAL_PRODUCTION: return d
     else: return d
 
 
