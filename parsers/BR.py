@@ -3,7 +3,6 @@
 import arrow
 from collections import defaultdict
 import requests
-from dateutil import parser
 
 url ='http://tr.ons.org.br/Content/GetBalancoEnergetico/null'
 
@@ -117,8 +116,8 @@ def fetch_exchange(country_code1='BR', country_code2='UY', session=None):
     gd = get_data()
 
     data = {
-        'datetime': parser.parse(gd['Data']),
-        'sortedCountryCodes': 'UY->BR',
+        'datetime': arrow.get(gd['Data']).datetime,
+        'sortedCountryCodes': 'BR->UY',
         'netFlow': gd['internacional']['uruguai'],
         'source': 'ons.org.br'
     }
