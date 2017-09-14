@@ -1246,6 +1246,7 @@ function fetch(showLoading, callback) {
 };
 
 function fetchAndReschedule() {
+    // TODO(olc): Use `setInterval` instead of `setTimeout`
     if (!customDate)
         return fetch(false, function() {
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
