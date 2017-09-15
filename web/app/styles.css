@@ -645,6 +645,12 @@ sub {
     color: black;
 }
 
+.contributors img {
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 0.2em;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     #header-content {

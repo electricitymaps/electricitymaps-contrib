@@ -259,12 +259,6 @@ co2Sub = function(str) {
                                 </div>
                             </div>
                             <svg class="country-table"></svg>
-                            <p>
-                                <%- __('country-panel.source')%>:
-                                <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank">
-                                    <span class="country-data-source"></span>
-                                </a> <small>(<%- __('country-panel.addeditsource', 'https://github.com/tmrowco/electricitymap/tree/master/parsers') %>)</small>
-                            </p>
                             <hr />
                             <div style="color: darkgray; position: relative;">
                                 <div id="country-history-loading" class="loading overlay"></div>
@@ -276,6 +270,14 @@ co2Sub = function(str) {
                                 </small>
                                 <svg class="country-history"></svg>
                             </div>
+                            <hr />
+                            <p>
+
+                                <%- __('country-panel.source')%>:
+                                <a href="https://github.com/corradio/electricitymap#real-time-electricity-data-sources" target="_blank"><span class="country-data-source"></span></a><small> (<%- __('country-panel.addeditsource', 'https://github.com/tmrowco/electricitymap/tree/master/parsers') %>)</small>, <%- __('country-panel.withhelpfrom') %>: <br /><span class="contributors"></span>
+                                
+                            </p>
+                            <hr />
                             <p>
                                 <%- co2Sub(__('country-panel.co2signal', 'https://www.co2signal.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel')) %>
                             </p>

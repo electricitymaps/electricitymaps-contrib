@@ -22,15 +22,15 @@ var jobs = Object.keys(zones).map(function(zone_name, i) {
 })
 
 Promise.all(jobs).then((parsers) => {
-    parsers.forEach((obj) => {
+    parsers.forEach((obj, i) => {
         if (!obj) { return; }
         var zone_name = obj[0]
         var commits = obj[1]
         var authors = {} // unique author list
-        console.log(obj)
         commits.forEach((commit) => {
-            if (obj[1].author) {
-                authors[obj[1].author.html_url] = undefined
+            console.log(commit.author)
+            if (commit.author) {
+                authors[commit.author.html_url] = true
             }
         })
         zones[zone_name].contributors = Object.keys(authors)
