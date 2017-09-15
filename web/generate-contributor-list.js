@@ -18,7 +18,10 @@ var jobs = Object.keys(zones).map(function(zone_name, i) {
     if (!generationParser) { return Promise.resolve(null); }
     var path = `https://api.github.com/repos/tmrowco/electricitymap/commits?path=parsers/${generationParser.split('.')[0] + '.py'}`
     // Get all commits
-    return fetch(path).then((e) => [zone_name, e]).catch((e) => null)
+    return fetch(path).then((e) => [zone_name, e]).catch((e) => {
+        console.error(`Zone ${zone_name} failed with error ${e}`);
+        process.exit(-1)
+    })
 })
 
 Promise.all(jobs).then((parsers) => {
