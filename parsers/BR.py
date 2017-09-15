@@ -14,7 +14,12 @@ generation_mapping = {
                       'hydro' : 'hydro'
                       }
 
-regions = [u'nordeste', u'norte', u'sudesteECentroOeste', u'sul']
+regions = {
+           'BR_NE': u'nordeste',
+           'BR_N': u'norte',
+           'BR_CS': u'sudesteECentroOeste',
+           'BR_S': u'sul'
+           }
 
 
 def get_data(session = None):
@@ -26,7 +31,7 @@ def get_data(session = None):
     return json_data
 
 
-def production_processor(json_data):
+def production_processor(json_data, country_code):
     """
     Extracts data timestamp and sums regional data into totals by key.
     Maps keys to type and returns a tuple.
@@ -35,13 +40,14 @@ def production_processor(json_data):
     dt = arrow.get(json_data['Data'])
     totals = defaultdict(lambda: 0.0)
 
-    for region in regions:
-        breakdown = json_data[region][u'geracao']
-        for generation, val in breakdown.items():
-            totals[generation] += val
+    region = regions[country_code]
+    breakdown = json_data[region][u'geracao']
+    for generation, val in breakdown.items():
+        totals[generation] += val
 
-    #We merge the 3 hydro keys into one, then remove unnecessary keys.
-    totals['hydro'] = totals[u'hidraulica'] + totals[u'itaipu50HzBrasil'] + totals[u'itaipu60Hz']
+    #BR_CS contains the Itaipu Dam.
+    #We merge the hydro keys into one, then remove unnecessary keys.
+    totals['hydro'] = totals.get(u'hidraulica', 0.0) + totals.get(u'itaipu50HzBrasil', 0.0) + totals.get(u'itaipu60Hz', 0.0)
     entriesToRemove = (u'hidraulica', u'itaipu50HzBrasil', u'itaipu60Hz', u'total')
     for k in entriesToRemove:
         totals.pop(k, None)
@@ -51,7 +57,7 @@ def production_processor(json_data):
     return dt, mapped_totals
 
 
-def fetch_production(country_code = 'BR', session = None):
+def fetch_production(country_code, session = None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -82,7 +88,7 @@ def fetch_production(country_code = 'BR', session = None):
     """
 
     gd = get_data()
-    generation = production_processor(gd)
+    generation = production_processor(gd, country_code)
 
     datapoint = {
       'countryCode': country_code,
@@ -127,8 +133,17 @@ def fetch_exchange(country_code1='BR', country_code2='UY', session=None):
 if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
-    print(fetch_production())
+    print('fetch_production(BR_NE) ->')
+    print(fetch_production('BR_NE'))
+
+    print('fetch_production(BR_N) ->')
+    print(fetch_production('BR_N'))
+
+    print('fetch_production(BR_CS) ->')
+    print(fetch_production('BR_CS'))
+
+    print('fetch_production(BR_S) ->')
+    print(fetch_production('BR_S'))
 
     print('fetch_exchange() ->')
     print(fetch_exchange())
