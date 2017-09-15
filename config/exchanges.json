@@ -235,9 +235,14 @@
     "rotation": -90
   },
   "BR->UY": {
+    "lonlat": [
+       -54.982242,
+       -31.301863
+    ],
     "parsers": {
       "exchange": "BR.fetch_exchange"
-    }
+    },
+    "rotation": -150
   },
   "CA-AB->CA-BC": {
     "lonlat": [
