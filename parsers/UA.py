@@ -22,6 +22,7 @@ MAP_GENERATION = {
     'tes': 'coal',
     'vde': 'wind',
     'biomass': 'biomass',
+    'gesgaes': 'hydro',
     'solar': 'solar',
     'oil': 'oil',
     'geothermal': 'geothermal',
