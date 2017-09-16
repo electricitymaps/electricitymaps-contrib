@@ -1026,7 +1026,18 @@
       "https://github.com/corradio"
     ]
   },
-  "RU": {},
+  "RU": {
+    "capacity": {
+      "biomass": 0,
+      "hydro": 48085,
+      "wind": 10,
+      "solar": 75,
+      "nuclear": 27929,
+      "gas": 115374,
+      "coal": 44868,
+      "oil": 1600
+    }
+  },
   "RU-KGD": {
     "flag_file_name": "ru.png"
   },
