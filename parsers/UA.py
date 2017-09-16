@@ -1,64 +1,79 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*-
+
+from __future__ import print_function
 
 import arrow
 import dateutil
 import requests
 
+"""
+tec - same as `tes` but also working as central heater,
+      main fuel is gas, in critical situations - black oil
+gesgaes - hydro run of river and poundage
+consumptiongaespump - hydro pumped storage
+vde - wind + solar, mostly wind
+
+no data for biomass, solar and oil
+"""
 MAP_GENERATION = {
-  'aes': 'nuclear',
-  'tec': 'unknown', # fossil 
-  'tes': 'coal',
-  'chpp': 'gas',
-  'hpp': 'hydro',
-  'vde': 'wind',
-  'hour' : 'hour',
-  'gesgaes' : 'hydro', #hydro run of river and poundage 
-  'consumptiongaespump' : 'consumptiongaespump' # hydro pumped storage
+    'aes': 'nuclear',
+    'tec': 'gas',
+    'tes': 'coal',
+    'vde': 'wind',
+    'biomass': 'biomass',
+    'solar': 'solar',
+    'oil': 'oil',
+    'geothermal': 'geothermal',
+}
+
+MAP_STORAGE = {
+    'consumptiongaespump': 'hydro',
 }
 
 tz = 'Europe/Kiev'
 
+
 def fetch_production(country_code='UA', session=None):
     r = session or requests.session()
-    
-    today =  arrow.now(tz=tz).format('DD.MM.YYYY')
+
+    data = []
+    today = arrow.now(tz=tz).format('DD.MM.YYYY')
     url = 'https://ua.energy/wp-admin/admin-ajax.php'
     postdata = {
-      'action': 'get_data_oes',
-      'report_date': arrow.now(tz=tz).format('DD.MM.YYYY'),
-      'type': 'day',
-      'rnd': 0.2046847583117225
+        'action': 'get_data_oes',
+        'report_date': arrow.now(tz=tz).format('DD.MM.YYYY'),
+        'type': 'day'
     }
+
     response = r.post(url, postdata)
-    obj = response.json()
-    
-    dataDict = []    
-    for serie in obj:
-        dataDict.append({
+
+    for serie in response.json():
+        row = {
             'countryCode': country_code,
             'production': {},
-            'storage' : {},
+            'storage': {},
             'source': 'ua.energy'
-        })
-        i =  len(dataDict)-1
-        del serie['consumption']  # not used, can be safely removed. 
-        
-        for key in serie:
-            key = key.encode('utf-8')
-            if key in MAP_GENERATION:
-                if key == 'consumptiongaespump':
-                   dataDict[i]['storage']['hydro'] = serie['consumptiongaespump'] * -1
-                elif key == 'hour':
-                    this = str(today) + ' ' + str(serie['hour'])
-                    dumpdate = arrow.get(this, 'DD.MM.YYYY HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
-                    dataDict[i]['datetime'] = dumpdate.datetime
-                else:
-                   dataDict[i]['production'][MAP_GENERATION[key]] = serie[key]
+        }
+
+        # Storage
+        if 'consumptiongaespump' in serie:
+            row['storage']['hydro'] = serie['consumptiongaespump'] * -1
+
+        # Production
+        for k, v in MAP_GENERATION.items():
+            if k in serie:
+                row['production'][v] = serie[k]
             else:
-                raise Exception('key %s is unknown' % key)
-    return dataDict  
-     
-     
+                row['production'][v] = 0.0
+
+        # Date
+        date = arrow.get('%s %s' % (today, serie['hour']), 'DD.MM.YYYY HH:mm')
+        row['datetime'] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
+
+        data.append(row)
+    return data
+
+
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())
