@@ -749,7 +749,9 @@
       "consumption": "IN_KA.fetch_consumption",
       "production": "IN_KA.fetch_production"
     },
-    "contributors": []
+    "contributors": [
+      "https://github.com/blackleg"
+    ]
   },
   "IN-PB": {
     "flag_file_name": "in.png",
@@ -822,7 +824,9 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "contributors": []
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "LV": {
     "capacity": {
@@ -836,7 +840,9 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "contributors": []
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "MD": {},
   "ME": {
@@ -848,7 +854,9 @@
       "consumption": "ENTSOE.fetch_consumption",
       "production": "ENTSOE.fetch_production"
     },
-    "contributors": []
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "MK": {},
   "MT": {},
@@ -912,7 +920,10 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "contributors": []
+    "contributors": [
+      "https://github.com/BobGrun",
+      "https://github.com/corradio"
+    ]
   },
   "NZ-NZS": {
     "flag_file_name": "nz.png",
@@ -1099,7 +1110,9 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "contributors": []
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "SV": {
     "capacity": {
@@ -1137,6 +1150,7 @@
       "production": "UA.fetch_production"
     },
     "contributors": [
+      "https://github.com/denplis",
       "https://github.com/corradio",
       "https://github.com/MariusKroon"
     ]
