@@ -25,8 +25,7 @@
 		"bysource": "by source",
 		"emissions": "Carbon emissions",
 		"addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-		"co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.",
-		"withhelpfrom": "with help from"
+		"co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
 	},
 	"rankings-panel": {
 		"country-ranking": "Ranking",

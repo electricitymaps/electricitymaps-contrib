@@ -648,7 +648,7 @@ sub {
 .contributors img {
     height: 20px;
     border-radius: 3px;
-    margin-right: 0.2em;
+    margin-right: 0.4em;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */
