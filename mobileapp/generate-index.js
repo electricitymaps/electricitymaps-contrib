@@ -14,7 +14,7 @@ function getHash(key, ext) {
     }
     return filename.replace('.' + ext, '').replace(key + '.', '');
 }
-var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
+var obj = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.json'));
 var BUNDLE_HASH = getHash('bundle', 'js');
 var VENDOR_HASH = getHash('vendor', 'js');
 var STYLES_HASH = getHash('styles', 'css');
