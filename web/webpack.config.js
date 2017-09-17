@@ -12,7 +12,7 @@ module.exports = {
             // Extract css files
             {
                 test: /\.css$/,
-                exclude: /^node_modules$/, 
+                exclude: /^node_modules$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [{ loader: 'css-loader', options: { url: false } }]
@@ -21,7 +21,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].' + (process.env.NODE_ENV === 'production' ? '[chunkhash]' : 'dev') + '.css'),
+        new ExtractTextPlugin('[name].' + (process.env.NODE_ENV === 'production' ? '[contenthash]' : 'dev') + '.css'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: function (module) {
