@@ -1,4 +1,4 @@
-FROM node:8.0.0
+FROM node:8.5.0
 WORKDIR /home/web
 
 ADD web/package.json /home/web/package.json
