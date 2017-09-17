@@ -43,7 +43,7 @@ def fetch_production(country_code='UA', session=None):
     url = 'https://ua.energy/wp-admin/admin-ajax.php'
     postdata = {
         'action': 'get_data_oes',
-        'report_date': arrow.now(tz=tz).format('DD.MM.YYYY'),
+        'report_date': today,
         'type': 'day'
     }
 
