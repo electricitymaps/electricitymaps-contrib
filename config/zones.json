@@ -722,11 +722,9 @@
   "IN-AP": {
     "flag_file_name": "in.png",
     "capacity": {
-      "biomass": 0,
       "hydro": 1797.6,
-      "nuclear": 0,
-      "solar": 1201,
-      "wind": 72.04
+      "solar": 2049,
+      "wind": 1866.35 
     },
     "parsers": {
       "consumption": "IN_AP.fetch_consumption",
