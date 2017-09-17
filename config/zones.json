@@ -1146,6 +1146,13 @@
     ]
   },
   "UA": {
+    "capacity": {
+      "hydro": 5380.8,
+      "hydro storage": 1,
+      "nuclear": 13835,
+      "solar": 345,
+      "wind": 420
+    },
     "parsers": {
       "production": "UA.fetch_production"
     },
