@@ -21,6 +21,13 @@ regions = {
            'BR_S': u'sul'
            }
 
+region_exchanges = {
+                    'BR_CS->BR_S': "sul_sudeste",
+                    'BR_CS->BR_NE':"sudeste_nordeste",
+                    'BR_CS->BR_N':"sudeste_norteFic",
+                    'BR_N->BR_NE': "norteFic_nordeste"
+                    }
+
 
 def get_data(session = None):
     """Requests generation data in json format."""
@@ -130,6 +137,42 @@ def fetch_exchange(country_code1='BR', country_code2='UY', session=None):
 
     return data
 
+
+def fetch_region_exchange(region1, region2, session = None):
+    """
+    Requests the last known power exchange (in MW) between two Brazilian regions.
+    Arguments:
+    region1           -- the first region
+    region2           -- the second region; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A dictionary in the form:
+    {
+      'sortedCountryCodes': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+
+    gd = get_data()
+    dt = arrow.get(gd['Data']).datetime
+    scc = '->'.join(sorted([region1, region2]))
+
+    exchange = region_exchanges[scc]
+    nf = gd['intercambio'][exchange]
+
+    data = {
+        'datetime': dt,
+        'sortedCountryCodes': scc,
+        'netFlow': nf,
+        'source': 'ons.org.br'
+    }
+
+    return data
+
+
 if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -147,3 +190,15 @@ if __name__ ==  '__main__':
 
     print('fetch_exchange() ->')
     print(fetch_exchange())
+
+    print('fetch_region_exchange(BR_CS->BR_S)')
+    print(fetch_region_exchange('BR_CS', 'BR_S'))
+
+    print('fetch_region_exchange(BR_CS->BR_NE)')
+    print(fetch_region_exchange('BR_CS', 'BR_NE'))
+
+    print('fetch_region_exchange(BR_CS->BR_N)')
+    print(fetch_region_exchange('BR_CS', 'BR_N'))
+
+    print('fetch_region_exchange(BR_N->BR_NE)')
+    print(fetch_region_exchange('BR_N', 'BR_NE'))
