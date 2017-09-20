@@ -65,6 +65,7 @@ POWER_PLANTS = {
     u'PE Mogote': 'wind',
     u'PEG': 'wind',
     u'Pailas': 'geothermal',
+    u'Parque Solar Juanilama': 'solar',
     u'Parque Solar Miravalles': 'solar',
     u'Peñas Blancas': 'hydro',
     u'Pirrís': 'hydro',
