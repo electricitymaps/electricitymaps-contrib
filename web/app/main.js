@@ -837,14 +837,16 @@ function renderMap() {
     if (!countryMap.center()) {
         // This should be given by the server
         var geolocation = geo && [geo.ll[1], geo.ll[0]];
-        if (geolocation) {
-            console.log('Centering on', geolocation);
-            countryMap.center(geolocation);
-        } else if (selectedCountryCode) {
+        if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
             var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
             countryMap.center([lon, lat]);
-        } else {
+        }
+        else if (geolocation) {
+            console.log('Centering on', geolocation);
+            countryMap.center(geolocation);
+        }
+        else {
             countryMap.center([0, 50]);
         }
     }
