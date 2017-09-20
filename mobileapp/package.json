@@ -29,10 +29,10 @@
             "cordova-universal-links-plugin": {},
             "cordova-plugin-globalization": {},
             "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {},
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": "Electricity Map uses your location to center the map on your current area."
-            },
-            "cordova-plugin-statusbar": {}
+            }
         },
         "platforms": [
             "android",
