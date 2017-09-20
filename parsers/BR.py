@@ -50,6 +50,14 @@ def production_processor(json_data, country_code):
     region = regions[country_code]
     breakdown = json_data[region][u'geracao']
     for generation, val in breakdown.items():
+        # tolerance range
+        if  -1 <= totals['solar'] < 0:
+            totals['solar'] = 0.0
+
+        # not tolerance range
+        if totals['solar'] < -1:
+            raise ValueError('the solar value is out of range')
+
         totals[generation] += val
 
     #BR_CS contains the Itaipu Dam.
