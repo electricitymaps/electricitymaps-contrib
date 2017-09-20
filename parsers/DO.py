@@ -245,7 +245,7 @@ def merge_production(thermal, total):
 
     def get_datetime(hour):
         at = arrow.now('America/Dominica')
-        dt = (at.replace(hour = int(hour) - 1, minute = 0, second = 0)).datetime
+        dt = (at.shift(hour = int(hour) - 1, minute = 0, second = 0)).datetime
         return dt
     
     for item in final:
