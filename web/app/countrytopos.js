@@ -20,6 +20,11 @@ exports.addCountryTopos = function(countries) {
             return d.id == countryId && d.properties.code_hasc == code_hasc;
         }));
     }
+    function getStates(countryId, code_hascs) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return d.id == countryId && code_hascs.indexOf(d.properties.code_hasc) != -1;
+        }));
+    }
     function getCountry(id) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
             return d.id == id;
@@ -76,10 +81,10 @@ exports.addCountryTopos = function(countries) {
     countries['BW'] = getCountry('BWA')
     countries['BV'] = getCountry('BVT')
     //countries['BR'] = getCountry('BRA')
-    countries['BR-N'] = getSubUnits(['BR.AM', 'BR.PA', 'BR.TO', 'BR.RR', 'BR.AP'])
-    countries['BR-NE'] = getSubUnits(['BR.PE', 'BR.MA', 'BR.CE', 'BR.PI', 'BR.AL', 'BR.BA', 'BR.PB', 'BR.RN', 'BR.SE'])
-    countries['BR-CS'] = getSubUnits(['BR.', 'BR.GO', 'BR.SP', 'BR.DF', 'BR.MS', 'BR.MG', 'BR.MT', 'BR.ES', 'BR.RJ'])
-    countries['BR-S'] = getSubUnits(['BR.RS', 'BR.SC', 'BR.PR'])
+    countries['BR-N'] = getStates('BRA', ['BR.AM', 'BR.PA', 'BR.TO', 'BR.RR', 'BR.AP'])
+    countries['BR-NE'] = getStates('BRA', ['BR.PE', 'BR.MA', 'BR.CE', 'BR.PI', 'BR.AL', 'BR.BA', 'BR.PB', 'BR.RN', 'BR.SE'])
+    countries['BR-CS'] = getStates('BRA', ['BR.', 'BR.GO', 'BR.SP', 'BR.DF', 'BR.MS', 'BR.MG', 'BR.MT', 'BR.ES', 'BR.RJ'])
+    countries['BR-S'] = getStates('BRA', ['BR.RS', 'BR.SC', 'BR.PR'])
     countries['VG'] = getCountry('VGB')
     countries['IO'] = getCountry('IOT')
     countries['BN'] = getCountry('BRN')
