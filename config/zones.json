@@ -180,6 +180,7 @@
       "solar": 3,
       "wind": 28
     },
+    "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
     },
@@ -194,6 +195,7 @@
       "thermal": 3426,
       "hydro": 14281
     },
+    "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
     },
@@ -210,6 +212,7 @@
       "solar": 132,
       "wind": 8763
     },
+    "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
     },
@@ -226,6 +229,7 @@
       "solar": 4,
       "wind": 1938
     },
+    "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
     },

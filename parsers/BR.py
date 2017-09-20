@@ -15,17 +15,17 @@ generation_mapping = {
                       }
 
 regions = {
-           'BR_NE': u'nordeste',
-           'BR_N': u'norte',
-           'BR_CS': u'sudesteECentroOeste',
-           'BR_S': u'sul'
+           'BR-NE': u'nordeste',
+           'BR-N': u'norte',
+           'BR-CS': u'sudesteECentroOeste',
+           'BR-S': u'sul'
            }
 
 region_exchanges = {
-                    'BR_CS->BR_S': "sul_sudeste",
-                    'BR_CS->BR_NE':"sudeste_nordeste",
-                    'BR_CS->BR_N':"sudeste_norteFic",
-                    'BR_N->BR_NE': "norteFic_nordeste"
+                    'BR-CS->BR-S': "sul_sudeste",
+                    'BR-CS->BR-NE':"sudeste_nordeste",
+                    'BR-CS->BR-N':"sudeste_norteFic",
+                    'BR-N->BR-NE': "norteFic_nordeste"
                     }
 
 
