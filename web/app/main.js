@@ -159,7 +159,7 @@ var app = {
                     console.error(err);
                     countryMap.center([0, 50]);
                 },
-                { enableHighAccuracy: false, timout: 3000 });
+                { enableHighAccuracy: false, timout: 1000 });
         }
         // We will init / bootstrap our application here
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
