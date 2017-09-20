@@ -203,7 +203,9 @@ CountryMap.prototype.render = function() {
                     if (that.countryMouseMoveHandler)
                         return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('click',
+                // The touchend event is added here to avoid having Safari
+                // simulate a mouseover when tapping
+                .on('click touchend',
                     // Test for Googlebot crawler in order to pass
                     // mobile-friendly test
                     // Else, Googlebot complains that elements are not wide enough
