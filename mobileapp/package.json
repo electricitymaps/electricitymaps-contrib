@@ -4,8 +4,9 @@
     "description": "",
     "dependencies": {
         "cordova-android": "^6.2.3",
-        "cordova-ios": "^4.4.0",
+        "cordova-ios": "^4.5.0",
         "cordova-plugin-code-push": "^1.9.4-beta",
+        "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-globalization": "~1.0.6",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
@@ -28,6 +29,9 @@
             "cordova-universal-links-plugin": {},
             "cordova-plugin-globalization": {},
             "cordova-plugin-splashscreen": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": "Electricity Map uses your location to center the map on your current area."
+            },
             "cordova-plugin-statusbar": {}
         },
         "platforms": [

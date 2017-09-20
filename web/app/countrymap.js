@@ -110,6 +110,8 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         wind.zoomend();
         solar.zoomend();
         dragStartTransform = undefined;
+
+        that.dragEndHandler.call(this);
     });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
@@ -285,6 +287,12 @@ CountryMap.prototype.onCountryMouseMove = function(arg) {
 CountryMap.prototype.onCountryMouseOut = function(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
+};
+
+CountryMap.prototype.onDragEnd = function(arg) {
+    if (!arg) return this.dragEndHandler;
+    else this.dragEndHandler = arg;
     return this;
 };
 
