@@ -91,13 +91,21 @@ var SUPPORTED_FB_LOCALES = [
 ];
 
 // * Long-term caching
-var BUNDLE_HASH = VENDOR_HASH = STYLES_HASH = 'dev';
-if (isProduction) {
-    var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
-    BUNDLE_HASH = obj.chunks[0].hash;
-    VENDOR_HASH = obj.chunks[2].hash;
-    STYLES_HASH = obj.chunks[1].hash;
+function getHash(key, ext) {
+    var filename;
+    if (typeof obj.assetsByChunkName[key] == 'string') {
+        filename = obj.assetsByChunkName[key];
+    } else {
+        // assume list
+        filename = obj.assetsByChunkName[key]
+            .filter((d) => d.match(new RegExp('\.' + ext + '$')))[0]
+    }
+    return filename.replace('.' + ext, '').replace(key + '.', '');
 }
+var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
+var BUNDLE_HASH = getHash('bundle', 'js');
+var VENDOR_HASH = getHash('vendor', 'js');
+var STYLES_HASH = getHash('styles', 'css');
 
 // * Opbeat
 if (isProduction)

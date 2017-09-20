@@ -2,10 +2,22 @@ var ejs = require('ejs');
 var fs = require('fs');
 var i18n = require('i18n');
 
+// duplicated from server.js
+function getHash(key, ext) {
+    var filename;
+    if (typeof obj.assetsByChunkName[key] == 'string') {
+        filename = obj.assetsByChunkName[key];
+    } else {
+        // assume list
+        filename = obj.assetsByChunkName[key]
+            .filter((d) => d.match(new RegExp('\.' + ext + '$')))[0]
+    }
+    return filename.replace('.' + ext, '').replace(key + '.', '');
+}
 var obj = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.json'));
-var BUNDLE_HASH = obj.chunks[0].hash;
-var VENDOR_HASH = obj.chunks[2].hash;
-var STYLES_HASH = obj.chunks[1].hash;
+var BUNDLE_HASH = getHash('bundle', 'js');
+var VENDOR_HASH = getHash('vendor', 'js');
+var STYLES_HASH = getHash('styles', 'css');
 
 // TODO:
 // Currently, those variables are duplicated from server.js

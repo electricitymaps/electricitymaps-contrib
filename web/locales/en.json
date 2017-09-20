@@ -1,71 +1,67 @@
 {
-    "panel-initial-text": {
-        "thisshowsrealtime": "This shows in real-time",
-        "whereelectricitycomesfrom": "where your electricity comes from",
-        "and": "and",
-        "howmuchco2": "how much CO2",
-        "wasemitted": "was emitted to produce it",
-
-        "takeinaccount": "We take into account electricity",
-        "importexport": "imports and exports",
-        "betweencountries": "between countries",
-
-        "thisproject": "This project is",
-        "opensource": "Open Source",
-        "see": "see",
-        "datasources": "data sources",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>",
-
-        "tip": "Tip: Click on a territory to start exploring"
-    },
-    "country-panel": {
-        "source": "source",
-        "fossilfuels": "Fossil Fuels",
-        "carbonintensity": "Carbon Intensity",
-        "electricityprice": "Electricity Price",
-        "electricityprice-dayahead": "day-ahead",
-        "electricityproduction": "Electricity production",
-        "bysource": "by source",
-        "emissions": "Carbon emissions",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
-    },
-    "rankings-panel": {
-        "country-ranking": "Ranking",
-        "show-ranking": "Show ranking"
-    },
-    "country-history": {
-        "carbonintensity24h": "Carbon intensity in the last 24 hours",
-        "downloaddataset": "Download full dataset"
-    },
-    "footer": {
-        "likethisvisu": "Like the visualization?",
-        "loveyourfeedback": "We'd love your feedback",
-        "foundbugs": "Found bugs or have ideas? Report them",
-        "here": "here"
-    },
-    "legends": {
-        "windpotential": "Wind power potential",
-        "solarpotential": "Solar power potential",
-        "colorblindmode": "color blind mode",
-        "carbonintensity": "Carbon intensity"
-    },
-    "tooltips": {
-        "electricityprice": "Electricity price (day-ahead)",
-        "fossilfuels": "fossil fuels",
-        "carbonintensity": "Carbon intensity",
-        "crossborderexport": "Cross-border export",
-        "carbonintensityexport": "Carbon intensity of export",
-
-        "ofinstalled": "of installed capacity",
-        "utilizing": "utilizing",
-        "withcarbonintensity": "with a carbon intensity of"
-    },
-    "misc": {
-        "maintitle": "Live CO2 emissions of electricity consumption",
-        "lastupdate": "Updated",
-        "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-        "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
-        "retrynow": "Retry now"
-    }
+	"panel-initial-text": {
+		"thisshowsrealtime": "This shows in real-time",
+		"whereelectricitycomesfrom": "where your electricity comes from",
+		"and": "and",
+		"howmuchco2": "how much CO2",
+		"wasemitted": "was emitted to produce it",
+		"takeinaccount": "We take into account electricity",
+		"importexport": "imports and exports",
+		"betweencountries": "between countries",
+		"thisproject": "This project is",
+		"opensource": "Open Source",
+		"see": "see",
+		"datasources": "data sources",
+		"contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>",
+		"tip": "Tip: Click on a territory to start exploring"
+	},
+	"country-panel": {
+		"source": "Source",
+		"fossilfuels": "Fossil Fuels",
+		"carbonintensity": "Carbon Intensity",
+		"electricityprice": "Electricity Price",
+		"electricityprice-dayahead": "day-ahead",
+		"electricityproduction": "Electricity production",
+		"bysource": "by source",
+		"emissions": "Carbon emissions",
+		"addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
+		"co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
+	},
+	"rankings-panel": {
+		"country-ranking": "Ranking",
+		"show-ranking": "Show ranking"
+	},
+	"country-history": {
+		"carbonintensity24h": "Carbon intensity in the last 24 hours",
+		"downloaddataset": "Download full dataset"
+	},
+	"footer": {
+		"likethisvisu": "Like the visualization?",
+		"loveyourfeedback": "We'd love your feedback",
+		"foundbugs": "Found bugs or have ideas? Report them",
+		"here": "here"
+	},
+	"legends": {
+		"windpotential": "Wind power potential",
+		"solarpotential": "Solar power potential",
+		"colorblindmode": "color blind mode",
+		"carbonintensity": "Carbon intensity"
+	},
+	"tooltips": {
+		"electricityprice": "Electricity price (day-ahead)",
+		"fossilfuels": "fossil fuels",
+		"carbonintensity": "Carbon intensity",
+		"crossborderexport": "Cross-border export",
+		"carbonintensityexport": "Carbon intensity of export",
+		"ofinstalled": "of installed capacity",
+		"utilizing": "utilizing",
+		"withcarbonintensity": "with a carbon intensity of"
+	},
+	"misc": {
+		"maintitle": "Live CO2 emissions of electricity consumption",
+		"lastupdate": "Updated",
+		"oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
+		"newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+		"retrynow": "Retry now"
+	}
 }

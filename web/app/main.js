@@ -547,8 +547,9 @@ function selectCountry(countryCode, notrack) {
     if (!countries) { return; }
     if (countryCode && countries[countryCode]) {
         // Selected
-        if (!notrack)
+        if (!notrack) {
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
+        }
         countryTable
             .data(countries[countryCode])
             .powerScaleDomain(null) // Always reset scale if click on a new country
@@ -617,8 +618,9 @@ function selectCountry(countryCode, notrack) {
         }
 
         // Load graph
-        if (customDate)
+        if (customDate) {
             console.error('Can\'t fetch history when a custom date is provided!');
+        }
         else if (!histories[countryCode]) {
             LoadingService.startLoading('#country-history-loading');
             DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
@@ -652,6 +654,19 @@ function selectCountry(countryCode, notrack) {
         } else {
             updateGraph(histories[countryCode]);
         }
+
+        // Update contributors
+        var selector = d3.select('.contributors').selectAll('a')
+            .data(zones_config[countryCode].contributors);
+
+        var enterA = selector.enter().append('a')
+            .attr('target', '_blank')
+        var enterImg = enterA.append('img')
+        enterA.merge(selector)
+            .attr('href', function(d) { return d; })
+        enterImg.merge(selector.select('img'))
+            .attr('src', function(d) { return d + '.png'; })
+        selector.exit().remove()
     }
     replaceHistoryState('countryCode', selectedCountryCode);
 }
@@ -1246,6 +1261,7 @@ function fetch(showLoading, callback) {
 };
 
 function fetchAndReschedule() {
+    // TODO(olc): Use `setInterval` instead of `setTimeout`
     if (!customDate)
         return fetch(false, function() {
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);

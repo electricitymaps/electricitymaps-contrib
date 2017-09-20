@@ -12,7 +12,11 @@
     },
     "parsers": {
       "production": "AR.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/corradio"
+    ]
   },
   "AT": {
     "capacity": {
@@ -28,7 +32,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "AUS-ACT": {
     "flag_file_name": "au.png"
@@ -38,7 +45,11 @@
     "parsers": {
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   },
   "AUS-NT": {
     "flag_file_name": "au.png"
@@ -48,39 +59,63 @@
     "parsers": {
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   },
   "AUS-SA": {
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   },
   "AUS-TAS": {
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   },
   "AUS-VIC": {
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   },
   "AUS-WA": {
     "flag_file_name": "au.png",
     "parsers": {
       "production": "AU_WA.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio",
+      "https://github.com/MariusKroon"
+    ]
   },
   "BA": {
     "parsers": {
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "BE": {
     "capacity": {
@@ -97,7 +132,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "BG": {
     "capacity": {
@@ -113,30 +151,89 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "BG.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/yurukov",
+      "https://github.com/ultibo"
+    ]
   },
   "BO": {
     "capacity": {
       "hydro": 483.22,
-      "unknown" : 1344.55,
+      "unknown": 1344.55,
       "wind": 27
     },
     "parsers": {
       "production": "BO.fetch_production",
       "generationForecast": "BO.fetch_generation_forecast"
-    }
+    },
+    "contributors": [
+      "https://github.com/igorarduin",
+      "https://github.com/corradio"
+    ]
   },
-  "BR": {
+  "BR-CS": {
     "capacity": {
-      "thermal": 33807,
-      "hydro": 102573,
+      "thermal": 18962,
+      "hydro": 62095,
       "nuclear": 1990,
-      "solar": 69,
-      "wind": 10196
+      "solar": 3,
+      "wind": 28
     },
     "parsers": {
       "production": "BR.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
+  "BR-N": {
+    "capacity": {
+      "thermal": 3426,
+      "hydro": 14281
+    },
+    "parsers": {
+      "production": "BR.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
+  "BR-NE": {
+    "capacity": {
+      "thermal": 7214,
+      "hydro": 11008,
+      "solar": 132,
+      "wind": 8763
+    },
+    "parsers": {
+      "production": "BR.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
+  "BR-S": {
+    "capacity": {
+      "thermal": 4348,
+      "hydro": 16491,
+      "solar": 4,
+      "wind": 1938
+    },
+    "parsers": {
+      "production": "BR.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
   },
   "BY": {},
   "CA-AB": {
@@ -144,7 +241,10 @@
     "parsers": {
       "price": "CA_AB.fetch_price",
       "production": "CA_AB.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/mlucchini"
+    ]
   },
   "CA-BC": {
     "capacity": {
@@ -180,7 +280,10 @@
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_NB.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek"
+    ]
   },
   "CA-NL": {
     "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
@@ -204,7 +307,11 @@
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_NS.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   },
   "CA-NT": {
     "flag_file_name": "ca.png"
@@ -225,7 +332,10 @@
     "parsers": {
       "price": "CA_ON.fetch_price",
       "production": "CA_ON.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "CA-PE": {
     "capacity": {
@@ -235,7 +345,10 @@
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_PE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek"
+    ]
   },
   "CA-QC": {
     "_comment": "http://www.hydroquebec.com/generation/",
@@ -259,7 +372,10 @@
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_YT.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek"
+    ]
   },
   "CH": {
     "capacity": {
@@ -270,12 +386,19 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "CR": {
     "parsers": {
       "production": "CR.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/mlucchini"
+    ]
   },
   "CY": {
     "capacity": {
@@ -292,7 +415,10 @@
     },
     "parsers": {
       "production": "CY.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/ultibo"
+    ]
   },
   "CZ": {
     "capacity": {
@@ -311,7 +437,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "DE": {
     "capacity": {
@@ -328,10 +457,22 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "DK": {
-    "bounding_box": [[7.60472, 54.509132], [13.30324, 57.751949]],
+    "bounding_box": [
+      [
+        7.60472,
+        54.509132
+      ],
+      [
+        13.30324,
+        57.751949
+      ]
+    ],
     "capacity": {
       "biomass": 197,
       "coal": 4847,
@@ -346,7 +487,10 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "DO": {
     "capacity": {
@@ -360,7 +504,10 @@
     },
     "parsers": {
       "production": "DO.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ]
   },
   "EE": {
     "capacity": {
@@ -377,10 +524,22 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "ES": {
-    "bounding_box": [[-9.3603515625,35.9957853864],[3.6474609375,43.6758180933]],
+    "bounding_box": [
+      [
+        -9.3603515625,
+        35.9957853864
+      ],
+      [
+        3.6474609375,
+        43.6758180933
+      ]
+    ],
     "capacity": {
       "biomass": 1077,
       "coal": 9535,
@@ -400,7 +559,10 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "ES-CN": {
     "capacity": {
@@ -410,7 +572,10 @@
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/blackleg"
+    ]
   },
   "ES-IB": {
     "capacity": {
@@ -420,7 +585,10 @@
     "parsers": {
       "consumption": "ES_IB.fetch_consumption",
       "production": "ES_IB.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/blackleg"
+    ]
   },
   "FI": {
     "capacity": {
@@ -437,7 +605,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "FO": {
     "capacity": {
@@ -447,7 +618,10 @@
     },
     "parsers": {
       "production": "FO.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "FR": {
     "capacity": {
@@ -462,7 +636,10 @@
     "parsers": {
       "price": "FR.fetch_price",
       "production": "FR.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "GB": {
     "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
@@ -481,7 +658,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "GB-NIR": {
     "capacity": {
@@ -497,7 +677,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "GR": {
     "capacity": {
@@ -515,7 +698,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "GT": {
     "capacity": {
@@ -531,7 +717,11 @@
     "parsers": {
       "consumption": "GT.fetch_consumption",
       "production": "GT.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/igorarduin",
+      "https://github.com/corradio"
+    ]
   },
   "HR": {},
   "HU": {
@@ -549,7 +739,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "IE": {
     "capacity": {
@@ -567,21 +760,25 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "IN-AP": {
     "flag_file_name": "in.png",
     "capacity": {
-      "biomass": 0,
-      "hydro": 1797.60,
-      "nuclear": 0,
-      "solar": 1201,
-      "wind": 72.04
+      "hydro": 1797.6,
+      "solar": 2049,
+      "wind": 1866.35
     },
     "parsers": {
       "consumption": "IN_AP.fetch_consumption",
       "production": "IN_AP.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/blackleg"
+    ]
   },
   "IN-KA": {
     "flag_file_name": "in.png",
@@ -595,14 +792,21 @@
     "parsers": {
       "consumption": "IN_KA.fetch_consumption",
       "production": "IN_KA.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/blackleg"
+    ]
   },
   "IN-PB": {
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_PB.fetch_consumption",
       "production": "IN_PB.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/blackleg"
+    ]
   },
   "IS": {
     "capacity": {
@@ -619,7 +823,10 @@
     },
     "parsers": {
       "production": "IS.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "IT": {
     "capacity": {
@@ -632,7 +839,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "LT": {
     "capacity": {
@@ -647,14 +857,20 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "LU": {
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "LV": {
     "capacity": {
@@ -667,7 +883,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "MD": {},
   "ME": {
@@ -678,7 +897,10 @@
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "MK": {},
   "MT": {},
@@ -693,7 +915,12 @@
     "parsers": {
       "price": "NI.fetch_price",
       "production": "NI.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/systemcatch",
+      "https://github.com/jarek"
+    ]
   },
   "NL": {
     "capacity": {
@@ -709,7 +936,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "NO": {
     "capacity": {
@@ -724,24 +954,38 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "NZ-NZN": {
     "flag_file_name": "nz.png",
     "parsers": {
       "production": "NZ.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/BobGrun",
+      "https://github.com/corradio"
+    ]
   },
   "NZ-NZS": {
     "flag_file_name": "nz.png",
     "parsers": {
       "production": "NZ.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/BobGrun",
+      "https://github.com/corradio"
+    ]
   },
   "PE": {
     "parsers": {
       "production": "PE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "PL": {
     "capacity": {
@@ -758,7 +1002,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "PT": {
     "capacity": {
@@ -776,7 +1023,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "PT-AC": {
     "flag_file_name": "pt.png"
@@ -798,7 +1048,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "RS": {
     "capacity": {
@@ -812,14 +1065,26 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "RU": {},
   "RU-KGD": {
     "flag_file_name": "ru.png"
   },
   "SE": {
-    "bounding_box": [[11.337890625,55.1788676633],[24.169921875,68.9741635834]],
+    "bounding_box": [
+      [
+        11.337890625,
+        55.1788676633
+      ],
+      [
+        24.169921875,
+        68.9741635834
+      ]
+    ],
     "capacity": {
       "biomass": 220,
       "gas": 698,
@@ -834,7 +1099,10 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "SG": {
     "capacity": {
@@ -844,7 +1112,11 @@
     "parsers": {
       "price": "SG.fetch_price",
       "production": "SG.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/jarek"
+    ]
   },
   "SI": {
     "capacity": {
@@ -861,7 +1133,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "SK": {
     "capacity": {
@@ -878,7 +1153,10 @@
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "SV": {
     "capacity": {
@@ -888,22 +1166,45 @@
     },
     "parsers": {
       "production": "SV.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ]
   },
   "TR": {
     "parsers": {
       "production": "TR.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/olivierSemet"
+    ]
   },
   "TW": {
     "parsers": {
       "production": "TW.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/MariusKroon"
+    ]
   },
   "UA": {
+    "capacity": {
+      "hydro": 5380.8,
+      "hydro storage": 1,
+      "nuclear": 13835,
+      "solar": 345,
+      "wind": 420
+    },
     "parsers": {
       "production": "UA.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/corradio",
+      "https://github.com/MariusKroon"
+    ]
   },
   "US": {
     "_comment": "distributed PV: 9778MW, not included below",
@@ -922,7 +1223,10 @@
     },
     "parsers": {
       "production": "US.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ]
   },
   "US-AK": {
     "flag_file_name": "us.png"
@@ -933,6 +1237,10 @@
   "UY": {
     "parsers": {
       "production": "UY.fetch_production"
-    }
+    },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio"
+    ]
   }
 }

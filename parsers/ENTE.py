@@ -144,25 +144,25 @@ def flow_logic(net_production, interconnections):
     #Now we use 3 simultaneous equations to find the remaining flows.  We can use the fact that
     #several flows are already known to our advantage.
 
-    a = interconnections['GT->SV']
-    b = interconnections['HN->SV']
-    c = interconnections['GT->HN']
-    MX = interconnections['GT->MX']*GT['MX']
-    HON = interconnections['HN->NI']*HN['NI']
-
-    eqs = np.array([[a, b, 0], [a, 0, c], [0, b, c]])
-    res = np.array([net_production['SV'], net_production['GT']-MX, net_production['HN']-HON])
-
-    solution = np.linalg.solve(eqs, res)
-
-    #Factor to account for transmission losses.
-    GT['SV'] = plusminus(solution[0]+0.5)
-
-    SV['GT'] = flipsign(GT['SV'])
-    SV['HN'] = plusminus(solution[1])
-    HN['SV'] = flipsign(SV['HN'])
-    GT['HN'] = plusminus(solution[2])
-    HN['GT'] = flipsign(GT['HN'])
+    # a = interconnections['GT->SV']
+    # b = interconnections['HN->SV']
+    # c = interconnections['GT->HN']
+    # MX = interconnections['GT->MX']*GT['MX']
+    # HON = interconnections['HN->NI']*HN['NI']
+    #
+    # eqs = np.array([[a, b, 0], [a, 0, c], [0, b, c]])
+    # res = np.array([net_production['SV'], net_production['GT']-MX, net_production['HN']-HON])
+    #
+    # solution = np.linalg.solve(eqs, res)
+    #
+    # #Factor to account for transmission losses.
+    # GT['SV'] = plusminus(solution[0]+0.5)
+    #
+    # SV['GT'] = flipsign(GT['SV'])
+    # SV['HN'] = plusminus(solution[1])
+    # HN['SV'] = flipsign(SV['HN'])
+    # GT['HN'] = plusminus(solution[2])
+    # HN['GT'] = flipsign(GT['HN'])
 
     #Flows commented out are disabled until the maths behind determining their direction can be proved satisfactorily.
     flows['HN->NI'] = HN['NI']
