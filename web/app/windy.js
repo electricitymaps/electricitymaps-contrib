@@ -339,7 +339,7 @@ var Windy = function( params ){
         }
         */
         result.indexFor = function(m) {  // map wind speed to a style
-            return Math.floor(Math.min(m, maxWind) / maxWind * (result.length - 1));
+            return Math.floor(Math.min(m, maxWind) / maxWind * (this.length - 1));
         };
         return result;
     }
