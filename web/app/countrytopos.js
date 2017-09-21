@@ -24,16 +24,18 @@ exports.addCountryTopos = function(countries) {
             return ids.indexOf(d.properties.subid) != -1;
         }));
     }
-    function getState(countryId, code_hasc) {
+    function getState(countryId, code_hasc, use_maybe) {
+        if (use_maybe == undefined) { use_maybe = false; }
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
-            return d.id == countryId && hascMatch(d.properties, code_hasc);
+            return d.id == countryId && (use_maybe && hascMatch(d.properties, code_hasc) || d.properties.code_hasc == code_hasc);
         }));
     }
-    function getStates(countryId, code_hascs) {
+    function getStates(countryId, code_hascs, use_maybe) {
+        if (use_maybe == undefined) { use_maybe = false; }
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
-            return d.id == countryId && any(code_hascs.map(function(h) {
+            return d.id == countryId && (use_maybe && any(code_hascs.map(function(h) {
                 return hascMatch(d.properties, h)
-            }));
+            }))) || code_hascs.indexOf(d.properties.code_hasc) != -1;
         }));
     }
     function getStateByFips(countryId, fips) {
@@ -185,44 +187,44 @@ exports.addCountryTopos = function(countries) {
     countries['HN'] = getCountry('HND')
     countries['HU'] = getCountry('HUN')
     countries['IS'] = getCountry('ISL')
-    countries['IN-AN'] = getState('IND', 'IN.AN');
-    countries['IN-AP'] = getState('IND', 'IN.AP');
-    countries['IN-AR'] = getState('IND', 'IN.AR');
-    countries['IN-AS'] = getState('IND', 'IN.AS');
-    countries['IN-BR'] = getState('IND', 'IN.BR');
-    countries['IN-CT'] = getState('IND', 'IN.CT');
-    countries['IN-CH'] = getState('IND', 'IN.CH');
-    countries['IN-DD'] = getState('IND', 'IN.DD');
-    countries['IN-DN'] = getState('IND', 'IN.DN');
-    countries['IN-DL'] = getState('IND', 'IN.DL');
-    countries['IN-GA'] = getState('IND', 'IN.GA');
+    countries['IN-AN'] = getState('IND', 'IN.AN', true);
+    countries['IN-AP'] = getState('IND', 'IN.AP', true);
+    countries['IN-AR'] = getState('IND', 'IN.AR', true);
+    countries['IN-AS'] = getState('IND', 'IN.AS', true);
+    countries['IN-BR'] = getState('IND', 'IN.BR', true);
+    countries['IN-CT'] = getState('IND', 'IN.CT', true);
+    countries['IN-CH'] = getState('IND', 'IN.CH', true);
+    countries['IN-DD'] = getState('IND', 'IN.DD', true);
+    countries['IN-DN'] = getState('IND', 'IN.DN', true);
+    countries['IN-DL'] = getState('IND', 'IN.DL', true);
+    countries['IN-GA'] = getState('IND', 'IN.GA', true);
     // For some reason IN.GJ is not a code_hasc in database, use FIPS code instead.
-    // countries['IN-GJ'] = getState('IND', 'IN.GJ');
+    // countries['IN-GJ'] = getState('IND', 'IN.GJ', true);
     countries['IN-GJ'] = getStateByFips('IND', 'IN32');
-    countries['IN-HR'] = getState('IND', 'IN.HR');
-    countries['IN-HP'] = getState('IND', 'IN.HP');
-    countries['IN-JK'] = getState('IND', 'IN.JK');
-    countries['IN-JH'] = getState('IND', 'IN.JH');
-    countries['IN-KA'] = getState('IND', 'IN.KA');
-    countries['IN-KL'] = getState('IND', 'IN.KL');
-    countries['IN-LD'] = getState('IND', 'IN.LD');
-    countries['IN-MP'] = getState('IND', 'IN.MP');
-    countries['IN-MH'] = getState('IND', 'IN.MH');
-    countries['IN-MN'] = getState('IND', 'IN.MN');
-    countries['IN-ML'] = getState('IND', 'IN.ML');
-    countries['IN-MZ'] = getState('IND', 'IN.MZ');
-    countries['IN-NL'] = getState('IND', 'IN.NL');
-    countries['IN-OR'] = getState('IND', 'IN.OR');
-    countries['IN-PB'] = getState('IND', 'IN.PB'); // Punjab State
-    countries['IN-PY'] = getState('IND', 'IN.PY');
-    countries['IN-RJ'] = getState('IND', 'IN.RJ');
-    countries['IN-SK'] = getState('IND', 'IN.SK');
-    countries['IN-TN'] = getState('IND', 'IN.TN');
-    countries['IN-TG'] = getState('IND', 'IN.TG');
-    countries['IN-TR'] = getState('IND', 'IN.TR');
-    countries['IN-UT'] = getState('IND', 'IN.UT');
-    countries['IN-UP'] = getState('IND', 'IN.UP');
-    countries['IN-WB'] = getState('IND', 'IN.WB');
+    countries['IN-HR'] = getState('IND', 'IN.HR', true);
+    countries['IN-HP'] = getState('IND', 'IN.HP', true);
+    countries['IN-JK'] = getState('IND', 'IN.JK', true);
+    countries['IN-JH'] = getState('IND', 'IN.JH', true);
+    countries['IN-KA'] = getState('IND', 'IN.KA', true);
+    countries['IN-KL'] = getState('IND', 'IN.KL', true);
+    countries['IN-LD'] = getState('IND', 'IN.LD', true);
+    countries['IN-MP'] = getState('IND', 'IN.MP', true);
+    countries['IN-MH'] = getState('IND', 'IN.MH', true);
+    countries['IN-MN'] = getState('IND', 'IN.MN', true);
+    countries['IN-ML'] = getState('IND', 'IN.ML', true);
+    countries['IN-MZ'] = getState('IND', 'IN.MZ', true);
+    countries['IN-NL'] = getState('IND', 'IN.NL', true);
+    countries['IN-OR'] = getState('IND', 'IN.OR', true);
+    countries['IN-PB'] = getState('IND', 'IN.PB', true); // Punjab State
+    countries['IN-PY'] = getState('IND', 'IN.PY', true);
+    countries['IN-RJ'] = getState('IND', 'IN.RJ', true);
+    countries['IN-SK'] = getState('IND', 'IN.SK', true);
+    countries['IN-TN'] = getState('IND', 'IN.TN', true);
+    countries['IN-TG'] = getState('IND', 'IN.TG', true);
+    countries['IN-TR'] = getState('IND', 'IN.TR', true);
+    countries['IN-UT'] = getState('IND', 'IN.UT', true);
+    countries['IN-UP'] = getState('IND', 'IN.UP', true);
+    countries['IN-WB'] = getState('IND', 'IN.WB', true);
     countries['ID'] = getCountry('IDN')
     countries['IR'] = getCountry('IRN')
     countries['IQ'] = getCountry('IRQ')
@@ -329,7 +331,7 @@ exports.addCountryTopos = function(countries) {
     countries['SK'] = getCountry('SVK')
     countries['SI'] = getCountry('SVN')
     countries['SB'] = getCountry('SLB')
-    countries['SO'] = getCountry('SOM')
+    countries['SO'] = getMergedCountries(['SOL', 'SOM'])
     countries['ZA'] = getCountry('ZAF')
     countries['GS'] = getCountry('SGS')
     countries['SS'] = getCountry('SSD')
