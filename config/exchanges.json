@@ -236,8 +236,8 @@
   },
   "BR-CS->BR-S": {
     "lonlat": [
-       -54.982242,
-       -31.301863
+      -49.857513,
+      -23.066549
     ],
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
@@ -245,19 +245,39 @@
     "rotation": -150
   },
   "BR-CS->BR-NE": {
+    "lonlat": [
+      -42.362632,
+      -15.051086
+    ],
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
-    }
+    },
+    "rotation": 30
   },
   "BR-CS->BR-N": {
+    "lonlat": [
+      -54.908876,
+      -9.870031
+    ],
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
-    }
+    },
+    "rotation": 0
   },
   "BR-N->BR-NE": {
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
     }
+  },
+  "BR-S->UY": {
+    "lonlat": [
+       -54.982242,
+       -31.301863
+    ],
+    "parsers": {
+       "exchange": "BR.fetch_exchange"
+    },
+    "rotation": -150
   },
   "CA-AB->CA-BC": {
     "lonlat": [
