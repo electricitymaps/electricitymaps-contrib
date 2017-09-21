@@ -405,7 +405,7 @@
       11.0638
     ],
     "parsers": {
-      "exchange": "NI.fetch_exchange"
+      "exchange": "ENTE.fetch_exchange"
     },
     "rotation": -45
   },
