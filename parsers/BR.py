@@ -117,7 +117,7 @@ def fetch_production(country_code, session = None):
 
     return datapoint
 
-def fetch_exchange(country_code1='BR', country_code2='UY', session=None):
+def fetch_exchange(country_code1, country_code2, session=None):
     """Requests the last known power exchange (in MW) between two regions
     Arguments:
     country_code1           -- the first country code
@@ -138,7 +138,7 @@ def fetch_exchange(country_code1='BR', country_code2='UY', session=None):
 
     data = {
         'datetime': arrow.get(gd['Data']).datetime,
-        'sortedCountryCodes': 'BR->UY',
+        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
         'netFlow': gd['internacional']['uruguai'],
         'source': 'ons.org.br'
     }
@@ -184,29 +184,29 @@ def fetch_region_exchange(region1, region2, session = None):
 if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production(BR_NE) ->')
-    print(fetch_production('BR_NE'))
+    print('fetch_production(BR-NE) ->')
+    print(fetch_production('BR-NE'))
 
-    print('fetch_production(BR_N) ->')
-    print(fetch_production('BR_N'))
+    print('fetch_production(BR-N) ->')
+    print(fetch_production('BR-N'))
 
-    print('fetch_production(BR_CS) ->')
-    print(fetch_production('BR_CS'))
+    print('fetch_production(BR-CS) ->')
+    print(fetch_production('BR-CS'))
 
-    print('fetch_production(BR_S) ->')
-    print(fetch_production('BR_S'))
+    print('fetch_production(BR-S) ->')
+    print(fetch_production('BR-S'))
 
-    print('fetch_exchange() ->')
-    print(fetch_exchange())
+    print('fetch_exchange(BR-S, UY) ->')
+    print(fetch_exchange('BR-S', 'UY'))
 
-    print('fetch_region_exchange(BR_CS->BR_S)')
-    print(fetch_region_exchange('BR_CS', 'BR_S'))
+    print('fetch_region_exchange(BR-CS->BR-S)')
+    print(fetch_region_exchange('BR-CS', 'BR-S'))
 
-    print('fetch_region_exchange(BR_CS->BR_NE)')
-    print(fetch_region_exchange('BR_CS', 'BR_NE'))
+    print('fetch_region_exchange(BR-CS->BR-NE)')
+    print(fetch_region_exchange('BR-CS', 'BR-NE'))
 
-    print('fetch_region_exchange(BR_CS->BR_N)')
-    print(fetch_region_exchange('BR_CS', 'BR_N'))
+    print('fetch_region_exchange(BR-CS->BR-N)')
+    print(fetch_region_exchange('BR-CS', 'BR-N'))
 
-    print('fetch_region_exchange(BR_N->BR_NE)')
-    print(fetch_region_exchange('BR_N', 'BR_NE'))
+    print('fetch_region_exchange(BR-N->BR-NE)')
+    print(fetch_region_exchange('BR-N', 'BR-NE'))
