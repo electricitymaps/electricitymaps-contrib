@@ -1,7 +1,6 @@
 var d3 = require('d3');
 var flags = require('./flags');
 var translation = require('./translation');
-var utils = require('./utils');
 
 var FLAG_SIZE = 16;
 
@@ -93,17 +92,14 @@ function Tooltip(countryTable, countries) {
 
             // Exchange
             var langString = isExport ?
-                translation.translate(
-                    displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo') :
-                translation.translate(
-                    displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom');
+                    displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo' :
+                    displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom';
 
             tooltip.select('#line1')
-                .html(utils.stringFormat(
-                    co2Sub(langString),
+                .html(co2Sub(translation.translate(langString,
                     exchangeProportion,
                     translation.translate('zoneShortName.' + country.countryCode) || country.countryCode,
-                    translation.translate('zoneShortName.' + d.key) || d.key));
+                    translation.translate('zoneShortName.' + d.key) || d.key)));
             tooltip.select('#line1 #country-flag')
                     .classed('flag', true)
                     .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
@@ -192,17 +188,16 @@ function Tooltip(countryTable, countries) {
                 (!isNull ? format(domain) : '?'));
 
             var langString = d.isStorage ?
-                translation.translate(
-                    displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing') :
-                translation.translate(
-                    displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom');
+                    displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing' :
+                    displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom';
             tooltip.select('#line1')
-                .html(utils.stringFormat(
-                    co2Sub(langString),
-                    productionProportion,
+                .html(co2Sub(
                     translation.translate(
-                        'zoneShortName.' + country.countryCode) || country.countryCode,
-                    domainName))
+                        langString,
+                        productionProportion,
+                        translation.translate(
+                            'zoneShortName.' + country.countryCode) || country.countryCode,
+                        domainName)))
                 .select('#country-flag')
                     .classed('flag', true)
                     .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));

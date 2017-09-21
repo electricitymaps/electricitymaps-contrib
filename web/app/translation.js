@@ -5,7 +5,7 @@ var locales = {};
 ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'].forEach(function(d) {
     locales[d] = require('../locales/' + d + '.json');
 })
-var sprintf = require('sprintf-js').sprintf;
+var vsprintf = require('sprintf-js').vsprintf;
 
 exports.translateWithLocale = translateWithLocale = function(locale, keyStr) {
     keys = keyStr.split('.');
@@ -18,10 +18,13 @@ exports.translateWithLocale = translateWithLocale = function(locale, keyStr) {
         translateWithLocale(keyStr, 'en');
     } else {
         formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
-        return sprintf(result, formatArgs);
+        return result && vsprintf(result, formatArgs);
     }
 }
-exports.translate = function(keyStr) {
+exports.translate = function() {
     // Will use the `locale` global variable
-    return translateWithLocale(locale, keyStr);
+    args = Array.prototype.slice.call(arguments);
+    // Prepend locale
+    args.unshift(locale)
+    return translateWithLocale.apply(null, args);
 }

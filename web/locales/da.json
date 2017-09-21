@@ -79,15 +79,15 @@
     "oil": "Olie",
     "unknown": "Ubekendt",
 
-    "electricityComesFrom": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> kommer fra {3}",
-    "emissionsComeFrom": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> kommer fra {3}",
-    "electricityStoredUsing": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> lagres vha. {3}",
-    "emissionsStoredUsing": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> lagres vha. {3}",
+    "electricityComesFrom": "%1$s %% af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
+    "emissionsComeFrom": "%1$s %% af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
+    "electricityStoredUsing": "%1$s %% af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
+    "emissionsStoredUsing": "%1$s %% af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
 
-    "electricityExportedTo": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-    "emissionsExportedTo": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-    "electricityImportedFrom": "{1} % af elektricitet i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
-    "emissionsImportedFrom": "{1} % af CO2-udledninger i <img id=\"country-flag\"></img> <b>{2}</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>{3}</b>",
+    "electricityExportedTo": "%1$s %% af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "%1$s %% af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "of CO2eq per minute",
 
