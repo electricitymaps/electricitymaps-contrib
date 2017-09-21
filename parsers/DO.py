@@ -244,8 +244,8 @@ def merge_production(thermal, total):
     final = sorted(d.values(), key=itemgetter("datetime"))
 
     def get_datetime(hour):
-        at = arrow.now('America/Dominica')
-        dt = (at.shift(hour = int(hour) - 1, minute = 0, second = 0)).datetime
+        at = arrow.now('America/Dominica').floor('day')
+        dt = (at.shift(hours=int(hour) - 1)).datetime
         return dt
     
     for item in final:
