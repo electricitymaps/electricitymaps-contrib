@@ -172,14 +172,64 @@
       "https://github.com/corradio"
     ]
   },
-  "BR": {
+  "BR-CS": {
     "capacity": {
-      "thermal": 33807,
-      "hydro": 102573,
+      "thermal": 18962,
+      "hydro": 62095,
       "nuclear": 1990,
-      "solar": 69,
-      "wind": 10196
+      "solar": 3,
+      "wind": 28
     },
+    "flag_file_name": "br.png",
+    "parsers": {
+      "production": "BR.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
+  "BR-N": {
+    "capacity": {
+      "thermal": 3426,
+      "hydro": 14281
+    },
+    "flag_file_name": "br.png",
+    "parsers": {
+      "production": "BR.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
+  "BR-NE": {
+    "capacity": {
+      "thermal": 7214,
+      "hydro": 11008,
+      "solar": 132,
+      "wind": 8763
+    },
+    "flag_file_name": "br.png",
+    "parsers": {
+      "production": "BR.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/alexanmtz",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
+  "BR-S": {
+    "capacity": {
+      "thermal": 4348,
+      "hydro": 16491,
+      "solar": 4,
+      "wind": 1938
+    },
+    "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
     },
@@ -722,11 +772,9 @@
   "IN-AP": {
     "flag_file_name": "in.png",
     "capacity": {
-      "biomass": 0,
       "hydro": 1797.6,
-      "nuclear": 0,
-      "solar": 1201,
-      "wind": 72.04
+      "solar": 2049,
+      "wind": 1866.35
     },
     "parsers": {
       "consumption": "IN_AP.fetch_consumption",
@@ -1157,6 +1205,13 @@
     ]
   },
   "UA": {
+    "capacity": {
+      "hydro": 5380.8,
+      "hydro storage": 1,
+      "nuclear": 13835,
+      "solar": 345,
+      "wind": 420
+    },
     "parsers": {
       "production": "UA.fetch_production"
     },

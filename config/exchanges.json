@@ -234,15 +234,30 @@
     },
     "rotation": -90
   },
-  "BR->UY": {
+  "BR-CS->BR-S": {
     "lonlat": [
        -54.982242,
        -31.301863
     ],
     "parsers": {
-      "exchange": "BR.fetch_exchange"
+      "exchange": "BR.fetch_region_exchange"
     },
     "rotation": -150
+  },
+  "BR-CS->BR-NE": {
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    }
+  },
+  "BR-CS->BR-N": {
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    }
+  },
+  "BR-N->BR-NE": {
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    }
   },
   "CA-AB->CA-BC": {
     "lonlat": [

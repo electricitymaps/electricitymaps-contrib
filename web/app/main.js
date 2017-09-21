@@ -65,6 +65,7 @@ var showWindOption = true;
 var showSolarOption = true;
 var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
 var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
+var mapDraggedSinceStart = false;
 
 function isMobile() {
     return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -137,6 +138,37 @@ var app = {
         if (cordova.platformId == 'ios') {
             d3.select('#header')
                 .style('padding-top', '20px');
+        }
+        // Geolocation support
+        if (selectedCountryCode) {
+            var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
+            var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
+            countryMap.center([lon, lat]);
+        }
+        else {
+            // The follow can fail silently if the plugin is not installed
+            // (seen only iOS)
+            var t = setTimeout(function() {
+                countryMap.center([0, 50]);
+            }, 1100)
+            // This setTimeout creates a suboptimal UX as the app, upon first install,
+            // waits on permissions for geolocation. Because of the timeout, it
+            // directly ignores the getCurrentPosition and sets the location.
+            navigator.geolocation.getCurrentPosition(
+                function(obj) {
+                    clearTimeout(t);
+                    if (!mapDraggedSinceStart) {
+                        geo = [obj.coords.longitude, obj.coords.latitude];
+                        console.log('Centering on', geo);
+                        countryMap.center(geo);
+                    }
+                },
+                function(err) {
+                    clearTimeout(t);
+                    console.error(err);
+                    countryMap.center([0, 50]);
+                },
+                { enableHighAccuracy: false, timout: 1000 });
         }
         // We will init / bootstrap our application here
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
@@ -412,7 +444,10 @@ var modeOrder = [
 
 // Set up objects
 var countryMap = new CountryMap('#map', Wind, '.wind', Solar, '.solar')
-    .co2color(co2color);
+    .co2color(co2color)
+    .onDragEnd(function() {
+        if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
+    });
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
@@ -827,24 +862,27 @@ d3.select('.map-layer')
     });
 
 function renderMap() {
-    if (!countryMap) { return ; }
+    if (!countryMap) { return; }
 
     countryMap.render();
     
     if (!countryMap.projection()) {
         return;
     }
-    if (!countryMap.center()) {
+    if (!countryMap.center() && !isCordova) {
+        // Cordova will handle this differently
         // This should be given by the server
         var geolocation = geo && [geo.ll[1], geo.ll[0]];
-        if (geolocation) {
-            console.log('Centering on', geolocation);
-            countryMap.center(geolocation);
-        } else if (selectedCountryCode) {
+        if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
             var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
             countryMap.center([lon, lat]);
-        } else {
+        }
+        else if (geolocation) {
+            console.log('Centering on', geolocation);
+            countryMap.center(geolocation);
+        }
+        else {
             countryMap.center([0, 50]);
         }
     }

@@ -110,6 +110,8 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         wind.zoomend();
         solar.zoomend();
         dragStartTransform = undefined;
+
+        that.dragEndHandler.call(this);
     });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
@@ -186,11 +188,15 @@ CountryMap.prototype.render = function() {
     if (this._data) {
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
-        selector.enter()
+        var pathEnter = selector.enter()
             .append('path')
                 .attr('class', 'country')
                 .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('d', this.path) // path is only assigned on create
+        if (!(/iPad|iPhone|iPod/.test(navigator.userAgent))) {
+            // Only set click events to every but Apple mobile devices
+            // to avoid the Safari double tap issue
+            pathEnter = pathEnter
                 .on('mouseover', function (d, i) {
                     if (that.countryMouseOverHandler)
                         return that.countryMouseOverHandler.call(this, d, i);
@@ -203,30 +209,31 @@ CountryMap.prototype.render = function() {
                     if (that.countryMouseMoveHandler)
                         return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('click',
-                    // Test for Googlebot crawler in order to pass
-                    // mobile-friendly test
-                    // Else, Googlebot complains that elements are not wide enough
-                    // to be clicked.
-                    navigator.userAgent.indexOf('Googlebot') != -1 ?
-                        undefined :
-                        function (d, i) {
-                            d3.event.stopPropagation(); // To avoid call click on sea
-                            if (that.selectedCountry !== undefined) {
-                                that.selectedCountry
-                                    .style('stroke', that.STROKE_COLOR)
-                                    .style('stroke-width', that.STROKE_WIDTH);
-                            }
-                            that.selectedCountry = d3.select(this);
-                            // that.selectedCountry
-                            //     .style('stroke', 'darkred')
-                            //     .style('stroke-width', 1.5);
-                            return that.countryClickHandler.call(this, d, i);
-                        })
-            .merge(selector)
-                .transition()
-                .duration(2000)
-                .attr('fill', this.getCo2Color);
+        }
+        pathEnter.on('click',
+            // Test for Googlebot crawler in order to pass
+            // mobile-friendly test
+            // Else, Googlebot complains that elements are not wide enough
+            // to be clicked.
+            navigator.userAgent.indexOf('Googlebot') != -1 ?
+                undefined :
+                function (d, i) {
+                    d3.event.stopPropagation(); // To avoid call click on sea
+                    if (that.selectedCountry !== undefined) {
+                        that.selectedCountry
+                            .style('stroke', that.STROKE_COLOR)
+                            .style('stroke-width', that.STROKE_WIDTH);
+                    }
+                    that.selectedCountry = d3.select(this);
+                    // that.selectedCountry
+                    //     .style('stroke', 'darkred')
+                    //     .style('stroke-width', 1.5);
+                    return that.countryClickHandler.call(this, d, i);
+                })
+        .merge(selector)
+            .transition()
+            .duration(2000)
+            .attr('fill', this.getCo2Color);
     }
 
     return this;
@@ -283,6 +290,12 @@ CountryMap.prototype.onCountryMouseMove = function(arg) {
 CountryMap.prototype.onCountryMouseOut = function(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
+};
+
+CountryMap.prototype.onDragEnd = function(arg) {
+    if (!arg) return this.dragEndHandler;
+    else this.dragEndHandler = arg;
     return this;
 };
 

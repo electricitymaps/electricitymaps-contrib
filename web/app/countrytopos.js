@@ -10,6 +10,15 @@ exports.addCountryTopos = function(countries) {
     // OPTIMIZATION:
     // A hash map would probably be much faster than doing a `filter`
     // for all countries O(n) instead of O(n^2)
+    function hascMatch(properties, hasc) {
+        return (
+            properties.code_hasc == hasc ||
+            (properties.hasc_maybe && properties.hasc_maybe.split('|').indexOf(hasc) != -1)
+        );
+    }
+    function any(arr) {
+        return arr.reduce(function(x, y) { return x || y});
+    }
     function getSubUnits(ids) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
             return ids.indexOf(d.properties.subid) != -1;
@@ -17,7 +26,19 @@ exports.addCountryTopos = function(countries) {
     }
     function getState(countryId, code_hasc) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
-            return d.id == countryId && d.properties.code_hasc == code_hasc;
+            return d.id == countryId && hascMatch(d.properties, code_hasc);
+        }));
+    }
+    function getStates(countryId, code_hascs) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return d.id == countryId && any(code_hascs.map(function(h) {
+                return hascMatch(d.properties, h)
+            }));
+        }));
+    }
+    function getStateByFips(countryId, fips) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+            return d.id == countryId && d.properties.fips == fips;
         }));
     }
     function getCountry(id) {
@@ -75,7 +96,11 @@ exports.addCountryTopos = function(countries) {
     countries['BA'] = getCountry('BIH')
     countries['BW'] = getCountry('BWA')
     countries['BV'] = getCountry('BVT')
-    countries['BR'] = getCountry('BRA')
+    //countries['BR'] = getCountry('BRA')
+    countries['BR-N'] = getStates('BRA', ['BR.AM', 'BR.PA', 'BR.TO', 'BR.RR', 'BR.AP'])
+    countries['BR-NE'] = getStates('BRA', ['BR.PE', 'BR.MA', 'BR.CE', 'BR.PI', 'BR.AL', 'BR.BA', 'BR.PB', 'BR.RN', 'BR.SE'])
+    countries['BR-CS'] = getStates('BRA', ['BR.', 'BR.GO', 'BR.SP', 'BR.DF', 'BR.MS', 'BR.MG', 'BR.MT', 'BR.ES', 'BR.RJ'])
+    countries['BR-S'] = getStates('BRA', ['BR.RS', 'BR.SC', 'BR.PR'])
     countries['VG'] = getCountry('VGB')
     countries['IO'] = getCountry('IOT')
     countries['BN'] = getCountry('BRN')
@@ -171,7 +196,9 @@ exports.addCountryTopos = function(countries) {
     countries['IN-DN'] = getState('IND', 'IN.DN');
     countries['IN-DL'] = getState('IND', 'IN.DL');
     countries['IN-GA'] = getState('IND', 'IN.GA');
-    countries['IN-GJ'] = getState('IND', 'IN.GJ');
+    // For some reason IN.GJ is not a code_hasc in database, use FIPS code instead.
+    // countries['IN-GJ'] = getState('IND', 'IN.GJ');
+    countries['IN-GJ'] = getStateByFips('IND', 'IN32');
     countries['IN-HR'] = getState('IND', 'IN.HR');
     countries['IN-HP'] = getState('IND', 'IN.HP');
     countries['IN-JK'] = getState('IND', 'IN.JK');
