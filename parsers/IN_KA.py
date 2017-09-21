@@ -2,7 +2,7 @@ from requests import Session
 from parsers.lib.exceptions import ParserException
 from parsers.lib import web
 from parsers.lib import countrycode
-from parsers.lib import india
+from parsers.lib import IN
 
 
 def fetch_consumption(country_code='IN-KA', session=None):
@@ -10,9 +10,9 @@ def fetch_consumption(country_code='IN-KA', session=None):
     countrycode.assert_country_code(country_code, 'IN-KA')
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/Default.aspx', session)
 
-    india_date_time = india.read_datetime_from_span_id(html, 'Label6', 'DD/MM/YYYY HH:mm')
+    india_date_time = IN.read_datetime_from_span_id(html, 'Label6', 'DD/MM/YYYY HH:mm')
 
-    demand_value = india.read_value_from_span_id(html, 'Label5')
+    demand_value = IN.read_value_from_span_id(html, 'Label5')
 
     data = {
         'countryCode': country_code,
@@ -30,96 +30,96 @@ def fetch_production(country_code='IN-KA', session=None):
 
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateGen.aspx', session)
 
-    india_date_time = india.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss A')
+    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss A')
 
     # RTPS Production: https://en.wikipedia.org/wiki/Raichur_Thermal_Power_Station
-    rtps_value = india.read_value_from_span_id(html, 'lblrtptot')
+    rtps_value = IN.read_value_from_span_id(html, 'lblrtptot')
 
     # BTPS Production: https://en.wikipedia.org/wiki/Bellary_Thermal_Power_station
-    btps_value = india.read_value_from_span_id(html, 'lblbtptot')
+    btps_value = IN.read_value_from_span_id(html, 'lblbtptot')
 
     # YTPS Production: https://en.wikipedia.org/wiki/Yermarus_Thermal_Power_Station
-    ytps_value = india.read_value_from_span_id(html, 'ytptot')
+    ytps_value = IN.read_value_from_span_id(html, 'ytptot')
 
     # UPCL Production: https://en.wikipedia.org/wiki/Udupi_Power_Plant
-    upcl_value = india.read_value_from_span_id(html, 'lblupctot')
+    upcl_value = IN.read_value_from_span_id(html, 'lblupctot')
 
     # JINDAl Production
-    jindal_value = india.read_value_from_span_id(html, 'lbljintot')
+    jindal_value = IN.read_value_from_span_id(html, 'lbljintot')
 
     # Coal Production
     coal_value = rtps_value + btps_value + ytps_value + upcl_value + jindal_value
 
     # Sharavati Production
-    sharavati_value = india.read_value_from_span_id(html, 'lblshvytot')
+    sharavati_value = IN.read_value_from_span_id(html, 'lblshvytot')
 
     # Nagjhari Production
-    nagjhari_value = india.read_value_from_span_id(html, 'lblngjtot')
+    nagjhari_value = IN.read_value_from_span_id(html, 'lblngjtot')
 
     # Varahi Production
-    varahi_value = india.read_value_from_span_id(html, 'lblvrhtot')
+    varahi_value = IN.read_value_from_span_id(html, 'lblvrhtot')
 
     # Kodsalli Production
-    kodsalli_value = india.read_value_from_span_id(html, 'lblkdsltot')
+    kodsalli_value = IN.read_value_from_span_id(html, 'lblkdsltot')
 
     # Kadra Production
-    kadra_value = india.read_value_from_span_id(html, 'lblkdrtot')
+    kadra_value = IN.read_value_from_span_id(html, 'lblkdrtot')
 
     # GERUSOPPA production
-    gerusoppa_value = india.read_value_from_span_id(html, 'lblgrsptot')
+    gerusoppa_value = IN.read_value_from_span_id(html, 'lblgrsptot')
 
     # JOG production
-    jog_value = india.read_value_from_span_id(html, 'lbljogtot')
+    jog_value = IN.read_value_from_span_id(html, 'lbljogtot')
 
     # LPH Production
-    lph_value = india.read_value_from_span_id(html, 'lbllphtot')
+    lph_value = IN.read_value_from_span_id(html, 'lbllphtot')
 
     # Supa production
-    supa_value = india.read_value_from_span_id(html, 'lblsupatot')
+    supa_value = IN.read_value_from_span_id(html, 'lblsupatot')
 
     # SHIMSHA
-    shimsha_value = india.read_value_from_span_id(html, 'lblshimtot')
+    shimsha_value = IN.read_value_from_span_id(html, 'lblshimtot')
 
     # SHIVASAMUDRA
-    shivasamudra_value = india.read_value_from_span_id(html, 'lblshivtot')
+    shivasamudra_value = IN.read_value_from_span_id(html, 'lblshivtot')
 
     # MANIDAM
-    manidam_value = india.read_value_from_span_id(html, 'lblmanitot')
+    manidam_value = IN.read_value_from_span_id(html, 'lblmanitot')
 
     # MUNRABAD
-    munrabad_value = india.read_value_from_span_id(html, 'lblmbdtot')
+    munrabad_value = IN.read_value_from_span_id(html, 'lblmbdtot')
 
     # BHADRA
-    bhadra_value = india.read_value_from_span_id(html, 'lblbdratot')
+    bhadra_value = IN.read_value_from_span_id(html, 'lblbdratot')
 
     # GHATAPRABHA
-    ghataprabha_value = india.read_value_from_span_id(html, 'lblgtprtot')
+    ghataprabha_value = IN.read_value_from_span_id(html, 'lblgtprtot')
 
     # ALMATTI
-    almatti_value = india.read_value_from_span_id(html, 'lblalmttot')
+    almatti_value = IN.read_value_from_span_id(html, 'lblalmttot')
 
     # CGS Production
     # TODO: Search CGS production type
-    cgs_value = india.read_value_from_span_id(html, 'lblcgs')
+    cgs_value = IN.read_value_from_span_id(html, 'lblcgs')
 
     # NCEP Production
     ncep_html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateNCEP.aspx', session)
-    ncep_date_time = india.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
+    ncep_date_time = IN.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
 
     # Check ncep date is similar than state gen date
     if abs(india_date_time.timestamp - ncep_date_time.timestamp) > 600:
-        raise ParserException('IN-KA', 'NCEP Date is not valid')
+        raise ParserException('IN-KA', 'NCEP or State datetime is not valid')
 
-    biomass_value = india.read_value_from_span_id(ncep_html, 'lbl_tb')
+    biomass_value = IN.read_value_from_span_id(ncep_html, 'lbl_tb')
 
     # TODO: Cogeneration value production type?
-    cogen_value = india.read_value_from_span_id(ncep_html, 'lbl_tc')
+    cogen_value = IN.read_value_from_span_id(ncep_html, 'lbl_tc')
 
-    mini_hydro_value = india.read_value_from_span_id(ncep_html, 'lbl_tm')
+    mini_hydro_value = IN.read_value_from_span_id(ncep_html, 'lbl_tm')
 
-    wind_value = india.read_value_from_span_id(ncep_html, 'lbl_tw')
+    wind_value = IN.read_value_from_span_id(ncep_html, 'lbl_tw')
 
-    solar_value = india.read_value_from_span_id(ncep_html, 'lbl_ts')
+    solar_value = IN.read_value_from_span_id(ncep_html, 'lbl_ts')
 
     # Hydro production
     hydro_value = sharavati_value + nagjhari_value + varahi_value + kodsalli_value \
