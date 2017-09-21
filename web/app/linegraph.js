@@ -86,6 +86,8 @@ LineGraph.prototype.render = function () {
         data = this._data,
         datetimes = this.datetimes;
 
+    if (!data) { return; }
+
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
         height = this.rootElement.node().getBoundingClientRect().height;
