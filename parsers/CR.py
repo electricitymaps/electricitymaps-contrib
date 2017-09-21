@@ -133,7 +133,7 @@ def df_to_data(country_code, day, df):
         data.append(empty_record(country_code))
         for index, value in df[column].iteritems():
             current = len(data) - 1
-            source = POWER_PLANTS[index]
+            source = POWER_PLANTS.get(index, 'unknown')
             data[current]['datetime'] = day.replace(hours=hours).datetime
             data[current]['production'][source] += max(0.0, value)
         hours += 1
