@@ -1,6 +1,6 @@
 var d3 = require('d3');
 var flags = require('./flags');
-var lang = require('json-loader!./configs/lang.json')[locale];
+var translation = require('./translation');
 var utils = require('./utils');
 
 var FLAG_SIZE = 16;
@@ -19,9 +19,9 @@ function formatCo2(d, numDigits) {
     if (d == null || d == NaN) return d;
     if (numDigits == null) numDigits = 3;
     if (d >= 1) // a ton or more
-        return d3.format('.' + numDigits + 's')(d) + 't ' + co2Sub(lang['ofCO2eqPerMinute']);
+        return d3.format('.' + numDigits + 's')(d) + 't ' + co2Sub(translation.translate('ofCO2eqPerMinute'));
     else
-        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + co2Sub(lang['ofCO2eqPerMinute']);
+        return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + co2Sub(translation.translate('ofCO2eqPerMinute'));
 }
 
 function placeTooltip(selector, d3Event) {
@@ -73,7 +73,7 @@ function Tooltip(countryTable, countries) {
                 (country.totalProduction + country.totalImport);
 
             var domain = totalPositive;
-            var domainName = isExport ? lang['electricityto'] : lang['electricityfrom'];
+            var domainName = isExport ? translation.translate('electricityto') : translation.translate('electricityfrom');
             var value = displayByEmissions ? (d.value * 1000 * co2intensity) : d.value;
             var isNull = !isFinite(value) || value == undefined;
 
@@ -93,15 +93,17 @@ function Tooltip(countryTable, countries) {
 
             // Exchange
             var langString = isExport ?
-                lang[displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo'] :
-                lang[displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom'];
+                translation.translate(
+                    displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo') :
+                translation.translate(
+                    displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom');
 
             tooltip.select('#line1')
                 .html(utils.stringFormat(
                     co2Sub(langString),
                     exchangeProportion,
-                    lang.zoneShortName[country.countryCode] || country.countryCode,
-                    lang.zoneShortName[d.key] || d.key));
+                    translation.translate('zoneShortName.' + country.countryCode) || country.countryCode,
+                    translation.translate('zoneShortName.' + d.key) || d.key));
             tooltip.select('#line1 #country-flag')
                     .classed('flag', true)
                     .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
@@ -132,7 +134,7 @@ function Tooltip(countryTable, countries) {
             tooltip.select('.emission-intensity')
                 .text(Math.round(co2intensity) || '?');
             tooltip.select('.country-exchange-source-name')
-                .text(lang.zoneShortName[o] || o)
+                .text(translation.translate('zoneShortName.' + o) || o)
                 .style('font-weight', 'bold');
         })
         .onExchangeMouseOut(function (d) {
@@ -190,13 +192,16 @@ function Tooltip(countryTable, countries) {
                 (!isNull ? format(domain) : '?'));
 
             var langString = d.isStorage ?
-                lang[displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing'] :
-                lang[displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'];
+                translation.translate(
+                    displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing') :
+                translation.translate(
+                    displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom');
             tooltip.select('#line1')
                 .html(utils.stringFormat(
                     co2Sub(langString),
                     productionProportion,
-                    lang.zoneShortName[country.countryCode] || country.countryCode,
+                    translation.translate(
+                        'zoneShortName.' + country.countryCode) || country.countryCode,
                     domainName))
                 .select('#country-flag')
                     .classed('flag', true)

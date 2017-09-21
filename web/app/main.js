@@ -15,11 +15,11 @@ var ExchangeLayer = require('./exchangelayer');
 var flags = require('./flags');
 var grib = require('./grib');
 var HorizontalColorbar = require('./horizontalcolorbar');
-var lang = require('./configs/lang.json')[locale];
 var LoadingService = require('./loadingservice');
 var Solar = require('./solar');
 var Tooltip = require('./tooltip');
 var Wind = require('./wind');
+var translation = require('./translation')
 
 // Configs
 var exchanges_config = require('../../config/exchanges.json');
@@ -555,7 +555,7 @@ d3.entries(zones_config).forEach(function(d) {
         return;
     }
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
-    zone.shortname = lang && lang.zoneShortName[d.key];
+    zone.shortname = translation.translate('zoneShortName.' + d.key);
     zone.capacity = d.value.capacity;
     zone.maxCapacity = d3.max(d3.values(zone.capacity));
     zone.maxStorageCapacity = d3.max(d3.entries(zone.capacity), function(d) {
@@ -1065,7 +1065,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     var selector = enterA.merge(selector);
     countryListSelector = selector;
     selector.select('span')
-        .text(function(d) { return ' ' + (lang.zoneShortName[d.countryCode] || d.countryCode) + ' '; })
+        .text(function(d) { return ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
         .style('background-color', function(d) {
             return d.co2intensity ? co2color(d.co2intensity) : 'gray';
@@ -1090,7 +1090,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         tooltip.select('#country-flag')
             .attr('src', flags.flagUri(d.countryCode, 16));
         tooltip.select('#country-name')
-            .text(lang.zoneShortName[d.countryCode] || d.countryCode)
+            .text(translation.translate('zoneShortName.' + d.countryCode) || d.countryCode)
             .style('font-weight', 'bold');
         tooltip.select('.emission-rect')
             .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
@@ -1160,10 +1160,10 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             var i = d.netFlow > 0 ? 0 : 1;
             var ctrFrom = d.countryCodes[i];
             tooltip.selectAll('span#from')
-                .text(lang.zoneShortName[ctrFrom] || ctrFrom);
+                .text(translation.translate('zoneShortName.' + ctrFrom) || ctrFrom);
             var ctrTo = d.countryCodes[(i + 1) % 2];
             tooltip.select('span#to')
-                .text(lang.zoneShortName[ctrTo] || ctrTo);
+                .text(translation.translate('zoneShortName.' + ctrTo) || ctrTo);
             tooltip.select('span#flow')
                 .text(Math.abs(Math.round(d.netFlow)));
             tooltip.select('img.flag.from')

@@ -1,8 +1,9 @@
 var d3 = require('d3');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
-var lang = require('json-loader!./configs/lang.json')[locale];
 var moment = require('moment');
+
 var flags = require('./flags');
+var translation = require('./translation');
 
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
@@ -58,7 +59,7 @@ function CountryTable(selector, modeColor, modeOrder) {
                 return 'translate(0,' + (i * (that.ROW_HEIGHT + that.PADDING_Y)) + ')';
             });
     gNewRow.append('text')
-        .text(function(d) { return lang && lang[d.mode] || d.mode })
+        .text(function(d) { return translation.translate(d.mode) || d.mode })
         .style('text-anchor', 'end') // right align
         .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')');
     gNewRow.append('rect')
@@ -117,7 +118,9 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var panel = d3.select('.left-panel-country');
     var datetime = this._data.stateDatetime || this._data.datetime;
     panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
-    panel.select('.country-name').text(lang.zoneShortName[this._data.countryCode] || this._data.countryCode);
+    panel.select('.country-name').text(
+        translation.translate(
+            'zoneShortName.' + this._data.countryCode) || this._data.countryCode);
     panel.selectAll('.country-time')
         .text(datetime ? moment(datetime).format('LL LT') : '?');
 
@@ -328,7 +331,6 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         });
 
     gNewRow.merge(selection).select('text')
-        //.text(function(d) { return lang.zoneShortName[d.key] || d.key; });
         .text(function(d) { return d.key; });
     d3.select('.country-emission-intensity')
         .text(Math.round(this._data.co2intensity) || '?');
@@ -442,7 +444,7 @@ CountryTable.prototype.data = function(arg) {
             isStorage: d.isStorage,
             capacity: capacity,
             mode: d.mode,
-            text: lang[d.mode],
+            text: translation.translate(d.mode),
             gCo2eqPerkWh: footprint,
             gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
         };

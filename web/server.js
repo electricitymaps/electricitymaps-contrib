@@ -19,6 +19,9 @@ var http = require('http');
 var i18n = require('i18n');
 var geoip = require('geoip-lite');
 
+// Custom module
+var translation = require(__dirname + '/app/translation');
+
 var app = express();
 var server = http.Server(app);
 
@@ -45,7 +48,8 @@ i18n.configure({
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
-    objectNotation: true
+    objectNotation: true,
+    updateFiles: false, // whether to write new locale information to disk
 });
 app.use(i18n.init);
 var LOCALE_TO_FB_LOCALE = {
@@ -171,7 +175,13 @@ app.get('/', function(req, res) {
             supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],
             supportedFBLocales: SUPPORTED_FB_LOCALES,
-            geo: geoip.lookup(ip)
+            geo: geoip.lookup(ip),
+            '__': function() {
+                var argsArray = Array.prototype.slice.call(arguments);
+                // Prepend the first argument which is the locale
+                argsArray.unshift(locale);
+                return translation.translateWithLocale.apply(null, argsArray);
+            }
         });
     }
 });

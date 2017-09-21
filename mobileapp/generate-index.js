@@ -2,6 +2,9 @@ var ejs = require('ejs');
 var fs = require('fs');
 var i18n = require('i18n');
 
+// Custom module
+var translation = require(__dirname + '/app/translation');
+
 // duplicated from server.js
 function getHash(key, ext) {
     var filename;
@@ -85,7 +88,12 @@ locales.forEach(function(locale) {
         FBLocale: LOCALE_TO_FB_LOCALE[locale],
         supportedLocales: locales,
         supportedFBLocales: SUPPORTED_FB_LOCALES,
-        '__': i18n.__
+        '__': function() {
+            var argsArray = Array.prototype.slice.call(arguments);
+            // Prepend the first argument which is the locale
+            argsArray.unshift(locale);
+            return translation.translateWithLocale.apply(null, argsArray);
+        }
     });
 
     fs.writeFileSync('www/electricitymap/index_' + locale + '.html', html);
