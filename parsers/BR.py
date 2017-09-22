@@ -27,6 +27,12 @@ region_exchanges = {
                     'BR-CS->BR-N':"sudeste_norteFic",
                     'BR-N->BR-NE': "norteFic_nordeste"
                     }
+region_exchanges_directions = {
+                    'BR-CS->BR-S': -1,
+                    'BR-CS->BR-NE': 1,
+                    'BR-CS->BR-N': 1,
+                    'BR-N->BR-NE': 1
+                    }
 
 
 def get_data(session = None):
@@ -169,7 +175,7 @@ def fetch_region_exchange(region1, region2, session = None):
     scc = '->'.join(sorted([region1, region2]))
 
     exchange = region_exchanges[scc]
-    nf = gd['intercambio'][exchange]
+    nf = gd['intercambio'][exchange] * region_exchanges_directions[scc]
 
     data = {
         'datetime': dt,
