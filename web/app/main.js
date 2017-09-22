@@ -146,17 +146,8 @@ var app = {
             countryMap.center([lon, lat]);
         }
         else {
-            // The follow can fail silently if the plugin is not installed
-            // (seen only iOS)
-            var t = setTimeout(function() {
-                countryMap.center([0, 50]);
-            }, 1100)
-            // This setTimeout creates a suboptimal UX as the app, upon first install,
-            // waits on permissions for geolocation. Because of the timeout, it
-            // directly ignores the getCurrentPosition and sets the location.
             navigator.geolocation.getCurrentPosition(
                 function(obj) {
-                    clearTimeout(t);
                     if (!mapDraggedSinceStart) {
                         geo = [obj.coords.longitude, obj.coords.latitude];
                         console.log('Centering on', geo);
@@ -164,13 +155,11 @@ var app = {
                     }
                 },
                 function(err) {
-                    clearTimeout(t);
                     console.error(err);
                     countryMap.center([0, 50]);
                 },
                 { enableHighAccuracy: false, timout: 1000 });
         }
-        // We will init / bootstrap our application here
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
             // do some work
