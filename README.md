@@ -250,8 +250,10 @@ This will watch over source file changes, and recompile if needed.
 
 Now that the frontend is compiled, you can run the application (which will use our existing backend to pull data), by running the following command in a new terminal:
 ```
-docker-compose up --build
+docker-compose build --build-arg 'ELECTRICITYMAP_PUBLIC_TOKEN=<token>' web
+docker-compose up
 ```
+where `<token>` should be replaced by a development token (contact the team on Slack in order to get one).
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
 
