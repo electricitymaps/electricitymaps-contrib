@@ -680,9 +680,8 @@ function selectCountry(countryCode, notrack) {
         }
 
         // Update contributors
-        var selector = d3.select('.contributors').selectAll('a')
-            .data((zones_config[countryCode] || {}).contributors);
-
+        var selector = d3.selectAll('.contributors').selectAll('a')
+            .data((zones_config[countryCode] || {}).contributors || []);
         var enterA = selector.enter().append('a')
             .attr('target', '_blank')
         var enterImg = enterA.append('img')

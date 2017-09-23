@@ -142,7 +142,7 @@ function Tooltip(countryTable, countries) {
             placeTooltip('#countrypanel-exchange-tooltip', d3.event);
         })
         .onProductionMouseOver(function (d, country, displayByEmissions) {
-
+            if (!country.productionCo2Intensities) { return; }
             var co2intensity = country.productionCo2Intensities[d.mode];
             var co2intensitySource = country.productionCo2IntensitySources[d.mode];
             if (that.co2Colorbars()) that.co2Colorbars().forEach(function(d) { d.currentMarker(co2intensity) });
