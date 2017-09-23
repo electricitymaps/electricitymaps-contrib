@@ -146,6 +146,7 @@ var app = {
             countryMap.center([lon, lat]);
         }
         else {
+            LoadingService.startLoading();
             navigator.geolocation.getCurrentPosition(
                 function(obj) {
                     if (!mapDraggedSinceStart) {
@@ -153,10 +154,12 @@ var app = {
                         console.log('Centering on', geo);
                         countryMap.center(geo);
                     }
+                    LoadingService.stopLoading();
                 },
                 function(err) {
                     console.error(err);
                     countryMap.center([0, 50]);
+                    LoadingService.stopLoading();
                 },
                 { enableHighAccuracy: false, timout: 1000 });
         }
