@@ -98,6 +98,12 @@ POWER_PLANTS = {
     u'Volcán': 'hydro',
 }
 
+unmapped = set()
+
+def unknown_plants():
+    for plant in unmapped:
+        print '{} is not mapped to generation type!'.format(plant)
+
 
 def empty_record(country_code):
     return {
@@ -133,10 +139,14 @@ def df_to_data(country_code, day, df):
         data.append(empty_record(country_code))
         for index, value in df[column].iteritems():
             current = len(data) - 1
-            source = POWER_PLANTS[index]
+            source = POWER_PLANTS.get(index)
+            if source == None:
+                source = 'unknown'
+                unmapped.add(index)
             data[current]['datetime'] = day.replace(hours=hours).datetime
             data[current]['production'][source] += max(0.0, value)
         hours += 1
+
     return data
 
 
@@ -165,8 +175,12 @@ def fetch_production(country_code='CR', session=None):
     response = r.post(url, cookies={}, data=data)
     df_today = pd.read_html(response.text, skiprows=1, index_col=0)[0]
 
-    return df_to_data(country_code, yesterday, df_yesterday) + \
-           df_to_data(country_code, today, df_today)
+    ydata = df_to_data(country_code, yesterday, df_yesterday)
+    tdata = df_to_data(country_code, today, df_today)
+    production = ydata + tdata
+    unknown_plants()
+
+    return production
 
 
 def fetch_exchange(country_code1='CR', country_code2='NI', session=None):
