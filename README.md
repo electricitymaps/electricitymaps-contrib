@@ -200,6 +200,25 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 ## Contribute
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 
+### Running locally
+
+To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
+
+The frontend will need compiling. In order to do this, open a terminal and run
+```
+docker-compose run --rm web npm run watch
+```
+This will watch over source file changes, and recompile if needed.
+
+Now that the frontend is compiled, you can run the application by running the following command in a new terminal:
+```
+docker-compose up --build
+```
+
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
+
+Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
+
 ### Adding a new country
 It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/corradio/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
@@ -236,28 +255,16 @@ Storage values can be both positive (when storing energy) or negative (when the 
 
 The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
 
+Once you're done, add your parser to the [zones.json](https://github.com/corradio/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/corradio/electricitymap/tree/master/config/exchanges.json) configuration files.
+
 For more info, check out the [example](https://github.com/corradio/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/corradio/electricitymap/tree/master/parsers).
 
-### Frontend contributions
-
-To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
-
-The frontend will need compiling. In order to do this, open a terminal and run
+### Testing parsers locally
+We've added a testing server locally. In order to test your parser, you can run
 ```
-docker-compose run --rm web npm run watch
+PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```
-This will watch over source file changes, and recompile if needed.
-
-Now that the frontend is compiled, you can run the application (which will use our existing backend to pull data), by running the following command in a new terminal:
-```
-docker-compose build --build-arg 'ELECTRICITYMAP_PUBLIC_TOKEN=<token>' web
-docker-compose up
-```
-where `<token>` should be replaced by a development token (contact the team on Slack in order to get one).
-
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map!
-
-Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
+from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This will fetch production and exchanges and assign it a random carbon intensity value. It should appear on the map as you refresh your local browser.
 
 ### Troubleshooting
 

@@ -1,10 +1,16 @@
 version: '2'
 services:
+  mockserver:
+    build: mockserver
+    command: http-server -p 9000 --cors -c-1
+    ports: ['9000:9000']
+    volumes: ['./mockserver/public:/home/public']
   web:
     build:
       context: .
       dockerfile: web/Dockerfile
     command: npm run server-dev
+    depends_on: ['mockserver']
     environment:
       - NODE_ENV=development
     ports: ['8000:8000']

@@ -53,9 +53,12 @@ function replaceHistoryState(key, value) {
     history.replaceState(historyState, '', getHistoryStateURL());
 }
 
+// Global window variables
+isLocalhost = window.location.href.indexOf('electricitymap') == -1;
+
 // Global State
 var selectedCountryCode;
-var useRemoteEndpoint = true;
+var useRemoteEndpoint = isLocalhost ? false : true;
 var customDate;
 var currentMoment;
 var colorBlindModeEnabled = false;
@@ -102,10 +105,8 @@ function parseQueryString(querystring) {
 }
 parseQueryString(location.search);
 
-
 // Computed State
 var colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
-var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
 var isEmbedded = window.top !== window.self;
 var REMOTE_ENDPOINT = 'https://api.electricitymap.org';
 var LOCAL_ENDPOINT = 'http://localhost:9000';
