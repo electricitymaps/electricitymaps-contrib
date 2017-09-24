@@ -77,7 +77,7 @@ ExchangeLayer.prototype.render = function() {
         .select('img')
         .attr('src', function (d) {
             var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-            if(isNaN(intensity)) intensity = 'nan';
+            if(d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
             return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
         });
     }
