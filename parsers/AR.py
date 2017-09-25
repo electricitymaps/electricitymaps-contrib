@@ -26,6 +26,7 @@ power_plant_type = {
                      'ABRODI01': 'gas',
                      'ACAJTG01': 'gas',
                      'ACAJTG02': 'gas',
+                     'ACAJTG03': 'gas',
                      'ACAJTG04': 'gas',
                      'ACAJTG05': 'gas',
                      'ACAJTG06': 'gas',
@@ -156,6 +157,7 @@ power_plant_type = {
                      'EMBANUCL': 'nuclear',
                        'ESCAHI': 'hydro',
                      'ESQDDI01': 'oil',
+                     'EZEITG02': 'gas',
                      'FORDDI01': 'oil',
                      'FORDDI02': 'oil',
                      'FRIATG01': 'gas',
@@ -305,6 +307,7 @@ power_plant_type = {
                      'PERZDI06': 'oil',
                      'PERZDI07': 'oil',
                      'PERZDI08': 'oil',
+                     'PESPTV01': 'gas',
                      'PHDZTG01': 'gas',
                      'PHUITG01': 'gas',
                      'PICADI01': 'oil',
@@ -424,6 +427,7 @@ power_plant_type = {
                      'VGEPDI01': 'oil',
                      'VGESTG11': 'gas',
                      'VGESTG14': 'gas',
+                     'VGESTG16': 'gas',
                      'VGESTG18': 'gas',
                      'VIALDI01': 'oil',
                      'VMARTG01': 'gas',
@@ -599,6 +603,15 @@ def get_thermal(session=None):
     formatted_data = dataformat(data)
     mapped_data = [power_plant_type.get(x,x) for x in formatted_data]
 
+    for item in mapped_data:
+        try:
+            #avoids including titles and headings
+            if all((item.isupper(), not item.isalpha(), not ' ' in item)):
+                print '{} is missing from the AR plant mapping!'.format(item)
+        except AttributeError:
+            #not a string....
+            continue
+
     find_totals = [i+1 for i,x in enumerate(mapped_data) if x == 'Totales ']
     thermal_generation = sum([mapped_data[i] for i in find_totals])
 
@@ -617,7 +630,7 @@ def get_thermal(session=None):
                           - oil_generation - coal_generation - biomass_generation)
 
     if unknown_generation < 0.0:
-        unknown_generation = 0.0                      
+        unknown_generation = 0.0
 
     return {'gas': gas_generation,
             'nuclear': nuclear_generation,
