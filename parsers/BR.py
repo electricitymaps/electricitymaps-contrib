@@ -27,12 +27,20 @@ region_exchanges = {
                     'BR-CS->BR-N':"sudeste_norteFic",
                     'BR-N->BR-NE': "norteFic_nordeste"
                     }
+
+
 region_exchanges_directions = {
                     'BR-CS->BR-S': -1,
                     'BR-CS->BR-NE': 1,
                     'BR-CS->BR-N': 1,
                     'BR-N->BR-NE': 1
                     }
+
+countries_exchange = {
+    'UY': u'uruguai',
+    'AR': u'argentina',
+    'PY': u'paraguai'
+}
 
 
 def get_data(session = None):
@@ -142,10 +150,16 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     gd = get_data()
 
+    if country_code1 in countries_exchange.keys():
+        country_exchange = countries_exchange[country_code1]
+
+    if country_code2 in countries_exchange.keys():
+        country_exchange = countries_exchange[country_code2]
+
     data = {
         'datetime': arrow.get(gd['Data']).datetime,
         'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
-        'netFlow': gd['internacional']['uruguai'],
+        'netFlow': gd['internacional'][country_exchange],
         'source': 'ons.org.br'
     }
 
