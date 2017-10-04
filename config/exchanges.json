@@ -675,7 +675,6 @@
       54.87826
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
       "exchange": "GB_NIR.fetch_exchange"
     },
     "rotation": -110
@@ -706,7 +705,6 @@
       54.2
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
       "exchange": "GB_NIR.fetch_exchange"
     },
     "rotation": 180
