@@ -675,7 +675,8 @@
       54.87826
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "GB_NIR.fetch_exchange"
     },
     "rotation": -110
   },
@@ -700,9 +701,15 @@
     "rotation": 90
   },
   "GB-NIR->IE": {
+    "lonlat": [
+      -7.4,
+      54.2
+    ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
-    }
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "GB_NIR.fetch_exchange"
+    },
+    "rotation": 180
   },
   "GT->MX": {
     "lonlat": [
