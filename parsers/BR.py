@@ -150,16 +150,20 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     gd = get_data()
 
+
+
     if country_code1 in countries_exchange.keys():
         country_exchange = countries_exchange[country_code1]
+        flow = 1
 
     if country_code2 in countries_exchange.keys():
         country_exchange = countries_exchange[country_code2]
+        flow = -1
 
     data = {
         'datetime': arrow.get(gd['Data']).datetime,
         'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
-        'netFlow': gd['internacional'][country_exchange],
+        'netFlow': gd['internacional'][country_exchange] * flow,
         'source': 'ons.org.br'
     }
 
@@ -218,6 +222,9 @@ if __name__ ==  '__main__':
 
     print('fetch_exchange(BR-S, UY) ->')
     print(fetch_exchange('BR-S', 'UY'))
+
+    print('fetch_exchange(BR-S, AR) ->')
+    print(fetch_exchange('BR-S', 'AR'))
 
     print('fetch_region_exchange(BR-CS->BR-S)')
     print(fetch_region_exchange('BR-CS', 'BR-S'))
