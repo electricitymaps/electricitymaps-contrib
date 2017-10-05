@@ -37,9 +37,18 @@ region_exchanges_directions = {
                     }
 
 countries_exchange = {
-    'UY': u'uruguai',
-    'AR': u'argentina',
-    'PY': u'paraguai'
+    'UY': {
+        'name': u'uruguai',
+        'flow': 1
+    },
+    'AR': {
+        'name': u'argentina',
+        'flow': -1
+    },
+    'PY': {
+        'name': u'paraguai',
+        'flow': -1
+    }
 }
 
 
@@ -154,16 +163,14 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     if country_code1 in countries_exchange.keys():
         country_exchange = countries_exchange[country_code1]
-        flow = 1
 
     if country_code2 in countries_exchange.keys():
         country_exchange = countries_exchange[country_code2]
-        flow = -1
 
     data = {
         'datetime': arrow.get(gd['Data']).datetime,
         'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
-        'netFlow': gd['internacional'][country_exchange] * flow,
+        'netFlow': gd['internacional'][country_exchange['name']] * country_exchange['flow'],
         'source': 'ons.org.br'
     }
 
