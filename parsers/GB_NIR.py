@@ -145,6 +145,7 @@ def wind_processor(df):
         snapshot = {}
         snapshot['datetime'] = row['TimeStamp']
         snapshot['wind'] = row['Total_Wind_Generated_MW']
+        if snapshot['wind'] > -10: snapshot['wind'] = max(snapshot['wind'], 0)
         datapoints.append(snapshot)
 
     return datapoints

@@ -225,6 +225,7 @@ def total_production(df):
         current = df.loc[[hour]]
         hydro = current.iloc[0]['Hydro']
         wind = current.iloc[0]['Wind']
+        if wind > -10: wind = max(wind, 0)
 
         #Wind and hydro totals do not always update exactly on the new hour.
         #In this case we set them to None because they are unknown rather than zero.

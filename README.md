@@ -101,6 +101,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/corrad
 - Sweden: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
+- Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States: [PYISO](https://github.com/WattTime/pyiso)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
