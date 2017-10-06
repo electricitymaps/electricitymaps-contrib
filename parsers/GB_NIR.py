@@ -42,9 +42,10 @@ def get_data(url, session = None):
     current_date = datetime.now().date()
     month = current_date.month
     day = current_date.day
+    year = current_date.year
 
-    FromDatePicker_clientState = '|0|012017-%s-%s-0-0-0-0||[[[[]],[],[]],[{%s},[]],"012017-%s-%s-0-0-0-0"]' % (month, day, '', month, day)
-    ToDatePicker_clientState = '|0|012017-%s-%s-0-0-0-0||[[[[]],[],[]],[{%s},[]],"012017-%s-%s-0-0-0-0"]' % (month, day, '', month, day)
+    FromDatePicker_clientState = '|0|01%s-%s-%s-0-0-0-0||[[[[]],[],[]],[{%s},[]],"01%s-%s-%s-0-0-0-0"]' % (year, month, day, '', year, month, day)
+    ToDatePicker_clientState = '|0|01%s-%s-%s-0-0-0-0||[[[[]],[],[]],[{%s},[]],"01%s-%s-%s-0-0-0-0"]' % (year, month, day, '', year, month, day)
     btnDownloadCSV = 'Download+CSV'
     ig_def_dp_cal_clientState = '|0|15,2017,09,2017,%s,%s||[[null,[],null],[{%s},[]],"11,2017,09,2017,%s,%s"]' % (month, day, '', month, day)
     IG_CSS_LINKS_ = 'ig_res/default/ig_monthcalendar.css|ig_res/default/ig_texteditor.css|ig_res/default/ig_shared.css'
@@ -145,7 +146,7 @@ def wind_processor(df):
         snapshot = {}
         snapshot['datetime'] = row['TimeStamp']
         snapshot['wind'] = row['Total_Wind_Generated_MW']
-        if snapshot['wind'] > -10: snapshot['wind'] = max(snapshot['wind'], 0)
+        if snapshot['wind'] > -20: snapshot['wind'] = max(snapshot['wind'], 0)
         datapoints.append(snapshot)
 
     return datapoints
@@ -160,7 +161,7 @@ def moyle_processor(df):
     datapoints =[]
     for index, row in df.iterrows():
         snapshot = {}
-        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp']))
+        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'], dayfirst=True))
         snapshot['netFlow'] = row['Total_Moyle_Load_MW']
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedCountryCodes'] = 'GB->GB-NIR'
@@ -178,7 +179,7 @@ def IE_processor(df):
     datapoints =[]
     for index, row in df.iterrows():
         snapshot = {}
-        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp']))
+        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'], dayfirst=True))
         netFlow = row['Total_Str_Let_Load_MW'] + row['Total_Enn_Cor_Load_MW'] + \
                   row['Total_Tan_Lou_Load_MW']
         snapshot['netFlow'] = -1*(netFlow)
@@ -205,7 +206,7 @@ def merge_production(thermal_data, wind_data):
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
     for datapoint in joined_data:
-        datapoint['datetime'] = add_default_tz(parser.parse(datapoint['datetime']))
+        datapoint['datetime'] = add_default_tz(parser.parse(datapoint['datetime'], dayfirst=True))
 
     return joined_data
 
