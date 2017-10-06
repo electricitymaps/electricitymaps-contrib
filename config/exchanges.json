@@ -29,6 +29,16 @@
     },
     "rotation": 40
   },
+  "AR->BR-S": {
+    "lonlat": [
+      -56.407453,
+      -28.880006
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_exchange"
+    },
+    "rotation": 110
+  },
   "AT->CH": {
     "lonlat": [
       9.597882,
@@ -283,6 +293,16 @@
        "exchange": "BR.fetch_exchange"
     },
     "rotation": -150
+  },
+  "BR-S->PY": {
+    "lonlat": [
+      -54.449260,
+      -24.749974
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_exchange"
+    },
+    "rotation": 110
   },
   "CA-AB->CA-BC": {
     "lonlat": [
