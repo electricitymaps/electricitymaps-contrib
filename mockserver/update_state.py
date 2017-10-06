@@ -53,22 +53,32 @@ with open('mockserver/public/v3/state', 'r') as f:
     production['co2intensity'] = random() * 500
     # Update exchanges
     for e in exchanges:
-        zones = e['sortedCountryCodes'].split('->')
+        exchange_zone_names = e['sortedCountryCodes'].split('->')
         e['datetime'] = arrow.get(e['datetime']).isoformat()
         obj['exchanges'][e['sortedCountryCodes']] = e.copy()
-        origin_zone = zones[0] if e['netFlow'] >= 0 else zones[1]
+
+        export_origin_zone_name = exchange_zone_names[0] if e['netFlow'] >= 0 else exchange_zone_names[1]
         obj['exchanges'][e['sortedCountryCodes']]['co2intensity'] = \
-            obj['countries'].get(origin_zone, {}).get('co2intensity')
-        for z in zones:
-            other_zone = zones[(zones.index(z) + 1) % 2]
+            obj['countries'].get(export_origin_zone_name, {}).get('co2intensity')
+
+        for z in exchange_zone_names:
+            other_zone = exchange_zone_names[(exchange_zone_names.index(z) + 1) % 2]
             if not z in obj['countries']:
                 obj['countries'][z] = {}
             if not 'exchange' in obj['countries'][z]:
                 obj['countries'][z]['exchange'] = {}
+            if not 'exchangeCo2Intensities' in obj['countries'][z]:
+                obj['countries'][z]['exchangeCo2Intensities'] = {}
             obj['countries'][z]['exchange'][other_zone] = e['netFlow']
-            print z, other_zone
-            if z == zones[0]:
+            if z == exchange_zone_names[0]:
                 obj['countries'][z]['exchange'][other_zone] *= -1
+
+            # Use this zone's carbon intensity if it's an export, or if exchange is missing
+            is_import = other_zone == export_origin_zone_name
+            obj['countries'][z]['exchangeCo2Intensities'][other_zone] = \
+                obj['countries'].get(other_zone, {}).get('co2intensity',
+                    obj['countries'][z].get('co2intensity', None)) if is_import \
+                else obj['countries'][z].get('co2intensity', None)
             
     # Set state datetime
     obj['datetime'] = production['datetime']
