@@ -17,7 +17,7 @@ stages:
         command: |
           set -exu
           pip install pylint
-          sudo apt-get install libxml2-dev python-dev
+          sudo apt-get install libxml2-dev
           pip install -r parsers/requirements.txt
           pylint -E parsers/*.py
           python -m unittest discover parsers/test
