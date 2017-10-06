@@ -496,6 +496,16 @@
       "https://github.com/corradio"
     ]
   },
+  "DK-DK1": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
+  "DK-DK2": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
   "DO": {
     "capacity": {
       "biomass": 30,

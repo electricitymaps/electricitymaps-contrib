@@ -507,6 +507,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     return data
 
 def fetch_price(country_code, session=None, now=None):
+    # Note: This is day-ahead prices
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
