@@ -25,6 +25,7 @@ print 'Finding and executing %s production parser %s..' % (zone_name, production
 mod_name, fun_name = production_parser.split('.')
 mod = importlib.import_module('parsers.%s' % mod_name)
 production = getattr(mod, fun_name)(zone_name)
+if type(production) == list: production = production[-1]
 pp.pprint(production)
 
 # Import / run exchange parser(s)
@@ -36,6 +37,7 @@ for k in exchange_parser_keys:
     mod = importlib.import_module('parsers.%s' % mod_name)
     sorted_zone_names = sorted(k.split('->'))
     exchange = getattr(mod, fun_name)(sorted_zone_names[0], sorted_zone_names[1])
+    if type(exchange) == list: exchange = exchange[-1]
     exchanges.append(exchange)
     pp.pprint(exchange)
 
