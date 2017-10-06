@@ -680,10 +680,11 @@
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "GB_NIR.fetch_production"
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
     ]
   },
   "GR": {
