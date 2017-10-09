@@ -25,7 +25,7 @@ class TestINPB(unittest.TestCase):
             self.assertEqual(data['countryCode'], 'IN-PB')
             self.assertEqual(data['source'], 'punjasldc.org')
             self.assertIsNotNone(data['datetime'])
-            expected = get(datetime(2017, 6, 9, 14, 38, 29), 'Asia/Kolkata').datetime
+            expected = get(datetime(2017, 9, 6, 14, 38, 29), 'Asia/Kolkata').datetime
             date_time = data['datetime']
             self.assertEquals(date_time, expected)
             self.assertIsNotNone(data['consumption'])
