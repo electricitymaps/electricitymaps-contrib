@@ -580,8 +580,8 @@
   },
   "ES-CN": {
     "capacity": {
-        "wind": 153,
-        "solar": 166,
+      "wind": 153,
+      "solar": 166,
       "hydro storage": 11.32
     },
     "flag_file_name": "es.png",
@@ -595,8 +595,8 @@
   },
   "ES-IB": {
     "capacity": {
-        "wind": 0,
-        "solar": 78,
+      "wind": 0,
+      "solar": 78,
       "coal": 510
     },
     "flag_file_name": "es.png",
