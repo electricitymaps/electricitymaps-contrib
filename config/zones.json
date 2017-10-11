@@ -26,7 +26,7 @@
       "hydro": 11054,
       "oil": 288,
       "solar": 814,
-      "wind": 2556
+      "wind": 2739
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
