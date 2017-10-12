@@ -549,7 +549,7 @@ def get_datetime(session=None):
     rt = s.get(url)
     timesoup = BeautifulSoup(rt.content, 'html.parser')
     find_hour = timesoup.find("option", selected = "selected", value = "1" ).getText()
-    at = arrow.now('UTC-3')
+    at = arrow.now('UTC-3').floor('hour')
     datetime = (at.replace(hour = int(find_hour), minute = 0, second = 0)).datetime
 
     return {'datetime': datetime}
