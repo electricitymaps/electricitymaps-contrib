@@ -43,7 +43,7 @@ def fetch_production(country_code='CA-AB', session=None):
     maximum_capability = df_generations[1]['MC']
     
     return {
-        'datetime': arrow.now(tz=timezone).datetime,
+        'datetime': arrow.now(tz=timezone).floor('minute').datetime,
         'countryCode': country_code,
         'production': {
             'coal': total_net_generation['COAL'],

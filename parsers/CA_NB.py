@@ -87,7 +87,7 @@ def fetch_production(country_code='CA-NB', session=None):
                  + flows['QUEBEC'])
 
     data = {
-        'datetime': arrow.utcnow().datetime,
+        'datetime': arrow.utcnow().floor('minute').datetime,
         'countryCode': country_code,
         'production': {
             'unknown': generated
