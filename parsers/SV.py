@@ -120,7 +120,7 @@ def data_processer(data):
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
     def get_datetime(hour):
-        at = arrow.now('UTC-6')
+        at = arrow.now('UTC-6').floor('hour')
         dt = (at.replace(hour = int(hour), minute = 0, second = 0)).datetime
         return dt
 
