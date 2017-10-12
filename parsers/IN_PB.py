@@ -40,7 +40,7 @@ def fetch_production(country_code='IN-PB', session=None):
 
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
-    utc = utcnow()
+    utc = utcnow().floor('hour')
     india_now = utc.to('Asia/Kolkata')
     time = get(time_text, 'HH:mm:ss')
     india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)
