@@ -66,7 +66,7 @@ def fetch_production(country_code='BG', session=None):
                 replace(hour=int(time[0]), minute=int(time[1]), second=int(time[2]))
 
     if not datetime:
-        raise Error('No datetime')
+        raise Exception('No datetime')
 
     # then populate an object that contains the consumptions by type, we will parse a table something like that
     # АЕЦ	1998
