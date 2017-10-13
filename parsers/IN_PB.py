@@ -24,15 +24,6 @@ def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_fo
     return get(date_time, date_format)
 
 
-def time_string_to_kolkata_date(utc_actual, time_text, time_format):
-    india_now = utc_actual.to('Asia/Kolkata')
-    time = get(time_text, time_format)
-    india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)
-    if india_date > india_now:
-        india_date = india_date.shift(days=-1)
-    return india_date
-
-
 def fetch_production(country_code='IN-PB', session=None):
     """Fetch Punjab production"""
     countrycode.assert_country_code(country_code, 'IN-PB')
