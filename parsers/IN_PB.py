@@ -95,7 +95,7 @@ def fetch_consumption(country_code='IN-PB', session=None):
     date_text = read_text_by_regex('(\d+/\d+/\d+)', response_text)
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
     
-    india_date = date_time_strings_to_kolkata_date(date_text, "DD/MM/YYYY", time_text, "HH:mm:ss")
+    india_date = date_time_strings_to_kolkata_date(date_text, "MM/DD/YYYY", time_text, "HH:mm:ss")
 
     punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response_text, M|I|S).group(0)
     punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]
