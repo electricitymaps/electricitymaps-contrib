@@ -25,7 +25,7 @@ class TestINPB(unittest.TestCase):
             self.assertEqual(data['countryCode'], 'IN-PB')
             self.assertEqual(data['source'], 'punjasldc.org')
             self.assertIsNotNone(data['datetime'])
-            expected = get(datetime(2017, 6, 9, 14, 38, 29), 'Asia/Kolkata').datetime
+            expected = get(datetime(2017, 9, 6, 14, 38, 29), 'Asia/Kolkata').datetime
             date_time = data['datetime']
             self.assertEquals(date_time, expected)
             self.assertIsNotNone(data['consumption'])
@@ -73,23 +73,6 @@ class TestINPB(unittest.TestCase):
         date_time = IN_PB.date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format)
         self.assertIsNotNone(date_time)
         expected = get(datetime(2017, 6, 9, 13, 33, 59), 'Asia/Kolkata')
-        self.assertEquals(date_time, expected)
-
-    def test_time_string_to_kolkata_date(self):
-        utc_actual = get(datetime(2017, 9, 6, 12, 30, 0), 'UTC')
-        time_text = "12:25:30"
-        time_format = "HH:mm:ss"
-        date_time = IN_PB.time_string_to_kolkata_date(utc_actual, time_text, time_format)
-        self.assertIsNotNone(date_time)
-        expected = get(datetime(2017, 9, 6, 12, 25, 30), 'Asia/Kolkata')
-        self.assertEquals(date_time, expected)
-
-        utc_actual = get(datetime(2017, 9, 7, 0, 5, 0), 'UTC')
-        time_text = "23:55:30"
-        time_format = "HH:mm:ss"
-        date_time = IN_PB.time_string_to_kolkata_date(utc_actual, time_text, time_format)
-        self.assertIsNotNone(date_time)
-        expected = get(datetime(2017, 9, 6, 23, 55, 30), 'Asia/Kolkata')
         self.assertEquals(date_time, expected)
 
 

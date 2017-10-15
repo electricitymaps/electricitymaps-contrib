@@ -24,15 +24,6 @@ def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_fo
     return get(date_time, date_format)
 
 
-def time_string_to_kolkata_date(utc_actual, time_text, time_format):
-    india_now = utc_actual.to('Asia/Kolkata')
-    time = get(time_text, time_format)
-    india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)
-    if india_date > india_now:
-        india_date = india_date.shift(days=-1)
-    return india_date
-
-
 def fetch_production(country_code='IN-PB', session=None):
     """Fetch Punjab production"""
     countrycode.assert_country_code(country_code, 'IN-PB')
@@ -40,7 +31,7 @@ def fetch_production(country_code='IN-PB', session=None):
 
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
-    utc = utcnow()
+    utc = utcnow().floor('hour')
     india_now = utc.to('Asia/Kolkata')
     time = get(time_text, 'HH:mm:ss')
     india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)
@@ -95,7 +86,7 @@ def fetch_consumption(country_code='IN-PB', session=None):
     date_text = read_text_by_regex('(\d+/\d+/\d+)', response_text)
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
     
-    india_date = date_time_strings_to_kolkata_date(date_text, "DD/MM/YYYY", time_text, "HH:mm:ss")
+    india_date = date_time_strings_to_kolkata_date(date_text, "MM/DD/YYYY", time_text, "HH:mm:ss")
 
     punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response_text, M|I|S).group(0)
     punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]
