@@ -207,7 +207,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     netflow = net_flow(connect, fl)
 
     exchange = {}
-    dt = arrow.now('UTC-6')
+    dt = arrow.now('UTC-6').floor('minute')
     zones = '->'.join(sorted([country_code1, country_code2]))
 
     if zones in netflow:
