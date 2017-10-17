@@ -1051,12 +1051,17 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .attr('class', 'emission-rect')
     enterA
         .append('span')
+            .attr('class', 'name')
     enterA
         .append('img')
             .attr('class', 'flag')
+    enterA
+        .append('span')
+            .attr('class', 'rank')
+            .style('font-size', '0.7em')
     var selector = enterA.merge(selector);
     countryListSelector = selector;
-    selector.select('span')
+    selector.select('span.name')
         .text(function(d) { return ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
         .style('background-color', function(d) {
@@ -1064,6 +1069,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         });
     selector.select('.flag')
         .attr('src', function(d) { return flags.flagUri(d.countryCode, 16); });
+    selector.select('span.rank')
+        .text(function(d, i) { return ' (' + Math.round(d.co2intensity) + ' gCO2eq/kWh)' })
     selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
     // Assign country map data
