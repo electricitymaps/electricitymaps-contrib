@@ -140,7 +140,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
         raise NotImplementedError('This exchange pair is not implemented')
 
     data = {
-        'datetime': arrow.utcnow().datetime,
+        'datetime': arrow.utcnow().floor('minute').datetime,
         'sortedCountryCodes': sorted_country_codes,
         'netFlow': value,
         'source': 'tso.nbpower.com'
