@@ -5,17 +5,14 @@
         "and": "och",
         "howmuchco2": "hur mycket CO2",
         "wasemitted": "som släpptes ut för att producera den",
-
         "takeinaccount": "Vi tar hänsyn till",
         "importexport": "import och export",
         "betweencountries": "av el mellan länder",
-
         "thisproject": "Detta projekt har",
         "opensource": "öppen källkod",
         "see": "se",
         "datasources": "datakällor",
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>",
-
         "tip": "Tips: Klicka på en region för att börja utforska"
     },
     "country-panel": {
@@ -28,7 +25,8 @@
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
-        "co2signal": "Vår <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras."
+        "co2signal": "Vår <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras.",
+        "helpfrom": "med hjälp från"
     },
     "rankings-panel": {
         "country-ranking": "Rankning",
@@ -45,8 +43,8 @@
         "here": "här"
     },
     "legends": {
-        "windpotential": "Möjlighet för vindkraft",
-        "solarpotential": "Möjlighet för solkraft",
+        "windpotential": "Potensial för vindkraft",
+        "solarpotential": "Potensial för solkraft",
         "colorblindmode": "anpassning för färgblinda",
         "carbonintensity": "Utsläpp av koldioxid"
     },
@@ -56,9 +54,8 @@
         "carbonintensity": "Utsläpp av koldioxid",
         "crossborderexport": "Gränsöverskridande export",
         "carbonintensityexport": "Utsläpp av koldioxid för export",
-
         "ofinstalled": "av installerad kapacitet",
-        "utilizing": "Utnyttjar",
+        "utilizing": "utnyttjar",
         "withcarbonintensity": "med ett utsläpp av koldioxid på"
     },
     "misc": {
@@ -110,7 +107,10 @@
         "BE": "Belgien",
         "BG": "Bulgarien",
         "BO": "Bolivia",
-        "BR": "Brasilien",
+        "BR-CS": "Brasilien (Centrala)",
+        "BR-N": "Brasilien (Norra)",
+        "BR-NE": "Brasilien (Nordöstra)",
+        "BR-S": "Brasilien (Södra)",
         "BY": "Vitryssland",
         "CA-AB": "Kanada (Alberta)",
         "CA-BC": "Kanada (British Columbia)",
