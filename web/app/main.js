@@ -55,10 +55,10 @@ function replaceHistoryState(key, value) {
 
 // Global window variables
 isLocalhost = window.location.href.indexOf('electricitymap') == -1;
+useRemoteEndpoint = isLocalhost ? false : true;
 
 // Global State
 var selectedCountryCode;
-var useRemoteEndpoint = isLocalhost ? false : true;
 var customDate;
 var currentMoment;
 var colorBlindModeEnabled = false;
