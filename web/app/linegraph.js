@@ -13,13 +13,13 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .style('stroke-width', 1)
         .style('opacity', 0.3)
         .style('shape-rendering', 'crispEdges')
-        .style('stroke', 'lightgrey');
+        .style('stroke', 'black');
     this.markerElement = this.rootElement.append('circle')
-        .style('fill', 'lightgrey')
+        .style('fill', 'black')
         .style('pointer-events', 'none')
-        .attr('r', 5)
-        .style('stroke', 'lightgrey')
-        .style('stroke-width', 1);
+        .attr('r', 6)
+        .style('stroke', 'black')
+        .style('stroke-width', 1.5);
 
     this.xAccessor = xAccessor;
     this.yAccessor = yAccessor;
@@ -51,6 +51,11 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .y1(function(d, i) { return y(yAccessor(d, i)); })
         .defined(definedAccessor)
         .curve(d3.curveMonotoneX);
+
+    // Create gradient
+    this.gradient = this.rootElement.append('linearGradient')
+        .attr('id', 'linegraph-carbon-gradient')
+        .attr('gradientUnits', 'userSpaceOnUse')
 
     // Interaction state
     this.frozen = false;
@@ -109,22 +114,24 @@ LineGraph.prototype.render = function () {
     var layer = selection.enter().append('g')
         .attr('class', 'layer');
 
+    // Append fill path
     layer.append('path')
         .attr('class', 'area')
         .style('stroke', 'none')
-        .style('pointer-events', 'none');
+        .style('pointer-events', 'none')
+        .style('fill', 'url(#linegraph-carbon-gradient)');
     layer.merge(selection).select('path.area')
         .attr('d', this.area);
 
-    layer.append('path')
-        .attr('class', 'line')
-        .style('fill', 'none')
-        .style('stroke', 'lightgrey')
-        .style('stroke-width', 1)
-        .style('opacity', 0.7)
-        .style('pointer-events', 'none');
-    layer.merge(selection).select('path.line')
-        .attr('d', this.line);
+    // Append stroke path
+    // layer.append('path')
+    //     .attr('class', 'line')
+    //     .style('fill', 'none')
+    //     .style('stroke', 'black')
+    //     .style('stroke-width', 1.5)
+    //     .style('pointer-events', 'none');
+    // layer.merge(selection).select('path.line')
+    //     .attr('d', this.line);
 
     var i = this.selectedIndex || (data.length - 1);
     if (data.length && data[i] && that.definedAccessor(data[i])) {
@@ -144,6 +151,20 @@ LineGraph.prototype.render = function () {
     this.verticalLine
         .attr('y1', y.range()[0])
         .attr('y2', y.range()[1]);
+
+    var selection = this.gradient
+        .attr('x1', x.range()[0])
+        .attr('x2', x.range()[1])
+        .selectAll('stop')
+        .data(data)
+    var gradientData = selection
+        .enter().append('stop');
+    gradientData.merge(selection)
+        .attr('offset', function(d, i) { return (i + 1.0) * 100.0 / data.length + '%'; })
+        .attr('stop-color', function(d) {
+            return that.yColorScale()(
+                that.yAccessor(d));
+        });
 
     isMobile = 
         (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
@@ -270,7 +291,7 @@ LineGraph.prototype.togglefreeze = function() {
     this.frozen = !this.frozen;
     if (!this.frozen) this.selectedIndex = undefined;
     this.markerElement.style('stroke',
-        this.frozen ? 'black' : 'lightgrey');
+        this.frozen ? 'red' : 'black');
     return this;
 }
 
