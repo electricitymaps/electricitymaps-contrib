@@ -5,7 +5,7 @@ var moment = require('moment');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
 // Modules
-//var AreaGraph = require('./areagraph');
+// var AreaGraph = require('./areagraph');
 var LineGraph = require('./linegraph');
 var CountryMap = require('./countrymap');
 var CountryTable = require('./countrytable');
@@ -447,12 +447,19 @@ var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2c
 var tooltip = new Tooltip(countryTable, countries)
     .co2color(co2color)
     .co2Colorbars(co2Colorbars);
-//var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
+// var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
 var countryHistoryGraph = new LineGraph('.country-history',
     function(d) { return moment(d.stateDatetime).toDate(); },
     function(d) { return d.co2intensity; },
-    function(d) { return d.co2intensity != null; }).yColorScale(co2color);
-countryHistoryGraph.y.domain([0, maxCo2]);
+    function(d) { return d.co2intensity != null; })
+    .yColorScale(co2color)
+    .gradient(true);
+
+var countryHistoryPricesGraph = new LineGraph('.country-history-prices',
+    function(d) { return moment(d.stateDatetime).toDate(); },
+    function(d) { return (d.price || {}).value; },
+    function(d) { return d.price && d.price.value != null; })
+    .gradient(false);
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
@@ -608,7 +615,16 @@ function selectCountry(countryCode, notrack) {
             });
             countryHistoryGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
 
+            // Create price color scale
+            var priceExtent = d3.extent(countryHistory, function(d) {
+                return (d.price || {}).value;
+            })
+            countryHistoryPricesGraph.y.domain(priceExtent);
+
             countryHistoryGraph
+                .data(countryHistory);
+            countryHistoryPricesGraph
+                .yColorScale(d3.scaleLinear().domain(priceExtent).range(['yellow', 'red']))
                 .data(countryHistory);
             if (countryHistoryGraph.frozen) {
                 var data = countryHistoryGraph.data()[countryHistoryGraph.selectedIndex];
@@ -625,8 +641,8 @@ function selectCountry(countryCode, notrack) {
                         .render()
                 }
             }
-            countryHistoryGraph
-                .onMouseMove(function(d) {
+            [countryHistoryGraph, countryHistoryPricesGraph].forEach(function(g) {
+                g.onMouseMove(function(d) {
                     if (!d) return;
                     // In case of missing data
                     if (!d.countryCode)
@@ -643,6 +659,7 @@ function selectCountry(countryCode, notrack) {
                         .render();
                 })
                 .render();
+            }) 
         }
 
         // Load graph
@@ -650,9 +667,9 @@ function selectCountry(countryCode, notrack) {
             console.error('Can\'t fetch history when a custom date is provided!');
         }
         else if (!histories[countryCode]) {
-            LoadingService.startLoading('#country-history-loading');
+            LoadingService.startLoading('.country-history-loading');
             DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
-                LoadingService.stopLoading('#country-history-loading');
+                LoadingService.stopLoading('.country-history-loading');
                 if (err) console.error(err);
                 if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
                 if (err || !obj || !obj.data) {
@@ -1308,6 +1325,7 @@ function redraw() {
     if (selectedCountryCode) {
         countryTable.render();
         countryHistoryGraph.render();
+        countryHistoryPricesGraph.render();
     }
     countryMap.render();
     co2Colorbars.forEach(function(d) { d.render() });

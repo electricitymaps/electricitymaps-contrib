@@ -93,7 +93,7 @@ line, path {
 .loading {
     background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
 }
-#country-history-loading {
+.country-history-loading {
     background-size: 1.7rem;
 }
 #main {
@@ -282,11 +282,12 @@ line, path {
     flex-basis: 33.3%;
     justify-content: space-between;
 }
-.country-history {
+.country-history, .country-history-prices {
     width: 100%;
-    height: 10rem;
+    height: 7rem;
 }
-.country-history path.area {
+.country-history path.area,
+.country-history-prices path.area {
     fill: #616161;
 }
 .left-panel-initial-text {

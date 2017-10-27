@@ -1,5 +1,7 @@
-d3 = require('d3');
-moment = require('moment');
+'use strict';
+
+var d3 = require('d3');
+var moment = require('moment');
 
 function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
     this.rootElement = d3.select(selector);
@@ -24,6 +26,7 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
     this.xAccessor = xAccessor;
     this.yAccessor = yAccessor;
     this.definedAccessor = definedAccessor;
+    this._gradient = true;
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
@@ -48,15 +51,10 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
     // Create area for fill
     this.area = d3.area()
         .x(function(d, i) { return x(xAccessor(d, i)); })
-        .y0(function(d, i) { return y(0); })
+        .y0(function(d, i) { return y.range()[0] })
         .y1(function(d, i) { return y(yAccessor(d, i)); })
         .defined(definedAccessor)
         .curve(d3.curveMonotoneX);
-
-    // Create gradient
-    this.gradient = this.rootElement.append('linearGradient')
-        .attr('id', 'linegraph-carbon-gradient')
-        .attr('gradientUnits', 'userSpaceOnUse')
 
     // Interaction state
     this.frozen = false;
@@ -66,10 +64,10 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
 LineGraph.prototype.data = function (arg) {
     if (!arg) return this._data;
 
-    this._data = data = arg;
+    this._data = arg;
 
     // Cache xAccessor
-    this.datetimes = data.map(this.xAccessor);
+    this.datetimes = this._data.map(this.xAccessor);
 
     // Update x-domain based on data
     if (this._data && this._data.length) {
@@ -115,24 +113,27 @@ LineGraph.prototype.render = function () {
     var layer = selection.enter().append('g')
         .attr('class', 'layer');
 
-    // Append fill path
-    layer.append('path')
-        .attr('class', 'area')
-        .style('stroke', 'none')
-        .style('pointer-events', 'none')
-        .style('fill', 'url(#linegraph-carbon-gradient)');
-    layer.merge(selection).select('path.area')
-        .attr('d', this.area);
+    if (this._gradient) {
+        // Append fill path
+        layer.append('path')
+            .attr('class', 'area')
+            .style('stroke', 'none')
+            .style('pointer-events', 'none')
+            .style('fill', 'url(#linegraph-carbon-gradient)');
+        layer.merge(selection).select('path.area')
+            .attr('d', this.area);
+    } else {
+        // Append stroke path
+        layer.append('path')
+            .attr('class', 'line')
+            .style('fill', 'none')
+            .style('stroke', 'lightgray')
+            .style('stroke-width', 1.5)
+            .style('pointer-events', 'none');
+        layer.merge(selection).select('path.line')
+            .attr('d', this.line);
+    }
 
-    // Append stroke path
-    // layer.append('path')
-    //     .attr('class', 'line')
-    //     .style('fill', 'none')
-    //     .style('stroke', 'black')
-    //     .style('stroke-width', 1.5)
-    //     .style('pointer-events', 'none');
-    // layer.merge(selection).select('path.line')
-    //     .attr('d', this.line);
 
     var i = this.selectedIndex || (data.length - 1);
     if (data.length && data[i] && that.definedAccessor(data[i])) {
@@ -153,24 +154,32 @@ LineGraph.prototype.render = function () {
         .attr('y1', y.range()[0])
         .attr('y2', y.range()[1]);
 
-    var selection = this.gradient
-        .attr('x1', x.range()[0])
-        .attr('x2', x.range()[1])
-        .selectAll('stop')
-        .data(data)
-    var gradientData = selection
-        .enter().append('stop');
-    gradientData.merge(selection)
-        .attr('offset', function(d, i) {
-            return (that.x(that.xAccessor(d)) - that.x.range()[0]) /
-                (that.x.range()[1] - that.x.range()[0]) * 100.0 + '%';
-        })
-        .attr('stop-color', function(d) {
-            return that.yColorScale()(
-                that.yAccessor(d));
-        });
+    if (this._gradient) {
+        // Create gradient
+        if (!this.gradientEl) {
+            this.gradientEl = this.rootElement.append('linearGradient')
+                .attr('id', 'linegraph-carbon-gradient')
+                .attr('gradientUnits', 'userSpaceOnUse')
+        }
+        var selection = this.gradientEl
+            .attr('x1', x.range()[0])
+            .attr('x2', x.range()[1])
+            .selectAll('stop')
+            .data(data)
+        var gradientData = selection
+            .enter().append('stop');
+        gradientData.merge(selection)
+            .attr('offset', function(d, i) {
+                return (that.x(that.xAccessor(d)) - that.x.range()[0]) /
+                    (that.x.range()[1] - that.x.range()[0]) * 100.0 + '%';
+            })
+            .attr('stop-color', function(d) {
+                return that.yColorScale()(
+                    that.yAccessor(d));
+            });
+    }
 
-    isMobile = 
+    var isMobile = 
         (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
 
     function drag() {
@@ -273,7 +282,7 @@ LineGraph.prototype.render = function () {
 
     // y axis
     var yAxis = d3.axisRight(y)
-        .ticks(6);
+        .ticks(5);
     this.yAxisElement
         .style('transform', 'translate(' + (width - Y_AXIS_WIDTH) + 'px, 0)')
         .call(yAxis);
@@ -312,6 +321,11 @@ LineGraph.prototype.onMouseOut = function(arg) {
 LineGraph.prototype.onMouseMove = function(arg) {
     if (!arg) return this.mouseMoveHandler;
     else this.mouseMoveHandler = arg;
+    return this;
+}
+LineGraph.prototype.gradient = function(arg) {
+    if (arg == null) return this._gradient;
+    else this._gradient = arg;
     return this;
 }
 
