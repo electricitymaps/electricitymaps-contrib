@@ -34,6 +34,7 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .style('pointer-events', 'none');
 
     // Create scales
+    var x, y;
     this.x = x = d3.scaleTime();
     this.y = y = d3.scaleLinear();
 
@@ -72,7 +73,7 @@ LineGraph.prototype.data = function (arg) {
 
     // Update x-domain based on data
     if (this._data && this._data.length) {
-        x.domain(
+        this.x.domain(
             d3.extent([
               this.xAccessor(this._data[0]),
               this.xAccessor(this._data[this._data.length - 1])]));
