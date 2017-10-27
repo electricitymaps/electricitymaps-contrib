@@ -282,13 +282,18 @@ line, path {
     flex-basis: 33.3%;
     justify-content: space-between;
 }
-.country-history, .country-history-prices {
+.country-history svg {
     width: 100%;
     height: 7rem;
 }
-.country-history path.area,
-.country-history-prices path.area {
-    fill: #616161;
+.country-history path {
+    /*shape-rendering: crispEdges;*/
+}
+#country-history-carbon .line {
+    /*stroke: black;*/
+}
+#country-history-prices .line {
+    stroke: darkgray;
 }
 .left-panel-initial-text {
     font-size: 1.1em;

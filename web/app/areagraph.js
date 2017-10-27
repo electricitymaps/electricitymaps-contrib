@@ -12,7 +12,11 @@ function AreaGraph(selector, modeColor, modeOrder) {
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
-        .attr('class', 'x axis');
+        .attr('class', 'x axis')
+        .style('pointer-events', 'none');
+    this.yAxisElement = this.rootElement.append('g')
+        .attr('class', 'y axis')
+        .style('pointer-events', 'none');
 
     // Create scales
     this.x = d3.scaleTime();
@@ -36,7 +40,7 @@ AreaGraph.prototype.data = function (arg) {
     // Parse data
     this._data = data = arg.map(function(d) {
         var obj = {
-            datetime: moment(d.datetime).toDate()
+            datetime: moment(d.stateDatetime).toDate()
         };
         // Add production
         d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value; });
@@ -71,10 +75,13 @@ AreaGraph.prototype.render = function () {
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
         height = this.rootElement.node().getBoundingClientRect().height;
+    if (!width || !height) return this;
     var X_AXIS_HEIGHT = 20;
     var X_AXIS_PADDING = 4;
-    x.range([0, width]);
-    y.range([height, X_AXIS_HEIGHT + X_AXIS_PADDING]);
+    var Y_AXIS_WIDTH = 35;
+    var Y_AXIS_PADDING = 4;
+    x.range([0, width - Y_AXIS_WIDTH]);
+    y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
 
     this.verticalLine
         .attr('y1', 0)
@@ -123,13 +130,20 @@ AreaGraph.prototype.render = function () {
         })
 
     // x axis
-    var xAxis = d3.axisTop(x)
-        .ticks(6)
+    var xAxis = d3.axisBottom(x)
+        .ticks(5)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
-        .transition()
-        .style('transform', 'translate(0, ' + X_AXIS_HEIGHT + 'px)')
+        // Need to remove 1px in order to see the 1px line
+        .style('transform', 'translate(0, ' + (height - X_AXIS_HEIGHT) + 'px)')
         .call(xAxis);
+
+    // y axis
+    var yAxis = d3.axisRight(y)
+        .ticks(5);
+    this.yAxisElement
+        .style('transform', 'translate(' + (width - Y_AXIS_WIDTH) + 'px, 0)')
+        .call(yAxis);
 
     return this;
 }

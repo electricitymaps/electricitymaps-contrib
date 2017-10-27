@@ -122,17 +122,16 @@ LineGraph.prototype.render = function () {
             .style('fill', 'url(#linegraph-carbon-gradient)');
         layer.merge(selection).select('path.area')
             .attr('d', this.area);
-    } else {
-        // Append stroke path
-        layer.append('path')
-            .attr('class', 'line')
-            .style('fill', 'none')
-            .style('stroke', 'lightgray')
-            .style('stroke-width', 1.5)
-            .style('pointer-events', 'none');
-        layer.merge(selection).select('path.line')
-            .attr('d', this.line);
     }
+
+    // Append stroke path
+    layer.append('path')
+        .attr('class', 'line')
+        .style('fill', 'none')
+        .style('stroke-width', 1.5)
+        .style('pointer-events', 'none');
+    layer.merge(selection).select('path.line')
+        .attr('d', this.line);
 
 
     var i = this.selectedIndex || (data.length - 1);
