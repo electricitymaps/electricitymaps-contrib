@@ -1,5 +1,7 @@
-d3 = require('d3');
-moment = require('moment');
+'use strict'
+
+var d3 = require('d3');
+var moment = require('moment');
 
 function AreaGraph(selector, modeColor, modeOrder) {
     this.rootElement = d3.select(selector);
@@ -21,13 +23,11 @@ function AreaGraph(selector, modeColor, modeOrder) {
     // Create scales
     this.x = d3.scaleTime();
     this.y = d3.scaleLinear();
-    this.z = d3.scaleOrdinal()
-        .domain(modeOrder)
-        .range(modeOrder.map(function(d) { return modeColor[d]; }));
+    this.z = d3.scaleOrdinal();
 
-    // 
-    this.stack = d3.stack()
-        .keys(modeOrder.reverse());
+    // Other variables
+    this.modeColor = modeColor;
+    this.modeOrder = modeOrder;
 }
 
 AreaGraph.prototype.data = function (arg) {
@@ -37,20 +37,38 @@ AreaGraph.prototype.data = function (arg) {
         return this;
     }
 
+    var that = this;
+
     // Parse data
-    this._data = data = arg.map(function(d) {
+    var exchangeKeysSet = d3.set();
+    this._data = arg.map(function(d) {
         var obj = {
             datetime: moment(d.stateDatetime).toDate()
         };
         // Add production
         d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value; });
+        // Add exchange
+        d3.entries(d.exchange).forEach(function(o) {
+            exchangeKeysSet.add('Import ' + o.key);
+            exchangeKeysSet.add('Export ' + o.key);
+            obj['Import ' + o.key] = Math.max(0, o.value);
+            obj['Export ' + o.key] = -1.0 * Math.min(0, o.value);
+        });
         // Keep a pointer to original data
         obj._countryData = d;
         return obj;
     });
 
+    // Prepare stack
+    // Keys are in bottom to top order
+    var keys = this.modeOrder
+        .concat(exchangeKeysSet.values())
+        .reverse()
+    this.stack = d3.stack()
+        .keys(keys);
+
     // Set domains
-    this.x.domain(d3.extent(data, function(d) { return d.datetime; }));
+    this.x.domain(d3.extent(this._data, function(d) { return d.datetime; }));
     /*this.y.domain([
         d3.min(arg, function(d) { return d.totalExport; }),
         d3.max(arg, function(d) { return d.totalImport + d.totalProduction; })
@@ -59,6 +77,14 @@ AreaGraph.prototype.data = function (arg) {
         0,
         d3.max(arg, function(d) { return d.totalProduction; })
     ]);
+    var modeColors = this.modeOrder.map(function(d) { return that.modeColor[d]; });
+    this.z
+        .domain(keys)
+        .range(
+            modeColors.concat(exchangeKeysSet
+                .values()
+                .map(function(d) { return 'white' })
+            ).reverse())
 
     return this;
 }
