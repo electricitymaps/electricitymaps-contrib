@@ -160,7 +160,10 @@ LineGraph.prototype.render = function () {
     var gradientData = selection
         .enter().append('stop');
     gradientData.merge(selection)
-        .attr('offset', function(d, i) { return (i + 1.0) * 100.0 / data.length + '%'; })
+        .attr('offset', function(d, i) {
+            return (that.x(that.xAccessor(d)) - that.x.range()[0]) /
+                (that.x.range()[1] - that.x.range()[0]) * 100.0 + '%';
+        })
         .attr('stop-color', function(d) {
             return that.yColorScale()(
                 that.yAccessor(d));
