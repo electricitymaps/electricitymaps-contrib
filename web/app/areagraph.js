@@ -51,7 +51,9 @@ AreaGraph.prototype.data = function (arg) {
             datetime: moment(d.stateDatetime).toDate()
         };
         // Add production
-        d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value || 0; });
+        that.modeOrder.forEach(function(k) {
+            obj[k] = (d.production || {})[k] || 0;
+        })
         // Add exchange
         d3.entries(d.exchange).forEach(function(o) {
             exchangeKeysSet.add(o.key);
