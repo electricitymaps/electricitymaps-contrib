@@ -162,7 +162,16 @@ function reducer(state, action) {
     if (!state) { state = {}; }
     switch (action.type) {
         case 'ZONE_DATA':
-            return Object.assign({}, state, { countryData: action.payload })
+            return Object.assign({}, state, {
+                countryData: action.payload,
+                countryDataIndex: 0,
+            })
+
+        case 'SELECT_DATA':
+            return Object.assign({}, state, {
+                countryData: action.payload.countryData,
+                countryDataIndex: action.payload.index,
+            })
 
         default:
             return state
@@ -554,7 +563,7 @@ var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
     .gradient(false);
 var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
     .co2color(co2color)
-    .onLayerMouseOver(function(mode, countryData) {
+    .onLayerMouseOver(function(mode, countryData, i) {
         var displayByEmissions = false;
         var isExchange = modeOrder.indexOf(mode) == -1
         var fun = isExchange ?
@@ -563,11 +572,11 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
             mode, countryData, displayByEmissions,
             co2color, co2Colorbars)
         store.dispatch({
-            type: 'ZONE_DATA',
-            payload: countryData
+            type: 'SELECT_DATA',
+            payload: { countryData: countryData, index: i }
         })
     })
-    .onLayerMouseMove(function(mode, countryData) {
+    .onLayerMouseMove(function(mode, countryData, i) {
         countryTableProductionTooltip.update(d3.event)
         var displayByEmissions = false;
         var isExchange = modeOrder.indexOf(mode) == -1
@@ -577,16 +586,16 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
             mode, countryData, displayByEmissions,
             co2color, co2Colorbars)
         store.dispatch({
-            type: 'ZONE_DATA',
-            payload: countryData
+            type: 'SELECT_DATA',
+            payload: { countryData: countryData, index: i }
         })
     })
-    .onLayerMouseOut(function(mode, countryData) {
+    .onLayerMouseOut(function(mode, countryData, i) {
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
         countryTableProductionTooltip.hide()
         store.dispatch({
-            type: 'ZONE_DATA',
-            payload: countryData
+            type: 'SELECT_DATA',
+            payload: { countryData: countryData, index: i }
         })
     });
 
@@ -783,7 +792,7 @@ function selectCountry(countryCode, notrack) {
                 }
             }
             [countryHistoryGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
-                g.onMouseMove(function(d) {
+                g.onMouseMove(function(d, i) {
                     if (!d) return;
                     // In case of missing data
                     if (!d.countryCode)
@@ -791,16 +800,16 @@ function selectCountry(countryCode, notrack) {
                     countryTable
                         .powerScaleDomain([lo, hi])
                     store.dispatch({
-                        type: 'ZONE_DATA',
-                        payload: d
+                        type: 'SELECT_DATA',
+                        payload: { countryData: d, index: i }
                     })
                 })
-                .onMouseOut(function() {
+                .onMouseOut(function(d, i) {
                     countryTable
                         .powerScaleDomain(null)
                     store.dispatch({
-                        type: 'ZONE_DATA',
-                        payload: countries[countryCode]
+                        type: 'SELECT_DATA',
+                        payload: { countryData: countries[countryCode], index: i }
                     })
                 })
                 .render();
@@ -1496,6 +1505,12 @@ observeStore(store, function(state) { return state.countryData }, function(d) {
     countryTable
         .data(d)
         .render(true);
+})
+// Observe change of selected countryData index
+observeStore(store, function(state) { return state.countryDataIndex }, function(i) {
+    [countryHistoryGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach(function(g) {
+        g.selectedIndex(i)
+    })
 })
 
 // Start a fetch showing loading.
