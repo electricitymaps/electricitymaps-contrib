@@ -282,15 +282,29 @@ line, path {
     flex-basis: 33.3%;
     justify-content: space-between;
 }
+
+/* Country History Graphs */
+.country-history {
+    color: darkgray;
+    position: relative;
+}
+.country-history svg:not(:last-child) {
+    margin-bottom: 1.2em;
+}
 .country-history svg {
     width: 100%;
-    height: 7rem;
 }
 .country-history path {
     /*shape-rendering: crispEdges;*/
 }
+#country-history-carbon {
+    height: 5rem;
+}
 #country-history-carbon .line {
     /*stroke: black;*/
+}
+#country-history-prices {
+    height: 5rem;
 }
 #country-history-prices .line {
     stroke: darkgray;
@@ -298,12 +312,16 @@ line, path {
 #country-history-prices .area {
     fill: #616161;
 }
+#country-history-mix {
+    height: 8rem;
+}
 #country-history-mix .layer path:hover {
     opacity: 0.8
 }
 #country-history-mix .layer path {
     opacity: 1.0
 }
+
 .left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;

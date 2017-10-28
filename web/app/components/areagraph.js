@@ -150,6 +150,7 @@ AreaGraph.prototype.render = function() {
     var selection = this.graphElement
         .selectAll('.layer')
         .data(stack(data))
+    selection.exit().remove();
     var layer = selection.enter().append('g')
         .attr('class', function(d) { return 'layer ' + d.key })
 
