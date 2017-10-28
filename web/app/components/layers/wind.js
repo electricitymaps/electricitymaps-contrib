@@ -3,8 +3,8 @@ var exports = module.exports = {};
 var d3 = require('d3');
 var moment = require('moment');
 
-var grib = require('./grib');
-var Windy = require('./windy');
+var grib = require('../../helpers/grib');
+var Windy = require('../../helpers/windy');
 
 var windCanvas;
 var projection;

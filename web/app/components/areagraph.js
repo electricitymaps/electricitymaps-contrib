@@ -36,7 +36,7 @@ function AreaGraph(selector, modeColor, modeOrder) {
 }
 
 AreaGraph.prototype.data = function (arg) {
-    if (!arg) return this._data;
+    if (!arguments.length) return this._data;
     if (!arg.length) {
         this._data = [];
         return this;
@@ -51,7 +51,9 @@ AreaGraph.prototype.data = function (arg) {
             datetime: moment(d.stateDatetime).toDate()
         };
         // Add production
-        d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value || 0; });
+        that.modeOrder.forEach(function(k) {
+            obj[k] = (d.production || {})[k] || 0;
+        })
         // Add exchange
         d3.entries(d.exchange).forEach(function(o) {
             exchangeKeysSet.add(o.key);
@@ -63,10 +65,10 @@ AreaGraph.prototype.data = function (arg) {
     });
 
     // Prepare stack
+    // Order is defined here, from bottom to top
     var keys = this.modeOrder
         .concat(exchangeKeysSet.values())
     this.stack = d3.stack()
-        .order(d3.stackOrderReverse)
         .offset(d3.stackOffsetDiverging)
         .keys(keys);
 
@@ -76,14 +78,12 @@ AreaGraph.prototype.data = function (arg) {
         0, // -1 * d3.max(arg, function(d) { return d.totalExport; }),
         d3.max(arg, function(d) { return d.totalProduction + d.totalImport; })
     ]);
-    var modeColors = this.modeOrder.map(function(d) { return that.modeColor[d]; });
     this.z
         .domain(keys)
-        .range(
-            modeColors.concat(exchangeKeysSet
-                .values()
-                .map(function(d) { return 'white' })
-            ))
+        .range(keys.map(function(d) { return that.modeColor[d] }))
+
+    // Cache datetimes
+    this._datetimes = this._data.map(function(d) { return d.datetime; });
 
     return this;
 }
@@ -150,13 +150,55 @@ AreaGraph.prototype.render = function() {
     var selection = this.graphElement
         .selectAll('.layer')
         .data(stack(data))
+    selection.exit().remove();
     var layer = selection.enter().append('g')
         .attr('class', function(d) { return 'layer ' + d.key })
-        .style('pointer-events', 'none');
+
+
+    var datetimes = this._datetimes;
+    function detectPosition() {
+        if (!datetimes.length) return;
+        var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
+            (d3.touches(this)[0][0]);
+        var datetime = x.invert(dx);
+        // Find data point closest to
+        var i = d3.bisectLeft(datetimes, datetime);
+        if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
+            i--;
+        if (i > datetimes.length - 1) i = datetimes.length - 1;
+        return i;
+    }
 
     layer.append('path')
         .attr('class', 'area')
     layer.merge(selection).select('path.area')
+        .on('mousemove', function(d) {
+            var i = detectPosition.call(this);
+            that.selectedIndex(i);
+            if (that.layerMouseMoveHandler) {
+                that.layerMouseMoveHandler.call(this, d.key, d[i].data._countryData)
+            }
+            if (that.mouseMoveHandler)
+                that.mouseMoveHandler.call(this, data[i]._countryData, i);
+        })
+        .on('mouseover', function(d) {
+            var i = detectPosition.call(this);
+            that.selectedIndex(i);
+            if (that.layerMouseOverHandler) {
+                that.layerMouseOverHandler.call(this, d.key, d[i].data._countryData)
+            }
+            if (that.mouseOverHandler)
+                that.mouseOverHandler.call(this, data[i]._countryData, i);
+        })
+        .on('mouseout', function(d) {
+            var i = detectPosition.call(this);
+            that.selectedIndex(i);
+            if (that.layerMouseOutHandler) {
+                that.layerMouseOutHandler.call(this, d.key, d[i].data._countryData)
+            }
+            if (that.mouseOutHandler)
+                that.mouseOutHandler.call(this, data[i]._countryData, i);
+        })
         .transition()
         .style('fill', function(d) {
             if (that.modeOrder.indexOf(d.key) != -1) {
@@ -175,26 +217,22 @@ AreaGraph.prototype.render = function() {
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
-            that.verticalLine.style('display', 'block');
+            var i = detectPosition.call(this);
+            that.selectedIndex(i);
             if (that.mouseOverHandler)
-                that.mouseOverHandler.call(this);
+                that.mouseOverHandler.call(this, data[i]._countryData, i);
         })
         .on('mouseout', function () {
-            that.verticalLine.style('display', 'none');
+            var i = detectPosition.call(this);
+            that.selectedIndex(i);
             if (that.mouseOutHandler)
-                that.mouseOutHandler.call(this);
+                that.mouseOutHandler.call(this, data[i]._countryData, i);
         })
         .on('mousemove', function () {
-            var dx = d3.event.x - this.getBoundingClientRect().left;
-            var datetime = x.invert(dx);
-            // Find data point closest to
-            var i = d3.bisectLeft(data.map(function(d) { return d.datetime; }), datetime);
-            if (datetime - data[i-1].datetime < data[i].datetime - datetime) i--;
-            that.verticalLine
-                .attr('x1', x(data[i].datetime))
-                .attr('x2', x(data[i].datetime));
+            var i = detectPosition.call(this);
+            that.selectedIndex(i);
             if (that.mouseMoveHandler)
-                that.mouseMoveHandler.call(this, data[i]._countryData);
+                that.mouseMoveHandler.call(this, data[i]._countryData, i);
         })
 
     // x axis
@@ -217,23 +255,52 @@ AreaGraph.prototype.render = function() {
 }
 
 AreaGraph.prototype.onMouseOver = function(arg) {
-    if (!arg) return this.mouseOverHandler;
+    if (!arguments.length) return this.mouseOverHandler;
     else this.mouseOverHandler = arg;
     return this;
 }
 AreaGraph.prototype.onMouseOut = function(arg) {
-    if (!arg) return this.mouseOutHandler;
+    if (!arguments.length) return this.mouseOutHandler;
     else this.mouseOutHandler = arg;
     return this;
 }
 AreaGraph.prototype.onMouseMove = function(arg) {
-    if (!arg) return this.mouseMoveHandler;
+    if (!arguments.length) return this.mouseMoveHandler;
     else this.mouseMoveHandler = arg;
     return this;
 }
+AreaGraph.prototype.onLayerMouseOver = function(arg) {
+    if (!arguments.length) return this.layerMouseOverHandler;
+    else this.layerMouseOverHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onLayerMouseOut = function(arg) {
+    if (!arguments.length) return this.layerMouseOutHandler;
+    else this.layerMouseOutHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onLayerMouseMove = function(arg) {
+    if (!arguments.length) return this.layerMouseMoveHandler;
+    else this.layerMouseMoveHandler = arg;
+    return this;
+}
 AreaGraph.prototype.co2color = function(arg) {
-    if (!arg) return this._co2color;
+    if (!arguments.length) return this._co2color;
     else this._co2color = arg;
+    return this;
+}
+AreaGraph.prototype.selectedIndex = function(arg) {
+    if (!arguments.length) return this._selectedIndex;
+    else {
+        this._selectedIndex = arg;
+        if (!this._data) { return this; }
+        if (this._selectedIndex == null) { this._selectedIndex = this._data.length - 1; }
+        this.verticalLine
+            .attr('x1', this.x(this._data[this._selectedIndex].datetime))
+            .attr('x2', this.x(this._data[this._selectedIndex].datetime))
+            .style('display', this._selectedIndex == this._data.length ?
+                'none' : 'block');
+    }
     return this;
 }
 

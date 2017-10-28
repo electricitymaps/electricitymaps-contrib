@@ -58,11 +58,11 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
 
     // Interaction state
     this.frozen = false;
-    this.selectedIndex;
+    this._selectedIndex;
 }
 
 LineGraph.prototype.data = function (arg) {
-    if (!arg) return this._data;
+    if (!arguments.length) return this._data;
 
     this._data = arg;
 
@@ -137,7 +137,7 @@ LineGraph.prototype.render = function () {
         .attr('d', this.line);
 
 
-    var i = this.selectedIndex || (data.length - 1);
+    var i = this._selectedIndex || (data.length - 1);
     if (data.length && data[i] && that.definedAccessor(data[i])) {
         this.markerElement
             .style('display', 'block')
@@ -194,7 +194,7 @@ LineGraph.prototype.render = function () {
         if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
             i--;
         if (i > datetimes.length - 1) i = datetimes.length - 1;
-        that.selectedIndex = i;
+        that.selectedIndex(i);
         that.verticalLine
             .attr('x1', x(datetimes[i]))
             .attr('x2', x(datetimes[i]));
@@ -225,7 +225,7 @@ LineGraph.prototype.render = function () {
             }
             that.verticalLine.style('display', 'block');
             if (that.mouseOverHandler)
-                that.mouseOverHandler.call(this);
+                that.mouseOverHandler.call(this, undefined, that._selectedIndex);
         })
         .on(isMobile ? 'touchend' : 'mouseout', function () {
             if (!datetimes.length) return;
@@ -237,7 +237,7 @@ LineGraph.prototype.render = function () {
                 return;
             }
             that.verticalLine.style('display', 'none');
-            that.selectedIndex = undefined;
+            that._selectedIndex = undefined;
             if (that.definedAccessor(data[data.length - 1])) {
                 that.markerElement
                     .style('display', 'block')
@@ -250,13 +250,13 @@ LineGraph.prototype.render = function () {
                     .style('display', 'none');
             }
             if (that.mouseOutHandler)
-                that.mouseOutHandler.call(this);
+                that.mouseOutHandler.call(this, undefined, that._selectedIndex);
         })
         .on(isMobile ? 'touchmove' : 'mousemove', function () {
             if (that.frozen) return;
             drag.call(this);
             if (that.mouseMoveHandler)
-                that.mouseMoveHandler.call(this, data[that.selectedIndex]);
+                that.mouseMoveHandler.call(this, data[that._selectedIndex], that._selectedIndex);
         })
         .on('click', function() {
             if (!isMobile) {
@@ -264,12 +264,12 @@ LineGraph.prototype.render = function () {
                 if (!that.frozen) {
                     drag.call(this);
                     if (that.mouseMoveHandler)
-                        that.mouseMoveHandler.call(this, data[that.selectedIndex]);
+                        that.mouseMoveHandler.call(this, data[that._selectedIndex]);
                 }
             } else {
                 drag.call(this);
                 if (that.mouseMoveHandler)
-                    that.mouseMoveHandler.call(this, data[that.selectedIndex]);
+                    that.mouseMoveHandler.call(this, data[that._selectedIndex]);
             }
         });
 
@@ -293,41 +293,55 @@ LineGraph.prototype.render = function () {
 }
 
 LineGraph.prototype.yColorScale = function(arg) {
-    if (!arg) return this._yColorScale;
+    if (!arguments.length) return this._yColorScale;
     else this._yColorScale = arg;
     return this;
 };
 
 LineGraph.prototype.togglefreeze = function() {
-    if (!this.frozen && !this.selectedIndex) {
+    if (!this.frozen && !this._selectedIndex) {
         console.warn('Can only freeze if a selectedIndex is provided');
         return this;
     }
     this.frozen = !this.frozen;
-    if (!this.frozen) this.selectedIndex = undefined;
+    if (!this.frozen) this._selectedIndex = undefined;
     this.markerElement.style('stroke',
         this.frozen ? 'red' : 'black');
     return this;
 }
 
 LineGraph.prototype.onMouseOver = function(arg) {
-    if (!arg) return this.mouseOverHandler;
+    if (!arguments.length) return this.mouseOverHandler;
     else this.mouseOverHandler = arg;
     return this;
 }
 LineGraph.prototype.onMouseOut = function(arg) {
-    if (!arg) return this.mouseOutHandler;
+    if (!arguments.length) return this.mouseOutHandler;
     else this.mouseOutHandler = arg;
     return this;
 }
 LineGraph.prototype.onMouseMove = function(arg) {
-    if (!arg) return this.mouseMoveHandler;
+    if (!arguments.length) return this.mouseMoveHandler;
     else this.mouseMoveHandler = arg;
     return this;
 }
 LineGraph.prototype.gradient = function(arg) {
-    if (arg == null) return this._gradient;
+    if (!arguments.length) return this._gradient;
     else this._gradient = arg;
+    return this;
+}
+LineGraph.prototype.selectedIndex = function(arg) {
+    if (!arguments.length) return this._selectedIndex;
+    else {
+        this._selectedIndex = arg;
+        if (!this._data) { return this; }
+        if (this._selectedIndex == null) { this._selectedIndex = this._data.length - 1; }
+        this.verticalLine
+            .attr('x1', this.x(this.xAccessor(this._data[this._selectedIndex])))
+            .attr('x2', this.x(this.xAccessor(this._data[this._selectedIndex])))
+            .style('display', this._selectedIndex == this._data.length ?
+                'none' : 'block');
+    }
     return this;
 }
 
