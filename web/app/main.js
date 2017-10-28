@@ -351,6 +351,7 @@ function updateCo2Scale() {
     if (countryMap) countryMap.co2color(co2color).render();
     if (countryTable) countryTable.co2color(co2color).render();
     if (countryHistoryGraph) countryHistoryGraph.yColorScale(co2color);
+    if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
     if (exchangeLayer) exchangeLayer.co2color(co2color).render();
     if (tooltip)
       tooltip
@@ -461,7 +462,8 @@ var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
     function(d) { return d.price && d.price.value != null; })
     .gradient(false);
 
-var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder);
+var countryHistoryMixGraph = new AreaGraph('#country-history-mix',modeColor, modeOrder)
+    .co2color(co2color);
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');

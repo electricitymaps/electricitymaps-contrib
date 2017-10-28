@@ -113,16 +113,17 @@ LineGraph.prototype.render = function () {
     var layer = selection.enter().append('g')
         .attr('class', 'layer');
 
+    // Append fill path
+    var areaPath = layer.append('path')
+        .attr('class', 'area')
+        .style('stroke', 'none')
+        .style('pointer-events', 'none')
     if (this._gradient) {
-        // Append fill path
-        layer.append('path')
-            .attr('class', 'area')
-            .style('stroke', 'none')
-            .style('pointer-events', 'none')
+        areaPath
             .style('fill', 'url(#linegraph-carbon-gradient)');
-        layer.merge(selection).select('path.area')
-            .attr('d', this.area);
     }
+    layer.merge(selection).select('path.area')
+        .attr('d', this.area);
 
     // Append stroke path
     layer.append('path')
