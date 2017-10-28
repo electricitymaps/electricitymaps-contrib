@@ -17,12 +17,12 @@ function placeTooltip(selector, d3Event) {
             // Tooltip won't fit on any side, so don't translate x
             x = 0.5 * (screenWidth - w);
         } else {
-            x = d3Event.layerX + margin;
+            x = d3Event.clientX + margin;
             if (screenWidth - x <= w) {
-                x = d3Event.layerX - w - margin;
+                x = d3Event.clientX - w - margin;
             }
         }
-        var y = d3Event.layerY - h - margin; if (y <= margin) y = d3Event.layerY + margin;
+        var y = d3Event.clientY - h - margin; if (y <= margin) y = d3Event.clientY + margin;
         tooltip
             .style('transform',
                 'translate(' + x + 'px' + ',' + y + 'px' + ')');

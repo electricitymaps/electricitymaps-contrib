@@ -298,6 +298,12 @@ line, path {
 #country-history-prices .area {
     fill: #616161;
 }
+#country-history-mix .layer path:hover {
+    opacity: 0.8
+}
+#country-history-mix .layer path {
+    opacity: 1.0
+}
 .left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
