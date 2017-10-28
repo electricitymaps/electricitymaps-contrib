@@ -153,9 +153,23 @@ AreaGraph.prototype.render = function() {
     layer.append('path')
         .attr('class', 'area')
     layer.merge(selection).select('path.area')
-        .on('mousemove', function(d, i) {
-            if (that.layerMouseMoveHandler)
-                layerMouseMoveHandler.call(d[i][2].data._countryData)
+        .on('mousemove', function(d) {
+            if (that.layerMouseMoveHandler) {
+                var i = d.index;
+                layerMouseMoveHandler.call(d.key, d[i][2].data._countryData)
+            }
+        })
+        .on('mouseover', function(d) {
+            if (that.layerMouseOverHandler) {
+                var i = d.index;
+                layerMouseOverHandler.call(d.key, d[i][2].data._countryData)
+            }
+        })
+        .on('mouseout', function(d) {
+            if (that.layerMouseOutHandler) {
+                var i = d.index;
+                layerMouseOutHandler.call(d.key, d[i][2].data._countryData)
+            }
         })
         .transition()
         .style('fill', function(d) {
@@ -229,6 +243,16 @@ AreaGraph.prototype.onMouseOut = function(arg) {
 AreaGraph.prototype.onMouseMove = function(arg) {
     if (!arg) return this.mouseMoveHandler;
     else this.mouseMoveHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onLayerMouseOver = function(arg) {
+    if (!arg) return this.layerMouseOverHandler;
+    else this.layerMouseOverHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onLayerMouseOut = function(arg) {
+    if (!arg) return this.layerMouseOutHandler;
+    else this.layerMouseOutHandler = arg;
     return this;
 }
 AreaGraph.prototype.onLayerMouseMove = function(arg) {

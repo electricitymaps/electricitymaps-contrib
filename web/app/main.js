@@ -463,10 +463,10 @@ var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
         countryTableExchangeTooltip.hide()
     })
-    .onProductionMouseOver(function (d, country, displayByEmissions) {
+    .onProductionMouseOver(function (mode, country, displayByEmissions) {
         tooltipHelper.showProduction(
             countryTableProductionTooltip,
-            d, country, displayByEmissions,
+            mode, country, displayByEmissions,
             co2color, co2Colorbars)
     })
     .onProductionMouseMove(function(d) {
@@ -488,8 +488,21 @@ var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
     function(d) { return (d.price || {}).value; },
     function(d) { return d.price && d.price.value != null; })
     .gradient(false);
-var countryHistoryMixGraph = new AreaGraph('#country-history-mix',modeColor, modeOrder)
-    .co2color(co2color);
+var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
+    .co2color(co2color)
+    .onLayerMouseOver(function(countryData) {
+        countryTableProductionTooltip.show()
+    })
+    .onLayerMouseMove(function(countryData) {
+        var displayByEmissions = false;
+        tooltipHelper.showProduction(
+            countryTableProductionTooltip,
+            countryData, displayByEmissions,
+            co2color, co2Colorbars)
+    })
+    .onLayerMouseOut(function(countryData) {
+        countryTableProductionTooltip.hide()
+    });
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');

@@ -9,46 +9,49 @@ var formatting = require('./formatting')
 
 // Production
 var FLAG_SIZE = 16;
-module.exports.showProduction = function(tooltipInstance, d, country, displayByEmissions, co2color, co2Colorbars) {
+module.exports.showProduction = function(tooltipInstance, mode, country, displayByEmissions, co2color, co2Colorbars) {
     var selector = tooltipInstance._selector;
 
     if (!country.productionCo2Intensities) { return; }
-    var co2intensity = country.productionCo2Intensities[d.mode];
-    var co2intensitySource = country.productionCo2IntensitySources[d.mode];
+    var co2intensity = country.productionCo2Intensities[mode];
+    var co2intensitySource = country.productionCo2IntensitySources[mode];
     if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(co2intensity) });
     var tooltip = d3.select(selector);
     tooltip.style('display', 'inline');
-    tooltip.selectAll('#mode').text(d.text || d.mode);
+    tooltip.selectAll('#mode').text(translation.translate(mode) || mode);
     tooltip.select('.emission-rect')
         .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
     tooltip.select('.emission-intensity')
         .text(Math.round(co2intensity) || '?');
     tooltip.select('.emission-source')
         .text(co2intensitySource || '?');
+
+    var isStorage = mode.indexOf('storage') != -1;
     var value = displayByEmissions ?
-        (d.isStorage ? 0 : (d.production * co2intensity * 1000)) :
-        (d.isStorage ? d.storage : d.production);
+        (isStorage ? 0 : (country.production[mode] * co2intensity * 1000)) :
+        (isStorage ? country.storage[mode.replace(' storage', '')] : country.production[mode]);
 
     tooltip.select('.production-visible')
         .style('display', displayByEmissions ? 'none' : undefined);
 
     var format = displayByEmissions ? formatting.formatCo2 : formatting.formatPower;
 
-    // Capacity
-    var hasCapacity = d.capacity !== undefined && d.capacity >= (d.production || 0);
-    var capacityFactor = hasCapacity && Math.round(value / d.capacity * 100) || '?';
+    // capacity
+    var capacity = country.capacity[mode]
+    var hasCapacity = capacity !== undefined && capacity >= (country.production[mode] || 0);
+    var capacityFactor = hasCapacity && Math.round(value / capacity * 100) || '?';
     tooltip.select('#capacity-factor').text(capacityFactor + ' %');
     tooltip.select('#capacity-factor-detail').html(
         (format(value) || '?') + ' ' +
         ' / ' + 
-        (hasCapacity && format(d.capacity) || '?'));
+        (hasCapacity && format(capacity) || '?'));
 
     var totalPositive = displayByEmissions ?
         (country.totalCo2Production + country.totalCo2Import) :
         (country.totalProduction + country.totalImport);
 
     var domain = totalPositive;
-    var domainName = d.text || d.mode;
+    var domainName = translation.translate(mode);
     var isNull = !isFinite(value) || value == undefined;
 
     var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
@@ -57,7 +60,7 @@ module.exports.showProduction = function(tooltipInstance, d, country, displayByE
         ' / ' + 
         (!isNull ? format(domain) : '?'));
 
-    var langString = d.isStorage ?
+    var langString = isStorage ?
             displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing' :
             displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom';
     tooltip.select('#line1')
@@ -76,11 +79,12 @@ module.exports.showProduction = function(tooltipInstance, d, country, displayByE
 }
 
 // Exchange
-module.exports.showExchange = function(tooltipInstance, d, country, displayByEmissions, co2color, co2Colorbars) {
+module.exports.showExchange = function(tooltipInstance, key, country, displayByEmissions, co2color, co2Colorbars) {
     var selector = tooltipInstance._selector;
+    var value = country.exchange[key];
 
-    var isExport = d.value < 0;
-    var co2intensity = country.exchangeCo2Intensities[d.key];
+    var isExport = value < 0;
+    var co2intensity = country.exchangeCo2Intensities[key];
     var tooltip = d3.select(selector);
 
     var totalPositive = displayByEmissions ?
@@ -89,7 +93,7 @@ module.exports.showExchange = function(tooltipInstance, d, country, displayByEmi
 
     var domain = totalPositive;
     var domainName = isExport ? translation.translate('electricityto') : translation.translate('electricityfrom');
-    var value = displayByEmissions ? (d.value * 1000 * co2intensity) : d.value;
+    var value = displayByEmissions ? (value * 1000 * co2intensity) : value;
     var isNull = !isFinite(value) || value == undefined;
 
     tooltip.select('.production-visible')
@@ -115,18 +119,18 @@ module.exports.showExchange = function(tooltipInstance, d, country, displayByEmi
         .html(formatting.co2Sub(translation.translate(langString,
             exchangeProportion,
             translation.translate('zoneShortName.' + country.countryCode) || country.countryCode,
-            translation.translate('zoneShortName.' + d.key) || d.key)));
+            translation.translate('zoneShortName.' + key) || key)));
     tooltip.select('#line1 #country-flag')
             .classed('flag', true)
             .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
     tooltip.select('#line1 #country-exchange-flag')
             .classed('flag', true)
-            .attr('src', flags.flagUri(d.key, FLAG_SIZE));
+            .attr('src', flags.flagUri(key, FLAG_SIZE));
 
 
     // Capacity
     var absCapacity = Math.abs(
-        ((country.exchangeCapacities || {})[d.key] || [])[isExport ? 0 : 1]);
+        ((country.exchangeCapacities || {})[key] || [])[isExport ? 0 : 1]);
     var hasCapacity = absCapacity !== undefined && isFinite(absCapacity);
     var capacityFactor = hasCapacity && Math.round(absFlow / absCapacity * 100) || '?';
     tooltip.select('#capacity-factor').text(capacityFactor + ' %');
@@ -138,7 +142,7 @@ module.exports.showExchange = function(tooltipInstance, d, country, displayByEmi
 
     // Carbon intensity
     if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(co2intensity) });
-    var o = d.value < 0 ? country.countryCode : d.key;
+    var o = value < 0 ? country.countryCode : key;
     tooltip.selectAll('.country-exchange-source-flag')
         .attr('src', flags.flagUri(o, FLAG_SIZE));
     tooltip.select('.emission-rect')

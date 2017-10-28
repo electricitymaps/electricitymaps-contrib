@@ -151,15 +151,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     selection.selectAll('rect.capacity,rect.production')
         .on('mouseover', function (d) {
             if (that.productionMouseOverHandler)
-                that.productionMouseOverHandler.call(this, d, that._data, that._displayByEmissions);
+                that.productionMouseOverHandler.call(this, d.mode, that._data, that._displayByEmissions);
         })
         .on('mouseout', function (d) {
             if (that.productionMouseOutHandler)
-                that.productionMouseOutHandler.call(this, d, that._data, that._displayByEmissions);
+                that.productionMouseOutHandler.call(this, d.mode, that._data, that._displayByEmissions);
         })
         .on('mousemove', function (d) {
             if (that.productionMouseMoveHandler)
-                that.productionMouseMoveHandler.call(this, d, that._data, that._displayByEmissions);
+                that.productionMouseMoveHandler.call(this, d.mode, that._data, that._displayByEmissions);
         });
     /*selection.select('rect.production')
         .attr('fill', function (d) { return that.co2color()(d.gCo2eqPerkWh); });*/
@@ -319,15 +319,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     gNewRow.merge(selection).selectAll('rect.capacity,rect.exchange')
         .on('mouseover', function (d) {
             if (that.exchangeMouseOverHandler)
-                that.exchangeMouseOverHandler.call(this, d, that._data, that._displayByEmissions);
+                that.exchangeMouseOverHandler.call(this, d.key, that._data, that._displayByEmissions);
         })
         .on('mouseout', function (d) {
             if (that.exchangeMouseOutHandler)
-                that.exchangeMouseOutHandler.call(this, d, that._data, that._displayByEmissions);
+                that.exchangeMouseOutHandler.call(this, d.key, that._data, that._displayByEmissions);
         })
         .on('mousemove', function (d) {
             if (that.exchangeMouseMoveHandler)
-                that.exchangeMouseMoveHandler.call(this, d, that._data, that._displayByEmissions);
+                that.exchangeMouseMoveHandler.call(this, d.key, that._data, that._displayByEmissions);
         });
 
     gNewRow.merge(selection).select('text')
