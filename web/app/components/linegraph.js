@@ -195,21 +195,6 @@ LineGraph.prototype.render = function () {
             i--;
         if (i > datetimes.length - 1) i = datetimes.length - 1;
         that.selectedIndex(i);
-        that.verticalLine
-            .attr('x1', x(datetimes[i]))
-            .attr('x2', x(datetimes[i]));
-        if (!that.definedAccessor(data[i])) {
-            // Not defined, hide the marker
-            that.markerElement
-                .style('display', 'none');
-        } else {
-            that.markerElement
-                .style('display', 'block')
-                .attr('cx', x(datetimes[i]))
-                .attr('cy', y(that.yAccessor(data[i])))
-                .style('fill', that.yColorScale()(
-                    that.yAccessor(data[i])));
-        }
     }
 
     this.interactionRect
@@ -341,6 +326,18 @@ LineGraph.prototype.selectedIndex = function(arg) {
             .attr('x2', this.x(this.xAccessor(this._data[this._selectedIndex])))
             .style('display', this._selectedIndex == this._data.length ?
                 'none' : 'block');
+        if (!this.definedAccessor(this._data[this._selectedIndex])) {
+            // Not defined, hide the marker
+            this.markerElement
+                .style('display', 'none');
+        } else {
+            this.markerElement
+                .style('display', 'block')
+                .attr('cx', this.x(this.datetimes[this._selectedIndex]))
+                .attr('cy', this.y(this.yAccessor(this._data[this._selectedIndex])))
+                .style('fill', this.yColorScale()(
+                    this.yAccessor(this._data[this._selectedIndex])));
+        }
     }
     return this;
 }
