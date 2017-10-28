@@ -149,11 +149,14 @@ AreaGraph.prototype.render = function() {
         .data(stack(data))
     var layer = selection.enter().append('g')
         .attr('class', function(d) { return 'layer ' + d.key })
-        .style('pointer-events', 'none');
 
     layer.append('path')
         .attr('class', 'area')
     layer.merge(selection).select('path.area')
+        .on('mousemove', function(d, i) {
+            if (that.layerMouseMoveHandler)
+                layerMouseMoveHandler.call(d[i][2].data._countryData)
+        })
         .transition()
         .style('fill', function(d) {
             if (that.modeOrder.indexOf(d.key) != -1) {
@@ -226,6 +229,11 @@ AreaGraph.prototype.onMouseOut = function(arg) {
 AreaGraph.prototype.onMouseMove = function(arg) {
     if (!arg) return this.mouseMoveHandler;
     else this.mouseMoveHandler = arg;
+    return this;
+}
+AreaGraph.prototype.onLayerMouseMove = function(arg) {
+    if (!arg) return this.layerMouseMoveHandler;
+    else this.layerMouseMoveHandler = arg;
     return this;
 }
 AreaGraph.prototype.co2color = function(arg) {

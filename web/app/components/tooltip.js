@@ -1,6 +1,6 @@
 var d3 = require('d3');
-var flags = require('./flags');
-var translation = require('./translation');
+var flags = require('../flags');
+var translation = require('../translation');
 
 var FLAG_SIZE = 16;
 
@@ -57,8 +57,9 @@ function co2Sub(str) {
     return str.replace("CO2", "CO<sub>2</sub>");
 }
 
-function Tooltip(countryTable, countries) {
+function Tooltip(countryTable, countryHistoryMixGraph, countries) {
     var that = this;
+
     // ** Country table
     countryTable
         .onExchangeMouseOver(function (d, country, displayByEmissions) {

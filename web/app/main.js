@@ -4,22 +4,25 @@ var d3 = require('d3');
 var moment = require('moment');
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
-// Modules
-var AreaGraph = require('./areagraph');
-var LineGraph = require('./linegraph');
-var CountryMap = require('./countrymap');
-var CountryTable = require('./countrytable');
+var AreaGraph = require('./components/areagraph');
+var LineGraph = require('./components/linegraph');
+var CountryTable = require('./components/countrytable');
+var HorizontalColorbar = require('./components/horizontalcolorbar');
+var Tooltip = require('./components/tooltip');
+
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
-var ExchangeLayer = require('./exchangelayer');
+
+var CountryMap = require('./components/layers/countrymap');
+var ExchangeLayer = require('./components/layers/exchangelayer');
+var Solar = require('./components/layers/solar');
+var Wind = require('./components/layers/wind');
+
 var flags = require('./flags');
-var grib = require('./grib');
-var HorizontalColorbar = require('./horizontalcolorbar');
 var LoadingService = require('./loadingservice');
-var Solar = require('./solar');
-var Tooltip = require('./tooltip');
-var Wind = require('./wind');
-var translation = require('./translation')
+
+var grib = require('./helpers/grib');
+var translation = require('./translation');
 
 // Configs
 var exchanges_config = require('../../config/exchanges.json');
@@ -445,9 +448,6 @@ var countryMap = new CountryMap('#map', Wind, '#wind', Solar, '#solar')
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
-var tooltip = new Tooltip(countryTable, countries)
-    .co2color(co2color)
-    .co2Colorbars(co2Colorbars);
 
 var countryHistoryGraph = new LineGraph('#country-history-carbon',
     function(d) { return moment(d.stateDatetime).toDate(); },
@@ -455,15 +455,17 @@ var countryHistoryGraph = new LineGraph('#country-history-carbon',
     function(d) { return d.co2intensity != null; })
     .yColorScale(co2color)
     .gradient(true);
-
 var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
     function(d) { return moment(d.stateDatetime).toDate(); },
     function(d) { return (d.price || {}).value; },
     function(d) { return d.price && d.price.value != null; })
     .gradient(false);
-
 var countryHistoryMixGraph = new AreaGraph('#country-history-mix',modeColor, modeOrder)
     .co2color(co2color);
+
+var tooltip = new Tooltip(countryTable, countryHistoryMixGraph, countries)
+    .co2color(co2color)
+    .co2Colorbars(co2Colorbars);
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
