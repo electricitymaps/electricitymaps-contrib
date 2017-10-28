@@ -437,7 +437,7 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map', Wind, '.wind', Solar, '.solar')
+var countryMap = new CountryMap('#map', Wind, '#wind', Solar, '#solar')
     .co2color(co2color)
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
@@ -914,7 +914,7 @@ function renderMap() {
         LoadingService.startLoading();
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
-        Wind.draw('.wind',
+        Wind.draw('#wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
             wind.forecasts[1],
@@ -937,7 +937,7 @@ function renderMap() {
         LoadingService.startLoading();
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
-        Solar.draw('.solar',
+        Solar.draw('#solar',
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
             solar.forecasts[1],

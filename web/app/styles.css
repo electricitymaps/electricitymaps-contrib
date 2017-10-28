@@ -93,7 +93,7 @@ line, path {
 .loading {
     background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
 }
-.country-history-loading {
+.country-history .loading {
     background-size: 1.7rem;
 }
 #main {
@@ -174,11 +174,11 @@ line, path {
     top: 0;
     transform-origin: 0px 0px 0px;
 }
-.wind {
+#wind {
     pointer-events: none;
     opacity: 0;
 }
-.solar {
+#solar {
     pointer-events: none;
     opacity: 0;
 }

@@ -123,6 +123,7 @@ LineGraph.prototype.render = function () {
             .style('fill', 'url(#linegraph-carbon-gradient)');
     }
     layer.merge(selection).select('path.area')
+        .transition()
         .attr('d', this.area);
 
     // Append stroke path
@@ -132,6 +133,7 @@ LineGraph.prototype.render = function () {
         .style('stroke-width', 1.5)
         .style('pointer-events', 'none');
     layer.merge(selection).select('path.line')
+        .transition()
         .attr('d', this.line);
 
 

@@ -6,11 +6,16 @@ var moment = require('moment');
 function AreaGraph(selector, modeColor, modeOrder) {
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
+    this.interactionRect = this.graphElement.append('rect')
+        .style('cursor', 'pointer')
+        .style('opacity', 0);
     this.verticalLine = this.rootElement.append('line')
         .style('display', 'none')
         .style('pointer-events', 'none')
         .style('stroke-width', 1)
-        .style('stroke', 'lightgrey');
+        .style('opacity', 0.3)
+        .style('shape-rendering', 'crispEdges')
+        .style('stroke', 'black');
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')
@@ -46,11 +51,11 @@ AreaGraph.prototype.data = function (arg) {
             datetime: moment(d.stateDatetime).toDate()
         };
         // Add production
-        d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value; });
+        d3.entries(d.production).forEach(function(o) { obj[o.key] = o.value || 0; });
         // Add exchange
         d3.entries(d.exchange).forEach(function(o) {
             exchangeKeysSet.add(o.key);
-            obj[o.key] = Math.max(0, o.value);
+            obj[o.key] = Math.max(0, o.value || 0);
         });
         // Keep a pointer to original data
         obj._countryData = d;
@@ -106,8 +111,8 @@ AreaGraph.prototype.render = function() {
     y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
 
     this.verticalLine
-        .attr('y1', 0)
-        .attr('y2', height);
+        .attr('y1', y.range()[0])
+        .attr('y2', y.range()[1]);
 
     var area = d3.area()
         .x(function(d, i) { return x(d.data.datetime); })
@@ -146,7 +151,8 @@ AreaGraph.prototype.render = function() {
         .selectAll('.layer')
         .data(stack(data))
     var layer = selection.enter().append('g')
-        .attr('class', 'layer');
+        .attr('class', function(d) { return 'layer ' + d.key })
+        .style('pointer-events', 'none');
 
     layer.append('path')
         .attr('class', 'area')
@@ -163,7 +169,11 @@ AreaGraph.prototype.render = function() {
         })
         .attr('d', area);
 
-    this.graphElement
+    this.interactionRect
+        .attr('x', x.range()[0])
+        .attr('y', y.range()[1])
+        .attr('width', x.range()[1] - x.range()[0])
+        .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
             that.verticalLine.style('display', 'block');
             if (that.mouseOverHandler)
