@@ -82,6 +82,9 @@ AreaGraph.prototype.data = function (arg) {
         .domain(keys)
         .range(keys.map(function(d) { return that.modeColor[d] }))
 
+    // Cache datetimes
+    this._datetimes = this._data.map(function(d) { return d.datetime; });
+
     return this;
 }
 
@@ -150,26 +153,52 @@ AreaGraph.prototype.render = function() {
     var layer = selection.enter().append('g')
         .attr('class', function(d) { return 'layer ' + d.key })
 
+
+    var datetimes = this._datetimes;
+    function detectPosition() {
+        if (!datetimes.length) return;
+        var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
+            (d3.touches(this)[0][0]);
+        var datetime = x.invert(dx);
+        // Find data point closest to
+        var i = d3.bisectLeft(datetimes, datetime);
+        if (i > 0 && datetime - datetimes[i-1] < datetimes[i] - datetime)
+            i--;
+        if (i > datetimes.length - 1) i = datetimes.length - 1;
+        that.verticalLine
+            .attr('x1', x(data[i].datetime))
+            .attr('x2', x(data[i].datetime));
+        return i;
+    }
+
     layer.append('path')
         .attr('class', 'area')
     layer.merge(selection).select('path.area')
-        .on('mousemove', function(d) {
+        .on('mousemove', function(d, i) {
+            var i = detectPosition.call(this);
             if (that.layerMouseMoveHandler) {
-                var i = d.index;
-                layerMouseMoveHandler.call(d.key, d[i][2].data._countryData)
+                that.layerMouseMoveHandler.call(this, d.key, d[i].data._countryData)
             }
+            if (that.mouseMoveHandler)
+                that.mouseMoveHandler.call(this, data[i]._countryData);
         })
         .on('mouseover', function(d) {
+            var i = detectPosition.call(this);
             if (that.layerMouseOverHandler) {
-                var i = d.index;
-                layerMouseOverHandler.call(d.key, d[i][2].data._countryData)
+                that.layerMouseOverHandler.call(this, d.key, d[i].data._countryData)
             }
+            that.verticalLine.style('display', 'block');
+            if (that.mouseOverHandler)
+                that.mouseOverHandler.call(this);
         })
         .on('mouseout', function(d) {
+            var i = detectPosition.call(this);
             if (that.layerMouseOutHandler) {
-                var i = d.index;
-                layerMouseOutHandler.call(d.key, d[i][2].data._countryData)
+                that.layerMouseOutHandler.call(this, d.key, d[i].data._countryData)
             }
+            that.verticalLine.style('display', 'none');
+            if (that.mouseOutHandler)
+                that.mouseOutHandler.call(this);
         })
         .transition()
         .style('fill', function(d) {
@@ -199,14 +228,7 @@ AreaGraph.prototype.render = function() {
                 that.mouseOutHandler.call(this);
         })
         .on('mousemove', function () {
-            var dx = d3.event.x - this.getBoundingClientRect().left;
-            var datetime = x.invert(dx);
-            // Find data point closest to
-            var i = d3.bisectLeft(data.map(function(d) { return d.datetime; }), datetime);
-            if (datetime - data[i-1].datetime < data[i].datetime - datetime) i--;
-            that.verticalLine
-                .attr('x1', x(data[i].datetime))
-                .attr('x2', x(data[i].datetime));
+            var i = detectPosition.call(this);
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]._countryData);
         })

@@ -34,7 +34,7 @@ function Tooltip(selector) {
     return this;
 }
 
-Tooltip.prototype.show = function() {
+Tooltip.prototype.show = function(d3Event) {
     d3.select(this._selector)
         .style('display', 'inline');
     return this;

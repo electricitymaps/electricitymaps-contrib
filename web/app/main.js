@@ -490,17 +490,27 @@ var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
     .gradient(false);
 var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
     .co2color(co2color)
-    .onLayerMouseOver(function(countryData) {
-        countryTableProductionTooltip.show()
-    })
-    .onLayerMouseMove(function(countryData) {
+    .onLayerMouseOver(function(mode, countryData) {
         var displayByEmissions = false;
-        tooltipHelper.showProduction(
-            countryTableProductionTooltip,
-            countryData, displayByEmissions,
+        var isExchange = modeOrder.indexOf(mode) == -1
+        var fun = isExchange ?
+            tooltipHelper.showExchange : tooltipHelper.showProduction
+        fun(countryTableProductionTooltip,
+            mode, countryData, displayByEmissions,
             co2color, co2Colorbars)
     })
-    .onLayerMouseOut(function(countryData) {
+    .onLayerMouseMove(function(mode, countryData) {
+        countryTableProductionTooltip.update(d3.event)
+        var displayByEmissions = false;
+        var isExchange = modeOrder.indexOf(mode) == -1
+        var fun = isExchange ?
+            tooltipHelper.showExchange : tooltipHelper.showProduction
+        fun(countryTableProductionTooltip,
+            mode, countryData, displayByEmissions,
+            co2color, co2Colorbars)
+    })
+    .onLayerMouseOut(function(mode, countryData) {
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
         countryTableProductionTooltip.hide()
     });
 
