@@ -23,6 +23,7 @@ var LoadingService = require('./loadingservice');
 
 var grib = require('./helpers/grib');
 var translation = require('./translation');
+var tooltipHelper = require('./helpers/tooltip');
 
 // Configs
 var exchanges_config = require('../../config/exchanges.json');
@@ -356,10 +357,6 @@ function updateCo2Scale() {
     if (countryHistoryGraph) countryHistoryGraph.yColorScale(co2color);
     if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
     if (exchangeLayer) exchangeLayer.co2color(co2color).render();
-    if (tooltip)
-      tooltip
-        .co2color(co2color)
-        .co2Colorbars(co2Colorbars);
     if (countryListSelector)
         countryListSelector.select('div.emission-rect')
             .style('background-color', function(d) {
@@ -447,7 +444,38 @@ var countryMap = new CountryMap('#map', Wind, '#wind', Solar, '#solar')
     });
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
-var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
+
+
+var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
+var countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip')
+var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
+    .co2color(co2color)
+    .onExchangeMouseMove(function() {
+        countryTableExchangeTooltip.update(d3.event);
+    })
+    .onExchangeMouseOver(function (d, country, displayByEmissions) {
+        tooltipHelper.showExchange(
+            countryTableExchangeTooltip,
+            d, country, displayByEmissions,
+            co2color, co2Colorbars)
+    })
+    .onExchangeMouseOut(function (d) {
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+        countryTableExchangeTooltip.hide()
+    })
+    .onProductionMouseOver(function (d, country, displayByEmissions) {
+        tooltipHelper.showProduction(
+            countryTableProductionTooltip,
+            d, country, displayByEmissions,
+            co2color, co2Colorbars)
+    })
+    .onProductionMouseMove(function(d) {
+        countryTableProductionTooltip.update(d3.event)
+    })
+    .onProductionMouseOut(function (d) {
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+        countryTableProductionTooltip.hide()
+    });
 
 var countryHistoryGraph = new LineGraph('#country-history-carbon',
     function(d) { return moment(d.stateDatetime).toDate(); },
@@ -462,10 +490,6 @@ var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
     .gradient(false);
 var countryHistoryMixGraph = new AreaGraph('#country-history-mix',modeColor, modeOrder)
     .co2color(co2color);
-
-var tooltip = new Tooltip(countryTable, countryHistoryMixGraph, countries)
-    .co2color(co2color)
-    .co2Colorbars(co2Colorbars);
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
