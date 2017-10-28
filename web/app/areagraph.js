@@ -63,10 +63,10 @@ AreaGraph.prototype.data = function (arg) {
     });
 
     // Prepare stack
+    // Order is defined here, from bottom to top
     var keys = this.modeOrder
         .concat(exchangeKeysSet.values())
     this.stack = d3.stack()
-        .order(d3.stackOrderReverse)
         .offset(d3.stackOffsetDiverging)
         .keys(keys);
 
@@ -76,14 +76,9 @@ AreaGraph.prototype.data = function (arg) {
         0, // -1 * d3.max(arg, function(d) { return d.totalExport; }),
         d3.max(arg, function(d) { return d.totalProduction + d.totalImport; })
     ]);
-    var modeColors = this.modeOrder.map(function(d) { return that.modeColor[d]; });
     this.z
         .domain(keys)
-        .range(
-            modeColors.concat(exchangeKeysSet
-                .values()
-                .map(function(d) { return 'white' })
-            ))
+        .range(keys.map(function(d) { return that.modeColor[d] }))
 
     return this;
 }
