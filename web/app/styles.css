@@ -473,13 +473,19 @@ label[for="checkbox-colorblind"] {
 .tooltip {
     border: 1px solid grey;
     color: darkgrey;
-    opacity: 0;
     padding: 5px;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 99;
     pointer-events: none;
+
+    opacity: 0;
+    -webkit-transition: opacity 0.250s;
+    transition: opacity 0.250s;
+}
+.tooltip.visible {
+    opacity: 1;
 }
 
 .watermark {
@@ -501,15 +507,6 @@ div.highscore-button {
 }
 div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
-}
-
-#country-tooltip, #exchange-tooltip {
-    opacity: 0;
-    -webkit-transition: opacity 0.250s;
-    transition: opacity 0.250s;
-}
-#country-tooltip.visible, #exchange-tooltip.visible {
-    opacity: 1;
 }
 
 .country-picker-container {

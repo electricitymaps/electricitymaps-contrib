@@ -1,6 +1,7 @@
 'use strict'
 
 var d3 = require('d3');
+var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
 var flags = require('../flags');
 var translation = require('../translation');
@@ -155,3 +156,61 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
     tooltipInstance.show()
 }
 
+module.exports.showCountry = function(tooltipInstance, countryData, co2color, co2Colorbars) {
+    if (countryData.co2intensity && co2Colorbars)
+        co2Colorbars.forEach(function(c) { c.currentMarker(countryData.co2intensity) });
+    var tooltip = d3.select(tooltipInstance._selector);
+    tooltip.select('#country-flag')
+        .attr('src', flags.flagUri(countryData.countryCode, 16));
+    tooltip.select('#country-name')
+        .text(translation.translate('zoneShortName.' + countryData.countryCode) || countryData.countryCode)
+        .style('font-weight', 'bold');
+    tooltip.select('.emission-rect')
+        .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
+    tooltip.select('.country-emission-intensity')
+        .text(Math.round(countryData.co2intensity) || '?');
+
+    var priceData = countryData.price || {};
+    var hasPrice = priceData.value != null;
+    tooltip.select('.country-spot-price')
+        .text(hasPrice ? Math.round(priceData.value) : '?')
+        .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
+    tooltip.select('.country-spot-price-currency')
+        .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
+    var hasFossilFuelData = countryData.fossilFuelRatio != null;
+    var fossilFuelPercent = countryData.fossilFuelRatio * 100;
+    tooltip.select('.lowcarbon-percentage')
+        .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
+    var hasRenewableData = countryData.renewableRatio != null;
+    var renewablePercent = countryData.renewableRatio * 100;
+    tooltip.select('.renewable-percentage')
+        .text(hasRenewableData ? Math.round(renewablePercent) : '?');
+
+    tooltipInstance.show()
+}
+
+module.exports.showExchange = function(tooltipInstance, countryData, co2color, co2Colorbars) {
+    var tooltip = d3.select(tooltipInstance._selector)
+    if (countryData.co2intensity && co2Colorbars)
+        co2Colorbars.forEach(function(c) { c.currentMarker(countryData.co2intensity) });
+    var tooltip = d3.select('#exchange-tooltip');
+    tooltip.select('.emission-rect')
+        .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
+    var i = countryData.netFlow > 0 ? 0 : 1;
+    var ctrFrom = countryData.countryCodes[i];
+    tooltip.selectAll('span#from')
+        .text(translation.translate('zoneShortName.' + ctrFrom) || ctrFrom);
+    var ctrTo = countryData.countryCodes[(i + 1) % 2];
+    tooltip.select('span#to')
+        .text(translation.translate('zoneShortName.' + ctrTo) || ctrTo);
+    tooltip.select('span#flow')
+        .text(Math.abs(Math.round(countryData.netFlow)));
+    tooltip.select('img.flag.from')
+        .attr('src', flags.flagUri(countryData.countryCodes[i], 16));
+    tooltip.select('img.flag.to')
+        .attr('src', flags.flagUri(countryData.countryCodes[(i + 1) % 2], 16));
+    tooltip.select('.country-emission-intensity')
+        .text(Math.round(countryData.co2intensity) || '?');
+
+    tooltipInstance.show()
+}

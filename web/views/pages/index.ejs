@@ -341,21 +341,6 @@ co2Sub = function(str) {
                     <div id="map"></div>
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
-                    <div id="country-tooltip" class="tooltip panel">
-                        <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />
-                        <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
-                        <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
-                        <br />
-                        Low-carbon: <span class="lowcarbon-percentage"></span> %<br />
-                        Renewable: <span class="renewable-percentage"></span> %
-                    </div>
-                    <div id="exchange-tooltip" class="tooltip panel">
-                        <%- __('tooltips.crossborderexport') %>:<br />
-                        <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
-                        <br />
-                        <%- co2Sub(__('tooltips.carbonintensityexport')) %>:<br />
-                        <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<sub>2</sub>eq/kWh
-                    </div>
                     <div class="watermark">
                         <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
                         <br />
@@ -389,6 +374,21 @@ co2Sub = function(str) {
 
                 <!-- end #inner -->
             </div>
+        </div>
+        <div id="country-tooltip" class="tooltip panel">
+            <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />
+            <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
+            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
+            <br />
+            Low-carbon: <span class="lowcarbon-percentage"></span> %<br />
+            Renewable: <span class="renewable-percentage"></span> %
+        </div>
+        <div id="exchange-tooltip" class="tooltip panel">
+            <%- __('tooltips.crossborderexport') %>:<br />
+            <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
+            <br />
+            <%- co2Sub(__('tooltips.carbonintensityexport')) %>:<br />
+            <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<sub>2</sub>eq/kWh
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
             <span id="line1"></span><br />

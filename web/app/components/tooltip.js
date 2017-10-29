@@ -34,13 +34,9 @@ function Tooltip(selector) {
     return this;
 }
 
-var TRANSITION_DURATION = 250;
-
 Tooltip.prototype.show = function(d3Event) {
     d3.select(this._selector)
-        .transition()
-        .duration(TRANSITION_DURATION)
-        .style('opacity', 1);
+        .classed('visible', true);
     return this;
 }
 Tooltip.prototype.update = function(d3Event) {
@@ -49,9 +45,7 @@ Tooltip.prototype.update = function(d3Event) {
 }
 Tooltip.prototype.hide = function() {
     d3.select(this._selector)
-        .transition()
-        .duration(TRANSITION_DURATION)
-        .style('opacity', 0);
+        .classed('visible', false);
     return this;
 }
 
