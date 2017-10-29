@@ -1510,13 +1510,13 @@ window.retryFetch = function() {
     fetch(false);
 }
 
-// Observe change of countryData
+// Observe for countryTable re-render
 observeStore(store, function(state) { return state.countryData }, function(d) {
     countryTable
         .data(d)
         .render(true);
 })
-// Observe change of selected countryData index
+// Observe for history graph index change
 observeStore(store, function(state) { return state.countryDataIndex }, function(i) {
     [countryHistoryGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach(function(g) {
         g.selectedIndex(i)

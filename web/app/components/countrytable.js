@@ -427,7 +427,7 @@ CountryTable.prototype.data = function(arg) {
     if (this._exchangeKeys) {
         this._exchangeData = this._exchangeKeys
             .map(function(k) {
-                return { key: k, value: that._data.exchange[k] }
+                return { key: k, value: (that._data.exchange || {})[k] }
             })
             .sort(function(x, y) {
                 return d3.ascending(x.key, y.key);
