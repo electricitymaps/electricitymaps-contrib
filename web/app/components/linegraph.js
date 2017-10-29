@@ -323,17 +323,18 @@ LineGraph.prototype.selectedIndex = function(arg) {
     else {
         this._selectedIndex = arg;
         if (!this._data) { return this; }
-        if (this._selectedIndex == null) { this._selectedIndex = this._data.length - 1; }
-        this.verticalLine
-            .attr('x1', this.x(this.xAccessor(this._data[this._selectedIndex])))
-            .attr('x2', this.x(this.xAccessor(this._data[this._selectedIndex])))
-            .style('display', this._selectedIndex == this._data.length ?
-                'none' : 'block');
-        if (!this.definedAccessor(this._data[this._selectedIndex])) {
+        if (this._selectedIndex == undefined || !this.definedAccessor(this._data[this._selectedIndex])) {
             // Not defined, hide the marker
+            this.verticalLine
+                .style('display', 'none');
             this.markerElement
                 .style('display', 'none');
         } else {
+            this.verticalLine
+                .attr('x1', this.x(this.xAccessor(this._data[this._selectedIndex])))
+                .attr('x2', this.x(this.xAccessor(this._data[this._selectedIndex])))
+                .style('display', this._selectedIndex == this._data.length ?
+                    'none' : 'block');
             this.markerElement
                 .style('display', 'block')
                 .attr('cx', this.x(this.datetimes[this._selectedIndex]))

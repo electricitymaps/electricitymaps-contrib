@@ -4,6 +4,8 @@ var d3 = require('d3');
 var moment = require('moment');
 
 function AreaGraph(selector, modeColor, modeOrder) {
+    var that = this;
+
     this.rootElement = d3.select(selector);
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
@@ -27,6 +29,12 @@ function AreaGraph(selector, modeColor, modeOrder) {
     this.x = d3.scaleTime();
     this.y = d3.scaleLinear();
     this.z = d3.scaleOrdinal();
+
+    this._area = d3.area()
+        .x(function(d, i) { return that.x(d.data.datetime); })
+        .y0(function(d) { return that.y(d[0]); })
+        .y1(function(d) { return that.y(d[1]); })
+        .defined(function(d, i) { return isFinite(d[1]) });
 
     // Other variables
     this.modeColor = modeColor;
@@ -93,7 +101,8 @@ AreaGraph.prototype.render = function() {
         y = this.y,
         z = this.z,
         stack = this.stack,
-        data = this._data;
+        data = this._data,
+        area = this._area;
 
     if (!data || !stack) { return this; }
 
@@ -111,11 +120,6 @@ AreaGraph.prototype.render = function() {
     this.verticalLine
         .attr('y1', y.range()[0])
         .attr('y2', y.range()[1]);
-
-    var area = d3.area()
-        .x(function(d, i) { return x(d.data.datetime); })
-        .y0(function(d) { return y(d[0]); })
-        .y1(function(d) { return y(d[1]); });
 
     // Create required gradients
     var linearGradientSelection = this.rootElement.selectAll('linearGradient')
@@ -292,12 +296,14 @@ AreaGraph.prototype.selectedIndex = function(arg) {
     else {
         this._selectedIndex = arg;
         if (!this._data) { return this; }
-        if (this._selectedIndex == null) { this._selectedIndex = this._data.length - 1; }
-        this.verticalLine
-            .attr('x1', this.x(this._data[this._selectedIndex].datetime))
-            .attr('x2', this.x(this._data[this._selectedIndex].datetime))
-            .style('display', this._selectedIndex == this._data.length ?
-                'none' : 'block');
+        if (this._selectedIndex == null) {
+            this.verticalLine.style('display', 'none')    
+        } else {
+            this.verticalLine
+                .attr('x1', this.x(this._data[this._selectedIndex].datetime))
+                .attr('x2', this.x(this._data[this._selectedIndex].datetime))
+                .style('display', 'block');
+        }
     }
     return this;
 }

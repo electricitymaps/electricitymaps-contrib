@@ -792,6 +792,7 @@ function selectCountry(countryCode, notrack) {
                 }
             }
             [countryHistoryGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
+                g.x.domain([g.x.domain()[0], currentMoment.toDate()])
                 g.onMouseMove(function(d, i) {
                     if (!d) return;
                     // In case of missing data
@@ -831,8 +832,8 @@ function selectCountry(countryCode, notrack) {
                     return;
                 }
 
-                // Add current data point
-                obj.data.push(countries[countryCode]);
+                // // Add current data point
+                // obj.data.push(countries[countryCode]);
 
                 // Add capacities
                 if ((zones_config[countryCode] || {}).capacity) {
