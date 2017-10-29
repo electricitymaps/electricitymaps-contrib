@@ -512,10 +512,12 @@ div.highscore-button:hover {
 }
 
 #country-tooltip {
-    display: none;
+    opacity: 0;
+    -webkit-transition: opacity 0.250s;
+    transition: opacity 0.250s;
 }
 #country-tooltip.country-tooltip-visible {
-    display: inline;
+    opacity: 1;
 }
 
 .country-picker-container {
