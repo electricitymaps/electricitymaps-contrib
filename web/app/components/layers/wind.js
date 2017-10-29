@@ -68,7 +68,7 @@ exports.zoomend = function() {
     var sw = projection.invert([0, height]);
     var ne = projection.invert([width, 0]);
 
-    windLayer.start(
+    windLayer.start( // Note: this blocks UI..
         [[0, 0], [width, height]], 
         width,
         height,

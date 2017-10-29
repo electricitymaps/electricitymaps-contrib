@@ -50,6 +50,10 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     var that = this;
 
     this.zoom = d3.zoom().on('zoom', function() {
+        if (that.zoomEndTimeout) {
+            clearTimeout(that.zoomEndTimeout);
+            that.zoomEndTimeout = undefined;
+        }
         if (!dragStartTransform) {
             // Zoom start
             dragStartTransform = d3.event.transform;
@@ -86,32 +90,41 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         // Return in case no dragging was started
         // That's because 'end' is triggered on mouseup (i.e. click)
         if (!dragStartTransform) { return; }
-        
-        that.windCanvas.style('transform', undefined);
-        that.solarCanvas.style('transform', undefined);
 
-        that.exchangeLayer().render();
-        wind.pause(false);
-        d3.select(this).style('cursor', undefined);
+        // Note that zoomend() methods are slow because they recalc layer.
+        // Therefore, we debounce them.
 
-        // Here we need to update the (absolute) projection in order to be used by other systems
-        // that would like to overlay the map
-        projection = that._absProjection;
-        if (!projection) { return; }
-        var transform = d3.event.transform;
-        var scale = that.startScale * transform.k;
-        projection
-            .scale(scale)
-            .translate([
-                scale * Math.PI + transform.x,
-                scale * Math.PI + transform.y]);
+        var zoomEl = this;
+        var d3Event = d3.event;
 
-        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
-        wind.zoomend();
-        solar.zoomend();
-        dragStartTransform = undefined;
+        that.zoomEndTimeout = setTimeout(function() {
+            that.exchangeLayer().render();
+            d3.select(zoomEl).style('cursor', undefined);
 
-        that.dragEndHandler.call(this);
+            // Here we need to update the (absolute) projection in order to be used by other systems
+            // that would like to overlay the map
+            projection = that._absProjection;
+            if (!projection) { return; }
+            var transform = d3Event.transform;
+            var scale = that.startScale * transform.k;
+            projection
+                .scale(scale)
+                .translate([
+                    scale * Math.PI + transform.x,
+                    scale * Math.PI + transform.y]);
+
+            // Notify. This is where we would need a Reactive / Pub-Sub system instead.
+            wind.zoomend();
+            solar.zoomend();
+            that.windCanvas.style('transform', undefined);
+            that.solarCanvas.style('transform', undefined);
+            wind.pause(false);
+
+            that.dragEndHandler.call(zoomEl);
+
+            dragStartTransform = undefined;
+            that.zoomEndTimeout = undefined;
+        }, 500)
     });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
