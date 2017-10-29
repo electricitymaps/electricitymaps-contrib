@@ -229,22 +229,18 @@ co2Sub = function(str) {
                                         </div>
                                         <div class="country-col-subtext">(gCO<sub>2</sub>eq/kWh)</div>
                                     </div>
-                                    <div class="country-col country-col-fossilpct">
-                                        <div class="country-col-headline"><%- __('country-panel.fossilfuels')%></div>
-                                        <div class="country-col-box" style="">
-                                            <span class="fossil-fuel-percentage"></span>%
+                                    <div class="country-col country-lowcarbon-wrap">
+                                        <div class="country-col-headline">Low-carbon</div>
+                                        <div class="country-col-box">
+                                            <span class="lowcarbon-percentage"></span>%
                                         </div>
                                         <div class="country-col-subtext">
                                         </div>
                                     </div>
-                                    <div class="country-col country-price-wrap">
-                                        <div class="country-col-headline"><%- __('country-panel.electricityprice') %></div>
-                                        <div class="country-col-box country-spot-price-wrap">
-                                            <div class="country-spot-price"></div>
-                                            <div style="font-size: 0.5rem; line-height: 0.5rem;"><span class="country-spot-price-currency"></span>/MWh</div>
-                                        </div>
-                                        <div class="country-col-subtext">
-                                            (<%- __('country-panel.electricityprice-dayahead') %>)
+                                    <div class="country-col country-renewable-wrap">
+                                        <div class="country-col-headline">Renewable</div>
+                                        <div class="country-col-box">
+                                            <div class="renewable-percentage"></div>%
                                         </div>
                                     </div>
                                 </div>
@@ -348,9 +344,10 @@ co2Sub = function(str) {
                     <div id="country-tooltip" class="tooltip panel">
                         <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />
                         <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
-                        <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh (<span class="fossil-fuel-percentage"></span> % <%- __('tooltips.fossilfuels')%>)<br />
+                        <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
                         <br />
-                        <%- __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh
+                        Low-carbon: <span class="lowcarbon-percentage"></span> %<br />
+                        Renewable: <span class="renewable-percentage"></span> %
                     </div>
                     <div id="exchange-tooltip" class="tooltip panel">
                         <%- __('tooltips.crossborderexport') %>:<br />

@@ -1316,8 +1316,12 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
         var hasFossilFuelData = d.fossilFuelRatio != null;
         var fossilFuelPercent = d.fossilFuelRatio * 100;
-        tooltip.select('.fossil-fuel-percentage')
-            .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+        tooltip.select('.lowcarbon-percentage')
+            .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
+        var hasRenewableData = d.renewableRatio != null;
+        var renewablePercent = d.renewableRatio * 100;
+        tooltip.select('.renewable-percentage')
+            .text(hasRenewableData ? Math.round(renewablePercent) : '?');
     })
     .onCountryMouseMove(function () {
         placeTooltip("#country-tooltip", d3.event);

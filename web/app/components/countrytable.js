@@ -337,8 +337,14 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(Math.round(this._data.co2intensity) || '?');
     var hasFossilFuelData = this._data.fossilFuelRatio != null;
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.selectAll('.left-panel-country .fossil-fuel-percentage')
-        .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+    d3.selectAll('.left-panel-country .lowcarbon-percentage')
+        .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
+
+    var hasRenewableData = this._data.renewableRatio != null;
+    var renewablePercent = this._data.renewableRatio * 100;
+    d3.selectAll('.left-panel-country .renewable-percentage')
+        .text(hasRenewableData ? Math.round(renewablePercent) : '?');
+
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')

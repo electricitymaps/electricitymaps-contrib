@@ -365,17 +365,6 @@ line, path {
 .left-panel .country-spot-price {
     width: 100%;
 }
-.left-panel .country-spot-price-wrap {
-    border: 1px solid white;
-    color: white;
-    border-radius: 0.125rem;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    flex-direction: column;
-}
 .country-col {
     text-align: center;
 }
@@ -401,7 +390,11 @@ line, path {
     color: #fff;
     border-radius: 0.125rem;
 }
-.country-col.country-col-fossilpct .country-col-box {
+.country-col.country-lowcarbon-wrap .country-col-box {
+    border:1px solid #000;
+    background: #000;
+}
+.country-col.country-renewable-wrap .country-col-box {
     border:1px solid #000;
     background: #000;
 }
@@ -433,7 +426,6 @@ line, path {
     pointer-events: none;
 }
 
-.country-price-wrap,
 .country-emission-intensity-wrap {
     text-align: center;
 }
