@@ -209,6 +209,17 @@ var app = {
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('resume', this.onResume, false);
+        document.addEventListener('backbutton', this.onBack, false);
+    },
+
+    onBack: function (e) {
+        if (showPageState != 'map') {
+            selectedCountryCode = undefined;
+            showPage(previousShowPageState || 'map');
+            e.preventDefault();
+        } else {
+            navigator.app.exitApp();
+        }
     },
 
     onDeviceReady: function() {
