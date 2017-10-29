@@ -824,7 +824,7 @@ function selectCountry(countryCode, notrack) {
                         .co2ScaleDomain([lo_emission, hi_emission])
 
                     if (g == countryHistoryCarbonGraph) {
-                        tooltipHelper.showCountry(countryTooltip, d, co2color, co2Colorbars)
+                        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
                         countryTooltip.update(d3.event)
                     }
 
@@ -1278,7 +1278,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         d3.select(this)
             .style('opacity', 0.8)
             .style('cursor', 'pointer')
-        tooltipHelper.showCountry(countryTooltip, d, co2color, co2Colorbars)
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
     })
     .onCountryMouseMove(function () {
         countryTooltip.update(d3.event);
@@ -1322,7 +1322,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer');
-            tooltipHelper.showExchange(exchangeTooltip, d, co2color, co2Colorbars)
+            tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
         })
         .onExchangeMouseMove(function () {
             exchangeTooltip.update(d3.event);

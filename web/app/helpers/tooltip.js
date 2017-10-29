@@ -156,7 +156,7 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
     tooltipInstance.show()
 }
 
-module.exports.showCountry = function(tooltipInstance, countryData, co2color, co2Colorbars) {
+module.exports.showMapCountry = function(tooltipInstance, countryData, co2color, co2Colorbars) {
     if (countryData.co2intensity && co2Colorbars)
         co2Colorbars.forEach(function(c) { c.currentMarker(countryData.co2intensity) });
     var tooltip = d3.select(tooltipInstance._selector);
@@ -189,28 +189,28 @@ module.exports.showCountry = function(tooltipInstance, countryData, co2color, co
     tooltipInstance.show()
 }
 
-module.exports.showExchange = function(tooltipInstance, countryData, co2color, co2Colorbars) {
+module.exports.showMapExchange = function(tooltipInstance, exchangeData, co2color, co2Colorbars) {
     var tooltip = d3.select(tooltipInstance._selector)
-    if (countryData.co2intensity && co2Colorbars)
-        co2Colorbars.forEach(function(c) { c.currentMarker(countryData.co2intensity) });
+    if (exchangeData.co2intensity && co2Colorbars)
+        co2Colorbars.forEach(function(c) { c.currentMarker(exchangeData.co2intensity) });
     var tooltip = d3.select('#exchange-tooltip');
     tooltip.select('.emission-rect')
-        .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
-    var i = countryData.netFlow > 0 ? 0 : 1;
-    var ctrFrom = countryData.countryCodes[i];
+        .style('background-color', exchangeData.co2intensity ? co2color(exchangeData.co2intensity) : 'gray');
+    var i = exchangeData.netFlow > 0 ? 0 : 1;
+    var ctrFrom = exchangeData.countryCodes[i];
     tooltip.selectAll('span#from')
         .text(translation.translate('zoneShortName.' + ctrFrom) || ctrFrom);
-    var ctrTo = countryData.countryCodes[(i + 1) % 2];
+    var ctrTo = exchangeData.countryCodes[(i + 1) % 2];
     tooltip.select('span#to')
         .text(translation.translate('zoneShortName.' + ctrTo) || ctrTo);
     tooltip.select('span#flow')
-        .text(Math.abs(Math.round(countryData.netFlow)));
+        .text(Math.abs(Math.round(exchangeData.netFlow)));
     tooltip.select('img.flag.from')
-        .attr('src', flags.flagUri(countryData.countryCodes[i], 16));
+        .attr('src', flags.flagUri(exchangeData.countryCodes[i], 16));
     tooltip.select('img.flag.to')
-        .attr('src', flags.flagUri(countryData.countryCodes[(i + 1) % 2], 16));
+        .attr('src', flags.flagUri(exchangeData.countryCodes[(i + 1) % 2], 16));
     tooltip.select('.country-emission-intensity')
-        .text(Math.round(countryData.co2intensity) || '?');
+        .text(Math.round(exchangeData.co2intensity) || '?');
 
     tooltipInstance.show()
 }
