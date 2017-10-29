@@ -17,7 +17,6 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     var co2intensitySource = country.productionCo2IntensitySources[mode];
     if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(co2intensity) });
     var tooltip = d3.select(selector);
-    tooltip.style('display', 'inline');
     tooltip.selectAll('#mode').text(translation.translate(mode) || mode);
     tooltip.select('.emission-rect')
         .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
