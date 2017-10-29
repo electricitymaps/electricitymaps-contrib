@@ -10,12 +10,14 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .style('cursor', 'pointer')
         .style('opacity', 0);
     this.verticalLine = this.rootElement.append('line')
+        .attr('class', 'vertical-line')
         .style('display', 'none')
         .style('pointer-events', 'none')
-        .style('stroke-width', 1)
-        .style('opacity', 0.3)
         .style('shape-rendering', 'crispEdges')
-        .style('stroke', 'black');
+    this.horizontalLine = this.rootElement.append('line')
+        .attr('class', 'horizontal-line')
+        .style('pointer-events', 'none')
+        .style('shape-rendering', 'crispEdges');
     this.markerElement = this.rootElement.append('circle')
         .style('fill', 'black')
         .style('pointer-events', 'none')
@@ -103,10 +105,6 @@ LineGraph.prototype.render = function () {
     x.range([0, width - Y_AXIS_WIDTH]);
     y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
 
-    this.verticalLine
-        .attr('y1', 0)
-        .attr('y2', height);
-
     var selection = this.graphElement
         .selectAll('.layer')
         .data([data]) // only one time series for now
@@ -155,6 +153,11 @@ LineGraph.prototype.render = function () {
     this.verticalLine
         .attr('y1', y.range()[0])
         .attr('y2', y.range()[1]);
+    this.horizontalLine
+        .attr('x1', x.range()[0])
+        .attr('x2', x.range()[1])
+        .attr('y1', y(0))
+        .attr('y2', y(0))
 
     if (this._gradient) {
         // Create gradient

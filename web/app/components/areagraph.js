@@ -10,12 +10,10 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .style('cursor', 'pointer')
         .style('opacity', 0);
     this.verticalLine = this.rootElement.append('line')
+        .attr('class', 'vertical-line')
         .style('display', 'none')
         .style('pointer-events', 'none')
-        .style('stroke-width', 1)
-        .style('opacity', 0.3)
         .style('shape-rendering', 'crispEdges')
-        .style('stroke', 'black');
 
     // Create axis
     this.xAxisElement = this.rootElement.append('g')

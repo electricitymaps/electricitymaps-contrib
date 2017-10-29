@@ -297,11 +297,22 @@ line, path {
 .country-history path {
     /*shape-rendering: crispEdges;*/
 }
+.country-history .vertical-line {
+    stroke: lightgray;
+    stroke-width: 1;
+    opacity: 0.3;
+}
+.country-history .horizontal-line {
+    stroke: lightgray;
+    stroke-width: 1;
+    stroke-dasharray: 5;
+    opacity: 0.7;
+}
 #country-history-carbon {
     height: 7rem;
 }
-#country-history-carbon .line {
-    /*stroke: black;*/
+#country-history-carbon .horizontal-line {
+    display: none;
 }
 #country-history-prices {
     height: 5rem;
