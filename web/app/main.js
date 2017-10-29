@@ -766,7 +766,7 @@ function selectCountry(countryCode, notrack) {
                     // Max export
                     d3.min(d3.entries(d.exchange), function(o) {
                         return Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-                    }),
+                    })
                     // Max storage
                     // ?
                 );
