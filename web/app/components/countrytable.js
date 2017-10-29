@@ -424,10 +424,12 @@ CountryTable.prototype.data = function(arg) {
     if (!arguments.length) return this._data;
 
     this._data = arg;
+
+    if (!this._data) { return this }
     if (this._exchangeKeys) {
         this._exchangeData = this._exchangeKeys
             .map(function(k) {
-                return { key: k, value: (that._data.exchange || {})[k] }
+                return { key: k, value: that._data.exchange[k] }
             })
             .sort(function(x, y) {
                 return d3.ascending(x.key, y.key);
@@ -530,7 +532,11 @@ CountryTable.prototype.co2color = function(arg) {
 
 CountryTable.prototype.exchangeKeys = function(arg) {
     if (!arguments.length) return this._exchangeKeys;
-    else this._exchangeKeys = arg;
+    else {
+        this._exchangeKeys = arg;
+        // HACK: Trigger a new data update
+        this.data(this._data);
+    }
     return this;
 };
 
