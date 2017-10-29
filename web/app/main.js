@@ -822,6 +822,12 @@ function selectCountry(countryCode, notrack) {
                     countryTable
                         .powerScaleDomain([lo, hi])
                         .co2ScaleDomain([lo_emission, hi_emission])
+
+                    if (g == countryHistoryCarbonGraph) {
+                        tooltipHelper.showCountry(countryTooltip, d, co2color, co2Colorbars)
+                        countryTooltip.update(d3.event)
+                    }
+
                     store.dispatch({
                         type: 'SELECT_DATA',
                         payload: { countryData: d, index: i }
@@ -831,6 +837,11 @@ function selectCountry(countryCode, notrack) {
                     countryTable
                         .powerScaleDomain(null)
                         .co2ScaleDomain(null)
+
+                    if (g == countryHistoryCarbonGraph) {
+                        countryTooltip.hide();
+                    }
+
                     store.dispatch({
                         type: 'SELECT_DATA',
                         payload: { countryData: countries[countryCode], index: i }
