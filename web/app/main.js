@@ -564,14 +564,13 @@ var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
 var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
     .co2color(co2color)
     .onLayerMouseOver(function(mode, countryData, i) {
-        var displayByEmissions = false;
         var isExchange = modeOrder.indexOf(mode) == -1
         var fun = isExchange ?
             tooltipHelper.showExchange : tooltipHelper.showProduction
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
         fun(ttp,
-            mode, countryData, displayByEmissions,
+            mode, countryData, tableDisplayEmissions,
             co2color, co2Colorbars)
         store.dispatch({
             type: 'SELECT_DATA',
@@ -579,7 +578,6 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         })
     })
     .onLayerMouseMove(function(mode, countryData, i) {
-        var displayByEmissions = false;
         var isExchange = modeOrder.indexOf(mode) == -1
         var fun = isExchange ?
             tooltipHelper.showExchange : tooltipHelper.showProduction
@@ -587,7 +585,7 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
             countryTableExchangeTooltip : countryTableProductionTooltip
         ttp.update(d3.event)
         fun(ttp,
-            mode, countryData, displayByEmissions,
+            mode, countryData, tableDisplayEmissions,
             co2color, co2Colorbars)
         store.dispatch({
             type: 'SELECT_DATA',
@@ -617,6 +615,8 @@ var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor
 d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
+countryHistoryMixGraph
+    .displayByEmissions(tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#emissions')
     .classed('selected', tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#production')
@@ -637,6 +637,8 @@ window.toggleSource = function(state) {
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
         {countryCode: countryTable.data().countryCode});
     countryTable
+        .displayByEmissions(tableDisplayEmissions);
+    countryHistoryMixGraph
         .displayByEmissions(tableDisplayEmissions);
     d3.select('.country-show-emissions-wrap a#emissions')
         .classed('selected', tableDisplayEmissions);
@@ -732,6 +734,7 @@ function selectCountry(countryCode, notrack) {
         }
         countryTable
             .powerScaleDomain(null) // Always reset scale if click on a new country
+            .co2ScaleDomain(null)
             .exchangeKeys(null) // Always reset exchange keys
         store.dispatch({
             type: 'ZONE_DATA',
@@ -757,7 +760,30 @@ function selectCountry(countryCode, notrack) {
                     d.maxImport || 0,
                     d.maxImportCapacity || 0);
             });
-
+            // TODO(olc): do those aggregates server-side
+            var lo_emission = d3.min(countryHistory, function(d) {
+                return Math.min(
+                    // Max export
+                    d3.min(d3.entries(d.exchange), function(o) {
+                        return Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+                    }),
+                    // Max storage
+                    // ?
+                );
+            });
+            var hi_emission = d3.max(countryHistory, function(d) {
+                return Math.max(
+                    // Max import
+                    d3.max(d3.entries(d.exchange), function(o) {
+                        return Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+                    }),
+                    // Max production
+                    d3.max(d3.entries(d.production), function(o) {
+                        return Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
+                    })
+                );
+            });
+            
             // Figure out the highest CO2 emissions
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
@@ -799,15 +825,17 @@ function selectCountry(countryCode, notrack) {
                 } else {
                     countryTable
                         .powerScaleDomain([lo, hi])
+                        .co2ScaleDomain([lo_emission, hi_emission])
                     store.dispatch({
                         type: 'ZONE_DATA',
                         payload: data
                     })
                 }
             }
+            var firstDatetime = moment(countryHistory[0].stateDatetime).toDate();
             [countryHistoryGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
                 if (currentMoment) {
-                    g.x.domain([g.x.domain()[0], currentMoment.toDate()])
+                    g.xDomain([firstDatetime, currentMoment.toDate()])
                 }
                 g.onMouseMove(function(d, i) {
                     if (!d) return;
@@ -816,6 +844,7 @@ function selectCountry(countryCode, notrack) {
                         d.countryCode = countryCode;
                     countryTable
                         .powerScaleDomain([lo, hi])
+                        .co2ScaleDomain([lo_emission, hi_emission])
                     store.dispatch({
                         type: 'SELECT_DATA',
                         payload: { countryData: d, index: i }
@@ -824,6 +853,7 @@ function selectCountry(countryCode, notrack) {
                 .onMouseOut(function(d, i) {
                     countryTable
                         .powerScaleDomain(null)
+                        .co2ScaleDomain(null)
                     store.dispatch({
                         type: 'SELECT_DATA',
                         payload: { countryData: countries[countryCode], index: i }

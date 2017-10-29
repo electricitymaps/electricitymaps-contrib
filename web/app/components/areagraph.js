@@ -42,11 +42,13 @@ function AreaGraph(selector, modeColor, modeOrder) {
 }
 
 AreaGraph.prototype.data = function (arg) {
-    if (!arguments.length) return this._data;
-    if (!arg.length) {
-        this._data = [];
+    if (!arguments.length) return this._originalData;
+    if (!arg) {
         return this;
     }
+
+    // Keep the original data
+    this._originalData = arg;
 
     var that = this;
 
@@ -59,11 +61,19 @@ AreaGraph.prototype.data = function (arg) {
         // Add production
         that.modeOrder.forEach(function(k) {
             obj[k] = (d.production || {})[k];
+            if (that._displayByEmissions && obj[k] != null) {
+                // in tCO2eq/min
+                obj[k] *= d.productionCo2Intensities[k] / 1e3 / 60.0
+            }
         })
         // Add exchange
         d3.entries(d.exchange).forEach(function(o) {
             exchangeKeysSet.add(o.key);
             obj[o.key] = Math.max(0, o.value);
+            if (that._displayByEmissions && obj[o.key] != null) {
+                // in tCO2eq/min
+                obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+            }
         });
         // Keep a pointer to original data
         obj._countryData = d;
@@ -79,10 +89,21 @@ AreaGraph.prototype.data = function (arg) {
         .keys(keys);
 
     // Set domains
-    this.x.domain(d3.extent(this._data, function(d) { return d.datetime; }));
+    if (this._xDomain) {
+        this.x.domain(this._xDomain);
+    } else {
+        this.x.domain(d3.extent(this._data, function(d) { return d.datetime; }));
+    }
     this.y.domain([
-        0, // -1 * d3.max(arg, function(d) { return d.totalExport; }),
-        d3.max(arg, function(d) { return d.totalProduction + d.totalImport; })
+        0,
+        d3.max(arg, function(d) {
+            if (!that._displayByEmissions) {
+                return d.totalProduction + d.totalImport;
+            } else {
+                // in tCO2eq/min
+                return (d.totalCo2Production + d.totalCo2Import) / 1e6 / 60.0;
+            }
+        })
     ]);
     this.z
         .domain(keys)
@@ -105,6 +126,11 @@ AreaGraph.prototype.render = function() {
         area = this._area;
 
     if (!data || !stack) { return this; }
+
+    // Update scale if needed
+    if (this._xDomain) {
+        x.domain(this._xDomain);
+    }
 
     // Set scale range, based on effective pixel size
     var width  = this.rootElement.node().getBoundingClientRect().width,
@@ -208,7 +234,11 @@ AreaGraph.prototype.render = function() {
                 return z(d.key)
             } else {
                 // Exchange fill
-                return 'url(#areagraph-exchange-' + d.key + ')'
+                if (that._displayByEmissions) {
+                    return 'darkgray'
+                } else {
+                    return 'url(#areagraph-exchange-' + d.key + ')'
+                }
             }
         })
         .attr('d', area);
@@ -291,6 +321,11 @@ AreaGraph.prototype.co2color = function(arg) {
     else this._co2color = arg;
     return this;
 }
+AreaGraph.prototype.xDomain = function(arg) {
+    if (!arguments.length) return this._xDomain;
+    else this._xDomain = arg;
+    return this;
+}
 AreaGraph.prototype.selectedIndex = function(arg) {
     if (!arguments.length) return this._selectedIndex;
     else {
@@ -304,6 +339,18 @@ AreaGraph.prototype.selectedIndex = function(arg) {
                 .attr('x2', this.x(this._data[this._selectedIndex].datetime))
                 .style('display', 'block');
         }
+    }
+    return this;
+}
+AreaGraph.prototype.displayByEmissions = function(arg) {
+    if (arg === undefined) return this._displayByEmissions;
+    else {
+        this._displayByEmissions = arg;
+        // Quick hack to re-render
+        // TODO: In principle we shouldn't be calling `.data()`
+        this
+            .data(this._originalData)
+            .render();
     }
     return this;
 }

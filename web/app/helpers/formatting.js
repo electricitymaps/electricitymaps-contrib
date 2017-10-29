@@ -1,8 +1,9 @@
 'use strict'
 
 var d3 = require('d3');
+var translation = require('../translation');
 
-module.exports.co2Sub = function(str) {
+var co2Sub = module.exports.co2Sub = function(str) {
     return str.replace('CO2', 'CO<sub>2</sub>');
 }
 module.exports.formatPower = function(d, numDigits) {

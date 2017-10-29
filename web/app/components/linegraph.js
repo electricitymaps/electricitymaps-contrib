@@ -320,6 +320,13 @@ LineGraph.prototype.gradient = function(arg) {
     else this._gradient = arg;
     return this;
 }
+LineGraph.prototype.xDomain = function(arg) {
+    if (!arguments.length) return this.x.domain();
+    else {
+        this.x.domain(arg)
+    }
+    return this;
+}
 LineGraph.prototype.selectedIndex = function(arg) {
     if (!arguments.length) return this._selectedIndex;
     else {

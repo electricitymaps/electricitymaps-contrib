@@ -486,7 +486,7 @@ CountryTable.prototype.data = function(arg) {
         return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
     });
     this.co2Scale // in tCO2eq/min
-        .domain([
+        .domain(this._co2ScaleDomain || [
             -maxCO2eqExport || 0,
             Math.max(
                 d3.max(this.sortedProductionData, function (d) { return d.gCo2eqPerH / 1e6 / 60.0; }) || 0,
@@ -521,6 +521,11 @@ CountryTable.prototype.data = function(arg) {
 CountryTable.prototype.powerScaleDomain = function(arg) {
     if (!arguments.length) return this._powerScaleDomain;
     this._powerScaleDomain = arg;
+    return this;
+}
+CountryTable.prototype.co2ScaleDomain = function(arg) {
+    if (!arguments.length) return this._co2ScaleDomain;
+    this._co2ScaleDomain = arg;
     return this;
 }
 
