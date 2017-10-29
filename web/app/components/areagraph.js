@@ -34,10 +34,7 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .x(function(d, i) { return that.x(d.data.datetime); })
         .y0(function(d) { return that.y(d[0]); })
         .y1(function(d) { return that.y(d[1]); })
-        .defined(function(d, i) {
-            console.log(isFinite(d[1]), i)
-            return isFinite(d[1])
-        });
+        .defined(function(d, i) { return isFinite(d[1]) });
 
     // Other variables
     this.modeColor = modeColor;

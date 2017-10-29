@@ -102,10 +102,10 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
     var format = displayByEmissions ? formatting.formatCo2 : formatting.formatPower;
 
     var absFlow = Math.abs(value);
-    var exchangeProportion = !isNull ? Math.round(absFlow / domain * 100) : '?';
+    var exchangeProportion = !isNull ? Math.round(absFlow / domain * 100.0) : '?';
     tooltip.select('#exchange-proportion').text(exchangeProportion + ' %');
     tooltip.select('#exchange-proportion-detail').html(
-        (!isNull ? format(absFlow) : '?') + ' ' +
+        (!isNull ? format(absFlow) : '?') +
         ' / ' + 
         (!isNull ? format(domain) : '?'));
     tooltip.select('#domain-name').text(domainName);

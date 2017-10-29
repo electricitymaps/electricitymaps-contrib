@@ -568,7 +568,9 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         var isExchange = modeOrder.indexOf(mode) == -1
         var fun = isExchange ?
             tooltipHelper.showExchange : tooltipHelper.showProduction
-        fun(countryTableProductionTooltip,
+        var ttp = isExchange ?
+            countryTableExchangeTooltip : countryTableProductionTooltip
+        fun(ttp,
             mode, countryData, displayByEmissions,
             co2color, co2Colorbars)
         store.dispatch({
@@ -577,12 +579,14 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         })
     })
     .onLayerMouseMove(function(mode, countryData, i) {
-        countryTableProductionTooltip.update(d3.event)
         var displayByEmissions = false;
         var isExchange = modeOrder.indexOf(mode) == -1
         var fun = isExchange ?
             tooltipHelper.showExchange : tooltipHelper.showProduction
-        fun(countryTableProductionTooltip,
+        var ttp = isExchange ?
+            countryTableExchangeTooltip : countryTableProductionTooltip
+        ttp.update(d3.event)
+        fun(ttp,
             mode, countryData, displayByEmissions,
             co2color, co2Colorbars)
         store.dispatch({
@@ -592,7 +596,10 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
     })
     .onLayerMouseOut(function(mode, countryData, i) {
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
-        countryTableProductionTooltip.hide()
+        var isExchange = modeOrder.indexOf(mode) == -1
+        var ttp = isExchange ?
+            countryTableExchangeTooltip : countryTableProductionTooltip
+        ttp.hide()
         store.dispatch({
             type: 'SELECT_DATA',
             payload: { countryData: countryData, index: i }
