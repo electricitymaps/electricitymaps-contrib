@@ -298,10 +298,11 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 if (getExchangeCo2eq(d) === undefined)
                     return that.LABEL_MAX_WIDTH;
                 else
-                    return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min(d.value / 1e3 / 60.0 * co2intensity, 0));
+                    return that.LABEL_MAX_WIDTH + that.co2Scale(Math.min((d.value || 0.0) / 1e3 / 60.0 * co2intensity, 0));
             }
-            else
-                return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value, 0));
+            else {
+                return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value || 0.0, 0.0));
+            }
         })
         .attr('width', function (d) { 
             if (that._displayByEmissions) {
@@ -309,10 +310,10 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 if (getExchangeCo2eq(d) === undefined)
                     return 0;
                 else
-                    return Math.abs(that.co2Scale(d.value / 1e3 / 60.0 * co2intensity) - that.co2Scale(0));
+                    return Math.abs(that.co2Scale((d.value || 0.0) / 1e3 / 60.0 * co2intensity) - that.co2Scale(0));
             }
             else
-                return Math.abs(that.powerScale(d.value) - that.powerScale(0));
+                return Math.abs(that.powerScale(d.value || 0.0) - that.powerScale(0));
         })
 
     // Add event handlers
@@ -373,32 +374,32 @@ CountryTable.prototype.displayByEmissions = function(arg) {
 }
 
 CountryTable.prototype.onExchangeMouseOver = function(arg) {
-    if (!arg) return this.exchangeMouseOverHandler;
+    if (!arguments.length) return this.exchangeMouseOverHandler;
     else this.exchangeMouseOverHandler = arg;
     return this;
 }
 CountryTable.prototype.onExchangeMouseOut = function(arg) {
-    if (!arg) return this.exchangeMouseOutHandler;
+    if (!arguments.length) return this.exchangeMouseOutHandler;
     else this.exchangeMouseOutHandler = arg;
     return this;
 }
 CountryTable.prototype.onExchangeMouseMove = function(arg) {
-    if (!arg) return this.exchangeMouseMoveHandler;
+    if (!arguments.length) return this.exchangeMouseMoveHandler;
     else this.exchangeMouseMoveHandler = arg;
     return this;
 }
 CountryTable.prototype.onProductionMouseOver = function(arg) {
-    if (!arg) return this.productionMouseOverHandler;
+    if (!arguments.length) return this.productionMouseOverHandler;
     else this.productionMouseOverHandler = arg;
     return this;
 }
 CountryTable.prototype.onProductionMouseOut = function(arg) {
-    if (!arg) return this.productionMouseOutHandler;
+    if (!arguments.length) return this.productionMouseOutHandler;
     else this.productionMouseOutHandler = arg;
     return this;
 }
 CountryTable.prototype.onProductionMouseMove = function(arg) {
-    if (!arg) return this.productionMouseMoveHandler;
+    if (!arguments.length) return this.productionMouseMoveHandler;
     else this.productionMouseMoveHandler = arg;
     return this;
 }
@@ -420,13 +421,23 @@ CountryTable.prototype.resize = function() {
 
 CountryTable.prototype.data = function(arg) {
     var that = this;
-    if (!arg) return this._data;
+    if (!arguments.length) return this._data;
 
     this._data = arg;
-    this._exchangeData = d3.entries(this._data.exchange)
-        .sort(function(x, y) {
-            return d3.ascending(x.key, y.key);
-        });
+    if (this._exchangeKeys) {
+        this._exchangeData = this._exchangeKeys
+            .map(function(k) {
+                return { key: k, value: that._data.exchange[k] }
+            })
+            .sort(function(x, y) {
+                return d3.ascending(x.key, y.key);
+            });
+    } else {
+        this._exchangeData = d3.entries(this._data.exchange)
+            .sort(function(x, y) {
+                return d3.ascending(x.key, y.key);
+            });
+    }
 
     // Construct a list having each production in the same order as this.MODES.
     this.sortedProductionData = this.MODES.map(function (d) {
@@ -506,14 +517,20 @@ CountryTable.prototype.data = function(arg) {
 
 // Hack to fix the scale at a minimum value
 CountryTable.prototype.powerScaleDomain = function(arg) {
-    if (arg === undefined) return this._powerScaleDomain;
+    if (!arguments.length) return this._powerScaleDomain;
     this._powerScaleDomain = arg;
     return this;
 }
 
 CountryTable.prototype.co2color = function(arg) {
-    if (!arg) return this._co2color;
+    if (!arguments.length) return this._co2color;
     else this._co2color = arg;
+    return this;
+};
+
+CountryTable.prototype.exchangeKeys = function(arg) {
+    if (!arguments.length) return this._exchangeKeys;
+    else this._exchangeKeys = arg;
     return this;
 };
 

@@ -725,7 +725,7 @@ function selectCountry(countryCode, notrack) {
         }
         countryTable
             .powerScaleDomain(null) // Always reset scale if click on a new country
-
+            .exchangeKeys(null) // Always reset exchange keys
         store.dispatch({
             type: 'ZONE_DATA',
             payload: countries[countryCode]
@@ -773,6 +773,13 @@ function selectCountry(countryCode, notrack) {
                 .data(countryHistory);
             countryHistoryMixGraph
                 .data(countryHistory);
+
+            // Update country table with all possible exchanges
+            countryTable
+                .exchangeKeys(
+                    countryHistoryMixGraph.exchangeKeysSet.values())
+                .render()
+
             if (countryHistoryGraph.frozen) {
                 var data = countryHistoryGraph.data()[countryHistoryGraph.selectedIndex];
                 if (!data) {
@@ -792,7 +799,9 @@ function selectCountry(countryCode, notrack) {
                 }
             }
             [countryHistoryGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
-                g.x.domain([g.x.domain()[0], currentMoment.toDate()])
+                if (currentMoment) {
+                    g.x.domain([g.x.domain()[0], currentMoment.toDate()])
+                }
                 g.onMouseMove(function(d, i) {
                     if (!d) return;
                     // In case of missing data
