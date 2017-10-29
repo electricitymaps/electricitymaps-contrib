@@ -511,12 +511,12 @@ div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
-#country-tooltip {
+#country-tooltip, #exchange-tooltip {
     opacity: 0;
     -webkit-transition: opacity 0.250s;
     transition: opacity 0.250s;
 }
-#country-tooltip.country-tooltip-visible {
+#country-tooltip.visible, #exchange-tooltip.visible {
     opacity: 1;
 }
 

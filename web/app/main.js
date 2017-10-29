@@ -1296,7 +1296,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         if (d.co2intensity && co2Colorbars)
             co2Colorbars.forEach(function(c) { c.currentMarker(d.co2intensity) });
         var tooltip = d3.select('#country-tooltip');
-        tooltip.classed('country-tooltip-visible', true);
+        tooltip.classed('visible', true);
         tooltip.select('#country-flag')
             .attr('src', flags.flagUri(d.countryCode, 16));
         tooltip.select('#country-name')
@@ -1328,7 +1328,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             .style('cursor', 'auto')
         if (d.co2intensity && co2Colorbars)
             co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-        d3.select('#country-tooltip').classed('country-tooltip-visible', false);
+        d3.select('#country-tooltip').classed('visible', false);
     });
 
     // Re-render country table if it already was visible
@@ -1364,7 +1364,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             if (d.co2intensity && co2Colorbars)
                 co2Colorbars.forEach(function(c) { c.currentMarker(d.co2intensity) });
             var tooltip = d3.select('#exchange-tooltip');
-            tooltip.style('display', 'inline');
+            tooltip.classed('visible', true);
             tooltip.select('.emission-rect')
                 .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
             var i = d.netFlow > 0 ? 0 : 1;
@@ -1393,7 +1393,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             if (d.co2intensity && co2Colorbars)
                 co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
             d3.select('#exchange-tooltip')
-                .style('display', 'none');
+                .classed('visible', false);
         })
         .render();
 
