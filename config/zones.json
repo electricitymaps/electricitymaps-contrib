@@ -1235,9 +1235,12 @@
   },
   "TR": {
     "capacity": {
+      "biomass": 367,
       "coal": 17317,
       "hydro": 27385,
       "gas": 22552,
+      "geothermal": 821,
+      "solar": 833,
       "wind": 6202
     },
     "parsers": {
