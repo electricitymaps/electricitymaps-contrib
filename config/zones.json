@@ -1037,14 +1037,14 @@
   },
   "PL": {
     "capacity": {
-      "biomass": 435,
-      "coal": 26962,
-      "gas": 1460,
-      "hydro": 2321,
+      "biomass": 501,
+      "coal": 26308,
+      "gas": 1596,
+      "hydro": 2321, //incl 1770 storage
       "nuclear": 0,
       "oil": 345,
-      "solar": 77,
-      "wind": 5494
+      "solar": 187,
+      "wind": 6026
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
