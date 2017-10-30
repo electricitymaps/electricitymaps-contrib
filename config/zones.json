@@ -387,8 +387,15 @@
   },
   "CH": {
     "capacity": {
-      "hydro": 9170,
-      "nuclear": 3375
+      "biomass": 240,
+      "coal": 0,
+      "gas": 55,
+      "geothermal": ,
+      "hydro": 10152, // incl. 5064 of storage
+      "nuclear": 3375,
+      "oil": 0,
+      "solar": 1644,
+      "wind": 76
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
