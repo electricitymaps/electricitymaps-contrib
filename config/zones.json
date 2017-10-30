@@ -431,14 +431,15 @@
   "CZ": {
     "capacity": {
       "biomass": 450,
-      "coal": 9534,
+      "coal": 9129,
       "gas": 1606,
       "geothermal": 0,
-      "hydro": 1081,
+      "hydro": 1087,
       "hydro storage": 1171.5,
       "nuclear": 4040,
       "oil": 0,
-      "solar": 2067,
+      "solar": 2027,
+      "unknown": 400,
       "wind": 277
     },
     "parsers": {
