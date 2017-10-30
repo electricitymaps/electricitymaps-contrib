@@ -120,12 +120,13 @@
   },
   "BE": {
     "capacity": {
-      "biomass": 1078,
-      "coal": 0,
-      "gas": 5303,
-      "hydro": 1425,
+      "biomass": 1076,
+      "coal": 0, // ENSTSOE 470 figure outdated
+      "gas": 5811,
+      "geothermal": 0,
+      "hydro": 1486, // incl. 1308 storage
       "nuclear": 5919,
-      "oil": 0,
+      "oil": 260,
       "solar": 2953,
       "wind": 2622
     },
