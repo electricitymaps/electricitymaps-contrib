@@ -765,13 +765,14 @@
   "HU": {
     "capacity": {
       "biomass": 274,
-      "coal": 1007,
-      "gas": 4124,
+      "coal": 1049,
+      "gas": 4114,
       "hydro": 57,
+      "hydro storage": 0,
       "nuclear": 1887,
       "oil": 410,
-      "solar": 29,
-      "wind": 328
+      "solar": 225,
+      "wind": 329
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
