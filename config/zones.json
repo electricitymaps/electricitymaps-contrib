@@ -141,12 +141,14 @@
   },
   "BG": {
     "capacity": {
-      "biomass": 64,
-      "coal": 4882,
-      "gas": 721,
-      "hydro": 2943,
+      "biomass": 81,
+      "coal": 4900,
+      "gas": 779,
+      "geothermal": 0,
+      "hydro": 3204, // incl. 864 storage
       "nuclear": 2000,
-      "solar": 1041,
+      "oil": 0,
+      "solar": 1043,
       "wind": 701
     },
     "parsers": {
