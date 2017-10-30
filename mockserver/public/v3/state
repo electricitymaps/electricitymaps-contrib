@@ -1,94 +1,616 @@
 {
-    "data": {
-        "countries": {
-            "NO": {
-                "countryCode": "NO",
-                "co2intensity": 17.61404045
-            },
-            "SE": {
-                "countryCode": "SE",
-                "co2intensity": 58.32738329
-            },
-            "FR": {
-                "countryCode": "FR",
-                "co2intensity": 74.69103562
-            },
-            "CH": {
-                "countryCode": "CH",
-                "co2intensity": 141.4455777
-            },
-            "FI": {
-                "countryCode": "FI",
-                "co2intensity": 177.5923398
-            },
-            "BE": {
-                "countryCode": "BE",
-                "co2intensity": 185.8273526
-            },
-            "AT": {
-                "countryCode": "AT",
-                "co2intensity": 229.7002171
-            },
-            "DK": {
-                "countryCode": "DK",
-                "co2intensity": 267.9663822
-            },
-            "ES": {
-                "countryCode": "ES",
-                "co2intensity": 270.2686282
-            },
-            "HU": {
-                "countryCode": "HU",
-                "co2intensity": 284.5531074
-            },
-            "GB": {
-                "countryCode": "GB",
-                "co2intensity": 286.0398833
-            },
-            "SK": {
-                "countryCode": "SK",
-                "co2intensity": 311.8227099
-            },
-            "RO": {
-                "countryCode": "RO",
-                "co2intensity": 321.8784624
-            },
-            "PT": {
-                "countryCode": "PT",
-                "co2intensity": 378.273376
-            },
-            "IE": {
-                "countryCode": "IE",
-                "co2intensity": 389.0897578
-            },
-            "IT": {
-                "countryCode": "IT",
-                "co2intensity": 401.1512531
-            },
-            "DE": {
-                "countryCode": "DE",
-                "co2intensity": 411.4957883
-            },
-            "BG": {
-                "countryCode": "BG",
-                "co2intensity": 427.4438004
-            },
-            "TR": {
-                "countryCode": "TR",
-                "co2intensity": 431.5666425
-            },
-            "CZ": {
-                "countryCode": "CZ",
-                "co2intensity": 477.1353185
-            },
-            "GR": {
-                "countryCode": "GR",
-                "co2intensity": 493.1534697
-            },
-            "PL": {
-                "countryCode": "PL",
-                "co2intensity": 684.757683
-            }
-        }
-    }
+  "data": {
+    "countries": {
+      "AT": {
+        "co2intensity": 230.19704094484928,
+        "exchange": {
+          "export": 1893.241075688545,
+          "import": 2819.4465513049804
+        },
+        "exchangeCo2Intensities": {
+          "export": 230.19704094484928,
+          "import": 426.8670907310382
+        },
+        "production": {
+          "biomass": 390.5324043509337,
+          "coal": 188.60531259398988,
+          "gas": 1222.387869342339,
+          "geothermal": 0.0,
+          "hydro": 3763.8544385331797,
+          "nuclear": null,
+          "oil": 0.0,
+          "solar": 125.0295544754443,
+          "unknown": 21.972411490267373,
+          "wind": 730.9136290495754
+        },
+        "storage": {
+          "hydro storage": 333.69383954504065
+        },
+        "totalExport": 1893.241075688545,
+        "totalImport": 2819.4465513049804,
+        "totalStorage": 333.69383954504065
+      },
+      "BE": {
+        "co2intensity": 190.353361297848,
+        "exchange": {
+          "export": 593.5948810358327,
+          "import": 1257.3538635395184
+        },
+        "exchangeCo2Intensities": {
+          "export": 190.353361297848,
+          "import": 148.9294526177745
+        },
+        "production": {
+          "biomass": 474.5717616922881,
+          "coal": 0.0,
+          "gas": 2595.282902298372,
+          "geothermal": null,
+          "hydro": 132.56357180017338,
+          "nuclear": 4439.37145152736,
+          "oil": 0.7578468224511437,
+          "solar": 318.5085508099638,
+          "unknown": 575.3773410039169,
+          "wind": 520.105834165894
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 593.5948810358327,
+        "totalImport": 1257.3538635395184,
+        "totalStorage": 0.0
+      },
+      "CH": {
+        "co2intensity": 145.72404259498342,
+        "exchange": {
+          "export": 2296.56321185177,
+          "import": 3123.0113802314418
+        },
+        "exchangeCo2Intensities": {
+          "export": 145.72404259498342,
+          "import": 305.1333394294855
+        },
+        "production": {
+          "biomass": null,
+          "coal": null,
+          "gas": null,
+          "geothermal": null,
+          "hydro": 1757.2488320146895,
+          "nuclear": 2234.419561044115,
+          "oil": null,
+          "solar": 53.25830490405118,
+          "unknown": null,
+          "wind": 8.277958805708739
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 2296.56321185177,
+        "totalImport": 3123.0113802314418,
+        "totalStorage": 0.0
+      },
+      "CZ": {
+        "co2intensity": 481.3596020166905,
+        "exchange": {
+          "export": 2317.0837161404424,
+          "import": 1114.5695145358866
+        },
+        "exchangeCo2Intensities": {
+          "export": 481.3596020166905,
+          "import": 577.3714197826963
+        },
+        "production": {
+          "biomass": 249.90313259912247,
+          "coal": 4423.325609090443,
+          "gas": 651.9729638395166,
+          "geothermal": null,
+          "hydro": 332.68067299092115,
+          "nuclear": 2739.3009005262215,
+          "oil": 5.6527570635491085,
+          "solar": 245.17452512071674,
+          "unknown": 369.8581198789216,
+          "wind": 60.14454721307194
+        },
+        "storage": {
+          "hydro storage": 159.8697686734299
+        },
+        "totalExport": 2317.0837161404424,
+        "totalImport": 1114.5695145358866,
+        "totalStorage": 159.8697686734299
+      },
+      "DE": {
+        "co2intensity": 412.34741545597865,
+        "exchange": {
+          "export": 6820.4383567209825,
+          "import": 2026.5154910758076
+        },
+        "exchangeCo2Intensities": {
+          "export": 412.34741545597865,
+          "import": 169.75792438354333
+        },
+        "production": {
+          "biomass": 4754.105675810602,
+          "coal": 23065.231465261506,
+          "gas": 2585.637178932398,
+          "geothermal": 4.600768972417039,
+          "hydro": 2441.854077848346,
+          "nuclear": 8196.479546208571,
+          "oil": 235.821195869105,
+          "solar": 4076.7506184050794,
+          "unknown": 5195.702474472265,
+          "wind": 10146.4938710725
+        },
+        "storage": {
+          "hydro storage": 830.5612717745886
+        },
+        "totalExport": 6820.4383567209825,
+        "totalImport": 2026.5154910758076,
+        "totalStorage": 830.5612717745886
+      },
+      "DK": {
+        "co2intensity": 274.2934353193931,
+        "exchange": {
+          "export": 1096.8230990465026,
+          "import": 1398.2176460808046
+        },
+        "exchangeCo2Intensities": {
+          "export": 274.2934353193931,
+          "import": 122.91450583588527
+        },
+        "production": {
+          "biomass": 212.82020443672167,
+          "coal": 994.2777116869938,
+          "gas": 532.2080932821405,
+          "geothermal": null,
+          "hydro": 0.0,
+          "nuclear": null,
+          "oil": 101.36297579678391,
+          "solar": 86.2399624314945,
+          "unknown": 2072.6027208716873,
+          "wind": 1587.5648382815098
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 1096.8230990465026,
+        "totalImport": 1398.2176460808046,
+        "totalStorage": 0.0
+      },
+      "ES": {
+        "co2intensity": 273.9782809392992,
+        "exchange": {
+          "export": 740.0934203596335,
+          "import": 2438.048876436829
+        },
+        "exchangeCo2Intensities": {
+          "export": 273.9782809392992,
+          "import": 162.05828956913922
+        },
+        "production": {
+          "biomass": 631.3706004140791,
+          "coal": 5077.0618273197415,
+          "gas": 5976.54187199285,
+          "geothermal": 0.0,
+          "hydro": 2654.804215585934,
+          "nuclear": 6353.747673655014,
+          "oil": 284.2305954537609,
+          "solar": 1404.2154713031193,
+          "unknown": 437.6861497658245,
+          "wind": 5051.293611288836
+        },
+        "storage": {
+          "hydro storage": 411.1504416932194
+        },
+        "totalExport": 740.0934203596335,
+        "totalImport": 2438.048876436829,
+        "totalStorage": 411.1504416932194
+      },
+      "FI": {
+        "co2intensity": 181.68871375717737,
+        "exchange": {
+          "export": 140.3446459941025,
+          "import": 2129.2190583043175
+        },
+        "exchangeCo2Intensities": {
+          "export": 181.68871375717737,
+          "import": 117.13011508548496
+        },
+        "production": {
+          "biomass": 1323.2019680360597,
+          "coal": 840.3593142214079,
+          "gas": 536.4560563767669,
+          "geothermal": null,
+          "hydro": 1433.7752572959787,
+          "nuclear": 2466.4540726361,
+          "oil": 1.971159717180679,
+          "solar": null,
+          "unknown": 280.7688837112038,
+          "wind": 447.6027556913091
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 140.3446459941025,
+        "totalImport": 2129.2190583043175,
+        "totalStorage": 0.0
+      },
+      "FR": {
+        "co2intensity": 76.20257692170514,
+        "exchange": {
+          "export": 5601.535861671854,
+          "import": 1582.643020800686
+        },
+        "exchangeCo2Intensities": {
+          "export": 76.20257692170514,
+          "import": 234.05985168655334
+        },
+        "production": {
+          "biomass": 758.081438228922,
+          "coal": 1128.4809920747666,
+          "gas": 4959.62536270681,
+          "geothermal": null,
+          "hydro": 6252.816985876734,
+          "nuclear": 43479.918672501495,
+          "oil": 321.3887185200752,
+          "solar": 1003.900169952001,
+          "unknown": null,
+          "wind": 2337.8195413261337
+        },
+        "storage": {
+          "hydro storage": 375.37691014072163
+        },
+        "totalExport": 5601.535861671854,
+        "totalImport": 1582.643020800686,
+        "totalStorage": 375.37691014072163
+      },
+      "GB": {
+        "co2intensity": 288.69187541607255,
+        "exchange": {
+          "export": 368.7749559945525,
+          "import": 1902.19386281699
+        },
+        "exchangeCo2Intensities": {
+          "export": 288.69187541607255,
+          "import": 207.81065957946555
+        },
+        "production": {
+          "biomass": 0.0,
+          "coal": 2458.366342730454,
+          "gas": 14340.046552830448,
+          "geothermal": null,
+          "hydro": 751.6555535967882,
+          "nuclear": 7695.236789579054,
+          "oil": 0.0,
+          "solar": 1175.1200682227598,
+          "unknown": 1757.6125622703996,
+          "wind": 3839.0645994968313
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 368.7749559945525,
+        "totalImport": 1902.19386281699,
+        "totalStorage": 0.0
+      },
+      "GR": {
+        "co2intensity": 496.02329130880025,
+        "exchange": {
+          "export": 212.48835403726713,
+          "import": 791.5545645703936
+        },
+        "exchangeCo2Intensities": {
+          "export": 496.02329130880025,
+          "import": 446.87269725393463
+        },
+        "production": {
+          "biomass": null,
+          "coal": 1935.419998706006,
+          "gas": 1894.0690654605055,
+          "geothermal": null,
+          "hydro": 459.1891573930293,
+          "nuclear": null,
+          "oil": 0.0,
+          "solar": 408.87770924081076,
+          "unknown": null,
+          "wind": 451.5506622906079
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 212.48835403726713,
+        "totalImport": 791.5545645703936,
+        "totalStorage": 0.0
+      },
+      "HU": {
+        "co2intensity": 284.8709156764827,
+        "exchange": {
+          "export": 668.8847075589927,
+          "import": 1711.9142540608798
+        },
+        "exchangeCo2Intensities": {
+          "export": 284.8709156764827,
+          "import": 290.2495277840564
+        },
+        "production": {
+          "biomass": 114.16945886647765,
+          "coal": 551.6622009377598,
+          "gas": 724.3427782513427,
+          "geothermal": null,
+          "hydro": 22.75849874028697,
+          "nuclear": 1688.6126677071475,
+          "oil": 1.7175106486464793,
+          "solar": null,
+          "unknown": 96.05813112794995,
+          "wind": 78.38927813587293
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 668.8847075589927,
+        "totalImport": 1711.9142540608798,
+        "totalStorage": 0.0
+      },
+      "IE": {
+        "co2intensity": 389.65145747462265,
+        "exchange": {
+          "export": 113.4774758449152,
+          "import": 43.218506524562876
+        },
+        "exchangeCo2Intensities": {
+          "export": 389.65145747462265,
+          "import": 300.78055411311135
+        },
+        "production": {
+          "biomass": 281.4950396567404,
+          "coal": 503.1291537021276,
+          "gas": 1084.2648793197711,
+          "geothermal": null,
+          "hydro": 152.56371850802344,
+          "nuclear": null,
+          "oil": 260.4780186955969,
+          "solar": null,
+          "unknown": 2.141936470296374,
+          "wind": 785.8921556274398
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 113.4774758449152,
+        "totalImport": 43.218506524562876,
+        "totalStorage": 0.0
+      },
+      "IT": {
+        "co2intensity": 405.21495278144556,
+        "exchange": {
+          "export": 352.91566483952437,
+          "import": 3783.5949399281067
+        },
+        "exchangeCo2Intensities": {
+          "export": 405.21495278144556,
+          "import": 160.02411402044189
+        },
+        "production": {
+          "biomass": 353.0093976449275,
+          "coal": 1677.7407524435457,
+          "gas": 8273.62504960318,
+          "geothermal": 662.5890021135268,
+          "hydro": 4207.610535282954,
+          "nuclear": null,
+          "oil": 113.79048697377502,
+          "solar": 2195.282983954451,
+          "unknown": 10693.238455400278,
+          "wind": 1922.2870427881312
+        },
+        "storage": {
+          "hydro storage": 269.74493184955134
+        },
+        "totalExport": 352.91566483952437,
+        "totalImport": 3783.5949399281067,
+        "totalStorage": 269.74493184955134
+      },
+      "NO": {
+        "co2intensity": 17.529371326132406,
+        "exchange": {
+          "export": 1868.9959052102633,
+          "import": 521.5664131336495
+        },
+        "exchangeCo2Intensities": {
+          "export": 17.529371326132406,
+          "import": 182.43389389540837
+        },
+        "production": {
+          "biomass": null,
+          "coal": null,
+          "gas": 332.0266767609549,
+          "geothermal": null,
+          "hydro": 16199.137878447278,
+          "nuclear": null,
+          "oil": null,
+          "solar": 0.0,
+          "unknown": 18.446232815901837,
+          "wind": 267.1625339027513
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 1868.9959052102633,
+        "totalImport": 521.5664131336495,
+        "totalStorage": 0.0
+      },
+      "PL": {
+        "co2intensity": 686.4613288748812,
+        "exchange": {
+          "export": 1160.3561400103524,
+          "import": 1253.0718706866803
+        },
+        "exchangeCo2Intensities": {
+          "export": 686.4613288748812,
+          "import": 297.37640815707323
+        },
+        "production": {
+          "biomass": 179.8253022264572,
+          "coal": 14623.783891908222,
+          "gas": 662.7370654330573,
+          "geothermal": null,
+          "hydro": 292.36184976708057,
+          "nuclear": null,
+          "oil": 201.4720972339859,
+          "solar": null,
+          "unknown": null,
+          "wind": 1553.1011272468484
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 1160.3561400103524,
+        "totalImport": 1253.0718706866803,
+        "totalStorage": 0.0
+      },
+      "PT": {
+        "co2intensity": 378.0051850388322,
+        "exchange": {
+          "export": 711.7266701862115,
+          "import": 290.2468342567768
+        },
+        "exchangeCo2Intensities": {
+          "export": 378.0051850388322,
+          "import": 266.40066728546174
+        },
+        "production": {
+          "biomass": 325.36385673505237,
+          "coal": 1554.0427875063415,
+          "gas": 1968.208030784779,
+          "geothermal": null,
+          "hydro": 981.2638354362103,
+          "nuclear": null,
+          "oil": null,
+          "solar": 90.96527808580173,
+          "unknown": 34.04645415725581,
+          "wind": 1366.9057995280298
+        },
+        "storage": {
+          "hydro storage": 244.45764806667424
+        },
+        "totalExport": 711.7266701862115,
+        "totalImport": 290.2468342567768,
+        "totalStorage": 244.45764806667424
+      },
+      "RO": {
+        "co2intensity": 323.2833540943021,
+        "exchange": {
+          "export": 546.084517495167,
+          "import": 257.01370911921094
+        },
+        "exchangeCo2Intensities": {
+          "export": 323.2833540943021,
+          "import": 328.6131609269209
+        },
+        "production": {
+          "biomass": 48.038334977544594,
+          "coal": 2006.3026559569528,
+          "gas": 1248.8619251470864,
+          "geothermal": null,
+          "hydro": 1797.645877521166,
+          "nuclear": 1305.3036181428204,
+          "oil": null,
+          "solar": 151.90949089595358,
+          "unknown": null,
+          "wind": 837.1826947358442
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 546.084517495167,
+        "totalImport": 257.01370911921094,
+        "totalStorage": 0.0
+      },
+      "SE": {
+        "co2intensity": 60.04395930022943,
+        "exchange": {
+          "export": 3236.8360128190843,
+          "import": 1317.6877768868605
+        },
+        "exchangeCo2Intensities": {
+          "export": 60.04395930022943,
+          "import": 130.16715344554433
+        },
+        "production": {
+          "biomass": null,
+          "coal": null,
+          "gas": null,
+          "geothermal": null,
+          "hydro": 6835.25074016223,
+          "nuclear": 7470.8274393902975,
+          "oil": null,
+          "solar": null,
+          "unknown": 1009.4944416053513,
+          "wind": 2002.769423130753
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 3236.8360128190843,
+        "totalImport": 1317.6877768868605,
+        "totalStorage": 0.0
+      },
+      "SK": {
+        "co2intensity": 304.96462899014733,
+        "exchange": {
+          "export": 1060.8064583946962,
+          "import": 1539.8906492558974
+        },
+        "exchangeCo2Intensities": {
+          "export": 304.96462899014733,
+          "import": 536.904209080898
+        },
+        "production": {
+          "biomass": 53.60260782002719,
+          "coal": 266.38083359525325,
+          "gas": 132.60058720763047,
+          "geothermal": null,
+          "hydro": 472.5998839249519,
+          "nuclear": 1707.5821993371012,
+          "oil": 47.52911894891098,
+          "solar": 58.94881533740179,
+          "unknown": 402.50747489996866,
+          "wind": 0.0
+        },
+        "storage": {
+          "hydro storage": 37.46744722430508
+        },
+        "totalExport": 1060.8064583946962,
+        "totalImport": 1539.8906492558974,
+        "totalStorage": 37.46744722430508
+      },
+      "TR": {
+        "co2intensity": 431.53917651239055,
+        "exchange": {
+          "export": 384.0419234038837,
+          "import": 194.8933831275231
+        },
+        "exchangeCo2Intensities": {
+          "export": 431.53917651239055,
+          "import": 412.912463231116
+        },
+        "production": {
+          "biomass": 212.08169367996874,
+          "coal": 8598.743865911365,
+          "gas": 9594.7426803786,
+          "geothermal": 444.8087884065587,
+          "hydro": 7384.004713299553,
+          "nuclear": null,
+          "oil": 120.75842593647658,
+          "solar": null,
+          "unknown": 1.782070848815328,
+          "wind": 1659.4443830185298
+        },
+        "storage": {
+          "hydro storage": 0.0
+        },
+        "totalExport": 384.0419234038837,
+        "totalImport": 194.8933831275231,
+        "totalStorage": 0.0
+      }
+    },
+    "datetime": "2017-10-30T00:00:00Z"
+  }
 }
