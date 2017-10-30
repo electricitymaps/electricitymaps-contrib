@@ -3,7 +3,7 @@ var exports = module.exports = {};
 var d3 = require('d3');
 var moment = require('moment');
 
-var grib = require('./grib');
+var grib = require('../../helpers/grib');
 
 var solarCanvas;
 var lastDraw;

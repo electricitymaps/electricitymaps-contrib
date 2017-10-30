@@ -7,7 +7,7 @@ var moment = require('moment');
 
 // API
 function protectedJsonRequest(endpoint, path, callback) {
-    if (isLocalhost) {
+    if (!useRemoteEndpoint) {
         return d3.json(endpoint + path, callback);
     } else {
         var t = new Date().getTime();

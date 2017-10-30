@@ -95,7 +95,7 @@ co2Sub = function(str) {
             var geo = <%- (typeof geo !== 'undefined' && JSON.stringify(geo) || 'undefined') %>;
         </script>
     </head>
-    <body>
+    <body lang="<%= locale %>">
         <div id="main">
             <div id="header">
                 <div id="header-content">
@@ -194,11 +194,6 @@ co2Sub = function(str) {
                             <p>
                                 <%- __('panel-initial-text.thisproject') %> <a href="https://github.com/corradio/electricitymap" target="_blank"><%- __('panel-initial-text.opensource') %></a> (<%- __('panel-initial-text.see') %> <a href="https://github.com/corradio/electricitymap#data-sources" target="_blank"><%- __('panel-initial-text.datasources') %></a>). <%- __('panel-initial-text.contribute', 'https://github.com/tmrowco/electricitymap#adding-a-new-country') %>.
                             </p>
-
-                            <p style="margin-bottom: -15px">
-                                <a class="coinbase-button" data-code="f728ba7fa35dd65120089cc692d56580" data-button-style="custom_small" href="https://www.coinbase.com/checkouts/f728ba7fa35dd65120089cc692d56580">Donate Bitcoins</a>
-                                <script src="https://www.coinbase.com/assets/button.js" type="text/javascript"></script>
-                            </p>
                             <p>
                                 <%- __('footer.likethisvisu') %> <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank"><%- __('footer.loveyourfeedback') %></a>!
                             </p>
@@ -234,22 +229,18 @@ co2Sub = function(str) {
                                         </div>
                                         <div class="country-col-subtext">(gCO<sub>2</sub>eq/kWh)</div>
                                     </div>
-                                    <div class="country-col country-col-fossilpct">
-                                        <div class="country-col-headline"><%- __('country-panel.fossilfuels')%></div>
-                                        <div class="country-col-box" style="">
-                                            <span class="fossil-fuel-percentage"></span>%
+                                    <div class="country-col country-lowcarbon-wrap">
+                                        <div class="country-col-headline">Low-carbon</div>
+                                        <div class="country-col-box">
+                                            <span class="lowcarbon-percentage"></span>%
                                         </div>
                                         <div class="country-col-subtext">
                                         </div>
                                     </div>
-                                    <div class="country-col country-price-wrap">
-                                        <div class="country-col-headline"><%- __('country-panel.electricityprice') %></div>
-                                        <div class="country-col-box country-spot-price-wrap">
-                                            <div class="country-spot-price"></div>
-                                            <div style="font-size: 0.5rem; line-height: 0.5rem;"><span class="country-spot-price-currency"></span>/MWh</div>
-                                        </div>
-                                        <div class="country-col-subtext">
-                                            (<%- __('country-panel.electricityprice-dayahead') %>)
+                                    <div class="country-col country-renewable-wrap">
+                                        <div class="country-col-headline">Renewable</div>
+                                        <div class="country-col-box">
+                                            <div class="renewable-percentage"></div>%
                                         </div>
                                     </div>
                                 </div>
@@ -267,15 +258,28 @@ co2Sub = function(str) {
                             </div>
                             <svg class="country-table"></svg>
                             <hr />
-                            <div style="color: darkgray; position: relative;">
-                                <div id="country-history-loading" class="loading overlay"></div>
+                            <div class="country-history">
+                                <div class="loading overlay"></div>
                                 <%- co2Sub(__('country-history.carbonintensity24h')) %>
                                 <!--<span class="premium"><i class="fa fa-lock" aria-hidden="true"></i> premium</span>-->
                                 <br />
                                 <small>
                                     <i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org/carts/new/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.downloaddataset') %></a>
                                 </small>
-                                <svg class="country-history"></svg>
+                                <svg id="country-history-carbon"></svg>
+
+                                <div class="loading overlay"></div>
+                                Origin of electricity in the last 24 hours
+                                <!--<span class="premium"><i class="fa fa-lock" aria-hidden="true"></i> premium</span>-->
+                                <br />
+                                <small>
+                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org/carts/new/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.downloaddataset') %></a>
+                                </small>
+                                <svg id="country-history-mix"></svg>
+
+                                <div class="loading overlay"></div>
+                                Electricity prices in the last 24 hours
+                                <svg id="country-history-prices"></svg>
                             </div>
                             <hr />
                             <p>
@@ -335,22 +339,8 @@ co2Sub = function(str) {
 
                 <div id="map-container">
                     <div id="map"></div>
-                    <canvas class="wind map-layer"></canvas>
-                    <canvas class="solar map-layer"></canvas>
-                    <div id="country-tooltip" class="tooltip panel">
-                        <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />
-                        <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
-                        <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh (<span class="fossil-fuel-percentage"></span> % <%- __('tooltips.fossilfuels')%>)<br />
-                        <br />
-                        <%- __('tooltips.electricityprice') %>: <span class="country-spot-price"></span> <span class="country-spot-price-currency"></span>/MWh
-                    </div>
-                    <div id="exchange-tooltip" class="tooltip panel">
-                        <%- __('tooltips.crossborderexport') %>:<br />
-                        <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
-                        <br />
-                        <%- co2Sub(__('tooltips.carbonintensityexport')) %>:<br />
-                        <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<sub>2</sub>eq/kWh
-                    </div>
+                    <canvas id="wind" class="map-layer"></canvas>
+                    <canvas id="solar" class="map-layer"></canvas>
                     <!--<div class="watermark">
                         <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
                         <br />
@@ -384,6 +374,21 @@ co2Sub = function(str) {
 
                 <!-- end #inner -->
             </div>
+        </div>
+        <div id="country-tooltip" class="tooltip panel">
+            <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />
+            <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
+            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
+            <br />
+            Low-carbon: <span class="lowcarbon-percentage"></span> %<br />
+            Renewable: <span class="renewable-percentage"></span> %
+        </div>
+        <div id="exchange-tooltip" class="tooltip panel">
+            <%- __('tooltips.crossborderexport') %>:<br />
+            <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
+            <br />
+            <%- co2Sub(__('tooltips.carbonintensityexport')) %>:<br />
+            <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<sub>2</sub>eq/kWh
         </div>
         <div id="countrypanel-production-tooltip" class="tooltip panel">
             <span id="line1"></span><br />

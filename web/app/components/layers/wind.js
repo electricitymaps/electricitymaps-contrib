@@ -3,8 +3,8 @@ var exports = module.exports = {};
 var d3 = require('d3');
 var moment = require('moment');
 
-var grib = require('./grib');
-var Windy = require('./windy');
+var grib = require('../../helpers/grib');
+var Windy = require('../../helpers/windy');
 
 var windCanvas;
 var projection;
@@ -68,7 +68,7 @@ exports.zoomend = function() {
     var sw = projection.invert([0, height]);
     var ne = projection.invert([width, 0]);
 
-    windLayer.start(
+    windLayer.start( // Note: this blocks UI..
         [[0, 0], [width, height]], 
         width,
         height,

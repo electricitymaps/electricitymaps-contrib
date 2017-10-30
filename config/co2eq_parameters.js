@@ -1,6 +1,7 @@
 var exports = module.exports = {};
 
 var defaultCo2eqSource = 'IPCC 2014';
+
 var defaultCo2eqSourceUnknown = 'assumes thermal (coal, gas, oil or biomass)';
 
 var defaultCo2eqFootprint = { // in gCo2eq/kWh

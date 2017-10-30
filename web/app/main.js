@@ -2,24 +2,29 @@
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
-var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
+var redux = require('redux');
+var reduxLogger = require('redux-logger').logger;
 
-// Modules
-//var AreaGraph = require('./areagraph');
-var LineGraph = require('./linegraph');
-var CountryMap = require('./countrymap');
-var CountryTable = require('./countrytable');
+var AreaGraph = require('./components/areagraph');
+var LineGraph = require('./components/linegraph');
+var CountryTable = require('./components/countrytable');
+var HorizontalColorbar = require('./components/horizontalcolorbar');
+var Tooltip = require('./components/tooltip');
+
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
-var ExchangeLayer = require('./exchangelayer');
+
+var CountryMap = require('./components/layers/countrymap');
+var ExchangeLayer = require('./components/layers/exchangelayer');
+var Solar = require('./components/layers/solar');
+var Wind = require('./components/layers/wind');
+
 var flags = require('./flags');
-var grib = require('./grib');
-var HorizontalColorbar = require('./horizontalcolorbar');
 var LoadingService = require('./loadingservice');
-var Solar = require('./solar');
-var Tooltip = require('./tooltip');
-var Wind = require('./wind');
-var translation = require('./translation')
+
+var grib = require('./helpers/grib');
+var translation = require('./translation');
+var tooltipHelper = require('./helpers/tooltip');
 
 // Configs
 var exchanges_config = require('../../config/exchanges.json');
@@ -55,10 +60,10 @@ function replaceHistoryState(key, value) {
 
 // Global window variables
 isLocalhost = window.location.href.indexOf('electricitymap') == -1;
+useRemoteEndpoint = isLocalhost ? false : true;
 
 // Global State
 var selectedCountryCode;
-var useRemoteEndpoint = isLocalhost ? false : true;
 var customDate;
 var currentMoment;
 var colorBlindModeEnabled = false;
@@ -121,6 +126,77 @@ if (isCordova) { clientType = 'mobileapp'; }
 replaceHistoryState('wind', windEnabled);
 replaceHistoryState('solar', solarEnabled);
 
+// Add polyfill required by redux
+if (typeof Object.assign != 'function') {
+  Object.assign = function (target, varArgs) { // .length of function is 2
+    'use strict';
+    if (target == null) { // TypeError if undefined or null
+      throw new TypeError('Cannot convert undefined or null to object');
+    }
+
+    var to = Object(target);
+
+    for (var index = 1; index < arguments.length; index++) {
+      var nextSource = arguments[index];
+
+      if (nextSource != null) { // Skip over if undefined or null
+        for (var nextKey in nextSource) {
+          // Avoid bugs when hasOwnProperty is shadowed
+          if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+            to[nextKey] = nextSource[nextKey];
+          }
+        }
+      }
+    }
+    return to;
+  };
+}
+
+// Prepare Redux store
+// Note: This is a work in progress to convert all state management
+// to redux
+
+// Create store
+function reducer(state, action) {
+    if (!state) { state = {}; }
+    switch (action.type) {
+        case 'ZONE_DATA':
+            return Object.assign({}, state, {
+                countryData: action.payload,
+                countryDataIndex: 0,
+            })
+
+        case 'SELECT_DATA':
+            return Object.assign({}, state, {
+                countryData: action.payload.countryData,
+                countryDataIndex: action.payload.index,
+            })
+
+        default:
+            return state
+    }
+}
+var store = redux.createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    redux.applyMiddleware(reduxLogger)
+);
+// Utility to react to store changes
+function observeStore(store, select, onChange) {
+  var currentState;
+
+  function handleChange() {
+    var nextState = select(store.getState());
+    if (nextState !== currentState) {
+      currentState = nextState;
+      onChange(currentState);
+    }
+  }
+
+  var unsubscribe = store.subscribe(handleChange);
+  handleChange();
+  return unsubscribe;
+}
 
 // Initialise mobile app (cordova)
 var app = {
@@ -132,6 +208,17 @@ var app = {
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('resume', this.onResume, false);
+        document.addEventListener('backbutton', this.onBack, false);
+    },
+
+    onBack: function (e) {
+        if (showPageState != 'map') {
+            selectedCountryCode = undefined;
+            showPage(previousShowPageState || 'map');
+            e.preventDefault();
+        } else {
+            navigator.app.exitApp();
+        }
     },
 
     onDeviceReady: function() {
@@ -350,12 +437,9 @@ function updateCo2Scale() {
       .render());
     if (countryMap) countryMap.co2color(co2color).render();
     if (countryTable) countryTable.co2color(co2color).render();
-    if (countryHistoryGraph) countryHistoryGraph.yColorScale(co2color);
+    if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
+    if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
     if (exchangeLayer) exchangeLayer.co2color(co2color).render();
-    if (tooltip)
-      tooltip
-        .co2color(co2color)
-        .co2Colorbars(co2Colorbars);
     if (countryListSelector)
         countryListSelector.select('div.emission-rect')
             .style('background-color', function(d) {
@@ -436,23 +520,101 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map', Wind, '.wind', Solar, '.solar')
+var countryMap = new CountryMap('#map', Wind, '#wind', Solar, '#solar')
     .co2color(co2color)
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
     });
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
 countryMap.exchangeLayer(exchangeLayer);
-var countryTable = new CountryTable('.country-table', modeColor, modeOrder).co2color(co2color);
-var tooltip = new Tooltip(countryTable, countries)
+
+
+var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
+var countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip')
+var countryTooltip = new Tooltip('#country-tooltip')
+var exchangeTooltip = new Tooltip('#exchange-tooltip')
+var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     .co2color(co2color)
-    .co2Colorbars(co2Colorbars);
-//var countryHistoryGraph = new AreaGraph('.country-history', modeColor, modeOrder);
-var countryHistoryGraph = new LineGraph('.country-history',
+    .onExchangeMouseMove(function() {
+        countryTableExchangeTooltip.update(d3.event);
+    })
+    .onExchangeMouseOver(function (d, country, displayByEmissions) {
+        tooltipHelper.showExchange(
+            countryTableExchangeTooltip,
+            d, country, displayByEmissions,
+            co2color, co2Colorbars)
+    })
+    .onExchangeMouseOut(function (d) {
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+        countryTableExchangeTooltip.hide()
+    })
+    .onProductionMouseOver(function (mode, country, displayByEmissions) {
+        tooltipHelper.showProduction(
+            countryTableProductionTooltip,
+            mode, country, displayByEmissions,
+            co2color, co2Colorbars)
+    })
+    .onProductionMouseMove(function(d) {
+        countryTableProductionTooltip.update(d3.event)
+    })
+    .onProductionMouseOut(function (d) {
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+        countryTableProductionTooltip.hide()
+    });
+
+var countryHistoryCarbonGraph = new LineGraph('#country-history-carbon',
     function(d) { return moment(d.stateDatetime).toDate(); },
     function(d) { return d.co2intensity; },
-    function(d) { return d.co2intensity != null; }).yColorScale(co2color);
-countryHistoryGraph.y.domain([0, maxCo2]);
+    function(d) { return d.co2intensity != null; })
+    .yColorScale(co2color)
+    .gradient(true);
+var countryHistoryPricesGraph = new LineGraph('#country-history-prices',
+    function(d) { return moment(d.stateDatetime).toDate(); },
+    function(d) { return (d.price || {}).value; },
+    function(d) { return d.price && d.price.value != null; })
+    .gradient(false);
+var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
+    .co2color(co2color)
+    .onLayerMouseOver(function(mode, countryData, i) {
+        var isExchange = modeOrder.indexOf(mode) == -1
+        var fun = isExchange ?
+            tooltipHelper.showExchange : tooltipHelper.showProduction
+        var ttp = isExchange ?
+            countryTableExchangeTooltip : countryTableProductionTooltip
+        fun(ttp,
+            mode, countryData, tableDisplayEmissions,
+            co2color, co2Colorbars)
+        store.dispatch({
+            type: 'SELECT_DATA',
+            payload: { countryData: countryData, index: i }
+        })
+    })
+    .onLayerMouseMove(function(mode, countryData, i) {
+        var isExchange = modeOrder.indexOf(mode) == -1
+        var fun = isExchange ?
+            tooltipHelper.showExchange : tooltipHelper.showProduction
+        var ttp = isExchange ?
+            countryTableExchangeTooltip : countryTableProductionTooltip
+        ttp.update(d3.event)
+        fun(ttp,
+            mode, countryData, tableDisplayEmissions,
+            co2color, co2Colorbars)
+        store.dispatch({
+            type: 'SELECT_DATA',
+            payload: { countryData: countryData, index: i }
+        })
+    })
+    .onLayerMouseOut(function(mode, countryData, i) {
+        if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
+        var isExchange = modeOrder.indexOf(mode) == -1
+        var ttp = isExchange ?
+            countryTableExchangeTooltip : countryTableProductionTooltip
+        ttp.hide()
+        store.dispatch({
+            type: 'SELECT_DATA',
+            payload: { countryData: countryData, index: i }
+        })
+    });
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
     .markerColor('black');
@@ -465,6 +627,8 @@ var solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor
 d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 var tableDisplayEmissions = countryTable.displayByEmissions();
+countryHistoryMixGraph
+    .displayByEmissions(tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#emissions')
     .classed('selected', tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#production')
@@ -486,45 +650,12 @@ window.toggleSource = function(state) {
         {countryCode: countryTable.data().countryCode});
     countryTable
         .displayByEmissions(tableDisplayEmissions);
+    countryHistoryMixGraph
+        .displayByEmissions(tableDisplayEmissions);
     d3.select('.country-show-emissions-wrap a#emissions')
         .classed('selected', tableDisplayEmissions);
     d3.select('.country-show-emissions-wrap a#production')
         .classed('selected', !tableDisplayEmissions);
-}
-
-// Tooltips
-// TODO: Move to module together with countrymap tooltip
-function placeTooltip(selector, d3Event) {
-    var tooltip = d3.select(selector);
-    var w = tooltip.node().getBoundingClientRect().width;
-    var h = tooltip.node().getBoundingClientRect().height;
-    var margin = 5;
-    var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
-
-    // TODO: d3Event.layerY does not return the proper cursor coordinates.
-    // or it needs to be remapped to container coordinates..
-
-    // On very small screens
-    if (w > mapWidth) {
-        tooltip
-            .style('width', '100%');
-    }
-    else {
-        var x = 0;
-        if (w > mapWidth / 2 - 5) {
-            // Tooltip won't fit on any side, so don't translate x
-            x = 0.5 * (mapWidth - w);
-        } else {
-            x = d3Event.layerX + margin;
-            if (mapWidth - x <= w) {
-                x = d3Event.layerX - w - margin;
-            }
-        }
-        var y = d3Event.layerY - h - margin; if (y <= margin) y = d3Event.layerY + margin;
-        tooltip
-            .style('transform',
-                'translate(' + x + 'px' + ',' + y + 'px' + ')');
-    }
 }
 
 // Prepare data
@@ -579,9 +710,14 @@ function selectCountry(countryCode, notrack) {
             trackAnalyticsEvent('countryClick', {countryCode: countryCode});
         }
         countryTable
-            .data(countries[countryCode])
             .powerScaleDomain(null) // Always reset scale if click on a new country
-            .render();
+            .co2ScaleDomain(null)
+            .exchangeKeys(null) // Always reset exchange keys
+        store.dispatch({
+            type: 'ZONE_DATA',
+            payload: countries[countryCode]
+        })
+
 
         function updateGraph(countryHistory) {
             // No export capacities are not always defined, and they are thus
@@ -601,48 +737,120 @@ function selectCountry(countryCode, notrack) {
                     d.maxImport || 0,
                     d.maxImportCapacity || 0);
             });
-
+            // TODO(olc): do those aggregates server-side
+            var lo_emission = d3.min(countryHistory, function(d) {
+                return Math.min(
+                    // Max export
+                    d3.min(d3.entries(d.exchange), function(o) {
+                        return Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+                    })
+                    // Max storage
+                    // ?
+                );
+            });
+            var hi_emission = d3.max(countryHistory, function(d) {
+                return Math.max(
+                    // Max import
+                    d3.max(d3.entries(d.exchange), function(o) {
+                        return Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+                    }),
+                    // Max production
+                    d3.max(d3.entries(d.production), function(o) {
+                        return Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
+                    })
+                );
+            });
+            
             // Figure out the highest CO2 emissions
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
             });
-            countryHistoryGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
+            countryHistoryCarbonGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
 
-            countryHistoryGraph
+            // Create price color scale
+            var priceExtent = d3.extent(countryHistory, function(d) {
+                return (d.price || {}).value;
+            })
+            countryHistoryPricesGraph.y.domain(
+                [Math.min(0, priceExtent[0]), priceExtent[1]]);
+
+            countryHistoryCarbonGraph
                 .data(countryHistory);
-            if (countryHistoryGraph.frozen) {
-                var data = countryHistoryGraph.data()[countryHistoryGraph.selectedIndex];
+            countryHistoryPricesGraph
+                .yColorScale(d3.scaleLinear()
+                    .domain(countryHistoryPricesGraph.y.domain())
+                    .range(['yellow', 'red']))
+                .data(countryHistory);
+            countryHistoryMixGraph
+                .data(countryHistory);
+
+            // Update country table with all possible exchanges
+            countryTable
+                // .exchangeKeys(
+                //     countryHistoryMixGraph.exchangeKeysSet.values())
+                .render()
+
+            if (countryHistoryCarbonGraph.frozen) {
+                var data = countryHistoryCarbonGraph.data()[countryHistoryCarbonGraph.selectedIndex];
                 if (!data) {
                     // This country has no history at this time
                     // Reset view
-                    countryTable
-                        .data({countryCode: countryCode})
-                        .render()
+                    store.dispatch({
+                        type: 'ZONE_DATA',
+                        payload: { countryCode: countryCode }
+                    })
                 } else {
                     countryTable
-                        .data(data)
                         .powerScaleDomain([lo, hi])
-                        .render()
+                        .co2ScaleDomain([lo_emission, hi_emission])
+                    store.dispatch({
+                        type: 'ZONE_DATA',
+                        payload: data
+                    })
                 }
             }
-            countryHistoryGraph
-                .onMouseMove(function(d) {
+            var firstDatetime = countryHistory[0] &&
+                moment(countryHistory[0].stateDatetime).toDate();
+            [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
+                if (currentMoment && firstDatetime) {
+                    console.log(currentMoment.toDate())
+                    g.xDomain([firstDatetime, currentMoment.toDate()])
+                }
+                g.onMouseMove(function(d, i) {
                     if (!d) return;
                     // In case of missing data
                     if (!d.countryCode)
                         d.countryCode = countryCode;
                     countryTable
                         .powerScaleDomain([lo, hi])
-                        .data(d)
-                        .render(true);
+                        .co2ScaleDomain([lo_emission, hi_emission])
+
+                    if (g == countryHistoryCarbonGraph) {
+                        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+                        countryTooltip.update(d3.event)
+                    }
+
+                    store.dispatch({
+                        type: 'SELECT_DATA',
+                        payload: { countryData: d, index: i }
+                    })
                 })
-                .onMouseOut(function() {
+                .onMouseOut(function(d, i) {
                     countryTable
                         .powerScaleDomain(null)
-                        .data(countries[countryCode])
-                        .render();
+                        .co2ScaleDomain(null)
+
+                    if (g == countryHistoryCarbonGraph) {
+                        countryTooltip.hide();
+                    }
+
+                    store.dispatch({
+                        type: 'SELECT_DATA',
+                        payload: { countryData: countries[countryCode], index: i }
+                    })
                 })
                 .render();
+            })
         }
 
         // Load graph
@@ -650,18 +858,15 @@ function selectCountry(countryCode, notrack) {
             console.error('Can\'t fetch history when a custom date is provided!');
         }
         else if (!histories[countryCode]) {
-            LoadingService.startLoading('#country-history-loading');
+            LoadingService.startLoading('.country-history .loading');
             DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
-                LoadingService.stopLoading('#country-history-loading');
+                LoadingService.stopLoading('.country-history .loading');
                 if (err) console.error(err);
                 if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
                 if (err || !obj || !obj.data) {
                     updateGraph([]);
                     return;
                 }
-
-                // Add current data point
-                obj.data.push(countries[countryCode]);
 
                 // Add capacities
                 if ((zones_config[countryCode] || {}).capacity) {
@@ -888,7 +1093,7 @@ function renderMap() {
         LoadingService.startLoading();
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
-        Wind.draw('.wind',
+        Wind.draw('#wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
             wind.forecasts[1],
@@ -911,7 +1116,7 @@ function renderMap() {
         LoadingService.startLoading();
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
-        Solar.draw('.solar',
+        Solar.draw('#solar',
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
             solar.forecasts[1],
@@ -1082,34 +1287,10 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         d3.select(this)
             .style('opacity', 0.8)
             .style('cursor', 'pointer')
-        if (d.co2intensity && co2Colorbars)
-            co2Colorbars.forEach(function(c) { c.currentMarker(d.co2intensity) });
-        var tooltip = d3.select('#country-tooltip');
-        tooltip.classed('country-tooltip-visible', true);
-        tooltip.select('#country-flag')
-            .attr('src', flags.flagUri(d.countryCode, 16));
-        tooltip.select('#country-name')
-            .text(translation.translate('zoneShortName.' + d.countryCode) || d.countryCode)
-            .style('font-weight', 'bold');
-        tooltip.select('.emission-rect')
-            .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
-        tooltip.select('.country-emission-intensity')
-            .text(Math.round(d.co2intensity) || '?');
-
-        var priceData = d.price || {};
-        var hasPrice = priceData.value != null;
-        tooltip.select('.country-spot-price')
-            .text(hasPrice ? Math.round(priceData.value) : '?')
-            .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
-        tooltip.select('.country-spot-price-currency')
-            .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
-        var hasFossilFuelData = d.fossilFuelRatio != null;
-        var fossilFuelPercent = d.fossilFuelRatio * 100;
-        tooltip.select('.fossil-fuel-percentage')
-            .text(hasFossilFuelData ? Math.round(fossilFuelPercent) : '?');
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
     })
     .onCountryMouseMove(function () {
-        placeTooltip("#country-tooltip", d3.event);
+        countryTooltip.update(d3.event);
     })
     .onCountryMouseOut(function (d) {
         d3.select(this)
@@ -1117,11 +1298,11 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             .style('cursor', 'auto')
         if (d.co2intensity && co2Colorbars)
             co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-        d3.select('#country-tooltip').classed('country-tooltip-visible', false);
+        countryTooltip.hide();
     });
 
     // Re-render country table if it already was visible
-    if (selectedCountryCode && !countryHistoryGraph.frozen)
+    if (selectedCountryCode && !countryHistoryCarbonGraph.frozen)
         countryTable.data(countries[selectedCountryCode]).render()
     selectCountry(selectedCountryCode, true);
 
@@ -1150,30 +1331,10 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             d3.select(this)
                 .style('opacity', 0.8)
                 .style('cursor', 'pointer');
-            if (d.co2intensity && co2Colorbars)
-                co2Colorbars.forEach(function(c) { c.currentMarker(d.co2intensity) });
-            var tooltip = d3.select('#exchange-tooltip');
-            tooltip.style('display', 'inline');
-            tooltip.select('.emission-rect')
-                .style('background-color', d.co2intensity ? co2color(d.co2intensity) : 'gray');
-            var i = d.netFlow > 0 ? 0 : 1;
-            var ctrFrom = d.countryCodes[i];
-            tooltip.selectAll('span#from')
-                .text(translation.translate('zoneShortName.' + ctrFrom) || ctrFrom);
-            var ctrTo = d.countryCodes[(i + 1) % 2];
-            tooltip.select('span#to')
-                .text(translation.translate('zoneShortName.' + ctrTo) || ctrTo);
-            tooltip.select('span#flow')
-                .text(Math.abs(Math.round(d.netFlow)));
-            tooltip.select('img.flag.from')
-                .attr('src', flags.flagUri(d.countryCodes[i], 16));
-            tooltip.select('img.flag.to')
-                .attr('src', flags.flagUri(d.countryCodes[(i + 1) % 2], 16));
-            tooltip.select('.country-emission-intensity')
-                .text(Math.round(d.co2intensity) || '?');
+            tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
         })
         .onExchangeMouseMove(function () {
-            placeTooltip("#exchange-tooltip", d3.event);
+            exchangeTooltip.update(d3.event);
         })
         .onExchangeMouseOut(function (d) {
             d3.select(this)
@@ -1181,8 +1342,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
                 .style('cursor', 'auto')
             if (d.co2intensity && co2Colorbars)
                 co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-            d3.select('#exchange-tooltip')
-                .style('display', 'none');
+            exchangeTooltip.hide()
         })
         .render();
 
@@ -1314,7 +1474,9 @@ function fetchAndReschedule() {
 function redraw() {
     if (selectedCountryCode) {
         countryTable.render();
-        countryHistoryGraph.render();
+        countryHistoryCarbonGraph.render();
+        countryHistoryPricesGraph.render();
+        countryHistoryMixGraph.render();
     }
     countryMap.render();
     co2Colorbars.forEach(function(d) { d.render() });
@@ -1333,6 +1495,19 @@ window.retryFetch = function() {
     clearInterval(connectionWarningTimeout);
     fetch(false);
 }
+
+// Observe for countryTable re-render
+observeStore(store, function(state) { return state.countryData }, function(d) {
+    countryTable
+        .data(d)
+        .render(true);
+})
+// Observe for history graph index change
+observeStore(store, function(state) { return state.countryDataIndex }, function(i) {
+    [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach(function(g) {
+        g.selectedIndex(i)
+    })
+})
 
 // Start a fetch showing loading.
 // Later `fetchAndReschedule` won't show loading screen

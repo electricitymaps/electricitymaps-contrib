@@ -8,7 +8,7 @@ exports.startLoading = function(selector) {
     selector = selector || '#loading';
     stack[selector] = stack[selector] || [];
     if (!stack[selector].length) {
-        d3.select(selector)
+        d3.selectAll(selector)
             .style('display', 'block')
             .transition()
             .style('opacity', 0.8);
@@ -20,7 +20,7 @@ exports.stopLoading = function(selector) {
     selector = selector || '#loading';
     stack[selector].pop();
     if (!stack[selector].length) {
-        d3.select(selector)
+        d3.selectAll(selector)
             .transition()
                 .style('opacity', 0)
                 .on('end', function() {
