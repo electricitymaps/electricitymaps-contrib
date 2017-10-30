@@ -33,6 +33,9 @@ var zones_config = require('../../config/zones.json');
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
+// HACK: INCLUDE STATE
+var _state = require('../../mockserver/public/v3/state.json');
+
 // History state
 // TODO: put in a module
 
@@ -1423,42 +1426,44 @@ function ignoreError(func) {
 function fetch(showLoading, callback) {
     if (!showLoading) showLoading = false;
     if (showLoading) LoadingService.startLoading();
+    dataLoaded(null, null, _state.data, null, null)
+
     // If data doesn't load in 15 secs, show connection warning
-    connectionWarningTimeout = setTimeout(function(){
-        d3.select('#connection-warning').classed('active', true);
-    }, 15 * 1000);
-    var Q = d3.queue();
-    // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
-    if (!isCordova) {
-        Q.defer(d3.text, '/clientVersion');
-    } else {
-        Q.defer(DataService.fetchNothing);
-    }
-    Q.defer(DataService.fetchState, ENDPOINT, customDate);
+    // connectionWarningTimeout = setTimeout(function(){
+    //     d3.select('#connection-warning').classed('active', true);
+    // }, 15 * 1000);
+    // var Q = d3.queue();
+    // // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
+    // if (!isCordova) {
+    //     Q.defer(d3.text, '/clientVersion');
+    // } else {
+    //     Q.defer(DataService.fetchNothing);
+    // }
+    // Q.defer(DataService.fetchState, ENDPOINT, customDate);
 
-    var now = customDate || new Date();
+    // var now = customDate || new Date();
 
-    if (!solarEnabled)
-        Q.defer(DataService.fetchNothing);
-    else if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
-        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
-    else
-        Q.defer(function(cb) { return cb(null, solar); });
+    // if (!solarEnabled)
+    //     Q.defer(DataService.fetchNothing);
+    // else if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
+    //     Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
+    // else
+    //     Q.defer(function(cb) { return cb(null, solar); });
 
-    if (!windEnabled)
-        Q.defer(DataService.fetchNothing);
-    else if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
-        Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
-    else
-        Q.defer(function(cb) { return cb(null, wind); });
+    // if (!windEnabled)
+    //     Q.defer(DataService.fetchNothing);
+    // else if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
+    //     Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
+    // else
+    //     Q.defer(function(cb) { return cb(null, wind); });
 
-    Q.await(function(err, clientVersion, state, solar, wind) {
-        handleConnectionReturnCode(err);
-        if (!err)
-            dataLoaded(err, clientVersion, state.data, solar, wind);
+    // Q.await(function(err, clientVersion, state, solar, wind) {
+    //     handleConnectionReturnCode(err);
+    //     if (!err)
+    //         dataLoaded(err, clientVersion, state.data, solar, wind);
         if (showLoading) LoadingService.stopLoading();
         if (callback) callback();
-    });
+    // });
 };
 
 function fetchAndReschedule() {

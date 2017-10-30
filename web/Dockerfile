@@ -6,6 +6,7 @@ RUN npm install
 
 ADD web /home/web
 ADD config /home/config
+ADD mockserver /home/mockserver
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 RUN npm run build-release

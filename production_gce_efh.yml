@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    environment:
+      - NODE_ENV=production
+      - VIRTUAL_HOST=efh.electricitymap.org
+    image: eu.gcr.io/tmrow-152415/electricitymap_web:efh
+    mem_limit: 200M
+    networks: [default, infrastructure] # required to be able to com' with statsd & nginx
+
+networks:
+  infrastructure:
+    external:
+      name: infrastructure_default
