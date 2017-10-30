@@ -29,6 +29,16 @@
     },
     "rotation": 40
   },
+  "AR->BR-S": {
+    "lonlat": [
+      -56.407453,
+      -28.880006
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_exchange"
+    },
+    "rotation": 110
+  },
   "AT->CH": {
     "lonlat": [
       9.597882,
@@ -234,6 +244,66 @@
     },
     "rotation": -90
   },
+  "BR-CS->BR-S": {
+    "lonlat": [
+      -49.857513,
+      -23.066549
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    },
+    "rotation": -150
+  },
+  "BR-CS->BR-NE": {
+    "lonlat": [
+      -42.362632,
+      -15.051086
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    },
+    "rotation": 30
+  },
+  "BR-CS->BR-N": {
+    "lonlat": [
+      -54.908876,
+      -9.870031
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    },
+    "rotation": 0
+  },
+  "BR-N->BR-NE": {
+    "lonlat": [
+      -47.810678,
+      -6.387852
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_region_exchange"
+    },
+    "rotation": 100
+  },
+  "BR-S->UY": {
+    "lonlat": [
+       -54.982242,
+       -31.301863
+    ],
+    "parsers": {
+       "exchange": "BR.fetch_exchange"
+    },
+    "rotation": -150
+  },
+  "BR-S->PY": {
+    "lonlat": [
+      -54.449260,
+      -24.749974
+    ],
+    "parsers": {
+      "exchange": "BR.fetch_exchange"
+    },
+    "rotation": 110
+  },
   "CA-AB->CA-BC": {
     "lonlat": [
       -119.811359,
@@ -380,7 +450,7 @@
       11.0638
     ],
     "parsers": {
-      "exchange": "NI.fetch_exchange"
+      "exchange": "ENTE.fetch_exchange"
     },
     "rotation": -45
   },
@@ -625,7 +695,7 @@
       54.87826
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "GB_NIR.fetch_exchange"
     },
     "rotation": -110
   },
@@ -650,9 +720,14 @@
     "rotation": 90
   },
   "GB-NIR->IE": {
+    "lonlat": [
+      -7.4,
+      54.2
+    ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
-    }
+      "exchange": "GB_NIR.fetch_exchange"
+    },
+    "rotation": 180
   },
   "GT->MX": {
     "lonlat": [

@@ -112,7 +112,7 @@ def chunker(big_lst):
     lists into key: value pairs with first element from the list being the key.
     Returns a dictionary.
     """
-    
+
     chunks = [big_lst[x:x+27] for x in xrange(0, len(big_lst), 27)]
 
     #Remove the list if it contains no data.
@@ -145,7 +145,7 @@ def data_formatter(data):
         if ':' in val:
             i = ufthermal.index(val)
             del ufthermal[i:i+3]
-    
+
     formatted_thermal = chunker([floater(item) for item in ufthermal])
     mapped_totals = [total_mapping.get(x,x) for x in total_data]
     formatted_totals = chunker([floater(item) for item in mapped_totals])
@@ -173,10 +173,11 @@ def thermal_production(df):
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
-    Sums type instances and returns a dictionary.    
+    Sums type instances and returns a dictionary.
     """
 
     therms = []
+    unmapped = set()
     for hour in df.index.values:
         dt=hour
         currentt = df.loc[[hour]]
@@ -188,6 +189,11 @@ def thermal_production(df):
             tp[item] = v
 
         current_plants = {k: tp[k] for k in tp if not isnan(tp[k])}
+
+        for plant in current_plants.keys():
+            if plant not in thermal_plants.keys():
+                unmapped.add(plant)
+
         mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.iteritems()]
 
         thermalDict = defaultdict(lambda: 0.0)
@@ -199,7 +205,10 @@ def thermal_production(df):
         thermalDict['datetime'] = dt
         thermalDict = dict(thermalDict)
         therms.append(thermalDict)
-    
+
+    for plant in unmapped:
+        print '{} is missing from the DO plant mapping!'.format(plant)
+
     return therms
 
 
@@ -216,6 +225,7 @@ def total_production(df):
         current = df.loc[[hour]]
         hydro = current.iloc[0]['Hydro']
         wind = current.iloc[0]['Wind']
+        if wind > -10: wind = max(wind, 0)
 
         #Wind and hydro totals do not always update exactly on the new hour.
         #In this case we set them to None because they are unknown rather than zero.
@@ -223,7 +233,7 @@ def total_production(df):
             wind = None
         if isnan(hydro):
             hydro = None
-        
+
         prod = {'wind': wind, 'hydro': hydro, 'datetime': dt}
         vals.append(prod)
 
@@ -244,10 +254,10 @@ def merge_production(thermal, total):
     final = sorted(d.values(), key=itemgetter("datetime"))
 
     def get_datetime(hour):
-        at = arrow.now('UTC-4')
-        dt = (at.replace(hour = int(hour), minute = 0, second = 0)).datetime
+        at = arrow.now('America/Dominica').floor('day')
+        dt = (at.shift(hours=int(hour) - 1)).datetime
         return dt
-    
+
     for item in final:
         i = item['datetime']
         j = get_datetime(i)
@@ -315,9 +325,9 @@ def fetch_production(country_code = 'DO', session = None):
           'source': 'oc.org.do'
         }
         production_mix_by_hour.append(production_mix)
-        
+
     return production_mix_by_hour
-    
+
 
 if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""

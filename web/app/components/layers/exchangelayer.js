@@ -39,14 +39,6 @@ ExchangeLayer.prototype.projection = function(arg) {
     return this;
 };
 
-function appendGradient(element, triangleHeight) {
-    return element.append('linearGradient')
-        .attr('class', 'exchange-gradient')
-        .attr('gradientUnits', 'userSpaceOnUse')
-        .attr('x1', 0).attr('y1', -2.0 * triangleHeight - 1)
-        .attr('x2', 0).attr('y2', triangleHeight + 1);
-}
-
 ExchangeLayer.prototype.render = function() {
     if (!this._data) { return; }
     // Abort if projection has not been set
@@ -77,7 +69,7 @@ ExchangeLayer.prototype.render = function() {
         .select('img')
         .attr('src', function (d) {
             var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-            if(isNaN(intensity)) intensity = 'nan';
+            if(d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
             return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
         });
     }
@@ -102,16 +94,12 @@ ExchangeLayer.prototype.render = function() {
         })
         .on('click', function (d) { console.log(d); });
 
-    // Because each key is unique, new elements will be added and old ones will be destroyed
-    // This allows us to avoid re-rendering when the same element subsides between renders
-    updateArrows(newArrows);
-
     // However, set the visibility
     var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
     var layerTransform = (this.exchangeArrowsContainer.style('transform') || "matrix(1, 0, 0, 1, 0, 0)")
         .replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
     
-    newArrows.merge(exchangeArrows)
+    updateArrows(newArrows.merge(exchangeArrows)
         .style('display', function(d) {
             var arrowCenter = that.projection()(d.lonlat);
             var layerTranslateX = layerTransform[4];
@@ -121,7 +109,8 @@ ExchangeLayer.prototype.render = function() {
             var isOffscreen = centerX < 0 || centerX > mapWidth;
             var hasLowFlow = (d.netFlow || 0) == 0;
             return (hasLowFlow || isOffscreen) ? 'none' : '';
-        })
+        }))
+
 
     return this;
 }
@@ -155,6 +144,7 @@ ExchangeLayer.prototype.data = function(arg) {
     if (!arg) return this._data;
     else {
         this._data = arg;
+
     }
     return this;
 };

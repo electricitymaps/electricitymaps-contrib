@@ -18,7 +18,7 @@ html, body {
     padding: 0 !important;
     height: 100%;
     font-family: sans-serif;
-    background-color: #32414c;
+    background-color: #32414c; /* water color */
     overflow: hidden;
 }
 
@@ -38,6 +38,10 @@ line, path {
 .axis path,
 .axis line {
     shape-rendering: crispEdges;
+}
+
+.country {
+    stroke: #555555;
 }
 
 .flag {
@@ -89,7 +93,7 @@ line, path {
 .loading {
     background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
 }
-#country-history-loading {
+.country-history .loading {
     background-size: 1.7rem;
 }
 #main {
@@ -139,7 +143,6 @@ line, path {
 }
 #header-content .logo img {
     height: 1.1rem;
-    filter: invert(1);
     margin: 0.2rem;
     margin-bottom: 0.3rem;
 }
@@ -170,18 +173,13 @@ line, path {
     top: 0;
     transform-origin: 0px 0px 0px;
 }
-.wind {
+#wind {
     pointer-events: none;
     opacity: 0;
 }
-.solar {
+#solar {
     pointer-events: none;
     opacity: 0;
-}
-.graticule {
-    fill: none;
-    stroke: #185c96;
-    stroke-width: 0.7px;
 }
 .panel {
     background-color: rgb(70, 70, 70);
@@ -283,13 +281,57 @@ line, path {
     flex-basis: 33.3%;
     justify-content: space-between;
 }
+
+/* Country History Graphs */
 .country-history {
-    width: 100%;
-    height: 10rem;
+    color: darkgray;
+    position: relative;
 }
-.country-history path.area {
+.country-history svg:not(:last-child) {
+    margin-bottom: 1.2em;
+}
+.country-history svg {
+    width: 100%;
+}
+.country-history path {
+    /*shape-rendering: crispEdges;*/
+}
+.country-history .vertical-line {
+    stroke: lightgray;
+    stroke-width: 1;
+    opacity: 0.3;
+}
+.country-history .horizontal-line {
+    stroke: lightgray;
+    stroke-width: 1;
+    stroke-dasharray: 5;
+    opacity: 0.7;
+}
+#country-history-carbon {
+    height: 7rem;
+}
+#country-history-carbon .horizontal-line {
+    display: none;
+}
+#country-history-prices {
+    height: 5rem;
+}
+#country-history-prices .line {
+    stroke: darkgray;
+}
+#country-history-prices .area {
     fill: #616161;
 }
+#country-history-mix {
+    height: 8rem;
+}
+#country-history-mix .layer path:hover {
+    opacity: 0.8
+}
+#country-history-mix .layer path {
+    opacity: 1.0
+}
+
 .left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
@@ -322,17 +364,6 @@ line, path {
 .left-panel .country-spot-price {
     width: 100%;
 }
-.left-panel .country-spot-price-wrap {
-    border: 1px solid white;
-    color: white;
-    border-radius: 0.125rem;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    flex-direction: column;
-}
 .country-col {
     text-align: center;
 }
@@ -358,7 +389,11 @@ line, path {
     color: #fff;
     border-radius: 0.125rem;
 }
-.country-col.country-col-fossilpct .country-col-box {
+.country-col.country-lowcarbon-wrap .country-col-box {
+    border:1px solid #000;
+    background: #000;
+}
+.country-col.country-renewable-wrap .country-col-box {
     border:1px solid #000;
     background: #000;
 }
@@ -390,7 +425,6 @@ line, path {
     pointer-events: none;
 }
 
-.country-price-wrap,
 .country-emission-intensity-wrap {
     text-align: center;
 }
@@ -438,12 +472,19 @@ label[for="checkbox-colorblind"] {
 .tooltip {
     border: 1px solid grey;
     color: darkgrey;
-    display: none;
     padding: 5px;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 99;
+    pointer-events: none;
+
+    opacity: 0;
+    -webkit-transition: opacity 0.250s;
+    transition: opacity 0.250s;
+}
+.tooltip.visible {
+    opacity: 1;
 }
 
 .watermark {
@@ -465,13 +506,6 @@ div.highscore-button {
 }
 div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
-}
-
-#country-tooltip {
-    display: none;
-}
-#country-tooltip.country-tooltip-visible {
-    display: inline;
 }
 
 .country-picker-container {
@@ -583,6 +617,10 @@ div.highscore-button:hover {
 
 #tab #tab-content .list-item.active img,
 #tab #tab-content a:hover img {
+    -webkit-filter: brightness(0%) invert(1);
+    -moz-filter: brightness(0%) invert(1);
+    -ms-filter: brightness(0%) invert(1);
+    -o-filter: brightness(0%) invert(1);
     filter: brightness(0%) invert(1);
 }
 #tab #tab-content .list-item.active.wind-button,
@@ -633,7 +671,7 @@ sub {
     font-size: 60%;
 }
 
-.premium {
+/*.premium {
     border-radius: 0.3rem;
     background-color: gold;
     color: rgb(76,76,76);
@@ -644,6 +682,12 @@ sub {
 }
 .premium:hover {
     color: black;
+}*/
+
+.contributors img {
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 0.4em;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */

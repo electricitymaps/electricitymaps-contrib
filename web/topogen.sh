@@ -5,8 +5,8 @@ set -eu -o pipefail
 RESOLUTION=10m
 COUNTRIES_FILENAME=ne_${RESOLUTION}_admin_0_map_subunits
 
-STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces_lakes
-STATES_FILTER="['CAN', 'AUS', 'IND']"
+STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces
+STATES_FILTER="['AUS', 'BRA', 'CAN', 'IND']"
 
 NODE_MODULES_PATH="node_modules/.bin"
 
@@ -44,7 +44,7 @@ echo 'Parsing countries..'
 # Parse states
 echo 'Parsing states..'
 ("$NODE_MODULES_PATH/shp2json" -n build/${STATES_FILENAME}.shp \
-  | "$NODE_MODULES_PATH/ndjson-map" '(d.id = d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
+  | "$NODE_MODULES_PATH/ndjson-map" '(d.id = d.properties.adm0_a3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.su_a3, d.properties.code_hasc = d.oldProps.code_hasc, d.properties.hasc_maybe = d.oldProps.hasc_maybe, d.properties.fips = d.oldProps.fips, delete d.oldProps, d)' \
   | "$NODE_MODULES_PATH/ndjson-filter" "d.id && ${STATES_FILTER}.indexOf(d.id) != -1"
 )>> build/tmp.json
 

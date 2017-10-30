@@ -4,7 +4,6 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     var that = this;
 
     this.STROKE_WIDTH = 0.3;
-    this.STROKE_COLOR = '#555555';
 
     this.selectedCountry = undefined;
 
@@ -30,7 +29,7 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         .on('click', function (d, i) {
             if (that.selectedCountry !== undefined) {
                 that.selectedCountry
-                    .style('stroke', that.STROKE_COLOR)
+                    .style('stroke', undefined)
                     .style('stroke-width', that.STROKE_WIDTH);
             }
             if (that.seaClickHandler)
@@ -51,6 +50,10 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     var that = this;
 
     this.zoom = d3.zoom().on('zoom', function() {
+        if (that.zoomEndTimeout) {
+            clearTimeout(that.zoomEndTimeout);
+            that.zoomEndTimeout = undefined;
+        }
         if (!dragStartTransform) {
             // Zoom start
             dragStartTransform = d3.event.transform;
@@ -87,30 +90,41 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         // Return in case no dragging was started
         // That's because 'end' is triggered on mouseup (i.e. click)
         if (!dragStartTransform) { return; }
-        
-        that.windCanvas.style('transform', undefined);
-        that.solarCanvas.style('transform', undefined);
 
-        that.exchangeLayer().render();
-        wind.pause(false);
-        d3.select(this).style('cursor', undefined);
+        // Note that zoomend() methods are slow because they recalc layer.
+        // Therefore, we debounce them.
 
-        // Here we need to update the (absolute) projection in order to be used by other systems
-        // that would like to overlay the map
-        projection = that._absProjection;
-        if (!projection) { return; }
-        var transform = d3.event.transform;
-        var scale = that.startScale * transform.k;
-        projection
-            .scale(scale)
-            .translate([
-                scale * Math.PI + transform.x,
-                scale * Math.PI + transform.y]);
+        var zoomEl = this;
+        var d3Event = d3.event;
 
-        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
-        wind.zoomend();
-        solar.zoomend();
-        dragStartTransform = undefined;
+        that.zoomEndTimeout = setTimeout(function() {
+            that.exchangeLayer().render();
+            d3.select(zoomEl).style('cursor', undefined);
+
+            // Here we need to update the (absolute) projection in order to be used by other systems
+            // that would like to overlay the map
+            projection = that._absProjection;
+            if (!projection) { return; }
+            var transform = d3Event.transform;
+            var scale = that.startScale * transform.k;
+            projection
+                .scale(scale)
+                .translate([
+                    scale * Math.PI + transform.x,
+                    scale * Math.PI + transform.y]);
+
+            // Notify. This is where we would need a Reactive / Pub-Sub system instead.
+            wind.zoomend();
+            solar.zoomend();
+            that.windCanvas.style('transform', undefined);
+            that.solarCanvas.style('transform', undefined);
+            wind.pause(false);
+
+            that.dragEndHandler.call(zoomEl);
+
+            dragStartTransform = undefined;
+            that.zoomEndTimeout = undefined;
+        }, 500)
     });
 
     d3.select(this.root.node().parentNode).call(this.zoom);
@@ -187,12 +201,15 @@ CountryMap.prototype.render = function() {
     if (this._data) {
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
-        selector.enter()
+        var pathEnter = selector.enter()
             .append('path')
                 .attr('class', 'country')
-                .attr('stroke', that.STROKE_COLOR)
                 .attr('stroke-width', that.STROKE_WIDTH)
                 .attr('d', this.path) // path is only assigned on create
+        if (!(/iPad|iPhone|iPod/.test(navigator.userAgent))) {
+            // Only set click events to every but Apple mobile devices
+            // to avoid the Safari double tap issue
+            pathEnter = pathEnter
                 .on('mouseover', function (d, i) {
                     if (that.countryMouseOverHandler)
                         return that.countryMouseOverHandler.call(this, d, i);
@@ -205,30 +222,31 @@ CountryMap.prototype.render = function() {
                     if (that.countryMouseMoveHandler)
                         return that.countryMouseMoveHandler.call(this, d, i);
                 })
-                .on('click',
-                    // Test for Googlebot crawler in order to pass
-                    // mobile-friendly test
-                    // Else, Googlebot complains that elements are not wide enough
-                    // to be clicked.
-                    navigator.userAgent.indexOf('Googlebot') != -1 ?
-                        undefined :
-                        function (d, i) {
-                            d3.event.stopPropagation(); // To avoid call click on sea
-                            if (that.selectedCountry !== undefined) {
-                                that.selectedCountry
-                                    .style('stroke', that.STROKE_COLOR)
-                                    .style('stroke-width', that.STROKE_WIDTH);
-                            }
-                            that.selectedCountry = d3.select(this);
-                            // that.selectedCountry
-                            //     .style('stroke', 'darkred')
-                            //     .style('stroke-width', 1.5);
-                            return that.countryClickHandler.call(this, d, i);
-                        })
-            .merge(selector)
-                .transition()
-                .duration(2000)
-                .attr('fill', this.getCo2Color);
+        }
+        pathEnter.on('click',
+            // Test for Googlebot crawler in order to pass
+            // mobile-friendly test
+            // Else, Googlebot complains that elements are not wide enough
+            // to be clicked.
+            navigator.userAgent.indexOf('Googlebot') != -1 ?
+                undefined :
+                function (d, i) {
+                    d3.event.stopPropagation(); // To avoid call click on sea
+                    if (that.selectedCountry !== undefined) {
+                        that.selectedCountry
+                            .style('stroke', that.STROKE_COLOR)
+                            .style('stroke-width', that.STROKE_WIDTH);
+                    }
+                    that.selectedCountry = d3.select(this);
+                    // that.selectedCountry
+                    //     .style('stroke', 'darkred')
+                    //     .style('stroke-width', 1.5);
+                    return that.countryClickHandler.call(this, d, i);
+                })
+        .merge(selector)
+            .transition()
+            .duration(2000)
+            .attr('fill', this.getCo2Color);
     }
 
     return this;
@@ -285,6 +303,12 @@ CountryMap.prototype.onCountryMouseMove = function(arg) {
 CountryMap.prototype.onCountryMouseOut = function(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
+};
+
+CountryMap.prototype.onDragEnd = function(arg) {
+    if (!arg) return this.dragEndHandler;
+    else this.dragEndHandler = arg;
     return this;
 };
 

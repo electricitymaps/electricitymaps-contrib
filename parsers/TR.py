@@ -3,7 +3,7 @@ import re
 import json
 import arrow
 
-SEARCH_DATA = re.compile(r'(?P<start>var data2=)(?P<data>{"yuk".*}]});')
+SEARCH_DATA = re.compile(r'var gunlukUretimEgrisiData = (?P<data>.*);')
 TIMEZONE = 'Europe/Istanbul'
 URL = 'https://ytbs.teias.gov.tr/ytbs/frm_login.jsf'
 EMPTY_DAY = -1
@@ -41,7 +41,7 @@ def get_last_data_idx(productions):
     :return: (int) index of the newest data or -1 if no data (empty day)
     """
     for i in range(len(productions)):
-        if productions[i]['total'] == 0:
+        if productions[i]['total'] < 1000:
             return i - 1
     return len(productions) - 1  # full day
 
@@ -60,7 +60,7 @@ def fetch_production(country_code='TR', session=None):
     response = r.get(URL, verify=False)
     str_data = re.search(SEARCH_DATA, response.text)
     if str_data:
-        productions = json.loads(str_data.group('data'), object_hook=as_float)['yuk']
+        productions = json.loads(str_data.group('data'), object_hook=as_float)
         last_data_index = get_last_data_idx(productions)
         if last_data_index != EMPTY_DAY:
             last_prod = productions[last_data_index]
@@ -69,6 +69,8 @@ def fetch_production(country_code='TR', session=None):
                 if prod_type in MAP_GENERATION.keys():
                     data['production'][MAP_GENERATION[prod_type]] += prod_val
             data['datetime'] = tr_datetime.replace(hour=last_data_index).datetime
+    else:
+        raise Exception('Extracted data was None')
     return data
 
 if __name__ == '__main__':

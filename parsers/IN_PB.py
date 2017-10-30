@@ -19,18 +19,9 @@ def read_text_by_regex(regex, text):
 
 
 def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format):
-    format = date_format + time_format + 'ZZZ'
+    date_format = date_format + time_format + 'ZZZ'
     date_time = date_text + time_text + 'Asia/Kolkata'
-    return get(date_time, format)
-
-
-def time_string_to_kolkata_date(utc_actual, time_text, time_format):
-    india_now = utc_actual.to('Asia/Kolkata')
-    time = get(time_text, time_format)
-    india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)
-    if india_date > india_now:
-        india_date = india_date.shift(days=-1)
-    return india_date
+    return get(date_time, date_format)
 
 
 def fetch_production(country_code='IN-PB', session=None):
@@ -40,7 +31,7 @@ def fetch_production(country_code='IN-PB', session=None):
 
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
-    utc = utcnow()
+    utc = utcnow().floor('hour')
     india_now = utc.to('Asia/Kolkata')
     time = get(time_text, 'HH:mm:ss')
     india_date = india_now.replace(hour=time.hour, minute=time.minute, second=time.second)

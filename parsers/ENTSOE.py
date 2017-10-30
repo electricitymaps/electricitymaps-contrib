@@ -38,6 +38,8 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
     'DK': '10Y1001A1001A65H',
+    'DK-DK1': '10YDK-1--------W',
+    'DK-DK2': '10YDK-2--------M',
     'EE': '10Y1001A1001A39I',
     'ES': '10YES-REE------0',
     'FI': '10YFI-1--------U',
@@ -305,6 +307,27 @@ def validate_production(datapoint):
         p = datapoint['production']
         return p.get('nuclear', None) is not None and \
                p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'DK':
+        p = datapoint['production']
+        return p.get('coal', None) is not None and \
+               p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'PT':
+        p = datapoint['production']
+        return p.get('coal', None) is not None and \
+               p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'GB':
+        p = datapoint['production']
+        return p.get('coal', None) is not None and \
+               p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'GR':
+        p = datapoint['production']
+        return p.get('coal', None) is not None and \
+               p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'DK':
+        p = datapoint['production']
+        return p.get('coal', None) is not None and \
+               p.get('gas', None) is not None and \
+               p.get('wind', None) is not None
     else: return True
 
 def get_biomass(values):
@@ -503,6 +526,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     return data
 
 def fetch_price(country_code, session=None, now=None):
+    # Note: This is day-ahead prices
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption

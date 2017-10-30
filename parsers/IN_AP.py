@@ -1,7 +1,7 @@
 from requests import Session
 from parsers import countrycode
 from parsers import web
-from parsers import india
+from parsers.lib import IN
 
 
 def fetch_production(country_code='IN-AP', session=None):
@@ -10,19 +10,19 @@ def fetch_production(country_code='IN-AP', session=None):
 
     html = web.get_response_soup(country_code,
                                  'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
-    india_date = india.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
+    india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
-    hydro_value = india.read_value_from_span_id(html, 'lblHydel')
-    gas_value = india.read_value_from_span_id(html, 'lblGas')
-    wind_value = india.read_value_from_span_id(html, 'lblWind')
-    solar_value = india.read_value_from_span_id(html, 'lblSolar')
+    hydro_value = IN.read_value_from_span_id(html, 'lblHydel')
+    gas_value = IN.read_value_from_span_id(html, 'lblGas')
+    wind_value = IN.read_value_from_span_id(html, 'lblWind')
+    solar_value = IN.read_value_from_span_id(html, 'lblSolar')
 
     # All thermal centrals are considered coal based production
     # https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh
-    thermal_value = india.read_value_from_span_id(html, 'lblThermal')
+    thermal_value = IN.read_value_from_span_id(html, 'lblThermal')
 
-    cgs_value = india.read_value_from_span_id(html, 'lblCGS')
-    ipp_value = india.read_value_from_span_id(html, 'lblIPPS')
+    cgs_value = IN.read_value_from_span_id(html, 'lblCGS')
+    ipp_value = IN.read_value_from_span_id(html, 'lblIPPS')
 
     data = {
         'countryCode': country_code,
@@ -54,9 +54,9 @@ def fetch_consumption(country_code='IN-AP', session=None):
 
     html = web.get_response_soup(country_code,
                                  'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
-    india_date = india.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
+    india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
-    demand_value = india.read_value_from_span_id(html, 'lblGridDemand')
+    demand_value = IN.read_value_from_span_id(html, 'lblGridDemand')
 
     data = {
         'countryCode': country_code,

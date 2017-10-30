@@ -82,7 +82,7 @@ def fetch_production(country_code='UY', session=None):
 
     return data
 
-def fetch_exchange(country_code1='UY', country_code2='BR', session=None):
+def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:

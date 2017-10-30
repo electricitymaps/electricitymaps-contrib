@@ -63,6 +63,8 @@ def fetch_production(country_code='FO', session=None):
 
     # At least 10MW should be produced
     if sum([v for k, v in data['production'].iteritems()]) < 10: return None
+    # The hydro key should be defined
+    if data['production'].get('hydro', None) is None: return None
 
     return data
 

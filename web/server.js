@@ -19,6 +19,9 @@ var http = require('http');
 var i18n = require('i18n');
 var geoip = require('geoip-lite');
 
+// Custom module
+var translation = require(__dirname + '/app/translation');
+
 var app = express();
 var server = http.Server(app);
 
@@ -37,7 +40,7 @@ app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '
 app.set('view engine', 'ejs');
 
 // * i18n
-var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
     // note: detected locales are always lowercase
@@ -45,7 +48,8 @@ i18n.configure({
     directory: __dirname + '/locales',
     defaultLocale: 'en',
     queryParameter: 'lang',
-    objectNotation: true
+    objectNotation: true,
+    updateFiles: false, // whether to write new locale information to disk
 });
 app.use(i18n.init);
 var LOCALE_TO_FB_LOCALE = {
@@ -56,6 +60,7 @@ var LOCALE_TO_FB_LOCALE = {
     'es': 'es_ES',
     'fr': 'fr_FR',
     'it': 'it_IT',
+    'ja': 'ja_JP',
     'nl': 'nl_NL',
     'pl': 'pl_PL',
     'sv': 'sv_SE',
@@ -81,6 +86,7 @@ var SUPPORTED_FB_LOCALES = [
     'fr_CA',
     'fr_FR',
     'it_IT',
+    'ja_JP',
     'nl_BE',
     'nl_NL',
     'pl_PL',
@@ -91,13 +97,21 @@ var SUPPORTED_FB_LOCALES = [
 ];
 
 // * Long-term caching
-var BUNDLE_HASH = VENDOR_HASH = STYLES_HASH = 'dev';
-if (isProduction) {
-    var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
-    BUNDLE_HASH = obj.chunks[0].hash;
-    VENDOR_HASH = obj.chunks[2].hash;
-    STYLES_HASH = obj.chunks[1].hash;
+function getHash(key, ext) {
+    var filename;
+    if (typeof obj.assetsByChunkName[key] == 'string') {
+        filename = obj.assetsByChunkName[key];
+    } else {
+        // assume list
+        filename = obj.assetsByChunkName[key]
+            .filter((d) => d.match(new RegExp('\.' + ext + '$')))[0]
+    }
+    return filename.replace('.' + ext, '').replace(key + '.', '');
 }
+var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
+var BUNDLE_HASH = getHash('bundle', 'js');
+var VENDOR_HASH = getHash('vendor', 'js');
+var STYLES_HASH = getHash('styles', 'css');
 
 // * Opbeat
 if (isProduction)
@@ -163,7 +177,13 @@ app.get('/', function(req, res) {
             supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],
             supportedFBLocales: SUPPORTED_FB_LOCALES,
-            geo: geoip.lookup(ip)
+            geo: geoip.lookup(ip),
+            '__': function() {
+                var argsArray = Array.prototype.slice.call(arguments);
+                // Prepend the first argument which is the locale
+                argsArray.unshift(locale);
+                return translation.translateWithLocale.apply(null, argsArray);
+            }
         });
     }
 });

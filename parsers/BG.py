@@ -62,14 +62,11 @@ def fetch_production(country_code='BG', session=None):
     if local_time:
         time = local_time.string.split(':')
         if len(time) == 3:
-            try:
-                datetime = arrow.now('Europe/Sofia').floor('day').\
-                    replace(hour=int(time[0]), minute=int(time[1]), second=int(time[2]))
-            except ValueError, e:
-                print str(e)
-                pass
+            datetime = arrow.now('Europe/Sofia').floor('day').\
+                replace(hour=int(time[0]), minute=int(time[1]), second=int(time[2]))
+
     if not datetime:
-        datetime = arrow.now('Europe/Sofia')
+        raise Exception('No datetime')
 
     # then populate an object that contains the consumptions by type, we will parse a table something like that
     # АЕЦ	1998

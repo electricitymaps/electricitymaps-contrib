@@ -37,8 +37,12 @@ def fetch_hourly_production(country_code, obj, hour, date):
     #First add 'Biomasa' and 'Biogas' together to make 'biomass' variable (and avoid negative values)
     data['production']['biomass'] = max(obj[obj['tipo'] == 'Biomasa'].potencia.iloc[0],0) + max(obj[obj['tipo'] == 'Biogas'].potencia.iloc[0],0)
     #Then fill the other sources directly with the MAP_GENERATION frame
-    for i_type in MAP_GENERATION.keys(): 
-        data['production'][i_type] = obj[obj['tipo'] == MAP_GENERATION[i_type]].potencia.iloc[0]
+    for i_type in MAP_GENERATION.keys():
+        val = obj[obj['tipo'] == MAP_GENERATION[i_type]].potencia.iloc[0]
+        if i_type == 'oil' and val > -1:
+            # Set to 0 values that are not too small
+            val = max(0, val)
+        data['production'][i_type] = val
     
     return data
 
