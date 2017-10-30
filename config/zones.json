@@ -1234,6 +1234,12 @@
     ]
   },
   "TR": {
+    "capacity": {
+      "coal": 17317,
+      "hydro": 27385,
+      "gas": 22552,
+      "wind": 6202
+    },
     "parsers": {
       "production": "TR.fetch_production"
     },
