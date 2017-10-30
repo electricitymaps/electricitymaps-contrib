@@ -20,13 +20,13 @@
   },
   "AT": {
     "capacity": {
-      "biomass": 393,
-      "coal": 819,
-      "gas": 4187,
-      "hydro": 11054,
-      "oil": 288,
-      "solar": 814,
-      "wind": 2739,
+      "biomass": 474,
+      "coal": 598,
+      "gas": 4466,
+      "hydro": 11947,
+      "oil": 178,
+      "solar": 723,
+      "wind": 2696,
       "nuclear": 0
     },
     "parsers": {
