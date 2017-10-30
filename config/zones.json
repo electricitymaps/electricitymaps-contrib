@@ -462,12 +462,12 @@
     "capacity": {
       "biomass": 7060,
       "coal": 49280,
-      "gas": 28270,
-      "hydro": 5590,
+      "gas": 29890,
+      "hydro": 5590, // ENSTOSE capacity & prod data are incorrect
       "nuclear": 10800,
       "oil": 4190,
-      "solar": 40850,
-      "wind": 49640
+      "solar": 42410,
+      "wind": 53800
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -494,6 +494,8 @@
       "coal": 4847,
       "gas": 2941,
       "hydro": 0,
+      "hydro storage": 0,
+      "geothermal": 0,
       "nuclear": 0,
       "solar": 601,
       "wind": 4845
