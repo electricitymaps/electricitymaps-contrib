@@ -127,7 +127,7 @@
       "nuclear": 5919,
       "oil": 0,
       "solar": 2953,
-      "wind": 1961
+      "wind": 2622
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
