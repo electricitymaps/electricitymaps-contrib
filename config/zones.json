@@ -969,13 +969,14 @@
   },
   "NL": {
     "capacity": {
-      "biomass": 1072,
-      "coal": 5658,
-      "gas": 19914,
+      "biomass": 1164,
+      "coal": 4608,
+      "gas": 19297,
       "hydro": 38,
+      "hydro storage": 0,
       "nuclear": 486,
-      "solar": 1429,
-      "wind": 3641
+      "solar": 2039,
+      "wind": 4117
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
