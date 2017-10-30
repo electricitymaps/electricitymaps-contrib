@@ -661,6 +661,7 @@
     "capacity": {
       "coal": 2930,
       "gas": 10909,
+      "geothermal": 2,
       "hydro": 23495,
       "nuclear": 63130,
       "oil": 6670,
@@ -681,7 +682,8 @@
       "biomass": 2119,
       "coal": 11097,
       "gas": 27688,
-      "hydro": 4269,
+      "geothermal": 0,
+      "hydro": 4269, // incl. 2744 storage
       "nuclear": 8985,
       "oil": 759,
       "solar": 8566,
@@ -722,7 +724,8 @@
       "biomass": 51,
       "coal": 3912,
       "gas": 5396,
-      "hydro": 3401,
+      "geothermal": 0,
+      "hydro": 3401, //incl 699 storage
       "nuclear": 0,
       "oil": 0,
       "solar": 2441,
@@ -784,7 +787,7 @@
       "biomass": 344,
       "coal": 855,
       "gas": 3801,
-      "hydro": 508,
+      "hydro": 508, // incl. 292 storage
       "nuclear": 0,
       "oil": 811,
       "solar": 0,
@@ -865,10 +868,16 @@
   },
   "IT": {
     "capacity": {
-      "hydro": 22382,
+      "biomass": 1866,
+      "coal": 7902,
+      "gas": 40814,
+      "geothermal": 869,
+      "hydro": 14764,
+      "hydro storage": 7157,
       "nuclear": 0,
-      "solar": 18420,
-      "wind": 8561
+      "oil": 4928,
+      "solar": 19245,
+      "wind": 9275
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
