@@ -127,10 +127,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)  
+- Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
-- Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Finland:
+  - Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_by_country)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
