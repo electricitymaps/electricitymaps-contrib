@@ -352,7 +352,7 @@ def get_hydro(values):
 
 def get_hydro_storage(storage_values):
     if 'Hydro Pumped Storage' in storage_values:
-        return storage_values.get('Hydro Pumped Storage', 0)
+        return -1 * storage_values.get('Hydro Pumped Storage', 0)
 
 def get_oil(values):
     if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
@@ -436,7 +436,7 @@ def fetch_production(country_code, session=None, now=None):
                 'unknown': get_unknown(production_values)
             },
             'storage': {
-                'hydro': -1 * get_hydro_storage(production_values),
+                'hydro': get_hydro_storage(production_values),
             },
             'source': 'entsoe.eu'
         })
