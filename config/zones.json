@@ -1057,14 +1057,15 @@
   },
   "PT": {
     "capacity": {
-      "biomass": 582,
+      "biomass": 598,
       "coal": 1756,
-      "gas": 4695,
-      "hydro": 6121,
+      "gas": 4457,
+      "hydro": 4359,
+      "hydro storage": 2559,
       "nuclear": 0,
       "oil": 0,
-      "solar": 251,
-      "wind": 4617
+      "solar": 460,
+      "wind": 5028
     },
     "flag_file_name": "pt.png",
     "parsers": {
