@@ -218,9 +218,9 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .attr('transform', function (d, i) {
             return 'translate(0,' + i * (that.ROW_HEIGHT + that.PADDING_Y) + ')';
         });
-    gNewRow.append('image')
-        .attr('width', this.FLAG_SIZE)
-        .attr('height', this.FLAG_SIZE);
+    // gNewRow.append('image')
+    //     .attr('width', this.FLAG_SIZE)
+    //     .attr('height', this.FLAG_SIZE);
     gNewRow.append('text')
         .style('text-anchor', 'end') // right align
         .attr('transform', 
