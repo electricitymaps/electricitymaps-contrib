@@ -81,19 +81,18 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
 
-def find_query_error(response):
-    """Finds error message in response if the query to ENTSOE fails."""
+def check_response(response, function_name):
+    """
+    Searches for an error message in response if the query to ENTSOE fails.
+    Returns a QueryError containing function name and reason for failure.
+    """
 
     soup = BeautifulSoup(response.text, 'html.parser')
     text = soup.find_all('text')
     if len(text):
         error_text = soup.find_all('text')[0].prettify()
-        if 'No matching data found' in error_text:
-            return error_text
-        else:
-            return False
-    else:
-        return False
+        if 'No matching data found' in error_text:return
+        raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, check_page))
 
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     if now is None: now = arrow.utcnow()
@@ -113,9 +112,7 @@ def query_consumption(domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        check_page = find_query_error(response)
-        if check_page:return
-        raise QueryError('Failed to get consumption. Reason: %s' % check_page)
+        check_response(response, query_consumption.__name__)
 
 def query_production(psr_type, in_domain, session, now=None):
     params = {
@@ -127,10 +124,8 @@ def query_production(psr_type, in_domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        check_page = find_query_error(response)
-        if check_page:return
-        print 'Failed for psr %s' % psr_type
-        print 'Reason:', check_page
+        print 'Query failed for psr %s' % psr_type
+        check_response(response, query_production.__name__)
 
 def query_exchange(in_domain, out_domain, session, now=None):
     params = {
@@ -141,9 +136,7 @@ def query_exchange(in_domain, out_domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        check_page = find_query_error(response)
-        if check_page:return
-        raise QueryError('Failed to get exchange. Reason: %s' % check_page)
+        check_response(response, query_exchange.__name__)
 
 def query_exchange_forecast(in_domain, out_domain, session, now=None):
     params = {
@@ -154,9 +147,7 @@ def query_exchange_forecast(in_domain, out_domain, session, now=None):
     response = query_ENTSOE(session, params, now, span=[-24, 48])
     if response.ok: return response.text
     else:
-        check_page = find_query_error(response)
-        if check_page:return
-        raise QueryError('Failed to get exchange forecast. Reason: %s' % check_page)
+        check_response(response, query_exchange_forecast.__name__)
 
 def query_price(domain, session, now=None):
     params = {
@@ -167,9 +158,7 @@ def query_price(domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        check_page = find_query_error(response)
-        if check_page:return
-        raise QueryError('Failed to get price. Reason: %s' % check_page)
+        check_response(response, query_price.__name__)
 
 def query_generation_forecast(in_domain, session, now=None):
     # Note: this does not give a breakdown of the production
@@ -181,9 +170,7 @@ def query_generation_forecast(in_domain, session, now=None):
     response = query_ENTSOE(session, params, now, span=[-24, 48])
     if response.ok: return response.text
     else:
-        check_page = find_query_error(response)
-        if check_page:return
-        raise QueryError('Failed to get generation forecast. Reason: %s' % check_page)
+        check_response(response, query_generation_forecast.__name__)
 
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
