@@ -809,9 +809,11 @@ function selectCountry(countryCode, notrack) {
                     })
                 }
             }
-            var firstDatetime = moment(countryHistory[0].stateDatetime).toDate();
+            var firstDatetime = countryHistory[0] &&
+                moment(countryHistory[0].stateDatetime).toDate();
             [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
-                if (currentMoment) {
+                if (currentMoment && firstDatetime) {
+                    console.log(currentMoment.toDate())
                     g.xDomain([firstDatetime, currentMoment.toDate()])
                 }
                 g.onMouseMove(function(d, i) {

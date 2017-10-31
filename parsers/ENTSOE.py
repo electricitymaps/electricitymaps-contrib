@@ -221,7 +221,6 @@ def parse_production(xml_text):
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     productions = []
-    storages = []
     datetimes = []
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
@@ -234,14 +233,13 @@ def parse_production(xml_text):
             try:
                 i = datetimes.index(datetime)
                 if is_production:
-                    productions[i] = quantity
+                    productions[i] += quantity
                 else:
-                    storages[i] = quantity
+                    productions[i] -= quantity
             except ValueError: # Not in list
                 datetimes.append(datetime)
-                productions.append(quantity if is_production else 0)
-                storages.append(quantity if not is_production else 0)
-    return productions, storages, datetimes
+                productions.append(quantity if is_production else -1 * quantity)
+    return productions, datetimes
 
 def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     if not xml_text: return None
@@ -347,16 +345,14 @@ def get_gas(values):
             values.get('Fossil Gas', 0)
 
 def get_hydro(values):
-    if 'Hydro Pumped Storage' in values \
-        or 'Hydro Run-of-river and poundage' in values \
+    if 'Hydro Run-of-river and poundage' in values \
         or 'Hydro Water Reservoir' in values:
-        return max(values.get('Hydro Pumped Storage', 0), 0) + \
-            values.get('Hydro Run-of-river and poundage', 0) + \
+        return values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
 
 def get_hydro_storage(storage_values):
     if 'Hydro Pumped Storage' in storage_values:
-        return max(0, storage_values.get('Hydro Pumped Storage', 0))
+        return -1 * storage_values.get('Hydro Pumped Storage', 0)
 
 def get_oil(values):
     if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
@@ -404,9 +400,9 @@ def fetch_production(country_code, session=None, now=None):
     for k in ENTSOE_PARAMETER_DESC.keys():
         parsed = parse_production(query_production(k, domain, session, now))
         if parsed:
-            productions, storages, datetimes = parsed
+            productions, datetimes = parsed
             for i in range(len(datetimes)):
-                production_hashmap[datetimes[i]][k] = (productions[i], storages[i])
+                production_hashmap[datetimes[i]][k] = productions[i]
 
 
     # Remove all dates in the future
@@ -422,8 +418,7 @@ def fetch_production(country_code, session=None, now=None):
     data = []
     for production_date in production_dates:
 
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v[0] for k, v in production_hashmap[production_date].iteritems()}
-        storage_values = {ENTSOE_PARAMETER_DESC[k]: v[1] for k, v in production_hashmap[production_date].iteritems()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].iteritems()}
 
         data.append({
             'countryCode': country_code,
@@ -441,7 +436,7 @@ def fetch_production(country_code, session=None, now=None):
                 'unknown': get_unknown(production_values)
             },
             'storage': {
-                'hydro': get_hydro_storage(storage_values),
+                'hydro': get_hydro_storage(production_values),
             },
             'source': 'entsoe.eu'
         })
