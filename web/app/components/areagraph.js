@@ -106,10 +106,10 @@ AreaGraph.prototype.data = function (arg) {
         0,
         d3.max(arg, function(d) {
             if (!that._displayByEmissions) {
-                return d.totalProduction + d.totalImport;
+                return d.totalProduction + d.totalImport + d.totalDischarge;
             } else {
                 // in tCO2eq/min
-                return (d.totalCo2Production + d.totalCo2Import) / 1e6 / 60.0;
+                return (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0;
             }
         })
     ]);
@@ -192,9 +192,10 @@ AreaGraph.prototype.render = function() {
 
 
     var datetimes = this._datetimes;
-    function detectPosition() {
+    function detectPosition(d3Event) {
+        if (!d3Event) { d3Event = d3.event; }
         if (!datetimes.length) return;
-        var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
+        var dx = d3Event.pageX ? (d3Event.pageX - this.getBoundingClientRect().left) :
             (d3.touches(this)[0][0]);
         var datetime = x.invert(dx);
         // Find data point closest to
@@ -207,6 +208,13 @@ AreaGraph.prototype.render = function() {
 
     layer.append('path')
         .attr('class', 'area')
+
+    // Warning: because the area and the background are two separate elements,
+    // switching the mouse from one to the other will cause an unwanted mouseout.
+    // Therefore, we should debounce the mouseout and verify no mouseover is triggered withing
+    // a very small time
+    var mouseOutTimeout;
+
     layer.merge(selection).select('path.area')
         .on('mousemove', function(d) {
             var i = detectPosition.call(this);
@@ -218,6 +226,10 @@ AreaGraph.prototype.render = function() {
                 that.mouseMoveHandler.call(this, data[i]._countryData, i);
         })
         .on('mouseover', function(d) {
+            if (mouseOutTimeout) {
+                clearTimeout(mouseOutTimeout);
+                mouseOutTimeout = undefined;
+            }
             var i = detectPosition.call(this);
             that.selectedIndex(i);
             if (that.layerMouseOverHandler) {
@@ -227,13 +239,17 @@ AreaGraph.prototype.render = function() {
                 that.mouseOverHandler.call(this, data[i]._countryData, i);
         })
         .on('mouseout', function(d) {
-            var i = detectPosition.call(this);
-            that.selectedIndex(i);
+            var innerThis = this;
+            var d3Event = d3.event;
+            var i = detectPosition.call(this, d3Event);
+            mouseOutTimeout = setTimeout(function() {
+                that.selectedIndex(i);
+                if (that.mouseOutHandler)
+                    that.mouseOutHandler.call(innerThis, data[i]._countryData, i);
+            }, 50)
             if (that.layerMouseOutHandler) {
-                that.layerMouseOutHandler.call(this, d.key, d[i].data._countryData)
+                that.layerMouseOutHandler.call(innerThis, d.key, d[i].data._countryData)
             }
-            if (that.mouseOutHandler)
-                that.mouseOutHandler.call(this, data[i]._countryData, i);
         })
         .transition()
         .style('fill', function(d) {
@@ -257,16 +273,24 @@ AreaGraph.prototype.render = function() {
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
+            if (mouseOutTimeout) {
+                clearTimeout(mouseOutTimeout);
+                mouseOutTimeout = undefined;
+            }
             var i = detectPosition.call(this);
             that.selectedIndex(i);
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this, data[i]._countryData, i);
         })
         .on('mouseout', function () {
-            var i = detectPosition.call(this);
-            that.selectedIndex(i);
-            if (that.mouseOutHandler)
-                that.mouseOutHandler.call(this, data[i]._countryData, i);
+            var innerThis = this;
+            var d3Event = d3.event;
+            mouseOutTimeout = setTimeout(function() {
+                var i = detectPosition.call(innerThis, d3Event);
+                that.selectedIndex(i);
+                if (that.mouseOutHandler)
+                    that.mouseOutHandler.call(innerThis, data[i]._countryData, i);
+            }, 100)
         })
         .on('mousemove', function () {
             var i = detectPosition.call(this);

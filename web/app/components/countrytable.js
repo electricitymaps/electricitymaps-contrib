@@ -480,6 +480,8 @@ CountryTable.prototype.data = function(arg) {
             Math.max(
                 this._data.maxCapacity || 0,
                 this._data.maxProduction || 0,
+                this._data.maxDischarge || 0,
+                this._data.maxStorageCapacity || 0,
                 this._data.maxImport || 0,
                 this._data.maxImportCapacity || 0)
         ]);
