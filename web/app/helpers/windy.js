@@ -308,7 +308,7 @@ var Windy = function( params ){
 
     function windIntensityColorScale(step, maxWind) {
 
-        result = [
+        var result = [
           /* blue to red
           "rgba(" + hexToR('#178be7') + ", " + hexToG('#178be7') + ", " + hexToB('#178be7') + ", " + 0.5 + ")",
           "rgba(" + hexToR('#8888bd') + ", " + hexToG('#8888bd') + ", " + hexToB('#8888bd') + ", " + 0.5 + ")",

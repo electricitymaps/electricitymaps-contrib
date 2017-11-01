@@ -103,7 +103,7 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
 
             // Here we need to update the (absolute) projection in order to be used by other systems
             // that would like to overlay the map
-            projection = that._absProjection;
+            var projection = that._absProjection;
             if (!projection) { return; }
             var transform = d3Event.transform;
             var scale = that.startScale * transform.k;
