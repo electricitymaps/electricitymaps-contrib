@@ -14,11 +14,28 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     var selector = tooltipInstance._selector;
 
     if (!country.productionCo2Intensities) { return; }
-    var co2intensity = country.productionCo2Intensities[mode];
-    var co2intensitySource = country.productionCo2IntensitySources[mode];
     if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(co2intensity) });
     var tooltip = d3.select(selector);
     tooltip.selectAll('#mode').text(translation.translate(mode) || mode);
+
+    var value = mode.indexOf('storage') != -1 ?
+        -1 * country.storage[mode.replace(' storage', '')] :
+        country.production[mode]
+
+    var isStorage = value < 0
+    var absValue = Math.abs(value)
+
+    var co2intensity = value < 0 ?
+        undefined :
+        mode.indexOf('storage') != -1 ?
+            country.dischargeCo2Intensities[mode.replace(' storage', '')] :
+            country.productionCo2Intensities[mode];
+    var co2intensitySource = value < 0 ?
+        undefined :
+        mode.indexOf('storage') != -1 ?
+            country.dischargeCo2IntensitySources[mode.replace(' storage', '')] :
+            country.productionCo2IntensitySources[mode];
+
     tooltip.select('.emission-rect')
         .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
     tooltip.select('.emission-intensity')
@@ -26,10 +43,11 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     tooltip.select('.emission-source')
         .text(co2intensitySource || '?');
 
-    var isStorage = mode.indexOf('storage') != -1;
-    var value = displayByEmissions ?
-        (isStorage ? 0 : (country.production[mode] * co2intensity * 1000)) :
-        (isStorage ? country.storage[mode.replace(' storage', '')] : country.production[mode]);
+    if (displayByEmissions) {
+        if (!isStorage) {
+            value *= co2intensity * 1000.0;
+        }
+    }
 
     tooltip.select('.production-visible')
         .style('display', displayByEmissions ? 'none' : undefined);
@@ -39,10 +57,10 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     // capacity
     var capacity = country.capacity[mode]
     var hasCapacity = capacity !== undefined && capacity >= (country.production[mode] || 0);
-    var capacityFactor = hasCapacity && Math.round(value / capacity * 100) || '?';
+    var capacityFactor = hasCapacity && Math.round(absValue / capacity * 100) || '?';
     tooltip.select('#capacity-factor').text(capacityFactor + ' %');
     tooltip.select('#capacity-factor-detail').html(
-        (format(value) || '?') + ' ' +
+        (format(absValue) || '?') + ' ' +
         ' / ' + 
         (hasCapacity && format(capacity) || '?'));
 
@@ -52,11 +70,11 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
 
     var domain = totalPositive;
     var domainName = translation.translate(mode);
-    var isNull = !isFinite(value) || value == undefined;
+    var isNull = !isFinite(absValue) || absValue == undefined;
 
-    var productionProportion = !isNull ? Math.round(value / domain * 100) : '?';
+    var productionProportion = !isNull ? Math.round(absValue / domain * 100) : '?';
     tooltip.select('#production-proportion-detail').html(
-        (!isNull ? format(value) : '?') + ' ' +
+        (!isNull ? format(absValue) : '?') + ' ' +
         ' / ' + 
         (!isNull ? format(domain) : '?'));
 

@@ -439,13 +439,13 @@
     ]
   },
   "CZ": {
-    "_comment": "incl. 1171.5 MW storage. ENTSOE discharge data available",
     "capacity": {
       "biomass": 450,
       "coal": 9129,
       "gas": 1606,
       "geothermal": 0,
-      "hydro": 2258,
+      "hydro": 1086.5,
+      "hydro storage": 1171.5,
       "nuclear": 4040,
       "oil": 0,
       "solar": 2027,
@@ -462,12 +462,12 @@
     ]
   },
   "DE": {
-    "_comment": "incl. 5666 MW storage. ENTSOE discharge data available",
     "capacity": {
       "biomass": 7060,
       "coal": 49280,
       "gas": 29890,
-      "hydro": 10252,
+      "hydro": 4586,
+      "hydro storage": 5666,
       "nuclear": 10800,
       "oil": 4190,
       "solar": 42410,
@@ -562,7 +562,6 @@
     ]
   },
   "ES": {
-    "_comment": "incl. 17366 MW storage. ENTSOE discharge data available",
     "bounding_box": [
       [
         -9.3603515625,
@@ -578,7 +577,8 @@
       "coal": 9535,
       "gas": 30723,
       "geothermal": 0,
-      "hydro": 14086,
+      "hydro": 14614,
+      "hydro storage": 5645,
       "nuclear": 7572,
       "oil": 715,
       "solar": 6720,
@@ -874,13 +874,13 @@
     ]
   },
   "IT": {
-    "_comment": "incl. 7157 MW storage. ENTSOE discharge data available",
     "capacity": {
       "biomass": 1866,
       "coal": 7902,
       "gas": 40814,
       "geothermal": 869,
-      "hydro": 21921,
+      "hydro": 14764,
+      "hydro storage": 7157,
       "nuclear": 0,
       "oil": 4928,
       "solar": 19245,
@@ -1063,12 +1063,12 @@
     ]
   },
   "PT": {
-    "_comment": "incl. 2559 MW storage. ENTSOE discharge data available",
     "capacity": {
       "biomass": 598,
       "coal": 1756,
       "gas": 4457,
-      "hydro": 6918,
+      "hydro": 4359,
+      "hydro storage": 2559,
       "nuclear": 0,
       "oil": 0,
       "solar": 460,
