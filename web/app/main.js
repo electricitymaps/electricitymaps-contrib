@@ -735,7 +735,9 @@ function selectCountry(countryCode, notrack) {
                     d.maxCapacity || 0,
                     d.maxProduction || 0,
                     d.maxImport || 0,
-                    d.maxImportCapacity || 0);
+                    d.maxImportCapacity || 0,
+                    d.maxDischarge || 0,
+                    d.maxStorageCapacity || 0);
             });
             // TODO(olc): do those aggregates server-side
             var lo_emission = d3.min(countryHistory, function(d) {
