@@ -7,24 +7,24 @@ var locales = {};
 })
 var vsprintf = require('sprintf-js').vsprintf;
 
-exports.translateWithLocale = translateWithLocale = function(locale, keyStr) {
-    keys = keyStr.split('.');
-    result = locales[locale];
+exports.translateWithLocale = function translate (locale, keyStr) {
+    var keys = keyStr.split('.');
+    var result = locales[locale];
     for (var i = 0; i < keys.length; i++) {
         if (result == undefined) { break }
         result = result[keys[i]];
     }
     if (locale != 'en' && !result) {
-        translateWithLocale(keyStr, 'en');
+        translate(keyStr, 'en');
     } else {
-        formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
+        var formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
         return result && vsprintf(result, formatArgs);
     }
 }
 exports.translate = function() {
     // Will use the `locale` global variable
-    args = Array.prototype.slice.call(arguments);
+    var args = Array.prototype.slice.call(arguments);
     // Prepend locale
     args.unshift(locale)
-    return translateWithLocale.apply(null, args);
+    return exports.translateWithLocale.apply(null, args);
 }

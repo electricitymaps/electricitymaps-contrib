@@ -17,6 +17,12 @@ module.exports = {
                     fallback: 'style-loader',
                     use: [{ loader: 'css-loader', options: { url: false } }]
                 })
+            },
+            {
+                test: [/\.js$/],
+                exclude: [/node_modules/],
+                loader: 'babel-loader',
+                options: { presets: ['es2015'] }
             }
         ]
     },

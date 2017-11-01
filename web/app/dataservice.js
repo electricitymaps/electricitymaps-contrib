@@ -51,7 +51,7 @@ exports.fetchGfs = function(endpoint, key, datetime, callback) {
     var targetTimeBefore = getGfsTargetTimeBefore(datetime);
     var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
     // Note: d3.queue runs tasks in parallel
-    return Q = d3.queue()
+    return d3.queue()
         .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true)
         .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true)
         .await(function(err, before, after) {
