@@ -1,5 +1,4 @@
 from requests import Session
-from parsers.lib.exceptions import ParserException
 from parsers.lib import web
 from parsers.lib import countrycode
 from parsers.lib import IN

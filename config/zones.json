@@ -825,6 +825,16 @@
       "https://github.com/blackleg"
     ]
   },
+    "IN-DL": {
+    "flag_file_name": "in.png",
+    "parsers": {
+      "consumption": "IN_DL.fetch_consumption",
+      "production": "IN_DL.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/blackleg"
+    ]
+  },
   "IN-KA": {
     "flag_file_name": "in.png",
     "capacity": {
