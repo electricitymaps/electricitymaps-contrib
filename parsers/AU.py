@@ -419,16 +419,21 @@ def fetch_production(country_code=None, session=None):
     return data
 
 
+# It appears that the interconnectors are named according to positive flow.
+# That is, NSW1-QLD1 reports positive values when there is flow from NSW to QLD,
+# and negative values when flow is from QLD to NSW.
+# To verify, compare with flows shown on
+# http://aemo.com.au/Electricity/National-Electricity-Market-NEM/Data-dashboard#nem-dispatch-overview
 EXCHANGE_MAPPING_DICTIONARY = {
     'AUS-NSW->AUS-QLD': {
         'region_id': 'QLD1',
         'interconnector_names': ['N-Q-MNSP1', 'NSW1-QLD1'],
-        'directions': [-1, -1]
+        'directions': [1, 1]
     },
     'AUS-NSW->AUS-VIC': {
         'region_id': 'NSW1',
         'interconnector_names': ['VIC1-NSW1'],
-        'directions': [1]
+        'directions': [-1]
     },
     'AUS-SA->AUS-VIC': {
         'region_id': 'VIC1',
