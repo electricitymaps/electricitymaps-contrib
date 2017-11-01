@@ -33,28 +33,56 @@ def fetch_production(country_code='IN-DL', session=None):
     india_date_string = IN.read_text_from_span_id(html, 'ContentPlaceHolder3_ddgenco')
     india_date_time = IN.read_datetime_with_only_time(india_date_string, 'HH:mm:ss')
 
+    prod_table = html.find("table", {"id": "ContentPlaceHolder3_dgenco"})
+    prod_rows = prod_table.findAll('tr')
+
+    # BTPS https://en.wikipedia.org/wiki/Badarpur_Thermal_Power_Station
+    btps = read_value(prod_rows[1])
+
+    # CCGT https://en.wikipedia.org/wiki/Pragati-III_Combined_Cycle_Power_Plant
+    ccgt = read_value(prod_rows[2])
+
+    # DMSWSL Unknown
+    dmswsl = read_value(prod_rows[3])
+
+    # EDWPL Unknown
+    edwpl = read_value(prod_rows[4])
+
+    # GT Unknown
+    gt = read_value(prod_rows[5])
+
+    # Pragati
+    pragati = read_value(prod_rows[6])
+
+    # TOWMP Waste?
+    towmp = read_value(prod_rows[7])
+
+    # Coal production
+    coal = btps
+
+    # Gas production
+    gas = ccgt + pragati
+
+    # Unknown production
+    unknown_value = dmswsl + edwpl + gt + towmp
+
     data = {
         'countryCode': country_code,
         'datetime': india_date_time.datetime,
         'production': {
-            'biomass': 0.0,
-            'coal': 0.0,
-            'gas': 0.0,
-            'hydro': 0.0,
-            'nuclear': 0.0,
-            'oil': 0.0,
-            'solar': 0.0,
-            'wind': 0.0,
-            'geothermal': 0.0,
-            'unknown': 0.0
-        },
-        'storage': {
-            'hydro': 0.0
+            'coal': coal,
+            'gas': gas,
+            'unknown': unknown_value
         },
         'source': 'delhisldc.org',
     }
 
     return data
+
+def read_value(row):
+    value = float(row.findAll('td')[2].text)
+    return value if value >= 0.0 else 0.0
+
 
 
 if __name__ == '__main__':
