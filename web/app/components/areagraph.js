@@ -60,10 +60,18 @@ AreaGraph.prototype.data = function (arg) {
         };
         // Add production
         that.modeOrder.forEach(function(k) {
-            obj[k] = (d.production || {})[k];
+            var isStorage = k.indexOf('storage') != -1
+            var value = isStorage ?
+                -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')]) :
+                (d.production || {})[k]
+            obj[k] = value;
             if (that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
-                obj[k] *= d.productionCo2Intensities[k] / 1e3 / 60.0
+                if (isStorage && obj[k] >= 0) {
+                    obj[k] *= d.dischargeCo2Intensities[k] / 1e3 / 60.0
+                } else {
+                    obj[k] *= d.productionCo2Intensities[k] / 1e3 / 60.0
+                }
             }
         })
         // Add exchange

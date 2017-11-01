@@ -58,11 +58,10 @@ function replaceHistoryState(key, value) {
     history.replaceState(historyState, '', getHistoryStateURL());
 }
 
-// Global window variables
-isLocalhost = window.location.href.indexOf('electricitymap') == -1;
-useRemoteEndpoint = isLocalhost ? false : true;
-
 // Global State
+var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
+var useRemoteEndpoint = isLocalhost ? false : true;
+
 var selectedCountryCode;
 var customDate;
 var currentMoment;
@@ -813,7 +812,6 @@ function selectCountry(countryCode, notrack) {
                 moment(countryHistory[0].stateDatetime).toDate();
             [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
                 if (currentMoment && firstDatetime) {
-                    console.log(currentMoment.toDate())
                     g.xDomain([firstDatetime, currentMoment.toDate()])
                 }
                 g.onMouseMove(function(d, i) {
@@ -905,7 +903,7 @@ function selectCountry(countryCode, notrack) {
 // Bind
 countryMap
     .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
-    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; console.log(d); showPage('country'); });
+    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
 d3.selectAll('#left-panel-country-back')
     .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
 d3.selectAll('#left-panel-highscore-back')
