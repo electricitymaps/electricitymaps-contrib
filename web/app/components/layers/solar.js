@@ -92,8 +92,8 @@ exports.zoomend = function() {
     // Blur radius should be about 1deg on screen
     var BLUR_RADIUS = realW / (maxLon - minLon) * 2;
 
-    h = 100; // number of points in longitude space
-    w = 100; // number of points in latitude space
+    var h = 100; // number of points in longitude space
+    var w = 100; // number of points in latitude space
 
     // ** Note **
     // We would need better than 1deg data to see the effects at lower scales.

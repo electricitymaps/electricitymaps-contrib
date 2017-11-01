@@ -10,7 +10,7 @@ var getTargetTime = exports.getTargetTime = function(grib) {
     return moment(getRefTime(grib)).add(
         grib.header.forecastTime, 'hour');
 }
-getInterpolatedValueAtLonLat = exports.getInterpolatedValueAtLonLat = function(lonlat, now, grib1, grib2) {
+exports.getInterpolatedValueAtLonLat = function getInterpolatedValueAtLonLat(lonlat, now, grib1, grib2) {
     var t_before = getTargetTime(grib1).toDate().getTime();
     var t_after = getTargetTime(grib2).toDate().getTime();
     now = moment(now).toDate().getTime();
@@ -18,10 +18,10 @@ getInterpolatedValueAtLonLat = exports.getInterpolatedValueAtLonLat = function(l
         return console.error('Can\'t interpolate value when now is outside of bounds.');
     var k = (now - t_before)/(t_after - t_before);
     return d3.interpolate(
-        getValueAtLonLat(lonlat, grib1),
-        getValueAtLonLat(lonlat, grib2))(k);
+        exports.getValueAtLonLat(lonlat, grib1),
+        exports.getValueAtLonLat(lonlat, grib2))(k);
 }
-getValueAtLonLat = exports.getValueAtLonLat = function(lonlat, grib) {
+exports.getValueAtLonLat = function getValueAtLonLat(lonlat, grib) {
     var Nx = grib.header.nx;
     var Ny = grib.header.ny;
     var lo1 = grib.header.lo1;

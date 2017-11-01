@@ -4,6 +4,7 @@ var d3 = require('d3');
 var moment = require('moment');
 var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
+var translateWithLocale = require('./translation').translateWithLocale;
 
 var AreaGraph = require('./components/areagraph');
 var LineGraph = require('./components/linegraph');
@@ -80,9 +81,9 @@ function isMobile() {
 
 // Read query string
 function parseQueryString(querystring) {
-    args = querystring.replace('\?','').split('&');
+    var args = querystring.replace('\?','').split('&');
     args.forEach(function(arg) {
-        kv = arg.split('=');
+        var kv = arg.split('=');
         // Store in history state to be able to reconstruct
         replaceHistoryState(kv[0], kv[1]);
         if (kv[0] == 'remote') {
