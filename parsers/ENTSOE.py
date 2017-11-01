@@ -92,7 +92,7 @@ def check_response(response, function_name):
     if len(text):
         error_text = soup.find_all('text')[0].prettify()
         if 'No matching data found' in error_text:return
-        raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, check_page))
+        raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
 
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     if now is None: now = arrow.utcnow()
