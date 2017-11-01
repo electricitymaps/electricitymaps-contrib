@@ -21,6 +21,10 @@ var defaultCo2eqFootprint = { // in gCo2eq/kWh
       'value': 24,
       'source': defaultCo2eqSource
     },
+    'hydro discharge': { // This applies to discharge only
+      'value': 24,
+      'source': defaultCo2eqSource
+    },
     'nuclear': {
       'value': 12,
       'source': defaultCo2eqSource
