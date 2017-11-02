@@ -60,6 +60,11 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'MT': '10Y1001A1001A93C',
     'NL': '10YNL----------L',
     'NO': '10YNO-0--------C',
+    'NO-NO1': '10YNO-1--------2',
+    'NO-NO2': '10YNO-2--------T',
+    'NO-NO3': '10YNO-3--------J',
+    'NO-NO4': '10YNO-4--------9',
+    'NO-NO5': '10Y1001A1001A48H',
     'PL': '10YPL-AREA-----S',
     'PT': '10YPT-REN------W',
     'RO': '10YRO-TEL------P',
@@ -67,6 +72,10 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'RU': '10Y1001A1001A49F',
     'RU-KGD': '10Y1001A1001A50U',
     'SE': '10YSE-1--------K',
+    'SE-SE1': '10Y1001A1001A44P',
+    'SE-SE2': '10Y1001A1001A45N',
+    'SE-SE3': '10Y1001A1001A46L',
+    'SE-SE4': '10Y1001A1001A47J',
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
     'TR': '10YTR-TEIAS----W',
@@ -75,6 +84,10 @@ ENTSOE_DOMAIN_MAPPINGS = {
 
 # Some exchanges require specific domains
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
+    'DE->SE-SE4': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
+    'DK->NO-NO2': [ENTSOE_DOMAIN_MAPPINGS['DK-DK1'], ENTSOE_DOMAIN_MAPPINGS['NO_NO2']],
+    'DK->SE-SE3': [ENTSOE_DOMAIN_MAPPINGS['DK-DK1'], ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
+    'DK->SE-SE4': [ENTSOE_DOMAIN_MAPPINGS['DK-DK2'], ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869']
 }
 
@@ -86,7 +99,7 @@ def query_ENTSOE(session, params, now=None, span=[-24, 24]):
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
     return session.get(ENTSOE_ENDPOINT, params=params)
-    
+
 def query_consumption(domain, session, now=None):
     params = {
         'documentType': 'A65',
@@ -103,7 +116,7 @@ def query_consumption(domain, session, now=None):
             error_text = soup.find_all('text')[0].prettify()
             if 'No matching data found' in error_text: return
             raise Exception('Failed to get consumption. Reason: %s' % error_text)
-    
+
 def query_production(psr_type, in_domain, session, now=None):
     params = {
         'psrType': psr_type,
@@ -139,7 +152,7 @@ def query_exchange(in_domain, out_domain, session, now=None):
             error_text = soup.find_all('text')[0].prettify()
             if 'No matching data found' in error_text: return
             raise Exception('Failed to get exchange. Reason: %s' % error_text)
-    
+
 def query_exchange_forecast(in_domain, out_domain, session, now=None):
     params = {
         'documentType': 'A09', # Finalised schedule
@@ -156,7 +169,7 @@ def query_exchange_forecast(in_domain, out_domain, session, now=None):
             error_text = soup.find_all('text')[0].prettify()
             if 'No matching data found' in error_text: return
             raise Exception('Failed to get exchange. Reason: %s' % error_text)
-    
+
 def query_price(domain, session, now=None):
     params = {
         'documentType': 'A44',
@@ -173,7 +186,7 @@ def query_price(domain, session, now=None):
             error_text = soup.find_all('text')[0].prettify()
             if 'No matching data found' in error_text: return
             raise Exception('Failed to get price. Reason: %s' % error_text)
-    
+
 def query_generation_forecast(in_domain, session, now=None):
     # Note: this does not give a breakdown of the production
     params = {
@@ -191,7 +204,7 @@ def query_generation_forecast(in_domain, session, now=None):
             error_text = soup.find_all('text')[0].prettify()
             if 'No matching data found' in error_text: return
             print 'Reason:', error_text
-    
+
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
     if m:
@@ -414,7 +427,7 @@ def fetch_production(country_code, session=None, now=None):
         production_dates))
     production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
         production_dates)
-    
+
     data = []
     for production_date in production_dates:
 

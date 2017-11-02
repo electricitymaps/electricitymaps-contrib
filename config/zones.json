@@ -1013,6 +1013,46 @@
       "https://github.com/corradio"
     ]
   },
+  "NO-NO1": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "NO-NO2": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "NO-NO3": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "NO-NO4": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "NO-NO5": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
   "NZ-NZN": {
     "flag_file_name": "nz.png",
     "parsers": {
@@ -1144,6 +1184,7 @@
     "flag_file_name": "ru.png"
   },
   "SE": {
+    "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
     "bounding_box": [
       [
         11.337890625,
@@ -1172,6 +1213,38 @@
     "contributors": [
       "https://github.com/corradio"
     ]
+  },
+  "SE-SE1": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "SE-SE2": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "SE-SE3": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+  },
+  "SE-SE4": {
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
   },
   "SG": {
     "capacity": {

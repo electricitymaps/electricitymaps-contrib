@@ -546,6 +546,12 @@
     },
     "rotation": 0
   },
+  "DE->SE-SE4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "DK->NO": {
     "lonlat": [
       8.8,
@@ -557,6 +563,12 @@
     },
     "rotation": -25
   },
+  "DK->NO-NO2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "DK->SE": {
     "lonlat": [
       11.556268,
@@ -567,6 +579,18 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
+  },
+  "DK->SE-SE3": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "DK->SE-SE4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "EE->FI": {
     "lonlat": [
@@ -648,6 +672,12 @@
     },
     "rotation": -30
   },
+  "FI-NO-NO4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "FI->RU": {
     "lonlat": [
       29.733112,
@@ -668,6 +698,18 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -50
+  },
+  "FI->SE-SE1": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "FI->SE-SE3": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "FR->GB": {
     "lonlat": [
@@ -895,6 +937,12 @@
     },
     "rotation": -90
   },
+  "LT->SE-SE4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "LV->RU": {
     "lonlat": [
       27.7336,
@@ -942,6 +990,12 @@
     },
     "rotation": 0
   },
+  "NL->NL-NO2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "NO->SE": {
     "lonlat": [
       12.308438,
@@ -952,6 +1006,72 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
+  },
+  "NO-NO1->NO-NO2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO1->NO-NO3": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO1->NO-NO5": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO1->SE-SE3": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO2->NO-NO5": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->SE-SE2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->NO-NO4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->NO-NO5": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->SE-SE2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO4->SE-SE1": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO4->SE-SE2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "NZ-NZN->NZ-NZS": {
     "lonlat": [
@@ -973,6 +1093,12 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
+  },
+  "PT->SE-SE4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "PL->SK": {
     "lonlat": [
@@ -1013,6 +1139,24 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 0
+  },
+  "SE-SE1->SE-SE2": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "SE-SE2->SE-SE3": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "SE-SE3->SE-SE4": {
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "SK->UA": {
     "lonlat": [
