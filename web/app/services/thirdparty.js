@@ -4,11 +4,11 @@ class ConnectionsService {
     constructor() {
         this.connections = [];
         if(application.isProduction()){
-            this.addConnection(require('../connections/twitter'));
-            this.addConnection(require('../connections/facebook'));
-            this._ga = this.addConnection(require('../connections/ga'));
-            this.addConnection(require('../connections/mixpanel'));
-            this._opbeat = this.addConnection(require('../connections/opbeat'));
+            this.addConnection(require('../thirdparty/twitter'));
+            this.addConnection(require('../thirdparty/facebook'));
+            this._ga = this.addConnection(require('../thirdparty/ga'));
+            this.addConnection(require('../thirdparty/mixpanel'));
+            this._opbeat = this.addConnection(require('../thirdparty/opbeat'));
         }
     }
 

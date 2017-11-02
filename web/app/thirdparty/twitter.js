@@ -1,4 +1,4 @@
-class TwitterConnection {
+class TwitterThirdParty {
     constructor() {
         this.inst = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
@@ -20,9 +20,9 @@ class TwitterConnection {
         this.inst.ready(function (e) {
             this.inst.events.bind('click', function (event) {
                 // event.region is {tweet,follow}
-                var connService = require('../services/connections');
-                connService.track(event.region);
-                connService.ga('send', 'social', 'twitter', event.region);
+                var thirdPartyService = require('../services/thirdparty');
+                thirdPartyService.track(event.region);
+                thirdPartyService.ga('send', 'social', 'twitter', event.region);
             })
         });
     }
@@ -31,4 +31,4 @@ class TwitterConnection {
 }
 
 
-module.exports = new TwitterConnection();
+module.exports = new TwitterThirdParty();

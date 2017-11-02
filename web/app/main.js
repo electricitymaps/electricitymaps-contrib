@@ -6,7 +6,7 @@ var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
 var translateWithLocale = require('./translation').translateWithLocale;
 
-var connectionService = require('./services/connections');
+var thirdPartyServices = require('./services/thirdparty');
 
 var AreaGraph = require('./components/areagraph');
 var LineGraph = require('./components/linegraph');
@@ -262,7 +262,7 @@ var app = {
 
     onResume: function() {
         // Count a pageview
-        connectionService.track('Visit', {
+        thirdPartyServices.track('Visit', {
             'bundleVersion': bundleHash,
             'clientType': clientType,
             'embeddedUri': isEmbedded ? document.referrer : null,
@@ -277,12 +277,12 @@ app.initialize();
 
 function catchError(e) {
     console.error('Error Caught! ' + e);
-    connectionService.opbeat('captureException', e);
-    connectionService.track('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
+    thirdPartyServices.opbeat('captureException', e);
+    thirdPartyServices.track('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
 }
 
 // Analytics
-connectionService.track('Visit', {
+thirdPartyServices.track('Visit', {
     'bundleVersion': bundleHash,
     'clientType': clientType,
     'embeddedUri': isEmbedded ? document.referrer : null,
@@ -531,7 +531,7 @@ window.toggleSource = function(state) {
     if(state === undefined)
         state = !tableDisplayEmissions;
     tableDisplayEmissions = state;
-    connectionService.track(
+    thirdPartyServices.track(
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
         {countryCode: countryTable.data().countryCode});
     countryTable
@@ -593,7 +593,7 @@ function selectCountry(countryCode, notrack) {
     if (countryCode && countries[countryCode]) {
         // Selected
         if (!notrack) {
-            connectionService.track('countryClick', {countryCode: countryCode});
+            thirdPartyServices.track('countryClick', {countryCode: countryCode});
         }
         countryTable
             .powerScaleDomain(null) // Always reset scale if click on a new country
@@ -1031,7 +1031,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         return;
     }
 
-    connectionService.track('pageview', {
+    thirdPartyServices.track('pageview', {
         'bundleVersion': bundleHash,
         'clientType': clientType,
         'embeddedUri': isEmbedded ? document.referrer : null,

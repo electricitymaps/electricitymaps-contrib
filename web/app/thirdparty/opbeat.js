@@ -1,4 +1,4 @@
-class OpbeatConnection {
+class OpbeatThirdParty {
     constructor() {
         _opbeat = window._opbeat || function () {
             (window._opbeat.q = window._opbeat.q || []).push(arguments)
@@ -23,4 +23,4 @@ class OpbeatConnection {
     }
 }
 
-module.exports = new OpbeatConnection();
+module.exports = new OpbeatThirdParty();

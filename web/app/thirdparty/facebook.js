@@ -1,4 +1,4 @@
-class FacebookConnection {
+class FacebookThirdParty {
     constructor() {
         window.fbAsyncInit = function() {
             FB.init({
@@ -10,15 +10,15 @@ class FacebookConnection {
             FB.Event.subscribe('edge.create', function(e) {
                 // This will happen when they like the page
                 if (e == 'https://www.facebook.com/tmrowco') {
-                    var connService = require('../services/connections');
-                    connService.track('like');
-                    connService.ga('send', 'social', 'facebook', 'like', e);
+                    var thirdPartyService = require('../services/thirdparty');
+                    thirdPartyService.track('like');
+                    thirdPartyService.ga('send', 'social', 'facebook', 'like', e);
                 }
             })
             FB.Event.subscribe('edge.remove', function(e) {
                 // This will happen when they unlike the page
                 if (e == 'https://www.facebook.com/tmrowco') {
-                    require('../services/connections').track('unlike');
+                    require('../services/thirdparty').track('unlike');
                 }
             })
         };
@@ -42,4 +42,4 @@ class FacebookConnection {
     }
 }
 
-module.exports = new FacebookConnection();
+module.exports = new FacebookThirdParty();
