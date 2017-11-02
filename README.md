@@ -127,8 +127,8 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
 - Chile (SING):
-[CIGRE](http://www.cigre.org/var/cigre/storage/original/application/6a789c1375a22a39e14a284bee7ff988.pdf)
-[Solar/Wind](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
+  - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
+  - Other: [CIGRE](http://www.cigre.org/var/cigre/storage/original/application/6a789c1375a22a39e14a284bee7ff988.pdf)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
