@@ -994,6 +994,7 @@
     ]
   },
   "NO": {
+    "subZoneNames": ["NO-NO1", "NO-NO2", "NO-NO3", "NO-NO4", "NO-NO5"],
     "capacity": {
       "coal": 0,
       "gas": 611,
