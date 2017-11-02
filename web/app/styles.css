@@ -182,7 +182,7 @@ line, path {
     opacity: 0;
 }
 .panel {
-    background-color: white;
+    background-color: rgb(70, 70, 70);
     color: lightgray;
     font-size: 0.8rem;
 }
@@ -503,6 +503,7 @@ div.highscore-button {
     border-radius: 3px;
     cursor: pointer;
     color: #fff;
+    display: none;
 }
 div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
