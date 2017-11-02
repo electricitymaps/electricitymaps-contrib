@@ -6,6 +6,8 @@ var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
 var translateWithLocale = require('./translation').translateWithLocale;
 
+var connectionService = require('./services/connections');
+
 var AreaGraph = require('./components/areagraph');
 var LineGraph = require('./components/linegraph');
 var CountryTable = require('./components/countrytable');
@@ -260,7 +262,7 @@ var app = {
 
     onResume: function() {
         // Count a pageview
-        trackAnalyticsEvent('Visit', {
+        connectionService.track('Visit', {
             'bundleVersion': bundleHash,
             'clientType': clientType,
             'embeddedUri': isEmbedded ? document.referrer : null,
@@ -273,130 +275,14 @@ var app = {
 };
 app.initialize();
 
-// Twitter
-window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function(f) {
-        t._e.push(f);
-    };
-
-    return t;
-}(document, "script", "twitter-wjs"));
-
-twttr.ready(function(e) {
-    twttr.events.bind('click', function(event) {
-        // event.region is {tweet,follow}
-        trackAnalyticsEvent(event.region);
-        if(typeof ga !== 'undefined') {
-            ga('send', 'social', 'twitter', event.region);
-        }
-    })
-})
-
-// Facebook
-window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '1267173759989113',
-        xfbml      : true,
-        version    : 'v2.10'
-    });
-
-    FB.Event.subscribe('edge.create', function(e) {
-        // This will happen when they like the page
-        if (e == 'https://www.facebook.com/tmrowco') {
-            trackAnalyticsEvent('like');
-            if(typeof ga !== 'undefined') {
-                ga('send', 'social', 'facebook', 'like', e);
-            }
-        }
-    })
-    FB.Event.subscribe('edge.remove', function(e) {
-        // This will happen when they unlike the page
-        if (e == 'https://www.facebook.com/tmrowco') {
-            trackAnalyticsEvent('unlike');
-        }
-    })
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    //js.src = "https://connect.facebook.net/" + FBLocale + "/sdk.js";
-    // Do not translate facebook because we fixed the size of buttons
-    // because of a cordova bug serving from file://
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-if (!isLocalhost) {
-    // Mixpanel
-    (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-    for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
-    mixpanel.init('f350f1ec866f4737a5f69497e58cf67d');
-
-    // Google Analytics
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-79729918-1', 'auto');
-    ga('set', 'bundleHash', bundleHash);
-}
-
-if (!isLocalhost) {
-  _opbeat = window._opbeat || function() {
-      (window._opbeat.q = window._opbeat.q || []).push(arguments)
-  };
-  if (typeof _opbeat !== 'undefined') {
-      _opbeat('config', {
-          orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
-          appId: 'f40cef4b37'
-      });
-      _opbeat('setExtraContext', {
-          bundleHash: bundleHash
-      });
-  } else {
-      console.warn('Opbeat could not be initialized!');
-  }
-}
-
 function catchError(e) {
     console.error('Error Caught! ' + e);
-    if (!isLocalhost) {
-        if(typeof _opbeat !== 'undefined')
-            _opbeat('captureException', e);
-        trackAnalyticsEvent('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
-    }
+    connectionService.opbeat('captureException', e);
+    connectionService.track('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
 }
 
 // Analytics
-function trackAnalyticsEvent(eventName, paramObj) {
-    if (!isLocalhost) {
-        try {
-            if(typeof FB !== 'undefined')
-                FB.AppEvents.logEvent(eventName, undefined, paramObj);
-        } catch(err) { console.error('FB AppEvents error: ' + err); }
-        try {
-            if(typeof mixpanel !== 'undefined')
-                mixpanel.track(eventName, paramObj);
-        } catch(err) { console.error('Mixpanel error: ' + err); }
-        try {
-            if(typeof ga !== 'undefined')
-                ga('send', 'event', 'page', eventName);
-        } catch(err) { console.error('Google Analytics error: ' + err); }
-    }
-}
-
-trackAnalyticsEvent('Visit', {
+connectionService.track('Visit', {
     'bundleVersion': bundleHash,
     'clientType': clientType,
     'embeddedUri': isEmbedded ? document.referrer : null,
@@ -645,7 +531,7 @@ window.toggleSource = function(state) {
     if(state === undefined)
         state = !tableDisplayEmissions;
     tableDisplayEmissions = state;
-    trackAnalyticsEvent(
+    connectionService.track(
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
         {countryCode: countryTable.data().countryCode});
     countryTable
@@ -707,7 +593,7 @@ function selectCountry(countryCode, notrack) {
     if (countryCode && countries[countryCode]) {
         // Selected
         if (!notrack) {
-            trackAnalyticsEvent('countryClick', {countryCode: countryCode});
+            connectionService.track('countryClick', {countryCode: countryCode});
         }
         countryTable
             .powerScaleDomain(null) // Always reset scale if click on a new country
@@ -1145,7 +1031,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         return;
     }
 
-    trackAnalyticsEvent('pageview', {
+    connectionService.track('pageview', {
         'bundleVersion': bundleHash,
         'clientType': clientType,
         'embeddedUri': isEmbedded ? document.referrer : null,
