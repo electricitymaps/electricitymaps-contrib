@@ -1019,7 +1019,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "NO-NO2": {
     "parsers": {
@@ -1027,7 +1027,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "NO-NO3": {
     "parsers": {
@@ -1035,7 +1035,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "NO-NO4": {
     "parsers": {
@@ -1043,7 +1043,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "NO-NO5": {
     "parsers": {
@@ -1051,7 +1051,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "NZ-NZN": {
     "flag_file_name": "nz.png",
@@ -1220,7 +1220,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "SE-SE2": {
     "parsers": {
@@ -1228,7 +1228,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "SE-SE3": {
     "parsers": {
@@ -1236,7 +1236,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "SE-SE4": {
     "parsers": {
@@ -1244,7 +1244,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
+    }
   },
   "SG": {
     "capacity": {
