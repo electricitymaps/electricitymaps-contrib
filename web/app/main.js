@@ -249,7 +249,7 @@ var app = {
                     countryMap.center([0, 50]);
                     LoadingService.stopLoading();
                 },
-                { enableHighAccuracy: false, timout: 1000 });
+                { enableHighAccuracy: false, timeout: 4000 });
         }
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
