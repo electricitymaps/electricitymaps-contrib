@@ -2,11 +2,11 @@
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
-var redux = require('redux');
-var reduxLogger = require('redux-logger').logger;
 var translateWithLocale = require('./translation').translateWithLocale;
 
 var thirdPartyServices = require('./services/thirdparty');
+var store = require('./store');
+var observeStore = require('./helpers/redux').observeStore;
 
 var AreaGraph = require('./components/areagraph');
 var LineGraph = require('./components/linegraph');
@@ -152,52 +152,6 @@ if (typeof Object.assign != 'function') {
     }
     return to;
   };
-}
-
-// Prepare Redux store
-// Note: This is a work in progress to convert all state management
-// to redux
-
-// Create store
-function reducer(state, action) {
-    if (!state) { state = {}; }
-    switch (action.type) {
-        case 'ZONE_DATA':
-            return Object.assign({}, state, {
-                countryData: action.payload,
-                countryDataIndex: 0,
-            })
-
-        case 'SELECT_DATA':
-            return Object.assign({}, state, {
-                countryData: action.payload.countryData,
-                countryDataIndex: action.payload.index,
-            })
-
-        default:
-            return state
-    }
-}
-var store = redux.createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    redux.applyMiddleware(reduxLogger)
-);
-// Utility to react to store changes
-function observeStore(store, select, onChange) {
-  var currentState;
-
-  function handleChange() {
-    var nextState = select(store.getState());
-    if (nextState !== currentState) {
-      currentState = nextState;
-      onChange(currentState);
-    }
-  }
-
-  var unsubscribe = store.subscribe(handleChange);
-  handleChange();
-  return unsubscribe;
 }
 
 // Initialise mobile app (cordova)
