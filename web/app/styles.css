@@ -552,6 +552,10 @@ div.highscore-button:hover {
     white-space: nowrap;
     overflow: hidden;
 }
+.country-picker-container .rank {
+    color: darkgray;
+    font-size: 0.6em;
+}
 
 .slack-button {
     display: inline-block;
