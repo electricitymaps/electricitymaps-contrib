@@ -35,8 +35,7 @@
         "show-ranking": "Montrer classement"
     },
     "country-history": {
-        "carbonintensity24h": "Intensité carbone des 24 dernières heures",
-        "downloaddataset": "Télécharger les données historiques"
+        "carbonintensity24h": "Intensité carbone des 24 dernières heures"
     },
     "footer": {
         "likethisvisu": "Vous aimez cette visualisation?",

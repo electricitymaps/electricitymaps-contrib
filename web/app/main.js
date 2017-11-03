@@ -767,14 +767,14 @@ function selectCountry(countryCode, notrack) {
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
             });
-            countryHistoryCarbonGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
+            countryHistoryCarbonGraph.y.domain([0, 1.1 * hi_co2]);
 
             // Create price color scale
             var priceExtent = d3.extent(countryHistory, function(d) {
                 return (d.price || {}).value;
             })
             countryHistoryPricesGraph.y.domain(
-                [Math.min(0, priceExtent[0]), priceExtent[1]]);
+                [Math.min(0, priceExtent[0]), 1.1 * priceExtent[1]]);
 
             countryHistoryCarbonGraph
                 .data(countryHistory);

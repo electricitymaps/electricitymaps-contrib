@@ -35,8 +35,7 @@
         "show-ranking": "Mostrar la clasificación"
     },
     "country-history": {
-        "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas",
-        "downloaddataset": "Descargar datos completos"
+        "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas"
     },
     "footer": {
         "likethisvisu": "¿Te gusta la visualización?",

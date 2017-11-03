@@ -20,6 +20,7 @@ html, body {
     font-family: sans-serif;
     background-color: #32414c; /* water color */
     overflow: hidden;
+    font-weight: 100; /* increases clarity */
 }
 
 hr {
@@ -286,6 +287,7 @@ line, path {
 .country-history {
     color: darkgray;
     position: relative;
+    margin-top: 1em;
 }
 .country-history svg:not(:last-child) {
     margin-bottom: 1.2em;
@@ -306,6 +308,10 @@ line, path {
     stroke-width: 1;
     stroke-dasharray: 5;
     opacity: 0.7;
+}
+.country-history-title {
+    color: lightgray;
+    font-size: 1.1em;
 }
 #country-history-carbon {
     height: 7rem;
@@ -411,14 +417,22 @@ line, path {
 }
 .country-show-emissions-wrap {
     margin: 1.2rem 0 0 0;
+    font-size: 1.1em;
 }
 .country-show-emissions-wrap .bysource {
     font-size: smaller;
 }
-.country-show-emissions-wrap .menu .selected {
+.country-show-emissions-wrap .menu {
+    font-size: smaller;
+}
+.country-show-emissions-wrap .menu a {
     color: darkgray;
-    font-weight: bold;
+    font-size: smaller;
+}
+.country-show-emissions-wrap .menu a.selected {
+    color: lightgray;
     pointer-events: none;
+    font-size: larger;
 }
 
 .country-emission-intensity-wrap {
@@ -667,18 +681,19 @@ sub {
     font-size: 60%;
 }
 
-/*.premium {
-    border-radius: 0.3rem;
+.pro {
+    border-radius: 0.25rem;
     background-color: gold;
     color: rgb(76,76,76);
     font-weight: bold;
-    padding: 0.15rem;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+    padding-bottom: 0.10rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    padding-top: 0.05rem;
+    font-size: 0.7em;
+    vertical-align: bottom;
+    margin-left: 0.1em;
 }
-.premium:hover {
-    color: black;
-}*/
 
 .contributors img {
     height: 20px;
