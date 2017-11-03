@@ -144,7 +144,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
             })
             .attr('width', function (d) {
                 var isDefined = d.capacity !== undefined && d.capacity >= (d.production || 0);
-                return isDefined ? (that.powerScale(d.capacity * 2) - that.powerScale(0)) : 0;
+                var capacity = d.isStorage ? (d.capacity * 2) : d.capacity
+                return isDefined ? (that.powerScale(capacity) - that.powerScale(0)) : 0;
             })
             .on('end', function () { d3.select(this).style('display', 'block'); });
     // Add event handlers
