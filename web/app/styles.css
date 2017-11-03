@@ -20,7 +20,7 @@ html, body {
     font-family: sans-serif;
     background-color: #32414c; /* water color */
     overflow: hidden;
-    font-weight: 100; /* increases clarity */
+    font-weight: 300; /* increases clarity */
 }
 
 hr {
