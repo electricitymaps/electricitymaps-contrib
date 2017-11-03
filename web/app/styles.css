@@ -389,13 +389,9 @@ line, path {
     color: #fff;
     border-radius: 0.125rem;
 }
-.country-col.country-lowcarbon-wrap .country-col-box {
-    border:1px solid #000;
-    background: #000;
-}
+.country-col.country-lowcarbon-wrap .country-col-box,
 .country-col.country-renewable-wrap .country-col-box {
-    border:1px solid #000;
-    background: #000;
+    border:1px solid white;
 }
 .country-toggle-emissions {
     text-align: center;
