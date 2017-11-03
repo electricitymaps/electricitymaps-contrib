@@ -1,5 +1,10 @@
-module.exports = (state, action) => {
-    if (!state) { state = {}; }
+var initialState = {
+    application: {
+        isProduction: window.location.href.indexOf('electricitymap') !== -1
+    }
+}
+
+module.exports = (state = initialState, action) => {
     switch (action.type) {
         case 'ZONE_DATA':
             return Object.assign({}, state, {

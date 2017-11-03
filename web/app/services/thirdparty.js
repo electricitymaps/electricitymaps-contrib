@@ -1,9 +1,9 @@
-var application = require('./application');
+var store = require('../store');
 
 class ConnectionsService {
     constructor() {
         this.connections = [];
-        if(application.isProduction()){
+        if(store.getState().application.isProduction){
             this.addConnection(require('../thirdparty/twitter'));
             this.addConnection(require('../thirdparty/facebook'));
             this._ga = this.addConnection(require('../thirdparty/ga'));
