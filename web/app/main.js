@@ -718,6 +718,8 @@ function selectCountry(countryCode, notrack) {
             payload: countries[countryCode]
         })
 
+        var maxStorageCapacity = countries[countryCode].maxStorageCapacity
+
 
         function updateGraph(countryHistory) {
             // No export capacities are not always defined, and they are thus
@@ -725,7 +727,7 @@ function selectCountry(countryCode, notrack) {
             // Here's a hack to fix it.
             var lo = d3.min(countryHistory, function(d) {
                 return Math.min(
-                    -d.maxStorageCapacity || 0,
+                    -d.maxStorageCapacity || -maxStorageCapacity || 0,
                     -d.maxStorage || 0,
                     -d.maxExport || 0,
                     -d.maxExportCapacity || 0);
@@ -737,7 +739,7 @@ function selectCountry(countryCode, notrack) {
                     d.maxImport || 0,
                     d.maxImportCapacity || 0,
                     d.maxDischarge || 0,
-                    d.maxStorageCapacity || 0);
+                    d.maxStorageCapacity || maxStorageCapacity || 0);
             });
             // TODO(olc): do those aggregates server-side
             var lo_emission = d3.min(countryHistory, function(d) {
