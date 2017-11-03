@@ -33,8 +33,7 @@
         "show-ranking": "ランキングを見る"
     },
     "country-history": {
-        "carbonintensity24h": "最近の２４時間の二酸化炭素の放出",
-        "downloaddataset": "全データをダウンロードする"
+        "carbonintensity24h": "最近の２４時間の二酸化炭素の放出"
     },
     "footer": {
         "likethisvisu": "この地図はどうですか？",

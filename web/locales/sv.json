@@ -33,8 +33,7 @@
         "show-ranking": "Visa rankning"
     },
     "country-history": {
-        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
-        "downloaddataset": "Ladda ned all data"
+        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna"
     },
     "footer": {
         "likethisvisu": "Gillar du visualiseringen?",

@@ -104,7 +104,7 @@ AreaGraph.prototype.data = function (arg) {
     }
     this.y.domain([
         0,
-        d3.max(arg, function(d) {
+        1.1 * d3.max(arg, function(d) {
             if (!that._displayByEmissions) {
                 return d.totalProduction + d.totalImport + d.totalDischarge;
             } else {

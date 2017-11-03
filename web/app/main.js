@@ -558,6 +558,8 @@ function selectCountry(countryCode, notrack) {
             payload: countries[countryCode]
         })
 
+        var maxStorageCapacity = countries[countryCode].maxStorageCapacity
+
 
         function updateGraph(countryHistory) {
             // No export capacities are not always defined, and they are thus
@@ -565,7 +567,7 @@ function selectCountry(countryCode, notrack) {
             // Here's a hack to fix it.
             var lo = d3.min(countryHistory, function(d) {
                 return Math.min(
-                    -d.maxStorageCapacity || 0,
+                    -d.maxStorageCapacity || -maxStorageCapacity || 0,
                     -d.maxStorage || 0,
                     -d.maxExport || 0,
                     -d.maxExportCapacity || 0);
@@ -577,7 +579,7 @@ function selectCountry(countryCode, notrack) {
                     d.maxImport || 0,
                     d.maxImportCapacity || 0,
                     d.maxDischarge || 0,
-                    d.maxStorageCapacity || 0);
+                    d.maxStorageCapacity || maxStorageCapacity || 0);
             });
             // TODO(olc): do those aggregates server-side
             var lo_emission = d3.min(countryHistory, function(d) {
@@ -607,14 +609,14 @@ function selectCountry(countryCode, notrack) {
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
             });
-            countryHistoryCarbonGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
+            countryHistoryCarbonGraph.y.domain([0, 1.1 * hi_co2]);
 
             // Create price color scale
             var priceExtent = d3.extent(countryHistory, function(d) {
                 return (d.price || {}).value;
             })
             countryHistoryPricesGraph.y.domain(
-                [Math.min(0, priceExtent[0]), priceExtent[1]]);
+                [Math.min(0, priceExtent[0]), 1.1 * priceExtent[1]]);
 
             countryHistoryCarbonGraph
                 .data(countryHistory);
@@ -1097,12 +1099,16 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .attr('class', 'emission-rect')
     enterA
         .append('span')
+            .attr('class', 'name')
     enterA
         .append('img')
             .attr('class', 'flag')
+    enterA
+        .append('span')
+            .attr('class', 'rank')
     var selector = enterA.merge(selector);
     countryListSelector = selector;
-    selector.select('span')
+    selector.select('span.name')
         .text(function(d) { return ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
         .style('background-color', function(d) {
@@ -1110,6 +1116,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         });
     selector.select('.flag')
         .attr('src', function(d) { return flags.flagUri(d.countryCode, 16); });
+    selector.select('span.rank')
+        .html(function(d, i) { return ' (' + Math.round(d.co2intensity) + ' gCO<sub>2</sub>eq/kWh)' })
     selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
     // Assign country map data

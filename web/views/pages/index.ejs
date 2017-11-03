@@ -161,7 +161,7 @@ co2Sub = function(str) {
                             <p>
                                 <%- __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%- __('panel-initial-text.whereelectricitycomesfrom') %></span> <%- __('panel-initial-text.and') %> <span style="color: lightgray"><%- co2Sub(__('panel-initial-text.howmuchco2')) %></span> <%- __('panel-initial-text.wasemitted') %>.
                             </p>
-                            <p>
+                            <p style="line-height: 0.2rem">
                                 <%- __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%- __('panel-initial-text.importexport') %></span><span class="large-screen-visible" style="white-space: nowrap;"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 1em;" /></span> <%- __('panel-initial-text.betweencountries') %>.
                             </p>
                             <p class="large-screen-visible">
@@ -260,25 +260,31 @@ co2Sub = function(str) {
                             <hr />
                             <div class="country-history">
                                 <div class="loading overlay"></div>
-                                <%- co2Sub(__('country-history.carbonintensity24h')) %>
-                                <!--<span class="premium"><i class="fa fa-lock" aria-hidden="true"></i> premium</span>-->
+                                <span class="country-history-title">
+                                    <%- co2Sub(__('country-history.carbonintensity24h')) %>
+                                </span>
                                 <br />
                                 <small>
-                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org/carts/new/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.downloaddataset') %></a>
+                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">Get historical data and forecast API</a> 
+                                    <span class="pro"><i class="fa fa-lock" aria-hidden="true"></i> pro</span>
                                 </small>
                                 <svg id="country-history-carbon"></svg>
 
                                 <div class="loading overlay"></div>
-                                Origin of electricity in the last 24 hours
-                                <!--<span class="premium"><i class="fa fa-lock" aria-hidden="true"></i> premium</span>-->
+                                <span class="country-history-title">
+                                    Origin of electricity in the last 24 hours
+                                </span>
                                 <br />
                                 <small>
-                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org/carts/new/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.downloaddataset') %></a>
+                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://pro.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">Get historical data and forecast API</a>
+                                    <span class="pro"><i class="fa fa-lock" aria-hidden="true"></i> pro</span>
                                 </small>
                                 <svg id="country-history-mix"></svg>
 
                                 <div class="loading overlay"></div>
-                                Electricity prices in the last 24 hours
+                                <span class="country-history-title">
+                                    Electricity prices in the last 24 hours
+                                </span>
                                 <svg id="country-history-prices"></svg>
                             </div>
                             <hr />
@@ -289,10 +295,6 @@ co2Sub = function(str) {
                                 <p class="contributors">
                                 </p>
                                 
-                            </p>
-                            <hr />
-                            <p>
-                                <%- co2Sub(__('country-panel.co2signal', 'https://www.co2signal.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel')) %>
                             </p>
                         </div>
                     </div>
