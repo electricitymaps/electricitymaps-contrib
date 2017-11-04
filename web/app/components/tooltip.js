@@ -31,6 +31,9 @@ function placeTooltip(selector, d3Event) {
 
 function Tooltip(selector) {
     this._selector = selector
+    d3.select(this._selector)
+        // For mobile, hide when tapped
+        .on('click', this.hide)
     return this;
 }
 
