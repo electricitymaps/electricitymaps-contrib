@@ -1,3 +1,5 @@
+require('opbeat-js/opbeat.min'); // does not return object
+
 class OpbeatThirdParty {
     constructor() {
         _opbeat = window._opbeat || function () {
