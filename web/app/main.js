@@ -1,12 +1,11 @@
 'use strict'
-
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
 var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
-var translateWithLocale = require('./translation').translateWithLocale;
+require('opbeat-js/opbeat.min'); // does not return object
 
 var AreaGraph = require('./components/areagraph');
 var LineGraph = require('./components/linegraph');
@@ -355,10 +354,7 @@ if (!isLocalhost) {
 }
 
 if (!isLocalhost) {
-  _opbeat = window._opbeat || function() {
-      (window._opbeat.q = window._opbeat.q || []).push(arguments)
-  };
-  if (typeof _opbeat !== 'undefined') {
+    if (typeof _opbeat !== 'undefined') {
       _opbeat('config', {
           orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
           appId: 'f40cef4b37'
@@ -366,9 +362,9 @@ if (!isLocalhost) {
       _opbeat('setExtraContext', {
           bundleHash: bundleHash
       });
-  } else {
+    } else {
       console.warn('Opbeat could not be initialized!');
-  }
+    }
 }
 
 function catchError(e) {

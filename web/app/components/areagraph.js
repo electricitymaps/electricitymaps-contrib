@@ -250,9 +250,7 @@ AreaGraph.prototype.render = function() {
             var innerThis = this;
             that._selectedLayerIndex = undefined;
             that.selectedIndex(undefined);
-            console.log('try mouseout')
             mouseOutTimeout = setTimeout(function() {
-                console.log('confirmed mouseout')
                 if (that.mouseOutHandler)
                     that.mouseOutHandler.call(innerThis);
             }, 50)
@@ -270,8 +268,8 @@ AreaGraph.prototype.render = function() {
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
+            if (!data.length) { return; }
             if (mouseOutTimeout) {
-                console.log('cancelled')
                 clearTimeout(mouseOutTimeout);
                 mouseOutTimeout = undefined;
             }
@@ -281,20 +279,19 @@ AreaGraph.prototype.render = function() {
                 that.mouseOverHandler.call(this, data[i]._countryData, i);
         })
         .on('mouseout', function () {
+            if (!data.length) { return; }
             var innerThis = this;
             var d3Event = d3.event;
-            console.log('try mouseout [interaction]')
             mouseOutTimeout = setTimeout(function() {
                 var i = detectPosition.call(innerThis, d3Event);
                 that.selectedIndex(i);
-                console.log('mouseout confirmed [interaction]')
                 if (that.mouseOutHandler)
                     that.mouseOutHandler.call(innerThis, data[i]._countryData, i);
             }, 100)
         })
         .on('mousemove', function () {
+            if (!data.length) { return; }
             var i = detectPosition.call(this);
-            that.selectedIndex(i);
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[i]._countryData, i);
         })
