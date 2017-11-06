@@ -794,25 +794,6 @@ function selectCountry(countryCode, notrack) {
                     countryHistoryMixGraph.exchangeKeysSet.values())
                 .render()
 
-            if (countryHistoryCarbonGraph.frozen) {
-                var data = countryHistoryCarbonGraph.data()[countryHistoryCarbonGraph.selectedIndex];
-                if (!data) {
-                    // This country has no history at this time
-                    // Reset view
-                    store.dispatch({
-                        type: 'ZONE_DATA',
-                        payload: { countryCode: countryCode }
-                    })
-                } else {
-                    countryTable
-                        .powerScaleDomain([lo, hi])
-                        .co2ScaleDomain([lo_emission, hi_emission])
-                    store.dispatch({
-                        type: 'ZONE_DATA',
-                        payload: data
-                    })
-                }
-            }
             var firstDatetime = countryHistory[0] &&
                 moment(countryHistory[0].stateDatetime).toDate();
             [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
@@ -1176,6 +1157,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     d3.select('#new-version')
         .classed('active', (clientVersion != bundleHash && !isLocalhost && !isCordova));
 
+    // TODO: Code is duplicated
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
     d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
@@ -1304,7 +1286,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     });
 
     // Re-render country table if it already was visible
-    if (selectedCountryCode && !countryHistoryCarbonGraph.frozen)
+    if (selectedCountryCode)
         countryTable.data(countries[selectedCountryCode]).render()
     selectCountry(selectedCountryCode, true);
 
@@ -1464,13 +1446,19 @@ function fetch(showLoading, callback) {
 };
 
 function fetchAndReschedule() {
+    currentMoment = (customDate && moment(customDate) || moment(state.datetime));
+    d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
+    d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
+    d3.selectAll('#current-datetime, #current-datetime-from-now')
+        .style('color', 'darkred')
+        .transition()
+            .duration(800)
+            .style('color', undefined);
     // TODO(olc): Use `setInterval` instead of `setTimeout`
     if (!customDate)
         return fetch(false, function() {
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
         });
-    else
-        setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 };
 
 function redraw() {
