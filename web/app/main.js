@@ -1261,8 +1261,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         });
     selector.select('.flag')
         .attr('src', function(d) { return flags.flagUri(d.countryCode, 16); });
-    selector.select('span.rank')
-        .html(function(d, i) { return ' (' + Math.round(d.co2intensity) + ' gCO<sub>2</sub>eq/kWh)' })
+    // selector.select('span.rank')
+    //     .html(function(d, i) { return ' (' + Math.round(d.co2intensity) + ' gCO<sub>2</sub>eq/kWh)' })
     selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
     // Assign country map data
