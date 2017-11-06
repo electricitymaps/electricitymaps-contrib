@@ -495,6 +495,7 @@ label[for="checkbox-colorblind"] {
 }
 .tooltip.visible {
     opacity: 1;
+    pointer-events: all;
 }
 
 .watermark {

@@ -207,7 +207,7 @@ LineGraph.prototype.render = function () {
         .attr('y', y.range()[1])
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
-        .on(isMobile ? 'touchstart' : 'mouseover', function () {
+        .on('mouseover', function () {
             if (!datetimes.length) return;
             // Always unfreeze on mobile
             if (isMobile) {
@@ -217,7 +217,7 @@ LineGraph.prototype.render = function () {
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this, undefined, that._selectedIndex);
         })
-        .on(isMobile ? 'touchend' : 'mouseout', function () {
+        .on('mouseout', function () {
             if (!datetimes.length) return;
             if (that.frozen) return;
             // Always freeze on mobile
@@ -242,7 +242,7 @@ LineGraph.prototype.render = function () {
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this, undefined, that._selectedIndex);
         })
-        .on(isMobile ? 'touchmove' : 'mousemove', function () {
+        .on('mousemove', function () {
             if (that.frozen) return;
             drag.call(this);
             if (that.mouseMoveHandler)
