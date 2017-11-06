@@ -536,7 +536,7 @@ var exchangeTooltip = new Tooltip('#exchange-tooltip')
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     .co2color(co2color)
     .onExchangeMouseMove(function() {
-        countryTableExchangeTooltip.update(d3.event);
+        countryTableExchangeTooltip.update(d3.event.clientX, d3.event.clientY);
     })
     .onExchangeMouseOver(function (d, country, displayByEmissions) {
         tooltipHelper.showExchange(
@@ -555,7 +555,7 @@ var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
             co2color, co2Colorbars)
     })
     .onProductionMouseMove(function(d) {
-        countryTableProductionTooltip.update(d3.event)
+        countryTableProductionTooltip.update(d3.event.clientX, d3.event.clientY)
     })
     .onProductionMouseOut(function (d) {
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
@@ -595,7 +595,9 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
             tooltipHelper.showExchange : tooltipHelper.showProduction
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
-        ttp.update(d3.event)
+        ttp.update(
+            d3.event.clientX - 7,
+            countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top + 7)
         fun(ttp,
             mode, countryData, tableDisplayEmissions,
             co2color, co2Colorbars)
@@ -811,7 +813,9 @@ function selectCountry(countryCode, notrack) {
 
                     if (g == countryHistoryCarbonGraph) {
                         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
-                        countryTooltip.update(d3.event)
+                        countryTooltip.update(
+                            d3.event.clientX - 7,
+                            g.rootElement.node().getBoundingClientRect().top + 7)
                     }
 
                     store.dispatch({
@@ -1274,7 +1278,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
     })
     .onCountryMouseMove(function () {
-        countryTooltip.update(d3.event);
+        countryTooltip.update(d3.event.clientX, d3.event.clientY);
     })
     .onCountryMouseOut(function (d) {
         d3.select(this)
@@ -1318,7 +1322,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
         })
         .onExchangeMouseMove(function () {
-            exchangeTooltip.update(d3.event);
+            exchangeTooltip.update(d3.event.clientX, d3.event.clientY);
         })
         .onExchangeMouseOut(function (d) {
             d3.select(this)

@@ -1,6 +1,6 @@
 var d3 = require('d3');
 
-function placeTooltip(selector, d3Event) {
+function placeTooltip(selector, eventX, eventY) {
     var tooltip = d3.select(selector);
     var w = tooltip.node().getBoundingClientRect().width;
     var h = tooltip.node().getBoundingClientRect().height;
@@ -17,12 +17,13 @@ function placeTooltip(selector, d3Event) {
             // Tooltip won't fit on any side, so don't translate x
             x = 0.5 * (screenWidth - w);
         } else {
-            x = d3Event.clientX + margin;
+            x = eventX + margin;
             if (screenWidth - x <= w) {
-                x = d3Event.clientX - w - margin;
+                x = eventX - w - margin;
             }
         }
-        var y = d3Event.clientY - h - margin; if (y <= margin) y = d3Event.clientY + margin;
+        var y = eventY - h - margin;
+        if (y <= margin) y = eventY + margin;
         tooltip
             .style('transform',
                 'translate(' + x + 'px' + ',' + y + 'px' + ')');
@@ -38,13 +39,13 @@ function Tooltip(selector) {
     return this;
 }
 
-Tooltip.prototype.show = function(d3Event) {
+Tooltip.prototype.show = function() {
     d3.select(this._selector)
         .classed('visible', true);
     return this;
 }
-Tooltip.prototype.update = function(d3Event) {
-    placeTooltip(this._selector, d3Event);
+Tooltip.prototype.update = function(x, y) {
+    placeTooltip(this._selector, x, y);
     return this;
 }
 Tooltip.prototype.hide = function() {
