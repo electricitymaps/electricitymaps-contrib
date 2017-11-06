@@ -35,7 +35,7 @@ function Tooltip(selector) {
     var that = this;
     d3.select(this._selector)
         // For mobile, hide when tapped
-        .on('click', function(e) { that.hide(); d3.event.stopPropagation(); })
+        .on('click', function(e) { alert('clickhide'); that.hide(); d3.event.stopPropagation(); })
     return this;
 }
 

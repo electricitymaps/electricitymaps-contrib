@@ -18,6 +18,7 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .style('shape-rendering', 'crispEdges')
     this.markerElement = this.rootElement.append('circle')
         .style('pointer-events', 'none')
+        .style('display', 'none')
         .attr('r', 6)
         .style('stroke', 'black')
         .style('stroke-width', 1.5);
@@ -247,16 +248,16 @@ AreaGraph.prototype.render = function() {
         })
         .on('mouseout', function(d) {
             var innerThis = this;
-            var d3Event = d3.event;
-            var i = detectPosition.call(this, d3Event);
             that._selectedLayerIndex = undefined;
+            that.selectedIndex(undefined);
+            console.log('try mouseout')
             mouseOutTimeout = setTimeout(function() {
-                that.selectedIndex(i);
+                console.log('confirmed mouseout')
                 if (that.mouseOutHandler)
-                    that.mouseOutHandler.call(innerThis, data[i]._countryData, i);
+                    that.mouseOutHandler.call(innerThis);
             }, 50)
             if (that.layerMouseOutHandler) {
-                that.layerMouseOutHandler.call(innerThis, d.key, d[i].data._countryData)
+                that.layerMouseOutHandler.call(innerThis, d.key)
             }
         })
         .transition()
@@ -270,6 +271,7 @@ AreaGraph.prototype.render = function() {
         .attr('height', y.range()[0] - y.range()[1])
         .on('mouseover', function () {
             if (mouseOutTimeout) {
+                console.log('cancelled')
                 clearTimeout(mouseOutTimeout);
                 mouseOutTimeout = undefined;
             }
@@ -281,9 +283,11 @@ AreaGraph.prototype.render = function() {
         .on('mouseout', function () {
             var innerThis = this;
             var d3Event = d3.event;
+            console.log('try mouseout [interaction]')
             mouseOutTimeout = setTimeout(function() {
                 var i = detectPosition.call(innerThis, d3Event);
                 that.selectedIndex(i);
+                console.log('mouseout confirmed [interaction]')
                 if (that.mouseOutHandler)
                     that.mouseOutHandler.call(innerThis, data[i]._countryData, i);
             }, 100)
@@ -393,7 +397,6 @@ AreaGraph.prototype.selectedIndex = function(arg) {
                 .attr('cy', this.y(selectedData[1]))
                 .style('display', 'block')
                 .style('fill', function() {
-                    console.log(selectedData)
                     return fillColor.call(that, {
                         key: that.stackKeys[that._selectedLayerIndex]
                     })

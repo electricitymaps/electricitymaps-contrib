@@ -612,10 +612,6 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
         ttp.hide()
-        store.dispatch({
-            type: 'SELECT_DATA',
-            payload: { countryData: countryData, index: i }
-        })
     });
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
@@ -830,11 +826,14 @@ function selectCountry(countryCode, notrack) {
 
                     if (g == countryHistoryCarbonGraph) {
                         countryTooltip.hide();
+                    } else if (g == countryHistoryMixGraph) {
+                        countryTableProductionTooltip.hide();
+                        countryTableExchangeTooltip.hide();
                     }
 
                     store.dispatch({
                         type: 'SELECT_DATA',
-                        payload: { countryData: countries[countryCode], index: i }
+                        payload: { countryData: countries[countryCode], index: undefined }
                     })
                 })
                 .render();
