@@ -7,14 +7,17 @@ var moment = require('moment');
 
 // API
 function protectedJsonRequest(endpoint, path, callback) {
+    // Do not pass headers in development
     var t = new Date().getTime();
     var md = forge.md.sha256.create();
     var s = md.update(ELECTRICITYMAP_PUBLIC_TOKEN + path + t).digest().toHex();
-    return d3.json(endpoint + path)
-        .header('electricitymap-token', Cookies.get('electricitymap-token'))
-        .header('x-request-timestamp', t)
-        .header('x-signature', s)
-        .get(null, callback);
+    var req = d3.json(endpoint + path);
+    if (window.useRemoteEndpoint) {
+        req = req.header('electricitymap-token', Cookies.get('electricitymap-token'))
+            .header('x-request-timestamp', t)
+            .header('x-signature', s)
+    }
+    return req.get(null, callback);
 }
 
 // GFS Parameters

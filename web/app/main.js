@@ -1,3 +1,5 @@
+'use strict'
+
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
@@ -61,7 +63,7 @@ function replaceHistoryState(key, value) {
 
 // Global State
 var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
-var useRemoteEndpoint = isLocalhost ? false : true;
+window.useRemoteEndpoint = isLocalhost ? false : true;
 
 var selectedCountryCode;
 var customDate;
@@ -251,7 +253,7 @@ var app = {
                 },
                 { enableHighAccuracy: false, timeout: 4000 });
         }
-        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
             // do some work
             parseQueryString(eventData.url.split('?')[1] || eventData.url);
@@ -268,7 +270,7 @@ var app = {
             'solarEnabled': solarEnabled,
             'colorBlindModeEnabled': colorBlindModeEnabled
         });
-        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
 };
 app.initialize();
@@ -1449,14 +1451,6 @@ function fetch(showLoading, callback) {
 };
 
 function fetchAndReschedule() {
-    currentMoment = (customDate && moment(customDate) || moment(state.datetime));
-    d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
-    d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
-    d3.selectAll('#current-datetime, #current-datetime-from-now')
-        .style('color', 'darkred')
-        .transition()
-            .duration(800)
-            .style('color', undefined);
     // TODO(olc): Use `setInterval` instead of `setTimeout`
     if (!customDate)
         return fetch(false, function() {
