@@ -6,42 +6,48 @@ function placeTooltip(selector, eventX, eventY) {
     var h = tooltip.node().getBoundingClientRect().height;
     var margin = 7;
     var screenWidth = window.innerWidth;
-    // On very small screens
-    if (w > screenWidth) {
-        tooltip
-            .style('width', '100%');
+    
+    var x = 0;
+    var y = 0;
+    // Check that tooltip is not larger than screen
+    // and that it does fit on one of the sides
+    if (2 * margin + w >= screenWidth || 
+        (eventX + w + margin >= screenWidth && eventX - w - margin <= 0 ))
+    {
+        tooltip.style('width', '100%');
     }
     else {
-        var x = 0;
-        if (w > screenWidth / 2 - 5) {
-            // Tooltip won't fit on any side, so don't translate x
-            x = 0.5 * (screenWidth - w);
-        } else {
-            x = eventX + margin;
-            if (screenWidth - x <= w) {
-                x = eventX - w - margin;
-            }
+        x = eventX + margin;
+        // Check that tooltip does not go over the right bound
+        if (w + x >= screenWidth) {
+            // Put it on the left side
+            x = eventX - w - margin;
         }
-        var y = eventY - h - margin;
-        if (y <= margin) y = eventY + margin;
-        tooltip
-            .style('transform',
-                'translate(' + x + 'px' + ',' + y + 'px' + ')');
     }
+    y = eventY - h - margin;
+    if (y < 0) y = eventY + margin;
+    tooltip
+        .style('transform',
+            'translate(' + x + 'px' + ',' + y + 'px' + ')');
 }
 
 function Tooltip(selector) {
     this._selector = selector
     var that = this;
     d3.select(this._selector)
+        .style('opacity', 0)
         // For mobile, hide when tapped
-        .on('click', function(e) { alert('clickhide'); that.hide(); d3.event.stopPropagation(); })
+        .on('click', function(e) { that.hide(); d3.event.stopPropagation(); })
     return this;
 }
 
 Tooltip.prototype.show = function() {
     d3.select(this._selector)
-        .classed('visible', true);
+        .transition()
+        .style('opacity', 1)
+        .on('end', function() {
+            d3.select(this).style('pointer-events', 'all');
+        });
     return this;
 }
 Tooltip.prototype.update = function(x, y) {
@@ -50,7 +56,11 @@ Tooltip.prototype.update = function(x, y) {
 }
 Tooltip.prototype.hide = function() {
     d3.select(this._selector)
-        .classed('visible', false);
+        .transition()
+        .style('opacity', 0)
+        .on('end', function() {
+            d3.select(this).style('pointer-events', 'none');
+        });
     return this;
 }
 

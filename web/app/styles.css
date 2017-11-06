@@ -329,7 +329,7 @@ line, path {
     fill: #616161;
 }
 #country-history-mix {
-    height: 8rem;
+    height: 10rem;
 }
 #country-history-mix .layer path:hover {
     opacity: 0.8
@@ -487,15 +487,8 @@ label[for="checkbox-colorblind"] {
     top: 0;
     left: 0;
     z-index: 99;
-    pointer-events: none;
 
-    opacity: 0;
-    -webkit-transition: opacity 0.250s;
-    transition: opacity 0.250s;
-}
-.tooltip.visible {
-    opacity: 1;
-    pointer-events: all;
+    box-sizing: border-box;
 }
 
 .watermark {
