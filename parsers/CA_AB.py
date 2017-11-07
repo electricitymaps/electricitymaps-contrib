@@ -1,9 +1,22 @@
 import arrow
+from bs4 import BeautifulSoup
+import datetime
+import re
 import requests
 import pandas as pd
+from pytz import timezone
+import time
 
-timezone = 'Canada/Mountain'
+ab_timezone = 'Canada/Mountain'
 
+def convert_time_str(ts):
+    """Takes a time string and converts into an aware datetime object."""
+
+    dt_naive = datetime.datetime.strptime(ts, ' %b %d, %Y %H:%M')
+    localtz = timezone('Canada/Mountain')
+    dt_aware = localtz.localize(dt_naive)
+
+    return dt_aware
 
 def fetch_production(country_code='CA-AB', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -38,12 +51,17 @@ def fetch_production(country_code='CA-AB', session=None):
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    findtime = soup.find('td', text = re.compile('Last Update')).get_text()
+    time_string = findtime.split(':', 1)[1]
+    dt = convert_time_str(time_string)
+
     df_generations = pd.read_html(response.text, match='GENERATION', skiprows=1, index_col=0, header=0)
     total_net_generation = df_generations[1]['TNG']
     maximum_capability = df_generations[1]['MC']
-    
+
     return {
-        'datetime': arrow.now(tz=timezone).floor('minute').datetime,
+        'datetime': dt,
         'countryCode': country_code,
         'production': {
             'coal': total_net_generation['COAL'],
@@ -94,7 +112,7 @@ def fetch_price(country_code='CA-AB', session=None):
         if (isfloat(price)):
             hours = int(rowIndex.split(' ')[1]) - 1
             data[rowIndex] = {
-                'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hours=hours, tzinfo=timezone).datetime,
+                'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hours=hours, tzinfo=ab_timezone).datetime,
                 'countryCode': country_code,
                 'currency': 'CAD',
                 'source': 'ets.aeso.ca',
@@ -125,7 +143,7 @@ def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None):
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
     df_exchanges = pd.read_html(response.text, match='INTERCHANGE', skiprows=0, index_col=0)
-    
+
     flows = {
         'CA-AB->CA-BC': df_exchanges[1][1]['British Columbia'],
         'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
@@ -134,9 +152,9 @@ def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None):
     sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
     if sortedCountryCodes not in flows:
         raise NotImplementedError('This exchange pair is not implemented')
-    
+
     return {
-        'datetime': arrow.now(tz=timezone).datetime,
+        'datetime': arrow.now(tz=ab_timezone).datetime,
         'sortedCountryCodes': sortedCountryCodes,
         'netFlow': float(flows[sortedCountryCodes]),
         'source': 'ets.aeso.ca'
