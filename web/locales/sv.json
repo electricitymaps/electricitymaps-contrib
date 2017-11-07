@@ -18,6 +18,8 @@
     "country-panel": {
         "source": "källa",
         "carbonintensity": "Utsläpp av koldioxid",
+        "lowcarbon": "CO2-neutralt",
+        "renewable": "Förnybart",
         "electricityproduction": "Elproduktion",
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
@@ -30,7 +32,10 @@
         "show-ranking": "Visa rankning"
     },
     "country-history": {
-        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna"
+        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
+        "electricityorgin24h": "Källa för el under de senaste 24 timmarna",
+        "electricityprices24h": "Elpriser under de senaste 24 timmarna",
+        "Getdata": "API för att hämta historisk data och prognos"
     },
     "footer": {
         "likethisvisu": "Gillar du visualiseringen?",
@@ -45,6 +50,8 @@
         "carbonintensity": "Utsläpp av koldioxid"
     },
     "tooltips": {
+        "lowcarbon": "CO2-neutralt",
+        "renewable": "Förnybart",
         "carbonintensity": "Utsläpp av koldioxid",
         "crossborderexport": "Gränsöverskridande export",
         "carbonintensityexport": "Utsläpp av koldioxid för export",
@@ -57,7 +64,8 @@
         "lastupdate": "Uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
-        "retrynow": "Försök igen"
+        "retrynow": "Försök igen",
+        "pro": "pro"
     },
     "wind": "vind",
     "solar": "sol",

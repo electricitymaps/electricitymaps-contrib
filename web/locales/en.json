@@ -18,6 +18,8 @@
     "country-panel": {
         "source": "Source",
         "carbonintensity": "Carbon Intensity",
+        "lowcarbon": "Low-carbon",
+        "renewable": "Renewable",
         "electricityproduction": "Electricity production",
         "bysource": "by source",
         "emissions": "Carbon emissions",
@@ -30,7 +32,10 @@
         "show-ranking": "Show ranking"
     },
     "country-history": {
-        "carbonintensity24h": "Carbon intensity in the last 24 hours"
+        "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "electricityorgin24h": "Origin of electricity in the last 24 hours",
+        "electricityprices24h": "Electricity prices in the last 24 hours",
+        "Getdata": "Get historical data and forecast API"
     },
     "footer": {
         "likethisvisu": "Like the visualization?",
@@ -46,6 +51,8 @@
     },
     "tooltips": {
         "carbonintensity": "Carbon intensity",
+        "lowcarbon": "Low-carbon",
+        "renewable": "Renewable",
         "crossborderexport": "Cross-border export",
         "carbonintensityexport": "Carbon intensity of export",
         "ofinstalled": "of installed capacity",
@@ -57,7 +64,8 @@
         "lastupdate": "Updated",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
-        "retrynow": "Retry now"
+        "retrynow": "Retry now",
+        "pro": "pro"
     },
     "wind": "wind",
     "solar": "solar",
