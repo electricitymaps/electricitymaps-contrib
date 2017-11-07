@@ -17,10 +17,7 @@
     },
     "country-panel": {
         "source": "ソース",
-        "fossilfuels": "化石燃料",
         "carbonintensity": "二酸化炭素量",
-        "electricityprice": "電力値段",
-        "electricityprice-dayahead": "明日値段",
         "electricityproduction": "電力生産量",
         "bysource": "ソース分け",
         "emissions": "二酸化炭素放出",
@@ -48,8 +45,6 @@
         "carbonintensity": "二酸化炭素量"
     },
     "tooltips": {
-        "electricityprice": "明日の値段電力",
-        "fossilfuels": "化石燃料",
         "carbonintensity": "二酸化炭素量",
         "crossborderexport": "Cross-border export",
         "carbonintensityexport": "輸出二酸化炭素量",

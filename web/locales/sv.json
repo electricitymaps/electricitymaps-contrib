@@ -17,10 +17,7 @@
     },
     "country-panel": {
         "source": "källa",
-        "fossilfuels": "Fossila bränslen",
         "carbonintensity": "Utsläpp av koldioxid",
-        "electricityprice": "Elpris",
-        "electricityprice-dayahead": "nästa dag",
         "electricityproduction": "Elproduktion",
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
@@ -48,8 +45,6 @@
         "carbonintensity": "Utsläpp av koldioxid"
     },
     "tooltips": {
-        "electricityprice": "Elpris (nästa dag)",
-        "fossilfuels": "fossila bränslen",
         "carbonintensity": "Utsläpp av koldioxid",
         "crossborderexport": "Gränsöverskridande export",
         "carbonintensityexport": "Utsläpp av koldioxid för export",

@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "source",
-        "fossilfuels": "énergies fossiles",
         "carbonintensity": "Intensité carbone",
-        "electricityprice": "Prix de l'électricité",
-        "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Production électrique",
         "bysource": "par source",
         "emissions": "Emissions",
@@ -50,8 +47,6 @@
         "carbonintensity": "Intensité carbone"
     },
     "tooltips": {
-        "electricityprice": "Prix de l'électricité (day-ahead)",
-        "fossilfuels": "Energies fossiles",
         "carbonintensity": "Intensité carbone",
         "crossborderexport": "Export transfrontalier",
         "carbonintensityexport": "Intensité carbone de l'export",
