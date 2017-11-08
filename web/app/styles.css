@@ -486,7 +486,7 @@ label[for="checkbox-colorblind"] {
     z-index: 99;
 
     box-sizing: border-box;
-    display: none;
+    opacity: 0;
 }
 
 .watermark {
