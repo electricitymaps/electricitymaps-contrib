@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "kilde",
-        "fossilfuels": "Fossile brændsler",
         "carbonintensity": "CO2 intensitet",
-        "electricityprice": "Elpris",
-        "electricityprice-dayahead": "næste-dags pris",
         "electricityproduction": "Elproduktion",
         "bysource": "per kilde",
         "emissions": "CO2 udledning",
@@ -50,8 +47,6 @@
         "carbonintensity": "CO2 intensitet"
     },
     "tooltips": {
-        "electricityprice": "Elpris (næste-dag)",
-        "fossilfuels": "fossile brændsler",
         "carbonintensity": "CO2 intensitet",
         "crossborderexport": "Eksport til udlandet",
         "carbonintensityexport": "Eksport CO2 intensitet",

@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "المصدر",
-        "fossilfuels": "الوقود الأحفوري",
         "carbonintensity": "كثافة الكربون",
-        "electricityprice": "سعر الكهرباء",
-        "electricityprice-dayahead": "يوميا",
         "electricityproduction": "إنتاج الكهرباء",
         "bysource": "عبر المصدر",
         "emissions": "انبعاثات الكربون",
@@ -50,8 +47,6 @@
         "carbonintensity": "كثافة الكربون"
     },
     "tooltips": {
-        "electricityprice": "سعر الكهرباء(يوميا)",
-        "fossilfuels": "الوقود الأحفوري",
         "carbonintensity": "كثافة الكربون",
         "crossborderexport": "التصدير عبر الحدود",
         "carbonintensityexport": "كثافة الكربون للتصجير",
