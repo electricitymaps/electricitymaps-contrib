@@ -55,7 +55,7 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     var format = displayByEmissions ? formatting.formatCo2 : formatting.formatPower;
 
     // capacity
-    var capacity = country.capacity[mode]
+    var capacity = (country.capacity || {})[mode]
     var hasCapacity = capacity !== undefined && capacity >= (country.production[mode] || 0);
     var capacityFactor = hasCapacity && Math.round(absValue / capacity * 100) || '?';
     tooltip.select('#capacity-factor').text(capacityFactor + ' %');
