@@ -372,6 +372,7 @@ line, path {
 }
 .country-col {
     text-align: center;
+    width: 33.3%;
 }
 .country-col .country-col-headline {
     line-height: 1;
@@ -433,10 +434,6 @@ line, path {
     color: lightgray;
     pointer-events: none;
     font-size: larger;
-}
-
-.country-emission-intensity-wrap {
-    text-align: center;
 }
 
 /* ** LEGEND ** */
