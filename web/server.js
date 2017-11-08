@@ -40,7 +40,7 @@ app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '
 app.set('view engine', 'ejs');
 
 // * i18n
-var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
     // note: detected locales are always lowercase
@@ -62,6 +62,7 @@ var LOCALE_TO_FB_LOCALE = {
     'it': 'it_IT',
     'ja': 'ja_JP',
     'nl': 'nl_NL',
+    'pt-br': 'pt_BR',
     'pl': 'pl_PL',
     'sv': 'sv_SE',
     'zh-cn': 'zh_CN',
@@ -90,6 +91,7 @@ var SUPPORTED_FB_LOCALES = [
     'nl_BE',
     'nl_NL',
     'pl_PL',
+    'pt_BR',
     'sv_SE',
     'zh_CN',
     'zh_HK',
