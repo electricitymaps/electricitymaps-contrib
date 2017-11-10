@@ -860,36 +860,36 @@ function selectCountry(countryCode, notrack) {
         if (customDate) {
             console.error('Can\'t fetch history when a custom date is provided!');
         }
-        else if (!histories[countryCode]) {
-            LoadingService.startLoading('.country-history .loading');
-            DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
-                LoadingService.stopLoading('.country-history .loading');
-                if (err) console.error(err);
-                if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
-                if (err || !obj || !obj.data) {
-                    updateGraph([]);
-                    return;
-                }
+        // else if (!histories[countryCode]) {
+        //     LoadingService.startLoading('.country-history .loading');
+        //     DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
+        //         LoadingService.stopLoading('.country-history .loading');
+        //         if (err) console.error(err);
+        //         if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
+        //         if (err || !obj || !obj.data) {
+        //             updateGraph([]);
+        //             return;
+        //         }
 
-                // Add capacities
-                if ((zones_config[countryCode] || {}).capacity) {
-                    var maxCapacity = d3.max(d3.values(
-                        zones_config[countryCode].capacity));
-                    obj.data.forEach(function(d) {
-                        d.capacity = zones_config[countryCode].capacity;
-                        d.maxCapacity = maxCapacity;
-                    });
-                }
+        //         // Add capacities
+        //         if ((zones_config[countryCode] || {}).capacity) {
+        //             var maxCapacity = d3.max(d3.values(
+        //                 zones_config[countryCode].capacity));
+        //             obj.data.forEach(function(d) {
+        //                 d.capacity = zones_config[countryCode].capacity;
+        //                 d.maxCapacity = maxCapacity;
+        //             });
+        //         }
 
-                // Save to local cache
-                histories[countryCode] = obj.data;
+        //         // Save to local cache
+        //         histories[countryCode] = obj.data;
 
-                // Show
-                updateGraph(histories[countryCode]);
-            });
-        } else {
-            updateGraph(histories[countryCode]);
-        }
+        //         // Show
+        //         updateGraph(histories[countryCode]);
+        //     });
+        // } else {
+        //     updateGraph(histories[countryCode]);
+        // }
 
         // Update contributors
         var selector = d3.selectAll('.contributors').selectAll('a')
