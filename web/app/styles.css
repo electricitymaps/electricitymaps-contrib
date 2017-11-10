@@ -215,7 +215,7 @@ line, path {
 }
 .left-panel, left-panel.text {
     color: lightgray;
-    fill: black;
+    fill: darkgray;
 }
 .left-panel .axis .tick line {
     opacity: 0.3;

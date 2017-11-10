@@ -70,7 +70,7 @@ var selectedCountryCode;
 var customDate;
 var currentMoment;
 var colorBlindModeEnabled = false;
-var showPageState = 'map';
+var showPageState = 'highscore';
 var previousShowPageState = undefined;
 var showWindOption = true;
 var showSolarOption = true;
@@ -907,10 +907,10 @@ function selectCountry(countryCode, notrack) {
 }
 // Bind
 countryMap
-    .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
+    .onSeaClick(function () { selectedCountryCode = undefined; showPage('highscore'); })
     .onCountryClick(function (d) { selectedCountryCode = d.countryCode; console.log(d); showPage('country'); });
 d3.selectAll('#left-panel-country-back')
-    .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
+    .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'highscore'); });
 d3.selectAll('#left-panel-highscore-back')
     .on('click', function() { showPage('map'); }); // only triggered on large screens
 d3.selectAll('.highscore-button').on('click', function() { showPage('highscore'); });

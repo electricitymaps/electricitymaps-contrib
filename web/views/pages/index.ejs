@@ -128,7 +128,7 @@ co2Sub = function(str) {
                                 <i class="fa fa-list" aria-hidden="true"></i>
                             </div>
                         </a>
-                        <a class="list-item info-button">
+                        <!--<a class="list-item info-button">
                             <div>
                                 <i class="fa fa-info" aria-hidden="true"></i>
                             </div>
@@ -142,7 +142,7 @@ co2Sub = function(str) {
                             <div>
                                 <img src="images/weather/sun.svg"></img>
                             </div>
-                        </a>
+                        </a>-->
                     </div>
                 </div>
             </div>
@@ -175,12 +175,12 @@ co2Sub = function(str) {
                                     <label for="checkbox-colorblind"><%- __('legends.colorblindmode') %></label>
                                     <svg class="co2-colorbar colorbar" style="width: 100%"></svg>
                                 </p>
-                                <p>
+                                <p style="display:none">
                                     <input type="checkbox" id="checkbox-wind" />
                                     <label for="checkbox-wind"><%- __('legends.windpotential') %> <span style="color: darkgrey">(m/s)</span> 💨</label>
                                     <svg class="wind-colorbar colorbar" style="width: 100%; display:none"></svg>
                                 </p>
-                                <p>
+                                <p style="display:none">
                                     <input type="checkbox" id="checkbox-solar" />
                                     <label for="checkbox-solar"><%- __('legends.solarpotential') %> <span style="color: darkgrey">(W/m<sup>2</sup>)</span> ☀️</label>
                                     <svg class="solar-colorbar colorbar" style="width: 100%; display:none"></svg>
@@ -257,8 +257,8 @@ co2Sub = function(str) {
                                 </div>
                             </div>
                             <svg class="country-table"></svg>
-                            <hr />
-                            <div class="country-history">
+                            <!--<hr />-->
+                            <div class="country-history" style="display:none">
                                 <div class="loading overlay"></div>
                                 <%- co2Sub(__('country-history.carbonintensity24h')) %>
                                 <!--<span class="premium"><i class="fa fa-lock" aria-hidden="true"></i> premium</span>-->
@@ -281,7 +281,7 @@ co2Sub = function(str) {
                                 Electricity prices in the last 24 hours
                                 <svg id="country-history-prices"></svg>
                             </div>
-                            <hr />
+                            <!--<hr />
                             <p>
 
                                 <%- __('country-panel.source')%>:
@@ -293,16 +293,16 @@ co2Sub = function(str) {
                             <hr />
                             <p>
                                 <%- co2Sub(__('country-panel.co2signal', 'https://www.co2signal.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel')) %>
-                            </p>
+                            </p>-->
                         </div>
                     </div>
 
                     <div class="left-panel-highscore">
                         <div class="left-panel-toolbar large-screen-visible">
                             <div class="left-panel-toolbar-title">
-                                <span id="left-panel-highscore-back">
+                                <!--<span id="left-panel-highscore-back">
                                     <i class="fa fa-times" aria-hidden="true"></i>
-                                </span>
+                                </span>-->
                                 Carbon intensity
                             </div>
                             <div class="left-panel-toolbar-right-placeholder"></div>
