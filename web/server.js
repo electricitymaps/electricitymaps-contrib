@@ -177,7 +177,7 @@ app.get('/', function(req, res) {
             supportedLocales: locales,
             FBLocale: LOCALE_TO_FB_LOCALE[locale],
             supportedFBLocales: SUPPORTED_FB_LOCALES,
-            geo: geoip.lookup(ip),
+            // geo: geoip.lookup(ip),
             '__': function() {
                 var argsArray = Array.prototype.slice.call(arguments);
                 // Prepend the first argument which is the locale
