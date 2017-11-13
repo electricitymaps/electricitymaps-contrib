@@ -51,6 +51,7 @@
         <icon height="50" src="res/ios/Icon-Small-50x50@1x.png" width="50" />
         <icon height="100" src="res/ios/Icon-Small-50x50@2x.png" width="100" />
         <icon height="167" src="res/ios/Icon-App-83.5x83.5@2x.png" width="167" />
+        <icon height="1024" src="res/ios/Icon-App-1024@1x.png" width="1024" />
     </platform>
     <universal-links>
         <host name="electricitymap.org" scheme="https" />
