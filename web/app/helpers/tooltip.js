@@ -23,7 +23,6 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
         country.production[mode]
 
     var isStorage = value < 0
-    var absValue = Math.abs(value)
 
     var co2intensity = value < 0 ?
         undefined :
@@ -45,9 +44,11 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
 
     if (displayByEmissions) {
         if (!isStorage) {
-            value *= co2intensity * 1000.0;
+            value *= co2intensity * 1000.0; // MW * gCO2/kWh * 1000 --> gCO2/h
         }
     }
+
+    var absValue = Math.abs(value)
 
     tooltip.select('.production-visible')
         .style('display', displayByEmissions ? 'none' : undefined);
