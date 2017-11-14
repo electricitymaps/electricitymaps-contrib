@@ -95,7 +95,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     this.co2Scale
         .range([0, this.barMaxWidth]);
 
-    var axisHeight = 
+    var axisHeight =
         (this.MODES.length + this._exchangeData.length + 1) * (this.ROW_HEIGHT + this.PADDING_Y)
         + this.PADDING_Y;
 
@@ -122,7 +122,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         translation.translate(
             'zoneShortName.' + this._data.countryCode) || this._data.countryCode);
     panel.selectAll('.country-time')
-        .text(datetime ? moment(datetime).format('LL LT') : '?');
+        .text("Summer 2017 average (21 Jun - 21 Sep)");
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
@@ -197,15 +197,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .attr('x', that.LABEL_MAX_WIDTH + (that._displayByEmissions ? that.co2Scale(0) : that.powerScale(0)))
         .style('display', function (d) {
-            return (d.capacity == undefined || d.capacity > 0) && 
-                d.mode != 'unknown' && 
+            return (d.capacity == undefined || d.capacity > 0) &&
+                d.mode != 'unknown' &&
                 (d.isStorage ? d.storage == undefined : d.production == undefined) ?
                 'block' : 'none';
         });
 
     // Construct exchanges
     function getExchangeCo2eq(d) {
-        return d.value > 0 ? 
+        return d.value > 0 ?
             (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
             : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
     }
@@ -223,7 +223,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     //     .attr('height', this.FLAG_SIZE);
     gNewRow.append('text')
         .style('text-anchor', 'end') // right align
-        .attr('transform', 
+        .attr('transform',
             'translate(' + (this.LABEL_MAX_WIDTH - 2.0 * this.PADDING_X) + ', ' +
                 this.TEXT_ADJUST_Y + ')');
     gNewRow.append('text')
@@ -236,14 +236,14 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .attr('fill-opacity', 0.4)
         .attr('opacity', 0.3)
         .attr('shape-rendering', 'crispEdges')
-        .attr('x', that.LABEL_MAX_WIDTH + 
+        .attr('x', that.LABEL_MAX_WIDTH +
             (this._displayByEmissions ? this.co2Scale(0) : this.powerScale(0)))
         .style('transform-origin', 'left');
     gNewRow.append('rect')
         .attr('class', 'exchange')
         .attr('height', this.ROW_HEIGHT)
         .attr('opacity', this.RECT_OPACITY)
-        .attr('x', that.LABEL_MAX_WIDTH + 
+        .attr('x', that.LABEL_MAX_WIDTH +
             (this._displayByEmissions ? this.co2Scale(0) : this.powerScale(0)))
         .style('transform-origin', 'left');
 
@@ -304,7 +304,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 return that.LABEL_MAX_WIDTH + that.powerScale(Math.min(d.value || 0.0, 0.0));
             }
         })
-        .attr('width', function (d) { 
+        .attr('width', function (d) {
             if (that._displayByEmissions) {
                 var co2intensity = getExchangeCo2eq(d);
                 if (getExchangeCo2eq(d) === undefined)
@@ -449,8 +449,8 @@ CountryTable.prototype.data = function(arg) {
 
     // Construct a list having each production in the same order as this.MODES.
     this.sortedProductionData = this.MODES.map(function (d) {
-        var footprint = !d.isStorage ? 
-            that._data.productionCo2Intensities ? 
+        var footprint = !d.isStorage ?
+            that._data.productionCo2Intensities ?
                 that._data.productionCo2Intensities[d.mode] :
                 undefined :
             0;
