@@ -6,12 +6,12 @@ function placeTooltip(selector, eventX, eventY) {
     var h = tooltip.node().getBoundingClientRect().height;
     var margin = 7;
     var screenWidth = window.innerWidth;
-    
+
     var x = 0;
     var y = 0;
     // Check that tooltip is not larger than screen
     // and that it does fit on one of the sides
-    if (2 * margin + w >= screenWidth || 
+    if (2 * margin + w >= screenWidth ||
         (eventX + w + margin >= screenWidth && eventX - w - margin <= 0 ))
     {
         tooltip.style('width', '100%');
