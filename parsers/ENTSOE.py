@@ -289,6 +289,10 @@ def validate_production(datapoint):
         p = datapoint['production']
         return p.get('coal', None) is not None and \
                p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'ES':
+        p = datapoint['production']
+        return p.get('coal', None) is not None and \
+               p.get('nuclear', None) is not None
     elif datapoint['countryCode'] == 'PT':
         p = datapoint['production']
         return p.get('coal', None) is not None and \
