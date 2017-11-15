@@ -66,7 +66,7 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
         (hasCapacity && format(capacity) || '?'));
 
     var totalPositive = displayByEmissions ?
-        (country.totalCo2Production + country.totalCo2Discharge +country.totalCo2Import) : // gCO2eq/h
+        (country.totalCo2Production + country.totalCo2Discharge + country.totalCo2Import) : // gCO2eq/h
         (country.totalProduction + country.totalDischarge + country.totalImport);
 
     var domain = totalPositive;
