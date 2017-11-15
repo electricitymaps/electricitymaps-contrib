@@ -23,7 +23,6 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
         country.production[mode]
 
     var isStorage = value < 0
-    var absValue = Math.abs(value)
 
     var co2intensity = value < 0 ?
         undefined :
@@ -45,9 +44,11 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
 
     if (displayByEmissions) {
         if (!isStorage) {
-            value *= co2intensity * 1000.0;
+            value *= co2intensity * 1000.0; // MW * gCO2/kWh * 1000 --> gCO2/h
         }
     }
+
+    var absValue = Math.abs(value)
 
     tooltip.select('.production-visible')
         .style('display', displayByEmissions ? 'none' : undefined);
@@ -61,12 +62,12 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     tooltip.select('#capacity-factor').text(capacityFactor + ' %');
     tooltip.select('#capacity-factor-detail').html(
         (format(absValue) || '?') + ' ' +
-        ' / ' + 
+        ' / ' +
         (hasCapacity && format(capacity) || '?'));
 
     var totalPositive = displayByEmissions ?
-        (country.totalCo2Production + country.totalCo2Import) :
-        (country.totalProduction + country.totalImport);
+        (country.totalCo2Production + country.totalCo2Discharge + country.totalCo2Import) : // gCO2eq/h
+        (country.totalProduction + country.totalDischarge + country.totalImport);
 
     var domain = totalPositive;
     var domainName = translation.translate(mode);
@@ -75,7 +76,7 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
     var productionProportion = !isNull ? Math.round(absValue / domain * 100) : '?';
     tooltip.select('#production-proportion-detail').html(
         (!isNull ? format(absValue) : '?') + ' ' +
-        ' / ' + 
+        ' / ' +
         (!isNull ? format(domain) : '?'));
 
     var langString = isStorage ?
@@ -106,8 +107,8 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
     var tooltip = d3.select(selector);
 
     var totalPositive = displayByEmissions ?
-        (country.totalCo2Production + country.totalCo2Import) :
-        (country.totalProduction + country.totalImport);
+        (country.totalCo2Production + country.totalCo2Discharge + country.totalCo2Import) : // gCO2eq/h
+        (country.totalProduction + country.totalDischarge + country.totalImport);
 
     var domain = totalPositive;
     var domainName = isExport ? translation.translate('electricityto') : translation.translate('electricityfrom');
@@ -124,7 +125,7 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
     tooltip.select('#exchange-proportion').text(exchangeProportion + ' %');
     tooltip.select('#exchange-proportion-detail').html(
         (!isNull ? format(absFlow) : '?') +
-        ' / ' + 
+        ' / ' +
         (!isNull ? format(domain) : '?'));
     tooltip.select('#domain-name').text(domainName);
 
@@ -154,7 +155,7 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
     tooltip.select('#capacity-factor').text(capacityFactor + ' %');
     tooltip.select('#capacity-factor-detail').html(
         (format(absFlow) || '?') + ' ' +
-        ' / ' + 
+        ' / ' +
         (hasCapacity && format(absCapacity) || '?'));
 
 
