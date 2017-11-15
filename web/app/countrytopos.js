@@ -43,6 +43,11 @@ exports.addCountryTopos = function(countries) {
             return d.id == countryId && d.properties.fips == fips;
         }));
     }
+    function getStatesByAdm1(adm1_codes) {
+        return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
+          return adm1_codes.indexOf(d.properties.adm1_code) != -1;
+        }));
+    }
     function getCountry(id) {
         return topojson.merge(topos, topos.objects.countries.geometries.filter(function(d) {
             return d.id == id;
@@ -56,7 +61,7 @@ exports.addCountryTopos = function(countries) {
 
     // Map between "countries" iso_a2 and adm0_a3 in order to support XX, GB etc..
     // Note that the definition of "countries" is very vague here..
-    // Specific case of Kosovo and Serbia: considered as a whole as long as they will be reported together in ENTSO-E. 
+    // Specific case of Kosovo and Serbia: considered as a whole as long as they will be reported together in ENTSO-E.
     countries['XX'] = getCountry('CYN');
 
     // List of all countries
@@ -129,7 +134,11 @@ exports.addCountryTopos = function(countries) {
     countries['KY'] = getCountry('CYM')
     countries['CF'] = getCountry('CAF')
     countries['TD'] = getCountry('TCD')
-    countries['CL'] = getCountry('CHL')
+    //countries['CL'] = getCountry('CHL')
+    countries['CL-SING'] = getStates('CHL', ['CL.', 'CL.TA', 'CL.AN'])
+    countries['CL-SIC'] = getStatesByAdm1(['CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704'])
+    countries['CL-SEM'] = getState('CHL', 'CL.MA')
+    countries['CL-SEA'] = getState('CHL', 'CL.AI')
     countries['CN'] = getCountry('CHN')
     countries['HK'] = getCountry('HKG')
     countries['MO'] = getCountry('MAC')
@@ -382,7 +391,7 @@ exports.addCountryTopos = function(countries) {
     countries['YE'] = getCountry('YEM')
     countries['ZM'] = getCountry('ZMB')
     countries['ZW'] = getCountry('ZWE')
-    
+
 
     // Clear memory
     topos = [];
