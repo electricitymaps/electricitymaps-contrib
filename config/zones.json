@@ -409,6 +409,25 @@
       "https://github.com/corradio"
     ]
   },
+  "CL-SING": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 2100,
+      "gas": 1470,
+      "geothermal": 0,
+      "hydro": 15,
+      "nuclear": 0,
+      "oil": 360,
+      "solar": 651,
+      "wind": 202
+    },
+    "parsers": {
+      "production": "CL_SING.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ]
+  },
   "CR": {
     "parsers": {
       "production": "CR.fetch_production"
