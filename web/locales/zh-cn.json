@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "来源",
-        "fossilfuels": "化石燃料",
         "carbonintensity": "碳强度",
-        "electricityprice": "电价",
-        "electricityprice-dayahead": "日前",
         "electricityproduction": "电力生产",
         "bysource": "按来源",
         "emissions": "碳排放量",
@@ -35,8 +32,7 @@
         "show-ranking": "显示排名"
     },
     "country-history": {
-        "carbonintensity24h": "过去24小时的碳强度",
-        "downloaddataset": "Download full dataset"
+        "carbonintensity24h": "过去24小时的碳强度"
     },
     "footer": {
         "likethisvisu": "喜欢这个视觉？",
@@ -51,8 +47,6 @@
         "carbonintensity": "碳强度"
     },
     "tooltips": {
-        "electricityprice": "电价（日前）",
-        "fossilfuels": "化石燃料",
         "carbonintensity": "碳强度",
         "crossborderexport": "跨境出口",
         "carbonintensityexport": "出口碳强度",

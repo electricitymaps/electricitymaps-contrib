@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "來源",
-        "fossilfuels": "化石燃料",
         "carbonintensity": "碳強度",
-        "electricityprice": "電價",
-        "electricityprice-dayahead": "日前",
         "electricityproduction": "電力生產",
         "bysource": "按來源",
         "emissions": "碳排放量",
@@ -35,8 +32,7 @@
         "show-ranking": "顯示排名"
     },
     "country-history": {
-        "carbonintensity24h": "過去24小時的碳強度",
-        "downloaddataset": "Download full dataset"
+        "carbonintensity24h": "過去24小時的碳強度"
     },
     "footer": {
         "likethisvisu": "喜歡這個視覺？",
@@ -51,8 +47,6 @@
         "carbonintensity": "碳強度"
     },
     "tooltips": {
-        "electricityprice": "電價（日前）",
-        "fossilfuels": "化石燃料",
         "carbonintensity": "碳強度",
         "crossborderexport": "跨境出口",
         "carbonintensityexport": "出口碳強度",

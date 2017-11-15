@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "kilde",
-        "fossilfuels": "Fossile brændsler",
         "carbonintensity": "CO2 intensitet",
-        "electricityprice": "Elpris",
-        "electricityprice-dayahead": "næste-dags pris",
         "electricityproduction": "Elproduktion",
         "bysource": "per kilde",
         "emissions": "CO2 udledning",
@@ -35,8 +32,7 @@
         "show-ranking": "Vis rangering"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer",
-        "downloaddataset": "Download hele datasættet"
+        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer"
     },
     "footer": {
         "likethisvisu": "Kan du lide visualiseringen?",
@@ -51,8 +47,6 @@
         "carbonintensity": "CO2 intensitet"
     },
     "tooltips": {
-        "electricityprice": "Elpris (næste-dag)",
-        "fossilfuels": "fossile brændsler",
         "carbonintensity": "CO2 intensitet",
         "crossborderexport": "Eksport til udlandet",
         "carbonintensityexport": "Eksport CO2 intensitet",

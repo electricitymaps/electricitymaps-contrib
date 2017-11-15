@@ -14,6 +14,7 @@
     "moment": "^2.19.1",
     "node-forge": "^0.7.1",
     "opbeat": "^4.16.0",
+    "opbeat-js": "^3.1.4",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "topojson": "^3.0.2"

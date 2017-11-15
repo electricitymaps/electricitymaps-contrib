@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "Quelle",
-        "fossilfuels": "Fossile Brennstoffe",
         "carbonintensity": "CO2 Konzentration",
-        "electricityprice": "Elektrizitätspreis",
-        "electricityprice-dayahead": "day-ahead",
         "electricityproduction": "Elektrizitätsproduktion",
         "bysource": "nach Quelle",
         "emissions": "CO2 Emissionen",
@@ -35,8 +32,7 @@
         "show-ranking": "Rangliste anzeigen"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 Konzentration in den letzten 24 Stunden",
-        "downloaddataset": "Historische Daten herunterladen"
+        "carbonintensity24h": "CO2 Konzentration in den letzten 24 Stunden"
     },
     "footer": {
         "likethisvisu": "Findest Du die Visualisierung gut?",
@@ -51,8 +47,6 @@
         "carbonintensity": "CO2 Konzentration"
     },
     "tooltips": {
-        "electricityprice": "Elektrizitätspreis (day-ahead)",
-        "fossilfuels": "fossile Brennstoffe",
         "carbonintensity": "CO2 Konzentration",
         "crossborderexport": "Export über Ländergrenzen",
         "carbonintensityexport": "CO2 Konzentration des Exports",

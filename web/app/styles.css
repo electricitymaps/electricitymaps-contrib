@@ -20,6 +20,7 @@ html, body {
     font-family: sans-serif;
     background-color: #32414c; /* water color */
     overflow: hidden;
+    font-weight: 300; /* increases clarity */
 }
 
 hr {
@@ -286,6 +287,7 @@ line, path {
 .country-history {
     color: darkgray;
     position: relative;
+    margin-top: 1em;
 }
 .country-history svg:not(:last-child) {
     margin-bottom: 1.2em;
@@ -307,6 +309,10 @@ line, path {
     stroke-dasharray: 5;
     opacity: 0.7;
 }
+.country-history-title {
+    color: lightgray;
+    font-size: 1.1em;
+}
 #country-history-carbon {
     height: 7rem;
 }
@@ -323,7 +329,7 @@ line, path {
     fill: #616161;
 }
 #country-history-mix {
-    height: 8rem;
+    height: 10rem;
 }
 #country-history-mix .layer path:hover {
     opacity: 0.8
@@ -366,6 +372,7 @@ line, path {
 }
 .country-col {
     text-align: center;
+    width: 33.3%;
 }
 .country-col .country-col-headline {
     line-height: 1;
@@ -389,13 +396,9 @@ line, path {
     color: #fff;
     border-radius: 0.125rem;
 }
-.country-col.country-lowcarbon-wrap .country-col-box {
-    border:1px solid #000;
-    background: #000;
-}
+.country-col.country-lowcarbon-wrap .country-col-box,
 .country-col.country-renewable-wrap .country-col-box {
-    border:1px solid #000;
-    background: #000;
+    border:1px solid white;
 }
 .country-toggle-emissions {
     text-align: center;
@@ -415,18 +418,22 @@ line, path {
 }
 .country-show-emissions-wrap {
     margin: 1.2rem 0 0 0;
+    font-size: 1.1em;
 }
 .country-show-emissions-wrap .bysource {
     font-size: smaller;
 }
-.country-show-emissions-wrap .menu .selected {
-    color: darkgray;
-    font-weight: bold;
-    pointer-events: none;
+.country-show-emissions-wrap .menu {
+    font-size: smaller;
 }
-
-.country-emission-intensity-wrap {
-    text-align: center;
+.country-show-emissions-wrap .menu a {
+    color: darkgray;
+    font-size: smaller;
+}
+.country-show-emissions-wrap .menu a.selected {
+    color: lightgray;
+    pointer-events: none;
+    font-size: larger;
 }
 
 /* ** LEGEND ** */
@@ -477,14 +484,9 @@ label[for="checkbox-colorblind"] {
     top: 0;
     left: 0;
     z-index: 99;
-    pointer-events: none;
 
+    box-sizing: border-box;
     opacity: 0;
-    -webkit-transition: opacity 0.250s;
-    transition: opacity 0.250s;
-}
-.tooltip.visible {
-    opacity: 1;
 }
 
 .watermark {
@@ -541,6 +543,10 @@ div.highscore-button:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.country-picker-container .rank {
+    color: darkgray;
+    font-size: 0.6em;
 }
 
 .slack-button {
@@ -671,18 +677,19 @@ sub {
     font-size: 60%;
 }
 
-/*.premium {
-    border-radius: 0.3rem;
+.pro {
+    border-radius: 0.25rem;
     background-color: gold;
     color: rgb(76,76,76);
     font-weight: bold;
-    padding: 0.15rem;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+    padding-bottom: 0.10rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    padding-top: 0.05rem;
+    font-size: 0.7em;
+    vertical-align: bottom;
+    margin-left: 0.1em;
 }
-.premium:hover {
-    color: black;
-}*/
 
 .contributors img {
     height: 20px;

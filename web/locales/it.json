@@ -5,28 +5,24 @@
         "and": "e",
         "howmuchco2": "quanta CO2",
         "wasemitted": "è stata emessa per produrla",
-
         "takeinaccount": "Seguendo le frecce vedrai quale elettricità",
         "importexport": "è importata ed esportata",
         "betweencountries": "attraverso le nazioni",
-
         "thisproject": "Questo progetto è",
         "opensource": "libero",
         "see": "Vedi",
         "datasources": "le fonti dei dati",
         "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo la tua nazione</a>",
-
         "tip": "Consiglio: Clicca su una nazione per iniziare l'esplorazione"
     },
     "country-panel": {
         "source": "Fonte",
-        "fossilfuels": "Carburanti fossili",
         "carbonintensity": "Intensità di carbonio",
-        "electricityprice": "Prezzo dell'elettricità",
-        "electricityprice-dayahead": "Al giorno",
+		"lowcarbon": "Basse emissioni",
+        "renewable": "Rinnovabile",
         "electricityproduction": "Produzione di elettricità",
         "bysource": "Per fonte",
-        "emissions": "Emissioni CO2",
+        "emissions": "Emissioni di carbonio",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
         "co2signal": "Il nostro <a href=\"%s\" target=\"blank\">CO2 Signal</a> aiuta i dispositivi ed i veicoli elettrici a consumare elettricità nel momento giusto, specialmente quando attraversano i confini.",
         "helpfrom": "con l'aiuto di"
@@ -37,7 +33,9 @@
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
-        "downloaddataset": "Scarica dati completi"
+		"electricityorgin24h": "Origine dell'elettricità nelle ultime 24 ore",
+        "electricityprices24h": "Prezzi dell'elettricità nelle ultime 24 ore",
+        "Getdata": "Ottieni API di dati storici e previsioni"
     },
     "footer": {
         "likethisvisu": "Ti piace questo progetto?",
@@ -52,12 +50,11 @@
         "carbonintensity": "Intensità di carbonio"
     },
     "tooltips": {
-        "electricityprice": "Prezzo dell'elettricità (Al giorno)",
-        "fossilfuels": "Carburanti fossili",
         "carbonintensity": "Intensità di carbonio",
+		"lowcarbon": "Basse emissioni",
+        "renewable": "Rinnovabile",
         "crossborderexport": "Esportazione tra confini",
         "carbonintensityexport": "Intensità di carbonio nell'esportazione",
-
         "ofinstalled": "della capacità installata",
         "utilizing": "Utilizzando il",
         "withcarbonintensity": "Con un'intensità di carbonio di:"
@@ -67,7 +64,8 @@
         "lastupdate": "Ultimo aggiornamento:",
         "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
-        "retrynow": "Riprova ora"
+        "retrynow": "Riprova ora",
+		"pro": "Pro"
     },
     "wind": "Eolico",
     "solar": "Fotovoltaico",
@@ -91,7 +89,7 @@
     "electricityImportedFrom": "Il %1$s %% dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "di CO2eq per minuto",
 
     "zoneShortName": {
         "AE": "Emirati Arabi Uniti",

@@ -59,7 +59,6 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .curve(d3.curveMonotoneX);
 
     // Interaction state
-    this.frozen = false;
     this._selectedIndex;
 }
 
@@ -207,25 +206,14 @@ LineGraph.prototype.render = function () {
         .attr('y', y.range()[1])
         .attr('width', x.range()[1] - x.range()[0])
         .attr('height', y.range()[0] - y.range()[1])
-        .on(isMobile ? 'touchstart' : 'mouseover', function () {
+        .on('mouseover', function () {
             if (!datetimes.length) return;
-            // Always unfreeze on mobile
-            if (isMobile) {
-                that.frozen = true; that.togglefreeze();
-            }
             that.verticalLine.style('display', 'block');
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this, undefined, that._selectedIndex);
         })
-        .on(isMobile ? 'touchend' : 'mouseout', function () {
+        .on('mouseout', function () {
             if (!datetimes.length) return;
-            if (that.frozen) return;
-            // Always freeze on mobile
-            if (isMobile) {
-                that.frozen = false; that.togglefreeze();
-
-                return;
-            }
             that.verticalLine.style('display', 'none');
             that._selectedIndex = undefined;
             if (that.definedAccessor(data[data.length - 1])) {
@@ -242,25 +230,10 @@ LineGraph.prototype.render = function () {
             if (that.mouseOutHandler)
                 that.mouseOutHandler.call(this, undefined, that._selectedIndex);
         })
-        .on(isMobile ? 'touchmove' : 'mousemove', function () {
-            if (that.frozen) return;
+        .on('mousemove', function () {
             drag.call(this);
             if (that.mouseMoveHandler)
                 that.mouseMoveHandler.call(this, data[that._selectedIndex], that._selectedIndex);
-        })
-        .on('click', function() {
-            if (!isMobile) {
-                that.togglefreeze();
-                if (!that.frozen) {
-                    drag.call(this);
-                    if (that.mouseMoveHandler)
-                        that.mouseMoveHandler.call(this, data[that._selectedIndex]);
-                }
-            } else {
-                drag.call(this);
-                if (that.mouseMoveHandler)
-                    that.mouseMoveHandler.call(this, data[that._selectedIndex]);
-            }
         });
 
     // x axis
@@ -287,18 +260,6 @@ LineGraph.prototype.yColorScale = function(arg) {
     else this._yColorScale = arg;
     return this;
 };
-
-LineGraph.prototype.togglefreeze = function() {
-    if (!this.frozen && !this._selectedIndex) {
-        console.warn('Can only freeze if a selectedIndex is provided');
-        return this;
-    }
-    this.frozen = !this.frozen;
-    if (!this.frozen) this._selectedIndex = undefined;
-    this.markerElement.style('stroke',
-        this.frozen ? 'red' : 'black');
-    return this;
-}
 
 LineGraph.prototype.onMouseOver = function(arg) {
     if (!arguments.length) return this.mouseOverHandler;

@@ -1,10 +1,14 @@
+'use strict'
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
 var moment = require('moment');
 var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
-var translateWithLocale = require('./translation').translateWithLocale;
+
+var thirdPartyServices = require('./services/thirdparty');
+var store = require('./store');
+var observeStore = require('./helpers/redux').observeStore;
 
 var AreaGraph = require('./components/areagraph');
 var LineGraph = require('./components/linegraph');
@@ -61,7 +65,7 @@ function replaceHistoryState(key, value) {
 
 // Global State
 var isLocalhost = window.location.href.indexOf('electricitymap') == -1;
-var useRemoteEndpoint = isLocalhost ? false : true;
+window.useRemoteEndpoint = isLocalhost ? false : true;
 
 var selectedCountryCode;
 var customDate;
@@ -152,52 +156,6 @@ if (typeof Object.assign != 'function') {
   };
 }
 
-// Prepare Redux store
-// Note: This is a work in progress to convert all state management
-// to redux
-
-// Create store
-function reducer(state, action) {
-    if (!state) { state = {}; }
-    switch (action.type) {
-        case 'ZONE_DATA':
-            return Object.assign({}, state, {
-                countryData: action.payload,
-                countryDataIndex: 0,
-            })
-
-        case 'SELECT_DATA':
-            return Object.assign({}, state, {
-                countryData: action.payload.countryData,
-                countryDataIndex: action.payload.index,
-            })
-
-        default:
-            return state
-    }
-}
-var store = redux.createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    redux.applyMiddleware(reduxLogger)
-);
-// Utility to react to store changes
-function observeStore(store, select, onChange) {
-  var currentState;
-
-  function handleChange() {
-    var nextState = select(store.getState());
-    if (nextState !== currentState) {
-      currentState = nextState;
-      onChange(currentState);
-    }
-  }
-
-  var unsubscribe = store.subscribe(handleChange);
-  handleChange();
-  return unsubscribe;
-}
-
 // Initialise mobile app (cordova)
 var app = {
     // Application Constructor
@@ -249,9 +207,9 @@ var app = {
                     countryMap.center([0, 50]);
                     LoadingService.stopLoading();
                 },
-                { enableHighAccuracy: false, timout: 1000 });
+                { enableHighAccuracy: false, timeout: 4000 });
         }
-        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
             // do some work
             parseQueryString(eventData.url.split('?')[1] || eventData.url);
@@ -260,7 +218,7 @@ var app = {
 
     onResume: function() {
         // Count a pageview
-        trackAnalyticsEvent('Visit', {
+        thirdPartyServices.track('Visit', {
             'bundleVersion': bundleHash,
             'clientType': clientType,
             'embeddedUri': isEmbedded ? document.referrer : null,
@@ -268,135 +226,19 @@ var app = {
             'solarEnabled': solarEnabled,
             'colorBlindModeEnabled': colorBlindModeEnabled
         });
-        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
 };
 app.initialize();
 
-// Twitter
-window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function(f) {
-        t._e.push(f);
-    };
-
-    return t;
-}(document, "script", "twitter-wjs"));
-
-twttr.ready(function(e) {
-    twttr.events.bind('click', function(event) {
-        // event.region is {tweet,follow}
-        trackAnalyticsEvent(event.region);
-        if(typeof ga !== 'undefined') {
-            ga('send', 'social', 'twitter', event.region);
-        }
-    })
-})
-
-// Facebook
-window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '1267173759989113',
-        xfbml      : true,
-        version    : 'v2.10'
-    });
-
-    FB.Event.subscribe('edge.create', function(e) {
-        // This will happen when they like the page
-        if (e == 'https://www.facebook.com/tmrowco') {
-            trackAnalyticsEvent('like');
-            if(typeof ga !== 'undefined') {
-                ga('send', 'social', 'facebook', 'like', e);
-            }
-        }
-    })
-    FB.Event.subscribe('edge.remove', function(e) {
-        // This will happen when they unlike the page
-        if (e == 'https://www.facebook.com/tmrowco') {
-            trackAnalyticsEvent('unlike');
-        }
-    })
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    //js.src = "https://connect.facebook.net/" + FBLocale + "/sdk.js";
-    // Do not translate facebook because we fixed the size of buttons
-    // because of a cordova bug serving from file://
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-if (!isLocalhost) {
-    // Mixpanel
-    (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-    for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
-    mixpanel.init('f350f1ec866f4737a5f69497e58cf67d');
-
-    // Google Analytics
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-79729918-1', 'auto');
-    ga('set', 'bundleHash', bundleHash);
-}
-
-if (!isLocalhost) {
-  _opbeat = window._opbeat || function() {
-      (window._opbeat.q = window._opbeat.q || []).push(arguments)
-  };
-  if (typeof _opbeat !== 'undefined') {
-      _opbeat('config', {
-          orgId: '093c53b0da9d43c4976cd0737fe0f2b1',
-          appId: 'f40cef4b37'
-      });
-      _opbeat('setExtraContext', {
-          bundleHash: bundleHash
-      });
-  } else {
-      console.warn('Opbeat could not be initialized!');
-  }
-}
-
 function catchError(e) {
     console.error('Error Caught! ' + e);
-    if (!isLocalhost) {
-        if(typeof _opbeat !== 'undefined')
-            _opbeat('captureException', e);
-        trackAnalyticsEvent('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
-    }
+    thirdPartyServices.opbeat('captureException', e);
+    thirdPartyServices.track('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
 }
 
 // Analytics
-function trackAnalyticsEvent(eventName, paramObj) {
-    if (!isLocalhost) {
-        try {
-            if(typeof FB !== 'undefined')
-                FB.AppEvents.logEvent(eventName, undefined, paramObj);
-        } catch(err) { console.error('FB AppEvents error: ' + err); }
-        try {
-            if(typeof mixpanel !== 'undefined')
-                mixpanel.track(eventName, paramObj);
-        } catch(err) { console.error('Mixpanel error: ' + err); }
-        try {
-            if(typeof ga !== 'undefined')
-                ga('send', 'event', 'page', eventName);
-        } catch(err) { console.error('Google Analytics error: ' + err); }
-    }
-}
-
-trackAnalyticsEvent('Visit', {
+thirdPartyServices.track('Visit', {
     'bundleVersion': bundleHash,
     'clientType': clientType,
     'embeddedUri': isEmbedded ? document.referrer : null,
@@ -536,7 +378,7 @@ var exchangeTooltip = new Tooltip('#exchange-tooltip')
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     .co2color(co2color)
     .onExchangeMouseMove(function() {
-        countryTableExchangeTooltip.update(d3.event);
+        countryTableExchangeTooltip.update(d3.event.clientX, d3.event.clientY);
     })
     .onExchangeMouseOver(function (d, country, displayByEmissions) {
         tooltipHelper.showExchange(
@@ -555,7 +397,7 @@ var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
             co2color, co2Colorbars)
     })
     .onProductionMouseMove(function(d) {
-        countryTableProductionTooltip.update(d3.event)
+        countryTableProductionTooltip.update(d3.event.clientX, d3.event.clientY)
     })
     .onProductionMouseOut(function (d) {
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
@@ -595,7 +437,9 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
             tooltipHelper.showExchange : tooltipHelper.showProduction
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
-        ttp.update(d3.event)
+        ttp.update(
+            d3.event.clientX - 7,
+            countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top + 7)
         fun(ttp,
             mode, countryData, tableDisplayEmissions,
             co2color, co2Colorbars)
@@ -610,10 +454,6 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
         ttp.hide()
-        store.dispatch({
-            type: 'SELECT_DATA',
-            payload: { countryData: countryData, index: i }
-        })
     });
 
 var windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
@@ -645,7 +485,7 @@ window.toggleSource = function(state) {
     if(state === undefined)
         state = !tableDisplayEmissions;
     tableDisplayEmissions = state;
-    trackAnalyticsEvent(
+    thirdPartyServices.track(
         tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
         {countryCode: countryTable.data().countryCode});
     countryTable
@@ -707,7 +547,7 @@ function selectCountry(countryCode, notrack) {
     if (countryCode && countries[countryCode]) {
         // Selected
         if (!notrack) {
-            trackAnalyticsEvent('countryClick', {countryCode: countryCode});
+            thirdPartyServices.track('countryClick', {countryCode: countryCode});
         }
         countryTable
             .powerScaleDomain(null) // Always reset scale if click on a new country
@@ -718,6 +558,8 @@ function selectCountry(countryCode, notrack) {
             payload: countries[countryCode]
         })
 
+        var maxStorageCapacity = countries[countryCode].maxStorageCapacity
+
 
         function updateGraph(countryHistory) {
             // No export capacities are not always defined, and they are thus
@@ -725,7 +567,7 @@ function selectCountry(countryCode, notrack) {
             // Here's a hack to fix it.
             var lo = d3.min(countryHistory, function(d) {
                 return Math.min(
-                    -d.maxStorageCapacity || 0,
+                    -d.maxStorageCapacity || -maxStorageCapacity || 0,
                     -d.maxStorage || 0,
                     -d.maxExport || 0,
                     -d.maxExportCapacity || 0);
@@ -737,7 +579,7 @@ function selectCountry(countryCode, notrack) {
                     d.maxImport || 0,
                     d.maxImportCapacity || 0,
                     d.maxDischarge || 0,
-                    d.maxStorageCapacity || 0);
+                    d.maxStorageCapacity || maxStorageCapacity || 0);
             });
             // TODO(olc): do those aggregates server-side
             var lo_emission = d3.min(countryHistory, function(d) {
@@ -767,14 +609,14 @@ function selectCountry(countryCode, notrack) {
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
             });
-            countryHistoryCarbonGraph.y.domain([0, Math.max(maxCo2, hi_co2)]);
+            countryHistoryCarbonGraph.y.domain([0, 1.1 * hi_co2]);
 
             // Create price color scale
             var priceExtent = d3.extent(countryHistory, function(d) {
                 return (d.price || {}).value;
             })
             countryHistoryPricesGraph.y.domain(
-                [Math.min(0, priceExtent[0]), priceExtent[1]]);
+                [Math.min(0, priceExtent[0]), 1.1 * priceExtent[1]]);
 
             countryHistoryCarbonGraph
                 .data(countryHistory);
@@ -792,25 +634,6 @@ function selectCountry(countryCode, notrack) {
                     countryHistoryMixGraph.exchangeKeysSet.values())
                 .render()
 
-            if (countryHistoryCarbonGraph.frozen) {
-                var data = countryHistoryCarbonGraph.data()[countryHistoryCarbonGraph.selectedIndex];
-                if (!data) {
-                    // This country has no history at this time
-                    // Reset view
-                    store.dispatch({
-                        type: 'ZONE_DATA',
-                        payload: { countryCode: countryCode }
-                    })
-                } else {
-                    countryTable
-                        .powerScaleDomain([lo, hi])
-                        .co2ScaleDomain([lo_emission, hi_emission])
-                    store.dispatch({
-                        type: 'ZONE_DATA',
-                        payload: data
-                    })
-                }
-            }
             var firstDatetime = countryHistory[0] &&
                 moment(countryHistory[0].stateDatetime).toDate();
             [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach(function(g) {
@@ -828,7 +651,9 @@ function selectCountry(countryCode, notrack) {
 
                     if (g == countryHistoryCarbonGraph) {
                         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
-                        countryTooltip.update(d3.event)
+                        countryTooltip.update(
+                            d3.event.clientX - 7,
+                            g.rootElement.node().getBoundingClientRect().top + 7)
                     }
 
                     store.dispatch({
@@ -843,11 +668,14 @@ function selectCountry(countryCode, notrack) {
 
                     if (g == countryHistoryCarbonGraph) {
                         countryTooltip.hide();
+                    } else if (g == countryHistoryMixGraph) {
+                        countryTableProductionTooltip.hide();
+                        countryTableExchangeTooltip.hide();
                     }
 
                     store.dispatch({
                         type: 'SELECT_DATA',
-                        payload: { countryData: countries[countryCode], index: i }
+                        payload: { countryData: countries[countryCode], index: undefined }
                     })
                 })
                 .render();
@@ -1145,7 +973,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         return;
     }
 
-    trackAnalyticsEvent('pageview', {
+    thirdPartyServices.track('pageview', {
         'bundleVersion': bundleHash,
         'clientType': clientType,
         'embeddedUri': isEmbedded ? document.referrer : null,
@@ -1174,6 +1002,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     d3.select('#new-version')
         .classed('active', (clientVersion != bundleHash && !isLocalhost && !isCordova));
 
+    // TODO: Code is duplicated
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
     d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
@@ -1190,6 +1019,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         entry.value.production = {};
         entry.value.productionCo2Intensities = {};
         entry.value.productionCo2IntensitySources = {};
+        entry.value.dischargeCo2Intensities = {};
+        entry.value.dischargeCo2IntensitySources = {};
         entry.value.storage = {};
         entry.value.source = undefined;
     });
@@ -1257,12 +1088,16 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         .attr('class', 'emission-rect')
     enterA
         .append('span')
+            .attr('class', 'name')
     enterA
         .append('img')
             .attr('class', 'flag')
+    enterA
+        .append('span')
+            .attr('class', 'rank')
     var selector = enterA.merge(selector);
     countryListSelector = selector;
-    selector.select('span')
+    selector.select('span.name')
         .text(function(d) { return ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' '; })
     selector.select('div.emission-rect')
         .style('background-color', function(d) {
@@ -1270,6 +1105,8 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         });
     selector.select('.flag')
         .attr('src', function(d) { return flags.flagUri(d.countryCode, 16); });
+    // selector.select('span.rank')
+    //     .html(function(d, i) { return ' (' + Math.round(d.co2intensity) + ' gCO<sub>2</sub>eq/kWh)' })
     selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
     // Assign country map data
@@ -1284,7 +1121,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
     })
     .onCountryMouseMove(function () {
-        countryTooltip.update(d3.event);
+        countryTooltip.update(d3.event.clientX, d3.event.clientY);
     })
     .onCountryMouseOut(function (d) {
         d3.select(this)
@@ -1296,7 +1133,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     });
 
     // Re-render country table if it already was visible
-    if (selectedCountryCode && !countryHistoryCarbonGraph.frozen)
+    if (selectedCountryCode)
         countryTable.data(countries[selectedCountryCode]).render()
     selectCountry(selectedCountryCode, true);
 
@@ -1328,7 +1165,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
             tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
         })
         .onExchangeMouseMove(function () {
-            exchangeTooltip.update(d3.event);
+            exchangeTooltip.update(d3.event.clientX, d3.event.clientY);
         })
         .onExchangeMouseOut(function (d) {
             d3.select(this)
@@ -1461,8 +1298,6 @@ function fetchAndReschedule() {
         return fetch(false, function() {
             setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
         });
-    else
-        setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 };
 
 function redraw() {

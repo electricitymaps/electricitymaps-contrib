@@ -25,7 +25,7 @@ var STYLES_HASH = getHash('styles', 'css');
 // TODO:
 // Currently, those variables are duplicated from server.js
 // We should instead have a central configuration file in the `config` folder
-var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+var locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 var LOCALE_TO_FB_LOCALE = {
     'ar': 'ar_AR',
     'da': 'da_DK',
@@ -36,6 +36,7 @@ var LOCALE_TO_FB_LOCALE = {
     'it': 'it_IT',
     'ja': 'ja_JP',
     'nl': 'nl_NL',
+    'pt-br': 'pt_BR',
     'pl': 'pl_PL',
     'sv': 'sv_SE',
     'zh-cn': 'zh_CN',
@@ -60,6 +61,7 @@ var SUPPORTED_FB_LOCALES = [
     'nl_BE',
     'nl_NL',
     'pl_PL',
+    'pt_BR',
     'sv_SE',
     'zh_CN',
     'zh_HK',

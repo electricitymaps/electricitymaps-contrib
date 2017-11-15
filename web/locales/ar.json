@@ -20,10 +20,7 @@
     },
     "country-panel": {
         "source": "المصدر",
-        "fossilfuels": "الوقود الأحفوري",
         "carbonintensity": "كثافة الكربون",
-        "electricityprice": "سعر الكهرباء",
-        "electricityprice-dayahead": "يوميا",
         "electricityproduction": "إنتاج الكهرباء",
         "bysource": "عبر المصدر",
         "emissions": "انبعاثات الكربون",
@@ -35,8 +32,7 @@
         "show-ranking": "إظهار التصنيف"
     },
     "country-history": {
-        "carbonintensity24h": "كثافة الكربون في آخر 24 ساعة مضت",
-        "downloaddataset": "تنزيل قواعد البيانات كاملة"
+        "carbonintensity24h": "كثافة الكربون في آخر 24 ساعة مضت"
     },
     "footer": {
         "likethisvisu" : "أعجبتك المحاكاة الافتراضية؟",
@@ -51,8 +47,6 @@
         "carbonintensity": "كثافة الكربون"
     },
     "tooltips": {
-        "electricityprice": "سعر الكهرباء(يوميا)",
-        "fossilfuels": "الوقود الأحفوري",
         "carbonintensity": "كثافة الكربون",
         "crossborderexport": "التصدير عبر الحدود",
         "carbonintensityexport": "كثافة الكربون للتصجير",
