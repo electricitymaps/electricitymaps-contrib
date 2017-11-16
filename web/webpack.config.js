@@ -6,7 +6,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     devtool: (process.env.NODE_ENV === 'production' ? 'sourcemap' : 'eval'),
-    entry: { bundle:'./app/main.js', styles: './app/styles.css' },
+    entry: { bundle: ['babel-polyfill', './app/main.js'], styles: './app/styles.css' },
     module: {
         rules: [
             // Extract css files
@@ -22,7 +22,10 @@ module.exports = {
                 test: [/\.js$/],
                 exclude: [/node_modules/],
                 loader: 'babel-loader',
-                options: { presets: ['es2015'] }
+                query: {
+                    plugins: ['transform-runtime'],
+                    presets: ['es2015']
+                }
             }
         ]
     },
