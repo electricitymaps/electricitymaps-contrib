@@ -7,7 +7,7 @@ var locales = {};
 })
 var vsprintf = require('sprintf-js').vsprintf;
 
-exports.translateWithLocale = function translate (locale, keyStr) {
+exports.translateWithLocale = function translate(locale, keyStr) {
     var keys = keyStr.split('.');
     var result = locales[locale];
     for (var i = 0; i < keys.length; i++) {
@@ -15,7 +15,7 @@ exports.translateWithLocale = function translate (locale, keyStr) {
         result = result[keys[i]];
     }
     if (locale != 'en' && !result) {
-        translate(keyStr, 'en');
+        return exports.translateWithLocale('en', keyStr);
     } else {
         var formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
         return result && vsprintf(result, formatArgs);
