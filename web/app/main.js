@@ -95,6 +95,8 @@ function parseQueryString(querystring) {
             replaceHistoryState('remote', useRemoteEndpoint);
         } else if (kv[0] == 'datetime') {
             customDate = kv[1];
+            // HACK
+            window.customDate = customDate;
             replaceHistoryState('datetime', customDate);
         } else if (kv[0] == 'countryCode') {
             selectedCountryCode = kv[1];
