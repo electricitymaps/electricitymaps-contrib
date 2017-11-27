@@ -23,15 +23,31 @@ function protectedJsonRequest(endpoint, path, callback) {
 // GFS Parameters
 var GFS_STEP_ORIGIN  = 6; // hours
 var GFS_STEP_HORIZON = 1; // hours
-var fetchForecast = exports.fetchForecast = function(endpoint, key, refTime, targetTime, tryEarlierRefTime, callback) {
+var fetchForecast = exports.fetchForecast = function(endpoint, key, refTime, targetTime, tryEarlierRefTime, tryModuloBefore, tryModuloAfter, callback) {
     refTime = moment(refTime);
     targetTime = moment(targetTime);
     return protectedJsonRequest(endpoint, '/v3/gfs/' + key + '?' +
         'refTime=' + refTime.toISOString() + '&' +
         'targetTime=' + targetTime.toISOString(), function(err, obj) {
-            if (err && tryEarlierRefTime)
+            // Here we should first allow to fetch at % 3 if
+            // we're looking at historical data, as we couldn't re-fetch everything.
+            if (err && tryModuloBefore) {
+                // Fetch at % 3 under
+                return fetchForecast(endpoint, key, refTime,
+                    targetTime.hour(
+                        Math.floor(targetTime.hour() / 3) * 3
+                    ), tryEarlierRefTime, false, false, callback);
+            }
+            else if (err && tryModuloAfter) {
+                // Fetch at % 3 after
+                return fetchForecast(endpoint, key, refTime,
+                    targetTime.hour(
+                        Math.ceil(targetTime.hour() / 3) * 3
+                    ), tryEarlierRefTime, false, false, callback);
+            }
+            else if (err && tryEarlierRefTime)
                 return fetchForecast(endpoint, key, refTime.subtract(GFS_STEP_ORIGIN, 'hour'),
-                    targetTime, false, callback);
+                    targetTime, false, tryModuloBefore, tryModuloAfter, callback);
             else
                 return callback(err, obj);
         });
@@ -54,9 +70,10 @@ exports.fetchGfs = function(endpoint, key, datetime, callback) {
     var targetTimeBefore = getGfsTargetTimeBefore(datetime);
     var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
     // Note: d3.queue runs tasks in parallel
+    var tryModulo = window.customDate != undefined;
     return d3.queue()
-        .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true)
-        .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true)
+        .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true, tryModulo, false)
+        .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true, false, tryModulo)
         .await(function(err, before, after) {
             if (err) return callback(err, null);
             return callback(null, { forecasts: [before.data, after.data] });
