@@ -200,6 +200,8 @@
         "ME": "Montenegro",
         "MK": "Rep. of Macedonia (FYROM)",
         "MT": "Malta",
+        "MY-EM": "Malaysia (Borneo)",
+        "MY-WM": "Malaysia (Peninsula)",
         "NI": "Nicaragua",
         "NL": "Netherlands",
         "NO": "Norway",
@@ -232,4 +234,3 @@
         "UZ": "Uzbekistan"
     }
 }
-

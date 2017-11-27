@@ -994,6 +994,19 @@
   },
   "MK": {},
   "MT": {},
+  "MY-WM": {
+    "capacity": {
+      "coal": 9271,
+      "gas": 11085,
+      "hydro": 2502
+    },
+    "parsers": {
+      "production": "MY_WM.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ]
+  },
   "NI": {
     "capacity": {
       "biomass": 133,
