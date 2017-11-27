@@ -66,7 +66,7 @@ def get_data(session = None):
 def convert_time_str(ts):
     """Converts a unicode time string into an aware datetime object."""
 
-    dt_naive = datetime.datetime.strptime(ts, '%m/%d/%Y %H:%M:%S %p')
+    dt_naive = datetime.datetime.strptime(ts, '%m/%d/%Y %I:%M:%S %p')
     localtz = timezone('Asia/Kuala_Lumpur')
     dt_aware = localtz.localize(dt_naive)
 
