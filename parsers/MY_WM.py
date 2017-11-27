@@ -67,7 +67,7 @@ def convert_time_str(ts):
     """Converts a unicode time string into an aware datetime object."""
 
     dt_naive = datetime.datetime.strptime(ts, '%m/%d/%Y %H:%M:%S %p')
-    localtz = timezone('MST')
+    localtz = timezone('Asia/Kuala_Lumpur')
     dt_aware = localtz.localize(dt_naive)
 
     return dt_aware
@@ -108,7 +108,7 @@ def data_processer(rawdata):
     return converted_time_string, dict(generationDict)
 
 
-def fetch_production(country_code = 'MY', session = None):
+def fetch_production(country_code = 'MY-WM', session = None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
