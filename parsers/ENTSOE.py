@@ -172,7 +172,7 @@ def query_generation_forecast(in_domain, session, now=None):
     else:
         check_response(response, query_generation_forecast.__name__)
 
-def query_load_forecast(in_domain, session, now=None):
+def query_consumption_forecast(in_domain, session, now=None):
     params = {
         'documentType': 'A65', # Load Forecast
         'processType': 'A01',
@@ -291,7 +291,7 @@ def parse_generation_forecast(xml_text):
             datetimes.append(datetime)
     return values, datetimes
 
-def parse_load_forecast(xml_text):
+def parse_consumption_forecast(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
@@ -571,11 +571,11 @@ def fetch_generation_forecast(country_code, session=None, now=None):
         return data
 
 
-def fetch_load_forecast(country_code, session=None, now=None):
+def fetch_consumption_forecast(country_code, session=None, now=None):
     if not session: session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_load_forecast(query_load_forecast(domain, session, now))
+    parsed = parse_consumption_forecast(query_consumption_forecast(domain, session, now))
     if parsed:
         data = []
         values, datetimes = parsed
