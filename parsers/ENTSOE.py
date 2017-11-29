@@ -172,6 +172,17 @@ def query_generation_forecast(in_domain, session, now=None):
     else:
         check_response(response, query_generation_forecast.__name__)
 
+def query_load_forecast(in_domain, session, now=None):
+    params = {
+        'documentType': 'A65', # Load Forecast
+        'processType': 'A01',
+        'outBiddingZone_Domain': in_domain,
+    }
+    response = query_ENTSOE(session, params, now, span=[-24, 48])
+    if response.ok: return response.text
+    else:
+        check_response(response, query_generation_forecast.__name__)
+
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
     if m:
@@ -264,6 +275,23 @@ def parse_price(xml_text):
     return prices, currencies, datetimes
 
 def parse_generation_forecast(xml_text):
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    values = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            position = int(entry.find_all('position')[0].contents[0])
+            value = float(entry.find_all('quantity')[0].contents[0])
+            datetime=datetime_from_position(datetime_start, position, resolution)
+            values.append(value)
+            datetimes.append(datetime)
+    return values, datetimes
+
+def parse_load_forecast(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
@@ -529,6 +557,25 @@ def fetch_generation_forecast(country_code, session=None, now=None):
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_generation_forecast(query_generation_forecast(domain, session, now))
+    if parsed:
+        data = []
+        values, datetimes = parsed
+        for i in range(len(values)):
+            data.append({
+                'countryCode': country_code,
+                'datetime': datetimes[i].datetime,
+                'value': values[i],
+                'source': 'entsoe.eu'
+            })
+
+        return data
+
+
+def fetch_load_forecast(country_code, session=None, now=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_load_forecast(query_load_forecast(domain, session, now))
     if parsed:
         data = []
         values, datetimes = parsed
