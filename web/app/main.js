@@ -350,8 +350,8 @@ var modeColor = {
     'unknown': 'lightgray'
 };
 var modeOrder = [
-    'wind',
     'solar',
+    'wind',
     'hydro',
     'hydro storage',
     'geothermal',
@@ -606,7 +606,7 @@ function selectCountry(countryCode, notrack) {
                     })
                 );
             });
-            
+
             // Figure out the highest CO2 emissions
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
@@ -772,7 +772,7 @@ function showPage(pageName) {
         .classed('large-screen-visible', pageName != 'info');
 
     // Hide map on small screens
-    // It's important we show the map before rendering it to make sure 
+    // It's important we show the map before rendering it to make sure
     // sizes are set properly
     d3.selectAll('#map-container').classed('large-screen-visible', pageName != 'map');
 
@@ -797,8 +797,8 @@ function showPage(pageName) {
             if (solarEnabled) if (solarColorbar) solarColorbar.render();
         }
     }
- 
-    d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);   
+
+    d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
     d3.selectAll('#tab .' + pageName + '-button').classed('active', true);
 }
 
@@ -893,7 +893,7 @@ function renderMap() {
     if (!countryMap) { return; }
 
     countryMap.render();
-    
+
     if (!countryMap.projection()) {
         return;
     }
@@ -1210,7 +1210,7 @@ function getCountryCode(lonlat, callback) {
             console.warn(Error('Invalid geocoder response'), response);
             callback(null, null);
         }
-    }); 
+    });
 }
 
 // Periodically load data
