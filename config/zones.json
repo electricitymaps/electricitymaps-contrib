@@ -388,6 +388,10 @@
     ]
   },
   "CH": {
+    "bounding_box": [
+      [5.9559111595, 45.8179931641],
+      [10.4920501709, 47.808380127]
+    ],
     "_comment": "includes 5064 MW of hydro storage",
     "capacity": {
       "biomass": 240,
@@ -402,6 +406,7 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
