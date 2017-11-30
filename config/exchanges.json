@@ -572,6 +572,21 @@
     },
     "rotation": 70
   },
+  "DK-DK1->NO-NO2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+  },
+  "DK-DK1->NO-SE3": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+  },
+  "DK-DK2->NO-SE4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+  },
   "EE->FI": {
     "lonlat": [
       25.690143,
