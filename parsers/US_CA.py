@@ -1,12 +1,10 @@
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
-import requests
-
-from datetime import datetime, timedelta
+import pandas
 
 
-def fetch_production(country_code='FR', session=None):
+def fetch_production(country_code='US-CA', session=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -37,12 +35,12 @@ def fetch_production(country_code='FR', session=None):
     }
     """
     # caiso.com provides daily data until the day before today
-    s = requests.session()
-    yesterday = arrow.utcnow().to('US/Pacific').shift(days=-1)
-    url = 'http://content.caiso.com/green/renewrpt/' + yesterday.format('YYYYMMDD')  +'_DailyRenewablesWatch.txt'
+    # get a clean date at the beginning of yesterday
+    yesterday = arrow.utcnow().to('US/Pacific').shift(days=-1).replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+    url = 'http://content.caiso.com/green/renewrpt/' + yesterday.format('YYYYMMDD') +'_DailyRenewablesWatch.txt'
 
-    response = s.get(url)
-    obj = response.text.splitlines()
+    renewableResources = pandas.read_table(url, sep='\t\t', skiprows=2, header=None, names=['Hour', 'GEOTHERMAL','BIOMASS', 'BIOGAS', 'SMALL HYDRO','WIND TOTAL', 'SOLAR PV', 'SOLAR THERMAL'], skipfooter=27, skipinitialspace=True, engine='python')
+    otherResources = pandas.read_table(url, sep='\t\t', skiprows=30, header=None, names=['Hour', 'RENEWABLES', 'NUCLEAR', 'THERMAL', 'IMPORTS', 'HYDRO'], skipinitialspace=True, engine='python')
 
     dailyData = []
 
@@ -53,20 +51,17 @@ def fetch_production(country_code='FR', session=None):
             'storage': {},
             'source': 'content.caiso.com',
         }
-        data['countryCode'] = 'US_CA'
-        data['datetime'] = datetime.now()
         data['production'] = {}
-        data['production']['biomass'] = int(obj[i+2].split('\t')[5])
-        data['production']['gas'] = int(obj[i+2].split('\t')[7])
-        data['production']['hydro'] = int(obj[i+2].split('\t')[9]) + int(obj[i+30].split('\t')[11]) # hydro + small hydro
-        data['production']['nuclear'] = int(obj[i+30].split('\t')[5])
-        data['production']['solar'] = int(obj[i+2].split('\t')[13]) + int(obj[i+2].split('\t')[15]) # solar PV + thermal
-        data['production']['wind'] = int(obj[i+2].split('\t')[11])
-        data['production']['geothermal'] = int(obj[i+2].split('\t')[3])
-        data['production']['unknown'] = int(obj[i+2].split('\t')[5])
+        data['production']['biomass'] = renewableResources['BIOMASS'][i]
+        data['production']['gas'] = renewableResources['BIOGAS'][i]
+        data['production']['hydro'] = renewableResources['SMALL HYDRO'][i] + otherResources['HYDRO'][i]
+        data['production']['nuclear'] = otherResources['NUCLEAR'][i]
+        data['production']['solar'] = renewableResources['SOLAR PV'][i] + renewableResources['SOLAR THERMAL'][i]
+        data['production']['wind'] = renewableResources['WIND TOTAL'][i]
+        data['production']['geothermal'] = renewableResources['GEOTHERMAL'][i]
+        data['production']['unknown'] = otherResources['THERMAL'][i] # this is not specified in the list
         # set the date at the end of the hour
-        dataTime = yesterday.replace(hour = i, minute = 59, second = 0)
-        data['datetime'] = dataTime.isoformat()
+        data['datetime'] = yesterday.shift(hours = i+1).isoformat()
         dailyData.append(data)
 
     return dailyData
