@@ -43,11 +43,9 @@ function Tooltip(selector) {
 
 Tooltip.prototype.show = function() {
     d3.select(this._selector)
+        .style('display', 'block')
         .transition()
-        .style('opacity', 1)
-        .on('end', function() {
-            d3.select(this).style('pointer-events', 'all');
-        });
+        .style('opacity', 1);
     return this;
 }
 Tooltip.prototype.update = function(x, y) {
@@ -59,7 +57,7 @@ Tooltip.prototype.hide = function() {
         .transition()
         .style('opacity', 0)
         .on('end', function() {
-            d3.select(this).style('pointer-events', 'none');
+            d3.select(this).style('display', 'none');
         });
     return this;
 }

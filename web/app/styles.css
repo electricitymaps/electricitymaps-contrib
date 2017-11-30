@@ -477,6 +477,7 @@ label[for="checkbox-colorblind"] {
 }
 
 .tooltip {
+    display: none;
     border: 1px solid grey;
     color: darkgrey;
     padding: 5px;
