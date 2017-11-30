@@ -577,12 +577,12 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
   },
-  "DK-DK1->NO-SE3": {
+  "DK-DK1->SE-SE3": {
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
   },
-  "DK-DK2->NO-SE4": {
+  "DK-DK2->SE-SE4": {
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
