@@ -49,7 +49,7 @@ def fetch_production(country_code='US-CA', session=None):
             'countryCode': country_code,
             'production': {},
             'storage': {},
-            'source': 'content.caiso.com',
+            'source': 'caiso.com',
         }
         data['production'] = {}
         data['production']['biomass'] = renewableResources['BIOMASS'][i]
