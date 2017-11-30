@@ -60,6 +60,11 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'MT': '10Y1001A1001A93C',
     'NL': '10YNL----------L',
     'NO': '10YNO-0--------C',
+    'NO-NO1': '10YNO-1--------2',
+    'NO-NO2': '10YNO-2--------T',
+    'NO-NO3': '10YNO-3--------J',
+    'NO-NO4': '10YNO-4--------9',
+    'NO-NO5': '10Y1001A1001A48H',
     'PL': '10YPL-AREA-----S',
     'PT': '10YPT-REN------W',
     'RO': '10YRO-TEL------P',
@@ -67,6 +72,10 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'RU': '10Y1001A1001A49F',
     'RU-KGD': '10Y1001A1001A50U',
     'SE': '10YSE-1--------K',
+    'SE-SE1': '10Y1001A1001A44P',
+    'SE-SE2': '10Y1001A1001A45N',
+    'SE-SE3': '10Y1001A1001A46L',
+    'SE-SE4': '10Y1001A1001A47J',
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
     'TR': '10YTR-TEIAS----W',
@@ -172,6 +181,17 @@ def query_generation_forecast(in_domain, session, now=None):
     else:
         check_response(response, query_generation_forecast.__name__)
 
+def query_consumption_forecast(in_domain, session, now=None):
+    params = {
+        'documentType': 'A65', # Load Forecast
+        'processType': 'A01',
+        'outBiddingZone_Domain': in_domain,
+    }
+    response = query_ENTSOE(session, params, now, span=[-24, 48])
+    if response.ok: return response.text
+    else:
+        check_response(response, query_generation_forecast.__name__)
+
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
     if m:
@@ -264,6 +284,23 @@ def parse_price(xml_text):
     return prices, currencies, datetimes
 
 def parse_generation_forecast(xml_text):
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    values = []
+    datetimes = []
+    for timeseries in soup.find_all('timeseries'):
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        for entry in timeseries.find_all('point'):
+            position = int(entry.find_all('position')[0].contents[0])
+            value = float(entry.find_all('quantity')[0].contents[0])
+            datetime=datetime_from_position(datetime_start, position, resolution)
+            values.append(value)
+            datetimes.append(datetime)
+    return values, datetimes
+
+def parse_consumption_forecast(xml_text):
     if not xml_text: return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
@@ -529,6 +566,25 @@ def fetch_generation_forecast(country_code, session=None, now=None):
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_generation_forecast(query_generation_forecast(domain, session, now))
+    if parsed:
+        data = []
+        values, datetimes = parsed
+        for i in range(len(values)):
+            data.append({
+                'countryCode': country_code,
+                'datetime': datetimes[i].datetime,
+                'value': values[i],
+                'source': 'entsoe.eu'
+            })
+
+        return data
+
+
+def fetch_consumption_forecast(country_code, session=None, now=None):
+    if not session: session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    # Grab consumption
+    parsed = parse_consumption_forecast(query_consumption_forecast(domain, session, now))
     if parsed:
         data = []
         values, datetimes = parsed

@@ -31,6 +31,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -133,6 +135,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -388,6 +392,10 @@
     ]
   },
   "CH": {
+    "bounding_box": [
+      [5.9559111595, 45.8179931641],
+      [10.4920501709, 47.808380127]
+    ],
     "_comment": "includes 5064 MW of hydro storage",
     "capacity": {
       "biomass": 240,
@@ -402,6 +410,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -473,6 +483,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -481,6 +493,16 @@
     ]
   },
   "DE": {
+    "bounding_box": [
+      [
+        5.8227539063,
+        47.2643200803
+      ],
+      [
+        15.0732421875,
+        55.1537662685
+      ]
+    ],
     "capacity": {
       "biomass": 7060,
       "coal": 49280,
@@ -494,6 +516,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -525,6 +549,7 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
@@ -573,6 +598,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -607,6 +634,7 @@
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
@@ -660,6 +688,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -681,6 +711,16 @@
     ]
   },
   "FR": {
+    "bounding_box": [
+      [
+        -5.44921875,
+        42.3098154157
+      ],
+      [
+        8.2177734375,
+        51.2894059027
+      ]
+    ],
     "capacity": {
       "coal": 2930,
       "gas": 10909,
@@ -692,6 +732,9 @@
       "wind": 10358
     },
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "FR.fetch_price",
       "production": "FR.fetch_production"
     },
@@ -701,6 +744,16 @@
   },
   "GB": {
     "_comment": "incl. 2744 MW storage. Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
+    "bounding_box": [
+      [
+        -8.173828125,
+        49.6462914122
+      ],
+      [
+        2.1533203125,
+        61.0795442346
+      ]
+    ],
     "capacity": {
       "biomass": 2119,
       "coal": 11097,
@@ -715,6 +768,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -758,6 +813,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -800,6 +857,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -822,6 +881,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -927,6 +988,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -945,6 +1008,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -955,6 +1020,8 @@
   "LU": {
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -971,6 +1038,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -986,6 +1055,9 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
     "contributors": [
@@ -1038,6 +1110,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1046,6 +1120,16 @@
     ]
   },
   "NO": {
+    "bounding_box": [
+      [
+        4.2626953125,
+        57.7276192162
+      ],
+      [
+        20.1708984375,
+        70.8734913193
+      ]
+    ],
     "capacity": {
       "coal": 0,
       "gas": 611,
@@ -1058,6 +1142,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1107,6 +1193,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1115,6 +1203,16 @@
     ]
   },
   "PT": {
+    "bounding_box": [
+      [
+        -9.8876953125,
+        36.6860412766
+      ],
+      [
+        -6.1743164062,
+        36.6860412766
+      ]
+    ],
     "capacity": {
       "biomass": 598,
       "coal": 1756,
@@ -1129,6 +1227,8 @@
     "flag_file_name": "pt.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1156,6 +1256,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1173,6 +1275,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1198,12 +1302,12 @@
   "SE": {
     "bounding_box": [
       [
-        11.337890625,
-        55.1788676633
+        11.25,
+        55.379110448
       ],
       [
-        24.169921875,
-        68.9741635834
+        21.2255859375,
+        69.0214140884
       ]
     ],
     "capacity": {
@@ -1217,6 +1321,7 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
@@ -1252,6 +1357,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
@@ -1272,6 +1379,8 @@
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
