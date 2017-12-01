@@ -109,6 +109,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States: [PYISO](https://github.com/WattTime/pyiso)
+- United States (California): [CAISO](http://www.caiso.com/Pages/default.aspx)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 
 ### Production capacity data sources

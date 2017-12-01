@@ -1470,6 +1470,17 @@
   "US-AK": {
     "flag_file_name": "us.png"
   },
+  "US-CA": {
+    "parsers": {
+      "production": "US-CA.fetch_production"
+    },
+    "flag_file_name": "us.png",
+    "contributors": [
+      "https://github.com/7hibault",
+      "https://github.com/corradio",
+      "https://github.com/systemcatch"
+    ]
+  },
   "US-HI": {
     "flag_file_name": "us.png"
   },
