@@ -1345,6 +1345,9 @@
       "https://github.com/corradio"
     ]
   },
+  "US-AK": {
+    "flag_file_name": "us.png"
+  },
   "US-CA": {
     "parsers": {
       "production": "US-CA.fetch_production"
@@ -1355,9 +1358,6 @@
       "https://github.com/corradio",
       "https://github.com/systemcatch"
     ]
-  },
-  "US-AK": {
-    "flag_file_name": "us.png"
   },
   "US-HI": {
     "flag_file_name": "us.png"
