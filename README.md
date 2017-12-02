@@ -8,12 +8,12 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 You can [contribute](#contribute) by
 - **[adding a new country on the map](#adding-a-new-country)**
-- correcting data sources
+- correcting [data sources](#data-sources) and [capacities](#updating-country-capacities)
 - [translating](https://github.com/tmrowco/electricitymap/tree/master/web/locales) the map
 - fixing existing [issues](https://github.com/tmrowco/electricitymap/issues)
 - submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap/issues) section.
 
-You can also see a list of missing datas displayed as warnings in the developer console, or question marks in the country panel:
+You can also see a list of missing data displayed as warnings in the developer console, or question marks in the country panel:
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
@@ -24,7 +24,7 @@ Check the [contributing](#contribute) section for more details.
 ### Carbon intensity calculation and data source
 The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO<sub>2</sub>eq (grams CO<sub>2</sub> equivalent), meaning each greenhouse gas is converted to its CO<sub>2</sub> equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO<sub>2</sub> over the same period).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecycle of the plant (construction, fuel production, operational emissions, and decomissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.js](https://github.com/tmrowco/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed litterature:
+The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.js](https://github.com/tmrowco/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed literature:
 - IPCC (2014) Fifth Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
 Country-specific carbon-intensity factors:
@@ -33,7 +33,7 @@ Country-specific carbon-intensity factors:
 - Norway:
   - Hydro: [Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"](http://ostfoldforskning.no/en/publications/Publication/?id=1236)
 
-Each country has a CO<sub>2</sub> mass flow that depends on neighboring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
+Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
 
 
 ### Real-time electricity data sources
@@ -224,7 +224,7 @@ Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co)
 
 ### Running locally
 
-To get started, clone or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
+To get started, [clone](https://help.github.com/articles/cloning-a-repository/) or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
 
 The frontend will need compiling. In order to do this, open a terminal and run
 ```
@@ -241,8 +241,11 @@ Head over to [http://localhost:8000/](http://localhost:8000/) and you should see
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
+### Updating country capacities
+If you want to update or add production capacities for a country then head over to the [zones file](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) and make any changes needed.  The zones use ISO 3166-1 codes as identifiers, a list of which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes).
+
 ### Adding a new country
-It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible to fetch the generation mix for a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
+It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
 A parser is a python script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
@@ -272,14 +275,14 @@ def fetch_production(country_code='FR', session=None):
 
 The `session` object is a [python request](http://docs.python-requests.org/en/master/) session that you can re-use to make HTTP requests.
 
-The production values should never be negative. Use `null`, or ommit the key, if a specific production mode is not known.
+The production values should never be negative. Use `None`, or omit the key if a specific production mode is not known.
 Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
 
 The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
 
-Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap/tree/master/config/exchanges.json) configuration files.
+Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
 
-For more info, check out the [example](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
+For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
 ### Testing parsers locally
 We've added a testing server locally. In order to test your parser, you can run
@@ -287,6 +290,9 @@ We've added a testing server locally. In order to test your parser, you can run
 PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```
 from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This will fetch production and exchanges and assign it a random carbon intensity value. It should appear on the map as you refresh your local browser.
+
+### Non real-time parsers
+While the map relies on having real-time (hourly or better) data it's still useful to collect data from past days, see the [CAISO](https://github.com/tmrowco/electricitymap/blob/master/parsers/US_CA.py) parser as an example. The most important parameters are that data is provided at regular intervals during the day and that generation is broken down by type. It's ok if coal/gas/oil are combined in the data.
 
 ### Troubleshooting
 
