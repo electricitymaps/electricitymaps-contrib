@@ -1472,7 +1472,7 @@
   },
   "US-CA": {
     "parsers": {
-      "production": "US-CA.fetch_production"
+      "production": "US_CA.fetch_production"
     },
     "flag_file_name": "us.png",
     "contributors": [
