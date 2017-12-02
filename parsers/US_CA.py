@@ -61,7 +61,7 @@ def fetch_production(country_code='US-CA', session=None):
         data['production']['geothermal'] = renewableResources['GEOTHERMAL'][i]
         data['production']['unknown'] = otherResources['THERMAL'][i] # this is not specified in the list
         # set the date at the end of the hour
-        data['datetime'] = yesterday.shift(hours = i+1).isoformat()
+        data['datetime'] = yesterday.shift(hours = i+1).datetime
         dailyData.append(data)
 
     return dailyData
