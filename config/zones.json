@@ -1151,6 +1151,11 @@
       "https://github.com/corradio"
     ]
   },
+  "NO-NO2": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
   "NZ-NZN": {
     "flag_file_name": "nz.png",
     "parsers": {
@@ -1329,6 +1334,16 @@
     "contributors": [
       "https://github.com/corradio"
     ]
+  },
+  "SE-SE3": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
+  "SE-SE4": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
   },
   "SG": {
     "capacity": {
