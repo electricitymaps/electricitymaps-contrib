@@ -45,6 +45,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Australia (Western): [AEMO](http://wa.aemo.com.au/Electricity/Wholesale-Electricity-Market-WEM/Data-dashboard)
   ([CSV](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv))
 - Australia (distributed solar generation): [Australian PV Institute](http://pv-map.apvi.org.au/live)
+- Australia (South Battery): [Nemwatch](https://ausrealtimefueltype.global-roam.com/expanded)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
