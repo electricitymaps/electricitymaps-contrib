@@ -7,7 +7,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from lib import AU_solar
+from lib import AU_solar, AU_battery
 
 
 AMEO_CATEGORY_DICTIONARY = {
@@ -393,7 +393,7 @@ def fetch_production(country_code=None, session=None):
         data['capacity'][key] += float(row['Max Cap (MW)'])
         data['production'][key] = max(data['production'][key], 0)
         data['capacity'][key] = max(data['capacity'][key], 0)
-        
+
         # Parse the datetime and return a python datetime object
         try:
             plant_timestamp = arrow.get(row['Most Recent Output Time (AEST)']).datetime
@@ -415,6 +415,10 @@ def fetch_production(country_code=None, session=None):
     distributed_solar_production = AU_solar.fetch_solar_for_date(country_code, data['datetime'], session)
     if distributed_solar_production:
         data['production']['solar'] = data['production'].get('solar', 0) + distributed_solar_production
+
+    if country_code == 'AUS-SA':
+        #Get South Australia battery status.
+        data['storage']['battery'] = AU_battery.fetch_SA_battery()
 
     return data
 
