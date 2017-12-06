@@ -341,19 +341,21 @@ var modeColor = {
     'solar': '#f27406',
     'hydro': '#2772b2',
     'hydro storage': '#2772b2',
+    'battery': 'lightgray',
     'biomass': '#166a57',
     'geothermal': 'yellow',
     'nuclear': '#AEB800',
     'gas': '#bb2f51',
     'coal': '#ac8c35',
     'oil': '#867d66',
-    'unknown': 'lightgray'
+    'unknown': 'lightgray',
 };
 var modeOrder = [
     'wind',
     'solar',
     'hydro',
     'hydro storage',
+    'battery storage',
     'geothermal',
     'biomass',
     'nuclear',

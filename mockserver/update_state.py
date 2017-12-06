@@ -51,6 +51,9 @@ with open('mockserver/public/v3/state', 'r') as f:
     production['datetime'] = arrow.get(production['datetime']).isoformat()
     # Set random co2 value
     production['co2intensity'] = random() * 500
+    # Set aggregates
+    production['maxProduction'] = max([x or 0 for x in production['production'].values()])
+    production['totalProduction'] = sum([x or 0 for x in production['production'].values()])
     # Update exchanges
     for e in exchanges:
         exchange_zone_names = e['sortedCountryCodes'].split('->')
