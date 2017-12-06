@@ -18,14 +18,14 @@ def fetch_SA_battery():
     req = requests.get(base_url, verify = False)
     json_content = req.json()
     dicts = json_content["seriesCollection"]
-    storage_id = (item for item in dicts if item["id"] == "41").next()
-    charging_id = (item for item in dicts if item["id"] == "57").next()
+    discharge_id = (item for item in dicts if item["id"] == "41").next()
+    storage_id = (item for item in dicts if item["id"] == "57").next()
 
-    storage = -1*float(storage_id["value"])
-    charging = float(charging_id["value"])
+    discharge = -1*float(discharge_id["value"])
+    storage = float(storage_id["value"])
 
     #one of these should always be zero
-    battery_status = storage + charging
+    battery_status = discharge + storage
 
     return battery_status
 
