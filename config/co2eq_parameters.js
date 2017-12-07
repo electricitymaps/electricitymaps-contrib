@@ -25,6 +25,10 @@ var defaultCo2eqFootprint = { // in gCo2eq/kWh
       'value': 24,
       'source': defaultCo2eqSource
     },
+    'battery discharge': { // This applies to discharge only
+      'value': 0,
+      'source': 'TODO'
+    },
     'nuclear': {
       'value': 12,
       'source': defaultCo2eqSource
