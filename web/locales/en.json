@@ -71,6 +71,7 @@
     "solar": "solar",
     "hydro": "hydro",
     "hydro storage": "hydro storage",
+    "battery storage": "battery storage",
     "biomass": "biomass",
     "nuclear": "nuclear",
     "geothermal": "geothermal",
