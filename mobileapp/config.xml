@@ -67,7 +67,4 @@
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-code-push" spec="^1.10.1" />
-    <plugin name="cordova-plugin-geolocation" spec="^3.0.0">
-        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Electricity Map uses your location to center the map on your current area." />
-    </plugin>
 </widget>

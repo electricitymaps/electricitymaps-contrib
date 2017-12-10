@@ -7,7 +7,6 @@ var moment = require('moment');
 
 // API
 function protectedJsonRequest(endpoint, path, callback) {
-    // Do not pass headers in development
     var t = new Date().getTime();
     var md = forge.md.sha256.create();
     var s = md.update(ELECTRICITYMAP_PUBLIC_TOKEN + path + t).digest().toHex();
