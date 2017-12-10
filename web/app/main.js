@@ -211,7 +211,7 @@ var app = {
                 },
                 { enableHighAccuracy: false, timeout: 4000 });
         }
-        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
             // do some work
             parseQueryString(eventData.url.split('?')[1] || eventData.url);
@@ -228,7 +228,7 @@ var app = {
             'solarEnabled': solarEnabled,
             'colorBlindModeEnabled': colorBlindModeEnabled
         });
-        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
 };
 app.initialize();
