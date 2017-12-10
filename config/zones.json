@@ -1460,28 +1460,6 @@
       "https://github.com/MariusKroon"
     ]
   },
-  "US": {
-    "_comment": "distributed PV: 9778MW, not included below",
-    "capacity": {
-      "biomass": 16099,
-      "coal": 304789,
-      "gas": 506760,
-      "geothermal": 3811,
-      "hydro": 78956,
-      "hydro storage": 21572,
-      "nuclear": 103860,
-      "oil": 42321,
-      "other": 2040,
-      "solar": 13758,
-      "wind": 73393
-    },
-    "parsers": {
-      "production": "US.fetch_production"
-    },
-    "contributors": [
-      "https://github.com/corradio"
-    ]
-  },
   "US-AK": {
     "flag_file_name": "us.png"
   },
