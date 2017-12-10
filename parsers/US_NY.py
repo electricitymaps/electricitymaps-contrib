@@ -7,13 +7,6 @@ from collections import defaultdict
 from operator import itemgetter
 import pandas as pd
 
-
-ny = arrow.now('America/New_York')
-#Mix csv requires zero padded day.
-ny_date = str(ny.year) + str(ny.month) + (str(ny.day) if ny.day > 9 else str(ny.day).zfill(2))
-
-mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
-
 mapping = {
            'Dual Fuel': 'unknown',
            'Natural Gas': 'gas',
@@ -26,8 +19,12 @@ mapping = {
 
 def read_csv_data():
     """
-    Gets csv data from a url and returns a dataframe.
+    Gets csv data from mix url and returns a dataframe.
     """
+
+    ny = arrow.now('America/New_York')
+    ny_date = ny.format('YYYYMMDD')
+    mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
 
     csv_data = pd.read_csv(mix_url)
 
@@ -78,7 +75,7 @@ def data_parser(df):
                 complete_production[key] = val
 
         dt = complete_production.pop('datetime')
-        final = (dt, complete_production)
+        final = (dt, dict(complete_production))
         mapped_generation.append(final)
 
     return mapped_generation
