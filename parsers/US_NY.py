@@ -118,7 +118,7 @@ def fetch_production(country_code = 'US-NY'):
           'countryCode': country_code,
           'datetime': timestamp_converter(datapoint[0]),
           'production': datapoint[1],
-          'storage': None,
+          'storage': {'hydro': None},
           'source': 'nyiso.com'
         }
 
