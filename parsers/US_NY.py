@@ -80,7 +80,7 @@ def data_parser(df):
 
     return mapped_generation
 
-def fetch_production(country_code = 'US-NY'):
+def fetch_production(country_code = 'US-NY', session = None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
