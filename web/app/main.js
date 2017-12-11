@@ -187,31 +187,7 @@ var app = {
             d3.select('#header')
                 .style('padding-top', '20px');
         }
-        // Geolocation support
-        if (selectedCountryCode) {
-            var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
-            var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
-            countryMap.center([lon, lat]);
-        }
-        else {
-            LoadingService.startLoading();
-            navigator.geolocation.getCurrentPosition(
-                function(obj) {
-                    if (!mapDraggedSinceStart) {
-                        geo = [obj.coords.longitude, obj.coords.latitude];
-                        console.log('Centering on', geo);
-                        countryMap.center(geo);
-                    }
-                    LoadingService.stopLoading();
-                },
-                function(err) {
-                    console.error(err);
-                    countryMap.center([0, 50]);
-                    LoadingService.stopLoading();
-                },
-                { enableHighAccuracy: false, timeout: 4000 });
-        }
-        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
             // do some work
             parseQueryString(eventData.url.split('?')[1] || eventData.url);
@@ -228,7 +204,7 @@ var app = {
             'solarEnabled': solarEnabled,
             'colorBlindModeEnabled': colorBlindModeEnabled
         });
-        // codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+        codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
     }
 };
 app.initialize();
@@ -542,7 +518,7 @@ d3.entries(exchanges).forEach(function(entry) {
         console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
 });
 
-var wind, solar;
+var wind, solar, callerLocation;
 
 var histories = {};
 
@@ -899,10 +875,8 @@ function renderMap() {
     if (!countryMap.projection()) {
         return;
     }
-    if (!countryMap.center() && !isCordova) {
-        // Cordova will handle this differently
-        // This should be given by the server
-        var geolocation = geo && [geo.ll[1], geo.ll[0]];
+    if (!mapDraggedSinceStart) {
+        var geolocation = callerLocation;
         if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
             var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
@@ -971,7 +945,7 @@ function renderMap() {
 
 var countryListSelector;
 
-function dataLoaded(err, clientVersion, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argWind) {
     if (err) {
         console.error(err);
         return;
@@ -1185,7 +1159,7 @@ function dataLoaded(err, clientVersion, state, argSolar, argWind) {
     // Do not overwrite with null/undefined
     if (argWind) wind = argWind;
     if (argSolar) solar = argSolar;
-
+    if (argCallerLocation) callerLocation = argCallerLocation;
     // Update pages that need to be updated
     renderMap();
 
@@ -1290,7 +1264,7 @@ function fetch(showLoading, callback) {
     Q.await(function(err, clientVersion, state, solar, wind) {
         handleConnectionReturnCode(err);
         if (!err)
-            dataLoaded(err, clientVersion, state.data, solar, wind);
+            dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
         if (showLoading) LoadingService.stopLoading();
         if (callback) callback();
     });
