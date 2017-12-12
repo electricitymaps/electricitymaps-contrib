@@ -1,31 +1,41 @@
 #!/usr/bin/python
 
+"""Parser for South Australia's 129MWh battery built by Tesla."""
+
+import arrow
+import json
 import requests
 
-#Parser for South Australia's 129MWh battery built by Tesla.
-#base_url gets generation status in 5 min intervals.
+#nemlog_url gets generation status in 5 min intervals.
 
-base_url = 'https://ausrealtimefueltype.global-roam.com/api/SeriesSnapshot?time='
-
-def fetch_SA_battery():
+def fetch_SA_battery(session = None):
     """
-    Makes a request to the NemWatch widget data source.
-    Finds dictionaries related to the South Australia battery.
-    Returns a float.
+    Makes a request to the nemlog api for South Australia battery data.
+    Returns a float or None.
     """
 
-    #Verify set to false to prevent SSL error due to domain mismatch.
-    req = requests.get(base_url, verify = False)
-    json_content = req.json()
-    dicts = json_content["seriesCollection"]
-    discharge_id = (item for item in dicts if item["id"] == "41").next()
-    storage_id = (item for item in dicts if item["id"] == "57").next()
+    today = arrow.now('Australia/Adelaide')
+    current = today.format('YYYYMMDD')
+    old = today.shift(days=-2).format('YYYYMMDD')
+    nemlog_url = 'http://nemlog.com.au/api/unit/HPRL1/{}/{}/json'.format(old, current)
 
-    discharge = -1*float(discharge_id["value"])
-    storage = float(storage_id["value"])
+    s = session or requests.Session()
+    req = s.get(nemlog_url)
 
-    #one of these should always be zero
-    battery_status = discharge + storage
+    data = []
+    for line in req.iter_lines():
+        data.append(line)
+
+    try:
+        latest = json.loads(data[-1])
+    except IndexError:
+        #No data available.
+        return None
+
+    state = float(latest["SCADAVALUE"])
+
+    #Source classifies charge/discharge opposite to EM.
+    battery_status = -1*state
 
     return battery_status
 
