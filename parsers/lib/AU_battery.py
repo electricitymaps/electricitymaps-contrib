@@ -8,7 +8,7 @@ import requests
 
 #nemlog_url gets generation status in 5 min intervals.
 
-def fetch_SA_battery():
+def fetch_SA_battery(session = None):
     """
     Makes a request to the nemlog api for South Australia battery data.
     Returns a float or None.
@@ -19,7 +19,8 @@ def fetch_SA_battery():
     old = today.shift(days=-2).format('YYYYMMDD')
     nemlog_url = 'http://nemlog.com.au/api/unit/HPRL1/{}/{}/json'.format(old, current)
 
-    req = requests.get(nemlog_url)
+    s = session or requests.Session()
+    req = s.get(nemlog_url)
 
     data = []
     for line in req.iter_lines():
