@@ -7,15 +7,19 @@ var moment = require('moment');
 
 // API
 function protectedJsonRequest(endpoint, path, callback) {
-    var t = new Date().getTime();
-    var md = forge.md.sha256.create();
-    var s = md.update(ELECTRICITYMAP_PUBLIC_TOKEN + path + t).digest().toHex();
-    var req = d3.json(endpoint + path);
-    if (window.useRemoteEndpoint) {
-        req = req.header('electricitymap-token', Cookies.get('electricitymap-token'))
-            .header('x-request-timestamp', t)
-            .header('x-signature', s)
+    let t = new Date().getTime();
+    let md = forge.md.sha256.create();
+    let s
+    if (endpoint.indexOf('localhost') != -1) {
+      s = md.update('development' + path + t).digest().toHex();
     }
+    else {
+      s = md.update(ELECTRICITYMAP_PUBLIC_TOKEN + path + t).digest().toHex();
+    }
+    let req = d3.json(endpoint + path)
+        .header('electricitymap-token', Cookies.get('electricitymap-token'))
+        .header('x-request-timestamp', t)
+        .header('x-signature', s)
     return req.get(null, callback);
 }
 
