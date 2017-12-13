@@ -62,8 +62,9 @@ def fetch_production(country_code='FR', session=None):
         data['production'][production_mean] = production_value
 
     # Parse the datetime and return a python datetime object
-    date = soup.find('div',{'class':'sitr-update'}).find('span').string
-    data['datetime'] = date # FIXME not formatted properly
+    spanish_date = soup.find('div',{'class':'sitr-update'}).find('span').string
+    date = arrow.get(spanish_date, 'DD-MMMM-YYYY H:mm:ss', locale="es", tzinfo="America/Panama")
+    data['datetime'] = date.datetime
 
     return data
 
