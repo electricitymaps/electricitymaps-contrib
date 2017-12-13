@@ -91,6 +91,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Panama: [CND](http://sitr.cnd.com.pa/m/pub/gen.html)
 - Peru: [COES](http://www.coes.org.pe/Portal/portalinformacion/Generacion)
 - Poland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Portugal: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)

@@ -6,7 +6,7 @@ import requests
 # The BeautifulSoup library is used to parse HTML
 from bs4 import BeautifulSoup
 
-def fetch_production(country_code='FR', session=None):
+def fetch_production(country_code='PA', session=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:

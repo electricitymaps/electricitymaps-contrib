@@ -1176,6 +1176,17 @@
       "https://github.com/corradio"
     ]
   },
+  "PA": {
+    "parsers": {
+      "production": "PA.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/paulotaviodr",
+      "https://github.com/jarek",
+      "https://github.com/systemcatch",
+      "https://github.com/7hibault"
+    ]
+  },
   "PE": {
     "parsers": {
       "production": "PE.fetch_production"
