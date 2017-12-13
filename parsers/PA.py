@@ -64,7 +64,6 @@ def fetch_production(country_code='FR', session=None):
     # Parse the datetime and return a python datetime object
     date = soup.find('div',{'class':'sitr-update'}).find('span').string
     data['datetime'] = date # FIXME not formatted properly
-    print(data)
 
     return data
 
