@@ -6,21 +6,23 @@
         "howmuchco2": "二酸化炭素の量",
         "wasemitted": "の生産",
         "takeinaccount": "電力の国の間の",
-        "importexport": "輸出と輸入",
+        "importexport": "供給",
         "betweencountries": "は計算されています",
         "thisproject": "このプロジェクトは",
         "opensource": "オープンソースです",
         "see": "",
         "datasources": "データソースを見る",
         "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>",
-        "tip": "チップ: 国にクリックして冒険して観てくささい"
+        "tip": "チップ: 国にクリックして観てくささい"
     },
     "country-panel": {
         "source": "ソース",
         "carbonintensity": "二酸化炭素量",
         "electricityproduction": "電力生産量",
+        "lowcarbon": "低炭素エネルギー",
+        "renewable": "再生可能エネルギー",
         "bysource": "ソース分け",
-        "emissions": "二酸化炭素放出",
+        "emissions": "二酸化炭素排出",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ソースを追加または編集する</a>",
         "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a>はデバイスと電源車の電源消費を最適化するにオススメサービスです（特に境域を渡るのがある場合に）",
         "helpfrom": "次の方の協力のおかげで"
@@ -30,12 +32,15 @@
         "show-ranking": "ランキングを見る"
     },
     "country-history": {
-        "carbonintensity24h": "最近の２４時間の二酸化炭素の放出"
+        "carbonintensity24h": "最近の２４時間の二酸化炭素の排出",
+        "electricityorgin24h": "最近の２４時間の電力の元",
+        "electricityprices24h": "最近の２４時間の電力値",
+        "Getdata": "過去と予想のデータを取得する"
     },
     "footer": {
         "likethisvisu": "この地図はどうですか？",
-        "loveyourfeedback": "フィードバックがありましたら、お願いします",
-        "foundbugs": "バッグまたはアイディアの発見？ご報告ください",
+        "loveyourfeedback": "ご意見ご要望がありましたら、お願いします",
+        "foundbugs": "バッグの発見？ご報告ください",
         "here": "(こちらに)"
     },
     "legends": {
@@ -53,18 +58,18 @@
         "withcarbonintensity": "with a carbon intensity of"
     },
     "misc": {
-        "maintitle": "ライブ二酸化炭素放出地図",
+        "maintitle": "ライブ二酸化炭素排出地図",
         "lastupdate": "最新アップデート",
         "oops": "ごめん!サーバーにの接続に問題がありました、数秒後にまた試します",
         "newversion": "新しいバージョンが使える、リロードするには<a onClick=\"location.reload(true);\">こちら</a>にタップしてください",
         "retrynow": "今すぐリトライ"
     },
-    "wind": "風",
+    "wind": "風力",
     "solar": "太陽光",
-    "hydro": "水",
+    "hydro": "水力",
     "hydro storage": "水力ストーレージ",
     "biomass": "バイオマス",
-    "nuclear": "原発",
+    "nuclear": "原子力",
     "geothermal": "地熱",
     "gas": "ガス",
     "coal": "石炭",

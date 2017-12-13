@@ -6,6 +6,9 @@ stages:
     steps:
       - type: checkout
       - type: shell
+        name: Install Docker Compose
+        command: pip install docker-compose==1.17.1
+      - type: shell
         name: Show versions
         command: |
           docker --version

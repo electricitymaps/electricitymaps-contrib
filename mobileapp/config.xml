@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tmrow.electricitymap" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tmrow.electricitymap" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Electricity Map</name>
     <description>
         Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
     </description>
-    <author email="hello@tmrow.com" href="https://www.tmrow.co">
+    <author email="hello@tmrow.com" href="https://www.tmrow.com">
         Tomorrow
     </author>
     <content src="index.html" />
@@ -59,15 +59,12 @@
         <host name="www.electricitymap.org" scheme="https" />
         <host name="www.electricitymap.org" scheme="http" />
     </universal-links>
-    <engine name="android" spec="^6.2.3" />
+    <engine name="android" spec="^6.3.0" />
     <engine name="ios" spec="^4.5.0" />
-    <plugin name="cordova-plugin-code-push" spec="^1.9.4-beta" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.6" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
-    <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
-        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Electricity Map uses your location to center the map on your current area." />
-    </plugin>
+    <plugin name="cordova-plugin-code-push" spec="^1.10.1" />
 </widget>

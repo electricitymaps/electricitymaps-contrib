@@ -41,8 +41,8 @@
         "here": "hier"
     },
     "legends": {
-        "windpotential": "Potenzial Windenergie",
-        "solarpotential": "Potenzial Solarenergie",
+        "windpotential": "Windenergiepotenzial",
+        "solarpotential": "Solarenergiepotenzial",
         "colorblindmode": "farbenblind Modus",
         "carbonintensity": "CO2 Konzentration"
     },

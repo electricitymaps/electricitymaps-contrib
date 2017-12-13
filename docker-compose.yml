@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 services:
   mockserver:
     build: mockserver
@@ -9,6 +9,8 @@ services:
     build:
       context: .
       dockerfile: web/Dockerfile
+      cache_from:
+        - eu.gcr.io/tmrow-152415/electricitymap_web:production
     command: npm run server-dev
     depends_on: ['mockserver']
     environment:
