@@ -89,7 +89,7 @@ var countryCo2eqFootprint = {
         };
     },
     'SE': function (productionMode) {
-        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 700, source: null} : null;
+        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 362, source: 'assumes 72% biomass, 28% conventional thermal'} : null;
     }
 };
 
