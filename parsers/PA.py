@@ -53,7 +53,7 @@ def fetch_production(country_code='PA', session=None):
         'countryCode': 'PA',
         'production': {},
         'storage': {},
-        'source': 'http://sitr.cnd.com.pa/m/pub/gen.html',
+        'source': 'https://www.cnd.com.pa/',
     }
     for prod in productions:
         prod_data = prod.string.split(' ')
