@@ -2,9 +2,10 @@ version: '3.2'
 services:
   mockserver:
     build: mockserver
-    command: http-server -p 9000 --cors -c-1
     ports: ['9000:9000']
-    volumes: ['./mockserver/public:/home/public']
+    volumes:
+      - './mockserver/public:/home/public'
+      - './mockserver/server.py:/home/server.py'
   web:
     build:
       context: .

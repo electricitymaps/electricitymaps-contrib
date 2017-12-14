@@ -1340,7 +1340,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "statnett.fetch_production"
     },
     "contributors": [
       "https://github.com/corradio"

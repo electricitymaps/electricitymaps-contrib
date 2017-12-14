@@ -40,7 +40,7 @@
   },
   "scripts": {
     "build-debug": "webpack --bail --progress",
-    "build-release": "NODE_ENV=production webpack --bail --progress -p",
+    "build-release": "NODE_ENV=production webpack --bail -p",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress"
