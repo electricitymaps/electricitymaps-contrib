@@ -50,8 +50,7 @@ def fetch_production(country_code='US-CA', session=None):
         'Nuclear': 'nuclear',
         'Natural gas': 'gas',
         'Large hydro': 'hydro',
-        'Imports': 'unknown',
-        'Other': 'other'
+        'Other': 'unknown'
     }
     storage_map = {
         'Batteries': 'battery'
