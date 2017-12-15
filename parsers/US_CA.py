@@ -1,8 +1,11 @@
 # The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
+# The pandas library is used to parse content through HTTP
 import pandas
-
+# The request library is used to fetch content through HTTP
+import requests
+# The BeautifulSoup library is used to parse HTML
+from bs4 import BeautifulSoup
 
 def fetch_production(country_code='US-CA', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -34,11 +37,10 @@ def fetch_production(country_code='US-CA', session=None):
       'source': 'mysource.com'
     }
     """
-    url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
-    csv = pandas.read_csv(url)
+    # Get the production from the CSV
+    csv_url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
+    csv = pandas.read_csv(csv_url)
     latest_index = len(csv)-1
-    h, m = map(int, csv['Time'][latest_index].split(':'))
-    date = arrow.utcnow().to('US/Pacific').replace(hour = h, minute = m, second = 0, microsecond = 0)
     production_map = {
         'Solar': 'solar',
         'Wind': 'wind',
@@ -55,30 +57,34 @@ def fetch_production(country_code='US-CA', session=None):
     storage_map = {
         'Batteries': 'battery'
     }
-    data = {
-        'countryCode': country_code,
-        'production': {},
-        'storage': {},
-        'source': 'caiso.com',
-        'datetime': date.datetime
-    }
-    for key, value in production_map.items():
-        prod = csv[key][latest_index]
-        # if another mean of production created a value, sum them up
-        if value in data['production']:
-            data['production'][value] += prod
-        else:
-            data['production'][value] = prod
+    dailyData = []
+    for i in range(0, latest_index + 1):
+        h, m = map(int, csv['Time'][i].split(':'))
+        date = arrow.utcnow().to('US/Pacific').replace(hour = h, minute = m, second = 0, microsecond = 0)
+        data = {
+            'countryCode': country_code,
+            'production': {},
+            'storage': {},
+            'source': 'caiso.com',
+            'datetime': date.datetime
+        }
+        for key, value in production_map.items():
+            prod = float(csv[key][i])
+            # if another mean of production created a value, sum them up
+            if value in data['production']:
+                data['production'][value] += prod
+            else:
+                data['production'][value] = prod
+        for key, value in storage_map.items():
+            storage = -float(csv[key][i])
+            # if another mean of storage created a value, sum them up
+            if value in data['production']:
+                data['storage'][value] += storage
+            else:
+                data['storage'][value] = storage
+        dailyData.append(data)
 
-    for key, value in storage_map.items():
-        storage = csv[key][latest_index]
-        # if another mean of storage created a value, sum them up
-        if value in data['production']:
-            data['storage'][value] += storage
-        else:
-            data['storage'][value] = storage
-
-    return data
+    return dailyData
 
 
 if __name__ == '__main__':
