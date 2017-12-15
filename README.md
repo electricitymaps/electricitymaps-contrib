@@ -288,11 +288,19 @@ Once you're done, add your parser to the [zones.json](https://github.com/tmrowco
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
 ### Testing parsers locally
-We've added a testing server locally. In order to test your parser, you can run
+We've added a testing server locally. In order to test your parser, make sure first that you have installed the required modules as described in parsers/requirements.txt: for that you can run
+```
+pip install -r parsers/requirements.txt
+```
+
+Then, you can run
 ```
 PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```
+
 from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This will fetch production and exchanges and assign it a random carbon intensity value. It should appear on the map as you refresh your local browser.
+
+
 
 ### Non real-time parsers
 While the map relies on having real-time (hourly or better) data it's still useful to collect data from past days, see the [CAISO](https://github.com/tmrowco/electricitymap/blob/master/parsers/US_CA.py) parser as an example. The most important parameters are that data is provided at regular intervals during the day and that generation is broken down by type. It's ok if coal/gas/oil are combined in the data.

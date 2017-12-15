@@ -241,7 +241,7 @@
       54.789457
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": -90
   },
@@ -504,7 +504,7 @@
       54.9
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
@@ -545,7 +545,7 @@
       54.925814
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
@@ -556,7 +556,7 @@
       57.7
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -25
@@ -567,7 +567,7 @@
       56.857802
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
@@ -593,7 +593,7 @@
       59.923241
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": -35
   },
@@ -603,7 +603,7 @@
       57.810982
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 180
   },
@@ -613,7 +613,7 @@
       58.545189
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 90
   },
@@ -663,7 +663,7 @@
       68.862684
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": -30
   },
@@ -673,7 +673,7 @@
       65.422768
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 90
   },
@@ -683,7 +683,7 @@
       63.441789
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -50
@@ -879,7 +879,7 @@
       56.287428
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 0
   },
@@ -889,7 +889,7 @@
       54.247411
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 180
   },
@@ -899,7 +899,7 @@
       55.080726
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": -180
   },
@@ -909,7 +909,7 @@
       55.910978
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
@@ -920,7 +920,7 @@
       56.87436
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 45
   },
@@ -957,7 +957,7 @@
       55.859727
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 0
   },
@@ -967,10 +967,20 @@
       62.19523
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
+  },
+  "NO->RU": {
+    "lonlat": [
+      30.1437,
+      69.52
+    ],
+    "parsers": {
+      "exchange": "statnett.fetch_exchange"
+    },
+    "rotation": 120
   },
   "NZ-NZN->NZ-NZS": {
     "lonlat": [
@@ -988,7 +998,7 @@
       55.215172
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
