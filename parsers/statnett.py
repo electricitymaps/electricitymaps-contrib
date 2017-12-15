@@ -83,11 +83,8 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='NO1', bidding_zone2='SE3', ses
 
 def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=None):
     zones = sorted_bidding_zones.split('->')
-    return {
-        'netFlow': fetch_exchange_by_bidding_zone(zones[0], zones[1], session)['netFlow'],
-        'datetime': fetch_exchange_by_bidding_zone(zones[0], zones[1], session)['datetime'],
-        'source': fetch_exchange_by_bidding_zone(zones[0], zones[1], session)['source']
-    }
+    return fetch_exchange_by_bidding_zone(zones[0], zones[1], session)
+
 def _sum_of_exchanges(exchanges):
     return {
         'netFlow': sum(map(lambda e: e['netFlow'], exchanges)),
