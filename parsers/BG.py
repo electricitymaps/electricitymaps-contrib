@@ -1,11 +1,9 @@
 # encoding=utf8
-# The arrow library is used to handle datetimes
-import arrow
-# The request library is used to fetch content through HTTP
-import requests
-from bs4 import BeautifulSoup
 
-TIME_ZONE = 'Europe/Sofia'
+import arrow
+from bs4 import BeautifulSoup
+import requests
+
 TYPE_MAPPING = {                        # Real values around midnight
     u'АЕЦ': 'nuclear',                  # 2000
     u'Кондензационни ТЕЦ': 'coal',      # 1800
@@ -19,6 +17,13 @@ TYPE_MAPPING = {                        # Real values around midnight
     u'Товар РБ': 'consumption',         # 3175
 }
 
+def time_string_converter(ts):
+    """Converts time strings into aware datetime objects."""
+
+    dt_naive = arrow.get(ts, 'DD.MM.YYYY HH:mm:ss')
+    dt_aware = dt_naive.replace(tzinfo = 'Europe/Sofia').datetime
+
+    return dt_aware
 
 def fetch_production(country_code='BG', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -50,65 +55,44 @@ def fetch_production(country_code='BG', session=None):
       'source': 'mysource.com'
     }
     """
+
     r = session or requests.session()
-    url = 'http://www.tso.bg/GeneratedPowersPublicExt/'
+    url = 'http://www.eso.bg/?did=124'
     response = r.get(url)
     html = response.text
     soup = BeautifulSoup(html, 'html.parser')
 
-    # first compute the datetime
-    datetime = None
-    local_time = soup.find(id='lblTecDate')
-    if local_time:
-        time = local_time.string.split(':')
-        if len(time) == 3:
-            datetime = arrow.now('Europe/Sofia').floor('day').\
-                replace(hour=int(time[0]), minute=int(time[1]), second=int(time[2]))
+    try:
+        time_div = soup.find("div", {"class": "dashboardCaptionDiv"})
+        bold = time_div.find('b')
+    except AttributeError:
+        raise LookupError('No data currently available for Bulgaria.')
 
-    if not datetime:
-        raise Exception('No datetime')
+    time_string = bold.string
+    dt = time_string_converter(time_string)
 
-    # then populate an object that contains the consumptions by type, we will parse a table something like that
-    # АЕЦ	1998
-    # Кондензационни ТЕЦ	1790
-    # Топлофикационни ТЕЦ	146
-    # Заводски ТЕЦ	146
-    # ВЕЦ	7
-    # Малки ВЕЦ	72
-    # ВяЕЦ	483
-    # ФЕЦ	0
-    # Био ТЕЦ	30
-    # Товар РБ	3114
+    table = soup.find("table", {"class": "defaultTable2"})
+    rows = table.findChildren("tr")
 
-    res = dict()
-    lines = soup.find_all('table')         # each line is in a <table>
-    for l in lines:
-        try:    # we want to read only values that have a non empty label and a non empty float value
-            label = l.find('td')
-            value = l.find('span')
-            if value and label:
-                energy_type = TYPE_MAPPING.get(label.string.strip(), 'unknown')
-                res[energy_type] = res.get(energy_type, 0.0) + float(value.string)
-        except (TypeError, ValueError), e:
-            print str(e)
-            pass    # this ensure we skip lines that have no float value
+    datapoints = []
+    for row in rows[1:-1]:
+        gen_tag = row.find("td")
+        gen = gen_tag.text
+        val_tag = gen_tag.findNext("td")
+        val = float(val_tag.find("b").text)
+        datapoints.append((TYPE_MAPPING[gen], val))
+
+    production = {}
+    for k,v in datapoints:
+        production[k] = production.get(k, 0.0) + v
 
     data = {
-        'countryCode': 'BG',
-        'production': {
-            'biomass': res.get('biomass', 0.0),
-            'hydro': res.get('hydro', 0.0),
-            'nuclear': res.get('nuclear', 0.0),
-            'wind': res.get('wind', 0.0),
-            'coal': res.get('coal', 0.0),
-            'solar': res.get('solar', 0.0),
-            'gas': res.get('gas', 0.0),
-            'unknown': res.get('unknown', 0.0)
-        },
+        'countryCode': country_code,
+        'production': production,
         'storage': {},
-        'source': 'tso.bg',
-        'datetime': datetime.datetime
-    }
+        'source': 'eso.bg',
+        'datetime': dt
+        }
 
     return data
 
