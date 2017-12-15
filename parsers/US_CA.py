@@ -44,7 +44,7 @@ def fetch_production(country_code='US-CA', session=None):
         'Wind': 'wind',
         'Geothermal': 'geothermal',
         'Biomass': 'biomass',
-        'Biogas': 'gas',
+        'Biogas': 'biomass',
         'Small hydro': 'hydro',
         'Coal': 'coal',
         'Nuclear': 'nuclear',
