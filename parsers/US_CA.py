@@ -34,37 +34,52 @@ def fetch_production(country_code='US-CA', session=None):
       'source': 'mysource.com'
     }
     """
-    # caiso.com provides daily data until the day before today
-    # get a clean date at the beginning of yesterday
-    yesterday = arrow.utcnow().to('US/Pacific').shift(days=-1).replace(hour = 0, minute = 0, second = 0, microsecond = 0)
-    url = 'http://content.caiso.com/green/renewrpt/' + yesterday.format('YYYYMMDD') +'_DailyRenewablesWatch.txt'
+    url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
+    csv = pandas.read_csv(url)
+    latest_index = len(csv)-1
+    h, m = map(int, csv['Time'][latest_index].split(':'))
+    date = arrow.utcnow().to('US/Pacific').replace(hour = h, minute = m, second = 0, microsecond = 0)
+    production_map = {
+        'Solar': 'solar',
+        'Wind': 'wind',
+        'Geothermal': 'geothermal',
+        'Biomass': 'biomass',
+        'Biogas': 'gas',
+        'Small hydro': 'hydro',
+        'Coal': 'coal',
+        'Nuclear': 'nuclear',
+        'Natural gas': 'gas',
+        'Large hydro': 'hydro',
+        'Imports': 'unknown',
+        'Other': 'other'
+    }
+    storage_map = {
+        'Batteries': 'battery'
+    }
+    data = {
+        'countryCode': country_code,
+        'production': {},
+        'storage': {},
+        'source': 'caiso.com',
+        'datetime': date.datetime
+    }
+    for key, value in production_map.items():
+        prod = csv[key][latest_index]
+        # if another mean of production created a value, sum them up
+        if value in data['production']:
+            data['production'][value] += prod
+        else:
+            data['production'][value] = prod
 
-    renewableResources = pandas.read_table(url, sep='\t\t', skiprows=2, header=None, names=['Hour', 'GEOTHERMAL','BIOMASS', 'BIOGAS', 'SMALL HYDRO','WIND TOTAL', 'SOLAR PV', 'SOLAR THERMAL'], skipfooter=27, skipinitialspace=True, engine='python')
-    otherResources = pandas.read_table(url, sep='\t\t', skiprows=30, header=None, names=['Hour', 'RENEWABLES', 'NUCLEAR', 'THERMAL', 'IMPORTS', 'HYDRO'], skipinitialspace=True, engine='python')
+    for key, value in storage_map.items():
+        storage = csv[key][latest_index]
+        # if another mean of storage created a value, sum them up
+        if value in data['production']:
+            data['storage'][value] += storage
+        else:
+            data['storage'][value] = storage
 
-    dailyData = []
-
-    for i in range(0, 24):
-        data = {
-            'countryCode': country_code,
-            'production': {},
-            'storage': {},
-            'source': 'caiso.com',
-        }
-        data['production'] = {}
-        data['production']['biomass'] = renewableResources['BIOMASS'][i]
-        data['production']['gas'] = renewableResources['BIOGAS'][i]
-        data['production']['hydro'] = renewableResources['SMALL HYDRO'][i] + otherResources['HYDRO'][i]
-        data['production']['nuclear'] = otherResources['NUCLEAR'][i]
-        data['production']['solar'] = renewableResources['SOLAR PV'][i] + renewableResources['SOLAR THERMAL'][i]
-        data['production']['wind'] = renewableResources['WIND TOTAL'][i]
-        data['production']['geothermal'] = renewableResources['GEOTHERMAL'][i]
-        data['production']['unknown'] = otherResources['THERMAL'][i] # this is not specified in the list
-        # set the date at the end of the hour
-        data['datetime'] = yesterday.shift(hours = i+1).datetime
-        dailyData.append(data)
-
-    return dailyData
+    return data
 
 
 if __name__ == '__main__':
