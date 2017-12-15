@@ -293,7 +293,7 @@ We've added a testing server locally. In order to test your parser, make sure fi
 pip install -r parsers/requirements.txt
 ```
 
-Then, you can run:
+Then, you can run
 ```
 PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```

@@ -140,10 +140,6 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     r = session or requests.session()
 
     sorted_exchange = '->'.join(sorted([country_code1, country_code2]))
-    print 'sorted_exchange: '
-    print sorted_exchange
-    print 'exchanges_mapping[sorted_exchange]: '
-    print exchanges_mapping[sorted_exchange]
     data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r),
         exchanges_mapping[sorted_exchange]))
     data['sortedCountryCodes'] = '->'.join(sorted([country_code1, country_code2]))
