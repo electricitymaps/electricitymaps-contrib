@@ -4,25 +4,68 @@ import arrow
 import requests
 
 exchanges_mapping = {
+    'BY->LT': [
+        'BY->LT'
+    ],
+    'DE->DK': [
+        'DE->DK1',
+        'DE->DK2'
+    ],
     'DE->SE': [
         'DE->SE4'
+    ],
+    'DK->NO': [
+        'DK1->NO2'
     ],
     'DK->SE': [
         'DK1->SE3',
         'DK2->SE4'
     ],
+    'EE->RU': [
+        'EE->RU'
+    ],
+    'EE->LV': [
+        'EE->LV'
+    ],
+    'EE->FI': [
+        'EE-FI'
+    ],
+    'FI->NO': [
+        'FI->NO4'
+    ],
+    'FI->RU': [
+        'FI->RU'
+    ],
     'FI->SE': [
         'FI->SE1',
         'FI->SE3'
     ],
+    'LT->LV': [
+        'LT->LV'
+    ],
     'LT->SE': [
         'LT->SE4'
+    ],
+    'LT->PL': [
+        'LT->PL'
+    ],
+    'LT->RU-KGD': [
+        'LT->RU'
+    ],
+    'LV->RU': [
+        'LV->RU'
+    ],
+    'NL->NO': [
+        'NL->NO2'
     ],
     'NO->SE': [
         'NO1->SE3',
         'NO3->SE2',
         'NO4->SE1',
         'NO4->SE2'
+    ],
+    'NO->RU': [
+        'NO4->RU'
     ],
     'PL->SE': [
         'PL->SE4'
@@ -63,20 +106,21 @@ def fetch_production(country_code='SE', session=None):
 
     return data
 
-def fetch_exchange_by_bidding_zone(bidding_zone1='NO1', bidding_zone2='SE3', session=None):
+def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None):
+    bidding_zone_a, bidding_zone_b = sorted([bidding_zone1, bidding_zone2])
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
     url = 'http://driftsdata.statnett.no/restapi/PhysicalFlowMap/GetFlow?Ticks=%d' % timestamp
     response = r.get(url)
     obj = response.json()
 
-    net_flow = filter(
-        lambda x: x['OutAreaElspotId'] == bidding_zone1 and x['InAreaElspotId'] == bidding_zone2,
-        obj)[0]['Value']
+    exchange = filter(
+        lambda x: set([x['OutAreaElspotId'], x['InAreaElspotId']]) == set([bidding_zone_a, bidding_zone_b]),
+        obj)[0]
 
     return {
-        'sortedBiddingZones': '->'.join(sorted([bidding_zone1, bidding_zone2])),
-        'netFlow': net_flow if bidding_zone1 == sorted([bidding_zone1, bidding_zone2])[0] else -1 * net_flow,
+        'sortedBiddingZones': '->'.join([bidding_zone_a, bidding_zone_b]),
+        'netFlow': exchange['Value'] if bidding_zone_a == exchange['OutAreaElspotId'] else -1 * exchange['Value'],
         'datetime': arrow.get(obj[0]['MeasureDate'] / 1000).datetime,
         'source': 'driftsdata.stattnet.no',
     }
@@ -92,10 +136,14 @@ def _sum_of_exchanges(exchanges):
         'source': exchanges[0]['source']
     }
 
-def fetch_exchange(country_code1='NO', country_code2='SE', session=None):
+def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     r = session or requests.session()
 
     sorted_exchange = '->'.join(sorted([country_code1, country_code2]))
+    print 'sorted_exchange: '
+    print sorted_exchange
+    print 'exchanges_mapping[sorted_exchange]: '
+    print exchanges_mapping[sorted_exchange]
     data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r),
         exchanges_mapping[sorted_exchange]))
     data['sortedCountryCodes'] = '->'.join(sorted([country_code1, country_code2]))
