@@ -193,15 +193,15 @@ AreaGraph.prototype.render = function() {
         .selectAll('.layer')
         .data(stack)
     selection.exit().remove();
-    var layer = selection.enter().append('g')
-        .attr('class', function(d) { return 'layer ' + d.key })
+    var layer = selection.enter().append('path')
+        .attr('class', function(d) { return 'area layer ' + d.key })
 
 
     var datetimes = this._datetimes;
     function detectPosition(d3Event) {
         if (!d3Event) { d3Event = d3.event; }
         if (!datetimes.length) return;
-        var dx = d3Event.pageX ? (d3Event.pageX - this.getBoundingClientRect().left) :
+        var dx = d3Event.pageX ? (d3Event.pageX - this.parentNode.getBoundingClientRect().left) :
             (d3.touches(this)[0][0]);
         var datetime = x.invert(dx);
         // Find data point closest to
@@ -212,16 +212,13 @@ AreaGraph.prototype.render = function() {
         return i;
     }
 
-    layer.append('path')
-        .attr('class', 'area')
-
     // Warning: because the area and the background are two separate elements,
     // switching the mouse from one to the other will cause an unwanted mouseout.
     // Therefore, we should debounce the mouseout and verify no mouseover is triggered withing
     // a very small time
     var mouseOutTimeout;
 
-    layer.merge(selection).select('path.area')
+    layer.merge(selection)
         .on('mousemove', function(d, j) {
             var i = detectPosition.call(this);
             that.selectedIndex(i);
