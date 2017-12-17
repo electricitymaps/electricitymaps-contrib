@@ -112,6 +112,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States: [PYISO](https://github.com/WattTime/pyiso)
 - United States (California): [CAISO](http://www.caiso.com/Pages/default.aspx)
+- United States (New England): [NEISO](https://www.iso-ne.com/isoexpress/)
 - United States (New York): [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 
@@ -203,7 +204,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=TUR)
   - Other:[enerji.gov.tr](http://www.enerji.gov.tr/en-US/Pages/Electricity)
 - Ukraine [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
-- United States of America [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+- United States of America:
+  - Federal [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+  - States [EIA](https://www.eia.gov/electricity/data/state/)
 
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
