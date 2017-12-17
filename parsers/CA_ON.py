@@ -158,8 +158,14 @@ def fetch_exchange(country_code1, country_code2, session=None):
     if sortedCountryCodes == 'CA-MB->CA-ON':
         keys = ['MANITOBA', 'MANITOBA SK']
         direction = -1
-    elif sortedCountryCodes == 'CA-ON->US':
-        keys = ['MICHIGAN', 'MINNESOTA', 'NEW-YORK']
+    elif sortedCountryCodes == 'CA-ON->US-NY':
+        keys = ['NEW-YORK']
+        direction = 1
+    elif sortedCountryCodes == 'CA-ON->US-MI':
+        keys = ['MICHIGAN']
+        direction = 1
+    elif sortedCountryCodes == 'CA-ON->US-MN':
+        keys = ['MINNESOTA']
         direction = 1
     elif sortedCountryCodes == 'CA-ON->CA-QC':
         keys = filter(lambda k: k[:2] == 'PQ', exchanges.keys())
@@ -182,7 +188,9 @@ def fetch_exchange(country_code1, country_code2, session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_price() ->'
-    print fetch_price()
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
+    print('fetch_exchange("CA-ON", "US-NY") ->')
+    print(fetch_exchange("CA-ON", "US-NY"))

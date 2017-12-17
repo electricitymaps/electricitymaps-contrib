@@ -385,7 +385,7 @@
     },
     "rotation": -45
   },
-  "CA-NB->US": {
+  "CA-NB->US-NEISO": {
     "lonlat": [
       -67.7771,
       46.139
@@ -405,7 +405,17 @@
     },
     "rotation": 90
   },
-  "CA-ON->US": {
+  "CA-ON->US-MI": {
+    "lonlat": [
+      -82.1195,
+      43.5896
+    ],
+    "parsers": {
+      "exchange": "CA_ON.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "CA-ON->US-MN": {
     "lonlat": [
       -92.722024,
       48.566155
@@ -414,6 +424,16 @@
       "exchange": "CA_ON.fetch_exchange"
     },
     "rotation": 180
+  },
+  "CA-ON->US-NY": {
+    "lonlat": [
+      -78.9147,
+      43.5523
+    ],
+    "parsers": {
+      "exchange": "CA_ON.fetch_exchange"
+    },
+    "rotation": 135
   },
   "CH->DE": {
     "lonlat": [
