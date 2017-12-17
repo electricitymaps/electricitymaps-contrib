@@ -164,7 +164,8 @@
     },
     "contributors": [
       "https://github.com/yurukov",
-      "https://github.com/ultibo"
+      "https://github.com/ultibo",
+      "https://github.com/systemcatch"
     ]
   },
   "BO": {
@@ -1487,6 +1488,24 @@
   },
   "US-HI": {
     "flag_file_name": "us.png"
+  },
+  "US-NEISO": {
+    "capacity": {
+      "coal": 2083,
+      "gas": 16234,
+      "hydro": 3425,
+      "nuclear": 4074,
+      "solar": 584,
+      "wind": 1356,
+      "biomass": 1895
+    },
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_NEISO.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ]
   },
   "US-NY": {
     "parsers": {
