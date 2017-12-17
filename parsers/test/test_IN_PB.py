@@ -15,6 +15,19 @@ class TestINPB(unittest.TestCase):
         self.adapter = Adapter()
         self.session.mount('http://', self.adapter)
 
+    def test_read_punjab_consumption_date(self):
+        current = get(datetime(2017, 11, 18, 20, 35, 20), 'Asia/Kolkata')
+        expected = get(datetime(2017, 11, 18, 20, 35, 15), 'Asia/Kolkata')
+        result = IN_PB.read_punjab_consumption_date("18/11/2017", "20:35:15", current)
+        self.assertEqual(expected, result)
+        result = IN_PB.read_punjab_consumption_date("11/18/2017", "20:35:15", current)
+        self.assertEqual(expected, result)
+
+        current = get(datetime(2017, 10, 9, 15, 35, 20), 'Asia/Kolkata')
+        expected = get(datetime(2017, 10, 9, 15, 35, 15), 'Asia/Kolkata')
+        result = IN_PB.read_punjab_consumption_date("10/09/2017", "15:35:15", current)
+        self.assertEqual(expected, result)
+
     def test_fetch_consumption(self):
         response_text = resource_string("parsers.test.mocks", "IN_PB_nrGenReal.html")
         self.adapter.register_uri("GET", "http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal",
@@ -47,7 +60,7 @@ class TestINPB(unittest.TestCase):
             self.assertEqual(data['production']['hydro'], 554.0)
             self.assertIsNotNone(data['storage'])
         except Exception as ex:
-            self.fail("IN_KA.fetch_production() raised Exception: {0}".format(ex.message))
+            self.fail("IN_PB.fetch_production() raised Exception: {0}".format(ex.message))
 
     def test_read_text_by_regex(self):
         text ='<b><font size="4">&nbsp;09/06/2017</b></font>'
@@ -64,16 +77,6 @@ class TestINPB(unittest.TestCase):
         date_text = IN_PB.read_text_by_regex('(\d+:\d+:\d+)', text)
         expected = "13:33:59"
         self.assertEquals(date_text, expected)
-
-    def test_date_time_strings_to_kolkata_date(self):
-        date_text = "09/06/2017"
-        date_format = "DD/MM/YYYY"
-        time_text = "13:33:59"
-        time_format = "HH:mm:ss"
-        date_time = IN_PB.date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format)
-        self.assertIsNotNone(date_time)
-        expected = get(datetime(2017, 6, 9, 13, 33, 59), 'Asia/Kolkata')
-        self.assertEquals(date_time, expected)
 
 
 if __name__ == '__main__':
