@@ -127,10 +127,10 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     if sorted_country_codes == 'CA-NB->CA-QC':
         value = flows['QUEBEC']
-    elif sorted_country_codes == 'CA-NB->US':
+    elif sorted_country_codes == 'CA-NB->US-NEISO':
         # all of these exports are to Maine
         # (see https://www.nbpower.com/en/about-us/our-energy/system-map/),
-        # but US is not currently broken down by state
+        # currently this is mapped to ISO-NE
         value = flows['EMEC'] + flows['ISO-NE'] + flows['MPS']
     elif sorted_country_codes == 'CA-NB->CA-NS':
         value = flows['NOVA SCOTIA']
