@@ -5,7 +5,7 @@ set -eu -o pipefail
 RESOLUTION=10m
 COUNTRIES_FILENAME=ne_${RESOLUTION}_admin_0_map_subunits
 
-STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces
+STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces_lakes
 STATES_FILTER="['AUS', 'BRA', 'CAN', 'CHL', 'IND', 'MYS', 'USA']"
 
 NODE_MODULES_PATH="node_modules/.bin"
