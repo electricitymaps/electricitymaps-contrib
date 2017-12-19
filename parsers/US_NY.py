@@ -17,16 +17,12 @@ mapping = {
            'Hydro': 'hydro'
            }
 
-def read_csv_data():
+def read_csv_data(url):
     """
-    Gets csv data from mix url and returns a dataframe.
+    Gets csv data from a url and returns a dataframe.
     """
 
-    ny = arrow.now('America/New_York')
-    ny_date = ny.format('YYYYMMDD')
-    mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
-
-    csv_data = pd.read_csv(mix_url)
+    csv_data = pd.read_csv(url)
 
     return csv_data
 
@@ -109,7 +105,10 @@ def fetch_production(country_code = 'US-NY', session = None):
     }
     """
 
-    raw_data = read_csv_data()
+    ny = arrow.now('America/New_York')
+    ny_date = ny.format('YYYYMMDD')
+    mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
+    raw_data = read_csv_data(mix_url)
     clean_data = data_parser(raw_data)
 
     production_mix = []
@@ -126,8 +125,56 @@ def fetch_production(country_code = 'US-NY', session = None):
 
     return production_mix
 
+def fetch_exchange(country_code1, country_code2, session=None):
+    """Requests the last known power exchange (in MW) between two zones
+    Arguments:
+    country_code1           -- the first country code
+    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A dictionary in the form:
+    {
+      'sortedCountryCodes': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+
+    ny = arrow.now('America/New_York')
+    ny_date = ny.format('YYYYMMDD')
+    exchange_url = 'http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv'.format(ny_date)
+    exchange_data = read_csv_data(exchange_url)
+
+    relevant_exchanges = ['SCH - NE - NY', 'SCH - NPX_1385', 'SCH - NPX_CSC']
+    new_england_exs = exchange_data.loc[exchange_data['Interface Name'].isin(relevant_exchanges)]
+    consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
+
+    sortedcodes = '->'.join(sorted([country_code1,country_code2]))
+
+    exchange_5min = []
+    for row in consolidated_flows.itertuples():
+        flow = float(row[3])
+        #Timestamp for exchange does not include seconds.
+        dt = timestamp_converter(row[0] + ':00')
+
+        exchange = {
+          'sortedCountryCodes': sortedcodes,
+          'datetime': dt,
+          'netFlow': flow,
+          'source': 'nyiso.com'
+        }
+
+        exchange_5min.append(exchange)
+
+    return exchange_5min
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_exchange(US-NY, US-NEISO)')
+    print(fetch_exchange('US-NY', 'US-NEISO'))
