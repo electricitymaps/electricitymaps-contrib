@@ -40,7 +40,6 @@ ExchangeLayer.prototype.projection = function(arg) {
 };
 
 ExchangeLayer.prototype.render = function() {
-    return;
     if (!this._data) { return; }
     // Abort if projection has not been set
     if (!this._projection) { return; }

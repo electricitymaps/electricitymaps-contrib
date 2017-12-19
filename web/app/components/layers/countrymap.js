@@ -76,12 +76,14 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     this.solarCanvas = d3.select(solarCanvasSelector);
 
     this._map = new mapboxgl.Map({
-      container: 'map-container', // selector id
+      container: 'zones', // selector id
       style: {
         version: 8,
         sources: {},
         transition: { duration: 500 },
         layers: [],
+        zoom: 3,
+        center: [0,50],
       }
     });
 
@@ -375,10 +377,13 @@ CountryMap.prototype.exchangeLayer = function(arg) {
     return this;
 };
 
-CountryMap.prototype.projection = function(arg) {
-    if (!arg) return this._projection;
-    else this._projection = arg;
-    return this;
+CountryMap.prototype.projection = function() {
+  // Read-only property
+  let map = this.map
+  return (lonlat) => {
+    p = map.project(lonlat)
+    return [p.x, p.y]
+  }
 };
 
 CountryMap.prototype.absProjection = function(arg) {
@@ -482,6 +487,8 @@ CountryMap.prototype.center = function(center) {
             .translateBy(d3.select(this.root.node().parentNode), // WARNING, this is accumulative.
                 dx, dy);
         this._center = center;
+
+        this._map.setCenter(center)
 
         // Update absolute projection
         this._absProjection
