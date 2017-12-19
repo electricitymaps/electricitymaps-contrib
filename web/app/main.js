@@ -1093,19 +1093,21 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
 
     // Add mouse over handlers
     countryMap.onCountryMouseOver(function (d) {
-        d3.select(this)
-            .style('opacity', 0.8)
-            .style('cursor', 'pointer')
+        // d3.select(this)
+        //     .style('opacity', 0.8)
+        //     .style('cursor', 'pointer')
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
     })
-    .onCountryMouseMove(function () {
-        countryTooltip.update(d3.event.clientX, d3.event.clientY);
+    .onCountryMouseMove(function (d, i, clientX, clientY) {
+        // TODO: Check that i changed before calling showMapCountry
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+        countryTooltip.update(clientX, clientY);
     })
     .onCountryMouseOut(function (d) {
-        d3.select(this)
-            .style('opacity', 1)
-            .style('cursor', 'auto')
-        if (d.co2intensity && co2Colorbars)
+        // d3.select(this)
+        //     .style('opacity', 1)
+        //     .style('cursor', 'auto')
+        if (co2Colorbars)
             co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
         countryTooltip.hide();
     });

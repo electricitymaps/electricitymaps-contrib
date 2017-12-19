@@ -41,10 +41,6 @@ line, path {
     shape-rendering: crispEdges;
 }
 
-.country {
-    stroke: #555555;
-}
-
 .flag {
     vertical-align: middle;
 }

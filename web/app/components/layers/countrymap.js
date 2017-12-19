@@ -1,7 +1,69 @@
 var d3 = require('d3');
+import mapboxgl from 'mapbox-gl';
+
+function _setupMapColor() {
+  if (this._map.isStyleLoaded()) {
+    // TODO: Duplicated code
+    let that = this
+    let stops = this._co2color.range()
+      .map((d, i) => [that._co2color.domain()[i], d])
+    this._map.setPaintProperty('zones-fill', 'fill-color', {
+      default: 'gray',
+      property: 'co2intensity',
+      stops: stops,
+    });
+  }
+}
+
+function _setData() {
+  if (!this._data) { return }
+  let source = this._map.getSource('world')
+  let data = {
+    type: 'FeatureCollection',
+    features: this._geometries
+  }
+  if (source) {
+    source.setData(data)
+  } else if (this._map.isStyleLoaded()) {
+    // Create source
+    this._map.addSource('world', {
+      type: 'geojson',
+      data: data
+    })
+    // Create layers
+    let that = this
+    let stops = this._co2color.range()
+      .map((d, i) => [that._co2color.domain()[i], d])
+    this._map.addLayer({
+      id: 'zones-fill',
+      type: 'fill',
+      source: 'world',
+      layout: {},
+      paint: {
+        // 'fill-color': 'gray', // ** TODO: Duplicated code
+        'fill-color': {
+          default: 'gray',
+          property: 'co2intensity',
+          stops: stops,
+        }
+      }
+    })
+    // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
+    this._map.addLayer({
+      id: 'zones-line',
+      type: 'line',
+      source: 'world',
+      layout: {},
+      paint: {
+        'line-color': '#555555',
+        'line-width': this.STROKE_WIDTH,
+      }
+    })
+  }
+}
 
 function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelector) {
-    var that = this;
+    let that = this;
 
     this.STROKE_WIDTH = 0.3;
 
@@ -10,12 +72,56 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     this._center = undefined;
     this.startScale = 400;
 
-    this.getCo2Color = function (d) {
-        return (d.co2intensity !== undefined) ? that.co2color()(d.co2intensity) : 'gray';
-    };
-
     this.windCanvas = d3.select(windCanvasSelector);
     this.solarCanvas = d3.select(solarCanvasSelector);
+
+    this._map = new mapboxgl.Map({
+      container: 'map-container', // selector id
+      style: {
+        version: 8,
+        sources: {},
+        transition: { duration: 500 },
+        layers: [],
+      }
+    });
+
+    this._map.on('load', () => {
+      // Here we need to set all styles
+      _setData.call(that)
+      _setupMapColor.call(that)
+    })
+
+    // Add zoom and rotation controls to the map.
+    this._map.addControl(new mapboxgl.NavigationControl());
+
+    this._map.on('mouseenter', 'zones-fill', e => {
+      that._map.getCanvas().style.cursor = 'pointer'
+      if (that.countryMouseOverHandler) {
+        let i = e.features[0].id
+        that.countryMouseOverHandler.call(this, that._data[i], i)
+      }
+    })
+    this._map.on('mousemove', 'zones-fill', e => {
+      that._map.getCanvas().style.cursor = ''
+      if (that.countryMouseMoveHandler) {
+        let i = e.features[0].id
+        that.countryMouseMoveHandler.call(this, that._data[i], i, e.point.x, e.point.y)
+      }
+    })
+    this._map.on('mouseleave', 'zones-fill', e => {
+      that._map.getCanvas().style.cursor = ''
+      if (that.countryMouseOutHandler) {
+        that.countryMouseOutHandler.call(this)
+      }
+    })
+    this._map.on('click', 'zones-fill', e => {
+      if (that.countryClickHandler) {
+        let i = e.features[0].id
+        that.countryClickHandler.call(this, that._data[i], i)
+      }
+    })
+
+    return;
 
     this.root = d3.select(selector)
         // Position needs to be absolute in order not to force the
@@ -46,8 +152,6 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         .style('transform-origin', '0px 0px');
 
     var dragStartTransform;
-
-    var that = this;
 
     this.zoom = d3.zoom().on('zoom', function() {
         if (that.zoomEndTimeout) {
@@ -131,6 +235,11 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
 }
 
 CountryMap.prototype.render = function() {
+
+    const that = this
+
+    return
+
     // Determine scale (i.e. zoom) based on the size
     this.containerWidth = this.root.node().parentNode.getBoundingClientRect().width;
     this.containerHeight = this.root.node().parentNode.getBoundingClientRect().height;
@@ -197,7 +306,6 @@ CountryMap.prototype.render = function() {
     //     .datum(graticuleData)
     //     .attr('d', this.path);
 
-    var that = this;
     if (this._data) {
         var selector = this.land.selectAll('.country')
             .data(this._data, function(d) { return d.countryCode; });
@@ -253,9 +361,12 @@ CountryMap.prototype.render = function() {
 }
 
 CountryMap.prototype.co2color = function(arg) {
-    if (!arg) return this._co2color;
-    else this._co2color = arg;
-    return this;
+  if (!arg) return this._co2color;
+  else {
+    this._co2color = arg
+    _setupMapColor.call(this)
+  }
+  return this;
 };
 
 CountryMap.prototype.exchangeLayer = function(arg) {
@@ -313,12 +424,34 @@ CountryMap.prototype.onDragEnd = function(arg) {
 };
 
 CountryMap.prototype.data = function(data) {
-    if (!data) {
-        return this._data;
-    } else {
-        this._data = data;
-    }
-    return this;
+  if (!data) {
+    return this._data;
+  } else {
+    this._data = data;
+    this._geometries = []
+
+    let that = this
+
+    Object.keys(data).forEach((k, i) => {
+      let geometry = data[k]
+      // Remove empty geometries
+      geometry.coordinates = geometry.coordinates.filter(d => d.length != 0)
+
+      that._geometries.push({
+          'id': k,
+          'type': 'Feature',
+          'geometry': geometry,
+          'properties': {
+              'name': k,
+              'co2intensity': data[k].co2intensity
+          }
+      })
+    })
+
+    _setData.call(this)
+    
+  }
+  return this;
 };
 
 CountryMap.prototype.center = function(center) {

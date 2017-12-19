@@ -27,7 +27,7 @@ co2Sub = function(str) {
         <meta name="twitter:title" content="Electricity Map | Live CO2 emissions of electricity consumption" />
         <meta name="viewport" content="width=device-width, viewport-fit=cover" />
 
-        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src * 'unsafe-inline'; media-src *" />
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src * 'unsafe-inline'; media-src *; child-src blob: ;" />
 
         <meta name="apple-itunes-app" content="app-id=1224594248" />
 
@@ -54,6 +54,9 @@ co2Sub = function(str) {
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= stylesHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css" /> -->
+        <link rel="stylesheet" href="css/mapbox-gl.css" />
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
