@@ -250,7 +250,23 @@
       "https://github.com/systemcatch"
     ]
   },
-  "BY": {},
+  "BY": {
+    "_comment": "biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273 CHP",
+    "capacity": {
+      "biomass": 31,
+      "coal": 0,
+      "gas": 9468,
+      "hydro": 73,
+      "hydro storage": 0,        
+      "nuclear": 0,
+      "oil": 447,
+      "solar": 50.9,
+      "wind": 70.4
+    },
+    "contributors": [
+      "https://github.com/admetny"
+    ]
+  },
   "CA-AB": {
     "flag_file_name": "ca.png",
     "parsers": {
