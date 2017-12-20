@@ -1072,5 +1072,15 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 90
+  },
+  "US-NEISO->US-NY": {
+    "lonlat": [
+      -73.279,
+      42.739
+    ],
+    "parsers": {
+      "exchange": "US_NY.fetch_exchange"
+    },
+    "rotation": -90
   }
 }
