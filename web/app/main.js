@@ -342,7 +342,7 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map', Wind, '#wind', Solar, '#solar')
+var countryMap = new CountryMap('zones', Wind, '#wind', Solar, '#solar')
     .co2color(co2color)
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };

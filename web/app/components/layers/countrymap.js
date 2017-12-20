@@ -48,6 +48,17 @@ function _setData() {
         }
       }
     })
+    this._map.addLayer({
+      id: 'zones-hover',
+      type: 'fill',
+      source: 'world',
+      layout: {},
+      paint: {
+        'fill-color': 'white',
+        'fill-opacity': 0.5,
+      },
+      filter: ['==', 'zoneId', '']
+    })
     // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
     this._map.addLayer({
       id: 'zones-line',
@@ -62,7 +73,7 @@ function _setData() {
   }
 }
 
-function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelector) {
+function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSelector) {
     let that = this;
 
     this.STROKE_WIDTH = 0.3;
@@ -76,7 +87,19 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     this.solarCanvas = d3.select(solarCanvasSelector);
 
     this._map = new mapboxgl.Map({
-      container: 'zones', // selector id
+      container: selectorId, // selector id
+      sources: {
+        wind: {
+          type: 'canvas',
+          canvas: 'wind',
+          coordinates: [
+            [-180, 90],
+            [180, 90],
+            [180, -90],
+            [-180, -90]
+          ]
+        }
+      },
       style: {
         version: 8,
         sources: {},
@@ -103,8 +126,13 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         that.countryMouseOverHandler.call(this, that._data[i], i)
       }
     })
+    let prevId = undefined
     this._map.on('mousemove', 'zones-fill', e => {
-      that._map.getCanvas().style.cursor = ''
+      if (prevId != e.features[0].properties.zoneId) {
+        prevId = e.features[0].properties.zoneId
+        that._map.setFilter('zones-hover',
+          ['==', 'zoneId', e.features[0].properties.zoneId])
+      }
       if (that.countryMouseMoveHandler) {
         let i = e.features[0].id
         that.countryMouseMoveHandler.call(this, that._data[i], i, e.point.x, e.point.y)
@@ -112,6 +140,7 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
     })
     this._map.on('mouseleave', 'zones-fill', e => {
       that._map.getCanvas().style.cursor = ''
+      that._map.setFilter('zones-hover', ['==', 'zoneId', ''])
       if (that.countryMouseOutHandler) {
         that.countryMouseOutHandler.call(this)
       }
@@ -122,6 +151,22 @@ function CountryMap(selector, wind, windCanvasSelector, solar, solarCanvasSelect
         that.countryClickHandler.call(this, that._data[i], i)
       }
     })
+
+    let arrowsLayer = d3.select('.arrows-layer')
+    function onBoundsChanged(e) {
+      console.log(e)
+      let transform = {
+        x: 0,//e.target.transform,
+        y: 0,
+        k: e.target.transform.scale
+      }
+      console.log(transform.k)
+      arrowsLayer.style('transform',
+        'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+      );
+    }
+    this._map.on('drag', onBoundsChanged);
+    this._map.on('zoom', onBoundsChanged);
 
     return;
 
@@ -379,9 +424,9 @@ CountryMap.prototype.exchangeLayer = function(arg) {
 
 CountryMap.prototype.projection = function() {
   // Read-only property
-  let map = this.map
+  let that = this
   return (lonlat) => {
-    p = map.project(lonlat)
+    let p = this._map.project(lonlat)
     return [p.x, p.y]
   }
 };
@@ -447,7 +492,7 @@ CountryMap.prototype.data = function(data) {
           'type': 'Feature',
           'geometry': geometry,
           'properties': {
-              'name': k,
+              'zoneId': k,
               'co2intensity': data[k].co2intensity
           }
       })
