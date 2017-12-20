@@ -251,13 +251,13 @@
     ]
   },
   "BY": {
-    "_comment": "gas includes 24.4 MW of biogas. gas includes 1273 CHP",
+    "_comment": "biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273 CHP",
     "capacity": {
-      "biomass": 6.6,
+      "biomass": 31,
       "coal": 0,
-      "gas": 9492,
+      "gas": 9468,
       "hydro": 73,
-      "hydro storage": 0,        
+      "hydro storage": 0,
       "nuclear": 0,
       "oil": 447,
       "solar": 50.9,
