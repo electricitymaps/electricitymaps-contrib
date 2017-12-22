@@ -74,211 +74,227 @@ function _setData() {
 }
 
 function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSelector) {
-    let that = this;
+  let that = this;
 
-    this.STROKE_WIDTH = 0.3;
+  this.STROKE_WIDTH = 0.3;
 
-    this.selectedCountry = undefined;
+  this.selectedCountry = undefined;
 
-    this._center = undefined;
-    this.startScale = 400;
+  this._center = undefined;
+  this.startScale = 400;
 
-    this.windCanvas = d3.select(windCanvasSelector);
-    this.solarCanvas = d3.select(solarCanvasSelector);
+  this.windCanvas = d3.select(windCanvasSelector);
+  this.solarCanvas = d3.select(solarCanvasSelector);
 
-    this._map = new mapboxgl.Map({
-      container: selectorId, // selector id
+  this._map = new mapboxgl.Map({
+    container: selectorId, // selector id
+    style: {
+      version: 8,
+      // transition: { duration: 500 },
       sources: {
-        wind: {
-          type: 'canvas',
-          canvas: 'wind',
+        video: {
+          type: 'video',
+          urls: ['http://localhost:8000/twitter.mp4'],
           coordinates: [
-            [-180, 90],
-            [180, 90],
-            [180, -90],
-            [-180, -90]
-          ]
-        }
+            [-20, 20],
+            [20, 20],
+            [20, -20],
+            [-20, -20],
+          ],
+        },
       },
-      style: {
-        version: 8,
-        sources: {},
-        transition: { duration: 500 },
-        layers: [],
-        zoom: 3,
-        center: [0,50],
-      }
-    });
+      layers: [
+        {
+          id: 'video',
+          type: 'raster',
+          source: 'video',
+        },
+      ],
+      zoom: 3,
+      center: [0, 50],
+    },
+  });
 
-    this._map.on('load', () => {
-      // Here we need to set all styles
-      _setData.call(that)
-      _setupMapColor.call(that)
-    })
+  this._map.on('load', () => {
+    // Here we need to set all styles
+    _setData.call(that);
+    _setupMapColor.call(that);
+  });
 
-    // Add zoom and rotation controls to the map.
-    this._map.addControl(new mapboxgl.NavigationControl());
+  // Add zoom and rotation controls to the map.
+  this._map.addControl(new mapboxgl.NavigationControl());
 
-    this._map.on('mouseenter', 'zones-fill', e => {
-      that._map.getCanvas().style.cursor = 'pointer'
-      if (that.countryMouseOverHandler) {
-        let i = e.features[0].id
-        that.countryMouseOverHandler.call(this, that._data[i], i)
-      }
-    })
-    let prevId = undefined
-    this._map.on('mousemove', 'zones-fill', e => {
-      if (prevId != e.features[0].properties.zoneId) {
-        prevId = e.features[0].properties.zoneId
-        that._map.setFilter('zones-hover',
-          ['==', 'zoneId', e.features[0].properties.zoneId])
-      }
-      if (that.countryMouseMoveHandler) {
-        let i = e.features[0].id
-        that.countryMouseMoveHandler.call(this, that._data[i], i, e.point.x, e.point.y)
-      }
-    })
-    this._map.on('mouseleave', 'zones-fill', e => {
-      that._map.getCanvas().style.cursor = ''
-      that._map.setFilter('zones-hover', ['==', 'zoneId', ''])
-      if (that.countryMouseOutHandler) {
-        that.countryMouseOutHandler.call(this)
-      }
-    })
-    this._map.on('click', 'zones-fill', e => {
-      if (that.countryClickHandler) {
-        let i = e.features[0].id
-        that.countryClickHandler.call(this, that._data[i], i)
-      }
-    })
-
-    let arrowsLayer = d3.select('.arrows-layer')
-    function onBoundsChanged(e) {
-      console.log(e)
-      let transform = {
-        x: 0,//e.target.transform,
-        y: 0,
-        k: e.target.transform.scale
-      }
-      console.log(transform.k)
-      arrowsLayer.style('transform',
-        'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
-      );
+  this._map.on('mouseenter', 'zones-fill', e => {
+    that._map.getCanvas().style.cursor = 'pointer'
+    if (that.countryMouseOverHandler) {
+      let i = e.features[0].id
+      that.countryMouseOverHandler.call(this, that._data[i], i)
     }
-    // this._map.on('drag', onBoundsChanged);
-    // this._map.on('zoom', onBoundsChanged);
+  })
+  let prevId = undefined
+  this._map.on('mousemove', 'zones-fill', e => {
+    if (prevId != e.features[0].properties.zoneId) {
+      prevId = e.features[0].properties.zoneId
+      that._map.setFilter('zones-hover',
+        ['==', 'zoneId', e.features[0].properties.zoneId])
+    }
+    if (that.countryMouseMoveHandler) {
+      let i = e.features[0].id
+      that.countryMouseMoveHandler.call(this, that._data[i], i, e.point.x, e.point.y)
+    }
+  })
+  this._map.on('mouseleave', 'zones-fill', e => {
+    that._map.getCanvas().style.cursor = ''
+    that._map.setFilter('zones-hover', ['==', 'zoneId', ''])
+    if (that.countryMouseOutHandler) {
+      that.countryMouseOutHandler.call(this)
+    }
+  })
+  this._map.on('click', 'zones-fill', e => {
+    if (that.countryClickHandler) {
+      let i = e.features[0].id
+      that.countryClickHandler.call(this, that._data[i], i)
+    }
+  })
+
+  let arrowsLayer = d3.select('.arrows-layer')
+  function onBoundsChanged(e) {
+    console.log(e)
+    let transform = {
+      x: 0,//e.target.transform,
+      y: 0,
+      k: e.target.transform.scale
+    }
+    console.log(transform.k)
+    arrowsLayer.style('transform',
+      'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+    );
+  }
+  // this._map.on('drag', onBoundsChanged);
+  // this._map.on('zoom', onBoundsChanged);
+
+  var dragStartTransform;
+
+  // TODO: DO THE SAME ON ZOOM
+
+
+  this._map.on('drag', e => {
+
+  });
+  this._map.on('dragstart', e => {
+    if (that.zoomEndTimeout) {
+      clearTimeout(that.zoomEndTimeout);
+      that.zoomEndTimeout = undefined;
+    }
+    if (!dragStartTransform) {
+      // Zoom start
+      // dragStartTransform = d3.event.transform;
+      wind.pause(true);
+      // d3.select(this).style('cursor', 'move');
+    }
 
     return;
 
-    this.root = d3.select(selector)
-        // Position needs to be absolute in order not to force the
-        // container not to grow to the map's size
-        .style('position', 'absolute')
-        .style('transform-origin', '0px 0px')
-        .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
-    // Add SVG layer
-    this.svg = this.root.append('svg')
-        .attr('class', 'map-layer')
-        .on('click', function (d, i) {
-            if (that.selectedCountry !== undefined) {
-                that.selectedCountry
-                    .style('stroke', undefined)
-                    .style('stroke-width', that.STROKE_WIDTH);
-            }
-            if (that.seaClickHandler)
-                that.seaClickHandler.call(this, d, i);
-        });
-    // Add SVG elements
-    // this.graticule = this.svg.append('g').append('path')
-    //     .attr('class', 'graticule');
-    this.land = this.svg.append('g')
-        .attr('class', 'land');
-    // Add other layers
-    this.arrowsLayer = this.root.append('div')
-        .attr('class', 'arrows-layer map-layer')
-        .style('transform-origin', '0px 0px');
+    var transform = d3.event.transform;
 
-    var dragStartTransform;
+    // Scale the svg g elements in order to keep control over stroke width
+    // See https://github.com/tmrowco/electricitymap/issues/471
+    that.land.attr('transform', transform);
+    // that.graticule.attr('transform', transform);
 
-    this.zoom = d3.zoom().on('zoom', function() {
-        if (that.zoomEndTimeout) {
-            clearTimeout(that.zoomEndTimeout);
-            that.zoomEndTimeout = undefined;
-        }
-        if (!dragStartTransform) {
-            // Zoom start
-            dragStartTransform = d3.event.transform;
-            wind.pause(true);
-            d3.select(this).style('cursor', 'move');
-        }
+    // If we don't want to scale the layer in order to keep the arrow size constant,
+    // we will need to translate every arrow element by it's original dX multiplied by transform.k
+    // Apply CSS transforms
+    that.arrowsLayer.style('transform',
+        'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+    );
 
-        var transform = d3.event.transform;
-
-        // Scale the svg g elements in order to keep control over stroke width
-        // See https://github.com/tmrowco/electricitymap/issues/471
-        that.land.attr('transform', transform);
-        // that.graticule.attr('transform', transform);
-
-        // If we don't want to scale the layer in order to keep the arrow size constant,
-        // we will need to translate every arrow element by it's original dX multiplied by transform.k
-        // Apply CSS transforms
-        that.arrowsLayer.style('transform',
-            'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+    var incrementalScale = transform.k / dragStartTransform.k;
+    [that.windCanvas, that.solarCanvas].forEach(function(e) {
+        e.style('transform',
+            'translate(' +
+            (transform.x - dragStartTransform.x * incrementalScale) + 'px,' +
+            (transform.y - dragStartTransform.y * incrementalScale) + 'px)' +
+            'scale(' + incrementalScale + ')'
         );
-
-        var incrementalScale = transform.k / dragStartTransform.k;
-        [that.windCanvas, that.solarCanvas].forEach(function(e) {
-            e.style('transform',
-                'translate(' +
-                (transform.x - dragStartTransform.x * incrementalScale) + 'px,' +
-                (transform.y - dragStartTransform.y * incrementalScale) + 'px)' +
-                'scale(' + incrementalScale + ')'
-            );
-        });
-        
-    })
-    .on('end', function() {
-        // Return in case no dragging was started
-        // That's because 'end' is triggered on mouseup (i.e. click)
-        if (!dragStartTransform) { return; }
-
-        // Note that zoomend() methods are slow because they recalc layer.
-        // Therefore, we debounce them.
-
-        var zoomEl = this;
-        var d3Event = d3.event;
-
-        that.zoomEndTimeout = setTimeout(function() {
-            that.exchangeLayer().render();
-            d3.select(zoomEl).style('cursor', undefined);
-
-            // Here we need to update the (absolute) projection in order to be used by other systems
-            // that would like to overlay the map
-            var projection = that._absProjection;
-            if (!projection) { return; }
-            var transform = d3Event.transform;
-            var scale = that.startScale * transform.k;
-            projection
-                .scale(scale)
-                .translate([
-                    scale * Math.PI + transform.x,
-                    scale * Math.PI + transform.y]);
-
-            // Notify. This is where we would need a Reactive / Pub-Sub system instead.
-            wind.zoomend();
-            solar.zoomend();
-            that.windCanvas.style('transform', undefined);
-            that.solarCanvas.style('transform', undefined);
-            wind.pause(false);
-
-            that.dragEndHandler.call(zoomEl);
-
-            dragStartTransform = undefined;
-            that.zoomEndTimeout = undefined;
-        }, 500)
     });
+  })
 
-    d3.select(this.root.node().parentNode).call(this.zoom);
+  this._map.on('dragend', e => {
+    // Note that zoomend() methods are slow because they recalc layer.
+    // Therefore, we debounce them.
+
+    var zoomEl = this;
+    // var d3Event = d3.event;
+
+    that.zoomEndTimeout = setTimeout(function() {
+        that.exchangeLayer().render();
+        // d3.select(zoomEl).style('cursor', undefined);
+
+        // Here we need to update the (absolute) projection in order to be used by other systems
+        // that would like to overlay the map
+        /*var projection = that._absProjection;
+        if (!projection) { return; }
+        var transform = d3Event.transform;
+        var scale = that.startScale * transform.k;
+        projection
+            .scale(scale)
+            .translate([
+                scale * Math.PI + transform.x,
+                scale * Math.PI + transform.y]);*/
+
+        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
+        wind.zoomend();
+        solar.zoomend();
+        that.windCanvas.style('transform', undefined);
+        that.solarCanvas.style('transform', undefined);
+        wind.pause(false);
+
+        that.dragEndHandler.call(zoomEl);
+
+        dragStartTransform = undefined;
+        that.zoomEndTimeout = undefined;
+    }, 500)
+  })
+
+  return;
+
+  this.root = d3.select(selector)
+      // Position needs to be absolute in order not to force the
+      // container not to grow to the map's size
+      .style('position', 'absolute')
+      .style('transform-origin', '0px 0px')
+      .style('transform', 'translate(0px,0px) scale(1)'); // Safari bug causes map to appear on top of other things unless translated
+  // Add SVG layer
+  this.svg = this.root.append('svg')
+      .attr('class', 'map-layer')
+      .on('click', function (d, i) {
+          if (that.selectedCountry !== undefined) {
+              that.selectedCountry
+                  .style('stroke', undefined)
+                  .style('stroke-width', that.STROKE_WIDTH);
+          }
+          if (that.seaClickHandler)
+              that.seaClickHandler.call(this, d, i);
+      });
+  // Add SVG elements
+  // this.graticule = this.svg.append('g').append('path')
+  //     .attr('class', 'graticule');
+  this.land = this.svg.append('g')
+      .attr('class', 'land');
+  // Add other layers
+  this.arrowsLayer = this.root.append('div')
+      .attr('class', 'arrows-layer map-layer')
+      .style('transform-origin', '0px 0px');
+
+  this.zoom = d3.zoom().on('zoom', function() {
+      
+  })
+  .on('end', function() {
+      
+  });
+
+  d3.select(this.root.node().parentNode).call(this.zoom);
 }
 
 CountryMap.prototype.render = function() {
@@ -424,17 +440,20 @@ CountryMap.prototype.exchangeLayer = function(arg) {
 
 CountryMap.prototype.projection = function() {
   // Read-only property
-  let that = this
+  const that = this;
   return (lonlat) => {
-    let p = this._map.project(lonlat)
-    return [p.x, p.y]
+    const p = this._map.project(lonlat);
+    return [p.x, p.y];
   }
 };
 
-CountryMap.prototype.absProjection = function(arg) {
-    if (!arg) return this._absProjection;
-    else this._absProjection = arg;
-    return this;
+CountryMap.prototype.unprojection = function() {
+   // Read-only property
+  const that = this;
+  return (xy) => {
+    const p = this._map.unproject(xy);
+    return [p.lng, p.lat];
+  }
 };
 
 CountryMap.prototype.onSeaClick = function(arg) {

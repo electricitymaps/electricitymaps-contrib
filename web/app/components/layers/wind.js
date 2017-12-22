@@ -7,7 +7,6 @@ var grib = require('../../helpers/grib');
 var Windy = require('../../helpers/windy');
 
 var windCanvas;
-var projection;
 var windLayer;
 
 var lastDraw;
@@ -19,9 +18,11 @@ exports.isExpired = function(now, grib1, grib2) {
     return grib.getTargetTime(grib2[0]) <= moment(now) || grib.getTargetTime(grib1[0]) > moment(now);
 }
 
-exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProjection) {
-    if (!argProjection)
+exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, project, unproject) {
+    if (!project)
         throw Error('Projection can\'t be null/undefined');
+    if (!unproject)
+        throw Error('Unprojection can\'t be null/undefined');
 
     // Only redraw after 5min
     if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
@@ -51,8 +52,11 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
             return d3.interpolate(d, gribs2[1].data[i])(k)
         });
         windCanvas = d3.select(canvasSelector);
-        projection = argProjection;
-        if (!windLayer) windLayer = new Windy({ canvas: windCanvas.node(), projection: projection });
+        if (!windLayer) windLayer = new Windy({
+            canvas: windCanvas.node(),
+            project: project,
+            unproject: unproject,
+        });
         windLayer.params.data = interpolatedWind;
     }
 };
@@ -60,19 +64,21 @@ exports.draw = function(canvasSelector, now, gribs1, gribs2, windColor, argProje
 exports.zoomend = function() {
     // Called when the dragging / zooming is done.
     // We need to re-update change the projection
-    if (!projection || !windLayer || hidden) { return; }
+    if (!windLayer || hidden) { return; }
 
     var width = parseInt(windCanvas.node().parentNode.getBoundingClientRect().width);
     var height = parseInt(windCanvas.node().parentNode.getBoundingClientRect().height);
 
-    var sw = projection.invert([0, height]);
-    var ne = projection.invert([width, 0]);
+    let unproject = windLayer.params.unproject;
+
+    var sw = unproject([0, height]);
+    var ne = unproject([width, 0]);
 
     windLayer.start( // Note: this blocks UI..
         [[0, 0], [width, height]], 
         width,
         height,
-        [sw, ne]
+        [sw, ne],
     );
 }
 
@@ -91,19 +97,23 @@ exports.show = function() {
         .attr('width', width)
         .attr('height', height);
 
-    var sw = projection.invert([0, height]);
-    var ne = projection.invert([width, 0]);
+    let unproject = windLayer.params.unproject;
+
+    var sw = unproject([0, height]);
+    var ne = unproject([width, 0]);
+
     windCanvas.transition().style('opacity', WIND_OPACITY);
+
     windLayer.start(
-        [[0, 0], [width, height]], 
+        [[0, 0], [width, height]],
         width,
         height,
-        [sw, ne]
+        [sw, ne],
     );
     hidden = false;
 };
 
-exports.hide = function() { 
+exports.hide = function() {
     if (windCanvas) windCanvas.transition().style('opacity', 0);
     if (windLayer) windLayer.stop();
     hidden = true;

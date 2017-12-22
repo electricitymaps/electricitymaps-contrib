@@ -242,7 +242,7 @@ var Windy = function( params ){
   };
 
   var invert = function(x, y, windy){
-    return params.projection.invert([x, y]);
+    return params.unproject([x, y]);
   };
 
   var mercY = function( lat ) {
@@ -251,7 +251,7 @@ var Windy = function( params ){
 
 
   var project = function( lat, lon, windy) { // both in radians, use deg2rad if neccessary
-    return params.projection([lon, lat]);
+    return params.project([lon, lat]);
   };
 
 

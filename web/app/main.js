@@ -833,7 +833,7 @@ d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(coordinates) {
     if (windEnabled && wind && coordinates) {
-        var lonlat = countryMap._absProjection.invert(coordinates);
+        var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
             var u = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -847,7 +847,7 @@ function mapMouseOver(coordinates) {
         windColorbar.currentMarker(undefined);
     }
     if (solarEnabled && solar && coordinates) {
-        var lonlat = countryMap._absProjection.invert(coordinates);
+        var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
             var val = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -872,9 +872,6 @@ function renderMap() {
 
     countryMap.render();
     
-    if (!countryMap.projection()) {
-        return;
-    }
     if (!mapDraggedSinceStart) {
         var geolocation = callerLocation;
         if (selectedCountryCode) {
@@ -905,7 +902,8 @@ function renderMap() {
             wind.forecasts[0],
             wind.forecasts[1],
             windColor,
-            countryMap.absProjection());
+            countryMap.projection(),
+            countryMap.unprojection());
         if (windEnabled)
             Wind.show();
         else
@@ -928,7 +926,7 @@ function renderMap() {
             solar.forecasts[0],
             solar.forecasts[1],
             solarColor,
-            countryMap.absProjection(),
+            countryMap.projection(),
             function() {
                 if (solarEnabled)
                     Solar.show();
@@ -1131,9 +1129,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     });
 
     // Render exchanges
-    if (countryMap.projection()) {
-        exchangeLayer.projection(countryMap.projection())
-    }
+    exchangeLayer.projection(countryMap.projection())
     exchangeLayer
         .data(d3.values(exchanges).filter(function(d) {
             return d.netFlow != 0 && d.netFlow != null && d.lonlat;
@@ -1289,11 +1285,9 @@ function redraw() {
     }
     countryMap.render();
     co2Colorbars.forEach(function(d) { d.render() });
-    if (countryMap.projection()) {
-        exchangeLayer
-            .projection(countryMap.projection())
-            .render();
-    }
+    exchangeLayer
+        .projection(countryMap.projection())
+        .render();
 };
 
 window.addEventListener('resize', function() {
