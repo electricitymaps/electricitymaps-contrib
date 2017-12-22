@@ -165,8 +165,8 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
         'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
       );
     }
-    this._map.on('drag', onBoundsChanged);
-    this._map.on('zoom', onBoundsChanged);
+    // this._map.on('drag', onBoundsChanged);
+    // this._map.on('zoom', onBoundsChanged);
 
     return;
 
