@@ -342,7 +342,7 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('zones', Wind, '#wind', Solar, '#solar')
+var countryMap = new CountryMap('zones', Wind, 'wind', Solar, 'solar')
     .co2color(co2color)
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
@@ -350,7 +350,7 @@ var countryMap = new CountryMap('zones', Wind, '#wind', Solar, '#solar')
 var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer')
     .co2color(co2color)
     .arrowScale(0.2);
-countryMap.exchangeLayer(exchangeLayer);
+// countryMap.exchangeLayer(exchangeLayer);
 
 
 var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
@@ -871,8 +871,6 @@ d3.select('.map-layer')
 
 function renderMap() {
     if (!countryMap) { return; }
-
-    countryMap.render();
     
     if (!mapDraggedSinceStart) {
         var geolocation = callerLocation;
@@ -929,6 +927,7 @@ function renderMap() {
             solar.forecasts[1],
             solarColor,
             countryMap.projection(),
+            countryMap.unprojection(),
             function() {
                 if (solarEnabled)
                     Solar.show();
@@ -1285,7 +1284,6 @@ function redraw() {
         countryHistoryPricesGraph.render();
         countryHistoryMixGraph.render();
     }
-    countryMap.render();
     co2Colorbars.forEach(function(d) { d.render() });
     exchangeLayer
         .projection(countryMap.projection())
