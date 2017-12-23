@@ -173,7 +173,6 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
   const canvasLayers = [that.windCanvas, that.solarCanvas];
 
   function onPanZoom(e) {
-    return;
     const transform = {
       x: e.target.transform.x,
       y: e.target.transform.y,
@@ -189,6 +188,7 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
         (dragStartTransform.y * relativeScale - transform.y) + 'px)' +
         'scale(' + relativeScale + ')')
     );
+    return;
     // This layer has size larger than viewport, and is not repositioned.
     // it should therefore be translated by the amount since first draw
     const relativeInitialScale = transform.k / dragInitialTransform.k;

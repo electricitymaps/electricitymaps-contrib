@@ -10,13 +10,14 @@ var lastDraw;
 var hidden = true;
 
 var projection;
+var unprojection;
 var grib1, grib2, k;
 
 exports.isExpired = function (now, grib1, grib2) {
     return grib.getTargetTime(grib2) <= moment(now) || grib.getTargetTime(grib1) > moment(now);
 }
 
-exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, argProjection, callback) {
+exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, argProjection, argUnprojection, callback) {
 
     // Only redraw after 5min
     if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
@@ -26,6 +27,7 @@ exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, ar
     lastDraw = new Date().getTime();
 
     projection = argProjection;
+    unprojection = argUnprojection;
     grib1 = argGrib1;
     grib2 = argGrib2;
     solarCanvas = d3.select(canvasSelector);
@@ -80,8 +82,8 @@ exports.zoomend = function() {
         .attr('width', realW)
         .attr('height', realH);
 
-    var ul = projection.invert([0, 0]);
-    var br = projection.invert([realW, realH]);
+    var ul = unprojection([0, 0]);
+    var br = unprojection([realW, realH]);
 
     // ** Those need to be integers **
     var minLon = parseInt(Math.floor(ul[0]));
@@ -138,7 +140,7 @@ exports.zoomend = function() {
 
             // We shift the lat/lon so that the truncation result in a rounding
             // p represents the (lon, lat) point we wish to obtain a value for
-            var p = projection.invert([x, y])//, lon = p[0] + 0.5, lat = p[1] - 0.5;
+            var p = unprojection([x, y])//, lon = p[0] + 0.5, lat = p[1] - 0.5;
             var lon = p[0], lat = p[1];
 
             // if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat)
