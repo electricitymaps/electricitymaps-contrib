@@ -428,9 +428,8 @@ var Windy = function( params ){
       if (!windy.paused) {
         evolve();
         draw();
-      } else {
-        lastFrameTime = Date.now();
       }
+      lastFrameTime = Date.now();
       windy.animationRequest = requestAnimationFrame(frame);
     };
     frame();
