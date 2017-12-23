@@ -586,18 +586,15 @@ div.highscore-button:hover {
     float: left;
 }
 
-.arrows-layer {
+#arrows-layer {
     pointer-events: none;
     position: absolute;
     transform: translateZ(0);
+    transition: opacity 0.2s ease;
 }
 
-.arrows-layer .exchange-arrow {
+#arrows-layer .exchange-arrow {
     pointer-events: all;
-    position: absolute;
-}
-
-.arrows-layer .exchange-arrow img {
     position: absolute;
     left: -25px;
     top: -41px;

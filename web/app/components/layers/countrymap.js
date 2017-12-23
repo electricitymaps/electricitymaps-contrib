@@ -170,7 +170,7 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
   const initialMapWidth = node.getBoundingClientRect().width;
   const initialMapHeight = node.getBoundingClientRect().height;
 
-  // const arrowsLayer = d3.select('.arrows-layer');
+  const arrowsLayer = document.getElementById('arrows-layer');
   const canvasLayers = [that.windCanvas, that.solarCanvas];
 
   function onPanZoom(e) {
@@ -189,18 +189,18 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
         (dragStartTransform.y * relativeScale - transform.y) + 'px)' +
         'scale(' + relativeScale + ')';
     });
-    return;
+    
     // This layer has size larger than viewport, and is not repositioned.
     // it should therefore be translated by the amount since first draw
     const relativeInitialScale = transform.k / dragInitialTransform.k;
-    arrowsLayer.style('transform-origin', 'center')
-    arrowsLayer.style('transform',
+    // arrowsLayer.style('transform-origin', 'center')
+    /*arrowsLayer.style.transform =
       'translate(' +
       // (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * 0) + 'px,' +
       // (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * 0) + 'px)' +
       (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth) + 'px,' +
       (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight) + 'px)' +
-      'scale(' + relativeInitialScale + ')')
+      'scale(' + relativeInitialScale + ')';*/
 
     /*
     
@@ -231,6 +231,7 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     }
     if (!dragStartTransform) {
       // Zoom start
+      arrowsLayer.style.opacity = 0;
       dragStartTransform = transform;
       wind.pause(true);
     }
@@ -258,7 +259,7 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
         solar.zoomend();
         canvasLayers.forEach(d => d.style.transform = null);
         wind.pause(false);
-        // that.exchangeLayer().render();
+        arrowsLayer.style.opacity = 1;
 
         that.dragEndHandler();
 
@@ -320,12 +321,6 @@ CountryMap.prototype.co2color = function(arg) {
   }
   return this;
 };
-
-// CountryMap.prototype.exchangeLayer = function(arg) {
-//     if (!arg) return this._exchangeLayer;
-//     else this._exchangeLayer = arg;
-//     return this;
-// };
 
 CountryMap.prototype.projection = function() {
   // Read-only property
@@ -420,6 +415,6 @@ CountryMap.prototype.center = function(center) {
     this._map.panTo(center);
   }
   return this;
-}
+};
 
 module.exports = CountryMap;

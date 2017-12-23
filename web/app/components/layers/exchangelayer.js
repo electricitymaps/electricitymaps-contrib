@@ -27,12 +27,6 @@ function ExchangeLayer(selector, arrowsSelector) {
     };
 }
 
-ExchangeLayer.prototype.arrowScale = function(arg) {
-    if (!arg) return this._arrowScale;
-    else this._arrowScale = arg;
-    return this;
-};
-
 ExchangeLayer.prototype.projection = function(arg) {
     if (!arg) return this._projection;
     else this._projection = arg;
@@ -62,12 +56,11 @@ ExchangeLayer.prototype.render = function() {
     // This object refers to arrows created
     // Add all static properties
     var newArrows = exchangeArrows.enter()
-        .append('div') // Add a group so we can animate separately
+        .append('img') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow');
-    newArrows.append('img')
+    newArrows
         .attr('width', 49)
         .attr('height', 81)
-        .style('transform', 'scale(' + this.arrowScale() + ')')
         .on('mouseover', function (d, i) {
             return that.exchangeMouseOverHandler.call(this, d, i);
         })
@@ -99,9 +92,8 @@ ExchangeLayer.prototype.render = function() {
         .style('transform', function (d) {
             var center = that.projection()(d.lonlat);
             var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
+            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg) scale(0.2)';
         })
-        .select('img')
         .attr('src', function (d) {
             var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
             if(d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
