@@ -1,8 +1,4 @@
 'use strict'
-window.onerror = function(msg, url, linenumber) {
-    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
-    return true;
-}
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');

@@ -101,13 +101,19 @@ line, path {
     align-items: stretch; /* force children to take 100% width */
 }
 #map-container {
+    display: flex;
     position: relative;
     flex-grow: 1; /* take up available space */
     overflow: hidden; /* hide children overflowing (i.e. the map layers) */
+
+    /* Proper sizing */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 #zones {
+    position: relative;
     width: 100%;
-    height: 100%;
 }
 #header {
     background-color: rgb(70, 70, 70);

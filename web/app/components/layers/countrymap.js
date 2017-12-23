@@ -173,6 +173,7 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
   const canvasLayers = [that.windCanvas, that.solarCanvas];
 
   function onPanZoom(e) {
+    return;
     const transform = {
       x: e.target.transform.x,
       y: e.target.transform.y,
