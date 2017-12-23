@@ -598,8 +598,22 @@ div.highscore-button:hover {
 #arrows-layer .exchange-arrow {
     pointer-events: all;
     position: absolute;
-    left: -25px;
-    top: -41px;
+    /*left: -25px;
+    top: -41px;*/
+    overflow: hidden;
+}
+@keyframes arrow-animation {
+    from {transform: translateY(-50px);}
+    to {transform: translateY(50px);}
+}
+#arrows-layer .exchange-arrow img.base {
+    
+}
+#arrows-layer .exchange-arrow img.highlight {
+    animation: arrow-animation linear infinite;
+    position: absolute;
+    left: 0;
+    opacity: 0.6;
 }
 
 #tab {

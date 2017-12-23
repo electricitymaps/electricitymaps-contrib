@@ -110,7 +110,7 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     container: selectorId, // selector id
     attributionControl: false,
     dragRotate: false,
-    touchZoomRotate: false,
+    // touchZoomRotate: false,
     style: {
       version: 8,
       // transition: { duration: 500 },
@@ -128,6 +128,9 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
   });
 
   setInterval(() => console.log(that._map.loaded()), 500)
+  this._map.on('dataloading', () => console.log('dataloading'))
+  this._map.on('styledataloading', () => console.log('styledataloading'))
+  this._map.on('sourcedataloading', () => console.log('sourcedataloading'))
 
   // Add zoom and rotation controls to the map.
   this._map.addControl(new mapboxgl.NavigationControl());

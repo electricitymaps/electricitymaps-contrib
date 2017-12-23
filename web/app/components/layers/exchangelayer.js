@@ -6,7 +6,7 @@ function ExchangeLayer(selector, arrowsSelector) {
     this.STROKE_CO2_THRESHOLD = 550;
     this.exchangeAnimationDurationScale = d3.scaleLinear()
         .domain([500, 5000])
-        .rangeRound([0, 2])
+        .range([1.5, 0])
         .clamp(true);
 
     this.root = d3.select(selector);
@@ -56,7 +56,7 @@ ExchangeLayer.prototype.render = function() {
     // This object refers to arrows created
     // Add all static properties
     var newArrows = exchangeArrows.enter()
-        .append('img') // Add a group so we can animate separately
+        .append('div') // Add a group so we can animate separately
         .attr('class', 'exchange-arrow');
     newArrows
         .attr('width', 49)
@@ -71,6 +71,11 @@ ExchangeLayer.prototype.render = function() {
             return that.exchangeMouseMoveHandler.call(this, d, i);
         })
         .on('click', function (d) { console.log(d); });
+    newArrows.append('img')
+        .attr('class', 'base')
+    newArrows.append('img')
+        .attr('class', 'highlight')
+        .attr('src', 'images/arrow-highlights/50.png');
 
     
     var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
@@ -79,7 +84,7 @@ ExchangeLayer.prototype.render = function() {
     var layerTransform = (this.exchangeArrowsContainer.style('transform') || "matrix(1, 0, 0, 1, 0, 0)")
         .replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
 
-    newArrows.merge(exchangeArrows)
+    const merged = newArrows.merge(exchangeArrows)
         .style('display', function(d) {
             var arrowCenter = that.projection()(d.lonlat);
             var layerTranslateX = layerTransform[4];
@@ -94,10 +99,14 @@ ExchangeLayer.prototype.render = function() {
             var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
             return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg) scale(0.2)';
         })
+    merged.select('img.highlight')
+            .style('animation-duration', d =>
+                that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0)) + 's');
+    merged.select('img.base')
         .attr('src', function (d) {
             var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-            if(d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
-            return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
+            if (d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
+            return 'images/arrow-' + intensity + '-outline.png';
         });
 
     return this;

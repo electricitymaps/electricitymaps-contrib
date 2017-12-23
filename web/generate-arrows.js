@@ -68,8 +68,8 @@ for(let co2value in colors) {
             return;
           }
 
-          fs.unlink(`public/images/arrow-${co2value}.png`, () => {});
-          fs.unlink(`public/images/arrow-${co2value}-outline.png`, () => {});
+          // fs.unlink(`public/images/arrow-${co2value}.png`, () => {});
+          // fs.unlink(`public/images/arrow-${co2value}-outline.png`, () => {});
         })
 
         child.stderr.on('data', (data) => {
