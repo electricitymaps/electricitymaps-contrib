@@ -396,7 +396,10 @@ var Windy = function( params ){
     var lastFrameTime = Date.now();
     function draw() {
         var deltaMs = Date.now() - lastFrameTime;
-        var b = deltaMs > 500 ? 1 : Math.min(deltaMs / 16, 10);
+        // 16 ms ~ 60 fps
+        // if we take any longer than that, then scale the opacity
+        // inversely with the time
+        var b = deltaMs < 16 ? 1 : 16 / deltaMs;
 
         // Fade existing particle trails.
         g.globalCompositeOperation = "destination-in";
