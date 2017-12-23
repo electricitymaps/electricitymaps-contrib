@@ -747,3 +747,8 @@ sub {
         display: table-cell;
     }
 }
+
+/* Disable mapbox compass for now, as the wind/solar does not support 3D */
+.mapboxgl-ctrl-group .mapboxgl-ctrl-compass {
+    display: none;
+}

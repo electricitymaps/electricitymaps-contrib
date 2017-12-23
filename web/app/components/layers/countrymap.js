@@ -108,6 +108,8 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
 
   this._map = new mapboxgl.Map({
     container: selectorId, // selector id
+    attributionControl: false,
+    dragRotate: false,
     style: {
       version: 8,
       // transition: { duration: 500 },
