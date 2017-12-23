@@ -45,34 +45,19 @@ ExchangeLayer.prototype.render = function() {
     if (!this._projection) { return; }
     var that = this;
 
+    let node = this.exchangeArrowsContainer.node();
+
+    var mapWidth = parseInt(node.parentNode.getBoundingClientRect().width);
+    var mapHeight = parseInt(node.parentNode.getBoundingClientRect().height);
+    // Canvas needs to have it's width and height attribute set
+    this.exchangeArrowsContainer
+        .style('width', mapWidth + 'px')
+        .style('height', mapHeight + 'px');
+
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')
         .data(this._data, function(d) { return d; });
     exchangeArrows.exit().remove();
-
-    // Calculate arrow scale
-    // Note: the scaling should be based on the same metric as countryMap
-    this.arrowScale(0.1);
-
-    function updateArrows(selector) {
-        var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
-        var maxCarbonIntensity = 800; // we only have arrows up to a certain point
-
-        selector.style('display', function (d) {
-            return (d.netFlow || 0) == 0 ? 'none' : '';
-        })
-        .style('transform', function (d) {
-            var center = that.projection()(d.lonlat);
-            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
-        })
-        .select('img')
-        .attr('src', function (d) {
-            var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-            if(d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
-            return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
-        });
-    }
 
     // This object refers to arrows created
     // Add all static properties
@@ -94,23 +79,34 @@ ExchangeLayer.prototype.render = function() {
         })
         .on('click', function (d) { console.log(d); });
 
-    // However, set the visibility
-    var mapWidth = d3.select('#map-container').node().getBoundingClientRect().width;
+    
+    var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
+    var maxCarbonIntensity = 800; // we only have arrows up to a certain point
+
     var layerTransform = (this.exchangeArrowsContainer.style('transform') || "matrix(1, 0, 0, 1, 0, 0)")
         .replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
-    
-    updateArrows(newArrows.merge(exchangeArrows)
+
+    newArrows.merge(exchangeArrows)
         .style('display', function(d) {
             var arrowCenter = that.projection()(d.lonlat);
             var layerTranslateX = layerTransform[4];
             var mapScale = layerTransform[3];
             var centerX = (arrowCenter[0] * mapScale) - Math.abs(layerTranslateX);
-
             var isOffscreen = centerX < 0 || centerX > mapWidth;
             var hasLowFlow = (d.netFlow || 0) == 0;
             return (hasLowFlow || isOffscreen) ? 'none' : '';
-        }))
-
+        })
+        .style('transform', function (d) {
+            var center = that.projection()(d.lonlat);
+            var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+            return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg)';
+        })
+        .select('img')
+        .attr('src', function (d) {
+            var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
+            if(d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
+            return 'images/arrow-'+intensity+'-animated-'+that.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0))+'.gif';
+        });
 
     return this;
 }

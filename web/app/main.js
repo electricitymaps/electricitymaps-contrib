@@ -347,7 +347,9 @@ var countryMap = new CountryMap('zones', Wind, '#wind', Solar, '#solar')
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
     });
-var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
+var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer')
+    .co2color(co2color)
+    .arrowScale(0.2);
 countryMap.exchangeLayer(exchangeLayer);
 
 

@@ -1,4 +1,4 @@
-var d3 = require('d3');
+var d3 = require('d3'); // TODO: REMOVE
 import mapboxgl from 'mapbox-gl';
 
 function _setupMapColor() {
@@ -131,10 +131,11 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
       that.countryMouseOverHandler.call(this, that._data[i], i)
     }
   })
-  let prevId = undefined
+  let prevId = undefined;
   this._map.on('mousemove', 'zones-fill', e => {
     if (prevId != e.features[0].properties.zoneId) {
       prevId = e.features[0].properties.zoneId
+      // ** TRY: setData() with just the poly instead
       that._map.setFilter('zones-hover',
         ['==', 'zoneId', e.features[0].properties.zoneId])
     }
@@ -155,45 +156,96 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
       let i = e.features[0].id
       that.countryClickHandler.call(this, that._data[i], i)
     }
-  })
+  });
 
-  let arrowsLayer = d3.select('.arrows-layer')
-  function onBoundsChanged(e) {
-    console.log(e)
-    let transform = {
-      x: 0,//e.target.transform,
-      y: 0,
-      k: e.target.transform.scale
-    }
-    console.log(transform.k)
-    arrowsLayer.style('transform',
-      'translate(' + transform.x + 'px,' + transform.y + 'px) scale(' + transform.k + ')'
+  // *** PAN/ZOOM ***
+
+  let dragStartTransform;
+  const arrowsLayer = d3.select('.arrows-layer');
+  const layers = [arrowsLayer, that.windCanvas, that.solarCanvas];
+
+  function onPanZoom(e) {
+    const transform = {
+      x: e.target.transform.x,
+      y: e.target.transform.y,
+      k: e.target.transform.scale,
+    };
+    const relativeScale = transform.k / dragStartTransform.k;
+    layers.forEach(d =>
+      d.style('transform',
+        'translate(' +
+        (dragStartTransform.x * relativeScale - transform.x) + 'px,' +
+        (dragStartTransform.y * relativeScale - transform.y) + 'px)' +
+        'scale(' + relativeScale + ')')
     );
   }
-  // this._map.on('drag', onBoundsChanged);
-  // this._map.on('zoom', onBoundsChanged);
 
-  var dragStartTransform;
-
-  // TODO: DO THE SAME ON ZOOM
-
-
-  this._map.on('drag', e => {
-
-  });
-  this._map.on('dragstart', e => {
+  function onPanZoomStart(e) {
     if (that.zoomEndTimeout) {
       clearTimeout(that.zoomEndTimeout);
       that.zoomEndTimeout = undefined;
     }
     if (!dragStartTransform) {
       // Zoom start
-      // dragStartTransform = d3.event.transform;
+      dragStartTransform = {
+        x: e.target.transform.x,
+        y: e.target.transform.y,
+        k: e.target.transform.scale,
+      };
       wind.pause(true);
       // d3.select(this).style('cursor', 'move');
     }
+  }
+
+  function onPanZoomEnd(e) {
+    // Note that zoomend() methods are slow because they recalc layer.
+    // Therefore, we debounce them.
+
+    that.zoomEndTimeout = setTimeout(function() {
+        // d3.select(zoomEl).style('cursor', undefined);
+
+        // Here we need to update the (absolute) projection in order to be used by other systems
+        // that would like to overlay the map
+        /*var projection = that._absProjection;
+        if (!projection) { return; }
+        var transform = d3Event.transform;
+        var scale = that.startScale * transform.k;
+        projection
+            .scale(scale)
+            .translate([
+                scale * Math.PI + transform.x,
+                scale * Math.PI + transform.y]);*/
+
+        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
+        wind.zoomend();
+        solar.zoomend();
+        layers.forEach(d => d.style('transform', undefined));
+        wind.pause(false);
+        that.exchangeLayer().render();
+
+        that.dragEndHandler();
+
+        dragStartTransform = undefined;
+        that.zoomEndTimeout = undefined;
+    }, 500);
+  }
+
+  this._map.on('drag', onPanZoom);
+  this._map.on('zoom', onPanZoom);
+  this._map.on('dragstart', onPanZoomStart);
+  this._map.on('zoomstart', onPanZoomStart);
+  this._map.on('dragend', onPanZoomEnd);
+  this._map.on('zoomend', onPanZoomEnd);
+
+
+/*  this._map.on('dragstart', e => {
+    
 
     return;
+
+
+
+
 
     var transform = d3.event.transform;
 
@@ -218,44 +270,7 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
             'scale(' + incrementalScale + ')'
         );
     });
-  })
-
-  this._map.on('dragend', e => {
-    // Note that zoomend() methods are slow because they recalc layer.
-    // Therefore, we debounce them.
-
-    var zoomEl = this;
-    // var d3Event = d3.event;
-
-    that.zoomEndTimeout = setTimeout(function() {
-        that.exchangeLayer().render();
-        // d3.select(zoomEl).style('cursor', undefined);
-
-        // Here we need to update the (absolute) projection in order to be used by other systems
-        // that would like to overlay the map
-        /*var projection = that._absProjection;
-        if (!projection) { return; }
-        var transform = d3Event.transform;
-        var scale = that.startScale * transform.k;
-        projection
-            .scale(scale)
-            .translate([
-                scale * Math.PI + transform.x,
-                scale * Math.PI + transform.y]);*/
-
-        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
-        wind.zoomend();
-        solar.zoomend();
-        that.windCanvas.style('transform', undefined);
-        that.solarCanvas.style('transform', undefined);
-        wind.pause(false);
-
-        that.dragEndHandler.call(zoomEl);
-
-        dragStartTransform = undefined;
-        that.zoomEndTimeout = undefined;
-    }, 500)
-  })
+  })*/
 
   return;
 

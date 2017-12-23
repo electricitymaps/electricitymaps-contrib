@@ -172,7 +172,6 @@ line, path {
 .map-layer {
     position: absolute;
     top: 0;
-    transform-origin: 0px 0px 0px;
 }
 #wind {
     pointer-events: none;
@@ -581,13 +580,13 @@ div.highscore-button:hover {
 }
 
 .arrows-layer {
+    pointer-events: none;
     position: absolute;
-    width: 0;
-    height: 0;
     transform: translateZ(0);
 }
 
 .arrows-layer .exchange-arrow {
+    pointer-events: all;
     position: absolute;
 }
 
