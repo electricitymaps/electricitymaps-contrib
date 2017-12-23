@@ -1505,32 +1505,6 @@
   "US-HI": {
     "flag_file_name": "us.png"
   },
-  "US-PJM": {
-    "capacity": {
-      "coal": 65205,
-      "gas": 63025,
-      "hydro": 8675,
-      "nuclear": 33164,
-      "oil": 9106,
-      "solar": 392,
-      "wind": 1114,
-      "biomass": 716,
-      "biogas": 904,
-      "other renewable": 42,
-      "demand response": 9112,
-      "energy efficiency": 1790,
-      "external": 196,
-      "unknown": 18,
-    },
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_PJM.fetch_production"
-    },
-      "contributors": [
-        "https://github.com/hanshyde"
-    ]
-    # source is PJM http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en
-  },
   "US-NEISO": {
     "capacity": {
       "coal": 2083,
@@ -1554,10 +1528,10 @@
       "coal": 1113,
       "gas": 11686,
       "hydro": 3538,
+      "hydro storage": 1297,
       "nuclear": 5292,
-      "Oil": 8260,
+      "oil": 8260,
       "solar": 250,
-      "storage": 1297,
       "wind": 1010,
       "biomass": 50
     },
@@ -1568,6 +1542,31 @@
     "contributors": [
       "https://github.com/systemcatch"
       "https://github.com/hanshyde"
+    ]
+  },
+  "US-PJM": {
+    "capacity": {
+      "coal": 65205,
+      "gas": 63025,
+      "hydro": 8675,
+      "nuclear": 33164,
+      "oil": 9106,
+      "solar": 392,
+      "wind": 1114,
+      "biomass": 716,
+      "biogas": 904,
+      "other renewable": 42,
+      "demand response": 9112,
+      "energy efficiency": 1790,
+      "external": 196,
+      "unknown": 18,
+    },
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_PJM.fetch_production"
+    },
+      "contributors": [
+        "https://github.com/hanshyde"
     ]
   },
   "UY": {
