@@ -183,10 +183,12 @@ line, path {
 #wind {
     pointer-events: none;
     opacity: 0;
+    display: none;
 }
 #solar {
     pointer-events: none;
     opacity: 0;
+    display: none;
 }
 .panel {
     background-color: rgb(70, 70, 70);

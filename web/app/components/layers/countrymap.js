@@ -126,6 +126,8 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     _setupMapColor.call(that);
   });
 
+  setInterval(() => console.log(that._map.loaded()), 500)
+
   // Add zoom and rotation controls to the map.
   this._map.addControl(new mapboxgl.NavigationControl());
 
@@ -194,13 +196,13 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     // it should therefore be translated by the amount since first draw
     const relativeInitialScale = transform.k / dragInitialTransform.k;
     // arrowsLayer.style('transform-origin', 'center')
-    /*arrowsLayer.style.transform =
+    arrowsLayer.style.transform =
       'translate(' +
       // (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * 0) + 'px,' +
       // (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * 0) + 'px)' +
       (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth) + 'px,' +
       (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight) + 'px)' +
-      'scale(' + relativeInitialScale + ')';*/
+      'scale(' + (relativeInitialScale) + ')';
 
     /*
     
@@ -231,7 +233,7 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     }
     if (!dragStartTransform) {
       // Zoom start
-      arrowsLayer.style.opacity = 0;
+      // arrowsLayer.style.display = 'none';
       dragStartTransform = transform;
       wind.pause(true);
     }
@@ -259,7 +261,7 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
         solar.zoomend();
         canvasLayers.forEach(d => d.style.transform = null);
         wind.pause(false);
-        arrowsLayer.style.opacity = 1;
+        arrowsLayer.style.display = null;
 
         that.dragEndHandler();
 

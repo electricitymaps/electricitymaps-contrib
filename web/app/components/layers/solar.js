@@ -195,13 +195,21 @@ exports.zoomend = function() {
 }
 
 exports.show = function () {
-    if (solarCanvas) solarCanvas.transition().style('opacity', 1);
+    if (solarCanvas) {
+        solarCanvas.style('display', 'block');
+        solarCanvas.transition().style('opacity', 1);
+    }
     hidden = false;
     exports.zoomend();
 }
 
 exports.hide = function () {
-    if (solarCanvas) solarCanvas.transition().style('opacity', 0);
+    if (solarCanvas) {
+        solarCanvas.transition().style('opacity', 0)
+            .on('end', function() {
+                d3.select(this).style('display', 'none');
+            });
+    }
     hidden = true;
 }
 

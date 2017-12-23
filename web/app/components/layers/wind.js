@@ -103,7 +103,7 @@ exports.show = function() {
 
     var sw = unproject([0, height]);
     var ne = unproject([width, 0]);
-
+    windCanvas.style('display', 'block');
     windCanvas.transition().style('opacity', WIND_OPACITY);
 
     windLayer.start(
@@ -116,7 +116,12 @@ exports.show = function() {
 };
 
 exports.hide = function() {
-    if (windCanvas) windCanvas.transition().style('opacity', 0);
+    if (windCanvas) {
+        windCanvas.transition().style('opacity', 0)
+            .on('end', function() {
+                d3.select(this).style('display', 'none');
+            });
+    }
     if (windLayer) windLayer.stop();
     hidden = true;
 };
