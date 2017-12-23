@@ -178,6 +178,7 @@ line, path {
 .map-layer {
     position: absolute;
     top: 0;
+    left: 0;
 }
 #wind {
     pointer-events: none;
