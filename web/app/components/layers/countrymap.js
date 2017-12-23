@@ -16,24 +16,39 @@ function _setupMapColor() {
 }
 
 function _setData() {
-  if (!this._data) { return }
-  let source = this._map.getSource('world')
-  let data = {
+  if (!this._data) { return; }
+  const source = this._map.getSource('world');
+  const data = {
     type: 'FeatureCollection',
-    features: this._geometries
-  }
+    features: this._geometries,
+  };
   if (source) {
-    source.setData(data)
+    source.setData(data);
   } else if (this._map.isStyleLoaded()) {
     // Create source
     this._map.addSource('world', {
       type: 'geojson',
-      data: data
-    })
+      data,
+    });
+    // const lonlat = [0, 50];
+    // const xy = this._map.project(lonlat);
+    // const dLon = lonlat[0] - this._map.unproject([xy.x + 49, xy.y]).lng;
+    // const dLat = lonlat[1] - this._map.unproject([xy.x, xy.y + 81]).lat;
+    // rotation = 0;
+    // this._map.addSource('DK->NO', {
+    //   type: 'video',
+    //   urls: ['http://localhost:8000/images/arrow-400-animated-0.webm'],
+    //   coordinates: [
+    //     [lonlat[0] - dLon, lonlat[1] + dLat], // top-left
+    //     [lonlat[0] + dLon, lonlat[1] + dLat], // top-right
+    //     [lonlat[0] + dLon, lonlat[1] - dLat], // bottom-right
+    //     [lonlat[0] - dLon, lonlat[1] - dLat], // bottom-left
+    //   ],
+    // });
     // Create layers
-    let that = this
+    let that = this;
     let stops = this._co2color.range()
-      .map((d, i) => [that._co2color.domain()[i], d])
+      .map((d, i) => [that._co2color.domain()[i], d]);
     this._map.addLayer({
       id: 'zones-fill',
       type: 'fill',
@@ -70,6 +85,12 @@ function _setData() {
         'line-width': this.STROKE_WIDTH,
       }
     })
+    // Arrows
+    // this._map.addLayer({
+    //   id: 'DK->NO',
+    //   type: 'raster',
+    //   source: 'DK->NO',
+    // });
   }
 }
 
@@ -91,25 +112,8 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
     style: {
       version: 8,
       // transition: { duration: 500 },
-      sources: {
-        video: {
-          type: 'video',
-          urls: ['http://localhost:8000/twitter.mp4'],
-          coordinates: [
-            [-20, 20],
-            [20, 20],
-            [20, -20],
-            [-20, -20],
-          ],
-        },
-      },
-      layers: [
-        {
-          id: 'video',
-          type: 'raster',
-          source: 'video',
-        },
-      ],
+      sources: {},
+      layers: [],
       zoom: 3,
       center: [0, 50],
     },
@@ -159,10 +163,14 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
   });
 
   // *** PAN/ZOOM ***
-
+  let dragInitialTransform;
   let dragStartTransform;
+  const node = document.getElementById(selectorId);
+  const initialMapWidth = node.getBoundingClientRect().width;
+  const initialMapHeight = node.getBoundingClientRect().height;
+
   const arrowsLayer = d3.select('.arrows-layer');
-  const layers = [arrowsLayer, that.windCanvas, that.solarCanvas];
+  const canvasLayers = [that.windCanvas, that.solarCanvas];
 
   function onPanZoom(e) {
     const transform = {
@@ -170,14 +178,40 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
       y: e.target.transform.y,
       k: e.target.transform.scale,
     };
+    // Canvas have the size of the viewport, and must be translated only
+    // by the amount since last translate, since they are repositioned after each.
     const relativeScale = transform.k / dragStartTransform.k;
-    layers.forEach(d =>
+    canvasLayers.forEach(d =>
       d.style('transform',
         'translate(' +
         (dragStartTransform.x * relativeScale - transform.x) + 'px,' +
         (dragStartTransform.y * relativeScale - transform.y) + 'px)' +
         'scale(' + relativeScale + ')')
     );
+    // This layer has size larger than viewport, and is not repositioned.
+    // it should therefore be translated by the amount since first draw
+    const relativeInitialScale = transform.k / dragInitialTransform.k;
+    arrowsLayer.style('transform-origin', 'center')
+    arrowsLayer.style('transform',
+      'translate(' +
+      // (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * 0) + 'px,' +
+      // (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * 0) + 'px)' +
+      (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth) + 'px,' +
+      (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight) + 'px)' +
+      'scale(' + relativeInitialScale + ')')
+
+    /*
+    
+    probably we must reset the other relatives because they relate to last since projection?
+    YES. Because wind has the same issue.
+    1. show
+    2. resize
+    3. drag -> error
+
+    MAYBE FIRST: test perfs with iPad
+
+    */
+
   }
 
   function onPanZoomStart(e) {
@@ -185,15 +219,18 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
       clearTimeout(that.zoomEndTimeout);
       that.zoomEndTimeout = undefined;
     }
+    const transform = {
+      x: e.target.transform.x,
+      y: e.target.transform.y,
+      k: e.target.transform.scale,
+    };
+    if (!dragInitialTransform) {
+      dragInitialTransform = transform;
+    }
     if (!dragStartTransform) {
       // Zoom start
-      dragStartTransform = {
-        x: e.target.transform.x,
-        y: e.target.transform.y,
-        k: e.target.transform.scale,
-      };
+      dragStartTransform = transform;
       wind.pause(true);
-      // d3.select(this).style('cursor', 'move');
     }
   }
 
@@ -202,8 +239,6 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
     // Therefore, we debounce them.
 
     that.zoomEndTimeout = setTimeout(function() {
-        // d3.select(zoomEl).style('cursor', undefined);
-
         // Here we need to update the (absolute) projection in order to be used by other systems
         // that would like to overlay the map
         /*var projection = that._absProjection;
@@ -219,9 +254,9 @@ function CountryMap(selectorId, wind, windCanvasSelector, solar, solarCanvasSele
         // Notify. This is where we would need a Reactive / Pub-Sub system instead.
         wind.zoomend();
         solar.zoomend();
-        layers.forEach(d => d.style('transform', undefined));
+        canvasLayers.forEach(d => d.style('transform', undefined));
         wind.pause(false);
-        that.exchangeLayer().render();
+        // that.exchangeLayer().render();
 
         that.dragEndHandler();
 

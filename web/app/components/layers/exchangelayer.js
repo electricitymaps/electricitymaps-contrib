@@ -40,6 +40,7 @@ ExchangeLayer.prototype.projection = function(arg) {
 };
 
 ExchangeLayer.prototype.render = function() {
+    console.log('exchange render')
     if (!this._data) { return; }
     // Abort if projection has not been set
     if (!this._projection) { return; }
@@ -50,9 +51,9 @@ ExchangeLayer.prototype.render = function() {
     var mapWidth = parseInt(node.parentNode.getBoundingClientRect().width);
     var mapHeight = parseInt(node.parentNode.getBoundingClientRect().height);
     // Canvas needs to have it's width and height attribute set
-    this.exchangeArrowsContainer
-        .style('width', mapWidth + 'px')
-        .style('height', mapHeight + 'px');
+    // this.exchangeArrowsContainer
+    //     .style('width', mapWidth + 'px')
+    //     .style('height', mapHeight + 'px');
 
     var exchangeArrows = this.exchangeArrowsContainer
         .selectAll('.exchange-arrow')

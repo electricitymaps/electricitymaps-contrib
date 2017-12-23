@@ -74,6 +74,8 @@ exports.zoomend = function() {
     var sw = unproject([0, height]);
     var ne = unproject([width, 0]);
 
+    // Note: the only reason we restart here is to
+    // set sw and ne.
     windLayer.start( // Note: this blocks UI..
         [[0, 0], [width, height]], 
         width,

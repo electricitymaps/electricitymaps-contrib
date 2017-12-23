@@ -1,4 +1,8 @@
 'use strict'
+window.onerror = function(msg, url, linenumber) {
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
+}
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
@@ -1289,7 +1293,7 @@ function redraw() {
     co2Colorbars.forEach(function(d) { d.render() });
     exchangeLayer
         .projection(countryMap.projection())
-        .render();
+        // .render();
 };
 
 window.addEventListener('resize', function() {
@@ -1319,3 +1323,4 @@ observeStore(store, function(state) { return state.countryDataIndex }, function(
 fetch(true, function() {
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 });
+
