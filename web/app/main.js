@@ -1110,6 +1110,24 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         countryTooltip.hide();
     });
 
+    // Add search bar handler
+    var selector = d3.select('.country-search-bar input')
+        .on("keyup", function() {
+            var query = this.value.toLowerCase()
+
+            var selector = d3.select('.country-picker-container p')
+                .selectAll('a').each(function(d) {
+                    var countryName = d.shortname.toLowerCase()
+                    var listItem = d3.select(this)
+
+                    if (countryName.startsWith(query)) {
+                        listItem.style('display', '')
+                    } else {
+                        listItem.style('display', 'none')
+                    }
+                })
+        })
+
     // Re-render country table if it already was visible
     if (selectedCountryCode)
         countryTable.data(countries[selectedCountryCode]).render()
