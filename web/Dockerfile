@@ -2,6 +2,7 @@ FROM node:8.5.0
 WORKDIR /home/web
 
 ADD web/package.json /home/web/package.json
+ADD web/package-lock.json /home/web/package-lock.json
 RUN npm install
 
 ADD web /home/web

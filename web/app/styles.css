@@ -99,6 +99,7 @@ line, path {
     display: flex;
     flex-direction: column; /* children will be stacked vertically */
     align-items: stretch; /* force children to take 100% width */
+    position: fixed; /* to avoid scroll */
 }
 #map-container {
     display: flex;
@@ -112,8 +113,9 @@ line, path {
     -webkit-box-sizing: border-box;
 }
 #zones {
-    position: relative;
+    position: fixed;
     width: 100%;
+    height: 100%;
 }
 #header {
     background-color: rgb(70, 70, 70);

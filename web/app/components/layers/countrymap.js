@@ -110,7 +110,6 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     container: selectorId, // selector id
     attributionControl: false,
     dragRotate: false,
-    // touchZoomRotate: false,
     style: {
       version: 8,
       // transition: { duration: 500 },

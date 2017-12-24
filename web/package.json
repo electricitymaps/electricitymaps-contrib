@@ -10,7 +10,7 @@
     "express": "^4.16.2",
     "i18n": "^0.8.3",
     "js-cookie": "^2.2.0",
-    "mapbox-gl": "^0.42.2",
+    "mapbox-gl": "^0.43.0",
     "moment": "^2.19.1",
     "node-forge": "^0.7.1",
     "opbeat": "^4.16.0",
