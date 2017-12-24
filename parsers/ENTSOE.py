@@ -318,30 +318,19 @@ def parse_consumption_forecast(xml_text):
     return values, datetimes
 
 def validate_production(datapoint):
-    if datapoint['countryCode'] == 'BE':
-        p = datapoint['production']
-        return p.get('nuclear', None) is not None and \
-               p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'DK':
+    codes = ('GB', 'GR', 'PT')
+    if datapoint['countryCode'] in codes:
         p = datapoint['production']
         return p.get('coal', None) is not None and \
+               p.get('gas', None) is not None
+    elif datapoint['countryCode'] == 'BE':
+        p = datapoint['production']
+        return p.get('nuclear', None) is not None and \
                p.get('gas', None) is not None
     elif datapoint['countryCode'] == 'ES':
         p = datapoint['production']
         return p.get('coal', None) is not None and \
                p.get('nuclear', None) is not None
-    elif datapoint['countryCode'] == 'PT':
-        p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'GB':
-        p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'GR':
-        p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None
     elif datapoint['countryCode'] == 'DK':
         p = datapoint['production']
         return p.get('coal', None) is not None and \
@@ -350,7 +339,8 @@ def validate_production(datapoint):
     elif datapoint['countryCode'] == 'DE':
         p = datapoint['production']
         return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None
+               p.get('gas', None) is not None and \
+               p.get('nuclear', None) is not None
     else: return True
 
 def get_biomass(values):
