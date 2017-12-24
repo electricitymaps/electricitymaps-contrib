@@ -1229,6 +1229,7 @@ function ignoreError(func) {
 function fetch(showLoading, callback) {
     if (!showLoading) showLoading = false;
     if (showLoading) LoadingService.startLoading();
+    LoadingService.startLoading('#small-loading');
     // If data doesn't load in 15 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
         d3.select('#connection-warning').classed('active', true);
@@ -1263,6 +1264,7 @@ function fetch(showLoading, callback) {
         if (!err)
             dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
         if (showLoading) LoadingService.stopLoading();
+        LoadingService.stopLoading('#small-loading');
         if (callback) callback();
     });
 };
