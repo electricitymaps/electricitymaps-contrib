@@ -114,6 +114,8 @@ body {
     position: relative;
     flex-grow: 1; /* This takes up available horizontal space */
 
+    overflow: hidden; /* hide overflowing children */
+
     /* Proper sizing */
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -188,7 +190,6 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    overflow: hidden; /* hide overflowing wrt the container */
 }
 #wind {
     pointer-events: none;
