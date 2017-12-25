@@ -1213,12 +1213,12 @@
     ]
   },
   "PL": {
-    "_comment": "incl. 1170 MW storage",
     "capacity": {
       "biomass": 501,
       "coal": 26308,
       "gas": 1596,
-      "hydro": 2321,
+      "hydro": 552,
+      "hydro storage": 1770,
       "nuclear": 0,
       "oil": 345,
       "solar": 187,

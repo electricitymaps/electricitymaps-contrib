@@ -26,7 +26,7 @@ class ConnectionsService {
     }
 
     // track google analytics if is available
-    ga () {
+    ga(){
         if(this._ga !== undefined){
             try {
                 this._ga.ga(...arguments)
@@ -35,7 +35,7 @@ class ConnectionsService {
     }
 
     // track opbeat
-    opbeat () {
+    opbeat(){
         if(this._opbeat !== undefined){
             try {
                 this._opbeat.opbeat(...arguments)
