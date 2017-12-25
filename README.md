@@ -114,7 +114,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - United States (California): [CAISO](http://www.caiso.com/Pages/default.aspx)
 - United States (New England): [NEISO](https://www.iso-ne.com/isoexpress/)
 - United States (New York): [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
-- United States (PJM): [PJM](http://www.pjm.com/markets-and-operations.aspx)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 
 ### Production capacity data sources

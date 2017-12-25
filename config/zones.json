@@ -1557,12 +1557,7 @@
       "solar": null,
       "wind": 1114,
       "battery discharge": null,
-      "other": 9112,
       "unknown": 700,
-    },
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_PJM.fetch_production"
     },
       "contributors": [
         "https://github.com/hanshyde"
