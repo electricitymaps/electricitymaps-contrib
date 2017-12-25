@@ -42,7 +42,7 @@ var defaultCo2eqFootprint = { // in gCo2eq/kWh
       'source': defaultCo2eqSource
     },
     'wind': {
-      'value': 12,
+      'value': 11,
       'source': defaultCo2eqSource
     },
     'geothermal': {
