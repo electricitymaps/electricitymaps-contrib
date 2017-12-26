@@ -212,7 +212,8 @@ app.initialize();
 function catchError(e) {
     console.error('Error Caught! ' + e);
     thirdPartyServices.opbeat('captureException', e);
-    thirdPartyServices.track('error', {name: e.name, stack: e.stack, bundleHash: bundleHash});
+    thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
+    thirdPartyServices.track('error', { name: e.name, stack: e.stack, bundleHash });
 }
 
 // Analytics
