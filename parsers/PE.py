@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import arrow
 import dateutil
 import requests
@@ -20,7 +21,7 @@ MAP_GENERATION = {
 }
 
 def validate(datapoint):
-    if sum([v for k,v in datapoint['production'].iteritems() if v is not None]) > 0 \
+    if sum([v for k,v in datapoint['production'].items() if v is not None]) > 0 \
         and datapoint['production'].get('gas', None) is not None:
         return datapoint
     else:
@@ -46,7 +47,7 @@ def fetch_production(country_code='PE', session=None):
     datetimes = []
 
     for serie in obj:
-        k = serie['Name'].encode('utf-8')
+        k = serie['Name']
         if not k in MAP_GENERATION:
             raise Exception('Unknown production type %s' % k)
         for v in serie['Data']:
@@ -66,8 +67,8 @@ def fetch_production(country_code='PE', session=None):
             data[i]['production'][MAP_GENERATION[k]] = \
                 data[i]['production'].get(MAP_GENERATION[k], 0) + v['Valor'] / interval_hours
 
-    return filter(lambda x: validate(x) is not None, data)
+    return list(filter(lambda x: validate(x) is not None, data))
 
 
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

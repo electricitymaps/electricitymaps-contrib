@@ -1,3 +1,4 @@
+from __future__ import print_function
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow, os, re, requests
@@ -25,7 +26,7 @@ ENTSOE_PARAMETER_DESC = {
     'B19': 'Wind Onshore',
     'B20': 'Other',
 }
-ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
+ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 # Define all ENTSOE country_code <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
@@ -133,7 +134,7 @@ def query_production(psr_type, in_domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        print 'Query failed for psr %s' % psr_type
+        print('Query failed for psr %s' % psr_type)
         check_response(response, query_production.__name__)
 
 def query_exchange(in_domain, out_domain, session, now=None):
@@ -433,7 +434,7 @@ def fetch_production(country_code, session=None, now=None):
     data = []
     for production_date in production_dates:
 
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].iteritems()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].items()}
 
         data.append({
             'countryCode': country_code,

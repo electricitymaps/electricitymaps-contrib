@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import arrow
 import pandas as pd
 import requests
@@ -102,7 +103,7 @@ unmapped = set()
 
 def unknown_plants():
     for plant in unmapped:
-        print '{} is not mapped to generation type!'.format(plant)
+        print('{} is not mapped to generation type!'.format(plant))
 
 
 def empty_record(country_code):
@@ -137,7 +138,7 @@ def df_to_data(country_code, day, df):
     hours = 0
     for column in df:
         data.append(empty_record(country_code))
-        for index, value in df[column].iteritems():
+        for index, value in df[column].items():
             current = len(data) - 1
             source = POWER_PLANTS.get(index)
             if source == None:
@@ -226,7 +227,7 @@ def fetch_exchange(country_code1='CR', country_code2='NI', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_exchange() ->'
-    print fetch_exchange()
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_exchange() ->')
+    print(fetch_exchange())

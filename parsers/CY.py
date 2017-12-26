@@ -1,7 +1,13 @@
+from __future__ import print_function
 import arrow
 import requests
 from bs4 import BeautifulSoup
 import re
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
 
 
 def fetch_total_and_wind_production(session = None):
@@ -178,8 +184,8 @@ def fetch_production(country_code='CY', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
+    print('fetch_production() ->')
     # print fetch_production()
     res = fetch_production()
     for r in res:
-        print r
+        print(r)

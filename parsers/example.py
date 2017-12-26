@@ -1,3 +1,4 @@
+from __future__ import print_function
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -144,9 +145,9 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_price() ->'
-    print fetch_price()
-    print 'fetch_exchange(DK, NO) ->'
-    print fetch_exchange('DK', 'NO')
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
+    print('fetch_exchange(DK, NO) ->')
+    print(fetch_exchange('DK', 'NO'))

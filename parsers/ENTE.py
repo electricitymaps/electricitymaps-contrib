@@ -3,6 +3,7 @@
 #This parser gets all real time interconnection flows from the
 #Central American Electrical Interconnection System (SIEPAC).
 
+from __future__ import print_function
 import arrow
 import numpy as np
 import pandas as pd
@@ -226,10 +227,10 @@ if __name__ ==  '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_exchange(CR, PA) ->')
-    print fetch_exchange('CR', 'PA')
+    print(fetch_exchange('CR', 'PA'))
     print('fetch_exchange(CR, NI) ->')
-    print fetch_exchange('CR', 'NI')
+    print(fetch_exchange('CR', 'NI'))
     print('fetch_exchange(HN, NI) ->')
-    print fetch_exchange('HN', 'NI')
+    print(fetch_exchange('HN', 'NI'))
     print('fetch_exchange(GT, MX) ->')
-    print fetch_exchange('GT', 'MX')
+    print(fetch_exchange('GT', 'MX'))

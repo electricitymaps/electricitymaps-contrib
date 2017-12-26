@@ -1,3 +1,4 @@
+from __future__ import print_function
 # The arrow library is used to handle datetimes
 from arrow import get
 # The request library is used to fetch content through HTTP
@@ -147,5 +148,5 @@ def fetch_production(country_code='ES-CN', session=None):
 
 if __name__ == '__main__':
     session = Session
-    print fetch_consumption('ES-CN', session)
-    print fetch_production('ES-CN', session)
+    print(fetch_consumption('ES-CN', session))
+    print(fetch_production('ES-CN', session))

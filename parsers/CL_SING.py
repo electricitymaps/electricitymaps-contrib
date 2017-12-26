@@ -4,6 +4,7 @@
 #There are plans to unify the Chilean grid.
 #https://www.engerati.com/article/chile%E2%80%99s-grid-be-unified-new-transmission-highway
 
+from __future__ import print_function
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import datetime
@@ -85,9 +86,9 @@ def data_processer(data):
 
         for key in datapoint.keys():
             if not key in plant_map.keys():
-                print '{} is missing from the CL_SING plant mapping.'.format(key)
+                print('{} is missing from the CL_SING plant mapping.'.format(key))
 
-        mapped_plants = [(plant_map.get(plant, 'unknown'), val) for plant, val in datapoint.iteritems()]
+        mapped_plants = [(plant_map.get(plant, 'unknown'), val) for plant, val in datapoint.items()]
         datapoint = defaultdict(lambda: 0.0)
 
         #Sum values for duplicate keys.

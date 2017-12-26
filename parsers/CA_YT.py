@@ -1,3 +1,4 @@
+from __future__ import print_function
 import arrow
 from bs4 import BeautifulSoup
 import requests

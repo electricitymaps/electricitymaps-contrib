@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 """Parser for South Australia's 129MWh battery built by Tesla."""
+from __future__ import print_function
 
 import arrow
 import json

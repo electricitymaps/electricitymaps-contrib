@@ -1,3 +1,4 @@
+from __future__ import print_function
 import arrow
 import requests
 import xml.etree.ElementTree as ET
@@ -100,4 +101,4 @@ def fetch_price(country_code, session=None, from_date=None, to_date=None):
     return data
 
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

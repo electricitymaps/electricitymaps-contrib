@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -82,22 +84,22 @@ def fetch_production(country_code='SE', session=None):
     data = {
         'countryCode': country_code,
         'production': {
-            'nuclear': float(filter(
+            'nuclear': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Nuclear', country_code),
-                obj['NuclearData'])[0]['value'].replace(u'\xa0', '')),
-            'hydro': float(filter(
+                obj['NuclearData']))[0]['value'].replace(u'\xa0', '')),
+            'hydro': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Hydro', country_code),
-                obj['HydroData'])[0]['value'].replace(u'\xa0', '')),
-            'wind': float(filter(
+                obj['HydroData']))[0]['value'].replace(u'\xa0', '')),
+            'wind': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Wind', country_code),
-                obj['WindData'])[0]['value'].replace(u'\xa0', '')),
+                obj['WindData']))[0]['value'].replace(u'\xa0', '')),
             'unknown':
-                float(filter(
+                float(list(filter(
                     lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Thermal', country_code),
-                    obj['ThermalData'])[0]['value'].replace(u'\xa0', '')) +
-                float(filter(
+                    obj['ThermalData']))[0]['value'].replace(u'\xa0', '')) +
+                float(list(filter(
                     lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('NotSpecified', country_code),
-                    obj['NotSpecifiedData'])[0]['value'].replace(u'\xa0', '')),
+                    obj['NotSpecifiedData']))[0]['value'].replace(u'\xa0', '')),
         },
         'storage': {},
         'source': 'driftsdata.stattnet.no',
@@ -114,9 +116,9 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', ses
     response = r.get(url)
     obj = response.json()
 
-    exchange = filter(
+    exchange = list(filter(
         lambda x: set([x['OutAreaElspotId'], x['InAreaElspotId']]) == set([bidding_zone_a, bidding_zone_b]),
-        obj)[0]
+        obj))[0]
 
     return {
         'sortedBiddingZones': '->'.join([bidding_zone_a, bidding_zone_b]),
@@ -149,7 +151,7 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production(SE) ->'
-    print fetch_production('SE')
-    print 'fetch_exchange(NO, SE) ->'
-    print fetch_exchange('NO', 'SE')
+    print('fetch_production(SE) ->')
+    print(fetch_production('SE'))
+    print('fetch_exchange(NO, SE) ->')
+    print(fetch_exchange('NO', 'SE'))

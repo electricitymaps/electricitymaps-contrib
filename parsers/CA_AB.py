@@ -1,3 +1,4 @@
+from __future__ import print_function
 import arrow
 from bs4 import BeautifulSoup
 import datetime
@@ -172,9 +173,9 @@ def isfloat(value):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_price() ->'
-    print fetch_price()
-    print 'fetch_exchange() ->'
-    print fetch_exchange()
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
+    print('fetch_exchange() ->')
+    print(fetch_exchange())
