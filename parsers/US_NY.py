@@ -1,8 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Real time parser for the state of New York."""
-from __future__ import print_function
-
 import arrow
 from collections import defaultdict
 from operator import itemgetter

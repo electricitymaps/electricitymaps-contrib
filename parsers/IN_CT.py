@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3
+
 from requests import Session
 from parsers.lib import web
 from parsers.lib import countrycode
@@ -22,6 +23,7 @@ def fetch_consumption(country_code='IN-CT', session=None):
     }
 
     return data
+
 
 def fetch_production(country_code='IN-CT', session=None):
     """Fetch Chhattisgarh production"""

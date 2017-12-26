@@ -1,9 +1,8 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3
 
-from __future__ import print_function
 import arrow
-import dateutil, re
+import dateutil
+import re
 import requests
 
 # BeautifulSoup is used to parse HTML to get information

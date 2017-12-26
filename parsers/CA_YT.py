@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3
+
 import arrow
 from bs4 import BeautifulSoup
 import requests

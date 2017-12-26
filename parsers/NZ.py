@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -9,13 +10,15 @@ from bs4 import BeautifulSoup
 
 timezone = 'Pacific/Auckland'
 
+
 def fetch(session=None):
     r = session or requests.session()
     url = 'https://www.transpower.co.nz/power-system-live-data'
     response = r.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     for item in soup.find_all('script'):
-        if 'src' in item.attrs: continue
+        if 'src' in item.attrs:
+            continue
         body = item.contents[0]
         if not body.startswith('jQuery.extend(Drupal.settings'):
             continue
@@ -121,11 +124,11 @@ def fetch_exchange(country_code1='NZ-NZN', country_code2='NZ-NZS', session=None)
             continue
         netFlow = item[1]
         data.append({
-              'sortedCountryCodes': 'NZ-NZN->NZ-NZS',
-              'datetime': datetime.datetime,
-              'netFlow': -1 * netFlow,
-              'source': 'transpower.co.nz'
-          })
+            'sortedCountryCodes': 'NZ-NZN->NZ-NZS',
+            'datetime': datetime.datetime,
+            'netFlow': -1 * netFlow,
+            'source': 'transpower.co.nz'
+        })
 
     return data
 

@@ -1,7 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
-from __future__ import print_function
 import arrow
 import pandas as pd
 import requests
@@ -101,6 +99,7 @@ POWER_PLANTS = {
 
 unmapped = set()
 
+
 def unknown_plants():
     for plant in unmapped:
         print('{} is not mapped to generation type!'.format(plant))
@@ -130,7 +129,8 @@ def empty_record(country_code):
 def df_to_data(country_code, day, df):
     df = df.dropna(axis=1, how='any')
     # Check for empty dataframe
-    if df.shape == (1,1): return []
+    if df.shape == (1, 1):
+        return []
     df = df.drop([u'Intercambio Sur', u'Intercambio Norte', u'Total'])
     df = df.iloc[:, :-1]
 
@@ -141,7 +141,7 @@ def df_to_data(country_code, day, df):
         for index, value in df[column].items():
             current = len(data) - 1
             source = POWER_PLANTS.get(index)
-            if source == None:
+            if source is None:
                 source = 'unknown'
                 unmapped.add(index)
             data[current]['datetime'] = day.replace(hours=hours).datetime

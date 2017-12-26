@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-from __future__ import print_function
+#!/usr/bin/env python3
 
 from collections import defaultdict
 

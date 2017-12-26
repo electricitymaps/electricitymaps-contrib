@@ -1,5 +1,4 @@
-from __future__ import print_function
-
+#!/usr/bin/env python3
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -148,6 +147,7 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     data['sortedCountryCodes'] = '->'.join(sorted([country_code1, country_code2]))
 
     return data
+
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""

@@ -1,11 +1,12 @@
-# coding: utf-8
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
-from __future__ import print_function
 import arrow
 # The request library is used to fetch content through HTTP
 import requests
 # The BeautifulSoup library is used to parse HTML
 from bs4 import BeautifulSoup
+
 
 def fetch_production(country_code='PA', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -43,7 +44,7 @@ def fetch_production(country_code='PA', session=None):
     response.encoding = 'utf-8'
     html_doc = response.text
     soup = BeautifulSoup(html_doc, 'html.parser')
-    productions = soup.find('table',{'class':'sitr-pie-layout'}).find_all('span')
+    productions = soup.find('table', {'class': 'sitr-pie-layout'}).find_all('span')
     map_generation = {
       'Hídrica': 'hydro',
       'Eólica': 'wind',
@@ -64,7 +65,7 @@ def fetch_production(country_code='PA', session=None):
         data['production'][production_mean] = production_value
 
     # Parse the datetime and return a python datetime object
-    spanish_date = soup.find('div',{'class':'sitr-update'}).find('span').string
+    spanish_date = soup.find('div', {'class': 'sitr-update'}).find('span').string
     date = arrow.get(spanish_date, 'DD-MMMM-YYYY H:mm:ss', locale="es", tzinfo="America/Panama")
     data['datetime'] = date.datetime
 

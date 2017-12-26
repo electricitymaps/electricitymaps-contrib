@@ -1,7 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
-from __future__ import print_function
 import arrow
 import dateutil
 import requests
@@ -21,7 +19,7 @@ MAP_GENERATION = {
 }
 
 def validate(datapoint):
-    if sum([v for k,v in datapoint['production'].items() if v is not None]) > 0 \
+    if sum([v for k, v in datapoint['production'].items() if v is not None]) > 0 \
         and datapoint['production'].get('gas', None) is not None:
         return datapoint
     else:

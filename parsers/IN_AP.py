@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3
+
 from requests import Session
 from parsers import countrycode
 from parsers import web
@@ -73,4 +74,3 @@ if __name__ == '__main__':
     session = Session()
     print(fetch_production('IN-AP', session))
     print(fetch_consumption('IN-AP', session))
-

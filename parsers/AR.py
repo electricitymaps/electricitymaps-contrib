@@ -1,12 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
-from __future__ import print_function
-import arrow
+import itertools
+import re
 import string
+
+import arrow
 import requests
 from bs4 import BeautifulSoup
-import re
-import itertools
 
 try:
     unicode         # Python 2
@@ -14,19 +14,19 @@ except NameError:
     unicode = str   # Python 3
 
 
-#This parser gets hourly electricity generation data from portalweb.cammesa.com/Memnet1/default.aspx
-#for Argentina.  Currently wind and solar power are small contributors and not monitored but this is
-#likely to change in the future.
+# This parser gets hourly electricity generation data from portalweb.cammesa.com/Memnet1/default.aspx
+# for Argentina.  Currently wind and solar power are small contributors and not monitored but this is
+# likely to change in the future.
 
-#Useful links.
-#https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
-#https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
-#http://globalenergyobservatory.org/countryid/10#
-#http://www.industcards.com/st-other-argentina.htm
+# Useful links.
+# https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
+# https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
+# http://globalenergyobservatory.org/countryid/10#
+# http://www.industcards.com/st-other-argentina.htm
 
 
-#Map of power plants to generation type.
-#http://portalweb.cammesa.com/memnet1/revistas/estacional/base_gen.html
+# Map of power plants to generation type.
+# http://portalweb.cammesa.com/memnet1/revistas/estacional/base_gen.html
 
 power_plant_type = {
                      'ABRODI01': 'gas',
@@ -469,7 +469,7 @@ power_plant_type = {
                      }
 
 
-#URL's for thermal and hydro pages and data sources respectively.
+# URL's for thermal and hydro pages and data sources respectively.
 
 url = ('http://portalweb.cammesa.com/MEMNet1/Pages/Informes%20por'
        '%20Categor%C3%ADa/Operativos/VisorReporteSinComDesp_minimal.aspx'
@@ -500,6 +500,7 @@ thurl = ('http://portalweb.cammesa.com/Reserved.ReportViewerWebControl.'
 
 cammesa_url = 'http://portalweb.cammesa.com/default.aspx'
 
+
 def webparser(req):
     """Takes content from webpage and returns all text as a list of strings"""
 
@@ -509,7 +510,8 @@ def webparser(req):
 
     return data_table
 
-def fetch_price(country_code='AR', session = None):
+
+def fetch_price(country_code='AR', session=None):
     """
     Requests the last known power price of a given country
     Arguments:
@@ -527,20 +529,20 @@ def fetch_price(country_code='AR', session = None):
       """
     s = session or requests.Session()
     price_req = s.get(cammesa_url)
-    psoup = BeautifulSoup(price_req.content,'html.parser')
-    find_price = psoup.find('td', class_ = "cssFuncionesLeft", align = "left")
+    psoup = BeautifulSoup(price_req.content, 'html.parser')
+    find_price = psoup.find('td', class_="cssFuncionesLeft", align="left")
 
     try:
         price_text = find_price.getText()
 
-        #Strip all whitespace and isolate number.  Convert to float.
+        # Strip all whitespace and isolate number.  Convert to float.
         price_nws = "".join(price_text.split())
         lprice = price_nws.rpartition(':')[2]
         rprice = lprice.split('[')[0]
-        price = float(rprice.replace(',','.'))
+        price = float(rprice.replace(',', '.'))
 
-    except AttributeError as ValueError:
-        #Price element not present or no price stated.
+    except (AttributeError, ValueError):
+        # Price element not present or no price stated.
         price = None
 
     datetime = arrow.now('UTC-3').floor('hour').datetime
@@ -562,14 +564,14 @@ def get_datetime(session=None):
     Returns an arrow datetime object using UTC-3 for timezone and zero for minutes and seconds.
     """
 
-    #Argentina does not currently observe daylight savings time.  This may change from year to year!
-    #https://en.wikipedia.org/wiki/Time_in_Argentina
+    # Argentina does not currently observe daylight savings time.  This may change from year to year!
+    # https://en.wikipedia.org/wiki/Time_in_Argentina
     s = session or requests.Session()
     rt = s.get(url)
     timesoup = BeautifulSoup(rt.content, 'html.parser')
-    find_hour = timesoup.find("option", selected = "selected", value = "1" ).getText()
+    find_hour = timesoup.find("option", selected="selected", value="1").getText()
     at = arrow.now('UTC-3').floor('hour')
-    datetime = (at.replace(hour = int(find_hour), minute = 0, second = 0)).datetime
+    datetime = (at.replace(hour=int(find_hour), minute=0, second=0)).datetime
 
     return {'datetime': datetime}
 
@@ -577,10 +579,10 @@ def get_datetime(session=None):
 def dataformat(junk):
     """Takes string data with only digits and returns it as a float."""
 
-    formatted=[]
+    formatted = []
     for item in junk:
         if not any(char in item for char in string.ascii_letters):
-            item = float(item.replace(',','.'))
+            item = float(item.replace(',', '.'))
         formatted.append(item)
 
     return formatted
@@ -592,8 +594,8 @@ def get_thermal(session=None):
     Returns a dictionary.
     """
 
-    #Need to persist session in order to get ControlID and ReportSession so we can send second request
-    #for table data.  Both these variables change on each new request.
+    # Need to persist session in order to get ControlID and ReportSession so we can send second request
+    # for table data.  Both these variables change on each new request.
     s = session or requests.Session()
     r = s.get(url)
     pat = re.search("ControlID=[^&]*", r.text).group()
@@ -602,14 +604,14 @@ def get_thermal(session=None):
     rs = spat.rpartition('=')[2]
     full_table = []
 
-    #'En Reserva' plants are not generating and can be ignored.
-    #The table has an extra column on 'Costo Operativo' page which must be removed to find power generated correctly.
+    # 'En Reserva' plants are not generating and can be ignored.
+    # The table has an extra column on 'Costo Operativo' page which must be removed to find power generated correctly.
 
     pagenumber = 1
     reserves = False
 
     while not reserves:
-        t = s.get(turl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
+        t = s.get(turl, params={'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'Estado' in text_only:
             for item in text_only:
@@ -623,32 +625,32 @@ def get_thermal(session=None):
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
-    mapped_data = [power_plant_type.get(x,x) for x in formatted_data]
+    mapped_data = [power_plant_type.get(x, x) for x in formatted_data]
 
     for item in mapped_data:
         try:
-            #avoids including titles and headings
-            if all((item.isupper(), not item.isalpha(), not ' ' in item)):
+            # avoids including titles and headings
+            if all((item.isupper(), not item.isalpha(), ' ' not in item)):
                 print('{} is missing from the AR plant mapping!'.format(item))
         except AttributeError:
-            #not a string....
+            # not a string....
             continue
 
-    find_totals = [i+1 for i,x in enumerate(mapped_data) if x == 'Totales ']
+    find_totals = [i + 1 for i, x in enumerate(mapped_data) if x == 'Totales ']
     thermal_generation = sum([mapped_data[i] for i in find_totals])
 
-    find_nuclear = [i+2 for i, x in enumerate(mapped_data) if x == 'nuclear']
+    find_nuclear = [i + 2 for i, x in enumerate(mapped_data) if x == 'nuclear']
     nuclear_generation = sum([mapped_data[i] for i in find_nuclear])
-    find_oil = [i+2 for i, x in enumerate(mapped_data) if x == 'oil']
+    find_oil = [i + 2 for i, x in enumerate(mapped_data) if x == 'oil']
     oil_generation = sum([mapped_data[i] for i in find_oil])
-    find_coal = [i+2 for i, x in enumerate(mapped_data) if x == 'coal']
+    find_coal = [i + 2 for i, x in enumerate(mapped_data) if x == 'coal']
     coal_generation = sum([mapped_data[i] for i in find_coal])
-    find_biomass = [i+2 for i, x in enumerate(mapped_data) if x == 'biomass']
+    find_biomass = [i + 2 for i, x in enumerate(mapped_data) if x == 'biomass']
     biomass_generation = sum([mapped_data[i] for i in find_biomass])
-    find_gas = [i+2 for i, x in enumerate(mapped_data) if x == 'gas']
+    find_gas = [i + 2 for i, x in enumerate(mapped_data) if x == 'gas']
     gas_generation = sum([mapped_data[i] for i in find_gas])
 
-    unknown_generation = (thermal_generation - nuclear_generation - gas_generation \
+    unknown_generation = (thermal_generation - nuclear_generation - gas_generation
                           - oil_generation - coal_generation - biomass_generation)
 
     if unknown_generation < 0.0:
@@ -661,7 +663,6 @@ def get_thermal(session=None):
             'oil': oil_generation,
             'biomass': biomass_generation
            }
-
 
 
 def get_hydro(session=None):
@@ -679,7 +680,7 @@ def get_hydro(session=None):
     reserves = False
 
     while not reserves:
-        t = s.get(thurl, params = {'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
+        t = s.get(thurl, params={'ControlID': cid, 'ReportSession': rs, 'PageNumber': '{}'.format(pagenumber)})
         text_only = webparser(t)
         if 'En Reserva' in text_only:
             reserves = True
@@ -689,11 +690,10 @@ def get_hydro(session=None):
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
-    find_hydro = [i+1 for i,x in enumerate(formatted_data) if x == 'Totales ']
+    find_hydro = [i + 1 for i, x in enumerate(formatted_data) if x == 'Totales ']
     total_hydro_generation = sum([formatted_data[i] for i in find_hydro])
 
     return {'hydro': total_hydro_generation}
-
 
 
 def fetch_production(country_code='AR', session=None):
@@ -751,7 +751,7 @@ def fetch_production(country_code='AR', session=None):
     return production_mix
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')

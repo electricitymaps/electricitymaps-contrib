@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3
+
 import arrow
 from bs4 import BeautifulSoup
 import datetime
@@ -6,9 +7,9 @@ import re
 import requests
 import pandas as pd
 from pytz import timezone
-import time
 
 ab_timezone = 'Canada/Mountain'
+
 
 def convert_time_str(ts):
     """Takes a time string and converts into an aware datetime object."""
@@ -18,6 +19,7 @@ def convert_time_str(ts):
     dt_aware = localtz.localize(dt_naive)
 
     return dt_aware
+
 
 def fetch_production(country_code='CA-AB', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -53,7 +55,7 @@ def fetch_production(country_code='CA-AB', session=None):
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    findtime = soup.find('td', text = re.compile('Last Update')).get_text()
+    findtime = soup.find('td', text=re.compile('Last Update')).get_text()
     time_string = findtime.split(':', 1)[1]
     dt = convert_time_str(time_string)
 

@@ -1,10 +1,11 @@
 import unittest
-
-from requests import Session
-from requests_mock import Adapter, ANY
-from pkg_resources import resource_string
 from json import loads
+
+from pkg_resources import resource_string
+from requests import Session
+
 from parsers import ESIOS
+from requests_mock import ANY, Adapter
 
 
 class TestESIOS(unittest.TestCase):
@@ -27,6 +28,7 @@ class TestESIOS(unittest.TestCase):
                 self.assertIsNotNone(data['netFlow'])
         except Exception as ex:
             self.fail(ex.message)
+
 
 if __name__ == '__main__':
     unittest.main()

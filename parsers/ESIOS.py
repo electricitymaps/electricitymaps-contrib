@@ -1,4 +1,4 @@
-from __future__ import print_function
+#!/usr/bin/env python3
 
 from os import environ
 from urllib.parse import urlencode

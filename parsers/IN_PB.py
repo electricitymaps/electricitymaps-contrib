@@ -1,4 +1,5 @@
-from __future__ import print_function
+#!/usr/bin/env python3
+
 from requests import Session
 from re import search, findall, M, S, I, sub
 from arrow import utcnow, get
@@ -51,7 +52,7 @@ def fetch_production(country_code='IN-PB', session=None):
     thermal_text = thermal_match.group(0)
     thermal_value = findall('\d+', thermal_text)[0]
 
-    ipp_match = search('Total IPPs = \d+',response_text)
+    ipp_match = search('Total IPPs = \d+', response_text)
     ipp_text = ipp_match.group(0)
     ipp_value = findall('\d+', ipp_text)[0]
 
@@ -86,7 +87,7 @@ def fetch_consumption(country_code='IN-PB', session=None):
                                           session)
     date_text = read_text_by_regex('(\d+/\d+/\d+)', response_text)
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
-    
+
     india_date = date_time_strings_to_kolkata_date(date_text, "MM/DD/YYYY", time_text, "HH:mm:ss")
 
     punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response_text, M|I|S).group(0)
