@@ -198,8 +198,9 @@ exports.addCountryTopos = function(countries) {
     countries['HN'] = getCountry('HND')
     countries['HU'] = getCountry('HUN')
     countries['IS'] = getCountry('ISL')
+    // TODO: Use iso_3166_2 field instead
     countries['IN-AN'] = getState('IND', 'IN.AN', true);
-    countries['IN-AP'] = getState('IND', 'IN.AP', true);
+    countries['IN-AP'] = getState('IND', 'IN.AD', true);
     countries['IN-AR'] = getState('IND', 'IN.AR', true);
     countries['IN-AS'] = getState('IND', 'IN.AS', true);
     countries['IN-BR'] = getState('IND', 'IN.BR', true);
