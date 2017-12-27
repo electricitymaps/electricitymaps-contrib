@@ -168,6 +168,14 @@ function CountryMap(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSe
     }
   });
 
+  /* Adding the exchange layer 
+
+  - inside #zones .mapboxgl-canvas-container (at the end)
+  - exchange layer should be part of this?
+  - create an arrow component
+
+  */
+
   // *** PAN/ZOOM ***
   let dragInitialTransform;
   let dragStartTransform;

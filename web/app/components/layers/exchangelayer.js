@@ -70,7 +70,9 @@ ExchangeLayer.prototype.render = function() {
         .on('mousemove', function (d, i) {
             return that.exchangeMouseMoveHandler.call(this, d, i);
         })
-        .on('click', function (d) { console.log(d); });
+        .on('click', function (d, i) {
+            return that.exchangeClickHandler.call(this, d, i);
+        });
     newArrows.append('img')
         .attr('class', 'base')
     newArrows.append('img')
@@ -128,6 +130,12 @@ ExchangeLayer.prototype.onExchangeMouseMove = function(arg) {
 ExchangeLayer.prototype.onExchangeMouseOut = function(arg) {
     if (!arg) return this.exchangeMouseOutHandler;
     else this.exchangeMouseOutHandler = arg;
+    return this;
+};
+
+ExchangeLayer.prototype.onExchangeClick = function(arg) {
+    if (!arg) return this.exchangeClickHandler;
+    else this.exchangeClickHandler = arg;
     return this;
 };
 

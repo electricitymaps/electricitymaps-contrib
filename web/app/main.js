@@ -1151,6 +1151,9 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
                 co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
             exchangeTooltip.hide()
         })
+        .onExchangeClick(d => {
+            console.log(d)
+        })
         .render();
 
     // Render weather if provided
