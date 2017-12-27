@@ -1,9 +1,6 @@
 var d3 = require('d3');
 
 function ExchangeLayer(selector, arrowsSelector) {
-    this.TRIANGLE_HEIGHT = 1.0;
-    this.GRADIENT_ANIMATION_MIDDLE_WIDTH_COEFFICIENT = 0.2;
-    this.STROKE_CO2_THRESHOLD = 550;
     this.exchangeAnimationDurationScale = d3.scaleLinear()
         .domain([500, 5000])
         .range([1.5, 0])
@@ -11,20 +8,6 @@ function ExchangeLayer(selector, arrowsSelector) {
 
     this.root = d3.select(selector);
     this.exchangeArrowsContainer = d3.select(arrowsSelector);
-
-    this.trianglePath = function() {
-        var hh = this.TRIANGLE_HEIGHT / 2.0; // half-height
-        var hb = this.TRIANGLE_HEIGHT; // half-base with base = 0.5 * height
-        return 'M -' + hb + ' -' + hh + ' ' + 
-        'L 0 ' + hh + ' ' + 
-        'L ' + hb + ' -' + hh + ' Z ' +
-        'M -' + hb + ' ' + hh + ' ' + 
-        'L 0 ' + (3.0 * hh) + ' ' + 
-        'L ' + hb + ' ' + hh + ' Z ' +
-        'M -' + hb + ' -' + (3.0 * hh) + ' ' + 
-        'L 0 -' + hh + ' ' + 
-        'L ' + hb + ' -' + (3.0 * hh) + ' Z';
-    };
 }
 
 ExchangeLayer.prototype.projection = function(arg) {
@@ -37,6 +20,7 @@ ExchangeLayer.prototype.render = function() {
     if (!this._data) { return; }
     // Abort if projection has not been set
     if (!this._projection) { return; }
+    console.log('render')
     var that = this;
 
     let node = this.exchangeArrowsContainer.node();

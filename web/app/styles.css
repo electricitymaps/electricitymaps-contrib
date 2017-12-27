@@ -607,8 +607,8 @@ div.highscore-button:hover {
 
 #arrows-layer .exchange-arrow {
     position: absolute;
-    /*left: -25px;
-    top: -41px;*/
+    left: -25px;
+    top: -41px;
     overflow: hidden;
 }
 @keyframes arrow-animation {

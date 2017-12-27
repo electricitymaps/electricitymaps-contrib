@@ -99,7 +99,7 @@ class Map {
       this._setupMapColor();
     });
 
-    setInterval(() => console.log(this.map.loaded()), 500);
+    // setInterval(() => console.log(this.map.loaded()), 500);
     this.map.on('dataloading', (e) => console.log('dataloading', e));
     this.map.on('styledataloading', () => console.log('styledataloading'));
     this.map.on('sourcedataloading', () => console.log('sourcedataloading'));
@@ -154,6 +154,18 @@ class Map {
     - exchange layer should be part of this?
     - create an arrow component
 
+    Maybe do exactly like the wind layer:
+    - replace layer on drag end
+    - pause animations while dragging
+    - only show arrows needed on screen.
+
+    PROBLEM:
+    - flicker on render() after drag..
+    - drag pb is already present on wind.
+
+    CCL:
+    - fix projection.
+
     */
 
     // *** PAN/ZOOM ***
@@ -187,14 +199,17 @@ class Map {
       // This layer has size larger than viewport, and is not repositioned.
       // it should therefore be translated by the amount since first draw
       const relativeInitialScale = transform.k / dragInitialTransform.k;
+      const arrowLayerTransform = {
+        x: (dragInitialTransform.x * relativeInitialScale * 0 - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth),
+        y: (dragInitialTransform.y * relativeInitialScale * 0 - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight),
+        z: relativeInitialScale,
+      };
+      console.log(arrowLayerTransform)
       // arrowsLayer.style('transform-origin', 'center')
       arrowsLayer.style.transform =
-        'translate(' +
-        // (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * 0) + 'px,' +
-        // (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * 0) + 'px)' +
-        (dragInitialTransform.x * relativeInitialScale - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth) + 'px,' +
-        (dragInitialTransform.y * relativeInitialScale - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight) + 'px)' +
-        'scale(' + (relativeInitialScale) + ')';
+        arrowLayerTransform.x + 'px,' +
+        arrowLayerTransform.y + 'px)' +
+        'scale(' + arrowLayerTransform.z + ')';
 
       /*
 
@@ -222,13 +237,14 @@ class Map {
         k: e.target.transform.scale,
       };
       if (!dragInitialTransform) {
+        console.log('INITIAL', transform)
         dragInitialTransform = transform;
       }
       if (!dragStartTransform) {
         // Zoom start
         // arrowsLayer.style.display = 'none';
         dragStartTransform = transform;
-        wind.pause(true);
+        wind.pause(true); // TODO: Move away from here
       }
     };
 
@@ -237,11 +253,7 @@ class Map {
       // Therefore, we debounce them.
 
       zoomEndTimeout = setTimeout(() => {
-        // Notify. This is where we would need a Reactive / Pub-Sub system instead.
-        wind.zoomend();
-        solar.zoomend();
         canvasLayers.forEach(d => { d.style.transform = null; });
-        wind.pause(false);
         // arrowsLayer.style.display = null;
 
         this.dragEndHandler();
