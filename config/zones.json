@@ -1544,24 +1544,6 @@
       "https://github.com/hanshyde"
     ]
   },
-  "US-PJM": {
-    "capacity": {
-      "biomass": null,
-      "coal": 65205,
-      "gas": 63903,
-      "geothermal": null,
-      "hydro": 8675,
-      "hydro storage": null,
-      "nuclear": 33164,
-      "oil": 9148,
-      "solar": null,
-      "wind": 1114,
-      "unknown": 700
-    },
-      "contributors": [
-        "https://github.com/hanshyde"
-    ]
-  },
   "UY": {
     "parsers": {
       "production": "UY.fetch_production"
