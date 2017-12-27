@@ -256,7 +256,7 @@ function updateCo2Scale() {
       .markerColor('white')
       .domain([0, maxCo2])
       .render());
-    if (countryMap) countryMap.co2color(co2color).render();
+    if (countryMap) countryMap.setCo2color(co2color).render();
     if (countryTable) countryTable.co2color(co2color).render();
     if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
     if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
@@ -344,7 +344,7 @@ var modeOrder = [
 
 // Set up objects
 var countryMap = new CountryMap('zones', Wind, 'wind', Solar, 'solar')
-    .co2color(co2color)
+    .setCo2color(co2color)
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
     });
@@ -490,8 +490,7 @@ if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
     }
 }
 // Assign data
-countryMap
-    .data(d3.values(countries))
+countryMap.setData(d3.values(countries));
 // Add configurations
 d3.entries(zones_config).forEach(function(d) {
     var zone = countries[d.key];
@@ -876,14 +875,14 @@ function renderMap() {
         if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
             var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
-            countryMap.center([lon, lat]);
+            countryMap.setCenter([lon, lat]);
         }
         else if (geolocation) {
             console.log('Centering on', geolocation);
-            countryMap.center(geolocation);
+            countryMap.setCenter(geolocation);
         }
         else {
-            countryMap.center([0, 50]);
+            countryMap.setCenter([0, 50]);
         }
     }
     exchangeLayer
@@ -1086,8 +1085,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
     // Assign country map data
-    countryMap
-        .data(d3.values(countries))
+    countryMap.setData(d3.values(countries));
 
     // Add mouse over handlers
     countryMap.onCountryMouseOver(function (d) {
