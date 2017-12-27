@@ -392,7 +392,12 @@
       "unknown": 1056,
       "nuclear": 657
     },
-    "flag_file_name": "ca.png"
+    "flag_file_name": "ca.png",
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/corradio",
+      "https://github.com/hanshyde"
+    ]
   },
   "CA-SK": {
     "capacity": {
