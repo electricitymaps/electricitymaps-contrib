@@ -351,7 +351,7 @@ var countryMap = new CountryMap('zones', Wind, 'wind', Solar, 'solar')
         Solar.zoomend();
         Wind.pause(false);
     });
-var exchangeLayer = new ExchangeLayer('svg.map-layer', '#arrows-layer')
+var exchangeLayer = new ExchangeLayer('svg.map-layer', '#arrows-layer', countryMap)
     .co2color(co2color);
 
 
@@ -888,9 +888,7 @@ function renderMap() {
             countryMap.setCenter([0, 50]);
         }
     }
-    exchangeLayer
-        .projection(countryMap.projection())
-        .render();
+    exchangeLayer.render();
 
     if (!showWindOption)
         d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
@@ -1130,7 +1128,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     });
 
     // Render exchanges
-    exchangeLayer.projection(countryMap.projection())
     exchangeLayer
         .data(d3.values(exchanges).filter(function(d) {
             return d.netFlow != 0 && d.netFlow != null && d.lonlat;
@@ -1290,9 +1287,6 @@ function redraw() {
         countryHistoryMixGraph.render();
     }
     co2Colorbars.forEach(function(d) { d.render() });
-    exchangeLayer
-        .projection(countryMap.projection())
-        // .render();
 };
 
 window.addEventListener('resize', function() {

@@ -171,45 +171,55 @@ class Map {
     // *** PAN/ZOOM ***
     let dragInitialTransform;
     let dragStartTransform;
-    const node = document.getElementById(selectorId);
-    const initialMapWidth = node.getBoundingClientRect().width;
-    const initialMapHeight = node.getBoundingClientRect().height;
 
     const arrowsLayer = document.getElementById('arrows-layer');
     const canvasLayers = [this.windCanvas, this.solarCanvas];
 
-    function onPanZoom(e) {
+    const onPanZoom = (e) => {
       const transform = {
         x: e.target.transform.x,
         y: e.target.transform.y,
         k: e.target.transform.scale,
       };
+      // Also calculate the transform relative to the beginning of the drag event
+      const relScale = transform.k / dragStartTransform.k;
+      const relTransform = {
+        x: (dragStartTransform.x * relScale) - transform.x,
+        y: (dragStartTransform.y * relScale) - transform.y,
+        k: relScale,
+      };
+
       // Canvas have the size of the viewport, and must be translated only
       // by the amount since last translate, since they are repositioned after each.
-      const relativeScale = transform.k / dragStartTransform.k;
 
       canvasLayers.forEach(d => {
         d.style.transform =
           'translate(' +
-          (dragStartTransform.x * relativeScale - transform.x) + 'px,' +
-          (dragStartTransform.y * relativeScale - transform.y) + 'px)' +
-          'scale(' + relativeScale + ')';
+          relTransform.x + 'px,' +
+          relTransform.y + 'px)' +
+          'scale(' + relScale + ')';
       });
+      if (this.dragHandler) {
+        this.dragHandler.call(this, transform, relTransform);
+      }
+
+      return;
 
       // This layer has size larger than viewport, and is not repositioned.
       // it should therefore be translated by the amount since first draw
       const relativeInitialScale = transform.k / dragInitialTransform.k;
-      const arrowLayerTransform = {
-        x: (dragInitialTransform.x * relativeInitialScale * 0 - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth),
-        y: (dragInitialTransform.y * relativeInitialScale * 0 - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight),
-        z: relativeInitialScale,
-      };
+      // const arrowLayerTransform = {
+      //   x: (dragInitialTransform.x * relativeInitialScale * 0 - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth),
+      //   y: (dragInitialTransform.y * relativeInitialScale * 0 - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight),
+      //   z: relativeInitialScale,
+      // };
+      const arrowLayerTransform = transform;
       console.log(arrowLayerTransform)
       // arrowsLayer.style('transform-origin', 'center')
-      arrowsLayer.style.transform =
+      arrowsLayer.style.transform = 'translate(' +
         arrowLayerTransform.x + 'px,' +
         arrowLayerTransform.y + 'px)' +
-        'scale(' + arrowLayerTransform.z + ')';
+        'scale(' + arrowLayerTransform.k + ')';
 
       /*
 
@@ -227,6 +237,7 @@ class Map {
     let zoomEndTimeout;
 
     const onPanZoomStart = (e) => {
+      console.log('start', e)
       if (zoomEndTimeout) {
         clearTimeout(zoomEndTimeout);
         zoomEndTimeout = undefined;
@@ -237,7 +248,6 @@ class Map {
         k: e.target.transform.scale,
       };
       if (!dragInitialTransform) {
-        console.log('INITIAL', transform)
         dragInitialTransform = transform;
       }
       if (!dragStartTransform) {
@@ -246,17 +256,23 @@ class Map {
         dragStartTransform = transform;
         wind.pause(true); // TODO: Move away from here
       }
+      if (this.dragStartHandler) {
+        this.dragStartHandler.call(this, transform);
+      }
     };
 
     const onPanZoomEnd = () => {
       // Note that zoomend() methods are slow because they recalc layer.
       // Therefore, we debounce them.
+      console.log('end')
 
       zoomEndTimeout = setTimeout(() => {
         canvasLayers.forEach(d => { d.style.transform = null; });
         // arrowsLayer.style.display = null;
 
-        this.dragEndHandler();
+        if (this.dragEndHandler) {
+          this.dragEndHandler.call(this);
+        }
 
         dragStartTransform = undefined;
         zoomEndTimeout = undefined;
@@ -266,7 +282,7 @@ class Map {
     this.map.on('drag', onPanZoom);
     this.map.on('zoom', onPanZoom);
     this.map.on('dragstart', onPanZoomStart);
-    this.map.on('zoomstart', onPanZoomStart);
+    this.map.on('zoomstart', onPanZoomStart); // WARNING: Zoom start is called very often during zoom
     this.map.on('dragend', onPanZoomEnd);
     this.map.on('zoomend', onPanZoomEnd);
 
@@ -325,9 +341,18 @@ class Map {
     return this;
   }
 
+  onDragStart(arg) {
+    this.dragStartHandler = arg;
+    return this;
+  }
+
+  onDrag(arg) {
+    this.dragHandler = arg;
+    return this;
+  }
+
   onDragEnd(arg) {
-    if (!arg) return this.dragEndHandler;
-    else this.dragEndHandler = arg;
+    this.dragEndHandler = arg;
     return this;
   }
 
