@@ -1553,8 +1553,9 @@
       "wind": 1114,
       "unknown": 700
     },
-      "contributors": [
-        "https://github.com/hanshyde"
+    "flag_file_name": "us.png",
+    "contributors": [
+      "https://github.com/hanshyde"
     ]
   },
   "UY": {
