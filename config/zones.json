@@ -1544,15 +1544,15 @@
       "https://github.com/hanshyde"
     ]
   },
-"US-PJM": {
-  "capacity": {
-    "coal": 65205,
-    "gas": 63903,
-    "hydro": 8675,
-    "nuclear": 33164,
-    "oil": 9148,
-    "wind": 1114,
-    "unknown": 700
+  "US-PJM": {
+    "capacity": {
+      "coal": 65205,
+      "gas": 63903,
+      "hydro": 8675,
+      "nuclear": 33164,
+      "oil": 9148,
+      "wind": 1114,
+      "unknown": 700
     },
       "contributors": [
         "https://github.com/hanshyde"
