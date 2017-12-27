@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 // Libraries
 var Cookies = require('js-cookie');
 var d3 = require('d3');
@@ -19,7 +19,7 @@ var Tooltip = require('./components/tooltip');
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
 
-var CountryMap = require('./components/layers/countrymap');
+var CountryMap = require('./components/map');
 var ExchangeLayer = require('./components/layers/exchangelayer');
 var Solar = require('./components/layers/solar');
 var Wind = require('./components/layers/wind');
