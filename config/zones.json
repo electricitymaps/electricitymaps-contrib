@@ -1556,7 +1556,7 @@
       "oil": 9148,
       "solar": null,
       "wind": 1114,
-      "unknown": 700,
+      "unknown": 700
     },
       "contributors": [
         "https://github.com/hanshyde"
