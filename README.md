@@ -57,6 +57,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Canada (Nova Scotia): [Nova Scotia Power](http://www.nspower.ca/en/home/about-us/todayspower.aspx)
 - Canada (Ontario): [IESO](http://www.ieso.ca/power-data)
 - Canada (Prince Edward Island): [Government of PEI](http://www.gov.pe.ca/windenergy/chart.php)
+- Canada (Quebec): [HydroQuebec]http://www.hydroquebec.com/reliability-coordinator/
 - Canada (Yukon): [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
 - Chile (SING): [SGER](https://sger.coordinadorelectrico.cl/Charts/AmChartCurvaCompuesta?showinfo=True)
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
