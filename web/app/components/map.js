@@ -100,7 +100,7 @@ class Map {
     });
 
     setInterval(() => console.log(this.map.loaded()), 500);
-    this.map.on('dataloading', () => console.log('dataloading'));
+    this.map.on('dataloading', (e) => console.log('dataloading', e));
     this.map.on('styledataloading', () => console.log('styledataloading'));
     this.map.on('sourcedataloading', () => console.log('sourcedataloading'));
 
@@ -136,9 +136,14 @@ class Map {
         this.countryMouseOutHandler.call(this);
       }
     });
-    this.map.on('click', 'zones-fill', (e) => {
-      if (this.countryClickHandler) {
-        const i = e.features[0].id;
+    this.map.on('click', (e) => {
+      const features = this.map.queryRenderedFeatures(e.point);
+      if (!features.length) {
+        if (this.seaClickHandler) {
+          this.seaClickHandler.call(this);
+        }
+      } else if (this.countryClickHandler) {
+        const i = features[0].id;
         this.countryClickHandler.call(this, this.data[i], i);
       }
     });
