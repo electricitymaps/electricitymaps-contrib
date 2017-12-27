@@ -1548,7 +1548,6 @@
     "capacity": {
       "coal": 65205,
       "gas": 63903,
-      "hydro": 8675,
       "nuclear": 33164,
       "oil": 9148,
       "wind": 1114,
