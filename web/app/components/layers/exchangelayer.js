@@ -1,6 +1,8 @@
-const d3 = Object.assign({},
+const d3 = Object.assign(
+  {},
   require('d3-selection'),
-  require('d3-scale'));
+  require('d3-scale'),
+);
 
 class ExchangeLayer {
   constructor(selectorId, map) {
@@ -106,10 +108,10 @@ class ExchangeLayer {
     newArrows
       .attr('width', 49)
       .attr('height', 81)
-      .on('mouseover', function (d, i) { return exchangeMouseOverHandler.call(this, d, i); })
-      .on('mouseout', function (d, i) { return exchangeMouseOutHandler.call(this, d, i); })
-      .on('mousemove', function (d, i) { return exchangeMouseMoveHandler.call(this, d, i); })
-      .on('click', (d, i) => this.exchangeClickHandler.call(this, d, i));
+      .on('mouseover', function (d, i) { exchangeMouseOverHandler.call(this, d, i); })
+      .on('mouseout', function (d, i) { exchangeMouseOutHandler.call(this, d, i); })
+      .on('mousemove', function (d, i) { exchangeMouseMoveHandler.call(this, d, i); })
+      .on('click', function (d, i) { exchangeClickHandler.call(this, d, i); });
     newArrows.append('img')
       .attr('class', 'base');
     newArrows.append('img')

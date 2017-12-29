@@ -1,7 +1,20 @@
 'use strict';
+
 // Libraries
 var Cookies = require('js-cookie');
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-collection'),
+  require('d3-interpolate'),
+  require('d3-queue'),
+  require('d3-request'),
+  require('d3-selection'),
+  require('d3-scale'),
+);
+// see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
+import {event as currentEvent} from 'd3-selection';
+
 var moment = require('moment');
 var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
@@ -360,7 +373,7 @@ var exchangeTooltip = new Tooltip('#exchange-tooltip')
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     .co2color(co2color)
     .onExchangeMouseMove(function() {
-        countryTableExchangeTooltip.update(d3.event.clientX, d3.event.clientY);
+        countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
     })
     .onExchangeMouseOver(function (d, country, displayByEmissions) {
         tooltipHelper.showExchange(
@@ -379,7 +392,7 @@ var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
             co2color, co2Colorbars)
     })
     .onProductionMouseMove(function(d) {
-        countryTableProductionTooltip.update(d3.event.clientX, d3.event.clientY)
+        countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY)
     })
     .onProductionMouseOut(function (d) {
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
@@ -420,7 +433,7 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
         ttp.update(
-            d3.event.clientX - 7,
+            currentEvent.clientX - 7,
             countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top + 7)
         fun(ttp,
             mode, countryData, tableDisplayEmissions,
@@ -633,7 +646,7 @@ function selectCountry(countryCode, notrack) {
                     if (g == countryHistoryCarbonGraph) {
                         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
                         countryTooltip.update(
-                            d3.event.clientX - 7,
+                            currentEvent.clientX - 7,
                             g.rootElement.node().getBoundingClientRect().top + 7)
                     }
 
@@ -891,23 +904,24 @@ function renderMap() {
     if (!showWindOption)
         d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
     if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        LoadingService.startLoading();
+        LoadingService.startLoading('#loading');
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
-        Wind.draw('#wind',
+        Wind.draw('wind',
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
             wind.forecasts[1],
             windColor,
             countryMap.projection(),
-            countryMap.unprojection());
+            countryMap.unprojection()
+        );
         if (windEnabled)
             Wind.show();
         else
             Wind.hide();
         // Restore setting
         Cookies.set('windEnabled', windEnabled);
-        LoadingService.stopLoading();
+        LoadingService.stopLoading('#loading');
     } else {
         Wind.hide();
     }
@@ -915,7 +929,7 @@ function renderMap() {
     if (!showSolarOption)
         d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        LoadingService.startLoading();
+        LoadingService.startLoading('#loading');
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
         Solar.draw('#solar',
@@ -932,7 +946,7 @@ function renderMap() {
                     Solar.hide();
                 // Restore setting
                 Cookies.set('solarEnabled', solarEnabled);
-                LoadingService.stopLoading();
+                LoadingService.stopLoading('#loading');
             });
     } else {
         Solar.hide();
@@ -979,8 +993,8 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     // TODO: Code is duplicated
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
-    d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
-    d3.selectAll('#current-datetime, #current-datetime-from-now')
+    d3.selectAll('.current-datetime-from-now')
+        .text(currentMoment.fromNow())
         .style('color', 'darkred')
         .transition()
             .duration(800)
@@ -1137,7 +1151,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
             tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
         })
         .onExchangeMouseMove(function () {
-            exchangeTooltip.update(d3.event.clientX, d3.event.clientY);
+            exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
         })
         .onExchangeMouseOut(function (d) {
             d3.select(this)
@@ -1228,7 +1242,7 @@ function ignoreError(func) {
 
 function fetch(showLoading, callback) {
     if (!showLoading) showLoading = false;
-    if (showLoading) LoadingService.startLoading();
+    if (showLoading) LoadingService.startLoading('#loading');
     LoadingService.startLoading('#small-loading');
     // If data doesn't load in 15 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
@@ -1263,7 +1277,7 @@ function fetch(showLoading, callback) {
         handleConnectionReturnCode(err);
         if (!err)
             dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
-        if (showLoading) LoadingService.stopLoading();
+        if (showLoading) LoadingService.stopLoading('#loading');
         LoadingService.stopLoading('#small-loading');
         if (callback) callback();
     });

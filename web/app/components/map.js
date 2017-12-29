@@ -362,7 +362,6 @@ class Map {
   }
 
   setCenter(center) {
-    console.error('Center', center)
     this.center = center;
     this.map.panTo(center);
     return this;
