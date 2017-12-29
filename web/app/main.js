@@ -33,9 +33,9 @@ var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
 
 var CountryMap = require('./components/map');
-var ExchangeLayer = require('./components/layers/exchangelayer');
-var Solar = require('./components/layers/solar');
-var Wind = require('./components/layers/wind');
+var ExchangeLayer = require('./components/layers/exchange');
+var SolarLayer = require('./components/layers/solar');
+var WindLayer = require('./components/layers/wind');
 
 var flags = require('./flags');
 var LoadingService = require('./loadingservice');
@@ -355,15 +355,13 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('zones', Wind, 'wind', Solar, 'solar')
+var countryMap = new CountryMap('zones')
     .setCo2color(co2color)
     .onDragEnd(function() {
-        if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
-        Wind.zoomend();
-        Solar.zoomend();
-        Wind.pause(false);
+        if (!mapDraggedSinceStart) { mapDraggedSinceStart = true; }
     });
 var exchangeLayer = new ExchangeLayer('arrows-layer', countryMap);
+const windLayer = new WindLayer('wind', countryMap);
 
 
 var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
@@ -772,8 +770,8 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
-        if (windEnabled) { Wind.show(); }
-        if (solarEnabled) { Solar.show(); }
+        if (windEnabled && windLayer) { windLayer.show(); }
+        if (solarEnabled) { solarLayer.show(); }
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
         if (windEnabled && windColorbar) windColorbar.render();
         if (solarEnabled && solarColorbar) solarColorbar.render();
@@ -809,14 +807,14 @@ function toggleWind() {
     if (windEnabled) {
         d3.select('.wind-colorbar').style('display', 'block');
         windColorbar.render()
-        if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+        if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
             fetch(true);
         } else {
-            Wind.show();
+            windLayer.show();
         }
     } else {
         d3.select('.wind-colorbar').style('display', 'none');
-        Wind.hide();
+        windLayer.hide();
     }
 }
 d3.select('#checkbox-wind').on('change', toggleWind);
@@ -849,7 +847,7 @@ function mapMouseOver(coordinates) {
     if (windEnabled && wind && coordinates) {
         var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
-        if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+        if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
             var u = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, wind.forecasts[0][0], wind.forecasts[1][0]);
             var v = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -907,7 +905,7 @@ function renderMap() {
         LoadingService.startLoading('#loading');
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
-        Wind.draw('wind',
+        windLayer.draw(
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
             wind.forecasts[1],
@@ -916,18 +914,19 @@ function renderMap() {
             countryMap.unprojection()
         );
         if (windEnabled)
-            Wind.show();
+            windLayer.show();
         else
-            Wind.hide();
+            windLayer.hide();
         // Restore setting
         Cookies.set('windEnabled', windEnabled);
         LoadingService.stopLoading('#loading');
     } else {
-        Wind.hide();
+        windLayer.hide();
     }
 
     if (!showSolarOption)
         d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
+    var Solar = SolarLayer; // ****
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
         LoadingService.startLoading('#loading');
         // Make sure to disable solar if the drawing goes wrong
@@ -1268,7 +1267,7 @@ function fetch(showLoading, callback) {
 
     if (!windEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
+    else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
         Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
     else
         Q.defer(function(cb) { return cb(null, wind); });

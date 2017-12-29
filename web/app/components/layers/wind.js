@@ -1,5 +1,3 @@
-const exports = module.exports = {};
-
 const d3 = Object.assign(
   {},
   require('d3-interpolate'),
@@ -13,127 +11,155 @@ const Windy = require('../../helpers/windy');
 
 const WIND_OPACITY = 0.53;
 
-let windCanvas;
-let windLayer;
-let lastDraw;
-let hidden = true;
+class WindLayer {
+  constructor(selectorId, map) {
+    this.canvas = document.getElementById(selectorId);
+    this.hidden = true;
+    this.lastDraw = null;
+    this.windy = null;
 
-exports.isExpired = (now, grib1, grib2) =>
-  grib.getTargetTime(grib2[0]) <= moment(now) ||
-    grib.getTargetTime(grib1[0]) > moment(now);
+    /* This is the *map* transform applied at last render */
+    this.initialMapTransform = undefined;
 
-exports.draw = (canvasSelectorId, now, gribs1, gribs2, windColor, project, unproject) => {
-  if (!project) {
-    throw Error('Projection can\'t be null/undefined');
+    map.onDragStart((transform) => {
+      if (this.windy) {
+        this.windy.paused = true;
+      }
+      if (!this.initialMapTransform) {
+        this.initialMapTransform = transform;
+      }
+    });
+    map.onDrag((transform) => {
+      // `relTransform` is the transform of the map
+      // since the last render
+      const relScale = transform.k / this.initialMapTransform.k;
+      const relTransform = {
+        x: (this.initialMapTransform.x * relScale) - transform.x,
+        y: (this.initialMapTransform.y * relScale) - transform.y,
+        k: relScale,
+      };
+      this.canvas.style.transform =
+        `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
+    });
+    map.onDragEnd(() => {
+      this.canvas.style.transform = null;
+      this.initialMapTransform = null;
+      if (this.windy) {
+        this.windy.paused = false;
+      }
+
+      // We need to re-update change the projection
+      if (!this.windy || this.hidden) { return; }
+      const width = parseInt(this.canvas.parentNode.getBoundingClientRect().width, 10);
+      const height = parseInt(this.canvas.parentNode.getBoundingClientRect().height, 10);
+      const { unproject } = this.windy.params;
+
+      const sw = unproject([0, height]);
+      const ne = unproject([width, 0]);
+
+      // Note: the only reason we restart here is to
+      // set sw and ne.
+      this.windy.start( // Note: this blocks UI..
+        [[0, 0], [width, height]],
+        width,
+        height,
+        [sw, ne],
+      );
+    });
   }
-  if (!unproject) {
-    throw Error('Unprojection can\'t be null/undefined');
-  }
 
-  // Only redraw after 5min
-  if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
-    return;
-  }
-
-  lastDraw = new Date().getTime();
-
-  const t_before = grib.getTargetTime(gribs1[0]);
-  const t_after = grib.getTargetTime(gribs2[0]);
-  console.log(
-    '#1 wind forecast target',
-    t_before.fromNow(),
-    'made', grib.getRefTime(gribs1[0]).fromNow(),
-  );
-  console.log(
-    '#2 wind forecast target',
-    t_after.fromNow(),
-    'made', grib.getRefTime(gribs2[0]).fromNow(),
-  );
-  // Interpolate wind
-  const interpolatedWind = gribs1;
-  if (moment(now) > t_after) {
-    console.error('Error while interpolating wind because current time is out of bounds');
-  } else {
-    const k = (now - t_before) / (t_after - t_before);
-    interpolatedWind[0].data = interpolatedWind[0].data.map((d, i) =>
-      d3.interpolate(d, gribs2[0].data[i])(k));
-    interpolatedWind[1].data = interpolatedWind[1].data.map((d, i) =>
-      d3.interpolate(d, gribs2[1].data[i])(k));
-    windCanvas = document.getElementById(canvasSelectorId);
-    // Only recreate if not already created
-    if (!windLayer) {
-      windLayer = new Windy({
-        canvas: windCanvas,
-        project: project,
-        unproject: unproject,
-      });
+  draw(now, gribs1, gribs2, windColor, project, unproject) {
+    if (!project) {
+      throw Error('Projection can\'t be null/undefined');
     }
-    windLayer.params.data = interpolatedWind;
+    if (!unproject) {
+      throw Error('Unprojection can\'t be null/undefined');
+    }
+
+    // Only redraw after 5min
+    if (this.lastDraw && (this.lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+      return;
+    }
+
+    this.lastDraw = new Date().getTime();
+
+    const t_before = grib.getTargetTime(gribs1[0]);
+    const t_after = grib.getTargetTime(gribs2[0]);
+    console.log(
+      '#1 wind forecast target',
+      t_before.fromNow(),
+      'made', grib.getRefTime(gribs1[0]).fromNow(),
+    );
+    console.log(
+      '#2 wind forecast target',
+      t_after.fromNow(),
+      'made', grib.getRefTime(gribs2[0]).fromNow(),
+    );
+    // Interpolate wind
+    const interpolatedWind = gribs1;
+    if (moment(now) > t_after) {
+      console.error('Error while interpolating wind because current time is out of bounds');
+    } else {
+      const k = (now - t_before) / (t_after - t_before);
+      interpolatedWind[0].data = interpolatedWind[0].data.map((d, i) =>
+        d3.interpolate(d, gribs2[0].data[i])(k));
+      interpolatedWind[1].data = interpolatedWind[1].data.map((d, i) =>
+        d3.interpolate(d, gribs2[1].data[i])(k));
+      // Only recreate if not already created
+      if (!this.windy) {
+        this.windy = new Windy({
+          canvas: this.canvas,
+          project,
+          unproject,
+        });
+      }
+      this.windy.params.data = interpolatedWind;
+    }
   }
-};
 
-exports.zoomend = () => {
-  // Called when the dragging / zooming is done.
-  // We need to re-update change the projection
-  if (!windLayer || hidden) { return; }
+  show() {
+    if (!this.canvas || !this.windy) { return; }
+    if (this.windy && this.windy.started) { return; }
+    const width = parseInt(this.canvas.parentNode.getBoundingClientRect().width, 10);
+    const height = parseInt(this.canvas.parentNode.getBoundingClientRect().height, 10);
+    // Canvas needs to have it's width and height attribute set
+    this.canvas.width = width;
+    this.canvas.height = height;
 
-  const width = parseInt(windCanvas.parentNode.getBoundingClientRect().width, 10);
-  const height = parseInt(windCanvas.parentNode.getBoundingClientRect().height, 10);
+    const { unproject } = this.windy.params;
 
-  let unproject = windLayer.params.unproject;
+    const sw = unproject([0, height]);
+    const ne = unproject([width, 0]);
+    this.canvas.style.display = 'block';
+    d3.select(this.canvas)
+      .transition().style('opacity', WIND_OPACITY);
 
-  const sw = unproject([0, height]);
-  const ne = unproject([width, 0]);
-
-  // Note: the only reason we restart here is to
-  // set sw and ne.
-  windLayer.start( // Note: this blocks UI..
-    [[0, 0], [width, height]],
-    width,
-    height,
-    [sw, ne],
-  );
-};
-
-exports.pause = (arg) => {
-  if (windLayer) {
-    windLayer.paused = arg;
+    this.windy.start(
+      [[0, 0], [width, height]],
+      width,
+      height,
+      [sw, ne],
+    );
+    this.hidden = false;
   }
-};
 
-exports.show = () => {
-  if (!windCanvas) { return; }
-  if (windLayer && windLayer.started) { return; }
-  const width = parseInt(windCanvas.parentNode.getBoundingClientRect().width, 10);
-  const height = parseInt(windCanvas.parentNode.getBoundingClientRect().height, 10);
-  // Canvas needs to have it's width and height attribute set
-  windCanvas.width = width;
-  windCanvas.height = height;
-
-  const { unproject } = windLayer.params;
-
-  const sw = unproject([0, height]);
-  const ne = unproject([width, 0]);
-  windCanvas.style.display = 'block';
-  d3.select(windCanvas)
-    .transition().style('opacity', WIND_OPACITY);
-
-  windLayer.start(
-    [[0, 0], [width, height]],
-    width,
-    height,
-    [sw, ne],
-  );
-  hidden = false;
-};
-
-exports.hide = () => {
-  if (windCanvas) {
-    d3.select(windCanvas).transition().style('opacity', 0)
-      .on('end', function() {
-        d3.select(this).style('display', 'none');
-      });
+  hide() {
+    if (this.canvas) {
+      d3.select(this.canvas).transition().style('opacity', 0)
+        .on('end', function() {
+          d3.select(this).style('display', 'none');
+        });
+    }
+    if (this.windy) {
+      this.windy.stop();
+    }
+    this.hidden = true;
   }
-  if (windLayer) windLayer.stop();
-  hidden = true;
-};
+
+  isExpired(now, grib1, grib2) {
+    grib.getTargetTime(grib2[0]) <= moment(now) ||
+      grib.getTargetTime(grib1[0]) > moment(now);
+  }
+}
+
+module.exports = WindLayer;

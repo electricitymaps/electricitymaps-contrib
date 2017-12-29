@@ -18,12 +18,11 @@ exports.startLoading = (selector) => {
 exports.stopLoading = (selector) => {
   stack[selector].pop();
   if (!stack[selector].length) {
-    console.log(selector)
     d3.selectAll(selector)
       .transition()
-        .style('opacity', 0)
-        .on('end', function() {
-            d3.select(this).style('display', 'none');
-        });
+      .style('opacity', 0)
+      .on('end', function() {
+        d3.select(this).style('display', 'none');
+      });
   }
 };

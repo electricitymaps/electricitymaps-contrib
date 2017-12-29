@@ -196,13 +196,13 @@ class Map {
       // Canvas have the size of the viewport, and must be translated only
       // by the amount since last translate, since they are repositioned after each.
 
-      canvasLayers.forEach(d => {
-        d.style.transform =
-          'translate(' +
-          relTransform.x + 'px,' +
-          relTransform.y + 'px)' +
-          'scale(' + relScale + ')';
-      });
+      // canvasLayers.forEach(d => {
+      //   d.style.transform =
+      //     'translate(' +
+      //     relTransform.x + 'px,' +
+      //     relTransform.y + 'px)' +
+      //     'scale(' + relScale + ')';
+      // });
       this.dragHandlers.forEach(h => h.call(this, transform, relTransform));
 
       return;
@@ -240,7 +240,6 @@ class Map {
       }
       if (!dragStartTransform) {
         dragStartTransform = transform;
-        wind.pause(true); // TODO: Move away from here
       }
       this.dragStartHandlers.forEach(h => h.call(this, transform));
     };
@@ -248,9 +247,9 @@ class Map {
     const onPanZoomEnd = () => {
       // Note that zoomend() methods are slow because they recalc layer.
       // Therefore, we debounce them.
+      // TODO: Is this the right place to debounce?
 
       zoomEndTimeout = setTimeout(() => {
-        canvasLayers.forEach(d => { d.style.transform = null; });
         this.dragEndHandlers.forEach(h => h.call(this));
 
         dragStartTransform = undefined;
