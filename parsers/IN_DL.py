@@ -41,19 +41,19 @@ def fetch_production(country_code='IN-DL', session=None):
     # CCGT https://en.wikipedia.org/wiki/Pragati-III_Combined_Cycle_Power_Plant = Pragati-3
     ccgt = read_value(prod_rows[2])
 
-    # DMSWSL Unknown
+    # DMSWSL (Delhi Municipal Solid Waste Solutions Limited): Garbage-to-electricity
     dmswsl = read_value(prod_rows[3])
 
-    # EDWPL Unknown
+    # EDWPL (East Delhi Waste Processing Company Limited): Garbage-to-electricity
     edwpl = read_value(prod_rows[4])
 
-    # GT Unknown
+    # GT (Gas Turbine) https://en.wikipedia.org/wiki/IPGCL_Gas_Turbine_Power_Station
     gt = read_value(prod_rows[5])
 
     # Pragati = Pragati-1
     pragati = read_value(prod_rows[6])
 
-    # TOWMP Waste?
+    # TOWMP (Timarpur Okhla Waste Management Company Pvt. Ltd.): Garbage-to-electricity
     towmp = read_value(prod_rows[7])
 
     # Coal production
@@ -63,7 +63,7 @@ def fetch_production(country_code='IN-DL', session=None):
     gas = ccgt + pragati + gt
 
     # Unknown production
-    unknown_value = dmswsl + edwpl + gt + towmp
+    garbage = dmswsl + edwpl + towmp
 
     data = {
         'countryCode': country_code,
@@ -71,7 +71,7 @@ def fetch_production(country_code='IN-DL', session=None):
         'production': {
             'coal': coal,
             'gas': gas,
-            'unknown': unknown_value
+            'unknown': garbage
         },
         'source': 'delhisldc.org',
     }
