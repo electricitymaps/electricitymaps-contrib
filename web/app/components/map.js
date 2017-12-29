@@ -175,6 +175,7 @@ class Map {
     // *** PAN/ZOOM ***
     let dragInitialTransform;
     let dragStartTransform;
+    let isDragging = false;
 
     const canvasLayers = [this.windCanvas, this.solarCanvas];
 
@@ -221,7 +222,10 @@ class Map {
     let zoomEndTimeout;
 
     const onPanZoomStart = (e) => {
-      console.log('panzoomstart', e);
+      // For some reason, MapBox gives us many start events inside a single zoom.
+      // They are removed here:
+      if (isDragging) { return; }
+      isDragging = true;
       if (zoomEndTimeout) {
         clearTimeout(zoomEndTimeout);
         zoomEndTimeout = undefined;
@@ -235,8 +239,6 @@ class Map {
         dragInitialTransform = transform;
       }
       if (!dragStartTransform) {
-        // Zoom start
-        // arrowsLayer.style.display = 'none';
         dragStartTransform = transform;
         wind.pause(true); // TODO: Move away from here
       }
@@ -246,7 +248,6 @@ class Map {
     const onPanZoomEnd = () => {
       // Note that zoomend() methods are slow because they recalc layer.
       // Therefore, we debounce them.
-      console.log('panzoomend')
 
       zoomEndTimeout = setTimeout(() => {
         canvasLayers.forEach(d => { d.style.transform = null; });
@@ -255,12 +256,14 @@ class Map {
         dragStartTransform = undefined;
         zoomEndTimeout = undefined;
       }, 500);
+
+      isDragging = false;
     };
 
     this.map.on('drag', onPanZoom);
     this.map.on('zoom', onPanZoom);
     this.map.on('dragstart', onPanZoomStart);
-    this.map.on('zoomstart', onPanZoomStart); // WARNING: Zoom start is called very often during zoom
+    this.map.on('zoomstart', onPanZoomStart);
     this.map.on('dragend', onPanZoomEnd);
     this.map.on('zoomend', onPanZoomEnd);
 
