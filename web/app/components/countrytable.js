@@ -1,4 +1,12 @@
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-axis'),
+  require('d3-collection'),
+  require('d3-format'),
+  require('d3-selection'),
+  require('d3-scale'),
+);
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 var moment = require('moment');
 

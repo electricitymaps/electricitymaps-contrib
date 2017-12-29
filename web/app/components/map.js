@@ -94,6 +94,7 @@ class Map {
       // Here we need to set all styles
       this.paintData();
       this._setupMapColor();
+      this.mapLoadedHandlers.forEach(h => h(this));
     });
 
     // setInterval(() => console.log(this.map.loaded()), 500);
@@ -107,6 +108,7 @@ class Map {
     this.dragStartHandlers = [];
     this.dragHandlers = [];
     this.dragEndHandlers = [];
+    this.mapLoadedHandlers = [];
 
     this.map.on('mouseenter', 'zones-fill', (e) => {
       this.map.getCanvas().style.cursor = 'pointer';
@@ -154,18 +156,6 @@ class Map {
     - inside #zones .mapboxgl-canvas-container (at the end)
     - exchange layer should be part of this?
     - create an arrow component
-
-    Maybe do exactly like the wind layer:
-    - replace layer on drag end
-    - pause animations while dragging
-    - only show arrows needed on screen.
-
-    PROBLEM:
-    - flicker on render() after drag..
-    - drag pb is already present on wind.
-
-    CCL:
-    - fix projection.
 
     */
 
@@ -297,6 +287,11 @@ class Map {
 
   onDragEnd(arg) {
     this.dragEndHandlers.push(arg);
+    return this;
+  }
+
+  onMapLoaded(arg) {
+    this.mapLoadedHandlers.push(arg);
     return this;
   }
 

@@ -1,6 +1,16 @@
 'use strict'
 
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-axis'),
+  require('d3-collection'),
+  require('d3-selection'),
+  require('d3-scale'),
+  require('d3-shape'),
+);
+// see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
+import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
 
 function AreaGraph(selector, modeColor, modeOrder) {
@@ -199,7 +209,7 @@ AreaGraph.prototype.render = function() {
 
     var datetimes = this._datetimes;
     function detectPosition(d3Event) {
-        if (!d3Event) { d3Event = d3.event; }
+        if (!d3Event) { d3Event = currentEvent; }
         if (!datetimes.length) return;
         var dx = d3Event.pageX ? (d3Event.pageX - this.parentNode.getBoundingClientRect().left) :
             (d3.touches(this)[0][0]);
@@ -278,7 +288,7 @@ AreaGraph.prototype.render = function() {
         .on('mouseout', function () {
             if (!data.length) { return; }
             var innerThis = this;
-            var d3Event = d3.event;
+            var d3Event = currentEvent;
             mouseOutTimeout = setTimeout(function() {
                 var i = detectPosition.call(innerThis, d3Event);
                 that.selectedIndex(i);

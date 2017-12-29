@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-var d3 = require('d3');
+var d3 = require('d3-format');
 var translation = require('../translation');
 
 var co2Sub = module.exports.co2Sub = function(str) {
