@@ -1,23 +1,25 @@
-var d3 = require('d3');
+const d3 = Object.assign({},
+  require('d3-selection'),
+  require('d3-scale'));
 
 class ExchangeLayer {
-  constructor(selector, arrowsSelector, map) {
+  constructor(selectorId, map) {
     this.exchangeAnimationDurationScale = d3.scaleLinear()
-        .domain([500, 5000])
-        .range([1.5, 0])
-        .clamp(true);
+      .domain([500, 5000])
+      .range([1.5, 0])
+      .clamp(true);
 
-    this.root = d3.select(arrowsSelector);
-    const rootNode = this.root.node();
+    this.rootNode = document.getElementById(selectorId);
+    this.root = d3.select(this.rootNode);
 
     /* This is the transform applied to the whole layer */
     this.transform = { x: 0, y: 0, k: 1 };
     /* This is the transform applied at last render */
-    this.initialTransform;
+    this.initialTransform = undefined;
     /* This is the *map* transform applied at last render */
-    this.initialMapTransform;
+    this.initialMapTransform = undefined;
 
-    this._projection = (lonlat) => {
+    this.projection = (lonlat) => {
       /*
       `map.projection()` is relative to viewport
       Because the layer might already have a transform applied when dragged,
@@ -25,11 +27,11 @@ class ExchangeLayer {
       */
       const p = map.projection()(lonlat);
       return [
-          (p[0] - this.transform.x) / this.transform.k,
-          (p[1] - this.transform.y) / this.transform.k,
+        (p[0] - this.transform.x) / this.transform.k,
+        (p[1] - this.transform.y) / this.transform.k,
       ];
     };
-    
+
     map
       .onDragStart((transform) => {
         if (!this.initialMapTransform) {
@@ -56,96 +58,94 @@ class ExchangeLayer {
           y: this.initialTransform.y - relTransform.y + (1 - relTransform.k) * (0.5 * this.containerHeight - this.initialTransform.y),
           k: this.initialTransform.k * relTransform.k, // arrow size scales correctly
         };
-        rootNode.style.transform =
+        this.rootNode.style.transform =
           `translate(${this.transform.x}px,${this.transform.y}px) scale(${this.transform.k})`;
-      });
+      })
+      .onDragEnd(() => this.render()); // re-render to hide out-of-screen arrows
 
     window.addEventListener('resize', () => this.render());
   }
 
   render() {
-    if (!this._data) { return; }
-    // Abort if projection has not been set
-    if (!this._projection) { return; }
-    console.log('Exchange render')
+    if (!this.data) { return; }
+    // Save initial transform
     this.initialTransform = Object.assign({}, this.transform);
     this.initialMapTransform = null;
-    console.log('Saving transform', this.transform)
-    console.warn('TODO: Make sure that we only draw visible arrows')
 
     // Apply current transform (in case it wasn't applied before)
-    this.root.node().style.transform =
+    this.rootNode.style.transform =
       `translate(${this.transform.x}px,${this.transform.y}px) scale(${this.transform.k})`;
 
-    const node = this.root.node();
-    this.containerWidth = parseInt(node.parentNode.getBoundingClientRect().width);
-    this.containerHeight = parseInt(node.parentNode.getBoundingClientRect().height);
+    this.containerWidth = parseInt(this.rootNode.parentNode.getBoundingClientRect().width, 10);
+    this.containerHeight = parseInt(this.rootNode.parentNode.getBoundingClientRect().height, 10);
 
-    var exchangeArrows = this.root
+    const exchangeArrows = this.root
       .selectAll('.exchange-arrow')
-      .data(this._data, d => d);
+      .data(this.data, d => d.sortedCountryCodes);
     exchangeArrows.exit().remove();
 
     // This object refers to arrows created
     // Add all static properties
-    var newArrows = exchangeArrows.enter()
+    const newArrows = exchangeArrows.enter()
       .append('div') // Add a group so we can animate separately
       .attr('class', 'exchange-arrow');
+    const {
+      exchangeMouseOverHandler,
+      exchangeMouseOutHandler,
+      exchangeMouseMoveHandler,
+    } = this;
     newArrows
       .attr('width', 49)
       .attr('height', 81)
-      .on('mouseover', (d, i) => {
-        return this.exchangeMouseOverHandler.call(this, d, i);
-      })
-      .on('mouseout', (d, i) => {
-        return this.exchangeMouseOutHandler.call(this, d, i);
-      })
-      .on('mousemove', (d, i) => {
-        return this.exchangeMouseMoveHandler.call(this, d, i);
-      })
-      .on('click', (d, i) => {
-        return this.exchangeClickHandler.call(this, d, i);
-      });
+      .on('mouseover', function (d, i) { return exchangeMouseOverHandler.call(this, d, i); })
+      .on('mouseout', function (d, i) { return exchangeMouseOutHandler.call(this, d, i); })
+      .on('mousemove', function (d, i) { return exchangeMouseMoveHandler.call(this, d, i); })
+      .on('click', (d, i) => this.exchangeClickHandler.call(this, d, i));
     newArrows.append('img')
-      .attr('class', 'base')
+      .attr('class', 'base');
     newArrows.append('img')
       .attr('class', 'highlight')
       .attr('src', 'images/arrow-highlights/50.png');
-    
-    var arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
-    var maxCarbonIntensity = 800; // we only have arrows up to a certain point
 
-    var layerTransform = (this.root.style('transform') || "matrix(1, 0, 0, 1, 0, 0)")
-      .replace(/matrix\(|\)/g, '').split(/\s*,\s*/);
+    const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
+    const maxCarbonIntensity = 800; // we only have arrows up to a certain point
 
+    // `merged` represents updates of all elements (both added and existing)
     const merged = newArrows.merge(exchangeArrows)
       .style('display', (d) => {
-        var arrowCenter = this._projection(d.lonlat);
-        var layerTranslateX = layerTransform[4];
-        var mapScale = layerTransform[3];
-        var centerX = (arrowCenter[0] * mapScale) - Math.abs(layerTranslateX);
-        var isOffscreen = centerX < 0 || centerX > this.containerWidth;
-        var hasLowFlow = (d.netFlow || 0) == 0;
+        const arrowCenter = this.projection(d.lonlat);
+        // Compute position relative to container
+        const relTransform = {
+          x: (arrowCenter[0] * this.transform.k) + this.transform.x,
+          y: (arrowCenter[0] * this.transform.k) + this.transform.x,
+        };
+        const isOffscreen =
+          (relTransform.x < 0 || relTransform.x > this.containerWidth) &&
+          (relTransform.y < 0 || relTransform.y > this.containerHeight);
+        const hasLowFlow = (d.netFlow || 0) === 0;
         return (hasLowFlow || isOffscreen) ? 'none' : '';
       })
       .style('transform', (d) => {
-        var center = this._projection(d.lonlat);
-        var rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return 'translateX(' + center[0] + 'px) translateY(' + center[1] + 'px) rotate(' + rotation + 'deg) scale(0.2)';
+        const center = this.projection(d.lonlat);
+        const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
+        return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg) scale(0.2)`;
       });
     merged.select('img.highlight')
       .style('animation-duration', d =>
         this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0)) + 's');
     merged.select('img.base')
       .attr('src', (d) => {
-        var intensity = Math.min(maxCarbonIntensity, Math.floor(d.co2intensity - d.co2intensity%arrowCarbonIntensitySliceSize));
-        if (d.co2intensity == null || isNaN(intensity)) intensity = 'nan';
-        return 'images/arrow-' + intensity + '-outline.png';
+        let intensity = Math.min(
+          maxCarbonIntensity,
+          Math.floor(d.co2intensity - d.co2intensity % arrowCarbonIntensitySliceSize));
+        if (d.co2intensity == null || Number.isNaN(intensity)) {
+          intensity = 'nan';
+        }
+        return `images/arrow-${intensity}-outline.png`;
       });
 
     return this;
   }
-
 
   onExchangeMouseOver(arg) {
     if (!arg) return this.exchangeMouseOverHandler;
@@ -171,17 +171,8 @@ class ExchangeLayer {
     return this;
   }
 
-  co2color(arg) {
-    if (!arg) return this._co2color;
-    else this._co2color = arg;
-    return this;
-  }
-
-  data(arg) {
-    if (!arg) return this._data;
-    else {
-      this._data = arg;
-    }
+  setData(arg) {
+    this.data = arg;
     return this;
   }
 }

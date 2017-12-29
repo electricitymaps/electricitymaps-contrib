@@ -260,7 +260,6 @@ function updateCo2Scale() {
     if (countryTable) countryTable.co2color(co2color).render();
     if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
     if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-    if (exchangeLayer) exchangeLayer.co2color(co2color).render();
     if (countryListSelector)
         countryListSelector.select('div.emission-rect')
             .style('background-color', function(d) {
@@ -351,8 +350,7 @@ var countryMap = new CountryMap('zones', Wind, 'wind', Solar, 'solar')
         Solar.zoomend();
         Wind.pause(false);
     });
-var exchangeLayer = new ExchangeLayer('svg.map-layer', '#arrows-layer', countryMap)
-    .co2color(co2color);
+var exchangeLayer = new ExchangeLayer('arrows-layer', countryMap);
 
 
 var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
@@ -1129,7 +1127,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
 
     // Render exchanges
     exchangeLayer
-        .data(d3.values(exchanges).filter(function(d) {
+        .setData(d3.values(exchanges).filter(function(d) {
             return d.netFlow != 0 && d.netFlow != null && d.lonlat;
         }))
         .onExchangeMouseOver(function (d) {

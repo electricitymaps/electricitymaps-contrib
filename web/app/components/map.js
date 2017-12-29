@@ -107,6 +107,10 @@ class Map {
     // Add zoom and rotation controls to the map.
     this.map.addControl(new mapboxgl.NavigationControl());
 
+    this.dragStartHandlers = [];
+    this.dragHandlers = [];
+    this.dragEndHandlers = [];
+
     this.map.on('mouseenter', 'zones-fill', (e) => {
       this.map.getCanvas().style.cursor = 'pointer';
       if (this.countryMouseOverHandler) {
@@ -172,7 +176,6 @@ class Map {
     let dragInitialTransform;
     let dragStartTransform;
 
-    const arrowsLayer = document.getElementById('arrows-layer');
     const canvasLayers = [this.windCanvas, this.solarCanvas];
 
     const onPanZoom = (e) => {
@@ -199,28 +202,9 @@ class Map {
           relTransform.y + 'px)' +
           'scale(' + relScale + ')';
       });
-      if (this.dragHandler) {
-        this.dragHandler.call(this, transform, relTransform);
-      }
+      this.dragHandlers.forEach(h => h.call(this, transform, relTransform));
 
       return;
-
-      // This layer has size larger than viewport, and is not repositioned.
-      // it should therefore be translated by the amount since first draw
-      const relativeInitialScale = transform.k / dragInitialTransform.k;
-      // const arrowLayerTransform = {
-      //   x: (dragInitialTransform.x * relativeInitialScale * 0 - transform.x + (1 - relativeInitialScale) * 0.5 * initialMapWidth),
-      //   y: (dragInitialTransform.y * relativeInitialScale * 0 - transform.y + (1 - relativeInitialScale) * 0.5 * initialMapHeight),
-      //   z: relativeInitialScale,
-      // };
-      const arrowLayerTransform = transform;
-      console.log(arrowLayerTransform)
-      // arrowsLayer.style('transform-origin', 'center')
-      arrowsLayer.style.transform = 'translate(' +
-        arrowLayerTransform.x + 'px,' +
-        arrowLayerTransform.y + 'px)' +
-        'scale(' + arrowLayerTransform.k + ')';
-
       /*
 
       probably we must reset the other relatives because they relate to last since projection?
@@ -232,12 +216,12 @@ class Map {
       MAYBE FIRST: test perfs with iPad
 
       */
-    }
+    };
 
     let zoomEndTimeout;
 
     const onPanZoomStart = (e) => {
-      console.log('start', e)
+      console.log('panzoomstart', e);
       if (zoomEndTimeout) {
         clearTimeout(zoomEndTimeout);
         zoomEndTimeout = undefined;
@@ -256,23 +240,17 @@ class Map {
         dragStartTransform = transform;
         wind.pause(true); // TODO: Move away from here
       }
-      if (this.dragStartHandler) {
-        this.dragStartHandler.call(this, transform);
-      }
+      this.dragStartHandlers.forEach(h => h.call(this, transform));
     };
 
     const onPanZoomEnd = () => {
       // Note that zoomend() methods are slow because they recalc layer.
       // Therefore, we debounce them.
-      console.log('end')
+      console.log('panzoomend')
 
       zoomEndTimeout = setTimeout(() => {
         canvasLayers.forEach(d => { d.style.transform = null; });
-        // arrowsLayer.style.display = null;
-
-        if (this.dragEndHandler) {
-          this.dragEndHandler.call(this);
-        }
+        this.dragEndHandlers.forEach(h => h.call(this));
 
         dragStartTransform = undefined;
         zoomEndTimeout = undefined;
@@ -342,17 +320,17 @@ class Map {
   }
 
   onDragStart(arg) {
-    this.dragStartHandler = arg;
+    this.dragStartHandlers.push(arg);
     return this;
   }
 
   onDrag(arg) {
-    this.dragHandler = arg;
+    this.dragHandlers.push(arg);
     return this;
   }
 
   onDragEnd(arg) {
-    this.dragEndHandler = arg;
+    this.dragEndHandlers.push(arg);
     return this;
   }
 
@@ -381,6 +359,7 @@ class Map {
   }
 
   setCenter(center) {
+    console.error('Center', center)
     this.center = center;
     this.map.panTo(center);
     return this;
