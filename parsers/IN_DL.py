@@ -50,7 +50,7 @@ def fetch_production(country_code='IN-DL', session=None):
     # GT (Gas Turbine) https://en.wikipedia.org/wiki/IPGCL_Gas_Turbine_Power_Station
     gt = read_value(prod_rows[5])
 
-    # Pragati = Pragati-1
+    # Pragati https://en.wikipedia.org/wiki/Pragati-I_Combined_Cycle_Gas_Power_Station = Pragati-1
     pragati = read_value(prod_rows[6])
 
     # TOWMP (Timarpur Okhla Waste Management Company Pvt. Ltd.): Garbage-to-electricity
