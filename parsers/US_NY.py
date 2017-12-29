@@ -8,13 +8,21 @@ from operator import itemgetter
 import pandas as pd
 
 mapping = {
-           'Dual Fuel': 'gas',
+           'Dual Fuel': 'gas', # NYISO states "Power produced by facilities capable of using natural gas and/or other fuels"
+                # <5% is oil burn from 2016 State of NYISO Market Report
            'Natural Gas': 'gas',
            'Nuclear': 'nuclear',
-           'Other Fossil Fuels': 'coal',
-           'Other Renewables': 'biomass',
-           'Wind': 'wind',
-           'Hydro': 'hydro'
+           'Other Fossil Fuels': 'coal', # NYISO states "Power produced by either coal or oil" - assume coal, oil only power plants only as last resort
+           'Other Renewables': 'biomass', # NYISO states "Power produced by either solar energy, refuse, methane or wood"
+                # Based on only 250 MW solar-utility & est 500 MW solar-'behind the meter' (unreportable by NYISO),
+                # and at 0445am NYISO reported 253 MW production --> biomass best assumption
+           'Wind': 'wind', # 2016 Wind capacity is 1754 MW (updated zones.json)
+           'Hydro': 'hydro' # NYISO states "Power produced by water including pumped storage facilities"
+                # hoping for further data source acquistion to distinguish Hydro from PS
+
+           # Verification data sources via...
+                # *1 - NYISO "Gold Book" - http://www.nyiso.com/public/webdocs/media_room/publications_presentations/Power_Trends/Power_Trends/2016-power-trends-FINAL-070516.pdf
+                # *2 - NYISO "State of the Market Report - 2016" - http://www.nyiso.com/public/webdocs/markets_operations/documents/Studies_and_Reports/Reports/Market_Monitoring_Unit_Reports/2016/NYISO_2016_SOM_Report_5-10-2017.pdf
            }
 
 def read_csv_data(url):
