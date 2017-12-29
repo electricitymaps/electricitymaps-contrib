@@ -43,6 +43,7 @@ class ExchangeLayer {
         // Disable animations
         this.root.selectAll('.exchange-arrow img.highlight')
           .style('animation-play-state', 'paused');
+        this.rootNode.style.display = 'none';
       })
       .onDrag((transform) => {
         if (!this.initialTransform) { return; }
@@ -69,6 +70,7 @@ class ExchangeLayer {
       })
       .onDragEnd(() => {
         // re-render to hide out-of-screen arrows
+        this.rootNode.style.display = null;
         this.render();
         // re-enable animations
         this.root.selectAll('.exchange-arrow img.highlight')

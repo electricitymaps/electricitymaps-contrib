@@ -20,9 +20,16 @@ class SolarLayer {
     /* This is the *map* transform applied at last render */
     this.initialMapTransform = undefined;
 
+    let zoomEndTimeout = null; // debounce events
     map.onDragStart((transform) => {
-      if (!this.initialMapTransform) {
-        this.initialMapTransform = transform;
+      if (zoomEndTimeout) {
+        // We're already dragging
+        clearTimeout(zoomEndTimeout);
+        zoomEndTimeout = undefined;
+      } else {
+        if (!this.initialMapTransform) {
+          this.initialMapTransform = transform;
+        }
       }
     });
     map.onDrag((transform) => {
@@ -38,9 +45,12 @@ class SolarLayer {
         `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
     });
     map.onDragEnd(() => {
-      this.canvas.style.transform = null;
-      this.initialMapTransform = null;
-      this.render();
+      zoomEndTimeout = setTimeout(() => {
+        this.canvas.style.transform = null;
+        this.initialMapTransform = null;
+        this.render();
+        zoomEndTimeout = undefined;
+      }, 500);
     });
   }
 

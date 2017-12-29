@@ -22,15 +22,23 @@ class WindLayer {
     /* This is the *map* transform applied at last render */
     this.initialMapTransform = undefined;
 
+    let zoomEndTimeout = null; // debounce events
     map.onDragStart((transform) => {
-      if (this.windy) {
-        this.windy.paused = true;
-      }
-      if (!this.initialMapTransform) {
-        this.initialMapTransform = transform;
+      if (zoomEndTimeout) {
+        // We're already dragging
+        clearTimeout(zoomEndTimeout);
+        zoomEndTimeout = undefined;
+      } else {
+        if (this.windy) {
+          this.windy.paused = true;
+        }
+        if (!this.initialMapTransform) {
+          this.initialMapTransform = transform;
+        }
       }
     });
     map.onDrag((transform) => {
+      if (!this.initialMapTransform) { return; }
       // `relTransform` is the transform of the map
       // since the last render
       const relScale = transform.k / this.initialMapTransform.k;
@@ -43,29 +51,32 @@ class WindLayer {
         `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
     });
     map.onDragEnd(() => {
-      this.canvas.style.transform = null;
-      this.initialMapTransform = null;
-      if (this.windy) {
-        this.windy.paused = false;
-      }
+      zoomEndTimeout = setTimeout(() => {
+        this.canvas.style.transform = null;
+        this.initialMapTransform = null;
+        if (this.windy) {
+          this.windy.paused = false;
+        }
 
-      // We need to re-update change the projection
-      if (!this.windy || this.hidden) { return; }
-      const width = parseInt(this.canvas.parentNode.getBoundingClientRect().width, 10);
-      const height = parseInt(this.canvas.parentNode.getBoundingClientRect().height, 10);
-      const { unproject } = this.windy.params;
+        // We need to re-update change the projection
+        if (!this.windy || this.hidden) { return; }
+        const width = parseInt(this.canvas.parentNode.getBoundingClientRect().width, 10);
+        const height = parseInt(this.canvas.parentNode.getBoundingClientRect().height, 10);
+        const { unproject } = this.windy.params;
 
-      const sw = unproject([0, height]);
-      const ne = unproject([width, 0]);
+        const sw = unproject([0, height]);
+        const ne = unproject([width, 0]);
 
-      // Note: the only reason we restart here is to
-      // set sw and ne.
-      this.windy.start( // Note: this blocks UI..
-        [[0, 0], [width, height]],
-        width,
-        height,
-        [sw, ne],
-      );
+        // Note: the only reason we restart here is to
+        // set sw and ne.
+        this.windy.start( // Note: this blocks UI..
+          [[0, 0], [width, height]],
+          width,
+          height,
+          [sw, ne],
+        );
+        zoomEndTimeout = undefined;
+      }, 500);
     });
   }
 

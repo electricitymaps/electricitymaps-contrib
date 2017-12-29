@@ -186,10 +186,6 @@ class Map {
       // They are removed here:
       if (isDragging) { return; }
       isDragging = true;
-      if (zoomEndTimeout) {
-        clearTimeout(zoomEndTimeout);
-        zoomEndTimeout = undefined;
-      }
       const transform = {
         x: e.target.transform.x,
         y: e.target.transform.y,
@@ -205,17 +201,8 @@ class Map {
     };
 
     const onPanZoomEnd = () => {
-      // Note that zoomend() methods are slow because they recalc layer.
-      // Therefore, we debounce them.
-      // TODO: Is this the right place to debounce?
-
-      zoomEndTimeout = setTimeout(() => {
-        this.dragEndHandlers.forEach(h => h.call(this));
-
-        dragStartTransform = undefined;
-        zoomEndTimeout = undefined;
-      }, 500);
-
+      this.dragEndHandlers.forEach(h => h.call(this));
+      dragStartTransform = undefined;
       isDragging = false;
     };
 
