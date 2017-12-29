@@ -383,7 +383,6 @@
   },
   "CA-QC": {
     "_comment": "http://www.hydroquebec.com/generation/",
-    "_comment": "http://www.hydroquebec.com/decom",
     "capacity": {
       "gas": 411,
       "hydro": 41859,
@@ -395,7 +394,6 @@
     "flag_file_name": "ca.png",
     "contributors": [
       "https://github.com/jarek",
-      "https://github.com/corradio",
       "https://github.com/hanshyde"
     ]
   },
@@ -1554,6 +1552,7 @@
     ]
   },
   "US-PJM": {
+    "_comment": "Installed capacity in PJM RTO effective June 1, 2017 - http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en",
     "capacity": {
       "coal": 65205,
       "gas": 63903,
