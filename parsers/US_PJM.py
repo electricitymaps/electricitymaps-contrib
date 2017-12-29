@@ -81,7 +81,9 @@ def fetch_price(country_code='FR', session=None):
     }
     """
 
-    # PJM realtime price data LMP is here http://www.pjm.com/markets-and-operations/energy/real-time/lmp.aspx
+    # PJM realtime price data LMP is here (updates hourly)
+        # (sub-regional) http://www.pjm.com/markets-and-operations/energy/real-time/lmp.aspx
+        # (system aggregated average - RTO LMP 'locationalized marginal price') http://www.pjm.com/markets-and-operations.aspx
     r = session or requests.session()
     url = 'https://api.someservice.com/v1/price/latest'
     response = r.get(url)
