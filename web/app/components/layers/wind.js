@@ -17,6 +17,7 @@ class WindLayer {
     this.hidden = true;
     this.lastDraw = null;
     this.windy = null;
+    this.map = map;
 
     /* This is the *map* transform applied at last render */
     this.initialMapTransform = undefined;
@@ -68,14 +69,7 @@ class WindLayer {
     });
   }
 
-  draw(now, gribs1, gribs2, windColor, project, unproject) {
-    if (!project) {
-      throw Error('Projection can\'t be null/undefined');
-    }
-    if (!unproject) {
-      throw Error('Unprojection can\'t be null/undefined');
-    }
-
+  draw(now, gribs1, gribs2, windColor) {
     // Only redraw after 5min
     if (this.lastDraw && (this.lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
       return;
@@ -109,8 +103,8 @@ class WindLayer {
       if (!this.windy) {
         this.windy = new Windy({
           canvas: this.canvas,
-          project,
-          unproject,
+          project: this.map.projection(),
+          unproject: this.map.unprojection(),
         });
       }
       this.windy.params.data = interpolatedWind;
@@ -157,7 +151,7 @@ class WindLayer {
   }
 
   isExpired(now, grib1, grib2) {
-    grib.getTargetTime(grib2[0]) <= moment(now) ||
+    return grib.getTargetTime(grib2[0]) <= moment(now) ||
       grib.getTargetTime(grib1[0]) > moment(now);
   }
 }

@@ -362,6 +362,7 @@ var countryMap = new CountryMap('zones')
     });
 var exchangeLayer = new ExchangeLayer('arrows-layer', countryMap);
 const windLayer = new WindLayer('wind', countryMap);
+const solarLayer = new SolarLayer('solar', countryMap);
 
 
 var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
@@ -771,7 +772,7 @@ function showPage(pageName) {
         selectCountry(undefined);
         renderMap();
         if (windEnabled && windLayer) { windLayer.show(); }
-        if (solarEnabled) { solarLayer.show(); }
+        if (solarEnabled && solarLayer) { solarLayer.show(); }
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
         if (windEnabled && windColorbar) windColorbar.render();
         if (solarEnabled && solarColorbar) solarColorbar.render();
@@ -830,14 +831,14 @@ function toggleSolar() {
     if (solarEnabled) {
         d3.select('.solar-colorbar').style('display', 'block');
         solarColorbar.render()
-        if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+        if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
             fetch(true);
         } else {
-            Solar.show();
+            solarLayer.show();
         }
     } else {
         d3.select('.solar-colorbar').style('display', 'none');
-        Solar.hide();
+        solarLayer.hide();
     }
 }
 d3.select('#checkbox-solar').on('change', toggleSolar);
@@ -861,7 +862,7 @@ function mapMouseOver(coordinates) {
     if (solarEnabled && solar && coordinates) {
         var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
-        if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+        if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
             var val = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, solar.forecasts[0], solar.forecasts[1]);
             if (!selectedCountryCode)
@@ -909,9 +910,7 @@ function renderMap() {
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
             wind.forecasts[1],
-            windColor,
-            countryMap.projection(),
-            countryMap.unprojection()
+            windColor
         );
         if (windEnabled)
             windLayer.show();
@@ -926,29 +925,26 @@ function renderMap() {
 
     if (!showSolarOption)
         d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
-    var Solar = SolarLayer; // ****
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
         LoadingService.startLoading('#loading');
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
-        Solar.draw('#solar',
+        solarLayer.draw(
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
             solar.forecasts[1],
             solarColor,
-            countryMap.projection(),
-            countryMap.unprojection(),
             function() {
                 if (solarEnabled)
-                    Solar.show();
+                    solarLayer.show();
                 else
-                    Solar.hide();
+                    solarLayer.hide();
                 // Restore setting
                 Cookies.set('solarEnabled', solarEnabled);
                 LoadingService.stopLoading('#loading');
             });
     } else {
-        Solar.hide();
+        solarLayer.hide();
     }
 }
 
@@ -1260,7 +1256,7 @@ function fetch(showLoading, callback) {
 
     if (!solarEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
+    else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
         Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
     else
         Q.defer(function(cb) { return cb(null, solar); });

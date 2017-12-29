@@ -71,13 +71,10 @@ class Map {
     }
   }
 
-  constructor(selectorId, wind, windCanvasSelectorId, solar, solarCanvasSelectorId) {
+  constructor(selectorId) {
     this.STROKE_WIDTH = 0.3;
 
     this.center = undefined;
-
-    this.windCanvas = document.getElementById(windCanvasSelectorId);
-    this.solarCanvas = document.getElementById(solarCanvasSelectorId);
 
     this.map = new mapboxgl.Map({
       container: selectorId, // selector id
@@ -177,46 +174,13 @@ class Map {
     let dragStartTransform;
     let isDragging = false;
 
-    const canvasLayers = [this.windCanvas, this.solarCanvas];
-
     const onPanZoom = (e) => {
       const transform = {
         x: e.target.transform.x,
         y: e.target.transform.y,
         k: e.target.transform.scale,
       };
-      // Also calculate the transform relative to the beginning of the drag event
-      const relScale = transform.k / dragStartTransform.k;
-      const relTransform = {
-        x: (dragStartTransform.x * relScale) - transform.x,
-        y: (dragStartTransform.y * relScale) - transform.y,
-        k: relScale,
-      };
-
-      // Canvas have the size of the viewport, and must be translated only
-      // by the amount since last translate, since they are repositioned after each.
-
-      // canvasLayers.forEach(d => {
-      //   d.style.transform =
-      //     'translate(' +
-      //     relTransform.x + 'px,' +
-      //     relTransform.y + 'px)' +
-      //     'scale(' + relScale + ')';
-      // });
-      this.dragHandlers.forEach(h => h.call(this, transform, relTransform));
-
-      return;
-      /*
-
-      probably we must reset the other relatives because they relate to last since projection?
-      YES. Because wind has the same issue.
-      1. show
-      2. resize
-      3. drag -> error
-
-      MAYBE FIRST: test perfs with iPad
-
-      */
+      this.dragHandlers.forEach(h => h.call(this, transform));
     };
 
     let zoomEndTimeout;
