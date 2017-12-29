@@ -38,7 +38,7 @@ def fetch_production(country_code='IN-DL', session=None):
     # BTPS https://en.wikipedia.org/wiki/Badarpur_Thermal_Power_Station
     btps = read_value(prod_rows[1])
 
-    # CCGT https://en.wikipedia.org/wiki/Pragati-III_Combined_Cycle_Power_Plant
+    # CCGT https://en.wikipedia.org/wiki/Pragati-III_Combined_Cycle_Power_Plant = Pragati-3
     ccgt = read_value(prod_rows[2])
 
     # DMSWSL Unknown
@@ -50,7 +50,7 @@ def fetch_production(country_code='IN-DL', session=None):
     # GT Unknown
     gt = read_value(prod_rows[5])
 
-    # Pragati
+    # Pragati = Pragati-1
     pragati = read_value(prod_rows[6])
 
     # TOWMP Waste?
@@ -60,7 +60,7 @@ def fetch_production(country_code='IN-DL', session=None):
     coal = btps
 
     # Gas production
-    gas = ccgt + pragati
+    gas = ccgt + pragati + gt
 
     # Unknown production
     unknown_value = dmswsl + edwpl + gt + towmp
