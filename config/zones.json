@@ -1064,7 +1064,20 @@
       "https://github.com/corradio"
     ]
   },
-  "MD": {},
+  "MD": {
+    "capacity": {
+      "gas": 335,
+      "hydro": 64,
+      "unknown": 2520
+    },
+    "parsers": {
+      "production": "MD.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ]
+  },
   "ME": {
     "capacity": {
       "coal": 218,
