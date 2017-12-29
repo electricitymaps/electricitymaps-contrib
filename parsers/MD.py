@@ -65,8 +65,8 @@ def fetch_production(country_code = 'MD', session = None):
     }
     """
 
-    grid_status = get_data(session = None)
-    production = {'solar': None, 'wind': None, 'biomass': None}
+    grid_status = get_data(session = session)
+    production = {'solar': None, 'wind': None, 'biomass': None, 'nuclear': 0.0}
 
     production['gas'] = sum(itemgetter(3,5,6)(grid_status))
     production['hydro'] = sum(itemgetter(2,4)(grid_status))
@@ -107,7 +107,7 @@ def fetch_exchange(country_code1, country_code2, session = None):
 
     sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
 
-    exchange_status = get_data(session = None)
+    exchange_status = get_data(session = session)
 
     if sortedCountryCodes == 'MD->UA':
         netflow = -1*exchange_status[-3]
