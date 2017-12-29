@@ -37,6 +37,9 @@ class ExchangeLayer {
         if (!this.initialMapTransform) {
           this.initialMapTransform = transform;
         }
+        // Disable animations
+        this.root.selectAll('.exchange-arrow img.highlight')
+          .style('animation-play-state', 'paused');
       })
       .onDrag((transform) => {
         if (!this.initialTransform) { return; }
@@ -61,7 +64,13 @@ class ExchangeLayer {
         this.rootNode.style.transform =
           `translate(${this.transform.x}px,${this.transform.y}px) scale(${this.transform.k})`;
       })
-      .onDragEnd(() => this.render()); // re-render to hide out-of-screen arrows
+      .onDragEnd(() => {
+        // re-render to hide out-of-screen arrows
+        this.render();
+        // re-enable animations
+        this.root.selectAll('.exchange-arrow img.highlight')
+          .style('animation-play-state', null);
+      });
 
     window.addEventListener('resize', () => this.render());
   }
