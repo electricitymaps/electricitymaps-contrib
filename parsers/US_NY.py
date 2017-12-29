@@ -8,11 +8,11 @@ from operator import itemgetter
 import pandas as pd
 
 mapping = {
-           'Dual Fuel': 'unknown',
+           'Dual Fuel': 'gas',
            'Natural Gas': 'gas',
            'Nuclear': 'nuclear',
-           'Other Fossil Fuels': 'unknown',
-           'Other Renewables': 'unknown',
+           'Other Fossil Fuels': 'coal',
+           'Other Renewables': 'biomass',
            'Wind': 'wind',
            'Hydro': 'hydro'
            }

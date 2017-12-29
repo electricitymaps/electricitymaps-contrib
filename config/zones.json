@@ -1541,8 +1541,8 @@
       "nuclear": 5292,
       "oil": 8260,
       "solar": 250,
-      "wind": 1010,
-      "biomass": 50
+      "wind": 1754,
+      "biomass": 450
     },
     "parsers": {
       "production": "US_NY.fetch_production"
