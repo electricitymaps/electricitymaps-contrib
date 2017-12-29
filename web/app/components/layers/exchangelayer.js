@@ -26,9 +26,8 @@ function ExchangeLayer(selector, arrowsSelector, map) {
         */
         const p = map.projection()(lonlat);
         return [
-            (p[0] / this.transform.k) - (this.transform.x / this.transform.k),
-            (p[1] / this.transform.k) - (this.transform.y / this.transform.k),
-            // TODO: FACTOR BY 1/k
+            (p[0] - this.transform.x) / this.transform.k,
+            (p[1] - this.transform.y) / this.transform.k,
         ];
     };
     
@@ -38,7 +37,7 @@ function ExchangeLayer(selector, arrowsSelector, map) {
                 this.initialMapTransform = transform;
             }
         })
-        .onDrag((transform, b) => {
+        .onDrag((transform) => {
             if (!this.initialTransform) { return; }
             // `relTransform` is the transform of the map
             // since the last render
@@ -54,8 +53,8 @@ function ExchangeLayer(selector, arrowsSelector, map) {
             // We therefore need to "sum" the map transform since drag
             // with our current already applied transform
             this.transform = {
-              x: this.initialTransform.x - relTransform.x + (1 - relTransform.k) * 0.5 * this.containerWidth,
-              y: this.initialTransform.y - relTransform.y + (1 - relTransform.k) * 0.5 * this.containerHeight,
+              x: this.initialTransform.x - relTransform.x + (1 - relTransform.k) * (0.5 * this.containerWidth - this.initialTransform.x),
+              y: this.initialTransform.y - relTransform.y + (1 - relTransform.k) * (0.5 * this.containerHeight - this.initialTransform.y),
               k: this.initialTransform.k * relTransform.k, // arrow size scales correctly
             };
             rootNode.style.transform =
@@ -76,6 +75,7 @@ ExchangeLayer.prototype.render = function() {
     this.initialTransform = Object.assign({}, this.transform);
     this.initialMapTransform = null;
     console.log('Saving transform', this.transform)
+    console.warn('TODO: Make sure that we only draw visible arrows')
 
     // Apply current transform (in case it wasn't applied before)
     this.root.node().style.transform =
