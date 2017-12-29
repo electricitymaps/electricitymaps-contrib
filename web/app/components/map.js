@@ -117,7 +117,13 @@ class Map {
         this.countryMouseOverHandler.call(this, this.data[i], i);
       }
     });
+
     let prevId;
+    const node = document.getElementById(selectorId);
+    let boundingClientRect = node.getBoundingClientRect();
+    window.addEventListener('resize', () => {
+      boundingClientRect = node.getBoundingClientRect()
+    });
     this.map.on('mousemove', 'zones-fill', (e) => {
       if (prevId !== e.features[0].properties.zoneId) {
         prevId = e.features[0].properties.zoneId;
@@ -129,9 +135,17 @@ class Map {
       }
       if (this.countryMouseMoveHandler) {
         const i = e.features[0].id;
-        this.countryMouseMoveHandler.call(this, this.data[i], i, e.point.x, e.point.y);
+        const rect = boundingClientRect;
+        this.countryMouseMoveHandler.call(
+          this,
+          this.data[i],
+          i,
+          rect.left + e.point.x,
+          rect.top + e.point.y
+        );
       }
     });
+
     this.map.on('mouseleave', 'zones-fill', () => {
       this.map.getCanvas().style.cursor = '';
       this.map.setFilter('zones-hover', ['==', 'zoneId', '']);

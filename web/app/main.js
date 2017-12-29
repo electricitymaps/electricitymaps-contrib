@@ -1110,7 +1110,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     // Add mouse over handlers
     countryMap
         .onCountryMouseOver(function (d) {
-            console.log(new Date().getTime())
             // d3.select(this)
             //     .style('opacity', 0.8)
             //     .style('cursor', 'pointer')
