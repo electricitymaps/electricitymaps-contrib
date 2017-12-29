@@ -355,12 +355,22 @@ var modeOrder = [
 ];
 
 // Set up objects
+let exchangeLayer = null;
 var countryMap = new CountryMap('zones')
     .setCo2color(co2color)
     .onDragEnd(function() {
         if (!mapDraggedSinceStart) { mapDraggedSinceStart = true; }
+    })
+    .onMapLoaded((map) => {
+        // Nest the exchange layer inside
+        const el = document.createElement('div');
+        el.id = 'arrows-layer';
+        map.map.getCanvas()
+            .parentNode
+            .appendChild(el);
+        // Create exchange layer as a result
+        exchangeLayer = new ExchangeLayer('arrows-layer', countryMap);
     });
-var exchangeLayer = new ExchangeLayer('arrows-layer', countryMap);
 const windLayer = new WindLayer('wind', countryMap);
 const solarLayer = new SolarLayer('solar', countryMap);
 
@@ -898,7 +908,9 @@ function renderMap() {
             countryMap.setCenter([0, 50]);
         }
     }
-    exchangeLayer.render();
+    if (exchangeLayer) {
+        exchangeLayer.render();
+    }
 
     if (!showWindOption)
         d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
@@ -1096,25 +1108,27 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     countryMap.setData(d3.values(countries));
 
     // Add mouse over handlers
-    countryMap.onCountryMouseOver(function (d) {
-        // d3.select(this)
-        //     .style('opacity', 0.8)
-        //     .style('cursor', 'pointer')
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
-    })
-    .onCountryMouseMove(function (d, i, clientX, clientY) {
-        // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
-        countryTooltip.update(clientX, clientY);
-    })
-    .onCountryMouseOut(function (d) {
-        // d3.select(this)
-        //     .style('opacity', 1)
-        //     .style('cursor', 'auto')
-        if (co2Colorbars)
-            co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-        countryTooltip.hide();
-    });
+    countryMap
+        .onCountryMouseOver(function (d) {
+            console.log(new Date().getTime())
+            // d3.select(this)
+            //     .style('opacity', 0.8)
+            //     .style('cursor', 'pointer')
+            tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+        })
+        .onCountryMouseMove(function (d, i, clientX, clientY) {
+            // TODO: Check that i changed before calling showMapCountry
+            tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+            countryTooltip.update(clientX, clientY);
+        })
+        .onCountryMouseOut(function (d) {
+            // d3.select(this)
+            //     .style('opacity', 1)
+            //     .style('cursor', 'auto')
+            if (co2Colorbars)
+                co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
+            countryTooltip.hide();
+        });
 
     // Re-render country table if it already was visible
     if (selectedCountryCode)

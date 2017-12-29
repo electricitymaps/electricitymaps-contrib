@@ -3,6 +3,7 @@ const d3 = Object.assign(
   require('d3-selection'),
   require('d3-scale'),
 );
+import {event as d3Event} from 'd3-selection';
 
 class ExchangeLayer {
   constructor(selectorId, map) {
@@ -64,7 +65,7 @@ class ExchangeLayer {
           k: this.initialTransform.k * relTransform.k, // arrow size scales correctly
         };
         this.rootNode.style.transform =
-          `translate(${this.transform.x}px,${this.transform.y}px) scale(${this.transform.k})`;
+          `translateX(${this.transform.x}px) translateY(${this.transform.y}px) translateZ(0) scale(${this.transform.k})`;
       })
       .onDragEnd(() => {
         // re-render to hide out-of-screen arrows
@@ -85,10 +86,12 @@ class ExchangeLayer {
 
     // Apply current transform (in case it wasn't applied before)
     this.rootNode.style.transform =
-      `translate(${this.transform.x}px,${this.transform.y}px) scale(${this.transform.k})`;
+      `translateX(${this.transform.x}px) translateY(${this.transform.y}px) translateZ(0) scale(${this.transform.k})`;
 
-    this.containerWidth = parseInt(this.rootNode.parentNode.getBoundingClientRect().width, 10);
-    this.containerHeight = parseInt(this.rootNode.parentNode.getBoundingClientRect().height, 10);
+    // Note: Depending on where the node is placed,
+    // the immediate parent might not be the container
+    this.containerWidth = parseInt(this.rootNode.parentNode.parentNode.getBoundingClientRect().width, 10);
+    this.containerHeight = parseInt(this.rootNode.parentNode.parentNode.getBoundingClientRect().height, 10);
 
     const exchangeArrows = this.root
       .selectAll('.exchange-arrow')
@@ -104,13 +107,23 @@ class ExchangeLayer {
       exchangeMouseOverHandler,
       exchangeMouseOutHandler,
       exchangeMouseMoveHandler,
+      exchangeClickHandler,
     } = this;
     newArrows
       .attr('width', 49)
       .attr('height', 81)
-      .on('mouseover', function (d, i) { exchangeMouseOverHandler.call(this, d, i); })
-      .on('mouseout', function (d, i) { exchangeMouseOutHandler.call(this, d, i); })
-      .on('mousemove', function (d, i) { exchangeMouseMoveHandler.call(this, d, i); })
+      .on('mouseover', function (d, i) {
+        d3Event.stopPropagation();
+        exchangeMouseOverHandler.call(this, d, i);
+      })
+      .on('mouseout', function (d, i) {
+        d3Event.stopPropagation();
+        exchangeMouseOutHandler.call(this, d, i);
+      })
+      .on('mousemove', function (d, i) {
+        d3Event.stopPropagation();
+        exchangeMouseMoveHandler.call(this, d, i);
+      })
       .on('click', function (d, i) { exchangeClickHandler.call(this, d, i); });
     newArrows.append('img')
       .attr('class', 'base');
