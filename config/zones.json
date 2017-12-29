@@ -1551,7 +1551,6 @@
     ]
   },
   "US-PJM": {
-    "_comment": "Installed capacity in PJM RTO effective June 1, 2017 - http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en",
     "capacity": {
       "coal": 65205,
       "gas": 63903,
