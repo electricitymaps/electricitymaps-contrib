@@ -317,10 +317,9 @@
     ]
   },
   "CA-NL": {
-    "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
     "capacity": {
       "biomass": 15,
-      "hydro": 6726.806,
+      "hydro": 1301,
       "oil": 590,
       "wind": 54.3
     },
