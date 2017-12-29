@@ -71,7 +71,7 @@ def fetch_production(country_code='IN-DL', session=None):
         'production': {
             'coal': coal,
             'gas': gas,
-            'unknown': garbage
+            'biomass': garbage
         },
         'source': 'delhisldc.org',
     }
