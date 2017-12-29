@@ -37,8 +37,8 @@
     "ndjson-cli": "^0.3.1",
     "nodemon": "^1.12.1",
     "shapefile": "^0.6.2",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.8.1"
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0"
   },
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
   },
   "scripts": {
     "build-debug": "webpack --bail --progress",
-    "build-release": "NODE_ENV=production webpack --bail -p",
+    "build-release": "NODE_ENV=production webpack --bail",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress"

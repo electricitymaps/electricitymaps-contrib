@@ -1,11 +1,13 @@
-var webpack = require('webpack');
-var fs = require('fs');
-var glob = require('glob');
+const webpack = require('webpack');
+const fs = require('fs');
+const glob = require('glob');
 
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    devtool: (process.env.NODE_ENV === 'production' ? 'sourcemap' : 'eval'),
+    devtool: isProduction ? 'sourcemap' : 'eval',
     entry: { bundle: ['babel-polyfill', './app/main.js'], styles: './app/styles.css' },
     module: {
         rules: [
@@ -30,7 +32,14 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].' + (process.env.NODE_ENV === 'production' ? '[contenthash]' : 'dev') + '.css'),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: isProduction ? 'sourcemap' : 'eval',
+            compress: {
+                warnings: false,
+                comparisons: false,  // don't optimize comparisons, required for MapBox to work
+            },
+        }),
+        new ExtractTextPlugin('[name].' + (isProduction ? '[contenthash]' : 'dev') + '.css'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: function (module) {
@@ -51,7 +60,7 @@ module.exports = {
         }),
     ],
     output: {
-        filename: '[name].' + (process.env.NODE_ENV === 'production' ? '[chunkhash]' : 'dev') + '.js',
+        filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.js',
         path: __dirname + '/public/dist/'
     },
     // The following is required because of https://github.com/webpack-contrib/css-loader/issues/447
