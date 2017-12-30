@@ -44,65 +44,65 @@ def fetch_production(country_code='IN-KA', session=None):
     # UPCL Production: https://en.wikipedia.org/wiki/Udupi_Power_Plant
     upcl_value = IN.read_value_from_span_id(html, 'lblupctot')
 
-    # JINDAl Production
+    # JINDAl Production: https://en.wikipedia.org/wiki/JSW_Vijayanagar_Power_Station
     jindal_value = IN.read_value_from_span_id(html, 'lbljintot')
 
     # Coal Production
     coal_value = rtps_value + btps_value + ytps_value + upcl_value + jindal_value
 
-    # Sharavati Production
+    # Sharavati Production: Sharavati  Hydroelectric
     sharavati_value = IN.read_value_from_span_id(html, 'lblshvytot')
 
-    # Nagjhari Production
+    # Nagjhari Production: Kalinadi-Nagjhari Hydroelectric
     nagjhari_value = IN.read_value_from_span_id(html, 'lblngjtot')
 
-    # Varahi Production
+    # Varahi Production: https://en.wikipedia.org/wiki/Varahi_River#Varahi_Hydro-electric_Project
     varahi_value = IN.read_value_from_span_id(html, 'lblvrhtot')
 
-    # Kodsalli Production
+    # Kodsalli Production: Kalinadi Kodasalli Hydroelectric
     kodsalli_value = IN.read_value_from_span_id(html, 'lblkdsltot')
 
-    # Kadra Production
+    # Kadra Production: https://en.wikipedia.org/wiki/Kadra_Dam
     kadra_value = IN.read_value_from_span_id(html, 'lblkdrtot')
 
-    # GERUSOPPA production
+    # GERUSOPPA production: Gerusoppa Dam
     gerusoppa_value = IN.read_value_from_span_id(html, 'lblgrsptot')
 
-    # JOG production
+    # JOG production: https://en.wikipedia.org/wiki/Jog_Falls
     jog_value = IN.read_value_from_span_id(html, 'lbljogtot')
 
-    # LPH Production
+    # LPH Production: Linganamakki Dam
     lph_value = IN.read_value_from_span_id(html, 'lbllphtot')
 
-    # Supa production
+    # Supa production: https://en.wikipedia.org/wiki/Supa_Dam
     supa_value = IN.read_value_from_span_id(html, 'lblsupatot')
 
-    # SHIMSHA
+    # SHIMSHA: https://en.wikipedia.org/wiki/Shimsha#Power_generation
     shimsha_value = IN.read_value_from_span_id(html, 'lblshimtot')
 
-    # SHIVASAMUDRA
+    # SHIVASAMUDRA: https://en.wikipedia.org/wiki/Shivanasamudra_Falls#Power_generation
     shivasamudra_value = IN.read_value_from_span_id(html, 'lblshivtot')
 
-    # MANIDAM
+    # MANIDAM: Mani Dam Hydroelectric
     manidam_value = IN.read_value_from_span_id(html, 'lblmanitot')
 
-    # MUNRABAD
+    # MUNRABAD: Munirabad Hydroelectric
     munrabad_value = IN.read_value_from_span_id(html, 'lblmbdtot')
 
-    # BHADRA
+    # BHADRA: https://en.wikipedia.org/wiki/Bhadra_Dam
     bhadra_value = IN.read_value_from_span_id(html, 'lblbdratot')
 
-    # GHATAPRABHA
+    # GHATAPRABHA: Ghataprabha Hydroelectric
     ghataprabha_value = IN.read_value_from_span_id(html, 'lblgtprtot')
 
-    # ALMATTI
+    # ALMATTI: https://en.wikipedia.org/wiki/Almatti_Dam
     almatti_value = IN.read_value_from_span_id(html, 'lblalmttot')
 
-    # CGS Production
+    # CGS (Central Generating Stations) Production
     # TODO: Search CGS production type
     cgs_value = IN.read_value_from_span_id(html, 'lblcgs')
 
-    # NCEP Production
+    # NCEP (Non-Conventional Energy Production)
     ncep_html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateNCEP.aspx', session)
     ncep_date_time = IN.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
 
