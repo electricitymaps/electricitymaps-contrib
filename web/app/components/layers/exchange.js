@@ -46,7 +46,7 @@ class ExchangeLayer {
         this.rootNode.style.display = 'none';
       })
       .onDrag((transform) => {
-        if (!this.initialTransform) { return; }
+        if (!this.initialMapTransform) { return; }
         // `relTransform` is the transform of the map
         // since the last render
         const relScale = transform.k / this.initialMapTransform.k;

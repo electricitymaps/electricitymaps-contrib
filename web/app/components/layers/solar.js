@@ -22,6 +22,7 @@ class SolarLayer {
 
     let zoomEndTimeout = null; // debounce events
     map.onDragStart((transform) => {
+      if (this.hidden) { return; }
       if (zoomEndTimeout) {
         // We're already dragging
         clearTimeout(zoomEndTimeout);
@@ -33,6 +34,8 @@ class SolarLayer {
       }
     });
     map.onDrag((transform) => {
+      if (this.hidden) { return; }
+      if (!this.initialMapTransform) { return; }
       // `relTransform` is the transform of the map
       // since the last render
       const relScale = transform.k / this.initialMapTransform.k;
@@ -45,6 +48,7 @@ class SolarLayer {
         `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
     });
     map.onDragEnd(() => {
+      if (this.hidden) { return; }
       zoomEndTimeout = setTimeout(() => {
         this.canvas.style.transform = null;
         this.initialMapTransform = null;

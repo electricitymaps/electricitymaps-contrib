@@ -24,6 +24,7 @@ class WindLayer {
 
     let zoomEndTimeout = null; // debounce events
     map.onDragStart((transform) => {
+      if (this.hidden) { return; }
       if (zoomEndTimeout) {
         // We're already dragging
         clearTimeout(zoomEndTimeout);
@@ -38,6 +39,7 @@ class WindLayer {
       }
     });
     map.onDrag((transform) => {
+      if (this.hidden) { return; }
       if (!this.initialMapTransform) { return; }
       // `relTransform` is the transform of the map
       // since the last render
@@ -51,6 +53,7 @@ class WindLayer {
         `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
     });
     map.onDragEnd(() => {
+      if (this.hidden) { return; }
       zoomEndTimeout = setTimeout(() => {
         this.canvas.style.transform = null;
         this.initialMapTransform = null;

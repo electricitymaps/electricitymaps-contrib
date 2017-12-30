@@ -79,7 +79,6 @@ class Map {
     this.map = new mapboxgl.Map({
       container: selectorId, // selector id
       attributionControl: false,
-      dragRotate: false,
       style: {
         version: 8,
         // transition: { duration: 500 },
@@ -89,6 +88,9 @@ class Map {
         center: this.center || [0, 50],
       },
     });
+
+    this.map.dragRotate.disable();
+    this.map.touchZoomRotate.disableRotation();
 
     this.map.on('load', () => {
       // Here we need to set all styles
@@ -179,8 +181,6 @@ class Map {
       this.dragHandlers.forEach(h => h.call(this, transform));
     };
 
-    let zoomEndTimeout;
-
     const onPanZoomStart = (e) => {
       // For some reason, MapBox gives us many start events inside a single zoom.
       // They are removed here:
@@ -208,10 +208,16 @@ class Map {
 
     this.map.on('drag', onPanZoom);
     this.map.on('zoom', onPanZoom);
+    this.map.on('move', onPanZoom);
+    // this.map.on('touch', onPanZoom);
     this.map.on('dragstart', onPanZoomStart);
     this.map.on('zoomstart', onPanZoomStart);
+    this.map.on('movestart', onPanZoomStart);
+    // this.map.on('touchstart', onPanZoomStart);
     this.map.on('dragend', onPanZoomEnd);
     this.map.on('zoomend', onPanZoomEnd);
+    this.map.on('moveend', onPanZoomEnd);
+    // this.map.on('touchend', onPanZoomEnd);
 
     return this;
   }
