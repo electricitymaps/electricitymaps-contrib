@@ -79,6 +79,7 @@ class Map {
     this.map = new mapboxgl.Map({
       container: selectorId, // selector id
       attributionControl: false,
+      scrollZoom: true,
       style: {
         version: 8,
         // transition: { duration: 500 },
@@ -171,8 +172,13 @@ class Map {
     let dragInitialTransform;
     let dragStartTransform;
     let isDragging = false;
+    let endTimeout = null;
 
     const onPanZoom = (e) => {
+      if (endTimeout) {
+        clearTimeout(endTimeout);
+        endTimeout = null;
+      }
       const transform = {
         x: e.target.transform.x,
         y: e.target.transform.y,
@@ -185,39 +191,44 @@ class Map {
       // For some reason, MapBox gives us many start events inside a single zoom.
       // They are removed here:
       if (isDragging) { return; }
-      isDragging = true;
-      const transform = {
-        x: e.target.transform.x,
-        y: e.target.transform.y,
-        k: e.target.transform.scale,
-      };
-      if (!dragInitialTransform) {
-        dragInitialTransform = transform;
+      if (endTimeout) {
+        clearTimeout(endTimeout);
+        endTimeout = null;
+      } else {
+        isDragging = true;
+        const transform = {
+          x: e.target.transform.x,
+          y: e.target.transform.y,
+          k: e.target.transform.scale,
+        };
+        if (!dragInitialTransform) {
+          dragInitialTransform = transform;
+        }
+        if (!dragStartTransform) {
+          dragStartTransform = transform;
+        }
+        this.dragStartHandlers.forEach(h => h.call(this, transform));
       }
-      if (!dragStartTransform) {
-        dragStartTransform = transform;
-      }
-      this.dragStartHandlers.forEach(h => h.call(this, transform));
     };
 
-    const onPanZoomEnd = () => {
-      this.dragEndHandlers.forEach(h => h.call(this));
-      dragStartTransform = undefined;
-      isDragging = false;
+    const onPanZoomEnd = (e) => {
+      // Move end fires many times during multitouch events, see
+      // https://github.com/mapbox/mapbox-gl-js/issues/3435
+      // therefore, we debounce it.
+      if (!isDragging) { return; }
+      if (!endTimeout) {
+        endTimeout = setTimeout(() => {
+          isDragging = false;
+          this.dragEndHandlers.forEach(h => h.call(this));
+          dragStartTransform = undefined;
+          endTimeout = null;
+        }, 50);
+      }
     };
 
-    this.map.on('drag', onPanZoom);
-    this.map.on('zoom', onPanZoom);
     this.map.on('move', onPanZoom);
-    // this.map.on('touch', onPanZoom);
-    this.map.on('dragstart', onPanZoomStart);
-    this.map.on('zoomstart', onPanZoomStart);
     this.map.on('movestart', onPanZoomStart);
-    // this.map.on('touchstart', onPanZoomStart);
-    this.map.on('dragend', onPanZoomEnd);
-    this.map.on('zoomend', onPanZoomEnd);
     this.map.on('moveend', onPanZoomEnd);
-    // this.map.on('touchend', onPanZoomEnd);
 
     return this;
   }

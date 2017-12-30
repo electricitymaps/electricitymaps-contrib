@@ -369,7 +369,29 @@ var countryMap = new CountryMap('zones')
             .parentNode
             .appendChild(el);
         // Create exchange layer as a result
-        exchangeLayer = new ExchangeLayer('arrows-layer', countryMap);
+        exchangeLayer = new ExchangeLayer('arrows-layer', countryMap)
+            .onExchangeMouseOver(function (d) {
+                d3.select(this)
+                    .style('opacity', 0.8)
+                    .style('cursor', 'pointer');
+                tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
+            })
+            .onExchangeMouseMove(function () {
+                exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
+            })
+            .onExchangeMouseOut(function (d) {
+                d3.select(this)
+                    .style('opacity', 1)
+                    .style('cursor', 'auto')
+                if (d.co2intensity && co2Colorbars)
+                    co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
+                exchangeTooltip.hide()
+            })
+            .onExchangeClick(d => {
+                console.log(d)
+            })
+            .setData(Object.values(exchanges))
+            .render();
     });
 const windLayer = new WindLayer('wind', countryMap);
 const solarLayer = new SolarLayer('solar', countryMap);
@@ -1148,31 +1170,11 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     });
 
     // Render exchanges
-    exchangeLayer
-        .setData(d3.values(exchanges).filter(function(d) {
-            return d.netFlow != 0 && d.netFlow != null && d.lonlat;
-        }))
-        .onExchangeMouseOver(function (d) {
-            d3.select(this)
-                .style('opacity', 0.8)
-                .style('cursor', 'pointer');
-            tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
-        })
-        .onExchangeMouseMove(function () {
-            exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
-        })
-        .onExchangeMouseOut(function (d) {
-            d3.select(this)
-                .style('opacity', 1)
-                .style('cursor', 'auto')
-            if (d.co2intensity && co2Colorbars)
-                co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-            exchangeTooltip.hide()
-        })
-        .onExchangeClick(d => {
-            console.log(d)
-        })
-        .render();
+    if (exchangeLayer) {
+        exchangeLayer
+            .setData(d3.values(exchanges))
+            .render();
+    }
 
     // Render weather if provided
     // Do not overwrite with null/undefined
