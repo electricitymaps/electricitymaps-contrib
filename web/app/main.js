@@ -1112,14 +1112,14 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     });
 
     // Add search bar handler
-    var selector = d3.select('.country-search-bar input')
-        .on("keyup", function() {
-            var query = this.value.toLowerCase()
+    d3.select('.country-search-bar input')
+        .on("keyup", (obj, i, nodes) => {
+            const query = nodes[i].value.toLowerCase()
 
-            var selector = d3.select('.country-picker-container p')
-                .selectAll('a').each(function(d) {
-                    var countryName = d.shortname.toLowerCase()
-                    var listItem = d3.select(this)
+            d3.select('.country-picker-container p')
+                .selectAll('a').each((obj, i, nodes) => {
+                    const countryName = obj.shortname.toLowerCase()
+                    const listItem = d3.select(nodes[i])
 
                     if (countryName.startsWith(query)) {
                         listItem.style('display', '')

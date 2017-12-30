@@ -519,6 +519,11 @@ div.highscore-button:hover {
     color: inherit;
     border: none;
     border-bottom: 1px solid whitesmoke;
+    font-weight: 400;
+    font-size: 1rem;
+    width: 100%;
+    padding-bottom: 0.2rem;
+    font-family: inherit;
 }
 
 .country-picker-container {
