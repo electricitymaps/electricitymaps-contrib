@@ -530,6 +530,21 @@ div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
+.country-search-bar {
+    padding: 10px 10px 10px 0px;
+}
+.country-search-bar input {
+    background: inherit;
+    color: inherit;
+    border: none;
+    border-bottom: 1px solid whitesmoke;
+    font-weight: 400;
+    font-size: 1rem;
+    width: 100%;
+    padding-bottom: 0.2rem;
+    font-family: inherit;
+}
+
 .country-picker-container {
 }
 .country-picker-container p {

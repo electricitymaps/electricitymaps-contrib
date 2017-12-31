@@ -949,7 +949,20 @@
       28.009764,
       47.003312
     ],
+    "parsers": {
+      "exchange": "MD.fetch_exchange"
+    },
     "rotation": -120
+  },
+  "MD->UA": {
+    "lonlat": [
+      29.218978,
+      47.646939
+    ],
+    "parsers": {
+      "exchange": "MD.fetch_exchange"
+    },
+    "rotation": 50
   },
   "ME->RS": {
     "lonlat": [
