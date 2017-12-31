@@ -521,15 +521,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 7060,
-      "coal": 49280,
-      "gas": 29890,
-      "hydro": 4586,
-      "hydro storage": 5666,
+      "biomass": 7546,
+      "coal": 46336,
+      "gas": 29916,
+      "geothermal": 39,
+      "hydro": 5490,
+      "hydro storage": 9440,
       "nuclear": 10800,
-      "oil": 4190,
-      "solar": 42410,
-      "wind": 53800
+      "oil": 4437,
+      "solar": 40716,
+      "unknown": 4907,
+      "wind": 49592
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
