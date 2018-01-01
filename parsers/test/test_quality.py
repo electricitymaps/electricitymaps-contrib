@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 """Tests for quality.py."""
-
 import unittest
 from parsers.lib.quality import validate_consumption, validate_exchange, validate_production
 from mocks.quality_check import *

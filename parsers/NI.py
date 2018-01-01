@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+from __future__ import print_function
 
 import arrow
 from collections import defaultdict
@@ -59,7 +60,7 @@ PLANT_CLASSIFICATIONS = [
 
 REFERENCE_TOTAL_PRODUCTION = 433 # MW
 def validate_datapoint(d):
-    total = sum([v for k, v in d['production'].iteritems()])
+    total = sum([v for k, v in d['production'].items()])
     if total > 5 * REFERENCE_TOTAL_PRODUCTION \
         or total < 1.0 / 5 * REFERENCE_TOTAL_PRODUCTION: return d
     else: return d

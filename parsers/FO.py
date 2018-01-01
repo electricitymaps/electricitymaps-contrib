@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import arrow
 import requests
 import xml.etree.ElementTree as ET
@@ -62,7 +63,7 @@ def fetch_production(country_code='FO', session=None):
             pass
 
     # At least 10MW should be produced
-    if sum([v for k, v in data['production'].iteritems()]) < 10: return None
+    if sum([v for k, v in data['production'].items()]) < 10: return None
     # The hydro key should be defined
     if data['production'].get('hydro', None) is None: return None
 
@@ -70,4 +71,4 @@ def fetch_production(country_code='FO', session=None):
 
 
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

@@ -21,4 +21,4 @@ class ParserException(Exception):
             country_code_info = " ({0})".format(self.country_code)
         else:
             country_code_info = ""
-        return "{0} Parser{1}: {2}".format(self.parser, country_code_info, self.message)
+        return "{0} Parser{1}: {2}".format(self.parser, country_code_info, self.args[0])

@@ -1,5 +1,6 @@
 # coding: utf-8
 # The arrow library is used to handle datetimes
+from __future__ import print_function
 import arrow
 # The request library is used to fetch content through HTTP
 import requests
@@ -39,6 +40,7 @@ def fetch_production(country_code='PA', session=None):
     r = session or requests.session()
     url = 'http://sitr.cnd.com.pa/m/pub/gen.html'
     response = r.get(url)
+    response.encoding = 'utf-8'
     html_doc = response.text
     soup = BeautifulSoup(html_doc, 'html.parser')
     productions = soup.find('table',{'class':'sitr-pie-layout'}).find_all('span')
@@ -57,7 +59,7 @@ def fetch_production(country_code='PA', session=None):
     }
     for prod in productions:
         prod_data = prod.string.split(' ')
-        production_mean = map_generation[prod_data[0].encode("latin-1")]
+        production_mean = map_generation[prod_data[0]]
         production_value = float(prod_data[1])
         data['production'][production_mean] = production_value
 
@@ -72,5 +74,5 @@ def fetch_production(country_code='PA', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
+    print('fetch_production() ->')
+    print(fetch_production())

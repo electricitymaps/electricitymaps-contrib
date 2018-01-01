@@ -1,11 +1,17 @@
 #!/usr/bin/python
 
+from __future__ import print_function
 import arrow
 import string
 import requests
 from bs4 import BeautifulSoup
 import re
 import itertools
+
+try:
+    unicode         # Python 2
+except NameError:
+    unicode = str   # Python 3
 
 
 #This parser gets hourly electricity generation data from portalweb.cammesa.com/Memnet1/default.aspx
@@ -533,7 +539,7 @@ def fetch_price(country_code='AR', session = None):
         rprice = lprice.split('[')[0]
         price = float(rprice.replace(',','.'))
 
-    except AttributeError, ValueError:
+    except AttributeError as ValueError:
         #Price element not present or no price stated.
         price = None
 
@@ -623,7 +629,7 @@ def get_thermal(session=None):
         try:
             #avoids including titles and headings
             if all((item.isupper(), not item.isalpha(), not ' ' in item)):
-                print '{} is missing from the AR plant mapping!'.format(item)
+                print('{} is missing from the AR plant mapping!'.format(item))
         except AttributeError:
             #not a string....
             continue

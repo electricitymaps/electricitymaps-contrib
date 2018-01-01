@@ -1,3 +1,4 @@
+from __future__ import print_function
 import arrow
 import requests
 import json
@@ -9,10 +10,7 @@ def fetch_production(country_code='TW', session=None):
     r = session or requests.session()
     url = 'http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt'
     response = requests.get(url)
-    content = response.content
-
-    content = unicode(response.content,"UTF-8")
-    data = json.loads(content)
+    data = response.json()
     
     dumpDate = data['']
     prodData = data['aaData']
@@ -76,4 +74,4 @@ def fetch_production(country_code='TW', session=None):
     return returndata
 
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

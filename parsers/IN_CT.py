@@ -1,3 +1,4 @@
+from __future__ import print_function
 from requests import Session
 from parsers.lib import web
 from parsers.lib import countrycode
@@ -57,5 +58,5 @@ def fetch_production(country_code='IN-CT', session=None):
 
 if __name__ == '__main__':
     session = Session()
-    print fetch_production('IN-CT', session)
-    print fetch_consumption('IN-CT', session)
+    print(fetch_production('IN-CT', session))
+    print(fetch_consumption('IN-CT', session))

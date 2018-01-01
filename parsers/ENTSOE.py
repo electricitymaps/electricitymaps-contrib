@@ -1,3 +1,4 @@
+from __future__ import print_function
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow, os, re, requests
@@ -25,7 +26,7 @@ ENTSOE_PARAMETER_DESC = {
     'B19': 'Wind Onshore',
     'B20': 'Other',
 }
-ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
+ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 # Define all ENTSOE country_code <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
@@ -133,7 +134,7 @@ def query_production(psr_type, in_domain, session, now=None):
     response = query_ENTSOE(session, params, now)
     if response.ok: return response.text
     else:
-        print 'Query failed for psr %s' % psr_type
+        print('Query failed for psr %s' % psr_type)
         check_response(response, query_production.__name__)
 
 def query_exchange(in_domain, out_domain, session, now=None):
@@ -422,10 +423,10 @@ def fetch_production(country_code, session=None, now=None):
 
     # Remove all dates in the future
     production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = filter(lambda x: x <= arrow.now(), production_dates)
+    production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
     if not len(production_dates): return None
     # Only take fully observed elements
-    max_counts = max(map(lambda date: len(production_hashmap[date].keys()),
+    max_counts = max(map(lambda d: len(production_hashmap[d].keys()),
         production_dates))
     production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
         production_dates)
@@ -433,7 +434,7 @@ def fetch_production(country_code, session=None, now=None):
     data = []
     for production_date in production_dates:
 
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].iteritems()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].items()}
 
         data.append({
             'countryCode': country_code,
@@ -456,7 +457,7 @@ def fetch_production(country_code, session=None, now=None):
             'source': 'entsoe.eu'
         })
 
-    return filter(validate_production, data)
+    return list(filter(validate_production, data))
 
 def fetch_exchange(country_code1, country_code2, session=None, now=None):
     if not session: session = requests.session()
@@ -486,7 +487,7 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
 
     # Remove all dates in the future
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
+    exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
     if not len(exchange_dates): return None
     data = []
     for exchange_date in exchange_dates:
@@ -522,7 +523,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
 
     # Remove all dates in the future
     sorted_country_codes = sorted([country_code1, country_code2])
-    exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
+    exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
     if not len(exchange_dates): return None
     data = []
     for exchange_date in exchange_dates:
