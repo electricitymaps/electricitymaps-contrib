@@ -170,7 +170,7 @@ def data_parser(formatted_data):
     Returns a DataFrame.
     """
 
-    hours = range(1,24) + [0] + [25, 26]
+    hours = list(range(1,24)) + [0] + [25, 26]
     dft = pd.DataFrame(formatted_data, index = hours)
 
     dft = dft.drop(dft.index[[-1,-2]])
