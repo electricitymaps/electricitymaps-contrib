@@ -132,10 +132,11 @@ def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=Non
     return fetch_exchange_by_bidding_zone(zones[0], zones[1], session)
 
 def _sum_of_exchanges(exchanges):
+    exchange_list = list(exchanges)
     return {
         'netFlow': sum(e['netFlow'] for e in exchanges),
-        'datetime': exchanges[0]['datetime'],
-        'source': exchanges[0]['source']
+        'datetime': exchange_list[0]['datetime'],
+        'source': exchange_list[0]['source']
     }
 
 def fetch_exchange(country_code1='DK', country_code2='NO', session=None):

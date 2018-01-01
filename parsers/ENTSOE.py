@@ -423,10 +423,10 @@ def fetch_production(country_code, session=None, now=None):
 
     # Remove all dates in the future
     production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = filter(lambda x: x <= arrow.now(), production_dates)
+    production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
     if not len(production_dates): return None
     # Only take fully observed elements
-    max_counts = max(map(lambda date: len(production_hashmap[date].keys()),
+    max_counts = max(map(lambda d: len(production_hashmap[d].keys()),
         production_dates))
     production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
         production_dates)
@@ -457,7 +457,7 @@ def fetch_production(country_code, session=None, now=None):
             'source': 'entsoe.eu'
         })
 
-    return filter(validate_production, data)
+    return list(filter(validate_production, data))
 
 def fetch_exchange(country_code1, country_code2, session=None, now=None):
     if not session: session = requests.session()
@@ -487,7 +487,7 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
 
     # Remove all dates in the future
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
+    exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
     if not len(exchange_dates): return None
     data = []
     for exchange_date in exchange_dates:
@@ -523,7 +523,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
 
     # Remove all dates in the future
     sorted_country_codes = sorted([country_code1, country_code2])
-    exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
+    exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
     if not len(exchange_dates): return None
     data = []
     for exchange_date in exchange_dates:

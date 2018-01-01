@@ -251,12 +251,13 @@ Head over to [http://localhost:8000/](http://localhost:8000/) and you should see
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
 ### Updating country capacities
-If you want to update or add production capacities for a country then head over to the [zones file](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) and make any changes needed.  The zones use ISO 3166-1 codes as identifiers, a list of which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes).
+If you want to update or add production capacities for a country then head over to the [zones file](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) and make any changes needed.
+The zones use ISO 3166-1 codes as identifiers, a list of which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes).
 
 ### Adding a new country
 It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
-A parser is a python script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
+A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
 ```python
 def fetch_production(country_code='FR', session=None):
@@ -301,7 +302,7 @@ pip install -r parsers/requirements.txt
 
 Then, you can run
 ```
-PYTHONPATH=. python mockserver/update_state.py <zone_name>
+PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
 ```
 
 from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This will fetch production and exchanges and assign it a random carbon intensity value. It should appear on the map as you refresh your local browser.
