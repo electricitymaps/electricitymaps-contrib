@@ -29,7 +29,8 @@
     },
     "rankings-panel": {
         "country-ranking": "Rankning",
-        "show-ranking": "Visa rankning"
+        "show-ranking": "Visa rankning",
+        "search": "Sök på region"
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
@@ -384,9 +385,10 @@
         "UA": "Ukraina",
         "UG": "Uganda",
         "UM": "Förenta staternas mindre öar i Oceanien och Västindien",
-        "US": "Amerikas förenta stater",
-        "US-CA": "Amerikas förenta stater (Kalifornien)",
-        "US-NY": "Amerikas förenta stater (New York)",
+        "US": "USA",
+        "US-CA": "USA (Kalifornien)",
+        "US-NEISO": "USA (New England)",
+        "US-NY": "USA (New York)",
         "UY": "Uruguay",
         "UZ": "Uzbekistan",
         "VA": "Vatikanstaten",
