@@ -8,7 +8,7 @@ exports.startLoading = (selector) => {
   stack[selector] = stack[selector] || [];
   if (!stack[selector].length) {
     d3.selectAll(selector)
-      .style('display', 'block')
+      .style('display', null)
       .transition()
       .style('opacity', 0.8);
   }
