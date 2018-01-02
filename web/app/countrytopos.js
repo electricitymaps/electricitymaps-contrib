@@ -1,4 +1,3 @@
-var d3 = require('d3');
 var topojson = require('topojson');
 
 var topos = require('./world.json');
@@ -168,7 +167,7 @@ exports.addCountryTopos = function(countries) {
     countries['ET'] = getCountry('ETH')
     countries['FK'] = getCountry('FLK')
     countries['FO'] = getCountry('FRO')
-    // countries['FJ'] = getCountry('FJI') // BUGGY
+    countries['FJ'] = getCountry('FJI')
     countries['FI'] = getCountry('FIN')
     // countries['FR'] = getCountry('FRA')
     countries['FR'] = getSubUnits(['FXX'])
