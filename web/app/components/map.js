@@ -97,13 +97,15 @@ class Map {
       // Here we need to set all styles
       this.paintData();
       this._setupMapColor();
-      this.mapLoadedHandlers.forEach(h => h(this));
     });
 
-    // setInterval(() => console.log(this.map.loaded()), 500);
-    this.map.on('dataloading', (e) => console.log('dataloading', e));
-    this.map.on('styledataloading', () => console.log('styledataloading'));
-    this.map.on('sourcedataloading', () => console.log('sourcedataloading'));
+    // Set a timer to detect when the map has finished loading
+    const loadingInterval = setInterval(() => {
+      if (this.map.loaded()) {
+        this.mapLoadedHandlers.forEach(h => h(this));
+        clearInterval(loadingInterval);
+      }
+    }, 100);
 
     // Add zoom and rotation controls to the map.
     this.map.addControl(new mapboxgl.NavigationControl());
