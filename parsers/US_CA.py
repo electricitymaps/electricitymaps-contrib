@@ -1,3 +1,4 @@
+from __future__ import print_function
 # The arrow library is used to handle datetimes
 import arrow
 # The pandas library is used to parse content through HTTP
@@ -90,5 +91,5 @@ def fetch_production(country_code='US-CA', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
+    print('fetch_production() ->')
+    print(fetch_production())

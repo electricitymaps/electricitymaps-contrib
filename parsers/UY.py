@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import arrow
 import dateutil, re
 import requests
@@ -17,7 +18,7 @@ MAP_GENERATION = {
   'Biomasa': 'biomass',
   'Térmica': 'unknown'
 }
-INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.iteritems()])
+INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 
 def parse_page(session):
     r = session or requests.session()
@@ -42,7 +43,7 @@ def parse_page(session):
         key = tds[0].find_all('b')
         # Go back one level up if the b tag is not there
         if not len(key): key = tds[0].find_all('font')
-        k = key[0].contents[0].encode('utf-8')
+        k = key[0].contents[0]
 
         value = tds[1].find_all('b')
         # Go back one level up if the b tag is not there
@@ -116,5 +117,5 @@ def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None):
 
 
 if __name__ == '__main__':
-    print fetch_production()
-    print fetch_exchange('UY', 'BR')
+    print(fetch_production())
+    print(fetch_exchange('UY', 'BR'))

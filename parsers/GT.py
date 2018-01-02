@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # The arrow library is used to handle datetimes
+from __future__ import print_function
 import arrow
 # The request library is used to fetch content through HTTP
 import requests
@@ -144,7 +145,7 @@ def fetch_consumption(country_code='GT', session=None):
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_consumption() ->'
-    print fetch_consumption()
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_consumption() ->')
+    print(fetch_consumption())

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
 import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
@@ -9,6 +10,16 @@ import numpy as np
 from operator import itemgetter
 import pandas as pd
 import requests
+
+try:
+    unicode         # Python 2
+except NameError:
+    unicode = str   # Python 3
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
 
 
 #This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
@@ -159,7 +170,7 @@ def data_parser(formatted_data):
     Returns a DataFrame.
     """
 
-    hours = range(1,24) + [0] + [25, 26]
+    hours = list(range(1,24)) + [0] + [25, 26]
     dft = pd.DataFrame(formatted_data, index = hours)
 
     dft = dft.drop(dft.index[[-1,-2]])
@@ -194,7 +205,7 @@ def thermal_production(df):
             if plant not in thermal_plants.keys():
                 unmapped.add(plant)
 
-        mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.iteritems()]
+        mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.items()]
 
         thermalDict = defaultdict(lambda: 0.0)
 
@@ -207,7 +218,7 @@ def thermal_production(df):
         therms.append(thermalDict)
 
     for plant in unmapped:
-        print '{} is missing from the DO plant mapping!'.format(plant)
+        print('{} is missing from the DO plant mapping!'.format(plant))
 
     return therms
 

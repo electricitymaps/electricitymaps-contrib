@@ -1,3 +1,4 @@
+from __future__ import print_function
 from requests import Session
 from re import search, findall, M, S, I, sub
 from arrow import utcnow, get
@@ -110,5 +111,5 @@ def fetch_consumption(country_code='IN-PB', session=None):
 
 if __name__ == '__main__':
     session = Session()
-    print fetch_production('IN-PB', session)
-    print fetch_consumption('IN-PB', session)
+    print(fetch_production('IN-PB', session))
+    print(fetch_consumption('IN-PB', session))

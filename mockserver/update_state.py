@@ -1,3 +1,4 @@
+from __future__ import print_function
 # This script should be run from the root directory
 import arrow, importlib, json, pprint, sys
 from random import random
@@ -21,7 +22,7 @@ for k in exchanges_config.keys():
     if zone_name in zones: exchange_parser_keys.append(k)
 
 # Import / run production parser
-print 'Finding and executing %s production parser %s..' % (zone_name, production_parser)
+print('Finding and executing %s production parser %s..' % (zone_name, production_parser))
 mod_name, fun_name = production_parser.split('.')
 mod = importlib.import_module('parsers.%s' % mod_name)
 production = getattr(mod, fun_name)(zone_name)
@@ -32,7 +33,7 @@ pp.pprint(production)
 exchanges = []
 for k in exchange_parser_keys:
     exchange_parser = exchanges_config[k]['parsers']['exchange']
-    print 'Finding and executing %s exchange parser %s..' % (k, exchange_parser)
+    print('Finding and executing %s exchange parser %s..' % (k, exchange_parser))
     mod_name, fun_name = exchange_parser.split('.')
     mod = importlib.import_module('parsers.%s' % mod_name)
     sorted_zone_names = sorted(k.split('->'))
@@ -42,7 +43,7 @@ for k in exchange_parser_keys:
     pp.pprint(exchange)
 
 # Load and update state
-print 'Updating and writing state..'
+print('Updating and writing state..')
 with open('mockserver/public/v3/state', 'r') as f:
     obj = json.load(f)['data']
     obj['countries'][zone_name] = {}
@@ -88,4 +89,4 @@ with open('mockserver/public/v3/state', 'r') as f:
     # Save
 with open('mockserver/public/v3/state', 'w') as f:
     json.dump({'data': obj}, f)
-print '..done'
+print('..done')

@@ -1,5 +1,6 @@
 # encoding=utf8
 
+from __future__ import print_function
 import arrow
 from bs4 import BeautifulSoup
 import requests
@@ -100,5 +101,5 @@ def fetch_production(country_code='BG', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
+    print('fetch_production() ->')
+    print(fetch_production())

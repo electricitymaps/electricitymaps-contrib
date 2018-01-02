@@ -1,3 +1,4 @@
+from __future__ import print_function
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow
 

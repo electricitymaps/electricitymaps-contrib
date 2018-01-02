@@ -1,3 +1,4 @@
+from __future__ import print_function
 import arrow
 from bs4 import BeautifulSoup
 import datetime
@@ -64,18 +65,18 @@ def fetch_production(country_code='CA-AB', session=None):
         'datetime': dt,
         'countryCode': country_code,
         'production': {
-            'coal': total_net_generation['COAL'],
-            'gas': total_net_generation['GAS'],
-            'hydro': total_net_generation['HYDRO'],
-            'wind': total_net_generation['WIND'],
-            'unknown': total_net_generation['OTHER']
+            'coal': float(total_net_generation['COAL']),
+            'gas': float(total_net_generation['GAS']),
+            'hydro': float(total_net_generation['HYDRO']),
+            'wind': float(total_net_generation['WIND']),
+            'unknown': float(total_net_generation['OTHER'])
         },
         'capacity': {
-            'coal': maximum_capability['COAL'],
-            'gas': maximum_capability['GAS'],
-            'hydro': maximum_capability['HYDRO'],
-            'wind': maximum_capability['WIND'],
-            'unknown': maximum_capability['OTHER']
+            'coal': float(maximum_capability['COAL']),
+            'gas': float(maximum_capability['GAS']),
+            'hydro': float(maximum_capability['HYDRO']),
+            'wind': float(maximum_capability['WIND']),
+            'unknown': float(maximum_capability['OTHER'])
         },
         'source': 'ets.aeso.ca',
     }
@@ -172,9 +173,9 @@ def isfloat(value):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_price() ->'
-    print fetch_price()
-    print 'fetch_exchange() ->'
-    print fetch_exchange()
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
+    print('fetch_exchange() ->')
+    print(fetch_exchange())

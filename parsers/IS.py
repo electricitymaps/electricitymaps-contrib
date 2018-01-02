@@ -1,3 +1,4 @@
+from __future__ import print_function
 import requests
 from datetime import datetime
 from collections import defaultdict
@@ -74,4 +75,4 @@ def fetch_production(country_code='IS', session=None):
     return data
 
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())
