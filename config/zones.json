@@ -521,16 +521,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 7546,
+      "biomass": 9501,
       "coal": 46336,
-      "gas": 29916,
+      "gas": 29731,
       "geothermal": 39,
       "hydro": 3945,
       "hydro storage": 6357,
-      "nuclear": 10800,
+      "nuclear": 9516,
       "oil": 4437,
       "solar": 40716,
-      "unknown": 4907,
+      "unknown": 3137,
       "wind": 49592
     },
     "parsers": {
