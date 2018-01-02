@@ -356,6 +356,8 @@ var modeOrder = [
 
 // Set up objects
 let exchangeLayer = null;
+LoadingService.startLoading('#loading');
+LoadingService.startLoading('#small-loading');
 var countryMap = new CountryMap('zones')
     .setCo2color(co2color)
     .onDragEnd(function() {
@@ -392,6 +394,8 @@ var countryMap = new CountryMap('zones')
             })
             .setData(Object.values(exchanges))
             .render();
+        LoadingService.stopLoading('#loading');
+        LoadingService.stopLoading('#small-loading');
     });
 const windLayer = new WindLayer('wind', countryMap);
 const solarLayer = new SolarLayer('solar', countryMap);
