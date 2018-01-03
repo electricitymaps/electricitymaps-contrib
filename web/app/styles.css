@@ -121,6 +121,10 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+#map-container *:focus {
+    /* Disable orange border on Android Chrome when :focus; */
+    outline-width: 0px;
+}
 #zones {
     width: 100%;
     height: 100%;
