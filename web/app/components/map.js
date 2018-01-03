@@ -97,6 +97,9 @@ class Map {
       // Here we need to set all styles
       this.paintData();
       this._setupMapColor();
+      // For some reason the mapboxgl-canvas element sometimes has
+      // the wrong size, so we resize it here just in case.
+      this.map.resize();
     });
 
     // Set a timer to detect when the map has finished loading
