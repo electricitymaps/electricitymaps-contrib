@@ -3,13 +3,14 @@ const d3 = Object.assign(
   require('d3-selection'),
   require('d3-scale'),
 );
+
 import {event as d3Event} from 'd3-selection';
 
 class ExchangeLayer {
   constructor(selectorId, map) {
     this.exchangeAnimationDurationScale = d3.scaleLinear()
       .domain([500, 5000])
-      .range([1.5, 0])
+      .rangeRound([0, 2])
       .clamp(true);
 
     this.rootNode = document.getElementById(selectorId);
@@ -129,9 +130,9 @@ class ExchangeLayer {
       .on('click', function (d, i) { exchangeClickHandler.call(this, d, i); });
     newArrows.append('img')
       .attr('class', 'base');
-    newArrows.append('img')
-      .attr('class', 'highlight')
-      .attr('src', 'images/arrow-highlights/50.png');
+    // newArrows.append('img')
+    //   .attr('class', 'highlight')
+    //   .attr('src', 'images/arrow-highlights/50.png');
 
     const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
     const maxCarbonIntensity = 800; // we only have arrows up to a certain point
@@ -156,9 +157,6 @@ class ExchangeLayer {
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
         return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg) scale(0.2)`;
       });
-    merged.select('img.highlight')
-      .style('animation-duration', d =>
-        this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0)) + 's');
     merged.select('img.base')
       .attr('src', (d) => {
         let intensity = Math.min(
@@ -167,7 +165,8 @@ class ExchangeLayer {
         if (d.co2intensity == null || Number.isNaN(intensity)) {
           intensity = 'nan';
         }
-        return `images/arrow-${intensity}-outline.png`;
+        const duration = +this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0));
+        return `images/arrow-${intensity}-animated-${duration}.gif`;
       });
 
     return this;
