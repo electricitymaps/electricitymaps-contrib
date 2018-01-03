@@ -7,7 +7,7 @@ stages:
       - type: checkout
       - type: shell
         name: Set Python version
-        command: pyenv global 3.5.2
+        command: pyenv global 3.6.2
       - type: shell
         name: Upgrade pip
         command: pip install --upgrade pip
