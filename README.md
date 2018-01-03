@@ -19,18 +19,18 @@ You can also see a list of missing data displayed as warnings in the developer c
 
 Check the [contributing](#contribute) section for more details.
 
-##Frequently asked questions
+## Frequently asked questions
 
-**How do you define real time data?**
+**How do you define real time data?**  
 Real time data is defined as a data source that updates every 2 hours or better.  It should provide a breakdown by generation type.  Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
-**Is non real time data useful?**
+**Is non real time data useful?**  
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's a good data source that lags several days behind you can still build a parser for it.
 
-**Can scheduled generation data be used?**
+**Can scheduled generation data be used?**  
 The electricitymap doesn't use scheduled or planned generation data. This is to avoid introducing extra uncertainty into emissions calculations.
 
-**Can areas other than countries be shown?**
+**Can areas other than countries be shown?**  
 Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
 
 ## Data sources
