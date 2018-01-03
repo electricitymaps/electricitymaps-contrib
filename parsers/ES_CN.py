@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
 from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
+from reescraper import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
+                        LaPalma, Tenerife)
 from parsers.lib.exceptions import ParserException
 
 
@@ -13,7 +16,7 @@ def fetch_islands_data(country_code, session):
     if not el_hierro_data:
         raise ParserException(country_code, "ElHierro not response")
     else:
-        data.update({'el_hierro':  el_hierro_data})
+        data.update({'el_hierro': el_hierro_data})
 
     gran_canaria_data = GranCanaria(session).get_all()
     if not gran_canaria_data:
@@ -61,7 +64,7 @@ def fetch_consumption(country_code='ES-CN', session=None):
         consumption = response.demand
         consumption_data.update({consumption_datetime: consumption})
 
-    for island, island_data in islands_data.iteritems():
+    for island, island_data in islands_data.items():
         if not island == 'el_hierro':
             for response in island_data:
                 consumption_datetime = get(response.timestamp).datetime
@@ -72,7 +75,7 @@ def fetch_consumption(country_code='ES-CN', session=None):
 
     data = []
 
-    for datetime, demand in consumption_data.iteritems():
+    for datetime, demand in consumption_data.items():
         response_data = {
             'countryCode': country_code,
             'datetime': datetime,
@@ -106,7 +109,7 @@ def fetch_production(country_code='ES-CN', session=None):
             }
             production_data.update({production_datetime: production})
 
-    for island, island_data in islands_data.iteritems():
+    for island, island_data in islands_data.items():
         if not island == 'el_hierro':
             for response in island_data:
                 production_datetime = get(response.timestamp).datetime
@@ -127,7 +130,7 @@ def fetch_production(country_code='ES-CN', session=None):
 
     data = []
 
-    for datetime, production in production_data.iteritems():
+    for datetime, production in production_data.items():
         response_data = {
             'countryCode': country_code,
             'datetime': datetime,
@@ -156,5 +159,5 @@ def fetch_production(country_code='ES-CN', session=None):
 
 if __name__ == '__main__':
     session = Session
-    print fetch_consumption('ES-CN', session)
-    print fetch_production('ES-CN', session)
+    print(fetch_consumption('ES-CN', session))
+    print(fetch_production('ES-CN', session))

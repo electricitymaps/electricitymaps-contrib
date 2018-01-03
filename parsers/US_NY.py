@@ -1,7 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Real time parser for the state of New York."""
-
 import arrow
 from collections import defaultdict
 from operator import itemgetter
@@ -59,7 +58,7 @@ def data_parser(df):
 
     mapped_generation = []
     for item in ordered:
-        mapped_types = [(mapping.get(k, k), v) for k, v in item.iteritems()]
+        mapped_types = [(mapping.get(k, k), v) for k, v in item.items()]
 
         #Need to avoid multiple 'unknown' keys overwriting.
         complete_production = defaultdict(lambda: 0.0)

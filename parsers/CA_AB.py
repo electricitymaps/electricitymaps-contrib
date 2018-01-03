@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import arrow
 from bs4 import BeautifulSoup
 import datetime
@@ -5,9 +7,9 @@ import re
 import requests
 import pandas as pd
 from pytz import timezone
-import time
 
 ab_timezone = 'Canada/Mountain'
+
 
 def convert_time_str(ts):
     """Takes a time string and converts into an aware datetime object."""
@@ -17,6 +19,7 @@ def convert_time_str(ts):
     dt_aware = localtz.localize(dt_naive)
 
     return dt_aware
+
 
 def fetch_production(country_code='CA-AB', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -52,7 +55,7 @@ def fetch_production(country_code='CA-AB', session=None):
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    findtime = soup.find('td', text = re.compile('Last Update')).get_text()
+    findtime = soup.find('td', text=re.compile('Last Update')).get_text()
     time_string = findtime.split(':', 1)[1]
     dt = convert_time_str(time_string)
 
@@ -64,18 +67,18 @@ def fetch_production(country_code='CA-AB', session=None):
         'datetime': dt,
         'countryCode': country_code,
         'production': {
-            'coal': total_net_generation['COAL'],
-            'gas': total_net_generation['GAS'],
-            'hydro': total_net_generation['HYDRO'],
-            'wind': total_net_generation['WIND'],
-            'unknown': total_net_generation['OTHER']
+            'coal': float(total_net_generation['COAL']),
+            'gas': float(total_net_generation['GAS']),
+            'hydro': float(total_net_generation['HYDRO']),
+            'wind': float(total_net_generation['WIND']),
+            'unknown': float(total_net_generation['OTHER'])
         },
         'capacity': {
-            'coal': maximum_capability['COAL'],
-            'gas': maximum_capability['GAS'],
-            'hydro': maximum_capability['HYDRO'],
-            'wind': maximum_capability['WIND'],
-            'unknown': maximum_capability['OTHER']
+            'coal': float(maximum_capability['COAL']),
+            'gas': float(maximum_capability['GAS']),
+            'hydro': float(maximum_capability['HYDRO']),
+            'wind': float(maximum_capability['WIND']),
+            'unknown': float(maximum_capability['OTHER'])
         },
         'source': 'ets.aeso.ca',
     }
@@ -172,9 +175,9 @@ def isfloat(value):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_price() ->'
-    print fetch_price()
-    print 'fetch_exchange() ->'
-    print fetch_exchange()
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
+    print('fetch_exchange() ->')
+    print(fetch_exchange())

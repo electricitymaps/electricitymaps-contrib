@@ -1,7 +1,8 @@
+#!/usr/bin/env python3
+
 import requests
 from datetime import datetime
 from collections import defaultdict
-import xml.etree.ElementTree as ET
 import json
 
 STATIONS = {
@@ -34,6 +35,7 @@ STATIONS = {
     'SVA': 'geothermal',
 }
 
+
 def fetch_production(country_code='IS', session=None):
     # Disabled for now due to https://github.com/corradio/electricitymap/issues/140
     return
@@ -47,10 +49,10 @@ def fetch_production(country_code='IS', session=None):
     # Set zero values for energy sources Iceland doesn't use at all
     # Iceland does use some wind and gas but we don't have data for those
     production = defaultdict(float)
-    production["solar"] = 0;
-    production["biomass"] = 0;
-    production["nuclear"] = 0;
-    production["coal"] = 0;
+    production["solar"] = 0
+    production["biomass"] = 0
+    production["nuclear"] = 0
+    production["coal"] = 0
 
     # Calculate production values for each power station
     # The Landsnet API includes measurements for non-generating
@@ -58,7 +60,7 @@ def fetch_production(country_code='IS', session=None):
     for key, value in STATIONS.items():
         items = [item for item in json_obj if item["substation"] == key and item["MW"] >= 0]
         mw = sum(item['MW'] for item in items)
-        production[value] = production[value] + mw;
+        production[value] = production[value] + mw
 
     # Get datetime for last update (e.g. 2017-02-02T14:35:00)
     totalpowerflow = next(item for item in json_obj if item["key"] == "TOTAL_POWER_FLOW")
@@ -73,5 +75,6 @@ def fetch_production(country_code='IS', session=None):
     }
     return data
 
+
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

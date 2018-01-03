@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM python:3.6
 WORKDIR /home
 EXPOSE 9000
 ADD server.py server.py

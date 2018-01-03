@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from requests import Session
 from parsers import countrycode
 from parsers import web
@@ -70,6 +72,5 @@ def fetch_consumption(country_code='IN-AP', session=None):
 
 if __name__ == '__main__':
     session = Session()
-    print fetch_production('IN-AP', session)
-    print fetch_consumption('IN-AP', session)
-
+    print(fetch_production('IN-AP', session))
+    print(fetch_consumption('IN-AP', session))

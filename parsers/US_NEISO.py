@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+
 
 """Real time parser for the New England ISO (NEISO) area."""
-
 import arrow
 from collections import defaultdict
 import requests
@@ -77,7 +77,7 @@ def data_processer(raw_data):
         dt = timestring_converter(time_string)
 
         production = defaultdict(lambda: 0.0)
-        for k, v in datapoint.iteritems():
+        for k, v in datapoint.items():
             #Need to avoid duplicate keys overwriting.
             production[generation_mapping[k]] += v
 

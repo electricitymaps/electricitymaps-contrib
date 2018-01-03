@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from requests import Session
 from parsers.lib import web
 from parsers.lib import countrycode
@@ -86,5 +88,5 @@ def read_value(row):
 
 if __name__ == '__main__':
     session = Session()
-    print fetch_production('IN-DL', session)
-    print fetch_consumption('IN-DL', session)
+    print(fetch_production('IN-DL', session))
+    print(fetch_consumption('IN-DL', session))

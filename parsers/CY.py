@@ -1,10 +1,17 @@
+#!/usr/bin/env python3
+
 import arrow
 import requests
 from bs4 import BeautifulSoup
 import re
 
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
 
-def fetch_total_and_wind_production(session = None):
+
+def fetch_total_and_wind_production(session=None):
     """Returns an array that contains [time, total production, wind production] like below
         ['00:00', 689.0, 18.0],
         ['00:15', 680.0, 17.0],
@@ -18,11 +25,11 @@ def fetch_total_and_wind_production(session = None):
 
     # first we ensure the column headers are what we expect, otherwise exception
     header = soup.find_all('tr')[0].find_all('th')
-    if header[0].string != 'Time' or \
-        header[1].string != 'Generation Forecast' or \
-        header[2].string != 'Actual Generation (MW)' or \
-        header[3].string != 'Total Available Generation Capacity' or \
-        header[4].string != 'Wind Farms Generation':
+    if (header[0].string != 'Time' or
+            header[1].string != 'Generation Forecast' or
+            header[2].string != 'Actual Generation (MW)' or
+            header[3].string != 'Total Available Generation Capacity' or
+            header[4].string != 'Wind Farms Generation'):
         raise Exception('Mapping for Cyprus has changed')
 
     # now we can parse the table to find all the lines that contain actual and wind values
@@ -41,7 +48,7 @@ def fetch_total_and_wind_production(session = None):
     return res
 
 
-def fetch_solar_production_estimation(session = None):
+def fetch_solar_production_estimation(session=None):
     """
     returns an array that contains [time, solar], like the following
         ['0:0', 0.0]
@@ -71,7 +78,7 @@ def fetch_solar_production_estimation(session = None):
             # ['2', '15', '00', '', '']
             for point in data_pts:
                 try:
-                    time = str(point[0])+':'+str(point[1])
+                    time = str(point[0]) + ':' + str(point[1])
                     solar = float(point[4])
                     res.append([time, solar])
                 except (TypeError, ValueError):
@@ -175,11 +182,12 @@ def fetch_production(country_code='CY', session=None):
 
     return sorted(data, key=lambda point: point['datetime'])
 
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
+    print('fetch_production() ->')
     # print fetch_production()
     res = fetch_production()
     for r in res:
-        print r
+        print(r)

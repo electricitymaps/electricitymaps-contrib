@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 import arrow
 import requests
@@ -11,19 +10,25 @@ MAP_GENERATION = {
     'Diesel': 'oil',
     'Vind': 'wind'
 }
+
+
 def getDataKey(tag):
     return MAP_GENERATION.get(tag, None)
 
+
 def validate_datapoint(d):
-    if d['production'].get('oil', None) is None: return None
-    else: return d
+    if d['production'].get('oil', None) is None:
+        return None
+    else:
+        return d
+
 
 def fetch_production(country_code='FO', session=None):
     r = session or requests.session()
     url = 'https://w3.sev.fo/hagtol/xml/xkiefjSDKFjeijgjdkjf3847tgfjlkfdgnlsnfvm.xml'
     response = r.get(url)
     obj = ET.fromstring(response.content)[0]
-    
+
     data = {
         'countryCode': country_code,
         'capacity': {},
@@ -53,7 +58,8 @@ def fetch_production(country_code='FO', session=None):
             # E stands for Energy
             tag = item.tag.replace('Sev_E', '')
             key = getDataKey(tag)
-            if not key: continue
+            if not key:
+                continue
             # Power (MW)
             value = float(item.text.replace(',', '.'))
             data['production'][key] = data['production'].get(key, 0) + value
@@ -62,12 +68,14 @@ def fetch_production(country_code='FO', session=None):
             pass
 
     # At least 10MW should be produced
-    if sum([v for k, v in data['production'].iteritems()]) < 10: return None
+    if sum([v for k, v in data['production'].items()]) < 10:
+        return None
     # The hydro key should be defined
-    if data['production'].get('hydro', None) is None: return None
+    if data['production'].get('hydro', None) is None:
+        return None
 
     return data
 
 
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

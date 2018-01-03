@@ -1,10 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-#This parser gets all real time interconnection flows from the
-#Central American Electrical Interconnection System (SIEPAC).
+# This parser gets all real time interconnection flows from the
+# Central American Electrical Interconnection System (SIEPAC).
 
 import arrow
-import numpy as np
 import pandas as pd
 
 url = 'http://www.enteoperador.org/newsite/flash/data.csv'
@@ -27,15 +26,13 @@ def connections(df):
     Returns a dictionary.
     """
 
-    interconnections = {
-                        'GT->MX': df.iloc[0]['MXGU'],
+    interconnections = {'GT->MX': df.iloc[0]['MXGU'],
                         'GT->SV': df.iloc[0]['GUES'],
                         'GT->HN': df.iloc[0]['GUHO'],
                         'HN->SV': df.iloc[0]['ESHO'],
                         'HN->NI': df.iloc[0]['HONI'],
                         'CR->NI': df.iloc[0]['NICR'],
-                        'CR->PA': df.iloc[0]['CRPA']
-                        }
+                        'CR->PA': df.iloc[0]['CRPA']}
 
     return interconnections
 
@@ -65,14 +62,14 @@ def flow_logic(net_production, interconnections):
     Returns a dictionary.
     """
 
-    #Each country is modeled as a node with flows going either in or out of it.
-    #Importing is given a negative flow while exporting is positive.
+    # Each country is modeled as a node with flows going either in or out of it.
+    # Importing is given a negative flow while exporting is positive.
 
     PA = {'CR': 0}
     CR = {'PA': 0, 'NI': 0}
     NI = {'CR': 0, 'HN': 0}
     HN = {'GT': 0, 'SV': 0, 'NI': 0}
-    SV = {'GT': 0, 'HN': 0}
+    SV = {'GT': 0, 'HN': 0}  # TODO: SV is assigned to but never used
     GT = {'MX': 0, 'HN': 0, 'SV': 0}
 
     def plusminus(value):
@@ -97,52 +94,50 @@ def flow_logic(net_production, interconnections):
         -1 -> 1
         """
 
-        newvalue = (-1)*value
+        newvalue = (-1) * value
 
         return newvalue
 
-    flows = {
-             'HN->NI': 0.0,
+    flows = {'HN->NI': 0.0,
              'CR->NI': 0.0,
              'CR->PA': 0.0,
              'GT->HN': 0.0,
              'GT->MX': 0.0,
              'GT->SV': 0.0,
-             'HN->SV': 0.0
-             }
+             'HN->SV': 0.0}
 
-    #First we determine whether Mexico is importing or exporting using totals for the SIEPAC system.
+    # First we determine whether Mexico is importing or exporting using totals for the SIEPAC system.
 
     if net_production['MX'] < 0:
-        #exporting
+        # exporting
         GT['MX'] = -1
     else:
         GT['MX'] = 1
 
-    #We then find the direction of the PA by exploiting the fact that it only has one interconnection.
+    # We then find the direction of the PA by exploiting the fact that it only has one interconnection.
 
     if net_production['PA'] > 0:
-        #PA can only export to CR
+        # PA can only export to CR
         PA['CR'] = 1
         CR['PA'] = -1
     else:
-        #PA importing from CR
+        # PA importing from CR
         PA['CR'] = -1
         CR['PA'] = 1
 
-    #Next we can find CR and NI flows using their net productions and process of elimination.
+    # Next we can find CR and NI flows using their net productions and process of elimination.
 
-    PAN = interconnections['CR->PA']*CR['PA']
+    PAN = interconnections['CR->PA'] * CR['PA']
 
-    CR['NI'] = plusminus((net_production['CR']-PAN)/interconnections['CR->NI'])
+    CR['NI'] = plusminus((net_production['CR'] - PAN) / interconnections['CR->NI'])
     NI['CR'] = flipsign(CR['NI'])
-    NIC = interconnections['CR->NI']*NI['CR']
+    NIC = interconnections['CR->NI'] * NI['CR']
 
-    NI['HN'] = plusminus((net_production['NI']-NIC)/interconnections['HN->NI'])
+    NI['HN'] = plusminus((net_production['NI'] - NIC) / interconnections['HN->NI'])
     HN['NI'] = flipsign(NI['HN'])
 
-    #Now we use 3 simultaneous equations to find the remaining flows.  We can use the fact that
-    #several flows are already known to our advantage.
+    # Now we use 3 simultaneous equations to find the remaining flows.  We can use the fact that
+    # several flows are already known to our advantage.
 
     # a = interconnections['GT->SV']
     # b = interconnections['HN->SV']
@@ -164,14 +159,14 @@ def flow_logic(net_production, interconnections):
     # GT['HN'] = plusminus(solution[2])
     # HN['GT'] = flipsign(GT['HN'])
 
-    #Flows commented out are disabled until the maths behind determining their direction can be proved satisfactorily.
+    # Flows commented out are disabled until the maths behind determining their direction can be proved satisfactorily.
     flows['HN->NI'] = HN['NI']
     flows['CR->NI'] = CR['NI']
     flows['CR->PA'] = CR['PA']
-    #flows['GT->HN'] = GT['HN']
+    # flows['GT->HN'] = GT['HN']
     flows['GT->MX'] = GT['MX']
-    #flows['GT->SV'] = GT['SV']
-    #flows['HN->SV'] = SV['HN']
+    # flows['GT->SV'] = GT['SV']
+    # flows['HN->SV'] = SV['HN']
 
     return flows
 
@@ -182,7 +177,7 @@ def net_flow(interconnections, flows):
     Returns a dictionary.
     """
 
-    netflow = {k: interconnections[k]*flows[k] for k in interconnections}
+    netflow = {k: interconnections[k] * flows[k] for k in interconnections}
 
     return netflow
 
@@ -215,21 +210,21 @@ def fetch_exchange(country_code1, country_code2, session=None):
     else:
         raise NotImplementedError('This exchange is not implemented.')
 
-    exchange.update(sortedCountryCodes = zones,
-                    datetime = dt.datetime,
-                    source = 'enteoperador.org')
+    exchange.update(sortedCountryCodes=zones,
+                    datetime=dt.datetime,
+                    source='enteoperador.org')
 
     return exchange
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_exchange(CR, PA) ->')
-    print fetch_exchange('CR', 'PA')
+    print(fetch_exchange('CR', 'PA'))
     print('fetch_exchange(CR, NI) ->')
-    print fetch_exchange('CR', 'NI')
+    print(fetch_exchange('CR', 'NI'))
     print('fetch_exchange(HN, NI) ->')
-    print fetch_exchange('HN', 'NI')
+    print(fetch_exchange('HN', 'NI'))
     print('fetch_exchange(GT, MX) ->')
-    print fetch_exchange('GT', 'MX')
+    print(fetch_exchange('GT', 'MX'))

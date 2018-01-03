@@ -1,19 +1,28 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
-import itertools
 from math import isnan
 import numpy as np
 from operator import itemgetter
 import pandas as pd
 import requests
 
+try:
+    unicode         # Python 2
+except NameError:
+    unicode = str   # Python 3
 
-#This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
-#The data is in MWh but since it is updated hourly we can view it as MW.
-#Solar generation has no data available currently but multiple projects are planned/under construction.
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
+
+# This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
+# The data is in MWh but since it is updated hourly we can view it as MW.
+# Solar generation has no data available currently but multiple projects are planned/under construction.
 
 url = 'http://184.168.74.190:81/ReportesGraficos/ReportePostdespacho.aspx'
 
@@ -24,9 +33,9 @@ total_mapping = {
                 'Total Generado': 'Generated'
                 }
 
-#Power plant types
-#http://www.sie.gob.do/images/Estadisticas/MEM/GeneracionDiariaEnero2017/
-#Reporte_diario_de_generacion_31_enero_2017_merged2.pdf
+# Power plant types
+# http://www.sie.gob.do/images/Estadisticas/MEM/GeneracionDiariaEnero2017/
+# Reporte_diario_de_generacion_31_enero_2017_merged2.pdf
 
 thermal_plants = {
                  u'AES ANDRES': 'gas',
@@ -73,7 +82,7 @@ thermal_plants = {
                  }
 
 
-def get_data(session = None):
+def get_data(session=None):
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in unicode string format.
@@ -113,16 +122,16 @@ def chunker(big_lst):
     Returns a dictionary.
     """
 
-    chunks = [big_lst[x:x+27] for x in xrange(0, len(big_lst), 27)]
+    chunks = [big_lst[x:x + 27] for x in xrange(0, len(big_lst), 27)]
 
-    #Remove the list if it contains no data.
+    # Remove the list if it contains no data.
     for chunk in chunks:
-        if any(chunk) == True:
+        if any(chunk):
             continue
         else:
             chunks.remove(chunk)
 
-    chunked_list = {words[0]:words[1:] for words in chunks}
+    chunked_list = {words[0]: words[1:] for words in chunks}
 
     return chunked_list
 
@@ -137,17 +146,17 @@ def data_formatter(data):
     find_totals_index = data.index(u'Total T\xe9rmico')
     find_totals_end = data.index(u'Total Programado')
 
-    ufthermal = data[find_thermal_index+3:find_totals_index-59]
+    ufthermal = data[find_thermal_index + 3:find_totals_index - 59]
     total_data = data[find_totals_index:find_totals_end]
 
-    #Remove all company names.
+    # Remove all company names.
     for val in ufthermal:
         if ':' in val:
             i = ufthermal.index(val)
-            del ufthermal[i:i+3]
+            del ufthermal[i:i + 3]
 
     formatted_thermal = chunker([floater(item) for item in ufthermal])
-    mapped_totals = [total_mapping.get(x,x) for x in total_data]
+    mapped_totals = [total_mapping.get(x, x) for x in total_data]
     formatted_totals = chunker([floater(item) for item in mapped_totals])
 
     return {'totals': formatted_totals, 'thermal': formatted_thermal}
@@ -159,12 +168,12 @@ def data_parser(formatted_data):
     Returns a DataFrame.
     """
 
-    hours = range(1,24) + [0] + [25, 26]
-    dft = pd.DataFrame(formatted_data, index = hours)
+    hours = list(range(1, 24)) + [0] + [25, 26]
+    dft = pd.DataFrame(formatted_data, index=hours)
 
-    dft = dft.drop(dft.index[[-1,-2]])
+    dft = dft.drop(dft.index[[-1, -2]])
     dft = dft.replace(u'', np.nan)
-    dft = dft.dropna(how = 'all')
+    dft = dft.dropna(how='all')
 
     return dft
 
@@ -179,10 +188,10 @@ def thermal_production(df):
     therms = []
     unmapped = set()
     for hour in df.index.values:
-        dt=hour
+        dt = hour
         currentt = df.loc[[hour]]
 
-        #Create current plant output.
+        # Create current plant output.
         tp = {}
         for item in list(df):
             v = currentt.iloc[0][item]
@@ -194,12 +203,12 @@ def thermal_production(df):
             if plant not in thermal_plants.keys():
                 unmapped.add(plant)
 
-        mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.iteritems()]
+        mapped_plants = [(thermal_plants.get(plant, 'unknown'), val) for plant, val in current_plants.items()]
 
         thermalDict = defaultdict(lambda: 0.0)
 
-        #Sum values for duplicate keys.
-        for key,val in mapped_plants:
+        # Sum values for duplicate keys.
+        for key, val in mapped_plants:
             thermalDict[key] += val
 
         thermalDict['datetime'] = dt
@@ -207,7 +216,7 @@ def thermal_production(df):
         therms.append(thermalDict)
 
     for plant in unmapped:
-        print '{} is missing from the DO plant mapping!'.format(plant)
+        print('{} is missing from the DO plant mapping!'.format(plant))
 
     return therms
 
@@ -219,16 +228,17 @@ def total_production(df):
     """
 
     vals = []
-    #The Dominican Republic does not observe daylight savings time.
+    # The Dominican Republic does not observe daylight savings time.
     for hour in df.index.values:
-        dt=hour
+        dt = hour
         current = df.loc[[hour]]
         hydro = current.iloc[0]['Hydro']
         wind = current.iloc[0]['Wind']
-        if wind > -10: wind = max(wind, 0)
+        if wind > -10:
+            wind = max(wind, 0)
 
-        #Wind and hydro totals do not always update exactly on the new hour.
-        #In this case we set them to None because they are unknown rather than zero.
+        # Wind and hydro totals do not always update exactly on the new hour.
+        # In this case we set them to None because they are unknown rather than zero.
         if isnan(wind):
             wind = None
         if isnan(hydro):
@@ -266,7 +276,7 @@ def merge_production(thermal, total):
     return final
 
 
-def fetch_production(country_code = 'DO', session = None):
+def fetch_production(country_code='DO', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -295,7 +305,7 @@ def fetch_production(country_code = 'DO', session = None):
     }
     """
 
-    dat = data_formatter(get_data(session = None))
+    dat = data_formatter(get_data(session=None))
     tot = data_parser(dat['totals'])
     th = data_parser(dat['thermal'])
     thermal = thermal_production(th)
@@ -329,7 +339,7 @@ def fetch_production(country_code = 'DO', session = None):
     return production_mix_by_hour
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')

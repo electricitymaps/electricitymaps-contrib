@@ -1,11 +1,8 @@
+#!/usr/bin/env python3
 # The arrow library is used to handle datetimes
 import arrow
 # The pandas library is used to parse content through HTTP
 import pandas
-# The request library is used to fetch content through HTTP
-import requests
-# The BeautifulSoup library is used to parse HTML
-from bs4 import BeautifulSoup
 
 def fetch_production(country_code='US-CA', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -90,5 +87,5 @@ def fetch_production(country_code='US-CA', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
+    print('fetch_production() ->')
+    print(fetch_production())
