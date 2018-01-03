@@ -12,7 +12,7 @@ class Test_IN_AP(unittest.TestCase):
         self.adapter = Adapter()
         self.session.mount('http://', self.adapter)
         response_text = resource_string("parsers.test.mocks", "IN_AP.html")
-        self.adapter.register_uri(ANY, ANY, text=response_text)
+        self.adapter.register_uri(ANY, ANY, text=str(response_text))
 
     def test_fetch_production(self):
         try:

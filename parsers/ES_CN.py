@@ -1,55 +1,89 @@
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
 from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
+from reescraper import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
+                        LaPalma, Tenerife)
 from parsers.lib.exceptions import ParserException
+
+
+def fetch_islands_data(country_code, session):
+    data = {}
+
+    el_hierro_data = ElHierro(session).get_all()
+    if not el_hierro_data:
+        raise ParserException(country_code, "ElHierro not response")
+    else:
+        data.update({'el_hierro': el_hierro_data})
+
+    gran_canaria_data = GranCanaria(session).get_all()
+    if not gran_canaria_data:
+        raise ParserException(country_code, "GranCanaria not response")
+    else:
+        data.update({'gran_canaria': gran_canaria_data})
+
+    gomera_data = Gomera(session).get_all()
+    if not gomera_data:
+        raise ParserException(country_code, "Gomera not response")
+    else:
+        data.update({'gomera': gomera_data})
+
+    lanzarote_fuerteventura_data = LanzaroteFuerteventura(session).get_all()
+    if not lanzarote_fuerteventura_data:
+        raise ParserException(country_code, "LanzaroteFuerteventura not response")
+    else:
+        data.update({'lanzarote_fuerteventura': lanzarote_fuerteventura_data})
+
+    la_palma_data = LaPalma(session).get_all()
+    if not la_palma_data:
+        raise ParserException(country_code, "LaPalma not response")
+    else:
+        data.update({'la_palma': la_palma_data})
+
+    tenerife_data = Tenerife(session).get_all()
+    if not tenerife_data:
+        raise ParserException(country_code, "Tenerife not response")
+    else:
+        data.update({'tenerife': tenerife_data})
+
+    return data
 
 
 def fetch_consumption(country_code='ES-CN', session=None):
     ses = session or Session()
 
-    elhierro = ElHierro(ses).get()
-    if not elhierro:
-        raise ParserException("ES-CN", "ElHierro not response")
+    islands_data = fetch_islands_data(country_code, ses)
 
-    granacanaria = GranCanaria(ses).get()
-    if not granacanaria:
-        raise ParserException("ES-CN", "GranCanaria not response")
+    consumption_data = {}
 
-    gomera = Gomera(ses).get()
-    if not gomera:
-        raise ParserException("ES-CN", "Gomera not response")
+    el_hierro_island_data = islands_data['el_hierro']
+    for response in el_hierro_island_data:
+        consumption_datetime = get(response.timestamp).datetime
+        consumption = response.demand
+        consumption_data.update({consumption_datetime: consumption})
 
-    lanzarotefuerteventura = LanzaroteFuerteventura(ses).get()
-    if not lanzarotefuerteventura:
-        raise ParserException("ES-CN", "LanzaroteFuerteventura not response")
+    for island, island_data in islands_data.items():
+        if not island == 'el_hierro':
+            for response in island_data:
+                consumption_datetime = get(response.timestamp).datetime
+                consumption = response.demand
+                if consumption_datetime in consumption_data:
+                    consumption = consumption_data[consumption_datetime] + consumption
+                    consumption_data.update({consumption_datetime: consumption})
 
-    palma = LaPalma(ses).get()
-    if not palma:
-        raise ParserException("ES-CN", "LaPalma not response")
+    data = []
 
-    tenerife = Tenerife(ses).get()
-    if not tenerife:
-        raise ParserException("ES-CN", "Tenerife not response")
+    for datetime, demand in consumption_data.items():
+        response_data = {
+            'countryCode': country_code,
+            'datetime': datetime,
+            'consumption': round(demand, 2),
+            'source': 'demanda.ree.es'
+        }
 
-    ## Compare timestamps
-    ## Raise ParserException if timestamps aren't equals
-    if elhierro.timestamp != granacanaria.timestamp \
-        and elhierro.timestamp != gomera.timestamp \
-        and elhierro.timestamp != lanzarotefuerteventura.timestamp \
-        and elhierro.timestamp != palma.timestamp \
-        and elhierro.timestamp != tenerife.timestamp:
-        raise ParserException("ES-CN", "Response timestamps aren't equals")
-
-    demand = round(elhierro.demand + granacanaria.demand + gomera.demand + lanzarotefuerteventura.demand + palma.demand + tenerife.demand, 2)
-
-    data = {
-        'countryCode': country_code,
-        'datetime': get(elhierro.timestamp).datetime,
-        'consumption': demand,
-        'source': 'demanda.ree.es'
-    }
+        data.append(response_data)
 
     return data
 
@@ -57,95 +91,73 @@ def fetch_consumption(country_code='ES-CN', session=None):
 def fetch_production(country_code='ES-CN', session=None):
     ses = session or Session()
 
-    elhierro = ElHierro(ses).get()
-    if not elhierro:
-        raise ParserException("ES-CN", "ElHierro not response")
+    islands_data = fetch_islands_data(country_code, ses)
 
-    granacanaria = GranCanaria(ses).get()
-    if not granacanaria:
-        raise ParserException("ES-CN", "GranCanaria not response")
+    production_data = {}
 
-    gomera = Gomera(ses).get()
-    if not gomera:
-        raise ParserException("ES-CN", "Gomera not response")
+    el_hierro_island_data = islands_data['el_hierro']
+    for response in el_hierro_island_data:
+        if response.production() > 0:
+            production_datetime = get(response.timestamp).datetime
+            production = {
+                'gas': response.gas + response.combined,
+                'oil': response.vapor + response.diesel,
+                'solar': response.solar,
+                'wind': response.wind,
+                'hydro': 0.0,
+                'storage': -response.hydraulic
+            }
+            production_data.update({production_datetime: production})
 
-    lanzarotefuerteventura = LanzaroteFuerteventura(ses).get()
-    if not lanzarotefuerteventura:
-        raise ParserException("ES-CN", "LanzaroteFuerteventura not response")
+    for island, island_data in islands_data.items():
+        if not island == 'el_hierro':
+            for response in island_data:
+                production_datetime = get(response.timestamp).datetime
+                if production_datetime in production_data:
+                    if response.production() <= 0:
+                        production_data.pop(production_datetime, None)
+                    else:
+                        production = production_data[production_datetime]
+                        production = {
+                            'gas': production['gas'] + response.gas + response.combined,
+                            'oil': production['oil'] + response.vapor + response.diesel,
+                            'solar': production['solar'] + response.solar,
+                            'wind': production['wind'] + response.wind,
+                            'hydro': production['hydro'] + response.hydraulic,
+                            'storage': production['storage']
+                        }
+                        production_data.update({production_datetime: production})
 
-    palma = LaPalma(ses).get()
-    if not palma:
-        raise ParserException("ES-CN", "LaPalma not response")
+    data = []
 
-    tenerife = Tenerife(ses).get()
-    if not tenerife:
-        raise ParserException("ES-CN", "Tenerife not response")
+    for datetime, production in production_data.items():
+        response_data = {
+            'countryCode': country_code,
+            'datetime': datetime,
+            'production': {
+                'coal': 0.0,
+                'gas': round(production['gas'], 2),
+                'solar': round(production['solar'], 2),
+                'oil': round(production['oil'], 2),
+                'wind': round(production['wind'], 2),
+                'hydro': round(production['hydro'], 2),
+                'biomass': 0.0,
+                'nuclear': 0.0,
+                'geothermal': 0.0,
+                'unknown': 0.0
+            },
+            'storage': {
+                'hydro': round(production['storage'], 2)
+            },
+            'source': 'demanda.ree.es'
+        }
 
-    ## Compare timestamps
-    ## Raise ParserException if timestamps aren't equals
-    if elhierro.timestamp != granacanaria.timestamp \
-        and elhierro.timestamp != gomera.timestamp \
-        and elhierro.timestamp != lanzarotefuerteventura.timestamp \
-        and elhierro.timestamp != palma.timestamp \
-        and elhierro.timestamp != tenerife.timestamp:
-        raise ParserException("ES-CN", "Response timestamps aren't equals")
-
-    ## Gas production
-    gas_elhierro = elhierro.gas + elhierro.combined
-    gas_granacanaria = granacanaria.gas + granacanaria.combined
-    gas_gomera = gomera.gas + gomera.combined
-    gas_lanzarotefuerteventura = lanzarotefuerteventura.gas + lanzarotefuerteventura.combined
-    gas_palma = palma.gas + palma.combined
-    gas_tenerife = tenerife.gas + tenerife.combined
-    gas_total = gas_elhierro + gas_granacanaria + gas_gomera + gas_lanzarotefuerteventura + gas_palma + gas_tenerife
-
-    ## Solar production
-    solar_total = elhierro.solar + granacanaria.solar + gomera.solar + lanzarotefuerteventura.solar + palma.solar + tenerife.solar
-
-    ## Oil production
-    oil_elhierro = elhierro.vapor + elhierro.diesel
-    oil_granacanaria = granacanaria.gas + granacanaria.combined
-    oil_gomera = gomera.gas + gomera.combined
-    oil_lanzarotefuerteventura = lanzarotefuerteventura.gas + lanzarotefuerteventura.combined
-    oil_palma = palma.gas + palma.combined
-    oil_tenerife = tenerife.gas + tenerife.combined
-    oil_total = oil_elhierro + oil_granacanaria + oil_gomera + oil_lanzarotefuerteventura + oil_palma + oil_tenerife
-
-    ## Wind production
-    wind_total = elhierro.wind + granacanaria.wind + gomera.wind + lanzarotefuerteventura.wind + palma.wind + tenerife.wind
-
-    ## Hydro production (EL Hierrro is exluded)
-    hydro_total = granacanaria.hydraulic + gomera.hydraulic + lanzarotefuerteventura.hydraulic + palma.hydraulic + tenerife.hydraulic
-
-
-    ## Hydro storage
-    hydro_storage = -elhierro.hydraulic
-
-    data = {
-        'countryCode': country_code,
-        'datetime': get(elhierro.timestamp).datetime,
-        'production': {
-            'coal': 0.0,
-            'gas': round(gas_total, 2),
-            'solar': round(solar_total, 2),
-            'oil': round(oil_total, 2),
-            'wind': round(wind_total, 2),
-            'hydro': round(hydro_total, 2),
-            'biomass': 0.0,
-            'nuclear': 0.0,
-            'geothermal': 0.0,
-            'unknown': 0.0
-        },
-        'storage': {
-            'hydro': round(hydro_storage, 2)
-        },
-        'source': 'demanda.ree.es',
-    }
+        data.append(response_data)
 
     return data
 
 
 if __name__ == '__main__':
     session = Session
-    print fetch_consumption('ES-CN', session)
-    print fetch_production('ES-CN', session)
+    print(fetch_consumption('ES-CN', session))
+    print(fetch_production('ES-CN', session))

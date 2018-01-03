@@ -1,37 +1,36 @@
+#!/usr/bin/env python3
 import arrow
 import requests
-import json
 import pandas
 import dateutil
 
+
 def fetch_production(country_code='TW', session=None):
-    
+
     r = session or requests.session()
     url = 'http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt'
     response = requests.get(url)
-    content = response.content
+    data = response.json()
 
-    content = unicode(response.content,"UTF-8")
-    data = json.loads(content)
-    
     dumpDate = data['']
     prodData = data['aaData']
-    
+
     tz = 'Asia/Taipei'
     dumpDate = arrow.get(dumpDate, 'YYYY-MM-DD HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
- 
-    objData = pandas.DataFrame(prodData);
 
-    objData.columns = ['fueltype','name','capacity','output','percentage','additional']
+    objData = pandas.DataFrame(prodData)
+
+    objData.columns = ['fueltype', 'name', 'capacity', 'output', 'percentage',
+                       'additional']
 
     objData['fueltype'] = objData.fueltype.str.split('(').str[1]
     objData['fueltype'] = objData.fueltype.str.split(')').str[0]
     objData.drop('additional', axis=1, inplace=True)
     objData.drop('percentage', axis=1, inplace=True)
-    
+
     objData = objData.convert_objects(convert_numeric=True)
     production = pandas.DataFrame(objData.groupby('fueltype').sum())
-    production.columns = ['capacity','output']
+    production.columns = ['capacity', 'output']
 
     coal_capacity = production.ix['Coal'].capacity + production.ix['IPP-Coal'].capacity
     gas_capacity = production.ix['LNG'].capacity + production.ix['IPP-LNG'].capacity
@@ -45,23 +44,23 @@ def fetch_production(country_code='TW', session=None):
     # We require the opposite
 
     returndata = {
-		'countryCode': country_code,
+        'countryCode': country_code,
         'datetime': dumpDate.datetime,
-		'production': {
-	        'coal': coal_production,
+        'production': {
+            'coal': coal_production,
             'gas': gas_production,
             'oil': oil_production,
-            'hydro' : production.ix['Hydro'].output,
+            'hydro': production.ix['Hydro'].output,
             'nuclear': production.ix['Nuclear'].output,
             'solar': production.ix['Solar'].output,
             'wind': production.ix['Wind'].output,
             'unknown': production.ix['Co-Gen'].output
         },
         'capacity': {
-    			  'coal': coal_capacity,
+            'coal': coal_capacity,
             'gas': gas_capacity,
             'oil': oil_capacity,
-            'hydro' : production.ix['Hydro'].capacity,
+            'hydro': production.ix['Hydro'].capacity,
             'nuclear': production.ix['Nuclear'].capacity,
             'solar': production.ix['Solar'].capacity,
             'wind': production.ix['Wind'].capacity,
@@ -75,5 +74,6 @@ def fetch_production(country_code='TW', session=None):
 
     return returndata
 
+
 if __name__ == '__main__':
-    print fetch_production()
+    print(fetch_production())

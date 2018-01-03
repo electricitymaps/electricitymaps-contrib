@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
+
 import datetime
 
 import arrow
 import requests
 import pandas as pd
 
-from lib import AU_solar
+from .lib import AU_solar
 
 
 timezone = 'Australia/Perth'
@@ -17,20 +19,27 @@ def fetch_production(country_code='AUS-WA', session=None):
 
     # explicitly request last 24 hours, to work around daybreaks in solar API
     allSolar = AU_solar.fetch_solar_all(session, HOURS_TO_GET)
-   
+
     urlMeta = 'http://wa.aemo.com.au/aemo/data/wa/infographic/facility-meta.csv'
     dfFacilityMeta = pd.read_csv(urlMeta)
-    dfFacilityMeta = dfFacilityMeta.drop(['PARTICIPANT_CODE','FACILITY_TYPE','ALTERNATE_FUEL','GENERATION_TYPE','YEAR_COMMISSIONED','YEAR_COMMISSIONED','REGISTRATION_DATE','CAPACITY_CREDITS','RAMP_UP','RAMP_DOWN','AS_AT'],axis=1)
-        
+    dfFacilityMeta = dfFacilityMeta.drop(['PARTICIPANT_CODE', 'FACILITY_TYPE',
+                                          'ALTERNATE_FUEL', 'GENERATION_TYPE',
+                                          'YEAR_COMMISSIONED', 'YEAR_COMMISSIONED',
+                                          'REGISTRATION_DATE', 'CAPACITY_CREDITS',
+                                          'RAMP_UP', 'RAMP_DOWN', 'AS_AT'], axis=1)
+
     urlIntervals = 'http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv'
     dfFacilityIntervals = pd.read_csv(urlIntervals)
-    dfFacilityIntervals = dfFacilityIntervals.drop(['PARTICIPANT_CODE','PCT_ALT_FUEL','PEAK_MW','OUTAGE_MW','PEAK_OUTAGE_MW','INTERVALS_GENERATING','TOTAL_INTERVALS','PCT_GENERATING','AS_AT'],axis=1)
+    dfFacilityIntervals = dfFacilityIntervals.drop(['PARTICIPANT_CODE', 'PCT_ALT_FUEL',
+                                                    'PEAK_MW', 'OUTAGE_MW', 'PEAK_OUTAGE_MW',
+                                                    'INTERVALS_GENERATING', 'TOTAL_INTERVALS',
+                                                    'PCT_GENERATING', 'AS_AT'], axis=1)
 
-    dfCombined = pd.merge(dfFacilityMeta,dfFacilityIntervals, how='right', on='FACILITY_CODE')
+    dfCombined = pd.merge(dfFacilityMeta, dfFacilityIntervals, how='right', on='FACILITY_CODE')
     dfCombined['PERIOD'] = pd.to_datetime(dfCombined['PERIOD'])
     dfCombined['ACTUAL_MW'] = pd.to_numeric(dfCombined['ACTUAL_MW'])
     dfCombined['POTENTIAL_MWH'] = pd.to_numeric(dfCombined['POTENTIAL_MWH'])
-    
+
     ts = dfCombined.PERIOD.unique()
     now = arrow.now().datetime
 
@@ -77,6 +86,7 @@ def fetch_production(country_code='AUS-WA', session=None):
         result.append(data)
 
     return result
+
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""

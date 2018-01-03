@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import requests
 import re
 import json
@@ -75,7 +77,7 @@ def fetch_production(country_code='TR', session=None):
       'source': 'mysource.com'
     }
     """
-    session = None # Explicitely make a new session to avoid caching from their server...
+    session = None  # Explicitely make a new session to avoid caching from their server...
     r = session or requests.session()
     tr_datetime = arrow.now().to('Europe/Istanbul').floor('day')
     response = r.get(URL, verify=False)
@@ -101,9 +103,9 @@ def fetch_production(country_code='TR', session=None):
                         data['production'][MAP_GENERATION[prod_type]] += prod_val
 
                 try:
-                    data['datetime'] = tr_datetime.replace(hour = int(datapoint['saat'])).datetime
+                    data['datetime'] = tr_datetime.replace(hour=int(datapoint['saat'])).datetime
                 except ValueError:
-                    #24 is not a valid hour!
+                    # 24 is not a valid hour!
                     data['datetime'] = tr_datetime.datetime
 
                 production_by_hour.append(data)
@@ -111,6 +113,7 @@ def fetch_production(country_code='TR', session=None):
         raise Exception('Extracted data was None')
 
     return production_by_hour
+
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""

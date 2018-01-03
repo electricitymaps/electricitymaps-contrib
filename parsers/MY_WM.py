@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #Parser for Peninsular Malaysia (West Malaysia).
 #This does not include the states of Sarawak and Sarawak.
@@ -88,7 +88,7 @@ def data_processer(rawdata):
         if gen_type not in fuel_mapping.keys():
             unmapped.append(gen_type)
 
-    mapped_generation = [(fuel_mapping.get(gen_type, 'unknown'), val) for gen_type, val in current_generation.iteritems()]
+    mapped_generation = [(fuel_mapping.get(gen_type, 'unknown'), val) for gen_type, val in current_generation.items()]
 
     generationDict = defaultdict(lambda: 0.0)
 
@@ -103,7 +103,7 @@ def data_processer(rawdata):
         generationDict[key] = 0.0
 
     for gen_type in unmapped:
-        print '{} is missing from the MY generation type mapping!'.format(gen_type)
+        print('{} is missing from the MY generation type mapping!'.format(gen_type))
 
     return converted_time_string, dict(generationDict)
 

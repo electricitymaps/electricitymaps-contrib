@@ -1,32 +1,36 @@
+#!/usr/bin/env python3
+
+from os import environ
+from urllib.parse import urlencode
+
 # The arrow library is used to handle datetimes
 import arrow
-import urllib
 # The request library is used to fetch content through HTTP
 import requests
-from os import environ
+
 from parsers.lib.exceptions import ParserException
 
 
 def fetch_exchange(country_code1='ES', country_code2='MA', session=None, token=None):
 
-    ## Get ESIOS token
+    # Get ESIOS token
     token = environ.get('ESIOS_TOKEN', token)
     if not token:
         raise ParserException("ESIOS", "Require access token")
 
     ses = session or requests.Session()
 
-    ## Request headers
+    # Request headers
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json; application/vnd.esios-api-v2+json',
                'Authorization': 'Token token="{0}"'.format(token)}
 
-    ## Request query url
+    # Request query url
     utc = arrow.utcnow()
     start_date = utc.shift(hours=-24).floor('hour').isoformat()
     end_date = utc.ceil('hour').isoformat()
     dates = {'start_date': start_date, 'end_date': end_date}
-    query = urllib.urlencode(dates)
+    query = urlencode(dates)
     url = 'https://api.esios.ree.es/indicators/10209?{0}'.format(query)
 
     response = ses.get(url, headers=headers)
@@ -61,4 +65,4 @@ def fetch_exchange(country_code1='ES', country_code2='MA', session=None, token=N
 
 if __name__ == '__main__':
     session = requests.Session()
-    print fetch_exchange('ES', 'MA', session)
+    print(fetch_exchange('ES', 'MA', session))

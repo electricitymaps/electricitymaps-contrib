@@ -16,13 +16,13 @@ class TestCountyCode(unittest.TestCase):
             countrycode.assert_country_code('ES', 'ES-IB')
         except ParserException as ex:
             self.assertIsInstance(ex, ParserException)
-            self.assertEquals(str(ex), "ES Parser (ES): Country_code expected ES-IB, is ES")
+            self.assertEqual(str(ex), "ES Parser (ES): Country_code expected ES-IB, is ES")
 
         try:
             countrycode.assert_country_code('ES', 'ES-IB', 'ESIOS')
         except ParserException as ex:
             self.assertIsInstance(ex, ParserException)
-            self.assertEquals(str(ex), "ESIOS Parser (ES): Country_code expected ES-IB, is ES")
+            self.assertEqual(str(ex), "ESIOS Parser (ES): Country_code expected ES-IB, is ES")
 
 
 if __name__ == '__main__':

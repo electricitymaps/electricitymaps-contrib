@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
 from arrow import get
 # The request library is used to fetch content through HTTP
@@ -93,6 +95,6 @@ def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None):
 
 if __name__ == '__main__':
     session = Session
-    print fetch_consumption('ES-IB', session)
-    print fetch_production('ES-IB', session)
-    print fetch_exchange('ES', 'ES-IB', session)
+    print(fetch_consumption('ES-IB', session))
+    print(fetch_production('ES-IB', session))
+    print(fetch_exchange('ES', 'ES-IB', session))

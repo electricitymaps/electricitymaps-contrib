@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+
 from bs4 import BeautifulSoup
 from collections import defaultdict
-import arrow, os, re, requests
+import arrow
+import os
+import re
+import requests
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -25,7 +30,7 @@ ENTSOE_PARAMETER_DESC = {
     'B19': 'Wind Onshore',
     'B20': 'Other',
 }
-ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.iteritems()}
+ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 # Define all ENTSOE country_code <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
@@ -87,8 +92,10 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869']
 }
 
+
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
+
 
 def check_response(response, function_name):
     """
@@ -100,17 +107,21 @@ def check_response(response, function_name):
     text = soup.find_all('text')
     if len(text):
         error_text = soup.find_all('text')[0].prettify()
-        if 'No matching data found' in error_text:return
+        if 'No matching data found' in error_text:
+            return
         raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
 
+
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
-    if now is None: now = arrow.utcnow()
+    if now is None:
+        now = arrow.utcnow()
     params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
     params['periodEnd'] = now.replace(hours=+span[1]).format('YYYYMMDDHH00')
-    if not 'ENTSOE_TOKEN' in os.environ:
+    if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
     return session.get(ENTSOE_ENDPOINT, params=params)
+
 
 def query_consumption(domain, session, now=None):
     params = {
@@ -119,22 +130,26 @@ def query_consumption(domain, session, now=None):
         'outBiddingZone_Domain': domain,
     }
     response = query_ENTSOE(session, params, now)
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
         check_response(response, query_consumption.__name__)
+
 
 def query_production(psr_type, in_domain, session, now=None):
     params = {
         'psrType': psr_type,
         'documentType': 'A75',
-        'processType': 'A16', # Realised
+        'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
     response = query_ENTSOE(session, params, now)
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
-        print 'Query failed for psr %s' % psr_type
+        print('Query failed for psr %s' % psr_type)
         check_response(response, query_production.__name__)
+
 
 def query_exchange(in_domain, out_domain, session, now=None):
     params = {
@@ -143,20 +158,24 @@ def query_exchange(in_domain, out_domain, session, now=None):
         'out_Domain': out_domain,
     }
     response = query_ENTSOE(session, params, now)
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
         check_response(response, query_exchange.__name__)
 
+
 def query_exchange_forecast(in_domain, out_domain, session, now=None):
     params = {
-        'documentType': 'A09', # Finalised schedule
+        'documentType': 'A09',  # Finalised schedule
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
     response = query_ENTSOE(session, params, now, span=[-24, 48])
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
         check_response(response, query_exchange_forecast.__name__)
+
 
 def query_price(domain, session, now=None):
     params = {
@@ -165,32 +184,38 @@ def query_price(domain, session, now=None):
         'out_Domain': domain,
     }
     response = query_ENTSOE(session, params, now)
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
         check_response(response, query_price.__name__)
+
 
 def query_generation_forecast(in_domain, session, now=None):
     # Note: this does not give a breakdown of the production
     params = {
-        'documentType': 'A71', # Generation Forecast
-        'processType': 'A01', # Realised
+        'documentType': 'A71',  # Generation Forecast
+        'processType': 'A01',  # Realised
         'in_Domain': in_domain,
     }
     response = query_ENTSOE(session, params, now, span=[-24, 48])
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
         check_response(response, query_generation_forecast.__name__)
 
+
 def query_consumption_forecast(in_domain, session, now=None):
     params = {
-        'documentType': 'A65', # Load Forecast
+        'documentType': 'A65',  # Load Forecast
         'processType': 'A01',
         'outBiddingZone_Domain': in_domain,
     }
     response = query_ENTSOE(session, params, now, span=[-24, 48])
-    if response.ok: return response.text
+    if response.ok:
+        return response.text
     else:
         check_response(response, query_generation_forecast.__name__)
+
 
 def datetime_from_position(start, position, resolution):
     m = re.search('PT(\d+)([M])', resolution)
@@ -201,8 +226,10 @@ def datetime_from_position(start, position, resolution):
             return start.replace(minutes=position * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
+
 def parse_consumption(xml_text):
-    if not xml_text: return None
+    if not xml_text:
+        return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     quantities = []
@@ -216,8 +243,10 @@ def parse_consumption(xml_text):
             datetimes.append(datetime_from_position(datetime_start, position, resolution))
     return quantities, datetimes
 
+
 def parse_production(xml_text):
-    if not xml_text: return None
+    if not xml_text:
+        return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     productions = []
@@ -236,15 +265,17 @@ def parse_production(xml_text):
                     productions[i] += quantity
                 else:
                     productions[i] -= quantity
-            except ValueError: # Not in list
+            except ValueError:  # Not in list
                 datetimes.append(datetime)
                 productions.append(quantity if is_production else -1 * quantity)
     return productions, datetimes
 
+
 def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
-    if not xml_text: return None
-    if not quantities: quantities = []
-    if not datetimes: datetimes = []
+    if not xml_text:
+        return None
+    quantities = quantities or []
+    datetimes = datetimes or []
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     for timeseries in soup.find_all('timeseries'):
@@ -252,20 +283,23 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
-            if not is_import: quantity *= -1
+            if not is_import:
+                quantity *= -1
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             try:
                 i = datetimes.index(datetime)
                 quantities[i] += quantity
-            except ValueError: # Not in list
+            except ValueError:  # Not in list
                 quantities.append(quantity)
                 datetimes.append(datetime)
     return quantities, datetimes
 
+
 def parse_price(xml_text):
-    if not xml_text: return None
+    if not xml_text:
+        return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     prices = []
@@ -277,14 +311,16 @@ def parse_price(xml_text):
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
             position = int(entry.find_all('position')[0].contents[0])
-            datetime=datetime_from_position(datetime_start, position, resolution)
+            datetime = datetime_from_position(datetime_start, position, resolution)
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
             datetimes.append(datetime)
             currencies.append(currency)
     return prices, currencies, datetimes
 
+
 def parse_generation_forecast(xml_text):
-    if not xml_text: return None
+    if not xml_text:
+        return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     values = []
@@ -295,13 +331,15 @@ def parse_generation_forecast(xml_text):
         for entry in timeseries.find_all('point'):
             position = int(entry.find_all('position')[0].contents[0])
             value = float(entry.find_all('quantity')[0].contents[0])
-            datetime=datetime_from_position(datetime_start, position, resolution)
+            datetime = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
             datetimes.append(datetime)
     return values, datetimes
 
+
 def parse_consumption_forecast(xml_text):
-    if not xml_text: return None
+    if not xml_text:
+        return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
     values = []
@@ -312,10 +350,11 @@ def parse_consumption_forecast(xml_text):
         for entry in timeseries.find_all('point'):
             position = int(entry.find_all('position')[0].contents[0])
             value = float(entry.find_all('quantity')[0].contents[0])
-            datetime=datetime_from_position(datetime_start, position, resolution)
+            datetime = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
             datetimes.append(datetime)
     return values, datetimes
+
 
 def validate_production(datapoint):
     codes = ('GB', 'GR', 'PT')
@@ -341,7 +380,9 @@ def validate_production(datapoint):
         return p.get('coal', None) is not None and \
                p.get('gas', None) is not None and \
                p.get('nuclear', None) is not None
-    else: return True
+    else:
+        return True
+
 
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
@@ -349,49 +390,59 @@ def get_biomass(values):
             values.get('Fossil Peat', 0) + \
             values.get('Waste', 0)
 
+
 def get_coal(values):
     if 'Fossil Brown coal/Lignite' in values or 'Fossil Hard coal' in values:
         return values.get('Fossil Brown coal/Lignite', 0) + \
             values.get('Fossil Hard coal', 0)
+
 
 def get_gas(values):
     if 'Fossil Coal-derived gas' in values or 'Fossil Gas' in values:
         return values.get('Fossil Coal-derived gas', 0) + \
             values.get('Fossil Gas', 0)
 
+
 def get_hydro(values):
-    if 'Hydro Run-of-river and poundage' in values \
-        or 'Hydro Water Reservoir' in values:
+    if ('Hydro Run-of-river and poundage' in values or
+            'Hydro Water Reservoir' in values):
         return values.get('Hydro Run-of-river and poundage', 0) + \
             values.get('Hydro Water Reservoir', 0)
+
 
 def get_hydro_storage(storage_values):
     if 'Hydro Pumped Storage' in storage_values:
         return -1 * storage_values.get('Hydro Pumped Storage', 0)
+
 
 def get_oil(values):
     if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
         value = values.get('Fossil Oil', 0) + values.get('Fossil Oil shale', 0)
         return value if value != -1.0 else None
 
+
 def get_wind(values):
     if 'Wind Onshore' in values or 'Wind Offshore' in values:
         return values.get('Wind Onshore', 0) + values.get('Wind Offshore', 0)
 
+
 def get_geothermal(values):
     if 'Geothermal' in values:
-        return values.get('Geothermal', 0);
+        return values.get('Geothermal', 0)
+
 
 def get_unknown(values):
-    if 'Marine' in values \
-        or 'Other renewable' in values \
-        or 'Other' in values:
-        return values.get('Marine', 0) + \
-            values.get('Other renewable', 0) + \
-            values.get('Other', 0)
+    if ('Marine' in values or
+            'Other renewable' in values or
+            'Other' in values):
+        return (values.get('Marine', 0) +
+                values.get('Other renewable', 0) +
+                values.get('Other', 0))
+
 
 def fetch_consumption(country_code, session=None):
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_consumption(query_consumption(domain, session))
@@ -406,8 +457,10 @@ def fetch_consumption(country_code, session=None):
 
         return data
 
+
 def fetch_production(country_code, session=None, now=None):
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Create a double hashmap with keys (datetime, parameter)
     production_hashmap = defaultdict(lambda: {})
@@ -419,13 +472,13 @@ def fetch_production(country_code, session=None, now=None):
             for i in range(len(datetimes)):
                 production_hashmap[datetimes[i]][k] = productions[i]
 
-
     # Remove all dates in the future
     production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = filter(lambda x: x <= arrow.now(), production_dates)
-    if not len(production_dates): return None
+    production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
+    if not len(production_dates):
+        return None
     # Only take fully observed elements
-    max_counts = max(map(lambda date: len(production_hashmap[date].keys()),
+    max_counts = max(map(lambda d: len(production_hashmap[d].keys()),
         production_dates))
     production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
         production_dates)
@@ -433,7 +486,7 @@ def fetch_production(country_code, session=None, now=None):
     data = []
     for production_date in production_dates:
 
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].iteritems()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].items()}
 
         data.append({
             'countryCode': country_code,
@@ -456,10 +509,12 @@ def fetch_production(country_code, session=None, now=None):
             'source': 'entsoe.eu'
         })
 
-    return filter(validate_production, data)
+    return list(filter(validate_production, data))
+
 
 def fetch_exchange(country_code1, country_code2, session=None, now=None):
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     sorted_country_codes = sorted([country_code1, country_code2])
     key = '->'.join(sorted_country_codes)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
@@ -486,8 +541,9 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
 
     # Remove all dates in the future
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    exchange_dates = filter(lambda x: x <= arrow.now(), exchange_dates)
-    if not len(exchange_dates): return None
+    exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
+    if not len(exchange_dates):
+        return None
     data = []
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
@@ -499,8 +555,10 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
         })
     return data
 
+
 def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None):
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
     domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
     # Create a hashmap with key (datetime)
@@ -522,8 +580,9 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
 
     # Remove all dates in the future
     sorted_country_codes = sorted([country_code1, country_code2])
-    exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    if not len(exchange_dates): return None
+    exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
+    if not len(exchange_dates):
+        return None
     data = []
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
@@ -535,9 +594,11 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
         })
     return data
 
+
 def fetch_price(country_code, session=None, now=None):
     # Note: This is day-ahead prices
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_price(query_price(domain, session, now))
@@ -555,8 +616,10 @@ def fetch_price(country_code, session=None, now=None):
 
         return data
 
+
 def fetch_generation_forecast(country_code, session=None, now=None):
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_generation_forecast(query_generation_forecast(domain, session, now))
@@ -575,7 +638,8 @@ def fetch_generation_forecast(country_code, session=None, now=None):
 
 
 def fetch_consumption_forecast(country_code, session=None, now=None):
-    if not session: session = requests.session()
+    if not session:
+        session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
     parsed = parse_consumption_forecast(query_consumption_forecast(domain, session, now))

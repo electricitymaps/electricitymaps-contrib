@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow
-
-import datetime
 
 # The request library is used to fetch content through HTTP
 import requests

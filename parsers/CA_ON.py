@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -61,8 +63,9 @@ def fetch_production(country_code='CA-ON', session=None):
     for item in soup.find_all('dataset'):
         key = item.attrs['series']
         for rowIndex, row in enumerate(item.find_all('value')):
-            if not len(row.contents): continue
-            if not rowIndex in data:
+            if not len(row.contents):
+                continue
+            if rowIndex not in data:
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
                     'countryCode': country_code,
@@ -76,7 +79,6 @@ def fetch_production(country_code='CA-ON', session=None):
                 float(row.contents[0])
 
     return [data[k] for k in sorted(data.keys())]
-
 
 
 def fetch_price(country_code='CA-ON', session=None):
@@ -110,10 +112,12 @@ def fetch_price(country_code='CA-ON', session=None):
     # Iterate over all datasets (production types)
     for item in soup.find_all('dataset'):
         key = item.attrs['series']
-        if key != 'HOEP': continue
+        if key != 'HOEP':
+            continue
         for rowIndex, row in enumerate(item.find_all('value')):
-            if not len(row.contents): continue
-            if not rowIndex in data:
+            if not len(row.contents):
+                continue
+            if rowIndex not in data:
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
                     'countryCode': country_code,
@@ -150,7 +154,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     response = r.get(url)
     obj = response.json()
     exchanges = obj['intertieLineData']
-    
+
     sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
     # Everything -> CA_ON corresponds to an import to ON
     # In the data, "net" represents an export
@@ -180,7 +184,6 @@ def fetch_exchange(country_code1, country_code2, session=None):
         'netFlow': sum(map(lambda x: float(exchanges[x]['net'].replace(',', '')), keys)) * direction,
         'source': 'gridwatch.ca'
     }
-
 
     return data
 

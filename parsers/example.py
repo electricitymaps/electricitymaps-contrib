@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -126,7 +127,7 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
 
     # Country codes are sorted in order to enable easier indexing in the database
     sorted_country_codes = sorted([country_code1, country_code2])
-    # Here we assume that the net flow returned by the api is the flow from 
+    # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
     # to country2. A negative flow indicates an import.
     netFlow = obj['exchange']
@@ -144,9 +145,9 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
-    print 'fetch_price() ->'
-    print fetch_price()
-    print 'fetch_exchange(DK, NO) ->'
-    print fetch_exchange('DK', 'NO')
+    print('fetch_production() ->')
+    print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
+    print('fetch_exchange(DK, NO) ->')
+    print(fetch_exchange('DK', 'NO'))

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from requests import Session
 from parsers.lib.exceptions import ParserException
 from parsers.lib import web
@@ -156,5 +158,5 @@ def fetch_production(country_code='IN-KA', session=None):
 
 if __name__ == '__main__':
     session = Session()
-    print fetch_production('IN-KA', session)
-    print fetch_consumption('IN-KA', session)
+    print(fetch_production('IN-KA', session))
+    print(fetch_consumption('IN-KA', session))
