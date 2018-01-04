@@ -42,10 +42,13 @@ function Tooltip(selector) {
 }
 
 Tooltip.prototype.show = function() {
+    if (this.isShowing) { return; }
+    this.isShowing = true;
     d3.select(this._selector)
         .style('display', 'block')
         .transition()
-        .style('opacity', 1);
+        .style('opacity', 1)
+        .on('end', () => { this.isShowing = false; });
     return this;
 }
 Tooltip.prototype.update = function(x, y) {
@@ -53,6 +56,7 @@ Tooltip.prototype.update = function(x, y) {
     return this;
 }
 Tooltip.prototype.hide = function() {
+    this.isShowing = false;
     d3.select(this._selector)
         .transition()
         .style('opacity', 0)
