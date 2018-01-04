@@ -154,7 +154,7 @@ class Map {
           this.data[i],
           i,
           rect.left + e.point.x,
-          rect.top + e.point.y
+          rect.top + e.point.y,
         );
       }
     });
@@ -165,6 +165,7 @@ class Map {
         type: 'FeatureCollection',
         features: [],
       });
+      prevId = null;
       if (this.countryMouseOutHandler) {
         this.countryMouseOutHandler.call(this);
       }
