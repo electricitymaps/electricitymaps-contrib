@@ -21,11 +21,11 @@ Check the [contributing](#contribute) section for more details.
 
 ## Frequently asked questions
 
-**How do you define real time data?**  
-Real time data is defined as a data source that updates every 2 hours or better.  It should provide a breakdown by generation type.  Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
+**How do you define real-time data?**  
+Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
-**Is non real time data useful?**  
-While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's a good data source that lags several days behind you can still build a parser for it.
+**Is delayed data useful?**  
+While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
 **Can scheduled generation data be used?**  
 The electricitymap doesn't use scheduled or planned generation data. This is to avoid introducing extra uncertainty into emissions calculations.
