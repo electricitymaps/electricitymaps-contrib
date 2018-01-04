@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from requests import Session
 from parsers.lib import web
 from parsers.lib import countrycode
@@ -21,6 +23,7 @@ def fetch_consumption(country_code='IN-CT', session=None):
     }
 
     return data
+
 
 def fetch_production(country_code='IN-CT', session=None):
     """Fetch Chhattisgarh production"""
@@ -57,5 +60,5 @@ def fetch_production(country_code='IN-CT', session=None):
 
 if __name__ == '__main__':
     session = Session()
-    print fetch_production('IN-CT', session)
-    print fetch_consumption('IN-CT', session)
+    print(fetch_production('IN-CT', session))
+    print(fetch_consumption('IN-CT', session))

@@ -1,23 +1,23 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
-from bs4 import BeautifulSoup
 from collections import defaultdict
 from datetime import datetime
-from dateutil import parser, tz
+from io import StringIO
 from operator import itemgetter
+
 import pandas as pd
 import requests
-from StringIO import StringIO
+from bs4 import BeautifulSoup
+from dateutil import parser, tz
 
 thermal_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
 wind_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
 exchange_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx'
-#Positive values represent imports to Northern Ireland.
-#Negative value represent exports from Northern Ireland.
+# Positive values represent imports to Northern Ireland.
+# Negative value represent exports from Northern Ireland.
 
 
-def get_data(url, session = None):
+def get_data(url, session=None):
     """
     Requests data from a specified url in CSV format.
     Returns a response.text object.
@@ -26,19 +26,19 @@ def get_data(url, session = None):
     s = session or requests.Session()
 
     headers = {
-                'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-              }
+        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    }
 
-    pagereq = requests.get(url, headers = headers)
+    pagereq = requests.get(url, headers=headers)
     soup = BeautifulSoup(pagereq.text, 'html.parser')
 
-    #Find and define parameters needed to send a POST request for the actual data.
-    viewstategenerator = soup.find("input", attrs = {'id': '__VIEWSTATEGENERATOR'})['value']
-    viewstate = soup.find("input", attrs = {'id': '__VIEWSTATE'})['value']
-    eventvalidation = soup.find("input", attrs = {'id': '__EVENTVALIDATION'})['value']
+    # Find and define parameters needed to send a POST request for the actual data.
+    viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
+    viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
+    eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
 
-    #Set date for post request.
+    # Set date for post request.
     current_date = datetime.now().date()
     month = current_date.month
     day = current_date.day
@@ -66,7 +66,7 @@ def get_data(url, session = None):
                    'Content-Type': 'application/x-www-form-urlencoded'
                   }
 
-    datareq = s.post(url, headers = postheaders, data = postdata)
+    datareq = s.post(url, headers=postheaders, data=postdata)
 
     return datareq.text
 
@@ -77,7 +77,7 @@ def add_default_tz(timestamp):
     """
 
     NIR = tz.gettz('Europe/Belfast')
-    modified_timestamp = timestamp.replace(tzinfo = timestamp.tzinfo or NIR)
+    modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or NIR)
 
     return modified_timestamp
 
@@ -87,9 +87,10 @@ def create_thermal_df(text_data):
     Turns thermal csv data into a usable dataframe.
     """
 
-    cols_to_use = [0,1,2,3,4,5]
-    df_thermal = pd.read_csv(StringIO(text_data.decode('utf-8')), usecols = cols_to_use)
-    df_thermal.fillna(0.0, inplace = True)
+    cols_to_use = [0, 1, 2, 3, 4, 5]
+    df_thermal = pd.read_csv(StringIO(text_data),
+                             usecols=cols_to_use)
+    df_thermal.fillna(0.0, inplace=True)
 
     return df_thermal
 
@@ -99,9 +100,10 @@ def create_wind_df(text_data):
     Turns wind csv data into a usable dataframe.
     """
 
-    cols_to_use = [0,1]
-    df_wind = pd.read_csv(StringIO(text_data.decode('utf-8')), usecols = cols_to_use)
-    df_wind.fillna(0.0, inplace = True)
+    cols_to_use = [0, 1]
+    df_wind = pd.read_csv(StringIO(text_data),
+                          usecols=cols_to_use)
+    df_wind.fillna(0.0, inplace=True)
 
     return df_wind
 
@@ -111,8 +113,8 @@ def create_exchange_df(text_data):
     Turns exchange csv data into a usable dataframe.
     """
 
-    df_exchange = pd.read_csv(StringIO(text_data.decode('utf-8')))
-    df_exchange.fillna(0.0, inplace = True)
+    df_exchange = pd.read_csv(StringIO(text_data))
+    df_exchange.fillna(0.0, inplace=True)
 
     return df_exchange
 
@@ -146,7 +148,8 @@ def wind_processor(df):
         snapshot = {}
         snapshot['datetime'] = row['TimeStamp']
         snapshot['wind'] = row['Total_Wind_Generated_MW']
-        if snapshot['wind'] > -20: snapshot['wind'] = max(snapshot['wind'], 0)
+        if snapshot['wind'] > -20:
+            snapshot['wind'] = max(snapshot['wind'], 0)
         datapoints.append(snapshot)
 
     return datapoints
@@ -158,10 +161,11 @@ def moyle_processor(df):
     Returns a list.
     """
 
-    datapoints =[]
+    datapoints = []
     for index, row in df.iterrows():
         snapshot = {}
-        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'], dayfirst=True))
+        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
+                                                           dayfirst=True))
         snapshot['netFlow'] = row['Total_Moyle_Load_MW']
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedCountryCodes'] = 'GB->GB-NIR'
@@ -176,13 +180,15 @@ def IE_processor(df):
     Returns a list.
     """
 
-    datapoints =[]
+    datapoints = []
     for index, row in df.iterrows():
         snapshot = {}
-        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'], dayfirst=True))
-        netFlow = row['Total_Str_Let_Load_MW'] + row['Total_Enn_Cor_Load_MW'] + \
-                  row['Total_Tan_Lou_Load_MW']
-        snapshot['netFlow'] = -1*(netFlow)
+        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
+                                                           dayfirst=True))
+        netFlow = (row['Total_Str_Let_Load_MW'] +
+                   row['Total_Enn_Cor_Load_MW'] +
+                   row['Total_Tan_Lou_Load_MW'])
+        snapshot['netFlow'] = -1 * (netFlow)
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedCountryCodes'] = 'GB-NIR->IE'
         datapoints.append(snapshot)
@@ -198,7 +204,7 @@ def merge_production(thermal_data, wind_data):
 
     total_production = thermal_data + wind_data
 
-    #Join thermal and wind dicts on 'datetime' key.
+    # Join thermal and wind dicts on 'datetime' key.
     d = defaultdict(dict)
     for elem in total_production:
         d[elem['datetime']].update(elem)
@@ -211,7 +217,7 @@ def merge_production(thermal_data, wind_data):
     return joined_data
 
 
-def fetch_production(country_code = 'GB-NIR', session = None):
+def fetch_production(country_code='GB-NIR', session=None):
     """
     Requests the last known production mix (in MW) of a given country
         Arguments:
@@ -269,7 +275,7 @@ def fetch_production(country_code = 'GB-NIR', session = None):
     return production_mix_by_quarter_hour
 
 
-def fetch_exchange(country_code1, country_code2, session = None):
+def fetch_exchange(country_code1, country_code2, session=None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
     country_code (optional) -- used in case a parser is able to fetch multiple countries

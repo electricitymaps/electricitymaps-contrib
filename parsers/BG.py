@@ -1,4 +1,4 @@
-# encoding=utf8
+#!/usr/bin/env python3
 
 import arrow
 from bs4 import BeautifulSoup
@@ -17,13 +17,15 @@ TYPE_MAPPING = {                        # Real values around midnight
     u'Товар РБ': 'consumption',         # 3175
 }
 
+
 def time_string_converter(ts):
     """Converts time strings into aware datetime objects."""
 
     dt_naive = arrow.get(ts, 'DD.MM.YYYY HH:mm:ss')
-    dt_aware = dt_naive.replace(tzinfo = 'Europe/Sofia').datetime
+    dt_aware = dt_naive.replace(tzinfo='Europe/Sofia').datetime
 
     return dt_aware
+
 
 def fetch_production(country_code='BG', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -83,7 +85,7 @@ def fetch_production(country_code='BG', session=None):
         datapoints.append((TYPE_MAPPING[gen], val))
 
     production = {}
-    for k,v in datapoints:
+    for k, v in datapoints:
         production[k] = production.get(k, 0.0) + v
 
     data = {
@@ -92,7 +94,7 @@ def fetch_production(country_code='BG', session=None):
         'storage': {},
         'source': 'eso.bg',
         'datetime': dt
-        }
+    }
 
     return data
 
@@ -100,5 +102,5 @@ def fetch_production(country_code='BG', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
+    print('fetch_production() ->')
+    print(fetch_production())

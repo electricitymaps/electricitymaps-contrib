@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow
 
@@ -82,9 +84,9 @@ def fetch_production(country_code='CA-NB', session=None):
     # are exchanges - positive for exports, negative for imports
     # Electricity generated in NB is then 'NB Demand' plus all the others
 
-    generated = (flows['NB Demand'] + flows['EMEC'] + flows['ISO-NE']
-                 + flows['MPS'] + flows['NOVA SCOTIA'] + flows['PEI']
-                 + flows['QUEBEC'])
+    generated = (flows['NB Demand'] + flows['EMEC'] + flows['ISO-NE'] +
+                 flows['MPS'] + flows['NOVA SCOTIA'] + flows['PEI'] +
+                 flows['QUEBEC'])
 
     data = {
         'datetime': arrow.utcnow().floor('minute').datetime,

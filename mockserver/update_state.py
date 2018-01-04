@@ -1,6 +1,13 @@
+#!/usr/bin/env python3
 # This script should be run from the root directory
-import arrow, importlib, json, pprint, sys
+import importlib
+import json
+import pprint
+import sys
 from random import random
+
+import arrow
+
 pp = pprint.PrettyPrinter(indent=2)
 
 # Read parser import list from config jsons
@@ -18,31 +25,35 @@ production_parser = zone_config['parsers']['production']
 exchange_parser_keys = []
 for k in exchanges_config.keys():
     zones = k.split('->')
-    if zone_name in zones: exchange_parser_keys.append(k)
+    if zone_name in zones:
+        exchange_parser_keys.append(k)
 
 # Import / run production parser
-print 'Finding and executing %s production parser %s..' % (zone_name, production_parser)
+print('Finding and executing %s production parser %s..' % (zone_name,
+                                                           production_parser))
 mod_name, fun_name = production_parser.split('.')
 mod = importlib.import_module('parsers.%s' % mod_name)
 production = getattr(mod, fun_name)(zone_name)
-if type(production) == list: production = production[-1]
+if type(production) == list:
+    production = production[-1]
 pp.pprint(production)
 
 # Import / run exchange parser(s)
 exchanges = []
 for k in exchange_parser_keys:
     exchange_parser = exchanges_config[k]['parsers']['exchange']
-    print 'Finding and executing %s exchange parser %s..' % (k, exchange_parser)
+    print('Finding and executing %s exchange parser %s..' % (k, exchange_parser))
     mod_name, fun_name = exchange_parser.split('.')
     mod = importlib.import_module('parsers.%s' % mod_name)
     sorted_zone_names = sorted(k.split('->'))
     exchange = getattr(mod, fun_name)(sorted_zone_names[0], sorted_zone_names[1])
-    if type(exchange) == list: exchange = exchange[-1]
+    if type(exchange) == list:
+        exchange = exchange[-1]
     exchanges.append(exchange)
     pp.pprint(exchange)
 
 # Load and update state
-print 'Updating and writing state..'
+print('Updating and writing state..')
 with open('mockserver/public/v3/state', 'r') as f:
     obj = json.load(f)['data']
     obj['countries'][zone_name] = {}
@@ -66,11 +77,11 @@ with open('mockserver/public/v3/state', 'r') as f:
 
         for z in exchange_zone_names:
             other_zone = exchange_zone_names[(exchange_zone_names.index(z) + 1) % 2]
-            if not z in obj['countries']:
+            if z not in obj['countries']:
                 obj['countries'][z] = {}
-            if not 'exchange' in obj['countries'][z]:
+            if 'exchange' not in obj['countries'][z]:
                 obj['countries'][z]['exchange'] = {}
-            if not 'exchangeCo2Intensities' in obj['countries'][z]:
+            if 'exchangeCo2Intensities' not in obj['countries'][z]:
                 obj['countries'][z]['exchangeCo2Intensities'] = {}
             obj['countries'][z]['exchange'][other_zone] = e['netFlow']
             if z == exchange_zone_names[0]:
@@ -82,10 +93,10 @@ with open('mockserver/public/v3/state', 'r') as f:
                 obj['countries'].get(other_zone, {}).get('co2intensity',
                     obj['countries'][z].get('co2intensity', None)) if is_import \
                 else obj['countries'][z].get('co2intensity', None)
-            
+
     # Set state datetime
     obj['datetime'] = production['datetime']
     # Save
 with open('mockserver/public/v3/state', 'w') as f:
     json.dump({'data': obj}, f)
-print '..done'
+print('..done')

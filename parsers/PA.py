@@ -1,10 +1,12 @@
-# coding: utf-8
+#!/usr/bin/env python3
+
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
 import requests
 # The BeautifulSoup library is used to parse HTML
 from bs4 import BeautifulSoup
+
 
 def fetch_production(country_code='PA', session=None):
     """Requests the last known production mix (in MW) of a given country
@@ -39,9 +41,10 @@ def fetch_production(country_code='PA', session=None):
     r = session or requests.session()
     url = 'http://sitr.cnd.com.pa/m/pub/gen.html'
     response = r.get(url)
+    response.encoding = 'utf-8'
     html_doc = response.text
     soup = BeautifulSoup(html_doc, 'html.parser')
-    productions = soup.find('table',{'class':'sitr-pie-layout'}).find_all('span')
+    productions = soup.find('table', {'class': 'sitr-pie-layout'}).find_all('span')
     map_generation = {
       'Hídrica': 'hydro',
       'Eólica': 'wind',
@@ -57,12 +60,12 @@ def fetch_production(country_code='PA', session=None):
     }
     for prod in productions:
         prod_data = prod.string.split(' ')
-        production_mean = map_generation[prod_data[0].encode("latin-1")]
+        production_mean = map_generation[prod_data[0]]
         production_value = float(prod_data[1])
         data['production'][production_mean] = production_value
 
     # Parse the datetime and return a python datetime object
-    spanish_date = soup.find('div',{'class':'sitr-update'}).find('span').string
+    spanish_date = soup.find('div', {'class': 'sitr-update'}).find('span').string
     date = arrow.get(spanish_date, 'DD-MMMM-YYYY H:mm:ss', locale="es", tzinfo="America/Panama")
     data['datetime'] = date.datetime
 
@@ -72,5 +75,5 @@ def fetch_production(country_code='PA', session=None):
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print 'fetch_production() ->'
-    print fetch_production()
+    print('fetch_production() ->')
+    print(fetch_production())

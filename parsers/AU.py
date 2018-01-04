@@ -1,14 +1,15 @@
+#!/usr/bin/env python3
+
+import json
+
 # The arrow library is used to handle datetimes
 import arrow
+import numpy as np
+import pandas as pd
 # The request library is used to fetch content through HTTP
 import requests
 
-import json
-import numpy as np
-import pandas as pd
-
-from lib import AU_solar, AU_battery
-
+from .lib import AU_battery, AU_solar
 
 AMEO_CATEGORY_DICTIONARY = {
     'Bagasse': 'biomass',
@@ -79,7 +80,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Callide B Power Station': 'AUS-QLD',
   'Capital Wind Farm': 'AUS-NSW',
   'Catagunya Diesel Generation ': 'AUS-TAS',
-  'Cathedral Rocks Wind Farm':  'AUS-SA',
+  'Cathedral Rocks Wind Farm': 'AUS-SA',
   'Coonooer Bridge Wind Farm': 'AUS-VIC',
   'Capital East Solar Farm': 'AUS-NSW',
   'Cethana Power Station': 'AUS-TAS',
@@ -126,7 +127,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Highbury Landfill Gas Power Station Unit 1': 'AUS-SA',
   'Hume Power Station': 'AUS-NSW',
   'Hunter Valley Gas Turbine': 'AUS-NSW',
-  'Hazelwood Power Station': None, # Closed
+  'Hazelwood Power Station': None,  # Closed
   'ISIS Central Sugar Mill Co-generation Plant': 'AUS-QLD',
   'Invicta Sugar Mill': 'AUS-QLD',
   'Jacks Gully Landfill Gas Power Station': 'AUS-NSW',
@@ -178,7 +179,7 @@ AMEO_LOCATION_DICTIONARY = {
   'North Brown Hill Wind Farm': 'AUS-SA',
   'Nine Network Willoughby Plant': 'AUS-NSW',
   'Newport Power Station': 'AUS-VIC',
-  'Northern Power Station': None, # Closed
+  'Northern Power Station': None,  # Closed
   'Nyngan Solar Plant': 'AUS-NSW',
   'Oakey Power Station': 'AUS-QLD',
   'Oaklands Hill Wind Farm': 'AUS-VIC',
@@ -188,7 +189,7 @@ AMEO_LOCATION_DICTIONARY = {
   'Paloona Power Station': 'AUS-TAS',
   'Pedler Creek Landfill Gas Power Station Units 1-3': 'AUS-SA',
   'Pindari Hydro Power Station': 'AUS-NSW',
-  'Playford B Power Station': None, # Closed
+  'Playford B Power Station': None,  # Closed
   'Poatina Power Station': 'AUS-TAS',
   'Port Lincoln Gas Turbine': 'AUS-SA',
   'Port Latta Diesel Generation': 'AUS-TAS',
@@ -266,7 +267,7 @@ AMEO_LOCATION_DICTIONARY = {
   'West Nowra Landfill Gas Power Generation Facility': 'AUS-NSW',
   'Wollert Renewable Energy Facility': 'AUS-SA',
   'Wonthaggi Wind Farm': 'AUS-VIC',
-  'Woodlawn Wind Farm':  'AUS-NSW',
+  'Woodlawn Wind Farm': 'AUS-NSW',
   'Woolnorth Studland Bay / Bluff Point Wind Farm': 'AUS-TAS',
   'Woy Woy Landfill Site': 'AUS-NSW',
   'Wattle Point Wind Farm': 'AUS-VIC',
@@ -417,7 +418,7 @@ def fetch_production(country_code=None, session=None):
         data['production']['solar'] = data['production'].get('solar', 0) + distributed_solar_production
 
     if country_code == 'AUS-SA':
-        #Get South Australia battery status.
+        # Get South Australia battery status.
         data['storage']['battery'] = AU_battery.fetch_SA_battery()
 
     return data
@@ -475,9 +476,8 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
     r = session or requests.session()
     url = 'https://www.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY'
     response = r.get(url)
-    obj = filter(
-        lambda o: o['REGIONID'] == mapping['region_id'],
-        response.json()['ELEC_NEM_SUMMARY'])[0]
+    obj = list(filter(lambda o: o['REGIONID'] == mapping['region_id'],
+                      response.json()['ELEC_NEM_SUMMARY']))[0]
 
     flows = json.loads(obj['INTERCONNECTORFLOWS'])
     netFlow = 0
@@ -485,7 +485,7 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
     exportCapacity = 0
     for i in range(len(mapping['interconnector_names'])):
         interconnector_name = mapping['interconnector_names'][i]
-        interconnector = filter(lambda f: f['name'] == interconnector_name, flows)[0]
+        interconnector = list(filter(lambda f: f['name'] == interconnector_name, flows))[0]
         direction = mapping['directions'][i]
         netFlow += direction * interconnector['value']
         importCapacity += direction * interconnector['importlimit' if direction == 1 else 'exportlimit']
@@ -494,7 +494,7 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
     data = {
         'sortedCountryCodes': sorted_country_codes,
         'netFlow': netFlow,
-        'capacity': [importCapacity, exportCapacity], # first one should be negative
+        'capacity': [importCapacity, exportCapacity],  # first one should be negative
         'source': 'aemo.com.au',
         'datetime': arrow.get(arrow.get(obj['SETTLEMENTDATE']).datetime, 'Australia/NSW').replace(minutes=-5).datetime
     }
@@ -505,7 +505,7 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
 PRICE_MAPPING_DICTIONARY = {
     'AUS-NSW': 'NSW1',
     'AUS-QLD': 'QLD1',
-    'AUS-SA':  'SA1',
+    'AUS-SA': 'SA1',
     'AUS-TAS': 'TAS1',
     'AUS-VIC': 'VIC1',
 }
@@ -532,9 +532,9 @@ def fetch_price(country_code=None, session=None):
     r = session or requests.session()
     url = 'https://www.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY'
     response = r.get(url)
-    obj = filter(
-        lambda o: o['REGIONID'] == PRICE_MAPPING_DICTIONARY[country_code],
-        response.json()['ELEC_NEM_SUMMARY'])[0]
+    obj = list(filter(lambda o:
+                      o['REGIONID'] == PRICE_MAPPING_DICTIONARY[country_code],
+                      response.json()['ELEC_NEM_SUMMARY']))[0]
 
     data = {
         'countryCode': country_code,

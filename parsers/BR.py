@@ -1,17 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import arrow
 from collections import defaultdict
 import requests
 
-url ='http://tr.ons.org.br/Content/GetBalancoEnergetico/null'
+url = 'http://tr.ons.org.br/Content/GetBalancoEnergetico/null'
 
 generation_mapping = {
                       u'nuclear': 'nuclear',
                       u'eolica': 'wind',
                       u'termica': 'unknown',
                       u'solar': 'solar',
-                      'hydro' : 'hydro'
+                      'hydro': 'hydro'
                       }
 
 regions = {
@@ -23,8 +23,8 @@ regions = {
 
 region_exchanges = {
                     'BR-CS->BR-S': "sul_sudeste",
-                    'BR-CS->BR-NE':"sudeste_nordeste",
-                    'BR-CS->BR-N':"sudeste_norteFic",
+                    'BR-CS->BR-NE': "sudeste_nordeste",
+                    'BR-CS->BR-N': "sudeste_norteFic",
                     'BR-N->BR-NE': "norteFic_nordeste"
                     }
 
@@ -52,7 +52,7 @@ countries_exchange = {
 }
 
 
-def get_data(session = None):
+def get_data(session=None):
     """Requests generation data in json format."""
 
     s = session or requests.session()
@@ -74,7 +74,7 @@ def production_processor(json_data, country_code):
     breakdown = json_data[region][u'geracao']
     for generation, val in breakdown.items():
         # tolerance range
-        if  -1 <= totals['solar'] < 0:
+        if -1 <= totals['solar'] < 0:
             totals['solar'] = 0.0
 
         # not tolerance range
@@ -83,19 +83,20 @@ def production_processor(json_data, country_code):
 
         totals[generation] += val
 
-    #BR_CS contains the Itaipu Dam.
-    #We merge the hydro keys into one, then remove unnecessary keys.
+    # BR_CS contains the Itaipu Dam.
+    # We merge the hydro keys into one, then remove unnecessary keys.
     totals['hydro'] = totals.get(u'hidraulica', 0.0) + totals.get(u'itaipu50HzBrasil', 0.0) + totals.get(u'itaipu60Hz', 0.0)
     entriesToRemove = (u'hidraulica', u'itaipu50HzBrasil', u'itaipu60Hz', u'total')
     for k in entriesToRemove:
         totals.pop(k, None)
 
-    mapped_totals = {generation_mapping.get(name, 'unknown'): val for name, val in totals.items()}
+    mapped_totals = {generation_mapping.get(name, 'unknown'): val for name, val
+                     in totals.items()}
 
     return dt, mapped_totals
 
 
-def fetch_production(country_code, session = None):
+def fetch_production(country_code, session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -140,6 +141,7 @@ def fetch_production(country_code, session = None):
 
     return datapoint
 
+
 def fetch_exchange(country_code1, country_code2, session=None):
     """Requests the last known power exchange (in MW) between two regions
     Arguments:
@@ -159,8 +161,6 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     gd = get_data()
 
-
-
     if country_code1 in countries_exchange.keys():
         country_exchange = countries_exchange[country_code1]
 
@@ -177,7 +177,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     return data
 
 
-def fetch_region_exchange(region1, region2, session = None):
+def fetch_region_exchange(region1, region2, session=None):
     """
     Requests the last known power exchange (in MW) between two Brazilian regions.
     Arguments:
@@ -212,7 +212,7 @@ def fetch_region_exchange(region1, region2, session = None):
     return data
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production(BR-NE) ->')

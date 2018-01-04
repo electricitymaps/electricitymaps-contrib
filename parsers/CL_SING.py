@@ -1,9 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
-#Parser for the Chile-SING region.
-#There are plans to unify the Chilean grid.
-#https://www.engerati.com/article/chile%E2%80%99s-grid-be-unified-new-transmission-highway
+# Parser for the Chile-SING region.
+# There are plans to unify the Chilean grid.
+# https://www.engerati.com/article/chile%E2%80%99s-grid-be-unified-new-transmission-highway
 
+from __future__ import print_function
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import datetime
@@ -35,7 +36,8 @@ plant_map = {
              u"date": "datetime"
              }
 
-def get_data(session= None):
+
+def get_data(session=None):
     """
     Makes a GET request to the data url.  Parses the returned page to find the
     data which is contained in a javascript variable.
@@ -45,14 +47,14 @@ def get_data(session= None):
     s = session or requests.Session()
     datareq = s.get(url)
     soup = BeautifulSoup(datareq.text, 'html.parser')
-    chartdata = soup.find('script', type = "text/javascript").text
+    chartdata = soup.find('script', type="text/javascript").text
 
-    #regex that finds js var called chartData, list can be variable length.
+    # regex that finds js var called chartData, list can be variable length.
     pattern = r'chartData = \[(.*)\]'
     match = re.search(pattern, chartdata)
     rawdata = match.group(0)
 
-    #Cut down to just the list.
+    # Cut down to just the list.
     start = rawdata.index('[')
     sliced = rawdata[start:]
     loaded_data = json.loads(sliced)
@@ -84,18 +86,19 @@ def data_processer(data):
             datapoint.pop(bad, None)
 
         for key in datapoint.keys():
-            if not key in plant_map.keys():
-                print '{} is missing from the CL_SING plant mapping.'.format(key)
+            if key not in plant_map.keys():
+                print('{} is missing from the CL_SING plant mapping.'.format(key))
 
-        mapped_plants = [(plant_map.get(plant, 'unknown'), val) for plant, val in datapoint.iteritems()]
+        mapped_plants = [(plant_map.get(plant, 'unknown'), val) for plant, val
+                         in datapoint.items()]
         datapoint = defaultdict(lambda: 0.0)
 
-        #Sum values for duplicate keys.
-        for key,val in mapped_plants:
+        # Sum values for duplicate keys.
+        for key, val in mapped_plants:
             try:
                 datapoint[key] += val
             except TypeError:
-                #datetime key is a string!
+                # datetime key is a string!
                 datapoint[key] = val
 
         datapoint['datetime'] = convert_time_str(datapoint['datetime'])
@@ -104,7 +107,7 @@ def data_processer(data):
     return clean_data
 
 
-def fetch_production(country_code = 'CL-SING', session = None):
+def fetch_production(country_code='CL-SING', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -133,7 +136,7 @@ def fetch_production(country_code = 'CL-SING', session = None):
     }
     """
 
-    gd = get_data(session = None)
+    gd = get_data(session=None)
     dp = data_processer(gd)
     production_mix_by_hour = []
     for point in dp:
@@ -152,7 +155,7 @@ def fetch_production(country_code = 'CL-SING', session = None):
     return production_mix_by_hour
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')

@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 import arrow
 from bs4 import BeautifulSoup
@@ -9,11 +8,11 @@ import re
 from collections import defaultdict
 from operator import itemgetter
 
-#This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
-#El Salvador does have wind generation but there is no data available.
-#Fossil fuel generation is grouped under 'thermal' with no further breakdown given.
+# This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
+# El Salvador does have wind generation but there is no data available.
+# Fossil fuel generation is grouped under 'thermal' with no further breakdown given.
 
-#Thanks to jarek for figuring out how to make the correct POST request to the data url.
+# Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
 url = 'http://estadistico.ut.com.sv/OperacionDiaria.aspx'
 
@@ -192,7 +191,7 @@ def fetch_production(country_code = 'SV', session = None):
     return production_mix_by_hour
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
