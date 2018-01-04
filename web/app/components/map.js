@@ -24,10 +24,17 @@ class Map {
     if (source) {
       source.setData(data);
     } else if (this.map.isStyleLoaded()) {
-      // Create source
+      // Create sources
       this.map.addSource('world', {
         type: 'geojson',
         data,
+      });
+      this.map.addSource('hover', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: [],
+        },
       });
       // Create layers
       const stops = this.co2color.range()
@@ -49,13 +56,12 @@ class Map {
       this.map.addLayer({
         id: 'zones-hover',
         type: 'fill',
-        source: 'world',
+        source: 'hover',
         layout: {},
         paint: {
           'fill-color': 'white',
-          'fill-opacity': 0.5,
+          'fill-opacity': 0.3,
         },
-        filter: ['==', 'zoneId', ''],
       });
       // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
       this.map.addLayer({
@@ -130,16 +136,15 @@ class Map {
     const node = document.getElementById(selectorId);
     let boundingClientRect = node.getBoundingClientRect();
     window.addEventListener('resize', () => {
-      boundingClientRect = node.getBoundingClientRect()
+      boundingClientRect = node.getBoundingClientRect();
     });
     this.map.on('mousemove', 'zones-fill', (e) => {
       if (prevId !== e.features[0].properties.zoneId) {
         prevId = e.features[0].properties.zoneId;
-        // ** TRY: setData() with just the poly instead
-        this.map.setFilter(
-          'zones-hover',
-          ['==', 'zoneId', e.features[0].properties.zoneId],
-        );
+        const hoverSource = this.map.getSource('hover');
+        if (hoverSource) {
+          hoverSource.setData(e.features[0]);
+        }
       }
       if (this.countryMouseMoveHandler) {
         const i = e.features[0].id;
@@ -156,7 +161,10 @@ class Map {
 
     this.map.on('mouseleave', 'zones-fill', () => {
       this.map.getCanvas().style.cursor = '';
-      this.map.setFilter('zones-hover', ['==', 'zoneId', '']);
+      this.map.getSource('hover').setData({
+        type: 'FeatureCollection',
+        features: [],
+      });
       if (this.countryMouseOutHandler) {
         this.countryMouseOutHandler.call(this);
       }
