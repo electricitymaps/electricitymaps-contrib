@@ -90,7 +90,6 @@ class Map {
       scrollZoom: true,
       style: {
         version: 8,
-        // transition: { duration: 500 },
         sources: {},
         layers: [],
         zoom: 3,
