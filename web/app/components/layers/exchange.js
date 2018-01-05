@@ -148,7 +148,7 @@ class ExchangeLayer {
       .style('transform', (d) => {
         const center = this.projection(d.lonlat);
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return `translateX(${center[0]}px) translateY(${center[1]}px) translateZ(0) rotate(${rotation}deg) scale(0.2)`;
+        return `translateX(${center[0]}px) translateY(${center[1]}px) translateZ(0) rotate(${rotation}deg) scale(0.15)`;
       });
     merged
       .attr('src', (d) => {
