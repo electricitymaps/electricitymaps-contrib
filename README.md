@@ -19,6 +19,20 @@ You can also see a list of missing data displayed as warnings in the developer c
 
 Check the [contributing](#contribute) section for more details.
 
+## Frequently asked questions
+
+**How do you define real-time data?**  
+Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
+
+**Is delayed data useful?**  
+While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
+
+**Can scheduled generation data be used?**  
+The electricitymap doesn't use scheduled or planned generation data. This is to avoid introducing extra uncertainty into emissions calculations.
+
+**Can areas other than countries be shown?**  
+Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
+
 ## Data sources
 
 ### Carbon intensity calculation and data source
@@ -152,7 +166,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_by_country)
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
   - Other: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
-- Germany: [Fraunhoffer](https://energy-charts.de/power_inst.htm)
+- Germany: [BNetzA](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
@@ -269,7 +283,7 @@ def fetch_production(country_code='FR', session=None):
           'coal': 0.0,
           'gas': 0.0,
           'hydro': 0.0,
-          'nuclear': null,
+          'nuclear': None,
           'oil': 0.0,
           'solar': 0.0,
           'wind': 0.0,
@@ -306,11 +320,6 @@ PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
 ```
 
 from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This will fetch production and exchanges and assign it a random carbon intensity value. It should appear on the map as you refresh your local browser.
-
-
-
-### Non real-time parsers
-While the map relies on having real-time (hourly or better) data it's still useful to collect data from past days, see the [CAISO](https://github.com/tmrowco/electricitymap/blob/master/parsers/US_CA.py) parser as an example. The most important parameters are that data is provided at regular intervals during the day and that generation is broken down by type. It's ok if coal/gas/oil are combined in the data.
 
 ### Troubleshooting
 

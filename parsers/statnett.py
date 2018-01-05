@@ -29,7 +29,7 @@ exchanges_mapping = {
         'EE->LV'
     ],
     'EE->FI': [
-        'EE-FI'
+        'EE->FI'
     ],
     'FI->NO': [
         'FI->NO4'
