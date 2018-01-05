@@ -98,6 +98,7 @@ class Map {
 
     this.map.dragRotate.disable();
     this.map.touchZoomRotate.disableRotation();
+    this.map.doubleClickZoom.disable(); /* Transform scale is not given properly when enabled */
 
     this.map.on('load', () => {
       // Here we need to set all styles
