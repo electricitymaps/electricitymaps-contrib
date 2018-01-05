@@ -4,9 +4,8 @@ class Map {
   _setupMapColor() {
     if (this.map.isStyleLoaded()) {
       // TODO: Duplicated code
-      const stops = this.co2color.domain()
-        .sort()
-        .map(d => [d, this.co2color(d)]);
+      const co2Range = [0, 200, 400, 600, 800, 1000];
+      const stops = co2Range.map(d => [d, this.co2color(d)]);
       this.map.setPaintProperty('zones-fill', 'fill-color', {
         default: 'gray',
         property: 'co2intensity',
@@ -38,9 +37,8 @@ class Map {
         },
       });
       // Create layers
-      const stops = this.co2color.domain()
-        .sort()
-        .map(d => [d, this.co2color(d)]);
+      const co2Range = [0, 200, 400, 600, 800, 1000];
+      const stops = co2Range.map(d => [d, this.co2color(d)]);
       this.map.addLayer({
         id: 'zones-fill',
         type: 'fill',
