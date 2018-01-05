@@ -636,6 +636,9 @@ div.highscore-button:hover {
     top: -41px;
     overflow: hidden;
 }
+#arrows-layer .exchange-arrow:hover {
+    cursor: pointer;
+}
 @keyframes arrow-animation {
     from {transform: translateY(-50px);}
     to {transform: translateY(50px);}

@@ -373,18 +373,12 @@ var countryMap = new CountryMap('zones')
         // Create exchange layer as a result
         exchangeLayer = new ExchangeLayer('arrows-layer', countryMap)
             .onExchangeMouseOver(function (d) {
-                d3.select(this)
-                    .style('opacity', 0.8)
-                    .style('cursor', 'pointer');
                 tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
             })
             .onExchangeMouseMove(function () {
                 exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
             })
             .onExchangeMouseOut(function (d) {
-                d3.select(this)
-                    .style('opacity', 1)
-                    .style('cursor', 'auto')
                 if (d.co2intensity && co2Colorbars)
                     co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
                 exchangeTooltip.hide()
