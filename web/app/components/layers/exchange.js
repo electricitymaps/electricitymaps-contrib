@@ -130,9 +130,6 @@ class ExchangeLayer {
       .on('click', function (d, i) { exchangeClickHandler.call(this, d, i); });
     newArrows.append('img')
       .attr('class', 'base');
-    // newArrows.append('img')
-    //   .attr('class', 'highlight')
-    //   .attr('src', 'images/arrow-highlights/50.png');
 
     const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
     const maxCarbonIntensity = 800; // we only have arrows up to a certain point
@@ -155,7 +152,7 @@ class ExchangeLayer {
       .style('transform', (d) => {
         const center = this.projection(d.lonlat);
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg) scale(0.15)`;
+        return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg)`;
       });
     merged.select('img.base')
       .attr('src', (d) => {
