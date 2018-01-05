@@ -133,7 +133,7 @@ def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=Non
 def _sum_of_exchanges(exchanges):
     exchange_list = list(exchanges)
     return {
-        'netFlow': sum(e['netFlow'] for e in exchanges),
+        'netFlow': sum(e['netFlow'] for e in exchange_list),
         'datetime': exchange_list[0]['datetime'],
         'source': exchange_list[0]['source']
     }
