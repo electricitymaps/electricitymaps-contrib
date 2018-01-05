@@ -130,11 +130,15 @@ body {
     height: 100%;
     position: absolute; /* required for Safari iPad */
 }
+
+/* Begin HEADER */
+
 #header {
     background-color: rgb(70, 70, 70);
     z-index: 2;
     position: relative;
     color: lightgray;
+    min-height: 44px; /* required for old Safari */
 
     /* Shadow */
     box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
@@ -171,7 +175,7 @@ body {
 #header-content .right-header {
     display: table-cell;
     text-align: right;
-    font-size: 0.6em;
+    font-size: 0.6em;;
 }
 #header-content > div,
 #header-content > span {
@@ -180,6 +184,8 @@ body {
 #header-content .maintitle {
     color: darkgray;
 }
+
+/* end HEADER */
 
 #inner {
     display: flex;
