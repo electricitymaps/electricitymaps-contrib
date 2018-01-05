@@ -256,7 +256,7 @@ function updateCo2Scale() {
     } else {
       co2color = d3.scaleLinear()
         .domain([0, 375, 725, 800])
-        .range(['green', 'orange', 'rgb(26,13,0)'])
+        .range(['green', 'orange', 'rgb(26,13,0)']);
     }
 
     co2color.clamp(true);
@@ -269,7 +269,7 @@ function updateCo2Scale() {
       .markerColor('white')
       .domain([0, maxCo2])
       .render());
-    if (countryMap) countryMap.setCo2color(co2color).render();
+    if (countryMap) countryMap.setCo2color(co2color);
     if (countryTable) countryTable.co2color(co2color).render();
     if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
     if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
