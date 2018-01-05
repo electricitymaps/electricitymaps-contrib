@@ -155,7 +155,7 @@ class ExchangeLayer {
       .style('transform', (d) => {
         const center = this.projection(d.lonlat);
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg) scale(0.2)`;
+        return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg) scale(0.15)`;
       });
     merged.select('img.base')
       .attr('src', (d) => {
