@@ -639,9 +639,6 @@ div.highscore-button:hover {
 #arrows-layer .exchange-arrow:hover {
     cursor: pointer;
 }
-#arrows-layer .exchange-arrow img.base {
-    transform: translateZ(0) scale(0.2);
-}
 
 #tab {
     position: relative;

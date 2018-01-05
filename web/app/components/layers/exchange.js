@@ -104,7 +104,7 @@ class ExchangeLayer {
     // This object refers to arrows created
     // Add all static properties
     const newArrows = exchangeArrows.enter()
-      .append('div') // Add a group so we can animate separately
+      .append('img')
       .attr('class', 'exchange-arrow');
     const {
       exchangeMouseOverHandler,
@@ -113,8 +113,6 @@ class ExchangeLayer {
       exchangeClickHandler,
     } = this;
     newArrows
-      .attr('width', 49)
-      .attr('height', 81)
       .on('mouseover', function (d, i) {
         d3Event.stopPropagation();
         exchangeMouseOverHandler.call(this, d, i);
@@ -128,8 +126,6 @@ class ExchangeLayer {
         exchangeMouseMoveHandler.call(this, d, i);
       })
       .on('click', function (d, i) { exchangeClickHandler.call(this, d, i); });
-    newArrows.append('img')
-      .attr('class', 'base');
 
     const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
     const maxCarbonIntensity = 800; // we only have arrows up to a certain point
@@ -152,9 +148,9 @@ class ExchangeLayer {
       .style('transform', (d) => {
         const center = this.projection(d.lonlat);
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return `translate(${center[0]}px,${center[1]}px) rotate(${rotation}deg)`;
+        return `translateX(${center[0]}px) translateY(${center[1]}px) translateZ(0) rotate(${rotation}deg) scale(0.2)`;
       });
-    merged.select('img.base')
+    merged
       .attr('src', (d) => {
         let intensity = Math.min(
           maxCarbonIntensity,
