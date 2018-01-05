@@ -105,7 +105,10 @@ class ExchangeLayer {
     // Add all static properties
     const newArrows = exchangeArrows.enter()
       .append('img')
-      .attr('class', 'exchange-arrow');
+      .attr('class', 'exchange-arrow')
+      .attr('width', 49)
+      .attr('height', 81)
+      .style('image-rendering', 'crisp-edges');
     const {
       exchangeMouseOverHandler,
       exchangeMouseOutHandler,
@@ -148,7 +151,7 @@ class ExchangeLayer {
       .style('transform', (d) => {
         const center = this.projection(d.lonlat);
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return `translateX(${center[0]}px) translateY(${center[1]}px) translateZ(0) rotate(${rotation}deg) scale(0.15)`;
+        return `translateX(${center[0]}px) translateY(${center[1]}px) rotate(${rotation}deg) scale(0.15) translateZ(0)`;
       });
     merged
       .attr('src', (d) => {
