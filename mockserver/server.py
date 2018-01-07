@@ -2,7 +2,7 @@
 
 # Usage: python __file__.py <port>
 
-from SimpleHTTPServer import SimpleHTTPRequestHandler, BaseHTTPServer
+from http.server import SimpleHTTPRequestHandler, HTTPServer, test
 
 class CORSRequestHandler(SimpleHTTPRequestHandler):
     def do_OPTIONS(self):
@@ -15,4 +15,4 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         SimpleHTTPRequestHandler.end_headers(self)
 
 if __name__ == '__main__':
-    BaseHTTPServer.test(CORSRequestHandler, BaseHTTPServer.HTTPServer)
+    test(CORSRequestHandler, HTTPServer)
