@@ -145,7 +145,7 @@ class ExchangeLayer {
         const isOffscreen =
           (relTransform.x < 0 || relTransform.x > this.containerWidth) &&
           (relTransform.y < 0 || relTransform.y > this.containerHeight);
-        const hasLowFlow = (d.netFlow || 0) === 0;
+        const hasLowFlow = Math.abs(d.netFlow || 0) < 1;
         return (hasLowFlow || isOffscreen) ? 'none' : '';
       })
       .style('transform', (d) => {
