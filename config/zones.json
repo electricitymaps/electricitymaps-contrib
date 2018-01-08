@@ -317,10 +317,9 @@
     ]
   },
   "CA-NL": {
-    "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
     "capacity": {
       "biomass": 15,
-      "hydro": 6726.806,
+      "hydro": 1301,
       "oil": 590,
       "wind": 54.3
     },
@@ -385,10 +384,17 @@
     "_comment": "http://www.hydroquebec.com/generation/",
     "capacity": {
       "gas": 411,
-      "hydro": 36366,
-      "oil": 130
+      "hydro": 41859,
+      "oil": 130,
+      "wind": 3508,
+      "unknown": 1056,
+      "nuclear": 657
     },
-    "flag_file_name": "ca.png"
+    "flag_file_name": "ca.png",
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/hanshyde"
+    ]
   },
   "CA-SK": {
     "capacity": {
@@ -1539,12 +1545,38 @@
     ]
   },
   "US-NY": {
+    "capacity": {
+      "coal": 1113,
+      "gas": 11686,
+      "hydro": 3538,
+      "hydro storage": 1297,
+      "nuclear": 5292,
+      "oil": 8260,
+      "solar": 250,
+      "wind": 1754,
+      "biomass": 450
+    },
     "parsers": {
       "production": "US_NY.fetch_production"
     },
     "flag_file_name": "us.png",
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/hanshyde"
+    ]
+  },
+  "US-PJM": {
+    "capacity": {
+      "coal": 65205,
+      "gas": 63903,
+      "nuclear": 33164,
+      "oil": 9148,
+      "wind": 1114,
+      "unknown": 700
+    },
+    "flag_file_name": "us.png",
+    "contributors": [
+      "https://github.com/hanshyde"
     ]
   },
   "UY": {
