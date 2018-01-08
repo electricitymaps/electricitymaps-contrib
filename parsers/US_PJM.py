@@ -49,16 +49,27 @@ def extract_data(session = None):
 
     latest_time = re.search(time_pattern, time_div)
 
-    time_data = latest_time.group(1)
+    time_data = latest_time.group(1).split(":")
     am_or_pm = latest_time.group(2)
-    hour = int(time_data.split(":")[0])
-    minute = int(time_data.split(":")[1])
+    hour = int(time_data[0])
+    minute = int(time_data[1])
 
     #Time format used by PJM is slightly unusual and needs to be converted so arrow can use it.
     if am_or_pm == "p.m." and hour != 12:
+        #Time needs to be in 24hr format
         hour += 12
+    elif am_or_pm == "a.m." and hour == 12:
+        #Midnight is 12 a.m.
+        hour = 0
 
     arr_dt = arrow.now('America/New_York').replace(hour=hour, minute=minute)
+    future_check = arrow.now('America/New_York')
+
+    if arr_dt > future_check:
+        #Generation mix lags 1-2hrs behind present.
+        #This check prevents data near midnight being given the wrong date.
+        arr_dt.shift(days=-1)
+
     dt = arr_dt.floor('minute').datetime
 
     generation_mix_div = soup.find("div", id="rtschartallfuelspjmGenFuelM_container")
@@ -66,6 +77,8 @@ def extract_data(session = None):
 
     pattern = r'series: \[(.*)\]'
     script_data = re.search(pattern, str(generation_mix_script)).group(1)
+
+    #demjson is required because script data is javascript not valid json.
     raw_data = demjson.decode(script_data)
     data = raw_data["data"]
 
