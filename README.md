@@ -225,6 +225,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - United States of America:
   - Federal [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - States [EIA](https://www.eia.gov/electricity/data/state/)
+  - PJM [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
 
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
