@@ -1548,13 +1548,26 @@
     ]
   },
   "US-PJM": {
+    "comment": "gas includes landfill, oil includes black liquor",
+    "capacity": {
+      "biomass": 716,
+      "coal": 65205,
+      "gas": 63025,
+      "hydro": 8675,
+      "nuclear": 33164,
+      "oil": 9148,
+      "solar": 392,
+      "wind": 1114,
+      "unknown": 214
+      },
     "parsers": {
       "production": "US_PJM.fetch_production"
     },
     "flag_file_name": "us.png",
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/jacobbaratta"
+      "https://github.com/jacobbaratta",
+      "https://github.com/hanshyde"
     ]
   },
   "UY": {
