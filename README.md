@@ -33,6 +33,9 @@ The electricitymap doesn't use scheduled or planned generation data. This is to 
 **Can areas other than countries be shown?**  
 Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
 
+**How can I get access to historical data or the live API?**  
+All this and more can be found **[here](https://pro.electricitymap.org/)**.
+
 ## Data sources
 
 ### Carbon intensity calculation and data source
