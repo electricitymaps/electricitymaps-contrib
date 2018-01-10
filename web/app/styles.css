@@ -761,6 +761,9 @@ sub {
 
 /* Small devices (phones, etc.) */
 @media (max-width: 768px) {
+    #header {
+        min-height: 86px; /* required for old Safari */
+    }
     #header-content {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
