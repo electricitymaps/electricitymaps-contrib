@@ -65,6 +65,7 @@
     "solar": "Solar",
     "hydro": "Wasser",
     "hydro storage": "Pumpspeicher",
+    "battery storage": "Batteriespeicher",
     "biomass": "Biomasse",
     "nuclear": "Atomkraft",
     "geothermal": "Geothermie",
