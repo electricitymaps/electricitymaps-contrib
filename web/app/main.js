@@ -1068,9 +1068,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
             // Check validity of production
             if (country.production[mode] !== undefined && country.production[mode] < 0)
                 console.error(countryCode + ' has negative production of ' + mode);
-            // Check validity of storage
-            if (country.storage[mode] !== undefined && country.storage[mode] < 0)
-                console.error(countryCode + ' has negative storage of ' + mode);
             // Check load factors > 1
             if (country.production[mode] !== undefined &&
                 (country.capacity || {})[mode] !== undefined &&
@@ -1130,9 +1127,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     // Add mouse over handlers
     countryMap
         .onCountryMouseOver(function (d) {
-            // d3.select(this)
-            //     .style('opacity', 0.8)
-            //     .style('cursor', 'pointer')
             tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
         })
         .onCountryMouseMove(function (d, i, clientX, clientY) {
@@ -1141,9 +1135,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
             countryTooltip.update(clientX, clientY);
         })
         .onCountryMouseOut(function (d) {
-            // d3.select(this)
-            //     .style('opacity', 1)
-            //     .style('cursor', 'auto')
             if (co2Colorbars)
                 co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
             countryTooltip.hide();

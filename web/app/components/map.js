@@ -125,6 +125,8 @@ class Map {
     this.mapLoadedHandlers = [];
 
     this.map.on('mouseenter', 'zones-fill', (e) => {
+      // Disable for touch devices
+      if ('ontouchstart' in document.documentElement) { return; }
       this.map.getCanvas().style.cursor = 'pointer';
       if (this.countryMouseOverHandler) {
         const i = e.features[0].id;
@@ -139,6 +141,8 @@ class Map {
       boundingClientRect = node.getBoundingClientRect();
     });
     this.map.on('mousemove', 'zones-fill', (e) => {
+      // Disable for touch devices
+      if ('ontouchstart' in document.documentElement) { return; }
       if (prevId !== e.features[0].properties.zoneId) {
         prevId = e.features[0].properties.zoneId;
         const hoverSource = this.map.getSource('hover');
@@ -160,6 +164,8 @@ class Map {
     });
 
     this.map.on('mouseleave', 'zones-fill', () => {
+      // Disable for touch devices
+      if ('ontouchstart' in document.documentElement) { return; }
       this.map.getCanvas().style.cursor = '';
       this.map.getSource('hover').setData({
         type: 'FeatureCollection',
