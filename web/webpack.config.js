@@ -56,7 +56,10 @@ module.exports = {
             });
         },
         new webpack.DefinePlugin({
-            'ELECTRICITYMAP_PUBLIC_TOKEN': `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`
+            'ELECTRICITYMAP_PUBLIC_TOKEN': `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`,
+            'process.env': {
+                'NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development')
+            }
         }),
     ],
     output: {
