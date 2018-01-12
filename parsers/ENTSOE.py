@@ -127,7 +127,7 @@ def check_response(response, function_name):
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
-    Allows an existing session to be passed. 7Default timespan of +/- 24 hours.
+    Allows an existing session to be passed. Default timespan of +/- 24 hours.
     Raises an exception if no API token is found.
     Returns a request object.
     """
