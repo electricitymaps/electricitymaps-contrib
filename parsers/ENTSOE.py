@@ -10,12 +10,6 @@ Exchange Forecast
 Day-ahead Price
 Generation Forecast
 Consumption Forecast
-
-The zones below use methods from this parser.
-
-['AT', 'BA', 'BE', 'BG', 'CH', 'CZ', 'DE', 'DK', 'DK-DK1', 'DK-DK2', 'EE', 'ES',
-'FI', 'FR', 'GB', 'GB-NIR', 'GR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'ME', 'NL',
-'NO', 'NO-NO2', 'PL', 'PT', 'RO', 'RS', 'SE', 'SE-SE3', 'SE-SE4', 'SI', 'SK']
 """
 
 from bs4 import BeautifulSoup
@@ -133,7 +127,7 @@ def check_response(response, function_name):
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
-    Allows an existing session to be passed. Default timespan of +/- 24 hours.
+    Allows an existing session to be passed. 7Default timespan of +/- 24 hours.
     Raises an exception if no API token is found.
     Returns a request object.
     """
