@@ -666,7 +666,8 @@
     "capacity": {
       "wind": 153,
       "solar": 166,
-      "hydro storage": 11.32
+      "hydro storage": 11.32,
+      "battery storage": 0
     },
     "flag_file_name": "es.png",
     "parsers": {
@@ -681,7 +682,9 @@
     "capacity": {
       "wind": 0,
       "solar": 78,
-      "coal": 510
+      "coal": 510,
+      "hydro storage": 0,
+      "battery storage": 0
     },
     "flag_file_name": "es.png",
     "parsers": {
