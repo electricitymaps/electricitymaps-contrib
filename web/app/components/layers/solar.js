@@ -1,56 +1,128 @@
-var exports = module.exports = {};
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-interpolate'),
+  require('d3-selection'),
+);
+const moment = require('moment');
+const grib = require('../../helpers/grib');
 
-var d3 = require('d3');
-var moment = require('moment');
+class SolarLayer {
+  constructor(selectorId, map) {
+    this.lastDraw = null;
+    this.canvas = document.getElementById(selectorId);
+    this.hidden = true;
+    this.map = map;
+    this.k = 0;
+    this.grib1 = null;
+    this.grib2 = null;
 
-var grib = require('../../helpers/grib');
+    /* This is the *map* transform applied at last render */
+    this.initialMapTransform = undefined;
 
-var solarCanvas;
-var lastDraw;
-var hidden = true;
+    let zoomEndTimeout = null; // debounce events
+    map.onDragStart((transform) => {
+      if (this.hidden) { return; }
+      if (zoomEndTimeout) {
+        // We're already dragging
+        clearTimeout(zoomEndTimeout);
+        zoomEndTimeout = undefined;
+      } else {
+        if (!this.initialMapTransform) {
+          this.initialMapTransform = transform;
+        }
+      }
+    });
+    map.onDrag((transform) => {
+      if (this.hidden) { return; }
+      if (!this.initialMapTransform) { return; }
+      // `relTransform` is the transform of the map
+      // since the last render
+      const relScale = transform.k / this.initialMapTransform.k;
+      const relTransform = {
+        x: (this.initialMapTransform.x * relScale) - transform.x,
+        y: (this.initialMapTransform.y * relScale) - transform.y,
+        k: relScale,
+      };
+      this.canvas.style.transform =
+        `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
+    });
+    map.onDragEnd(() => {
+      if (this.hidden) { return; }
+      zoomEndTimeout = setTimeout(() => {
+        this.canvas.style.transform = null;
+        this.initialMapTransform = null;
+        this.render();
+        zoomEndTimeout = undefined;
+      }, 500);
+    });
+  }
 
-var projection;
-var grib1, grib2, k;
-
-exports.isExpired = function (now, grib1, grib2) {
-    return grib.getTargetTime(grib2) <= moment(now) || grib.getTargetTime(grib1) > moment(now);
-}
-
-exports.draw = function (canvasSelector, now, argGrib1, argGrib2, solarColor, argProjection, callback) {
-
+  draw(now, argGrib1, argGrib2, solarColor, callback) {
     // Only redraw after 5min
-    if (lastDraw && (lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
-        return callback(null);
+    if (this.lastDraw && (this.lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
+      return callback(null);
     }
 
-    lastDraw = new Date().getTime();
+    this.lastDraw = new Date().getTime();
 
-    projection = argProjection;
-    grib1 = argGrib1;
-    grib2 = argGrib2;
-    solarCanvas = d3.select(canvasSelector);
+    this.grib1 = argGrib1;
+    this.grib2 = argGrib2;
 
     // Interpolates between two solar forecasts<
-    var t_before = grib.getTargetTime(grib1);
-    var t_after = grib.getTargetTime(grib2);
-    console.log('#1 solar forecast target',
-        moment(t_before).fromNow(),
-        'made', moment(grib1.header.refTime).fromNow());
-    console.log('#2 solar forecast target',
-        moment(t_after).fromNow(),
-        'made', moment(grib2.header.refTime).fromNow());
+    const t_before = grib.getTargetTime(this.grib1);
+    const t_after = grib.getTargetTime(this.grib2);
+    console.log(
+      '#1 solar forecast target',
+      moment(t_before).fromNow(),
+      'made', moment(this.grib1.header.refTime).fromNow());
+    console.log(
+      '#2 solar forecast target',
+      moment(t_after).fromNow(),
+      'made', moment(this.grib2.header.refTime).fromNow());
     if (moment(now) > moment(t_after)) {
-        return console.error('Error while interpolating solar because current time is out of bounds');
+      return console.error('Error while interpolating solar because current time is out of bounds');
     }
 
-    k = (now - t_before) / (t_after - t_before);
+    this.k = (now - t_before) / (t_after - t_before);
 
     // (This callback could potentially be done before effects)
     callback(null);
-};
 
-exports.zoomend = function() {
-    if (hidden || !grib1) { return; }
+    return this;
+  }
+
+  isExpired(now, grib1, grib2) {
+    return grib.getTargetTime(grib2) <= moment(now) ||
+      grib.getTargetTime(grib1) > moment(now);
+  }
+
+  show() {
+    if (this.canvas) {
+      d3.select(this.canvas)
+        .style('display', 'block')
+        .transition().style('opacity', 1);
+    }
+    this.hidden = false;
+    this.render();
+  }
+
+  hide() {
+    if (this.canvas) {
+      d3.select(this.canvas).transition().style('opacity', 0)
+        .on('end', function() {
+          d3.select(this).style('display', 'none');
+        });
+    }
+    this.hidden = true;
+  }
+
+  render() {
+    if (this.hidden || !this.grib1) { return; }
+
+    const { canvas, grib1, grib2, k } = this;
+    const unprojection = this.map.unprojection();
+
     // Control the rendering
     var gaussianBlur = true;
     var continuousScale = true;
@@ -67,27 +139,26 @@ exports.zoomend = function() {
     var dx = grib1.header.dx;
     var dy = grib1.header.dy;
 
-    var ctx = solarCanvas.node().getContext('2d');
-    var realW = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().width);
-    var realH = parseInt(solarCanvas.node().parentNode.getBoundingClientRect().height);
+    var ctx = canvas.getContext('2d');
+    var realW = parseInt(canvas.parentNode.getBoundingClientRect().width);
+    var realH = parseInt(canvas.parentNode.getBoundingClientRect().height);
 
     if (!realW || !realH) {
         // Don't draw as the canvas has 0 size
         return;
     }
     // Canvas needs to have it's width and height attribute set
-    solarCanvas
-        .attr('width', realW)
-        .attr('height', realH);
+    canvas.width = realW;
+    canvas.height = realH;
 
-    var ul = projection.invert([0, 0]);
-    var br = projection.invert([realW, realH]);
+    var ul = this.map.unprojection()([0, 0]);
+    var br = this.map.unprojection()([realW, realH]);
 
     // ** Those need to be integers **
-    var minLon = parseInt(Math.floor(ul[0]));
-    var maxLon = parseInt(Math.ceil(br[0]));
-    var minLat = parseInt(Math.floor(br[1]));
-    var maxLat = parseInt(Math.ceil(ul[1]));
+    var minLon = parseInt(Math.floor(ul[0]), 10);
+    var maxLon = parseInt(Math.ceil(br[0]), 10);
+    var minLat = parseInt(Math.floor(br[1]), 10);
+    var maxLat = parseInt(Math.ceil(ul[1]), 10);
 
     // Blur radius should be about 1deg on screen
     var BLUR_RADIUS = realW / (maxLon - minLon) * 2;
@@ -138,7 +209,7 @@ exports.zoomend = function() {
 
             // We shift the lat/lon so that the truncation result in a rounding
             // p represents the (lon, lat) point we wish to obtain a value for
-            var p = projection.invert([x, y])//, lon = p[0] + 0.5, lat = p[1] - 0.5;
+            var p = unprojection([x, y])//, lon = p[0] + 0.5, lat = p[1] - 0.5;
             var lon = p[0], lat = p[1];
 
             // if (lon > maxLon || lon < minLon || lat > maxLat || lat < minLat)
@@ -190,55 +261,48 @@ exports.zoomend = function() {
     }
     ctx.clearRect(0, 0, realW, realH);
     ctx.putImageData(target, 0, 0);
+  }
+
 }
 
-exports.show = function () {
-    if (solarCanvas) solarCanvas.transition().style('opacity', 1);
-    hidden = false;
-    exports.zoomend();
-}
-
-exports.hide = function () {
-    if (solarCanvas) solarCanvas.transition().style('opacity', 0);
-    hidden = true;
-}
+module.exports = SolarLayer;
 
 
 var mul_table = [
-        512, 512, 456, 512, 328, 456, 335, 512, 405, 328, 271, 456, 388, 335, 292, 512,
-        454, 405, 364, 328, 298, 271, 496, 456, 420, 388, 360, 335, 312, 292, 273, 512,
-        482, 454, 428, 405, 383, 364, 345, 328, 312, 298, 284, 271, 259, 496, 475, 456,
-        437, 420, 404, 388, 374, 360, 347, 335, 323, 312, 302, 292, 282, 273, 265, 512,
-        497, 482, 468, 454, 441, 428, 417, 405, 394, 383, 373, 364, 354, 345, 337, 328,
-        320, 312, 305, 298, 291, 284, 278, 271, 265, 259, 507, 496, 485, 475, 465, 456,
-        446, 437, 428, 420, 412, 404, 396, 388, 381, 374, 367, 360, 354, 347, 341, 335,
-        329, 323, 318, 312, 307, 302, 297, 292, 287, 282, 278, 273, 269, 265, 261, 512,
-        505, 497, 489, 482, 475, 468, 461, 454, 447, 441, 435, 428, 422, 417, 411, 405,
-        399, 394, 389, 383, 378, 373, 368, 364, 359, 354, 350, 345, 341, 337, 332, 328,
-        324, 320, 316, 312, 309, 305, 301, 298, 294, 291, 287, 284, 281, 278, 274, 271,
-        268, 265, 262, 259, 257, 507, 501, 496, 491, 485, 480, 475, 470, 465, 460, 456,
-        451, 446, 442, 437, 433, 428, 424, 420, 416, 412, 408, 404, 400, 396, 392, 388,
-        385, 381, 377, 374, 370, 367, 363, 360, 357, 354, 350, 347, 344, 341, 338, 335,
-        332, 329, 326, 323, 320, 318, 315, 312, 310, 307, 304, 302, 299, 297, 294, 292,
-        289, 287, 285, 282, 280, 278, 275, 273, 271, 269, 267, 265, 263, 261, 259];
+  512, 512, 456, 512, 328, 456, 335, 512, 405, 328, 271, 456, 388, 335, 292, 512,
+  454, 405, 364, 328, 298, 271, 496, 456, 420, 388, 360, 335, 312, 292, 273, 512,
+  482, 454, 428, 405, 383, 364, 345, 328, 312, 298, 284, 271, 259, 496, 475, 456,
+  437, 420, 404, 388, 374, 360, 347, 335, 323, 312, 302, 292, 282, 273, 265, 512,
+  497, 482, 468, 454, 441, 428, 417, 405, 394, 383, 373, 364, 354, 345, 337, 328,
+  320, 312, 305, 298, 291, 284, 278, 271, 265, 259, 507, 496, 485, 475, 465, 456,
+  446, 437, 428, 420, 412, 404, 396, 388, 381, 374, 367, 360, 354, 347, 341, 335,
+  329, 323, 318, 312, 307, 302, 297, 292, 287, 282, 278, 273, 269, 265, 261, 512,
+  505, 497, 489, 482, 475, 468, 461, 454, 447, 441, 435, 428, 422, 417, 411, 405,
+  399, 394, 389, 383, 378, 373, 368, 364, 359, 354, 350, 345, 341, 337, 332, 328,
+  324, 320, 316, 312, 309, 305, 301, 298, 294, 291, 287, 284, 281, 278, 274, 271,
+  268, 265, 262, 259, 257, 507, 501, 496, 491, 485, 480, 475, 470, 465, 460, 456,
+  451, 446, 442, 437, 433, 428, 424, 420, 416, 412, 408, 404, 400, 396, 392, 388,
+  385, 381, 377, 374, 370, 367, 363, 360, 357, 354, 350, 347, 344, 341, 338, 335,
+  332, 329, 326, 323, 320, 318, 315, 312, 310, 307, 304, 302, 299, 297, 294, 292,
+  289, 287, 285, 282, 280, 278, 275, 273, 271, 269, 267, 265, 263, 261, 259];
 
 var shg_table = [
-	     9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17,
-		17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19,
-		19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20,
-		20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21,
-		21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-		21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22,
-		22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
-		22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24];
+  9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17,
+	17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19,
+	19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20,
+	20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21,
+	21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+	21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22,
+	22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
+	22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
+	23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+	23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+	23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+	23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+	24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+	24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+	24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+	24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24];
 
 // Derived from http://www.quasimondo.com/StackBlurForCanvas/StackBlur.js
 function stackBlurImageOpacity(imageData, top_x, top_y, width, height, radius) {

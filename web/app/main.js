@@ -1,7 +1,20 @@
-'use strict'
+'use strict';
+
 // Libraries
 var Cookies = require('js-cookie');
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-collection'),
+  require('d3-interpolate'),
+  require('d3-queue'),
+  require('d3-request'),
+  require('d3-selection'),
+  require('d3-scale'),
+);
+// see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
+import {event as currentEvent} from 'd3-selection';
+
 var moment = require('moment');
 var redux = require('redux');
 var reduxLogger = require('redux-logger').logger;
@@ -19,10 +32,10 @@ var Tooltip = require('./components/tooltip');
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
 
-var CountryMap = require('./components/layers/countrymap');
-var ExchangeLayer = require('./components/layers/exchangelayer');
-var Solar = require('./components/layers/solar');
-var Wind = require('./components/layers/wind');
+var CountryMap = require('./components/map');
+var ExchangeLayer = require('./components/layers/exchange');
+var SolarLayer = require('./components/layers/solar');
+var WindLayer = require('./components/layers/wind');
 
 var flags = require('./flags');
 var LoadingService = require('./loadingservice');
@@ -73,10 +86,8 @@ var currentMoment;
 var colorBlindModeEnabled = false;
 var showPageState = 'map';
 var previousShowPageState = undefined;
-var showWindOption = true;
-var showSolarOption = true;
-var windEnabled = showWindOption ? (Cookies.get('windEnabled') == 'true' || false) : false;
-var solarEnabled = showSolarOption ? (Cookies.get('solarEnabled') == 'true' || false) : false;
+var windEnabled = Cookies.get('windEnabled') == 'true' || false;
+var solarEnabled = Cookies.get('solarEnabled') == 'true' || false;
 var mapDraggedSinceStart = false;
 
 function isMobile() {
@@ -243,12 +254,12 @@ function updateCo2Scale() {
     } else {
       co2color = d3.scaleLinear()
         .domain([0, 375, 725, 800])
-        .range(['green', 'orange', 'rgb(26,13,0)'])
+        .range(['green', 'orange', 'rgb(26,13,0)']);
     }
 
     co2color.clamp(true);
     co2Colorbars = co2Colorbars || [];
-    co2Colorbars.push(new HorizontalColorbar('.layer-toggles .co2-colorbar', co2color)
+    co2Colorbars.push(new HorizontalColorbar('#layer-toggles .co2-colorbar', co2color)
       .markerColor('white')
       .domain([0, maxCo2])
       .render());
@@ -256,11 +267,10 @@ function updateCo2Scale() {
       .markerColor('white')
       .domain([0, maxCo2])
       .render());
-    if (countryMap) countryMap.co2color(co2color).render();
+    if (typeof countryMap !== 'undefined') countryMap.setCo2color(co2color);
     if (countryTable) countryTable.co2color(co2color).render();
     if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
     if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-    if (exchangeLayer) exchangeLayer.co2color(co2color).render();
     if (countryListSelector)
         countryListSelector.select('div.emission-rect')
             .style('background-color', function(d) {
@@ -343,14 +353,59 @@ var modeOrder = [
 ];
 
 // Set up objects
-var countryMap = new CountryMap('#map', Wind, '#wind', Solar, '#solar')
-    .co2color(co2color)
-    .onDragEnd(function() {
-        if (!mapDraggedSinceStart) { mapDraggedSinceStart = true };
-    });
-var exchangeLayer = new ExchangeLayer('svg.map-layer', '.arrows-layer').co2color(co2color);
-countryMap.exchangeLayer(exchangeLayer);
+let exchangeLayer = null;
+LoadingService.startLoading('#loading');
+LoadingService.startLoading('#small-loading');
+try {
+    const countryMap = new CountryMap('zones')
+        .setCo2color(co2color)
+        .onDragEnd(function() {
+            if (!mapDraggedSinceStart) { mapDraggedSinceStart = true; }
+        })
+        .onMapLoaded((map) => {
+            // Nest the exchange layer inside
+            const el = document.createElement('div');
+            el.id = 'arrows-layer';
+            map.map.getCanvas()
+                .parentNode
+                .appendChild(el);
+            // Create exchange layer as a result
+            exchangeLayer = new ExchangeLayer('arrows-layer', countryMap)
+                .onExchangeMouseOver(function (d) {
+                    tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
+                })
+                .onExchangeMouseMove(function () {
+                    exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
+                })
+                .onExchangeMouseOut(function (d) {
+                    if (d.co2intensity && co2Colorbars)
+                        co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
+                    exchangeTooltip.hide()
+                })
+                .onExchangeClick(d => {
+                    console.log(d)
+                })
+                .setData(Object.values(exchanges))
+                .render();
+            LoadingService.stopLoading('#loading');
+            LoadingService.stopLoading('#small-loading');
+        });
+    const windLayer = new WindLayer('wind', countryMap);
+    const solarLayer = new SolarLayer('solar', countryMap);
+} catch (e) {
+    if (e === 'WebGL not supported') {
+        // Set mobile mode, and disable maps
+        showPageState = 'highscore';
+        replaceHistoryState('page', showPageState);
+        if (showPage) showPage(showPageState);
+        document.getElementById('tab').className = 'nomap';
+        document.getElementById('layer-toggles').style.display = 'none';
 
+        // Loading is finished
+        LoadingService.stopLoading('#loading');
+        LoadingService.stopLoading('#small-loading');
+    }
+}
 
 var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
 var countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip')
@@ -359,7 +414,7 @@ var exchangeTooltip = new Tooltip('#exchange-tooltip')
 var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     .co2color(co2color)
     .onExchangeMouseMove(function() {
-        countryTableExchangeTooltip.update(d3.event.clientX, d3.event.clientY);
+        countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
     })
     .onExchangeMouseOver(function (d, country, displayByEmissions) {
         tooltipHelper.showExchange(
@@ -378,7 +433,7 @@ var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
             co2color, co2Colorbars)
     })
     .onProductionMouseMove(function(d) {
-        countryTableProductionTooltip.update(d3.event.clientX, d3.event.clientY)
+        countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY)
     })
     .onProductionMouseOut(function (d) {
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.currentMarker(undefined) });
@@ -419,7 +474,7 @@ var countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
         var ttp = isExchange ?
             countryTableExchangeTooltip : countryTableProductionTooltip
         ttp.update(
-            d3.event.clientX - 7,
+            currentEvent.clientX - 7,
             countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top + 7)
         fun(ttp,
             mode, countryData, tableDisplayEmissions,
@@ -460,7 +515,6 @@ d3.select('#checkbox-wind').node().checked = windEnabled;
 d3.selectAll('.wind-toggle').classed('active', windEnabled);
 d3.select('#checkbox-solar').node().checked = solarEnabled;
 d3.selectAll('.solar-toggle').classed('active', solarEnabled);
-d3.select('.layer-toggles').style('display', !showWindOption && !showSolarOption ? 'none' : null);
 
 window.toggleSource = function(state) {
     if(state === undefined)
@@ -490,8 +544,7 @@ if (d3.keys(countries).indexOf(selectedCountryCode) == -1) {
     }
 }
 // Assign data
-countryMap
-    .data(d3.values(countries))
+if (typeof countryMap !== 'undefined') { countryMap.setData(d3.values(countries)); }
 // Add configurations
 d3.entries(zones_config).forEach(function(d) {
     var zone = countries[d.key];
@@ -633,7 +686,7 @@ function selectCountry(countryCode, notrack) {
                     if (g == countryHistoryCarbonGraph) {
                         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
                         countryTooltip.update(
-                            d3.event.clientX - 7,
+                            currentEvent.clientX - 7,
                             g.rootElement.node().getBoundingClientRect().top + 7)
                     }
 
@@ -713,9 +766,11 @@ function selectCountry(countryCode, notrack) {
     replaceHistoryState('countryCode', selectedCountryCode);
 }
 // Bind
-countryMap
-    .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
-    .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
+if (typeof countryMap !== 'undefined') {
+    countryMap
+        .onSeaClick(function () { selectedCountryCode = undefined; showPage('map'); })
+        .onCountryClick(function (d) { selectedCountryCode = d.countryCode; showPage('country'); });
+}
 d3.selectAll('#left-panel-country-back')
     .on('click', function() { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
 d3.selectAll('#left-panel-highscore-back')
@@ -759,8 +814,8 @@ function showPage(pageName) {
         d3.select('.left-panel').classed('large-screen-visible', true);
         selectCountry(undefined);
         renderMap();
-        if (windEnabled) { Wind.show(); }
-        if (solarEnabled) { Solar.show(); }
+        if (windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
+        if (solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
         if (co2Colorbars) co2Colorbars.forEach(function(d) { d.render() });
         if (windEnabled && windColorbar) windColorbar.render();
         if (solarEnabled && solarColorbar) solarColorbar.render();
@@ -787,6 +842,7 @@ if (solarEnabled && !selectedCountryCode) solarColorbar.render();
 
 // Attach event handlers
 function toggleWind() {
+    if (typeof windLayer === 'undefined') { return; }
     windEnabled = !windEnabled;
     replaceHistoryState('wind', windEnabled);
     Cookies.set('windEnabled', windEnabled);
@@ -796,20 +852,21 @@ function toggleWind() {
     if (windEnabled) {
         d3.select('.wind-colorbar').style('display', 'block');
         windColorbar.render()
-        if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+        if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
             fetch(true);
         } else {
-            Wind.show();
+            windLayer.show();
         }
     } else {
         d3.select('.wind-colorbar').style('display', 'none');
-        Wind.hide();
+        windLayer.hide();
     }
 }
 d3.select('#checkbox-wind').on('change', toggleWind);
 d3.select('.wind-toggle').on('click', toggleWind);
 
 function toggleSolar() {
+    if (typeof windLayer === 'undefined') { return; }
     solarEnabled = !solarEnabled;
     replaceHistoryState('solar', solarEnabled);
     Cookies.set('solarEnabled', solarEnabled);
@@ -819,14 +876,14 @@ function toggleSolar() {
     if (solarEnabled) {
         d3.select('.solar-colorbar').style('display', 'block');
         solarColorbar.render()
-        if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+        if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
             fetch(true);
         } else {
-            Solar.show();
+            solarLayer.show();
         }
     } else {
         d3.select('.solar-colorbar').style('display', 'none');
-        Solar.hide();
+        solarLayer.hide();
     }
 }
 d3.select('#checkbox-solar').on('change', toggleSolar);
@@ -834,9 +891,9 @@ d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(coordinates) {
     if (windEnabled && wind && coordinates) {
-        var lonlat = countryMap._absProjection.invert(coordinates);
+        var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
-        if (!Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+        if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
             var u = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, wind.forecasts[0][0], wind.forecasts[1][0]);
             var v = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -848,9 +905,9 @@ function mapMouseOver(coordinates) {
         windColorbar.currentMarker(undefined);
     }
     if (solarEnabled && solar && coordinates) {
-        var lonlat = countryMap._absProjection.invert(coordinates);
+        var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
-        if (!Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+        if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
             var val = grib.getInterpolatedValueAtLonLat(lonlat,
                 now, solar.forecasts[0], solar.forecasts[1]);
             if (!selectedCountryCode)
@@ -869,78 +926,68 @@ d3.select('.map-layer')
     });
 
 function renderMap() {
-    if (!countryMap) { return; }
-
-    countryMap.render();
+    if (typeof countryMap === 'undefined') { return; }
     
-    if (!countryMap.projection()) {
-        return;
-    }
     if (!mapDraggedSinceStart) {
         var geolocation = callerLocation;
         if (selectedCountryCode) {
             var lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[0]; });
             var lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], function(d) { return d[1]; });
-            countryMap.center([lon, lat]);
+            countryMap.setCenter([lon, lat]);
         }
         else if (geolocation) {
             console.log('Centering on', geolocation);
-            countryMap.center(geolocation);
+            countryMap.setCenter(geolocation);
         }
         else {
-            countryMap.center([0, 50]);
+            countryMap.setCenter([0, 50]);
         }
     }
-    exchangeLayer
-        .projection(countryMap.projection())
-        .render();
+    if (exchangeLayer) {
+        exchangeLayer.render();
+    }
 
-    if (!showWindOption)
-        d3.select(d3.select('#checkbox-wind').node().parentNode).style('display', 'none');
     if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
-        LoadingService.startLoading();
+        LoadingService.startLoading('#loading');
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
-        Wind.draw('#wind',
+        windLayer.draw(
             customDate ? moment(customDate) : moment(new Date()),
             wind.forecasts[0],
             wind.forecasts[1],
-            windColor,
-            countryMap.absProjection());
+            windColor
+        );
         if (windEnabled)
-            Wind.show();
+            windLayer.show();
         else
-            Wind.hide();
+            windLayer.hide();
         // Restore setting
         Cookies.set('windEnabled', windEnabled);
-        LoadingService.stopLoading();
+        LoadingService.stopLoading('#loading');
     } else {
-        Wind.hide();
+        windLayer.hide();
     }
 
-    if (!showSolarOption)
-        d3.select(d3.select('#checkbox-solar').node().parentNode).style('display', 'none');
     if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
-        LoadingService.startLoading();
+        LoadingService.startLoading('#loading');
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
-        Solar.draw('#solar',
+        solarLayer.draw(
             customDate ? moment(customDate) : moment(new Date()),
             solar.forecasts[0],
             solar.forecasts[1],
             solarColor,
-            countryMap.absProjection(),
             function() {
                 if (solarEnabled)
-                    Solar.show();
+                    solarLayer.show();
                 else
-                    Solar.hide();
+                    solarLayer.hide();
                 // Restore setting
                 Cookies.set('solarEnabled', solarEnabled);
-                LoadingService.stopLoading();
+                LoadingService.stopLoading('#loading');
             });
     } else {
-        Solar.hide();
+        solarLayer.hide();
     }
 }
 
@@ -984,8 +1031,8 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     // TODO: Code is duplicated
     currentMoment = (customDate && moment(customDate) || moment(state.datetime));
     d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
-    d3.selectAll('.current-datetime-from-now').text(currentMoment.fromNow());
-    d3.selectAll('#current-datetime, #current-datetime-from-now')
+    d3.selectAll('.current-datetime-from-now')
+        .text(currentMoment.fromNow())
         .style('color', 'darkred')
         .transition()
             .duration(800)
@@ -1032,9 +1079,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
             // Check validity of production
             if (country.production[mode] !== undefined && country.production[mode] < 0)
                 console.error(countryCode + ' has negative production of ' + mode);
-            // Check validity of storage
-            if (country.storage[mode] !== undefined && country.storage[mode] < 0)
-                console.error(countryCode + ' has negative storage of ' + mode);
             // Check load factors > 1
             if (country.production[mode] !== undefined &&
                 (country.capacity || {})[mode] !== undefined &&
@@ -1088,28 +1132,24 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     //     .html(function(d, i) { return ' (' + Math.round(d.co2intensity) + ' gCO<sub>2</sub>eq/kWh)' })
     selector.on('click', function(d) { selectedCountryCode = d.countryCode; showPage('country'); });
 
-    // Assign country map data
-    countryMap
-        .data(d3.values(countries))
-
-    // Add mouse over handlers
-    countryMap.onCountryMouseOver(function (d) {
-        d3.select(this)
-            .style('opacity', 0.8)
-            .style('cursor', 'pointer')
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
-    })
-    .onCountryMouseMove(function () {
-        countryTooltip.update(d3.event.clientX, d3.event.clientY);
-    })
-    .onCountryMouseOut(function (d) {
-        d3.select(this)
-            .style('opacity', 1)
-            .style('cursor', 'auto')
-        if (d.co2intensity && co2Colorbars)
-            co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-        countryTooltip.hide();
-    });
+    if (typeof countryMap !== 'undefined') {
+        // Assign country map data
+        countryMap
+            .setData(d3.values(countries))
+            .onCountryMouseOver(function (d) {
+                tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+            })
+            .onCountryMouseMove(function (d, i, clientX, clientY) {
+                // TODO: Check that i changed before calling showMapCountry
+                tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+                countryTooltip.update(clientX, clientY);
+            })
+            .onCountryMouseOut(function (d) {
+                if (co2Colorbars)
+                    co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
+                countryTooltip.hide();
+            });
+    }
 
     // Add search bar handler
     d3.select('.country-search-bar input')
@@ -1148,31 +1188,11 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     });
 
     // Render exchanges
-    if (countryMap.projection()) {
-        exchangeLayer.projection(countryMap.projection())
+    if (exchangeLayer) {
+        exchangeLayer
+            .setData(d3.values(exchanges))
+            .render();
     }
-    exchangeLayer
-        .data(d3.values(exchanges).filter(function(d) {
-            return d.netFlow != 0 && d.netFlow != null && d.lonlat;
-        }))
-        .onExchangeMouseOver(function (d) {
-            d3.select(this)
-                .style('opacity', 0.8)
-                .style('cursor', 'pointer');
-            tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
-        })
-        .onExchangeMouseMove(function () {
-            exchangeTooltip.update(d3.event.clientX, d3.event.clientY);
-        })
-        .onExchangeMouseOut(function (d) {
-            d3.select(this)
-                .style('opacity', 1)
-                .style('cursor', 'auto')
-            if (d.co2intensity && co2Colorbars)
-                co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-            exchangeTooltip.hide()
-        })
-        .render();
 
     // Render weather if provided
     // Do not overwrite with null/undefined
@@ -1250,7 +1270,8 @@ function ignoreError(func) {
 
 function fetch(showLoading, callback) {
     if (!showLoading) showLoading = false;
-    if (showLoading) LoadingService.startLoading();
+    if (showLoading) LoadingService.startLoading('#loading');
+    LoadingService.startLoading('#small-loading');
     // If data doesn't load in 15 secs, show connection warning
     connectionWarningTimeout = setTimeout(function(){
         d3.select('#connection-warning').classed('active', true);
@@ -1268,14 +1289,14 @@ function fetch(showLoading, callback) {
 
     if (!solarEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!solar || Solar.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
+    else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
         Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
     else
         Q.defer(function(cb) { return cb(null, solar); });
 
     if (!windEnabled)
         Q.defer(DataService.fetchNothing);
-    else if (!wind || Wind.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
+    else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
         Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
     else
         Q.defer(function(cb) { return cb(null, wind); });
@@ -1284,7 +1305,8 @@ function fetch(showLoading, callback) {
         handleConnectionReturnCode(err);
         if (!err)
             dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
-        if (showLoading) LoadingService.stopLoading();
+        if (showLoading) LoadingService.stopLoading('#loading');
+        LoadingService.stopLoading('#small-loading');
         if (callback) callback();
     });
 };
@@ -1304,13 +1326,7 @@ function redraw() {
         countryHistoryPricesGraph.render();
         countryHistoryMixGraph.render();
     }
-    countryMap.render();
     co2Colorbars.forEach(function(d) { d.render() });
-    if (countryMap.projection()) {
-        exchangeLayer
-            .projection(countryMap.projection())
-            .render();
-    }
 };
 
 window.addEventListener('resize', function() {
@@ -1340,3 +1356,4 @@ observeStore(store, function(state) { return state.countryDataIndex }, function(
 fetch(true, function() {
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 });
+
