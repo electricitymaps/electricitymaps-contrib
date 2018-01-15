@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 
+"""
+Parser that uses the ENTSOE API to return the following data types.
+
+Consumption
+Production
+Exchanges
+Exchange Forecast
+Day-ahead Price
+Generation Forecast
+Consumption Forecast
+"""
+
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow
@@ -100,7 +112,7 @@ class QueryError(Exception):
 def check_response(response, function_name):
     """
     Searches for an error message in response if the query to ENTSOE fails.
-    Returns a QueryError containing function name and reason for failure.
+    Returns a QueryError message containing function name and reason for failure.
     """
 
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -113,6 +125,13 @@ def check_response(response, function_name):
 
 
 def query_ENTSOE(session, params, now=None, span=[-24, 24]):
+    """
+    Makes a standard query to the ENTSOE API with a modifiable set of parameters.
+    Allows an existing session to be passed. Default timespan of +/- 24 hours.
+    Raises an exception if no API token is found.
+    Returns a request object.
+    """
+
     if now is None:
         now = arrow.utcnow()
     params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
@@ -124,6 +143,8 @@ def query_ENTSOE(session, params, now=None, span=[-24, 24]):
 
 
 def query_consumption(domain, session, now=None):
+    """Returns a string object if the query succeeds."""
+
     params = {
         'documentType': 'A65',
         'processType': 'A16',
@@ -137,6 +158,8 @@ def query_consumption(domain, session, now=None):
 
 
 def query_production(psr_type, in_domain, session, now=None):
+    """Returns a string object if the query succeeds."""
+
     params = {
         'psrType': psr_type,
         'documentType': 'A75',
@@ -152,6 +175,8 @@ def query_production(psr_type, in_domain, session, now=None):
 
 
 def query_exchange(in_domain, out_domain, session, now=None):
+    """Returns a string object if the query succeeds."""
+
     params = {
         'documentType': 'A11',
         'in_Domain': in_domain,
@@ -165,6 +190,11 @@ def query_exchange(in_domain, out_domain, session, now=None):
 
 
 def query_exchange_forecast(in_domain, out_domain, session, now=None):
+    """
+    Gets exchange forecast for 48 hours ahead and previous 24 hours.
+    Returns a string object if the query succeeds.
+    """
+
     params = {
         'documentType': 'A09',  # Finalised schedule
         'in_Domain': in_domain,
@@ -178,6 +208,8 @@ def query_exchange_forecast(in_domain, out_domain, session, now=None):
 
 
 def query_price(domain, session, now=None):
+    """Returns a string object if the query succeeds."""
+
     params = {
         'documentType': 'A44',
         'in_Domain': domain,
@@ -191,6 +223,11 @@ def query_price(domain, session, now=None):
 
 
 def query_generation_forecast(in_domain, session, now=None):
+    """
+    Gets generation forecast for 48 hours ahead and previous 24 hours.
+    Returns a string object if the query succeeds.
+    """
+
     # Note: this does not give a breakdown of the production
     params = {
         'documentType': 'A71',  # Generation Forecast
@@ -205,6 +242,11 @@ def query_generation_forecast(in_domain, session, now=None):
 
 
 def query_consumption_forecast(in_domain, session, now=None):
+    """
+    Gets consumption forecast for 48 hours ahead and previous 24 hours.
+    Returns a string object if the query succeeds.
+    """
+
     params = {
         'documentType': 'A65',  # Load Forecast
         'processType': 'A01',
@@ -218,6 +260,8 @@ def query_consumption_forecast(in_domain, session, now=None):
 
 
 def datetime_from_position(start, position, resolution):
+    """Finds time granularity of data."""
+
     m = re.search('PT(\d+)([M])', resolution)
     if m:
         digits = int(m.group(1))
@@ -228,6 +272,8 @@ def datetime_from_position(start, position, resolution):
 
 
 def parse_consumption(xml_text):
+    """Returns a tuple containing two lists."""
+
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -245,6 +291,8 @@ def parse_consumption(xml_text):
 
 
 def parse_production(xml_text):
+    """Returns a tuple containing two lists."""
+
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -272,6 +320,8 @@ def parse_production(xml_text):
 
 
 def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
+    """Returns a tuple containing two lists."""
+
     if not xml_text:
         return None
     quantities = quantities or []
@@ -298,6 +348,8 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
 
 
 def parse_price(xml_text):
+    """Returns a tuple containing three lists."""
+
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -319,6 +371,8 @@ def parse_price(xml_text):
 
 
 def parse_generation_forecast(xml_text):
+    """Returns a tuple containing two lists."""
+
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -338,6 +392,8 @@ def parse_generation_forecast(xml_text):
 
 
 def parse_consumption_forecast(xml_text):
+    """Returns a tuple containing two lists."""
+
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -357,6 +413,17 @@ def parse_consumption_forecast(xml_text):
 
 
 def validate_production(datapoint):
+    """
+    Production data can sometimes be available but clearly wrong.
+
+    The most common occurrence is when the production total is very low and
+    main generation types are missing.  In reality a country's electrical grid
+    could not function in this scenario.
+
+    This function checks datapoints for a selection of countries and returns
+    False if invalid and True otherwise.
+    """
+
     codes = ('GB', 'GR', 'PT')
     if datapoint['countryCode'] in codes:
         p = datapoint['production']
@@ -441,6 +508,8 @@ def get_unknown(values):
 
 
 def fetch_consumption(country_code, session=None):
+    """Gets consumption for a specified zone, returns a dictionary."""
+
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -459,6 +528,13 @@ def fetch_consumption(country_code, session=None):
 
 
 def fetch_production(country_code, session=None, now=None):
+    """
+    Gets values and corresponding datetimes for all production types in the
+    specified zone. Removes any values that are in the future or don't have
+    a datetime associated with them.
+    Returns a list of dictionaries that have been validated.
+    """
+
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -513,6 +589,12 @@ def fetch_production(country_code, session=None, now=None):
 
 
 def fetch_exchange(country_code1, country_code2, session=None, now=None):
+    """
+    Gets exchange status between two specified zones.
+    Removes any datapoints that are in the future.
+    Returns a list of dictionaries.
+    """
+
     if not session:
         session = requests.session()
     sorted_country_codes = sorted([country_code1, country_code2])
@@ -557,6 +639,11 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
 
 
 def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None):
+    """
+    Gets exchange forecast between two specified zones.
+    Returns a list of dictionaries.
+    """
+
     if not session:
         session = requests.session()
     domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
@@ -596,6 +683,11 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
 
 
 def fetch_price(country_code, session=None, now=None):
+    """
+    Gets day-ahead price for specified zone.
+    Returns a list of dictionaries.
+    """
+
     # Note: This is day-ahead prices
     if not session:
         session = requests.session()
@@ -618,6 +710,11 @@ def fetch_price(country_code, session=None, now=None):
 
 
 def fetch_generation_forecast(country_code, session=None, now=None):
+    """
+    Gets generation forecast for specified zone.
+    Returns a list of dictionaries.
+    """
+
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -638,6 +735,11 @@ def fetch_generation_forecast(country_code, session=None, now=None):
 
 
 def fetch_consumption_forecast(country_code, session=None, now=None):
+    """
+    Gets consumption forecast for specified zone.
+    Returns a list of dictionaries.
+    """
+
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]

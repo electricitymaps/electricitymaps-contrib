@@ -57,7 +57,8 @@ def fetch_production(country_code='ES-IB', session=None):
                     'unknown': response.unknown()
                 },
                 'storage': {
-                    'hydro': 0.0
+                    'hydro': 0.0,
+                    'battery': 0.0
                 },
                 'source': 'demanda.ree.es',
             }

@@ -1,70 +1,119 @@
 #!/usr/bin/env python3
-# This script should be run from the root directory
+
+"""
+Script to manually update the state of the electricity map mockserver.
+
+To use run the following command from the root directory.
+
+PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
+
+Args:
+<zone_name> - required zone in ISO 3166-1 format, pass <all> for every zone.
+
+Any errors raised by parsers will be printed to the commandline in full, but
+will not stop the following execution of other parsers.
+"""
+
+
+import arrow
 import importlib
 import json
 import pprint
-import sys
 from random import random
+import sys
+import traceback
 
-import arrow
 
 pp = pprint.PrettyPrinter(indent=2)
 
 # Read parser import list from config jsons
-zones_config = json.load(open('config/zones.json'))
-exchanges_config = json.load(open('config/exchanges.json'))
+with open('config/zones.json') as zc:
+    zones_config = json.load(zc)
+with open('config/exchanges.json') as ec:
+    exchanges_config = json.load(ec)
 
 # Read zone_name from commandline
 if not len(sys.argv) > 1:
     raise Exception('Missing argument <zone_name>')
-zone_name = sys.argv[1]
-zone_config = zones_config[zone_name]
 
-# Find parsers
-production_parser = zone_config['parsers']['production']
+if sys.argv[1] == 'all':
+    zone_name = list(zones_config.keys())
+    zone_config = zones_config
+else:
+    zone_name = sys.argv[1]
+    zone_config = zones_config[zone_name]
+
 exchange_parser_keys = []
 for k in exchanges_config.keys():
+    if sys.argv[1] == 'all':
+        exchange_parser_keys = list(exchanges_config.keys())
+        break
     zones = k.split('->')
     if zone_name in zones:
         exchange_parser_keys.append(k)
 
 # Import / run production parser
-print('Finding and executing %s production parser %s..' % (zone_name,
-                                                           production_parser))
-mod_name, fun_name = production_parser.split('.')
-mod = importlib.import_module('parsers.%s' % mod_name)
-production = getattr(mod, fun_name)(zone_name)
-if type(production) == list:
-    production = production[-1]
-pp.pprint(production)
+production_datapoints = []
+for k in zone_name:
+    try:
+        production_parser = zone_config[k]['parsers']['production']
+    except KeyError as e:
+        # There is no production parser for this zone.
+        continue
+
+    mod_name, fun_name = production_parser.split('.')
+
+    print('Finding and executing %s production parser %s..' % (k,
+                                                              production_parser))
+
+    try:
+        mod = importlib.import_module('parsers.%s' % mod_name)
+        production = getattr(mod, fun_name)(k)
+        if type(production) == list:
+            production = production[-1]
+        if production is not None:
+            production_datapoints.append(production)
+        pp.pprint(production)
+    except Exception as e:
+        traceback.print_exc()
 
 # Import / run exchange parser(s)
 exchanges = []
 for k in exchange_parser_keys:
-    exchange_parser = exchanges_config[k]['parsers']['exchange']
-    print('Finding and executing %s exchange parser %s..' % (k, exchange_parser))
+    try:
+        exchange_parser = exchanges_config[k]['parsers']['exchange']
+    except KeyError as e:
+        # There is no exchange implemented yet.
+        continue
+
     mod_name, fun_name = exchange_parser.split('.')
-    mod = importlib.import_module('parsers.%s' % mod_name)
-    sorted_zone_names = sorted(k.split('->'))
-    exchange = getattr(mod, fun_name)(sorted_zone_names[0], sorted_zone_names[1])
-    if type(exchange) == list:
-        exchange = exchange[-1]
-    exchanges.append(exchange)
-    pp.pprint(exchange)
+
+    try:
+        mod = importlib.import_module('parsers.%s' % mod_name)
+        sorted_zone_names = sorted(k.split('->'))
+        exchange = getattr(mod, fun_name)(sorted_zone_names[0], sorted_zone_names[1])
+        if type(exchange) == list:
+            exchange = exchange[-1]
+        exchanges.append(exchange)
+        pp.pprint(exchange)
+    except Exception as e:
+        traceback.print_exc()
 
 # Load and update state
 print('Updating and writing state..')
 with open('mockserver/public/v3/state', 'r') as f:
     obj = json.load(f)['data']
-    obj['countries'][zone_name] = {}
-    # Update production
-    obj['countries'][zone_name] = production
-    production['datetime'] = arrow.get(production['datetime']).isoformat()
-    # Set random co2 value
-    production['co2intensity'] = random() * 500
-    # Set aggregates
-    production['maxProduction'] = max([x or 0 for x in production['production'].values()])
-    production['totalProduction'] = sum([x or 0 for x in production['production'].values()])
+    for dp in production_datapoints:
+        production = dict(dp)
+        obj['countries'][dp['countryCode']] = production
+        # Update production
+        production['datetime'] = arrow.get(production['datetime']).isoformat()
+        # Set random co2 value
+        production['co2intensity'] = random() * 500
+        # Set aggregates
+        production['maxProduction'] = max([x or 0 for x in production['production'].values()])
+        production['totalProduction'] = sum([x or 0 for x in production['production'].values()])
+
     # Update exchanges
     for e in exchanges:
         exchange_zone_names = e['sortedCountryCodes'].split('->')
@@ -95,8 +144,9 @@ with open('mockserver/public/v3/state', 'r') as f:
                 else obj['countries'][z].get('co2intensity', None)
 
     # Set state datetime
-    obj['datetime'] = production['datetime']
-    # Save
+    obj['datetime'] = arrow.now('Europe/Amsterdam').isoformat()
+
+# Save
 with open('mockserver/public/v3/state', 'w') as f:
     json.dump({'data': obj}, f)
 print('..done')
