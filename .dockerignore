@@ -3,6 +3,8 @@
 *.json
 *secrets*
 *.env
+*.mp4
+*.mkv
 
 mobileapp
 

@@ -27,7 +27,7 @@ co2Sub = function(str) {
         <meta name="twitter:title" content="Electricity Map | Live CO2 emissions of electricity consumption" />
         <meta name="viewport" content="width=device-width, viewport-fit=cover" />
 
-        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src * 'unsafe-inline'; media-src *" />
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *; frame-src *;" />
 
         <meta name="apple-itunes-app" content="app-id=1224594248" />
 
@@ -54,6 +54,9 @@ co2Sub = function(str) {
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= stylesHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css" />
+        <!--<link rel="stylesheet" href="css/mapbox-gl.css" />-->
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
@@ -101,17 +104,18 @@ co2Sub = function(str) {
             <div id="header">
                 <div id="header-content">
                     <div class="logo">
-                      <img src="images/icon_noborder_small.png" />
-                      <span>
+                        <span>
+                          <img src="images/icon_noborder_small.png" />
                           <span>Electricity Map</span>
                           <span class="large-screen-visible maintitle">
                               | <small><%- co2Sub(__('misc.maintitle')) %></small>
                           </span>
-                      </span>
+                        </span>
                     </div>
 
                     <div class="right-header">
                         <span>
+                            <div id="small-loading" class="loading"></div>
                             <%- __('misc.lastupdate') %> <span class="current-datetime-from-now"></span>
                         </span>
                     </div>
@@ -168,7 +172,7 @@ co2Sub = function(str) {
                             <p class="large-screen-visible">
                                 <span style="font-size: 1.2em; color: white;"><i><%- __('panel-initial-text.tip') %> ⟶</i></span>
                             </p>
-                            <div class="layer-toggles">
+                            <div id="layer-toggles">
                                 <hr />
                                 <p>
                                     <%- co2Sub(__('legends.carbonintensity'))%> <span style="color: darkgrey">(CO<sub>2</sub>eq/kWh):</span><br />
@@ -345,7 +349,7 @@ co2Sub = function(str) {
                 </div>
 
                 <div id="map-container">
-                    <div id="map"></div>
+                    <div id="zones" class="map-layer"></div>
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
                     <div class="watermark">
@@ -422,4 +426,5 @@ co2Sub = function(str) {
             </span>
         </div>
     </body>
+
 </html>

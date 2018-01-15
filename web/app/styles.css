@@ -16,10 +16,8 @@ a:hover {
 html, body {
     margin: 0 !important;
     padding: 0 !important;
-    height: 100%;
     font-family: sans-serif;
     background-color: #32414c; /* water color */
-    overflow: hidden;
     font-weight: 300; /* increases clarity */
 }
 
@@ -39,10 +37,6 @@ line, path {
 .axis path,
 .axis line {
     shape-rendering: crispEdges;
-}
-
-.country {
-    stroke: #555555;
 }
 
 .flag {
@@ -84,6 +78,13 @@ line, path {
     vertical-align: bottom;
     text-align: right;
 }
+.loading {
+    background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
+    background-size: 100%;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+}
 .overlay {
     width: 100%;
     height: 100%;
@@ -91,29 +92,53 @@ line, path {
     top: 0;
     z-index: 999;
 }
-.loading {
-    background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
+#loading {
+    /* That's the main loading overlay */
+    background-size: 10rem;
 }
 .country-history .loading {
     background-size: 1.7rem;
 }
+body {
+    height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
+}
 #main {
-    width: 100%;
-    height: 100%;
+    position: fixed; /* This is done in order to ensure that dragging will not affect the body */
+    width: 100vw;
+    height: inherit;
     display: flex;
     flex-direction: column; /* children will be stacked vertically */
     align-items: stretch; /* force children to take 100% width */
 }
 #map-container {
     position: relative;
-    flex-grow: 1; /* take up available space */
-    overflow: hidden; /* hide children overflowing (i.e. the map layers) */
+    flex-grow: 1; /* This takes up available horizontal space */
+
+    overflow: hidden; /* hide overflowing children */
+
+    /* Proper sizing */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
+#map-container *:focus {
+    /* Disable orange border on Android Chrome when :focus; */
+    outline-width: 0px;
+}
+#zones {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* required for Safari iPad */
+}
+
+/* Begin HEADER */
+
 #header {
     background-color: rgb(70, 70, 70);
     z-index: 2;
     position: relative;
     color: lightgray;
+    min-height: 44px; /* required for old Safari */
 
     /* Shadow */
     box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
@@ -160,6 +185,8 @@ line, path {
     color: darkgray;
 }
 
+/* end HEADER */
+
 #inner {
     display: flex;
     flex-direction: row;
@@ -172,15 +199,17 @@ line, path {
 .map-layer {
     position: absolute;
     top: 0;
-    transform-origin: 0px 0px 0px;
+    left: 0;
 }
 #wind {
     pointer-events: none;
     opacity: 0;
+    display: none;
 }
 #solar {
     pointer-events: none;
     opacity: 0;
+    display: none;
 }
 .panel {
     background-color: rgb(70, 70, 70);
@@ -595,21 +624,20 @@ div.highscore-button:hover {
     float: left;
 }
 
-.arrows-layer {
+#arrows-layer {
     position: absolute;
-    width: 0;
-    height: 0;
     transform: translateZ(0);
+    transition: opacity 0.2s ease;
 }
 
-.arrows-layer .exchange-arrow {
-    position: absolute;
-}
-
-.arrows-layer .exchange-arrow img {
+#arrows-layer .exchange-arrow {
     position: absolute;
     left: -25px;
     top: -41px;
+    overflow: hidden;
+}
+#arrows-layer .exchange-arrow:hover {
+    cursor: pointer;
 }
 
 #tab {
@@ -630,6 +658,11 @@ div.highscore-button:hover {
     line-height: 1.2rem;
 
     margin-bottom: 2px; /* For the border */
+}
+#tab.nomap #tab-content .list-item.map-button,
+#tab.nomap #tab-content .list-item.wind-toggle,
+#tab.nomap #tab-content .list-item.solar-toggle {
+    display: none;
 }
 #tab #tab-content .list-item.active {
     color: white;
@@ -733,6 +766,9 @@ sub {
 
 /* Small devices (phones, etc.) */
 @media (max-width: 768px) {
+    #header {
+        min-height: 86px; /* required for old Safari */
+    }
     #header-content {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
@@ -755,4 +791,9 @@ sub {
     #footer {
         display: table-cell;
     }
+}
+
+/* Disable mapbox compass for now, as the wind/solar does not support 3D */
+.mapboxgl-ctrl-group .mapboxgl-ctrl-compass {
+    display: none;
 }

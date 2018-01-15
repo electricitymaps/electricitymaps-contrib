@@ -1,6 +1,15 @@
 'use strict';
 
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-axis'),
+  require('d3-selection'),
+  require('d3-scale'),
+  require('d3-shape'),
+);
+// see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
+import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
 
 function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
@@ -190,7 +199,7 @@ LineGraph.prototype.render = function () {
 
     function drag() {
         if (!datetimes.length) return;
-        var dx = d3.event.pageX ? (d3.event.pageX - this.getBoundingClientRect().left) :
+        var dx = currentEvent.pageX ? (currentEvent.pageX - this.getBoundingClientRect().left) :
             (d3.touches(this)[0][0]);
         var datetime = x.invert(dx);
         // Find data point closest to

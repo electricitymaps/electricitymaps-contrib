@@ -50,7 +50,7 @@ echo 'Parsing states..'
 
 # Merge & simplify
 echo 'Merging and simplifying..'
-("$NODE_MODULES_PATH/geo2topo" -q 1e5 -n countries=<(cat build/tmp.json | "$NODE_MODULES_PATH/geostitch" -n) \
+("$NODE_MODULES_PATH/geo2topo" -q 1e5 -n countries=<(cat build/tmp.json) \
   | "$NODE_MODULES_PATH/topomerge" land=countries \
   | "$NODE_MODULES_PATH/toposimplify" -f -p 0.01
 )> app/world.json
