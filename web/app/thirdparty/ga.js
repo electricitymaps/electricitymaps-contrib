@@ -22,6 +22,12 @@ class GoogleAnalyticsThirdParty {
         this.inst('event', event, data, { send_to: 'UA-79729918-1' });
     }
 
+    config() {
+        // Disabled for now as this creates a double tracking warning
+        // in the chrome extension
+        // this.inst('config', 'UA-79729918-1', ...arguments);
+    }
+
     ga(){
         this.inst(...arguments);
     }

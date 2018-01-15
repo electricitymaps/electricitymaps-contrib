@@ -1,6 +1,6 @@
 class TwitterThirdParty {
     constructor() {
-        this.inst = (function (d, s, id) {
+        window.twttr = (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],
                 t = window.twttr || {};
             if (d.getElementById(id)) return t;
@@ -16,14 +16,15 @@ class TwitterThirdParty {
 
             return t;
         }(document, "script", "twitter-wjs"))
+        this.inst = window.twttr;
 
-        this.inst.ready(function (e) {
+        this.inst.ready(e => {
             this.inst.events.bind('click', function (event) {
                 // event.region is {tweet,follow}
-                var thirdPartyService = require('../services/thirdparty');
+                const thirdPartyService = require('../services/thirdparty');
                 thirdPartyService.track(event.region);
                 thirdPartyService.ga('send', 'social', 'twitter', event.region);
-            })
+            });
         });
     }
 

@@ -73,7 +73,11 @@ function replaceHistoryState(key, value) {
     } else {
         historyState[key] = value;
     }
-    history.replaceState(historyState, '', getHistoryStateURL());
+    const url = getHistoryStateURL();
+    if (thirdPartyServices._ga) {
+        thirdPartyServices._ga.config({ "page_path": url });
+    }
+    history.replaceState(historyState, '', url);
 }
 
 // Global State
@@ -587,7 +591,7 @@ function selectCountry(countryCode, notrack) {
     if (countryCode && countries[countryCode]) {
         // Selected
         if (!notrack) {
-            thirdPartyServices.track('countryClick', {countryCode: countryCode});
+            thirdPartyServices.track('countryClick', { countryCode: countryCode });
         }
         countryTable
             .powerScaleDomain(null) // Always reset scale if click on a new country
