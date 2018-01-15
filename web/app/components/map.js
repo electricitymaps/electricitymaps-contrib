@@ -2,7 +2,7 @@ import mapboxgl from 'mapbox-gl';
 
 class Map {
   _setupMapColor() {
-    if (this.map.isStyleLoaded()) {
+    if (this.map.isStyleLoaded() && this.map.getLayer('zones-fill')) {
       // TODO: Duplicated code
       const co2Range = [0, 200, 400, 600, 800, 1000];
       const stops = co2Range.map(d => [d, this.co2color(d)]);

@@ -356,8 +356,11 @@ var modeOrder = [
 let exchangeLayer = null;
 LoadingService.startLoading('#loading');
 LoadingService.startLoading('#small-loading');
+let countryMap;
+let windLayer;
+let solarLayer;
 try {
-    const countryMap = new CountryMap('zones')
+    countryMap = new CountryMap('zones')
         .setCo2color(co2color)
         .onDragEnd(function() {
             if (!mapDraggedSinceStart) { mapDraggedSinceStart = true; }
@@ -390,9 +393,10 @@ try {
             LoadingService.stopLoading('#loading');
             LoadingService.stopLoading('#small-loading');
         });
-    const windLayer = new WindLayer('wind', countryMap);
-    const solarLayer = new SolarLayer('solar', countryMap);
+    windLayer = new WindLayer('wind', countryMap);
+    solarLayer = new SolarLayer('solar', countryMap);
 } catch (e) {
+    console.log(e)
     if (e === 'WebGL not supported') {
         // Set mobile mode, and disable maps
         showPageState = 'highscore';
@@ -404,6 +408,8 @@ try {
         // Loading is finished
         LoadingService.stopLoading('#loading');
         LoadingService.stopLoading('#small-loading');
+    } else {
+        throw e
     }
 }
 
