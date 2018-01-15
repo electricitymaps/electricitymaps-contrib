@@ -82,6 +82,10 @@ class Map {
 
     this.center = undefined;
 
+    if (!mapboxgl.supported()) {
+      throw 'WebGL not supported'
+    }
+
     this.map = new mapboxgl.Map({
       container: selectorId, // selector id
       attributionControl: false,

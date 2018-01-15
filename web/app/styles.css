@@ -659,6 +659,11 @@ div.highscore-button:hover {
 
     margin-bottom: 2px; /* For the border */
 }
+#tab.nomap #tab-content .list-item.map-button,
+#tab.nomap #tab-content .list-item.wind-toggle,
+#tab.nomap #tab-content .list-item.solar-toggle {
+    display: none;
+}
 #tab #tab-content .list-item.active {
     color: white;
     border-bottom: 2px solid white;
