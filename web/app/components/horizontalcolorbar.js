@@ -71,7 +71,7 @@ function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) 
 
 HorizontalColorbar.prototype.render = function() {
     const rootNode = this.root.node();
-    if (!rootNode) { return; }
+    if (!rootNode) { return this; }
     this.width = rootNode.getBoundingClientRect().width;
     this.height = rootNode.getBoundingClientRect().height;
     if (!this.width || !this.height) return this;
