@@ -23,7 +23,8 @@
       "biomass": 474,
       "coal": 598,
       "gas": 4466,
-      "hydro": 11947,
+      "hydro": 8590,
+      "hydro storage": 3401,
       "oil": 178,
       "solar": 723,
       "wind": 2696,
@@ -121,13 +122,14 @@
     ]
   },
   "BE": {
-    "_comment": "includes 1308 MW of hydro storage. entsoe coal figure outdated",
+    "_comment": "entsoe coal figure outdated",
     "capacity": {
       "biomass": 1076,
       "coal": 0,
       "gas": 5811,
       "geothermal": 0,
-      "hydro": 1486,
+      "hydro": 178,
+      "hydro storage": 1308,
       "nuclear": 5919,
       "oil": 260,
       "solar": 2953,
@@ -145,7 +147,7 @@
     ]
   },
   "BG": {
-    "_comment": "includes 864 MW of hydro storage",
+    "_comment": "hydro incl. 864 MW of pumped storage",
     "capacity": {
       "biomass": 81,
       "coal": 4900,
@@ -413,13 +415,13 @@
       [5.9559111595, 45.8179931641],
       [10.4920501709, 47.808380127]
     ],
-    "_comment": "includes 5064 MW of hydro storage",
     "capacity": {
       "biomass": 240,
       "coal": 0,
       "gas": 55,
       "geothermal": 0,
-      "hydro": 10152,
+      "hydro": 5088,
+      "hydro storage": 6169,
       "nuclear": 3375,
       "oil": 0,
       "solar": 1644,
@@ -510,6 +512,7 @@
     ]
   },
   "DE": {
+    "_comment": "hydro capacities from BNetzA-Kraftwerksliste (Nov 2017) include capacities in AT, CH, LU which are directly connected to the German grid.",
     "bounding_box": [
       [
         5.8227539063,
@@ -525,8 +528,8 @@
       "coal": 46336,
       "gas": 29731,
       "geothermal": 39,
-      "hydro": 3945,
-      "hydro storage": 6357,
+      "hydro": 5490,
+      "hydro storage": 9440,
       "nuclear": 9516,
       "oil": 4437,
       "solar": 40716,
@@ -627,6 +630,7 @@
     ]
   },
   "ES": {
+    "_comment": "Hydro capacity from IRENA includes pumped storage generation capacity. Note: ENTSO-E (not used for hydro capacity) lists 5645 MW for pumped storage CONSUMPTION capacity, whereas GENERATION from pumped storage is included in 'hydro reservoir' category.", 
     "bounding_box": [
       [
         -9.3603515625,
@@ -642,8 +646,7 @@
       "coal": 9535,
       "gas": 30723,
       "geothermal": 0,
-      "hydro": 14614,
-      "hydro storage": 5645,
+      "hydro": 20053,
       "nuclear": 7572,
       "oil": 715,
       "solar": 6720,
@@ -733,6 +736,7 @@
     ]
   },
   "FR": {
+    "_comment": "hydro incl. 4975 MW pumped storage.",
     "bounding_box": [
       [
         -5.44921875,
@@ -747,7 +751,7 @@
       "coal": 2930,
       "gas": 10909,
       "geothermal": 2,
-      "hydro": 23495,
+      "hydro": 23575,
       "nuclear": 63130,
       "oil": 6670,
       "solar": 6580,
@@ -765,7 +769,7 @@
     ]
   },
   "GB": {
-    "_comment": "incl. 2744 MW storage. Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
+    "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
     "bounding_box": [
       [
         -8.173828125,
@@ -781,7 +785,8 @@
       "coal": 11097,
       "gas": 27688,
       "geothermal": 0,
-      "hydro": 4269,
+      "hydro": 1758,
+      "hydro storage": 2744,
       "nuclear": 8985,
       "oil": 759,
       "solar": 8566,
@@ -820,13 +825,13 @@
     ]
   },
   "GR": {
-    "_comment": "incl. 699 MW storage",
     "capacity": {
       "biomass": 51,
       "coal": 3912,
       "gas": 5396,
       "geothermal": 0,
-      "hydro": 3401,
+      "hydro": 2702,
+      "hydro storage": 699,
       "nuclear": 0,
       "oil": 0,
       "solar": 2441,
@@ -889,7 +894,7 @@
     ]
   },
   "IE": {
-    "_comment": "incl. 292 MW storage",
+    "_comment": "hydro incl. 292 MW pumped storage",
     "capacity": {
       "biomass": 344,
       "coal": 855,
@@ -1001,8 +1006,8 @@
       "coal": 7902,
       "gas": 40814,
       "geothermal": 869,
-      "hydro": 14764,
-      "hydro storage": 7157,
+      "hydro": 15559,
+      "hydro storage": 6453,
       "nuclear": 0,
       "oil": 4928,
       "solar": 19245,
@@ -1020,6 +1025,7 @@
     ]
   },
   "LT": {
+    "_comment": "hydro incl. 900 MW pumped storage",
     "capacity": {
       "biomass": 100,
       "gas": 1719,
@@ -1321,7 +1327,8 @@
       "biomass": 6,
       "coal": 5644,
       "gas": 375,
-      "hydro": 3006,
+      "hydro": 2364,
+      "hydro storage": 642,
       "wind": 17
     },
     "parsers": {
@@ -1406,6 +1413,7 @@
     ]
   },
   "SI": {
+    "_comment": "hydro incl. 180 MW pumped storage",
     "capacity": {
       "biomass": 57,
       "coal": 921,
@@ -1432,7 +1440,8 @@
       "biomass": 363,
       "coal": 1008,
       "gas": 1093,
-      "hydro": 2533,
+      "hydro": 1621,
+      "hydro storage": 916,
       "nuclear": 1940,
       "oil": 195,
       "solar": 532,
