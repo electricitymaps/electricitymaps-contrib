@@ -1178,7 +1178,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
                     const countryName = obj.shortname.toLowerCase()
                     const listItem = d3.select(nodes[i])
 
-                    if (countryName.startsWith(query)) {
+                    if (countryName.indexOf(query) != -1) {
                         listItem.style('display', '')
                     } else {
                         listItem.style('display', 'none')
