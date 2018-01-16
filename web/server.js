@@ -12,7 +12,6 @@ if (isProduction) {
 
 // Modules
 var compression = require('compression');
-var d3 = require('d3');
 var express = require('express');
 var fs = require('fs');
 var http = require('http');
