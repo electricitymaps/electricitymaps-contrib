@@ -44,6 +44,8 @@ var grib = require('./helpers/grib');
 var translation = require('./translation');
 var tooltipHelper = require('./helpers/tooltip');
 
+var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
+
 // Configs
 var exchanges_config = require('../../config/exchanges.json');
 var zones_config = require('../../config/zones.json');
@@ -424,11 +426,12 @@ try {
     }
 }
 
-var countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip')
-var countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip')
-var countryTooltip = new Tooltip('#country-tooltip')
-var exchangeTooltip = new Tooltip('#exchange-tooltip')
-var countryTable = new CountryTable('.country-table', modeColor, modeOrder)
+const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
+const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
+const countryTooltip = new Tooltip('#country-tooltip');
+const exchangeTooltip = new Tooltip('#exchange-tooltip');
+const priceTooltip = new Tooltip('#price-tooltip');
+const countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     .co2color(co2color)
     .onExchangeMouseMove(function() {
         countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
@@ -700,11 +703,19 @@ function selectCountry(countryCode, notrack) {
                         .powerScaleDomain([lo, hi])
                         .co2ScaleDomain([lo_emission, hi_emission])
 
-                    if (g == countryHistoryCarbonGraph) {
-                        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+                    if (g === countryHistoryCarbonGraph) {
+                        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
                         countryTooltip.update(
                             currentEvent.clientX - 7,
-                            g.rootElement.node().getBoundingClientRect().top + 7)
+                            g.rootElement.node().getBoundingClientRect().top + 7);
+                    } else if (g === countryHistoryPricesGraph) {
+                        const tooltip = d3.select(priceTooltip._selector);
+                        tooltip.select('.value').html(d.price.value || '?');
+                        tooltip.select('.currency').html(getSymbolFromCurrency(d.price.currency) || '?');
+                        priceTooltip.show();
+                        priceTooltip.update(
+                            currentEvent.clientX - 7,
+                            g.rootElement.node().getBoundingClientRect().top + 7);
                     }
 
                     store.dispatch({
@@ -717,11 +728,13 @@ function selectCountry(countryCode, notrack) {
                         .powerScaleDomain(null)
                         .co2ScaleDomain(null)
 
-                    if (g == countryHistoryCarbonGraph) {
+                    if (g === countryHistoryCarbonGraph) {
                         countryTooltip.hide();
-                    } else if (g == countryHistoryMixGraph) {
+                    } else if (g === countryHistoryMixGraph) {
                         countryTableProductionTooltip.hide();
                         countryTableExchangeTooltip.hide();
+                    } else if (g === countryHistoryPricesGraph) {
+                        priceTooltip.hide();
                     }
 
                     store.dispatch({

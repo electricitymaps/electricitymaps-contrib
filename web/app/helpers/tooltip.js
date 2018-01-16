@@ -1,7 +1,6 @@
 'use strict'
 
 var d3 = require('d3');
-var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 
 var flags = require('../flags');
 var translation = require('../translation');
@@ -191,11 +190,6 @@ module.exports.showMapCountry = function(tooltipInstance, countryData, co2color,
 
     var priceData = countryData.price || {};
     var hasPrice = priceData.value != null;
-    tooltip.select('.country-spot-price')
-        .text(hasPrice ? Math.round(priceData.value) : '?')
-        .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
-    tooltip.select('.country-spot-price-currency')
-        .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
     var hasFossilFuelData = countryData.fossilFuelRatio != null;
     var fossilFuelPercent = countryData.fossilFuelRatio * 100;
     tooltip.select('.lowcarbon-percentage')
