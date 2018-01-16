@@ -4,6 +4,7 @@ var forge = require('node-forge');
 var Cookies = require('js-cookie');
 const d3 = Object.assign(
   {},
+  require('d3-queue'),
   require('d3-request'),
 );
 var moment = require('moment');
