@@ -51,6 +51,10 @@ var zones_config = require('../../config/zones.json');
 // Constants
 var REFRESH_TIME_MINUTES = 5;
 
+if (thirdPartyServices._ga) {
+    thirdPartyServices._ga.timingMark('start_executing_js');
+}
+
 // History state
 // TODO: put in a module
 
@@ -396,6 +400,9 @@ try {
                 .render();
             LoadingService.stopLoading('#loading');
             LoadingService.stopLoading('#small-loading');
+            if (thirdPartyServices._ga) {
+                thirdPartyServices._ga.timingMark('map_loaded');
+            }
         });
     windLayer = new WindLayer('wind', countryMap);
     solarLayer = new SolarLayer('solar', countryMap);

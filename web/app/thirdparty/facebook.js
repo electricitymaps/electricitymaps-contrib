@@ -1,6 +1,9 @@
 class FacebookThirdParty {
     constructor() {
-        window.fbAsyncInit = function() {
+        this.events = [];
+        this.hasLoaded = false;
+
+        window.fbAsyncInit = () => {
             FB.init({
                 appId      : '1267173759989113',
                 xfbml      : true,
@@ -21,6 +24,12 @@ class FacebookThirdParty {
                     require('../services/thirdparty').track('unlike');
                 }
             })
+
+            this.hasLoaded = true;
+
+            this.events.forEach((eventPair) => {
+                this.track(...eventPair);
+            });
         };
 
         (function(d, s, id){
@@ -36,7 +45,9 @@ class FacebookThirdParty {
     }
 
     track(event, data){
-        if(window.FB !== undefined) { // still loading
+        if(!this.hasLoaded) { // still loading
+            this.events.push([event, data]);
+        } else {
             window.FB.AppEvents.logEvent(event, undefined, data);
         }
     }

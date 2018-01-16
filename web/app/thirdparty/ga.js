@@ -28,6 +28,23 @@ class GoogleAnalyticsThirdParty {
         // this.inst('config', 'UA-79729918-1', ...arguments);
     }
 
+    timingMark(eventName) {
+        // Feature detects Navigation Timing API support.
+        if (window.performance) {
+            // Gets the number of milliseconds since page load
+            // (and rounds the result since the value must be an integer).
+            const timeSincePageLoad = Math.round(performance.now());
+            this.timing(eventName, timeSincePageLoad);
+        }
+    }
+
+    timing(eventName, durationMs) {
+        this.inst('event', 'timing_complete', {
+            name: eventName,
+            value: durationMs,
+        });
+    }
+
     ga(){
         this.inst(...arguments);
     }
