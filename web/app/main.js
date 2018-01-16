@@ -900,7 +900,7 @@ d3.select('#checkbox-solar').on('change', toggleSolar);
 d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(coordinates) {
-    if (windEnabled && wind && coordinates) {
+    if (windEnabled && wind && coordinates && typeof windLayer !== 'undefined') {
         var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
@@ -914,7 +914,7 @@ function mapMouseOver(coordinates) {
     } else {
         windColorbar.currentMarker(undefined);
     }
-    if (solarEnabled && solar && coordinates) {
+    if (solarEnabled && solar && coordinates && typeof solarLayer !== 'undefined') {
         var lonlat = countryMap.unprojection()(coordinates);
         var now = customDate ? moment(customDate) : (new Date()).getTime();
         if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
@@ -957,7 +957,7 @@ function renderMap() {
         exchangeLayer.render();
     }
 
-    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1]) {
+    if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
         LoadingService.startLoading('#loading');
         // Make sure to disable wind if the drawing goes wrong
         Cookies.set('windEnabled', false);
@@ -978,7 +978,7 @@ function renderMap() {
         windLayer.hide();
     }
 
-    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1]) {
+    if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
         LoadingService.startLoading('#loading');
         // Make sure to disable solar if the drawing goes wrong
         Cookies.set('solarEnabled', false);
@@ -1304,7 +1304,7 @@ function fetch(showLoading, callback) {
     else
         Q.defer(function(cb) { return cb(null, solar); });
 
-    if (!windEnabled)
+    if (!windEnabled || typeof windLayer === 'undefined')
         Q.defer(DataService.fetchNothing);
     else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
         Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
