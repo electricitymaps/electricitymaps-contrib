@@ -710,8 +710,8 @@ function selectCountry(countryCode, notrack) {
                             g.rootElement.node().getBoundingClientRect().top + 7);
                     } else if (g === countryHistoryPricesGraph) {
                         const tooltip = d3.select(priceTooltip._selector);
-                        tooltip.select('.value').html(d.price.value || '?');
-                        tooltip.select('.currency').html(getSymbolFromCurrency(d.price.currency) || '?');
+                        tooltip.select('.value').html((d.price || {}).value || '?');
+                        tooltip.select('.currency').html(getSymbolFromCurrency((d.price || {}).currency) || '?');
                         priceTooltip.show();
                         priceTooltip.update(
                             currentEvent.clientX - 7,
