@@ -3,6 +3,7 @@ const d3 = Object.assign(
   require('d3-selection'),
   require('d3-transition'),
 );
+import {event as d3Event} from 'd3-selection';
 
 function placeTooltip(selector, eventX, eventY) {
     var tooltip = d3.select(selector);
@@ -41,7 +42,7 @@ function Tooltip(selector) {
     d3.select(this._selector)
         .style('opacity', 0)
         // For mobile, hide when tapped
-        .on('click', function(e) { that.hide(); d3.event.stopPropagation(); })
+        .on('click', function(e) { that.hide(); d3Event.stopPropagation(); })
     return this;
 }
 
