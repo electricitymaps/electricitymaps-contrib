@@ -32,7 +32,7 @@ var Tooltip = require('./components/tooltip');
 var CountryTopos = require('./countrytopos');
 var DataService = require('./dataservice');
 
-var CountryMap = require('./components/map');
+import CountryMap from './components/map';
 var ExchangeLayer = require('./components/layers/exchange');
 var SolarLayer = require('./components/layers/solar');
 var WindLayer = require('./components/layers/wind');
