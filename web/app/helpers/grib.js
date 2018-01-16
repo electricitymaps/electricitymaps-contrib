@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-var d3 = require('d3');
+var d3 = require('d3-interpolate');
 var moment = require('moment');
 
 var getRefTime = exports.getRefTime = function(grib) {

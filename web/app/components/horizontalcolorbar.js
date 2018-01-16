@@ -1,4 +1,11 @@
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-axis'),
+  require('d3-scale'),
+  require('d3-interpolate'),
+  require('d3-selection'),
+);
 
 function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) {
     this.PADDING_X = 13; // Inner padding allow place for the axis text

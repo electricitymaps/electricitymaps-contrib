@@ -2,7 +2,10 @@ var exports = module.exports = {};
 
 var forge = require('node-forge');
 var Cookies = require('js-cookie');
-var d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-request'),
+);
 var moment = require('moment');
 
 // API

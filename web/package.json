@@ -5,7 +5,6 @@
   "dependencies": {
     "compression": "^1.7.1",
     "currency-symbol-map": "^3.1.0",
-    "d3": "^4.11.0",
     "d3-axis": "^1.0.8",
     "d3-collection": "^1.0.4",
     "d3-format": "^1.2.1",
@@ -14,6 +13,8 @@
     "d3-request": "^1.0.6",
     "d3-scale": "^1.0.7",
     "d3-selection": "^1.2.0",
+    "d3-shape": "^1.2.0",
+    "d3-transition": "^1.1.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "i18n": "^0.8.3",

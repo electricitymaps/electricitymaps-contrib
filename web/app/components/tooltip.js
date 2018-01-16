@@ -1,4 +1,8 @@
-const d3 = require('d3-selection');
+const d3 = Object.assign(
+  {},
+  require('d3-selection'),
+  require('d3-transition'),
+);
 
 function placeTooltip(selector, eventX, eventY) {
     var tooltip = d3.select(selector);
