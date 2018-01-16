@@ -1,8 +1,9 @@
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-class Map {
+export default class Map {
   _setupMapColor() {
-    if (this.map.isStyleLoaded() && this.map.getLayer('zones-fill')) {
+    if (this.map.isStyleLoaded() && this.map.getLayer('zones-fill') && this.co2color) {
       // TODO: Duplicated code
       const co2Range = [0, 200, 400, 600, 800, 1000];
       const stops = co2Range.map(d => [d, this.co2color(d)]);
@@ -37,21 +38,24 @@ class Map {
         },
       });
       // Create layers
-      const co2Range = [0, 200, 400, 600, 800, 1000];
-      const stops = co2Range.map(d => [d, this.co2color(d)]);
+      const paint = {
+        'fill-color': 'gray',
+      };
+      if (this.co2color) {
+        const co2Range = [0, 200, 400, 600, 800, 1000];
+        const stops = co2Range.map(d => [d, this.co2color(d)]);
+        paint['fill-color'] = {
+          stops,
+          property: 'co2intensity',
+          default: 'gray',
+        };
+      }
       this.map.addLayer({
         id: 'zones-fill',
         type: 'fill',
         source: 'world',
         layout: {},
-        paint: {
-          // 'fill-color': 'gray', // ** TODO: Duplicated code
-          'fill-color': {
-            default: 'gray',
-            property: 'co2intensity',
-            stops,
-          },
-        },
+        paint,
       });
       this.map.addLayer({
         id: 'zones-hover',
@@ -133,7 +137,7 @@ class Map {
       if ('ontouchstart' in document.documentElement) { return; }
       this.map.getCanvas().style.cursor = 'pointer';
       if (this.countryMouseOverHandler) {
-        const i = e.features[0].id;
+        const i = e.features[0].properties.zoneId;
         this.countryMouseOverHandler.call(this, this.data[i], i);
       }
     });
@@ -155,7 +159,7 @@ class Map {
         }
       }
       if (this.countryMouseMoveHandler) {
-        const i = e.features[0].id;
+        const i = e.features[0].properties.zoneId;
         const rect = boundingClientRect;
         this.countryMouseMoveHandler.call(
           this,
@@ -187,7 +191,7 @@ class Map {
           this.seaClickHandler.call(this);
         }
       } else if (this.countryClickHandler) {
-        const i = features[0].id;
+        const i = features[0].properties.zoneId;
         this.countryClickHandler.call(this, this.data[i], i);
       }
     });
@@ -339,7 +343,6 @@ class Map {
       geometry.coordinates = geometry.coordinates.filter(d => d.length !== 0);
 
       this.zoneGeometries.push({
-        id: k,
         type: 'Feature',
         geometry,
         properties: {
@@ -358,6 +361,13 @@ class Map {
     this.map.panTo(center);
     return this;
   }
-}
 
-module.exports = Map;
+  setScrollZoom(arg) {
+    if (arg === true) {
+      this.map.scrollZoom.enable();
+    } else {
+      this.map.scrollZoom.disable();
+    }
+    return this;
+  }
+}
