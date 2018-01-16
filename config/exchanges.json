@@ -1095,5 +1095,15 @@
       "exchange": "US_NY.fetch_exchange"
     },
     "rotation": -90
+  },
+  "US-NY->US-PJM": {
+    "lonlat": [
+      -77.069,
+      42.0
+    ],
+    "parsers": {
+      "exchange": "US_PJM.fetch_exchange"
+    },
+    "rotation": 180
   }
 }
