@@ -1192,7 +1192,27 @@
       "https://github.com/corradio"
     ]
   },
+  "NO-NO1": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
   "NO-NO2": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
+  "NO-NO3": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
+  "NO-NO4": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
+  "NO-NO5": {
     "parsers": {
       "price": "ENTSOE.fetch_price"
     }
@@ -1387,6 +1407,16 @@
     "contributors": [
       "https://github.com/corradio"
     ]
+  },
+  "SE-SE1": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
+  },
+  "SE-SE2": {
+    "parsers": {
+      "price": "ENTSOE.fetch_price"
+    }
   },
   "SE-SE3": {
     "parsers": {
