@@ -110,8 +110,9 @@ function getHash(key, ext) {
 }
 var obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
 var BUNDLE_HASH = getHash('bundle', 'js');
-var VENDOR_HASH = getHash('vendor', 'js');
 var STYLES_HASH = getHash('styles', 'css');
+var VENDOR_HASH = getHash('vendor', 'js');
+var VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
 // * Opbeat
 if (isProduction)
@@ -171,6 +172,7 @@ app.get('/', function(req, res) {
             bundleHash: BUNDLE_HASH,
             vendorHash: VENDOR_HASH,
             stylesHash: STYLES_HASH,
+            vendorStylesHash: VENDOR_STYLES_HASH,
             fullUrl: fullUrl,
             locale: locale,
             supportedLocales: locales,

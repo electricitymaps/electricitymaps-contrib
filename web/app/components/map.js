@@ -1,8 +1,9 @@
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-class Map {
+export default class Map {
   _setupMapColor() {
-    if (this.map.isStyleLoaded() && this.map.getLayer('zones-fill')) {
+    if (this.map.isStyleLoaded() && this.map.getLayer('zones-fill') && this.co2color) {
       // TODO: Duplicated code
       const co2Range = [0, 200, 400, 600, 800, 1000];
       const stops = co2Range.map(d => [d, this.co2color(d)]);
@@ -16,18 +17,28 @@ class Map {
 
   paintData() {
     if (!this.data) { return; }
-    const source = this.map.getSource('world');
-    const data = {
+    const clickableSource = this.map.getSource('clickable-world');
+    const nonClickableSource = this.map.getSource('non-clickable-world');
+    const clickableData = {
       type: 'FeatureCollection',
-      features: this.zoneGeometries,
+      features: this.clickableZoneGeometries,
     };
-    if (source) {
-      source.setData(data);
+    const nonClickableData = {
+      type: 'FeatureCollection',
+      features: this.nonClickableZoneGeometries,
+    };
+    if (clickableSource && nonClickableSource) {
+      clickableSource.setData(clickableData);
+      nonClickableSource.setData(nonClickableData);
     } else if (this.map.isStyleLoaded()) {
       // Create sources
-      this.map.addSource('world', {
+      this.map.addSource('clickable-world', {
         type: 'geojson',
-        data,
+        data: clickableData,
+      });
+      this.map.addSource('non-clickable-world', {
+        type: 'geojson',
+        data: nonClickableData,
       });
       this.map.addSource('hover', {
         type: 'geojson',
@@ -37,21 +48,31 @@ class Map {
         },
       });
       // Create layers
-      const co2Range = [0, 200, 400, 600, 800, 1000];
-      const stops = co2Range.map(d => [d, this.co2color(d)]);
+      const paint = {
+        'fill-color': this.clickableFill,
+      };
+      if (this.co2color) {
+        const co2Range = [0, 200, 400, 600, 800, 1000];
+        const stops = co2Range.map(d => [d, this.co2color(d)]);
+        paint['fill-color'] = {
+          stops,
+          property: 'co2intensity',
+          default: this.clickableFill,
+        };
+      }
       this.map.addLayer({
-        id: 'zones-fill',
+        id: 'clickable-zones-fill',
         type: 'fill',
-        source: 'world',
+        source: 'clickable-world',
         layout: {},
-        paint: {
-          // 'fill-color': 'gray', // ** TODO: Duplicated code
-          'fill-color': {
-            default: 'gray',
-            property: 'co2intensity',
-            stops,
-          },
-        },
+        paint,
+      });
+      this.map.addLayer({
+        id: 'non-clickable-zones-fill',
+        type: 'fill',
+        source: 'non-clickable-world',
+        layout: {},
+        paint: { 'fill-color': this.nonClickableFill },
       });
       this.map.addLayer({
         id: 'zones-hover',
@@ -67,23 +88,28 @@ class Map {
       this.map.addLayer({
         id: 'zones-line',
         type: 'line',
-        source: 'world',
+        source: 'clickable-world',
         layout: {},
         paint: {
-          'line-color': '#555555',
-          'line-width': this.STROKE_WIDTH,
+          'line-color': this.strokeColor,
+          'line-width': this.strokeWidth,
         },
       });
     }
   }
 
-  constructor(selectorId) {
-    this.STROKE_WIDTH = 0.3;
+  constructor(selectorId, argConfig) {
+    const config = argConfig || {};
+
+    this.strokeWidth = config.strokeWidth || 0.3;
+    this.strokeColor = config.strokeColor || '#555555';
+    this.clickableFill = config.clickableFill || 'gray';
+    this.nonClickableFill = config.nonClickableFill || 'gray';
 
     this.center = undefined;
 
     if (!mapboxgl.supported()) {
-      throw 'WebGL not supported'
+      throw 'WebGL not supported';
     }
 
     this.map = new mapboxgl.Map({
@@ -94,7 +120,7 @@ class Map {
         version: 8,
         sources: {},
         layers: [],
-        zoom: 3,
+        zoom: config.zoom || 3,
         center: this.center || [0, 50],
       },
     });
@@ -128,12 +154,12 @@ class Map {
     this.dragEndHandlers = [];
     this.mapLoadedHandlers = [];
 
-    this.map.on('mouseenter', 'zones-fill', (e) => {
+    this.map.on('mouseenter', 'clickable-zones-fill', (e) => {
       // Disable for touch devices
       if ('ontouchstart' in document.documentElement) { return; }
       this.map.getCanvas().style.cursor = 'pointer';
       if (this.countryMouseOverHandler) {
-        const i = e.features[0].id;
+        const i = e.features[0].properties.zoneId;
         this.countryMouseOverHandler.call(this, this.data[i], i);
       }
     });
@@ -144,7 +170,7 @@ class Map {
     window.addEventListener('resize', () => {
       boundingClientRect = node.getBoundingClientRect();
     });
-    this.map.on('mousemove', 'zones-fill', (e) => {
+    this.map.on('mousemove', 'clickable-zones-fill', (e) => {
       // Disable for touch devices
       if ('ontouchstart' in document.documentElement) { return; }
       if (prevId !== e.features[0].properties.zoneId) {
@@ -155,7 +181,7 @@ class Map {
         }
       }
       if (this.countryMouseMoveHandler) {
-        const i = e.features[0].id;
+        const i = e.features[0].properties.zoneId;
         const rect = boundingClientRect;
         this.countryMouseMoveHandler.call(
           this,
@@ -167,7 +193,7 @@ class Map {
       }
     });
 
-    this.map.on('mouseleave', 'zones-fill', () => {
+    this.map.on('mouseleave', 'clickable-zones-fill', () => {
       // Disable for touch devices
       if ('ontouchstart' in document.documentElement) { return; }
       this.map.getCanvas().style.cursor = '';
@@ -187,7 +213,7 @@ class Map {
           this.seaClickHandler.call(this);
         }
       } else if (this.countryClickHandler) {
-        const i = features[0].id;
+        const i = features[0].properties.zoneId;
         this.countryClickHandler.call(this, this.data[i], i);
       }
     });
@@ -331,22 +357,26 @@ class Map {
 
   setData(data) {
     this.data = data;
-    this.zoneGeometries = [];
+    this.clickableZoneGeometries = [];
+    this.nonClickableZoneGeometries = [];
 
     Object.keys(data).forEach((k) => {
       const geometry = data[k];
       // Remove empty geometries
       geometry.coordinates = geometry.coordinates.filter(d => d.length !== 0);
-
-      this.zoneGeometries.push({
-        id: k,
+      const feature = {
         type: 'Feature',
         geometry,
         properties: {
           zoneId: k,
           co2intensity: data[k].co2intensity,
         },
-      });
+      };
+      if (data[k].isClickable === undefined || data[k].isClickable === true) {
+        this.clickableZoneGeometries.push(feature);
+      } else {
+        this.nonClickableZoneGeometries.push(feature);
+      }
     });
 
     this.paintData();
@@ -358,6 +388,22 @@ class Map {
     this.map.panTo(center);
     return this;
   }
-}
 
-module.exports = Map;
+  setScrollZoom(arg) {
+    if (arg === true) {
+      this.map.scrollZoom.enable();
+    } else {
+      this.map.scrollZoom.disable();
+    }
+    return this;
+  }
+
+  setDoubleClickZoom(arg) {
+    if (arg === true) {
+      this.map.doubleClickZoom.enable();
+    } else {
+      this.map.doubleClickZoom.disable();
+    }
+    return this;
+  }
+}
