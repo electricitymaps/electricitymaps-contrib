@@ -48,7 +48,12 @@ class FacebookThirdParty {
         if(!this.hasLoaded) { // still loading
             this.events.push([event, data]);
         } else {
-            window.FB.AppEvents.logEvent(event, undefined, data);
+            // Quick hack
+           if (event === 'pageview') {
+                window.FB.AppEvents.logPageView();
+            } else {
+                window.FB.AppEvents.logEvent(event, undefined, data);
+            }
         }
     }
 }
