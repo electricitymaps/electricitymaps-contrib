@@ -65,7 +65,10 @@ def fetch_hourly_production(country_code, obj, hour, date):
         hour = 24
     # Fill production types
     for i_type in MAP_GENERATION.keys():
-        data['production'][i_type] = obj[MAP_GENERATION[i_type]][obj.hour == hour].iloc[0]
+        try:
+            data['production'][i_type] = obj[MAP_GENERATION[i_type]][obj.hour == hour].iloc[0]
+        except KeyError as e:
+            data['production'][i_type] = None
 
     return data
 
@@ -92,6 +95,7 @@ def fetch_production(country_code='BO', session=None):
     data_temp = fetch_hourly_production(country_code, obj, 0, formatted_date)
     data[0] = data_temp
 
+    # TODO This creates an identical dataframe for every hour. We only need one for all hours.
     # Fill data for the other hours until actual hour
     if actual_hour > 1:
         url = url_init + formatted_date
@@ -142,6 +146,7 @@ def fetch_generation_forecast(country_code='BO', session=None):
     response = r.get(url)
     obj = webparser(response)
 
+    # TODO This creates an identical dataframe for every hour. We only need one for all hours.
     for h in range(1, 25):
         data_temp = fetch_hourly_generation_forecast('BO', obj, h, formatted_date)
         data[h - 1] = data_temp
