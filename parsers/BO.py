@@ -68,7 +68,8 @@ def fetch_hourly_production(country_code, obj, hour, date):
         try:
             data['production'][i_type] = obj[MAP_GENERATION[i_type]][obj.hour == hour].iloc[0]
         except KeyError as e:
-            data['production'][i_type] = None
+            data['production'] = None
+            break
 
     return data
 
@@ -107,7 +108,12 @@ def fetch_production(country_code='BO', session=None):
             data_temp = fetch_hourly_production(country_code, obj, h, formatted_date)
             data[h] = data_temp
 
-    return data
+    valid_data = []
+    for datapoint in data:
+        if datapoint['production'] is not None:
+            valid_data.append(datapoint)
+            
+    return valid_data
 
 
 def fetch_hourly_generation_forecast(country_code, obj, hour, date):
