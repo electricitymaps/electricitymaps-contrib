@@ -412,7 +412,6 @@ try {
     windLayer = new WindLayer('wind', countryMap);
     solarLayer = new SolarLayer('solar', countryMap);
 } catch (e) {
-    console.log(e)
     if (e === 'WebGL not supported') {
         // Set mobile mode, and disable maps
         showPageState = 'highscore';
@@ -424,6 +423,9 @@ try {
         // Loading is finished
         LoadingService.stopLoading('#loading');
         LoadingService.stopLoading('#small-loading');
+
+        // Analytics
+        catchError(e);
     } else {
         throw e
     }
