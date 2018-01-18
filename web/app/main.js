@@ -207,6 +207,9 @@ var app = {
         if (cordova.platformId == 'ios') {
             d3.select('#header')
                 .style('padding-top', '20px');
+            if (typeof countryMap !== 'undefined') {
+                countryMap.map.resize();
+            }
         }
         codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
         universalLinks.subscribe(null, function (eventData) {
