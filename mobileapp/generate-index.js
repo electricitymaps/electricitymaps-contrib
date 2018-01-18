@@ -19,8 +19,9 @@ function getHash(key, ext) {
 }
 var obj = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.json'));
 var BUNDLE_HASH = getHash('bundle', 'js');
-var VENDOR_HASH = getHash('vendor', 'js');
 var STYLES_HASH = getHash('styles', 'css');
+var VENDOR_HASH = getHash('vendor', 'js');
+var VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
 // TODO:
 // Currently, those variables are duplicated from server.js
@@ -87,6 +88,7 @@ locales.forEach(function(locale) {
         bundleHash: BUNDLE_HASH,
         vendorHash: VENDOR_HASH,
         stylesHash: STYLES_HASH,
+        vendorStylesHash: VENDOR_STYLES_HASH,
         isCordova: true,
         locale: locale,
         FBLocale: LOCALE_TO_FB_LOCALE[locale],
