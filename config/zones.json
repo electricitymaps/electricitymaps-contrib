@@ -160,7 +160,7 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": "Europe/Bruxelles"
+    "timezone": "Europe/Brussels"
   },
   "BG": {
     "_comment": "hydro incl. 864 MW of pumped storage",
