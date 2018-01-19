@@ -577,13 +577,9 @@ d3.entries(zones_config).forEach(function(d) {
         console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..')
         return;
     }
+    // copy each zone attributes ("capacity", "contributors"...) into global object
     d3.entries(d.value).forEach(function(o) { zone[o.key] = o.value; });
     zone.shortname = translation.translate('zoneShortName.' + d.key);
-    zone.capacity = d.value.capacity;
-    zone.maxCapacity = d3.max(d3.values(zone.capacity));
-    zone.maxStorageCapacity = d3.max(d3.entries(zone.capacity), function(d) {
-        return (d.key.indexOf('storage') != -1) ? d.value : 0;
-    });
 });
 // Add id to each zone
 d3.entries(countries).forEach(function(d) {
@@ -663,7 +659,7 @@ function selectCountry(countryCode, notrack) {
                     })
                 );
             });
-            
+
             // Figure out the highest CO2 emissions
             var hi_co2 = d3.max(countryHistory, function(d) {
                 return d.co2intensity;
@@ -841,7 +837,7 @@ function showPage(pageName) {
         .classed('large-screen-visible', pageName != 'info');
 
     // Hide map on small screens
-    // It's important we show the map before rendering it to make sure 
+    // It's important we show the map before rendering it to make sure
     // sizes are set properly
     d3.selectAll('#map-container').classed('large-screen-visible', pageName != 'map');
 
@@ -866,8 +862,8 @@ function showPage(pageName) {
             if (solarEnabled) if (solarColorbar) solarColorbar.render();
         }
     }
- 
-    d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);   
+
+    d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
     d3.selectAll('#tab .' + pageName + '-button').classed('active', true);
 }
 
@@ -962,7 +958,7 @@ d3.select('.map-layer')
 
 function renderMap() {
     if (typeof countryMap === 'undefined') { return; }
-    
+
     if (!mapDraggedSinceStart) {
         var geolocation = callerLocation;
         if (selectedCountryCode) {
@@ -1073,7 +1069,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
             .duration(800)
             .style('color', undefined);
 
-    // Reset all data
+    // Reset all data we want to update (for instance, not maxCapacity)
     d3.entries(countries).forEach(function(entry) {
         entry.value.co2intensity = undefined;
         entry.value.exchange = {};
@@ -1100,6 +1096,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         }
         // Copy data
         d3.keys(entry.value).forEach(function(k) {
+            // Warning: k takes all values, even those that are not meant to be updated (like maxCapacity)
             country[k] = entry.value[k];
         });
         // Set date
@@ -1260,7 +1257,7 @@ function getCountryCode(lonlat, callback) {
             console.warn(Error('Invalid geocoder response'), response);
             callback(null, null);
         }
-    }); 
+    });
 }
 
 // Periodically load data
