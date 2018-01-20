@@ -49,115 +49,147 @@ def webparser(resp):
     return obj
 
 
-def fetch_hourly_production(country_code, obj, hour, date):
-    # output frame
-    data = {
-        'countryCode': country_code,
-        'production': {},
-        'storage': {},
-        'source': 'cndc.bo',
-    }
+def fetch_hourly_production(country_code, obj, date):
+    """Returns a list of dictionaries."""
 
-    # Fill datetime variable
-    data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo, hour=hour).datetime
-    # Datetime are recorded from hour 1 to 24 in the web service
-    if hour == 0:
-        hour = 24
-    # Fill production types
-    for i_type in MAP_GENERATION.keys():
-        try:
-            data['production'][i_type] = obj[MAP_GENERATION[i_type]][obj.hour == hour].iloc[0]
-        except KeyError as e:
-            data['production'] = None
-            break
+    production_by_hour = []
+    for index, row in obj.iterrows():
 
-    return data
+        data = {
+            'countryCode': country_code,
+            'production': {},
+            'storage': {},
+            'source': 'cndc.bo',
+        }
+        # Fill datetime variable
+        # Datetime are recorded from hour 1 to 24 in the web service
+        if row['hour'] == 24:
+            row['hour'] = 0
+            date = arrow.get(date, 'YYYY-MM-DD').shift(days=+1).format('YYYY-MM-DD')
+            #date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
+        data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo, hour=int(row['hour'])).datetime
+
+        # Fill production types
+        for i_type in MAP_GENERATION.keys():
+            try:
+                data['production'][i_type] = row[MAP_GENERATION[i_type]]
+            except KeyError as e:
+                data['production'] = None
+                break
+
+        production_by_hour.append(data)
+
+    return production_by_hour
 
 
 def fetch_production(country_code='BO', session=None):
-    # Define actual and last day (for midnight data)
+    """
+    Requests the last known production mix (in MW) of a given country
+    Arguments:
+    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    Return:
+    A dictionary in the form:
+    {
+      'countryCode': 'FR',
+      'datetime': '2017-01-01T00:00:00Z',
+      'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': null,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
+      'storage': {
+          'hydro': -10.0,
+      },
+      'source': 'mysource.com'
+    }
+    """
+
+    # Define actual and previous day (for midnight data).
     now = arrow.now(tz=tz_bo)
     formatted_date = now.format('YYYY-MM-DD')
     past_formatted_date = arrow.get(formatted_date, 'YYYY-MM-DD').shift(days=-1).format('YYYY-MM-DD')
 
-    # Define output frame
-    actual_hour = now.hour
-    data = [dict() for h in range(actual_hour + 1)]
-
     # initial path for url to request
     url_init = 'http://www.cndc.bo/media/archivos/graf/gene_hora/despacho_diario.php?fechag='
 
-    # Start with data for midnight
+    # Start with data for previous day in order to get midnight data.
     url = url_init + past_formatted_date
-    # Request and rearange in DF
     r = session or requests.session()
     response = r.get(url)
     obj = webparser(response)
-    data_temp = fetch_hourly_production(country_code, obj, 0, formatted_date)
-    data[0] = data_temp
+    data_yesterday = fetch_hourly_production(country_code, obj, past_formatted_date)
 
-    # TODO This creates an identical dataframe for every hour. We only need one for all hours.
-    # Fill data for the other hours until actual hour
-    if actual_hour > 1:
-        url = url_init + formatted_date
-        # Request and rearange in DF
-        r = session or requests.session()
-        response = r.get(url)
-        obj = webparser(response)
-        for h in range(1, actual_hour + 1):
-            data_temp = fetch_hourly_production(country_code, obj, h, formatted_date)
-            data[h] = data_temp
+    # Now get data for rest of today.
+    url = url_init + formatted_date
+    r = session or requests.session()
+    response = r.get(url)
+    obj = webparser(response)
+    data_today = fetch_hourly_production(country_code, obj, formatted_date)
 
+    data = data_yesterday + data_today
+
+    # Drop any datapoints where;
+    # 1) A type of generation is totally missing resulting in None.
+    # 2) Datapoint is in the future.
+    # 3) All production values are zero, this can happen because the data source
+    #    updates ~5mins after the hour so condition 2 will pass.
     valid_data = []
     for datapoint in data:
-        if datapoint['production'] is not None:
+        if all([datapoint['production'] is not None,
+                now.datetime > datapoint['datetime'],
+                sum(datapoint['production'].values()) != 0.0]):
+
             valid_data.append(datapoint)
-            
+
     return valid_data
 
 
-def fetch_hourly_generation_forecast(country_code, obj, hour, date):
-    # output frame
-    data = {
-        'countryCode': country_code,
-        'value': {},
-        'source': 'cndc.bo',
-    }
+def fetch_hourly_generation_forecast(country_code, obj, date):
+    """Returns a list of dictionaries."""
 
-    # Fill forecasted value
-    data['value'] = obj['Gen.Prevista'][obj.hour == hour].iloc[0]
+    hourly_forecast = []
+    for index, row in obj.iterrows():
+        data = {
+            'countryCode': country_code,
+            'value': {},
+            'source': 'cndc.bo',
+        }
 
-    # Fill datetime variable - changing format if midnight (datetime are recorded from hour 1 to 24 in the webservice)
-    if hour == 24:
-        hour = 0
-        date = arrow.get(date, 'YYYY-MM-DD').shift(days=+1).format('YYYY-MM-DD')
-    data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo, hour=hour).datetime
+        # Fill forecasted value
+        data['value'] = row['Gen.Prevista']
 
-    return data
+        # Fill datetime variable - changing format if midnight (datetime are recorded from hour 1 to 24 in the webservice)
+        if row['hour'] == 24:
+            row['hour'] = 0
+            date = arrow.get(date, 'YYYY-MM-DD').shift(days=+1).format('YYYY-MM-DD')
+        data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo, hour=int(row['hour'])).datetime
+
+        hourly_forecast.append(data)
+
+    return hourly_forecast
 
 
 def fetch_generation_forecast(country_code='BO', session=None):
     # Define actual and last day (for midnight data)
     formatted_date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
 
-    # Define output frame
-    data = [dict() for h in range(24)]
-
     # initial path for url to request
     url_init = 'http://www.cndc.bo/media/archivos/graf/gene_hora/despacho_diario.php?fechag='
     url = url_init + formatted_date
 
-    # Request and rearange in DF
     r = session or requests.session()
     response = r.get(url)
     obj = webparser(response)
+    forecast = fetch_hourly_generation_forecast('BO', obj, formatted_date)
 
-    # TODO This creates an identical dataframe for every hour. We only need one for all hours.
-    for h in range(1, 25):
-        data_temp = fetch_hourly_generation_forecast('BO', obj, h, formatted_date)
-        data[h - 1] = data_temp
-
-    return data
+    return forecast
 
 
 if __name__ == '__main__':
