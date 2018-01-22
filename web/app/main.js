@@ -340,7 +340,7 @@ var modeColor = {
     'wind': '#74cdb9',
     'solar': '#f27406',
     'hydro': '#2772b2',
-    'hydro storage': '#2772b2',
+    'hydro storage': '#0052cc',
     'battery': 'lightgray',
     'biomass': '#166a57',
     'geothermal': 'yellow',
@@ -1388,4 +1388,3 @@ observeStore(store, function(state) { return state.countryDataIndex }, function(
 fetch(true, function() {
     setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
 });
-
