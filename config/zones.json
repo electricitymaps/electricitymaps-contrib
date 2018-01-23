@@ -736,6 +736,34 @@
     },
     "timezone": null
   },
+  "ESC-FV": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
+  "ESC-GC": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
+  "ESC-HI": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
+  "ESC-IG": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
+  "ESC-LP": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
+  "ESC-LZ": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
+  "ESC-TE": {
+    "flag_file_name": "es.png",
+    "timezone": null
+  },
   "ES-IB": {
     "capacity": {
       "battery storage": 0,
