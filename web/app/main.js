@@ -425,9 +425,9 @@ try {
         LoadingService.stopLoading('#small-loading');
 
         // Analytics
-        catchError(e);
+        catchError(new Error('WebGL not supported'));
     } else {
-        throw e
+        throw e;
     }
 }
 
