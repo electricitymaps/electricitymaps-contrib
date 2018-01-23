@@ -103,20 +103,17 @@ co2Sub = function(str) {
             <div id="header">
                 <div id="header-content">
                     <div class="logo">
-                        <span>
-                          <img src="images/icon_noborder_small.png" />
-                          <span>Electricity Map</span>
-                          <span class="large-screen-visible maintitle">
-                              | <small><%- co2Sub(__('misc.maintitle')) %></small>
-                          </span>
+                        <img src="images/icon_noborder_small.png" />
+                        <b>Electricity Map</b> <span style="color: orange">Live</span>
+                        <span class="large-screen-visible maintitle">
+                            <!-- | <small><%- co2Sub(__('misc.maintitle')) %></small> -->
+                             · Database · Forecast
                         </span>
                     </div>
 
                     <div class="right-header">
-                        <span>
-                            <div id="small-loading" class="loading"></div>
-                            <%- __('misc.lastupdate') %> <span class="current-datetime-from-now"></span>
-                        </span>
+                        <span id="small-loading" class="loading"></span>
+                        <%- __('misc.lastupdate') %> <span class="current-datetime-from-now"></span>
                     </div>
                 </div>
 
