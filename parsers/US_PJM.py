@@ -9,6 +9,7 @@ import re
 import requests
 
 
+# Used for both production and price data.
 url = 'http://www.pjm.com/markets-and-operations.aspx'
 
 mapping = {
@@ -270,8 +271,48 @@ def fetch_exchange(country_code1, country_code2, session = None):
     return exchanges
 
 
+def fetch_price(country_code = 'US-PJM', session = None):
+    """Requests the last known power price of a given country
+    Arguments:
+    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A dictionary in the form:
+    {
+      'countryCode': 'FR',
+      'currency': EUR,
+      'datetime': '2017-01-01T00:00:00Z',
+      'price': 0.0,
+      'source': 'mysource.com'
+    }
+    """
+
+    s = session or requests.Session()
+    req = requests.get(url)
+    soup = BeautifulSoup(req.content, 'html.parser')
+
+    price_tag = soup.find("span", class_="rtolmpico")
+    price_data = price_tag.find_next("h2")
+    price_string = price_data.text.split("$")[1]
+    price = float(price_string)
+
+    dt = arrow.now('America/New_York').floor('second').datetime
+
+    data = {
+        'countryCode': country_code,
+        'currency': 'USD',
+        'datetime': dt,
+        'price': price,
+        'source': 'pjm.com',
+        }
+
+    return data
+
+
 if __name__ == '__main__':
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_exchange(US-NY, US-PJM) ->')
     print(fetch_exchange('US-NY', 'US-PJM'))
+    print('fetch_price() ->')
+    print(fetch_price())

@@ -1694,7 +1694,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_PJM.fetch_production"
+      "production": "US_PJM.fetch_production",
+      "price": "US_PJM.fetch_price"
     },
     "timezone": null
   },
