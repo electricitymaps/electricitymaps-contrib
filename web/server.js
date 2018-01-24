@@ -18,7 +18,7 @@ const http = require('http');
 const i18n = require('i18n');
 
 // Custom module
-const translation = require(__dirname + '/translation');
+const translation = require(__dirname + '/src/translation');
 
 const app = express();
 const server = http.Server(app);
