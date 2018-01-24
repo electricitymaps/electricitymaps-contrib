@@ -188,7 +188,7 @@ app.get('/v1/*', (req, res) =>
   res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl)
 );
 app.get('/v2/*', (req, res) =>
-  res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl);
+  res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl)
 );
 
 // Start the application
