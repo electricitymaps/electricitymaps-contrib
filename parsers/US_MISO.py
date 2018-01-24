@@ -2,6 +2,7 @@
 
 """Parser for the MISO area of the United States."""
 
+from dateutil import parser, tz
 import json
 import requests
 
@@ -13,6 +14,13 @@ mapping = {'Coal': 'coal',
            'Wind': 'wind',
            'Other': 'unknown'}
 
+# To quote the MISO data source;
+# "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
+# External Asynchronous Resources and a varied assortment of solid waste, garbage and wood pulp burners".
+
+# Timestamp reported by data source is in format 23-Jan-2018 - Interval 11:45 EST
+# Unsure exactly why EST is used, possibly due to operational connections with PJM.
+
 
 def get_json_data(session = None):
     """Returns 5 minute generation data in json format."""
@@ -23,8 +31,20 @@ def get_json_data(session = None):
     return json_data
 
 
+def add_default_tz(timestamp):
+    """Adds EST timezone to datetime object if tz = None."""
+
+    EST = tz.gettz('America/New_York')
+    modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or EST)
+
+    return modified_timestamp
+
+
 def data_processer(json_data):
-    """why not how"""
+    """
+    Identifies any unknown fuel types and logs a warning.
+    Returns a tuple containing datetime object and production dictionary.
+    """
 
     generation = json_data['Fuel']['Type']
 
@@ -38,17 +58,23 @@ def data_processer(json_data):
         v = float(fuel['ACT'])
         production[k] = production.get(k, 0.0) + v
 
-    #23-Jan-2018 - Interval 11:45 EST
+    # Remove unneeded parts of timestamp to allow datetime parsing.
     timestamp = json_data['RefId']
     split_time = timestamp.split(" ")
-    [v for i, v in enumerate(oldlist) if i not in removeset]
-    #del split_time[]
+    time_junk = set([1,2])
+    useful_time_parts = [v for i, v in enumerate(split_time) if i not in time_junk]
 
-    # TODO: join 2 list items then parse, %b month abrev, day zero padded?, %Z for timezone,
-    return split_time
+    if useful_time_parts[-1] != 'EST':
+        raise ValueError('Timezone reported for US-MISO has changed.')
+
+    time_data = " ".join(useful_time_parts)
+    dt_naive = parser.parse(time_data)
+    dt = add_default_tz(dt_naive)
+
+    return dt, production
 
 
-def fetch_production(country_code = 'US-MISO'):
+def fetch_production(country_code = 'US-MISO', session = None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -81,15 +107,15 @@ def fetch_production(country_code = 'US-MISO'):
     json_data = get_json_data(session = None)
     processed_data = data_processer(json_data)
 
-    production = {
+    data = {
       'countryCode': country_code,
-      'datetime': None,
-      'production': None,
-      'storage': {'hydro': None},# TODO: check this
+      'datetime': processed_data[0],
+      'production': processed_data[1],
+      'storage': {'hydro': None},
       'source': 'misoenergy.org'
     }
 
-    return processed_data
+    return data
 
 
 if __name__ == '__main__':
