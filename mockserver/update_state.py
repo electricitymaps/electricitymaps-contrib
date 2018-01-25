@@ -40,8 +40,8 @@ if sys.argv[1] == 'all':
     zone_name = list(zones_config.keys())
     zone_config = zones_config
 else:
-    zone_name = sys.argv[1]
-    zone_config = zones_config[zone_name]
+    zone_name = [sys.argv[1]]
+    zone_config = zones_config
 
 exchange_parser_keys = []
 for k in exchanges_config.keys():
@@ -59,6 +59,7 @@ for k in zone_name:
         production_parser = zone_config[k]['parsers']['production']
     except KeyError as e:
         # There is no production parser for this zone.
+        print('No production parser found for {}'.format(k))
         continue
 
     mod_name, fun_name = production_parser.split('.')
