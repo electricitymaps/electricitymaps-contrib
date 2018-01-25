@@ -1673,6 +1673,23 @@
     "flag_file_name": "us.png",
     "timezone": null
   },
+  "US-MISO": {
+    "capacity": {
+      "coal": 60828,
+      "gas": 71255,
+      "nuclear": 13903,
+      "solar": 312,
+      "wind": 17224
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_MISO.fetch_production"
+    },
+    "timezone": null
+  },
   "US-NEISO": {
     "capacity": {
       "biomass": 1895,
