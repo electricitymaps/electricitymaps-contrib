@@ -65,7 +65,6 @@ Object.keys(applicationState).forEach((k) => {
 });
 
 // TODO(olc) move those to redux state
-let selectedCountryCode;
 let currentMoment;
 let previousShowPageState;
 let mapDraggedSinceStart = false;
@@ -97,7 +96,7 @@ const app = {
 
   onBack: function(e) {
     if (getState().application.showPageState !== 'map') {
-      selectedCountryCode = undefined;
+      dispatchApplication('selectedCountryCode', undefined);
       dispatchApplication('showPageState', previousShowPageState || 'map');
       e.preventDefault();
     } else {
@@ -454,8 +453,8 @@ window.toggleSource = (state) => {
 // Prepare data
 const countries = CountryTopos.addCountryTopos({});
 // Validate selected country
-if (d3.keys(countries).indexOf(selectedCountryCode) === -1) {
-  selectedCountryCode = undefined;
+if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -1) {
+  dispatchApplication('selectedCountryCode', undefined);
   if (getState().application.showPageState === 'country') {
     dispatchApplication('showPageState', 'map');
   }
@@ -688,7 +687,6 @@ function selectCountry(countryCode, notrack) {
       .attr('src', d => d + '.png');
     selector.exit().remove();
   }
-  dispatchApplication('selectedCountryCode', selectedCountryCode);
 }
 // Bind
 if (typeof countryMap !== 'undefined') {
@@ -703,12 +701,17 @@ if (typeof countryMap !== 'undefined') {
     });
 }
 d3.selectAll('#left-panel-country-back')
-  .on('click', () => { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
+  .on('click', () => {
+    dispatchApplication('selectedCountryCode', undefined);
+    dispatchApplication('showPageState', previousShowPageState || 'map');
+  });
 d3.selectAll('#left-panel-highscore-back')
   .on('click', () => { dispatchApplication('showPageState', 'map'); }); // only triggered on large screens
-d3.selectAll('.highscore-button').on('click', () => { showPage('highscore'); });
-d3.selectAll('.map-button').on('click', () => { showPage('map'); });
-d3.selectAll('.info-button').on('click', () => { showPage('info'); });
+d3.selectAll('.highscore-button').on('click', () => {
+  dispatchApplication('showPageState', 'highscore');
+});
+d3.selectAll('.map-button').on('click', () => { dispatchApplication('showPageState', 'map'); });
+d3.selectAll('.info-button').on('click', () => { dispatchApplication('showPageState', 'info'); });
 
 function showPage(pageName) {
 
@@ -768,8 +771,10 @@ if (getState().application.showPageState) {
 }
 
 // Now that the width is set, we can render the legends
-if (getState().application.windEnabled && !selectedCountryCode) windColorbar.render();
-if (getState().application.solarEnabled && !selectedCountryCode) solarColorbar.render();
+if (getState().application.windEnabled && !getState().application.selectedCountryCode)
+  windColorbar.render();
+if (getState().application.solarEnabled && !getState().application.selectedCountryCode)
+  solarColorbar.render();
 
 // Attach event handlers
 function toggleWind() {
@@ -795,7 +800,7 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      if (!selectedCountryCode) {
+      if (!getState().application.selectedCountryCode) {
         windColorbar.currentMarker(Math.sqrt(u * u + v * v));
       }
     }
@@ -806,9 +811,9 @@ function mapMouseOver(lonlat) {
     const now = getState().application.customDate ?
       moment(getState().application.customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      let val = grib.getInterpolatedValueAtLonLat(lonlat,
+      const val = grib.getInterpolatedValueAtLonLat(lonlat,
         now, solar.forecasts[0], solar.forecasts[1]);
-      if (!selectedCountryCode) {
+      if (!getState().application.selectedCountryCode) {
         solarColorbar.currentMarker(val);
       }
     }
@@ -822,16 +827,15 @@ function renderMap() {
 
   if (!mapDraggedSinceStart) {
     const geolocation = callerLocation;
+    const { selectedCountryCode } = getState().application;
     if (selectedCountryCode) {
       const lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => d[0]);
       const lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => d[1]);
       countryMap.setCenter([lon, lat]);
-    }
-    else if (geolocation) {
+    } else if (geolocation) {
       console.log('Centering on', geolocation);
       countryMap.setCenter(geolocation);
-    }
-    else {
+    } else {
       countryMap.setCenter([0, 50]);
     }
   }
@@ -1015,18 +1019,21 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   countryListSelector.select('span.name')
     .text(d => ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' ')
   countryListSelector.select('div.emission-rect')
-    .style('background-color', d => {
+    .style('background-color', (d) => {
       return d.co2intensity ? co2color(d.co2intensity) : 'gray';
     });
   countryListSelector.select('.flag')
     .attr('src', d => flags.flagUri(d.countryCode, 16));
-  countryListSelector.on('click', d => { selectedCountryCode = d.countryCode; showPage('country'); });
+  countryListSelector.on('click', (d) => {
+    dispatchApplication('selectedCountryCode', d.countryCode);
+    dispatchApplication('showPageState', 'country');
+  });
 
   if (typeof countryMap !== 'undefined') {
     // Assign country map data
     countryMap
       .setData(d3.values(countries))
-      .onCountryMouseOver(d => {
+      .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
       })
       .onCountryMouseMove((d, i, clientX, clientY, lonlat) => {
@@ -1035,7 +1042,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         mapMouseOver(lonlat);
         countryTooltip.update(clientX, clientY);
       })
-      .onCountryMouseOut(d => {
+      .onCountryMouseOut((d) => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
         mapMouseOver(undefined);
@@ -1062,10 +1069,10 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     });
 
   // Re-render country table if it already was visible
-  if (selectedCountryCode) {
-    countryTable.data(countries[selectedCountryCode]).render();
+  if (getState().application.selectedCountryCode) {
+    countryTable.data(countries[getState().application.selectedCountryCode]).render();
   }
-  selectCountry(selectedCountryCode, true);
+  selectCountry(getState().application.selectedCountryCode, true);
 
   // Populate exchange pairs for arrows
   d3.entries(state.exchanges).forEach((obj) => {
@@ -1184,7 +1191,7 @@ function fetchAndReschedule() {
 }
 
 function redraw() {
-  if (selectedCountryCode) {
+  if (getState().application.selectedCountryCode) {
     countryTable.render();
     countryHistoryCarbonGraph.render();
     countryHistoryPricesGraph.render();
@@ -1204,12 +1211,14 @@ window.retryFetch = () => {
 // Observe for navigation
 observe(state => state.application.showPageState, (showPageState) => {
   if (showPage) { showPage(showPageState); }
-})
+});
 // Observe for zoneTable re-render
 observe(state => state.countryData, (d) => {
-  countryTable
-    .data(d)
-    .render(true);
+  countryTable.data(d).render(true);
+});
+// Observe for country change
+observe(state => state.application.selectedCountryCode, (k) => {
+  selectCountry(k);
 });
 // Observe for history graph index change
 observe(state => state.countryDataIndex, (i) => {
