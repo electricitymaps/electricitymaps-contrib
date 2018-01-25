@@ -895,9 +895,8 @@ function toggleSolar() {
 d3.select('#checkbox-solar').on('change', toggleSolar);
 d3.select('.solar-toggle').on('click', toggleSolar);
 
-function mapMouseOver(coordinates) {
-  if (windEnabled && wind && coordinates && typeof windLayer !== 'undefined') {
-    let lonlat = countryMap.unprojection()(coordinates);
+function mapMouseOver(lonlat) {
+  if (windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
     let now = customDate ? moment(customDate) : (new Date()).getTime();
     if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       let u = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -910,8 +909,7 @@ function mapMouseOver(coordinates) {
   } else {
     windColorbar.currentMarker(undefined);
   }
-  if (solarEnabled && solar && coordinates && typeof solarLayer !== 'undefined') {
-    let lonlat = countryMap.unprojection()(coordinates);
+  if (solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
     let now = customDate ? moment(customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       let val = grib.getInterpolatedValueAtLonLat(lonlat,
@@ -923,13 +921,6 @@ function mapMouseOver(coordinates) {
     solarColorbar.currentMarker(undefined);
   }
 }
-d3.select('.map-layer')
-  .on('mousemove', () => {
-    mapMouseOver(d3.mouse(this));
-  })
-  .on('mouseout', () => {
-    mapMouseOver(undefined);
-  });
 
 function renderMap() {
   if (typeof countryMap === 'undefined') { return; }
@@ -1140,17 +1131,19 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     // Assign country map data
     countryMap
       .setData(d3.values(countries))
-      .onCountryMouseOver(d =>
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
-      )
-      .onCountryMouseMove((d, i, clientX, clientY) => {
+      .onCountryMouseOver(d => {
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+      })
+      .onCountryMouseMove((d, i, clientX, clientY, lonlat) => {
         // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars)
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        mapMouseOver(lonlat);
         countryTooltip.update(clientX, clientY);
       })
       .onCountryMouseOut(d => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+        mapMouseOver(undefined);
         countryTooltip.hide();
       });
   }

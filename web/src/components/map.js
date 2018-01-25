@@ -189,6 +189,7 @@ export default class Map {
           i,
           rect.left + e.point.x,
           rect.top + e.point.y,
+          this.map.unproject([e.point.x, e.point.y]),
         );
       }
     });
