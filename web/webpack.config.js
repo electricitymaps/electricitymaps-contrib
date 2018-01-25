@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
     devtool: isProduction ? 'sourcemap' : 'eval',
-    entry: { bundle: ['babel-polyfill', './app/main.js'], styles: './app/styles.css' },
+    entry: { bundle: ['babel-polyfill', './src/main.js'], styles: './src/styles.css' },
     module: {
         rules: [
             // Extract css files
