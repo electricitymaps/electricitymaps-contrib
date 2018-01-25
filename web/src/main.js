@@ -20,8 +20,7 @@ const d3 = Object.assign(
 const moment = require('moment');
 
 const thirdPartyServices = require('./services/thirdparty');
-const store = require('./store');
-const { observeStore } = require('./helpers/redux');
+const { dispatch, observe } = require('./store');
 
 const AreaGraph = require('./components/areagraph');
 const LineGraph = require('./components/linegraph');
@@ -460,7 +459,7 @@ let countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars);
-    store.dispatch({
+    dispatch({
       type: 'SELECT_DATA',
       payload: { countryData, index: i },
     });
@@ -477,7 +476,7 @@ let countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars)
-    store.dispatch({
+    dispatch({
       type: 'SELECT_DATA',
       payload: { countryData, index: i },
     });
@@ -581,7 +580,7 @@ function selectCountry(countryCode, notrack) {
       .powerScaleDomain(null) // Always reset scale if click on a new country
       .co2ScaleDomain(null)
       .exchangeKeys(null); // Always reset exchange keys
-    store.dispatch({
+    dispatch({
       type: 'ZONE_DATA',
       payload: countries[countryCode],
     });
@@ -677,7 +676,7 @@ function selectCountry(countryCode, notrack) {
             }
             countryTable
               .powerScaleDomain([lo, hi])
-              .co2ScaleDomain([lo_emission, hi_emission])
+              .co2ScaleDomain([lo_emission, hi_emission]);
 
             if (g === countryHistoryCarbonGraph) {
               tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
@@ -694,9 +693,9 @@ function selectCountry(countryCode, notrack) {
                 g.rootElement.node().getBoundingClientRect().top + 7);
             }
 
-            store.dispatch({
+            dispatch({
               type: 'SELECT_DATA',
-              payload: { countryData: d, index: i }
+              payload: { countryData: d, index: i },
             });
           })
           .onMouseOut((d, i) => {
@@ -713,7 +712,7 @@ function selectCountry(countryCode, notrack) {
               priceTooltip.hide();
             }
 
-            store.dispatch({
+            dispatch({
               type: 'SELECT_DATA',
               payload: { countryData: countries[countryCode], index: undefined }
             });
@@ -1325,7 +1324,7 @@ function redraw() {
     countryHistoryMixGraph.render();
   }
   co2Colorbars.forEach(d => { d.render(); });
-};
+}
 
 window.addEventListener('resize', () => {
   redraw();
@@ -1334,16 +1333,16 @@ window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
   clearInterval(connectionWarningTimeout);
   fetch(false);
-}
+};
 
 // Observe for countryTable re-render
-observeStore(store, state => state.countryData, d => {
+observe(state => state.countryData, d => {
   countryTable
     .data(d)
     .render(true);
 });
 // Observe for history graph index change
-observeStore(store, state => state.countryDataIndex, i => {
+observe(state => state.countryDataIndex, i => {
   [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach((g) => {
     g.selectedIndex(i);
   });
