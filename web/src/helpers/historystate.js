@@ -59,18 +59,20 @@ function getStateFromHistory() {
 }
 
 // Parse initial history state
-const querystrings = window.location.search.replace('\?','').split('&');
-const validKeys = Object.keys(querystringMappings);
-querystrings.forEach((d) => {
-  const pair = d.split('=');
-  const [k, v] = pair;
-  if (validKeys.indexOf(k) !== -1) {
-    if (['true', 'false'].indexOf(v.toLowerCase()) !== -1) {
-      replace(k, v.toLowerCase() === 'true');
-    } else {
-      replace(k, v);
+function parseInitial(arg) {
+  const querystrings = arg.replace('\?','').split('&');
+  const validKeys = Object.keys(querystringMappings);
+  querystrings.forEach((d) => {
+    const pair = d.split('=');
+    const [k, v] = pair;
+    if (validKeys.indexOf(k) !== -1) {
+      if (['true', 'false'].indexOf(v.toLowerCase()) !== -1) {
+        replace(k, v.toLowerCase() === 'true');
+      } else {
+        replace(k, v);
+      }
     }
-  }
-});
+  });
+}
 
-module.exports = { getStateFromHistory, updateHistoryFromState };
+module.exports = { getStateFromHistory, updateHistoryFromState, parseInitial };

@@ -49,19 +49,27 @@ const { getSymbolFromCurrency } = require('currency-symbol-map');
 const exchangesConfig = require('../../config/exchanges.json');
 const zonesConfig = require('../../config/zones.json');
 
-// Constants
-const REFRESH_TIME_MINUTES = 5;
-
+// Timing
 if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
 
+// Constants
+const REFRESH_TIME_MINUTES = 5;
+
+// Set state depending on URL params
+HistoryState.parseInitial(window.location.search);
+const applicationState = HistoryState.getStateFromHistory();
+Object.keys(applicationState).forEach((k) => {
+  dispatchApplication(k, applicationState[k]);
+});
+
+// TODO(olc) move those to redux state
 let selectedCountryCode;
 let currentMoment;
 let previousShowPageState;
 let mapDraggedSinceStart = false;
 
-// Computed State
 const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
 const LOCAL_ENDPOINT = 'http://localhost:9000';
 const ENDPOINT = getState().application.useRemoteEndpoint ?
@@ -108,8 +116,13 @@ const app = {
     }
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
     universalLinks.subscribe(null, (eventData) => {
-      // do some work
-      parseQueryString(eventData.url.split('?')[1] || eventData.url);
+      HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
+      // In principle we should only do the rest of the app loading
+      // after this point, instead of dispating a new event
+      const applicationState = HistoryState.getStateFromHistory();
+      Object.keys(applicationState).forEach((k) => {
+        dispatchApplication(k, applicationState[k]);
+      });
     });
   },
 
@@ -707,8 +720,6 @@ function showPage(pageName) {
   if (getState().application.showPageState !== 'country')
     previousShowPageState = getState().application.showPageState;
 
-  // replaceHistoryState('page', getState().application.showPageState);
-
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
   d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
@@ -764,7 +775,6 @@ if (getState().application.solarEnabled && !selectedCountryCode) solarColorbar.r
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
   dispatchApplication('windEnabled', !getState().application.windEnabled);
-  // replaceHistoryState('wind', windEnabled);
 }
 d3.select('#checkbox-wind').on('change', toggleWind);
 d3.select('.wind-toggle').on('click', toggleWind);
@@ -772,7 +782,6 @@ d3.select('.wind-toggle').on('click', toggleWind);
 function toggleSolar() {
   if (typeof solarLayer === 'undefined') { return; }
   dispatchApplication('solarEnabled', !getState().application.solarEnabled);
-  // replaceHistoryState('solar', getState().application.solarEnabled);
 }
 d3.select('#checkbox-solar').on('change', toggleSolar);
 d3.select('.solar-toggle').on('click', toggleSolar);

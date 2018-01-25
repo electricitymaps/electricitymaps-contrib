@@ -1,5 +1,4 @@
 const Cookies = require('js-cookie');
-const HistoryState = require('../helpers/historystate');
 
 const isLocalhost = window.location.href.indexOf('electricitymap') !== -1;
 
@@ -30,12 +29,6 @@ const initialState = {
     wind: null,
   },
 };
-
-// Load initial values from querystring
-const applicationState = HistoryState.getStateFromHistory();
-Object.keys(applicationState).forEach((k) => {
-  initialState.application[k] = applicationState[k];
-});
 
 module.exports = (state = initialState, action) => {
   switch (action.type) {
