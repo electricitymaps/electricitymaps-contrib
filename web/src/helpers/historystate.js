@@ -73,18 +73,4 @@ querystrings.forEach((d) => {
   }
 });
 
-// We can watch the values of querystringMappings to know which redux keys to...
-
-// args.forEach((arg) => {
-//   } else if (kv[0] == 'datetime') {
-//     customDate = kv[1];
-//     // HACK
-//     window.customDate = customDate;
-//     replaceHistoryState('datetime', customDate);
-//   } else if (kv[0] == 'page') {
-//     showPageState = kv[1].replace('%20', '');
-//     replaceHistoryState('page', showPageState);
-//     if (showPage) showPage(showPageState);
-// });
-
 module.exports = { getStateFromHistory, updateHistoryFromState };
