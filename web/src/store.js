@@ -10,13 +10,14 @@ const store = redux.createStore(
 
 // Utility to react to store changes
 const observe = (select, onChange) => {
-  let currentState;
+  let currentSelectedState;
 
   function handleChange() {
-    const nextState = select(store.getState());
-    if (nextState !== currentState) {
-      currentState = nextState;
-      onChange(currentState);
+    const nextState = store.getState();
+    const nextSelectedState = select(nextState);
+    if (nextSelectedState !== currentSelectedState) {
+      currentSelectedState = nextSelectedState;
+      onChange(currentSelectedState, nextState);
     }
   }
 

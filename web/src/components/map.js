@@ -3,11 +3,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default class Map {
   _setupMapColor() {
-    if (this.map.isStyleLoaded() && this.map.getLayer('zones-fill') && this.co2color) {
+    if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
       // TODO: Duplicated code
       const co2Range = [0, 200, 400, 600, 800, 1000];
       const stops = co2Range.map(d => [d, this.co2color(d)]);
-      this.map.setPaintProperty('zones-fill', 'fill-color', {
+      this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
         default: 'gray',
         property: 'co2intensity',
         stops,
@@ -141,8 +141,8 @@ export default class Map {
     // Set a timer to detect when the map has finished loading
     const loadingInterval = setInterval(() => {
       if (this.map.loaded()) {
-        this.mapLoadedHandlers.forEach(h => h(this));
         clearInterval(loadingInterval);
+        this.mapLoadedHandlers.forEach(h => h(this));
       }
     }, 100);
 
@@ -183,13 +183,14 @@ export default class Map {
       if (this.countryMouseMoveHandler) {
         const i = e.features[0].properties.zoneId;
         const rect = boundingClientRect;
+        const p = this.map.unproject([e.point.x, e.point.y]);
         this.countryMouseMoveHandler.call(
           this,
           this.data[i],
           i,
           rect.left + e.point.x,
           rect.top + e.point.y,
-          this.map.unproject([e.point.x, e.point.y]),
+          [p.lng, p.lat],
         );
       }
     });
