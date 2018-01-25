@@ -302,9 +302,11 @@ try {
     });
   windLayer = new WindLayer('wind', countryMap);
   solarLayer = new SolarLayer('solar', countryMap);
+  dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
+    dispatchApplication('webglsupported', false);
     dispatchApplication('showPageState', 'highscore');
     document.getElementById('tab').className = 'nomap';
     document.getElementById('layer-toggles').style.display = 'none';
@@ -312,9 +314,6 @@ try {
     // Loading is finished
     LoadingService.stopLoading('#loading');
     LoadingService.stopLoading('#small-loading');
-
-    // Analytics
-    catchError(new Error('WebGL not supported'));
   } else {
     throw e;
   }
