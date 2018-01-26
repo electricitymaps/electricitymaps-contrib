@@ -21,7 +21,7 @@ def fetch_island_data(country_code, session):
         if not gran_canaria_data:
             raise ParserException(country_code, "GranCanaria not response")
         else:
-            return
+            return gran_canaria_data
     elif country_code == 'ES-CN-IG':
         gomera_data = Gomera(session).get_all()
         if not gomera_data:
@@ -40,6 +40,12 @@ def fetch_island_data(country_code, session):
             raise ParserException(country_code, "Tenerife not response")
         else:
             return tenerife_data
+    elif country_code == 'ES-CN-HI':
+        el_hierro_data = ElHierro(session).get_all()
+        if not el_hierro_data:
+            raise ParserException(country_code, "ElHierro not response")
+        else:
+            return el_hierro_data
     else:
         raise ParserException(country_code, 'Can\'t read this country code {0}'.format(country_code))
 
@@ -66,31 +72,54 @@ def fetch_production(country_code, session=None):
     island_data = fetch_island_data(country_code, ses)
     data = []
 
-    for response in island_data:
-        if response.production() > 0:
-            response_data = {
-                'countryCode': country_code,
-                'datetime': get(response.timestamp).datetime,
-                'production': {
-                    'coal': 0.0,
-                    'gas': round(response.gas + response.combined, 2),
-                    'solar': round(response.solar, 2),
-                    'oil': round(response.vapor + response.diesel, 2),
-                    'wind': round(response.wind, 2),
-                    'hydro': round(response.hydraulic, 2),
-                    'biomass': 0.0,
-                    'nuclear': 0.0,
-                    'geothermal': 0.0,
-                    'unknown': 0.0
-                },
-                'storage': {
-                    'hydro': 0.0,
-                    'battery': 0.0
-                },
-                'source': 'demanda.ree.es',
-            }
-
-            data.append(response_data)
+    if country_code == 'ES-CN-HI':
+        for response in island_data:
+            if response.production() > 0:
+                response_data = {
+                    'countryCode': country_code,
+                    'datetime': get(response.timestamp).datetime,
+                    'production': {
+                        'coal': 0.0,
+                        'gas': round(response.gas + response.combined, 2),
+                        'solar': round(response.solar, 2),
+                        'oil': round(response.vapor + response.diesel, 2),
+                        'wind': round(response.wind, 2),
+                        'hydro': 0.0,
+                        'biomass': 0.0,
+                        'nuclear': 0.0,
+                        'geothermal': 0.0
+                    },
+                    'storage': {
+                        'hydro': round(-response.hydraulic, 2),
+                        'battery': 0.0
+                    },
+                    'source': 'demanda.ree.es',
+                }
+                data.append(response_data)
+    else:
+        for response in island_data:
+            if response.production() > 0:
+                response_data = {
+                    'countryCode': country_code,
+                    'datetime': get(response.timestamp).datetime,
+                    'production': {
+                        'coal': 0.0,
+                        'gas': round(response.gas + response.combined, 2),
+                        'solar': round(response.solar, 2),
+                        'oil': round(response.vapor + response.diesel, 2),
+                        'wind': round(response.wind, 2),
+                        'hydro': round(response.hydraulic, 2),
+                        'biomass': 0.0,
+                        'nuclear': 0.0,
+                        'geothermal': 0.0
+                    },
+                    'storage': {
+                        'hydro': 0.0,
+                        'battery': 0.0
+                    },
+                    'source': 'demanda.ree.es',
+                }
+                data.append(response_data)
 
     return data
 
@@ -112,3 +141,6 @@ if __name__ == '__main__':
     print("# ES-CN-TE")
     print(fetch_consumption('ES-CN-TE', session))
     print(fetch_production('ES-CN-TE', session))
+    print("# ES-CN-HI")
+    print(fetch_consumption('ES-CN-HI', session))
+    print(fetch_production('ES-CN-HI', session))
