@@ -3,7 +3,7 @@ const store = require('../store');
 class ConnectionsService {
   constructor() {
     this.connections = [];
-    if (store.getState().application.isProduction || true) {
+    if (store.getState().application.isProduction) {
       this.addConnection(require('../thirdparty/twitter'));
       this.addConnection(require('../thirdparty/facebook'));
       this._ga = this.addConnection(require('../thirdparty/ga'));
