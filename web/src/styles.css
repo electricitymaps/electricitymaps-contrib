@@ -161,6 +161,13 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+#header #header-content a {
+    color: unset;
+}
+#header #header-content a:hover {
+    color: orange;
+    text-decoration: none;
+}
 #header-content .logo {
     display: inline;
     font-family: "Catamaran", sans-serif;

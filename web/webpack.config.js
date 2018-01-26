@@ -26,7 +26,7 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     plugins: ['transform-runtime'],
-                    presets: ['es2015']
+                    presets: ['es2015'] // that's ES6
                 }
             }
         ]
