@@ -5,7 +5,6 @@ import CountryMap from './components/map';
 import { event as currentEvent } from 'd3-selection';
 
 // Libraries
-const Cookies = require('js-cookie');
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -17,11 +16,11 @@ const d3 = Object.assign(
   require('d3-scale'),
 );
 
+const Cookies = require('js-cookie');
 const moment = require('moment');
 
 const thirdPartyServices = require('./services/thirdparty');
-const store = require('./store');
-const { observeStore } = require('./helpers/redux');
+const { dispatch, getState, observe } = require('./store');
 
 const AreaGraph = require('./components/areagraph');
 const LineGraph = require('./components/linegraph');
@@ -37,8 +36,9 @@ const SolarLayer = require('./components/layers/solar');
 const WindLayer = require('./components/layers/wind');
 
 const flags = require('./flags');
-const LoadingService = require('./loadingservice');
+const LoadingService = require('./services/loadingservice');
 
+const HistoryState = require('./helpers/historystate');
 const grib = require('./helpers/grib');
 const translation = require('./translation');
 const tooltipHelper = require('./helpers/tooltip');
@@ -46,113 +46,43 @@ const tooltipHelper = require('./helpers/tooltip');
 const { getSymbolFromCurrency } = require('currency-symbol-map');
 
 // Configs
-const exchanges_config = require('../../config/exchanges.json');
-const zones_config = require('../../config/zones.json');
+const exchangesConfig = require('../../config/exchanges.json');
+const zonesConfig = require('../../config/zones.json');
 
-// Constants
-const REFRESH_TIME_MINUTES = 5;
-
+// Timing
 if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
 
-// History state
-// TODO: put in a module
+// Constants
+const REFRESH_TIME_MINUTES = 5;
 
-// History state init (state that is reflected in the url)
-const historyState = {};
-function appendQueryString(url, key, value) {
-  return (url == '?' ? url : url + '&') + key + '=' + value;
-}
-function getHistoryStateURL() {
-  let url = '?';
-  d3.entries(historyState).forEach(d => {
-    url = appendQueryString(url, d.key, d.value);
-  });
-  // '.' is not supported when serving from file://
-  return (url == '?' ? '?' : url);
-}
-function replaceHistoryState(key, value) {
-  if (value == null) {
-    delete historyState[key];
-  } else {
-    historyState[key] = value;
-  }
-  const url = getHistoryStateURL();
-  if (thirdPartyServices._ga) {
-    thirdPartyServices._ga.config({ "page_path": url });
-  }
-  history.replaceState(historyState, '', url);
-}
+// Set state depending on URL params
+HistoryState.parseInitial(window.location.search);
+const applicationState = HistoryState.getStateFromHistory();
+Object.keys(applicationState).forEach((k) => {
+  dispatchApplication(k, applicationState[k]);
+});
 
-// Global State
-const isLocalhost = window.location.href.indexOf('electricitymap') === -1;
-window.useRemoteEndpoint = isLocalhost ? false : true;
-
-let selectedCountryCode;
-let customDate;
+// TODO(olc) move those to redux state
 let currentMoment;
-let showPageState = 'map';
-let previousShowPageState = undefined;
-let windEnabled = Cookies.get('windEnabled') == 'true' || false;
-let solarEnabled = Cookies.get('solarEnabled') == 'true' || false;
+let previousShowPageState;
 let mapDraggedSinceStart = false;
 
-function isMobile() {
-  return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-}
+const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
+const LOCAL_ENDPOINT = 'http://localhost:9000';
+const ENDPOINT = getState().application.useRemoteEndpoint ?
+  REMOTE_ENDPOINT : LOCAL_ENDPOINT;
 
-// Read query string
-function parseQueryString(querystring) {
-  let args = querystring.replace('\?','').split('&');
-  args.forEach(function(arg) {
-    let kv = arg.split('=');
-    // Store in history state to be able to reconstruct
-    replaceHistoryState(kv[0], kv[1]);
-    if (kv[0] == 'remote') {
-      useRemoteEndpoint = kv[1] == 'true';
-      replaceHistoryState('remote', useRemoteEndpoint);
-    } else if (kv[0] == 'datetime') {
-      customDate = kv[1];
-      // HACK
-      window.customDate = customDate;
-      replaceHistoryState('datetime', customDate);
-    } else if (kv[0] == 'countryCode') {
-      selectedCountryCode = kv[1];
-      replaceHistoryState('countryCode', selectedCountryCode);
-    } else if (kv[0] == 'page') {
-      showPageState = kv[1].replace('%20', '');
-      replaceHistoryState('page', showPageState);
-      if (showPage) showPage(showPageState);
-    } else if (kv[0] == 'solar') {
-      solarEnabled = kv[1] == 'true';
-      replaceHistoryState('solar', solarEnabled);
-    } else if (kv[0] == 'wind') {
-      windEnabled = kv[1] == 'true';
-      replaceHistoryState('wind', windEnabled);
-    }
+function dispatchApplication(key, value) {
+  return dispatch({
+    payload: { key, value },
+    type: 'APPLICATION_STATE_UPDATE',
   });
 }
-parseQueryString(location.search);
-
-// Computed State
-let colorBlindModeEnabled = Cookies.get('colorBlindModeEnabled') == 'true' || false;
-let isEmbedded = window.top !== window.self;
-let REMOTE_ENDPOINT = 'https://api.electricitymap.org';
-let LOCAL_ENDPOINT = 'http://localhost:9000';
-let ENDPOINT = (document.domain != '' && document.domain.indexOf('electricitymap') == -1 && !useRemoteEndpoint) ?
-LOCAL_ENDPOINT : REMOTE_ENDPOINT;
-
-
-let clientType = 'web';
-if (isCordova) { clientType = 'mobileapp'; }
-
-// Set history state of remaining variables
-replaceHistoryState('wind', windEnabled);
-replaceHistoryState('solar', solarEnabled);
 
 // Initialise mobile app (cordova)
-let app = {
+const app = {
   // Application Constructor
   initialize: function() {
     this.bindEvents();
@@ -165,9 +95,9 @@ let app = {
   },
 
   onBack: function(e) {
-    if (showPageState != 'map') {
-      selectedCountryCode = undefined;
-      showPage(previousShowPageState || 'map');
+    if (getState().application.showPageState !== 'map') {
+      dispatchApplication('selectedCountryCode', undefined);
+      dispatchApplication('showPageState', previousShowPageState || 'map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -176,31 +106,32 @@ let app = {
 
   onDeviceReady: function() {
     // Resize if we're on iOS
-    if (cordova.platformId == 'ios') {
+    if (cordova.platformId === 'ios') {
       d3.select('#header')
         .style('padding-top', '20px');
       if (typeof countryMap !== 'undefined') {
         countryMap.map.resize();
       }
     }
-    codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
-    universalLinks.subscribe(null, function (eventData) {
-      // do some work
-      parseQueryString(eventData.url.split('?')[1] || eventData.url);
+    codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
+    universalLinks.subscribe(null, (eventData) => {
+      HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
+      // In principle we should only do the rest of the app loading
+      // after this point, instead of dispating a new event
+      const applicationState = HistoryState.getStateFromHistory();
+      Object.keys(applicationState).forEach((k) => {
+        dispatchApplication(k, applicationState[k]);
+      });
     });
   },
 
   onResume: function() {
     // Count a pageview
-    thirdPartyServices.track('Visit', {
-      'bundleVersion': bundleHash,
-      'clientType': clientType,
-      'embeddedUri': isEmbedded ? document.referrer : null,
-      'windEnabled': windEnabled,
-      'solarEnabled': solarEnabled,
-      'colorBlindModeEnabled': colorBlindModeEnabled
-    });
-    codePush.sync(null, {installMode: InstallMode.ON_NEXT_RESUME});
+    const params = getState().application;
+    params.bundleVersion = params.bundleHash;
+    params.embeddedUri = params.isEmbedded ? document.referrer : null;
+    thirdPartyServices.track('Visit', params);
+    codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
 app.initialize();
@@ -209,31 +140,32 @@ function catchError(e) {
   console.error('Error Caught! ' + e);
   thirdPartyServices.opbeat('captureException', e);
   thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
-  thirdPartyServices.track('error', { name: e.name, stack: e.stack, bundleHash });
+  const params = getState().application;
+  params.name = e.name;
+  params.stack = e.stack;
+  thirdPartyServices.track('error', params);
 }
 
-// Analytics
-thirdPartyServices.track('Visit', {
-  'bundleVersion': bundleHash,
-  'clientType': clientType,
-  'embeddedUri': isEmbedded ? document.referrer : null,
-  'windEnabled': windEnabled,
-  'solarEnabled': solarEnabled,
-  'colorBlindModeEnabled': colorBlindModeEnabled,
-});
-
 // Set proper locale
-moment.locale(locale.toLowerCase());
+moment.locale(getState().application.locale.toLowerCase());
+
+// Analytics
+(() => {
+  const params = getState().application;
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('Visit', params);
+})();
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 // Prepare co2 scale
-let maxCo2 = 800;
+const maxCo2 = 800;
 let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
-  if (colorBlindModeEnabled) {
+  if (getState().application.colorBlindModeEnabled) {
     co2color = d3.scaleSequential(d3.interpolateMagma)
       .domain([2000, 0]);
   } else {
@@ -263,16 +195,14 @@ function updateCo2Scale() {
         return d.co2intensity ? co2color(d.co2intensity) : 'gray';
       });
 }
-d3.select('#checkbox-colorblind').node().checked = colorBlindModeEnabled;
+d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', () => {
-  colorBlindModeEnabled = !colorBlindModeEnabled;
-  Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
-  updateCo2Scale();
+  dispatchApplication('colorBlindModeEnabled', !getState().application.colorBlindModeEnabled);
 });
 updateCo2Scale();
 
-let maxWind = 15;
-let windColor = d3.scaleLinear()
+const maxWind = 15;
+const windColor = d3.scaleLinear()
   .domain(d3.range(10).map(i => d3.interpolate(0, maxWind)(i / (10 - 1))))
   .range([
     "rgba(0,   255, 255, 1.0)",
@@ -288,28 +218,28 @@ let windColor = d3.scaleLinear()
     ])
   .clamp(true);
 // ** Solar Scale **
-let maxSolarDSWRF = 1000;
-let minDayDSWRF = 0;
-// let nightOpacity = 0.8;
-let minSolarDayOpacity = 0.6;
-let maxSolarDayOpacity = 0.0;
-let solarDomain = d3.range(10).map(i => d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)));
-let solarRange = d3.range(10).map(i => {
-  let c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
-  let a = d3.interpolate(minSolarDayOpacity, maxSolarDayOpacity)(i / (10 - 1));
+const maxSolarDSWRF = 1000;
+const minDayDSWRF = 0;
+// const nightOpacity = 0.8;
+const minSolarDayOpacity = 0.6;
+const maxSolarDayOpacity = 0.0;
+const solarDomain = d3.range(10).map(i => d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)));
+const solarRange = d3.range(10).map((i) => {
+  const c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
+  const a = d3.interpolate(minSolarDayOpacity, maxSolarDayOpacity)(i / (10 - 1));
   return 'rgba(' + c + ', ' + c + ', ' + c + ', ' + a + ')';
 });
 // Insert the night (DWSWRF \in [0, minDayDSWRF]) domain
 // solarDomain.splice(0, 0, 0);
 // solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
 // Create scale
-let solarColor = d3.scaleLinear()
+const solarColor = d3.scaleLinear()
   .domain(solarDomain)
   .range(solarRange)
   .clamp(true);
 
 // Production/imports-exports mode
-let modeColor = {
+const modeColor = {
   'wind': '#74cdb9',
   'solar': '#f27406',
   'hydro': '#2772b2',
@@ -323,7 +253,7 @@ let modeColor = {
   'oil': '#867d66',
   'unknown': 'lightgray',
 };
-let modeOrder = [
+const modeOrder = [
   'wind',
   'solar',
   'hydro',
@@ -335,7 +265,7 @@ let modeOrder = [
   'gas',
   'coal',
   'oil',
-  'unknown'
+  'unknown',
 ];
 
 // Set up objects
@@ -360,19 +290,19 @@ try {
         .appendChild(el);
       // Create exchange layer as a result
       exchangeLayer = new ExchangeLayer('arrows-layer', countryMap)
-        .onExchangeMouseOver(d => {
-          tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars)
+        .onExchangeMouseOver((d) => {
+          tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
         })
         .onExchangeMouseMove(() => {
           exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
         })
-        .onExchangeMouseOut(d => {
+        .onExchangeMouseOut((d) => {
           if (d.co2intensity && co2Colorbars)
-            co2Colorbars.forEach(function(c) { c.currentMarker(undefined) });
-          exchangeTooltip.hide()
+            co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+          exchangeTooltip.hide();
         })
-        .onExchangeClick(d => {
-          console.log(d)
+        .onExchangeClick((d) => {
+          console.log(d);
         })
         .setData(Object.values(exchanges))
         .render();
@@ -384,21 +314,18 @@ try {
     });
   windLayer = new WindLayer('wind', countryMap);
   solarLayer = new SolarLayer('solar', countryMap);
+  dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
-    showPageState = 'highscore';
-    replaceHistoryState('page', showPageState);
-    if (showPage) showPage(showPageState);
+    dispatchApplication('webglsupported', false);
+    dispatchApplication('showPageState', 'highscore');
     document.getElementById('tab').className = 'nomap';
     document.getElementById('layer-toggles').style.display = 'none';
 
     // Loading is finished
     LoadingService.stopLoading('#loading');
     LoadingService.stopLoading('#small-loading');
-
-    // Analytics
-    catchError(new Error('WebGL not supported'));
   } else {
     throw e;
   }
@@ -444,7 +371,7 @@ let countryHistoryCarbonGraph = new LineGraph('#country-history-carbon',
   d => d.co2intensity != null)
   .yColorScale(co2color)
   .gradient(true);
-let countryHistoryPricesGraph = new LineGraph('#country-history-prices',
+const countryHistoryPricesGraph = new LineGraph('#country-history-prices',
   d => moment(d.stateDatetime).toDate(),
   d => (d.price || {}).value,
   d => d.price && d.price.value != null)
@@ -452,53 +379,51 @@ let countryHistoryPricesGraph = new LineGraph('#country-history-prices',
 let countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
   .co2color(co2color)
   .onLayerMouseOver((mode, countryData, i) => {
-    let isExchange = modeOrder.indexOf(mode) === -1;
-    let fun = isExchange ?
+    const isExchange = modeOrder.indexOf(mode) === -1;
+    const fun = isExchange ?
       tooltipHelper.showExchange : tooltipHelper.showProduction;
-    let ttp = isExchange ?
+    const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars);
-    store.dispatch({
+    dispatch({
       type: 'SELECT_DATA',
       payload: { countryData, index: i },
     });
   })
   .onLayerMouseMove((mode, countryData, i) => {
-    let isExchange = modeOrder.indexOf(mode) === -1;
-    let fun = isExchange ?
-      tooltipHelper.showExchange : tooltipHelper.showProduction
-    let ttp = isExchange ?
-      countryTableExchangeTooltip : countryTableProductionTooltip
+    const isExchange = modeOrder.indexOf(mode) === -1;
+    const fun = isExchange ?
+      tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange ?
+      countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.update(
       currentEvent.clientX - 7,
       countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top + 7)
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars)
-    store.dispatch({
+    dispatch({
       type: 'SELECT_DATA',
       payload: { countryData, index: i },
     });
   })
   .onLayerMouseOut((mode, countryData, i) => {
-    if (co2Colorbars) co2Colorbars.forEach(d => { d.currentMarker(undefined); });
-    let isExchange = modeOrder.indexOf(mode) === -1;
-    let ttp = isExchange ?
+    if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
+    const isExchange = modeOrder.indexOf(mode) === -1;
+    const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.hide();
   });
 
-let windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
+const windColorbar = new HorizontalColorbar('.wind-colorbar', windColor)
   .markerColor('black');
-d3.select('.wind-colorbar').style('display', windEnabled ? 'block': 'none');
-let solarColorbarColor = d3.scaleLinear()
+const solarColorbarColor = d3.scaleLinear()
   .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
   .range(['black', 'white', 'gold']);
-let solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
+const solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
   .markerColor('red');
-d3.select('.solar-colorbar').style('display', solarEnabled ? 'block': 'none');
 
 let tableDisplayEmissions = countryTable.displayByEmissions();
 countryHistoryMixGraph
@@ -507,12 +432,6 @@ d3.select('.country-show-emissions-wrap a#emissions')
   .classed('selected', tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#production')
   .classed('selected', !tableDisplayEmissions);
-
-// Set weather checkboxes
-d3.select('#checkbox-wind').node().checked = windEnabled;
-d3.selectAll('.wind-toggle').classed('active', windEnabled);
-d3.select('#checkbox-solar').node().checked = solarEnabled;
-d3.selectAll('.solar-toggle').classed('active', solarEnabled);
 
 window.toggleSource = (state) => {
   if (state === undefined)
@@ -534,17 +453,16 @@ window.toggleSource = (state) => {
 // Prepare data
 const countries = CountryTopos.addCountryTopos({});
 // Validate selected country
-if (d3.keys(countries).indexOf(selectedCountryCode) === -1) {
-  selectedCountryCode = undefined;
-  if (showPageState == 'country') {
-    showPageState = 'map';
-    replaceHistoryState('page', showPageState);
+if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -1) {
+  dispatchApplication('selectedCountryCode', undefined);
+  if (getState().application.showPageState === 'country') {
+    dispatchApplication('showPageState', 'map');
   }
 }
 // Assign data
 if (typeof countryMap !== 'undefined') { countryMap.setData(d3.values(countries)); }
 // Add configurations
-d3.entries(zones_config).forEach(d => {
+d3.entries(zonesConfig).forEach(d => {
   const zone = countries[d.key];
   if (!zone) {
     console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..');
@@ -559,7 +477,7 @@ d3.entries(countries).forEach(d => {
   let zone = countries[d.key];
   zone.countryCode = d.key; // TODO: Rename to zoneId
 });
-let exchanges = exchanges_config;
+let exchanges = exchangesConfig;
 d3.entries(exchanges).forEach((entry) => {
   entry.value.countryCodes = entry.key.split('->').sort();
   if (entry.key.split('->')[0] != entry.value.countryCodes[0])
@@ -581,7 +499,7 @@ function selectCountry(countryCode, notrack) {
       .powerScaleDomain(null) // Always reset scale if click on a new country
       .co2ScaleDomain(null)
       .exchangeKeys(null); // Always reset exchange keys
-    store.dispatch({
+    dispatch({
       type: 'ZONE_DATA',
       payload: countries[countryCode],
     });
@@ -677,7 +595,7 @@ function selectCountry(countryCode, notrack) {
             }
             countryTable
               .powerScaleDomain([lo, hi])
-              .co2ScaleDomain([lo_emission, hi_emission])
+              .co2ScaleDomain([lo_emission, hi_emission]);
 
             if (g === countryHistoryCarbonGraph) {
               tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
@@ -694,9 +612,9 @@ function selectCountry(countryCode, notrack) {
                 g.rootElement.node().getBoundingClientRect().top + 7);
             }
 
-            store.dispatch({
+            dispatch({
               type: 'SELECT_DATA',
-              payload: { countryData: d, index: i }
+              payload: { countryData: d, index: i },
             });
           })
           .onMouseOut((d, i) => {
@@ -713,7 +631,7 @@ function selectCountry(countryCode, notrack) {
               priceTooltip.hide();
             }
 
-            store.dispatch({
+            dispatch({
               type: 'SELECT_DATA',
               payload: { countryData: countries[countryCode], index: undefined }
             });
@@ -723,7 +641,7 @@ function selectCountry(countryCode, notrack) {
     }
 
     // Load graph
-    if (customDate) {
+    if (getState().application.customDate) {
       console.error('Can\'t fetch history when a custom date is provided!');
     }
     else if (!histories[countryCode]) {
@@ -738,11 +656,11 @@ function selectCountry(countryCode, notrack) {
         }
 
         // Add capacities
-        if ((zones_config[countryCode] || {}).capacity) {
+        if ((zonesConfig[countryCode] || {}).capacity) {
           let maxCapacity = d3.max(d3.values(
-            zones_config[countryCode].capacity));
+            zonesConfig[countryCode].capacity));
           obj.data.forEach(d => {
-            d.capacity = zones_config[countryCode].capacity;
+            d.capacity = zonesConfig[countryCode].capacity;
             d.maxCapacity = maxCapacity;
           });
         }
@@ -759,7 +677,7 @@ function selectCountry(countryCode, notrack) {
 
     // Update contributors
     let selector = d3.selectAll('.contributors').selectAll('a')
-      .data((zones_config[countryCode] || {}).contributors || []);
+      .data((zonesConfig[countryCode] || {}).contributors || []);
     let enterA = selector.enter().append('a')
       .attr('target', '_blank');
     let enterImg = enterA.append('img');
@@ -769,36 +687,41 @@ function selectCountry(countryCode, notrack) {
       .attr('src', d => d + '.png');
     selector.exit().remove();
   }
-  replaceHistoryState('countryCode', selectedCountryCode);
 }
 // Bind
 if (typeof countryMap !== 'undefined') {
   countryMap
-    .onSeaClick(() => { selectedCountryCode = undefined; showPage('map'); })
-    .onCountryClick(d => { selectedCountryCode = d.countryCode; showPage('country'); });
+    .onSeaClick(() => {
+      dispatchApplication('selectedCountryCode', undefined);
+      dispatchApplication('showPageState', 'map');
+    })
+    .onCountryClick((d) => {
+      dispatchApplication('selectedCountryCode', d.countryCode);
+      dispatchApplication('showPageState', 'country');
+    });
 }
 d3.selectAll('#left-panel-country-back')
-  .on('click', () => { selectedCountryCode = undefined; showPage(previousShowPageState || 'map'); });
+  .on('click', () => {
+    dispatchApplication('selectedCountryCode', undefined);
+    dispatchApplication('showPageState', previousShowPageState || 'map');
+  });
 d3.selectAll('#left-panel-highscore-back')
-  .on('click', () => { showPage('map'); }); // only triggered on large screens
-d3.selectAll('.highscore-button').on('click', () => { showPage('highscore'); });
-d3.selectAll('.map-button').on('click', () => { showPage('map'); });
-d3.selectAll('.info-button').on('click', () => { showPage('info'); });
-if(showPageState) {
-  showPage(showPageState);
-}
+  .on('click', () => { dispatchApplication('showPageState', 'map'); }); // only triggered on large screens
+d3.selectAll('.highscore-button').on('click', () => {
+  dispatchApplication('showPageState', 'highscore');
+});
+d3.selectAll('.map-button').on('click', () => { dispatchApplication('showPageState', 'map'); });
+d3.selectAll('.info-button').on('click', () => { dispatchApplication('showPageState', 'info'); });
 
 function showPage(pageName) {
 
   if (pageName === undefined)
     pageName = 'map';
 
-  showPageState = pageName;
+  dispatchApplication('showPageState', pageName);
 
-  if (showPageState !== 'country')
-    previousShowPageState = showPageState;
-
-  replaceHistoryState('page', showPageState);
+  if (getState().application.showPageState !== 'country')
+    previousShowPageState = getState().application.showPageState;
 
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
@@ -820,21 +743,21 @@ function showPage(pageName) {
     d3.select('.left-panel').classed('large-screen-visible', true);
     selectCountry(undefined);
     renderMap();
-    if (windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
-    if (solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
+    if (getState().application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
+    if (getState().application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
     if (co2Colorbars) co2Colorbars.forEach(d => { d.render() });
-    if (windEnabled && windColorbar) windColorbar.render();
-    if (solarEnabled && solarColorbar) solarColorbar.render();
+    if (getState().application.windEnabled && windColorbar) windColorbar.render();
+    if (getState().application.solarEnabled && solarColorbar) solarColorbar.render();
   }
   else {
     d3.select('.left-panel').classed('large-screen-visible', false);
     d3.selectAll('.left-panel-'+pageName).style('display', undefined);
     if (pageName == 'country') {
-      selectCountry(selectedCountryCode);
+      selectCountry(getState().application.selectedCountryCode);
     } else if (pageName == 'info') {
       if (co2Colorbars) co2Colorbars.forEach(d => { d.render() });
-      if (windEnabled) if (windColorbar) windColorbar.render();
-      if (solarEnabled) if (solarColorbar) solarColorbar.render();
+      if (getState().application.windEnabled) if (windColorbar) windColorbar.render();
+      if (getState().application.solarEnabled) if (solarColorbar) solarColorbar.render();
     }
   }
 
@@ -842,80 +765,57 @@ function showPage(pageName) {
   d3.selectAll('#tab .' + pageName + '-button').classed('active', true);
 }
 
+// Initial routing
+if (getState().application.showPageState) {
+  dispatchApplication('showPageState', getState().application.showPageState);
+}
+
 // Now that the width is set, we can render the legends
-if (windEnabled && !selectedCountryCode) windColorbar.render();
-if (solarEnabled && !selectedCountryCode) solarColorbar.render();
+if (getState().application.windEnabled && !getState().application.selectedCountryCode)
+  windColorbar.render();
+if (getState().application.solarEnabled && !getState().application.selectedCountryCode)
+  solarColorbar.render();
 
 // Attach event handlers
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
-  windEnabled = !windEnabled;
-  replaceHistoryState('wind', windEnabled);
-  Cookies.set('windEnabled', windEnabled);
-  d3.select('.wind-toggle').classed('active', windEnabled);
-  d3.select('#checkbox-wind').node().checked = windEnabled;
-  let now = customDate ? moment(customDate) : (new Date()).getTime();
-  if (windEnabled) {
-    d3.select('.wind-colorbar').style('display', 'block');
-    windColorbar.render()
-    if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      fetch(true);
-    } else {
-      windLayer.show();
-    }
-  } else {
-    d3.select('.wind-colorbar').style('display', 'none');
-    windLayer.hide();
-  }
+  dispatchApplication('windEnabled', !getState().application.windEnabled);
 }
 d3.select('#checkbox-wind').on('change', toggleWind);
 d3.select('.wind-toggle').on('click', toggleWind);
 
 function toggleSolar() {
-  if (typeof windLayer === 'undefined') { return; }
-  solarEnabled = !solarEnabled;
-  replaceHistoryState('solar', solarEnabled);
-  Cookies.set('solarEnabled', solarEnabled);
-  d3.select('.solar-toggle').classed('active', solarEnabled);
-  d3.select('#checkbox-solar').node().checked = solarEnabled;
-  let now = customDate ? moment(customDate) : (new Date()).getTime();
-  if (solarEnabled) {
-    d3.select('.solar-colorbar').style('display', 'block');
-    solarColorbar.render()
-    if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      fetch(true);
-    } else {
-      solarLayer.show();
-    }
-  } else {
-    d3.select('.solar-colorbar').style('display', 'none');
-    solarLayer.hide();
-  }
+  if (typeof solarLayer === 'undefined') { return; }
+  dispatchApplication('solarEnabled', !getState().application.solarEnabled);
 }
 d3.select('#checkbox-solar').on('change', toggleSolar);
 d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(lonlat) {
-  if (windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
-    let now = customDate ? moment(customDate) : (new Date()).getTime();
+  if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
+    const now = getState().application.customDate ?
+      moment(getState().application.customDate) : (new Date()).getTime();
     if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      let u = grib.getInterpolatedValueAtLonLat(lonlat,
+      const u = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
-      let v = grib.getInterpolatedValueAtLonLat(lonlat,
+      const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      if (!selectedCountryCode)
+      if (!getState().application.selectedCountryCode) {
         windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+      }
     }
   } else {
     windColorbar.currentMarker(undefined);
   }
-  if (solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
-    let now = customDate ? moment(customDate) : (new Date()).getTime();
+  if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
+    const now = getState().application.customDate ?
+      moment(getState().application.customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      let val = grib.getInterpolatedValueAtLonLat(lonlat,
+      const val = grib.getInterpolatedValueAtLonLat(lonlat,
         now, solar.forecasts[0], solar.forecasts[1]);
-      if (!selectedCountryCode)
+      if (!getState().application.selectedCountryCode) {
         solarColorbar.currentMarker(val);
+      }
     }
   } else {
     solarColorbar.currentMarker(undefined);
@@ -926,17 +826,16 @@ function renderMap() {
   if (typeof countryMap === 'undefined') { return; }
 
   if (!mapDraggedSinceStart) {
-    let geolocation = callerLocation;
+    const geolocation = callerLocation;
+    const { selectedCountryCode } = getState().application;
     if (selectedCountryCode) {
-      let lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => { return d[0]; });
-      let lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => { return d[1]; });
+      const lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => d[0]);
+      const lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => d[1]);
       countryMap.setCenter([lon, lat]);
-    }
-    else if (geolocation) {
+    } else if (geolocation) {
       console.log('Centering on', geolocation);
       countryMap.setCenter(geolocation);
-    }
-    else {
+    } else {
       countryMap.setCenter([0, 50]);
     }
   }
@@ -944,43 +843,46 @@ function renderMap() {
     exchangeLayer.render();
   }
 
-  if (windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
+  if (getState().application.windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable wind if the drawing goes wrong
     Cookies.set('windEnabled', false);
     windLayer.draw(
-      customDate ? moment(customDate) : moment(new Date()),
+      getState().application.customDate ?
+        moment(getState().application.customDate) : moment(new Date()),
       wind.forecasts[0],
       wind.forecasts[1],
-      windColor
+      windColor,
     );
-    if (windEnabled)
+    if (getState().application.windEnabled) {
       windLayer.show();
-    else
+    } else {
       windLayer.hide();
+    }
     // Restore setting
-    Cookies.set('windEnabled', windEnabled);
+    Cookies.set('windEnabled', getState().application.windEnabled);
     LoadingService.stopLoading('#loading');
   } else {
     windLayer.hide();
   }
 
-  if (solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
+  if (getState().application.solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable solar if the drawing goes wrong
     Cookies.set('solarEnabled', false);
     solarLayer.draw(
-      customDate ? moment(customDate) : moment(new Date()),
+      getState().application.customDate ? moment(getState().application.customDate) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
       solarColor,
       () => {
-        if (solarEnabled)
+        if (getState().application.solarEnabled) {
           solarLayer.show();
-        else
+        } else {
           solarLayer.hide();
+        }
         // Restore setting
-        Cookies.set('solarEnabled', solarEnabled);
+        Cookies.set('solarEnabled', getState().application.solarEnabled);
         LoadingService.stopLoading('#loading');
       });
   } else {
@@ -996,14 +898,11 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     return;
   }
 
-  thirdPartyServices.track('pageview', {
-    'bundleVersion': bundleHash,
-    'clientType': clientType,
-    'embeddedUri': isEmbedded ? document.referrer : null,
-    'windEnabled': windEnabled,
-    'solarEnabled': solarEnabled,
-    'colorBlindModeEnabled': colorBlindModeEnabled
-  });
+  // Track pageview
+  const params = getState().application;
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('Visit', params);
 
   // // Debug: randomly generate (consistent) data
   // Object.keys(countries).forEach(function(k) {
@@ -1022,11 +921,11 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   // window.forceFetchNow = fetch;
 
   // Is there a new version?
-  d3.select('#new-version')
-    .classed('active', (clientVersion != bundleHash && !isLocalhost && !isCordova));
+  // d3.select('#new-version')
+  //   .classed('active', (clientVersion !== bundleHash && !store.getState().application.isLocalhost && !isCordova));
 
   // TODO: Code is duplicated
-  currentMoment = (customDate && moment(customDate) || moment(state.datetime));
+  currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(state.datetime));
   d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
   d3.selectAll('.current-datetime-from-now')
     .text(currentMoment.fromNow())
@@ -1052,7 +951,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   });
   histories = {};
 
-    // Populate with realtime country data
+  // Populate with realtime country data
   d3.entries(state.countries).forEach(function(entry) {
     let countryCode = entry.key;
     let country = countries[countryCode];
@@ -1090,9 +989,9 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   });
 
   // Render country list
-  let validCountries = d3.values(countries).filter(d => {
+  const validCountries = d3.values(countries).filter(d => {
     return d.co2intensity;
-  }).sort(function(x, y) {
+  }).sort((x, y) => {
     if (!x.co2intensity && !x.countryCode)
       return d3.ascending(x.shortname || x.countryCode,
         y.shortname || y.countryCode);
@@ -1100,10 +999,10 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       return d3.ascending(x.co2intensity || Infinity,
         y.co2intensity || Infinity);
   });
-  let selector = d3.select('.country-picker-container p')
+  const selector = d3.select('.country-picker-container p')
     .selectAll('a')
     .data(validCountries);
-  let enterA = selector.enter().append('a');
+  const enterA = selector.enter().append('a');
   enterA
     .append('div')
     .attr('class', 'emission-rect')
@@ -1120,18 +1019,21 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   countryListSelector.select('span.name')
     .text(d => ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' ')
   countryListSelector.select('div.emission-rect')
-    .style('background-color', d => {
+    .style('background-color', (d) => {
       return d.co2intensity ? co2color(d.co2intensity) : 'gray';
     });
   countryListSelector.select('.flag')
     .attr('src', d => flags.flagUri(d.countryCode, 16));
-  countryListSelector.on('click', d => { selectedCountryCode = d.countryCode; showPage('country'); });
+  countryListSelector.on('click', (d) => {
+    dispatchApplication('selectedCountryCode', d.countryCode);
+    dispatchApplication('showPageState', 'country');
+  });
 
   if (typeof countryMap !== 'undefined') {
     // Assign country map data
     countryMap
       .setData(d3.values(countries))
-      .onCountryMouseOver(d => {
+      .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
       })
       .onCountryMouseMove((d, i, clientX, clientY, lonlat) => {
@@ -1140,7 +1042,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         mapMouseOver(lonlat);
         countryTooltip.update(clientX, clientY);
       })
-      .onCountryMouseOut(d => {
+      .onCountryMouseOut((d) => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
         mapMouseOver(undefined);
@@ -1150,8 +1052,8 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
 
   // Add search bar handler
   d3.select('.country-search-bar input')
-    .on("keyup", (obj, i, nodes) => {
-      const query = nodes[i].value.toLowerCase()
+    .on('keyup', (obj, i, nodes) => {
+      const query = nodes[i].value.toLowerCase();
 
       d3.select('.country-picker-container p')
         .selectAll('a').each((obj, i, nodes) => {
@@ -1163,18 +1065,18 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
           } else {
             listItem.style('display', 'none');
           }
-        })
-    })
+        });
+    });
 
   // Re-render country table if it already was visible
-  if (selectedCountryCode) {
-    countryTable.data(countries[selectedCountryCode]).render();
+  if (getState().application.selectedCountryCode) {
+    countryTable.data(countries[getState().application.selectedCountryCode]).render();
   }
-  selectCountry(selectedCountryCode, true);
+  selectCountry(getState().application.selectedCountryCode, true);
 
   // Populate exchange pairs for arrows
   d3.entries(state.exchanges).forEach((obj) => {
-    let exchange = exchanges[obj.key];
+    const exchange = exchanges[obj.key];
     if (!exchange || !exchange.lonlat) {
       console.error('Missing exchange configuration for ' + obj.key);
       return;
@@ -1201,34 +1103,10 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   renderMap();
 
   // Debug
-  console.log(countries)
+  console.log(countries);
 };
 
-function getCountryCode(lonlat, callback) {
-  // Deactivated for now (UX was confusing)
-  callback(null, null);
-  return;
-
-  d3.json('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lonlat[1] + ',' + lonlat[1], function (err, response) {
-    if (err) {
-      console.warn(err);
-      callback(null, null);
-      return;
-    }
-    let obj = response.results[0].address_components
-    .filter(d => d.types.indexOf('country') !== -1);
-    if (obj.length)
-      callback(null, obj[0].short_name);
-    else {
-      console.warn(Error('Invalid geocoder response'), response);
-      callback(null, null);
-    }
-  });
-}
-
 // Periodically load data
-let connectionWarningTimeout = null;
-
 function handleConnectionReturnCode(err) {
   if (err) {
     if (err.target) {
@@ -1237,7 +1115,7 @@ function handleConnectionReturnCode(err) {
       // for security purposes
       // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
       if (err.target.status) {
-        catchError(Error(
+        catchError(new Error(
           'HTTPError ' +
           err.target.status + ' ' + err.target.statusText + ' at ' +
           err.target.responseURL + ': ' +
@@ -1249,7 +1127,6 @@ function handleConnectionReturnCode(err) {
     d3.select('#connection-warning').classed('active', true);
   } else {
     d3.select('#connection-warning').classed('active', false);
-    clearInterval(connectionWarningTimeout);
   }
 }
 
@@ -1268,32 +1145,27 @@ function ignoreError(func) {
 }
 
 function fetch(showLoading, callback) {
-  if (!showLoading) showLoading = false;
   if (showLoading) LoadingService.startLoading('#loading');
   LoadingService.startLoading('#small-loading');
-  // If data doesn't load in 15 secs, show connection warning
-  connectionWarningTimeout = setTimeout(() => {
-    d3.select('#connection-warning').classed('active', true);
-  }, 15 * 1000);
   const Q = d3.queue();
   // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
-  if (!isCordova) {
+  if (getState().application.clientType === 'web' && !getState().application.isLocalhost) {
     Q.defer(d3.text, '/clientVersion');
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, ENDPOINT, customDate);
+  Q.defer(DataService.fetchState, ENDPOINT, getState().application.customDate);
 
-  let now = customDate || new Date();
+  let now = getState().application.customDate || new Date();
 
-  if (!solarEnabled)
+  if (!getState().application.solarEnabled)
     Q.defer(DataService.fetchNothing);
   else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
     Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
   else
     Q.defer(function(cb) { return cb(null, solar); });
 
-  if (!windEnabled || typeof windLayer === 'undefined')
+  if (!getState().application.windEnabled || typeof windLayer === 'undefined')
     Q.defer(DataService.fetchNothing);
   else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
     Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
@@ -1311,42 +1183,97 @@ function fetch(showLoading, callback) {
 
 function fetchAndReschedule() {
   // TODO(olc): Use `setInterval` instead of `setTimeout`
-  if (!customDate)
+  if (!getState().application.customDate) {
     return fetch(false, () => {
       setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
     });
-};
+  }
+}
 
 function redraw() {
-  if (selectedCountryCode) {
+  if (getState().application.selectedCountryCode) {
     countryTable.render();
     countryHistoryCarbonGraph.render();
     countryHistoryPricesGraph.render();
     countryHistoryMixGraph.render();
   }
   co2Colorbars.forEach(d => { d.render(); });
-};
+}
 
 window.addEventListener('resize', () => {
   redraw();
 });
 window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
-  clearInterval(connectionWarningTimeout);
   fetch(false);
-}
+};
 
-// Observe for countryTable re-render
-observeStore(store, state => state.countryData, d => {
-  countryTable
-    .data(d)
-    .render(true);
+// Observe for navigation
+observe(state => state.application.showPageState, (showPageState) => {
+  if (showPage) { showPage(showPageState); }
+});
+// Observe for zoneTable re-render
+observe(state => state.countryData, (d) => {
+  countryTable.data(d).render(true);
+});
+// Observe for country change
+observe(state => state.application.selectedCountryCode, (k) => {
+  selectCountry(k);
 });
 // Observe for history graph index change
-observeStore(store, state => state.countryDataIndex, i => {
+observe(state => state.countryDataIndex, (i) => {
   [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach((g) => {
     g.selectedIndex(i);
   });
+});
+// Observe for color blind mode changes
+observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
+  Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
+  updateCo2Scale();
+});
+// Observe for solar settings change
+observe(state => state.application.solarEnabled, (solarEnabled, state) => {
+  d3.select('#checkbox-solar').node().checked = solarEnabled;
+  d3.selectAll('.solar-toggle').classed('active', solarEnabled);
+  d3.select('.solar-colorbar').style('display', solarEnabled ? 'block' : 'none');
+  Cookies.set('solarEnabled', solarEnabled);
+
+  const now = state.customDate ?
+    moment(state.customDate) : (new Date()).getTime();
+  if (solarEnabled) {
+    solarColorbar.render();
+    if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+      fetch(true);
+    } else {
+      solarLayer.show();
+    }
+  } else {
+    solarLayer.hide();
+  }
+});
+// Observe for wind settings change
+observe(state => state.application.windEnabled, (windEnabled, state) => {
+  d3.select('#checkbox-wind').node().checked = windEnabled;
+  d3.selectAll('.wind-toggle').classed('active', windEnabled);
+  d3.select('.wind-colorbar').style('display', windEnabled ? 'block' : 'none');
+  Cookies.set('windEnabled', windEnabled);
+
+  const now = state.customDate ?
+    moment(state.customDate) : (new Date()).getTime();
+  if (windEnabled) {
+    windColorbar.render();
+    if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+      fetch(true);
+    } else {
+      windLayer.show();
+    }
+  } else {
+    windLayer.hide();
+  }
+});
+// Observe for changes requiring an update of history
+observe(state => state.application, (application) => {
+  HistoryState.updateHistoryFromState(application);
 });
 
 // Start a fetch showing loading.
