@@ -736,7 +736,7 @@
     },
     "timezone": null
   },
-  "ES-CN-FV": {
+  "ES-CN-FVLZ": {
     "flag_file_name": "es.png",
     "timezone": null
   },
@@ -753,10 +753,6 @@
     "timezone": null
   },
   "ES-CN-LP": {
-    "flag_file_name": "es.png",
-    "timezone": null
-  },
-  "ES-CN-LZ": {
     "flag_file_name": "es.png",
     "timezone": null
   },
