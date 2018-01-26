@@ -744,6 +744,11 @@
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-HI": {
+    "capacity": {
+      "oil": 11.78,
+      "wind": 11.5,
+      "hydro storage": 11.32
+    },
     "contributors": [
       "https://github.com/blackleg",
       "https://github.com/systemcatch"
@@ -756,6 +761,9 @@
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-IG": {
+    "capacity": {
+      "oil": 22.8
+    },
     "contributors": [
       "https://github.com/blackleg",
       "https://github.com/systemcatch"
