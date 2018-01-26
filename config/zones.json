@@ -719,26 +719,17 @@
     },
     "timezone": "Europe/Madrid"
   },
-  "ES-CN": {
-    "capacity": {
-      "battery storage": 0,
-      "hydro storage": 11.32,
-      "solar": 166,
-      "wind": 153
-    },
+  "ES-CN-FVLZ": {
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": null
-  },
-  "ES-CN-FVLZ": {
-    "flag_file_name": "es.png",
-    "timezone": null
+    "timezone": "Atlantic/Canary"
   },
   "ES-CN-GC": {
     "flag_file_name": "es.png",
