@@ -128,11 +128,12 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
-- United States: [PYISO](https://github.com/WattTime/pyiso)
-- United States (California): [CAISO](http://www.caiso.com/Pages/default.aspx)
-- United States (New England): [NEISO](https://www.iso-ne.com/isoexpress/)
-- United States (New York): [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
-- United States (PJM): [PJM](http://www.pjm.com/markets-and-operations.aspx)
+- United States of America:
+  - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
+  - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
+  - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
+  - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
+  - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 
 ### Production capacity data sources
@@ -228,6 +229,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - United States of America:
   - Federal [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - States [EIA](https://www.eia.gov/electricity/data/state/)
+  - MISO [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - PJM [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
 
 ### Electricity prices (day-ahead) data sources
