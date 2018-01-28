@@ -14,6 +14,8 @@ MAP_GENERATION = {
     'akarsu': 'hydro',
     'barajli': 'hydro',
     'dogalgaz': 'gas',
+    'lng': 'gas',
+    'lpg': 'gas',
     'jeotermal': 'geothermal',
     'taskomur': 'coal',
     'asfaltitkomur': 'coal',
@@ -22,7 +24,11 @@ MAP_GENERATION = {
     'ruzgar': 'wind',
     'fueloil': 'oil',
     'biyokutle': 'biomass',
-    'nafta': 'unknown'
+    'nafta': 'unknown',
+    'gunes': 'solar',
+    'nukleer': 'nuclear',
+    'kojenerasyon': 'unknown',
+    'motorin': 'oil',
 }
 
 
@@ -101,6 +107,8 @@ def fetch_production(country_code='TR', session=None):
                 for prod_type, prod_val in datapoint.items():
                     if prod_type in MAP_GENERATION.keys():
                         data['production'][MAP_GENERATION[prod_type]] += prod_val
+                    elif prod_type not in ['total', 'uluslarasi', 'saat']:
+                        print('Warning: %s (%d) is missing in mapping!' % (prod_type, prod_val))
 
                 try:
                     data['datetime'] = tr_datetime.replace(hour=int(datapoint['saat'])).datetime

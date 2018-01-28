@@ -629,6 +629,17 @@
     },
     "timezone": "Europe/Copenhagen"
   },
+  "DK-BHM": {
+    "capacity": {
+        "wind": 30
+    },
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "production": "DK_BHM.fetch_production"
+    }
+  },
   "DK-DK1": {
     "parsers": {
       "price": "ENTSOE.fetch_price"
