@@ -5,8 +5,8 @@ indent_style = space
 insert_final_newline = true
 charset = utf-8
 
-[*.js]
+[*.{js,json}]
 indent_size = 2
 
-[*.{json,py}]
+[*.py]
 indent_size = 4
