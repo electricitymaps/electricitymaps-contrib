@@ -24,7 +24,7 @@ MAP_GENERATION = {
     'ruzgar': 'wind',
     'fueloil': 'oil',
     'biyokutle': 'biomass',
-    'nafta': 'unknown',
+    'nafta': 'oil',
     'gunes': 'solar',
     'nukleer': 'nuclear',
     'kojenerasyon': 'unknown',
