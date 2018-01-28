@@ -1057,7 +1057,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
 
       d3.select('.country-picker-container p')
         .selectAll('a').each((obj, i, nodes) => {
-          const countryName = obj.shortname.toLowerCase();
+          const countryName = (obj.shortname || obj.countryCode).toLowerCase();
           const listItem = d3.select(nodes[i]);
 
           if (countryName.indexOf(query) !== -1) {
