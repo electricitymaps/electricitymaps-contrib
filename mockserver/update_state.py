@@ -37,24 +37,25 @@ if not len(sys.argv) > 1:
     raise Exception('Missing argument <zone_name>')
 
 if sys.argv[1] == 'all':
-    zone_name = list(zones_config.keys())
+    zone_names = list(zones_config.keys())
     zone_config = zones_config
 else:
-    zone_name = [sys.argv[1]]
+    zone_names = [sys.argv[1]]
     zone_config = zones_config
 
-exchange_parser_keys = []
+exchange_parser_keys = set()
 for k in exchanges_config.keys():
     if sys.argv[1] == 'all':
         exchange_parser_keys = list(exchanges_config.keys())
         break
     zones = k.split('->')
-    if zone_name in zones:
-        exchange_parser_keys.append(k)
+    for zone_name in zone_names:
+        if zone_name in zones:
+            exchange_parser_keys.add(k)
 
 # Import / run production parser
 production_datapoints = []
-for k in zone_name:
+for k in zone_names:
     try:
         production_parser = zone_config[k]['parsers']['production']
     except KeyError as e:
@@ -85,6 +86,7 @@ for k in exchange_parser_keys:
         exchange_parser = exchanges_config[k]['parsers']['exchange']
     except KeyError as e:
         # There is no exchange implemented yet.
+        print('No exchange parser found for {}'.format(k))
         continue
 
     mod_name, fun_name = exchange_parser.split('.')
