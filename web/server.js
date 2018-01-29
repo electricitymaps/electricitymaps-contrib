@@ -130,14 +130,15 @@ app.get('/', (req, res) => {
   // On electricitymap.tmrow.co,
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
-  const isSubDomain = req.get('host').indexOf('electricitymap.tmrow') != -1;
-  const isNonWWW = req.get('host') === 'electricitymap.org';
+  const isTmrowCo = req.get('host').indexOf('electricitymap.tmrow') !== -1;
+  const isNonWWW = req.get('host') === 'electricitymap.org' ||
+    req.get('host') === 'live.electricitymap.org';
   const isStaging = req.get('host') === 'staging.electricitymap.org';
   const isHTTPS = req.secure;
-  const isLocalhost = req.hostname == 'localhost'; // hostname is without port
+  const isLocalhost = req.hostname === 'localhost'; // hostname is without port
 
   // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
-  if (!isStaging && (isNonWWW || isSubDomain) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
+  if (!isStaging && (isNonWWW || isTmrowCo) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
     res.redirect(301, 'https://www.electricitymap.org' + req.originalUrl);
   // Redirect all non-HTTPS and non localhost
   // Warning: this can't happen here because Cloudfare is the HTTPS proxy.
@@ -147,15 +148,15 @@ app.get('/', (req, res) => {
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
-        // Locales are formatted according to
-        // https://developers.facebook.com/docs/internationalization/#locales
-        lr = req.query.fb_locale.split('_', 2);
-        res.setLocale(lr[0]);
+      // Locales are formatted according to
+      // https://developers.facebook.com/docs/internationalization/#locales
+      const lr = req.query.fb_locale.split('_', 2);
+      res.setLocale(lr[0]);
     }
-    const locale = res.locale;
+    const { locale } = res;
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
     res.render('pages/index', {
-      alternateUrls: locales.map(function(l) {
+      alternateUrls: locales.map((l) => {
         if (fullUrl.indexOf('lang') != -1) {
           return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
         } else {
@@ -170,17 +171,17 @@ app.get('/', (req, res) => {
       vendorHash: VENDOR_HASH,
       stylesHash: STYLES_HASH,
       vendorStylesHash: VENDOR_STYLES_HASH,
-      fullUrl: fullUrl,
-      locale: locale,
+      fullUrl,
+      locale,
       supportedLocales: locales,
       FBLocale: LOCALE_TO_FB_LOCALE[locale],
       supportedFBLocales: SUPPORTED_FB_LOCALES,
-      '__': function() {
+      '__': () => {
         const argsArray = Array.prototype.slice.call(arguments);
         // Prepend the first argument which is the locale
         argsArray.unshift(locale);
         return translation.translateWithLocale.apply(null, argsArray);
-      }
+      },
     });
   }
 });
