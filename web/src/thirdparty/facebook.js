@@ -15,13 +15,20 @@ class FacebookThirdParty {
                 if (e == 'https://www.facebook.com/tmrowco') {
                     var thirdPartyService = require('../services/thirdparty');
                     thirdPartyService.track('like');
-                    thirdPartyService.ga('send', 'social', 'facebook', 'like', e);
+                    thirdPartyService.ga('event', 'facebook', {
+                      category: 'social',
+                      label: 'like',
+                    });
                 }
             })
             FB.Event.subscribe('edge.remove', function(e) {
                 // This will happen when they unlike the page
                 if (e == 'https://www.facebook.com/tmrowco') {
                     require('../services/thirdparty').track('unlike');
+                    thirdPartyService.ga('event', 'facebook', {
+                      category: 'social',
+                      label: 'unlike',
+                    });
                 }
             })
 

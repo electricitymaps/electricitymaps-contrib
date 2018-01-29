@@ -592,6 +592,16 @@
     },
     "rotation": 70
   },
+  "DK-BHM->SE": {
+    "lonlat": [
+      14.509682,
+      55.363057
+    ],
+    "parsers": {
+      "exchange": "DK_BHM.fetch_exchange"
+    },
+    "rotation": -45
+  },
   "DK-DK1->NO-NO2": {
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"

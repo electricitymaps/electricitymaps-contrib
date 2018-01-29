@@ -80,6 +80,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
 - Cyprus : [TSO](http://www.dsm.org.cy/en/daily-system-generation-on-the-transmission-system-mw)
 - Denmark: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+  - Bornholm: [PowerlabDK](http://bornholm.powerlab.dk/)
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -161,6 +162,8 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Solar: [wikipedia.org](https://en.wikipedia.org/wiki/Solar_power_in_Denmark)
   - Wind: [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Denmark#Capacities_and_production)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Denmark (Bornholm)
+  - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
@@ -222,9 +225,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
   - Other:[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Turkey:
-  - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=TUR)
-  - Other:[enerji.gov.tr](http://www.enerji.gov.tr/en-US/Pages/Electricity)
+- Turkey: [TEİAŞ](https://www.teias.gov.tr/)
 - Ukraine [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
 - United States of America:
   - Federal [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
