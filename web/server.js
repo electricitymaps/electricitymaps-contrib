@@ -150,13 +150,13 @@ app.get('/', (req, res) => {
     if (req.query.fb_locale) {
       // Locales are formatted according to
       // https://developers.facebook.com/docs/internationalization/#locales
-      const lr = req.query.fb_locale.split('_', 2);
+      lr = req.query.fb_locale.split('_', 2);
       res.setLocale(lr[0]);
     }
     const { locale } = res;
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
     res.render('pages/index', {
-      alternateUrls: locales.map((l) => {
+      alternateUrls: locales.map(function(l) {
         if (fullUrl.indexOf('lang') != -1) {
           return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
         } else {
@@ -176,7 +176,7 @@ app.get('/', (req, res) => {
       supportedLocales: locales,
       FBLocale: LOCALE_TO_FB_LOCALE[locale],
       supportedFBLocales: SUPPORTED_FB_LOCALES,
-      '__': () => {
+      '__': function() {
         const argsArray = Array.prototype.slice.call(arguments);
         // Prepend the first argument which is the locale
         argsArray.unshift(locale);
