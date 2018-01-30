@@ -2,6 +2,7 @@
     /* Remove tap feedback on mobile */
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -16,9 +17,8 @@ a:hover {
 html, body {
     margin: 0 !important;
     padding: 0 !important;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
     background-color: #32414c; /* water color */
-    font-weight: 300; /* increases clarity */
 }
 
 hr {
@@ -138,7 +138,7 @@ body {
     z-index: 2;
     position: relative;
     color: lightgray;
-    min-height: 44px; /* required for old Safari */
+    min-height: 50px; /* required for old Safari */
 
     /* Shadow */
     box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
@@ -146,34 +146,42 @@ body {
     -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
 }
 #header #header-content {
-    display: table;
+    display: block;
     width: 100%;
     font-size: 1.0rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.4rem;
-    /* Note: left and right padding are set as a media query */
+    height: 50px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 24px;
 
     /* Force width to include padding */
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+#header #header-content a {
+    color: unset;
+}
+#header #header-content a:hover {
+    color: orange;
+    text-decoration: none;
+}
 #header-content .logo {
-    display: table-cell;
+    display: inline;
     font-family: "Catamaran", sans-serif;
 }
-#header-content .logo img,
-#header-content .logo div,
-#header-content .logo span {
-    vertical-align: middle;
+#header-content .logo img {
+    vertical-align: text-top;
 }
 #header-content .logo img {
-    height: 1.1rem;
-    margin: 0.2rem;
-    margin-bottom: 0.3rem;
+    height: 24px;
+    margin-right: 0.2rem;
 }
 #header-content .right-header {
-    display: table-cell;
+    display: block;
+    float: right;
     text-align: right;
     font-size: 0.6em;
 }
@@ -748,10 +756,6 @@ sub {
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
-    #header-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
     .small-screen-visible {
         display: none;
     }
@@ -767,11 +771,7 @@ sub {
 /* Small devices (phones, etc.) */
 @media (max-width: 768px) {
     #header {
-        min-height: 86px; /* required for old Safari */
-    }
-    #header-content {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        min-height: 90px; /* required for old Safari */
     }
     .large-screen-visible {
         display: none;
