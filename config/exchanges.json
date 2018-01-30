@@ -593,6 +593,7 @@
     "rotation": 70
   },
   "DK-BHM->SE": {
+    "capacity": 60,
     "lonlat": [
       14.509682,
       55.363057
