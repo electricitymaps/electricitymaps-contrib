@@ -4,6 +4,7 @@
 
 import arrow
 from bs4 import BeautifulSoup
+from dateutil import parser, tz
 import demjson
 import re
 import requests
@@ -158,6 +159,52 @@ def fetch_production(country_code = 'US-PJM', session = None):
     return datapoint
 
 
+def add_default_tz(timestamp):
+    """Adds EST timezone to datetime object if tz = None."""
+
+    EST = tz.gettz('America/New_York')
+    modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or EST)
+
+    return modified_timestamp
+
+
+def get_miso_exchange(session = None):
+    """
+    Current exchange status between PJM and MISO.
+    Returns a tuple containing flow and timestamp.
+    """
+
+    map_url = 'http://pjm.com/markets-and-operations/interregional-map.aspx'
+
+    s = session or requests.Session()
+    req = s.get(map_url)
+    soup = BeautifulSoup(req.content, 'html.parser')
+
+    find_div = soup.find("div", {"id": "body_0_flow1", "class": "flow"})
+
+    miso_flow = find_div.text
+    miso_flow_no_ws = "".join(miso_flow.split())
+    miso_actual = miso_flow_no_ws.split("/")[0].replace(",", "")
+    direction_tag = find_div.find("img")
+    left_or_right = direction_tag['src']
+
+    # The flow direction is determined by img arrows.
+    if left_or_right == "/assets/images/mapImages/black-L.png":
+        # left set negative
+        flow = -1*float(miso_actual)
+    elif left_or_right == "/assets/images/mapImages/black-R.png":
+        # right set positive
+        flow = float(miso_actual)
+    else:
+        raise ValueError('US-MISO->US-PJM flow direction cannot be determined.')
+
+    find_timestamp = soup.find("div", {"id": "body_0_divTimeStamp"})
+    dt_naive = parser.parse(find_timestamp.text)
+    dt_aware = add_default_tz(dt_naive)
+
+    return flow, dt_aware
+
+
 def get_exchange_data(interface, session = None):
     """
     This function can fetch 5min data for any PJM interface in the current day.
@@ -255,6 +302,16 @@ def fetch_exchange(country_code1, country_code2, session = None):
 
     if sortedcodes == 'US-NY->US-PJM':
         flows = combine_NY_exchanges()
+    elif sortedcodes == 'US-MISO->US-PJM':
+        flow = get_miso_exchange()
+        exchange = {
+          'sortedCountryCodes': sortedcodes,
+          'datetime': flow[1],
+          'netFlow': flow[0],
+          'source': 'pjm.com'
+        }
+        return exchange
+
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
@@ -314,5 +371,7 @@ if __name__ == '__main__':
     print(fetch_production())
     print('fetch_exchange(US-NY, US-PJM) ->')
     print(fetch_exchange('US-NY', 'US-PJM'))
+    print('fetch_exchange(US-MISO, US-PJM)')
+    print(fetch_exchange('US-MISO', 'US-PJM'))
     print('fetch_price() ->')
     print(fetch_price())
