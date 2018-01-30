@@ -493,6 +493,10 @@ function selectCountry(countryCode, notrack) {
   if (countryCode && countries[countryCode]) {
     // Selected
     if (!notrack) {
+      const params = getState().application;
+      params.bundleVersion = params.bundleHash;
+      params.embeddedUri = params.isEmbedded ? document.referrer : null;
+      thirdPartyServices.track('pageview', params);
       thirdPartyServices.track('countryClick', { countryCode });
     }
     countryTable
@@ -902,7 +906,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   const params = getState().application;
   params.bundleVersion = params.bundleHash;
   params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('Visit', params);
+  thirdPartyServices.track('pageview', params);
 
   // // Debug: randomly generate (consistent) data
   // Object.keys(countries).forEach(function(k) {
