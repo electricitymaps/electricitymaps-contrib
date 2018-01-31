@@ -147,7 +147,10 @@ export default class Map {
     }, 100);
 
     // Add zoom and rotation controls to the map.
-    this.map.addControl(new mapboxgl.NavigationControl());
+    const navigationControlOptions = {
+      showCompass: false,
+    };
+    this.map.addControl(new mapboxgl.NavigationControl(navigationControlOptions));
 
     this.dragStartHandlers = [];
     this.dragHandlers = [];
