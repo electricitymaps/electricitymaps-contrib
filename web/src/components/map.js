@@ -147,7 +147,10 @@ export default class Map {
     }, 100);
 
     // Add zoom and rotation controls to the map.
-    this.map.addControl(new mapboxgl.NavigationControl());
+    const navigationControlOptions = {
+      showCompass: false,
+    };
+    this.map.addControl(new mapboxgl.NavigationControl(navigationControlOptions));
 
     this.dragStartHandlers = [];
     this.dragHandlers = [];
@@ -223,14 +226,8 @@ export default class Map {
     // *** PAN/ZOOM ***
     let dragInitialTransform;
     let dragStartTransform;
-    let isDragging = false;
-    let endTimeout = null;
 
     const onPanZoom = (e) => {
-      if (endTimeout) {
-        clearTimeout(endTimeout);
-        endTimeout = null;
-      }
       const transform = {
         x: e.target.transform.x,
         y: e.target.transform.y,
@@ -240,42 +237,23 @@ export default class Map {
     };
 
     const onPanZoomStart = (e) => {
-      // For some reason, MapBox gives us many start events inside a single zoom.
-      // They are removed here:
-      if (isDragging) { return; }
-      if (endTimeout) {
-        clearTimeout(endTimeout);
-        endTimeout = null;
-      } else {
-        isDragging = true;
-        const transform = {
-          x: e.target.transform.x,
-          y: e.target.transform.y,
-          k: e.target.transform.scale,
-        };
-        if (!dragInitialTransform) {
-          dragInitialTransform = transform;
-        }
-        if (!dragStartTransform) {
-          dragStartTransform = transform;
-        }
-        this.dragStartHandlers.forEach(h => h.call(this, transform));
+      const transform = {
+        x: e.target.transform.x,
+        y: e.target.transform.y,
+        k: e.target.transform.scale,
+      };
+      if (!dragInitialTransform) {
+        dragInitialTransform = transform;
       }
+      if (!dragStartTransform) {
+        dragStartTransform = transform;
+      }
+      this.dragStartHandlers.forEach(h => h.call(this, transform));
     };
 
-    const onPanZoomEnd = (e) => {
-      // Move end fires many times during multitouch events, see
-      // https://github.com/mapbox/mapbox-gl-js/issues/3435
-      // therefore, we debounce it.
-      if (!isDragging) { return; }
-      if (!endTimeout) {
-        endTimeout = setTimeout(() => {
-          isDragging = false;
-          this.dragEndHandlers.forEach(h => h.call(this));
-          dragStartTransform = undefined;
-          endTimeout = null;
-        }, 50);
-      }
+    const onPanZoomEnd = () => {
+      this.dragEndHandlers.forEach(h => h.call(this));
+      dragStartTransform = undefined;
     };
 
     this.map.on('move', onPanZoom);
