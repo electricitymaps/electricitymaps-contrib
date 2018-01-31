@@ -103,7 +103,12 @@
         "EE": "Estonia",
         "ES": "España",
         "ES-IB": "España (Islas Baleares)",
-        "ES-CN": "España (Islas Canarias)",
+        "ES-CN-FVLZ": "Spain (Fuerteventura/Lanzarote)"
+        "ES-CN-GC": "Spain (Gran Canaria)",
+        "ES-CN-HI": "Spain (El Hierro)",
+        "ES-CN-IG": "Spain (Isla de la Gomera)",
+        "ES-CN-LP": "Spain (La Palma)",
+        "ES-CN-TE": "Spain (Tenerife)",
         "FI": "Finlandia",
         "FR": "Francia",
         "GB": "Reino Unido",
