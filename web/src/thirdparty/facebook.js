@@ -26,8 +26,8 @@ class FacebookThirdParty {
                 if (e == 'https://www.facebook.com/tmrowco') {
                     require('../services/thirdparty').track('unlike');
                     thirdPartyService.ga('event', 'facebook', {
-                      category: 'social',
-                      label: 'unlike',
+                      event_category: 'social',
+                      event_label: 'unlike',
                     });
                 }
             })

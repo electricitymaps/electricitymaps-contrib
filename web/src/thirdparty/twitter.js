@@ -24,8 +24,8 @@ class TwitterThirdParty {
                 const thirdPartyService = require('../services/thirdparty');
                 thirdPartyService.track(event.region);
                 thirdPartyService.ga('event', 'twitter', {
-                  category: 'social',
-                  label: event.region,
+                  event_category: 'social',
+                  event_label: event.region,
                 });
             });
         });
