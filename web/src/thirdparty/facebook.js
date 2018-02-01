@@ -15,9 +15,9 @@ class FacebookThirdParty {
                 if (e == 'https://www.facebook.com/tmrowco') {
                     var thirdPartyService = require('../services/thirdparty');
                     thirdPartyService.track('like');
-                    thirdPartyService.ga('event', 'facebook', {
-                      category: 'social',
-                      label: 'like',
+                    thirdPartyService.ga('event', 'like', {
+                      event_category: 'social',
+                      event_label: 'facebook',
                     });
                 }
             })
@@ -25,9 +25,9 @@ class FacebookThirdParty {
                 // This will happen when they unlike the page
                 if (e == 'https://www.facebook.com/tmrowco') {
                     require('../services/thirdparty').track('unlike');
-                    thirdPartyService.ga('event', 'facebook', {
+                    thirdPartyService.ga('event', 'unlike', {
                       event_category: 'social',
-                      event_label: 'unlike',
+                      event_label: 'facebook',
                     });
                 }
             })
