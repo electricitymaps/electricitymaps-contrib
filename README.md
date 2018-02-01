@@ -24,6 +24,21 @@ Check the [contributing](#contribute) section for more details.
 **How do you define real-time data?**  
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
+**Why do you calculate the carbon intensity of *consumption*?**
+In short, citizens should not responsible for the emissions associated with all the products they export, but only for what they consume.
+Cconsumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
+Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
+
+**Why don't you show emissions per capita?**
+A country that has few inhabitants but a lot of factories will appear high on CO2/capita.
+This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
+That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods). 
+The CO2/capita metric, by involving the size of the population, and by not integrating all CO2 emission sources, is thus an incomplete metric.
+CO2 intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
+
+**CO2 emission factors look high - what do they cover exactly?**
+The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecycle of the plant (construction, fuel production, operational emissions, and decommissioning).
+
 **Is delayed data useful?**  
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
