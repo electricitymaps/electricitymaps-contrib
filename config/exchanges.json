@@ -405,25 +405,15 @@
     },
     "rotation": 90
   },
-  "CA-ON->US-MI": {
+  "CA-ON->US-MISO": {
     "lonlat": [
-      -82.1195,
-      43.5896
+      -84.188,
+      46.476
     ],
     "parsers": {
       "exchange": "CA_ON.fetch_exchange"
     },
-    "rotation": -90
-  },
-  "CA-ON->US-MN": {
-    "lonlat": [
-      -92.722024,
-      48.566155
-    ],
-    "parsers": {
-      "exchange": "CA_ON.fetch_exchange"
-    },
-    "rotation": 180
+    "rotation": -145
   },
   "CA-ON->US-NY": {
     "lonlat": [

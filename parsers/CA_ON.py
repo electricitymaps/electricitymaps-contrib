@@ -165,11 +165,8 @@ def fetch_exchange(country_code1, country_code2, session=None):
     elif sortedCountryCodes == 'CA-ON->US-NY':
         keys = ['NEW-YORK']
         direction = 1
-    elif sortedCountryCodes == 'CA-ON->US-MI':
-        keys = ['MICHIGAN']
-        direction = 1
-    elif sortedCountryCodes == 'CA-ON->US-MN':
-        keys = ['MINNESOTA']
+    elif sortedCountryCodes == 'CA-ON->US-MISO':
+        keys = ['MICHIGAN', 'MINNESOTA']
         direction = 1
     elif sortedCountryCodes == 'CA-ON->CA-QC':
         keys = filter(lambda k: k[:2] == 'PQ', exchanges.keys())
