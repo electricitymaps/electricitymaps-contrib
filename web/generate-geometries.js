@@ -491,7 +491,7 @@ const topojson = require('topojson');
 let topo = topojson.topology(zones, 1e5);
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
-topo = topojson.filter(topo);
+topo = topojson.filter(topo, topojson.filterWeight(topo, 0.01));
 // Convert
 // const simplifiedZones = {};
 // Object.keys(zones).forEach((k) => {
