@@ -493,21 +493,20 @@ topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
 topo = topojson.filter(topo);
 // Convert
-const simplifiedZones = {};
-Object.keys(zones).forEach((k) => {
-  if (!topo.objects[k].arcs) { return; }
-  let geo
-  // Do merge inner arcs for those
-  if (['US'].indexOf(k.split('-')[0]) !== -1) {
-    geo = topojson.feature(topo, topo.objects[k]);
-  } else {
-    geo = { geometry: topojson.merge(topo, [topo.objects[k]]) };
-  }
-  // Exclude countries with null geometries.
-  if (geo.geometry) {
-    simplifiedZones[k] = geo;
-  }
-})
+// const simplifiedZones = {};
+// Object.keys(zones).forEach((k) => {
+//   if (!topo.objects[k].arcs) { return; }
+//   let geo
+//   // Do merge inner arcs for those
+//   if (['US'].indexOf(k.split('-')[0]) !== -1) {
+//     geo = topojson.feature(topo, topo.objects[k]);
+//   } else {
+//     geo = { geometry: topojson.merge(topo, [topo.objects[k]]) };
+//   }
+//   // Exclude countries with null geometries.
+//   if (geo.geometry) {
+//     simplifiedZones[k] = geo;
+//   }
+// })
 
-fs.writeFileSync('src/world.json', JSON.stringify(simplifiedZones));
-//TODO:Try to output topojson to see size reduction?
+fs.writeFileSync('src/world.json', JSON.stringify(topo));
