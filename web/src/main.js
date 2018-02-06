@@ -929,14 +929,19 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     .classed('active', (clientVersion !== getState().application.bundleHash && !getState().application.isLocalhost && !getState().application.isCordova));
 
   // TODO: Code is duplicated
-  currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(state.datetime));
-  d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
-  d3.selectAll('.current-datetime-from-now')
-    .text(currentMoment.fromNow())
-    .style('color', 'darkred')
-    .transition()
-    .duration(800)
-    .style('color', undefined);
+  const setLastUpdated = () => {
+    currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(state.datetime));
+    d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
+    d3.selectAll('.current-datetime-from-now')
+      .text(currentMoment.fromNow())
+      .style('color', 'darkred')
+      .transition()
+      .duration(800)
+      .style('color', undefined);
+  }
+  setLastUpdated();
+  // inform the user the last time the map was updated.
+  setInterval(setLastUpdated, 60000)
 
   // Reset all data we want to update (for instance, not maxCapacity)
   d3.entries(countries).forEach((entry) => {
