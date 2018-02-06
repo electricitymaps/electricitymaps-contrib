@@ -116,6 +116,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Delhi): [delhisldc](http://www.delhisldc.org/Redirect.aspx?Loc=0804)
 - India (Karnataka): [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
+- India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTimeDemand.php)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
