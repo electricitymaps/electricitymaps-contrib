@@ -54,6 +54,14 @@ module.exports = (state = initialState, action) => {
       return newState;
     }
 
+    case 'GRID_DATA': {
+      return Object.assign({}, state, {
+        data: Object.assign({}, state.data, {
+          grid: action.payload,
+        }),
+      });
+    }
+
     default:
       return state;
   }
