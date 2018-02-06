@@ -1533,6 +1533,7 @@
     "timezone": "Europe/Belgrade"
   },
   "RU": {
+    "flag_file_name": "ru.png",
     "capacity": {
       "biomass": 0,
       "coal": 44868,
@@ -1543,7 +1544,14 @@
       "solar": 75,
       "wind": 10
     },
-    "timezone": null
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {"production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
   },
   "RU-KGD": {
     "flag_file_name": "ru.png",
