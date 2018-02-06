@@ -23,7 +23,7 @@ station_map = {
 }
 
 
-def fetch_data(country_code):
+def fetch_data(country_code, session = None):
     countrycode.assert_country_code(country_code, 'IN-GJ')
 
     solar_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
@@ -79,7 +79,7 @@ def fetch_production(country_code='IN-GJ', session=None):
     :param session:
     :return:
     """
-    value_map = fetch_data(country_code)
+    value_map = fetch_data(country_code, session)
 
     data = {
         'countryCode': country_code,
@@ -112,7 +112,7 @@ def fetch_consumption(country_code='IN-GJ', session=None):
     :param session:
     :return:
     """
-    value_map = fetch_data(country_code)
+    value_map = fetch_data(country_code, session)
 
     data = {
         'countryCode': country_code,
