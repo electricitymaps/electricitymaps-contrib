@@ -1135,7 +1135,7 @@
       "consumption": "IN_GJ.fetch_consumption",
       "production": "IN_GJ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IS": {
     "capacity": {

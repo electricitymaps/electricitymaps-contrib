@@ -42,7 +42,6 @@ def fetch_data(country_code):
         "thermal": thermal_value,
         "wind": wind_value,
         "gas": gas_value,
-        "nuclear": nuclear_value,
         "coal": coal_value
     }
 
@@ -85,19 +84,19 @@ def fetch_production(country_code='IN-GJ', session=None):
         'countryCode': country_code,
         'datetime': value_map['date'],
         'production': {
-            'biomass': 0.0,
+            'biomass': None,
             'coal': value_map['coal'],
             'gas': value_map['gas'],
             'hydro': value_map['hydro'],
-            'nuclear': value_map['nuclear'],
-            'oil': 0.0,
+            'nuclear': None,
+            'oil': None,
             'solar': value_map['solar'],
             'wind': value_map['wind'],
-            'geothermal': 0.0,
-            'unknown': 0.0
+            'geothermal': None,
+            'unknown': None
         },
         'storage': {
-            'hydro': 0.0
+            'hydro': None
         },
         'source': 'sldcguj.com',
     }
