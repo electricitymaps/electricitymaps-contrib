@@ -1,7 +1,5 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 ## -*- coding: utf-8 -*-
-
-from __future__ import print_function
 
 import arrow
 import dateutil
@@ -11,38 +9,57 @@ import tablib
 MAP_GENERATION = {
     'P_AES': 'nuclear',
     'P_GES': 'hydro',
-}
-
-FOSIL_TYPES = [
-    'P_GRES', # https://en.wikipedia.org/wiki/Thermal_power_stations_in_Russia_and_Soviet_Union
-    'P_TES', # https://en.wikipedia.org/wiki/Thermal_power_station
-    'P_BS', # Could be fosil...
-]
-
-# Aprox fosil shares
-FOSIL_SHARES = {
-    'gas': 0.71,
-    'coal': 0.28,
-    'oil': 0.01,
+    'P_GRES': 'unknown',
+    'P_TES': 'unknown',
+    'P_BS': 'unknown'
 }
 
 tz = 'Europe/Moscow'
 
-def fetch_production(country_code='RU', session=None):
-    r = session or requests.session()
 
+def fetch_production(country_code='RU', session=None):
+    """
+    Requests the last known production mix (in MW) of a given country
+    Arguments:
+    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A list of dictionaries in the form:
+    {
+      'countryCode': 'FR',
+      'datetime': '2017-01-01T00:00:00Z',
+      'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': null,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
+      'storage': {
+          'hydro': -10.0,
+      },
+      'source': 'mysource.com'
+    }
+    """
+
+    r = session or requests.session()
     today = arrow.now(tz=tz).format('DD.MM.YYYY')
     url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=-1:&notCheckedColumnsNames='.format(date=today)
 
     response = r.get(url)
-    content = response.content
+    content = response.text
 
     # Prepare content and load as csv into Dataset
     dataset = tablib.Dataset()
     dataset.csv = content.replace('\xce\xdd\xd1', ' ').replace(',','.').replace(';',',')
 
     data = []
-    for serie in dataset.dict:
+    for datapoint in dataset.dict:
         row = {
             'countryCode': country_code,
             'production': {},
@@ -52,29 +69,27 @@ def fetch_production(country_code='RU', session=None):
 
         # Production
         for k, production_type in MAP_GENERATION.items():
-            if k in serie:
-                row['production'][production_type] = int(float(serie[k]))
+            if k in datapoint:
+                gen_value = float(datapoint[k])
+                row['production'][production_type] = row['production'].get(production_type, 0.0) + gen_value
             else:
-                row['production'][production_type] = 0.0
-
-        # Calculate approximate value of each fosil type
-        fosil_production = 0
-        for fosil_type in FOSIL_TYPES:
-            if fosil_type in serie:
-                fosil_production += int(float(serie[fosil_type]))
-
-        for fosil_type, percent in FOSIL_SHARES.items():
-            row['production'][fosil_type] = int(fosil_production * percent)
+                row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
 
         # Date
-        hour = '%02d' % int(serie['INTERVAL'])
+        hour = '%02d' % int(datapoint['INTERVAL'])
         date = arrow.get('%s %s' % (today, hour), 'DD.MM.YYYY HH')
         row['datetime'] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
 
+        current_dt = arrow.now('Europe/Moscow').datetime
+
+        # Drop datapoints in the future
+        if row['datetime'] > current_dt:
+            continue
+
         # Default values
-        row['production']['solar'] = 0
-        row['production']['biomass'] = 0
-        row['production']['geothermal'] = 0
+        row['production']['solar'] = None
+        row['production']['biomass'] = None
+        row['production']['geothermal'] = None
 
         data.append(row)
 
@@ -82,4 +97,5 @@ def fetch_production(country_code='RU', session=None):
     return data
 
 if __name__ == '__main__':
+    print('fetch_production() ->')
     print(fetch_production())
