@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import re
 import string
+from ast import literal_eval
 
 import requests
 from arrow import get
@@ -30,10 +31,10 @@ def fetch_data(country_code):
 
     india_date = get(solar_html.find_all('tr')[0].text.split('\t')[-1].strip(), 'D-MM-YYYY h:m:s')
 
-    solar_value = float(eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
-    wind_value = float(eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
+    solar_value = float(literal_eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
+    wind_value = float(literal_eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
 
-    hydro_value = thermal_value = gas_value = nuclear_value = coal_value = 0.0
+    hydro_value = thermal_value = gas_value = coal_value = 0.0
 
     value_map = {
         "date": india_date.datetime,
@@ -59,14 +60,14 @@ def fetch_data(country_code):
             v1, v2 = (re.sub(r'[\n\t\r]', r'', x.text.strip()) for x in itemgetter(*[0, 3])(row.find_all('td')))
             energy_type = [k for k, v in station_map.items() if v1 in v]
             if len(energy_type) > 0:
-                value_map[energy_type[0]] += float(eval(v2))
+                value_map[energy_type[0]] += float(literal_eval(v2))
         elif len(row.find_all('td')) == 3:
             v1, v2 = (re.sub(r'[\n\t\r]', r'', x.text.strip()) for x in itemgetter(*[0, 2])(row.find_all('td')))
             energy_type = [k for k, v in station_map.items() if v1 in v]
             if len(energy_type) > 0:
-                value_map[energy_type[0]] += float(eval(v2))
+                value_map[energy_type[0]] += float(literal_eval(v2))
             if v1 == 'Gujarat Catered':
-                value_map['total consumption'] = float(eval(v2.split(' ')[0]))
+                value_map['total consumption'] = float(literal_eval(v2.split(' ')[0]))
 
     return value_map
 
@@ -106,7 +107,7 @@ def fetch_production(country_code='IN-GJ', session=None):
 
 def fetch_consumption(country_code='IN-GJ', session=None):
     """
-    Method to get consumption data of Nepal
+    Method to get consumption data of Gujarat
     :param country_code:
     :param session:
     :return:
