@@ -404,6 +404,16 @@ body {
     width: 8px;
     height: 8px;
 }
+
+
+.left-panel .circular-gauge .background{
+    fill: black;
+}
+
+.left-panel .circular-gauge .foreground{
+    fill: white;
+}
+
 .left-panel .country-spot-price {
     width: 100%;
 }
