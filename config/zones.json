@@ -1126,6 +1126,17 @@
     },
     "timezone": null
   },
+  "IN-GJ": {
+    "contributors": [
+      "https://github.com/sahitya-pavurala"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "consumption": "IN_GJ.fetch_consumption",
+      "production": "IN_GJ.fetch_production"
+    },
+    "timezone": null
+  },
   "IS": {
     "capacity": {
       "biomass": 0,
