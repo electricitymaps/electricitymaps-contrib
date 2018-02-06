@@ -141,9 +141,14 @@
     "rotation": 0
   },
   "BA->HR": {
+    "lonlat": [
+      16.941,
+      45.205
+    ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
-    }
+      "exchange": "HOPS.fetch_exchange"
+    },
+    "rotation": 0
   },
   "BA->ME": {
     "lonlat": [
@@ -405,25 +410,15 @@
     },
     "rotation": 90
   },
-  "CA-ON->US-MI": {
+  "CA-ON->US-MISO": {
     "lonlat": [
-      -82.1195,
-      43.5896
+      -84.188,
+      46.476
     ],
     "parsers": {
       "exchange": "CA_ON.fetch_exchange"
     },
-    "rotation": -90
-  },
-  "CA-ON->US-MN": {
-    "lonlat": [
-      -92.722024,
-      48.566155
-    ],
-    "parsers": {
-      "exchange": "CA_ON.fetch_exchange"
-    },
-    "rotation": 180
+    "rotation": -145
   },
   "CA-ON->US-NY": {
     "lonlat": [
@@ -848,6 +843,16 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 90
+  },
+  "HR->SI": {
+    "lonlat": [
+      15.362,
+      45.583
+    ],
+    "parsers": {
+      "exchange": "HOPS.fetch_exchange"
+    },
+    "rotation": -90
   },
   "HU->RO": {
     "lonlat": [

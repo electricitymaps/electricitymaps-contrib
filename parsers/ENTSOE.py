@@ -124,10 +124,10 @@ def check_response(response, function_name):
         raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
 
 
-def query_ENTSOE(session, params, now=None, span=[-24, 24]):
+def query_ENTSOE(session, params, now=None, span=[-48, 24]):
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
-    Allows an existing session to be passed. Default timespan of +/- 24 hours.
+    Allows an existing session to be passed.
     Raises an exception if no API token is found.
     Returns a request object.
     """
