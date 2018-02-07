@@ -21,6 +21,7 @@ def fetch_data(country_code, session=None):
     rows = html.find_all('tr')[1:]
 
     oil_value = wind_value = hydro_value = coal_value = 0.0
+    other_hydro_plants = ['samanala wewa', 'kukule ganga']
 
     for row in rows:
         values = row.text.lower().strip().split('\n')
@@ -30,8 +31,16 @@ def fetch_data(country_code, session=None):
             oil_value += float(values[1].split(' ')[0])
         elif 'wind' in values[0]:
             wind_value += float(values[1].split(' ')[0])
-        else:
+        elif 'hydro' in values[0]:
             hydro_value += float(values[1].split(' ')[0])
+        else:
+            if values[0] in other_hydro_plants:
+                hydro_value += float(values[1].split(' ')[0])
+            else:
+                raise Exception('Site has been modified. Parser has to be fixed with necessary changes')
+
+
+
 
     value_map = {
         "date": date.datetime,
