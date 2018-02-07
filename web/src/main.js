@@ -925,8 +925,8 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   // window.forceFetchNow = fetch;
 
   // Is there a new version?
-  // d3.select('#new-version')
-  //   .classed('active', (clientVersion !== bundleHash && !store.getState().application.isLocalhost && !isCordova));
+  d3.select('#new-version')
+    .classed('active', (clientVersion !== getState().application.bundleHash && !getState().application.isLocalhost && !getState().application.isCordova));
 
   // TODO: Code is duplicated
   currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(state.datetime));

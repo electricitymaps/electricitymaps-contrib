@@ -87,6 +87,11 @@ var countryCo2eqFootprint = {
     },
     'SE': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 362, source: 'assumes 72% biomass, 28% conventional thermal'} : null;
+    },
+    'RU': function (productionMode) {
+        // Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas) = 567 g/kWh
+        // 2015 production source: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
+        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 567, source: 'assumes 76% gas, 23% coal, 1% oil'} : null;
     }
 };
 
