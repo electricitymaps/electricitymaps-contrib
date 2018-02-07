@@ -9,9 +9,10 @@ from parsers.lib import web
 
 def fetch_data(country_code, session=None):
     countrycode.assert_country_code(country_code, 'LK')
+    tz = 'Asia/Colombo'
 
     html = web.get_response_soup(country_code, 'http://www.ceb.lk/yesterday-electricity/', session)
-    date = get(html.find_all('h4')[1].text.strip().split(':')[-1], 'MMMM D, YYYY')
+    date = get(html.find_all('h4')[1].text.strip().split(':')[-1], 'MMMM D, YYYY').replace(tzinfo=tz)
     head_vals = html.find_all('div', {'class': 'wpb_wrapper'})[3].find_all('div', {'class': 'row'})
 
     demand = float(head_vals[0].text.strip().split('\n')[1].split(' ')[0])
