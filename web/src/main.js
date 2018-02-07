@@ -940,7 +940,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   d3.select('#new-version')
     .classed('active', (clientVersion !== getState().application.bundleHash && !getState().application.isLocalhost && !getState().application.isCordova));
 
-  // TODO: Code is duplicated
   dispatch({
     payload: state,
     type: 'GRID_DATA',
