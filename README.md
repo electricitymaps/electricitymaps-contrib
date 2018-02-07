@@ -142,6 +142,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - Other: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
+- Sri Lanka: [ceb.lk](http://www.ceb.lk/yesterday-electricity/)
 - Sweden: [Statnett](http://www.statnett.no/en/Market-and-operations/Data-from-the-power-system/Nordic-power-balance/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
