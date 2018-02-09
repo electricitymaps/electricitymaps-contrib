@@ -64,7 +64,7 @@ def fetch_production(country_code='RU', session=None):
             'countryCode': country_code,
             'production': {},
             'storage': {},
-            'source': 'ua.energy'
+            'source': 'so-ups.ru'
         }
 
         # Production
