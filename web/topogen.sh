@@ -63,6 +63,6 @@ echo 'Parsing 3rd party..'
 )> build/tmp_thirdparty.json
 
 # Generate final geometries
-node generate_geometries.js
+node generate-geometries.js
 
 echo 'Done'
