@@ -13,10 +13,7 @@
         "see": "Vedi",
         "datasources": "le fonti dei dati",
         "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo la tua nazione</a>",
-        "tip": "Consiglio: Clicca su una nazione per iniziare l'esplorazione",
-        "live": "In diretta",
-        "database": "Banca dati",
-        "forecast": "Previsioni"
+        "tip": "Consiglio: Clicca su una nazione per iniziare l'esplorazione"
     },
     "country-panel": {
         "source": "Fonte",
