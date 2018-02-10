@@ -13,10 +13,7 @@
         "see": "see",
         "datasources": "data sources",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>",
-        "tip": "Tip: Click on a territory to start exploring",
-        "live": "Live",
-        "database": "Database",
-        "forecast": "Forecast"
+        "tip": "Tip: Click on a territory to start exploring"
     },
     "country-panel": {
         "source": "Source",
