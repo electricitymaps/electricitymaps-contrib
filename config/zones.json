@@ -127,6 +127,20 @@
     },
     "timezone": null
   },
+  "AW": {
+    "contributors": [
+      "https://github.com/pascalheraud"
+    ],
+    "capacity": {
+      "oil": 257.88,
+      "wind": 30
+    },
+    "flag_file_name": "aw.png",
+    "parsers": {
+      "production": "AW.fetch_production"
+    },
+    "timezone": null
+  },
   "BA": {
     "contributors": [
       "https://github.com/corradio"
