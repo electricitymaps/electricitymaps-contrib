@@ -29,7 +29,7 @@ def fetch_data(country_code, session = None):
     solar_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
     wind_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
 
-    india_date = get(solar_html.find_all('tr')[0].text.split('\t')[-1].strip(), 'D-MM-YYYY h:m:s')
+    india_date = get(solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata', 'DD-MM-YYYY H:m:s ZZZ')
 
     solar_value = float(literal_eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
     wind_value = float(literal_eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
