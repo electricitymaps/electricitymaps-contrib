@@ -1183,6 +1183,17 @@
     },
     "timezone": "Europe/Rome"
   },
+  "LK": {
+    "contributors": [
+      "https://github.com/sahitya-pavurala"
+    ],
+    "flag_file_name": "lk.png",
+    "parsers": {
+      "consumption": "LK.fetch_consumption",
+      "production": "LK.fetch_production"
+    },
+    "timezone": "Asia/Colombo"
+  },
   "LT": {
     "_comment": "hydro incl. 900 MW pumped storage",
     "capacity": {
