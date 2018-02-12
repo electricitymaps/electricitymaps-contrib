@@ -139,7 +139,7 @@
     "parsers": {
       "production": "AW.fetch_production"
     },
-    "timezone": null
+    "timezone": "America/Aruba"
   },
   "BA": {
     "contributors": [
