@@ -435,7 +435,8 @@ const zoneDefinitions = [
   // {zoneName: 'US-MD', countryId: 'USA', stateId: 'US.MD', type: 'state'},
   // {zoneName: 'US-ME', countryId: 'USA', stateId: 'US.ME', type: 'state'},
   // {zoneName: 'US-MI', countryId: 'USA', stateId: 'US.MI', type: 'state'},
-  {zoneName: 'US-MISO', type: 'states', countryId: 'USA', states: ['US.AR', 'US.IA', 'US.IL', 'US.IN', 'US.LA', 'US.MI', 'US.MN', 'US.MO', 'US.ND', 'US.SD', 'US.WI']},
+  {zoneName: 'US-MISO', type: 'states', countryId: 'USA', states: [
+    'US.AR', 'US.IA', 'US.IL', 'US.IN', 'US.LA', 'US.MI', 'US.MN', 'US.MO', 'US.ND', 'US.SD', 'US.WI']},
   // {zoneName: 'US-MN', countryId: 'USA', stateId: 'US.MN', type: 'state'},
   // {zoneName: 'US-MO', countryId: 'USA', stateId: 'US.MO', type: 'state'},
   {zoneName: 'US-MS', countryId: 'USA', stateId: 'US.MS', type: 'state'},
@@ -443,7 +444,8 @@ const zoneDefinitions = [
   {zoneName: 'US-NC', countryId: 'USA', stateId: 'US.NC', type: 'state'},
   // {zoneName: 'US-ND', countryId: 'USA', stateId: 'US.ND', type: 'state'},
   {zoneName: 'US-NE', countryId: 'USA', stateId: 'US.NE', type: 'state'},
-  {zoneName: 'US-NEISO', type: 'states', countryId: 'USA', states: ['US.CT', 'US.MA', 'US.ME', 'US.NH', 'US.RI', 'US.VT']},
+  {zoneName: 'US-NEISO', type: 'states', countryId: 'USA', states: [
+    'US.CT', 'US.MA', 'US.ME', 'US.NH', 'US.RI', 'US.VT']},
   // {zoneName: 'US-NH', countryId: 'USA', stateId: 'US.NH', type: 'state'},
   // {zoneName: 'US-NJ', countryId: 'USA', stateId: 'US.NJ', type: 'state'},
   {zoneName: 'US-NM', countryId: 'USA', stateId: 'US.NM', type: 'state'},
@@ -453,7 +455,8 @@ const zoneDefinitions = [
   {zoneName: 'US-OK', countryId: 'USA', stateId: 'US.OK', type: 'state'},
   {zoneName: 'US-OR', countryId: 'USA', stateId: 'US.OR', type: 'state'},
   // {zoneName: 'US-PA', countryId: 'USA', stateId: 'US.PA', type: 'state'},
-  {zoneName: 'US-PJM', type: 'states', countryId: 'USA', states: ['US.PA', 'US.NJ', 'US.MD', 'US.DE', 'US.VA', 'US.WV', 'US.OH', 'US.KY']},
+  {zoneName: 'US-PJM', type: 'states', countryId: 'USA', states: [
+    'US.PA', 'US.NJ', 'US.MD', 'US.DE', 'US.VA', 'US.WV', 'US.OH', 'US.KY']},
   // {zoneName: 'US-RI', countryId: 'USA', stateId: 'US.RI', type: 'state'},
   {zoneName: 'US-SC', countryId: 'USA', stateId: 'US.SC', type: 'state'},
   // {zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state'},
@@ -529,7 +532,8 @@ const toListOfFeatures = (zones) => {
 let zones = {};
 zoneDefinitions.forEach(zone => {
   if (zone.zoneName in zones)
-    throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present only once in zoneDefinitions');
+    throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present ' +
+      'only once in zoneDefinitions');
   zones[zone.zoneName] = getDataForZone(zone, true);
 });
 
