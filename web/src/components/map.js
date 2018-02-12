@@ -367,7 +367,7 @@ export default class Map {
     this.nonClickableZoneGeometries = [];
 
     Object.keys(data).forEach((k) => {
-      const geometry = data[k];
+      const geometry = data[k].geometry;
       // Remove empty geometries
       geometry.coordinates = geometry.coordinates.filter(d => d.length !== 0);
       const feature = {
