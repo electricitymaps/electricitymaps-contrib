@@ -485,7 +485,9 @@ const zoneDefinitions = [
   {zoneName:'ZW', type:'country', id:'ZWE'},
 ];
 
-const treatZone = (zone, mergeStates) => {
+const getDataForZone = (zone, mergeStates) => {
+  /* for a specifi zone, defined by an Object having at least `zoneName` and
+   * `type` as properties, call the corresponding function to get the data */
   if (zone.type === 'country'){
     return getCountry(zone.id)
   }
@@ -494,7 +496,6 @@ const treatZone = (zone, mergeStates) => {
       return getStates(zone.countryId, zone.states);
     }
     else{
-      console.log('multipleStates', zone.zoneName);
       return ['multipleStates', zone.states.map(state => getState(zone.countryId, state))];
     }
   }
@@ -513,10 +514,10 @@ const treatZone = (zone, mergeStates) => {
 };
 
 const toListOfFeatures = (zones) => {
+  /* transform a list of (zoneName, properties) to the right geoJSON format */
   return zones.filter(d => d[1] != null).map((d) => {
     const [k, v] = d;
     let zoneName = k;
-    console.log('zoneName', k, Object.keys(v));
     v.id = zoneName;
     v.properties = {
       zoneName: zoneName,
@@ -525,34 +526,31 @@ const toListOfFeatures = (zones) => {
   });
 };
 
+
+// create zones from definitions
 let zones = {};
 zoneDefinitions.forEach(zone => {
-  zones[zone.zoneName] = treatZone(zone, true);
+  zones[zone.zoneName] = getDataForZone(zone, true);
 });
 
-// Convert to list of feature
+// create line by line geoJSON
 const zoneFeatures = toListOfFeatures(Object.entries(zones));
 
-// create another version of zonegeometries.json where we do not geomerge states
+// We need another version of zonegeometries where we do not merge states
 // related to PR #455 in the backend
 let zoneFeaturesNoStatesMerge = zoneDefinitions.map(
-  zone => [zone.zoneName, treatZone(zone, false)]);
+  zone => [zone.zoneName, getDataForZone(zone, false)]);
 // where there are multiple states, we need to inline the values
 let zoneFeaturesNoStatesMergeInline = [];
-console.log('looking for multipleStates', zoneFeaturesNoStatesMerge.length, zoneFeaturesNoStatesMerge[0]);
 zoneFeaturesNoStatesMerge.forEach((data) => {
   let [name, zoneFeature] = data;
   if (Array.isArray(zoneFeature) && zoneFeature[0] === 'multipleStates'){
-    console.log('multipleStates', zoneFeature[1].length, zoneFeature[1][0]);
     zoneFeature[1].forEach(z => {zoneFeaturesNoStatesMergeInline.push([name, z])});
   }
   else{
     zoneFeaturesNoStatesMergeInline.push(data);
   }
 });
-console.log('------------------------------------------------------------------------- No state merge');
-console.log('first zoneFeatures', Object.entries(zones)[0]);
-console.log('first zoneFeaturesNoMerge', zoneFeaturesNoStatesMergeInline[0]);
 zoneFeaturesNoStatesMerge = toListOfFeatures(zoneFeaturesNoStatesMergeInline, false);
 
 // Write unsimplified list of geojson, with and without state merges
@@ -560,26 +558,11 @@ fs.writeFileSync('zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\
 fs.writeFileSync('zonegeometriesNoStateMerge.json', zoneFeaturesNoStatesMerge.map(JSON.stringify).join('\n'));
 
 // Simplify
+// fs.writeFileSync('src/zones.json', JSON.stringify(zones));
 const topojson = require('topojson');
-let topo = topojson.topology(zones, 1e5);
+let topo = topojson.topology(zones);
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
 topo = topojson.filter(topo, topojson.filterWeight(topo, 0.01));
-// Convert
-// const simplifiedZones = {};
-// Object.keys(zones).forEach((k) => {
-//   if (!topo.objects[k].arcs) { return; }
-//   let geo
-//   // Do merge inner arcs for those
-//   if (['US'].indexOf(k.split('-')[0]) !== -1) {
-//     geo = topojson.feature(topo, topo.objects[k]);
-//   } else {
-//     geo = { geometry: topojson.merge(topo, [topo.objects[k]]) };
-//   }
-//   // Exclude countries with null geometries.
-//   if (geo.geometry) {
-//     simplifiedZones[k] = geo;
-//   }
-// })
-
+topo = topojson.quantize(topo, 1e4);
 fs.writeFileSync('src/world.json', JSON.stringify(topo));
