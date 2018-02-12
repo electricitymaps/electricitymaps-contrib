@@ -32,7 +32,7 @@ Furthermore, this method is robust to governments relocating dirty production to
 **Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO2/capita.
 This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
-That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods). 
+That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods).
 The CO2/capita metric, by involving the size of the population, and by not integrating all CO2 emission sources, is thus an incomplete metric.
 CO2 intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
@@ -93,6 +93,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Chile (SING): [SGER](https://sger.coordinadorelectrico.cl/Charts/AmChartCurvaCompuesta?showinfo=True)
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
+- Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
 - Cyprus : [TSO](http://www.dsm.org.cy/en/daily-system-generation-on-the-transmission-system-mw)
 - Denmark: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
   - Bornholm: [PowerlabDK](http://bornholm.powerlab.dk/)
@@ -115,6 +116,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Delhi): [delhisldc](http://www.delhisldc.org/Redirect.aspx?Loc=0804)
 - India (Karnataka): [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
+- India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTimeDemand.php)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
@@ -130,6 +132,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Poland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Portugal: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Romania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Russia: [SO-UPS](http://br.so-ups.ru/Public/MainPageData/BR/PowerGeneration.aspx)
 - Serbia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Singapore: [EMC](https://www.emcsg.com)
 - Slovakia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)

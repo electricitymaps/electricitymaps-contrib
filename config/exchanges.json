@@ -141,9 +141,14 @@
     "rotation": 0
   },
   "BA->HR": {
+    "lonlat": [
+      16.941,
+      45.205
+    ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
-    }
+      "exchange": "HOPS.fetch_exchange"
+    },
+    "rotation": 0
   },
   "BA->ME": {
     "lonlat": [
@@ -838,6 +843,16 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 90
+  },
+  "HR->SI": {
+    "lonlat": [
+      15.362,
+      45.583
+    ],
+    "parsers": {
+      "exchange": "HOPS.fetch_exchange"
+    },
+    "rotation": -90
   },
   "HU->RO": {
     "lonlat": [

@@ -6,7 +6,7 @@ var exports = module.exports = {};
 exports.addCountryTopos = (countries) => {
   Object.keys(topo.objects).forEach((k) => {
     if (!topo.objects[k].arcs) { return; }
-    let geo
+    let geo;
     // Do merge inner arcs for those
     if (['US'].indexOf(k.split('-')[0]) !== -1) {
       geo = topojson.feature(topo, topo.objects[k]);
