@@ -526,39 +526,33 @@ const toListOfFeatures = (zones) => {
   });
 };
 
-
 // create zones from definitions
 let zones = {};
 zoneDefinitions.forEach(zone => {
   zones[zone.zoneName] = getDataForZone(zone, true);
 });
 
-// create line by line geoJSON
-const zoneFeatures = toListOfFeatures(Object.entries(zones));
-
-// We need another version of zonegeometries where we do not merge states
+// We do not want to merge states
 // related to PR #455 in the backend
-let zoneFeaturesNoStatesMerge = zoneDefinitions.map(
+let zoneFeatures = zoneDefinitions.map(
   zone => [zone.zoneName, getDataForZone(zone, false)]);
 // where there are multiple states, we need to inline the values
-let zoneFeaturesNoStatesMergeInline = [];
-zoneFeaturesNoStatesMerge.forEach((data) => {
+let zoneFeaturesInline = [];
+zoneFeatures.forEach((data) => {
   let [name, zoneFeature] = data;
   if (Array.isArray(zoneFeature) && zoneFeature[0] === 'multipleStates'){
-    zoneFeature[1].forEach(z => {zoneFeaturesNoStatesMergeInline.push([name, z])});
+    zoneFeature[1].forEach(z => {zoneFeaturesInline.push([name, z])});
   }
   else{
-    zoneFeaturesNoStatesMergeInline.push(data);
+    zoneFeaturesInline.push(data);
   }
 });
-zoneFeaturesNoStatesMerge = toListOfFeatures(zoneFeaturesNoStatesMergeInline, false);
+zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 
-// Write unsimplified list of geojson, with and without state merges
+// Write unsimplified list of geojson, without state merges
 fs.writeFileSync('zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
-fs.writeFileSync('zonegeometriesNoStateMerge.json', zoneFeaturesNoStatesMerge.map(JSON.stringify).join('\n'));
 
 // Simplify
-// fs.writeFileSync('src/zones.json', JSON.stringify(zones));
 const topojson = require('topojson');
 let topo = topojson.topology(zones);
 topo = topojson.presimplify(topo);
