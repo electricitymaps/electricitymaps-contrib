@@ -895,6 +895,18 @@ function renderMap() {
 }
 
 let countryListSelector;
+// inform the user the last time the map was updated.
+function setLastUpdated() {
+  currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(getState().data.grid.datetime));
+  d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
+  d3.selectAll('.current-datetime-from-now')
+    .text(currentMoment.fromNow())
+    .style('color', 'darkred')
+    .transition()
+    .duration(800)
+    .style('color', undefined);
+}
+setInterval(setLastUpdated, 60000);
 
 function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argWind) {
   if (err) {
@@ -928,15 +940,10 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   d3.select('#new-version')
     .classed('active', (clientVersion !== getState().application.bundleHash && !getState().application.isLocalhost && !getState().application.isCordova));
 
-  // TODO: Code is duplicated
-  currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(state.datetime));
-  d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
-  d3.selectAll('.current-datetime-from-now')
-    .text(currentMoment.fromNow())
-    .style('color', 'darkred')
-    .transition()
-    .duration(800)
-    .style('color', undefined);
+  dispatch({
+    payload: state,
+    type: 'GRID_DATA',
+  });
 
   // Reset all data we want to update (for instance, not maxCapacity)
   d3.entries(countries).forEach((entry) => {
@@ -1278,6 +1285,13 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
 // Observe for changes requiring an update of history
 observe(state => state.application, (application) => {
   HistoryState.updateHistoryFromState(application);
+});
+
+// Observe for datetimechanes
+observe(state => state.data.grid, (grid) => {
+  if (grid && grid.datetime) {
+    setLastUpdated();
+  }
 });
 
 // Start a fetch showing loading.
