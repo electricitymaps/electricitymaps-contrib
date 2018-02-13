@@ -105,6 +105,7 @@ export default class Map {
     this.strokeColor = config.strokeColor || '#555555';
     this.clickableFill = config.clickableFill || 'gray';
     this.nonClickableFill = config.nonClickableFill || 'gray';
+    this.userIsUsingTouch = false;
 
     this.center = undefined;
 
@@ -157,9 +158,16 @@ export default class Map {
     this.dragEndHandlers = [];
     this.mapLoadedHandlers = [];
 
+    this.map.on('touchstart', e => {
+      // the user actually touched the screen!
+      // he has a touch feature AND is using it. See #1090
+      this.userIsUsingTouch = true;
+      console.log('user is using touch');
+    });
+
     this.map.on('mouseenter', 'clickable-zones-fill', (e) => {
       // Disable for touch devices
-      if ('ontouchstart' in document.documentElement) { return; }
+      if (this.userIsUsingTouch) { return; }
       this.map.getCanvas().style.cursor = 'pointer';
       if (this.countryMouseOverHandler) {
         const i = e.features[0].properties.zoneId;
@@ -175,7 +183,7 @@ export default class Map {
     });
     this.map.on('mousemove', 'clickable-zones-fill', (e) => {
       // Disable for touch devices
-      if ('ontouchstart' in document.documentElement) { return; }
+      if (this.userIsUsingTouch) { return; }
       if (prevId !== e.features[0].properties.zoneId) {
         prevId = e.features[0].properties.zoneId;
         const hoverSource = this.map.getSource('hover');
@@ -200,7 +208,7 @@ export default class Map {
 
     this.map.on('mouseleave', 'clickable-zones-fill', () => {
       // Disable for touch devices
-      if ('ontouchstart' in document.documentElement) { return; }
+      if (this.userIsUsingTouch) { return; }
       this.map.getCanvas().style.cursor = '';
       this.map.getSource('hover').setData({
         type: 'FeatureCollection',
