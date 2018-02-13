@@ -72,6 +72,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
 
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
+- Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
 - Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
   ([CSV](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all))
 - Australia (Western): [AEMO](http://wa.aemo.com.au/Electricity/Wholesale-Electricity-Market-WEM/Data-dashboard)
@@ -159,6 +160,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) file.
 
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
+- Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
 - Austria:
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
