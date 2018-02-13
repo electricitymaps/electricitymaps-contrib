@@ -434,6 +434,7 @@ d3.select('.country-show-emissions-wrap a#production')
   .classed('selected', !tableDisplayEmissions);
 
 window.toggleSource = (state) => {
+  /* changing whether we display electricity production or carbon emission graphs */
   if (state === undefined)
     state = !tableDisplayEmissions;
   tableDisplayEmissions = state;
@@ -448,6 +449,10 @@ window.toggleSource = (state) => {
     .classed('selected', tableDisplayEmissions);
   d3.select('.country-show-emissions-wrap a#production')
     .classed('selected', !tableDisplayEmissions);
+  // update wording, see #893
+  document.getElementsByClassName('.country-history-title')[0].textContent = translation.translate(
+    state ? 'country-history.carbonintensity24h' : 'country-history.electricityorgin24h'
+  );
 };
 
 // Prepare data
