@@ -451,7 +451,7 @@ window.toggleSource = (state) => {
     .classed('selected', !tableDisplayEmissions);
   // update wording, see #893
   document.getElementsByClassName('.country-history-title')[0].textContent = translation.translate(
-    state ? 'country-history.carbonintensity24h' : 'country-history.electricityorgin24h'
+    tableDisplayEmissions ? 'country-history.carbonintensity24h' : 'country-history.electricityorgin24h'
   );
 };
 
