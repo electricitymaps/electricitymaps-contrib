@@ -1571,6 +1571,10 @@
     "flag_file_name": "ru.png",
     "timezone": null
   },
+  "RU-E": {
+    "flag_file_name": "ru.png",
+    "timezone": null
+  },
   "SE": {
     "bounding_box": [
       [
