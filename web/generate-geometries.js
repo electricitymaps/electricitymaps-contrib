@@ -259,7 +259,7 @@ const zoneDefinitions = [
   {zoneName: 'IN-KA', countryId: 'IND', stateId: 'IN.KA', useMaybe: true, type: 'state'},
   {zoneName: 'IN-KL', countryId: 'IND', stateId: 'IN.KL', useMaybe: true, type: 'state'},
   {zoneName: 'IN-LD', countryId: 'IND', stateId: 'IN.LD', useMaybe: true, type: 'state'},
-  {zoneName: 'IN-MP', countryId: 'IND', stateId: 'IN.MP', useMaybe: true, type: 'state'},
+  {zoneName: 'IN-MP', countryId: 'IND', stateId: 'IN.MP', useMaybe: false, type: 'state'},
   {zoneName: 'IN-MH', countryId: 'IND', stateId: 'IN.MH', useMaybe: true, type: 'state'},
   {zoneName: 'IN-MN', countryId: 'IND', stateId: 'IN.MN', useMaybe: true, type: 'state'},
   {zoneName: 'IN-ML', countryId: 'IND', stateId: 'IN.ML', useMaybe: true, type: 'state'},
