@@ -866,7 +866,7 @@ function renderMap() {
     // Restore setting
     Cookies.set('windEnabled', getState().application.windEnabled);
     LoadingService.stopLoading('#loading');
-  } else {
+  } else if (typeof windLayer !== 'undefined') {
     windLayer.hide();
   }
 
@@ -889,7 +889,7 @@ function renderMap() {
         Cookies.set('solarEnabled', getState().application.solarEnabled);
         LoadingService.stopLoading('#loading');
       });
-  } else {
+  } else if (typeof solarLayer !== 'undefined') {
     solarLayer.hide();
   }
 }
