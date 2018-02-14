@@ -138,9 +138,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Singapore: [EMC](https://www.emcsg.com)
 - Slovakia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Slovenia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Spain:
-  - Hydro: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ESP)
-  - Other: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Spain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
 - Sweden: [Statnett](http://www.statnett.no/en/Market-and-operations/Data-from-the-power-system/Nordic-power-balance/)
@@ -148,7 +146,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
-- United States of America:
+- United States of America
   - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
   - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
@@ -161,7 +159,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
-- Austria:
+- Austria
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)  
@@ -174,7 +172,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Canada (Ontario): [Gridwatch](http://live.gridwatch.ca/total-capacity.html)
 - Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
-- Chile (SING):
+- Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
   - Other: [CIGRE](http://www.cigre.org/var/cigre/storage/original/application/6a789c1375a22a39e14a284bee7ff988.pdf)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -187,7 +185,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
-- Finland:
+- Finland
   - Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France
@@ -198,7 +196,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
-- Hungary:
+- Hungary
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=HUN)
   - Other[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
@@ -209,7 +207,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
-- India (Karnataka):
+- India (Karnataka)
   - Coal: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
   - Hydro: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
   - Renewables [kptclsldc.com](http://kptclsldc.com/StateNCEP.aspx)
@@ -225,7 +223,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Northern Ireland: [EIR Grid](http://www.eirgridgroup.com/site-files/library/EirGrid/Generation_Capacity_Statement_20162025_FINAL.pdf)
 - Poland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Portugal:
+- Portugal
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -234,24 +232,27 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Singapore: [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Spain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?name=&defaultValue=false&viewType=TABLE&areaType=BZN&atch=false&dateTime.dateTime=01.01.2017+00:00|UTC|YEAR&dateTime.endDateTime=01.01.2017+00:00|UTC|YEAR&area.values=CTY|10YES-REE------0!BZN|10YES-REE------0&productionType.values=B01&productionType.values=B02&productionType.values=B03&productionType.values=B04&productionType.values=B05&productionType.values=B06&productionType.values=B07&productionType.values=B08&productionType.values=B09&productionType.values=B10&productionType.values=B11&productionType.values=B12&productionType.values=B13&productionType.values=B14&productionType.values=B20&productionType.values=B15&productionType.values=B16&productionType.values=B17&productionType.values=B18&productionType.values=B19)
-- Spain (Canary Islands):
-  - Hydro storage [goronadelviento.es](http://www.goronadelviento.es/)
-  - Wind, Solar [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
-- Spain (Balearic Islands):
+- Spain:
+  - Hydro: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ESP)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?name=&defaultValue=false&viewType=TABLE&areaType=BZN&atch=false&dateTime.dateTime=01.01.2017+00:00|UTC|YEAR&dateTime.endDateTime=01.01.2017+00:00|UTC|YEAR&area.values=CTY|10YES-REE------0!BZN|10YES-REE------0&productionType.values=B01&productionType.values=B02&productionType.values=B03&productionType.values=B04&productionType.values=B05&productionType.values=B06&productionType.values=B07&productionType.values=B08&productionType.values=B09&productionType.values=B10&productionType.values=B11&productionType.values=B12&productionType.values=B13&productionType.values=B14&productionType.values=B20&productionType.values=B15&productionType.values=B16&productionType.values=B17&productionType.values=B18&productionType.values=B19)
+- Spain (Canary Islands)
+  - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)
+  - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
+- Spain (Balearic Islands)
   - Coal: [wikipedia.org](https://es.wikipedia.org/wiki/Central_t%C3%A9rmica_de_Es_Murterar)
-  - Wind, Solar [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
-- Sweden:
+  - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
+- Sweden
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
-  - Other:[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Turkey: [TEİAŞ](https://www.teias.gov.tr/)
-- Ukraine [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
-- United States of America:
-  - Federal [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
-  - States [EIA](https://www.eia.gov/electricity/data/state/)
-  - MISO [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
-  - PJM [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
+- Ukraine: [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
+- United States of America
+  - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+  - States: [EIA](https://www.eia.gov/electricity/data/state/)
+  - CAISO: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
+  - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
+  - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
 
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
