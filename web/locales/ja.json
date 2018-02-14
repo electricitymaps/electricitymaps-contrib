@@ -33,7 +33,7 @@
     },
     "country-history": {
         "carbonintensity24h": "最近の２４時間の二酸化炭素の排出",
-        "electricityorgin24h": "最近の２４時間の電力の元",
+        "electricityorigin24h": "最近の２４時間の電力の元",
         "electricityprices24h": "最近の２４時間の電力値",
         "Getdata": "過去と予想のデータを取得する"
     },
