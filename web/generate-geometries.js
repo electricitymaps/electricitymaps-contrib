@@ -524,6 +524,12 @@ const getDataForZone = (zone, mergeStates) => {
   else if (zone.type === 'countries'){
     return getCountries(zone.countries);
   }
+  else if (zone.type === 'fips'){
+    return getStateByFips(zone.fips[0], zone.fips[1]);
+  }
+  else{
+    console.warn('unknown type for zone ', zone);
+  }
 };
 
 const toListOfFeatures = (zones) => {
