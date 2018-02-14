@@ -1061,10 +1061,10 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         mapMouseOver(lonlat);
         countryTooltip.update(clientX, clientY);
       })
-      .onCountryMouseOut((d, i, clientX, clientY, lonlat) => {
+      .onCountryMouseOut((d) => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-        mapMouseOver(lonlat);
+        mapMouseOver(undefined);
         countryTooltip.hide();
       })
       .onOceanMouseMove((lonlat) => {
