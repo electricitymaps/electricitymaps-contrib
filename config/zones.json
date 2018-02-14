@@ -1751,7 +1751,7 @@
   },
   "US-CA": {
     "capacity": {
-      "battery": 136,
+      "battery storage": 136,
       "biomass": 997,
       "geothermal": 1799,
       "solar": 11172,
