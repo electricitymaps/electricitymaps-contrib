@@ -1750,6 +1750,13 @@
     "timezone": null
   },
   "US-CA": {
+    "capacity": {
+      "battery": 136,
+      "biomass": 997,
+      "geothermal": 1799,
+      "solar": 11172,
+      "wind": 6269
+    },
     "contributors": [
       "https://github.com/7hibault",
       "https://github.com/corradio",
