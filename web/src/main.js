@@ -1257,14 +1257,14 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
-  if (solarEnabled) {
+  if (solarEnabled && typeof solarLayer !== 'undefined') {
     solarColorbar.render();
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       fetch(true);
     } else {
       solarLayer.show();
     }
-  } else {
+  } else if (typeof solarLayer !== 'undefined') {
     solarLayer.hide();
   }
 });
@@ -1277,14 +1277,14 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
 
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
-  if (windEnabled) {
+  if (windEnabled && typeof windLayer !== 'undefined') {
     windColorbar.render();
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
     } else {
       windLayer.show();
     }
-  } else {
+  } else if (typeof windLayer !== 'undefined') {
     windLayer.hide();
   }
 });
