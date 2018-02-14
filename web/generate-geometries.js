@@ -189,10 +189,13 @@ const zoneDefinitions = [
   {zoneName: 'EG', type: 'country', id: 'EGY'},
   {zoneName: 'EH', type: 'country', id: 'ESH'},
   {zoneName: 'ER', type: 'country', id: 'ERI'},
-  // spain canaries islands
   {zoneName: 'ES', type: 'subunits', subunits: ['ESX', 'SEC', 'SEM']}, //Spain Peninsula
-  {zoneName: 'ES-CN', type: 'countries', countries: [
-    'La palma', 'Hierro', 'Isla de la Gomera', 'Tenerife', 'Gran Canaria']},
+  // spain canaries islands
+  {zoneName: 'ES-CN-LP', type: 'country', id: 'La Palma'},
+  {zoneName: 'ES-CN-HI', type: 'country', id: 'Hierroe'},
+  {zoneName: 'ES-CN-IG', type: 'country', id: 'Isla de la Gomera'},
+  {zoneName: 'ES-CN-TE', type: 'country', id: 'Tenerife'},
+  {zoneName: 'ES-CN-GC', type: 'country', id: 'Gran Canaria'},
   {zoneName: 'ES-CN-FVLZ', type: 'countries', countries: ['Fuerteventura', 'Lanzarote']},
   {zoneName: 'ES-IB', type: 'subunits', subunits: ['ESI']}, //Spain Balearic islands
   {zoneName: 'ET', type: 'country', id: 'ETH'},
@@ -256,7 +259,7 @@ const zoneDefinitions = [
   {zoneName: 'IN-KA', countryId: 'IND', stateId: 'IN.KA', useMaybe: true, type: 'state'},
   {zoneName: 'IN-KL', countryId: 'IND', stateId: 'IN.KL', useMaybe: true, type: 'state'},
   {zoneName: 'IN-LD', countryId: 'IND', stateId: 'IN.LD', useMaybe: true, type: 'state'},
-  {zoneName: 'IN-MP', countryId: 'IND', stateId: 'IN.MP', useMaybe: true, type: 'state'},
+  {zoneName: 'IN-MP', countryId: 'IND', stateId: 'IN.MP', useMaybe: false, type: 'state'},
   {zoneName: 'IN-MH', countryId: 'IND', stateId: 'IN.MH', useMaybe: true, type: 'state'},
   {zoneName: 'IN-MN', countryId: 'IND', stateId: 'IN.MN', useMaybe: true, type: 'state'},
   {zoneName: 'IN-ML', countryId: 'IND', stateId: 'IN.ML', useMaybe: true, type: 'state'},
