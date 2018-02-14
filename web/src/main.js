@@ -452,6 +452,7 @@ window.toggleSource = (state) => {
 
 // Prepare data
 const countries = CountryTopos.addCountryTopos({});
+const oceans = CountryTopos.addOceanTopos({});
 // Validate selected country
 if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -1) {
   dispatchApplication('selectedCountryCode', undefined);
@@ -460,7 +461,10 @@ if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -
   }
 }
 // Assign data
-if (typeof countryMap !== 'undefined') { countryMap.setData(d3.values(countries)); }
+if (typeof countryMap !== 'undefined') {
+  countryMap.setData(d3.values(countries));
+  countryMap.setOceanData(oceans);
+}
 // Add configurations
 d3.entries(zonesConfig).forEach(d => {
   const zone = countries[d.key];
@@ -796,18 +800,22 @@ d3.select('#checkbox-solar').on('change', toggleSolar);
 d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(lonlat) {
+  wind = true
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
+    console.log("WIND2");
     const now = getState().application.customDate ?
       moment(getState().application.customDate) : (new Date()).getTime();
-    if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      const u = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][0], wind.forecasts[1][0]);
-      const v = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      if (!getState().application.selectedCountryCode) {
-        windColorbar.currentMarker(Math.sqrt(u * u + v * v));
-      }
+    // if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+    // const u = grib.getInterpolatedValueAtLonLat(lonlat,
+    //   now, wind.forecasts[0][0], wind.forecasts[1][0]);
+    // const v = grib.getInterpolatedValueAtLonLat(lonlat,
+    //   now, wind.forecasts[0][1], wind.forecasts[1][1]);
+    const u = 1;
+    const v = 2;
+    if (!getState().application.selectedCountryCode) {
+      windColorbar.currentMarker(Math.sqrt(u * u + v * v));
     }
+    // }
   } else {
     windColorbar.currentMarker(undefined);
   }
@@ -1053,11 +1061,14 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         mapMouseOver(lonlat);
         countryTooltip.update(clientX, clientY);
       })
-      .onCountryMouseOut((d) => {
+      .onCountryMouseOut((d, i, clientX, clientY, lonlat) => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-        mapMouseOver(undefined);
+        mapMouseOver(lonlat);
         countryTooltip.hide();
+      })
+      .onOceanMouseMove((lonlat) => {
+        mapMouseOver(lonlat);
       });
   }
 
