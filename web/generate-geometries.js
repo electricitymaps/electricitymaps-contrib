@@ -192,7 +192,7 @@ const zoneDefinitions = [
   {zoneName: 'ES', type: 'subunits', subunits: ['ESX', 'SEC', 'SEM']}, //Spain Peninsula
   // spain canaries islands
   {zoneName: 'ES-CN-LP', type: 'country', id: 'La Palma'},
-  {zoneName: 'ES-CN-HI', type: 'country', id: 'Hierroe'},
+  {zoneName: 'ES-CN-HI', type: 'country', id: 'Hierro'},
   {zoneName: 'ES-CN-IG', type: 'country', id: 'Isla de la Gomera'},
   {zoneName: 'ES-CN-TE', type: 'country', id: 'Tenerife'},
   {zoneName: 'ES-CN-GC', type: 'country', id: 'Gran Canaria'},
