@@ -18,7 +18,7 @@ exports.addCountryTopos = (countries) => {
     if (geo.geometry) {
       countries[k] = geo;
     }
-});
+  });
 
   return countries;
 };
