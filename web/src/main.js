@@ -450,7 +450,7 @@ window.toggleSource = (state) => {
   d3.select('.country-show-emissions-wrap a#production')
     .classed('selected', !tableDisplayEmissions);
   // update wording, see #893
-  document.getElementsByClassName('.country-history-title')[0].textContent = translation.translate(
+  document.getElementById('country-history-electricity-carbonintensity').textContent = translation.translate(
     tableDisplayEmissions ? 'country-history.carbonintensity24h' : 'country-history.electricityorgin24h'
   );
 };
