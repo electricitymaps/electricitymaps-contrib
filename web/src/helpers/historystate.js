@@ -65,6 +65,7 @@ function parseInitial(arg) {
   querystrings.forEach((d) => {
     const pair = d.split('=');
     const [k, v] = pair;
+    if (!v) { return; }
     if (validKeys.indexOf(k) !== -1) {
       if (['true', 'false'].indexOf(v.toLowerCase()) !== -1) {
         replace(k, v.toLowerCase() === 'true');

@@ -34,7 +34,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
-        "electricityorgin24h": "Origine dell'elettricità nelle ultime 24 ore",
+        "electricityorigin24h": "Origine dell'elettricità nelle ultime 24 ore",
         "electricityprices24h": "Prezzi dell'elettricità nelle ultime 24 ore",
         "Getdata": "Ottieni API di dati storici e previsioni"
     },

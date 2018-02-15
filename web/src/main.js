@@ -434,6 +434,7 @@ d3.select('.country-show-emissions-wrap a#production')
   .classed('selected', !tableDisplayEmissions);
 
 window.toggleSource = (state) => {
+  /* changing whether we display electricity production or carbon emission graphs */
   if (state === undefined)
     state = !tableDisplayEmissions;
   tableDisplayEmissions = state;
@@ -448,6 +449,10 @@ window.toggleSource = (state) => {
     .classed('selected', tableDisplayEmissions);
   d3.select('.country-show-emissions-wrap a#production')
     .classed('selected', !tableDisplayEmissions);
+  // update wording, see #893
+  document.getElementById('country-history-electricity-carbonintensity').textContent = translation.translate(
+    tableDisplayEmissions ? 'country-history.carbonintensity24h' : 'country-history.electricityorigin24h'
+  );
 };
 
 // Prepare data
@@ -837,8 +842,9 @@ function renderMap() {
     const geolocation = callerLocation;
     const { selectedCountryCode } = getState().application;
     if (selectedCountryCode) {
-      const lon = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => d[0]);
-      const lat = d3.mean(countries[selectedCountryCode].coordinates[0][0], d => d[1]);
+      const lon = d3.mean(countries[selectedCountryCode].geometry.coordinates[0][0], d => d[0]);
+      const lat = d3.mean(countries[selectedCountryCode].geometry.coordinates[0][0], d => d[1]);
+      console.log('Centering on', [lon, lat]);
       countryMap.setCenter([lon, lat]);
     } else if (geolocation) {
       console.log('Centering on', geolocation);
@@ -870,7 +876,7 @@ function renderMap() {
     // Restore setting
     Cookies.set('windEnabled', getState().application.windEnabled);
     LoadingService.stopLoading('#loading');
-  } else {
+  } else if (typeof windLayer !== 'undefined') {
     windLayer.hide();
   }
 
@@ -893,7 +899,7 @@ function renderMap() {
         Cookies.set('solarEnabled', getState().application.solarEnabled);
         LoadingService.stopLoading('#loading');
       });
-  } else {
+  } else if (typeof solarLayer !== 'undefined') {
     solarLayer.hide();
   }
 }
@@ -1258,14 +1264,14 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
-  if (solarEnabled) {
+  if (solarEnabled && typeof solarLayer !== 'undefined') {
     solarColorbar.render();
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       fetch(true);
     } else {
       solarLayer.show();
     }
-  } else {
+  } else if (typeof solarLayer !== 'undefined') {
     solarLayer.hide();
   }
 });
@@ -1278,14 +1284,14 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
 
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
-  if (windEnabled) {
+  if (windEnabled && typeof windLayer !== 'undefined') {
     windColorbar.render();
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
     } else {
       windLayer.show();
     }
-  } else {
+  } else if (typeof windLayer !== 'undefined') {
     windLayer.hide();
   }
 });

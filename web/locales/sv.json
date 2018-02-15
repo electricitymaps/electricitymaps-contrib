@@ -34,7 +34,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
-        "electricityorgin24h": "Källa för el under de senaste 24 timmarna",
+        "electricityorigin24h": "Källa för el under de senaste 24 timmarna",
         "electricityprices24h": "Elpriser under de senaste 24 timmarna",
         "Getdata": "API för att hämta historisk data och prognos"
     },
