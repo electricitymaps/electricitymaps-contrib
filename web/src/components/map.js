@@ -87,8 +87,7 @@ export default class Map {
         source: 'ocean-world',
         layout: {},
         paint: {
-          'fill-color': 'blue',
-          'fill-opacity': 0.3,
+          'fill-color': '#34434c'
         }
       });
       this.map.addLayer({
