@@ -54,6 +54,7 @@ export default class Map {
         type: 'geojson',
         data: oceanData
       });
+      // Create layers
       const paint = {
         'fill-color': this.clickableFill,
       };
@@ -66,7 +67,6 @@ export default class Map {
           default: this.clickableFill,
         };
       }
-      // Create layers
       this.map.addLayer({
         id: 'clickable-zones-fill',
         type: 'fill',
