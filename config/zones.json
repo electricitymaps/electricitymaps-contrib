@@ -1151,6 +1151,17 @@
     },
     "timezone": "Asia/Kolkata"
   },
+  "IN-UP": {
+    "contributors": [
+      "https://github.com/sahitya-pavurala"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "consumption": "IN_UP.fetch_consumption",
+      "production": "IN_UP.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IS": {
     "capacity": {
       "biomass": 0,
