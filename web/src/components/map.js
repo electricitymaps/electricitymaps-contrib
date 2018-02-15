@@ -29,9 +29,10 @@ export default class Map {
       features: this.nonClickableZoneGeometries,
     };
     const oceanData = this.oceanData;
-    if (clickableSource && nonClickableSource) {
+    if (clickableSource && nonClickableSource && oceanSource) {
       clickableSource.setData(clickableData);
       nonClickableSource.setData(nonClickableData);
+      oceanSource.setOceanData(oceanData);
     } else if (this.map.isStyleLoaded()) {
       // Create sources
       this.map.addSource('clickable-world', {
