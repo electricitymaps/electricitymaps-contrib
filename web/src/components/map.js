@@ -65,6 +65,7 @@ export default class Map {
           default: this.clickableFill,
         };
       }
+      // Create layers
       this.map.addLayer({
         id: 'clickable-zones-fill',
         type: 'fill',
