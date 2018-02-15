@@ -32,7 +32,7 @@ export default class Map {
     if (clickableSource && nonClickableSource && oceanSource) {
       clickableSource.setData(clickableData);
       nonClickableSource.setData(nonClickableData);
-      oceanSource.setOceanData(oceanData);
+      oceanSource.setData(oceanData);
     } else if (this.map.isStyleLoaded()) {
       // Create sources
       this.map.addSource('clickable-world', {
@@ -222,6 +222,7 @@ export default class Map {
         );
       }
     });
+
     this.map.on('mousemove', 'ocean-fill', (e) => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
@@ -247,15 +248,18 @@ export default class Map {
         this.countryMouseOutHandler.call(this);
       }
     });
-    this.map.on('click', (e) => {
+
+    this.map.on('click', 'clickable-zones-fill', (e) => {
       const features = this.map.queryRenderedFeatures(e.point);
-      if (!features.length) {
-        if (this.seaClickHandler) {
-          this.seaClickHandler.call(this);
-        }
-      } else if (this.countryClickHandler) {
+       if (this.countryClickHandler) {
         const i = features[0].properties.zoneId;
         this.countryClickHandler.call(this, this.data[i], i);
+      }
+    });
+    
+    this.map.on('click', 'ocean-fill', () => {
+      if (this.seaClickHandler) {
+        this.seaClickHandler.call(this);
       }
     });
 
