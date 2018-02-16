@@ -1,21 +1,13 @@
 #!/usr/bin/env python3
-import re
-from ast import literal_eval
-from operator import itemgetter
 import json
-from arrow import get
-from requests import Session
+from ast import literal_eval
 import arrow
-from parsers import countrycode
-from parsers.lib import web
+from requests import Session
 
 
-def fetch_data(country_code, session=None):
-    countrycode.assert_country_code(country_code, 'IN-UP')
+def fetch_data(country_code='IN-UP', session=None):
 
     time_now = arrow.now(tz='Asia/Kolkata')
-    india_date = get(time_now, tzinfo='Asia/Kolkata').datetime
-    # india_date = html.find_all('div', 'td-header', recursive=True)
 
     html_params = {
         'p_p_id': 'upgenerationsummary_WAR_UPSLDCDynamicDisplayportlet',
@@ -38,21 +30,33 @@ def fetch_data(country_code, session=None):
         'total up load/demand': 'demand'
     }
 
+    response_objects = literal_eval(session.get('http://www.upsldc.org/real-time-data', params=html_params).text.lower())
+    india_date = arrow.get(json.loads(list(response_objects[1].values())[0])['time_val'], 'M/D/YYYY h:m', tzinfo='Asia/Kolkata')
+
     value_map = {
-        "date": india_date,
-        "solar": None,
-        "hydro": None,
-        "thermal": None,
-        "wind": None,
-        "gas": None,
-        "coal": None
+        "production": {
+            "date": india_date.datetime,
+            "solar": None,
+            "hydro": None,
+            "thermal": None,
+            "wind": None,
+            "gas": None,
+            "coal": None
+        },
+        "consumption": {
+            "date": india_date.datetime,
+            "demand": None
+
+        }
     }
 
-    response_objects = literal_eval(session.get('http://www.upsldc.org/real-time-data', params=html_params).text.lower())
     for obj in response_objects:
         val = json.loads(list(obj.values())[0])
         if 'point_desc' in val and val['point_desc'] in key_map:
-            value_map[key_map[val['point_desc']]] = float(val['point_val'])
+            if key_map[val['point_desc']] == 'demand':
+                value_map['consumption']['demand'] = float(val['point_val'])
+            else:
+                value_map['production'][key_map[val['point_desc']]] = float(val['point_val'])
 
     return value_map
 
@@ -65,7 +69,7 @@ def fetch_production(country_code, session=None):
     :return:
     """
 
-    value_map = fetch_data(country_code,session)
+    value_map = fetch_data(country_code, session)['production']
 
     data = {
         'countryCode': country_code,
@@ -99,7 +103,7 @@ def fetch_consumption(country_code, session=None):
     :return:
     """
 
-    value_map = fetch_data(country_code, session)
+    value_map = fetch_data(country_code, session)['consumption']
 
     data = {
         'countryCode': country_code,
