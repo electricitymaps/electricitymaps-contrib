@@ -26,7 +26,7 @@ def fetch_data(country_code='IN-UP', session=None):
 
     key_map = {
         'total hydro generation': 'hydro',
-        'total thermal up generation': 'geothermal',
+        'total thermal up generation': 'unknown',
         'cogen-sent out': 'unknown',
         'solar generation': 'solar',
         'total up load/demand': 'demand'
@@ -43,7 +43,8 @@ def fetch_data(country_code='IN-UP', session=None):
             "geothermal": None,
             "wind": None,
             "gas": None,
-            "coal": None
+            "coal": None,
+            "unknown": None
         },
         "consumption": {
             "demand": None
@@ -56,7 +57,11 @@ def fetch_data(country_code='IN-UP', session=None):
             if key_map[val['point_desc']] == 'demand':
                 value_map['consumption']['demand'] = float(val['point_val'])
             else:
-                value_map['production'][key_map[val['point_desc']]] = float(val['point_val'])
+                check = value_map['production'][key_map[val['point_desc']]]
+                if check is None:
+                    value_map['production'][key_map[val['point_desc']]] = float(val['point_val'])
+                else:
+                    value_map['production'][key_map[val['point_desc']]] += float(val['point_val'])
 
     return value_map
 
