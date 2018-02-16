@@ -4,6 +4,8 @@ from ast import literal_eval
 import arrow
 from requests import Session
 
+from parsers.lib import web
+
 
 def fetch_data(country_code='IN-UP', session=None):
 
@@ -24,13 +26,13 @@ def fetch_data(country_code='IN-UP', session=None):
 
     key_map = {
         'total hydro generation': 'hydro',
-        'total thermal up generation': 'thermal',
+        'total thermal up generation': 'geothermal',
         'cogen-sent out': 'unknown',
         'solar generation': 'solar',
         'total up load/demand': 'demand'
     }
 
-    response_objects = literal_eval(session.get('http://www.upsldc.org/real-time-data', params=html_params).text.lower())
+    response_objects = literal_eval(web.get_response_with_params(country_code, 'http://www.upsldc.org/real-time-data', session, params=html_params).text.lower())
     india_date = arrow.get(json.loads(list(response_objects[1].values())[0])['time_val'], 'M/D/YYYY h:m', tzinfo='Asia/Kolkata')
 
     value_map = {
@@ -38,7 +40,7 @@ def fetch_data(country_code='IN-UP', session=None):
         "production": {
             "solar": None,
             "hydro": None,
-            "thermal": None,
+            "geothermal": None,
             "wind": None,
             "gas": None,
             "coal": None
