@@ -34,8 +34,8 @@ def fetch_data(country_code='IN-UP', session=None):
     india_date = arrow.get(json.loads(list(response_objects[1].values())[0])['time_val'], 'M/D/YYYY h:m', tzinfo='Asia/Kolkata')
 
     value_map = {
+        "date": india_date.datetime,
         "production": {
-            "date": india_date.datetime,
             "solar": None,
             "hydro": None,
             "thermal": None,
@@ -44,9 +44,7 @@ def fetch_data(country_code='IN-UP', session=None):
             "coal": None
         },
         "consumption": {
-            "date": india_date.datetime,
             "demand": None
-
         }
     }
 
@@ -69,25 +67,14 @@ def fetch_production(country_code, session=None):
     :return:
     """
 
-    value_map = fetch_data(country_code, session)['production']
+    value_map = fetch_data(country_code, session)
 
     data = {
         'countryCode': country_code,
         'datetime': value_map.get('date'),
-        'production': {
-            'biomass': value_map.get('biomass'),
-            'coal': value_map.get('coal'),
-            'gas': value_map.get('gas'),
-            'hydro': value_map.get('hydro'),
-            'nuclear': value_map.get('nuclear'),
-            'oil': value_map.get('oil'),
-            'solar': value_map.get('solar'),
-            'wind': value_map.get('wind'),
-            'thermal': value_map.get('thermal'),
-            'unknown': value_map.get('unknown')
-        },
+        'production': value_map.get('production'),
         'storage': {
-            'hydro': value_map.get('storage')
+            'hydro': None
         },
         'source': 'upsldc.org',
     }
@@ -103,12 +90,12 @@ def fetch_consumption(country_code, session=None):
     :return:
     """
 
-    value_map = fetch_data(country_code, session)['consumption']
+    value_map = fetch_data(country_code, session)
 
     data = {
         'countryCode': country_code,
         'datetime': value_map.get('date'),
-        'consumption': value_map.get('demand'),
+        'consumption': value_map['consumption'].get('demand'),
         'source': 'upsldc.org'
     }
 
