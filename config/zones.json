@@ -515,6 +515,16 @@
     },
     "timezone": null
   },
+  "CL-SIC": {
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "CL_SIC.fetch_production"
+    },
+    "timezone": null
+  },
   "CR": {
     "contributors": [
       "https://github.com/corradio",
