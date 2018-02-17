@@ -8,9 +8,18 @@ import requests
 import numpy as np
 from PIL import Image
 
-import ENTSOE as ents
-
 def _get_masks(session=None):
+    Minus = np.array([[[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
+     [[255, 255, 255],[255, 255, 255], [255, 255, 255], [255, 255, 255],[255, 255, 255],[255, 255, 255]],
+     [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
+     [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
+     [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
+     [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
+     [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
+     [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
+     [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]]], dtype = np.uint8)
+    Minus = Image.fromarray(Minus)
+    
     Dot = np.array([[[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
@@ -132,8 +141,8 @@ def _get_masks(session=None):
      [[255, 255, 255],[255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255]]], dtype=np.uint8)
     Nine = Image.fromarray(Nine)
     
-    shorts = ['.','0','1','2','3','4','5','6','7','8','9']
-    masks = [Dot, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
+    shorts = ['-','.','0','1','2','3','4','5','6','7','8','9']
+    masks = [Minus, Dot, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
     
     return dict(zip(shorts,masks))
     
@@ -306,6 +315,17 @@ def fetch_production(country_code='AX', session=None):
     
     return data
 
+def fetch_consumption(country_code='AX', session=None):
+    obj = _fetch_data(session)
+    
+    data = {
+        'countryCode': country_code,
+        'datetime': arrow.get(obj['fetchtime']).datetime,
+        'consumption': obj['consumption'],
+        'source': 'kraftnat.aland.fi'
+    }
+    
+    return data
 
 def fetch_exchange(country_code1, country_code2, session=None):
     """Requests the last known power exchange (in MW) between two countries
@@ -353,35 +373,14 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     return data
 
-def fetch_price(country_code='AX', session=None):
-    """Requests the last known power price of a given country
-
-    Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'countryCode': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-    """
-
-    # Åland is part of the SE3 price zone
-    # according to Fingrid
-    return ents.fetch_price('SE-SE3')
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
-    print('fetch_price() ->')
-    print(fetch_price())
+    print('fetch_consumption() ->')
+    print(fetch_consumption())
     print('fetch_exchange(AX, FI) ->')
     print(fetch_exchange('FI', 'AX'))
     print('fetch_exchange(AX, SE) ->')
