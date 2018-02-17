@@ -153,7 +153,7 @@ def _fetch_data(session=None):
     
     im = Image.open(r.get(url, stream=True).raw)
     # Get timestamp
-    fetchtime = arrow.utcnow().floor('second')
+    fetchtime = arrow.utcnow().floor('second').to('Europe/Mariehamn')
     
     # "data" is a height x width x 3 RGB numpy array
     data = np.array(im)   
@@ -245,11 +245,11 @@ def _fetch_data(session=None):
     # Calculate total production
     TotProd = Cons-SumExchanges
     
-    # The production that is not fossil fuel based can be assumed to be bio
-    BProd = TotProd - WProd - FProd
+    # The production that is not fossil fuel or wind based is unknown
+    UProd = TotProd - WProd - FProd
     
     obj = dict({'production':TotProd,'consumption':Cons,'wind':WProd,
-               'fossil':FProd,'biomass':BProd,'SE3->AX':SE3Flow,
+               'fossil':FProd,'unknown':UProd,'SE3->AX':SE3Flow,
                'FI->AX':FIFlow,'fetchtime':fetchtime})
     
     return obj
@@ -294,7 +294,7 @@ def fetch_production(country_code='AX', session=None):
         'source': 'kraftnat.aland.fi',
         'datetime': arrow.get(obj['fetchtime']).datetime
     }
-    data['production']['biomass'] = round(obj['biomass'],1)
+    data['production']['biomass'] = None
     data['production']['wind'] = obj['wind']
     data['production']['oil'] = obj['fossil']
     data['production']['nuclear'] = 0
@@ -302,7 +302,7 @@ def fetch_production(country_code='AX', session=None):
     data['production']['hydro'] = None
     data['production']['solar'] = None
     data['production']['geothermal'] = None
-    data['production']['unknown'] = None
+    data['production']['unknown'] = round(obj['unknown'],1)
     
     return data
 
