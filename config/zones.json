@@ -143,15 +143,8 @@
   },
   "AX": {
     "capacity": {
-      "biomass": None,
-      "coal": None,
-      "gas": None,
-      "geothermal": None,
-      "hydro": None,
-      "nuclear": None,
-      "oil": None,
-      "solar": None,
-      "unknown": None,
+      "nuclear": 0
+      "oil": 20.5
       "wind": 16.56
     },
     "contributors": [
