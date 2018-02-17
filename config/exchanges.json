@@ -140,6 +140,28 @@
     },
     "rotation": 0
   },
+  "AX->FI": {
+    "lonlat": [
+      21.193,
+      60.386
+    ],
+    "parsers": {
+      "exchange": "AX.fetch_exchange"
+    },
+    "rotation": 50
+  },
+  
+  "AX->SE": {
+    "lonlat": [
+      19.239,
+      60.063
+    ],
+    "parsers": {
+      "exchange": "AX.fetch_exchange"
+    },
+    "rotation": -130
+  },
+  
   "BA->HR": {
     "lonlat": [
       16.941,
