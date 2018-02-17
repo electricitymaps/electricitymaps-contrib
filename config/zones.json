@@ -145,6 +145,7 @@
     "capacity": {
       "nuclear": 0,
       "oil": 20.5,
+      "gas": 44.8,
       "wind": 16.56
     },
     "contributors": [
@@ -152,7 +153,8 @@
       "https://github.com/systemcatch"
     ],
     "parsers": {
-      "price": "AX.fetch_price",
+      "consumption": "AX.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
       "production": "AX.fetch_production"
     },
     "timezone": "Europe/Mariehamn"
