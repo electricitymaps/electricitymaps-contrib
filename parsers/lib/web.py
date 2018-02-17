@@ -13,6 +13,15 @@ def get_response(country_code, url, session=None):
     return response
 
 
+def get_response_with_params(country_code, url, session=None, params=None):
+    """Get response"""
+    ses = session or Session()
+    response = ses.get(url, params= params)
+    if response.status_code != 200:
+        raise ParserException(country_code, 'Response code: {0}'.format(response.status_code))
+    return response
+
+
 def get_response_text(country_code, url, session=None):
     """Get text response"""
     response = get_response(country_code, url, session)
