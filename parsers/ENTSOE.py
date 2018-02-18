@@ -47,6 +47,7 @@ ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
+    'AX': '10Y1001A1001A46L', # for price only, Åland belongs to the SE-SE3 bidding zone  
     'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
