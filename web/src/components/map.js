@@ -134,7 +134,6 @@ export default class Map {
       // Here we need to set all styles
       this.paintData();
       this._setupMapColor();
-      this.setCenter(this.center);
       // For some reason the mapboxgl-canvas element sometimes has
       // the wrong size, so we resize it here just in case.
       this.map.resize();
@@ -255,7 +254,7 @@ export default class Map {
       // For some reason, MapBox gives us many start events inside a single zoom.
       // Those apply for touch events on mobile
       // They are removed here:
-      if (isDragging) { return; }
+      if (isDragging || !this.map.loaded()) { return; }
       if (endTimeout) {
         clearTimeout(endTimeout);
         endTimeout = null;
