@@ -141,6 +141,24 @@
     },
     "timezone": "America/Aruba"
   },
+  "AX": {
+    "capacity": {
+      "nuclear": 0,
+      "oil": 20.5,
+      "gas": 44.8,
+      "wind": 16.56
+    },
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/systemcatch"
+    ],
+    "parsers": {
+      "consumption": "AX.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "AX.fetch_production"
+    },
+    "timezone": "Europe/Mariehamn"
+  },
   "BA": {
     "contributors": [
       "https://github.com/corradio"
