@@ -60,7 +60,7 @@ var defaultCo2eqFootprint = { // in gCo2eq/kWh
 };
 
 var countryCo2eqFootprint = {
-    'AX':function (productionMode) {
+    'AX': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 230, source: 'non-fossil production, assumes 100% biomass'} : null;
     },
     'DE': function (productionMode) {
