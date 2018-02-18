@@ -15,9 +15,9 @@ MAP_GENERATION = {
     'P_BS': 'unknown'
 }
 
-exchange_ids = {'CN->RU': "764",
+exchange_ids = {'CN->RU-AS': "764",
                 'MN->RU': "276",
-                'KG->RU': "785",
+                'KZ->RU': "785",
                 'GE->RU': "752",
                 'AZ->RU': "598",
                 'BY->RU': "321",
@@ -184,12 +184,12 @@ def fetch_exchange(country_code1, country_code2, session=None):
 if __name__ == '__main__':
     print('fetch_production() ->')
     print(fetch_production())
-    print('fetch_exchange(CN, RU) ->')
-    print(fetch_exchange('CN', 'RU'))
+    print('fetch_exchange(CN, RU-AS) ->')
+    print(fetch_exchange('CN', 'RU-AS'))
     print('fetch_exchange(MN, RU) ->')
     print(fetch_exchange('MN', 'RU'))
-    print('fetch_exchange(KG, RU) ->')
-    print(fetch_exchange('KG', 'RU'))
+    print('fetch_exchange(KZ, RU) ->')
+    print(fetch_exchange('KZ', 'RU'))
     print('fetch_exchange(GE, RU) ->')
     print(fetch_exchange('GE', 'RU'))
     print('fetch_exchange(AZ, RU) ->')
