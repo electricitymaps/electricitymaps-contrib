@@ -29,8 +29,8 @@ export default class CircularGauge {
     // main gauge component
 
     var gauge = d3.select(`#${selectorId}`).append("svg")
-      .style("width", this.radius * 2)
-      .style("height", this.radius * 2)
+      .attr("width", this.radius * 2)
+      .attr("height", this.radius * 2)
       // .attr("width", '100%') // makes gauge auto-resize
       // .attr("height", '100%') // makes gauge auto-resize
      // .attr("viewBox", "0 0 " + (this.radius * 2) + " " + (this.radius * 2)) // makes gauge resizable
