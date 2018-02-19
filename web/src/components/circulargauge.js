@@ -52,8 +52,6 @@ export default class CircularGauge {
 
     this.percentageText = gauge.append("text")
       .style("text-anchor", "middle")
-      //.style("alignment-baseline", "central")
-      //.style("dominant-baseline", "central")
       .attr("dy", "0.4em")
       .style("font-weight", "bold")
       .style("font-size", this.fontSize)
