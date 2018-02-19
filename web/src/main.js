@@ -1233,9 +1233,9 @@ observe(state => state.application.showPageState, (showPageState) => {
 });
 // Observe for zone data change
 observe(state => state.countryData, (d) => {
-  const countryLowCarbonPercentage = d.fossilFuelRatio && 100 - (d.fossilFuelRatio * 100) || null;
+  const countryLowCarbonPercentage = d.fossilFuelRatio != null ? 100 - (d.fossilFuelRatio * 100) : null;
   countryLowCarbonGauge.setPercentage(countryLowCarbonPercentage);
-  const countryRenewablePercentage = d.renewableRatio && d.renewableRatio * 100 || null;
+  const countryRenewablePercentage = d.renewableRatio != null ? d.renewableRatio * 100 : null;
   countryRenewableGauge.setPercentage(countryRenewablePercentage);
 
   countryTable.data(d).render(true);
