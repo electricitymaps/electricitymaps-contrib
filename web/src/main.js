@@ -276,13 +276,17 @@ LoadingService.startLoading('#small-loading');
 let countryMap;
 let windLayer;
 let solarLayer;
+let mapLoaded = false;
 try {
   countryMap = new CountryMap('zones')
     .setCo2color(co2color)
     .onDragEnd(() => {
-      if (!mapDraggedSinceStart) { mapDraggedSinceStart = true; }
+      // Somehow there is a drag event sent before the map is loaded.
+      // We want to ignore it.
+      if (!mapDraggedSinceStart && mapLoaded) { mapDraggedSinceStart = true; }
     })
     .onMapLoaded((map) => {
+      mapLoaded = true;
       // Nest the exchange layer inside
       const el = document.createElement('div');
       el.id = 'arrows-layer';
