@@ -221,28 +221,36 @@ co2Sub = function(str) {
                         </div>
 
                         <div class="country-panel">
+
+
+
                             <div class="country-table-header">
+                                <div class="country-table-header-inner country-col-headlines">
+                                        <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>  
+                                        <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.lowcarbon')) %></div>
+                                        <div class="country-col country-col-headline"><%- __('country-panel.renewable') %></div>                                        
+                                </div>
                                 <div class="country-table-header-inner">
+                                    
                                     <div class="country-col country-emission-intensity-wrap">
-                                        <div class="country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>
                                         <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
                                             <div><span class="country-emission-intensity"></span>g</div>
                                         </div>
                                         <div class="country-col-subtext">(gCO<sub>2</sub>eq/kWh)</div>
                                     </div>
                                     <div class="country-col country-lowcarbon-wrap">
-                                        <div class="country-col-headline"><%- co2Sub(__('country-panel.lowcarbon')) %></div>
-                                        <div class="country-col-box">
+                                        <div id="country-lowcarbon-gauge" class="country-gauge-wrap"></div>
+                                        <!-- <div class="country-col-box">
                                             <span class="lowcarbon-percentage"></span>%
-                                        </div>
+                                        </div> -->
                                         <div class="country-col-subtext">
                                         </div>
                                     </div>
                                     <div class="country-col country-renewable-wrap">
-                                        <div class="country-col-headline"><%- __('country-panel.renewable') %></div>
-                                        <div class="country-col-box">
+                                        <div id="country-renewable-gauge" class="country-gauge-wrap"></div>
+                                        <!-- <div class="country-col-box">
                                             <div class="renewable-percentage"></div>%
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
