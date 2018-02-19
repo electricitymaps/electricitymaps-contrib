@@ -414,9 +414,15 @@ body {
     fill: #78cde8;
 }
 
-
 .left-panel .country-spot-price {
     width: 100%;
+}
+
+.left-panel .country-gauge-wrap {
+    width: 54px;
+    height: 54px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .country-col-headlines {

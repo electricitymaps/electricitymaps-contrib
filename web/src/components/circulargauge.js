@@ -33,8 +33,8 @@ export default class CircularGauge {
       .style("height", this.radius * 2)
       // .attr("width", '100%') // makes gauge auto-resize
       // .attr("height", '100%') // makes gauge auto-resize
-      .attr("viewBox", "0 0 " + (this.radius * 2) + " " + (this.radius * 2)) // makes gauge resizable
-      .attr("preserveAspectRatio", "xMidYMid meet") // makes gauge resizable
+     // .attr("viewBox", "0 0 " + (this.radius * 2) + " " + (this.radius * 2)) // makes gauge resizable
+     // .attr("preserveAspectRatio", "xMidYMid meet") // makes gauge resizable
       .append("g")
       .attr("transform", "translate(" + this.radius + "," + this.radius + ")")
       .append("g")
@@ -52,7 +52,7 @@ export default class CircularGauge {
 
     this.percentageText = gauge.append("text")
       .style("text-anchor", "middle")
-      .style("alignment-baseline", "central")
+      .attr("dy", "0.4em")
       .style("font-weight", "bold")
       .style("font-size", this.fontSize)
       .text(this.percentage != null ? `${Math.round(this.percentage)}%` : `?`)
@@ -65,7 +65,7 @@ export default class CircularGauge {
 
     var arc = this.arc;
     var prevPercentage = this.prevPercentage != null ? this.prevPercentage / 100 : 0;
-    var percentage = this.percentage && this.percentage / 100 || 0;
+    var percentage = this.percentage != null ? this.percentage / 100 : 0;
 
     var i = d3.interpolate(prevPercentage * 2 * Math.PI, 2 * Math.PI * (percentage));
 
