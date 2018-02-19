@@ -679,6 +679,16 @@
     "contributors": [
       "https://github.com/corradio"
     ],
+    "bounding_box": [
+      [
+        14.7,
+        54.9
+      ],
+      [
+        15.2,
+        55.2
+      ]
+    ],
     "parsers": {
       "production": "DK_BHM.fetch_production"
     }
@@ -1611,10 +1621,14 @@
     "flag_file_name": "ru.png",
     "timezone": null
   },
-  "RU-E": {
+  "RU-EU": {
     "flag_file_name": "ru.png",
     "timezone": null
   },
+  "RU-AS": {
+    "flag_file_name": "ru.png",
+    "timezone": null
+  },  
   "SE": {
     "bounding_box": [
       [

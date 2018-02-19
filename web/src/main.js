@@ -3,6 +3,7 @@
 import CountryMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
+import CircularGauge from './components/circulargauge';
 
 // Libraries
 const d3 = Object.assign(
@@ -84,17 +85,17 @@ function dispatchApplication(key, value) {
 // Initialise mobile app (cordova)
 const app = {
   // Application Constructor
-  initialize: function() {
+  initialize: function () {
     this.bindEvents();
   },
 
-  bindEvents: function() {
+  bindEvents: function () {
     document.addEventListener('deviceready', this.onDeviceReady, false);
     document.addEventListener('resume', this.onResume, false);
     document.addEventListener('backbutton', this.onBack, false);
   },
 
-  onBack: function(e) {
+  onBack: function (e) {
     if (getState().application.showPageState !== 'map') {
       dispatchApplication('selectedCountryCode', undefined);
       dispatchApplication('showPageState', previousShowPageState || 'map');
@@ -104,7 +105,7 @@ const app = {
     }
   },
 
-  onDeviceReady: function() {
+  onDeviceReady: function () {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
       d3.select('#header')
@@ -125,7 +126,7 @@ const app = {
     });
   },
 
-  onResume: function() {
+  onResume: function () {
     // Count a pageview
     const params = getState().application;
     params.bundleVersion = params.bundleHash;
@@ -215,7 +216,7 @@ const windColor = d3.scaleLinear()
     "rgba(225, 133, 255, 1.0)",
     "rgba(236, 109, 255, 1.0)",
     "rgba(255,  30, 219, 1.0)",
-    ])
+  ])
   .clamp(true);
 // ** Solar Scale **
 const maxSolarDSWRF = 1000;
@@ -275,13 +276,17 @@ LoadingService.startLoading('#small-loading');
 let countryMap;
 let windLayer;
 let solarLayer;
+let mapLoaded = false;
 try {
   countryMap = new CountryMap('zones')
     .setCo2color(co2color)
     .onDragEnd(() => {
-      if (!mapDraggedSinceStart) { mapDraggedSinceStart = true; }
+      // Somehow there is a drag event sent before the map is loaded.
+      // We want to ignore it.
+      if (!mapDraggedSinceStart && mapLoaded) { mapDraggedSinceStart = true; }
     })
     .onMapLoaded((map) => {
+      mapLoaded = true;
       // Nest the exchange layer inside
       const el = document.createElement('div');
       el.id = 'arrows-layer';
@@ -336,6 +341,10 @@ const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tool
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
+
+const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
+const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+
 const countryTable = new CountryTable('.country-table', modeColor, modeOrder)
   .co2color(co2color)
   .onExchangeMouseMove(() => {
@@ -540,21 +549,21 @@ function selectCountry(countryCode, notrack) {
       let lo_emission = d3.min(countryHistory, d => {
         return Math.min(
           // Max export
-          d3.min(d3.entries(d.exchange), function(o) {
+          d3.min(d3.entries(d.exchange), function (o) {
             return Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
           })
           // Max storage
           // ?
-          );
+        );
       });
       let hi_emission = d3.max(countryHistory, d => {
         return Math.max(
           // Max import
-          d3.max(d3.entries(d.exchange), function(o) {
+          d3.max(d3.entries(d.exchange), function (o) {
             return Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
           }),
           // Max production
-          d3.max(d3.entries(d.production), function(o) {
+          d3.max(d3.entries(d.production), function (o) {
             return Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
           })
         );
@@ -586,7 +595,7 @@ function selectCountry(countryCode, notrack) {
       // Update country table with all possible exchanges
       countryTable
         .exchangeKeys(
-          countryHistoryMixGraph.exchangeKeysSet.values())
+        countryHistoryMixGraph.exchangeKeysSet.values())
         .render();
 
       let firstDatetime = countryHistory[0] &&
@@ -655,7 +664,7 @@ function selectCountry(countryCode, notrack) {
     }
     else if (!histories[countryCode]) {
       LoadingService.startLoading('.country-history .loading');
-      DataService.fetchHistory(ENDPOINT, countryCode, function(err, obj) {
+      DataService.fetchHistory(ENDPOINT, countryCode, function (err, obj) {
         LoadingService.stopLoading('.country-history .loading');
         if (err) console.error(err);
         if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
@@ -760,7 +769,7 @@ function showPage(pageName) {
   }
   else {
     d3.select('.left-panel').classed('large-screen-visible', false);
-    d3.selectAll('.left-panel-'+pageName).style('display', undefined);
+    d3.selectAll('.left-panel-' + pageName).style('display', undefined);
     if (pageName == 'country') {
       selectCountry(getState().application.selectedCountryCode);
     } else if (pageName == 'info') {
@@ -963,13 +972,13 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     entry.value.storage = {};
     entry.value.source = undefined;
   });
-  d3.entries(exchanges).forEach(function(entry) {
+  d3.entries(exchanges).forEach(function (entry) {
     entry.value.netFlow = undefined;
   });
   histories = {};
 
   // Populate with realtime country data
-  d3.entries(state.countries).forEach(function(entry) {
+  d3.entries(state.countries).forEach(function (entry) {
     let countryCode = entry.key;
     let country = countries[countryCode];
     if (!country) {
@@ -996,8 +1005,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       // Check load factors > 1
       if (country.production[mode] !== undefined &&
         (country.capacity || {})[mode] !== undefined &&
-        country.production[mode] > country.capacity[mode])
-      {
+        country.production[mode] > country.capacity[mode]) {
         console.error(countryCode + ' produces more than its capacity of ' + mode);
       }
     });
@@ -1085,10 +1093,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         });
     });
 
-  // Re-render country table if it already was visible
-  if (getState().application.selectedCountryCode) {
-    countryTable.data(countries[getState().application.selectedCountryCode]).render();
-  }
+
   selectCountry(getState().application.selectedCountryCode, true);
 
   // Populate exchange pairs for arrows
@@ -1148,9 +1153,9 @@ function handleConnectionReturnCode(err) {
 }
 
 function ignoreError(func) {
-  return function() {
+  return function () {
     const callback = arguments[arguments.length - 1];
-    arguments[arguments.length - 1] = function(err, obj) {
+    arguments[arguments.length - 1] = function (err, obj) {
       if (err) {
         return callback(null, null);
       } else {
@@ -1180,15 +1185,15 @@ function fetch(showLoading, callback) {
   else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1]))
     Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
   else
-    Q.defer(function(cb) { return cb(null, solar); });
+    Q.defer(function (cb) { return cb(null, solar); });
 
   if (!getState().application.windEnabled || typeof windLayer === 'undefined')
     Q.defer(DataService.fetchNothing);
   else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1]))
     Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
   else
-    Q.defer(function(cb) { return cb(null, wind); });
-  Q.await(function(err, clientVersion, state, solar, wind) {
+    Q.defer(function (cb) { return cb(null, wind); });
+  Q.await(function (err, clientVersion, state, solar, wind) {
     handleConnectionReturnCode(err);
     if (!err)
       dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
@@ -1217,6 +1222,7 @@ function redraw() {
   co2Colorbars.forEach(d => { d.render(); });
 }
 
+
 window.addEventListener('resize', () => {
   redraw();
 });
@@ -1229,8 +1235,13 @@ window.retryFetch = () => {
 observe(state => state.application.showPageState, (showPageState) => {
   if (showPage) { showPage(showPageState); }
 });
-// Observe for zoneTable re-render
+// Observe for zone data change
 observe(state => state.countryData, (d) => {
+  const countryLowCarbonPercentage = d.fossilFuelRatio != null ? 100 - (d.fossilFuelRatio * 100) : null;
+  countryLowCarbonGauge.setPercentage(countryLowCarbonPercentage);
+  const countryRenewablePercentage = d.renewableRatio != null ? d.renewableRatio * 100 : null;
+  countryRenewableGauge.setPercentage(countryRenewablePercentage);
+
   countryTable.data(d).render(true);
 });
 // Observe for country change
