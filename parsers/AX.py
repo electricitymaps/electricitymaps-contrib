@@ -303,15 +303,16 @@ def fetch_production(country_code='AX', session=None):
         'source': 'kraftnat.aland.fi',
         'datetime': arrow.get(obj['fetchtime']).datetime
     }
-    data['production']['biomass'] = None
-    data['production']['wind'] = obj['wind']
-    data['production']['oil'] = obj['fossil']
-    data['production']['nuclear'] = 0
-    data['production']['gas'] = None
+    data['production']['biomass'] = round(obj['unknown'],1)
+    data['production']['coal'] = 0
+    data['production']['gas'] = 0
     data['production']['hydro'] = None
+    data['production']['nuclear'] = 0
+    data['production']['oil'] = obj['fossil']
     data['production']['solar'] = None
+    data['production']['wind'] = obj['wind']
     data['production']['geothermal'] = None
-    data['production']['unknown'] = round(obj['unknown'],1)
+    data['production']['unknown'] = None
     
     return data
 
