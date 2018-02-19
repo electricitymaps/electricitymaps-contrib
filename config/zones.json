@@ -1602,10 +1602,14 @@
     "flag_file_name": "ru.png",
     "timezone": null
   },
-  "RU-E": {
+  "RU-EU": {
     "flag_file_name": "ru.png",
     "timezone": null
   },
+  "RU-AS": {
+    "flag_file_name": "ru.png",
+    "timezone": null
+  },  
   "SE": {
     "bounding_box": [
       [
