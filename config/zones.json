@@ -143,7 +143,6 @@
   },
   "AX": {
     "capacity": {
-      "biomass": 3,
       "coal": 0,
       "gas": 0,
       "nuclear": 0,
