@@ -1090,11 +1090,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         });
     });
 
-  // Re-render left panel if it already was visible
-  if (getState().application.selectedCountryCode) {
-    
-    updateLeftPanelData(countries[getState().application.selectedCountryCode]);
-  }
+
   selectCountry(getState().application.selectedCountryCode, true);
 
   // Populate exchange pairs for arrows
@@ -1223,11 +1219,11 @@ function redraw() {
   co2Colorbars.forEach(d => { d.render(); });
 }
 
-function updateLeftPanelData(zoneData) {
+function renderLeftPanel(zoneData) {
   
-  var countryLowCarbonPercentage = zoneData.fossilFuelRatio && 100 - (zoneData.fossilFuelRatio * 100) || null;
+  const countryLowCarbonPercentage = zoneData.fossilFuelRatio && 100 - (zoneData.fossilFuelRatio * 100) || null;
   countryLowCarbonGauge.setPercentage(countryLowCarbonPercentage);
-  var countryRenewablePercentage = zoneData.renewableRatio && zoneData.renewableRatio * 100 || null;
+  const countryRenewablePercentage = zoneData.renewableRatio && zoneData.renewableRatio * 100 || null;
   countryRenewableGauge.setPercentage(countryRenewablePercentage);
 
   countryTable.data(zoneData).render(true);
@@ -1247,7 +1243,7 @@ observe(state => state.application.showPageState, (showPageState) => {
 });
 // Observe for zone data change
 observe(state => state.countryData, (d) => {
-    updateLeftPanelData(d);
+    renderLeftPanel(d);
 });
 // Observe for country change
 observe(state => state.application.selectedCountryCode, (k) => {
