@@ -3,6 +3,7 @@
 import CountryMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
+import CircularGauge from './components/circulargauge'
 
 // Libraries
 const d3 = Object.assign(
@@ -336,6 +337,10 @@ const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tool
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
+
+const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
+const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+
 const countryTable = new CountryTable('.country-table', modeColor, modeOrder)
   .co2color(co2color)
   .onExchangeMouseMove(() => {
@@ -1085,9 +1090,10 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
         });
     });
 
-  // Re-render country table if it already was visible
+  // Re-render left panel if it already was visible
   if (getState().application.selectedCountryCode) {
-    countryTable.data(countries[getState().application.selectedCountryCode]).render();
+    
+    updateLeftPanelData(countries[getState().application.selectedCountryCode]);
   }
   selectCountry(getState().application.selectedCountryCode, true);
 
@@ -1217,6 +1223,16 @@ function redraw() {
   co2Colorbars.forEach(d => { d.render(); });
 }
 
+function updateLeftPanelData(zoneData) {
+  
+  var countryLowCarbonPercentage = zoneData.fossilFuelRatio && 100 - (zoneData.fossilFuelRatio * 100) || null;
+  countryLowCarbonGauge.setPercentage(countryLowCarbonPercentage);
+  var countryRenewablePercentage = zoneData.renewableRatio && zoneData.renewableRatio * 100 || null;
+  countryRenewableGauge.setPercentage(countryRenewablePercentage);
+
+  countryTable.data(zoneData).render(true);
+}
+
 window.addEventListener('resize', () => {
   redraw();
 });
@@ -1229,9 +1245,9 @@ window.retryFetch = () => {
 observe(state => state.application.showPageState, (showPageState) => {
   if (showPage) { showPage(showPageState); }
 });
-// Observe for zoneTable re-render
+// Observe for zone data change
 observe(state => state.countryData, (d) => {
-  countryTable.data(d).render(true);
+    updateLeftPanelData(d);
 });
 // Observe for country change
 observe(state => state.application.selectedCountryCode, (k) => {
