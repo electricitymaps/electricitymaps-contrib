@@ -2,6 +2,7 @@
 
 import arrow
 from collections import defaultdict
+from lib.validation import validate
 import requests
 
 
@@ -55,17 +56,7 @@ PLANT_CLASSIFICATIONS = [
     'hydro'         # C. Fonseca
 ]
 
-REFERENCE_TOTAL_PRODUCTION = 433  # MW
-
-
-# TODO: why return d no matter which way the if goes?!?
-def validate_datapoint(d):
-    total = sum([v for k, v in d['production'].items()])
-    if (total > 5 * REFERENCE_TOTAL_PRODUCTION or
-            total < 1.0 / 5 * REFERENCE_TOTAL_PRODUCTION):
-        return d
-    else:
-        return d
+#REFERENCE_TOTAL_PRODUCTION = 433  # MW
 
 
 def extract_text(full_text, start_text, end_text=None):
@@ -230,7 +221,7 @@ def fetch_production(country_code='NI', session=None):
         'source': 'cndc.org.ni'
     }
 
-    return validate_datapoint(data)
+    return validate(data, expected_range = (86.6, 2165))
 
 
 def fetch_exchange(country_code1, country_code2, session=None):

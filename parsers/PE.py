@@ -2,6 +2,7 @@
 
 import arrow
 import dateutil
+from lib.validation import validate
 import requests
 
 tz = 'America/Lima'
@@ -18,12 +19,6 @@ MAP_GENERATION = {
   'EÓLICA': 'wind'
 }
 
-def validate(datapoint):
-    if sum([v for k, v in datapoint['production'].items() if v is not None]) > 0 \
-        and datapoint['production'].get('gas', None) is not None:
-        return datapoint
-    else:
-        return None
 
 def parse_date(item):
     return arrow.get(item['Nombre'], 'M/D/YYYY h:mm:ss A').replace(tzinfo=dateutil.tz.gettz(tz))
@@ -65,7 +60,7 @@ def fetch_production(country_code='PE', session=None):
             data[i]['production'][MAP_GENERATION[k]] = \
                 data[i]['production'].get(MAP_GENERATION[k], 0) + v['Valor'] / interval_hours
 
-    return list(filter(lambda x: validate(x) is not None, data))
+    return list(filter(lambda x: validate(x, required = ['gas'], floor = 0.0, ) is not None, data))
 
 
 if __name__ == '__main__':
