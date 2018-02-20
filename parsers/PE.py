@@ -2,7 +2,7 @@
 
 import arrow
 import dateutil
-from lib.validation import validate
+from .lib.validation import validate
 import requests
 
 tz = 'America/Lima'

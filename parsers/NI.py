@@ -2,7 +2,7 @@
 
 import arrow
 from collections import defaultdict
-from lib.validation import validate
+from .lib.validation import validate
 import requests
 
 

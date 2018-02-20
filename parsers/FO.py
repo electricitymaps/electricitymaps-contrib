@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import arrow
-from lib.validation import validate
+from .lib.validation import validate
 import requests
 import xml.etree.ElementTree as ET
 
