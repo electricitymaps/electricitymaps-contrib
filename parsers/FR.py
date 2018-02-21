@@ -16,6 +16,7 @@ MAP_GENERATION = {
 }
 MAP_STORAGE = {
     'Pompage': 'hydro',
+    'Hydraulique': 'hydro',
 }
 
 
@@ -33,37 +34,35 @@ def fetch_production(country_code='FR', session=None):
         'source': 'rte-france.com',
     }
     for item in mixtr.getchildren():
-        if item.get('granularite') != 'Global':
-            continue
         key = item.get('v')
+        granularite = item.get('granularite')
         value = None
         for value in item.getchildren():
             pass
-        if key in MAP_GENERATION:
-            data['production'][MAP_GENERATION[key]] = float(value.text)
-        elif key in MAP_STORAGE:
-            data['storage'][MAP_STORAGE[key]] = -1 * float(value.text)
+        if key == 'Hydraulique':
+            # Hydro is a special case!
+            if granularite == 'Global':
+                continue
+            elif granularite in ['FEE', 'LAC']:
+                if not MAP_GENERATION[key] in data['production']:
+                    data['production'][MAP_GENERATION[key]] = 0
+                # Run of the river or conventional
+                data['production'][MAP_GENERATION[key]] += float(value.text)
+            elif granularite == 'STT':
+                if not MAP_STORAGE[key] in data['storage']:
+                    data['storage'][MAP_STORAGE[key]] = 0
+                # Pumped storage generation
+                data['storage'][MAP_STORAGE[key]] += -1 * float(value.text)
+        elif granularite == 'Global':
+            if key in MAP_GENERATION:
+                data['production'][MAP_GENERATION[key]] = float(value.text)
+            elif key in MAP_STORAGE:
+                if not MAP_STORAGE[key] in data['storage']:
+                    data['storage'][MAP_STORAGE[key]] = 0
+                data['storage'][MAP_STORAGE[key]] += -1 * float(value.text)
 
     data['datetime'] = arrow.get(arrow.get(obj[1].text).datetime,
         'Europe/Paris').replace(minutes=+(int(value.attrib['periode']) * 15.0)).datetime
-
-    # Fetch imports
-    # url = 'http://www.rte-france.com/getEco2MixXml.php?type=echcom&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
-    # response = r.get(url)
-    # obj = ET.fromstring(response.content)
-    # parsed = {}
-    # for item in obj[7].getchildren():
-    #     value = None
-    #     for value in item: pass
-    #     parsed[item.get('v')] = float(value.text)
-
-    # data['exchange'] = {
-    #     'CH': parsed['CH'],
-    #     'GB': parsed['GB'],
-    #     'ES': parsed['ES'],
-    #     'IT': parsed['IT'],
-    #     'DE': parsed['DB'] # Germany + Belgium redirected to Germany
-    # }
 
     return data
 

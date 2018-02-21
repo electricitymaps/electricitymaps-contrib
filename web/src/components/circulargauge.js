@@ -4,17 +4,18 @@ const d3 = Object.assign(
   {},
   require('d3-selection'),
   require('d3-transition'),
-  require('d3-shape')
+  require('d3-shape'),
+  require('d3-interpolate')
 );
 
-class CircularGauge {
+export default class CircularGauge {
 
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
 
-    this.radius = config.radius || "100";
-    this.lineWidth = config.lineWidth || "20";
-    this.fontSize = config.fontSize || "60px";
+    this.radius = config.radius || "27";
+    this.lineWidth = config.lineWidth || "5";
+    this.fontSize = config.fontSize || "1rem";
 
     this.arc = d3.arc()
       .startAngle(0)
@@ -22,18 +23,25 @@ class CircularGauge {
       .outerRadius(this.radius);
 
     this.prevPercentage = 0;
-    this.percentage = config.percentage || "0";
+
+    this.percentage = config.percentage || null;
+
+    // main gauge component
 
     var gauge = d3.select(`#${selectorId}`).append("svg")
       .attr("width", this.radius * 2)
       .attr("height", this.radius * 2)
+      // .attr("width", '100%') // makes gauge auto-resize
+      // .attr("height", '100%') // makes gauge auto-resize
+     // .attr("viewBox", "0 0 " + (this.radius * 2) + " " + (this.radius * 2)) // makes gauge resizable
+     // .attr("preserveAspectRatio", "xMidYMid meet") // makes gauge resizable
       .append("g")
       .attr("transform", "translate(" + this.radius + "," + this.radius + ")")
       .append("g")
       .attr("class", "circular-gauge");
 
     // background
-    gauge.append("path")
+    this.background = gauge.append("path")
       .attr("class", "background")
       .attr("d", this.arc.endAngle(2 * Math.PI));
 
@@ -43,10 +51,11 @@ class CircularGauge {
       .attr("d", this.arc.endAngle(0)); // starts filling from 0
 
     this.percentageText = gauge.append("text")
-      .attr("font-size", this.fontSize)
-      .attr("text-anchor", "middle")
-      .attr("alignment-baseline", "central")
-      .text(`${this.percentage}%`)
+      .style("text-anchor", "middle")
+      .attr("dy", "0.4em")
+      .style("font-weight", "bold")
+      .style("font-size", this.fontSize)
+      .text(this.percentage != null ? `${Math.round(this.percentage)}%` : `?`)
 
     this.draw();
 
@@ -54,16 +63,16 @@ class CircularGauge {
 
   draw() {
 
-    var arc = this.arc
-    var prevPercentage = this.prevPercentage / 100
-    var percentage = this.percentage / 100
+    var arc = this.arc;
+    var prevPercentage = this.prevPercentage != null ? this.prevPercentage / 100 : 0;
+    var percentage = this.percentage != null ? this.percentage / 100 : 0;
 
-    var i = d3.interpolate(prevPercentage * 2 * Math.PI, (percentage) * 2 * Math.PI);
+    var i = d3.interpolate(prevPercentage * 2 * Math.PI, 2 * Math.PI * (percentage));
 
     this.foreground.transition()
       .duration(500)
       .attrTween("d",
-        () => t => arc.endAngle(i(t))()
+      () => t => arc.endAngle(i(t))()
       );
   }
 
@@ -71,8 +80,11 @@ class CircularGauge {
 
     this.prevPercentage = this.percentage;
     this.percentage = percentage;
-    this.percentageText.text(`${percentage}%`)
+    this.percentageText.text(this.percentage != null ? `${Math.round(this.percentage)}%` : `?`)
     this.draw();
 
   }
+
 }
+
+export var __useDefault = true;

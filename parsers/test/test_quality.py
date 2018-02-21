@@ -68,7 +68,7 @@ class ProductionTestCase(unittest.TestCase):
             validate_production(p6, 'FR')
 
     def test_missing_types_allowed(self):
-        self.assertFalse(validate_production(p7, 'CH'), msg = "CH, NO, AUS-TAS don't require Coal/Oil/Unknown!")
+        self.assertFalse(validate_production(p7, 'CH'), msg = "CH, NO, AUS-TAS, US-NEISO don't require Coal/Oil/Unknown!")
 
     def test_negative_production(self):
         with self.assertRaises(Exception, msg = 'Negative generation should be rejected!'):

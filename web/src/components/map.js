@@ -150,7 +150,6 @@ export default class Map {
       // Here we need to set all styles
       this.paintData();
       this._setupMapColor();
-      this.setCenter(this.center);
       // For some reason the mapboxgl-canvas element sometimes has
       // the wrong size, so we resize it here just in case.
       this.map.resize();
