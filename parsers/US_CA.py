@@ -4,6 +4,7 @@ import arrow
 # The pandas library is used to parse content through HTTP
 import pandas
 
+
 def fetch_production(country_code='US-CA', session=None):
     """Requests the last known production mix (in MW) of a given country
 
@@ -37,7 +38,7 @@ def fetch_production(country_code='US-CA', session=None):
     # Get the production from the CSV
     csv_url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
     csv = pandas.read_csv(csv_url)
-    latest_index = len(csv)-1
+    latest_index = len(csv) - 1
     production_map = {
         'Solar': 'solar',
         'Wind': 'wind',
@@ -57,7 +58,7 @@ def fetch_production(country_code='US-CA', session=None):
     dailyData = []
     for i in range(0, latest_index + 1):
         h, m = map(int, csv['Time'][i].split(':'))
-        date = arrow.utcnow().to('US/Pacific').replace(hour = h, minute = m, second = 0, microsecond = 0)
+        date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
         data = {
             'countryCode': country_code,
             'production': {},

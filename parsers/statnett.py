@@ -73,6 +73,7 @@ exchanges_mapping = {
     ]
 }
 
+
 def fetch_production(country_code='SE', session=None):
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
@@ -84,20 +85,25 @@ def fetch_production(country_code='SE', session=None):
         'countryCode': country_code,
         'production': {
             'nuclear': float(list(filter(
-                lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Nuclear', country_code),
+                lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
+                'Nuclear', country_code),
                 obj['NuclearData']))[0]['value'].replace(u'\xa0', '')),
             'hydro': float(list(filter(
-                lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Hydro', country_code),
+                lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
+                'Hydro', country_code),
                 obj['HydroData']))[0]['value'].replace(u'\xa0', '')),
             'wind': float(list(filter(
-                lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Wind', country_code),
+                lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
+                'Wind', country_code),
                 obj['WindData']))[0]['value'].replace(u'\xa0', '')),
             'unknown':
                 float(list(filter(
-                    lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('Thermal', country_code),
+                    lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
+                    'Thermal', country_code),
                     obj['ThermalData']))[0]['value'].replace(u'\xa0', '')) +
                 float(list(filter(
-                    lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % ('NotSpecified', country_code),
+                    lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
+                    'NotSpecified', country_code),
                     obj['NotSpecifiedData']))[0]['value'].replace(u'\xa0', '')),
         },
         'storage': {},
@@ -106,6 +112,7 @@ def fetch_production(country_code='SE', session=None):
     data['datetime'] = arrow.get(obj['MeasuredAt'] / 1000).datetime
 
     return data
+
 
 def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None):
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone1, bidding_zone2])
@@ -116,19 +123,24 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', ses
     obj = response.json()
 
     exchange = list(filter(
-        lambda x: set([x['OutAreaElspotId'], x['InAreaElspotId']]) == set([bidding_zone_a, bidding_zone_b]),
+        lambda x: set([x['OutAreaElspotId'], x['InAreaElspotId']]) == set(
+            [bidding_zone_a, bidding_zone_b]),
         obj))[0]
 
     return {
         'sortedBiddingZones': '->'.join([bidding_zone_a, bidding_zone_b]),
-        'netFlow': exchange['Value'] if bidding_zone_a == exchange['OutAreaElspotId'] else -1 * exchange['Value'],
+        'netFlow': exchange['Value'] if bidding_zone_a == exchange['OutAreaElspotId'] else -1 *
+                                                                                           exchange[
+                                                                                               'Value'],
         'datetime': arrow.get(obj[0]['MeasureDate'] / 1000).datetime,
         'source': 'driftsdata.stattnet.no',
     }
 
+
 def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=None):
     zones = sorted_bidding_zones.split('->')
     return fetch_exchange_by_bidding_zone(zones[0], zones[1], session)
+
 
 def _sum_of_exchanges(exchanges):
     exchange_list = list(exchanges)
@@ -138,12 +150,13 @@ def _sum_of_exchanges(exchanges):
         'source': exchange_list[0]['source']
     }
 
+
 def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
     r = session or requests.session()
 
     sorted_exchange = '->'.join(sorted([country_code1, country_code2]))
     data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r),
-        exchanges_mapping[sorted_exchange]))
+                                 exchanges_mapping[sorted_exchange]))
     data['sortedCountryCodes'] = '->'.join(sorted([country_code1, country_code2]))
 
     return data

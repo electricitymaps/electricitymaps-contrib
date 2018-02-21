@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import arrow
 from bs4 import BeautifulSoup
@@ -61,14 +61,15 @@ def fetch_production(country_code='RU', session=None):
 
     r = session or requests.session()
     today = arrow.now(tz=tz).format('DD.MM.YYYY')
-    url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=-1:&notCheckedColumnsNames='.format(date=today)
+    url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=-1:&notCheckedColumnsNames='.format(
+        date=today)
 
     response = r.get(url)
     content = response.text
 
     # Prepare content and load as csv into Dataset
     dataset = tablib.Dataset()
-    dataset.csv = content.replace('\xce\xdd\xd1', ' ').replace(',','.').replace(';',',')
+    dataset.csv = content.replace('\xce\xdd\xd1', ' ').replace(',', '.').replace(';', ',')
 
     data = []
     for datapoint in dataset.dict:
@@ -83,7 +84,8 @@ def fetch_production(country_code='RU', session=None):
         for k, production_type in MAP_GENERATION.items():
             if k in datapoint:
                 gen_value = float(datapoint[k])
-                row['production'][production_type] = row['production'].get(production_type, 0.0) + gen_value
+                row['production'][production_type] = row['production'].get(production_type,
+                                                                           0.0) + gen_value
             else:
                 row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
 
@@ -104,7 +106,6 @@ def fetch_production(country_code='RU', session=None):
         row['production']['geothermal'] = None
 
         data.append(row)
-
 
     return data
 
@@ -159,23 +160,25 @@ def fetch_exchange(country_code1, country_code2, session=None):
     if sortedcodes == 'RU->UA':
         # Order of zones requires reversal for Ukraine exchange.
         if check_flow[-1] == "arrow-backward":
-            flow = flow*-1
+            flow = flow * -1
         elif check_flow[-1] == "arrow-forward":
             pass
         else:
-            raise ValueError('The direction of the {} exchange cannot be determined.'.format(sortedcodes))
+            raise ValueError(
+                'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
     elif check_flow[-1] == "arrow-forward":
-        flow = flow*-1
+        flow = flow * -1
     elif check_flow[-1] == "arrow-backward":
         pass
     else:
-        raise ValueError('The direction of the {} exchange cannot be determined.'.format(sortedcodes))
+        raise ValueError(
+            'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
 
     exchange = {
-      'sortedCountryCodes': sortedcodes,
-      'datetime': current_dt,
-      'netFlow': flow,
-      'source': 'so-ups.ru'
+        'sortedCountryCodes': sortedcodes,
+        'datetime': current_dt,
+        'netFlow': flow,
+        'source': 'so-ups.ru'
     }
 
     return exchange
