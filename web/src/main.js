@@ -851,10 +851,10 @@ function renderMap() {
     if (selectedCountryCode) {
       const lon = d3.mean(countries[selectedCountryCode].geometry.coordinates[0][0], d => d[0]);
       const lat = d3.mean(countries[selectedCountryCode].geometry.coordinates[0][0], d => d[1]);
-      console.log('Centering on', [lon, lat]);
+      console.log('Centering on selectedCountryCode @', [lon, lat]);
       countryMap.setCenter([lon, lat]);
     } else if (geolocation) {
-      console.log('Centering on', geolocation);
+      console.log('Centering on browser location @', geolocation);
       countryMap.setCenter(geolocation);
     } else {
       countryMap.setCenter([0, 50]);
