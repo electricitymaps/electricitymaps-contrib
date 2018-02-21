@@ -840,10 +840,12 @@ function mapMouseOver(lonlat) {
   }
 }
 
+// Only center once
+let hasCenteredMap = false;
 function renderMap() {
   if (typeof countryMap === 'undefined') { return; }
 
-  if (!mapDraggedSinceStart) {
+  if (!mapDraggedSinceStart && !hasCenteredMap) {
     const geolocation = callerLocation;
     const { selectedCountryCode } = getState().application;
     if (selectedCountryCode) {
@@ -857,6 +859,7 @@ function renderMap() {
     } else {
       countryMap.setCenter([0, 50]);
     }
+    hasCenteredMap = true;
   }
   if (exchangeLayer) {
     exchangeLayer.render();
@@ -912,7 +915,9 @@ function renderMap() {
 let countryListSelector;
 // inform the user the last time the map was updated.
 function setLastUpdated() {
-  currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(getState().data.grid.datetime));
+  currentMoment = getState().application.customDate ?
+    moment(getState().application.customDate) :
+    moment((getState().data.grid || {}).datetime);
   d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
   d3.selectAll('.current-datetime-from-now')
     .text(currentMoment.fromNow())
