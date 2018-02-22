@@ -696,14 +696,26 @@
     "timezone": "Europe/Copenhagen"
   },
   "DK-DK1": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
     "timezone": "Europe/Copenhagen"
   },
   "DK-DK2": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
