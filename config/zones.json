@@ -670,6 +670,7 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
+    "subZoneNames": ["DK-DK1", "DK-DK2"],
     "timezone": "Europe/Copenhagen"
   },
   "DK-BHM": {
@@ -691,19 +692,22 @@
     ],
     "parsers": {
       "production": "DK_BHM.fetch_production"
-    }
+    },
+    "timezone": "Europe/Copenhagen"
   },
   "DK-DK1": {
     "parsers": {
-      "price": "ENTSOE.fetch_price"
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": "Europe/Copenhagen"
   },
   "DK-DK2": {
     "parsers": {
-      "price": "ENTSOE.fetch_price"
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": "Europe/Copenhagen"
   },
   "DO": {
     "capacity": {
