@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
+# coding=utf-8
 
 import arrow
 from collections import defaultdict
+from .lib.validation import validate
 import requests
 
-
 TIMEZONE = 'America/Managua'
-
 
 MAP_URL = 'http://www.cndc.org.ni/graficos/MapaSIN/index.php'
 SUMMARY_URL = 'http://www.cndc.org.ni/graficos/graficaGeneracion_Tipo_TReal.php'
 PRICE_URL = 'http://www.cndc.org.ni/consultas/infoRelevanteSIN/consultaCostoMarginal.php'
-
 
 # This is a list in same order as values for "generacion" variable in MAP_URL
 # as of 2017-07-08.
@@ -23,49 +22,40 @@ PRICE_URL = 'http://www.cndc.org.ni/consultas/infoRelevanteSIN/consultaCostoMarg
 # Geothermal and biomass classification of Momotombo, San Jacinto, and Monte Rosa
 # is also per https://en.wikipedia.org/wiki/Electricity_sector_in_Nicaragua
 PLANT_CLASSIFICATIONS = [
-    'hydro',        # Centroamerica
-    'thermal',      # PCG VI
-    'thermal',      # Acahualinca / PLB
-    'geothermal',   # Momotombo - geothermal per Wikipedia
-    'biomass',      # Monte Rosa - biomass per Wikipedia
-    'thermal',      # Planta Nicaragua
-    'thermal',      # PCG VII
-    'thermal',      # Managua
-    'thermal',      # Planta Corinto
-    'thermal',      # Tipitapa
-    'thermal',      # Censa-Amfels
-    'thermal',      # Acahualinca / PHC I
-    'thermal',      # Los Brasilies / PHC II
-    'thermal',      # Canal
-    'thermal',      # PCG II
-    'thermal',      # Managua/PCG III
-    'thermal',      # PCG IV
-    'thermal',      # PCG V
-    'thermal',      # PCG I
-    'thermal',      # PCG VIII
-    'wind',         # Amayo
-    'geothermal',   # San Jacinto - geothermal per Wikipedia
-    'wind',         # Blue Power
-    'wind',         # Eolo
-    'wind',         # Alba Rivas
-    'hydro',        # Hidropantasma
-    'hydro',        # Larreynaga
-    'thermal',      # Montelimar
-    'thermal',      # Planta Man
-    'hydro'         # C. Fonseca
+    'hydro',  # Centroamerica
+    'thermal',  # PCG VI
+    'thermal',  # Acahualinca / PLB
+    'geothermal',  # Momotombo - geothermal per Wikipedia
+    'biomass',  # Monte Rosa - biomass per Wikipedia
+    'thermal',  # Planta Nicaragua
+    'thermal',  # PCG VII
+    'thermal',  # Managua
+    'thermal',  # Planta Corinto
+    'thermal',  # Tipitapa
+    'thermal',  # Censa-Amfels
+    'thermal',  # Acahualinca / PHC I
+    'thermal',  # Los Brasilies / PHC II
+    'thermal',  # Canal
+    'thermal',  # PCG II
+    'thermal',  # Managua/PCG III
+    'thermal',  # PCG IV
+    'thermal',  # PCG V
+    'thermal',  # PCG I
+    'thermal',  # PCG VIII
+    'wind',  # Amayo
+    'geothermal',  # San Jacinto - geothermal per Wikipedia
+    'wind',  # Blue Power
+    'wind',  # Eolo
+    'wind',  # Alba Rivas
+    'hydro',  # Hidropantasma
+    'hydro',  # Larreynaga
+    'thermal',  # Montelimar
+    'thermal',  # Planta Man
+    'hydro'  # C. Fonseca
 ]
 
-REFERENCE_TOTAL_PRODUCTION = 433  # MW
 
-
-# TODO: why return d no matter which way the if goes?!?
-def validate_datapoint(d):
-    total = sum([v for k, v in d['production'].items()])
-    if (total > 5 * REFERENCE_TOTAL_PRODUCTION or
-            total < 1.0 / 5 * REFERENCE_TOTAL_PRODUCTION):
-        return d
-    else:
-        return d
+# REFERENCE_TOTAL_PRODUCTION = 433  # MW
 
 
 def extract_text(full_text, start_text, end_text=None):
@@ -230,7 +220,7 @@ def fetch_production(country_code='NI', session=None):
         'source': 'cndc.org.ni'
     }
 
-    return validate_datapoint(data)
+    return validate(data, expected_range=(86.6, 2165))
 
 
 def fetch_exchange(country_code1, country_code2, session=None):
@@ -238,7 +228,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     Arguments:
     country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    country_code2           -- the 2nd country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -324,7 +314,8 @@ def fetch_price(country_code='NI', session=None):
     prices_html = response.text
 
     now_local_time = arrow.utcnow().to(TIMEZONE)
-    midnight_local_time = arrow.utcnow().to(TIMEZONE).replace(hour=0, minute=0, second=0, microsecond=0)
+    midnight_local_time = arrow.utcnow().to(TIMEZONE).replace(hour=0, minute=0, second=0,
+                                                              microsecond=0)
 
     hours_text = prices_html.split('<br />')
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# coding=utf-8
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -33,7 +34,8 @@ def fetch_hourly_production(country_code, obj, hour, date):
     # Fill datetime variable
     data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime
 
-    # First add 'Biomasa' and 'Biogas' together to make 'biomass' variable (and avoid negative values)
+    # First add 'Biomasa' and 'Biogas' together to make 'biomass' variable (and avoid negative
+    # values)
     data['production']['biomass'] = max(obj[obj['tipo'] == 'Biomasa'].potencia.iloc[0], 0) + max(obj[obj['tipo'] == 'Biogas'].potencia.iloc[0], 0)
     # Then fill the other sources directly with the MAP_GENERATION frame
     for i_type in MAP_GENERATION.keys():

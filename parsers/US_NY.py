@@ -7,14 +7,15 @@ from operator import itemgetter
 import pandas as pd
 
 mapping = {
-           'Dual Fuel': 'unknown',
-           'Natural Gas': 'gas',
-           'Nuclear': 'nuclear',
-           'Other Fossil Fuels': 'unknown',
-           'Other Renewables': 'unknown',
-           'Wind': 'wind',
-           'Hydro': 'hydro'
-           }
+    'Dual Fuel': 'unknown',
+    'Natural Gas': 'gas',
+    'Nuclear': 'nuclear',
+    'Other Fossil Fuels': 'unknown',
+    'Other Renewables': 'unknown',
+    'Wind': 'wind',
+    'Hydro': 'hydro'
+}
+
 
 def read_csv_data(url):
     """
@@ -25,15 +26,17 @@ def read_csv_data(url):
 
     return csv_data
 
+
 def timestamp_converter(timestamp_string):
     """
     Converts timestamps in nyiso data into aware datetime objects.
     """
 
     dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss')
-    dt_aware = dt_naive.replace(tzinfo = 'America/New_York').datetime
+    dt_aware = dt_naive.replace(tzinfo='America/New_York').datetime
 
     return dt_aware
+
 
 def data_parser(df):
     """
@@ -49,24 +52,24 @@ def data_parser(df):
         piece[row[3]] = row[4]
         chunks.append(piece)
 
-    #Join dicts on shared 'datetime' keys.
+    # Join dicts on shared 'datetime' keys.
     combine = defaultdict(dict)
     for elem in chunks:
         combine[elem['datetime']].update(elem)
 
-    ordered = sorted(combine.values(), key = itemgetter("datetime"))
+    ordered = sorted(combine.values(), key=itemgetter("datetime"))
 
     mapped_generation = []
     for item in ordered:
         mapped_types = [(mapping.get(k, k), v) for k, v in item.items()]
 
-        #Need to avoid multiple 'unknown' keys overwriting.
+        # Need to avoid multiple 'unknown' keys overwriting.
         complete_production = defaultdict(lambda: 0.0)
-        for key,val in mapped_types:
+        for key, val in mapped_types:
             try:
                 complete_production[key] += val
             except TypeError:
-                #Datetime is a string at this point!
+                # Datetime is a string at this point!
                 complete_production[key] = val
 
         dt = complete_production.pop('datetime')
@@ -75,7 +78,8 @@ def data_parser(df):
 
     return mapped_generation
 
-def fetch_production(country_code = 'US-NY', session = None):
+
+def fetch_production(country_code='US-NY', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -113,16 +117,17 @@ def fetch_production(country_code = 'US-NY', session = None):
     production_mix = []
     for datapoint in clean_data:
         data = {
-          'countryCode': country_code,
-          'datetime': timestamp_converter(datapoint[0]),
-          'production': datapoint[1],
-          'storage': {'hydro': None},
-          'source': 'nyiso.com'
+            'countryCode': country_code,
+            'datetime': timestamp_converter(datapoint[0]),
+            'production': datapoint[1],
+            'storage': {'hydro': None},
+            'source': 'nyiso.com'
         }
 
         production_mix.append(data)
 
     return production_mix
+
 
 def fetch_exchange(country_code1, country_code2, session=None):
     """Requests the last known power exchange (in MW) between two zones
@@ -143,26 +148,27 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     ny = arrow.now('America/New_York')
     ny_date = ny.format('YYYYMMDD')
-    exchange_url = 'http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv'.format(ny_date)
+    exchange_url = 'http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv'.format(
+        ny_date)
     exchange_data = read_csv_data(exchange_url)
 
     relevant_exchanges = ['SCH - NE - NY', 'SCH - NPX_1385', 'SCH - NPX_CSC']
     new_england_exs = exchange_data.loc[exchange_data['Interface Name'].isin(relevant_exchanges)]
     consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
 
-    sortedcodes = '->'.join(sorted([country_code1,country_code2]))
+    sortedcodes = '->'.join(sorted([country_code1, country_code2]))
 
     exchange_5min = []
     for row in consolidated_flows.itertuples():
         flow = float(row[3])
-        #Timestamp for exchange does not include seconds.
+        # Timestamp for exchange does not include seconds.
         dt = timestamp_converter(row[0] + ':00')
 
         exchange = {
-          'sortedCountryCodes': sortedcodes,
-          'datetime': dt,
-          'netFlow': flow,
-          'source': 'nyiso.com'
+            'sortedCountryCodes': sortedcodes,
+            'datetime': dt,
+            'netFlow': flow,
+            'source': 'nyiso.com'
         }
 
         exchange_5min.append(exchange)
