@@ -71,7 +71,7 @@ class ExchangeLayer {
       })
       .onDragEnd(() => {
         // re-render to hide out-of-screen arrows
-        this.rootNode.style.display = null;
+        this.rootNode.style.display = 'inherit';
         this.render();
         // re-enable animations
         this.root.selectAll('.exchange-arrow img.highlight')
