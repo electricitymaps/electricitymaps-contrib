@@ -141,6 +141,25 @@
     },
     "timezone": "America/Aruba"
   },
+  "AX": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "nuclear": 0,
+      "oil": 65.3,
+      "wind": 16.56
+    },
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/systemcatch"
+    ],
+    "parsers": {
+      "consumption": "AX.fetch_consumption",
+      "price": "ENTSOE.fetch_price",
+      "production": "AX.fetch_production"
+    },
+    "timezone": "Europe/Mariehamn"
+  },
   "BA": {
     "contributors": [
       "https://github.com/corradio"
@@ -659,6 +678,16 @@
     },
     "contributors": [
       "https://github.com/corradio"
+    ],
+    "bounding_box": [
+      [
+        14.7,
+        54.9
+      ],
+      [
+        15.2,
+        55.2
+      ]
     ],
     "parsers": {
       "production": "DK_BHM.fetch_production"

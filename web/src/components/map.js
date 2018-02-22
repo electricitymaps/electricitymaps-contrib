@@ -254,7 +254,7 @@ export default class Map {
       // For some reason, MapBox gives us many start events inside a single zoom.
       // Those apply for touch events on mobile
       // They are removed here:
-      if (isDragging || !this.map.loaded()) { return; }
+      if (isDragging) { return; }
       if (endTimeout) {
         clearTimeout(endTimeout);
         endTimeout = null;
