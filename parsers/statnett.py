@@ -4,6 +4,7 @@ import arrow
 # The request library is used to fetch content through HTTP
 import requests
 
+# Mappings used to go from country to bidding zone level
 exchanges_mapping = {
     'BY->LT': [
         'BY->LT'

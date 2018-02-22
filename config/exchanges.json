@@ -569,7 +569,18 @@
       54.9
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "statnett.fetch_exchange_by_bidding_zone",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 0
+  },
+  "DE->DK-DK2": {
+    "lonlat": [
+      12.135031,
+      54.486043
+    ],
+    "parsers": {
+      "exchange": "statnett.fetch_exchange_by_bidding_zone",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
@@ -632,7 +643,7 @@
       55.407235
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "statnett.fetch_exchange_by_bidding_zone",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
@@ -642,7 +653,7 @@
       57.7
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "statnett.fetch_exchange_by_bidding_zone",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -25
@@ -653,7 +664,7 @@
       56.857802
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "statnett.fetch_exchange_by_bidding_zone",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
@@ -664,7 +675,7 @@
       55.952282
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "statnett.fetch_exchange_by_bidding_zone",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
