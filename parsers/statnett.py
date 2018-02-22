@@ -109,6 +109,8 @@ def fetch_production(country_code='SE', session=None):
     return data
 
 def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None):
+    # Convert bidding zone names into statnett zones
+    bidding_zone1, bidding_zone2 = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2]]
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone1, bidding_zone2])
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
