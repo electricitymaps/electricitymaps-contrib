@@ -17,16 +17,17 @@ from operator import itemgetter
 url = 'http://estadistico.ut.com.sv/OperacionDiaria.aspx'
 
 generation_map = {
-                  0: 'biomass',
-                  1: 'geothermal',
-                  2: 'hydro',
-                  3: 'interconnection',
-                  4: 'thermal',
-                  5: 'solar',
-                  'datetime': 'datetime'
-                  }
+    0: 'biomass',
+    1: 'geothermal',
+    2: 'hydro',
+    3: 'interconnection',
+    4: 'thermal',
+    5: 'solar',
+    'datetime': 'datetime'
+}
 
-def get_data(session = None):
+
+def get_data(session=None):
     """
     Makes a get request to data url.  Parses the response then makes a post request to the same url using
     parsed parameters from the get request.
@@ -38,23 +39,22 @@ def get_data(session = None):
 
     soup = BeautifulSoup(pagereq.content, 'html.parser')
 
-    #Find and define parameters needed to send a POST request for the actual data.
-    viewstategenerator = soup.find("input", attrs = {'id': '__VIEWSTATEGENERATOR'})['value']
-    viewstate = soup.find("input", attrs = {'id': '__VIEWSTATE'})['value']
-    eventvalidation = soup.find("input", attrs = {'id': '__EVENTVALIDATION'})['value']
+    # Find and define parameters needed to send a POST request for the actual data.
+    viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
+    viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
+    eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
     DXCss = '1_33,1_4,1_9,1_5,15_2,15_4'
     DXScript = '1_232,1_134,1_225,1_169,1_187,15_1,1_183,1_182,1_140,1_147,1_148,1_142,1_141,1_143,1_144,1_145,1_146,15_0,15_6,15_7'
     callback_param_init = 'c0:{"Task":"Initialize","DashboardId":"OperacionDiaria","Settings":{"calculateHiddenTotals":false},"RequestMarker":0,"ClientState":{}}'
-
 
     postdata = {'__VIEWSTATE': viewstate,
                 '__VIEWSTATEGENERATOR': viewstategenerator,
                 '__EVENTVALIDATION': eventvalidation,
                 '__CALLBACKPARAM': callback_param_init,
-                '__CALLBACKID':'ASPxDashboardViewer1',
+                '__CALLBACKID': 'ASPxDashboardViewer1',
                 'DXScript': DXScript,
                 'DXCss': DXCss
-               }
+                }
 
     datareq = s.post(url, data=postdata)
 
@@ -81,7 +81,7 @@ def data_parser(datareq):
     sliced = ''.join(sliced.split())
     sliced = sliced[1:-4]
 
-    chopped = sliced.split( ',"')
+    chopped = sliced.split(',"')
 
     diced = []
     for item in chopped:
@@ -111,7 +111,7 @@ def data_processer(data):
         newval = {'datetime': val[2], val[0]: val[3]}
         converted.append(newval)
 
-    #Join dicts on 'datetime' key.
+    # Join dicts on 'datetime' key.
     d = defaultdict(dict)
     for elem in converted:
         d[elem['datetime']].update(elem)
@@ -120,7 +120,7 @@ def data_processer(data):
 
     def get_datetime(hour):
         at = arrow.now('UTC-6').floor('hour')
-        dt = (at.replace(hour = int(hour), minute = 0, second = 0)).datetime
+        dt = (at.replace(hour=int(hour), minute=0, second=0)).datetime
         return dt
 
     mapped_data = []
@@ -132,7 +132,7 @@ def data_processer(data):
     return mapped_data
 
 
-def fetch_production(country_code = 'SV', session = None):
+def fetch_production(country_code='SV', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -161,30 +161,30 @@ def fetch_production(country_code = 'SV', session = None):
     }
     """
 
-    req = get_data(session = None)
+    req = get_data(session=None)
     parsed = data_parser(req)
     data = data_processer(parsed)
     production_mix_by_hour = []
     for hour in data:
         production_mix = {
-          'countryCode': country_code,
-          'datetime': hour['datetime'],
-          'production': {
-              'biomass': hour.get('biomass', 0.0),
-              'coal': hour.get('coal', 0.0),
-              'gas': hour.get('gas', 0.0),
-              'hydro': hour.get('hydro', 0.0),
-              'nuclear': 0.0,
-              'oil': hour.get('oil', 0.0),
-              'solar': hour.get('solar', 0.0),
-              'wind': None,
-              'geothermal': hour.get('geothermal', 0.0),
-              'unknown': hour.get('thermal', 0.0)
-          },
-          'storage': {
-              'hydro': None,
-          },
-          'source': 'ut.com.sv'
+            'countryCode': country_code,
+            'datetime': hour['datetime'],
+            'production': {
+                'biomass': hour.get('biomass', 0.0),
+                'coal': hour.get('coal', 0.0),
+                'gas': hour.get('gas', 0.0),
+                'hydro': hour.get('hydro', 0.0),
+                'nuclear': 0.0,
+                'oil': hour.get('oil', 0.0),
+                'solar': hour.get('solar', 0.0),
+                'wind': None,
+                'geothermal': hour.get('geothermal', 0.0),
+                'unknown': hour.get('thermal', 0.0)
+            },
+            'storage': {
+                'hydro': None,
+            },
+            'source': 'ut.com.sv'
         }
         production_mix_by_hour.append(production_mix)
 

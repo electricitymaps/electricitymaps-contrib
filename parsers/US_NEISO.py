@@ -10,19 +10,20 @@ import time
 url = 'https://www.iso-ne.com/ws/wsclient'
 
 generation_mapping = {
-                      'Coal': 'coal',
-                      'NaturalGas': 'gas',
-                      'Wind': 'wind',
-                      'Hydro': 'hydro',
-                      'Nuclear': 'nuclear',
-                      'Wood': 'biomass',
-                      'Oil': 'oil',
-                      'Refuse': 'biomass',
-                      'LandfillGas': 'biomass',
-                      'Solar': 'solar'
-                      }
+    'Coal': 'coal',
+    'NaturalGas': 'gas',
+    'Wind': 'wind',
+    'Hydro': 'hydro',
+    'Nuclear': 'nuclear',
+    'Wood': 'biomass',
+    'Oil': 'oil',
+    'Refuse': 'biomass',
+    'LandfillGas': 'biomass',
+    'Solar': 'solar'
+}
 
-def get_json_data(session = None):
+
+def get_json_data(session=None):
     """Fetches json data for past 2 days using a post request."""
 
     epoch_time = str(int(time.time()))
@@ -31,20 +32,20 @@ def get_json_data(session = None):
     yesterday = ne.shift(days=-1).format('MM/DD/YYYY')
 
     postdata = {
-    '_nstmp_formDate': epoch_time,
-    '_nstmp_startDate': yesterday,
-    '_nstmp_endDate': today,
-    '_nstmp_twodays': 'false',
-    '_nstmp_chartTitle': 'Fuel+Mix+Graph',
-    '_nstmp_requestType': 'genfuelmix',
-    '_nstmp_fuelType': 'all',
-    '_nstmp_height': '250',
-    '_nstmp_showtwodays': 'false'
+        '_nstmp_formDate': epoch_time,
+        '_nstmp_startDate': yesterday,
+        '_nstmp_endDate': today,
+        '_nstmp_twodays': 'false',
+        '_nstmp_chartTitle': 'Fuel+Mix+Graph',
+        '_nstmp_requestType': 'genfuelmix',
+        '_nstmp_fuelType': 'all',
+        '_nstmp_height': '250',
+        '_nstmp_showtwodays': 'false'
     }
 
     s = session or requests.Session()
 
-    req = s.post(url, data = postdata)
+    req = s.post(url, data=postdata)
     json_data = req.json()
     raw_data = json_data[0]['data']
 
@@ -55,7 +56,7 @@ def timestring_converter(time_string):
     """Converts ISO-8601 time strings in neiso data into aware datetime objects."""
 
     dt_naive = arrow.get(time_string)
-    dt_aware = dt_naive.replace(tzinfo = 'America/New_York').datetime
+    dt_aware = dt_naive.replace(tzinfo='America/New_York').datetime
 
     return dt_aware
 
@@ -78,7 +79,7 @@ def data_processer(raw_data):
 
         production = defaultdict(lambda: 0.0)
         for k, v in datapoint.items():
-            #Need to avoid duplicate keys overwriting.
+            # Need to avoid duplicate keys overwriting.
             production[generation_mapping[k]] += v
 
         clean_data.append((dt, dict(production)))
@@ -86,7 +87,7 @@ def data_processer(raw_data):
     return sorted(clean_data)
 
 
-def fetch_production(country_code = 'US-NEISO', session = None):
+def fetch_production(country_code='US-NEISO', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -118,18 +119,18 @@ def fetch_production(country_code = 'US-NEISO', session = None):
     get_json = get_json_data()
     points = data_processer(get_json)
 
-    #Hydro pumped storage is included within the general hydro category.
+    # Hydro pumped storage is included within the general hydro category.
     production_mix = []
     for item in points:
         data = {
-                'countryCode': country_code,
-                'datetime': item[0],
-                'production': item[1],
-                'storage': {
-                    'hydro': None,
-                },
-                'source': 'iso-ne.com'
-                }
+            'countryCode': country_code,
+            'datetime': item[0],
+            'production': item[1],
+            'storage': {
+                'hydro': None,
+            },
+            'source': 'iso-ne.com'
+        }
         production_mix.append(data)
 
     return production_mix

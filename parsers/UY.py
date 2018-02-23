@@ -11,13 +11,14 @@ from bs4 import BeautifulSoup
 tz = 'America/Montevideo'
 
 MAP_GENERATION = {
-  'Hidráulica': 'hydro',
-  'Eólica': 'wind',
-  'Fotovoltaica': 'solar',
-  'Biomasa': 'biomass',
-  'Térmica': 'unknown'
+    'Hidráulica': 'hydro',
+    'Eólica': 'wind',
+    'Fotovoltaica': 'solar',
+    'Biomasa': 'biomass',
+    'Térmica': 'unknown'
 }
 INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
+
 
 def parse_page(session):
     r = session or requests.session()
@@ -70,6 +71,7 @@ def parse_page(session):
 
     return obj
 
+
 def fetch_production(country_code='UY', session=None):
     obj = parse_page(session)
 
@@ -81,6 +83,7 @@ def fetch_production(country_code='UY', session=None):
     }
 
     return data
+
 
 def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None):
     """Requests the last known power exchange (in MW) between two countries
@@ -98,11 +101,12 @@ def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None):
       'source': 'mysource.com'
     }
     """
-    if set([country_code1, country_code2]) != set(['UY', 'BR']):
+    # set comparison
+    if {country_code1, country_code2} != {'UY', 'BR'}:
         return None
 
     obj = parse_page(session)
-    netFlow = obj['Interconexión con Brasil'] # this represents BR->UY (imports)
+    netFlow = obj['Interconexión con Brasil']  # this represents BR->UY (imports)
     if country_code1 != 'BR': netFlow *= -1
 
     data = {
