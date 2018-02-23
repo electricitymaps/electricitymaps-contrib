@@ -394,7 +394,6 @@ def fetch_production(country_code=None, session=None):
         # Parse the datetime and check it matches the most recent one.
         try:
             plant_timestamp = arrow.get(row['Most Recent Output Time (AEST)']).datetime
-            # TODO: We should check it's not too old..
         except (OSError, ValueError):
             # ignore invalid dates, they might be parsed as NaN
             continue
