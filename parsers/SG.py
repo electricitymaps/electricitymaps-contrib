@@ -92,6 +92,10 @@ def get_solar(session=None):
         else:
             print("Singapore solar data is unreadable - got {}.".format(val))
             solar = None
+    else:
+        if solar > 200.0:
+            print("Singapore solar generation is way over capacity - got {}".format(val))
+            solar = None
 
     return solar
 
