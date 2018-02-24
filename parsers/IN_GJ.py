@@ -6,9 +6,9 @@ from ast import literal_eval
 import requests
 from arrow import get
 from requests import Session
-from parsers import countrycode
-from parsers.lib import web
-from parsers.lib import IN
+from .lib import countrycode
+from .lib import web
+from .lib import IN
 from operator import itemgetter
 
 station_map = {
