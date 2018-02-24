@@ -81,6 +81,17 @@ def get_solar(session=None):
     pattern = r'Est. PV Output: (.*)MWac'
     val = re.search(pattern, text, re.MULTILINE).group(1)
 
+    time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
+    time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
+    solar_dt = arrow.get(time_string).replace(tzinfo='Asia/Singapore')
+    singapore_dt = arrow.now('Asia/Singapore')
+    diff = singapore_dt - solar_dt
+
+    # Need to be sure we don't get old data if image stops updating.
+    if diff.seconds > 3600:
+        print('Singapore solar data is too old to use.')
+        return None
+
     # At night format changes from 0.00 to 0
     # tesseract cannot distinguish singular 0 and O in font provided by image.
     # This try/except will make sure no invalid data is returned.
