@@ -13,6 +13,6 @@ datascience
 web/node_modules
 web/build
 web/public/dist
-web/world_*.json
+web/third_party_maps
 
 screenshots*
