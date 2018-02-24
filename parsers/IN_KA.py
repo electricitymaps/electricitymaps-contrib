@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 from requests import Session
-from parsers.lib.exceptions import ParserException
-from parsers.lib import web
-from parsers.lib import countrycode
-from parsers.lib import IN
+from .lib.exceptions import ParserException
+from .lib import web
+from .lib import countrycode
+from .lib import IN
 
 
 def fetch_consumption(country_code='IN-KA', session=None):

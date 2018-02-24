@@ -1,7 +1,7 @@
 from requests import Session
 from bs4 import BeautifulSoup
 
-from parsers.lib.exceptions import ParserException
+from .exceptions import ParserException
 
 
 def get_response(country_code, url, session=None):

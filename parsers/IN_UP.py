@@ -4,7 +4,7 @@ from ast import literal_eval
 import arrow
 from requests import Session
 
-from parsers.lib import web
+from .lib import web
 
 
 def fetch_data(country_code='IN-UP', session=None):
