@@ -27,3 +27,6 @@ services:
       - './web/webpack.config.js:/home/web/webpack.config.js'
       - './web/locales:/home/web/locales'
       - './config:/home/config'
+      - './web/topogen.sh:/home/web/topogen.sh'
+      - './web/generate-geometries.js:/home/web/generate-geometries.js'
+
