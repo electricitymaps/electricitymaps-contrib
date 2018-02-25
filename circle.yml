@@ -24,7 +24,7 @@ stages:
       - type: shell
         name: Lint
         command: |
-          set -exu
+          set -euo pipefail
           python --version
           pip --version
           pip install flake8 pylint
@@ -43,13 +43,13 @@ stages:
       - type: shell
         name: Build
         command: |
-          set -exu
+          set -euo pipefail
           docker-compose build
           docker-compose run web npm run build-release
       - type: shell
         name: Start environment
         command: |
-          set -exu
+          set -euo pipefail
           docker-compose up -d
           sleep 20
           docker-compose logs web

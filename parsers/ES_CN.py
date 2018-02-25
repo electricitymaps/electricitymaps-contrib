@@ -6,7 +6,7 @@ from arrow import get
 from requests import Session
 from reescraper import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
                         LaPalma, Tenerife)
-from parsers.lib.exceptions import ParserException
+from .lib.exceptions import ParserException
 
 
 def fetch_island_data(country_code, session):

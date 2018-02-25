@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-#Parser for Peninsular Malaysia (West Malaysia).
-#This does not include the states of Sarawak and Sarawak.
-#There is pumped storage in the Peninsular but no data is currently available.
-#https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
+# Parser for Peninsular Malaysia (West Malaysia).
+# This does not include the states of Sarawak and Sarawak.
+# There is pumped storage in the Peninsular but no data is currently available.
+# https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
 
 from bs4 import BeautifulSoup
 from collections import defaultdict
@@ -15,15 +15,16 @@ fuel_mix_url = 'https://www.gso.org.my/SystemData/FuelMix.aspx'
 current_gen_url = 'https://www.gso.org.my/SystemData/CurrentGen.aspx'
 
 fuel_mapping = {
-                'ST-Coal': 'coal',
-                'Hydro': 'hydro',
-                'CCGT-Gas': 'gas',
-                'Co-Gen': 'unknown',
-                'OCGT-Gas': 'gas',
-                'ST-Gas': 'gas'
-                }
+    'ST-Coal': 'coal',
+    'Hydro': 'hydro',
+    'CCGT-Gas': 'gas',
+    'Co-Gen': 'unknown',
+    'OCGT-Gas': 'gas',
+    'ST-Gas': 'gas'
+}
 
-def get_data(session = None):
+
+def get_data(session=None):
     """
     Makes two requests for the current generation total and fuel mix.
     Parses the data into raw form and reads time string associated with it.
@@ -38,13 +39,13 @@ def get_data(session = None):
     gensoup = BeautifulSoup(genreq.content, 'html.parser')
 
     try:
-        gen_mw = gensoup.find('td', text = "MW")
+        gen_mw = gensoup.find('td', text="MW")
         ts_tag = gen_mw.findNext('td')
         real_ts = ts_tag.text
         gen_total = float(ts_tag.findNext('td').text)
 
     except AttributeError:
-        #No data is available between 12am-1am.
+        # No data is available between 12am-1am.
         raise ValueError('No data is currently available for Malaysia.')
 
     mix_header = mixsoup.find('tr', {"class": "gridheader"})
@@ -57,7 +58,7 @@ def get_data(session = None):
         generation_mix[items[0]] = float(items[1])
 
     if sum(generation_mix.values()) == gen_total:
-        #Fuel mix matches generation.
+        # Fuel mix matches generation.
         return real_ts, generation_mix
     else:
         raise ValueError('Malaysia generation and fuel mix totals are not equal!')
@@ -88,12 +89,13 @@ def data_processer(rawdata):
         if gen_type not in fuel_mapping.keys():
             unmapped.append(gen_type)
 
-    mapped_generation = [(fuel_mapping.get(gen_type, 'unknown'), val) for gen_type, val in current_generation.items()]
+    mapped_generation = [(fuel_mapping.get(gen_type, 'unknown'), val) for gen_type, val in
+                         current_generation.items()]
 
     generationDict = defaultdict(lambda: 0.0)
 
-    #Sum values for duplicate keys.
-    for key,val in mapped_generation:
+    # Sum values for duplicate keys.
+    for key, val in mapped_generation:
         generationDict[key] += val
 
     for key in ['solar', 'wind']:
@@ -108,7 +110,7 @@ def data_processer(rawdata):
     return converted_time_string, dict(generationDict)
 
 
-def fetch_production(country_code = 'MY-WM', session = None):
+def fetch_production(country_code='MY-WM', session=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -138,17 +140,17 @@ def fetch_production(country_code = 'MY-WM', session = None):
     }
     """
 
-    raw_data = get_data(session = None)
+    raw_data = get_data(session=None)
     clean_data = data_processer(raw_data)
 
     production = {
-      'countryCode': country_code,
-      'datetime': clean_data[0],
-      'production': clean_data[1],
-      'storage': {
-          'hydro': None,
-      },
-      'source': 'gso.org.my'
+        'countryCode': country_code,
+        'datetime': clean_data[0],
+        'production': clean_data[1],
+        'storage': {
+            'hydro': None,
+        },
+        'source': 'gso.org.my'
     }
 
     return production
