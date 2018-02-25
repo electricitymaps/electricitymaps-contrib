@@ -466,7 +466,6 @@ window.toggleSource = (state) => {
 
 // Prepare data
 const countries = CountryTopos.addCountryTopos({});
-const oceans = CountryTopos.addOceanTopos({});
 // Validate selected country
 if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -1) {
   dispatchApplication('selectedCountryCode', undefined);
@@ -477,7 +476,6 @@ if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -
 // Assign data
 if (typeof countryMap !== 'undefined') {
   countryMap.setData(d3.values(countries));
-  countryMap.setOceanData(oceans);
 }
 // Add configurations
 d3.entries(zonesConfig).forEach(d => {
@@ -1076,9 +1074,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
         mapMouseOver(undefined);
         countryTooltip.hide();
-      })
-      .onOceanMouseMove((lonlat) => {
-        mapMouseOver(lonlat);
       });
   }
 

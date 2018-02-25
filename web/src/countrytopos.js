@@ -1,6 +1,5 @@
 const topo = require('./world.json');
 const topojson = require('topojson');
-const oceanjson = require('./ocean.json')
 
 var exports = module.exports = {};
 
@@ -21,8 +20,4 @@ exports.addCountryTopos = (countries) => {
   });
 
   return countries;
-};
-
-exports.addOceanTopos = function() {
-  return oceanjson;
 };

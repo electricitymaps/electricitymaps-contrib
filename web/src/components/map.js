@@ -19,7 +19,6 @@ export default class Map {
     if (!this.data) { return; }
     const clickableSource = this.map.getSource('clickable-world');
     const nonClickableSource = this.map.getSource('non-clickable-world');
-    const oceanSource = this.map.getSource('ocean-world');
     const clickableData = {
       type: 'FeatureCollection',
       features: this.clickableZoneGeometries,
@@ -28,11 +27,9 @@ export default class Map {
       type: 'FeatureCollection',
       features: this.nonClickableZoneGeometries,
     };
-    const oceanData = this.oceanData;
-    if (clickableSource && nonClickableSource && oceanSource) {
+    if (clickableSource && nonClickableSource) {
       clickableSource.setData(clickableData);
       nonClickableSource.setData(nonClickableData);
-      oceanSource.setData(oceanData);
     } else if (this.map.isStyleLoaded()) {
       // Create sources
       this.map.addSource('clickable-world', {
@@ -49,10 +46,6 @@ export default class Map {
           type: 'FeatureCollection',
           features: [],
         },
-      });
-      this.map.addSource('ocean-world', {
-        type: 'geojson',
-        data: oceanData
       });
       // Create layers
       const paint = {
@@ -80,15 +73,6 @@ export default class Map {
         source: 'non-clickable-world',
         layout: {},
         paint: { 'fill-color': this.nonClickableFill },
-      });
-      this.map.addLayer({
-        id: 'ocean-fill',
-        type: 'fill',
-        source: 'ocean-world',
-        layout: {},
-        paint: {
-          'fill-color': '#34434c'
-        }
       });
       this.map.addLayer({
         id: 'zones-hover',
@@ -217,18 +201,6 @@ export default class Map {
           i,
           rect.left + e.point.x,
           rect.top + e.point.y,
-          [p.lng, p.lat],
-        );
-      }
-    });
-
-    this.map.on('mousemove', 'ocean-fill', (e) => {
-      // Disable for touch devices
-      if (this.userIsUsingTouch) { return; }
-      if (this.oceanMouseMoveHandler) {
-        const p = this.map.unproject([e.point.x, e.point.y]);
-        this.oceanMouseMoveHandler.call(
-          this,
           [p.lng, p.lat],
         );
       }
@@ -430,12 +402,6 @@ export default class Map {
       }
     });
 
-    this.paintData();
-    return this;
-  }
-
-  setOceanData(data) {
-    this.oceanData = data;
     this.paintData();
     return this;
   }
