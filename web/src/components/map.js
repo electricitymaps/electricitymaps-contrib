@@ -181,21 +181,27 @@ export default class Map {
     window.addEventListener('resize', () => {
       boundingClientRect = node.getBoundingClientRect();
     });
-    this.map.on('mousemove', 'clickable-zones-fill', (e) => {
+    this.map.on('mousemove', (e) => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
-      if (prevId !== e.features[0].properties.zoneId) {
-        prevId = e.features[0].properties.zoneId;
-        const hoverSource = this.map.getSource('hover');
-        if (hoverSource) {
-          hoverSource.setData(e.features[0]);
+      const features = this.map.queryRenderedFeatures(e.point);
+      let i = null;
+      if (features.length > 0) {
+        console.log(features);
+        i = features[0].properties.zoneId;
+        if (prevId !== features[0].properties.zoneId) {
+          prevId = features[0].properties.zoneId;
+          const hoverSource = this.map.getSource('hover');
+          if (hoverSource) {
+            hoverSource.setData(features[0]);
+          }
         }
       }
-      if (this.countryMouseMoveHandler) {
-        const i = e.features[0].properties.zoneId;
+
+      if (this.mouseMoveHandler) {
         const rect = boundingClientRect;
         const p = this.map.unproject([e.point.x, e.point.y]);
-        this.countryMouseMoveHandler.call(
+        this.mouseMoveHandler.call(
           this,
           this.data[i],
           i,
@@ -337,15 +343,15 @@ export default class Map {
     return this;
   }
 
-  onCountryMouseMove(arg) {
-    if (!arg) return this.countryMouseMoveHandler;
-    else this.countryMouseMoveHandler = arg;
-    return this;
-  }
-
   onCountryMouseOut(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
+  }
+
+  onMouseMove(arg) {
+    if (!arg) return this.mouseMoveHandler;
+    else this.mouseMoveHandler = arg;
     return this;
   }
 

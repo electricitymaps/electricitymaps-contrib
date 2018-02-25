@@ -1066,11 +1066,17 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
       })
-      .onCountryMouseMove((d, i, clientX, clientY, lonlat) => {
+      .onMouseMove((d, i, clientX, clientY, lonlat) => {
         // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        if (d != null) {
+          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        }
+
         mapMouseOver(lonlat);
-        countryTooltip.update(clientX, clientY);
+
+        if (clientX != null && clientY != null) {
+          countryTooltip.update(clientX, clientY);
+        }
       })
       .onCountryMouseOut((d) => {
         if (co2Colorbars)
