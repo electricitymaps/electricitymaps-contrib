@@ -185,11 +185,11 @@ export default class Map {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
       const features = this.map.queryRenderedFeatures(e.point);
-      let i = null;
+      let zoneId = null;
       if (features.length > 0) {
-        i = features[0].properties.zoneId;
-        if (prevId !== features[0].properties.zoneId) {
-          prevId = features[0].properties.zoneId;
+        zoneId = features[0].properties.zoneId;
+        if (prevId !== zoneId) {
+          prevId = zoneId;
           const hoverSource = this.map.getSource('hover');
           if (hoverSource) {
             hoverSource.setData(features[0]);
@@ -202,8 +202,8 @@ export default class Map {
         const p = this.map.unproject([e.point.x, e.point.y]);
         this.mouseMoveHandler.call(
           this,
-          this.data[i],
-          i,
+          this.data[zoneId],
+          zoneId,
           rect.left + e.point.x,
           rect.top + e.point.y,
           [p.lng, p.lat],
