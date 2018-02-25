@@ -474,9 +474,7 @@ if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -
   }
 }
 // Assign data
-if (typeof countryMap !== 'undefined') {
-  countryMap.setData(d3.values(countries));
-}
+if (typeof countryMap !== 'undefined') { countryMap.setData(d3.values(countries)); }
 // Add configurations
 d3.entries(zonesConfig).forEach(d => {
   const zone = countries[d.key];

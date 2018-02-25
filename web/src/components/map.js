@@ -219,18 +219,15 @@ export default class Map {
         this.countryMouseOutHandler.call(this);
       }
     });
-
-    this.map.on('click', 'clickable-zones-fill', (e) => {
+    this.map.on('click', (e) => {
       const features = this.map.queryRenderedFeatures(e.point);
-       if (this.countryClickHandler) {
+      if (!features.length) {
+        if (this.seaClickHandler) {
+          this.seaClickHandler.call(this);
+        }
+      } else if (this.countryClickHandler) {
         const i = features[0].properties.zoneId;
         this.countryClickHandler.call(this, this.data[i], i);
-      }
-    });
-    
-    this.map.on('click', 'ocean-fill', () => {
-      if (this.seaClickHandler) {
-        this.seaClickHandler.call(this);
       }
     });
 
@@ -343,12 +340,6 @@ export default class Map {
   onCountryMouseMove(arg) {
     if (!arg) return this.countryMouseMoveHandler;
     else this.countryMouseMoveHandler = arg;
-    return this;
-  }
-
-  onOceanMouseMove(arg) {
-    if (!arg) return this.oceanMouseMoveHandler;
-    else this.oceanMouseMoveHandler = arg;
     return this;
   }
 
