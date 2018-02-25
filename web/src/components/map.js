@@ -187,7 +187,6 @@ export default class Map {
       const features = this.map.queryRenderedFeatures(e.point);
       let i = null;
       if (features.length > 0) {
-        console.log(features);
         i = features[0].properties.zoneId;
         if (prevId !== features[0].properties.zoneId) {
           prevId = features[0].properties.zoneId;
