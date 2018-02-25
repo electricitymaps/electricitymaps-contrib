@@ -55,7 +55,7 @@ class WindLayer {
     map.onDragEnd(() => {
       if (this.hidden) { return; }
       zoomEndTimeout = setTimeout(() => {
-        this.canvas.style.transform = null;
+        this.canvas.style.transform = 'inherit';
         this.initialMapTransform = null;
         if (this.windy) {
           this.windy.paused = false;

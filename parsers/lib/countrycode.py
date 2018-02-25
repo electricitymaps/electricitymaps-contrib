@@ -1,5 +1,4 @@
-from parsers.lib.exceptions import ParserException
-
+from .exceptions import ParserException
 
 def assert_country_code(country_code, expected, parser_name=None):
     """Assert country code"""

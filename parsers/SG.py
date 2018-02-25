@@ -5,12 +5,9 @@ from collections import defaultdict
 import arrow
 import requests
 
-
 TIMEZONE = 'Asia/Singapore'
 
-
 TICKER_URL = 'https://www.emcsg.com/ChartServer/blue/ticker'
-
 
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
@@ -53,7 +50,6 @@ which is potentially 5-10% of normal use. I was unable to find data on its use
 (not even historical, let along real-time). The Singapore Energy Statistics 2016 document
 does not note any electricity exports or imports.
 """
-
 
 TYPE_MAPPINGS = {
     'CCGT/COGEN/TRIGEN': 'gas',
@@ -129,12 +125,14 @@ def fetch_production(country_code='SG', session=None):
 
     demand_str = find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
     demand = parse_megawatt_value(demand_str)
-    system_loss_str = find_first_list_item_by_key_value(energy_section, 'Label', 'System Loss', 'Value')
+    system_loss_str = find_first_list_item_by_key_value(energy_section, 'Label', 'System Loss',
+                                                        'Value')
     system_loss = parse_megawatt_value(system_loss_str)
 
     generation = demand + system_loss
 
-    mix_section = find_first_list_item_by_key_value(sections, 'Name', 'Generator Type Share', 'SectionData')
+    mix_section = find_first_list_item_by_key_value(sections, 'Name', 'Generator Type Share',
+                                                    'SectionData')
 
     gen_types = {gen_type['Label']: parse_percent(gen_type['Value']) for gen_type in mix_section}
 
@@ -149,7 +147,9 @@ def fetch_production(country_code='SG', session=None):
 
         else:
             # unrecognized - log it, then add into unknown
-            print('Singapore has unrecognized generation type "{}" with production share {}%'.format(gen_type, gen_percent))
+            print(
+            'Singapore has unrecognized generation type "{}" with production share {}%'.format(
+                gen_type, gen_percent))
             generation_by_type['unknown'] += gen_mw
 
     # some generation methods that are not used in Singapore
@@ -166,6 +166,7 @@ def fetch_production(country_code='SG', session=None):
         'storage': {},  # there is no known electricity storage in Singapore
         'source': 'emcsg.com'
     }
+
 
 def fetch_price(country_code='SG', session=None):
     """Requests the most recent known power prices in Singapore (USEP).

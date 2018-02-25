@@ -5,9 +5,9 @@ from re import search, findall, M, S, I, sub
 from arrow import utcnow, get
 from bs4 import BeautifulSoup
 
-from parsers.lib.exceptions import ParserException
-from parsers.lib import web
-from parsers.lib import countrycode
+from .lib.exceptions import ParserException
+from .lib import web
+from .lib import countrycode
 
 
 def read_text_by_regex(regex, text):
