@@ -21,11 +21,9 @@ def fetch_SA_battery(session=None):
 
     s = session or requests.Session()
     req = s.get(nemlog_url)
-
     data = []
-    for line in req.iter_lines():
+    for line in req.iter_lines(decode_unicode=True):
         data.append(line)
-
     try:
         latest = json.loads(data[-1])
     except IndexError:
