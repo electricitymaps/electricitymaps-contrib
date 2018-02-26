@@ -181,26 +181,21 @@ export default class Map {
     window.addEventListener('resize', () => {
       boundingClientRect = node.getBoundingClientRect();
     });
-    this.map.on('mousemove', (e) => {
+    this.map.on('mousemove', 'clickable-zones-fill', (e) => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
-      const features = this.map.queryRenderedFeatures(e.point);
-      let zoneId = null;
-      if (features.length > 0) {
-        zoneId = features[0].properties.zoneId;
-        if (prevId !== zoneId) {
-          prevId = zoneId;
-          const hoverSource = this.map.getSource('hover');
-          if (hoverSource) {
-            hoverSource.setData(features[0]);
-          }
+      const zoneId = e.features[0].properties.zoneId;
+      if (prevId !== zoneId) {
+        prevId = zoneId;
+        const hoverSource = this.map.getSource('hover');
+        if (hoverSource) {
+          hoverSource.setData(e.features[0]);
         }
       }
-
-      if (this.mouseMoveHandler) {
+      if (this.zoneMouseMoveHandler) {
         const rect = boundingClientRect;
         const p = this.map.unproject([e.point.x, e.point.y]);
-        this.mouseMoveHandler.call(
+        this.zoneMouseMoveHandler.call(
           this,
           this.data[zoneId],
           zoneId,
@@ -210,7 +205,17 @@ export default class Map {
         );
       }
     });
-
+    this.map.on('mousemove', (e) => {
+      // Disable for touch devices
+      if (this.userIsUsingTouch) { return; }
+      if (this.onMouseMove()) {
+        const p = this.map.unproject([e.point.x, e.point.y]);
+        this.mouseMoveHandler.call(
+          this,
+          [p.lng, p.lat],
+        );
+      }
+    });
     this.map.on('mouseleave', 'clickable-zones-fill', () => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
@@ -345,6 +350,12 @@ export default class Map {
   onCountryMouseOut(arg) {
     if (!arg) return this.countryMouseOutHandler;
     else this.countryMouseOutHandler = arg;
+    return this;
+  }
+
+  onZoneMouseMove(arg) {
+    if (!arg) return this.zoneMouseMoveHandler;
+    else this.zoneMouseMoveHandler = arg;
     return this;
   }
 
