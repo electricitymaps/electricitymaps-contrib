@@ -194,14 +194,12 @@ export default class Map {
       }
       if (this.zoneMouseMoveHandler) {
         const rect = boundingClientRect;
-        const p = this.map.unproject([e.point.x, e.point.y]);
         this.zoneMouseMoveHandler.call(
           this,
           this.data[zoneId],
           zoneId,
           rect.left + e.point.x,
           rect.top + e.point.y,
-          [p.lng, p.lat],
         );
       }
     });
