@@ -58,6 +58,7 @@ def fetch_production(country_code='TW', session=None):
             'coal': coal_capacity,
             'gas': gas_capacity,
             'oil': oil_capacity,
+            'hydro storage': 2602,
             'hydro': production.ix['Hydro'].capacity,
             'nuclear': production.ix['Nuclear'].capacity,
             'solar': production.ix['Solar'].capacity,
