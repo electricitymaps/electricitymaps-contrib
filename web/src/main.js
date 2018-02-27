@@ -1074,7 +1074,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       .onMouseMove((lonlat) => {
         mapMouseOver(lonlat);
       })
-      .onCountryMouseOut((d) => {
+      .onZoneMouseOut((d) => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
         mapMouseOver(undefined);

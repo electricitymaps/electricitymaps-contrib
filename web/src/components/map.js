@@ -206,7 +206,7 @@ export default class Map {
     this.map.on('mousemove', (e) => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
-      if (this.onMouseMove()) {
+      if (this.mouseMoveHandler()) {
         const p = this.map.unproject([e.point.x, e.point.y]);
         this.mouseMoveHandler.call(
           this,
@@ -223,8 +223,8 @@ export default class Map {
         features: [],
       });
       prevId = null;
-      if (this.countryMouseOutHandler) {
-        this.countryMouseOutHandler.call(this);
+      if (this.zoneMouseOutHandler) {
+        this.zoneMouseOutHandler.call(this);
       }
     });
     this.map.on('click', (e) => {
@@ -345,9 +345,9 @@ export default class Map {
     return this;
   }
 
-  onCountryMouseOut(arg) {
-    if (!arg) return this.countryMouseOutHandler;
-    else this.countryMouseOutHandler = arg;
+  onZoneMouseOut(arg) {
+    if (!arg) return this.zoneMouseOutHandler;
+    else this.zoneMouseOutHandler = arg;
     return this;
   }
 
