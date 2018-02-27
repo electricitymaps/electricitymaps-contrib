@@ -1773,7 +1773,7 @@
   },
   "TW": {
     "capacity": {
-      "hydro_storage": 2602
+      "hydro storage": 2602
     },
     "contributors": [
       "https://github.com/corradio",
