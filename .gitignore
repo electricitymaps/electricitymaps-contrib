@@ -14,8 +14,6 @@ web/node_modules
 /.vs
 Thumbs.db
 mobileapp/*.zip
-package-lock.json
 
 ## Pycharm IDE
 .idea
-
