@@ -1799,6 +1799,9 @@
     },
     "timezone": "Europe/Kiev"
   },
+  "UA-CR": {
+    "timezone": "Europe/Kiev"
+  },
   "US-AK": {
     "flag_file_name": "us.png",
     "timezone": null
