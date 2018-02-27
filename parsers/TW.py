@@ -5,7 +5,7 @@ import pandas
 import dateutil
 
 
-def fetch_production(country_code='TW'):
+def fetch_production(country_code='TW', session=None):
     url = 'http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt'
     response = requests.get(url)
     data = response.json()
