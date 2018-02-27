@@ -422,6 +422,8 @@ const zoneDefinitions = [
   {zoneName: 'TW', type: 'country', id: 'TWN'},
   {zoneName: 'TZ', type: 'country', id: 'TZA'},
   {zoneName: 'UA', type: 'country', id: 'UKR'},
+  // Crimea
+  {zoneName: 'UA-CR', type: 'administrations', administrations: ['RUS-283', 'RUS-5482']},
   {zoneName: 'UG', type: 'country', id: 'UGA'},
   {zoneName: 'UM', type: 'country', id: 'UMI'},
   {zoneName: 'US-AK', countryId: 'USA', stateId: 'US.AK', type: 'state'},
