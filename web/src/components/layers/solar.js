@@ -50,7 +50,7 @@ class SolarLayer {
     map.onDragEnd(() => {
       if (this.hidden) { return; }
       zoomEndTimeout = setTimeout(() => {
-        this.canvas.style.transform = null;
+        this.canvas.style.transform = 'inherit';
         this.initialMapTransform = null;
         this.render();
         zoomEndTimeout = undefined;

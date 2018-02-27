@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 from requests import Session
-from parsers import countrycode
-from parsers import web
-from parsers.lib import IN
+from .lib import countrycode, IN, web
 
 
 def fetch_production(country_code='IN-AP', session=None):

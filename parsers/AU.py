@@ -340,6 +340,13 @@ def fetch_production(country_code=None, session=None):
         'source': 'aremi.nationalmap.gov.au, pv-map.apvi.org.au',
     }
 
+    # It's possible that the csv sometimes contains several timestamps.
+    # https://github.com/tmrowco/electricitymap/issues/704
+    # Find the latest timestamp.
+    timestamps = df['Most Recent Output Time (AEST)'].dropna().values
+    latest_ts = max([arrow.get(x) for x in timestamps.tolist()])
+    data['datetime'] = latest_ts.datetime
+
     for rowIndex, row in df.iterrows():
         station = row['Station Name']
         fuelsource = row['Fuel Source - Descriptor']
@@ -384,6 +391,18 @@ def fetch_production(country_code=None, session=None):
             print(row)
             continue
 
+        # Parse the datetime and check it matches the most recent one.
+        try:
+            plant_timestamp = arrow.get(row['Most Recent Output Time (AEST)']).datetime
+        except (OSError, ValueError):
+            # ignore invalid dates, they might be parsed as NaN
+            continue
+        else:
+            # if plant_timestamp could be parsed successfully,
+            # check plant_timestamp equals latest_timestamp and drop plant otherwise
+            if plant_timestamp != data['datetime']:
+                continue
+
         # Initialize key in data dictionaries if not set
         if key not in data['production']:
             data['production'][key] = 0.0
@@ -395,21 +414,6 @@ def fetch_production(country_code=None, session=None):
         data['production'][key] = max(data['production'][key], 0)
         data['capacity'][key] = max(data['capacity'][key], 0)
 
-        # Parse the datetime and return a python datetime object
-        try:
-            plant_timestamp = arrow.get(row['Most Recent Output Time (AEST)']).datetime
-            # TODO: We should check it's not too old..
-        except (OSError, ValueError):
-            # ignore invalid dates, they might be parsed as NaN
-            continue
-        else:
-            # if plant_timestamp could be parsed successfully,
-            # set to max of plant production timestamp and current max timestamp in dict (if any)
-            current_datetime = data.get('datetime', None)
-            if current_datetime:
-                data['datetime'] = max(plant_timestamp, current_datetime)
-            else:
-                data['datetime'] = plant_timestamp
 
     # find distributed solar production and add it in
     session = session or requests.session()

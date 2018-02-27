@@ -5,7 +5,7 @@ from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
 from reescraper import BalearicIslands
-from parsers.lib.exceptions import ParserException
+from .lib.exceptions import ParserException
 
 
 def fetch_consumption(country_code='ES-IB', session=None):
