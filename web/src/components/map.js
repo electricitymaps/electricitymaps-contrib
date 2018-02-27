@@ -206,7 +206,7 @@ export default class Map {
     this.map.on('mousemove', (e) => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
-      if (this.mouseMoveHandler()) {
+      if (this.mouseMoveHandler) {
         const p = this.map.unproject([e.point.x, e.point.y]);
         this.mouseMoveHandler.call(
           this,
