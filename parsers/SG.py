@@ -3,6 +3,9 @@
 from collections import defaultdict
 
 import arrow
+from PIL import Image
+from pytesseract import image_to_string
+import re
 import requests
 
 TIMEZONE = 'Asia/Singapore'
@@ -56,6 +59,56 @@ TYPE_MAPPINGS = {
     'GT': 'gas',
     'ST': 'unknown'
 }
+
+
+def get_solar(session=None):
+    """
+    Fetches a graphic showing estimated solar production data.
+    Uses OCR (tesseract) to extract MW value.
+    Returns a float or None.
+    """
+
+    s = session or requests.Session()
+    url = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
+    solar_image = Image.open(s.get(url, stream=True).raw)
+
+    gray = solar_image.convert('L')
+    threshold_filter = lambda x: 0 if x<77 else 255
+    black_white = gray.point(threshold_filter, '1')
+
+    text = image_to_string(black_white, lang='eng')
+
+    pattern = r'Est. PV Output: (.*)MWac'
+    val = re.search(pattern, text, re.MULTILINE).group(1)
+
+    time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
+    time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
+    solar_dt = arrow.get(time_string).replace(tzinfo='Asia/Singapore')
+    singapore_dt = arrow.now('Asia/Singapore')
+    diff = singapore_dt - solar_dt
+
+    # Need to be sure we don't get old data if image stops updating.
+    if diff.seconds > 3600:
+        print('Singapore solar data is too old to use.')
+        return None
+
+    # At night format changes from 0.00 to 0
+    # tesseract cannot distinguish singular 0 and O in font provided by image.
+    # This try/except will make sure no invalid data is returned.
+    try:
+        solar = float(val)
+    except ValueError as err:
+        if len(val) == 1 and 'O' in val:
+            solar = 0.0
+        else:
+            print("Singapore solar data is unreadable - got {}.".format(val))
+            solar = None
+    else:
+        if solar > 200.0:
+            print("Singapore solar generation is way over capacity - got {}".format(val))
+            solar = None
+
+    return solar
 
 
 def parse_megawatt_value(val):
@@ -152,6 +205,8 @@ def fetch_production(country_code='SG', session=None):
                 gen_type, gen_percent))
             generation_by_type['unknown'] += gen_mw
 
+    generation_by_type['solar'] = get_solar(session=None)
+
     # some generation methods that are not used in Singapore
     generation_by_type.update({
         'nuclear': 0,
@@ -220,6 +275,5 @@ if __name__ == '__main__':
 
     print('fetch_production() ->')
     print(fetch_production())
-
     print('fetch_price("SG") ->')
     print(fetch_price("SG"))
