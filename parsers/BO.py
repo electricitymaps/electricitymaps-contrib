@@ -144,9 +144,13 @@ def fetch_production(country_code='BO', session=None):
     #    updates ~5mins after the hour so condition 2 will pass.
     valid_data = []
     for datapoint in data:
-        if all([datapoint['production'] is not None,
-                now.datetime > datapoint['datetime'],
-                sum(datapoint['production'].values()) != 0.0]):
+        if datapoint['production'] is None:
+            continue
+        elif now.datetime < datapoint['datetime']:
+            continue
+        elif sum(datapoint['production'].values()) == 0.0:
+            continue
+        else:
             valid_data.append(datapoint)
 
     return valid_data
