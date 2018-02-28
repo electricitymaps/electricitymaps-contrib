@@ -7,7 +7,7 @@ import json
 import requests
 
 mix_url = 'https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType' \
-          '=getfuelmix&returnType=json '
+          '=getfuelmix&returnType=json'
 
 mapping = {'Coal': 'coal',
            'Natural Gas': 'gas',
