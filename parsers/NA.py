@@ -61,7 +61,7 @@ def data_processor(text):
         pattern = re.escape(k) + r": (\d+\.\d\d)"
         try:
             val = re.search(pattern, text).group(1)
-            production[plant_mapping[k]] = float(val)
+            production[plant_mapping[k]] = production.get(plant_mapping[k], 0.0)+ float(val)
         except (AttributeError, ValueError) as e:
             production[plant_mapping[k]] = None
 
