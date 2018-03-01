@@ -41,11 +41,8 @@ def get_text_from_image(link, expected_size, new_size, session=None):
         print("Check Namibia Scada dashboard for {} changes.".format(link))
 
     gray = img.convert('L')
-    threshold_filter = lambda x: 0 if x<79 else 255
-    black_white = gray.point(threshold_filter)
-    bw_enlarged = black_white.resize(new_size, Image.LANCZOS)
-
-    text = image_to_string(bw_enlarged, lang='eng')
+    gray_enlarged = gray.resize(new_size, Image.LANCZOS)
+    text = image_to_string(gray_enlarged, lang='eng')
 
     return text
 
@@ -123,11 +120,13 @@ def exchange_processor(text, exchange):
     """
 
     utility = exchange_mapping[exchange]
+
     try:
         pattern = re.escape(utility) + r": -?(\d+\.\d\d)"
         val = re.search(pattern, text).group(1)
         flow = float(val)
     except (AttributeError, ValueError) as e:
+        print("Exchange {} cannot be read.".format(exchange))
         flow = None
 
     return flow
@@ -150,11 +149,10 @@ def fetch_exchange(country_code1, country_code2, session=None):
     where net flow is from DK into NO
     """
 
-    #Import considered positive in data source.
     sorted_codes = "->".join(sorted([country_code1, country_code2]))
 
     raw_text = get_text_from_image(session=None, link=exchanges_link, \
-                                   expected_size=(400, 195), new_size=(1000, 488))
+                                   expected_size=(400, 195), new_size=(1120, 546))
 
     if sorted_codes == 'NA->ZA':
         flow = exchange_processor(raw_text, 'NA->ZA')
@@ -163,9 +161,13 @@ def fetch_exchange(country_code1, country_code2, session=None):
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
+    #Import considered positive in data source.
+    if flow is not None:
+        flow = -1 * flow
+
     exchange = {'sortedCountryCodes': sorted_codes,
                 'datetime': arrow.now('Africa/Windhoek').datetime,
-                'netFlow': -1 * flow,
+                'netFlow': flow,
                 'source': 'nampower.com.na'
                 }
 
