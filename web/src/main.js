@@ -76,6 +76,10 @@ const ENDPOINT = getState().application.useRemoteEndpoint ?
   REMOTE_ENDPOINT : LOCAL_ENDPOINT;
 
 function dispatchApplication(key, value) {
+  // Do not dispatch unnecessary events
+  if (getState().application[key] === value) {
+    return;
+  }
   return dispatch({
     payload: { key, value },
     type: 'APPLICATION_STATE_UPDATE',
