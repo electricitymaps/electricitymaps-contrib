@@ -70,7 +70,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 ### Real-time electricity data sources
 Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
-
+- Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
 - Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
 - Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
