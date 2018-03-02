@@ -95,7 +95,7 @@ def fetch_production(country_code = 'NA', session=None):
     }
     """
 
-    raw_text = get_text_from_image(session=None, link=generation_link, \
+    raw_text = get_text_from_image(session=session, link=generation_link, \
                                    expected_size=(400, 245), new_size=(1000,612))
 
     production = data_processor(raw_text)
@@ -151,7 +151,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     sorted_codes = "->".join(sorted([country_code1, country_code2]))
 
-    raw_text = get_text_from_image(session=None, link=exchanges_link, \
+    raw_text = get_text_from_image(session=session, link=exchanges_link, \
                                    expected_size=(400, 195), new_size=(1120, 546))
 
     if sorted_codes == 'NA->ZA':
