@@ -438,6 +438,7 @@ let wind, solar, callerLocation;
 
 let histories = {};
 
+// TODO(olc): move logic to redux
 function selectCountry(countryCode, notrack) {
   if (!countries) { return; }
   if (countryCode && countries[countryCode]) {
@@ -630,6 +631,7 @@ function selectCountry(countryCode, notrack) {
     }
 
     // Update contributors
+    // TODO(olc): move to component
     let selector = d3.selectAll('.contributors').selectAll('a')
       .data((zonesConfig[countryCode] || {}).contributors || []);
     let enterA = selector.enter().append('a')
@@ -729,21 +731,6 @@ if (getState().application.windEnabled && !getState().application.selectedCountr
   windColorbar.render();
 if (getState().application.solarEnabled && !getState().application.selectedCountryCode)
   solarColorbar.render();
-
-// Attach event handlers
-function toggleWind() {
-  if (typeof windLayer === 'undefined') { return; }
-  dispatchApplication('windEnabled', !getState().application.windEnabled);
-}
-d3.select('#checkbox-wind').on('change', toggleWind);
-d3.select('.wind-toggle').on('click', toggleWind);
-
-function toggleSolar() {
-  if (typeof solarLayer === 'undefined') { return; }
-  dispatchApplication('solarEnabled', !getState().application.solarEnabled);
-}
-d3.select('#checkbox-solar').on('change', toggleSolar);
-d3.select('.solar-toggle').on('click', toggleSolar);
 
 function mapMouseOver(lonlat) {
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
@@ -1146,15 +1133,6 @@ function fetch(showLoading, callback) {
   });
 };
 
-function fetchAndReschedule() {
-  // TODO(olc): Use `setInterval` instead of `setTimeout`
-  if (!getState().application.customDate) {
-    return fetch(false, () => {
-      setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
-    });
-  }
-}
-
 function redraw() {
   if (getState().application.selectedCountryCode) {
     countryTable.render();
@@ -1173,6 +1151,30 @@ window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
   fetch(false);
 };
+
+
+// *** DISPATCHERS ***
+// Declare and attach all event handlers that will
+// cause events to be emitted
+
+function toggleWind() {
+  if (typeof windLayer === 'undefined') { return; }
+  dispatchApplication('windEnabled', !getState().application.windEnabled);
+}
+d3.select('#checkbox-wind').on('change', toggleWind);
+d3.select('.wind-toggle').on('click', toggleWind);
+
+function toggleSolar() {
+  if (typeof solarLayer === 'undefined') { return; }
+  dispatchApplication('solarEnabled', !getState().application.solarEnabled);
+}
+d3.select('#checkbox-solar').on('change', toggleSolar);
+d3.select('.solar-toggle').on('click', toggleSolar);
+
+
+// *** OBSERVERS ***
+// Declare and attach all listeners that will react
+// to state changes and cause a side-effect
 
 // Observe for navigation
 observe(state => state.application.showPageState, (showPageState) => {
@@ -1254,8 +1256,10 @@ observe(state => state.data.grid, (grid) => {
   }
 });
 
-// Start a fetch showing loading.
-// Later `fetchAndReschedule` won't show loading screen
+// Start a fetch and show loading screen
 fetch(true, () => {
-  setTimeout(fetchAndReschedule, REFRESH_TIME_MINUTES * 60 * 1000);
+  if (!getState().application.customDate) {
+    // Further calls to `fetch` won't show loading screen
+    setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
+  }
 });
