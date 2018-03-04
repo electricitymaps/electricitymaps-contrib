@@ -22,6 +22,7 @@ const initialState = {
 
     // TODO(olc): refactor this state
     showPageState: 'map',
+    previousShowPageState: null,
   },
   data: {
     // Here we will store data items
@@ -45,6 +46,9 @@ module.exports = (state = initialState, action) => {
       // if (key === 'selectedZoneName') {
       //   newState.application.showPageState = value ? 'country' : 'map';
       // }
+      if (key === 'showPageState' && state.application.showPageState !== 'country') {
+        newState.application.previousShowPageState = state.application.showPageState;
+      }
 
       return newState;
     }

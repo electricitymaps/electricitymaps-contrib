@@ -71,7 +71,6 @@ Object.keys(applicationState).forEach((k) => {
 
 // TODO(olc) move those to redux state
 let currentMoment;
-let previousShowPageState;
 let mapDraggedSinceStart = false;
 
 const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
@@ -102,7 +101,7 @@ const app = {
   onBack: function (e) {
     if (getState().application.showPageState !== 'map') {
       dispatchApplication('selectedZoneName', undefined);
-      dispatchApplication('showPageState', previousShowPageState || 'map');
+      dispatchApplication('showPageState', getState().application.previousShowPageState || 'map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -634,17 +633,17 @@ if (typeof countryMap !== 'undefined') {
   countryMap
     .onSeaClick(() => {
       dispatchApplication('selectedZoneName', undefined);
-      dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer
+      dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
     })
     .onCountryClick((d) => {
       dispatchApplication('selectedZoneName', d.countryCode);
-      dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer
+      dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
     });
 }
 d3.selectAll('#left-panel-country-back')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', previousShowPageState || 'map'); // TODO(olc): infer in reducer
+    dispatchApplication('showPageState', getState().application.previousShowPageState || 'map'); // TODO(olc): infer in reducer
   });
 d3.selectAll('#left-panel-highscore-back')
   .on('click', () => { dispatchApplication('showPageState', 'map'); }); // only triggered on large screens
@@ -658,9 +657,6 @@ function showPage(pageName) {
 
   if (pageName === undefined)
     pageName = 'map';
-
-  if (getState().application.showPageState !== 'country')
-    previousShowPageState = getState().application.showPageState;
 
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
