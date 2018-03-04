@@ -5,7 +5,7 @@ const historyState = {};
 
 // Map from querystring key to state key
 const querystringMappings = {
-  countryCode: 'selectedCountryCode',
+  countryCode: 'selectedZoneName',
   datetime: 'customDate',
   page: 'showPageState',
   solar: 'solarEnabled',
@@ -76,4 +76,8 @@ function parseInitial(arg) {
   });
 }
 
-module.exports = { getStateFromHistory, updateHistoryFromState, parseInitial };
+module.exports = {
+  getStateFromHistory,
+  updateHistoryFromState,
+  parseInitial,
+  querystringMappings, };

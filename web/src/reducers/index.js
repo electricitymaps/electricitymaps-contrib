@@ -14,7 +14,8 @@ const initialState = {
     isProduction: window.location.href.indexOf('electricitymap') !== -1,
     isLocalhost,
     locale: window.locale,
-    selectedCountryCode: null,
+    selectedZoneName: null,
+    selectedZoneTimeIndex: null,
     solarEnabled: Cookies.get('solarEnabled') === 'true' || false,
     useRemoteEndpoint: document.domain === '' || isLocalhost,
     windEnabled: Cookies.get('windEnabled') === 'true' || false,
@@ -32,18 +33,6 @@ const initialState = {
 
 module.exports = (state = initialState, action) => {
   switch (action.type) {
-    case 'ZONE_DATA':
-      return Object.assign({}, state, {
-        countryData: Object.assign({}, action.payload),
-        countryDataIndex: 0,
-      });
-
-    case 'SELECT_DATA':
-      return Object.assign({}, state, {
-        countryData: Object.assign({}, action.payload.countryData),
-        countryDataIndex: action.payload.index,
-      });
-
     case 'APPLICATION_STATE_UPDATE': {
       const { key, value } = action.payload;
       const newState = Object.assign({}, state);
@@ -51,9 +40,14 @@ module.exports = (state = initialState, action) => {
       // We need to clone application also.
       newState.application = Object.assign({}, state.application);
       newState.application[key] = value;
+
+      // Disabled for now (see TODO in main.js)
+      // if (key === 'selectedZoneName') {
+      //   newState.application.showPageState = value ? 'country' : 'map';
+      // }
+
       return newState;
     }
-
     case 'GRID_DATA': {
       return Object.assign({}, state, {
         data: Object.assign({}, state.data, {

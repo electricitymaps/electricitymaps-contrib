@@ -1392,6 +1392,21 @@
     },
     "timezone": null
   },
+  "NA": {
+    "capacity": {
+      "hydro": 330,
+      "coal": 120,
+      "oil": 38
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/jarek"
+    ],
+    "parsers": {
+      "production": "NA.fetch_production"
+    },
+    "timezone": null
+  },
   "NI": {
     "capacity": {
       "biomass": 133,
@@ -1660,7 +1675,7 @@
   "RU-AS": {
     "flag_file_name": "ru.png",
     "timezone": null
-  },  
+  },
   "SE": {
     "bounding_box": [
       [

@@ -70,7 +70,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 ### Real-time electricity data sources
 Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
-
+- Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
 - Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
 - Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
@@ -125,6 +125,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
 - Moldova: [MoldElectrica](http://www.moldelectrica.md/ro/activity/system_state)
 - Montenegro: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Namibia: [NamPower](http://www.nampower.com.na/Scada.aspx)
 - Netherlands: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - New Zealand: [Transpower](https://www.transpower.co.nz/power-system-live-data)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
@@ -216,6 +217,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova: [FAS](http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf)
 - Montenegro: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
+- Namibia: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
 - Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Norway
