@@ -44,7 +44,7 @@ const grib = require('./helpers/grib');
 const translation = require('./translation');
 const tooltipHelper = require('./helpers/tooltip');
 
-const { getSymbolFromCurrency } = require('currency-symbol-map');
+const getSymbolFromCurrency = require('currency-symbol-map');
 
 // Configs
 const exchangesConfig = require('../../config/exchanges.json');
