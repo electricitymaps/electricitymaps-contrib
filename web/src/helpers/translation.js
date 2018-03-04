@@ -3,7 +3,7 @@ var exports = module.exports = {};
 // Import all locales
 var locales = {};
 ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'].forEach(function(d) {
-    locales[d] = require('../locales/' + d + '.json');
+    locales[d] = require('../../locales/' + d + '.json');
 })
 var vsprintf = require('sprintf-js').vsprintf;
 

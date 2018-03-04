@@ -2,8 +2,8 @@
 
 const d3 = require('d3-selection');
 
-const flags = require('../flags');
-const translation = require('../translation');
+const flags = require('../helpers/flags');
+const translation = require('../helpers/translation');
 
 const formatting = require('./formatting')
 

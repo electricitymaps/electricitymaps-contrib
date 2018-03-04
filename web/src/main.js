@@ -20,29 +20,32 @@ const d3 = Object.assign(
 const Cookies = require('js-cookie');
 const moment = require('moment');
 
-const thirdPartyServices = require('./services/thirdparty');
 const { dispatch, getState, observe } = require('./store');
 
+// Components
 const AreaGraph = require('./components/areagraph');
 const LineGraph = require('./components/linegraph');
 const CountryTable = require('./components/countrytable');
 const HorizontalColorbar = require('./components/horizontalcolorbar');
 const Tooltip = require('./components/tooltip');
 
-const CountryTopos = require('./countrytopos');
-const DataService = require('./dataservice');
-
+// Layer Components
 const ExchangeLayer = require('./components/layers/exchange');
 const SolarLayer = require('./components/layers/solar');
 const WindLayer = require('./components/layers/wind');
 
-const flags = require('./flags');
+// Services
+const DataService = require('./services/dataservice');
 const LoadingService = require('./services/loadingservice');
+const thirdPartyServices = require('./services/thirdparty');
 
-const HistoryState = require('./helpers/historystate');
+// Helpers
+const CountryTopos = require('./helpers/countrytopos');
+const flags = require('./helpers/flags');
 const grib = require('./helpers/grib');
-const translation = require('./translation');
+const HistoryState = require('./helpers/historystate');
 const tooltipHelper = require('./helpers/tooltip');
+const translation = require('./helpers/translation');
 
 const { getSymbolFromCurrency } = require('currency-symbol-map');
 

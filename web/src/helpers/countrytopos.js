@@ -1,4 +1,4 @@
-const topo = require('./world.json');
+const topo = require('../world.json');
 const topojson = require('topojson');
 
 var exports = module.exports = {};

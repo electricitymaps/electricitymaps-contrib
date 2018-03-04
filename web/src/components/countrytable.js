@@ -10,8 +10,8 @@ const d3 = Object.assign(
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 var moment = require('moment');
 
-var flags = require('../flags');
-var translation = require('../translation');
+var flags = require('../helpers/flags');
+var translation = require('../helpers/translation');
 
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
