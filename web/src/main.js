@@ -640,18 +640,6 @@ if (typeof countryMap !== 'undefined') {
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
     });
 }
-d3.selectAll('#left-panel-country-back')
-  .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.previousShowPageState || 'map'); // TODO(olc): infer in reducer
-  });
-d3.selectAll('#left-panel-highscore-back')
-  .on('click', () => { dispatchApplication('showPageState', 'map'); }); // only triggered on large screens
-d3.selectAll('.highscore-button').on('click', () => {
-  dispatchApplication('showPageState', 'highscore');
-});
-d3.selectAll('.map-button').on('click', () => { dispatchApplication('showPageState', 'map'); });
-d3.selectAll('.info-button').on('click', () => { dispatchApplication('showPageState', 'info'); });
 
 function showPage(pageName) {
 
@@ -1145,6 +1133,7 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
+// Wind
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
   dispatchApplication('windEnabled', !getState().application.windEnabled);
@@ -1152,12 +1141,32 @@ function toggleWind() {
 d3.select('#checkbox-wind').on('change', toggleWind);
 d3.select('.wind-toggle').on('click', toggleWind);
 
+// Solar
 function toggleSolar() {
   if (typeof solarLayer === 'undefined') { return; }
   dispatchApplication('solarEnabled', !getState().application.solarEnabled);
 }
 d3.select('#checkbox-solar').on('change', toggleSolar);
 d3.select('.solar-toggle').on('click', toggleSolar);
+
+// Close button on left-panel
+d3.selectAll('#left-panel-country-back')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', getState().application.previousShowPageState || 'map'); // TODO(olc): infer in reducer
+  });
+
+// Close button on highscore (only triggered on large screens)
+d3.selectAll('#left-panel-highscore-back')
+  .on('click', () => dispatchApplication('showPageState', 'map'));
+
+// Highscore button click
+d3.selectAll('.highscore-button')
+  .on('click', () => dispatchApplication('showPageState', 'highscore'));
+
+// Mobile toolbar buttons
+d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
+d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
 
 
 // *** OBSERVERS ***
