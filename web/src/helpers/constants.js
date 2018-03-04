@@ -14,8 +14,8 @@ const modeColor = {
   'unknown': 'lightgray',
 };
 const modeOrder = [
-  'solar',
   'wind',
+  'solar',
   'hydro',
   'hydro storage',
   'battery storage',

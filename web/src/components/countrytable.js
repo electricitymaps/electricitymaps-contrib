@@ -93,8 +93,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
     var width = this.root.node().getBoundingClientRect().width;
-    if (width == 0)
-        return;
+    if (width === 0) { return; }
+    if (!this._exchangeData) { return; }
 
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
