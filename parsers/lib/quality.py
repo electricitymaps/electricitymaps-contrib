@@ -41,8 +41,9 @@ def validate_production(obj, country_code):
     if (obj.get('production', {}).get('unknown', None) is None and
         obj.get('production', {}).get('coal', None) is None and
         obj.get('production', {}).get('oil', None) is None and
+        obj.get('production', {}).get('gas', None) is None and
         country_code not in ['CH', 'NO', 'AUS-TAS', 'DK-BHM', 'US-NEISO']):
-            raise Exception("Coal or oil or unknown production value is "
+            raise Exception("Coal or oil or gas or unknown production value is "
                             "required for %s" % (country_code))
     for k, v in obj['production'].items():
         if v is None:
