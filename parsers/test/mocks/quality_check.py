@@ -137,7 +137,7 @@ p6 = {
       'production': {
               'biomass': 10.0,
               'coal': None,
-              'gas': 0,
+              'gas': None,
               'hydro': 340.2,
               'nuclear': 2390.0,
               'oil': None,
