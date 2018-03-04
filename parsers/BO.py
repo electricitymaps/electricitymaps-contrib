@@ -66,8 +66,9 @@ def fetch_hourly_production(country_code, obj, date):
         if row['hour'] == 24:
             row['hour'] = 0
             date = arrow.get(date, 'YYYY-MM-DD').shift(days=+1).format('YYYY-MM-DD')
-            #date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
-        data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo, hour=int(row['hour'])).datetime
+            # date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
+        data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo,
+                                                                 hour=int(row['hour'])).datetime
 
         # Fill production types
         for i_type in MAP_GENERATION.keys():
@@ -114,7 +115,8 @@ def fetch_production(country_code='BO', session=None):
     # Define actual and previous day (for midnight data).
     now = arrow.now(tz=tz_bo)
     formatted_date = now.format('YYYY-MM-DD')
-    past_formatted_date = arrow.get(formatted_date, 'YYYY-MM-DD').shift(days=-1).format('YYYY-MM-DD')
+    past_formatted_date = arrow.get(formatted_date, 'YYYY-MM-DD').shift(days=-1).format(
+        'YYYY-MM-DD')
 
     # initial path for url to request
     url_init = 'http://www.cndc.bo/media/archivos/graf/gene_hora/despacho_diario.php?fechag='
@@ -142,10 +144,13 @@ def fetch_production(country_code='BO', session=None):
     #    updates ~5mins after the hour so condition 2 will pass.
     valid_data = []
     for datapoint in data:
-        if all([datapoint['production'] is not None,
-                now.datetime > datapoint['datetime'],
-                sum(datapoint['production'].values()) != 0.0]):
-
+        if datapoint['production'] is None:
+            continue
+        elif now.datetime < datapoint['datetime']:
+            continue
+        elif sum(datapoint['production'].values()) == 0.0:
+            continue
+        else:
             valid_data.append(datapoint)
 
     return valid_data
@@ -169,7 +174,8 @@ def fetch_hourly_generation_forecast(country_code, obj, date):
         if row['hour'] == 24:
             row['hour'] = 0
             date = arrow.get(date, 'YYYY-MM-DD').shift(days=+1).format('YYYY-MM-DD')
-        data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo, hour=int(row['hour'])).datetime
+        data['datetime'] = arrow.get(date, 'YYYY-MM-DD').replace(tzinfo=tz_bo,
+                                                                 hour=int(row['hour'])).datetime
 
         hourly_forecast.append(data)
 

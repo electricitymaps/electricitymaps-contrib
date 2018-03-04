@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+# coding=utf-8
 
 import arrow
+from .lib.validation import validate
 import requests
 import xml.etree.ElementTree as ET
 
@@ -12,15 +14,8 @@ MAP_GENERATION = {
 }
 
 
-def getDataKey(tag):
+def get_data_key(tag):
     return MAP_GENERATION.get(tag, None)
-
-
-def validate_datapoint(d):
-    if d['production'].get('oil', None) is None:
-        return None
-    else:
-        return d
 
 
 def fetch_production(country_code='FO', session=None):
@@ -57,7 +52,7 @@ def fetch_production(country_code='FO', session=None):
         elif item.tag.endswith('Sev_E'):
             # E stands for Energy
             tag = item.tag.replace('Sev_E', '')
-            key = getDataKey(tag)
+            key = get_data_key(tag)
             if not key:
                 continue
             # Power (MW)
@@ -67,12 +62,7 @@ def fetch_production(country_code='FO', session=None):
             # print 'Unhandled key %s' % item.tag
             pass
 
-    # At least 10MW should be produced
-    if sum([v for k, v in data['production'].items()]) < 10:
-        return None
-    # The hydro key should be defined
-    if data['production'].get('hydro', None) is None:
-        return None
+    data = validate(data, required=['hydro'], floor=10.0)
 
     return data
 

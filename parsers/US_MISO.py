@@ -6,7 +6,8 @@ from dateutil import parser, tz
 import json
 import requests
 
-mix_url = 'https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json'
+mix_url = 'https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType' \
+          '=getfuelmix&returnType=json'
 
 mapping = {'Coal': 'coal',
            'Natural Gas': 'gas',

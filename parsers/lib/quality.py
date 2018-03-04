@@ -21,6 +21,8 @@ def validate_exchange(item, k):
                         (item['datetime'], k))
     if arrow.get(item['datetime']) > arrow.now():
         raise Exception("Data from %s can't be in the future" % k)
+    if arrow.get(item['datetime']).year < 2000:
+        raise Exception("Data from %s can't be before year 2000" % k)
 
 
 def validate_production(obj, country_code):

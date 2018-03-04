@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# coding=utf-8
 
 """
 Parser that uses the ENTSOE API to return the following data types.
@@ -47,7 +48,7 @@ ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
-    'AX': '10Y1001A1001A46L', # for price only; Åland has SE-SE3 area price
+    'AX': '10Y1001A1001A46L',  # for price only; Åland has SE-SE3 area price
     'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
@@ -172,7 +173,6 @@ def query_production(psr_type, in_domain, session, now=None):
     if response.ok:
         return response.text
     else:
-        print('Query failed for psr %s' % psr_type)
         check_response(response, query_production.__name__)
 
 
@@ -456,27 +456,27 @@ def validate_production(datapoint):
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
         return values.get('Biomass', 0) + \
-            values.get('Fossil Peat', 0) + \
-            values.get('Waste', 0)
+               values.get('Fossil Peat', 0) + \
+               values.get('Waste', 0)
 
 
 def get_coal(values):
     if 'Fossil Brown coal/Lignite' in values or 'Fossil Hard coal' in values:
         return values.get('Fossil Brown coal/Lignite', 0) + \
-            values.get('Fossil Hard coal', 0)
+               values.get('Fossil Hard coal', 0)
 
 
 def get_gas(values):
     if 'Fossil Coal-derived gas' in values or 'Fossil Gas' in values:
         return values.get('Fossil Coal-derived gas', 0) + \
-            values.get('Fossil Gas', 0)
+               values.get('Fossil Gas', 0)
 
 
 def get_hydro(values):
     if ('Hydro Run-of-river and poundage' in values or
             'Hydro Water Reservoir' in values):
         return values.get('Hydro Run-of-river and poundage', 0) + \
-            values.get('Hydro Water Reservoir', 0)
+               values.get('Hydro Water Reservoir', 0)
 
 
 def get_hydro_storage(storage_values):
@@ -557,14 +557,14 @@ def fetch_production(country_code, session=None, now=None):
         return None
     # Only take fully observed elements
     max_counts = max(map(lambda d: len(production_hashmap[d].keys()),
-        production_dates))
+                         production_dates))
     production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
-        production_dates)
+                              production_dates)
 
     data = []
     for production_date in production_dates:
-
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in production_hashmap[production_date].items()}
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
+                             production_hashmap[production_date].items()}
 
         data.append({
             'countryCode': country_code,

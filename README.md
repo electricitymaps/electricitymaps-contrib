@@ -138,6 +138,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Russia: [SO-UPS](http://br.so-ups.ru/Public/MainPageData/BR/PowerGeneration.aspx)
 - Serbia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Singapore: [EMC](https://www.emcsg.com)
+- Singapore (Solar): [EMA](https://www.ema.gov.sg/solarmap.aspx)
 - Slovakia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Slovenia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Spain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)

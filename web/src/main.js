@@ -840,23 +840,26 @@ function mapMouseOver(lonlat) {
   }
 }
 
+// Only center once
+let hasCenteredMap = false;
 function renderMap() {
   if (typeof countryMap === 'undefined') { return; }
 
-  if (!mapDraggedSinceStart) {
+  if (!mapDraggedSinceStart && !hasCenteredMap) {
     const geolocation = callerLocation;
     const { selectedCountryCode } = getState().application;
     if (selectedCountryCode) {
       const lon = d3.mean(countries[selectedCountryCode].geometry.coordinates[0][0], d => d[0]);
       const lat = d3.mean(countries[selectedCountryCode].geometry.coordinates[0][0], d => d[1]);
-      console.log('Centering on', [lon, lat]);
+      console.log('Centering on selectedCountryCode @', [lon, lat]);
       countryMap.setCenter([lon, lat]);
     } else if (geolocation) {
-      console.log('Centering on', geolocation);
+      console.log('Centering on browser location @', geolocation);
       countryMap.setCenter(geolocation);
     } else {
       countryMap.setCenter([0, 50]);
     }
+    hasCenteredMap = true;
   }
   if (exchangeLayer) {
     exchangeLayer.render();
@@ -912,7 +915,9 @@ function renderMap() {
 let countryListSelector;
 // inform the user the last time the map was updated.
 function setLastUpdated() {
-  currentMoment = (getState().application.customDate && moment(getState().application.customDate) || moment(getState().data.grid.datetime));
+  currentMoment = getState().application.customDate ?
+    moment(getState().application.customDate) :
+    moment((getState().data.grid || {}).datetime);
   d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
   d3.selectAll('.current-datetime-from-now')
     .text(currentMoment.fromNow())
@@ -1061,13 +1066,15 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
       })
-      .onCountryMouseMove((d, i, clientX, clientY, lonlat) => {
+      .onZoneMouseMove((d, i, clientX, clientY) => {
         // TODO: Check that i changed before calling showMapCountry
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
-        mapMouseOver(lonlat);
         countryTooltip.update(clientX, clientY);
       })
-      .onCountryMouseOut((d) => {
+      .onMouseMove((lonlat) => {
+        mapMouseOver(lonlat);
+      })
+      .onZoneMouseOut((d) => {
         if (co2Colorbars)
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
         mapMouseOver(undefined);

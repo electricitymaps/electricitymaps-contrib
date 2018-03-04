@@ -1788,6 +1788,9 @@
     "timezone": "Europe/Istanbul"
   },
   "TW": {
+    "capacity": {
+      "hydro storage": 2602
+    },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/MariusKroon"
@@ -1813,6 +1816,9 @@
     "parsers": {
       "production": "UA.fetch_production"
     },
+    "timezone": "Europe/Kiev"
+  },
+  "UA-CR": {
     "timezone": "Europe/Kiev"
   },
   "US-AK": {

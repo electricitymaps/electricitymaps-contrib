@@ -6,6 +6,7 @@ lxml==3.7.3
 mock==2.0.0
 pandas==0.22.0
 Pillow==4.0.0
+pytesseract==0.2.0
 reescraper==1.6.0
 requests==2.18.4
 requests-mock==1.3.0

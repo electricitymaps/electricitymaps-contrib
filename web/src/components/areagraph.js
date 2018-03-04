@@ -50,7 +50,7 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .x(function(d, i) { return that.x(d.data.datetime); })
         .y0(function(d) { return that.y(d[0]); })
         .y1(function(d) { return that.y(d[1]); })
-        .defined(function(d, i) { return isFinite(d[1]) });
+        .defined(function(d, i) { return isFinite(d[1]); });
 
     // Other variables
     this.modeColor = modeColor;
@@ -81,7 +81,7 @@ AreaGraph.prototype.data = function (arg) {
                 -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')]) :
                 (d.production || {})[k]
             obj[k] = value;
-            if (that._displayByEmissions && obj[k] != null) {
+            if (isFinite(value) && that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
                 if (isStorage && obj[k] >= 0) {
                     obj[k] *= d.dischargeCo2Intensities[k] / 1e3 / 60.0
@@ -94,7 +94,7 @@ AreaGraph.prototype.data = function (arg) {
         d3.entries(d.exchange).forEach(function(o) {
             exchangeKeysSet.add(o.key);
             obj[o.key] = Math.max(0, o.value);
-            if (that._displayByEmissions && obj[o.key] != null) {
+            if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
                 // in tCO2eq/min
                 obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
             }
