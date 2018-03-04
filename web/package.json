@@ -42,22 +42,23 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "ndjson-cli": "^0.3.1",
     "nodemon": "^1.17.1",
     "shapefile": "^0.6.2",
     "style-loader": "^0.20.2",
-    "webpack": "^3.11.0"
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.10"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/tmrowco/electricitymap.git"
   },
   "scripts": {
-    "build-debug": "webpack --bail --progress",
-    "build-release": "NODE_ENV=production webpack --bail",
+    "build-debug": "webpack --bail --progress --mode development",
+    "build-release": "NODE_ENV=production webpack --mode production --bail",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "server-dev": "nodemon server.js",
-    "watch": "webpack --watch --progress"
+    "watch": "webpack --watch --progress --mode development"
   }
 }
