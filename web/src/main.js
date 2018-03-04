@@ -40,7 +40,7 @@ const thirdPartyServices = require('./services/thirdparty');
 
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
-const CountryTopos = require('./helpers/countrytopos');
+const constructTopos = require('./helpers/topos');
 const flags = require('./helpers/flags');
 const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
@@ -376,6 +376,7 @@ d3.select('.country-show-emissions-wrap a#emissions')
 d3.select('.country-show-emissions-wrap a#production')
   .classed('selected', !tableDisplayEmissions);
 
+// TODO(olc): Move to redux
 window.toggleSource = (state) => {
   /* changing whether we display electricity production or carbon emission graphs */
   if (state === undefined) {
@@ -400,7 +401,7 @@ window.toggleSource = (state) => {
 };
 
 // Prepare data
-const countries = CountryTopos.addCountryTopos({});
+const countries = constructTopos();
 // Validate selected country
 if (d3.keys(countries).indexOf(getState().application.selectedCountryCode) === -1) {
   dispatchApplication('selectedCountryCode', undefined);
