@@ -10,8 +10,8 @@ const d3 = Object.assign(
 var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
 var moment = require('moment');
 
-var flags = require('../flags');
-var translation = require('../translation');
+var flags = require('../helpers/flags');
+var translation = require('../helpers/translation');
 
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
@@ -93,8 +93,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
     var width = this.root.node().getBoundingClientRect().width;
-    if (width == 0)
-        return;
+    if (width === 0) { return; }
+    if (!this._exchangeData) { return; }
 
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;

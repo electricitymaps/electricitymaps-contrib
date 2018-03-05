@@ -213,16 +213,16 @@ def _fetch_data(session=None):
     FIFlow = round(float(FIFlow),1)
 
 
-
+    # The shown total consumption is not reliable according to the TSO
     # Consumption
-    Cons = []
-    for x in range(650, 700-6):
-        for abr in shorts:
-            im1 = im.crop((x, 564, x+6, 573))
-            if im1 == mapping[abr]:
-                Cons.append(abr)
-    Cons = "".join(Cons)
-    Cons = round(float(Cons),1)
+    # Cons = []
+    # for x in range(650, 700-6):
+    #    for abr in shorts:
+    #        im1 = im.crop((x, 564, x+6, 573))
+    #        if im1 == mapping[abr]:
+    #            Cons.append(abr)
+    # Cons = "".join(Cons)
+    # Cons = round(float(Cons),1)
 
     # Wind production
     WProd = []
@@ -244,21 +244,24 @@ def _fetch_data(session=None):
     FProd = "".join(FProd)
     FProd = round(float(FProd),1)
     
-    # Flows and consumption do not match
-    # unless the flow to Gustafs is export to Finland
-    FIFlow = FIFlow-GustafsFlow
+    # Both are confirmed to be import from Finland by the TSO
+    FIFlow = FIFlow+GustafsFlow
     
     # Calculate sum of exchanges
     SumExchanges = SE3Flow+FIFlow
     
     # Calculate total production
-    TotProd = Cons-SumExchanges
+    TotProd = FProd+WProd
+    
+    # Calculate total consumption
+    Cons = round(TotProd + SumExchanges,1)
     
     # The production that is not fossil fuel or wind based is unknown
-    UProd = TotProd - WProd - FProd
+    # Impossible to estimate with current data
+    # UProd = TotProd - WProd - FProd
     
     obj = dict({'production':TotProd,'consumption':Cons,'wind':WProd,
-               'fossil':FProd,'unknown':UProd,'SE3->AX':SE3Flow,
+               'fossil':FProd,'SE3->AX':SE3Flow,
                'FI->AX':FIFlow,'fetchtime':fetchtime})
     
     return obj
@@ -303,7 +306,7 @@ def fetch_production(country_code='AX', session=None):
         'source': 'kraftnat.aland.fi',
         'datetime': arrow.get(obj['fetchtime']).datetime
     }
-    data['production']['biomass'] = round(obj['unknown'],1)
+    data['production']['biomass'] = None
     data['production']['coal'] = 0
     data['production']['gas'] = 0
     data['production']['hydro'] = None

@@ -3,7 +3,7 @@ var fs = require('fs');
 var i18n = require('i18n');
 
 // Custom module
-var translation = require(__dirname + '/src/translation');
+var translation = require(__dirname + '/src/helpers/translation');
 
 // duplicated from server.js
 function getHash(key, ext) {

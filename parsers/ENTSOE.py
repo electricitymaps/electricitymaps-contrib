@@ -172,7 +172,6 @@ def query_production(psr_type, in_domain, session, now=None):
     if response.ok:
         return response.text
     else:
-        print('Query failed for psr %s' % psr_type)
         check_response(response, query_production.__name__)
 
 

@@ -3,9 +3,11 @@
 """Parser for the SIC grid region of Chile."""
 
 import arrow
+from bs4 import BeautifulSoup
 from collections import defaultdict
 from datetime import datetime
 import pandas as pd
+import re
 import requests
 
 
@@ -215,24 +217,22 @@ thermal_plants = {
 def get_xls_data(session = None):
     """Finds and reads .xls file from url into a pandas dataframe."""
 
-    cl = arrow.now('Chile/Continental')
-    cl_past = cl.shift(days=-1)
-    date = cl_past.format('YYMMDD')
-    year = cl_past.format('YY')
-
     s = session or requests.Session()
+    document_url = 'https://sic.coordinador.cl/informes-y-documentos/fichas/operacion-real/'
+    req = s.get(document_url)
+    soup = BeautifulSoup(req.text, 'html.parser')
 
-    try:
-        data_url = 'https://sic.coordinador.cl/wp-content/uploads/estadisticas/operdiar/{0}/OP{1}.xls'.format(year, date)
-        req = s.get(data_url)
-        # Test to see if the url exists.
-        req.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        # Go back 2 days if yesterday isn't available.
-        cl_past = cl.shift(days=-2)
-        date = cl_past.format('YYMMDD')
-        year = cl_past.format('YY')
-        data_url = 'https://sic.coordinador.cl/wp-content/uploads/estadisticas/operdiar/{0}/OP{1}.xls'.format(year, date)
+    # Find the latest file.
+    generation_link = soup.find("a", {"title": "Descargar archivo"})
+    extension = generation_link["href"]
+    base_url = "https://sic.coordinador.cl"
+    data_url = base_url + extension
+
+    date_pattern = r'OP(\d+)\.xls'
+    date_str = re.search(date_pattern, extension).group(1)
+
+    date_no_tz = arrow.get(date_str, "YYMMDD")
+    date = date_no_tz.replace(tzinfo='Chile/Continental')
 
     col_names = ['Plants'] + list(range(1,24)) + [0]
     df = pd.read_excel(data_url, skiprows=[0,1,2,3], header=None, index_col=0, skip_footer=300, usecols=25, names=col_names)
@@ -331,8 +331,6 @@ def data_processer(df, date):
     solar_vals = {k: solar[k]*total[k] for k in solar}
     wind_vals = {k: wind[k]*total[k] for k in wind}
 
-    year, month, day = int(date[:2]), int(date[2:4]), int(date[4:])
-
     generation_by_hour = []
     for hour in range(0,24):
         production = {}
@@ -347,9 +345,9 @@ def data_processer(df, date):
 
         if hour == 0:
             # Midnight data is for a new day.
-            dt = arrow.get(datetime(year, month, day+1, hour), 'Chile/Continental')
+            dt = date.shift(days=+1)
         else:
-            dt = arrow.get(datetime(year, month, day, hour), 'Chile/Continental')
+            dt = date.replace(hour=hour)
 
         generation_by_hour.append((dt, production))
 

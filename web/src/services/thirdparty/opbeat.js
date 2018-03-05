@@ -1,5 +1,5 @@
 require('opbeat-js/opbeat.min'); // does not return object
-const store = require('../store');
+const store = require('../../store');
 
 class OpbeatThirdParty {
   constructor() {
