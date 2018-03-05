@@ -701,11 +701,13 @@ def get_hydro(session=None):
     return {'hydro': total_hydro_generation}
 
 
-def fetch_production(country_code='AR', session=None):
+def fetch_production(country_code='AR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
     country_code (optional) -- used in case a parser is able to fetch multiple countries
+    target_datetime: if we want to parser for a specific time and not latest
+    logger: where to log useful information
     Return:
     A dictionary in the form:
     {
@@ -729,6 +731,9 @@ def fetch_production(country_code='AR', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     gdt = get_datetime(session=None)
     thermal = get_thermal(session=None)
     hydro = get_hydro(session=None)

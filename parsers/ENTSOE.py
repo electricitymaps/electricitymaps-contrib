@@ -12,7 +12,7 @@ Day-ahead Price
 Generation Forecast
 Consumption Forecast
 """
-
+import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow
@@ -126,7 +126,7 @@ def check_response(response, function_name):
         raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
 
 
-def query_ENTSOE(session, params, now=None, span=[-48, 24]):
+def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
@@ -134,17 +134,20 @@ def query_ENTSOE(session, params, now=None, span=[-48, 24]):
     Returns a request object.
     """
 
-    if now is None:
-        now = arrow.utcnow()
-    params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
-    params['periodEnd'] = now.replace(hours=+span[1]).format('YYYYMMDDHH00')
+    if target_datetime is None:
+        target_datetime = arrow.utcnow()
+    else:
+        # when querying for a specific datetime, we only look for a small span
+        span = (-1, 1)
+    params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
+    params['periodEnd'] = target_datetime.replace(hours=+span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
-def query_consumption(domain, session, now=None):
+def query_consumption(domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -152,14 +155,14 @@ def query_consumption(domain, session, now=None):
         'processType': 'A16',
         'outBiddingZone_Domain': domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_consumption.__name__)
 
 
-def query_production(psr_type, in_domain, session, now=None):
+def query_production(psr_type, in_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -168,7 +171,7 @@ def query_production(psr_type, in_domain, session, now=None):
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
@@ -508,27 +511,40 @@ def get_unknown(values):
                 values.get('Other', 0))
 
 
-def fetch_consumption(country_code, session=None):
+def fetch_consumption(country_code, session=None, target_datetime=None, logger=None):
     """Gets consumption for a specified zone, returns a dictionary."""
 
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_consumption(query_consumption(domain, session))
+    parsed = parse_consumption(query_consumption(domain, session, target_datetime))
     if parsed:
         quantities, datetimes = parsed
+
+        # if a specific target_datetime was provided, we keep value corresponding to the
+        # closest datetime
+        if target_datetime:
+            min_dist, dt, quantity = np.inf, 0, 0
+            assert len(datetimes) and len(quantities)
+            for current_dt, quant in zip(datetimes, quantities):
+                dist = np.abs(current_dt - arrow.utcnow()).seconds
+                if dist < min_dist:
+                    dt, min_dist, quantity = current_dt, dist, quant
+        else:
+            # else we keep the last stored value
+            dt, quantity = datetimes[-1].datetime, quantities[-1]
         data = {
             'countryCode': country_code,
-            'datetime': datetimes[-1].datetime,
-            'consumption': quantities[-1],
+            'datetime': dt,
+            'consumption': quantity,
             'source': 'entsoe.eu'
         }
 
         return data
 
 
-def fetch_production(country_code, session=None, now=None):
+def fetch_production(country_code, session=None, target_datetime=None, logger=None):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
@@ -543,7 +559,8 @@ def fetch_production(country_code, session=None, now=None):
     production_hashmap = defaultdict(lambda: {})
     # Grab production
     for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(query_production(k, domain, session, now))
+        parsed = parse_production(query_production(k, domain, session,
+                                                   target_datetime=target_datetime))
         if parsed:
             productions, datetimes = parsed
             for i in range(len(datetimes)):
@@ -586,10 +603,23 @@ def fetch_production(country_code, session=None, now=None):
             'source': 'entsoe.eu'
         })
 
-    return list(filter(validate_production, data))
+    to_return = list(filter(validate_production, data))
+
+    if not target_datetime:
+        return to_return
+
+    # if target_datetime was provided, only keep the most relevant
+    if not len(to_return):
+        return None
+    min_dist, return_values = np.inf, {}
+    for values in to_return:
+        dist = np.abs(values['datetime'] - arrow.utcnow())
+        if dist < min_dist:
+            min_dist, return_values = dist, values
+    return [return_values]
 
 
-def fetch_exchange(country_code1, country_code2, session=None, now=None):
+def fetch_exchange(country_code1, country_code2, session=None, now=None, target_datetime=None):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -639,7 +669,7 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
     return data
 
 
-def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None):
+def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None, target_datetime=None):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
@@ -683,7 +713,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     return data
 
 
-def fetch_price(country_code, session=None, now=None):
+def fetch_price(country_code, session=None, now=None, target_datetime=None):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -710,7 +740,7 @@ def fetch_price(country_code, session=None, now=None):
         return data
 
 
-def fetch_generation_forecast(country_code, session=None, now=None):
+def fetch_generation_forecast(country_code, session=None, now=None, target_datetime=None):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
@@ -735,7 +765,7 @@ def fetch_generation_forecast(country_code, session=None, now=None):
         return data
 
 
-def fetch_consumption_forecast(country_code, session=None, now=None):
+def fetch_consumption_forecast(country_code, session=None, now=None, target_datetime=None):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
