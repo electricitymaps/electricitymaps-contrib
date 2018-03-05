@@ -308,7 +308,7 @@ It is very simple to add a new country. The Electricity Map backend runs a list 
 A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
 ```python
-def fetch_production(country_code='FR', session=None):
+def fetch_production(country_code='FR', session=None, target_datetime=None, logger=None):
     return {
       'countryCode': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
@@ -332,6 +332,9 @@ def fetch_production(country_code='FR', session=None):
 ```
 
 The `session` object is a [python request](http://docs.python-requests.org/en/master/) session that you can re-use to make HTTP requests.
+
+`target_datetime` is used to fetch historical data (when available). `logger` is a `logging.Logger`
+whose output is publicly available so that everyone can monitor correct functioning of the parsers.
 
 The production values should never be negative. Use `None`, or omit the key if a specific production mode is not known.
 Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
