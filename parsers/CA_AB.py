@@ -62,7 +62,7 @@ def fetch_production(country_code='CA-AB', session=None, target_datetime=None, l
         assert response.status_code == 200
     except:
         logger.exception('Exception when production price for CA-AB: error when calling '
-                         'url={}'.format(country_code, url))
+                         'url={}'.format(url))
         return
 
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -123,7 +123,7 @@ def fetch_price(country_code='CA-AB', session=None, target_datetime=None, logger
         assert response.status_code == 200
     except:
         logger.exception('Exception when fetching price for CA-AB: error when calling '
-                         'url={}'.format(country_code, url))
+                         'url={}'.format(url))
         return
 
     df_prices = pd.read_html(response.text, match='Price', index_col=0, header=0)
