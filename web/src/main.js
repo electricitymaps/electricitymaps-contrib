@@ -101,7 +101,7 @@ const app = {
   onBack: function (e) {
     if (getState().application.showPageState !== 'map') {
       dispatchApplication('selectedZoneName', undefined);
-      dispatchApplication('showPageState', getState().application.previousShowPageState || 'map');
+      dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -616,87 +616,18 @@ function selectCountry(countryCode, notrack) {
 
     // Update contributors
     // TODO(olc): move to component
-    let selector = d3.selectAll('.contributors').selectAll('a')
+    const selector = d3.selectAll('.contributors').selectAll('a')
       .data((zonesConfig[countryCode] || {}).contributors || []);
-    let enterA = selector.enter().append('a')
+    const enterA = selector.enter().append('a')
       .attr('target', '_blank');
-    let enterImg = enterA.append('img');
+    const enterImg = enterA.append('img');
     enterA.merge(selector)
       .attr('href', d => d);
     enterImg.merge(selector.select('img'))
-      .attr('src', d => d + '.png');
+      .attr('src', d => `${d}.png`);
     selector.exit().remove();
   }
 }
-// Bind
-if (typeof countryMap !== 'undefined') {
-  countryMap
-    .onSeaClick(() => {
-      dispatchApplication('selectedZoneName', undefined);
-      dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
-    })
-    .onCountryClick((d) => {
-      dispatchApplication('selectedZoneName', d.countryCode);
-      dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
-    });
-}
-
-function showPage(pageName) {
-
-  if (pageName === undefined)
-    pageName = 'map';
-
-  // Hide all panels - we will show only the ones we need
-  d3.selectAll('.left-panel > div').style('display', 'none');
-  d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
-
-  // Hide info screen on large screen only
-  d3.selectAll('.left-panel .left-panel-info')
-    // Only show on info or map
-    .style('display', (pageName == 'info' || pageName == 'map') ? undefined : 'none')
-    // but hide for small screens on all but info
-    .classed('large-screen-visible', pageName != 'info');
-
-  // Hide map on small screens
-  // It's important we show the map before rendering it to make sure
-  // sizes are set properly
-  d3.selectAll('#map-container').classed('large-screen-visible', pageName != 'map');
-
-  if (pageName === 'map') {
-    d3.select('.left-panel').classed('large-screen-visible', true);
-    renderMap();
-    if (getState().application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
-    if (getState().application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    if (co2Colorbars) co2Colorbars.forEach(d => { d.render() });
-    if (getState().application.windEnabled && windColorbar) windColorbar.render();
-    if (getState().application.solarEnabled && solarColorbar) solarColorbar.render();
-  }
-  else {
-    d3.select('.left-panel').classed('large-screen-visible', false);
-    d3.selectAll('.left-panel-' + pageName).style('display', undefined);
-    if (pageName == 'country') {
-      
-    } else if (pageName == 'info') {
-      if (co2Colorbars) co2Colorbars.forEach(d => { d.render() });
-      if (getState().application.windEnabled) if (windColorbar) windColorbar.render();
-      if (getState().application.solarEnabled) if (solarColorbar) solarColorbar.render();
-    }
-  }
-
-  d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
-  d3.selectAll('#tab .' + pageName + '-button').classed('active', true);
-}
-
-// Initial routing
-if (getState().application.showPageState) {
-  dispatchApplication('showPageState', getState().application.showPageState);
-}
-
-// Now that the width is set, we can render the legends
-if (getState().application.windEnabled && !getState().application.selectedZoneName)
-  windColorbar.render();
-if (getState().application.solarEnabled && !getState().application.selectedZoneName)
-  solarColorbar.render();
 
 function mapMouseOver(lonlat) {
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
@@ -799,11 +730,14 @@ function renderMap() {
   } else if (typeof solarLayer !== 'undefined') {
     solarLayer.hide();
   }
+
+  // Resize map to make sure it takes all container space
+  countryMap.map.resize();
 }
 
 let countryListSelector;
 
-// inform the user the last time the map was updated.
+// Inform the user the last time the map was updated.
 function setLastUpdated() {
   currentMoment = getState().application.customDate ?
     moment(getState().application.customDate) :
@@ -816,7 +750,8 @@ function setLastUpdated() {
     .duration(800)
     .style('color', undefined);
 }
-setInterval(setLastUpdated, 60000);
+// Re-check every minute
+setInterval(setLastUpdated, 60 * 1000);
 
 // Add search bar with handler
 // TODO(olc): move to component
@@ -868,11 +803,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   // Is there a new version?
   d3.select('#new-version')
     .classed('active', (clientVersion !== getState().application.bundleHash && !getState().application.isLocalhost && !getState().application.isCordova));
-
-  dispatch({
-    payload: state,
-    type: 'GRID_DATA',
-  });
 
   // Reset all data we want to update (for instance, not maxCapacity)
   // TODO(olc): Move this code to a reducer
@@ -1022,8 +952,11 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   if (argWind) wind = argWind;
   if (argSolar) solar = argSolar;
   if (argCallerLocation) callerLocation = argCallerLocation;
-  // Update pages that need to be updated
-  renderMap();
+
+  dispatch({
+    payload: state,
+    type: 'GRID_DATA',
+  });
 
   // Debug
   console.log(countries);
@@ -1109,7 +1042,7 @@ function fetch(showLoading, callback) {
   });
 }
 
-function redraw() {
+window.addEventListener('resize', () => {
   if (getState().application.selectedZoneName) {
     countryTable.render();
     countryHistoryCarbonGraph.render();
@@ -1117,12 +1050,8 @@ function redraw() {
     countryHistoryMixGraph.render();
   }
   co2Colorbars.forEach((d) => { d.render(); });
-}
-
-
-window.addEventListener('resize', () => {
-  redraw();
 });
+// Only for debugging purposes
 window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
   fetch(false);
@@ -1153,7 +1082,7 @@ d3.select('.solar-toggle').on('click', toggleSolar);
 d3.selectAll('#left-panel-country-back')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.previousShowPageState || 'map'); // TODO(olc): infer in reducer
+    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
   });
 
 // Close button on highscore (only triggered on large screens)
@@ -1167,6 +1096,20 @@ d3.selectAll('.highscore-button')
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+
+// Map click
+// TODO(olc): make sure to assign even if map is not ready yet
+if (typeof countryMap !== 'undefined') {
+  countryMap
+    .onSeaClick(() => {
+      dispatchApplication('selectedZoneName', undefined);
+      dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
+    })
+    .onCountryClick((d) => {
+      dispatchApplication('selectedZoneName', d.countryCode);
+      dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
+    });
+}
 
 
 // *** OBSERVERS ***
@@ -1210,15 +1153,54 @@ function renderCountryTable(state) {
     countryTable.data(d).render(true);
   }
 }
+function routeToPage(pageName, state) {
+  // Hide all panels - we will show only the ones we need
+  d3.selectAll('.left-panel > div').style('display', 'none');
+  d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
+
+  // Hide info screen on large screen only
+  d3.selectAll('.left-panel .left-panel-info')
+    // Only show on info or map
+    .style('display', (pageName === 'info' || pageName === 'map') ? undefined : 'none')
+    // but hide for small screens on all but info
+    .classed('large-screen-visible', pageName !== 'info');
+
+  // Hide map on small screens
+  // It's important we show the map before rendering it to make sure
+  // sizes are set properly
+  d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
+
+  if (pageName === 'map') {
+    d3.select('.left-panel').classed('large-screen-visible', true);
+    renderMap();
+    if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
+    if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
+    if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
+    if (state.application.windEnabled && windColorbar) windColorbar.render();
+    if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
+  } else {
+    d3.select('.left-panel').classed('large-screen-visible', false);
+    d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
+    if (pageName === 'info') {
+      if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
+      if (state.application.windEnabled) if (windColorbar) windColorbar.render();
+      if (state.application.solarEnabled) if (solarColorbar) solarColorbar.render();
+    }
+  }
+
+  d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
+  d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
+}
 
 // Observe for grid change
 observe(state => state.data.grid, (grid, state) => {
   renderCountryTable(state);
   renderGauges(state);
+  renderMap();
 });
 // Observe for page change
-observe(state => state.application.showPageState, (showPageState) => {
-  if (showPage) { showPage(showPageState); }
+observe(state => state.application.showPageState, (showPageState, state) => {
+  routeToPage(showPageState, state);
 });
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (k, state) => {
