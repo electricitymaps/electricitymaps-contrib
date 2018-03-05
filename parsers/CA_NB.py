@@ -40,7 +40,7 @@ def _get_new_brunswick_flows(requests_obj):
     return flows
 
 
-def fetch_production(country_code='CA-NB', session=None):
+def fetch_production(country_code='CA-NB', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -101,7 +101,7 @@ def fetch_production(country_code='CA-NB', session=None):
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:

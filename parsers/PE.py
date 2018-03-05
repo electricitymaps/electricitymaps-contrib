@@ -25,7 +25,7 @@ def parse_date(item):
     return arrow.get(item['Nombre'], 'M/D/YYYY h:mm:ss A').replace(tzinfo=dateutil.tz.gettz(tz))
 
 
-def fetch_production(country_code='PE', session=None):
+def fetch_production(country_code='PE', session=None, target_datetime=None, logger=None):
     r = session or requests.session()
     url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
     response = r.post(url, data={

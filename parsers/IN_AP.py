@@ -4,7 +4,7 @@ from requests import Session
 from .lib import countrycode, IN, web
 
 
-def fetch_production(country_code='IN-AP', session=None):
+def fetch_production(country_code='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh  production"""
     countrycode.assert_country_code(country_code, 'IN-AP')
 
@@ -48,7 +48,7 @@ def fetch_production(country_code='IN-AP', session=None):
     return data
 
 
-def fetch_consumption(country_code='IN-AP', session=None):
+def fetch_consumption(country_code='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh consumption"""
     countrycode.assert_country_code(country_code, 'IN-AP')
 

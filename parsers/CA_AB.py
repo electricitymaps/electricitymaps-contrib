@@ -21,7 +21,7 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def fetch_production(country_code='CA-AB', session=None):
+def fetch_production(country_code='CA-AB', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -51,9 +51,20 @@ def fetch_production(country_code='CA-AB', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
-    response = r.get(url)
+
+    try:
+        response = r.get(url)
+        assert response.status_code == 200
+    except:
+        logger.exception('Exception when production price for CA-AB: error when calling '
+                         'url={}'.format(country_code, url))
+        return
+
     soup = BeautifulSoup(response.content, 'html.parser')
     findtime = soup.find('td', text=re.compile('Last Update')).get_text()
     time_string = findtime.split(':', 1)[1]
@@ -84,7 +95,7 @@ def fetch_production(country_code='CA-AB', session=None):
     }
 
 
-def fetch_price(country_code='CA-AB', session=None):
+def fetch_price(country_code='CA-AB', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
@@ -101,10 +112,20 @@ def fetch_price(country_code='CA-AB', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/'
-    response = r.get(url)
+
+    try:
+        response = r.get(url)
+        assert response.status_code == 200
+    except:
+        logger.exception('Exception when fetching price for CA-AB: error when calling '
+                         'url={}'.format(country_code, url))
+        return
+
     df_prices = pd.read_html(response.text, match='Price', index_col=0, header=0)
     prices = df_prices[1]
 
@@ -125,7 +146,7 @@ def fetch_price(country_code='CA-AB', session=None):
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None):
+def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:

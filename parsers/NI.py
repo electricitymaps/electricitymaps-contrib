@@ -189,7 +189,7 @@ def get_production_from_summary(requests_obj):
     return production, datetime_datetime
 
 
-def fetch_production(country_code='NI', session=None):
+def fetch_production(country_code='NI', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of Nicaragua.
 
     Arguments:
@@ -223,7 +223,7 @@ def fetch_production(country_code='NI', session=None):
     return validate(data, expected_range=(86.6, 2165))
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
@@ -281,7 +281,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     return data
 
 
-def fetch_price(country_code='NI', session=None):
+def fetch_price(country_code='NI', session=None, target_datetime=None, logger=None):
     """Requests the most recent known power prices in Nicaragua grid
 
     Arguments:

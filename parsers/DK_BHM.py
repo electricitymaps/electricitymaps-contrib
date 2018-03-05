@@ -19,7 +19,7 @@ def _fetch_data(session=None):
     return obj
 
 
-def fetch_production(country_code='DK-BHM', session=None):
+def fetch_production(country_code='DK-BHM', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -64,7 +64,7 @@ def fetch_production(country_code='DK-BHM', session=None):
     return data
 
 
-def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None):
+def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:

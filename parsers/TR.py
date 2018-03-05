@@ -54,7 +54,7 @@ def get_last_data_idx(productions):
     return len(productions) - 1  # full day
 
 
-def fetch_production(country_code='TR', session=None):
+def fetch_production(country_code='TR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:

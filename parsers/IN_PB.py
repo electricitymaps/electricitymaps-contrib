@@ -26,7 +26,7 @@ def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_fo
     return get(date_time, date_format)
 
 
-def fetch_production(country_code='IN-PB', session=None):
+def fetch_production(country_code='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab production"""
     countrycode.assert_country_code(country_code, 'IN-PB')
     response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
@@ -80,7 +80,7 @@ def fetch_production(country_code='IN-PB', session=None):
     return data
 
 
-def fetch_consumption(country_code='IN-PB', session=None):
+def fetch_consumption(country_code='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab consumption"""
     countrycode.assert_country_code(country_code, 'IN-PB')
     response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',

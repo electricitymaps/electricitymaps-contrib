@@ -6,7 +6,7 @@ from .lib import countrycode
 from .lib import IN
 
 
-def fetch_consumption(country_code='IN-DL', session=None):
+def fetch_consumption(country_code='IN-DL', session=None, target_datetime=None, logger=None):
     """Fetch Delhi consumption"""
     countrycode.assert_country_code(country_code, 'IN-DL')
     html = web.get_response_soup(country_code, 'http://www.delhisldc.org/Redirect.aspx', session)
@@ -25,7 +25,7 @@ def fetch_consumption(country_code='IN-DL', session=None):
     return data
 
 
-def fetch_production(country_code='IN-DL', session=None):
+def fetch_production(country_code='IN-DL', session=None, target_datetime=None, logger=None):
     """Fetch Delhi production"""
     countrycode.assert_country_code(country_code, 'IN-DL')
 

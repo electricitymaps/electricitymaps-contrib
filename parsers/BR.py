@@ -52,11 +52,17 @@ countries_exchange = {
 }
 
 
-def get_data(session=None):
+def get_data(session, logger):
     """Requests generation data in json format."""
 
     s = session or requests.session()
-    json_data = s.get(url).json()
+
+    try:
+        json_data = s.get(url).json()
+    except:
+        logger.exception('Exception when fetching data for BR: error when calling '
+                         'url={}'.format(url))
+        return
 
     return json_data
 
@@ -96,7 +102,7 @@ def production_processor(json_data, country_code):
     return dt, mapped_totals
 
 
-def fetch_production(country_code, session=None):
+def fetch_production(country_code, session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -125,8 +131,10 @@ def fetch_production(country_code, session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    gd = get_data()
+    gd = get_data(session, logger)
     generation = production_processor(gd, country_code)
 
     datapoint = {
@@ -142,7 +150,7 @@ def fetch_production(country_code, session=None):
     return datapoint
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
     Arguments:
     country_code1           -- the first country code
@@ -158,8 +166,10 @@ def fetch_exchange(country_code1, country_code2, session=None):
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    gd = get_data()
+    gd = get_data(session, logger)
 
     if country_code1 in countries_exchange.keys():
         country_exchange = countries_exchange[country_code1]
@@ -177,7 +187,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     return data
 
 
-def fetch_region_exchange(region1, region2, session=None):
+def fetch_region_exchange(region1, region2, session=None, target_datetime=None, logger=None):
     """
     Requests the last known power exchange (in MW) between two Brazilian regions.
     Arguments:
@@ -194,8 +204,10 @@ def fetch_region_exchange(region1, region2, session=None):
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    gd = get_data()
+    gd = get_data(session, logger)
     dt = arrow.get(gd['Data']).datetime
     scc = '->'.join(sorted([region1, region2]))
 

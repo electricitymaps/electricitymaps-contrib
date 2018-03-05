@@ -72,7 +72,7 @@ def parse_page(session):
     return obj
 
 
-def fetch_production(country_code='UY', session=None):
+def fetch_production(country_code='UY', session=None, target_datetime=None, logger=None):
     obj = parse_page(session)
 
     data = {
@@ -85,7 +85,7 @@ def fetch_production(country_code='UY', session=None):
     return data
 
 
-def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None):
+def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:

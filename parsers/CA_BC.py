@@ -11,7 +11,7 @@ import requests
 timezone = 'Canada/Pacific'
 
 
-def fetch_exchange(country_code1=None, country_code2=None, session=None):
+def fetch_exchange(country_code1=None, country_code2=None, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:

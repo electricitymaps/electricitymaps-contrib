@@ -28,7 +28,7 @@ def time_string_converter(ts):
     return dt_aware
 
 
-def fetch_production(country_code='BG', session=None):
+def fetch_production(country_code='BG', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -58,6 +58,8 @@ def fetch_production(country_code='BG', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://www.eso.bg/?did=124'
@@ -69,7 +71,9 @@ def fetch_production(country_code='BG', session=None):
         time_div = soup.find("div", {"class": "dashboardCaptionDiv"})
         bold = time_div.find('b')
     except AttributeError:
-        raise LookupError('No data currently available for Bulgaria.')
+        message = 'No data currently available for Bulgaria.'
+        logger.exception('Exception while fetching production of BG: {}'.format(message))
+        raise LookupError(message)
 
     time_string = bold.string
     dt = time_string_converter(time_string)

@@ -182,7 +182,7 @@ def net_flow(interconnections, flows):
     return netflow
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """
     Gets an exchange pair from the SIEPAC system.
     Return:

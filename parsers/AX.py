@@ -8,6 +8,7 @@ import requests
 import numpy as np
 from PIL import Image
 
+
 def _get_masks(session=None):
     Minus = np.array([[[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255], [255, 255, 255], [255, 255, 255],[255, 255, 255],[255, 255, 255]],
@@ -147,14 +148,11 @@ def _get_masks(session=None):
     return dict(zip(shorts,masks))
     
 
-
 def _fetch_data(session=None):
     # Load masks for reading numbers from the image
     # Create a dictionary of symbols and their pixel masks
     mapping = _get_masks(session)
-    
 
-    
     # Download the updating image from Kraftnät Åland
     r = session or requests.session()
     
@@ -267,7 +265,7 @@ def _fetch_data(session=None):
     return obj
 
 
-def fetch_production(country_code='AX', session=None):
+def fetch_production(country_code='AX', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -297,6 +295,9 @@ def fetch_production(country_code='AX', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = _fetch_data(session)
 
     data = {
@@ -319,7 +320,11 @@ def fetch_production(country_code='AX', session=None):
     
     return data
 
-def fetch_consumption(country_code='AX', session=None):
+
+def fetch_consumption(country_code='AX', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = _fetch_data(session)
     
     data = {
@@ -331,7 +336,8 @@ def fetch_consumption(country_code='AX', session=None):
     
     return data
 
-def fetch_exchange(country_code1, country_code2, session=None):
+
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
@@ -347,6 +353,8 @@ def fetch_exchange(country_code1, country_code2, session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     obj = _fetch_data(session)
 

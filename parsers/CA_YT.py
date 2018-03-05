@@ -8,7 +8,7 @@ import requests
 timezone = 'Canada/Pacific'
 
 
-def fetch_production(country_code='CA-YT', session=None):
+def fetch_production(country_code='CA-YT', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given region
 
     Arguments:

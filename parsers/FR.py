@@ -20,7 +20,7 @@ MAP_STORAGE = {
 }
 
 
-def fetch_production(country_code='FR', session=None):
+def fetch_production(country_code='FR', session=None, target_datetime=None, logger=None):
     r = session or requests.session()
     formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=mix&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)

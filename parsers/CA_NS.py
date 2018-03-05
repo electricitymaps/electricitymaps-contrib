@@ -62,7 +62,7 @@ def _get_ns_info(requests_obj):
     return production, imports
 
 
-def fetch_production(country_code='CA-NS', session=None):
+def fetch_production(country_code='CA-NS', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -99,7 +99,7 @@ def fetch_production(country_code='CA-NS', session=None):
     return production
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions.
 
     Note: As of early 2017, Nova Scotia only has an exchange with New Brunswick (CA-NB).

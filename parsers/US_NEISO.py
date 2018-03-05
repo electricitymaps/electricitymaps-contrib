@@ -87,7 +87,7 @@ def data_processer(raw_data):
     return sorted(clean_data)
 
 
-def fetch_production(country_code='US-NEISO', session=None):
+def fetch_production(country_code='US-NEISO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:

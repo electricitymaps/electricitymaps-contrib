@@ -48,7 +48,7 @@ def fetch_hourly_production(country_code, obj, hour, date):
     return data
 
 
-def fetch_production(country_code='GT', session=None):
+def fetch_production(country_code='GT', session=None, target_datetime=None, logger=None):
     # Define actual and last day (for midnight data)
     now = arrow.now(tz=tz_gt)
     formatted_date = now.format('DD/MM/YYYY')
@@ -103,7 +103,7 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
     return data
 
 
-def fetch_consumption(country_code='GT', session=None):
+def fetch_consumption(country_code='GT', session=None, target_datetime=None, logger=None):
     # Define actual and last day (for midnight data)
     now = arrow.now(tz=tz_gt)
     formatted_date = now.format('DD/MM/YYYY')

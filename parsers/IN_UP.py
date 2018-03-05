@@ -66,7 +66,7 @@ def fetch_data(country_code='IN-UP', session=None):
     return value_map
 
 
-def fetch_production(country_code, session=None):
+def fetch_production(country_code, session=None, target_datetime=None, logger=None):
     """
     Method to get production data of Uttar Pradesh
     :param country_code:
@@ -89,7 +89,7 @@ def fetch_production(country_code, session=None):
     return data
 
 
-def fetch_consumption(country_code, session=None):
+def fetch_consumption(country_code, session=None, target_datetime=None, logger=None):
     """
     Method to get consumption data of Uttar Pradesh
     :param country_code

@@ -18,7 +18,7 @@ def get_data_key(tag):
     return MAP_GENERATION.get(tag, None)
 
 
-def fetch_production(country_code='FO', session=None):
+def fetch_production(country_code='FO', session=None, target_datetime=None, logger=None):
     r = session or requests.session()
     url = 'https://w3.sev.fo/hagtol/xml/xkiefjSDKFjeijgjdkjf3847tgfjlkfdgnlsnfvm.xml'
     response = r.get(url)

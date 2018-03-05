@@ -217,7 +217,7 @@ def merge_production(thermal_data, wind_data):
     return joined_data
 
 
-def fetch_production(country_code='GB-NIR', session=None):
+def fetch_production(country_code='GB-NIR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
         Arguments:
@@ -275,7 +275,7 @@ def fetch_production(country_code='GB-NIR', session=None):
     return production_mix_by_quarter_hour
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
     country_code (optional) -- used in case a parser is able to fetch multiple countries

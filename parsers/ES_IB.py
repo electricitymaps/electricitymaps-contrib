@@ -8,7 +8,7 @@ from reescraper import BalearicIslands
 from .lib.exceptions import ParserException
 
 
-def fetch_consumption(country_code='ES-IB', session=None):
+def fetch_consumption(country_code='ES-IB', session=None, target_datetime=None, logger=None):
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
     if not responses:
@@ -29,7 +29,7 @@ def fetch_consumption(country_code='ES-IB', session=None):
         return data
 
 
-def fetch_production(country_code='ES-IB', session=None):
+def fetch_production(country_code='ES-IB', session=None, target_datetime=None, logger=None):
 
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
@@ -68,7 +68,7 @@ def fetch_production(country_code='ES-IB', session=None):
         return data
 
 
-def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None):
+def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None, target_datetime=None, logger=None):
 
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()

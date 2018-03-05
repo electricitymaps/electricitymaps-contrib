@@ -132,7 +132,7 @@ def data_processer(data):
     return mapped_data
 
 
-def fetch_production(country_code='SV', session=None):
+def fetch_production(country_code='SV', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:

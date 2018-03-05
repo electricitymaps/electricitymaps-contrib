@@ -107,7 +107,7 @@ def data_processer(data):
     return clean_data
 
 
-def fetch_production(country_code='CL-SING', session=None):
+def fetch_production(country_code='CL-SING', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:

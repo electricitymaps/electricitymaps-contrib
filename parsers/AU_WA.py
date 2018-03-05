@@ -14,7 +14,7 @@ timezone = 'Australia/Perth'
 HOURS_TO_GET = 24
 
 
-def fetch_production(country_code='AUS-WA', session=None):
+def fetch_production(country_code='AUS-WA', session=None, target_datetime=None, logger=None):
     session = session or requests.session()
 
     # explicitly request last 24 hours, to work around daybreaks in solar API

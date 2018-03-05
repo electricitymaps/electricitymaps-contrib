@@ -29,7 +29,7 @@ exchange_ids = {'CN->RU-AS': "764",
 tz = 'Europe/Moscow'
 
 
-def fetch_production(country_code='RU', session=None):
+def fetch_production(country_code='RU', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -110,7 +110,7 @@ def fetch_production(country_code='RU', session=None):
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     country_code1           -- the first country code

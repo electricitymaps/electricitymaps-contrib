@@ -79,7 +79,7 @@ def data_parser(df):
     return mapped_generation
 
 
-def fetch_production(country_code='US-NY', session=None):
+def fetch_production(country_code='US-NY', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -129,7 +129,7 @@ def fetch_production(country_code='US-NY', session=None):
     return production_mix
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     country_code1           -- the first country code

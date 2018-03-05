@@ -514,7 +514,7 @@ def webparser(req):
     return data_table
 
 
-def fetch_price(country_code='AR', session=None):
+def fetch_price(country_code='AR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known power price of a given country
     Arguments:

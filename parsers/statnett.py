@@ -74,7 +74,7 @@ exchanges_mapping = {
 }
 
 
-def fetch_production(country_code='SE', session=None):
+def fetch_production(country_code='SE', session=None, target_datetime=None, logger=None):
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview?timestamp=%d' % timestamp

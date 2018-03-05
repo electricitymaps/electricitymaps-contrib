@@ -276,7 +276,7 @@ def merge_production(thermal, total):
     return final
 
 
-def fetch_production(country_code='DO', session=None):
+def fetch_production(country_code='DO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:

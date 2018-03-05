@@ -152,7 +152,7 @@ def df_to_data(country_code, day, df):
     return data
 
 
-def fetch_production(country_code='CR', session=None):
+def fetch_production(country_code='CR', session=None, target_datetime=None, logger=None):
     # Do not use existing session as some amount of cache is taking place
     r = requests.session()
     url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
@@ -185,7 +185,7 @@ def fetch_production(country_code='CR', session=None):
     return production
 
 
-def fetch_exchange(country_code1='CR', country_code2='NI', session=None):
+def fetch_exchange(country_code1='CR', country_code2='NI', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:

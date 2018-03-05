@@ -110,7 +110,7 @@ def data_processer(rawdata):
     return converted_time_string, dict(generationDict)
 
 
-def fetch_production(country_code='MY-WM', session=None):
+def fetch_production(country_code='MY-WM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:

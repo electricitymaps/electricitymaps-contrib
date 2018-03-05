@@ -50,7 +50,7 @@ def fetch_island_data(country_code, session):
         raise ParserException(country_code, 'Can\'t read this country code {0}'.format(country_code))
 
 
-def fetch_consumption(country_code='ES-CN', session=None):
+def fetch_consumption(country_code='ES-CN', session=None, target_datetime=None, logger=None):
     ses = session or Session()
     island_data = fetch_island_data(country_code, ses)
     data = []
@@ -67,7 +67,7 @@ def fetch_consumption(country_code='ES-CN', session=None):
     return data
 
 
-def fetch_production(country_code, session=None):
+def fetch_production(country_code, session=None, target_datetime=None, logger=None):
     ses = session or Session()
     island_data = fetch_island_data(country_code, ses)
     data = []

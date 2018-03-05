@@ -19,7 +19,9 @@ MAP_GENERATION = {
 
 
 def webparser(resp):
-    """Takes content from the corresponding webpage and returns the necessary outputs in a dataframe"""
+    """
+    Takes content from the corresponding webpage and returns the necessary outputs in a dataframe
+    """
     # get the response as an html
     soup = BeautifulSoup(resp.text, 'html.parser')
     # Each variable correspond to a row
@@ -83,7 +85,7 @@ def fetch_hourly_production(country_code, obj, date):
     return production_by_hour
 
 
-def fetch_production(country_code='BO', session=None):
+def fetch_production(country_code='BO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -111,6 +113,8 @@ def fetch_production(country_code='BO', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # Define actual and previous day (for midnight data).
     now = arrow.now(tz=tz_bo)
@@ -182,7 +186,10 @@ def fetch_hourly_generation_forecast(country_code, obj, date):
     return hourly_forecast
 
 
-def fetch_generation_forecast(country_code='BO', session=None):
+def fetch_generation_forecast(country_code='BO', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     # Define actual and last day (for midnight data)
     formatted_date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
 
@@ -191,7 +198,15 @@ def fetch_generation_forecast(country_code='BO', session=None):
     url = url_init + formatted_date
 
     r = session or requests.session()
-    response = r.get(url)
+
+    try:
+        response = r.get(url)
+        assert response.status_code == 200
+    except:
+        logger.exception('Exception when fetching price for {}: error when calling '
+                         'url={}'.format(country_code, url))
+        return
+
     obj = webparser(response)
     forecast = fetch_hourly_generation_forecast('BO', obj, formatted_date)
 

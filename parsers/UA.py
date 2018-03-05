@@ -32,7 +32,7 @@ MAP_STORAGE = {
 tz = 'Europe/Kiev'
 
 
-def fetch_production(country_code='UA', session=None):
+def fetch_production(country_code='UA', session=None, target_datetime=None, logger=None):
     r = session or requests.session()
 
     data = []

@@ -29,7 +29,7 @@ def _get_pei_info(requests_obj):
     return data
 
 
-def fetch_production(country_code='CA-PE', session=None):
+def fetch_production(country_code='CA-PE', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -87,7 +87,7 @@ def fetch_production(country_code='CA-PE', session=None):
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:

@@ -72,7 +72,7 @@ def fetch_data(country_code, session = None):
     return value_map
 
 
-def fetch_production(country_code='IN-GJ', session=None):
+def fetch_production(country_code='IN-GJ', session=None, target_datetime=None, logger=None):
     """
     Method to get production data of Gujarat
     :param country_code:
@@ -105,7 +105,7 @@ def fetch_production(country_code='IN-GJ', session=None):
     return data
 
 
-def fetch_consumption(country_code='IN-GJ', session=None):
+def fetch_consumption(country_code='IN-GJ', session=None, target_datetime=None, logger=None):
     """
     Method to get consumption data of Gujarat
     :param country_code:

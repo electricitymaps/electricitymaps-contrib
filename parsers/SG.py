@@ -159,7 +159,7 @@ def sg_data_to_datetime(data):
     return data_datetime
 
 
-def fetch_production(country_code='SG', session=None):
+def fetch_production(country_code='SG', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of Singapore.
 
     Arguments:
@@ -223,7 +223,7 @@ def fetch_production(country_code='SG', session=None):
     }
 
 
-def fetch_price(country_code='SG', session=None):
+def fetch_price(country_code='SG', session=None, target_datetime=None, logger=None):
     """Requests the most recent known power prices in Singapore (USEP).
 
     See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.

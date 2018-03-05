@@ -19,7 +19,7 @@ MAP_GENERATION = {
 timezone = 'Canada/Eastern'
 
 
-def fetch_production(country_code='CA-ON', session=None):
+def fetch_production(country_code='CA-ON', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -81,7 +81,7 @@ def fetch_production(country_code='CA-ON', session=None):
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_price(country_code='CA-ON', session=None):
+def fetch_price(country_code='CA-ON', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
@@ -132,7 +132,7 @@ def fetch_price(country_code='CA-ON', session=None):
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
