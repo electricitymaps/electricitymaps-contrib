@@ -40,7 +40,6 @@ const thirdPartyServices = require('./services/thirdparty');
 
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
-const constructTopos = require('./helpers/topos');
 const flags = require('./helpers/flags');
 const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
@@ -51,7 +50,6 @@ const translation = require('./helpers/translation');
 const { getSymbolFromCurrency } = require('currency-symbol-map');
 
 // Configs
-const exchangesConfig = require('../../config/exchanges.json');
 const zonesConfig = require('../../config/zones.json');
 
 // Timing
@@ -242,7 +240,7 @@ try {
         .onExchangeClick((d) => {
           console.log(d);
         })
-        .setData(Object.values(exchanges))
+        .setData(Object.values(getState().data.grid.exchanges))
         .render();
       LoadingService.stopLoading('#loading');
       LoadingService.stopLoading('#small-loading');
@@ -393,40 +391,6 @@ window.toggleSource = (state) => {
   );
 };
 
-// Prepare data
-const countries = constructTopos();
-// Validate selected country
-if (d3.keys(countries).indexOf(getState().application.selectedZoneName) === -1) {
-  dispatchApplication('selectedZoneName', undefined);
-  if (getState().application.showPageState === 'country') {
-    dispatchApplication('showPageState', 'map');
-  }
-}
-// Assign data
-if (typeof countryMap !== 'undefined') { countryMap.setData(d3.values(countries)); }
-// Add configurations
-d3.entries(zonesConfig).forEach(d => {
-  const zone = countries[d.key];
-  if (!zone) {
-    console.warn('Zone ' + d.key + ' from configuration is not found. Ignoring..');
-    return;
-  }
-  // copy each zone attributes ("capacity", "contributors"...) into global object
-  d3.entries(d.value).forEach((o) => { zone[o.key] = o.value; });
-  zone.shortname = translation.translate('zoneShortName.' + d.key);
-});
-// Add id to each zone
-d3.entries(countries).forEach(d => {
-  let zone = countries[d.key];
-  zone.countryCode = d.key; // TODO: Rename to zoneId
-});
-let exchanges = exchangesConfig;
-d3.entries(exchanges).forEach((entry) => {
-  entry.value.countryCodes = entry.key.split('->').sort();
-  if (entry.key.split('->')[0] != entry.value.countryCodes[0])
-    console.error('Exchange sorted key pair ' + entry.key + ' is not sorted alphabetically');
-});
-
 let wind, solar, callerLocation;
 
 let histories = {};
@@ -434,6 +398,7 @@ let histories = {};
 // TODO(olc): move logic to observer handling code
 // as `selectCountry` is already called from the observer.
 function selectCountry(countryCode, notrack) {
+  const countries = getState().data.grid.zones;
   if (!countries) { return; }
   if (countryCode && countries[countryCode]) {
     // Selected
@@ -784,130 +749,19 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   params.embeddedUri = params.isEmbedded ? document.referrer : null;
   thirdPartyServices.track('pageview', params);
 
-  // // Debug: randomly generate (consistent) data
-  // Object.keys(countries).forEach(function(k) {
-  //     if (state.countries[k])
-  //         state.countries[k].co2intensity = Math.random() * 800;
-  // });
-  // Object.keys(exchanges).forEach(function(k) {
-  //     if (state.exchanges[k]) {
-  //         state.exchanges[k].netFlow = Math.random() * 1500 - 700;
-  //         let countries = state.exchanges[k].countryCodes;
-  //         let o = countries[(state.exchanges[k].netFlow >= 0) ? 0 : 1]
-  //         state.exchanges[k].co2intensity = state.countries[o].co2intensity;
-  //     }
-  // });
-  // // Debug: expose a fetch method
-  // window.forceFetchNow = fetch;
-
   // Is there a new version?
   d3.select('#new-version')
-    .classed('active', (clientVersion !== getState().application.bundleHash && !getState().application.isLocalhost && !getState().application.isCordova));
+    .classed('active', (
+      clientVersion !== getState().application.bundleHash &&
+      !getState().application.isLocalhost && !getState().application.isCordova
+    ));
 
-  // Reset all data we want to update (for instance, not maxCapacity)
-  // TODO(olc): Move this code to a reducer
-  d3.entries(countries).forEach((entry) => {
-    entry.value.co2intensity = undefined;
-    entry.value.exchange = {};
-    entry.value.production = {};
-    entry.value.productionCo2Intensities = {};
-    entry.value.productionCo2IntensitySources = {};
-    entry.value.dischargeCo2Intensities = {};
-    entry.value.dischargeCo2IntensitySources = {};
-    entry.value.storage = {};
-    entry.value.source = undefined;
-  });
-  d3.entries(exchanges).forEach((entry) => {
-    entry.value.netFlow = undefined;
-  });
   histories = {};
-
-  // Populate with realtime country data
-  d3.entries(state.countries).forEach((entry) => {
-    let countryCode = entry.key;
-    let country = countries[countryCode];
-    if (!country) {
-      console.warn(countryCode + ' has no country definition.');
-      return;
-    }
-    // Copy data
-    d3.keys(entry.value).forEach((k) => {
-      // Warning: k takes all values, even those that are not meant to be updated (like maxCapacity)
-      country[k] = entry.value[k];
-    });
-    // Set date
-    country.datetime = state.datetime;
-    // Validate data
-    if (!country.production) return;
-    modeOrder.forEach((mode) => {
-      if (mode == 'other' || mode == 'unknown' || !country.datetime) { return };
-      // Check missing values
-      // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-      //    console.warn(countryCode + ' is missing production or storage of ' + mode);
-      // Check validity of production
-      if (country.production[mode] !== undefined && country.production[mode] < 0)
-        console.error(countryCode + ' has negative production of ' + mode);
-      // Check load factors > 1
-      if (country.production[mode] !== undefined &&
-        (country.capacity || {})[mode] !== undefined &&
-        country.production[mode] > country.capacity[mode]) {
-        console.error(countryCode + ' produces more than its capacity of ' + mode);
-      }
-    });
-    if (!country.exchange || !d3.keys(country.exchange).length)
-      console.warn(countryCode + ' is missing exchanges');
-  });
-
-  // Render country list
-  // TODO(olc): refactor into component
-  const validCountries = d3.values(countries)
-    .filter(d => d.co2intensity)
-    .sort((x, y) => {
-      if (!x.co2intensity && !x.countryCode) {
-        return d3.ascending(
-          x.shortname || x.countryCode,
-          y.shortname || y.countryCode);
-      } else {
-        return d3.ascending(
-          x.co2intensity || Infinity,
-          y.co2intensity || Infinity);
-      }
-    });
-  const selector = d3.select('.country-picker-container p')
-    .selectAll('a')
-    .data(validCountries);
-  const enterA = selector.enter().append('a');
-  enterA
-    .append('div')
-    .attr('class', 'emission-rect');
-  enterA
-    .append('span')
-    .attr('class', 'name');
-  enterA
-    .append('img')
-    .attr('class', 'flag');
-  enterA
-    .append('span')
-    .attr('class', 'rank');
-  countryListSelector = enterA.merge(selector);
-  countryListSelector.select('span.name')
-    .text(d => ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' ')
-  countryListSelector.select('div.emission-rect')
-    .style('background-color', (d) => {
-      return d.co2intensity ? co2color(d.co2intensity) : 'gray';
-    });
-  countryListSelector.select('.flag')
-    .attr('src', d => flags.flagUri(d.countryCode, 16));
-  countryListSelector.on('click', (d) => {
-    dispatchApplication('selectedZoneName', d.countryCode);
-    dispatchApplication('showPageState', 'country');
-  });
 
 
   if (typeof countryMap !== 'undefined') {
     // Assign country map data
     countryMap
-      .setData(d3.values(countries))
       .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
       })
@@ -927,26 +781,6 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       });
   }
 
-  // Populate exchange pairs for arrows
-  d3.entries(state.exchanges).forEach((obj) => {
-    const exchange = exchanges[obj.key];
-    if (!exchange || !exchange.lonlat) {
-      console.error('Missing exchange configuration for ' + obj.key);
-      return;
-    }
-    // Copy data
-    d3.keys(obj.value).forEach((k) => {
-      exchange[k] = obj.value[k];
-    });
-  });
-
-  // Render exchanges
-  if (exchangeLayer) {
-    exchangeLayer
-      .setData(d3.values(exchanges))
-      .render();
-  }
-
   // Render weather if provided
   // Do not overwrite with null/undefined
   if (argWind) wind = argWind;
@@ -957,10 +791,7 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
     payload: state,
     type: 'GRID_DATA',
   });
-
-  // Debug
-  console.log(countries);
-};
+}
 
 // Periodically load data
 function handleConnectionReturnCode(err) {
@@ -986,19 +817,15 @@ function handleConnectionReturnCode(err) {
   }
 }
 
-function ignoreError(func) {
-  return function () {
+const ignoreError = func =>
+  () => {
     const callback = arguments[arguments.length - 1];
-    arguments[arguments.length - 1] = function (err, obj) {
-      if (err) {
-        return callback(null, null);
-      } else {
-        return callback(null, obj);
-      }
+    arguments[arguments.length - 1] = (err, obj) => {
+      if (err) { return callback(null, null); }
+      return callback(null, obj);
     };
     func.apply(this, arguments);
   };
-}
 
 function fetch(showLoading, callback) {
   if (showLoading) LoadingService.startLoading('#loading');
@@ -1124,11 +951,10 @@ function getCurrentZoneData(state) {
     return null;
   }
   if (i == null) {
-    return grid.countries[zoneName];
-  } else {
-    // TODO(olc): Move histories to REDUX
-    return histories[zoneName][i];
+    return grid.zones[zoneName];
   }
+  // TODO(olc): Move histories to REDUX
+  return histories[zoneName][i];
 }
 
 function renderGauges(state) {
@@ -1152,6 +978,52 @@ function renderCountryTable(state) {
   } else {
     countryTable.data(d).render(true);
   }
+}
+function renderCountryList(state) {
+  // TODO(olc): refactor into component
+  const countries = state.data.grid.zones;
+  const validCountries = d3.values(countries)
+    .filter(d => d.co2intensity)
+    .sort((x, y) => {
+      if (!x.co2intensity && !x.countryCode) {
+        return d3.ascending(
+          x.shortname || x.countryCode,
+          y.shortname || y.countryCode);
+      } else {
+        return d3.ascending(
+          x.co2intensity || Infinity,
+          y.co2intensity || Infinity);
+      }
+    });
+  const selector = d3.select('.country-picker-container p')
+    .selectAll('a')
+    .data(validCountries);
+  const enterA = selector.enter().append('a');
+  enterA
+    .append('div')
+    .attr('class', 'emission-rect');
+  enterA
+    .append('span')
+    .attr('class', 'name');
+  enterA
+    .append('img')
+    .attr('class', 'flag');
+  enterA
+    .append('span')
+    .attr('class', 'rank');
+  countryListSelector = enterA.merge(selector);
+  countryListSelector.select('span.name')
+    .text(d => ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' ')
+  countryListSelector.select('div.emission-rect')
+    .style('background-color', (d) => {
+      return d.co2intensity ? co2color(d.co2intensity) : 'gray';
+    });
+  countryListSelector.select('.flag')
+    .attr('src', d => flags.flagUri(d.countryCode, 16));
+  countryListSelector.on('click', (d) => {
+    dispatchApplication('selectedZoneName', d.countryCode);
+    dispatchApplication('showPageState', 'country');
+  });
 }
 function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
@@ -1192,6 +1064,21 @@ function routeToPage(pageName, state) {
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
 }
 
+// Observe for grid zones change
+observe(state => state.data.grid.zones, (zones, state) => {
+  if (typeof countryMap !== 'undefined') {
+    countryMap.setData(Object.values(zones));
+  }
+  renderCountryList(state);
+});
+// Observe for grid exchanges change
+observe(state => state.data.grid.exchanges, (exchanges) => {
+  if (exchangeLayer) {
+    exchangeLayer
+      .setData(Object.values(exchanges))
+      .render();
+  }
+});
 // Observe for grid change
 observe(state => state.data.grid, (grid, state) => {
   renderCountryTable(state);
