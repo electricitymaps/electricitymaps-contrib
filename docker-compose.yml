@@ -29,4 +29,6 @@ services:
       - './config:/home/config'
       - './web/topogen.sh:/home/web/topogen.sh'
       - './web/generate-geometries.js:/home/web/generate-geometries.js'
+      - './web/third_party_maps:/home/web/third_party_maps'
+      
 
