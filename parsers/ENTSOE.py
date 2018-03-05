@@ -513,6 +513,8 @@ def get_unknown(values):
 
 def fetch_consumption(country_code, session=None, target_datetime=None, logger=None):
     """Gets consumption for a specified zone, returns a dictionary."""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     if not session:
         session = requests.session()
@@ -551,6 +553,8 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     a datetime associated with them.
     Returns a list of dictionaries that have been validated.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     if not session:
         session = requests.session()

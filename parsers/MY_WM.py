@@ -139,6 +139,8 @@ def fetch_production(country_code='MY-WM', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_data = get_data(session=None)
     clean_data = data_processer(raw_data)

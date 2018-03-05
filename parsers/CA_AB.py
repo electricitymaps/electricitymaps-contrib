@@ -162,6 +162,8 @@ def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None, t
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'

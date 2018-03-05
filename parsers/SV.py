@@ -160,6 +160,8 @@ def fetch_production(country_code='SV', session=None, target_datetime=None, logg
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     req = get_data(session=None)
     parsed = data_parser(req)

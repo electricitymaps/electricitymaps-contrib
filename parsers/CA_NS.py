@@ -92,6 +92,9 @@ def fetch_production(country_code='CA-NS', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
 
     production, imports = _get_ns_info(r)
@@ -108,6 +111,9 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     The API for Nova Scotia only specifies imports. When NS is exporting energy,
     the API returns 0.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
 
     if sorted_country_codes != 'CA-NB->CA-NS':

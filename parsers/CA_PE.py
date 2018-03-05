@@ -59,6 +59,8 @@ def fetch_production(country_code='CA-PE', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
     raw_info = _get_pei_info(requests_obj)
@@ -104,6 +106,9 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
 
     if sorted_country_codes != 'CA-NB->CA-PE':

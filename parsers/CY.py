@@ -159,6 +159,8 @@ def fetch_production(country_code='CY', session=None, target_datetime=None, logg
       'source': 'mysource.com'
     }]
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     total_and_wind_production = fetch_total_and_wind_production()               # [time, total, wind]
     solar_production = fetch_solar_production_estimation()                      # [time, solar]

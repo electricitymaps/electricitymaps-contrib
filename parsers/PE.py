@@ -26,6 +26,9 @@ def parse_date(item):
 
 
 def fetch_production(country_code='PE', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     r = session or requests.session()
     url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
     response = r.post(url, data={

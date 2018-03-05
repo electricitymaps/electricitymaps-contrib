@@ -39,6 +39,9 @@ STATIONS = {
 def fetch_production(country_code='IS', session=None, target_datetime=None, logger=None):
     # Disabled for now due to https://github.com/corradio/electricitymap/issues/140
     return
+    
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # Query Landsnet for latest power production data for Iceland
     r = session or requests.session()

@@ -166,6 +166,8 @@ def fetch_production(country_code='SG', session=None, target_datetime=None, logg
     country_code       -- ignored here, only information for SG is returned
     session (optional) -- request session passed in order to re-use an existing session
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
 
@@ -249,6 +251,8 @@ def fetch_price(country_code='SG', session=None, target_datetime=None, logger=No
           'source': 'mysource.com'
         }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
     response = requests_obj.get(TICKER_URL)

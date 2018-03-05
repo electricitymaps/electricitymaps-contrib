@@ -6,6 +6,9 @@ import dateutil
 
 
 def fetch_production(country_code='TW', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     url = 'http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt'
     response = requests.get(url)
     data = response.json()

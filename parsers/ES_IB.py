@@ -9,6 +9,9 @@ from .lib.exceptions import ParserException
 
 
 def fetch_consumption(country_code='ES-IB', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
     if not responses:
@@ -30,6 +33,8 @@ def fetch_consumption(country_code='ES-IB', session=None, target_datetime=None, 
 
 
 def fetch_production(country_code='ES-IB', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
@@ -69,6 +74,8 @@ def fetch_production(country_code='ES-IB', session=None, target_datetime=None, l
 
 
 def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()

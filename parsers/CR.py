@@ -153,6 +153,9 @@ def df_to_data(country_code, day, df):
 
 
 def fetch_production(country_code='CR', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     # Do not use existing session as some amount of cache is taking place
     r = requests.session()
     url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
@@ -204,6 +207,9 @@ def fetch_exchange(country_code1='CR', country_code2='NI', session=None, target_
 
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
 
     df = pd.read_csv('http://www.enteoperador.org/newsite/flash/data.csv', index_col=False)

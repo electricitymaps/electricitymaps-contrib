@@ -83,6 +83,9 @@ def fetch_production(country_code='TR', session=None, target_datetime=None, logg
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     session = None  # Explicitely make a new session to avoid caching from their server...
     r = session or requests.session()
     tr_datetime = arrow.now().to('Europe/Istanbul').floor('day')

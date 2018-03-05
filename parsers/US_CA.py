@@ -35,6 +35,9 @@ def fetch_production(country_code='US-CA', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     # Get the production from the CSV
     csv_url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
     csv = pandas.read_csv(csv_url)

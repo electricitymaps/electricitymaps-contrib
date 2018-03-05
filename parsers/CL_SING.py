@@ -135,6 +135,8 @@ def fetch_production(country_code='CL-SING', session=None, target_datetime=None,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     gd = get_data(session=None)
     dp = data_processer(gd)

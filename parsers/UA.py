@@ -33,6 +33,8 @@ tz = 'Europe/Kiev'
 
 
 def fetch_production(country_code='UA', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
     r = session or requests.session()
 
     data = []

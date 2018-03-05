@@ -70,11 +70,13 @@ def fetch_production(country_code='CA-NB', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
-
     """
     In this case, we are calculating the amount of electricity generated
     in New Brunswick, versus imported and exported elsewhere.
     """
+
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
     flows = _get_new_brunswick_flows(requests_obj)
@@ -118,6 +120,9 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
 
     requests_obj = session or requests.session()

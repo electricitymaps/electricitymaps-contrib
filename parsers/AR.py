@@ -530,6 +530,8 @@ def fetch_price(country_code='AR', session=None, target_datetime=None, logger=No
       'source': 'mysource.com'
     }
       """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
     s = session or requests.Session()
     price_req = s.get(cammesa_url)
     psoup = BeautifulSoup(price_req.content, 'html.parser')

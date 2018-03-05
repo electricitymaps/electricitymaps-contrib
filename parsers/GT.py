@@ -49,6 +49,9 @@ def fetch_hourly_production(country_code, obj, hour, date):
 
 
 def fetch_production(country_code='GT', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     # Define actual and last day (for midnight data)
     now = arrow.now(tz=tz_gt)
     formatted_date = now.format('DD/MM/YYYY')
@@ -104,6 +107,9 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
 
 
 def fetch_consumption(country_code='GT', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     # Define actual and last day (for midnight data)
     now = arrow.now(tz=tz_gt)
     formatted_date = now.format('DD/MM/YYYY')

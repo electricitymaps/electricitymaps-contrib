@@ -96,7 +96,7 @@ def fetch_price(country_code='FR', session=None, target_datetime=None, logger=No
     country_code (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. If past data is not available, raise a NotImplementedError. Beware that the
+      default it to now. If past data is not availa'ble, raise a NotImplementedError. Beware that the
       provided target_datetime is UTC.
 
     Return:

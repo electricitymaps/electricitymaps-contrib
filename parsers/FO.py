@@ -19,6 +19,9 @@ def get_data_key(tag):
 
 
 def fetch_production(country_code='FO', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
     url = 'https://w3.sev.fo/hagtol/xml/xkiefjSDKFjeijgjdkjf3847tgfjlkfdgnlsnfvm.xml'
     response = r.get(url)

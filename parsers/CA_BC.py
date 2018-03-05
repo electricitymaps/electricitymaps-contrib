@@ -27,6 +27,8 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None, target_
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'https://www.bchydro.com/bctc/system_cms/actual_flow/latest_values.txt'

@@ -58,6 +58,8 @@ def fetch_production(country_code='RU', session=None, target_datetime=None, logg
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     today = arrow.now(tz=tz).format('DD.MM.YYYY')
@@ -126,6 +128,8 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     exchanges_url = 'http://br.so-ups.ru/Public/MainPage.aspx'
     s = session or requests.Session()

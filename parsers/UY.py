@@ -73,6 +73,9 @@ def parse_page(session):
 
 
 def fetch_production(country_code='UY', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     obj = parse_page(session)
 
     data = {
@@ -101,6 +104,9 @@ def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None, targe
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     # set comparison
     if {country_code1, country_code2} != {'UY', 'BR'}:
         return None

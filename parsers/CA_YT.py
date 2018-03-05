@@ -48,6 +48,8 @@ def fetch_production(country_code='CA-YT', session=None, target_datetime=None, l
 
     There is also a small 0.81 MW wind farm, its current generation is not available.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
 

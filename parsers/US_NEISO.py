@@ -115,6 +115,8 @@ def fetch_production(country_code='US-NEISO', session=None, target_datetime=None
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     get_json = get_json_data()
     points = data_processer(get_json)

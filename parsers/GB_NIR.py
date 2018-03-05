@@ -246,6 +246,8 @@ def fetch_production(country_code='GB-NIR', session=None, target_datetime=None, 
           'source': 'mysource.com'
         }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     thermal_data = get_data(thermal_url)
     wind_data = get_data(wind_url)
@@ -289,6 +291,8 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     exchange_data = get_data(exchange_url)
     exchange_dataframe = create_exchange_df(exchange_data)

@@ -194,6 +194,8 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     getdata = read_data()
     connect = connections(getdata)

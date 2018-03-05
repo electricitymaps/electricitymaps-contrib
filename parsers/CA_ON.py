@@ -49,6 +49,9 @@ def fetch_production(country_code='CA-ON', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     r = session or requests.session()
     url = 'http://www.ieso.ca/-/media/files/ieso/uploaded/chart/generation_fuel_type_multiday.xml?la=en'
     response = r.get(url)
@@ -98,6 +101,8 @@ def fetch_price(country_code='CA-ON', session=None, target_datetime=None, logger
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://www.ieso.ca/-/media/files/ieso/uploaded/chart/price_multiday.xml?la=en'
@@ -148,6 +153,8 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://live.gridwatch.ca/WebServices/GridWatchWebApp.asmx/GetHomeViewData_v2'

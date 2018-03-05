@@ -107,6 +107,8 @@ def fetch_production(country_code='US-NY', session=None, target_datetime=None, l
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ny = arrow.now('America/New_York')
     ny_date = ny.format('YYYYMMDD')
@@ -145,6 +147,8 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ny = arrow.now('America/New_York')
     ny_date = ny.format('YYYYMMDD')

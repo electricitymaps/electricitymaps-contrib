@@ -196,6 +196,8 @@ def fetch_production(country_code='NI', session=None, target_datetime=None, logg
     country_code       -- ignored here, only information for NI is returned
     session (optional) -- request session passed in order to re-use an existing session
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
 
@@ -242,6 +244,8 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
 
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
     sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
 
     requests_obj = session or requests.session()
@@ -307,6 +311,8 @@ def fetch_price(country_code='NI', session=None, target_datetime=None, logger=No
         }
     ]
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
     response = requests_obj.get(PRICE_URL)

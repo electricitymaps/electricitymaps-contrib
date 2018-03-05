@@ -9,6 +9,9 @@ from .lib import IN
 
 def fetch_consumption(country_code='IN-KA', session=None, target_datetime=None, logger=None):
     """Fetch Karnataka consumption"""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     countrycode.assert_country_code(country_code, 'IN-KA')
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/Default.aspx', session)
 
@@ -28,6 +31,9 @@ def fetch_consumption(country_code='IN-KA', session=None, target_datetime=None, 
 
 def fetch_production(country_code='IN-KA', session=None, target_datetime=None, logger=None):
     """Fetch Karnataka  production"""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     countrycode.assert_country_code(country_code, 'IN-KA')
 
     html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateGen.aspx', session)

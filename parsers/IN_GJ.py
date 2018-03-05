@@ -79,6 +79,9 @@ def fetch_production(country_code='IN-GJ', session=None, target_datetime=None, l
     :param session:
     :return:
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     value_map = fetch_data(country_code, session)
 
     data = {
@@ -112,6 +115,9 @@ def fetch_consumption(country_code='IN-GJ', session=None, target_datetime=None, 
     :param session:
     :return:
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     value_map = fetch_data(country_code, session)
 
     data = {

@@ -28,6 +28,9 @@ def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_fo
 
 def fetch_production(country_code='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab production"""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     countrycode.assert_country_code(country_code, 'IN-PB')
     response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
 
@@ -82,6 +85,9 @@ def fetch_production(country_code='IN-PB', session=None, target_datetime=None, l
 
 def fetch_consumption(country_code='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab consumption"""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     countrycode.assert_country_code(country_code, 'IN-PB')
     response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',
                                           session)

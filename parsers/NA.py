@@ -94,6 +94,8 @@ def fetch_production(country_code = 'NA', session=None, target_datetime=None, lo
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_text = get_text_from_image(session=session, link=generation_link, \
                                    expected_size=(400, 245), new_size=(1000,612))
@@ -148,10 +150,12 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     sorted_codes = "->".join(sorted([country_code1, country_code2]))
 
-    raw_text = get_text_from_image(session=session, link=exchanges_link, \
+    raw_text = get_text_from_image(session=session, link=exchanges_link,
                                    expected_size=(400, 195), new_size=(1120, 546))
 
     if sorted_codes == 'NA->ZA':

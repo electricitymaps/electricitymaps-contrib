@@ -57,6 +57,9 @@ def fetch_production(country_code=None, session=None, target_datetime=None, logg
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = fetch(session)
 
     datetime = arrow.get(obj['soPgenGraph']['timestamp']).datetime
@@ -114,6 +117,8 @@ def fetch_exchange(country_code1='NZ-NZN', country_code2='NZ-NZS', session=None,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     obj = fetch(session)['soHVDCDailyGraph']
     datetime_start = arrow.get(arrow.now().datetime, 'Pacific/Auckland').floor('day')

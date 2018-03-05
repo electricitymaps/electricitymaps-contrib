@@ -49,6 +49,9 @@ def fetch_production(country_code='DK-BHM', session=None, target_datetime=None, 
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = _fetch_data(session)
 
     data = {
@@ -64,7 +67,8 @@ def fetch_production(country_code='DK-BHM', session=None, target_datetime=None, 
     return data
 
 
-def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None, target_datetime=None, logger=None):
+def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None, target_datetime=None,
+                   logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:

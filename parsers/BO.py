@@ -115,6 +115,9 @@ def fetch_production(country_code='BO', session=None, target_datetime=None, logg
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
+    
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # Define actual and previous day (for midnight data).
     now = arrow.now(tz=tz_bo)

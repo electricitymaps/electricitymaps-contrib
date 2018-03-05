@@ -15,6 +15,9 @@ HOURS_TO_GET = 24
 
 
 def fetch_production(country_code='AUS-WA', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     session = session or requests.session()
 
     # explicitly request last 24 hours, to work around daybreaks in solar API

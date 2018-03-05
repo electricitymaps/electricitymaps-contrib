@@ -51,6 +51,9 @@ def fetch_island_data(country_code, session):
 
 
 def fetch_consumption(country_code='ES-CN', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     ses = session or Session()
     island_data = fetch_island_data(country_code, ses)
     data = []
@@ -68,6 +71,9 @@ def fetch_consumption(country_code='ES-CN', session=None, target_datetime=None, 
 
 
 def fetch_production(country_code, session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     ses = session or Session()
     island_data = fetch_island_data(country_code, ses)
     data = []
