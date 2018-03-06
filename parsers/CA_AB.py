@@ -56,14 +56,8 @@ def fetch_production(country_code='CA-AB', session=None, target_datetime=None, l
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
-
-    try:
-        response = r.get(url)
-        assert response.status_code == 200
-    except:
-        logger.exception('Exception when production price for CA-AB: error when calling '
-                         'url={}'.format(url))
-        return
+    response = r.get(url)
+    assert response.status_code == 200
 
     soup = BeautifulSoup(response.content, 'html.parser')
     findtime = soup.find('td', text=re.compile('Last Update')).get_text()
@@ -117,14 +111,8 @@ def fetch_price(country_code='CA-AB', session=None, target_datetime=None, logger
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/'
-
-    try:
-        response = r.get(url)
-        assert response.status_code == 200
-    except:
-        logger.exception('Exception when fetching price for CA-AB: error when calling '
-                         'url={}'.format(url))
-        return
+    response = r.get(url)
+    assert response.status_code == 200
 
     df_prices = pd.read_html(response.text, match='Price', index_col=0, header=0)
     prices = df_prices[1]

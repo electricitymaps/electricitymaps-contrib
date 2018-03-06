@@ -27,12 +27,7 @@ def get_json_data(logger, session=None):
     """Returns 5 minute generation data in json format."""
 
     s = session or requests.session()
-    try:
-        json_data = s.get(mix_url).json()
-    except:
-        logger.exception('Exception when fetching production for US-MISO: Error when calling '
-                         'url={}'.format(mix_url))
-        return
+    json_data = s.get(mix_url).json()
 
     return json_data
 
@@ -72,9 +67,7 @@ def data_processer(json_data, logger):
     useful_time_parts = [v for i, v in enumerate(split_time) if i not in time_junk]
 
     if useful_time_parts[-1] != 'EST':
-        message = 'Timezone reported for US-MISO has changed.'
-        logger.exception(message)
-        raise ValueError(message)
+        raise ValueError('Timezone reported for US-MISO has changed.')
 
     time_data = " ".join(useful_time_parts)
     dt_naive = parser.parse(time_data)

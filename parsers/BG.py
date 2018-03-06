@@ -71,9 +71,7 @@ def fetch_production(country_code='BG', session=None, target_datetime=None, logg
         time_div = soup.find("div", {"class": "dashboardCaptionDiv"})
         bold = time_div.find('b')
     except AttributeError:
-        message = 'No data currently available for Bulgaria.'
-        logger.exception('Exception while fetching production of BG: {}'.format(message))
-        raise LookupError(message)
+        raise LookupError('No data currently available for Bulgaria.')
 
     time_string = bold.string
     dt = time_string_converter(time_string)

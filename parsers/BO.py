@@ -202,13 +202,8 @@ def fetch_generation_forecast(country_code='BO', session=None, target_datetime=N
 
     r = session or requests.session()
 
-    try:
-        response = r.get(url)
-        assert response.status_code == 200
-    except:
-        logger.exception('Exception when fetching price for {}: error when calling '
-                         'url={}'.format(country_code, url))
-        return
+    response = r.get(url)
+    assert response.status_code == 200
 
     obj = webparser(response)
     forecast = fetch_hourly_generation_forecast('BO', obj, formatted_date)

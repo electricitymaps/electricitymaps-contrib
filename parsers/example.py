@@ -20,8 +20,11 @@ def fetch_production(country_code='FR', session=None, target_datetime: datetime.
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. If past data is not available, raise a NotImplementedError. Beware that the
       provided target_datetime is UTC.
-    logger: an instance of a `logging.logger`. Information logged will be publicly available so that
-      correct execution of the logger can be checked
+    logger: an instance of a `logging.Logger`. Information logged will be publicly available so that
+      correct execution of the logger can be checked. All Exceptions will automatically be logged,
+      so when something's wrong, simply raise an Exception (with an explicit text). Use
+      `logger.warning` or `logger.info` for information that can useful to check if the parser is
+      working correctly.
 
     Return:
     A dictionary in the form:
@@ -58,13 +61,9 @@ def fetch_production(country_code='FR', session=None, target_datetime: datetime.
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    try:
-        response = r.get(url)
-        assert response.status_code == 200
-    except:
-        logger.exception('Exception when fetching production for {}: error when calling '
-                         'url={}'.format(country_code, url))
-        return
+    response = r.get(url)
+    assert response.status_code == 200, 'Exception when fetching production for {}: error ' \
+                                        'when calling url={}'.format(country_code, url)
 
     obj = response.json()
 
@@ -98,6 +97,11 @@ def fetch_price(country_code='FR', session=None, target_datetime=None, logger=No
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. If past data is not availa'ble, raise a NotImplementedError. Beware that the
       provided target_datetime is UTC.
+    logger: an instance of a `logging.Logger`. Information logged will be publicly available so that
+      correct execution of the logger can be checked. All Exceptions will automatically be logged,
+      so when something's wrong, simply raise an Exception (with an explicit text). Use
+      `logger.warning` or `logger.info` for information that can useful to check if the parser is
+      working correctly.
 
     Return:
     A dictionary in the form:
@@ -113,22 +117,11 @@ def fetch_price(country_code='FR', session=None, target_datetime=None, logger=No
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
+    assert r.status_code == 200
     url = 'https://api.someservice.com/v1/price/latest'
 
-    try:
-        response = r.get(url)
-        assert response.status_code == 200
-    except:
-        logger.exception('Exception when fetching price for {}: error when calling '
-                         'url={}'.format(country_code, url))
-        return
-
-    try:
-        obj = response.json()
-    except JSONDecodeError:
-        logger.exception('Exception when fetching price for {}: response could not be parsed '
-                         'as json. response={}'.format(country_code, response.text))
-        return
+    response = r.get(url)
+    obj = response.json()
 
     data = {
         'countryCode': country_code,
@@ -153,6 +146,11 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None, target_
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. If past data is not available, raise a NotImplementedError. Beware that the
       provided target_datetime is UTC.
+    logger: an instance of a `logging.Logger`. Information logged will be publicly available so that
+      correct execution of the logger can be checked. All Exceptions will automatically be logged,
+      so when something's wrong, simply raise an Exception (with an explicit text). Use
+      `logger.warning` or `logger.info` for information that can useful to check if the parser is
+      working correctly.
 
     Return:
     A dictionary in the form:
@@ -170,21 +168,9 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None, target_
     url = 'https://api.someservice.com/v1/exchange/latest?from={}&to={}'.format(
         country_code1, country_code2)
 
-    try:
-        response = r.get(url)
-        assert response.status_code == 200
-    except:
-        logger.exception('Exception when fetching exchange for zones {} and {}: error when calling '
-                         'url={}'.format(country_code1, country_code2, url))
-        return
-
-    try:
-        obj = response.json()
-    except JSONDecodeError:
-        logger.exception('Exception when fetching exchange for zones {} and {}: response could not '
-                         'be parsed as json. response={}'.format(country_code1, country_code2,
-                                                                 response.text))
-        return
+    response = r.get(url)
+    assert response.status_code == 200
+    obj = response.json()
 
     data = {
         'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),

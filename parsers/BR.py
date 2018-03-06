@@ -56,14 +56,7 @@ def get_data(session, logger):
     """Requests generation data in json format."""
 
     s = session or requests.session()
-
-    try:
-        json_data = s.get(url).json()
-    except:
-        logger.exception('Exception when fetching data for BR: error when calling '
-                         'url={}'.format(url))
-        return
-
+    json_data = s.get(url).json()
     return json_data
 
 
