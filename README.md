@@ -69,7 +69,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 
 ### Real-time electricity data sources
-<details><summary>Click to see the full list</summary>
+&nbsp;<details><summary>Click to see the full list</summary>
 Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
@@ -158,12 +158,12 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
   - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
-</details>
+&nbsp;</details>
 
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) file.
 
-<details><summary>Click to see the full list</summary>
+&nbsp;<details><summary>Click to see the full list</summary>
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
 - Austria
@@ -261,7 +261,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - CAISO: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
-</details>
+&nbsp;</details>
 
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
