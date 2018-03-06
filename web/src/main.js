@@ -52,6 +52,11 @@ const { getSymbolFromCurrency } = require('currency-symbol-map');
 // Configs
 const zonesConfig = require('../../config/zones.json');
 
+// Constants
+// TODO(olc): should this be moved to constants.js?
+const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
+const LOCAL_ENDPOINT = 'http://localhost:9000';
+
 // Timing
 if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
@@ -79,17 +84,19 @@ Object.keys(applicationState).forEach((k) => {
   dispatchApplication(k, applicationState[k]);
 });
 
+// TODO(olc): should be stored in redux?
+const ENDPOINT = getState().application.useRemoteEndpoint ?
+  REMOTE_ENDPOINT : LOCAL_ENDPOINT;
+
 // TODO(olc) move those to redux state
+// or to component state
 let currentMoment;
 let mapDraggedSinceStart = false;
 let mapLoaded = false;
 let wind;
 let solar;
-
-const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
-const LOCAL_ENDPOINT = 'http://localhost:9000';
-const ENDPOINT = getState().application.useRemoteEndpoint ?
-  REMOTE_ENDPOINT : LOCAL_ENDPOINT;
+let tableDisplayEmissions = false;
+let hasCenteredMap = false;
 
 // Set up objects
 let exchangeLayer = null;
@@ -242,8 +249,7 @@ function updateCo2Scale() {
     countryListSelector
       .select('div.emission-rect')
       .style('background-color', d =>
-        d.co2intensity ? co2color(d.co2intensity) : 'gray'
-      );
+        (d.co2intensity ? co2color(d.co2intensity) : 'gray'));
   }
 }
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -315,6 +321,7 @@ try {
 
 countryTable
   .co2color(co2color)
+  .displayByEmissions(tableDisplayEmissions)
   .onExchangeMouseMove(() => {
     countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
   })
@@ -356,7 +363,8 @@ countryHistoryMixGraph
       countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
-      co2color, co2Colorbars);
+      co2color, co2Colorbars,
+    );
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseMove((mode, countryData, i) => {
@@ -367,10 +375,11 @@ countryHistoryMixGraph
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.update(
       currentEvent.clientX - 7,
-      countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top - 7)
+      countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top - 7);
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
-      co2color, co2Colorbars)
+      co2color, co2Colorbars,
+    );
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseOut((mode, countryData, i) => {
@@ -381,7 +390,6 @@ countryHistoryMixGraph
     ttp.hide();
   });
 
-let tableDisplayEmissions = countryTable.displayByEmissions();
 countryHistoryMixGraph
   .displayByEmissions(tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#emissions')
@@ -409,9 +417,10 @@ window.toggleSource = (state) => {
   d3.select('.country-show-emissions-wrap a#production')
     .classed('selected', !tableDisplayEmissions);
   // update wording, see #893
-  document.getElementById('country-history-electricity-carbonintensity').textContent = translation.translate(
-    tableDisplayEmissions ? 'country-history.carbonintensity24h' : 'country-history.electricityorigin24h'
-  );
+  document.getElementById('country-history-electricity-carbonintensity')
+    .textContent = translation.translate(
+      tableDisplayEmissions ?
+        'country-history.carbonintensity24h' : 'country-history.electricityorigin24h');
 };
 
 function mapMouseOver(lonlat) {
@@ -446,7 +455,6 @@ function mapMouseOver(lonlat) {
 }
 
 // Only center once
-let hasCenteredMap = false;
 function renderMap(state) {
   if (typeof zoneMap === 'undefined') { return; }
 
@@ -500,7 +508,8 @@ function renderMap(state) {
     // Make sure to disable solar if the drawing goes wrong
     Cookies.set('solarEnabled', false);
     solarLayer.draw(
-      getState().application.customDate ? moment(getState().application.customDate) : moment(new Date()),
+      getState().application.customDate ?
+        moment(getState().application.customDate) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
       scales.solarColor,
@@ -513,7 +522,8 @@ function renderMap(state) {
         // Restore setting
         Cookies.set('solarEnabled', getState().application.solarEnabled);
         LoadingService.stopLoading('#loading');
-      });
+      },
+    );
   } else if (typeof solarLayer !== 'undefined') {
     solarLayer.hide();
   }
@@ -545,7 +555,7 @@ d3.select('.country-search-bar input')
     const query = nodes[i].value.toLowerCase();
 
     d3.select('.country-picker-container p')
-      .selectAll('a').each((obj, i, nodes) => {
+      .selectAll('a').each(() => {
         const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
         const listItem = d3.select(nodes[i]);
 
@@ -592,9 +602,10 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
       .onMouseMove((lonlat) => {
         mapMouseOver(lonlat);
       })
-      .onZoneMouseOut((d) => {
-        if (co2Colorbars)
+      .onZoneMouseOut(() => {
+        if (co2Colorbars) {
           co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+        }
         mapMouseOver(undefined);
         countryTooltip.hide();
       });
