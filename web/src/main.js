@@ -1,6 +1,6 @@
 'use strict';
 
-import CountryMap from './components/map';
+import ZoneMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
@@ -82,7 +82,8 @@ function dispatchApplication(key, value) {
     return;
   }
   return dispatch({
-    payload: { key, value },
+    key,
+    value,
     type: 'APPLICATION_STATE_UPDATE',
   });
 }
@@ -115,8 +116,8 @@ const app = {
     if (cordova.platformId === 'ios') {
       d3.select('#header')
         .style('padding-top', '20px');
-      if (typeof countryMap !== 'undefined') {
-        countryMap.map.resize();
+      if (typeof zoneMap !== 'undefined') {
+        zoneMap.map.resize();
       }
     }
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
@@ -187,7 +188,7 @@ function updateCo2Scale() {
     .markerColor('white')
     .domain([0, scales.maxCo2])
     .render());
-  if (typeof countryMap !== 'undefined') countryMap.setCo2color(co2color);
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color);
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
@@ -208,12 +209,12 @@ updateCo2Scale();
 let exchangeLayer = null;
 LoadingService.startLoading('#loading');
 LoadingService.startLoading('#small-loading');
-let countryMap;
+let zoneMap;
 let windLayer;
 let solarLayer;
 let mapLoaded = false;
 try {
-  countryMap = new CountryMap('zones')
+  zoneMap = new ZoneMap('zones')
     .setCo2color(co2color)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map is loaded.
@@ -229,7 +230,7 @@ try {
         .parentNode
         .appendChild(el);
       // Create exchange layer as a result
-      exchangeLayer = new ExchangeLayer('arrows-layer', countryMap)
+      exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
         .onExchangeMouseOver((d) => {
           tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
         })
@@ -252,8 +253,8 @@ try {
         thirdPartyServices._ga.timingMark('map_loaded');
       }
     });
-  windLayer = new WindLayer('wind', countryMap);
-  solarLayer = new SolarLayer('solar', countryMap);
+  windLayer = new WindLayer('wind', zoneMap);
+  solarLayer = new SolarLayer('solar', zoneMap);
   dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
@@ -341,7 +342,7 @@ let countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.update(
       currentEvent.clientX - 7,
-      countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top + 7)
+      countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top - 7)
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars)
@@ -395,208 +396,7 @@ window.toggleSource = (state) => {
   );
 };
 
-let wind, solar, callerLocation;
-
-let histories = {};
-
-// TODO(olc): move logic to observer handling code
-// as `selectCountry` is already called from the observer.
-function selectCountry(countryCode, notrack) {
-  const countries = getState().data.grid.zones;
-  if (!countries) { return; }
-  if (countryCode && countries[countryCode]) {
-    // Selected
-    if (!notrack) {
-      const params = getState().application;
-      params.bundleVersion = params.bundleHash;
-      params.embeddedUri = params.isEmbedded ? document.referrer : null;
-      thirdPartyServices.track('pageview', params);
-      thirdPartyServices.track('countryClick', { countryCode });
-    }
-    countryTable
-      .powerScaleDomain(null) // Always reset scale if click on a new country
-      .co2ScaleDomain(null)
-      .exchangeKeys(null); // Always reset exchange keys
-
-    const maxStorageCapacity = countries[countryCode].maxStorageCapacity;
-
-
-    function updateGraph(countryHistory) {
-      // No export capacities are not always defined, and they are thus
-      // varying the scale.
-      // Here's a hack to fix it.
-      let lo = d3.min(countryHistory, d => {
-        return Math.min(
-          -d.maxStorageCapacity || -maxStorageCapacity || 0,
-          -d.maxStorage || 0,
-          -d.maxExport || 0,
-          -d.maxExportCapacity || 0);
-      });
-      let hi = d3.max(countryHistory, d => {
-        return Math.max(
-          d.maxCapacity || 0,
-          d.maxProduction || 0,
-          d.maxImport || 0,
-          d.maxImportCapacity || 0,
-          d.maxDischarge || 0,
-          d.maxStorageCapacity || maxStorageCapacity || 0);
-      });
-      // TODO(olc): do those aggregates server-side
-      let lo_emission = d3.min(countryHistory, d => {
-        return Math.min(
-          // Max export
-          d3.min(d3.entries(d.exchange), function (o) {
-            return Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-          })
-          // Max storage
-          // ?
-        );
-      });
-      let hi_emission = d3.max(countryHistory, d => {
-        return Math.max(
-          // Max import
-          d3.max(d3.entries(d.exchange), function (o) {
-            return Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-          }),
-          // Max production
-          d3.max(d3.entries(d.production), function (o) {
-            return Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
-          })
-        );
-      });
-
-      // Figure out the highest CO2 emissions
-      let hi_co2 = d3.max(countryHistory, d => {
-        return d.co2intensity;
-      });
-      countryHistoryCarbonGraph.y.domain([0, 1.1 * hi_co2]);
-
-      // Create price color scale
-      let priceExtent = d3.extent(countryHistory, d => {
-        return (d.price || {}).value;
-      });
-      countryHistoryPricesGraph.y.domain(
-        [Math.min(0, priceExtent[0]), 1.1 * priceExtent[1]]);
-
-      countryHistoryCarbonGraph
-        .data(countryHistory);
-      countryHistoryPricesGraph
-        .yColorScale(d3.scaleLinear()
-          .domain(countryHistoryPricesGraph.y.domain())
-          .range(['yellow', 'red']))
-        .data(countryHistory);
-      countryHistoryMixGraph
-        .data(countryHistory);
-
-      // Update country table with all possible exchanges
-      countryTable
-        .exchangeKeys(
-        countryHistoryMixGraph.exchangeKeysSet.values())
-        .render();
-
-      let firstDatetime = countryHistory[0] &&
-        moment(countryHistory[0].stateDatetime).toDate();
-      [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
-        if (currentMoment && firstDatetime) {
-          g.xDomain([firstDatetime, currentMoment.toDate()]);
-        }
-        g
-          .onMouseMove((d, i) => {
-            if (!d) return;
-            // In case of missing data
-            if (!d.countryCode) {
-              d.countryCode = countryCode;
-            }
-            countryTable
-              .powerScaleDomain([lo, hi])
-              .co2ScaleDomain([lo_emission, hi_emission]);
-
-            if (g === countryHistoryCarbonGraph) {
-              tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
-              countryTooltip.update(
-                currentEvent.clientX - 7,
-                g.rootElement.node().getBoundingClientRect().top + 7);
-            } else if (g === countryHistoryPricesGraph) {
-              const tooltip = d3.select(priceTooltip._selector);
-              tooltip.select('.value').html((d.price || {}).value || '?');
-              tooltip.select('.currency').html(getSymbolFromCurrency((d.price || {}).currency) || '?');
-              priceTooltip.show();
-              priceTooltip.update(
-                currentEvent.clientX - 7,
-                g.rootElement.node().getBoundingClientRect().top + 7);
-            }
-
-            dispatchApplication('selectedZoneTimeIndex', i);
-          })
-          .onMouseOut((d, i) => {
-            countryTable
-              .powerScaleDomain(null)
-              .co2ScaleDomain(null);
-
-            if (g === countryHistoryCarbonGraph) {
-              countryTooltip.hide();
-            } else if (g === countryHistoryMixGraph) {
-              countryTableProductionTooltip.hide();
-              countryTableExchangeTooltip.hide();
-            } else if (g === countryHistoryPricesGraph) {
-              priceTooltip.hide();
-            }
-
-            dispatchApplication('selectedZoneTimeIndex', null);
-          })
-          .render();
-      });
-    }
-
-    // Load graph
-    if (getState().application.customDate) {
-      console.error('Can\'t fetch history when a custom date is provided!');
-    }
-    else if (!histories[countryCode]) {
-      LoadingService.startLoading('.country-history .loading');
-      DataService.fetchHistory(ENDPOINT, countryCode, function (err, obj) {
-        LoadingService.stopLoading('.country-history .loading');
-        if (err) console.error(err);
-        if (!obj || !obj.data) console.warn('Empty history received for ' + countryCode);
-        if (err || !obj || !obj.data) {
-          updateGraph([]);
-          return;
-        }
-
-        // Add capacities
-        if ((zonesConfig[countryCode] || {}).capacity) {
-          let maxCapacity = d3.max(d3.values(
-            zonesConfig[countryCode].capacity));
-          obj.data.forEach(d => {
-            d.capacity = zonesConfig[countryCode].capacity;
-            d.maxCapacity = maxCapacity;
-          });
-        }
-
-        // Save to local cache
-        histories[countryCode] = obj.data;
-
-        // Show
-        updateGraph(histories[countryCode]);
-      });
-    } else {
-      updateGraph(histories[countryCode]);
-    }
-
-    // Update contributors
-    // TODO(olc): move to component
-    const selector = d3.selectAll('.contributors').selectAll('a')
-      .data((zonesConfig[countryCode] || {}).contributors || []);
-    const enterA = selector.enter().append('a')
-      .attr('target', '_blank');
-    const enterImg = enterA.append('img');
-    enterA.merge(selector)
-      .attr('href', d => d);
-    enterImg.merge(selector.select('img'))
-      .attr('src', d => `${d}.png`);
-    selector.exit().remove();
-  }
-}
+let wind, solar;
 
 function mapMouseOver(lonlat) {
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
@@ -631,24 +431,26 @@ function mapMouseOver(lonlat) {
 
 // Only center once
 let hasCenteredMap = false;
-function renderMap() {
-  if (typeof countryMap === 'undefined') { return; }
+function renderMap(state) {
+  if (typeof zoneMap === 'undefined') { return; }
 
   if (!mapDraggedSinceStart && !hasCenteredMap) {
-    const geolocation = callerLocation;
-    const { selectedZoneName } = getState().application;
+    const { selectedZoneName, callerLocation } = state.application;
     if (selectedZoneName) {
-      const lon = d3.mean(countries[selectedZoneName].geometry.coordinates[0][0], d => d[0]);
-      const lat = d3.mean(countries[selectedZoneName].geometry.coordinates[0][0], d => d[1]);
+      const selectedZone = state.data.grid.zones[selectedZoneName];
+      const selectedZoneCoordinates = selectedZone.geometry.coordinates[0][0];
+      const lon = d3.mean(selectedZoneCoordinates, d => d[0]);
+      const lat = d3.mean(selectedZoneCoordinates, d => d[1]);
       console.log('Centering on selectedZoneName @', [lon, lat]);
-      countryMap.setCenter([lon, lat]);
-    } else if (geolocation) {
-      console.log('Centering on browser location @', geolocation);
-      countryMap.setCenter(geolocation);
+      zoneMap.setCenter([lon, lat]);
+      hasCenteredMap = true;
+    } else if (callerLocation) {
+      console.log('Centering on browser location @', callerLocation);
+      zoneMap.setCenter(callerLocation);
+      hasCenteredMap = true;
     } else {
-      countryMap.setCenter([0, 50]);
+      zoneMap.setCenter([0, 50]);
     }
-    hasCenteredMap = true;
   }
   if (exchangeLayer) {
     exchangeLayer.render();
@@ -701,7 +503,7 @@ function renderMap() {
   }
 
   // Resize map to make sure it takes all container space
-  countryMap.map.resize();
+  zoneMap.map.resize();
 }
 
 let countryListSelector;
@@ -741,7 +543,7 @@ d3.select('.country-search-bar input')
       });
   });
 
-function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
   if (err) {
     console.error(err);
     return;
@@ -760,19 +562,18 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
       !getState().application.isLocalhost && !getState().application.isCordova
     ));
 
-  histories = {};
-
-
-  if (typeof countryMap !== 'undefined') {
+  const node = document.getElementById('map-container');
+  if (typeof zoneMap !== 'undefined') {
     // Assign country map data
-    countryMap
+    zoneMap
       .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
       })
       .onZoneMouseMove((d, i, clientX, clientY) => {
         // TODO: Check that i changed before calling showMapCountry
         tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
-        countryTooltip.update(clientX, clientY);
+        const rect = node.getBoundingClientRect();
+        countryTooltip.update(clientX + rect.left, clientY + rect.top);
       })
       .onMouseMove((lonlat) => {
         mapMouseOver(lonlat);
@@ -789,8 +590,8 @@ function dataLoaded(err, clientVersion, argCallerLocation, state, argSolar, argW
   // Do not overwrite with null/undefined
   if (argWind) wind = argWind;
   if (argSolar) solar = argSolar;
-  if (argCallerLocation) callerLocation = argCallerLocation;
 
+  dispatchApplication('callerLocation', callerLocation);
   dispatch({
     payload: state,
     type: 'GRID_DATA',
@@ -930,15 +731,15 @@ d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageStat
 
 // Map click
 // TODO(olc): make sure to assign even if map is not ready yet
-if (typeof countryMap !== 'undefined') {
-  countryMap
+if (typeof zoneMap !== 'undefined') {
+  zoneMap
     .onSeaClick(() => {
-      dispatchApplication('selectedZoneName', undefined);
       dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
+      dispatchApplication('selectedZoneName', undefined);
     })
     .onCountryClick((d) => {
-      dispatchApplication('selectedZoneName', d.countryCode);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
+      dispatchApplication('selectedZoneName', d.countryCode);
     });
 }
 
@@ -957,8 +758,7 @@ function getCurrentZoneData(state) {
   if (i == null) {
     return grid.zones[zoneName];
   }
-  // TODO(olc): Move histories to REDUX
-  return histories[zoneName][i];
+  return state.data.histories[zoneName][i];
 }
 
 function renderGauges(state) {
@@ -973,6 +773,20 @@ function renderGauges(state) {
     const countryRenewablePercentage = d.renewableRatio != null ? d.renewableRatio * 100 : null;
     countryRenewableGauge.setPercentage(countryRenewablePercentage);
   }
+}
+function renderContributors(state) {
+  const { selectedZoneName } = state.application;
+  // TODO(olc): move to component
+  const selector = d3.selectAll('.contributors').selectAll('a')
+    .data((zonesConfig[selectedZoneName] || {}).contributors || []);
+  const enterA = selector.enter().append('a')
+    .attr('target', '_blank');
+  const enterImg = enterA.append('img');
+  enterA.merge(selector)
+    .attr('href', d => d);
+  enterImg.merge(selector.select('img'))
+    .attr('src', d => `${d}.png`);
+  selector.exit().remove();
 }
 function renderCountryTable(state) {
   const d = getCurrentZoneData(state);
@@ -1029,6 +843,152 @@ function renderCountryList(state) {
     dispatchApplication('showPageState', 'country');
   });
 }
+function renderHistory(state) {
+  const selectedZoneName = state.application.selectedZoneName;
+  const history = state.data.histories[selectedZoneName];
+
+  if (!history) {
+    return console.error('Implement rendering empty history!');
+  }
+
+  const zone = state.data.grid.zones[selectedZoneName];
+  // // Add capacities
+  // if ((zonesConfig[countryCode] || {}).capacity) {
+  //   let maxCapacity = d3.max(d3.values(
+  //     zonesConfig[countryCode].capacity));
+  //   obj.data.forEach(d => {
+  //     d.capacity = zonesConfig[countryCode].capacity;
+  //     d.maxCapacity = maxCapacity;
+  //   });
+  // }
+
+  countryTable
+    .powerScaleDomain(null) // Always reset scale if click on a new country
+    .co2ScaleDomain(null)
+    .exchangeKeys(null); // Always reset exchange keys
+
+  const maxStorageCapacity = zone.maxStorageCapacity;
+
+  // No export capacities are not always defined, and they are thus
+  // varying the scale.
+  // Here's a hack to fix it.
+  const lo = d3.min(history, d =>
+    Math.min(
+      -d.maxStorageCapacity || -maxStorageCapacity || 0,
+      -d.maxStorage || 0,
+      -d.maxExport || 0,
+      -d.maxExportCapacity || 0),
+  );
+  const hi = d3.max(history, d =>
+    Math.max(
+      d.maxCapacity || 0,
+      d.maxProduction || 0,
+      d.maxImport || 0,
+      d.maxImportCapacity || 0,
+      d.maxDischarge || 0,
+      d.maxStorageCapacity || maxStorageCapacity || 0),
+  );
+  // TODO(olc): do those aggregates server-side
+  const lo_emission = d3.min(history, d =>
+    Math.min(
+      // Max export
+      d3.min(d3.entries(d.exchange), o =>
+        Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+      )
+      // Max storage
+      // ?
+    )
+  );
+  const hi_emission = d3.max(history, d =>
+    Math.max(
+      // Max import
+      d3.max(d3.entries(d.exchange), o =>
+        Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+      ),
+      // Max production
+      d3.max(d3.entries(d.production), o =>
+        Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
+      )
+    )
+  );
+
+  // Figure out the highest CO2 emissions
+  const hi_co2 = d3.max(history, d => d.co2intensity);
+  countryHistoryCarbonGraph.y.domain([0, 1.1 * hi_co2]);
+
+  // Create price color scale
+  const priceExtent = d3.extent(history, d => (d.price || {}).value);
+
+  countryHistoryPricesGraph.y.domain([Math.min(0, priceExtent[0]), 1.1 * priceExtent[1]]);
+
+  countryHistoryCarbonGraph
+    .data(history);
+  countryHistoryPricesGraph
+    .yColorScale(d3.scaleLinear()
+      .domain(countryHistoryPricesGraph.y.domain())
+      .range(['yellow', 'red']))
+    .data(history);
+  countryHistoryMixGraph
+    .data(history);
+
+  // Update country table with all possible exchanges
+  countryTable
+    .exchangeKeys(countryHistoryMixGraph.exchangeKeysSet.values())
+    .render();
+
+  const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
+  [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
+    if (currentMoment && firstDatetime) {
+      g.xDomain([firstDatetime, currentMoment.toDate()]);
+    }
+    g
+      .onMouseMove((d, i) => {
+        if (!d) return;
+        // In case of missing data
+        if (!d.countryCode) {
+          d.countryCode = selectedZoneName;
+        }
+        countryTable
+          .powerScaleDomain([lo, hi])
+          .co2ScaleDomain([lo_emission, hi_emission]);
+
+        if (g === countryHistoryCarbonGraph) {
+          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+          countryTooltip.update(
+            currentEvent.clientX - 7,
+            g.rootElement.node().getBoundingClientRect().top - 7);
+        } else if (g === countryHistoryPricesGraph) {
+          const tooltip = d3.select(priceTooltip._selector);
+          tooltip.select('.value').html((d.price || {}).value || '?');
+          tooltip.select('.currency').html(getSymbolFromCurrency((d.price || {}).currency) || '?');
+          priceTooltip.show();
+          priceTooltip.update(
+            currentEvent.clientX - 7,
+            g.rootElement.node().getBoundingClientRect().top - 7,
+          );
+        }
+
+        dispatchApplication('selectedZoneTimeIndex', i);
+      })
+      .onMouseOut((d, i) => {
+        countryTable
+          .powerScaleDomain(null)
+          .co2ScaleDomain(null);
+
+        if (g === countryHistoryCarbonGraph) {
+          countryTooltip.hide();
+        } else if (g === countryHistoryMixGraph) {
+          countryTableProductionTooltip.hide();
+          countryTableExchangeTooltip.hide();
+        } else if (g === countryHistoryPricesGraph) {
+          priceTooltip.hide();
+        }
+
+        dispatchApplication('selectedZoneTimeIndex', null);
+      })
+      .render();
+  });
+}
 function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
@@ -1046,9 +1006,20 @@ function routeToPage(pageName, state) {
   // sizes are set properly
   d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
 
+  // Analytics
+  // TODO(olc): where should we put all tracking code?
+  // at the source events, or in observers?
+  const params = getState().application;
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('pageview', params);
+  if (pageName === 'country') {
+    thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
+  }
+
   if (pageName === 'map') {
     d3.select('.left-panel').classed('large-screen-visible', true);
-    renderMap();
+    renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
@@ -1070,8 +1041,8 @@ function routeToPage(pageName, state) {
 
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
-  if (typeof countryMap !== 'undefined') {
-    countryMap.setData(Object.values(zones));
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.setData(Object.values(zones));
   }
   renderCountryList(state);
 });
@@ -1087,7 +1058,7 @@ observe(state => state.data.grid.exchanges, (exchanges) => {
 observe(state => state.data.grid, (grid, state) => {
   renderCountryTable(state);
   renderGauges(state);
-  renderMap();
+  renderMap(state);
 });
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
@@ -1095,9 +1066,40 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 });
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (k, state) => {
-  selectCountry(k);
+  if (!state.application.selectedZoneName) { return; }
+
   renderCountryTable(state);
   renderGauges(state);
+  renderContributors(state);
+  renderHistory(state);
+
+  // Fetch history if needed
+  const { selectedZoneName } = state.application;
+  if (getState().application.customDate) {
+    console.error('Can\'t fetch history when a custom date is provided!');
+  } else if (!state.data.histories[selectedZoneName]) {
+    LoadingService.startLoading('.country-history .loading');
+    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
+      LoadingService.stopLoading('.country-history .loading');
+      if (err) { return console.error(err); }
+      if (!obj || !obj.data) {
+        console.warn(`Empty history received for ${selectedZoneName}`);
+      } else {
+        // Save to local cache
+        return dispatch({
+          payload: obj.data,
+          zoneName: selectedZoneName,
+          type: 'HISTORY_DATA',
+        });
+      }
+    });
+  }
+});
+// Observe for history change
+observe(state => state.data.histories, (histories, state) => {
+  if (state.application.showPageState === 'country') {
+    renderHistory(state);
+  }
 });
 // Observe for index change (for example by history graph)
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {

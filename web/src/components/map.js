@@ -143,6 +143,8 @@ export default class Map {
     const loadingInterval = setInterval(() => {
       if (this.map.loaded()) {
         clearInterval(loadingInterval);
+        // For some reason, setCenter commands that are called too soon are ignored.
+        if (this.center) { this.map.setCenter(this.center); }
         this.mapLoadedHandlers.forEach(h => h(this));
       }
     }, 100);
@@ -383,7 +385,7 @@ export default class Map {
     this.nonClickableZoneGeometries = [];
 
     Object.keys(data).forEach((k) => {
-      const geometry = data[k].geometry;
+      const { geometry } = data[k];
       // Remove empty geometries
       geometry.coordinates = geometry.coordinates.filter(d => d.length !== 0);
       const feature = {
