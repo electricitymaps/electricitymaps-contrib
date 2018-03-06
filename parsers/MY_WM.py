@@ -74,7 +74,7 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def data_processer(rawdata):
+def data_processer(rawdata, logger):
     """
     Takes in raw data and converts it into a usable form.
     Returns a tuple.
@@ -105,7 +105,7 @@ def data_processer(rawdata):
         generationDict[key] = 0.0
 
     for gen_type in unmapped:
-        print('{} is missing from the MY generation type mapping!'.format(gen_type))
+        logger.warning('{} is missing from the MY generation type mapping!'.format(gen_type))
 
     return converted_time_string, dict(generationDict)
 
@@ -143,7 +143,7 @@ def fetch_production(country_code='MY-WM', session=None, target_datetime=None, l
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_data = get_data(session=None)
-    clean_data = data_processer(raw_data)
+    clean_data = data_processer(raw_data, logger)
 
     production = {
         'countryCode': country_code,

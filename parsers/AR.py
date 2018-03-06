@@ -593,7 +593,7 @@ def dataformat(junk):
     return formatted
 
 
-def get_thermal(session=None):
+def get_thermal(session, logger):
     """
     Requests thermal generation data then parses and sorts by type.  Nuclear is included.
     Returns a dictionary.
@@ -637,7 +637,7 @@ def get_thermal(session=None):
         try:
             # avoids including titles and headings
             if all((item.isupper(), not item.isalpha(), ' ' not in item)):
-                print('{} is missing from the AR plant mapping!'.format(item))
+                logger.warning('{} is missing from the AR plant mapping!'.format(item))
         except AttributeError:
             # not a string....
             continue
@@ -737,7 +737,7 @@ def fetch_production(country_code='AR', session=None, target_datetime=None, logg
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     gdt = get_datetime(session=None)
-    thermal = get_thermal(session=None)
+    thermal = get_thermal(session, logger)
     hydro = get_hydro(session=None)
     production_mix = {
         'countryCode': country_code,

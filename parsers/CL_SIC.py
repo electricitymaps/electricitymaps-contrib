@@ -252,7 +252,7 @@ def combine_generating_units(generation, gen_vals):
     return dict(gen_vals)
 
 
-def thermal_processer(df):
+def thermal_processer(df, logger):
     """
     Creates a separate dataframe containing only thermal plants.
     Each row is a plant with each column being an hour's generation.
@@ -270,7 +270,7 @@ def thermal_processer(df):
     unmapped = list(set(data_plants) - set(map_plants))
 
     for plant in unmapped:
-        print("{} is missing from the CL-SIC thermal plant mapping.".format(plant))
+        logger.warning("{} is missing from the CL-SIC thermal plant mapping.".format(plant))
 
     coal_generation = []
     gas_generation = []
@@ -307,14 +307,14 @@ def thermal_processer(df):
     return coal, gas, oil, biomass, unknown
 
 
-def data_processer(df, date):
+def data_processer(df, date, logger):
     """
     Extracts aggregated data for hydro, solar and wind from dataframe.
     Combines with thermal data and an arrow object timestamp.
     Returns a list of 2 element tuples.
     """
 
-    thermal_generation = thermal_processer(df)
+    thermal_generation = thermal_processer(df, logger)
     coal_vals = thermal_generation[0]
     gas_vals = thermal_generation[1]
     oil_vals = thermal_generation[2]
@@ -354,7 +354,7 @@ def data_processer(df, date):
     return generation_by_hour
 
 
-def fetch_production(country_code = 'CL-SIC', session = None):
+def fetch_production(country_code = 'CL-SIC', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -385,7 +385,7 @@ def fetch_production(country_code = 'CL-SIC', session = None):
     """
 
     gxd = get_xls_data(session = None)
-    processing = data_processer(gxd[0], gxd[1])
+    processing = data_processer(gxd[0], gxd[1], logger)
 
     data_by_hour = []
     for processed_data in processing:

@@ -178,7 +178,7 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df):
+def thermal_production(df, logger):
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
@@ -216,7 +216,7 @@ def thermal_production(df):
         therms.append(thermalDict)
 
     for plant in unmapped:
-        print('{} is missing from the DO plant mapping!'.format(plant))
+        logger.warning('{} is missing from the DO plant mapping!'.format(plant))
 
     return therms
 
@@ -310,7 +310,7 @@ def fetch_production(country_code='DO', session=None, target_datetime=None, logg
     dat = data_formatter(get_data(session=None))
     tot = data_parser(dat['totals'])
     th = data_parser(dat['thermal'])
-    thermal = thermal_production(th)
+    thermal = thermal_production(th, logger)
     total = total_production(tot)
     merge = merge_production(thermal, total)
 

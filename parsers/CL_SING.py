@@ -72,7 +72,7 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def data_processer(data):
+def data_processer(data, logger):
     """
     Takes raw production data and converts it into a usable form.
     Removes unneeded keys and sums generation types.
@@ -87,7 +87,7 @@ def data_processer(data):
 
         for key in datapoint.keys():
             if key not in plant_map.keys():
-                print('{} is missing from the CL_SING plant mapping.'.format(key))
+                logger.warning('{} is missing from the CL_SING plant mapping.'.format(key))
 
         mapped_plants = [(plant_map.get(plant, 'unknown'), val) for plant, val
                          in datapoint.items()]
@@ -139,7 +139,7 @@ def fetch_production(country_code='CL-SING', session=None, target_datetime=None,
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     gd = get_data(session=None)
-    dp = data_processer(gd)
+    dp = data_processer(gd, logger)
     production_mix_by_hour = []
     for point in dp:
         production_mix = {
