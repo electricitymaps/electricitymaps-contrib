@@ -1,7 +1,7 @@
 'use strict';
 
 var d3 = require('d3-format');
-var translation = require('../translation');
+var translation = require('./translation');
 
 var co2Sub = module.exports.co2Sub = function (str) {
   return str.replace('CO2', 'CO<sub>2</sub>');

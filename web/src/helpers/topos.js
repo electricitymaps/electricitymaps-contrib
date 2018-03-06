@@ -1,9 +1,8 @@
-const topo = require('./world.json');
+const topo = require('../world.json');
 const topojson = require('topojson');
 
-var exports = module.exports = {};
-
-exports.addCountryTopos = (countries) => {
+const constructTopos = () => {
+  const zones = {};
   Object.keys(topo.objects).forEach((k) => {
     if (!topo.objects[k].arcs) { return; }
     let geo;
@@ -13,11 +12,13 @@ exports.addCountryTopos = (countries) => {
     } else {
       geo = { geometry: topojson.merge(topo, [topo.objects[k]]) };
     }
-    // Exclude countries with null geometries.
+    // Exclude zones with null geometries.
     if (geo.geometry) {
-      countries[k] = geo;
+      zones[k] = geo;
     }
   });
 
-  return countries;
+  return zones;
 };
+
+module.exports = constructTopos;

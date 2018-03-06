@@ -13,7 +13,7 @@ class FacebookThirdParty {
             FB.Event.subscribe('edge.create', function(e) {
                 // This will happen when they like the page
                 if (e == 'https://www.facebook.com/tmrowco') {
-                    var thirdPartyService = require('../services/thirdparty');
+                    var thirdPartyService = require('../thirdparty');
                     thirdPartyService.track('like');
                     thirdPartyService.ga('event', 'like', {
                       event_category: 'social',
@@ -24,7 +24,7 @@ class FacebookThirdParty {
             FB.Event.subscribe('edge.remove', function(e) {
                 // This will happen when they unlike the page
                 if (e == 'https://www.facebook.com/tmrowco') {
-                    require('../services/thirdparty').track('unlike');
+                    require('../thirdparty').track('unlike');
                     thirdPartyService.ga('event', 'unlike', {
                       event_category: 'social',
                       event_label: 'facebook',

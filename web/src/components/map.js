@@ -176,15 +176,10 @@ export default class Map {
     });
 
     let prevId;
-    const node = document.getElementById(selectorId);
-    let boundingClientRect = node.getBoundingClientRect();
-    window.addEventListener('resize', () => {
-      boundingClientRect = node.getBoundingClientRect();
-    });
     this.map.on('mousemove', 'clickable-zones-fill', (e) => {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
-      const zoneId = e.features[0].properties.zoneId;
+      const { zoneId } = e.features[0].properties;
       if (prevId !== zoneId) {
         prevId = zoneId;
         const hoverSource = this.map.getSource('hover');
@@ -193,13 +188,12 @@ export default class Map {
         }
       }
       if (this.zoneMouseMoveHandler) {
-        const rect = boundingClientRect;
         this.zoneMouseMoveHandler.call(
           this,
           this.data[zoneId],
           zoneId,
-          rect.left + e.point.x,
-          rect.top + e.point.y,
+          e.point.x,
+          e.point.y,
         );
       }
     });

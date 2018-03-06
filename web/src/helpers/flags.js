@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-var zones = require('../../config/zones.json');
+var zones = require('../../../config/zones.json');
 
 exports.flagUri = function(countryCode, flagSize) {
   var zoneFlagFile = (zones[countryCode.toUpperCase()] || {}).flag_file_name;
