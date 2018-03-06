@@ -11,6 +11,7 @@ function placeTooltip(selector, eventX, eventY) {
   const h = tooltip.node().getBoundingClientRect().height;
   const margin = 7;
   const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
 
   let x = 0;
   let y = 0;
@@ -29,8 +30,9 @@ function placeTooltip(selector, eventX, eventY) {
       x = eventX - w - margin;
     }
   }
-  y = eventY - margin;
+  y = eventY + margin;
   if (y < 0) y = eventY + h + margin;
+  if (y + h + margin >= screenHeight) y = eventY - h - margin;
   // y = eventY
   tooltip
     .style('transform', `translate(${x}px,${y}px)`);
