@@ -60,6 +60,18 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
+function dispatchApplication(key, value) {
+  // Do not dispatch unnecessary events
+  if (getState().application[key] === value) {
+    return;
+  }
+  dispatch({
+    key,
+    value,
+    type: 'APPLICATION_STATE_UPDATE',
+  });
+}
+
 // Set state depending on URL params
 HistoryState.parseInitial(window.location.search);
 const applicationState = HistoryState.getStateFromHistory();
@@ -70,38 +82,73 @@ Object.keys(applicationState).forEach((k) => {
 // TODO(olc) move those to redux state
 let currentMoment;
 let mapDraggedSinceStart = false;
+let mapLoaded = false;
+let wind;
+let solar;
 
 const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
 const LOCAL_ENDPOINT = 'http://localhost:9000';
 const ENDPOINT = getState().application.useRemoteEndpoint ?
   REMOTE_ENDPOINT : LOCAL_ENDPOINT;
 
-function dispatchApplication(key, value) {
-  // Do not dispatch unnecessary events
-  if (getState().application[key] === value) {
-    return;
-  }
-  return dispatch({
-    key,
-    value,
-    type: 'APPLICATION_STATE_UPDATE',
-  });
-}
+// Set up objects
+let exchangeLayer = null;
+LoadingService.startLoading('#loading');
+LoadingService.startLoading('#small-loading');
+let zoneMap;
+let windLayer;
+let solarLayer;
+
+// ** Create components
+const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
+const countryHistoryCarbonGraph = new LineGraph(
+  '#country-history-carbon',
+  d => moment(d.stateDatetime).toDate(),
+  d => d.co2intensity,
+  d => d.co2intensity != null,
+);
+const countryHistoryPricesGraph = new LineGraph(
+  '#country-history-prices',
+  d => moment(d.stateDatetime).toDate(),
+  d => (d.price || {}).value,
+  d => d.price && d.price.value != null,
+).gradient(false);
+const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder);
+
+const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
+const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
+const countryTooltip = new Tooltip('#country-tooltip');
+const exchangeTooltip = new Tooltip('#exchange-tooltip');
+const priceTooltip = new Tooltip('#price-tooltip');
+
+const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
+const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+
+const windColorbar = new HorizontalColorbar('.wind-colorbar', scales.windColor)
+  .markerColor('black');
+const solarColorbarColor = d3.scaleLinear()
+  .domain([0, 0.5 * scales.maxSolarDSWRF, scales.maxSolarDSWRF])
+  .range(['black', 'white', 'gold']);
+const solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
+  .markerColor('red');
+
+// TODO: Move to component
+let countryListSelector;
 
 // Initialise mobile app (cordova)
 const app = {
   // Application Constructor
-  initialize: function () {
+  initialize() {
     this.bindEvents();
   },
 
-  bindEvents: function () {
+  bindEvents() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
     document.addEventListener('resume', this.onResume, false);
     document.addEventListener('backbutton', this.onBack, false);
   },
 
-  onBack: function (e) {
+  onBack(e) {
     if (getState().application.showPageState !== 'map') {
       dispatchApplication('selectedZoneName', undefined);
       dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map');
@@ -111,7 +158,7 @@ const app = {
     }
   },
 
-  onDeviceReady: function () {
+  onDeviceReady() {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
       d3.select('#header')
@@ -132,7 +179,7 @@ const app = {
     });
   },
 
-  onResume: function () {
+  onResume() {
     // Count a pageview
     const params = getState().application;
     params.bundleVersion = params.bundleHash;
@@ -144,7 +191,7 @@ const app = {
 app.initialize();
 
 function catchError(e) {
-  console.error('Error Caught! ' + e);
+  console.error(`Error Caught! ${e}`);
   thirdPartyServices.opbeat('captureException', e);
   thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
   const params = getState().application;
@@ -167,8 +214,7 @@ moment.locale(getState().application.locale.toLowerCase());
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
-// Prepare co2 scale
-const maxCo2 = 800;
+// Set up co2 scales
 let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
@@ -192,12 +238,13 @@ function updateCo2Scale() {
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-  if (countryListSelector)
+  if (countryListSelector) {
     countryListSelector
       .select('div.emission-rect')
-      .style('background-color', d => {
-        return d.co2intensity ? co2color(d.co2intensity) : 'gray';
-      });
+      .style('background-color', d =>
+        d.co2intensity ? co2color(d.co2intensity) : 'gray'
+      );
+  }
 }
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', () => {
@@ -205,14 +252,7 @@ d3.select('#checkbox-colorblind').on('change', () => {
 });
 updateCo2Scale();
 
-// Set up objects
-let exchangeLayer = null;
-LoadingService.startLoading('#loading');
-LoadingService.startLoading('#small-loading');
-let zoneMap;
-let windLayer;
-let solarLayer;
-let mapLoaded = false;
+// Start initialising map
 try {
   zoneMap = new ZoneMap('zones')
     .setCo2color(co2color)
@@ -238,8 +278,9 @@ try {
           exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
         })
         .onExchangeMouseOut((d) => {
-          if (d.co2intensity && co2Colorbars)
+          if (d.co2intensity && co2Colorbars) {
             co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+          }
           exchangeTooltip.hide();
         })
         .onExchangeClick((d) => {
@@ -272,16 +313,7 @@ try {
   }
 }
 
-const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
-const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
-const countryTooltip = new Tooltip('#country-tooltip');
-const exchangeTooltip = new Tooltip('#exchange-tooltip');
-const priceTooltip = new Tooltip('#price-tooltip');
-
-const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
-const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
-
-const countryTable = new CountryTable('.country-table', modeColor, modeOrder)
+countryTable
   .co2color(co2color)
   .onExchangeMouseMove(() => {
     countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
@@ -290,38 +322,31 @@ const countryTable = new CountryTable('.country-table', modeColor, modeOrder)
     tooltipHelper.showExchange(
       countryTableExchangeTooltip,
       d, country, displayByEmissions,
-      co2color, co2Colorbars);
+      co2color, co2Colorbars,
+    );
   })
-  .onExchangeMouseOut(d => {
-    if (co2Colorbars) co2Colorbars.forEach(d => { d.currentMarker(undefined) });
-    countryTableExchangeTooltip.hide()
+  .onExchangeMouseOut(() => {
+    if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
+    countryTableExchangeTooltip.hide();
   })
   .onProductionMouseOver((mode, country, displayByEmissions) => {
     tooltipHelper.showProduction(
       countryTableProductionTooltip,
       mode, country, displayByEmissions,
-      co2color, co2Colorbars);
+      co2color, co2Colorbars,
+    );
   })
-  .onProductionMouseMove(d => {
-    countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY)
-  })
-  .onProductionMouseOut(d => {
-    if (co2Colorbars) co2Colorbars.forEach(d => { d.currentMarker(undefined) });
+  .onProductionMouseMove(() =>
+    countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY))
+  .onProductionMouseOut(() => {
+    if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableProductionTooltip.hide();
   });
 
-let countryHistoryCarbonGraph = new LineGraph('#country-history-carbon',
-  d => moment(d.stateDatetime).toDate(),
-  d => d.co2intensity,
-  d => d.co2intensity != null)
+countryHistoryCarbonGraph
   .yColorScale(co2color)
   .gradient(true);
-const countryHistoryPricesGraph = new LineGraph('#country-history-prices',
-  d => moment(d.stateDatetime).toDate(),
-  d => (d.price || {}).value,
-  d => d.price && d.price.value != null)
-  .gradient(false);
-let countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
+countryHistoryMixGraph
   .co2color(co2color)
   .onLayerMouseOver((mode, countryData, i) => {
     const isExchange = modeOrder.indexOf(mode) === -1;
@@ -356,14 +381,6 @@ let countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, mo
     ttp.hide();
   });
 
-const windColorbar = new HorizontalColorbar('.wind-colorbar', scales.windColor)
-  .markerColor('black');
-const solarColorbarColor = d3.scaleLinear()
-  .domain([0, 0.5 * scales.maxSolarDSWRF, scales.maxSolarDSWRF])
-  .range(['black', 'white', 'gold']);
-const solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
-  .markerColor('red');
-
 let tableDisplayEmissions = countryTable.displayByEmissions();
 countryHistoryMixGraph
   .displayByEmissions(tableDisplayEmissions);
@@ -381,7 +398,8 @@ window.toggleSource = (state) => {
   tableDisplayEmissions = state;
   thirdPartyServices.track(
     tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-    { countryCode: countryTable.data().countryCode });
+    { countryCode: countryTable.data().countryCode },
+  );
   countryTable
     .displayByEmissions(tableDisplayEmissions);
   countryHistoryMixGraph
@@ -395,8 +413,6 @@ window.toggleSource = (state) => {
     tableDisplayEmissions ? 'country-history.carbonintensity24h' : 'country-history.electricityorigin24h'
   );
 };
-
-let wind, solar;
 
 function mapMouseOver(lonlat) {
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
@@ -505,8 +521,6 @@ function renderMap(state) {
   // Resize map to make sure it takes all container space
   zoneMap.map.resize();
 }
-
-let countryListSelector;
 
 // Inform the user the last time the map was updated.
 function setLastUpdated() {
