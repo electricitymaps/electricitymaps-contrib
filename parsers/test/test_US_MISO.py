@@ -9,6 +9,7 @@ from arrow import get
 from datetime import datetime
 from parsers import US_MISO
 from unittest.mock import patch
+import logging
 
 
 class TestUSMISO(unittest.TestCase):
@@ -21,7 +22,7 @@ class TestUSMISO(unittest.TestCase):
 
         with patch('parsers.US_MISO.get_json_data') as gjd:
             gjd.return_value = fake_data
-            data = US_MISO.fetch_production()
+            data = US_MISO.fetch_production(logger=logging.getLogger('test'))
 
         with self.subTest():
             self.assertIsNotNone(data)
