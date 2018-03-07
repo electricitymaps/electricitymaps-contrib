@@ -85,7 +85,7 @@ const zoneDefinitions = [
   // Map between "zones" iso_a2 and adm0_a3 in order to support XX, GB etc..
   // Note that the definition of "zones" is very vague here..
   // Specific case of Kosovo and Serbia: considered as a whole as long as they will be reported together in ENTSO-E.
-  // Add lessSimplify:true to use a small threshold for simplifying a zone. Less simplifying also means bigger world.json so use with small zones.
+  // Add moreDetails:true to use a smaller threshold for simplifying a zone thus the zone will have more details. More details also means bigger world.json so use with small zones.
   {zoneName:'XX', type:'country', id:'CYN'},
 
   // List of all zones
@@ -111,7 +111,7 @@ const zoneDefinitions = [
   {zoneName: 'AUS-TAS', countryId: 'AUS', stateId: 'AU.TS', type: 'state'},
   {zoneName: 'AUS-VIC', countryId: 'AUS', stateId: 'AU.VI', type: 'state'},
   {zoneName: 'AUS-WA', countryId: 'AUS', stateId: 'AU.WA', type: 'state'},
-  {zoneName: 'AW', type: 'country', id: 'ABW', lessSimplify: true},
+  {zoneName: 'AW', type: 'country', id: 'ABW', moreDetails: true},
   {zoneName: 'AX', type: 'country', id: 'ALA'},
   {zoneName: 'AZ', type: 'country', id: 'AZE'},
   //{zoneName: 'BA', type: 'country', id: 'BIH'},
@@ -552,27 +552,49 @@ const toListOfFeatures = (zones) => {
   });
 };
 
-// create zones from definitions, avoid zones having lessSimplify==true
+//Adds the zones from topo2 to topo1
+function mergeTopoJsonSingleZone(topo1, topo2) {
+  let srcArcsLength = topo1.arcs.length;
+  // Copy Zones from topo2 to topo1
+  Object.keys(topo2.objects).forEach(zoneName=>{
+    topo1.objects[zoneName]=topo2.objects[zoneName];
+    // Relocate arc into zone by adding srcArcsLength
+    topo1.objects[zoneName].arcs.forEach(arcList1=>{
+      arcList1.forEach(arcList2=>{
+        for(i=0; i<arcList2.length; i++) {
+          arcList2[i]+=srcArcsLength;
+        }
+      });
+    });
+  });
+
+  // Add arcs from topo2
+  topo2.arcs.forEach(arc=> {
+    topo1.arcs.push(arc);
+  });
+}
+
+// create zones from definitions, avoid zones having moreDetails==true
 let zones = {};
 zoneDefinitions.forEach(zone => {
   if (zone.zoneName in zones)
     throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present ' +
       'only once in zoneDefinitions');
-  // Avoid zone being small simplified
-  if ( !('lessSimplify' in zone) || !zone.lessSimplify) {
+  // Avoid zone with moreDetails
+  if ( !('moreDetails' in zone) || !zone.moreDetails) {
   	zones[zone.zoneName] = getDataForZone(zone, true);
   }
 });
 
-// create zonesLessSimplified by getting zone having lessSimplify===true
-let zonesLessSimplified = {};
+// create zonesMoreDetails by getting zone having moreDetails===true
+let zonesMoreDetails = {};
 zoneDefinitions.forEach(zone => {
-  // Take only zones being small simplified
-  if (('lessSimplify' in zone) && zone.lessSimplify) {
-	if (zone.zoneName in zonesLessSimplified || zone.zoneName in zones)
-		throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present ' +
-			'only once in zoneDefinitions');
-	zonesLessSimplified[zone.zoneName] = getDataForZone(zone, true);
+  // Take only zones having modeDetails
+  if (('moreDetails' in zone) && zone.moreDetails) {
+	if (zone.zoneName in zonesMoreDetails || zone.zoneName in zones)
+      throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present ' +
+        'only once in zoneDefinitions');
+  zonesMoreDetails[zone.zoneName] = getDataForZone(zone, true);
   }
 });
 
@@ -596,43 +618,18 @@ zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 // Write unsimplified list of geojson, without state merges
 fs.writeFileSync('build/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
 
-// Adds the zones from topo2 to topo1
-function mergeTopoJsonSingleZone(topo1, topo2) {
-	let srcArcsLength = topo1.arcs.length;
-	// Copy Zones from topo2 to topo1
-	Object.keys(topo2.objects).forEach(zoneName=>{
-		topo1.objects[zoneName]=topo2.objects[zoneName];
-		// Relocate arc into zone by adding srcArcsLength
-		topo1.objects[zoneName].arcs.forEach(arcList1=>{
-			arcList1.forEach(arcList2=>{
-				for(i=0; i<arcList2.length; i++) {
-					arcList2[i]+=srcArcsLength;
-				}
-			});
-		});
-	});
-	
-	
-	// Add arcs from topo2
-	topo2.arcs.forEach(arc=> {
-		topo1.arcs.push(arc);
-	});
-	
-	
-}
-
 // Simplify all countries
 const topojson = require('topojson');
 let topo = topojson.topology(zones);
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
 
-// Simplify to 0.001 zonesLessSimplified zones
-topoLessSimplified = topojson.topology(zonesLessSimplified);
-topoLessSimplified = topojson.presimplify(topoLessSimplified);
-topoLessSimplified = topojson.simplify(topoLessSimplified, 0.001);
-// Merge topoLessSimplified into topo
-mergeTopoJsonSingleZone(topo, topoLessSimplified);
+// Simplify to 0.001 zonesMoreDetails zones
+topoMoreDetails = topojson.topology(zonesMoreDetails);
+topoMoreDetails = topojson.presimplify(topoMoreDetails);
+topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
+// Merge topoMoreDetails into topo
+mergeTopoJsonSingleZone(topo, topoMoreDetails);
 
 topo = topojson.filter(topo, topojson.filterWeight(topo, 0.01));
 topo = topojson.quantize(topo, 1e5);
