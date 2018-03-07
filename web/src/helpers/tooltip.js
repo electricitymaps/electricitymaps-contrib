@@ -176,7 +176,7 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
 
 module.exports.showMapCountry = function(tooltipInstance, countryData, co2color, co2Colorbars) {
   if (countryData.co2intensity && co2Colorbars)
-    co2Colorbars.forEach(function(c) { c.currentMarker(countryData.co2intensity); });
+    co2Colorbars.forEach((c) => { c.currentMarker(countryData.co2intensity); });
   const tooltip = d3.select(tooltipInstance._selector);
   tooltip.select('#country-flag')
     .attr('src', flags.flagUri(countryData.countryCode, 16));
@@ -189,7 +189,6 @@ module.exports.showMapCountry = function(tooltipInstance, countryData, co2color,
     .text(Math.round(countryData.co2intensity) || '?');
 
   const priceData = countryData.price || {};
-  const hasPrice = priceData.value !== null;
   const hasFossilFuelData = countryData.fossilFuelRatio !== null;
   const fossilFuelPercent = countryData.fossilFuelRatio * 100;
   tooltip.select('.lowcarbon-percentage')
@@ -205,7 +204,7 @@ module.exports.showMapCountry = function(tooltipInstance, countryData, co2color,
 module.exports.showMapExchange = function(tooltipInstance, exchangeData, co2color, co2Colorbars) {
   const tooltip = d3.select(tooltipInstance._selector);
   if (exchangeData.co2intensity && co2Colorbars)
-    co2Colorbars.forEach(function(c) { c.currentMarker(exchangeData.co2intensity); });
+    co2Colorbars.forEach((c) => { c.currentMarker(exchangeData.co2intensity); });
   tooltip.select('.emission-rect')
     .style('background-color', exchangeData.co2intensity ? co2color(exchangeData.co2intensity) : 'gray');
   const i = exchangeData.netFlow > 0 ? 0 : 1;

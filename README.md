@@ -24,26 +24,26 @@ Check the [contributing](#contribute) section for more details.
 **How do you define real-time data?**  
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
-**Why do you calculate the carbon intensity of *consumption*?**
+**Why do you calculate the carbon intensity of *consumption*?**  
 In short, citizens should not responsible for the emissions associated with all the products they export, but only for what they consume.
-Cconsumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
+Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 
-**Why don't you show emissions per capita?**
+**Why don't you show emissions per capita?**  
 A country that has few inhabitants but a lot of factories will appear high on CO2/capita.
 This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
 That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods).
 The CO2/capita metric, by involving the size of the population, and by not integrating all CO2 emission sources, is thus an incomplete metric.
 CO2 intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
-**CO2 emission factors look high - what do they cover exactly?**
-The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecycle of the plant (construction, fuel production, operational emissions, and decommissioning).
+**CO2 emission factors look high - what do they cover exactly?**  
+The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
 
 **Is delayed data useful?**  
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
-**Can scheduled generation data be used?**  
-The electricitymap doesn't use scheduled or planned generation data. This is to avoid introducing extra uncertainty into emissions calculations.
+**Can scheduled/assumed generation data be used?**  
+The electricitymap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
 
 **Can areas other than countries be shown?**  
 Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
@@ -56,7 +56,7 @@ All this and more can be found **[here](https://pro.electricitymap.org/)**.
 ### Carbon intensity calculation and data source
 The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO<sub>2</sub>eq (grams CO<sub>2</sub> equivalent), meaning each greenhouse gas is converted to its CO<sub>2</sub> equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO<sub>2</sub> over the same period).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole lifecycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.js](https://github.com/tmrowco/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed literature:
+The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.js](https://github.com/tmrowco/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed literature:
 - IPCC (2014) Fifth Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
 Country-specific carbon-intensity factors:
@@ -69,6 +69,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 
 ### Real-time electricity data sources
+&nbsp;<details><summary>Click to see the full list</summary>
 Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
@@ -157,10 +158,12 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
   - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
+&nbsp;</details>
 
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) file.
 
+&nbsp;<details><summary>Click to see the full list</summary>
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
 - Austria
@@ -258,6 +261,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - CAISO: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
+&nbsp;</details>
 
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
@@ -283,7 +287,7 @@ Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co)
 
 To get started, [clone](https://help.github.com/articles/cloning-a-repository/) or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
 
-The frontend will need compiling. In order to do this, open a terminal and run
+The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
 docker-compose run --rm web npm run watch
 ```
@@ -295,6 +299,8 @@ docker-compose up --build
 ```
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
+
+If you have issues building the map locally check out the [Troubleshooting](###Troubleshooting) section for common problems and fixes.
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
@@ -345,13 +351,21 @@ Once you're done, add your parser to the [zones.json](https://github.com/tmrowco
 
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
+### Generating a new map
+If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the [web](https://github.com/tmrowco/electricitymap/tree/master/web) directory then run the following command.  
+```
+./topogen.sh
+```
+
+For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap/blob/master/web/README.md).
+
 ### Testing parsers locally
-We've added a testing server locally. In order to test your parser, make sure first that you have installed the required modules as described in parsers/requirements.txt: for that you can run
+We've added a testing server locally. In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
 ```
 pip install -r parsers/requirements.txt
 ```
 
-Then, you can run
+Then you can run
 ```
 PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
 ```
