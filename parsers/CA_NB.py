@@ -40,11 +40,11 @@ def _get_new_brunswick_flows(requests_obj):
     return flows
 
 
-def fetch_production(country_code='CA-NB', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CA-NB', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code       -- ignored here, only information for CA-NB is returned
+    zone_key       -- ignored here, only information for CA-NB is returned
     session (optional) -- request session passed in order to re-use an existing session
 
     Return:
@@ -92,7 +92,7 @@ def fetch_production(country_code='CA-NB', session=None, target_datetime=None, l
 
     data = {
         'datetime': arrow.utcnow().floor('minute').datetime,
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {
             'unknown': generated
         },
@@ -103,12 +103,12 @@ def fetch_production(country_code='CA-NB', session=None, target_datetime=None, l
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
-    country_code1           -- the first country code (use format like "CA-QC" for sub-country regions)
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code (use format like "CA-QC" for sub-country regions)
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -123,7 +123,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     requests_obj = session or requests.session()
     flows = _get_new_brunswick_flows(requests_obj)
@@ -132,23 +132,23 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     # In expected result, "net" represents an export.
     # So these can be used directly.
 
-    if sorted_country_codes == 'CA-NB->CA-QC':
+    if sorted_zone_keys == 'CA-NB->CA-QC':
         value = flows['QUEBEC']
-    elif sorted_country_codes == 'CA-NB->US-NEISO':
+    elif sorted_zone_keys == 'CA-NB->US-NEISO':
         # all of these exports are to Maine
         # (see https://www.nbpower.com/en/about-us/our-energy/system-map/),
         # currently this is mapped to ISO-NE
         value = flows['EMEC'] + flows['ISO-NE'] + flows['MPS']
-    elif sorted_country_codes == 'CA-NB->CA-NS':
+    elif sorted_zone_keys == 'CA-NB->CA-NS':
         value = flows['NOVA SCOTIA']
-    elif sorted_country_codes == 'CA-NB->CA-PE':
+    elif sorted_zone_keys == 'CA-NB->CA-PE':
         value = flows['PEI']
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     data = {
         'datetime': arrow.utcnow().floor('minute').datetime,
-        'sortedCountryCodes': sorted_country_codes,
+        'sortedCountryCodes': sorted_zone_keys,
         'netFlow': value,
         'source': 'tso.nbpower.com'
     }

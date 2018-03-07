@@ -28,11 +28,11 @@ def time_string_converter(ts):
     return dt_aware
 
 
-def fetch_production(country_code='BG', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -92,7 +92,7 @@ def fetch_production(country_code='BG', session=None, target_datetime=None, logg
         production[k] = production.get(k, 0.0) + v
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': production,
         'storage': {},
         'source': 'eso.bg',

@@ -21,11 +21,11 @@ MAP_GENERATION = {
 }
 
 
-def fetch_hourly_production(country_code, obj, hour, date):
+def fetch_hourly_production(zone_key, obj, hour, date):
 
     # output frame
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {},
         'storage': {},
         'source': 'amm.org.gt',
@@ -48,7 +48,7 @@ def fetch_hourly_production(country_code, obj, hour, date):
     return data
 
 
-def fetch_production(country_code='GT', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='GT', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -72,7 +72,7 @@ def fetch_production(country_code='GT', session=None, target_datetime=None, logg
     obj = response.json()
     obj_df = pd.DataFrame(obj)
     obj_h = obj_df[obj_df.hora == '24']
-    data_temp = fetch_hourly_production(country_code, obj_h, 0, formatted_date)
+    data_temp = fetch_hourly_production(zone_key, obj_h, 0, formatted_date)
     data[0] = data_temp
 
     # Fill data for the other hours until actual hour
@@ -85,16 +85,16 @@ def fetch_production(country_code='GT', session=None, target_datetime=None, logg
         obj_df = pd.DataFrame(obj)
         for h in range(1, actual_hour + 1):
             obj_h = obj_df[obj_df.hora == str(h)]
-            data_temp = fetch_hourly_production(country_code, obj_h, h, formatted_date)
+            data_temp = fetch_hourly_production(zone_key, obj_h, h, formatted_date)
             data[h] = data_temp
 
     return data
 
 
-def fetch_hourly_consumption(country_code, obj, hour, date):
+def fetch_hourly_consumption(zone_key, obj, hour, date):
     # output frame
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'consumption': {},
         'source': 'amm.org.gt',
     }
@@ -106,7 +106,7 @@ def fetch_hourly_consumption(country_code, obj, hour, date):
     return data
 
 
-def fetch_consumption(country_code='GT', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='GT', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -130,7 +130,7 @@ def fetch_consumption(country_code='GT', session=None, target_datetime=None, log
     obj = response.json()
     obj_df = pd.DataFrame(obj)
     obj_h = obj_df[obj_df.hora == '24']
-    data_temp = fetch_hourly_consumption(country_code, obj_h, 0, formatted_date)
+    data_temp = fetch_hourly_consumption(zone_key, obj_h, 0, formatted_date)
     data[0] = data_temp
 
     # Fill data for the other hours until actual hour
@@ -143,7 +143,7 @@ def fetch_consumption(country_code='GT', session=None, target_datetime=None, log
         obj_df = pd.DataFrame(obj)
         for h in range(1, actual_hour + 1):
             obj_h = obj_df[obj_df.hora == str(h)]
-            data_temp = fetch_hourly_consumption(country_code, obj_h, h, formatted_date)
+            data_temp = fetch_hourly_consumption(zone_key, obj_h, h, formatted_date)
             data[h] = data_temp
 
     return data

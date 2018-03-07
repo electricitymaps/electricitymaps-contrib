@@ -29,11 +29,11 @@ def _get_pei_info(requests_obj):
     return data
 
 
-def fetch_production(country_code='CA-PE', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CA-PE', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code       -- ignored here, only information for CA-PE is returned
+    zone_key       -- ignored here, only information for CA-PE is returned
     session (optional) -- request session passed in order to re-use an existing session
 
     Return:
@@ -67,7 +67,7 @@ def fetch_production(country_code='CA-PE', session=None, target_datetime=None, l
 
     data = {
         'datetime': raw_info['utc_datetime'],
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {
             'wind': raw_info['pei_wind_gen'],
 
@@ -89,12 +89,12 @@ def fetch_production(country_code='CA-PE', session=None, target_datetime=None, l
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
-    country_code1           -- the first country code (use format like "CA-QC" for sub-country regions)
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code (use format like "CA-QC" for sub-country regions)
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -109,9 +109,9 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
-    if sorted_country_codes != 'CA-NB->CA-PE':
+    if sorted_zone_keys != 'CA-NB->CA-PE':
         raise NotImplementedError('This exchange pair is not implemented')
 
     requests_obj = session or requests.session()
@@ -133,11 +133,11 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     imported_from_nb = (raw_data['pei_load'] - raw_data['pei_fossil_gen'] - raw_data['pei_wind_gen'])
 
     # In expected result, "net" represents an export.
-    # We have sorted_country_codes 'CA-NB->CA-PE', so it's export *from* NB,
+    # We have sorted_zone_keys 'CA-NB->CA-PE', so it's export *from* NB,
     # and import *to* PEI.
     data = {
         'datetime': raw_data['utc_datetime'],
-        'sortedCountryCodes': sorted_country_codes,
+        'sortedCountryCodes': sorted_zone_keys,
         'netFlow': imported_from_nb,
         'source': 'www.gov.pe.ca/windenergy'
     }

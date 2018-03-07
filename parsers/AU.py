@@ -290,11 +290,11 @@ AMEO_STATION_DICTIONARY = {
 }
 
 
-def fetch_production(country_code=None, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -326,7 +326,7 @@ def fetch_production(country_code=None, session=None, target_datetime=None, logg
     url = 'http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all'
     df = pd.read_csv(url)
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'capacity': {
             'coal': 0,
             'geothermal': 0,
@@ -358,7 +358,7 @@ def fetch_production(country_code=None, session=None, target_datetime=None, logg
             logger.warning('WARNING: station %s does not belong to any state' % station)
             continue
 
-        if AMEO_LOCATION_DICTIONARY[station] != country_code:
+        if AMEO_LOCATION_DICTIONARY[station] != zone_key:
             continue
 
         if row['Most Recent Output Time (AEST)'] == '-':
@@ -417,13 +417,13 @@ def fetch_production(country_code=None, session=None, target_datetime=None, logg
 
     # find distributed solar production and add it in
     session = session or requests.session()
-    distributed_solar_production = AU_solar.fetch_solar_for_date(country_code, data['datetime'],
+    distributed_solar_production = AU_solar.fetch_solar_for_date(zone_key, data['datetime'],
                                                                  session)
     if distributed_solar_production:
         data['production']['solar'] = (data['production'].get('solar', 0) +
                                        distributed_solar_production)
 
-    if country_code == 'AUS-SA':
+    if zone_key == 'AUS-SA':
         # Get South Australia battery status.
         data['storage']['battery'] = AU_battery.fetch_SA_battery()
 
@@ -459,12 +459,12 @@ EXCHANGE_MAPPING_DICTIONARY = {
 }
 
 
-def fetch_exchange(country_code1=None, country_code2=None, session=None, target_datetime=None,
+def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime=None,
                    logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -479,8 +479,8 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None, target_
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
-    mapping = EXCHANGE_MAPPING_DICTIONARY[sorted_country_codes]
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+    mapping = EXCHANGE_MAPPING_DICTIONARY[sorted_zone_keys]
 
     r = session or requests.session()
     url = 'https://www.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY'
@@ -503,7 +503,7 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None, target_
             'exportlimit' if direction == 1 else 'importlimit']
 
     data = {
-        'sortedCountryCodes': sorted_country_codes,
+        'sortedCountryCodes': sorted_zone_keys,
         'netFlow': net_flow,
         'capacity': [import_capacity, export_capacity],  # first one should be negative
         'source': 'aemo.com.au',
@@ -523,11 +523,11 @@ PRICE_MAPPING_DICTIONARY = {
 }
 
 
-def fetch_price(country_code=None, session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key=None, session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -547,11 +547,11 @@ def fetch_price(country_code=None, session=None, target_datetime=None, logger=No
     url = 'https://www.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY'
     response = r.get(url)
     obj = list(filter(lambda o:
-                      o['REGIONID'] == PRICE_MAPPING_DICTIONARY[country_code],
+                      o['REGIONID'] == PRICE_MAPPING_DICTIONARY[zone_key],
                       response.json()['ELEC_NEM_SUMMARY']))[0]
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'currency': 'AUD',
         'price': obj['PRICE'],
         'source': 'aemo.com.au',

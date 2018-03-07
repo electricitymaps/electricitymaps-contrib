@@ -10,12 +10,12 @@ import arrow
 import requests
 
 
-def fetch_production(country_code='FR', session=None, target_datetime: datetime.datetime=None,
+def fetch_production(zone_key='FR', session=None, target_datetime: datetime.datetime=None,
                      logger: logging.Logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code: used in case a parser is able to fetch multiple countries
+    zone_key: used in case a parser is able to fetch multiple countries
     session: request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. If past data is not available, raise a NotImplementedError. Beware that the
@@ -63,12 +63,12 @@ def fetch_production(country_code='FR', session=None, target_datetime: datetime.
 
     response = r.get(url)
     assert response.status_code == 200, 'Exception when fetching production for {}: error ' \
-                                        'when calling url={}'.format(country_code, url)
+                                        'when calling url={}'.format(zone_key, url)
 
     obj = response.json()
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {},
         'storage': {},
         'source': 'someservice.com',
@@ -88,11 +88,11 @@ def fetch_production(country_code='FR', session=None, target_datetime: datetime.
     return data
 
 
-def fetch_price(country_code='FR', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='FR', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. If past data is not availa'ble, raise a NotImplementedError. Beware that the
@@ -124,7 +124,7 @@ def fetch_price(country_code='FR', session=None, target_datetime=None, logger=No
     obj = response.json()
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'currency': 'EUR',
         'price': obj['price'],
         'source': 'someservice.com',
@@ -136,12 +136,12 @@ def fetch_price(country_code='FR', session=None, target_datetime=None, logger=No
     return data
 
 
-def fetch_exchange(country_code1='DK', country_code2='NO', session=None, target_datetime=None,
+def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, target_datetime=None,
                    logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. If past data is not available, raise a NotImplementedError. Beware that the
@@ -166,19 +166,19 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None, target_
 
     r = session or requests.session()
     url = 'https://api.someservice.com/v1/exchange/latest?from={}&to={}'.format(
-        country_code1, country_code2)
+        zone_key1, zone_key2)
 
     response = r.get(url)
     assert response.status_code == 200
     obj = response.json()
 
     data = {
-        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
+        'sortedCountryCodes': '->'.join(sorted([zone_key1, zone_key2])),
         'source': 'someservice.com',
     }
 
     # Country codes are sorted in order to enable easier indexing in the database
-    sorted_country_codes = sorted([country_code1, country_code2])
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
     # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
     # to country2. A negative flow indicates an import.
@@ -186,7 +186,7 @@ def fetch_exchange(country_code1='DK', country_code2='NO', session=None, target_
     # The net flow to be reported should be from the first country to the second
     # (sorted alphabetically). This is NOT necessarily the same direction as the flow
     # from country1 to country2
-    data['netFlow'] = net_flow if country_code1 == sorted_country_codes[0] else -1 * net_flow
+    data['netFlow'] = net_flow if zone_key1 == sorted_zone_keys[0] else -1 * net_flow
 
     # Parse the datetime and return a python datetime object
     data['datetime'] = arrow.get(obj['datetime']).datetime

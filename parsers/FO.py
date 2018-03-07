@@ -18,7 +18,7 @@ def get_data_key(tag):
     return MAP_GENERATION.get(tag, None)
 
 
-def fetch_production(country_code='FO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='FO', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -28,7 +28,7 @@ def fetch_production(country_code='FO', session=None, target_datetime=None, logg
     obj = ET.fromstring(response.content)[0]
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'capacity': {},
         'production': {
             'biomass': 0,

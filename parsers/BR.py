@@ -60,7 +60,7 @@ def get_data(session, logger):
     return json_data
 
 
-def production_processor(json_data, country_code):
+def production_processor(json_data, zone_key):
     """
     Extracts data timestamp and sums regional data into totals by key.
     Maps keys to type and returns a tuple.
@@ -69,7 +69,7 @@ def production_processor(json_data, country_code):
     dt = arrow.get(json_data['Data'])
     totals = defaultdict(lambda: 0.0)
 
-    region = regions[country_code]
+    region = regions[zone_key]
     breakdown = json_data[region][u'geracao']
     for generation, val in breakdown.items():
         # tolerance range
@@ -95,11 +95,11 @@ def production_processor(json_data, country_code):
     return dt, mapped_totals
 
 
-def fetch_production(country_code, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -128,10 +128,10 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     gd = get_data(session, logger)
-    generation = production_processor(gd, country_code)
+    generation = production_processor(gd, zone_key)
 
     datapoint = {
-      'countryCode': country_code,
+      'countryCode': zone_key,
       'datetime': generation[0].datetime,
       'production': generation[1],
       'storage': {
@@ -143,11 +143,11 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     return datapoint
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -164,15 +164,15 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
 
     gd = get_data(session, logger)
 
-    if country_code1 in countries_exchange.keys():
-        country_exchange = countries_exchange[country_code1]
+    if zone_key1 in countries_exchange.keys():
+        country_exchange = countries_exchange[zone_key1]
 
-    if country_code2 in countries_exchange.keys():
-        country_exchange = countries_exchange[country_code2]
+    if zone_key2 in countries_exchange.keys():
+        country_exchange = countries_exchange[zone_key2]
 
     data = {
         'datetime': arrow.get(gd['Data']).datetime,
-        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
+        'sortedCountryCodes': '->'.join(sorted([zone_key1, zone_key2])),
         'netFlow': gd['internacional'][country_exchange['name']] * country_exchange['flow'],
         'source': 'ons.org.br'
     }

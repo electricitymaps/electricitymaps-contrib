@@ -314,7 +314,7 @@ It is very simple to add a new country. The Electricity Map backend runs a list 
 A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
 ```python
-def fetch_production(country_code='FR', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
     return {
       'countryCode': 'FR',
       'datetime': '2017-01-01T00:00:00Z',

@@ -25,8 +25,9 @@ def get_data(session=None):
 
     s = session or requests.Session()
 
-    # In order for the data url to return data, cookies from the display url must be obtained then reused.
-    response = s.get(display_url)
+    # In order for the data url to return data, cookies from the display url must be
+    # obtained then reused.
+    s.get(display_url)
     data_response = s.get(data_url)
     raw_data = data_response.text
 
@@ -35,11 +36,11 @@ def get_data(session=None):
     return data
 
 
-def fetch_production(country_code='MD', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='MD', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -80,7 +81,7 @@ def fetch_production(country_code='MD', session=None, target_datetime=None, logg
     dt = arrow.now('Europe/Chisinau').datetime
 
     datapoint = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': dt,
         'consumption': consumption,
         'production': production,
@@ -91,11 +92,11 @@ def fetch_production(country_code='MD', session=None, target_datetime=None, logg
     return datapoint
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -110,7 +111,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedCountryCodes = '->'.join(sorted([zone_key1, zone_key2]))
 
     exchange_status = get_data(session=session)
 

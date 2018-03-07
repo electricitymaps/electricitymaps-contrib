@@ -8,11 +8,11 @@ import requests
 timezone = 'Canada/Pacific'
 
 
-def fetch_production(country_code='CA-YT', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given region
 
     Arguments:
-    country_code       -- ignored here, only information for CA-YT is returned
+    zone_key       -- ignored here, only information for CA-YT is returned
     session (optional) -- request session passed in order to re-use an existing session
     """
 
@@ -99,7 +99,7 @@ def fetch_production(country_code='CA-YT', session=None, target_datetime=None, l
 
     data = {
         'datetime': datetime_datetime,
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {
             'unknown': thermal_generation,
 

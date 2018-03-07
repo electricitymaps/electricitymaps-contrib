@@ -27,11 +27,11 @@ def fetch(session=None):
     return obj
 
 
-def fetch_production(country_code=None, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -64,17 +64,17 @@ def fetch_production(country_code=None, session=None, target_datetime=None, logg
 
     datetime = arrow.get(obj['soPgenGraph']['timestamp']).datetime
 
-    if country_code == 'NZ-NZN':
+    if zone_key == 'NZ-NZN':
         region_key = 'North Island'
-    elif country_code == 'NZ-NZS':
+    elif zone_key == 'NZ-NZS':
         region_key = 'South Island'
     else:
-        raise NotImplementedError('Unsupported country_code %s' % country_code)
+        raise NotImplementedError('Unsupported zone_key %s' % zone_key)
 
     productions = obj['soPgenGraph']['data'][region_key]
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': datetime,
         'production': {
             'coal': productions.get('Gas/Coal', {'generation': 0.0})['generation'],
@@ -101,11 +101,12 @@ def fetch_production(country_code=None, session=None, target_datetime=None, logg
     return data
 
 
-def fetch_exchange(country_code1='NZ-NZN', country_code2='NZ-NZS', session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_datetime=None,
+                   logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:

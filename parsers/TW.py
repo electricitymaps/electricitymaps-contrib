@@ -5,7 +5,7 @@ import pandas
 import dateutil
 
 
-def fetch_production(country_code='TW', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -45,7 +45,7 @@ def fetch_production(country_code='TW', session=None, target_datetime=None, logg
     # We require the opposite
 
     returndata = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': dumpDate.datetime,
         'production': {
             'coal': coal_production,

@@ -9,11 +9,11 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def fetch_production(country_code='PA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:

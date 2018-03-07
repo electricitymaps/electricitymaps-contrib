@@ -19,11 +19,11 @@ MAP_GENERATION = {
 timezone = 'Canada/Eastern'
 
 
-def fetch_production(country_code='CA-ON', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CA-ON', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -71,7 +71,7 @@ def fetch_production(country_code='CA-ON', session=None, target_datetime=None, l
             if rowIndex not in data:
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
-                    'countryCode': country_code,
+                    'countryCode': zone_key,
                     'production': {
                         'coal': 0
                     },
@@ -84,11 +84,11 @@ def fetch_production(country_code='CA-ON', session=None, target_datetime=None, l
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_price(country_code='CA-ON', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='CA-ON', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -125,7 +125,7 @@ def fetch_price(country_code='CA-ON', session=None, target_datetime=None, logger
             if rowIndex not in data:
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
-                    'countryCode': country_code,
+                    'countryCode': zone_key,
                     'currency': 'CAD',
                     'source': 'ieso.ca',
                 }
@@ -137,11 +137,11 @@ def fetch_price(country_code='CA-ON', session=None, target_datetime=None, logger
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -162,7 +162,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     obj = response.json()
     exchanges = obj['intertieLineData']
 
-    sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedCountryCodes = '->'.join(sorted([zone_key1, zone_key2]))
     # Everything -> CA_ON corresponds to an import to ON
     # In the data, "net" represents an export
     # So everything -> CA_ON must be reversed

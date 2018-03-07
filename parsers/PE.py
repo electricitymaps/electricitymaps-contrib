@@ -25,7 +25,7 @@ def parse_date(item):
     return arrow.get(item['Nombre'], 'M/D/YYYY h:mm:ss A').replace(tzinfo=dateutil.tz.gettz(tz))
 
 
-def fetch_production(country_code='PE', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
@@ -57,7 +57,7 @@ def fetch_production(country_code='PE', session=None, target_datetime=None, logg
                 i = len(datetimes)
                 datetimes.append(datetime)
                 data.append({
-                    'countryCode': country_code,
+                    'countryCode': zone_key,
                     'datetime': datetime.datetime,
                     'production': {},
                     'source': 'coes.org.pe'

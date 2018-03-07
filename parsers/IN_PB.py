@@ -26,13 +26,14 @@ def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_fo
     return get(date_time, date_format)
 
 
-def fetch_production(country_code='IN-PB', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    countrycode.assert_country_code(country_code, 'IN-PB')
-    response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
+    countrycode.assert_zone_key(zone_key, 'IN-PB')
+    response_text = web.get_response_text(
+        zone_key, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
 
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
@@ -60,7 +61,7 @@ def fetch_production(country_code='IN-PB', session=None, target_datetime=None, l
     ipp_value = findall('\d+', ipp_text)[0]
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date.datetime,
         'production': {
             'biomass': 0.0,
@@ -83,13 +84,14 @@ def fetch_production(country_code='IN-PB', session=None, target_datetime=None, l
     return data
 
 
-def fetch_consumption(country_code='IN-PB', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    countrycode.assert_country_code(country_code, 'IN-PB')
-    response_text = web.get_response_text(country_code, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',
+    countrycode.assert_zone_key(zone_key, 'IN-PB')
+    response_text = web.get_response_text(
+        zone_key, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',
                                           session)
     date_text = read_text_by_regex('(\d+/\d+/\d+)', response_text)
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
@@ -107,7 +109,7 @@ def fetch_consumption(country_code='IN-PB', session=None, target_datetime=None, 
     consumption_td = punjab_soap.findAll('td')[3]
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date.datetime,
         'consumption': float(consumption_td.text),
         'source': 'punjasldc.org'

@@ -110,11 +110,11 @@ def data_processer(rawdata, logger):
     return converted_time_string, dict(generationDict)
 
 
-def fetch_production(country_code='MY-WM', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -146,7 +146,7 @@ def fetch_production(country_code='MY-WM', session=None, target_datetime=None, l
     clean_data = data_processer(raw_data, logger)
 
     production = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': clean_data[0],
         'production': clean_data[1],
         'storage': {

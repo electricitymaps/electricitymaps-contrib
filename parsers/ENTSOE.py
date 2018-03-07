@@ -44,7 +44,7 @@ ENTSOE_PARAMETER_DESC = {
     'B20': 'Other',
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
-# Define all ENTSOE country_code <-> domain mapping
+# Define all ENTSOE zone_key <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
@@ -438,26 +438,21 @@ def validate_production(datapoint):
     codes = ('GB', 'GR', 'PT')
     if datapoint['countryCode'] in codes:
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None
+        return p.get('coal', None) is not None and p.get('gas', None) is not None
     elif datapoint['countryCode'] == 'BE':
         p = datapoint['production']
-        return p.get('nuclear', None) is not None and \
-               p.get('gas', None) is not None
+        return p.get('nuclear', None) is not None and p.get('gas', None) is not None
     elif datapoint['countryCode'] == 'ES':
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('nuclear', None) is not None
+        return p.get('coal', None) is not None and p.get('nuclear', None) is not None
     elif datapoint['countryCode'] == 'DK':
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None and \
-               p.get('wind', None) is not None
+        return (p.get('coal', None) is not None and p.get('gas', None) is not None
+                and p.get('wind', None) is not None)
     elif datapoint['countryCode'] == 'DE':
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None and \
-               p.get('nuclear', None) is not None
+        return (p.get('coal', None) is not None and p.get('gas', None) is not None and
+                p.get('nuclear', None) is not None)
     else:
         return True
 
@@ -483,7 +478,7 @@ def get_gas(values):
 
 def get_hydro(values):
     if ('Hydro Run-of-river and poundage' in values or
-            'Hydro Water Reservoir' in values):
+        'Hydro Water Reservoir' in values):
         return values.get('Hydro Run-of-river and poundage', 0) + \
                values.get('Hydro Water Reservoir', 0)
 
@@ -511,18 +506,18 @@ def get_geothermal(values):
 
 def get_unknown(values):
     if ('Marine' in values or
-            'Other renewable' in values or
-            'Other' in values):
+        'Other renewable' in values or
+        'Other' in values):
         return (values.get('Marine', 0) +
                 values.get('Other renewable', 0) +
                 values.get('Other', 0))
 
 
-def fetch_consumption(country_code, session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     """Gets consumption for a specified zone, returns a dictionary."""
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_consumption(query_consumption(domain, session, target_datetime=target_datetime))
     if parsed:
@@ -543,7 +538,7 @@ def fetch_consumption(country_code, session=None, target_datetime=None, logger=N
             # else we keep the last stored value
             dt, quantity = datetimes[-1].datetime, quantities[-1]
         data = {
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'datetime': dt,
             'consumption': quantity,
             'source': 'entsoe.eu'
@@ -552,7 +547,7 @@ def fetch_consumption(country_code, session=None, target_datetime=None, logger=N
         return data
 
 
-def fetch_production(country_code, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
@@ -561,7 +556,7 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     """
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Create a double hashmap with keys (datetime, parameter)
     production_hashmap = defaultdict(lambda: {})
     # Grab production
@@ -590,7 +585,7 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
                              production_hashmap[production_date].items()}
 
         data.append({
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'datetime': production_date.datetime,
             'production': {
                 'biomass': get_biomass(production_values),
@@ -624,8 +619,7 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     return [most_relevant]
 
 
-
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -633,13 +627,13 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     """
     if not session:
         session = requests.session()
-    sorted_country_codes = sorted([country_code1, country_code2])
-    key = '->'.join(sorted_country_codes)
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
+    key = '->'.join(sorted_zone_keys)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
         domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
     else:
-        domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
-        domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
+        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     # Create a hashmap with key (datetime)
     exchange_hashmap = {}
     # Grab exchange
@@ -664,11 +658,11 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
         return None
     data = []
     for exchange_date in exchange_dates:
-        netFlow = exchange_hashmap[exchange_date]
+        net_flow = exchange_hashmap[exchange_date]
         data.append({
             'sortedCountryCodes': key,
             'datetime': exchange_date.datetime,
-            'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
+            'netFlow': net_flow if zone_key1[0] == sorted_zone_keys else -1 * net_flow,
             'source': 'entsoe.eu'
         })
 
@@ -680,7 +674,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     return data
 
 
-def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None,
+def fetch_exchange_forecast(zone_key1, zone_key2, session=None, now=None,
                             target_datetime=None, logger=None):
     """
     Gets exchange forecast between two specified zones.
@@ -691,8 +685,8 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
 
     if not session:
         session = requests.session()
-    domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
-    domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
+    domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+    domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     # Create a hashmap with key (datetime)
     exchange_hashmap = {}
     # Grab exchange
@@ -711,7 +705,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
                 exchange_hashmap[datetimes[i]] = quantities[i]
 
     # Remove all dates in the future
-    sorted_country_codes = sorted([country_code1, country_code2])
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
     exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
     if not len(exchange_dates):
         return None
@@ -719,15 +713,15 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedCountryCodes': '->'.join(sorted_country_codes),
+            'sortedCountryCodes': '->'.join(sorted_zone_keys),
             'datetime': exchange_date.datetime,
-            'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
+            'netFlow': netFlow if zone_key1[0] == sorted_zone_keys else -1 * netFlow,
             'source': 'entsoe.eu'
         })
     return data
 
 
-def fetch_price(country_code, session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -735,7 +729,7 @@ def fetch_price(country_code, session=None, target_datetime=None, logger=None):
     # Note: This is day-ahead prices
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_price(query_price(domain, session, target_datetime))
     if parsed:
@@ -743,7 +737,7 @@ def fetch_price(country_code, session=None, target_datetime=None, logger=None):
         prices, currencies, datetimes = parsed
         for i in range(len(prices)):
             data.append({
-                'countryCode': country_code,
+                'countryCode': zone_key,
                 'datetime': datetimes[i].datetime,
                 'currency': currencies[i],
                 'price': prices[i],
@@ -758,7 +752,7 @@ def fetch_price(country_code, session=None, target_datetime=None, logger=None):
         return data
 
 
-def fetch_generation_forecast(country_code, session=None, now=None, target_datetime=None,
+def fetch_generation_forecast(zone_key, session=None, now=None, target_datetime=None,
                               logger=None):
     """
     Gets generation forecast for specified zone.
@@ -769,7 +763,7 @@ def fetch_generation_forecast(country_code, session=None, now=None, target_datet
 
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_generation_forecast(query_generation_forecast(domain, session, now))
     if parsed:
@@ -777,7 +771,7 @@ def fetch_generation_forecast(country_code, session=None, now=None, target_datet
         values, datetimes = parsed
         for i in range(len(values)):
             data.append({
-                'countryCode': country_code,
+                'countryCode': zone_key,
                 'datetime': datetimes[i].datetime,
                 'value': values[i],
                 'source': 'entsoe.eu'
@@ -786,7 +780,7 @@ def fetch_generation_forecast(country_code, session=None, now=None, target_datet
         return data
 
 
-def fetch_consumption_forecast(country_code, session=None, now=None, target_datetime=None,
+def fetch_consumption_forecast(zone_key, session=None, now=None, target_datetime=None,
                                logger=None):
     """
     Gets consumption forecast for specified zone.
@@ -797,7 +791,7 @@ def fetch_consumption_forecast(country_code, session=None, now=None, target_date
 
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_consumption_forecast(query_consumption_forecast(domain, session, now))
     if parsed:
@@ -805,7 +799,7 @@ def fetch_consumption_forecast(country_code, session=None, now=None, target_date
         values, datetimes = parsed
         for i in range(len(values)):
             data.append({
-                'countryCode': country_code,
+                'countryCode': zone_key,
                 'datetime': datetimes[i].datetime,
                 'value': values[i],
                 'source': 'entsoe.eu'
