@@ -42,10 +42,7 @@ export default class Map {
       });
       this.map.addSource('hover', {
         type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [],
-        },
+        data: clickableData, // Duplicating source makes filter operations faster https://github.com/mapbox/mapbox-gl-js/issues/5040#issuecomment-321688603
       });
       // Create layers
       const paint = {
@@ -83,6 +80,7 @@ export default class Map {
           'fill-color': 'white',
           'fill-opacity': 0.3,
         },
+        filter:  ['==', 'zoneId', ''],
       });
       // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
       this.map.addLayer({
@@ -184,10 +182,7 @@ export default class Map {
       const { zoneId } = e.features[0].properties;
       if (prevId !== zoneId) {
         prevId = zoneId;
-        const hoverSource = this.map.getSource('hover');
-        if (hoverSource) {
-          hoverSource.setData(e.features[0]);
-        }
+        this.map.setFilter('zones-hover', ['==', 'zoneId', zoneId]);
       }
       if (this.zoneMouseMoveHandler) {
         this.zoneMouseMoveHandler.call(
@@ -214,10 +209,8 @@ export default class Map {
       // Disable for touch devices
       if (this.userIsUsingTouch) { return; }
       this.map.getCanvas().style.cursor = '';
-      this.map.getSource('hover').setData({
-        type: 'FeatureCollection',
-        features: [],
-      });
+      this.map.setFilter('zones-hover', ['==', 'zoneId', '']);
+
       prevId = null;
       if (this.zoneMouseOutHandler) {
         this.zoneMouseOutHandler.call(this);
