@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const { modeOrder } = require('../helpers/constants');
 const constructTopos = require('../helpers/topos');
 const translation = require('../helpers/translation');
@@ -36,93 +38,123 @@ Object.entries(exchanges).forEach((entry) => {
 const initialDataState = {
   // Here we will store data items
   grid: { zones, exchanges },
+  histories: {},
   solar: null, // TODO(olc)
   wind: null, // TODO(olc)
 };
 
 module.exports = (state = initialDataState, action) => {
-  if (action.type !== 'GRID_DATA') { return state; }
+  switch (action.type) {
+    case 'GRID_DATA': {
+      // Create new grid object
+      const newGrid = Object.assign({}, {
+        zones: Object.assign({}, state.grid.zones),
+        exchanges: Object.assign({}, state.grid.exchanges),
+      });
+      // Create new state
+      const newState = Object.assign({}, state);
+      newState.grid = newGrid;
 
-  // Create new grid object
-  const newGrid = Object.assign({}, {
-    zones: Object.assign({}, state.grid.zones),
-    exchanges: Object.assign({}, state.grid.exchanges),
-  });
-  // Create new state
-  const newState = Object.assign({}, state);
-  newState.grid = newGrid;
+      // Reset histories that expired
+      newState.histories = Object.assign({}, state.histories);
+      Object.keys(state.histories).forEach((k) => {
+        const history = state.histories[k];
+        const lastHistoryMoment = moment(history[history.length - 1].stateDatetime).utc();
+        const stateMoment = moment(action.payload.datetime).utc();
+        if (lastHistoryMoment.add(15, 'minutes') <= stateMoment) {
+          console.log(lastHistoryMoment.toISOString(), stateMoment.toISOString())
+          delete newState.histories[k];
+        }
+      });
 
-  // Reset all data we want to update (for instance, not maxCapacity)
-  Object.keys(newGrid.zones).forEach((key) => {
-    const zone = newGrid.zones[key];
-    zone.co2intensity = undefined;
-    zone.exchange = {};
-    zone.production = {};
-    zone.productionCo2Intensities = {};
-    zone.productionCo2IntensitySources = {};
-    zone.dischargeCo2Intensities = {};
-    zone.dischargeCo2IntensitySources = {};
-    zone.storage = {};
-    zone.source = undefined;
-  });
-  Object.keys(newGrid.exchanges).forEach((key) => {
-    newGrid.exchanges[key].netFlow = undefined;
-  });
+      // Reset all data we want to update (for instance, not maxCapacity)
+      Object.keys(newGrid.zones).forEach((key) => {
+        const zone = newGrid.zones[key];
+        zone.co2intensity = undefined;
+        zone.exchange = {};
+        zone.production = {};
+        zone.productionCo2Intensities = {};
+        zone.productionCo2IntensitySources = {};
+        zone.dischargeCo2Intensities = {};
+        zone.dischargeCo2IntensitySources = {};
+        zone.storage = {};
+        zone.source = undefined;
+      });
+      Object.keys(newGrid.exchanges).forEach((key) => {
+        newGrid.exchanges[key].netFlow = undefined;
+      });
 
-  // Populate with realtime country data
-  Object.entries(action.payload.countries).forEach((entry) => {
-    const [key, value] = entry;
-    const zone = newGrid.zones[key];
-    if (!zone) {
-      console.warn(`${zone} has no country definition.`);
-      return;
+      // Populate with realtime country data
+      Object.entries(action.payload.countries).forEach((entry) => {
+        const [key, value] = entry;
+        const zone = newGrid.zones[key];
+        if (!zone) {
+          console.warn(`${zone} has no country definition.`);
+          return;
+        }
+        // Assign data from payload
+        Object.keys(value).forEach((k) => {
+          // Warning: k takes all values, even those that are not meant
+          // to be updated (like maxCapacity)
+          zone[k] = value[k];
+        });
+        // Set date
+        zone.datetime = action.payload.datetime;
+        // Validate data
+        if (!zone.production) return;
+        modeOrder.forEach((mode) => {
+          if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
+          // Check missing values
+          // if (country.production[mode] === undefined && country.storage[mode] === undefined)
+          //    console.warn(`${key} is missing production or storage of ' + mode`);
+          // Check validity of production
+          if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
+            console.error(`${key} has negative production of ${mode}`);
+          }
+          // Check load factors > 1
+          if (zone.production[mode] !== undefined &&
+            (zone.capacity || {})[mode] !== undefined &&
+            zone.production[mode] > zone.capacity[mode]) {
+            console.error(`${key} produces more than its capacity of ${mode}`);
+          }
+        });
+        if (!zone.exchange || !Object.keys(zone.exchange).length) {
+          console.warn(`${key} is missing exchanges`);
+        }
+      });
+
+      // Populate exchange pairs for exchange layer
+      Object.entries(action.payload.exchanges).forEach((entry) => {
+        const [key, value] = entry;
+        const exchange = newGrid.exchanges[key];
+        if (!exchange || !exchange.lonlat) {
+          console.error(`Missing exchange configuration for ${key}`);
+          return;
+        }
+        // Assign all data
+        Object.keys(value).forEach((k) => {
+          exchange[k] = value[k];
+        });
+      });
+
+      // Debug
+      console.log(newGrid.zones);
+
+      return newState;
     }
-    // Assign data from payload
-    Object.keys(value).forEach((k) => {
-      // Warning: k takes all values, even those that are not meant to be updated (like maxCapacity)
-      zone[k] = value[k];
-    });
-    // Set date
-    zone.datetime = action.payload.datetime;
-    // Validate data
-    if (!zone.production) return;
-    modeOrder.forEach((mode) => {
-      if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
-      // Check missing values
-      // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-      //    console.warn(`${key} is missing production or storage of ' + mode`);
-      // Check validity of production
-      if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-        console.error(`${key} has negative production of ${mode}`);
-      }
-      // Check load factors > 1
-      if (zone.production[mode] !== undefined &&
-        (zone.capacity || {})[mode] !== undefined &&
-        zone.production[mode] > zone.capacity[mode]) {
-        console.error(`${key} produces more than its capacity of ${mode}`);
-      }
-    });
-    if (!zone.exchange || !Object.keys(zone.exchange).length) {
-      console.warn(`${key} is missing exchanges`);
+
+    case 'HISTORY_DATA': {
+      // Create new histories
+      const newHistories = Object.assign({}, state.histories);
+      newHistories[action.zoneName] = action.payload;
+      // Create new state
+      const newState = Object.assign({}, state);
+      newState.histories = newHistories;
+
+      return newState;
     }
-  });
 
-  // Populate exchange pairs for exchange layer
-  Object.entries(action.payload.exchanges).forEach((entry) => {
-    const [key, value] = entry;
-    const exchange = newGrid.exchanges[key];
-    if (!exchange || !exchange.lonlat) {
-      console.error(`Missing exchange configuration for ${key}`);
-      return;
-    }
-    // Assign all data
-    Object.keys(value).forEach((k) => {
-      exchange[k] = value[k];
-    });
-  });
-
-  // Debug
-  console.log(newGrid.zones);
-
-  return newState;
+    default:
+      return state;
+  }
 };

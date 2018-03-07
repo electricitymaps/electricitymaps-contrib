@@ -1,9 +1,10 @@
+import { event as d3Event } from 'd3-selection';
+
 const d3 = Object.assign(
   {},
   require('d3-selection'),
   require('d3-transition'),
 );
-import { event as d3Event } from 'd3-selection';
 
 function placeTooltip(selector, eventX, eventY) {
   const tooltip = d3.select(selector);
@@ -11,6 +12,7 @@ function placeTooltip(selector, eventX, eventY) {
   const h = tooltip.node().getBoundingClientRect().height;
   const margin = 7;
   const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
 
   let x = 0;
   let y = 0;
@@ -29,8 +31,9 @@ function placeTooltip(selector, eventX, eventY) {
       x = eventX - w - margin;
     }
   }
-  y = eventY - margin;
-  if (y < 0) y = eventY + h + margin;
+  y = eventY - margin - h;
+  if (y < 0) y = eventY + margin;
+  if (y + h + margin >= screenHeight) y = eventY - h - margin;
   // y = eventY
   tooltip
     .style('transform', `translate(${x}px,${y}px)`);
