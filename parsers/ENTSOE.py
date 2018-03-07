@@ -513,14 +513,11 @@ def get_unknown(values):
 
 def fetch_consumption(country_code, session=None, target_datetime=None, logger=None):
     """Gets consumption for a specified zone, returns a dictionary."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_consumption(query_consumption(domain, session, target_datetime))
+    parsed = parse_consumption(query_consumption(domain, session, target_datetime=target_datetime))
     if parsed:
         quantities, datetimes = parsed
 
@@ -553,9 +550,6 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     a datetime associated with them.
     Returns a list of dictionaries that have been validated.
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -623,13 +617,13 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     return [return_values]
 
 
-def fetch_exchange(country_code1, country_code2, session=None, now=None, target_datetime=None):
+def fetch_exchange(country_code1, country_code2, session=None, now=None, target_datetime=None,
+                   logger=None):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
     Returns a list of dictionaries.
     """
-
     if not session:
         session = requests.session()
     sorted_country_codes = sorted([country_code1, country_code2])
@@ -673,12 +667,12 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None, target_
     return data
 
 
-def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None, target_datetime=None):
+def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None,
+                            target_datetime=None, logger=None):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
     """
-
     if not session:
         session = requests.session()
     domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
@@ -717,12 +711,11 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     return data
 
 
-def fetch_price(country_code, session=None, now=None, target_datetime=None):
+def fetch_price(country_code, session=None, now=None, target_datetime=None, logger=None):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
     """
-
     # Note: This is day-ahead prices
     if not session:
         session = requests.session()
@@ -744,12 +737,12 @@ def fetch_price(country_code, session=None, now=None, target_datetime=None):
         return data
 
 
-def fetch_generation_forecast(country_code, session=None, now=None, target_datetime=None):
+def fetch_generation_forecast(country_code, session=None, now=None, target_datetime=None,
+                              logger=None):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
     """
-
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -769,12 +762,12 @@ def fetch_generation_forecast(country_code, session=None, now=None, target_datet
         return data
 
 
-def fetch_consumption_forecast(country_code, session=None, now=None, target_datetime=None):
+def fetch_consumption_forecast(country_code, session=None, now=None, target_datetime=None,
+                               logger=None):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
     """
-
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]

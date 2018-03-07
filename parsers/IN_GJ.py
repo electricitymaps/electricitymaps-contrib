@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 import re
-import string
 from ast import literal_eval
 
-import requests
-from arrow import get
+import arrow
 from requests import Session
 from .lib import countrycode
 from .lib import web
-from .lib import IN
 from operator import itemgetter
 
 station_map = {
@@ -23,13 +20,17 @@ station_map = {
 }
 
 
-def fetch_data(country_code, session = None):
+def fetch_data(country_code, session=None, logger=None):
     countrycode.assert_country_code(country_code, 'IN-GJ')
 
-    solar_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
-    wind_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
+    solar_html = web.get_response_soup(
+        country_code, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
+    wind_html = web.get_response_soup(
+        country_code, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
 
-    india_date = get(solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata', 'DD-MM-YYYY H:m:s ZZZ')
+    india_date = arrow.get(
+        solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata',
+        ['DD-MM-YYYY H:m:s ZZZ', 'D-MM-YYYY H:m:s ZZZ'])
 
     solar_value = float(literal_eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
     wind_value = float(literal_eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
@@ -82,7 +83,7 @@ def fetch_production(country_code='IN-GJ', session=None, target_datetime=None, l
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    value_map = fetch_data(country_code, session)
+    value_map = fetch_data(country_code, session, logger=logger)
 
     data = {
         'countryCode': country_code,
