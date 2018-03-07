@@ -112,6 +112,7 @@ class QueryError(Exception):
 
 
 def closest_in_time_key(x, target_datetime, datetime_key='datetime'):
+    target_datetime = arrow.get(target_datetime)
     return np.abs((x[datetime_key] - target_datetime).seconds)
 
 
@@ -530,12 +531,14 @@ def fetch_consumption(country_code, session=None, target_datetime=None, logger=N
         # if a specific target_datetime was provided, we keep value corresponding to the
         # closest datetime
         if target_datetime:
+            target_datetime = arrow.get(target_datetime)
             min_dist, dt, quantity = np.inf, 0, 0
             assert len(datetimes) and len(quantities)
             for current_dt, quant in zip(datetimes, quantities):
                 dist = np.abs((current_dt - target_datetime).seconds)
                 if dist < min_dist:
                     dt, min_dist, quantity = current_dt, dist, quant
+
         else:
             # else we keep the last stored value
             dt, quantity = datetimes[-1].datetime, quantities[-1]
