@@ -111,6 +111,10 @@ class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
 
 
+def closest_in_time_key(x, target_datetime, datetime_key='datetime'):
+    return np.abs((x[datetime_key] - target_datetime).seconds)
+
+
 def check_response(response, function_name):
     """
     Searches for an error message in response if the query to ENTSOE fails.
@@ -612,16 +616,13 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     target_datetime = arrow.get(target_datetime)
     if not len(to_return):
         return None
-    min_dist, return_values = np.inf, {}
-    for values in to_return:
-        dist = np.abs((values['datetime'] - target_datetime).seconds)
-        if dist < min_dist:
-            min_dist, return_values = dist, values
-    return [return_values]
+
+    most_relevant = sorted(to_return, key=lambda x: closest_in_time_key(x, target_datetime))[0]
+    return [most_relevant]
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None,
-                   logger=None):
+
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -653,12 +654,6 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
             for i in range(len(quantities)):
                 exchange_hashmap[datetimes[i]] = quantities[i]
 
-    # if target_datetime is provided, only keep most relevant
-    if target_datetime:
-        min_dist, return_values = np.inf, {}
-        for dt, quant in exchange_hashmap.items():
-            dist = np.abs(values['datetime'] - arrow.utcnow())
-
     # Remove all dates in the future
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
     exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
@@ -673,6 +668,12 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
             'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
             'source': 'entsoe.eu'
         })
+
+    if target_datetime:
+        # only keep most relevant
+        most_relevant = sorted(data, key=lambda x: closest_in_time_key(x, target_datetime))[0]
+        return [most_relevant]
+
     return data
 
 
@@ -682,6 +683,9 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     if not session:
         session = requests.session()
     domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
@@ -720,7 +724,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     return data
 
 
-def fetch_price(country_code, session=None, now=None, target_datetime=None, logger=None):
+def fetch_price(country_code, session=None, target_datetime=None, logger=None):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -730,7 +734,7 @@ def fetch_price(country_code, session=None, now=None, target_datetime=None, logg
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
     # Grab consumption
-    parsed = parse_price(query_price(domain, session, now))
+    parsed = parse_price(query_price(domain, session, target_datetime))
     if parsed:
         data = []
         prices, currencies, datetimes = parsed
@@ -743,6 +747,11 @@ def fetch_price(country_code, session=None, now=None, target_datetime=None, logg
                 'source': 'entsoe.eu'
             })
 
+        if target_datetime:
+            # only keep most relevant
+            most_relevant = sorted(data, key=lambda x: closest_in_time_key(x, target_datetime))[0]
+            return [most_relevant]
+
         return data
 
 
@@ -752,6 +761,9 @@ def fetch_generation_forecast(country_code, session=None, now=None, target_datet
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
@@ -777,6 +789,9 @@ def fetch_consumption_forecast(country_code, session=None, now=None, target_date
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
