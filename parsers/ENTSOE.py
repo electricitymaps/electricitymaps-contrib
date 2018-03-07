@@ -139,6 +139,8 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     else:
         # when querying for a specific datetime, we only look for a small span
         span = (-1, 1)
+        # make sure we have an arrow object
+        target_datetime = arrow.get(target_datetime)
     params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
     params['periodEnd'] = target_datetime.replace(hours=+span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
@@ -178,7 +180,7 @@ def query_production(psr_type, in_domain, session, target_datetime=None):
         check_response(response, query_production.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, now=None):
+def query_exchange(in_domain, out_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -186,7 +188,7 @@ def query_exchange(in_domain, out_domain, session, now=None):
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, target_datetime)
     if response.ok:
         return response.text
     else:
@@ -527,7 +529,7 @@ def fetch_consumption(country_code, session=None, target_datetime=None, logger=N
             min_dist, dt, quantity = np.inf, 0, 0
             assert len(datetimes) and len(quantities)
             for current_dt, quant in zip(datetimes, quantities):
-                dist = np.abs(current_dt - arrow.utcnow()).seconds
+                dist = np.abs((current_dt - target_datetime).seconds)
                 if dist < min_dist:
                     dt, min_dist, quantity = current_dt, dist, quant
         else:
@@ -607,17 +609,18 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
         return to_return
 
     # if target_datetime was provided, only keep the most relevant
+    target_datetime = arrow.get(target_datetime)
     if not len(to_return):
         return None
     min_dist, return_values = np.inf, {}
     for values in to_return:
-        dist = np.abs(values['datetime'] - arrow.utcnow())
+        dist = np.abs((values['datetime'] - target_datetime).seconds)
         if dist < min_dist:
             min_dist, return_values = dist, values
     return [return_values]
 
 
-def fetch_exchange(country_code1, country_code2, session=None, now=None, target_datetime=None,
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None,
                    logger=None):
     """
     Gets exchange status between two specified zones.
@@ -638,17 +641,23 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None, target_
     # Grab exchange
     # Import
     parsed = parse_exchange(
-        query_exchange(domain1, domain2, session, now),
+        query_exchange(domain1, domain2, session, target_datetime),
         is_import=True)
     if parsed:
         # Export
         parsed = parse_exchange(
-            xml_text=query_exchange(domain2, domain1, session, now),
+            xml_text=query_exchange(domain2, domain1, session, target_datetime),
             is_import=False, quantities=parsed[0], datetimes=parsed[1])
         if parsed:
             quantities, datetimes = parsed
             for i in range(len(quantities)):
                 exchange_hashmap[datetimes[i]] = quantities[i]
+
+    # if target_datetime is provided, only keep most relevant
+    if target_datetime:
+        min_dist, return_values = np.inf, {}
+        for dt, quant in exchange_hashmap.items():
+            dist = np.abs(values['datetime'] - arrow.utcnow())
 
     # Remove all dates in the future
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)

@@ -9,39 +9,38 @@ import demjson
 import re
 import requests
 
-
 # Used for both production and price data.
 url = 'http://www.pjm.com/markets-and-operations.aspx'
 
 mapping = {
-            'Coal': 'coal',
-            'Gas': 'gas',
-            'Hydro': 'hydro',
-            'Multiple Fuels': 'unknown',
-            'Nuclear': 'nuclear',
-            'Oil': 'oil',
-            'Other': 'unknown',
-            'Other Renewables': 'unknown',
-            'Solar': 'solar',
-            'Wind': 'wind'
-            }
+    'Coal': 'coal',
+    'Gas': 'gas',
+    'Hydro': 'hydro',
+    'Multiple Fuels': 'unknown',
+    'Nuclear': 'nuclear',
+    'Oil': 'oil',
+    'Other': 'unknown',
+    'Other Renewables': 'unknown',
+    'Solar': 'solar',
+    'Wind': 'wind'
+}
 
 exchange_mapping = {
-                    'nyiso': 'NYIS|NYIS',
-                    'neptune': 'NEPTUNE|SAYR',
-                    'linden': 'LINDENVFT|LINDEN',
-                    'hudson': 'HUDSONTP|HTP',
-                    'miso': 'miso',
-                    'ohio valley': 'DEOK|OVEC',
-                    'louisville': 'SOUTHIMP|LGEE',
-                    'tennessee valley': 'SOUTHIMP|TVA',
-                    'cpl west': 'SOUTHIMP|CPLW',
-                    'duke': 'SOUTHIMP|DUKE',
-                    'cpl east': 'SOUTHIMP|CPLE'
-                    }
+    'nyiso': 'NYIS|NYIS',
+    'neptune': 'NEPTUNE|SAYR',
+    'linden': 'LINDENVFT|LINDEN',
+    'hudson': 'HUDSONTP|HTP',
+    'miso': 'miso',
+    'ohio valley': 'DEOK|OVEC',
+    'louisville': 'SOUTHIMP|LGEE',
+    'tennessee valley': 'SOUTHIMP|TVA',
+    'cpl west': 'SOUTHIMP|CPLW',
+    'duke': 'SOUTHIMP|DUKE',
+    'cpl east': 'SOUTHIMP|CPLE'
+}
 
 
-def extract_data(session = None):
+def extract_data(session=None):
     """
     Makes a request to the PJM data url.
     Finds timestamp of current data and converts into a useful form.
@@ -70,20 +69,20 @@ def extract_data(session = None):
     hour = int(time_data[0])
     minute = int(time_data[1])
 
-    #Time format used by PJM is slightly unusual and needs to be converted so arrow can use it.
+    # Time format used by PJM is slightly unusual and needs to be converted so arrow can use it.
     if am_or_pm == "p.m." and hour != 12:
-        #Time needs to be in 24hr format
+        # Time needs to be in 24hr format
         hour += 12
     elif am_or_pm == "a.m." and hour == 12:
-        #Midnight is 12 a.m.
+        # Midnight is 12 a.m.
         hour = 0
 
     arr_dt = arrow.now('America/New_York').replace(hour=hour, minute=minute)
     future_check = arrow.now('America/New_York')
 
     if arr_dt > future_check:
-        #Generation mix lags 1-2hrs behind present.
-        #This check prevents data near midnight being given the wrong date.
+        # Generation mix lags 1-2hrs behind present.
+        # This check prevents data near midnight being given the wrong date.
         arr_dt.shift(days=-1)
 
     dt = arr_dt.floor('minute').datetime
@@ -94,7 +93,7 @@ def extract_data(session = None):
     pattern = r'series: \[(.*)\]'
     script_data = re.search(pattern, str(generation_mix_script)).group(1)
 
-    #demjson is required because script data is javascript not valid json.
+    # demjson is required because script data is javascript not valid json.
     raw_data = demjson.decode(script_data)
     data = raw_data["data"]
 
@@ -116,7 +115,7 @@ def data_processer(data):
     return production
 
 
-def fetch_production(country_code = 'US-PJM', session = None):
+def fetch_production(country_code='US-PJM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -144,16 +143,18 @@ def fetch_production(country_code = 'US-PJM', session = None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    extracted = extract_data(session = None)
+    extracted = extract_data(session=None)
     production = data_processer(extracted[0])
 
     datapoint = {
-      'countryCode': country_code,
-      'datetime': extracted[1],
-      'production': production,
-      'storage': {'hydro': None, 'battery': None},
-      'source': 'pjm.com'
+        'countryCode': country_code,
+        'datetime': extracted[1],
+        'production': production,
+        'storage': {'hydro': None, 'battery': None},
+        'source': 'pjm.com'
     }
 
     return datapoint
@@ -168,7 +169,7 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def get_miso_exchange(session = None):
+def get_miso_exchange(session=None):
     """
     Current exchange status between PJM and MISO.
     Returns a tuple containing flow and timestamp.
@@ -191,7 +192,7 @@ def get_miso_exchange(session = None):
     # The flow direction is determined by img arrows.
     if left_or_right == "/assets/images/mapImages/black-L.png":
         # left set negative
-        flow = -1*float(miso_actual)
+        flow = -1 * float(miso_actual)
     elif left_or_right == "/assets/images/mapImages/black-R.png":
         # right set positive
         flow = float(miso_actual)
@@ -205,7 +206,7 @@ def get_miso_exchange(session = None):
     return flow, dt_aware
 
 
-def get_exchange_data(interface, session = None):
+def get_exchange_data(interface, session=None):
     """
     This function can fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
@@ -256,10 +257,10 @@ def combine_NY_exchanges():
     Returns a list of tuples.
     """
 
-    nyiso = get_exchange_data('nyiso', session = None)
-    neptune = get_exchange_data('neptune', session = None)
-    linden = get_exchange_data('linden', session = None)
-    hudson = get_exchange_data('hudson', session = None)
+    nyiso = get_exchange_data('nyiso', session=None)
+    neptune = get_exchange_data('neptune', session=None)
+    linden = get_exchange_data('linden', session=None)
+    hudson = get_exchange_data('hudson', session=None)
 
     combined_flows = zip(nyiso, neptune, linden, hudson)
 
@@ -280,7 +281,7 @@ def combine_NY_exchanges():
     return flows
 
 
-def fetch_exchange(country_code1, country_code2, session = None):
+def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     country_code1           -- the first country code
@@ -296,6 +297,8 @@ def fetch_exchange(country_code1, country_code2, session = None):
     }
     where net flow is from DK into NO
     """
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # PJM reports exports as negative.
     sortedcodes = '->'.join(sorted([country_code1, country_code2]))
@@ -305,10 +308,10 @@ def fetch_exchange(country_code1, country_code2, session = None):
     elif sortedcodes == 'US-MISO->US-PJM':
         flow = get_miso_exchange()
         exchange = {
-          'sortedCountryCodes': sortedcodes,
-          'datetime': flow[1],
-          'netFlow': flow[0],
-          'source': 'pjm.com'
+            'sortedCountryCodes': sortedcodes,
+            'datetime': flow[1],
+            'netFlow': flow[0],
+            'source': 'pjm.com'
         }
         return exchange
 
@@ -318,17 +321,17 @@ def fetch_exchange(country_code1, country_code2, session = None):
     exchanges = []
     for flow in flows:
         exchange = {
-          'sortedCountryCodes': sortedcodes,
-          'datetime': flow[1],
-          'netFlow': flow[0],
-          'source': 'pjm.com'
+            'sortedCountryCodes': sortedcodes,
+            'datetime': flow[1],
+            'netFlow': flow[0],
+            'source': 'pjm.com'
         }
         exchanges.append(exchange)
 
     return exchanges
 
 
-def fetch_price(country_code = 'US-PJM', session = None):
+def fetch_price(country_code='US-PJM', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
     Arguments:
     country_code (optional) -- used in case a parser is able to fetch multiple countries
@@ -343,6 +346,8 @@ def fetch_price(country_code = 'US-PJM', session = None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     s = session or requests.Session()
     req = requests.get(url)
@@ -361,7 +366,7 @@ def fetch_price(country_code = 'US-PJM', session = None):
         'datetime': dt,
         'price': price,
         'source': 'pjm.com',
-        }
+    }
 
     return data
 

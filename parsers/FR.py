@@ -70,7 +70,11 @@ def fetch_production(country_code='FR', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_price(country_code, session=None, from_date=None, to_date=None):
+def fetch_price(country_code, session=None, from_date=None, to_date=None, target_datetime=None,
+                logger=None):
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
     dt_now = arrow.now(tz='Europe/Paris')
     formatted_from = from_date or dt_now.format('DD/MM/YYYY')
