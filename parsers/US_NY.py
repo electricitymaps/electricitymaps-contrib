@@ -79,11 +79,11 @@ def data_parser(df):
     return mapped_generation
 
 
-def fetch_production(country_code='US-NY', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A dictionary in the form:
     {
@@ -119,7 +119,7 @@ def fetch_production(country_code='US-NY', session=None, target_datetime=None, l
     production_mix = []
     for datapoint in clean_data:
         data = {
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'datetime': timestamp_converter(datapoint[0]),
             'production': datapoint[1],
             'storage': {'hydro': None},
@@ -131,11 +131,11 @@ def fetch_production(country_code='US-NY', session=None, target_datetime=None, l
     return production_mix
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -160,7 +160,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     new_england_exs = exchange_data.loc[exchange_data['Interface Name'].isin(relevant_exchanges)]
     consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
 
-    sortedcodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
     exchange_5min = []
     for row in consolidated_flows.itertuples():

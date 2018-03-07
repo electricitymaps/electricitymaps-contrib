@@ -5,7 +5,7 @@ import requests
 import datetime
 
 
-def fetch_production(country_code='AW', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -27,7 +27,7 @@ def fetch_production(country_code='AW', session=None, target_datetime=None, logg
     zone_date_time = arrow.Arrow.fromdatetime(local_date_time, 'America/Aruba')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': zone_date_time.datetime,
         'production': {
             'oil': fossil['value'],

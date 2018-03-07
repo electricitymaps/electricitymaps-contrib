@@ -2,24 +2,24 @@
 
 from requests import Session
 from .lib import web
-from .lib import countrycode
+from .lib import zonekey
 from .lib import IN
 
 
-def fetch_consumption(country_code='IN-CT', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     """Fetch Chhattisgarh consumption"""
-    countrycode.assert_country_code(country_code, 'IN-CT')
-    html = web.get_response_soup(country_code, 'http://117.239.199.203/csptcl/GEN.aspx', session)
+    zonekey.assert_zone_key(zone_key, 'IN-CT')
+    html = web.get_response_soup(zone_key, 'http://117.239.199.203/csptcl/GEN.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'L37', 'hh:m DD-MM-YY')
 
     demand_value = IN.read_value_from_span_id(html, 'L29')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'cspc.co.in'
@@ -28,14 +28,14 @@ def fetch_consumption(country_code='IN-CT', session=None, target_datetime=None, 
     return data
 
 
-def fetch_production(country_code='IN-CT', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     """Fetch Chhattisgarh production"""
-    countrycode.assert_country_code(country_code, 'IN-CT')
+    zonekey.assert_zone_key(zone_key, 'IN-CT')
 
-    html = web.get_response_soup(country_code, 'http://117.239.199.203/csptcl/GEN.aspx', session)
+    html = web.get_response_soup(zone_key, 'http://117.239.199.203/csptcl/GEN.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'L37', 'hh:m DD-MM-YY')
 
@@ -52,7 +52,7 @@ def fetch_production(country_code='IN-CT', session=None, target_datetime=None, l
     bango_value = IN.read_value_from_span_id(html, 'L20')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
             'coal': coal_value,

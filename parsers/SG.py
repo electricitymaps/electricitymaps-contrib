@@ -159,11 +159,11 @@ def sg_data_to_datetime(data):
     return data_datetime
 
 
-def fetch_production(country_code='SG', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='SG', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of Singapore.
 
     Arguments:
-    country_code       -- ignored here, only information for SG is returned
+    zone_key       -- ignored here, only information for SG is returned
     session (optional) -- request session passed in order to re-use an existing session
     """
     if target_datetime:
@@ -218,14 +218,14 @@ def fetch_production(country_code='SG', session=None, target_datetime=None, logg
 
     return {
         'datetime': sg_data_to_datetime(data),
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': generation_by_type,
         'storage': {},  # there is no known electricity storage in Singapore
         'source': 'emcsg.com'
     }
 
 
-def fetch_price(country_code='SG', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
     """Requests the most recent known power prices in Singapore (USEP).
 
     See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.
@@ -238,7 +238,7 @@ def fetch_price(country_code='SG', session=None, target_datetime=None, logger=No
     however we don't currently use this.
 
     Arguments:
-    country_code (optional) -- ignored, only information for Singapore is returned
+    zone_key (optional) -- ignored, only information for Singapore is returned
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -266,7 +266,7 @@ def fetch_price(country_code='SG', session=None, target_datetime=None, logger=No
     price = parse_price(price_str)
 
     return {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': sg_data_to_datetime(data),
         'currency': 'SGD',
         'price': price,

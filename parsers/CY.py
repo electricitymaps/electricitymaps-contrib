@@ -129,11 +129,11 @@ def merge_production(total_and_wind, solar):
     return res
 
 
-def fetch_production(country_code='CY', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -169,7 +169,7 @@ def fetch_production(country_code='CY', session=None, target_datetime=None, logg
     data = []
     for time in production:
         data.append({
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'production': {
                 'solar': production[time].get('solar', 0.0),
                 'wind': production[time].get('wind', 0.0),

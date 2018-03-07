@@ -87,11 +87,11 @@ def data_processer(raw_data):
     return sorted(clean_data)
 
 
-def fetch_production(country_code='US-NEISO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A list of dictionaries in the form:
     {
@@ -125,7 +125,7 @@ def fetch_production(country_code='US-NEISO', session=None, target_datetime=None
     production_mix = []
     for item in points:
         data = {
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'datetime': item[0],
             'production': item[1],
             'storage': {

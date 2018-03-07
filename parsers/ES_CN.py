@@ -9,45 +9,45 @@ from reescraper import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
 from .lib.exceptions import ParserException
 
 
-def fetch_island_data(country_code, session):
-    if country_code == 'ES-CN-FVLZ':
+def fetch_island_data(zone_key, session):
+    if zone_key == 'ES-CN-FVLZ':
         lanzarote_fuerteventura_data = LanzaroteFuerteventura(session).get_all()
         if not lanzarote_fuerteventura_data:
-            raise ParserException(country_code, "LanzaroteFuerteventura not response")
+            raise ParserException(zone_key, "LanzaroteFuerteventura not response")
         else:
             return lanzarote_fuerteventura_data
-    elif country_code == 'ES-CN-GC':
+    elif zone_key == 'ES-CN-GC':
         gran_canaria_data = GranCanaria(session).get_all()
         if not gran_canaria_data:
-            raise ParserException(country_code, "GranCanaria not response")
+            raise ParserException(zone_key, "GranCanaria not response")
         else:
             return gran_canaria_data
-    elif country_code == 'ES-CN-IG':
+    elif zone_key == 'ES-CN-IG':
         gomera_data = Gomera(session).get_all()
         if not gomera_data:
-            raise ParserException(country_code, "Gomera not response")
+            raise ParserException(zone_key, "Gomera not response")
         else:
             return gomera_data
-    elif country_code == 'ES-CN-LP':
+    elif zone_key == 'ES-CN-LP':
         la_palma_data = LaPalma(session).get_all()
         if not la_palma_data:
-            raise ParserException(country_code, "LaPalma not response")
+            raise ParserException(zone_key, "LaPalma not response")
         else:
             return la_palma_data
-    elif country_code == 'ES-CN-TE':
+    elif zone_key == 'ES-CN-TE':
         tenerife_data = Tenerife(session).get_all()
         if not tenerife_data:
-            raise ParserException(country_code, "Tenerife not response")
+            raise ParserException(zone_key, "Tenerife not response")
         else:
             return tenerife_data
-    elif country_code == 'ES-CN-HI':
+    elif zone_key == 'ES-CN-HI':
         el_hierro_data = ElHierro(session).get_all()
         if not el_hierro_data:
-            raise ParserException(country_code, "ElHierro not response")
+            raise ParserException(zone_key, "ElHierro not response")
         else:
             return el_hierro_data
     else:
-        raise ParserException(country_code, 'Can\'t read this country code {0}'.format(country_code))
+        raise ParserException(zone_key, 'Can\'t read this country code {0}'.format(zone_key))
 
 
 def fetch_consumption(country_code='ES-CN', session=None, target_datetime=None, logger=None):

@@ -4,7 +4,7 @@ from ast import literal_eval
 
 import arrow
 from requests import Session
-from .lib import countrycode
+from .lib import zonekey
 from .lib import web
 from operator import itemgetter
 
@@ -21,7 +21,7 @@ station_map = {
 
 
 def fetch_data(country_code, session=None, logger=None):
-    countrycode.assert_country_code(country_code, 'IN-GJ')
+    zonekey.assert_country_code(country_code, 'IN-GJ')
 
     solar_html = web.get_response_soup(
         country_code, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)

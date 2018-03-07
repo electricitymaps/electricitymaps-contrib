@@ -3,7 +3,7 @@
 from requests import Session
 from .lib.exceptions import ParserException
 from .lib import web
-from .lib import countrycode
+from .lib import zonekey
 from .lib import IN
 
 
@@ -12,7 +12,7 @@ def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logg
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    countrycode.assert_zone_key(zone_key, 'IN-KA')
+    zonekey.assert_zone_key(zone_key, 'IN-KA')
     html = web.get_response_soup(zone_key, 'http://kptclsldc.com/Default.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'Label6', 'DD/MM/YYYY HH:mm')
@@ -34,7 +34,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    countrycode.assert_zone_key(zone_key, 'IN-KA')
+    zonekey.assert_zone_key(zone_key, 'IN-KA')
 
     html = web.get_response_soup(zone_key, 'http://kptclsldc.com/StateGen.aspx', session)
 

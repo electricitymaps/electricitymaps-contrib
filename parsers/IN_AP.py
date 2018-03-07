@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
 from requests import Session
-from .lib import countrycode, IN, web
+from .lib import zonekey, IN, web
 
 
-def fetch_production(country_code='IN-AP', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh  production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    countrycode.assert_country_code(country_code, 'IN-AP')
+    zonekey.assert_zone_key(zone_key, 'IN-AP')
 
-    html = web.get_response_soup(country_code,
+    html = web.get_response_soup(zone_key,
                                  'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
@@ -28,7 +28,7 @@ def fetch_production(country_code='IN-AP', session=None, target_datetime=None, l
     ipp_value = IN.read_value_from_span_id(html, 'lblIPPS')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date.datetime,
         'production': {
             'biomass': 0.0,
@@ -51,21 +51,21 @@ def fetch_production(country_code='IN-AP', session=None, target_datetime=None, l
     return data
 
 
-def fetch_consumption(country_code='IN-AP', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    countrycode.assert_country_code(country_code, 'IN-AP')
+    zonekey.assert_zone_key(zone_key, 'IN-AP')
 
-    html = web.get_response_soup(country_code,
+    html = web.get_response_soup(zone_key,
                                  'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
     demand_value = IN.read_value_from_span_id(html, 'lblGridDemand')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date.datetime,
         'consumption': demand_value,
         'source': 'core.ap.gov.in'

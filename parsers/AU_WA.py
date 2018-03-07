@@ -14,7 +14,7 @@ timezone = 'Australia/Perth'
 HOURS_TO_GET = 24
 
 
-def fetch_production(country_code='AUS-WA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='AUS-WA', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
@@ -72,13 +72,13 @@ def fetch_production(country_code='AUS-WA', session=None, target_datetime=None, 
 
         # get closest solar production data
         closestSolar = AU_solar.find_solar_nearest_time(allSolar, timestampDate)
-        distributedSolarProduction = AU_solar.filter_solar_to_state(closestSolar, country_code)
+        distributedSolarProduction = AU_solar.filter_solar_to_state(closestSolar, zone_key)
 
         if distributedSolarProduction:
             rptData['production']['solar'] = rptData['production'].get('solar', 0) + distributedSolarProduction
 
         data = {
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'production': rptData['production'],
             'capacity': rptData['capacity'],
             'datetime': timestampDate,

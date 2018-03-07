@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 from .lib.exceptions import ParserException
 from .lib import web
-from .lib import countrycode
+from .lib import zonekey
 
 
 def read_text_by_regex(regex, text):
@@ -31,7 +31,7 @@ def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logge
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    countrycode.assert_zone_key(zone_key, 'IN-PB')
+    zonekey.assert_zone_key(zone_key, 'IN-PB')
     response_text = web.get_response_text(
         zone_key, 'http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal', session)
 
@@ -89,7 +89,7 @@ def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logg
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    countrycode.assert_zone_key(zone_key, 'IN-PB')
+    zonekey.assert_zone_key(zone_key, 'IN-PB')
     response_text = web.get_response_text(
         zone_key, 'http://www.punjabsldc.org/nrrealw.asp?pg=nrGenReal',
                                           session)

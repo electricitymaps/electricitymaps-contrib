@@ -72,14 +72,14 @@ def parse_page(session):
     return obj
 
 
-def fetch_production(country_code='UY', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     obj = parse_page(session)
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': obj['datetime'],
         'production': dict([(k, obj[INV_MAP_GENERATION[k]]) for k in INV_MAP_GENERATION.keys()]),
         'source': 'ute.com.uy'
@@ -88,11 +88,11 @@ def fetch_production(country_code='UY', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -108,15 +108,15 @@ def fetch_exchange(country_code1='UY', country_code2='BR-S', session=None, targe
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     # set comparison
-    if {country_code1, country_code2} != {'UY', 'BR'}:
+    if {zone_key1, zone_key2} != {'UY', 'BR'}:
         return None
 
     obj = parse_page(session)
     netFlow = obj['Interconexión con Brasil']  # this represents BR->UY (imports)
-    if country_code1 != 'BR': netFlow *= -1
+    if zone_key1 != 'BR': netFlow *= -1
 
     data = {
-        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
+        'sortedCountryCodes': '->'.join(sorted([zone_key1, zone_key2])),
         'datetime': obj['datetime'],
         'netFlow': netFlow,
         'source': 'ute.com.uy'

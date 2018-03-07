@@ -107,11 +107,11 @@ def data_processer(data, logger):
     return clean_data
 
 
-def fetch_production(country_code='CL-SING', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A dictionary in the form:
     {
@@ -143,7 +143,7 @@ def fetch_production(country_code='CL-SING', session=None, target_datetime=None,
     production_mix_by_hour = []
     for point in dp:
         production_mix = {
-          'countryCode': country_code,
+          'countryCode': zone_key,
           'datetime': point['datetime'],
           'production': {
               'solar': point.get('solar', 0.0),

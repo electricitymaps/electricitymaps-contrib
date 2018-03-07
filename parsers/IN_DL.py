@@ -2,24 +2,24 @@
 
 from requests import Session
 from .lib import web
-from .lib import countrycode
+from .lib import zonekey
 from .lib import IN
 
 
-def fetch_consumption(country_code='IN-DL', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-DL', session=None, target_datetime=None, logger=None):
     """Fetch Delhi consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    countrycode.assert_country_code(country_code, 'IN-DL')
-    html = web.get_response_soup(country_code, 'http://www.delhisldc.org/Redirect.aspx', session)
+    zonekey.assert_zone_key(zone_key, 'IN-DL')
+    html = web.get_response_soup(zone_key, 'http://www.delhisldc.org/Redirect.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'DynamicData1_LblDate', 'DD-MMM-YYYY hh:mm:ss A')
 
     demand_value = IN.read_value_from_span_id(html, 'DynamicData1_LblLoad')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'delhisldc.org'
@@ -28,14 +28,14 @@ def fetch_consumption(country_code='IN-DL', session=None, target_datetime=None, 
     return data
 
 
-def fetch_production(country_code='IN-DL', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-DL', session=None, target_datetime=None, logger=None):
     """Fetch Delhi production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
-    countrycode.assert_country_code(country_code, 'IN-DL')
+    zonekey.assert_zone_key(zone_key, 'IN-DL')
 
-    html = web.get_response_soup(country_code, 'http://www.delhisldc.org/Redirect.aspx?Loc=0804', session)
+    html = web.get_response_soup(zone_key, 'http://www.delhisldc.org/Redirect.aspx?Loc=0804', session)
 
     india_date_string = IN.read_text_from_span_id(html, 'ContentPlaceHolder3_ddgenco')
     india_date_time = IN.read_datetime_with_only_time(india_date_string, 'HH:mm:ss')
@@ -74,7 +74,7 @@ def fetch_production(country_code='IN-DL', session=None, target_datetime=None, l
     garbage = dmswsl + edwpl + towmp
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
             'coal': coal,

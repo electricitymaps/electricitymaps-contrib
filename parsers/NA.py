@@ -65,11 +65,11 @@ def data_processor(text):
     return production
 
 
-def fetch_production(country_code = 'NA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -103,7 +103,7 @@ def fetch_production(country_code = 'NA', session=None, target_datetime=None, lo
     production = data_processor(raw_text)
 
     data = {
-          'countryCode': country_code,
+          'countryCode': zone_key,
           'datetime': arrow.now('Africa/Windhoek').datetime,
           'production': production,
           'storage': {},
@@ -134,11 +134,11 @@ def exchange_processor(text, exchange):
     return flow
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -153,7 +153,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sorted_codes = "->".join(sorted([country_code1, country_code2]))
+    sorted_codes = "->".join(sorted([zone_key1, zone_key2]))
 
     raw_text = get_text_from_image(session=session, link=exchanges_link,
                                    expected_size=(400, 195), new_size=(1120, 546))
