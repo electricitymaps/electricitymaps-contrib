@@ -10,7 +10,7 @@ class TestParserException(unittest.TestCase):
         self.assertIsInstance(exception, ParserException)
         self.assertEqual(str(exception), 'ESIOS Parser: Parser exception')
 
-    def test_instance_with_country_code(self):
+    def test_instance_with_zone_key(self):
         exception = ParserException('ESIOS', "Parser exception", "ES")
         self.assertIsInstance(exception, ParserException)
         self.assertEqual(str(exception), 'ESIOS Parser (ES): Parser exception')

@@ -36,7 +36,7 @@ STATIONS = {
 }
 
 
-def fetch_production(country_code='IS', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IS', session=None, target_datetime=None, logger=None):
     # Disabled for now due to https://github.com/corradio/electricitymap/issues/140
     return
     
@@ -70,7 +70,7 @@ def fetch_production(country_code='IS', session=None, target_datetime=None, logg
     datetime_last = datetime.strptime(totalpowerflow["time"], '%Y-%m-%dT%H:%M:%S')
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': dict(production),
         'datetime': datetime_last,
         'storage': {},

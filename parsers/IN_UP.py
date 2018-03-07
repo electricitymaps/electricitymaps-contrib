@@ -7,7 +7,7 @@ from requests import Session
 from .lib import web
 
 
-def fetch_data(country_code='IN-UP', session=None):
+def fetch_data(zone_key='IN-UP', session=None):
 
     time_now = arrow.now(tz='Asia/Kolkata')
 
@@ -32,7 +32,7 @@ def fetch_data(country_code='IN-UP', session=None):
         'total up load/demand': 'demand'
     }
 
-    response_objects = literal_eval(web.get_response_with_params(country_code, 'http://www.upsldc.org/real-time-data', session, params=html_params).text.lower())
+    response_objects = literal_eval(web.get_response_with_params(zone_key, 'http://www.upsldc.org/real-time-data', session, params=html_params).text.lower())
     india_date = arrow.get(json.loads(list(response_objects[1].values())[0])['time_val'], 'M/D/YYYY h:m', tzinfo='Asia/Kolkata')
 
     value_map = {
@@ -66,20 +66,20 @@ def fetch_data(country_code='IN-UP', session=None):
     return value_map
 
 
-def fetch_production(country_code, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     """
     Method to get production data of Uttar Pradesh
-    :param country_code:
+    :param zone_key:
     :param value_map:
     :return:
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    value_map = fetch_data(country_code, session)
+    value_map = fetch_data(zone_key, session)
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': value_map.get('date'),
         'production': value_map.get('production'),
         'storage': {
@@ -91,20 +91,20 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
     return data
 
 
-def fetch_consumption(country_code, session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     """
     Method to get consumption data of Uttar Pradesh
-    :param country_code
+    :param zone_key
     :param value_map
     :return:
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    value_map = fetch_data(country_code, session)
+    value_map = fetch_data(zone_key, session)
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': value_map.get('date'),
         'consumption': value_map['consumption'].get('demand'),
         'source': 'upsldc.org'

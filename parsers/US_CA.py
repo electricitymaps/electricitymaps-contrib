@@ -5,11 +5,11 @@ import arrow
 import pandas
 
 
-def fetch_production(country_code='US-CA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -63,7 +63,7 @@ def fetch_production(country_code='US-CA', session=None, target_datetime=None, l
         h, m = map(int, csv['Time'][i].split(':'))
         date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
         data = {
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'production': {},
             'storage': {},
             'source': 'caiso.com',

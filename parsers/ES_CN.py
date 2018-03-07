@@ -50,16 +50,16 @@ def fetch_island_data(zone_key, session):
         raise ParserException(zone_key, 'Can\'t read this country code {0}'.format(zone_key))
 
 
-def fetch_consumption(country_code='ES-CN', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='ES-CN', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     ses = session or Session()
-    island_data = fetch_island_data(country_code, ses)
+    island_data = fetch_island_data(zone_key, ses)
     data = []
     for response in island_data:
         response_data = {
-            'countryCode': country_code,
+            'countryCode': zone_key,
             'datetime': get(response.timestamp).datetime,
             'consumption': response.demand,
             'source': 'demanda.ree.es'
@@ -70,19 +70,19 @@ def fetch_consumption(country_code='ES-CN', session=None, target_datetime=None, 
     return data
 
 
-def fetch_production(country_code, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     ses = session or Session()
-    island_data = fetch_island_data(country_code, ses)
+    island_data = fetch_island_data(zone_key, ses)
     data = []
 
-    if country_code == 'ES-CN-HI':
+    if zone_key == 'ES-CN-HI':
         for response in island_data:
             if response.production() > 0:
                 response_data = {
-                    'countryCode': country_code,
+                    'countryCode': zone_key,
                     'datetime': get(response.timestamp).datetime,
                     'production': {
                         'coal': 0.0,
@@ -106,7 +106,7 @@ def fetch_production(country_code, session=None, target_datetime=None, logger=No
         for response in island_data:
             if response.production() > 0:
                 response_data = {
-                    'countryCode': country_code,
+                    'countryCode': zone_key,
                     'datetime': get(response.timestamp).datetime,
                     'production': {
                         'coal': 0.0,

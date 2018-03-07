@@ -514,11 +514,11 @@ def webparser(req):
     return data_table
 
 
-def fetch_price(country_code='AR', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known power price of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -553,7 +553,7 @@ def fetch_price(country_code='AR', session=None, target_datetime=None, logger=No
     datetime = arrow.now('UTC-3').floor('hour').datetime
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'currency': 'ARS',
         'datetime': datetime,
         'price': price,
@@ -703,11 +703,11 @@ def get_hydro(session=None):
     return {'hydro': total_hydro_generation}
 
 
-def fetch_production(country_code='AR', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     target_datetime: if we want to parser for a specific time and not latest
     logger: where to log useful information
     Return:
@@ -740,7 +740,7 @@ def fetch_production(country_code='AR', session=None, target_datetime=None, logg
     thermal = get_thermal(session, logger)
     hydro = get_hydro(session=None)
     production_mix = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': gdt['datetime'],
         'production': {
             'biomass': thermal.get('biomass', 0.0),

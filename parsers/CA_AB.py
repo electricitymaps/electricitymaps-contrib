@@ -21,11 +21,11 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def fetch_production(country_code='CA-AB', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -70,7 +70,7 @@ def fetch_production(country_code='CA-AB', session=None, target_datetime=None, l
 
     return {
         'datetime': dt,
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {
             'coal': float(total_net_generation['COAL']),
             'gas': float(total_net_generation['GAS']),
@@ -89,11 +89,11 @@ def fetch_production(country_code='CA-AB', session=None, target_datetime=None, l
     }
 
 
-def fetch_price(country_code='CA-AB', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -125,7 +125,7 @@ def fetch_price(country_code='CA-AB', session=None, target_datetime=None, logger
             hours = int(rowIndex.split(' ')[1]) - 1
             data[rowIndex] = {
                 'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hours=hours, tzinfo=ab_timezone).datetime,
-                'countryCode': country_code,
+                'countryCode': zone_key,
                 'currency': 'CAD',
                 'source': 'ets.aeso.ca',
                 'price': float(price),
@@ -134,11 +134,11 @@ def fetch_price(country_code='CA-AB', session=None, target_datetime=None, logger
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
@@ -163,7 +163,7 @@ def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None, t
         'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
         'CA-AB->US': df_exchanges[1][1]['Montana']
     }
-    sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedCountryCodes = '->'.join(sorted([zone_key1, zone_key2]))
     if sortedCountryCodes not in flows:
         raise NotImplementedError('This exchange pair is not implemented')
 

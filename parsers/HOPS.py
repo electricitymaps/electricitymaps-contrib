@@ -39,10 +39,10 @@ def xml_processor(raw_xml):
     return exchange_data, dt_aware
 
 
-def fetch_exchange(country_code1, country_code2, session = None):
+def fetch_exchange(zone_key1, zone_key2, session = None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -58,19 +58,19 @@ def fetch_exchange(country_code1, country_code2, session = None):
     gxd = get_xml_data(session = None)
     processed_data = xml_processor(gxd)
 
-    sorted_country_codes = "->".join(sorted([country_code1, country_code2]))
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    if sorted_country_codes == 'BA->HR':
+    if sorted_zone_keys == 'BA->HR':
         ba_exchange = next(item for item in processed_data[0] if item['key'] == "Bosna i Hercegovina")
         net_flow = float(ba_exchange['value'])
-    elif sorted_country_codes == 'HR->SI':
+    elif sorted_zone_keys == 'HR->SI':
         si_exchange = next(item for item in processed_data[0] if item['key'] == "Slovenija")
         net_flow = -1*float(si_exchange['value'])
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     exchange = {
-      'sortedCountryCodes': sorted_country_codes,
+      'sortedCountryCodes': sorted_zone_keys,
       'datetime': processed_data[1].datetime,
       'netFlow': net_flow,
       'source': 'hops.hr'

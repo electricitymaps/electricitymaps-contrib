@@ -182,7 +182,7 @@ def net_flow(interconnections, flows):
     return netflow
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """
     Gets an exchange pair from the SIEPAC system.
     Return:
@@ -205,7 +205,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
 
     exchange = {}
     dt = arrow.now('UTC-6').floor('minute')
-    zones = '->'.join(sorted([country_code1, country_code2]))
+    zones = '->'.join(sorted([zone_key1, zone_key2]))
 
     if zones in netflow:
         exchange['netFlow'] = netflow[zones]

@@ -20,7 +20,7 @@ MAP_STORAGE = {
 }
 
 
-def fetch_production(country_code='FR', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
@@ -31,7 +31,7 @@ def fetch_production(country_code='FR', session=None, target_datetime=None, logg
     obj = ET.fromstring(response.content)
     mixtr = obj[7]
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'production': {},
         'storage': {},
         'source': 'rte-france.com',
@@ -70,7 +70,7 @@ def fetch_production(country_code='FR', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_price(country_code, session=None, from_date=None, to_date=None, target_datetime=None,
+def fetch_price(zone_key, session=None, from_date=None, to_date=None, target_datetime=None,
                 logger=None):
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -94,7 +94,7 @@ def fetch_price(country_code, session=None, from_date=None, to_date=None, target
         if country_item.get('granularite') != 'Global':
             continue
         country_c = country_item.get('perimetre')
-        if country_code != country_c:
+        if zone_key != country_c:
             continue
         value = None
         for value in country_item.getchildren():
@@ -107,7 +107,7 @@ def fetch_price(country_code, session=None, from_date=None, to_date=None, target
             prices.append(float(value.text))
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'currency': 'EUR',
         'datetime': datetimes[-1],
         'price': prices[-1],

@@ -217,11 +217,11 @@ def merge_production(thermal_data, wind_data):
     return joined_data
 
 
-def fetch_production(country_code='GB-NIR', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
         Arguments:
-        country_code (optional) -- used in case a parser is able to fetch multiple countries
+        zone_key (optional) -- used in case a parser is able to fetch multiple countries
         session (optional)      -- request session passed in order to re-use an existing session
         Return:
         A dictionary in the form:
@@ -261,7 +261,7 @@ def fetch_production(country_code='GB-NIR', session=None, target_datetime=None, 
 
     for datapoint in merge:
         production_mix = {
-          'countryCode': country_code,
+          'countryCode': zone_key,
           'datetime': datapoint.get('datetime', 0.0),
           'production': {
               'coal': datapoint.get('coal', 0.0),
@@ -277,10 +277,10 @@ def fetch_production(country_code='GB-NIR', session=None, target_datetime=None, 
     return production_mix_by_quarter_hour
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -296,10 +296,10 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
 
     exchange_data = get_data(exchange_url)
     exchange_dataframe = create_exchange_df(exchange_data)
-    if '->'.join(sorted([country_code1, country_code2])) == 'GB->GB-NIR':
+    if '->'.join(sorted([zone_key1, zone_key2])) == 'GB->GB-NIR':
         moyle = moyle_processor(exchange_dataframe)
         return moyle
-    elif '->'.join(sorted([country_code1, country_code2])) == 'GB-NIR->IE':
+    elif '->'.join(sorted([zone_key1, zone_key2])) == 'GB-NIR->IE':
         IE = IE_processor(exchange_dataframe)
         return IE
     else:

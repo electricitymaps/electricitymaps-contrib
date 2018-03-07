@@ -115,11 +115,11 @@ def data_processer(data):
     return production
 
 
-def fetch_production(country_code='US-PJM', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-PJM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A dictionary in the form:
     {
@@ -150,7 +150,7 @@ def fetch_production(country_code='US-PJM', session=None, target_datetime=None, 
     production = data_processer(extracted[0])
 
     datapoint = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'datetime': extracted[1],
         'production': production,
         'storage': {'hydro': None, 'battery': None},
@@ -281,11 +281,11 @@ def combine_NY_exchanges():
     return flows
 
 
-def fetch_exchange(country_code1, country_code2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A list of dictionaries in the form:
@@ -301,7 +301,7 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # PJM reports exports as negative.
-    sortedcodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
     if sortedcodes == 'US-NY->US-PJM':
         flows = combine_NY_exchanges()
@@ -331,10 +331,10 @@ def fetch_exchange(country_code1, country_code2, session=None, target_datetime=N
     return exchanges
 
 
-def fetch_price(country_code='US-PJM', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='US-PJM', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
@@ -361,7 +361,7 @@ def fetch_price(country_code='US-PJM', session=None, target_datetime=None, logge
     dt = arrow.now('America/New_York').floor('second').datetime
 
     data = {
-        'countryCode': country_code,
+        'countryCode': zone_key,
         'currency': 'USD',
         'datetime': dt,
         'price': price,
