@@ -648,13 +648,13 @@ function handleConnectionReturnCode(err) {
 }
 
 const ignoreError = func =>
-  () => {
-    const callback = arguments[arguments.length - 1];
-    arguments[arguments.length - 1] = (err, obj) => {
+  (...args) => {
+    const callback = args[args.length - 1];
+    args[args.length - 1] = (err, obj) => {
       if (err) { return callback(null, null); }
       return callback(null, obj);
     };
-    func.apply(this, arguments);
+    func.apply(this, args);
   };
 
 function fetch(showLoading, callback) {
