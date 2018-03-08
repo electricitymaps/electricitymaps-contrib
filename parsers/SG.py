@@ -218,7 +218,7 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None, logger=N
 
     return {
         'datetime': sg_data_to_datetime(data),
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': generation_by_type,
         'storage': {},  # there is no known electricity storage in Singapore
         'source': 'emcsg.com'
@@ -244,7 +244,7 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
     Return:
     A dictionary in the form:
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'currency': 'EUR',
           'datetime': '2017-01-01T01:00:00Z',
           'price': 0.0,
@@ -266,7 +266,7 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
     price = parse_price(price_str)
 
     return {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': sg_data_to_datetime(data),
         'currency': 'SGD',
         'price': price,

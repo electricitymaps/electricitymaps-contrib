@@ -45,7 +45,7 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
     # We require the opposite
 
     returndata = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': dumpDate.datetime,
         'production': {
             'coal': coal_production,

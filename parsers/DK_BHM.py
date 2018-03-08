@@ -29,7 +29,7 @@ def fetch_production(zone_key='DK-BHM', session=None, target_datetime=None, logg
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -55,7 +55,7 @@ def fetch_production(zone_key='DK-BHM', session=None, target_datetime=None, logg
     obj = _fetch_data(session)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'bornholm.powerlab.dk',

@@ -63,7 +63,7 @@ def fetch_production(zone_key='TR', session=None, target_datetime=None, logger=N
     Return:
     A list of dictionaries in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -100,7 +100,7 @@ def fetch_production(zone_key='TR', session=None, target_datetime=None, logger=N
         if last_data_index != EMPTY_DAY:
             for datapoint in valid_production:
                 data = {
-                  'countryCode': zone_key,
+                  'zoneKey': zone_key,
                   'production': {},
                   'storage': {},
                   'source': 'ytbs.teias.gov.tr',

@@ -28,14 +28,14 @@ def validate_exchange(item, k):
 def validate_production(obj, zone_key):
     if 'datetime' not in obj:
         raise Exception('datetime was not returned for %s' % zone_key)
-    if 'countryCode' not in obj:
-        raise Exception('countryCode was not returned for %s' % zone_key)
+    if 'zoneKey' not in obj:
+        raise Exception('zoneKey was not returned for %s' % zone_key)
     if type(obj['datetime']) != datetime.datetime:
         raise Exception('datetime %s is not valid for %s' %
                         (obj['datetime'], zone_key))
-    if obj.get('countryCode', None) != zone_key:
+    if obj.get('zoneKey', None) != zone_key:
         raise Exception("Country codes %s and %s don't match" %
-                        (obj.get('countryCode', None), zone_key))
+                        (obj.get('zoneKey', None), zone_key))
     if arrow.get(obj['datetime']) > arrow.now():
         raise Exception("Data from %s can't be in the future" % zone_key)
     if (obj.get('production', {}).get('unknown', None) is None and

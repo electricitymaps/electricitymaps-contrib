@@ -19,7 +19,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -57,7 +57,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
       'Térmica': 'unknown'
     }
     data = {
-        'countryCode': 'PA',
+        'zoneKey': 'PA',
         'production': {},
         'storage': {},
         'source': 'https://www.cnd.com.pa/',

@@ -37,7 +37,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -74,7 +74,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
     productions = obj['soPgenGraph']['data'][region_key]
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': datetime,
         'production': {
             'coal': productions.get('Gas/Coal', {'generation': 0.0})['generation'],

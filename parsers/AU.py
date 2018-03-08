@@ -300,7 +300,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -326,7 +326,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
     url = 'http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all'
     df = pd.read_csv(url)
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'capacity': {
             'coal': 0,
             'geothermal': 0,
@@ -533,7 +533,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=None):
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': 'EUR',
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
@@ -551,7 +551,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=None):
                       response.json()['ELEC_NEM_SUMMARY']))[0]
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'currency': 'AUD',
         'price': obj['PRICE'],
         'source': 'aemo.com.au',

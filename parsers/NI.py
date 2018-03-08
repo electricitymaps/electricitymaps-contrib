@@ -216,7 +216,7 @@ def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=N
 
     data = {
         'datetime': data_datetime,
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': production,
         'storage': {},
         'source': 'cndc.org.ni'
@@ -296,14 +296,14 @@ def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=None):
     A list of dictionaries in the form:
     [
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'currency': EUR,
           'datetime': '2017-01-01T01:00:00Z',
           'price': 0.0,
           'source': 'mysource.com'
         },
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'currency': EUR,
           'datetime': '2017-01-01T00:00:00Z',
           'price': 0.0,
@@ -341,7 +341,7 @@ def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=None):
             price_date = price_date.replace(days=-1)
 
         data.append({
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': price_date.datetime,
             'currency': 'USD',
             'price': price,

@@ -363,7 +363,7 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -393,7 +393,7 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
         production = processed_data[1]
 
         datapoint = {
-          'countryCode': zone_key,
+          'zoneKey': zone_key,
           'datetime': dt,
           'production': production,
           'storage': {'hydro': None},

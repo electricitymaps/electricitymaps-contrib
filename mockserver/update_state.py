@@ -108,7 +108,7 @@ with open('mockserver/public/v3/state', 'r') as f:
     obj = json.load(f)['data']
     for dp in production_datapoints:
         production = dict(dp)
-        obj['countries'][dp['countryCode']] = production
+        obj['countries'][dp['zoneKey']] = production
         # Update production
         production['datetime'] = arrow.get(production['datetime']).isoformat()
         # Set random co2 value

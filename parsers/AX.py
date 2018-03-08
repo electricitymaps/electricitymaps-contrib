@@ -275,7 +275,7 @@ def fetch_production(zone_key='AX', session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -301,7 +301,7 @@ def fetch_production(zone_key='AX', session=None, target_datetime=None, logger=N
     obj = _fetch_data(session)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'kraftnat.aland.fi',
@@ -328,7 +328,7 @@ def fetch_consumption(zone_key='AX', session=None, target_datetime=None, logger=
     obj = _fetch_data(session)
     
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': arrow.get(obj['fetchtime']).datetime,
         'consumption': obj['consumption'],
         'source': 'kraftnat.aland.fi'

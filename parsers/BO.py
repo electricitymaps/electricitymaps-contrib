@@ -58,7 +58,7 @@ def fetch_hourly_production(zone_key, obj, date):
     for index, row in obj.iterrows():
 
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'cndc.bo',
@@ -93,7 +93,7 @@ def fetch_production(zone_key='BO', session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -166,7 +166,7 @@ def fetch_hourly_generation_forecast(zone_key, obj, date):
     hourly_forecast = []
     for index, row in obj.iterrows():
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'value': {},
             'source': 'cndc.bo',
         }

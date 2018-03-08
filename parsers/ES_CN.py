@@ -59,7 +59,7 @@ def fetch_consumption(zone_key='ES-CN', session=None, target_datetime=None, logg
     data = []
     for response in island_data:
         response_data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': get(response.timestamp).datetime,
             'consumption': response.demand,
             'source': 'demanda.ree.es'
@@ -82,7 +82,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
         for response in island_data:
             if response.production() > 0:
                 response_data = {
-                    'countryCode': zone_key,
+                    'zoneKey': zone_key,
                     'datetime': get(response.timestamp).datetime,
                     'production': {
                         'coal': 0.0,
@@ -106,7 +106,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
         for response in island_data:
             if response.production() > 0:
                 response_data = {
-                    'countryCode': zone_key,
+                    'zoneKey': zone_key,
                     'datetime': get(response.timestamp).datetime,
                     'production': {
                         'coal': 0.0,

@@ -61,7 +61,7 @@ def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logge
     ipp_value = findall('\d+', ipp_text)[0]
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'production': {
             'biomass': 0.0,
@@ -109,7 +109,7 @@ def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logg
     consumption_td = punjab_soap.findAll('td')[3]
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'consumption': float(consumption_td.text),
         'source': 'punjasldc.org'

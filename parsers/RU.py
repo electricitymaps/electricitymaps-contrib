@@ -38,7 +38,7 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
     Return:
     A list of dictionaries in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -76,7 +76,7 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
     data = []
     for datapoint in dataset.dict:
         row = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'so-ups.ru'

@@ -57,7 +57,7 @@ def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=N
                 i = len(datetimes)
                 datetimes.append(datetime)
                 data.append({
-                    'countryCode': zone_key,
+                    'zoneKey': zone_key,
                     'datetime': datetime.datetime,
                     'production': {},
                     'source': 'coes.org.pe'

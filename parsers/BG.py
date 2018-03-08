@@ -38,7 +38,7 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -92,7 +92,7 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
         production[k] = production.get(k, 0.0) + v
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': production,
         'storage': {},
         'source': 'eso.bg',

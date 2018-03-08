@@ -27,7 +27,7 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
     zone_date_time = arrow.Arrow.fromdatetime(local_date_time, 'America/Aruba')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': zone_date_time.datetime,
         'production': {
             'oil': fossil['value'],

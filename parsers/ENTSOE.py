@@ -436,20 +436,20 @@ def validate_production(datapoint):
     """
 
     codes = ('GB', 'GR', 'PT')
-    if datapoint['countryCode'] in codes:
+    if datapoint['zoneKey'] in codes:
         p = datapoint['production']
         return p.get('coal', None) is not None and p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'BE':
+    elif datapoint['zoneKey'] == 'BE':
         p = datapoint['production']
         return p.get('nuclear', None) is not None and p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'ES':
+    elif datapoint['zoneKey'] == 'ES':
         p = datapoint['production']
         return p.get('coal', None) is not None and p.get('nuclear', None) is not None
-    elif datapoint['countryCode'] == 'DK':
+    elif datapoint['zoneKey'] == 'DK':
         p = datapoint['production']
         return (p.get('coal', None) is not None and p.get('gas', None) is not None
                 and p.get('wind', None) is not None)
-    elif datapoint['countryCode'] == 'DE':
+    elif datapoint['zoneKey'] == 'DE':
         p = datapoint['production']
         return (p.get('coal', None) is not None and p.get('gas', None) is not None and
                 p.get('nuclear', None) is not None)
@@ -538,7 +538,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
             # else we keep the last stored value
             dt, quantity = datetimes[-1].datetime, quantities[-1]
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': dt,
             'consumption': quantity,
             'source': 'entsoe.eu'
@@ -585,7 +585,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
                              production_hashmap[production_date].items()}
 
         data.append({
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': production_date.datetime,
             'production': {
                 'biomass': get_biomass(production_values),
@@ -737,7 +737,7 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
         prices, currencies, datetimes = parsed
         for i in range(len(prices)):
             data.append({
-                'countryCode': zone_key,
+                'zoneKey': zone_key,
                 'datetime': datetimes[i].datetime,
                 'currency': currencies[i],
                 'price': prices[i],
@@ -771,7 +771,7 @@ def fetch_generation_forecast(zone_key, session=None, now=None, target_datetime=
         values, datetimes = parsed
         for i in range(len(values)):
             data.append({
-                'countryCode': zone_key,
+                'zoneKey': zone_key,
                 'datetime': datetimes[i].datetime,
                 'value': values[i],
                 'source': 'entsoe.eu'
@@ -799,7 +799,7 @@ def fetch_consumption_forecast(zone_key, session=None, now=None, target_datetime
         values, datetimes = parsed
         for i in range(len(values)):
             data.append({
-                'countryCode': zone_key,
+                'zoneKey': zone_key,
                 'datetime': datetimes[i].datetime,
                 'value': values[i],
                 'source': 'entsoe.eu'

@@ -24,7 +24,7 @@ class TestESIB(unittest.TestCase):
             data_list = ES_IB.fetch_consumption('ES-IB', self.session)
             self.assertIsNotNone(data_list)
             for data in data_list:
-                self.assertEqual(data['countryCode'], 'ES-IB')
+                self.assertEqual(data['zoneKey'], 'ES-IB')
                 self.assertEqual(data['source'], 'demanda.ree.es')
                 self.assertIsNotNone(data['datetime'])
                 self.assertIsNotNone(data['consumption'])
@@ -38,7 +38,7 @@ class TestESIB(unittest.TestCase):
             data_list = ES_IB.fetch_production('ES-IB', self.session)
             self.assertIsNotNone(data_list)
             for data in data_list:
-                self.assertEqual(data['countryCode'], 'ES-IB')
+                self.assertEqual(data['zoneKey'], 'ES-IB')
                 self.assertEqual(data['source'], 'demanda.ree.es')
                 self.assertIsNotNone(data['datetime'])
                 self.assertIsNotNone(data['production'])

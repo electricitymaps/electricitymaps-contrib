@@ -19,7 +19,7 @@ def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logg
     demand_value = IN.read_value_from_span_id(html, 'L29')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'cspc.co.in'
@@ -52,7 +52,7 @@ def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logge
     bango_value = IN.read_value_from_span_id(html, 'L20')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
             'coal': coal_value,

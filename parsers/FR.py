@@ -31,7 +31,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=N
     obj = ET.fromstring(response.content)
     mixtr = obj[7]
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'rte-france.com',
@@ -107,7 +107,7 @@ def fetch_price(zone_key, session=None, from_date=None, to_date=None, target_dat
             prices.append(float(value.text))
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'currency': 'EUR',
         'datetime': datetimes[-1],
         'price': prices[-1],

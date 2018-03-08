@@ -34,7 +34,7 @@ class TestUSMISO(unittest.TestCase):
         with self.subTest():
             self.assertEqual(data['source'], 'misoenergy.org')
         with self.subTest():
-            self.assertEqual(data['countryCode'], 'US-MISO')
+            self.assertEqual(data['zoneKey'], 'US-MISO')
         with self.subTest():
             self.assertIsInstance(data['storage'], dict)
 

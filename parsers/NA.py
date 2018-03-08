@@ -74,7 +74,7 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -103,7 +103,7 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
     production = data_processor(raw_text)
 
     data = {
-          'countryCode': zone_key,
+          'zoneKey': zone_key,
           'datetime': arrow.now('Africa/Windhoek').datetime,
           'production': production,
           'storage': {},

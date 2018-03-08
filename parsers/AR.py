@@ -523,7 +523,7 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=None):
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
@@ -553,7 +553,7 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=None):
     datetime = arrow.now('UTC-3').floor('hour').datetime
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'currency': 'ARS',
         'datetime': datetime,
         'price': price,
@@ -713,7 +713,7 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=N
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -740,7 +740,7 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=N
     thermal = get_thermal(session, logger)
     hydro = get_hydro(session=None)
     production_mix = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': gdt['datetime'],
         'production': {
             'biomass': thermal.get('biomass', 0.0),

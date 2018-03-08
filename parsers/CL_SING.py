@@ -115,7 +115,7 @@ def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -143,7 +143,7 @@ def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, log
     production_mix_by_hour = []
     for point in dp:
         production_mix = {
-          'countryCode': zone_key,
+          'zoneKey': zone_key,
           'datetime': point['datetime'],
           'production': {
               'solar': point.get('solar', 0.0),

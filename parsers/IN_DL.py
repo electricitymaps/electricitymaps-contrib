@@ -19,7 +19,7 @@ def fetch_consumption(zone_key='IN-DL', session=None, target_datetime=None, logg
     demand_value = IN.read_value_from_span_id(html, 'DynamicData1_LblLoad')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'delhisldc.org'
@@ -74,7 +74,7 @@ def fetch_production(zone_key='IN-DL', session=None, target_datetime=None, logge
     garbage = dmswsl + edwpl + towmp
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
             'coal': coal,

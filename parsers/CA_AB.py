@@ -31,7 +31,7 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -69,7 +69,7 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
 
     return {
         'datetime': dt,
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {
             'coal': float(total_net_generation['COAL']),
             'gas': float(total_net_generation['GAS']),
@@ -98,7 +98,7 @@ def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=Non
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
@@ -123,7 +123,7 @@ def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=Non
             hours = int(rowIndex.split(' ')[1]) - 1
             data[rowIndex] = {
                 'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hours=hours, tzinfo=ab_timezone).datetime,
-                'countryCode': zone_key,
+                'zoneKey': zone_key,
                 'currency': 'CAD',
                 'source': 'ets.aeso.ca',
                 'price': float(price),

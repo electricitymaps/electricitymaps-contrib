@@ -85,7 +85,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=N
     obj = response.json()
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {
             'nuclear': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (

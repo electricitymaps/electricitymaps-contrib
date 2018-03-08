@@ -95,7 +95,7 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
     Return:
     A list of dictionaries in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -125,7 +125,7 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
     production_mix = []
     for item in points:
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': item[0],
             'production': item[1],
             'storage': {

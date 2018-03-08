@@ -104,7 +104,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -131,7 +131,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     generation = production_processor(gd, zone_key)
 
     datapoint = {
-      'countryCode': zone_key,
+      'zoneKey': zone_key,
       'datetime': generation[0].datetime,
       'production': generation[1],
       'storage': {

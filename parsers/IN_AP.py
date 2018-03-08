@@ -28,7 +28,7 @@ def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logge
     ipp_value = IN.read_value_from_span_id(html, 'lblIPPS')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'production': {
             'biomass': 0.0,
@@ -65,7 +65,7 @@ def fetch_consumption(zone_key='IN-AP', session=None, target_datetime=None, logg
     demand_value = IN.read_value_from_span_id(html, 'lblGridDemand')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'consumption': demand_value,
         'source': 'core.ap.gov.in'

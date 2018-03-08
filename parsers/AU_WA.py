@@ -78,7 +78,7 @@ def fetch_production(zone_key='AUS-WA', session=None, target_datetime=None, logg
             rptData['production']['solar'] = rptData['production'].get('solar', 0) + distributedSolarProduction
 
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'production': rptData['production'],
             'capacity': rptData['capacity'],
             'datetime': timestampDate,

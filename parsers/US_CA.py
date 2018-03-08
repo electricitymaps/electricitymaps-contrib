@@ -15,7 +15,7 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -63,7 +63,7 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
         h, m = map(int, csv['Time'][i].split(':'))
         date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'caiso.com',

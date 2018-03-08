@@ -139,7 +139,7 @@ def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=N
     Return:
     An array of dictionary in the form:
     [{
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -169,7 +169,7 @@ def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=N
     data = []
     for time in production:
         data.append({
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'production': {
                 'solar': production[time].get('solar', 0.0),
                 'wind': production[time].get('wind', 0.0),

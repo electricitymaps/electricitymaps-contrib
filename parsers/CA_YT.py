@@ -99,7 +99,7 @@ def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logge
 
     data = {
         'datetime': datetime_datetime,
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {
             'unknown': thermal_generation,
 

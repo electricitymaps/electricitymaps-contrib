@@ -20,7 +20,7 @@ def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logg
     demand_value = IN.read_value_from_span_id(html, 'Label5')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'kptclsldc.com'
@@ -139,7 +139,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
     unknown_value = cgs_value + cogen_value
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
             'biomass': biomass_value,

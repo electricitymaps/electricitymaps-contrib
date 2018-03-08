@@ -87,7 +87,7 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -119,7 +119,7 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
     production_mix = []
     for datapoint in clean_data:
         data = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': timestamp_converter(datapoint[0]),
             'production': datapoint[1],
             'storage': {'hydro': None},

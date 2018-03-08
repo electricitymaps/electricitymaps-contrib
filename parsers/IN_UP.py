@@ -79,7 +79,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     value_map = fetch_data(zone_key, session)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': value_map.get('date'),
         'production': value_map.get('production'),
         'storage': {
@@ -104,7 +104,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     value_map = fetch_data(zone_key, session)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': value_map.get('date'),
         'consumption': value_map['consumption'].get('demand'),
         'source': 'upsldc.org'

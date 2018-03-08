@@ -29,7 +29,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime: datetime.date
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -68,7 +68,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime: datetime.date
     obj = response.json()
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'someservice.com',
@@ -106,7 +106,7 @@ def fetch_price(zone_key='FR', session=None, target_datetime=None, logger=None):
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
@@ -124,7 +124,7 @@ def fetch_price(zone_key='FR', session=None, target_datetime=None, logger=None):
     obj = response.json()
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'currency': 'EUR',
         'price': obj['price'],
         'source': 'someservice.com',

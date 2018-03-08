@@ -21,7 +21,7 @@ def fetch_consumption(zone_key='ES-IB', session=None, target_datetime=None, logg
 
         for response in responses:
             response_data = {
-                'countryCode': zone_key,
+                'zoneKey': zone_key,
                 'datetime': get(response.timestamp).datetime,
                 'consumption': response.demand,
                 'source': 'demanda.ree.es'
@@ -47,7 +47,7 @@ def fetch_production(zone_key='ES-IB', session=None, target_datetime=None, logge
 
         for response in responses:
             response_data = {
-                'countryCode': zone_key,
+                'zoneKey': zone_key,
                 'datetime': get(response.timestamp).datetime,
                 'production': {
                     'coal': response.carbon,

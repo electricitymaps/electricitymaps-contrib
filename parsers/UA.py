@@ -50,7 +50,7 @@ def fetch_production(zone_key='UA', session=None, target_datetime=None, logger=N
 
     for serie in response.json():
         row = {
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'ua.energy'

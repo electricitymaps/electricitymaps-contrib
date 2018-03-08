@@ -50,7 +50,7 @@ def fetch_production(zone_key='CA-NB', session=None, target_datetime=None, logge
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -92,7 +92,7 @@ def fetch_production(zone_key='CA-NB', session=None, target_datetime=None, logge
 
     data = {
         'datetime': arrow.utcnow().floor('minute').datetime,
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {
             'unknown': generated
         },

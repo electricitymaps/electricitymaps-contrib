@@ -119,7 +119,7 @@ def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logge
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -146,7 +146,7 @@ def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logge
     clean_data = data_processer(raw_data, logger)
 
     production = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': clean_data[0],
         'production': clean_data[1],
         'storage': {

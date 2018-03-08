@@ -108,7 +108,7 @@ def unknown_plants():
 
 def empty_record(zone_key):
     return {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'capacity': {},
         'production': {
             'biomass': 0.0,

@@ -52,9 +52,9 @@ class ProductionTestcase(unittest.TestCase):
         self.assertEqual(data['source'], 'ons.org.br')
 
 
-    def test_countryCode_match(self):
+    def test_zoneKey_match(self):
         data = self.data
-        self.assertEqual(data['countryCode'], 'BR-CS')
+        self.assertEqual(data['zoneKey'], 'BR-CS')
 
 
     def test_storage_type(self):

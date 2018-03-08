@@ -25,7 +25,7 @@ def fetch_hourly_production(zone_key, obj, hour, date):
 
     # output frame
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'amm.org.gt',
@@ -94,7 +94,7 @@ def fetch_production(zone_key='GT', session=None, target_datetime=None, logger=N
 def fetch_hourly_consumption(zone_key, obj, hour, date):
     # output frame
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'consumption': {},
         'source': 'amm.org.gt',
     }

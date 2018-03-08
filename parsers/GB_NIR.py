@@ -226,7 +226,7 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None, logg
         Return:
         A dictionary in the form:
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'datetime': '2017-01-01T00:00:00Z',
           'production': {
               'biomass': 0.0,
@@ -261,7 +261,7 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None, logg
 
     for datapoint in merge:
         production_mix = {
-          'countryCode': zone_key,
+          'zoneKey': zone_key,
           'datetime': datapoint.get('datetime', 0.0),
           'production': {
               'coal': datapoint.get('coal', 0.0),

@@ -86,7 +86,7 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logge
     value_map = fetch_data(zone_key, session, logger=logger)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': value_map['date'],
         'production': {
             'biomass': None,
@@ -122,7 +122,7 @@ def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None, logg
     value_map = fetch_data(zone_key, session)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': value_map['date'],
         'consumption': value_map['total consumption'],
         'source': 'sldcguj.com'

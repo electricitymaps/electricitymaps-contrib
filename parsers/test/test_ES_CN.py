@@ -38,7 +38,7 @@ class TestESIB(unittest.TestCase):
         self.assertIsNotNone(data)
         self.assertIs(len(data), 3)
         for consumption in data:
-            self.assertEqual(consumption['countryCode'], 'ES-CN-FVLZ')
+            self.assertEqual(consumption['zoneKey'], 'ES-CN-FVLZ')
             self.assertEqual(consumption['source'], 'demanda.ree.es')
             self.assertIsNotNone(consumption['datetime'])
             self.assertTrue(consumption['datetime'] == self.morning
@@ -73,7 +73,7 @@ class TestESIB(unittest.TestCase):
         self.assertIsNotNone(data)
         self.assertIs(len(data), 3)
         for consumption in data:
-            self.assertEqual(consumption['countryCode'], 'ES-CN-HI')
+            self.assertEqual(consumption['zoneKey'], 'ES-CN-HI')
             self.assertEqual(consumption['source'], 'demanda.ree.es')
             self.assertIsNotNone(consumption['datetime'])
             self.assertTrue(consumption['datetime'] == self.morning
@@ -110,7 +110,7 @@ class TestESIB(unittest.TestCase):
         self.assertIsNotNone(data)
         self.assertIs(len(data), 3)
         for production in data:
-            self.assertEqual(production['countryCode'], 'ES-CN-FVLZ')
+            self.assertEqual(production['zoneKey'], 'ES-CN-FVLZ')
             self.assertEqual(production['source'], 'demanda.ree.es')
             self.assertIsNotNone(production['datetime'])
             self.assertIsNotNone(production['production'])
@@ -164,7 +164,7 @@ class TestESIB(unittest.TestCase):
         self.assertIsNotNone(data)
         self.assertIs(len(data), 3)
         for production in data:
-            self.assertEqual(production['countryCode'], 'ES-CN-HI')
+            self.assertEqual(production['zoneKey'], 'ES-CN-HI')
             self.assertEqual(production['source'], 'demanda.ree.es')
             self.assertIsNotNone(production['datetime'])
             self.assertIsNotNone(production['production'])

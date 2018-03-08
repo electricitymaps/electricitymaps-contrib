@@ -79,7 +79,7 @@ def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=N
     obj = parse_page(session)
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': obj['datetime'],
         'production': dict([(k, obj[INV_MAP_GENERATION[k]]) for k in INV_MAP_GENERATION.keys()]),
         'source': 'ute.com.uy'

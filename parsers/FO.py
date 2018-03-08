@@ -28,7 +28,7 @@ def fetch_production(zone_key='FO', session=None, target_datetime=None, logger=N
     obj = ET.fromstring(response.content)[0]
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'capacity': {},
         'production': {
             'biomass': 0,

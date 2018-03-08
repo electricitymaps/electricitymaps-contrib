@@ -37,7 +37,7 @@ def _get_ns_info(requests_obj):
         data_date = arrow.get(data_timestamp).datetime
 
         production.append({
-            'countryCode': zone_key,
+            'zoneKey': zone_key,
             'datetime': data_date,
             'production': {
                 'coal': (mix['Solid Fuel'] * load),
@@ -72,7 +72,7 @@ def fetch_production(zone_key='CA-NS', session=None, target_datetime=None, logge
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,

@@ -123,7 +123,7 @@ def fetch_production(zone_key='US-PJM', session=None, target_datetime=None, logg
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -150,7 +150,7 @@ def fetch_production(zone_key='US-PJM', session=None, target_datetime=None, logg
     production = data_processer(extracted[0])
 
     datapoint = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'datetime': extracted[1],
         'production': production,
         'storage': {'hydro': None, 'battery': None},
@@ -339,7 +339,7 @@ def fetch_price(zone_key='US-PJM', session=None, target_datetime=None, logger=No
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
@@ -361,7 +361,7 @@ def fetch_price(zone_key='US-PJM', session=None, target_datetime=None, logger=No
     dt = arrow.now('America/New_York').floor('second').datetime
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'currency': 'USD',
         'datetime': dt,
         'price': price,

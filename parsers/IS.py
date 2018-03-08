@@ -70,7 +70,7 @@ def fetch_production(zone_key='IS', session=None, target_datetime=None, logger=N
     datetime_last = datetime.strptime(totalpowerflow["time"], '%Y-%m-%dT%H:%M:%S')
 
     data = {
-        'countryCode': zone_key,
+        'zoneKey': zone_key,
         'production': dict(production),
         'datetime': datetime_last,
         'storage': {},
