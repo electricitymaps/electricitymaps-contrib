@@ -115,9 +115,6 @@ def fetch_production(zone_key='BO', session=None, target_datetime=None, logger=N
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # Define actual and previous day (for midnight data).
     now = arrow.now(tz=tz_bo)
@@ -203,7 +200,6 @@ def fetch_generation_forecast(zone_key='BO', session=None, target_datetime=None,
     r = session or requests.session()
 
     response = r.get(url)
-    assert response.status_code == 200
 
     obj = webparser(response)
     forecast = fetch_hourly_generation_forecast('BO', obj, formatted_date)

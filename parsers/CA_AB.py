@@ -57,7 +57,6 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
-    assert response.status_code == 200
 
     soup = BeautifulSoup(response.content, 'html.parser')
     findtime = soup.find('td', text=re.compile('Last Update')).get_text()
@@ -112,7 +111,6 @@ def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=Non
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/'
     response = r.get(url)
-    assert response.status_code == 200
 
     df_prices = pd.read_html(response.text, match='Price', index_col=0, header=0)
     prices = df_prices[1]

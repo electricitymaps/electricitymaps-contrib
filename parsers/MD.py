@@ -25,9 +25,6 @@ def get_data(session=None):
 
     s = session or requests.Session()
 
-    # In order for the data url to return data, cookies from the display url must be
-    # obtained then reused.
-    s.get(display_url)
     data_response = s.get(data_url)
     raw_data = data_response.text
 
