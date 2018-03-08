@@ -47,7 +47,7 @@ def fetch_exchange(zone_key1, zone_key2, session = None):
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -70,7 +70,7 @@ def fetch_exchange(zone_key1, zone_key2, session = None):
         raise NotImplementedError('This exchange pair is not implemented')
 
     exchange = {
-      'sortedCountryCodes': sorted_zone_keys,
+      'sortedZoneKeys': sorted_zone_keys,
       'datetime': processed_data[1].datetime,
       'netFlow': net_flow,
       'source': 'hops.hr'

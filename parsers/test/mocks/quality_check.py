@@ -56,20 +56,20 @@ c3 = {
       }
 
 e1 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': dt,
       'netFlow': 73.0,
       'source': 'mysource.com'
       }
 
 e2 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'netFlow': 73.0,
       'source': 'mysource.com'
       }
 
 e3 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': 'At the 3rd beep the time will be......',
       'netFlow': 73.0,
       'source': 'mysource.com'
@@ -78,7 +78,7 @@ e3 = {
 future = datetime.datetime.now() + datetime.timedelta(seconds=5*60)
 
 e4 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': future,
       'netFlow': 73.0,
       'source': 'mysource.com'

@@ -168,7 +168,7 @@ def moyle_processor(df):
                                                            dayfirst=True))
         snapshot['netFlow'] = row['Total_Moyle_Load_MW']
         snapshot['source'] = 'soni.ltd.uk'
-        snapshot['sortedCountryCodes'] = 'GB->GB-NIR'
+        snapshot['sortedZoneKeys'] = 'GB->GB-NIR'
         datapoints.append(snapshot)
 
     return datapoints
@@ -190,7 +190,7 @@ def IE_processor(df):
                    row['Total_Tan_Lou_Load_MW'])
         snapshot['netFlow'] = -1 * (netFlow)
         snapshot['source'] = 'soni.ltd.uk'
-        snapshot['sortedCountryCodes'] = 'GB-NIR->IE'
+        snapshot['sortedZoneKeys'] = 'GB-NIR->IE'
         datapoints.append(snapshot)
 
     return datapoints
@@ -285,7 +285,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'

@@ -470,7 +470,7 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -503,7 +503,7 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
             'exportlimit' if direction == 1 else 'importlimit']
 
     data = {
-        'sortedCountryCodes': sorted_zone_keys,
+        'sortedZoneKeys': sorted_zone_keys,
         'netFlow': net_flow,
         'capacity': [import_capacity, export_capacity],  # first one should be negative
         'source': 'aemo.com.au',

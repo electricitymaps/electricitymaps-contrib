@@ -160,7 +160,7 @@ def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None):
     sorted_exchange = '->'.join(sorted([zone_key1, zone_key2]))
     data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r),
                                  exchanges_mapping[sorted_exchange]))
-    data['sortedCountryCodes'] = '->'.join(sorted([zone_key1, zone_key2]))
+    data['sortedZoneKeys'] = '->'.join(sorted([zone_key1, zone_key2]))
 
     return data
 

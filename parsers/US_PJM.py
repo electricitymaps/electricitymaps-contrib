@@ -290,7 +290,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A list of dictionaries in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -308,7 +308,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     elif sortedcodes == 'US-MISO->US-PJM':
         flow = get_miso_exchange()
         exchange = {
-            'sortedCountryCodes': sortedcodes,
+            'sortedZoneKeys': sortedcodes,
             'datetime': flow[1],
             'netFlow': flow[0],
             'source': 'pjm.com'
@@ -321,7 +321,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     exchanges = []
     for flow in flows:
         exchange = {
-            'sortedCountryCodes': sortedcodes,
+            'sortedZoneKeys': sortedcodes,
             'datetime': flow[1],
             'netFlow': flow[0],
             'source': 'pjm.com'

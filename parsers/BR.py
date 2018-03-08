@@ -152,7 +152,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -172,7 +172,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     data = {
         'datetime': arrow.get(gd['Data']).datetime,
-        'sortedCountryCodes': '->'.join(sorted([zone_key1, zone_key2])),
+        'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
         'netFlow': gd['internacional'][country_exchange['name']] * country_exchange['flow'],
         'source': 'ons.org.br'
     }
@@ -190,7 +190,7 @@ def fetch_region_exchange(region1, region2, session=None, target_datetime=None, 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -209,7 +209,7 @@ def fetch_region_exchange(region1, region2, session=None, target_datetime=None, 
 
     data = {
         'datetime': dt,
-        'sortedCountryCodes': scc,
+        'sortedZoneKeys': scc,
         'netFlow': nf,
         'source': 'ons.org.br'
     }

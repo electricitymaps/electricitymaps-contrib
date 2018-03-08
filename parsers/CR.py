@@ -199,7 +199,7 @@ def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -223,7 +223,7 @@ def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime
 
     data = {
         'datetime': arrow.now(TIMEZONE).datetime,
-        'sortedCountryCodes': sorted_zone_keys,
+        'sortedZoneKeys': sorted_zone_keys,
         'netFlow': flow,
         'source': 'enteoperador.org'
     }

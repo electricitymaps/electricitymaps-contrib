@@ -188,7 +188,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'CR->PA',
+      'sortedZoneKeys': 'CR->PA',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -212,7 +212,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     else:
         raise NotImplementedError('This exchange is not implemented.')
 
-    exchange.update(sortedCountryCodes=zones,
+    exchange.update(sortedZoneKeys=zones,
                     datetime=dt.datetime,
                     source='enteoperador.org')
 

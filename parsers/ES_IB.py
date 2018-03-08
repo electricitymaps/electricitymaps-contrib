@@ -90,7 +90,7 @@ def fetch_exchange(zone_key1='ES', zone_key2='ES-IB', session=None, target_datet
             net_flow = response.link['pe_ma']
 
             response_data = {
-                'sortedCountryCodes': '->'.join(sorted_zone_keys),
+                'sortedZoneKeys': '->'.join(sorted_zone_keys),
                 'datetime': get(response.timestamp).datetime,
                 'netFlow': net_flow if zone_key1 == sorted_zone_keys[0] else -1 * net_flow,
                 'source': 'demanda.ree.es',

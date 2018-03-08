@@ -53,7 +53,7 @@ class TestESIB(unittest.TestCase):
             data_list = ES_IB.fetch_exchange('ES', 'ES-IB', self.session)
             self.assertIsNotNone(data_list)
             for data in data_list:
-                self.assertEqual(data['sortedCountryCodes'], 'ES->ES-IB')
+                self.assertEqual(data['sortedZoneKeys'], 'ES->ES-IB')
                 self.assertEqual(data['source'], 'demanda.ree.es')
                 self.assertIsNotNone(data['netFlow'])
                 self.assertEqual(data['netFlow'], 50.0)

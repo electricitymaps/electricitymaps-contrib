@@ -119,12 +119,12 @@ with open('mockserver/public/v3/state', 'r') as f:
 
     # Update exchanges
     for e in exchanges:
-        exchange_zone_names = e['sortedCountryCodes'].split('->')
+        exchange_zone_names = e['sortedZoneKeys'].split('->')
         e['datetime'] = arrow.get(e['datetime']).isoformat()
-        obj['exchanges'][e['sortedCountryCodes']] = e.copy()
+        obj['exchanges'][e['sortedZoneKeys']] = e.copy()
 
         export_origin_zone_name = exchange_zone_names[0] if e['netFlow'] >= 0 else exchange_zone_names[1]
-        obj['exchanges'][e['sortedCountryCodes']]['co2intensity'] = \
+        obj['exchanges'][e['sortedZoneKeys']]['co2intensity'] = \
             obj['countries'].get(export_origin_zone_name, {}).get('co2intensity')
 
         for z in exchange_zone_names:

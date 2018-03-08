@@ -121,7 +121,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A list of dictionaries in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -179,7 +179,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
 
     exchange = {
-        'sortedCountryCodes': sortedcodes,
+        'sortedZoneKeys': sortedcodes,
         'datetime': current_dt,
         'netFlow': flow,
         'source': 'so-ups.ru'

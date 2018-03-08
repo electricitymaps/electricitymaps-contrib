@@ -142,7 +142,7 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -161,14 +161,14 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
         'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
         'CA-AB->US': df_exchanges[1][1]['Montana']
     }
-    sortedCountryCodes = '->'.join(sorted([zone_key1, zone_key2]))
-    if sortedCountryCodes not in flows:
+    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
+    if sortedZoneKeys not in flows:
         raise NotImplementedError('This exchange pair is not implemented')
 
     return {
         'datetime': arrow.now(tz=ab_timezone).datetime,
-        'sortedCountryCodes': sortedCountryCodes,
-        'netFlow': float(flows[sortedCountryCodes]),
+        'sortedZoneKeys': sortedZoneKeys,
+        'netFlow': float(flows[sortedZoneKeys]),
         'source': 'ets.aeso.ca'
     }
 

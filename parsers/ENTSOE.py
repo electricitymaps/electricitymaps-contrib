@@ -660,7 +660,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     for exchange_date in exchange_dates:
         net_flow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedCountryCodes': key,
+            'sortedZoneKeys': key,
             'datetime': exchange_date.datetime,
             'netFlow': net_flow if zone_key1[0] == sorted_zone_keys else -1 * net_flow,
             'source': 'entsoe.eu'
@@ -713,7 +713,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, now=None,
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedCountryCodes': '->'.join(sorted_zone_keys),
+            'sortedZoneKeys': '->'.join(sorted_zone_keys),
             'datetime': exchange_date.datetime,
             'netFlow': netFlow if zone_key1[0] == sorted_zone_keys else -1 * netFlow,
             'source': 'entsoe.eu'

@@ -21,7 +21,7 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -39,17 +39,17 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
         arrow.get(obj[0], 'DD-MMM-YY HH:mm:ss').datetime, timezone).datetime
 
     if (zone_key1 == 'CA-BC' and zone_key2 == 'US'):
-        sortedCountryCodes = 'CA-BC->US'
+        sortedZoneKeys = 'CA-BC->US'
         netFlow = float(obj[1])
     elif (zone_key1 == 'CA-AB' and zone_key2 == 'CA-BC'):
-        sortedCountryCodes = 'CA-AB->CA-BC'
+        sortedZoneKeys = 'CA-AB->CA-BC'
         netFlow = -1 * float(obj[2])
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     return {
         'datetime': datetime,
-        'sortedCountryCodes': sortedCountryCodes,
+        'sortedZoneKeys': sortedZoneKeys,
         'netFlow': netFlow,
         'source': 'bchydro.com',
     }

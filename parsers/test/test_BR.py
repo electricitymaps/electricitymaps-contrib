@@ -83,7 +83,7 @@ class ExchangeTestcase(unittest.TestCase):
 
     def test_key_match(self):
         data = self.data
-        self.assertEqual(data['sortedCountryCodes'], 'BR-S->UY')
+        self.assertEqual(data['sortedZoneKeys'], 'BR-S->UY')
 
 
     def test_correct_datetime(self):
@@ -123,7 +123,7 @@ class RegionTestcase(unittest.TestCase):
 
     def test_key_match(self):
         data = self.data
-        self.assertEqual(data['sortedCountryCodes'], 'BR-N->BR-NE')
+        self.assertEqual(data['sortedZoneKeys'], 'BR-N->BR-NE')
 
 
     def test_correct_datetime(self):

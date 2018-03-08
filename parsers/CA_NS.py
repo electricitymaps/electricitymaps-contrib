@@ -123,7 +123,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     _, imports = _get_ns_info(requests_obj)
 
     data = imports[-1]
-    data['sortedCountryCodes'] = sorted_zone_keys
+    data['sortedZoneKeys'] = sorted_zone_keys
 
     return data
 

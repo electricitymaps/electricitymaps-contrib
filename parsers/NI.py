@@ -236,7 +236,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -277,7 +277,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     data = {
         'datetime': get_time_from_system_map(map_html),
-        'sortedCountryCodes': sorted_zone_keys,
+        'sortedZoneKeys': sorted_zone_keys,
         'netFlow': flow,
         'source': 'cndc.org.ni'
     }

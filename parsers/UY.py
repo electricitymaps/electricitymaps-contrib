@@ -98,7 +98,7 @@ def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_dateti
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -116,7 +116,7 @@ def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_dateti
     if zone_key1 != 'BR': netFlow *= -1
 
     data = {
-        'sortedCountryCodes': '->'.join(sorted([zone_key1, zone_key2])),
+        'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
         'datetime': obj['datetime'],
         'netFlow': netFlow,
         'source': 'ute.com.uy'

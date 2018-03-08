@@ -98,7 +98,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -108,13 +108,13 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sortedCountryCodes = '->'.join(sorted([zone_key1, zone_key2]))
+    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
 
     exchange_status = get_data(session=session)
 
-    if sortedCountryCodes == 'MD->UA':
+    if sortedZoneKeys == 'MD->UA':
         netflow = -1 * exchange_status[-3]
-    elif sortedCountryCodes == 'MD->RO':
+    elif sortedZoneKeys == 'MD->RO':
         netflow = -1 * exchange_status[-2]
     else:
         raise NotImplementedError('This exchange pair is not implemented')
@@ -122,7 +122,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     dt = arrow.now('Europe/Chisinau').datetime
 
     exchange = {
-        'sortedCountryCodes': sortedCountryCodes,
+        'sortedZoneKeys': sortedZoneKeys,
         'datetime': dt,
         'netFlow': netflow,
         'source': 'moldelectrica.md'

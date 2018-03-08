@@ -11,9 +11,9 @@ def validate_consumption(obj, zone_key):
 
 
 def validate_exchange(item, k):
-    if item.get('sortedCountryCodes', None) != k:
+    if item.get('sortedZoneKeys', None) != k:
         raise Exception("Sorted country codes %s and %s don't match" %
-                        (item.get('sortedCountryCodes', None), k))
+                        (item.get('sortedZoneKeys', None), k))
     if 'datetime' not in item:
         raise Exception('datetime was not returned for %s' % k)
     if type(item['datetime']) != datetime.datetime:

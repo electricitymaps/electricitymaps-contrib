@@ -112,7 +112,7 @@ def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -130,7 +130,7 @@ def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_
             continue
         netFlow = item[1]
         data.append({
-            'sortedCountryCodes': 'NZ-NZN->NZ-NZS',
+            'sortedZoneKeys': 'NZ-NZN->NZ-NZS',
             'datetime': datetime.datetime,
             'netFlow': -1 * netFlow,
             'source': 'transpower.co.nz'

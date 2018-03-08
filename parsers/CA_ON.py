@@ -147,7 +147,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -162,20 +162,20 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     obj = response.json()
     exchanges = obj['intertieLineData']
 
-    sortedCountryCodes = '->'.join(sorted([zone_key1, zone_key2]))
+    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     # Everything -> CA_ON corresponds to an import to ON
     # In the data, "net" represents an export
     # So everything -> CA_ON must be reversed
-    if sortedCountryCodes == 'CA-MB->CA-ON':
+    if sortedZoneKeys == 'CA-MB->CA-ON':
         keys = ['MANITOBA', 'MANITOBA SK']
         direction = -1
-    elif sortedCountryCodes == 'CA-ON->US-NY':
+    elif sortedZoneKeys == 'CA-ON->US-NY':
         keys = ['NEW-YORK']
         direction = 1
-    elif sortedCountryCodes == 'CA-ON->US-MISO':
+    elif sortedZoneKeys == 'CA-ON->US-MISO':
         keys = ['MICHIGAN', 'MINNESOTA']
         direction = 1
-    elif sortedCountryCodes == 'CA-ON->CA-QC':
+    elif sortedZoneKeys == 'CA-ON->CA-QC':
         keys = filter(lambda k: k[:2] == 'PQ', exchanges.keys())
         direction = 1
     else:
@@ -184,7 +184,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     data = {
         'datetime': max(map(lambda x: arrow.get(arrow.get(
             exchanges[x]['dateReported']).datetime, timezone).datetime, keys)),
-        'sortedCountryCodes': sortedCountryCodes,
+        'sortedZoneKeys': sortedZoneKeys,
         'netFlow': sum(map(lambda x: float(exchanges[x]['net'].replace(',', '')), keys)) * direction,
         'source': 'gridwatch.ca'
     }

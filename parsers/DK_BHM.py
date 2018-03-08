@@ -78,7 +78,7 @@ def fetch_exchange(zone_key1='DK-BHM', zone_key2='SE', session=None, target_date
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -88,7 +88,7 @@ def fetch_exchange(zone_key1='DK-BHM', zone_key2='SE', session=None, target_date
     obj = _fetch_data(session)
 
     data = {
-        'sortedCountryCodes': '->'.join(sorted([zone_key1, zone_key2])),
+        'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
         'source': 'bornholm.powerlab.dk',
         'datetime': arrow.get(obj['latest']).datetime
     }

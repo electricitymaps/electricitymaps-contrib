@@ -52,7 +52,7 @@ def fetch_exchange(zone_key1='ES', zone_key2='MA', session=None, token=None):
             net_flow = -value['value']
 
             value_data = {
-                'sortedCountryCodes': '->'.join(sorted_zone_keys),
+                'sortedZoneKeys': '->'.join(sorted_zone_keys),
                 'datetime': datetime,
                 'netFlow': net_flow if zone_key1 == sorted_zone_keys[0] else -1 * net_flow,
                 'source': 'api.esios.ree.es',
