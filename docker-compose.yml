@@ -21,11 +21,11 @@ services:
     volumes:
       - './config:/home/config'
       - './web/generate-geometries.js:/home/web/generate-geometries.js'
-      - './web/src:/home/web/src'
       - './web/locales:/home/web/locales'
       - './web/package.json:/home/web/package.json'
       - './web/public:/home/web/public'
       - './web/server.js:/home/web/server.js'
+      - './web/src:/home/web/src'
       - './web/third_party_maps:/home/web/third_party_maps'
       - './web/topogen.sh:/home/web/topogen.sh'
       - './web/views:/home/web/views'
