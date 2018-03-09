@@ -23,6 +23,7 @@ const initialApplicationState = {
   solarEnabled: Cookies.get('solarEnabled') === 'true' || false,
   useRemoteEndpoint: document.domain === '' || isLocalhost,
   windEnabled: Cookies.get('windEnabled') === 'true' || false,
+  legendVisible: false,
 
   // TODO(olc): refactor this state
   showPageState: 'map',
