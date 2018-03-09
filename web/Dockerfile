@@ -3,6 +3,7 @@ WORKDIR /home/web
 
 ADD web/package.json /home/web/package.json
 ADD web/package-lock.json /home/web/package-lock.json
+RUN apt-get update && apt-get install -y unzip
 RUN npm install
 
 ADD web /home/web
