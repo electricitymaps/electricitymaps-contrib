@@ -314,7 +314,7 @@ It is very simple to add a new country. The Electricity Map backend runs a list 
 A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
 ```python
-def fetch_production(country_code='FR', session=None):
+def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
     return {
       'countryCode': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
@@ -338,6 +338,9 @@ def fetch_production(country_code='FR', session=None):
 ```
 
 The `session` object is a [python request](http://docs.python-requests.org/en/master/) session that you can re-use to make HTTP requests.
+
+`target_datetime` is used to fetch historical data (when available). `logger` is a `logging.Logger`
+whose output is publicly available so that everyone can monitor correct functioning of the parsers.
 
 The production values should never be negative. Use `None`, or omit the key if a specific production mode is not known.
 Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
@@ -374,3 +377,4 @@ from the root directory, replacing `<zone_name>` by the zone identifier of the p
 - `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
+

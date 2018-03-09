@@ -28,17 +28,17 @@ def time_string_converter(ts):
     return dt_aware
 
 
-def fetch_production(country_code='BG', session=None):
+def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -58,6 +58,8 @@ def fetch_production(country_code='BG', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://www.eso.bg/?did=124'
@@ -90,7 +92,7 @@ def fetch_production(country_code='BG', session=None):
         production[k] = production.get(k, 0.0) + v
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': production,
         'storage': {},
         'source': 'eso.bg',

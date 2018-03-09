@@ -65,16 +65,16 @@ def data_processor(text):
     return production
 
 
-def fetch_production(country_code = 'NA', session=None):
+def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -94,6 +94,8 @@ def fetch_production(country_code = 'NA', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_text = get_text_from_image(session=session, link=generation_link, \
                                    expected_size=(400, 245), new_size=(1000,612))
@@ -101,7 +103,7 @@ def fetch_production(country_code = 'NA', session=None):
     production = data_processor(raw_text)
 
     data = {
-          'countryCode': country_code,
+          'zoneKey': zone_key,
           'datetime': arrow.now('Africa/Windhoek').datetime,
           'production': production,
           'storage': {},
@@ -132,26 +134,28 @@ def exchange_processor(text, exchange):
     return flow
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sorted_codes = "->".join(sorted([country_code1, country_code2]))
+    sorted_codes = "->".join(sorted([zone_key1, zone_key2]))
 
-    raw_text = get_text_from_image(session=session, link=exchanges_link, \
+    raw_text = get_text_from_image(session=session, link=exchanges_link,
                                    expected_size=(400, 195), new_size=(1120, 546))
 
     if sorted_codes == 'NA->ZA':
@@ -165,7 +169,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     if flow is not None:
         flow = -1 * flow
 
-    exchange = {'sortedCountryCodes': sorted_codes,
+    exchange = {'sortedZoneKeys': sorted_codes,
                 'datetime': arrow.now('Africa/Windhoek').datetime,
                 'netFlow': flow,
                 'source': 'nampower.com.na'

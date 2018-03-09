@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 import re
-import string
 from ast import literal_eval
 
-import requests
-from arrow import get
+import arrow
 from requests import Session
-from .lib import countrycode
+from .lib import zonekey
 from .lib import web
-from .lib import IN
 from operator import itemgetter
 
 station_map = {
@@ -23,13 +20,17 @@ station_map = {
 }
 
 
-def fetch_data(country_code, session = None):
-    countrycode.assert_country_code(country_code, 'IN-GJ')
+def fetch_data(zone_key, session=None, logger=None):
+    zonekey.assert_zone_key(zone_key, 'IN-GJ')
 
-    solar_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
-    wind_html = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
+    solar_html = web.get_response_soup(
+        zone_key, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
+    wind_html = web.get_response_soup(
+        zone_key, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
 
-    india_date = get(solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata', 'DD-MM-YYYY H:m:s ZZZ')
+    india_date = arrow.get(
+        solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata',
+        ['DD-MM-YYYY H:m:s ZZZ', 'D-MM-YYYY H:m:s ZZZ'])
 
     solar_value = float(literal_eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
     wind_value = float(literal_eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
@@ -52,7 +53,7 @@ def fetch_data(country_code, session = None):
     }
 
     # other_html = requests.get('https://www.sldcguj.com/RealTimeData/RealTimeDemand.php', params=cookies_params)
-    rows = web.get_response_soup(country_code, 'https://www.sldcguj.com/RealTimeData/RealTimeDemand.php',
+    rows = web.get_response_soup(zone_key, 'https://www.sldcguj.com/RealTimeData/RealTimeDemand.php',
                                  session).find_all('tr')
 
     for row in rows:
@@ -72,17 +73,20 @@ def fetch_data(country_code, session = None):
     return value_map
 
 
-def fetch_production(country_code='IN-GJ', session=None):
+def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logger=None):
     """
     Method to get production data of Gujarat
-    :param country_code:
+    :param zone_key:
     :param session:
     :return:
     """
-    value_map = fetch_data(country_code, session)
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    value_map = fetch_data(zone_key, session, logger=logger)
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': value_map['date'],
         'production': {
             'biomass': None,
@@ -105,17 +109,20 @@ def fetch_production(country_code='IN-GJ', session=None):
     return data
 
 
-def fetch_consumption(country_code='IN-GJ', session=None):
+def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None, logger=None):
     """
     Method to get consumption data of Gujarat
-    :param country_code:
+    :param zone_key:
     :param session:
     :return:
     """
-    value_map = fetch_data(country_code, session)
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    value_map = fetch_data(zone_key, session)
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': value_map['date'],
         'consumption': value_map['total consumption'],
         'source': 'sldcguj.com'

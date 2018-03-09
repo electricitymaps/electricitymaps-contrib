@@ -2,9 +2,8 @@
 
 """Parser for the MISO area of the United States."""
 
-from dateutil import parser, tz
-import json
 import requests
+from dateutil import parser, tz
 
 mix_url = 'https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType' \
           '=getfuelmix&returnType=json'
@@ -15,6 +14,7 @@ mapping = {'Coal': 'coal',
            'Wind': 'wind',
            'Other': 'unknown'}
 
+
 # To quote the MISO data source;
 # "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
 # External Asynchronous Resources and a varied assortment of solid waste, garbage and wood pulp burners".
@@ -23,7 +23,7 @@ mapping = {'Coal': 'coal',
 # Unsure exactly why EST is used, possibly due to operational connections with PJM.
 
 
-def get_json_data(session = None):
+def get_json_data(logger, session=None):
     """Returns 5 minute generation data in json format."""
 
     s = session or requests.session()
@@ -41,7 +41,7 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def data_processer(json_data):
+def data_processer(json_data, logger):
     """
     Identifies any unknown fuel types and logs a warning.
     Returns a tuple containing datetime object and production dictionary.
@@ -54,7 +54,8 @@ def data_processer(json_data):
         try:
             k = mapping[fuel['CATEGORY']]
         except KeyError as e:
-            print("Key \"{}\" is missing from the MISO fuel mapping.".format(fuel['CATEGORY']))
+            logger.warning("Key '{}' is missing from the MISO fuel mapping.".format(
+                fuel['CATEGORY']))
             k = 'unknown'
         v = float(fuel['ACT'])
         production[k] = production.get(k, 0.0) + v
@@ -62,7 +63,7 @@ def data_processer(json_data):
     # Remove unneeded parts of timestamp to allow datetime parsing.
     timestamp = json_data['RefId']
     split_time = timestamp.split(" ")
-    time_junk = set([1,2])
+    time_junk = {1, 2}  # set literal
     useful_time_parts = [v for i, v in enumerate(split_time) if i not in time_junk]
 
     if useful_time_parts[-1] != 'EST':
@@ -75,16 +76,16 @@ def data_processer(json_data):
     return dt, production
 
 
-def fetch_production(country_code = 'US-MISO', session = None):
+def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -104,16 +105,18 @@ def fetch_production(country_code = 'US-MISO', session = None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    json_data = get_json_data(session = None)
-    processed_data = data_processer(json_data)
+    json_data = get_json_data(logger, session=session)
+    processed_data = data_processer(json_data, logger)
 
     data = {
-      'countryCode': country_code,
-      'datetime': processed_data[0],
-      'production': processed_data[1],
-      'storage': {'hydro': None},
-      'source': 'misoenergy.org'
+        'zoneKey': zone_key,
+        'datetime': processed_data[0],
+        'production': processed_data[1],
+        'storage': {'hydro': None},
+        'source': 'misoenergy.org'
     }
 
     return data

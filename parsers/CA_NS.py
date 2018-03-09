@@ -7,7 +7,7 @@ import requests
 
 
 def _get_ns_info(requests_obj):
-    country_code = 'CA-NS'
+    zone_key = 'CA-NS'
 
     mix_url = 'http://www.nspower.ca/system_report/today/currentmix.json'
     mix_data = requests_obj.get(mix_url).json()
@@ -37,7 +37,7 @@ def _get_ns_info(requests_obj):
         data_date = arrow.get(data_timestamp).datetime
 
         production.append({
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'datetime': data_date,
             'production': {
                 'coal': (mix['Solid Fuel'] * load),
@@ -62,17 +62,17 @@ def _get_ns_info(requests_obj):
     return production, imports
 
 
-def fetch_production(country_code='CA-NS', session=None):
+def fetch_production(zone_key='CA-NS', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -92,6 +92,9 @@ def fetch_production(country_code='CA-NS', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
 
     production, imports = _get_ns_info(r)
@@ -99,7 +102,7 @@ def fetch_production(country_code='CA-NS', session=None):
     return production
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions.
 
     Note: As of early 2017, Nova Scotia only has an exchange with New Brunswick (CA-NB).
@@ -108,16 +111,19 @@ def fetch_exchange(country_code1, country_code2, session=None):
     The API for Nova Scotia only specifies imports. When NS is exporting energy,
     the API returns 0.
     """
-    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    if sorted_country_codes != 'CA-NB->CA-NS':
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    if sorted_zone_keys != 'CA-NB->CA-NS':
         raise NotImplementedError('This exchange pair is not implemented')
 
     requests_obj = session or requests.session()
     _, imports = _get_ns_info(requests_obj)
 
     data = imports[-1]
-    data['sortedCountryCodes'] = sorted_country_codes
+    data['sortedZoneKeys'] = sorted_zone_keys
 
     return data
 

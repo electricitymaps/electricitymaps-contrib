@@ -4,21 +4,21 @@ class ParserException(Exception):
     Args:
         parser (str): Parser name.
         message (str): String describing the exception.
-        country_code (str): Country code or sortedCountryCodes.
+        zone_key (str): Country code or sortedZoneKeys.
 
     Attributes:
         parser (str): Parser name.
         message (str): String describing the exception.
-        country_code (str): Country code or sortedCountryCodes."""
+        zone_key (str): Country code or sortedZoneKeys."""
 
-    def __init__(self, parser, message, country_code=None):
+    def __init__(self, parser, message, zone_key=None):
         super(ParserException, self).__init__(message)
         self.parser = parser
-        self.country_code = country_code
+        self.zone_key = zone_key
 
     def __str__(self):
-        if self.country_code:
-            country_code_info = " ({0})".format(self.country_code)
+        if self.zone_key:
+            zone_key_info = " ({0})".format(self.zone_key)
         else:
-            country_code_info = ""
-        return "{0} Parser{1}: {2}".format(self.parser, country_code_info, self.args[0])
+            zone_key_info = ""
+        return "{0} Parser{1}: {2}".format(self.parser, zone_key_info, self.args[0])

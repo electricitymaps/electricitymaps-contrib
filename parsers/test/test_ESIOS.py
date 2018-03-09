@@ -22,7 +22,7 @@ class TestESIOS(unittest.TestCase):
             data_list = ESIOS.fetch_exchange('ES', 'MA', self.session, 'ESIOS_MOCK_TOKEN')
             self.assertIsNotNone(data_list)
             for data in data_list:
-                self.assertEqual(data['sortedCountryCodes'], 'ES->MA')
+                self.assertEqual(data['sortedZoneKeys'], 'ES->MA')
                 self.assertEqual(data['source'], 'api.esios.ree.es')
                 self.assertIsNotNone(data['datetime'])
                 self.assertIsNotNone(data['netFlow'])

@@ -5,17 +5,17 @@ import arrow
 import pandas
 
 
-def fetch_production(country_code='US-CA', session=None):
+def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -35,6 +35,9 @@ def fetch_production(country_code='US-CA', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     # Get the production from the CSV
     csv_url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
     csv = pandas.read_csv(csv_url)
@@ -60,7 +63,7 @@ def fetch_production(country_code='US-CA', session=None):
         h, m = map(int, csv['Time'][i].split(':'))
         date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
         data = {
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'caiso.com',

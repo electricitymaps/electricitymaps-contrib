@@ -178,7 +178,7 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df):
+def thermal_production(df, logger):
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
@@ -216,7 +216,7 @@ def thermal_production(df):
         therms.append(thermalDict)
 
     for plant in unmapped:
-        print('{} is missing from the DO plant mapping!'.format(plant))
+        logger.warning('{} is missing from the DO plant mapping!'.format(plant))
 
     return therms
 
@@ -276,15 +276,15 @@ def merge_production(thermal, total):
     return final
 
 
-def fetch_production(country_code='DO', session=None):
+def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -304,18 +304,20 @@ def fetch_production(country_code='DO', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     dat = data_formatter(get_data(session=None))
     tot = data_parser(dat['totals'])
     th = data_parser(dat['thermal'])
-    thermal = thermal_production(th)
+    thermal = thermal_production(th, logger)
     total = total_production(tot)
     merge = merge_production(thermal, total)
 
     production_mix_by_hour = []
     for hour in merge:
         production_mix = {
-          'countryCode': country_code,
+          'zoneKey': zone_key,
           'datetime': hour['datetime'],
           'production': {
               'biomass': hour.get('biomass', 0.0),

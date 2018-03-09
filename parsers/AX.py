@@ -8,6 +8,7 @@ import requests
 import numpy as np
 from PIL import Image
 
+
 def _get_masks(session=None):
     Minus = np.array([[[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255], [255, 255, 255], [255, 255, 255],[255, 255, 255],[255, 255, 255]],
@@ -147,14 +148,11 @@ def _get_masks(session=None):
     return dict(zip(shorts,masks))
     
 
-
 def _fetch_data(session=None):
     # Load masks for reading numbers from the image
     # Create a dictionary of symbols and their pixel masks
     mapping = _get_masks(session)
-    
 
-    
     # Download the updating image from Kraftnät Åland
     r = session or requests.session()
     
@@ -267,17 +265,17 @@ def _fetch_data(session=None):
     return obj
 
 
-def fetch_production(country_code='AX', session=None):
+def fetch_production(zone_key='AX', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -297,10 +295,13 @@ def fetch_production(country_code='AX', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = _fetch_data(session)
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'kraftnat.aland.fi',
@@ -319,11 +320,15 @@ def fetch_production(country_code='AX', session=None):
     
     return data
 
-def fetch_consumption(country_code='AX', session=None):
+
+def fetch_consumption(zone_key='AX', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = _fetch_data(session)
     
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': arrow.get(obj['fetchtime']).datetime,
         'consumption': obj['consumption'],
         'source': 'kraftnat.aland.fi'
@@ -331,41 +336,44 @@ def fetch_consumption(country_code='AX', session=None):
     
     return data
 
-def fetch_exchange(country_code1, country_code2, session=None):
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     obj = _fetch_data(session)
 
     data = {
-        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
+        'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
         'source': 'kraftnat.aland.fi',
         'datetime': arrow.get(obj['fetchtime']).datetime
     }
 
     # Country codes are sorted in order to enable easier indexing in the database
-    sorted_country_codes = sorted([country_code1, country_code2])
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
     # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
     # to country2. A negative flow indicates an import.
     
-    if '->'.join(sorted([country_code1, country_code2])) in ['AX->SE', 'AX->SE-SE3']:
+    if '->'.join(sorted([zone_key1, zone_key2])) in ['AX->SE', 'AX->SE-SE3']:
         netFlow = obj['SE3->AX']
          
-    elif '->'.join(sorted([country_code1, country_code2]))== 'AX->FI':
+    elif '->'.join(sorted([zone_key1, zone_key2]))== 'AX->FI':
         netFlow = obj['FI->AX'] # Import is positive
     
     # The net flow to be reported should be from the first country to the second

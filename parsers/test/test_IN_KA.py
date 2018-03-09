@@ -20,7 +20,7 @@ class Test_IN_KA(unittest.TestCase):
         try:
             data = IN_KA.fetch_consumption('IN-KA', self.session)
             self.assertIsNotNone(data)
-            self.assertEqual(data['countryCode'], 'IN-KA')
+            self.assertEqual(data['zoneKey'], 'IN-KA')
             self.assertEqual(data['source'], 'kptclsldc.com')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['consumption'])
@@ -37,7 +37,7 @@ class Test_IN_KA(unittest.TestCase):
         try:
             data = IN_KA.fetch_production('IN-KA', self.session)
             self.assertIsNotNone(data)
-            self.assertEqual(data['countryCode'], 'IN-KA')
+            self.assertEqual(data['zoneKey'], 'IN-KA')
             self.assertEqual(data['source'], 'kptclsldc.com')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])

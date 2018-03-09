@@ -106,9 +106,9 @@ def unknown_plants():
         print('{} is not mapped to generation type!'.format(plant))
 
 
-def empty_record(country_code):
+def empty_record(zone_key):
     return {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'capacity': {},
         'production': {
             'biomass': 0.0,
@@ -127,7 +127,7 @@ def empty_record(country_code):
     }
 
 
-def df_to_data(country_code, day, df):
+def df_to_data(zone_key, day, df):
     df = df.dropna(axis=1, how='any')
     # Check for empty dataframe
     if df.shape == (1, 1):
@@ -138,7 +138,7 @@ def df_to_data(country_code, day, df):
     data = []
     hours = 0
     for column in df:
-        data.append(empty_record(country_code))
+        data.append(empty_record(zone_key))
         for index, value in df[column].items():
             current = len(data) - 1
             source = POWER_PLANTS.get(index)
@@ -152,7 +152,10 @@ def df_to_data(country_code, day, df):
     return data
 
 
-def fetch_production(country_code='CR', session=None):
+def fetch_production(zone_key='CR', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     # Do not use existing session as some amount of cache is taking place
     r = requests.session()
     url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
@@ -177,26 +180,26 @@ def fetch_production(country_code='CR', session=None):
     response = r.post(url, cookies={}, data=data)
     df_today = pd.read_html(response.text, skiprows=1, index_col=0)[0]
 
-    ydata = df_to_data(country_code, yesterday, df_yesterday)
-    tdata = df_to_data(country_code, today, df_today)
+    ydata = df_to_data(zone_key, yesterday, df_yesterday)
+    tdata = df_to_data(zone_key, today, df_today)
     production = ydata + tdata
     unknown_plants()
 
     return production
 
 
-def fetch_exchange(country_code1='CR', country_code2='NI', session=None):
+def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -204,20 +207,23 @@ def fetch_exchange(country_code1='CR', country_code2='NI', session=None):
 
     where net flow is from DK into NO
     """
-    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     df = pd.read_csv('http://www.enteoperador.org/newsite/flash/data.csv', index_col=False)
 
-    if sorted_country_codes == 'CR->NI':
+    if sorted_zone_keys == 'CR->NI':
         flow = df['NICR'][0]
-    elif sorted_country_codes == 'CR->PA':
+    elif sorted_zone_keys == 'CR->PA':
         flow = -1 * df['CRPA'][0]
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     data = {
         'datetime': arrow.now(TIMEZONE).datetime,
-        'sortedCountryCodes': sorted_country_codes,
+        'sortedZoneKeys': sorted_zone_keys,
         'netFlow': flow,
         'source': 'enteoperador.org'
     }

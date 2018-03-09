@@ -129,17 +129,17 @@ def merge_production(total_and_wind, solar):
     return res
 
 
-def fetch_production(country_code='CY', session=None):
+def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     An array of dictionary in the form:
     [{
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -159,6 +159,8 @@ def fetch_production(country_code='CY', session=None):
       'source': 'mysource.com'
     }]
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     total_and_wind_production = fetch_total_and_wind_production()               # [time, total, wind]
     solar_production = fetch_solar_production_estimation()                      # [time, solar]
@@ -167,7 +169,7 @@ def fetch_production(country_code='CY', session=None):
     data = []
     for time in production:
         data.append({
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'production': {
                 'solar': production[time].get('solar', 0.0),
                 'wind': production[time].get('wind', 0.0),

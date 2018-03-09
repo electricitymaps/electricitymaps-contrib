@@ -22,7 +22,7 @@ class TestINPB(unittest.TestCase):
         try:
             data = IN_PB.fetch_consumption('IN-PB', self.session)
             self.assertIsNotNone(data)
-            self.assertEqual(data['countryCode'], 'IN-PB')
+            self.assertEqual(data['zoneKey'], 'IN-PB')
             self.assertEqual(data['source'], 'punjasldc.org')
             self.assertIsNotNone(data['datetime'])
             expected = get(datetime(2017, 9, 6, 14, 38, 29), 'Asia/Kolkata').datetime
@@ -40,7 +40,7 @@ class TestINPB(unittest.TestCase):
         try:
             data = IN_PB.fetch_production('IN-PB', self.session)
             self.assertIsNotNone(data)
-            self.assertEqual(data['countryCode'], 'IN-PB')
+            self.assertEqual(data['zoneKey'], 'IN-PB')
             self.assertEqual(data['source'], 'punjasldc.org')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])
