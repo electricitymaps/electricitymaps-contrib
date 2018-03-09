@@ -11,7 +11,7 @@ import requests
 from .lib.exceptions import ParserException
 
 
-def fetch_exchange(zone_key1='ES', zone_key2='MA', session=None, token=None):
+def fetch_exchange(zone_key1='ES', zone_key2='MA', session=None, token=None, logger=None):
 
     # Get ESIOS token
     token = environ.get('ESIOS_TOKEN', token)

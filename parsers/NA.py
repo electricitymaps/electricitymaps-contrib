@@ -143,7 +143,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -169,7 +169,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if flow is not None:
         flow = -1 * flow
 
-    exchange = {'sortedCountryCodes': sorted_codes,
+    exchange = {'sortedZoneKeys': sorted_codes,
                 'datetime': arrow.now('Africa/Windhoek').datetime,
                 'netFlow': flow,
                 'source': 'nampower.com.na'

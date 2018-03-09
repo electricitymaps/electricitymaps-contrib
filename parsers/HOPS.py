@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 xml_link = 'https://www.hops.hr/resources/razmjena.xml'
 
 
-def get_xml_data(session = None):
+def get_xml_data(session=None):
     """Returns a request response body as bytes."""
 
     s = session or requests.Session()
@@ -26,7 +26,7 @@ def xml_processor(raw_xml):
 
     timestamp = xml_full.attrib['updateTime']
     dt_naive = arrow.get(timestamp, 'YYYY-MM-DD HH:mm:ss')
-    dt_aware = dt_naive.replace(tzinfo = 'Europe/Belgrade')
+    dt_aware = dt_naive.replace(tzinfo='Europe/Belgrade')
 
     xml_values = []
     for child in xml_full:
@@ -39,7 +39,7 @@ def xml_processor(raw_xml):
     return exchange_data, dt_aware
 
 
-def fetch_exchange(zone_key1, zone_key2, session = None):
+def fetch_exchange(zone_key1, zone_key2, session=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
     zone_key (optional) -- used in case a parser is able to fetch multiple countries
@@ -55,25 +55,26 @@ def fetch_exchange(zone_key1, zone_key2, session = None):
     """
 
     # HOPS assigns negative values to exports.
-    gxd = get_xml_data(session = None)
+    gxd = get_xml_data(session=None)
     processed_data = xml_processor(gxd)
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     if sorted_zone_keys == 'BA->HR':
-        ba_exchange = next(item for item in processed_data[0] if item['key'] == "Bosna i Hercegovina")
+        ba_exchange = next(
+            item for item in processed_data[0] if item['key'] == "Bosna i Hercegovina")
         net_flow = float(ba_exchange['value'])
     elif sorted_zone_keys == 'HR->SI':
         si_exchange = next(item for item in processed_data[0] if item['key'] == "Slovenija")
-        net_flow = -1*float(si_exchange['value'])
+        net_flow = -1 * float(si_exchange['value'])
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     exchange = {
-      'sortedZoneKeys': sorted_zone_keys,
-      'datetime': processed_data[1].datetime,
-      'netFlow': net_flow,
-      'source': 'hops.hr'
+        'sortedZoneKeys': sorted_zone_keys,
+        'datetime': processed_data[1].datetime,
+        'netFlow': net_flow,
+        'source': 'hops.hr'
     }
 
     return exchange

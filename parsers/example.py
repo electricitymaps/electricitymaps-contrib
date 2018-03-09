@@ -3,8 +3,6 @@ import logging
 import datetime
 
 # The arrow library is used to handle datetimes
-from json import JSONDecodeError
-
 import arrow
 # The request library is used to fetch content through HTTP
 import requests

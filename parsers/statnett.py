@@ -117,7 +117,8 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=N
     return data
 
 
-def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None):
+def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
+                                   logger=None):
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone1, bidding_zone2])
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
@@ -154,7 +155,7 @@ def _sum_of_exchanges(exchanges):
     }
 
 
-def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None):
+def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, logger=None):
     r = session or requests.session()
 
     sorted_exchange = '->'.join(sorted([zone_key1, zone_key2]))
