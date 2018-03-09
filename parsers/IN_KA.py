@@ -3,21 +3,24 @@
 from requests import Session
 from .lib.exceptions import ParserException
 from .lib import web
-from .lib import countrycode
+from .lib import zonekey
 from .lib import IN
 
 
-def fetch_consumption(country_code='IN-KA', session=None):
+def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
     """Fetch Karnataka consumption"""
-    countrycode.assert_country_code(country_code, 'IN-KA')
-    html = web.get_response_soup(country_code, 'http://kptclsldc.com/Default.aspx', session)
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    zonekey.assert_zone_key(zone_key, 'IN-KA')
+    html = web.get_response_soup(zone_key, 'http://kptclsldc.com/Default.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'Label6', 'DD/MM/YYYY HH:mm')
 
     demand_value = IN.read_value_from_span_id(html, 'Label5')
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'kptclsldc.com'
@@ -26,11 +29,14 @@ def fetch_consumption(country_code='IN-KA', session=None):
     return data
 
 
-def fetch_production(country_code='IN-KA', session=None):
+def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
     """Fetch Karnataka  production"""
-    countrycode.assert_country_code(country_code, 'IN-KA')
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateGen.aspx', session)
+    zonekey.assert_zone_key(zone_key, 'IN-KA')
+
+    html = web.get_response_soup(zone_key, 'http://kptclsldc.com/StateGen.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss A')
 
@@ -105,7 +111,7 @@ def fetch_production(country_code='IN-KA', session=None):
     cgs_value = IN.read_value_from_span_id(html, 'lblcgs')
 
     # NCEP (Non-Conventional Energy Production)
-    ncep_html = web.get_response_soup(country_code, 'http://kptclsldc.com/StateNCEP.aspx', session)
+    ncep_html = web.get_response_soup(zone_key, 'http://kptclsldc.com/StateNCEP.aspx', session)
     ncep_date_time = IN.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
 
     # Check ncep date is similar than state gen date
@@ -133,7 +139,7 @@ def fetch_production(country_code='IN-KA', session=None):
     unknown_value = cgs_value + cogen_value
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
             'biomass': biomass_value,

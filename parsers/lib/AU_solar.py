@@ -97,28 +97,28 @@ def find_solar_nearest_time(data, sought_time):
         return None
 
 
-def filter_solar_to_state(data, country_code):
+def filter_solar_to_state(data, zone_key):
     data = data or {}  # handle being given None instead of data dict
 
-    state_code = country_code[4:]
+    state_code = zone_key[4:]
 
     state_code_lowercase = state_code.lower()
 
     return data.get(state_code_lowercase, None)
 
 
-def fetch_solar_for_date(country_code, sought_time, session):
+def fetch_solar_for_date(zone_key, sought_time, session):
     """
     :return: int or None
     """
-    if country_code not in ('AUS-NSW', 'AUS-QLD', 'AUS-SA', 'AUS-TAS', 'AUS-VIC', 'AUS-WA'):
-        raise Exception('Unrecognized country_code {}'.format(country_code))
+    if zone_key not in ('AUS-NSW', 'AUS-QLD', 'AUS-SA', 'AUS-TAS', 'AUS-VIC', 'AUS-WA'):
+        raise Exception('Unrecognized zone_key {}'.format(zone_key))
 
     all_data = fetch_solar_all(session)
 
     closest_data = find_solar_nearest_time(all_data, sought_time)
 
-    return filter_solar_to_state(closest_data, country_code)
+    return filter_solar_to_state(closest_data, zone_key)
 
 
 if __name__ == '__main__':

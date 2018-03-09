@@ -182,18 +182,20 @@ def net_flow(interconnections, flows):
     return netflow
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """
     Gets an exchange pair from the SIEPAC system.
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'CR->PA',
+      'sortedZoneKeys': 'CR->PA',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     getdata = read_data()
     connect = connections(getdata)
@@ -203,14 +205,14 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     exchange = {}
     dt = arrow.now('UTC-6').floor('minute')
-    zones = '->'.join(sorted([country_code1, country_code2]))
+    zones = '->'.join(sorted([zone_key1, zone_key2]))
 
     if zones in netflow:
         exchange['netFlow'] = netflow[zones]
     else:
         raise NotImplementedError('This exchange is not implemented.')
 
-    exchange.update(sortedCountryCodes=zones,
+    exchange.update(sortedZoneKeys=zones,
                     datetime=dt.datetime,
                     source='enteoperador.org')
 

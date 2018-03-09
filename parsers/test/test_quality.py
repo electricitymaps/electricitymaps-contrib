@@ -47,16 +47,16 @@ class ProductionTestCase(unittest.TestCase):
         with self.assertRaises(Exception, msg = 'Datetime key must be present!'):
             validate_production(p1, 'FR')
 
-    def test_no_countryCode(self):
-        with self.assertRaises(Exception, msg = 'countryCode is required!'):
+    def test_no_zoneKey(self):
+        with self.assertRaises(Exception, msg = 'zoneKey is required!'):
             validate_production(p2, 'FR')
 
     def test_bad_datetime(self):
         with self.assertRaises(Exception, msg = 'datetime object is required!'):
             validate_production(p3, 'FR')
 
-    def test_countryCode_mismatch(self):
-        with self.assertRaises(Exception, msg = 'countryCode mismatch must be caught!'):
+    def test_zoneKey_mismatch(self):
+        with self.assertRaises(Exception, msg = 'zoneKey mismatch must be caught!'):
             validate_production(p4, 'FR')
 
     def test_future_not_allowed(self):

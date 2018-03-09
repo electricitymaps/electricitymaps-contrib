@@ -74,7 +74,7 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def data_processer(rawdata):
+def data_processer(rawdata, logger):
     """
     Takes in raw data and converts it into a usable form.
     Returns a tuple.
@@ -105,21 +105,21 @@ def data_processer(rawdata):
         generationDict[key] = 0.0
 
     for gen_type in unmapped:
-        print('{} is missing from the MY generation type mapping!'.format(gen_type))
+        logger.warning('{} is missing from the MY generation type mapping!'.format(gen_type))
 
     return converted_time_string, dict(generationDict)
 
 
-def fetch_production(country_code='MY-WM', session=None):
+def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -139,12 +139,14 @@ def fetch_production(country_code='MY-WM', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_data = get_data(session=None)
-    clean_data = data_processer(raw_data)
+    clean_data = data_processer(raw_data, logger)
 
     production = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': clean_data[0],
         'production': clean_data[1],
         'storage': {

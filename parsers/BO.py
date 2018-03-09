@@ -19,7 +19,9 @@ MAP_GENERATION = {
 
 
 def webparser(resp):
-    """Takes content from the corresponding webpage and returns the necessary outputs in a dataframe"""
+    """
+    Takes content from the corresponding webpage and returns the necessary outputs in a dataframe
+    """
     # get the response as an html
     soup = BeautifulSoup(resp.text, 'html.parser')
     # Each variable correspond to a row
@@ -49,14 +51,14 @@ def webparser(resp):
     return obj
 
 
-def fetch_hourly_production(country_code, obj, date):
+def fetch_hourly_production(zone_key, obj, date):
     """Returns a list of dictionaries."""
 
     production_by_hour = []
     for index, row in obj.iterrows():
 
         data = {
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'cndc.bo',
@@ -83,15 +85,15 @@ def fetch_hourly_production(country_code, obj, date):
     return production_by_hour
 
 
-def fetch_production(country_code='BO', session=None):
+def fetch_production(zone_key='BO', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -111,6 +113,8 @@ def fetch_production(country_code='BO', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # Define actual and previous day (for midnight data).
     now = arrow.now(tz=tz_bo)
@@ -126,14 +130,14 @@ def fetch_production(country_code='BO', session=None):
     r = session or requests.session()
     response = r.get(url)
     obj = webparser(response)
-    data_yesterday = fetch_hourly_production(country_code, obj, past_formatted_date)
+    data_yesterday = fetch_hourly_production(zone_key, obj, past_formatted_date)
 
     # Now get data for rest of today.
     url = url_init + formatted_date
     r = session or requests.session()
     response = r.get(url)
     obj = webparser(response)
-    data_today = fetch_hourly_production(country_code, obj, formatted_date)
+    data_today = fetch_hourly_production(zone_key, obj, formatted_date)
 
     data = data_yesterday + data_today
 
@@ -156,13 +160,13 @@ def fetch_production(country_code='BO', session=None):
     return valid_data
 
 
-def fetch_hourly_generation_forecast(country_code, obj, date):
+def fetch_hourly_generation_forecast(zone_key, obj, date):
     """Returns a list of dictionaries."""
 
     hourly_forecast = []
     for index, row in obj.iterrows():
         data = {
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'value': {},
             'source': 'cndc.bo',
         }
@@ -182,7 +186,10 @@ def fetch_hourly_generation_forecast(country_code, obj, date):
     return hourly_forecast
 
 
-def fetch_generation_forecast(country_code='BO', session=None):
+def fetch_generation_forecast(zone_key='BO', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     # Define actual and last day (for midnight data)
     formatted_date = arrow.now(tz=tz_bo).format('YYYY-MM-DD')
 
@@ -191,7 +198,9 @@ def fetch_generation_forecast(country_code='BO', session=None):
     url = url_init + formatted_date
 
     r = session or requests.session()
+
     response = r.get(url)
+
     obj = webparser(response)
     forecast = fetch_hourly_generation_forecast('BO', obj, formatted_date)
 

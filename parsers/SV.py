@@ -132,15 +132,15 @@ def data_processer(data):
     return mapped_data
 
 
-def fetch_production(country_code='SV', session=None):
+def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A list of dictionaries in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -160,6 +160,8 @@ def fetch_production(country_code='SV', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     req = get_data(session=None)
     parsed = data_parser(req)
@@ -167,7 +169,7 @@ def fetch_production(country_code='SV', session=None):
     production_mix_by_hour = []
     for hour in data:
         production_mix = {
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'datetime': hour['datetime'],
             'production': {
                 'biomass': hour.get('biomass', 0.0),

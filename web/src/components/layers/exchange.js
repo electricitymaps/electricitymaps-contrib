@@ -98,7 +98,7 @@ class ExchangeLayer {
 
     const exchangeArrows = this.root
       .selectAll('.exchange-arrow')
-      .data(this.data, d => d.sortedCountryCodes);
+      .data(this.data, d => d.sortedZoneKeys);
     exchangeArrows.exit().remove();
 
     // This object refers to arrows created
