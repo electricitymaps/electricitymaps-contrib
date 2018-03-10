@@ -65,8 +65,7 @@
         "lastupdate": "Letzte Aktualisierung",
         "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden nochmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a> um sie zu laden.",
-        "retrynow": "Erneut versuchen",
-        "pro": "pro"
+        "retrynow": "Erneut versuchen"
     },
     "wind": "Windenergie",
     "solar": "Photovoltaik",
