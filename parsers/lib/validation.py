@@ -71,8 +71,8 @@ def validate(datapoint, **kwargs):
 
     if remove_negative:
         for key, val in generation.items():
-            if val is not None and val < 0.0:
-                print("{} returned negative value for {}".format(key,datapoint['countryCode']))
+            if val is not None and -5.0 < val < 0.0:
+                print("{} returned {} for {}, setting to None".format(key, val, datapoint['zoneKey']))
                 generation[key] = None
 
     if required:
@@ -115,7 +115,7 @@ test_datapoint = {
         'oil': 0.0,
         'solar': 20.0,
         'wind': 40.0,
-        'geothermal': 0.0,
+        'geothermal': -1.0,
         'unknown': 6.0
     },
     'storage': {
@@ -125,4 +125,4 @@ test_datapoint = {
 }
 
 if __name__ == '__main__':
-    print(validate(test_datapoint, required=['gas'], expected_range=(100, 2000)))
+    print(validate(test_datapoint, required=['gas'], expected_range=(100, 2000), remove_negative=True))
