@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+
 import re
 from ast import literal_eval
-
-import arrow
+from arrow import get
 from requests import Session
 from .lib import zonekey
 from .lib import web
+from .lib import IN
+from .lib.validation import validate
 from operator import itemgetter
 
 station_map = {
@@ -28,9 +30,7 @@ def fetch_data(zone_key, session=None, logger=None):
     wind_html = web.get_response_soup(
         zone_key, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
 
-    india_date = arrow.get(
-        solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata',
-        ['DD-MM-YYYY H:m:s ZZZ', 'D-MM-YYYY H:m:s ZZZ'])
+    india_date = get(solar_html.find_all('tr')[0].text.split('\t')[-1].strip() + ' Asia/Kolkata', 'D-MM-YYYY H:mm:ss ZZZ')
 
     solar_value = float(literal_eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
     wind_value = float(literal_eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
@@ -106,7 +106,9 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logge
         'source': 'sldcguj.com',
     }
 
-    return data
+    valid_data = validate(data, remove_negative=True)
+
+    return valid_data
 
 
 def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None, logger=None):
