@@ -65,8 +65,7 @@
         "lastupdate": "Uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
-        "retrynow": "Försök igen",
-        "pro": "pro"
+        "retrynow": "Försök igen"
     },
     "wind": "vind",
     "solar": "sol",
