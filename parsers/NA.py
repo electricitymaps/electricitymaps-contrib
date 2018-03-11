@@ -160,7 +160,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     sorted_codes = "->".join(sorted([zone_key1, zone_key2]))
 
     raw_text = get_text_from_image(session=session, link=exchanges_link,
-                                   expected_size=(400, 195), new_size=(1120, 546))
+                                   expected_size=(400, 195), new_size=(1120, 546), \
+                                   logger=logger)
 
     if sorted_codes == 'NA->ZA':
         flow = exchange_processor(raw_text, 'NA->ZA')
