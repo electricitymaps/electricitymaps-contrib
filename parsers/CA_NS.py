@@ -66,9 +66,9 @@ def _get_ns_info(requests_obj, logger):
                 # skip this datapoint in the loop
                 valid = False
                 logger.warning(
-                    'CA-NS: discarding datapoint at {dt} '
-                    'due to {fuel} value out of bounds: {value}'.format(
-                        dt=data_date, fuel=gen_type, value=value))
+                    'discarding datapoint at {dt} due to {fuel} percentage '
+                    'out of bounds: {value}'.format(dt=data_date, fuel=gen_type, value=value),
+                    extra={'key': zone_key})
         if not valid:
             # continue the outer loop, not the inner
             continue
@@ -83,7 +83,8 @@ def _get_ns_info(requests_obj, logger):
             # if not found, assume 1244 MW, based on average yearly electricity available for use
             # in 2014 and 2015 (Statistics Canada table Table 127-0008 for Nova Scotia)
             load = 1244
-            logger.warning('CA-NS: unable to find load for {}, assuming 1244 MW'.format(data_date))
+            logger.warning('unable to find load for {}, assuming 1244 MW'.format(data_date),
+                           extra={'key': zone_key})
 
         electricity_mix = {
             gen_type: percent_value * load
@@ -97,9 +98,9 @@ def _get_ns_info(requests_obj, logger):
             if absolute_bound and value > absolute_bound:
                 valid = False
                 logger.warning(
-                    'CA-NS: discarding datapoint at {dt} '
-                    'due to {fuel} too high: {value}'.format(
-                        dt=data_date, fuel=gen_type, value=value))
+                    'discarding datapoint at {dt} due to {fuel} '
+                    'too high: {value} MW'.format(dt=data_date, fuel=gen_type, value=value),
+                    extra={'key': zone_key})
         if not valid:
             # continue the outer loop, not the inner
             continue
