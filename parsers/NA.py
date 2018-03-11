@@ -27,7 +27,7 @@ exchange_mapping = {"NA->ZA": "ESKOM",
                     }
 
 
-def get_text_from_image(link, expected_size, new_size, session=None):
+def get_text_from_image(link, expected_size, new_size, logger, session=None):
     """
     Gets image from link and checks expected size vs actual.
     Converts to black & white and enlarges to improve OCR accuracy.
@@ -38,7 +38,11 @@ def get_text_from_image(link, expected_size, new_size, session=None):
     img = Image.open(s.get(link, stream=True).raw)
 
     if img.size != expected_size:
-        print("Check Namibia Scada dashboard for {} changes.".format(link))
+        if (logger):
+            logger.warning("Check Namibia Scada dashboard for {} changes.".format(link),
+                extras={'key': 'NA'})
+        else:
+            print("Check Namibia Scada dashboard for {} changes.".format(link))
 
     gray = img.convert('L')
     gray_enlarged = gray.resize(new_size, Image.LANCZOS)
@@ -98,7 +102,8 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_text = get_text_from_image(session=session, link=generation_link, \
-                                   expected_size=(400, 245), new_size=(1000,612))
+                                   expected_size=(400, 245), new_size=(1000,612), \
+                                   logger=logger)
 
     production = data_processor(raw_text)
 
@@ -128,8 +133,7 @@ def exchange_processor(text, exchange):
         val = re.search(pattern, text).group(1)
         flow = float(val)
     except (AttributeError, ValueError) as e:
-        print("Exchange {} cannot be read.".format(exchange))
-        flow = None
+        raise Exception("Exchange {} cannot be read.".format(exchange)) from e
 
     return flow
 
