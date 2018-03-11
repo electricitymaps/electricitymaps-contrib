@@ -783,7 +783,7 @@ function getCurrentZoneData(state) {
   if (i == null) {
     return grid.zones[zoneName];
   }
-  return state.data.histories[zoneName][i];
+  return (state.data.histories[zoneName] || {})[i];
 }
 
 function renderGauges(state) {
