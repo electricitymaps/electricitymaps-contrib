@@ -216,7 +216,9 @@ def thermal_production(df, logger):
         therms.append(thermalDict)
 
     for plant in unmapped:
-        logger.warning('{} is missing from the DO plant mapping!'.format(plant))
+        logger.warning(
+            '{} is missing from the DO plant mapping!'.format(plant),
+            extra={'key': 'DO'})
 
     return therms
 
