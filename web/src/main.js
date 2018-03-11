@@ -869,30 +869,24 @@ function renderCountryList(state) {
   });
 }
 function renderHistory(state) {
-  const selectedZoneName = state.application.selectedZoneName;
+  const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
 
   if (!history) {
-    return console.error('Implement rendering empty history!');
+    countryHistoryCarbonGraph.data([]).render();
+    countryHistoryPricesGraph.data([]).render();
+    countryHistoryMixGraph.data([]).render();
+    return;
   }
 
   const zone = state.data.grid.zones[selectedZoneName];
-  // // Add capacities
-  // if ((zonesConfig[countryCode] || {}).capacity) {
-  //   let maxCapacity = d3.max(d3.values(
-  //     zonesConfig[countryCode].capacity));
-  //   obj.data.forEach(d => {
-  //     d.capacity = zonesConfig[countryCode].capacity;
-  //     d.maxCapacity = maxCapacity;
-  //   });
-  // }
 
   countryTable
     .powerScaleDomain(null) // Always reset scale if click on a new country
     .co2ScaleDomain(null)
     .exchangeKeys(null); // Always reset exchange keys
 
-  const maxStorageCapacity = zone.maxStorageCapacity;
+  const { maxStorageCapacity } = zone;
 
   // No export capacities are not always defined, and they are thus
   // varying the scale.
