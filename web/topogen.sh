@@ -6,7 +6,7 @@ RESOLUTION=10m
 COUNTRIES_FILENAME=ne_${RESOLUTION}_admin_0_map_subunits
 
 STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces_lakes
-STATES_FILTER="['AUS', 'BIH', 'BRA', 'CAN', 'CHL', 'IND', 'MYS', 'RUS', 'USA']"
+STATES_FILTER="['AUS', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'IND', 'MYS', 'RUS', 'USA']"
 
 NODE_MODULES_PATH="node_modules/.bin"
 
@@ -46,7 +46,7 @@ echo "Extract metadata"
 echo 'Parsing countries..'
 ("$NODE_MODULES_PATH/shp2json" -n build/${COUNTRIES_FILENAME}.shp \
   | "$NODE_MODULES_PATH/ndjson-map" '(d.id = (d.properties.ISO_A3 != "-99") ? d.properties.ISO_A3 : d.properties.ADM0_A3, d.oldProps = d.properties, d.properties = {}, d.properties.subid = d.oldProps.SU_A3, d.properties.code_hasc = d.oldProps.code_hasc, delete d.oldProps, d)' \
-  | "$NODE_MODULES_PATH/ndjson-filter" "d.id && ${STATES_FILTER}.indexOf(d.id) === -1" \
+  | "$NODE_MODULES_PATH/ndjson-filter" "d.id" \
 )> build/tmp_countries.json
 
 # Parse states

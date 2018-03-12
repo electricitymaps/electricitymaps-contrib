@@ -670,6 +670,7 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
+    "subZoneNames": ["DK-DK1", "DK-DK2"],
     "timezone": "Europe/Copenhagen"
   },
   "DK-BHM": {
@@ -691,19 +692,50 @@
     ],
     "parsers": {
       "production": "DK_BHM.fetch_production"
-    }
+    },
+    "timezone": "Europe/Copenhagen"
   },
   "DK-DK1": {
-    "parsers": {
-      "price": "ENTSOE.fetch_price"
+    "capacity": {
+      "biomass": 326,
+      "coal": 2775,
+      "gas": 1700,
+      "oil": 292,
+      "solar": 421,
+      "wind": 3809
     },
-    "timezone": null
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Copenhagen"
   },
   "DK-DK2": {
-    "parsers": {
-      "price": "ENTSOE.fetch_price"
+    "capacity": {
+      "biomass": 234,
+      "coal": 2072,
+      "gas": 1241,
+      "oil": 759,
+      "solar": 180,
+      "wind": 1036
     },
-    "timezone": null
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Copenhagen"
   },
   "DO": {
     "capacity": {

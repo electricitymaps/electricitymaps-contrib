@@ -41,6 +41,7 @@ def validate_production(obj, zone_key):
     if (obj.get('production', {}).get('unknown', None) is None and
         obj.get('production', {}).get('coal', None) is None and
         obj.get('production', {}).get('oil', None) is None and
+        obj.get('production', {}).get('gas', None) is None and
         zone_key not in ['CH', 'NO', 'AUS-TAS', 'DK-BHM', 'US-NEISO']):
             raise Exception("Coal or oil or unknown production value is "
                             "required for %s" % (zone_key))
