@@ -514,22 +514,24 @@ def webparser(req):
     return data_table
 
 
-def fetch_price(country_code='AR', session=None):
+def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known power price of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
       'source': 'mysource.com'
     }
       """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
     s = session or requests.Session()
     price_req = s.get(cammesa_url)
     psoup = BeautifulSoup(price_req.content, 'html.parser')
@@ -551,7 +553,7 @@ def fetch_price(country_code='AR', session=None):
     datetime = arrow.now('UTC-3').floor('hour').datetime
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'currency': 'ARS',
         'datetime': datetime,
         'price': price,
@@ -591,7 +593,7 @@ def dataformat(junk):
     return formatted
 
 
-def get_thermal(session=None):
+def get_thermal(session, logger):
     """
     Requests thermal generation data then parses and sorts by type.  Nuclear is included.
     Returns a dictionary.
@@ -635,7 +637,9 @@ def get_thermal(session=None):
         try:
             # avoids including titles and headings
             if all((item.isupper(), not item.isalpha(), ' ' not in item)):
-                print('{} is missing from the AR plant mapping!'.format(item))
+                logger.warning(
+                    '{} is missing from the AR plant mapping!'.format(item),
+                    extra={'key': 'AR'})
         except AttributeError:
             # not a string....
             continue
@@ -701,15 +705,17 @@ def get_hydro(session=None):
     return {'hydro': total_hydro_generation}
 
 
-def fetch_production(country_code='AR', session=None):
+def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
+    target_datetime: if we want to parser for a specific time and not latest
+    logger: where to log useful information
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -729,11 +735,14 @@ def fetch_production(country_code='AR', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     gdt = get_datetime(session=None)
-    thermal = get_thermal(session=None)
+    thermal = get_thermal(session, logger)
     hydro = get_hydro(session=None)
     production_mix = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': gdt['datetime'],
         'production': {
             'biomass': thermal.get('biomass', 0.0),

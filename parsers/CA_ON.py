@@ -19,17 +19,17 @@ MAP_GENERATION = {
 timezone = 'Canada/Eastern'
 
 
-def fetch_production(country_code='CA-ON', session=None):
+def fetch_production(zone_key='CA-ON', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -49,6 +49,9 @@ def fetch_production(country_code='CA-ON', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     r = session or requests.session()
     url = 'http://www.ieso.ca/-/media/files/ieso/uploaded/chart/generation_fuel_type_multiday.xml?la=en'
     response = r.get(url)
@@ -68,7 +71,7 @@ def fetch_production(country_code='CA-ON', session=None):
             if rowIndex not in data:
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
-                    'countryCode': country_code,
+                    'zoneKey': zone_key,
                     'production': {
                         'coal': 0
                     },
@@ -81,23 +84,25 @@ def fetch_production(country_code='CA-ON', session=None):
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_price(country_code='CA-ON', session=None):
+def fetch_price(zone_key='CA-ON', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://www.ieso.ca/-/media/files/ieso/uploaded/chart/price_multiday.xml?la=en'
@@ -120,7 +125,7 @@ def fetch_price(country_code='CA-ON', session=None):
             if rowIndex not in data:
                 data[rowIndex] = {
                     'datetime': start_datetime.replace(hours=+rowIndex).datetime,
-                    'countryCode': country_code,
+                    'zoneKey': zone_key,
                     'currency': 'CAD',
                     'source': 'ieso.ca',
                 }
@@ -132,22 +137,24 @@ def fetch_price(country_code='CA-ON', session=None):
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://live.gridwatch.ca/WebServices/GridWatchWebApp.asmx/GetHomeViewData_v2'
@@ -155,20 +162,20 @@ def fetch_exchange(country_code1, country_code2, session=None):
     obj = response.json()
     exchanges = obj['intertieLineData']
 
-    sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     # Everything -> CA_ON corresponds to an import to ON
     # In the data, "net" represents an export
     # So everything -> CA_ON must be reversed
-    if sortedCountryCodes == 'CA-MB->CA-ON':
+    if sortedZoneKeys == 'CA-MB->CA-ON':
         keys = ['MANITOBA', 'MANITOBA SK']
         direction = -1
-    elif sortedCountryCodes == 'CA-ON->US-NY':
+    elif sortedZoneKeys == 'CA-ON->US-NY':
         keys = ['NEW-YORK']
         direction = 1
-    elif sortedCountryCodes == 'CA-ON->US-MISO':
+    elif sortedZoneKeys == 'CA-ON->US-MISO':
         keys = ['MICHIGAN', 'MINNESOTA']
         direction = 1
-    elif sortedCountryCodes == 'CA-ON->CA-QC':
+    elif sortedZoneKeys == 'CA-ON->CA-QC':
         keys = filter(lambda k: k[:2] == 'PQ', exchanges.keys())
         direction = 1
     else:
@@ -177,7 +184,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     data = {
         'datetime': max(map(lambda x: arrow.get(arrow.get(
             exchanges[x]['dateReported']).datetime, timezone).datetime, keys)),
-        'sortedCountryCodes': sortedCountryCodes,
+        'sortedZoneKeys': sortedZoneKeys,
         'netFlow': sum(map(lambda x: float(exchanges[x]['net'].replace(',', '')), keys)) * direction,
         'source': 'gridwatch.ca'
     }

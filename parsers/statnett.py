@@ -79,7 +79,10 @@ exchanges_mapping = {
 }
 
 
-def fetch_production(country_code='SE', session=None):
+def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview?timestamp=%d' % timestamp
@@ -87,28 +90,28 @@ def fetch_production(country_code='SE', session=None):
     obj = response.json()
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': {
             'nuclear': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
-                'Nuclear', country_code),
+                'Nuclear', zone_key),
                 obj['NuclearData']))[0]['value'].replace(u'\xa0', '')),
             'hydro': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
-                'Hydro', country_code),
+                'Hydro', zone_key),
                 obj['HydroData']))[0]['value'].replace(u'\xa0', '')),
             'wind': float(list(filter(
                 lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
-                'Wind', country_code),
+                'Wind', zone_key),
                 obj['WindData']))[0]['value'].replace(u'\xa0', '')),
             'unknown':
                 float(list(filter(
                     lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
-                    'Thermal', country_code),
+                    'Thermal', zone_key),
                     obj['ThermalData']))[0]['value'].replace(u'\xa0', '')) +
                 float(list(filter(
                     lambda x: x['titleTranslationId'] == 'ProductionConsumption.%s%sDesc' % (
-                    'NotSpecified', country_code),
+                    'NotSpecified', zone_key),
                     obj['NotSpecifiedData']))[0]['value'].replace(u'\xa0', '')),
         },
         'storage': {},
@@ -119,7 +122,8 @@ def fetch_production(country_code='SE', session=None):
     return data
 
 
-def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None):
+def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
+                                   logger=None):
     # Convert bidding zone names into statnett zones
     bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2]]
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone_1_trimmed, bidding_zone_2_trimmed])
@@ -156,13 +160,13 @@ def _sum_of_exchanges(exchanges):
     }
 
 
-def fetch_exchange(country_code1='DK', country_code2='NO', session=None):
+def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, logger=None):
     r = session or requests.session()
 
-    sorted_exchange = '->'.join(sorted([country_code1, country_code2]))
+    sorted_exchange = '->'.join(sorted([zone_key1, zone_key2]))
     data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r),
                                  exchanges_mapping[sorted_exchange]))
-    data['sortedCountryCodes'] = '->'.join(sorted([country_code1, country_code2]))
+    data['sortedZoneKeys'] = '->'.join(sorted([zone_key1, zone_key2]))
 
     return data
 

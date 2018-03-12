@@ -7,7 +7,7 @@ const d3 = Object.assign(
   require('d3-selection'),
   require('d3-scale'),
 );
-var getSymbolFromCurrency = require('currency-symbol-map').getSymbolFromCurrency;
+var getSymbolFromCurrency = require('currency-symbol-map');
 var moment = require('moment');
 
 var flags = require('../helpers/flags');

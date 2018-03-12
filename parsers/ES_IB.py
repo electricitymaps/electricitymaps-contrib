@@ -8,7 +8,10 @@ from reescraper import BalearicIslands
 from .lib.exceptions import ParserException
 
 
-def fetch_consumption(country_code='ES-IB', session=None):
+def fetch_consumption(zone_key='ES-IB', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
     if not responses:
@@ -18,7 +21,7 @@ def fetch_consumption(country_code='ES-IB', session=None):
 
         for response in responses:
             response_data = {
-                'countryCode': country_code,
+                'zoneKey': zone_key,
                 'datetime': get(response.timestamp).datetime,
                 'consumption': response.demand,
                 'source': 'demanda.ree.es'
@@ -29,7 +32,9 @@ def fetch_consumption(country_code='ES-IB', session=None):
         return data
 
 
-def fetch_production(country_code='ES-IB', session=None):
+def fetch_production(zone_key='ES-IB', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
@@ -42,7 +47,7 @@ def fetch_production(country_code='ES-IB', session=None):
 
         for response in responses:
             response_data = {
-                'countryCode': country_code,
+                'zoneKey': zone_key,
                 'datetime': get(response.timestamp).datetime,
                 'production': {
                     'coal': response.carbon,
@@ -68,7 +73,9 @@ def fetch_production(country_code='ES-IB', session=None):
         return data
 
 
-def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None):
+def fetch_exchange(zone_key1='ES', zone_key2='ES-IB', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ses = session or Session()
     responses = BalearicIslands(ses).get_all()
@@ -79,13 +86,13 @@ def fetch_exchange(country_code1='ES', country_code2='ES-IB', session=None):
         data = []
         for response in responses:
 
-            sorted_country_codes = sorted([country_code1, country_code2])
+            sorted_zone_keys = sorted([zone_key1, zone_key2])
             net_flow = response.link['pe_ma']
 
             response_data = {
-                'sortedCountryCodes': '->'.join(sorted_country_codes),
+                'sortedZoneKeys': '->'.join(sorted_zone_keys),
                 'datetime': get(response.timestamp).datetime,
-                'netFlow': net_flow if country_code1 == sorted_country_codes[0] else -1 * net_flow,
+                'netFlow': net_flow if zone_key1 == sorted_zone_keys[0] else -1 * net_flow,
                 'source': 'demanda.ree.es',
             }
 

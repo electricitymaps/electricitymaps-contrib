@@ -20,7 +20,10 @@ MAP_STORAGE = {
 }
 
 
-def fetch_production(country_code='FR', session=None):
+def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     r = session or requests.session()
     formatted_date = arrow.now(tz='Europe/Paris').format('DD/MM/YYYY')
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=mix&&dateDeb={}&dateFin={}&mode=NORM'.format(formatted_date, formatted_date)
@@ -28,7 +31,7 @@ def fetch_production(country_code='FR', session=None):
     obj = ET.fromstring(response.content)
     mixtr = obj[7]
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'rte-france.com',
@@ -67,7 +70,11 @@ def fetch_production(country_code='FR', session=None):
     return data
 
 
-def fetch_price(country_code, session=None, from_date=None, to_date=None):
+def fetch_price(zone_key, session=None, from_date=None, to_date=None, target_datetime=None,
+                logger=None):
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
     dt_now = arrow.now(tz='Europe/Paris')
     formatted_from = from_date or dt_now.format('DD/MM/YYYY')
@@ -87,7 +94,7 @@ def fetch_price(country_code, session=None, from_date=None, to_date=None):
         if country_item.get('granularite') != 'Global':
             continue
         country_c = country_item.get('perimetre')
-        if country_code != country_c:
+        if zone_key != country_c:
             continue
         value = None
         for value in country_item.getchildren():
@@ -100,7 +107,7 @@ def fetch_price(country_code, session=None, from_date=None, to_date=None):
             prices.append(float(value.text))
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'currency': 'EUR',
         'datetime': datetimes[-1],
         'price': prices[-1],

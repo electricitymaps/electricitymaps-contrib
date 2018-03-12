@@ -69,8 +69,7 @@
         "lastupdate": "Ostatnia aktualizacja",
         "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
         "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
-        "retrynow": "Spróbuj teraz",
-        "pro": "pro"
+        "retrynow": "Spróbuj teraz"
     },
     "wind": "wiatrowa",
     "solar": "słoneczna",

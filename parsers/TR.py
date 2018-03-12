@@ -54,16 +54,16 @@ def get_last_data_idx(productions):
     return len(productions) - 1  # full day
 
 
-def fetch_production(country_code='TR', session=None):
+def fetch_production(zone_key='TR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A list of dictionaries in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -83,6 +83,9 @@ def fetch_production(country_code='TR', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     session = None  # Explicitely make a new session to avoid caching from their server...
     r = session or requests.session()
     tr_datetime = arrow.now().to('Europe/Istanbul').floor('day')
@@ -97,7 +100,7 @@ def fetch_production(country_code='TR', session=None):
         if last_data_index != EMPTY_DAY:
             for datapoint in valid_production:
                 data = {
-                  'countryCode': country_code,
+                  'zoneKey': zone_key,
                   'production': {},
                   'storage': {},
                   'source': 'ytbs.teias.gov.tr',
@@ -108,7 +111,7 @@ def fetch_production(country_code='TR', session=None):
                     if prod_type in MAP_GENERATION.keys():
                         data['production'][MAP_GENERATION[prod_type]] += prod_val
                     elif prod_type not in ['total', 'uluslarasi', 'saat']:
-                        print('Warning: %s (%d) is missing in mapping!' % (prod_type, prod_val))
+                        logger.warning('Warning: %s (%d) is missing in mapping!' % (prod_type, prod_val))
 
                 try:
                     data['datetime'] = tr_datetime.replace(hour=int(datapoint['saat'])).datetime

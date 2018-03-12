@@ -29,16 +29,16 @@ exchange_ids = {'CN->RU-AS': "764",
 tz = 'Europe/Moscow'
 
 
-def fetch_production(country_code='RU', session=None):
+def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A list of dictionaries in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -58,6 +58,8 @@ def fetch_production(country_code='RU', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     today = arrow.now(tz=tz).format('DD.MM.YYYY')
@@ -74,7 +76,7 @@ def fetch_production(country_code='RU', session=None):
     data = []
     for datapoint in dataset.dict:
         row = {
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'so-ups.ru'
@@ -110,29 +112,31 @@ def fetch_production(country_code='RU', session=None):
     return data
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A list of dictionaries in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     exchanges_url = 'http://br.so-ups.ru/Public/MainPage.aspx'
     s = session or requests.Session()
     req = s.get(exchanges_url)
     soup = BeautifulSoup(req.content, 'html.parser')
 
-    sortedcodes = '->'.join(sorted([country_code1, country_code2]))
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
     if sortedcodes not in exchange_ids.keys():
         raise NotImplementedError('This exchange pair is not implemented.')
@@ -175,7 +179,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
             'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
 
     exchange = {
-        'sortedCountryCodes': sortedcodes,
+        'sortedZoneKeys': sortedcodes,
         'datetime': current_dt,
         'netFlow': flow,
         'source': 'so-ups.ru'

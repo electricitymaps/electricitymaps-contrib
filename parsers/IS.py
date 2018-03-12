@@ -36,9 +36,12 @@ STATIONS = {
 }
 
 
-def fetch_production(country_code='IS', session=None):
+def fetch_production(zone_key='IS', session=None, target_datetime=None, logger=None):
     # Disabled for now due to https://github.com/corradio/electricitymap/issues/140
     return
+    
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     # Query Landsnet for latest power production data for Iceland
     r = session or requests.session()
@@ -67,7 +70,7 @@ def fetch_production(country_code='IS', session=None):
     datetime_last = datetime.strptime(totalpowerflow["time"], '%Y-%m-%dT%H:%M:%S')
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': dict(production),
         'datetime': datetime_last,
         'storage': {},

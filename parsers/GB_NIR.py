@@ -168,7 +168,7 @@ def moyle_processor(df):
                                                            dayfirst=True))
         snapshot['netFlow'] = row['Total_Moyle_Load_MW']
         snapshot['source'] = 'soni.ltd.uk'
-        snapshot['sortedCountryCodes'] = 'GB->GB-NIR'
+        snapshot['sortedZoneKeys'] = 'GB->GB-NIR'
         datapoints.append(snapshot)
 
     return datapoints
@@ -190,7 +190,7 @@ def IE_processor(df):
                    row['Total_Tan_Lou_Load_MW'])
         snapshot['netFlow'] = -1 * (netFlow)
         snapshot['source'] = 'soni.ltd.uk'
-        snapshot['sortedCountryCodes'] = 'GB-NIR->IE'
+        snapshot['sortedZoneKeys'] = 'GB-NIR->IE'
         datapoints.append(snapshot)
 
     return datapoints
@@ -217,16 +217,16 @@ def merge_production(thermal_data, wind_data):
     return joined_data
 
 
-def fetch_production(country_code='GB-NIR', session=None):
+def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
         Arguments:
-        country_code (optional) -- used in case a parser is able to fetch multiple countries
+        zone_key (optional) -- used in case a parser is able to fetch multiple countries
         session (optional)      -- request session passed in order to re-use an existing session
         Return:
         A dictionary in the form:
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'datetime': '2017-01-01T00:00:00Z',
           'production': {
               'biomass': 0.0,
@@ -246,6 +246,8 @@ def fetch_production(country_code='GB-NIR', session=None):
           'source': 'mysource.com'
         }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     thermal_data = get_data(thermal_url)
     wind_data = get_data(wind_url)
@@ -259,7 +261,7 @@ def fetch_production(country_code='GB-NIR', session=None):
 
     for datapoint in merge:
         production_mix = {
-          'countryCode': country_code,
+          'zoneKey': zone_key,
           'datetime': datapoint.get('datetime', 0.0),
           'production': {
               'coal': datapoint.get('coal', 0.0),
@@ -275,27 +277,29 @@ def fetch_production(country_code='GB-NIR', session=None):
     return production_mix_by_quarter_hour
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     exchange_data = get_data(exchange_url)
     exchange_dataframe = create_exchange_df(exchange_data)
-    if '->'.join(sorted([country_code1, country_code2])) == 'GB->GB-NIR':
+    if '->'.join(sorted([zone_key1, zone_key2])) == 'GB->GB-NIR':
         moyle = moyle_processor(exchange_dataframe)
         return moyle
-    elif '->'.join(sorted([country_code1, country_code2])) == 'GB-NIR->IE':
+    elif '->'.join(sorted([zone_key1, zone_key2])) == 'GB-NIR->IE':
         IE = IE_processor(exchange_dataframe)
         return IE
     else:
