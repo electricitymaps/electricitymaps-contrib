@@ -12,6 +12,9 @@ def validate(datapoint, **kwargs):
     ---------
     datapoint: a production datapoint. See examples
     optional keyword arguments
+      remove_negative: bool
+        Changes negative production values to None.
+        Defaults to False.
       required: list
         Generation types that must be present.
         For example ['gas', 'hydro']
@@ -57,6 +60,7 @@ def validate(datapoint, **kwargs):
     None
     """
 
+    remove_negative = kwargs.pop('remove_negative', False)
     required = kwargs.pop('required', [])
     floor = kwargs.pop('floor', False)
     expected_range = kwargs.pop('expected_range', None)
@@ -64,6 +68,12 @@ def validate(datapoint, **kwargs):
         raise TypeError('Unexpected **kwargs: %r' % kwargs)
 
     generation = datapoint['production']
+
+    if remove_negative:
+        for key, val in generation.items():
+            if val is not None and val < 0.0:
+                print("{} returned negative value for {}".format(key,datapoint['countryCode']))
+                generation[key] = None
 
     if required:
         for item in required:

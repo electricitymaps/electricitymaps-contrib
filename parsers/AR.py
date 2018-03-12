@@ -637,7 +637,9 @@ def get_thermal(session, logger):
         try:
             # avoids including titles and headings
             if all((item.isupper(), not item.isalpha(), ' ' not in item)):
-                logger.warning('{} is missing from the AR plant mapping!'.format(item))
+                logger.warning(
+                    '{} is missing from the AR plant mapping!'.format(item),
+                    extra={'key': 'AR'})
         except AttributeError:
             # not a string....
             continue
