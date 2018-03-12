@@ -60,5 +60,6 @@
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development"
+    "watch-poll": "webpack --watch --watch-poll --progress --mode development"
   }
 }

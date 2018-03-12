@@ -72,7 +72,7 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def data_processer(data):
+def data_processer(data, logger):
     """
     Takes raw production data and converts it into a usable form.
     Removes unneeded keys and sums generation types.
@@ -87,7 +87,7 @@ def data_processer(data):
 
         for key in datapoint.keys():
             if key not in plant_map.keys():
-                print('{} is missing from the CL_SING plant mapping.'.format(key))
+                logger.warning('{} is missing from the CL_SING plant mapping.'.format(key))
 
         mapped_plants = [(plant_map.get(plant, 'unknown'), val) for plant, val
                          in datapoint.items()]
@@ -107,15 +107,15 @@ def data_processer(data):
     return clean_data
 
 
-def fetch_production(country_code='CL-SING', session=None):
+def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -135,13 +135,15 @@ def fetch_production(country_code='CL-SING', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     gd = get_data(session=None)
-    dp = data_processer(gd)
+    dp = data_processer(gd, logger)
     production_mix_by_hour = []
     for point in dp:
         production_mix = {
-          'countryCode': country_code,
+          'zoneKey': zone_key,
           'datetime': point['datetime'],
           'production': {
               'solar': point.get('solar', 0.0),

@@ -14,7 +14,10 @@ timezone = 'Australia/Perth'
 HOURS_TO_GET = 24
 
 
-def fetch_production(country_code='AUS-WA', session=None):
+def fetch_production(zone_key='AUS-WA', session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     session = session or requests.session()
 
     # explicitly request last 24 hours, to work around daybreaks in solar API
@@ -69,13 +72,13 @@ def fetch_production(country_code='AUS-WA', session=None):
 
         # get closest solar production data
         closestSolar = AU_solar.find_solar_nearest_time(allSolar, timestampDate)
-        distributedSolarProduction = AU_solar.filter_solar_to_state(closestSolar, country_code)
+        distributedSolarProduction = AU_solar.filter_solar_to_state(closestSolar, zone_key)
 
         if distributedSolarProduction:
             rptData['production']['solar'] = rptData['production'].get('solar', 0) + distributedSolarProduction
 
         data = {
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'production': rptData['production'],
             'capacity': rptData['capacity'],
             'datetime': timestampDate,

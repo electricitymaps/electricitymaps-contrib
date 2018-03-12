@@ -9,17 +9,17 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def fetch_production(country_code='PA', session=None):
+def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -39,6 +39,9 @@ def fetch_production(country_code='PA', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    
     r = session or requests.session()
     url = 'http://sitr.cnd.com.pa/m/pub/gen.html'
     response = r.get(url)
@@ -54,7 +57,7 @@ def fetch_production(country_code='PA', session=None):
       'Térmica': 'unknown'
     }
     data = {
-        'countryCode': 'PA',
+        'zoneKey': 'PA',
         'production': {},
         'storage': {},
         'source': 'https://www.cnd.com.pa/',

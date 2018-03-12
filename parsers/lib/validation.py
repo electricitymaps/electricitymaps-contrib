@@ -12,6 +12,9 @@ def validate(datapoint, **kwargs):
     ---------
     datapoint: a production datapoint. See examples
     optional keyword arguments
+      remove_negative: bool
+        Changes negative production values to None.
+        Defaults to False.
       required: list
         Generation types that must be present.
         For example ['gas', 'hydro']
@@ -31,7 +34,7 @@ def validate(datapoint, **kwargs):
     Examples
     --------
     >>> test_datapoint = {
-    >>>   'countryCode': 'FR',
+    >>>   'zoneKey': 'FR',
     >>>   'datetime': '2017-01-01T00:00:00Z',
     >>>       'production': {
     >>>           'biomass': 50.0,
@@ -57,6 +60,7 @@ def validate(datapoint, **kwargs):
     None
     """
 
+    remove_negative = kwargs.pop('remove_negative', False)
     required = kwargs.pop('required', [])
     floor = kwargs.pop('floor', False)
     expected_range = kwargs.pop('expected_range', None)
@@ -65,18 +69,24 @@ def validate(datapoint, **kwargs):
 
     generation = datapoint['production']
 
+    if remove_negative:
+        for key, val in generation.items():
+            if val is not None and val < 0.0:
+                print("{} returned negative value for {}".format(key,datapoint['countryCode']))
+                generation[key] = None
+
     if required:
         for item in required:
             if generation.get(item, None) is None:
                 print("Required generation type {} is missing from {}".format(
-                    item, datapoint['countryCode']))
+                    item, datapoint['zoneKey']))
                 return None
 
     if floor:
         total = sum(v for k, v in generation.items() if v is not None)
         if total < floor:
             print("{} reported total of {}MW does not meet {}MW floor value".format(
-                datapoint['countryCode'], total, floor))
+                datapoint['zoneKey'], total, floor))
             return None
 
     if expected_range:
@@ -87,14 +97,14 @@ def validate(datapoint, **kwargs):
             pass
         else:
             print("{} reported total of {}MW falls outside range of {}".format(
-                datapoint['countryCode'], total, expected_range))
+                datapoint['zoneKey'], total, expected_range))
             return None
 
     return datapoint
 
 
 test_datapoint = {
-    'countryCode': 'FR',
+    'zoneKey': 'FR',
     'datetime': '2017-01-01T00:00:00Z',
     'production': {
         'biomass': 50.0,

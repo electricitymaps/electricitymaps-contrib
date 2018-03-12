@@ -12,7 +12,7 @@ Day-ahead Price
 Generation Forecast
 Consumption Forecast
 """
-
+import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow
@@ -44,7 +44,7 @@ ENTSOE_PARAMETER_DESC = {
     'B20': 'Other',
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
-# Define all ENTSOE country_code <-> domain mapping
+# Define all ENTSOE zone_key <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
@@ -111,6 +111,11 @@ class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
 
 
+def closest_in_time_key(x, target_datetime, datetime_key='datetime'):
+    target_datetime = arrow.get(target_datetime)
+    return np.abs((x[datetime_key] - target_datetime).seconds)
+
+
 def check_response(response, function_name):
     """
     Searches for an error message in response if the query to ENTSOE fails.
@@ -126,7 +131,7 @@ def check_response(response, function_name):
         raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
 
 
-def query_ENTSOE(session, params, now=None, span=[-48, 24]):
+def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
@@ -134,17 +139,22 @@ def query_ENTSOE(session, params, now=None, span=[-48, 24]):
     Returns a request object.
     """
 
-    if now is None:
-        now = arrow.utcnow()
-    params['periodStart'] = now.replace(hours=span[0]).format('YYYYMMDDHH00')
-    params['periodEnd'] = now.replace(hours=+span[1]).format('YYYYMMDDHH00')
+    if target_datetime is None:
+        target_datetime = arrow.utcnow()
+    else:
+        # when querying for a specific datetime, we only look for a small span
+        span = (-1, 1)
+        # make sure we have an arrow object
+        target_datetime = arrow.get(target_datetime)
+    params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
+    params['periodEnd'] = target_datetime.replace(hours=+span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
-def query_consumption(domain, session, now=None):
+def query_consumption(domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -152,14 +162,14 @@ def query_consumption(domain, session, now=None):
         'processType': 'A16',
         'outBiddingZone_Domain': domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_consumption.__name__)
 
 
-def query_production(psr_type, in_domain, session, now=None):
+def query_production(psr_type, in_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -168,14 +178,14 @@ def query_production(psr_type, in_domain, session, now=None):
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_production.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, now=None):
+def query_exchange(in_domain, out_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -183,7 +193,7 @@ def query_exchange(in_domain, out_domain, session, now=None):
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
-    response = query_ENTSOE(session, params, now)
+    response = query_ENTSOE(session, params, target_datetime)
     if response.ok:
         return response.text
     else:
@@ -426,28 +436,23 @@ def validate_production(datapoint):
     """
 
     codes = ('GB', 'GR', 'PT')
-    if datapoint['countryCode'] in codes:
+    if datapoint['zoneKey'] in codes:
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'BE':
+        return p.get('coal', None) is not None and p.get('gas', None) is not None
+    elif datapoint['zoneKey'] == 'BE':
         p = datapoint['production']
-        return p.get('nuclear', None) is not None and \
-               p.get('gas', None) is not None
-    elif datapoint['countryCode'] == 'ES':
+        return p.get('nuclear', None) is not None and p.get('gas', None) is not None
+    elif datapoint['zoneKey'] == 'ES':
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('nuclear', None) is not None
-    elif datapoint['countryCode'] == 'DK':
+        return p.get('coal', None) is not None and p.get('nuclear', None) is not None
+    elif datapoint['zoneKey'] == 'DK':
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None and \
-               p.get('wind', None) is not None
-    elif datapoint['countryCode'] == 'DE':
+        return (p.get('coal', None) is not None and p.get('gas', None) is not None
+                and p.get('wind', None) is not None)
+    elif datapoint['zoneKey'] == 'DE':
         p = datapoint['production']
-        return p.get('coal', None) is not None and \
-               p.get('gas', None) is not None and \
-               p.get('nuclear', None) is not None
+        return (p.get('coal', None) is not None and p.get('gas', None) is not None and
+                p.get('nuclear', None) is not None)
     else:
         return True
 
@@ -473,7 +478,7 @@ def get_gas(values):
 
 def get_hydro(values):
     if ('Hydro Run-of-river and poundage' in values or
-            'Hydro Water Reservoir' in values):
+        'Hydro Water Reservoir' in values):
         return values.get('Hydro Run-of-river and poundage', 0) + \
                values.get('Hydro Water Reservoir', 0)
 
@@ -501,49 +506,63 @@ def get_geothermal(values):
 
 def get_unknown(values):
     if ('Marine' in values or
-            'Other renewable' in values or
-            'Other' in values):
+        'Other renewable' in values or
+        'Other' in values):
         return (values.get('Marine', 0) +
                 values.get('Other renewable', 0) +
                 values.get('Other', 0))
 
 
-def fetch_consumption(country_code, session=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     """Gets consumption for a specified zone, returns a dictionary."""
-
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_consumption(query_consumption(domain, session))
+    parsed = parse_consumption(query_consumption(domain, session, target_datetime=target_datetime))
     if parsed:
         quantities, datetimes = parsed
+
+        # if a specific target_datetime was provided, we keep value corresponding to the
+        # closest datetime
+        if target_datetime:
+            target_datetime = arrow.get(target_datetime)
+            min_dist, dt, quantity = np.inf, 0, 0
+            assert len(datetimes) and len(quantities)
+            for current_dt, quant in zip(datetimes, quantities):
+                dist = np.abs((current_dt - target_datetime).seconds)
+                if dist < min_dist:
+                    dt, min_dist, quantity = current_dt, dist, quant
+
+        else:
+            # else we keep the last stored value
+            dt, quantity = datetimes[-1].datetime, quantities[-1]
         data = {
-            'countryCode': country_code,
-            'datetime': datetimes[-1].datetime,
-            'consumption': quantities[-1],
+            'zoneKey': zone_key,
+            'datetime': dt,
+            'consumption': quantity,
             'source': 'entsoe.eu'
         }
 
         return data
 
 
-def fetch_production(country_code, session=None, now=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
     a datetime associated with them.
     Returns a list of dictionaries that have been validated.
     """
-
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Create a double hashmap with keys (datetime, parameter)
     production_hashmap = defaultdict(lambda: {})
     # Grab production
     for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(query_production(k, domain, session, now))
+        parsed = parse_production(query_production(k, domain, session,
+                                                   target_datetime=target_datetime))
         if parsed:
             productions, datetimes = parsed
             for i in range(len(datetimes)):
@@ -566,7 +585,7 @@ def fetch_production(country_code, session=None, now=None):
                              production_hashmap[production_date].items()}
 
         data.append({
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'datetime': production_date.datetime,
             'production': {
                 'biomass': get_biomass(production_values),
@@ -586,36 +605,46 @@ def fetch_production(country_code, session=None, now=None):
             'source': 'entsoe.eu'
         })
 
-    return list(filter(validate_production, data))
+    to_return = list(filter(validate_production, data))
+
+    if not target_datetime:
+        return to_return
+
+    # if target_datetime was provided, only keep the most relevant
+    target_datetime = arrow.get(target_datetime)
+    if not len(to_return):
+        return None
+
+    most_relevant = sorted(to_return, key=lambda x: closest_in_time_key(x, target_datetime))[0]
+    return [most_relevant]
 
 
-def fetch_exchange(country_code1, country_code2, session=None, now=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
     Returns a list of dictionaries.
     """
-
     if not session:
         session = requests.session()
-    sorted_country_codes = sorted([country_code1, country_code2])
-    key = '->'.join(sorted_country_codes)
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
+    key = '->'.join(sorted_zone_keys)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
         domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
     else:
-        domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
-        domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
+        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     # Create a hashmap with key (datetime)
     exchange_hashmap = {}
     # Grab exchange
     # Import
     parsed = parse_exchange(
-        query_exchange(domain1, domain2, session, now),
+        query_exchange(domain1, domain2, session, target_datetime),
         is_import=True)
     if parsed:
         # Export
         parsed = parse_exchange(
-            xml_text=query_exchange(domain2, domain1, session, now),
+            xml_text=query_exchange(domain2, domain1, session, target_datetime),
             is_import=False, quantities=parsed[0], datetimes=parsed[1])
         if parsed:
             quantities, datetimes = parsed
@@ -629,26 +658,35 @@ def fetch_exchange(country_code1, country_code2, session=None, now=None):
         return None
     data = []
     for exchange_date in exchange_dates:
-        netFlow = exchange_hashmap[exchange_date]
+        net_flow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedCountryCodes': key,
+            'sortedZoneKeys': key,
             'datetime': exchange_date.datetime,
-            'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
+            'netFlow': net_flow if zone_key1[0] == sorted_zone_keys else -1 * net_flow,
             'source': 'entsoe.eu'
         })
+
+    if target_datetime:
+        # only keep most relevant
+        most_relevant = sorted(data, key=lambda x: closest_in_time_key(x, target_datetime))[0]
+        return [most_relevant]
+
     return data
 
 
-def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None):
+def fetch_exchange_forecast(zone_key1, zone_key2, session=None, now=None,
+                            target_datetime=None, logger=None):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     if not session:
         session = requests.session()
-    domain1 = ENTSOE_DOMAIN_MAPPINGS[country_code1]
-    domain2 = ENTSOE_DOMAIN_MAPPINGS[country_code2]
+    domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+    domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     # Create a hashmap with key (datetime)
     exchange_hashmap = {}
     # Grab exchange
@@ -667,7 +705,7 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
                 exchange_hashmap[datetimes[i]] = quantities[i]
 
     # Remove all dates in the future
-    sorted_country_codes = sorted([country_code1, country_code2])
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
     exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
     if not len(exchange_dates):
         return None
@@ -675,50 +713,57 @@ def fetch_exchange_forecast(country_code1, country_code2, session=None, now=None
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedCountryCodes': '->'.join(sorted_country_codes),
+            'sortedZoneKeys': '->'.join(sorted_zone_keys),
             'datetime': exchange_date.datetime,
-            'netFlow': netFlow if country_code1[0] == sorted_country_codes else -1 * netFlow,
+            'netFlow': netFlow if zone_key1[0] == sorted_zone_keys else -1 * netFlow,
             'source': 'entsoe.eu'
         })
     return data
 
 
-def fetch_price(country_code, session=None, now=None):
+def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
     """
-
     # Note: This is day-ahead prices
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_price(query_price(domain, session, now))
+    parsed = parse_price(query_price(domain, session, target_datetime))
     if parsed:
         data = []
         prices, currencies, datetimes = parsed
         for i in range(len(prices)):
             data.append({
-                'countryCode': country_code,
+                'zoneKey': zone_key,
                 'datetime': datetimes[i].datetime,
                 'currency': currencies[i],
                 'price': prices[i],
                 'source': 'entsoe.eu'
             })
 
+        if target_datetime:
+            # only keep most relevant
+            most_relevant = sorted(data, key=lambda x: closest_in_time_key(x, target_datetime))[0]
+            return [most_relevant]
+
         return data
 
 
-def fetch_generation_forecast(country_code, session=None, now=None):
+def fetch_generation_forecast(zone_key, session=None, now=None, target_datetime=None,
+                              logger=None):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_generation_forecast(query_generation_forecast(domain, session, now))
     if parsed:
@@ -726,7 +771,7 @@ def fetch_generation_forecast(country_code, session=None, now=None):
         values, datetimes = parsed
         for i in range(len(values)):
             data.append({
-                'countryCode': country_code,
+                'zoneKey': zone_key,
                 'datetime': datetimes[i].datetime,
                 'value': values[i],
                 'source': 'entsoe.eu'
@@ -735,15 +780,18 @@ def fetch_generation_forecast(country_code, session=None, now=None):
         return data
 
 
-def fetch_consumption_forecast(country_code, session=None, now=None):
+def fetch_consumption_forecast(zone_key, session=None, now=None, target_datetime=None,
+                               logger=None):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[country_code]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_consumption_forecast(query_consumption_forecast(domain, session, now))
     if parsed:
@@ -751,7 +799,7 @@ def fetch_consumption_forecast(country_code, session=None, now=None):
         values, datetimes = parsed
         for i in range(len(values)):
             data.append({
-                'countryCode': country_code,
+                'zoneKey': zone_key,
                 'datetime': datetimes[i].datetime,
                 'value': values[i],
                 'source': 'entsoe.eu'

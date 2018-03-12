@@ -24,7 +24,7 @@ prod = {
 
 c1 = {
       'consumption': 1374.0,
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': dt,
       'production': prod,
       'storage': {
@@ -35,7 +35,7 @@ c1 = {
 
 c2 = {
       'consumption': -1081.0,
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': dt,
       'production': prod,
       'storage': {
@@ -46,7 +46,7 @@ c2 = {
 
 c3 = {
       'consumption': None,
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': dt,
       'production': prod,
       'storage': {
@@ -56,20 +56,20 @@ c3 = {
       }
 
 e1 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': dt,
       'netFlow': 73.0,
       'source': 'mysource.com'
       }
 
 e2 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'netFlow': 73.0,
       'source': 'mysource.com'
       }
 
 e3 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': 'At the 3rd beep the time will be......',
       'netFlow': 73.0,
       'source': 'mysource.com'
@@ -78,14 +78,14 @@ e3 = {
 future = datetime.datetime.now() + datetime.timedelta(seconds=5*60)
 
 e4 = {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': future,
       'netFlow': 73.0,
       'source': 'mysource.com'
       }
 
 p1 = {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'production': prod,
       'storage': {
           'hydro': -10.0,
@@ -103,7 +103,7 @@ p2 = {
       }
 
 p3 = {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'production': prod,
       'datetime': '13th May 2017',
       'storage': {
@@ -113,7 +113,7 @@ p3 = {
       }
 
 p4 = {
-      'countryCode': 'BR',
+      'zoneKey': 'BR',
       'production': prod,
       'datetime': dt,
       'storage': {
@@ -123,7 +123,7 @@ p4 = {
       }
 
 p5 = {
-      'countryCode': 'BR',
+      'zoneKey': 'BR',
       'production': prod,
       'datetime': future,
       'storage': {
@@ -133,7 +133,7 @@ p5 = {
       }
 
 p6 = {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'production': {
               'biomass': 10.0,
               'coal': None,
@@ -154,7 +154,7 @@ p6 = {
       }
 
 p7 = {
-      'countryCode': 'CH',
+      'zoneKey': 'CH',
       'production': {
               'biomass': 10.0,
               'coal': None,
@@ -175,7 +175,7 @@ p7 = {
       }
 
 p8 = {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'production': {
               'biomass': 10.0,
               'coal': 230.6,
@@ -196,7 +196,7 @@ p8 = {
       }
 
 p9 = {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'production': {
               'biomass': 10.0,
               'coal': 230.6,

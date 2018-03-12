@@ -21,17 +21,17 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def fetch_production(country_code='CA-AB', session=None):
+def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -51,9 +51,13 @@ def fetch_production(country_code='CA-AB', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
+
     soup = BeautifulSoup(response.content, 'html.parser')
     findtime = soup.find('td', text=re.compile('Last Update')).get_text()
     time_string = findtime.split(':', 1)[1]
@@ -65,7 +69,7 @@ def fetch_production(country_code='CA-AB', session=None):
 
     return {
         'datetime': dt,
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': {
             'coal': float(total_net_generation['COAL']),
             'gas': float(total_net_generation['GAS']),
@@ -84,27 +88,30 @@ def fetch_production(country_code='CA-AB', session=None):
     }
 
 
-def fetch_price(country_code='CA-AB', session=None):
+def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
     """Requests the last known power price of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'currency': EUR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/'
     response = r.get(url)
+
     df_prices = pd.read_html(response.text, match='Price', index_col=0, header=0)
     prices = df_prices[1]
 
@@ -116,7 +123,7 @@ def fetch_price(country_code='CA-AB', session=None):
             hours = int(rowIndex.split(' ')[1]) - 1
             data[rowIndex] = {
                 'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hours=hours, tzinfo=ab_timezone).datetime,
-                'countryCode': country_code,
+                'zoneKey': zone_key,
                 'currency': 'CAD',
                 'source': 'ets.aeso.ca',
                 'price': float(price),
@@ -125,22 +132,24 @@ def fetch_price(country_code='CA-AB', session=None):
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None):
+def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
@@ -152,14 +161,14 @@ def fetch_exchange(country_code1='CA-AB', country_code2='CA-BC', session=None):
         'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
         'CA-AB->US': df_exchanges[1][1]['Montana']
     }
-    sortedCountryCodes = '->'.join(sorted([country_code1, country_code2]))
-    if sortedCountryCodes not in flows:
+    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
+    if sortedZoneKeys not in flows:
         raise NotImplementedError('This exchange pair is not implemented')
 
     return {
         'datetime': arrow.now(tz=ab_timezone).datetime,
-        'sortedCountryCodes': sortedCountryCodes,
-        'netFlow': float(flows[sortedCountryCodes]),
+        'sortedZoneKeys': sortedZoneKeys,
+        'netFlow': float(flows[sortedZoneKeys]),
         'source': 'ets.aeso.ca'
     }
 

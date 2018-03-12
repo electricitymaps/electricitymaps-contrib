@@ -27,7 +27,7 @@ exchange_mapping = {"NA->ZA": "ESKOM",
                     }
 
 
-def get_text_from_image(link, expected_size, new_size, session=None):
+def get_text_from_image(link, expected_size, new_size, logger, session=None):
     """
     Gets image from link and checks expected size vs actual.
     Converts to black & white and enlarges to improve OCR accuracy.
@@ -38,7 +38,11 @@ def get_text_from_image(link, expected_size, new_size, session=None):
     img = Image.open(s.get(link, stream=True).raw)
 
     if img.size != expected_size:
-        print("Check Namibia Scada dashboard for {} changes.".format(link))
+        if (logger):
+            logger.warning("Check Namibia Scada dashboard for {} changes.".format(link),
+                extras={'key': 'NA'})
+        else:
+            print("Check Namibia Scada dashboard for {} changes.".format(link))
 
     gray = img.convert('L')
     gray_enlarged = gray.resize(new_size, Image.LANCZOS)
@@ -65,16 +69,16 @@ def data_processor(text):
     return production
 
 
-def fetch_production(country_code = 'NA', session=None):
+def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -94,14 +98,17 @@ def fetch_production(country_code = 'NA', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     raw_text = get_text_from_image(session=session, link=generation_link, \
-                                   expected_size=(400, 245), new_size=(1000,612))
+                                   expected_size=(400, 245), new_size=(1000,612), \
+                                   logger=logger)
 
     production = data_processor(raw_text)
 
     data = {
-          'countryCode': country_code,
+          'zoneKey': zone_key,
           'datetime': arrow.now('Africa/Windhoek').datetime,
           'production': production,
           'storage': {},
@@ -126,33 +133,35 @@ def exchange_processor(text, exchange):
         val = re.search(pattern, text).group(1)
         flow = float(val)
     except (AttributeError, ValueError) as e:
-        print("Exchange {} cannot be read.".format(exchange))
-        flow = None
+        raise Exception("Exchange {} cannot be read.".format(exchange)) from e
 
     return flow
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the second country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     where net flow is from DK into NO
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sorted_codes = "->".join(sorted([country_code1, country_code2]))
+    sorted_codes = "->".join(sorted([zone_key1, zone_key2]))
 
-    raw_text = get_text_from_image(session=session, link=exchanges_link, \
-                                   expected_size=(400, 195), new_size=(1120, 546))
+    raw_text = get_text_from_image(session=session, link=exchanges_link,
+                                   expected_size=(400, 195), new_size=(1120, 546), \
+                                   logger=logger)
 
     if sorted_codes == 'NA->ZA':
         flow = exchange_processor(raw_text, 'NA->ZA')
@@ -165,7 +174,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     if flow is not None:
         flow = -1 * flow
 
-    exchange = {'sortedCountryCodes': sorted_codes,
+    exchange = {'sortedZoneKeys': sorted_codes,
                 'datetime': arrow.now('Africa/Windhoek').datetime,
                 'netFlow': flow,
                 'source': 'nampower.com.na'

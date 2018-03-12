@@ -27,17 +27,17 @@ def fetch(session=None):
     return obj
 
 
-def fetch_production(country_code=None, session=None):
+def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -57,21 +57,24 @@ def fetch_production(country_code=None, session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = fetch(session)
 
     datetime = arrow.get(obj['soPgenGraph']['timestamp']).datetime
 
-    if country_code == 'NZ-NZN':
+    if zone_key == 'NZ-NZN':
         region_key = 'North Island'
-    elif country_code == 'NZ-NZS':
+    elif zone_key == 'NZ-NZS':
         region_key = 'South Island'
     else:
-        raise NotImplementedError('Unsupported country_code %s' % country_code)
+        raise NotImplementedError('Unsupported zone_key %s' % zone_key)
 
     productions = obj['soPgenGraph']['data'][region_key]
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'datetime': datetime,
         'production': {
             'coal': productions.get('Gas/Coal', {'generation': 0.0})['generation'],
@@ -98,22 +101,25 @@ def fetch_production(country_code=None, session=None):
     return data
 
 
-def fetch_exchange(country_code1='NZ-NZN', country_code2='NZ-NZS', session=None):
+def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_datetime=None,
+                   logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     obj = fetch(session)['soHVDCDailyGraph']
     datetime_start = arrow.get(arrow.now().datetime, 'Pacific/Auckland').floor('day')
@@ -124,7 +130,7 @@ def fetch_exchange(country_code1='NZ-NZN', country_code2='NZ-NZS', session=None)
             continue
         netFlow = item[1]
         data.append({
-            'sortedCountryCodes': 'NZ-NZN->NZ-NZS',
+            'sortedZoneKeys': 'NZ-NZN->NZ-NZS',
             'datetime': datetime.datetime,
             'netFlow': -1 * netFlow,
             'source': 'transpower.co.nz'

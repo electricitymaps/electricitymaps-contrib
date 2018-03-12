@@ -11,22 +11,24 @@ import requests
 timezone = 'Canada/Pacific'
 
 
-def fetch_exchange(country_code1=None, country_code2=None, session=None):
+def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'https://www.bchydro.com/bctc/system_cms/actual_flow/latest_values.txt'
@@ -36,18 +38,18 @@ def fetch_exchange(country_code1=None, country_code2=None, session=None):
     datetime = arrow.get(
         arrow.get(obj[0], 'DD-MMM-YY HH:mm:ss').datetime, timezone).datetime
 
-    if (country_code1 == 'CA-BC' and country_code2 == 'US'):
-        sortedCountryCodes = 'CA-BC->US'
+    if (zone_key1 == 'CA-BC' and zone_key2 == 'US'):
+        sortedZoneKeys = 'CA-BC->US'
         netFlow = float(obj[1])
-    elif (country_code1 == 'CA-AB' and country_code2 == 'CA-BC'):
-        sortedCountryCodes = 'CA-AB->CA-BC'
+    elif (zone_key1 == 'CA-AB' and zone_key2 == 'CA-BC'):
+        sortedZoneKeys = 'CA-AB->CA-BC'
         netFlow = -1 * float(obj[2])
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     return {
         'datetime': datetime,
-        'sortedCountryCodes': sortedCountryCodes,
+        'sortedZoneKeys': sortedZoneKeys,
         'netFlow': netFlow,
         'source': 'bchydro.com',
     }

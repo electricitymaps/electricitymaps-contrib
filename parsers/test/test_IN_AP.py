@@ -18,7 +18,7 @@ class Test_IN_AP(unittest.TestCase):
         try:
             data = IN_AP.fetch_production('IN-AP', self.session)
             self.assertIsNotNone(data)
-            self.assertEqual(data['countryCode'], 'IN-AP')
+            self.assertEqual(data['zoneKey'], 'IN-AP')
             self.assertEqual(data['source'], 'core.ap.gov.in')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])
@@ -30,7 +30,7 @@ class Test_IN_AP(unittest.TestCase):
         try:
             data = IN_AP.fetch_consumption('IN-AP', self.session)
             self.assertIsNotNone(data)
-            self.assertEqual(data['countryCode'], 'IN-AP')
+            self.assertEqual(data['zoneKey'], 'IN-AP')
             self.assertEqual(data['source'], 'core.ap.gov.in')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['consumption'])

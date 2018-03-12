@@ -189,13 +189,15 @@ def get_production_from_summary(requests_obj):
     return production, datetime_datetime
 
 
-def fetch_production(country_code='NI', session=None):
+def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of Nicaragua.
 
     Arguments:
-    country_code       -- ignored here, only information for NI is returned
+    zone_key       -- ignored here, only information for NI is returned
     session (optional) -- request session passed in order to re-use an existing session
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
 
@@ -214,7 +216,7 @@ def fetch_production(country_code='NI', session=None):
 
     data = {
         'datetime': data_datetime,
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': production,
         'storage': {},
         'source': 'cndc.org.ni'
@@ -223,18 +225,18 @@ def fetch_production(country_code='NI', session=None):
     return validate(data, expected_range=(86.6, 2165))
 
 
-def fetch_exchange(country_code1, country_code2, session=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
-    country_code1           -- the first country code
-    country_code2           -- the 2nd country code; order of the two codes in params doesn't matter
+    zone_key1           -- the first country code
+    zone_key2           -- the 2nd country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -242,7 +244,9 @@ def fetch_exchange(country_code1, country_code2, session=None):
 
     where net flow is from DK into NO
     """
-    sorted_country_codes = '->'.join(sorted([country_code1, country_code2]))
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     requests_obj = session or requests.session()
 
@@ -256,7 +260,7 @@ def fetch_exchange(country_code1, country_code2, session=None):
     # and NI data on MAP_URL (both fairly real-time), we can see that
     # on the NI MAP_URL page, negative is import to NI, and positive is export from NI.
 
-    # Because in both possible sorted_country_code values (HN->NI and CR->NI) NI is second,
+    # Because in both possible sorted_zone_key values (HN->NI and CR->NI) NI is second,
     # we expect netFlow to be positive when NI is importing, and negative when NI is exporting.
     # So multiply value reported by the MAP_URL by -1.
 
@@ -264,16 +268,16 @@ def fetch_exchange(country_code1, country_code2, session=None):
     interchange_text = extract_text(interchange_text, '[')
     interchange_list = [float(g.replace('\'', '') or 0) for g in interchange_text.split(',')]
 
-    if sorted_country_codes == 'HN->NI':
+    if sorted_zone_keys == 'HN->NI':
         flow = -1 * (interchange_list[0] + interchange_list[1])
-    elif sorted_country_codes == 'CR->NI':
+    elif sorted_zone_keys == 'CR->NI':
         flow = -1 * (interchange_list[2] + interchange_list[3])
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
     data = {
         'datetime': get_time_from_system_map(map_html),
-        'sortedCountryCodes': sorted_country_codes,
+        'sortedZoneKeys': sorted_zone_keys,
         'netFlow': flow,
         'source': 'cndc.org.ni'
     }
@@ -281,25 +285,25 @@ def fetch_exchange(country_code1, country_code2, session=None):
     return data
 
 
-def fetch_price(country_code='NI', session=None):
+def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=None):
     """Requests the most recent known power prices in Nicaragua grid
 
     Arguments:
-    country_code (optional) -- ignored, only information for Nicaragua is returned
+    zone_key (optional) -- ignored, only information for Nicaragua is returned
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A list of dictionaries in the form:
     [
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'currency': EUR,
           'datetime': '2017-01-01T01:00:00Z',
           'price': 0.0,
           'source': 'mysource.com'
         },
         {
-          'countryCode': 'FR',
+          'zoneKey': 'FR',
           'currency': EUR,
           'datetime': '2017-01-01T00:00:00Z',
           'price': 0.0,
@@ -307,6 +311,8 @@ def fetch_price(country_code='NI', session=None):
         }
     ]
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     requests_obj = session or requests.session()
     response = requests_obj.get(PRICE_URL)
@@ -335,7 +341,7 @@ def fetch_price(country_code='NI', session=None):
             price_date = price_date.replace(days=-1)
 
         data.append({
-            'countryCode': country_code,
+            'zoneKey': zone_key,
             'datetime': price_date.datetime,
             'currency': 'USD',
             'price': price,

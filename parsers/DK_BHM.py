@@ -19,17 +19,17 @@ def _fetch_data(session=None):
     return obj
 
 
-def fetch_production(country_code='DK-BHM', session=None):
+def fetch_production(zone_key='DK-BHM', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,
@@ -49,10 +49,13 @@ def fetch_production(country_code='DK-BHM', session=None):
       'source': 'mysource.com'
     }
     """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     obj = _fetch_data(session)
 
     data = {
-        'countryCode': country_code,
+        'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'bornholm.powerlab.dk',
@@ -64,17 +67,18 @@ def fetch_production(country_code='DK-BHM', session=None):
     return data
 
 
-def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None):
+def fetch_exchange(zone_key1='DK-BHM', zone_key2='SE', session=None, target_datetime=None,
+                   logger=None):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    country_code (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
     {
-      'sortedCountryCodes': 'DK->NO',
+      'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
@@ -84,13 +88,13 @@ def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None):
     obj = _fetch_data(session)
 
     data = {
-        'sortedCountryCodes': '->'.join(sorted([country_code1, country_code2])),
+        'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
         'source': 'bornholm.powerlab.dk',
         'datetime': arrow.get(obj['latest']).datetime
     }
 
     # Country codes are sorted in order to enable easier indexing in the database
-    sorted_country_codes = sorted([country_code1, country_code2])
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
     # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
     # to country2. A negative flow indicates an import.
@@ -98,7 +102,7 @@ def fetch_exchange(country_code1='DK-BHM', country_code2='SE', session=None):
     # The net flow to be reported should be from the first country to the second
     # (sorted alphabetically). This is NOT necessarily the same direction as the flow
     # from country1 to country2
-    data['netFlow'] = netFlow if country_code1 == sorted_country_codes[0] else -1 * netFlow
+    data['netFlow'] = netFlow if zone_key1 == sorted_zone_keys[0] else -1 * netFlow
 
     return data
 
