@@ -131,12 +131,12 @@ const priceTooltip = new Tooltip('#price-tooltip');
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
 
-const windColorbar = new HorizontalColorbar('.wind-colorbar', scales.windColor)
+const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
 const solarColorbarColor = d3.scaleLinear()
   .domain([0, 0.5 * scales.maxSolarDSWRF, scales.maxSolarDSWRF])
   .range(['black', 'white', 'gold']);
-const solarColorbar = new HorizontalColorbar('.solar-colorbar', solarColorbarColor)
+const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
 // TODO: Move to component
@@ -233,11 +233,7 @@ function updateCo2Scale() {
 
   co2color.clamp(true);
   co2Colorbars = co2Colorbars || [];
-  co2Colorbars.push(new HorizontalColorbar('#layer-toggles .co2-colorbar', co2color)
-    .markerColor('white')
-    .domain([0, scales.maxCo2])
-    .render());
-  co2Colorbars.push(new HorizontalColorbar('.co2-floating-legend .co2-colorbar', co2color, null, [0, 400, 800])
+  co2Colorbars.push(new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
     .markerColor('white')
     .domain([0, scales.maxCo2])
     .render());
@@ -724,16 +720,21 @@ function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
   dispatchApplication('windEnabled', !getState().application.windEnabled);
 }
-d3.select('#checkbox-wind').on('change', toggleWind);
-d3.select('.wind-toggle').on('click', toggleWind);
+d3.select('.wind-button').on('click', toggleWind);
 
 // Solar
 function toggleSolar() {
   if (typeof solarLayer === 'undefined') { return; }
   dispatchApplication('solarEnabled', !getState().application.solarEnabled);
 }
-d3.select('#checkbox-solar').on('change', toggleSolar);
-d3.select('.solar-toggle').on('click', toggleSolar);
+d3.select('.solar-button').on('click', toggleSolar);
+
+// Legend 
+function toggleLegend(){
+  dispatchApplication('legendVisible', !getState().application.legendVisible);
+}
+ d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
+
 
 // Close button on left-panel
 d3.selectAll('#left-panel-country-back')
@@ -1135,9 +1136,8 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 });
 // Observe for solar settings change
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
-  d3.select('#checkbox-solar').node().checked = solarEnabled;
-  d3.selectAll('.solar-toggle').classed('active', solarEnabled);
-  d3.select('.solar-colorbar').style('display', solarEnabled ? 'block' : 'none');
+  d3.selectAll('.solar-button').classed('active', solarEnabled);
+  d3.select('.solar-potential-legend').classed('visible', solarEnabled);
   Cookies.set('solarEnabled', solarEnabled);
 
   const now = state.customDate ?
@@ -1155,9 +1155,10 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 });
 // Observe for wind settings change
 observe(state => state.application.windEnabled, (windEnabled, state) => {
-  d3.select('#checkbox-wind').node().checked = windEnabled;
-  d3.selectAll('.wind-toggle').classed('active', windEnabled);
-  d3.select('.wind-colorbar').style('display', windEnabled ? 'block' : 'none');
+
+  d3.selectAll('.wind-button').classed('active', windEnabled);
+  d3.select('.wind-potential-legend').classed('visible', windEnabled);
+
   Cookies.set('windEnabled', windEnabled);
 
   const now = state.customDate ?
@@ -1185,6 +1186,15 @@ observe(state => state.data.grid, (grid) => {
     setLastUpdated();
   }
 });
+
+// Observe for legend visibility change
+observe(state => state.application.legendVisible, (legendVisible, state) => {
+  d3.selectAll('.floating-legend').classed('mobile-collapsed', !legendVisible);
+  d3.select('.floating-legend-container').classed('mobile-collapsed', !legendVisible);
+  d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
+  d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
+})
+
 
 
 // ** START
