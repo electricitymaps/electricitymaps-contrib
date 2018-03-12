@@ -139,7 +139,7 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', ses
         obj))[0]
 
     return {
-        'sortedCountryCodes': '->'.join(sorted([bidding_zone1, bidding_zone2])),
+        'sortedZoneKeys': '->'.join(sorted([bidding_zone1, bidding_zone2])),
         'netFlow': exchange['Value'] if bidding_zone_a == exchange['OutAreaElspotId'] else -1 * exchange['Value'],
         'datetime': arrow.get(obj[0]['MeasureDate'] / 1000).datetime,
         'source': 'driftsdata.stattnet.no',
