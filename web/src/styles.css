@@ -497,6 +497,52 @@ body {
     font-size: larger;
 }
 
+.layer-buttons-container {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.layer-button {
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 57% 57%;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.layer-button:hover{
+    background-color: rgb(235, 230, 230);
+}
+
+.wind-button{
+    background-image: url(../images/weather/wind.svg);
+}
+
+.wind-button.active{
+    background-image: url(../images/weather/wind_active.svg);
+}
+
+.solar-button{
+    background-image: url(../images/weather/sun.svg);
+}
+
+.solar-button.active{
+    background-image: url(../images/weather/sun_active.svg);
+}
+
+
+
 /* ** LEGEND ** */
 .layer-toggle {
     font-size: 0.7rem;
@@ -506,6 +552,73 @@ body {
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
 }
+
+
+.floating-legend-container {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    float: left;
+    background-color: rgb(70, 70, 70); /* IE fallback color (IE does not support background opacity) */
+    background-color: #00000059;
+    border-radius: 7px;
+    padding: 12px 10px 10px 10px;
+    margin-left: -10px;
+    margin-bottom: -10px;
+}
+.floating-legend-container div {
+    color: lightgray;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: 0.8rem;
+}
+.floating-legend-container .tick text {
+    fill: lightgray;
+}
+.floating-legend-container .tick line,
+.floating-legend-container rect.border {
+    stroke: none;
+}
+
+.floating-legend-mobile-header{
+    text-align: center;
+    font-weight: bold;
+    width: 15em;
+    margin-bottom: 5px;
+}
+
+.floating-legend-mobile-header .toggle-legend-button{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: none;
+}
+
+.floating-legend-mobile-header .toggle-legend-button.visible{
+    display: inherit;
+}
+
+.floating-legend {
+    width: 15em;
+    padding-top: 7px;
+}
+
+
+.floating-legend .colorbar{
+    width: 100%;
+}
+
+.wind-potential-legend, .solar-potential-legend{
+    display: none;
+}
+
+.wind-potential-legend.visible, .solar-potential-legend.visible{
+    display: block;
+}
+
+
 
 @keyframes appear-from-top {
   0% {
@@ -734,26 +847,6 @@ div.highscore-button:hover {
     filter: unset;
 }
 
-.co2-floating-legend {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    float: left;
-}
-.co2-floating-legend div {
-    color: lightgray;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    font-size: 0.7rem;
-}
-.co2-floating-legend .tick text {
-    fill: lightgray;
-}
-.co2-floating-legend .tick line,
-.co2-floating-legend rect.border {
-    stroke: none;
-}
-
 sub {
     font-size: 60%;
 }
@@ -790,6 +883,12 @@ sub {
         padding-left: 24rem; /* keep in sync with left-panel width */
         box-sizing: border-box;
     }
+    .floating-legend-container{
+        pointer-events: none;
+    }
+    .floating-legend-mobile-header{
+        display: none;
+    }
 }
 
 /* Small devices (phones, etc.) */
@@ -814,5 +913,14 @@ sub {
     }
     #footer {
         display: table-cell;
+    }
+    .floating-legend.mobile-collapsed{
+        display:none;
+    }
+    .floating-legend-container.mobile-collapsed{
+        left: -110px;
+    }
+    .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
+        margin-left: 80px;
     }
 }
