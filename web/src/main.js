@@ -47,7 +47,7 @@ const scales = require('./helpers/scales');
 const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
 
-const { getSymbolFromCurrency } = require('currency-symbol-map');
+const getSymbolFromCurrency = require('currency-symbol-map');
 
 // Configs
 const zonesConfig = require('../../config/zones.json');
