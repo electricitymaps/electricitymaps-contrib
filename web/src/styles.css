@@ -781,7 +781,15 @@ sub {
 .pro-ad-header {
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.9em;
+    font-size: 0.8rem;
+}
+
+.pro-ad-header a{
+    color: lightblue !important;
+}
+
+.pro-ad-header a:hover{
+    text-decoration: underline !important;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */
