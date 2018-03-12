@@ -5,6 +5,7 @@
 import arrow
 from bs4 import BeautifulSoup
 from .lib.validation import validate
+from logging import getLogger
 from PIL import Image
 from pytesseract import image_to_string
 import re
@@ -69,7 +70,7 @@ def data_processor(text):
     return production
 
 
-def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -138,7 +139,7 @@ def exchange_processor(text, exchange):
     return flow
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     zone_key1           -- the first country code

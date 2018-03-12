@@ -2,8 +2,10 @@
 
 """Centralised validation function for all parsers."""
 
+from logging import getLogger
 
-def validate(datapoint, **kwargs):
+
+def validate(datapoint, logger=getLogger(__name__), **kwargs):
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -71,22 +73,23 @@ def validate(datapoint, **kwargs):
 
     if remove_negative:
         for key, val in generation.items():
-            if val is not None and val < 0.0:
-                print("{} returned negative value for {}".format(key,datapoint['countryCode']))
+            if val is not None and -5.0 < val < 0.0:
+                logger.warning("{} returned {}, setting to None".format(
+                    key, val), extra={'key': datapoint['zoneKey']})
                 generation[key] = None
 
     if required:
         for item in required:
             if generation.get(item, None) is None:
-                print("Required generation type {} is missing from {}".format(
-                    item, datapoint['zoneKey']))
+                logger.warning("Required generation type {} is missing from {}".format(
+                    item, datapoint['zoneKey']), extra={'key': datapoint['zoneKey']})
                 return None
 
     if floor:
         total = sum(v for k, v in generation.items() if v is not None)
         if total < floor:
-            print("{} reported total of {}MW does not meet {}MW floor value".format(
-                datapoint['zoneKey'], total, floor))
+            logger.warning("{} reported total of {}MW does not meet {}MW floor value".format(
+                datapoint['zoneKey'], total, floor), extra={'key': datapoint['zoneKey']})
             return None
 
     if expected_range:
@@ -96,8 +99,8 @@ def validate(datapoint, **kwargs):
         if low <= total <= high:
             pass
         else:
-            print("{} reported total of {}MW falls outside range of {}".format(
-                datapoint['zoneKey'], total, expected_range))
+            logger.warning("{} reported total of {}MW falls outside range of {}".format(
+                datapoint['zoneKey'], total, expected_range), extra={'key': datapoint['zoneKey']})
             return None
 
     return datapoint
@@ -115,7 +118,7 @@ test_datapoint = {
         'oil': 0.0,
         'solar': 20.0,
         'wind': 40.0,
-        'geothermal': 0.0,
+        'geothermal': -1.0,
         'unknown': 6.0
     },
     'storage': {
@@ -125,4 +128,4 @@ test_datapoint = {
 }
 
 if __name__ == '__main__':
-    print(validate(test_datapoint, required=['gas'], expected_range=(100, 2000)))
+    print(validate(test_datapoint, required=['gas'], expected_range=(100, 2000), remove_negative=True))

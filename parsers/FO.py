@@ -3,6 +3,7 @@
 
 import arrow
 from .lib.validation import validate
+from logging import getLogger
 import requests
 import xml.etree.ElementTree as ET
 
@@ -18,7 +19,7 @@ def get_data_key(tag):
     return MAP_GENERATION.get(tag, None)
 
 
-def fetch_production(zone_key='FO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='FO', session=None, target_datetime=None, logger=getLogger('FO')):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -65,7 +66,7 @@ def fetch_production(zone_key='FO', session=None, target_datetime=None, logger=N
             # print 'Unhandled key %s' % item.tag
             pass
 
-    data = validate(data, required=['hydro'], floor=10.0)
+    data = validate(data, logger, required=['hydro'], floor=10.0)
 
     return data
 
