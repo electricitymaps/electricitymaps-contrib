@@ -146,7 +146,7 @@ body {
     -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
 }
 #header #header-content {
-    display: block;
+    display: flex;
     width: 100%;
     font-size: 1.0rem;
     height: 50px;
@@ -778,6 +778,12 @@ sub {
     margin-right: 0.4em;
 }
 
+.pro-ad-header {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
@@ -814,5 +820,8 @@ sub {
     }
     #footer {
         display: table-cell;
+    }
+    .pro-ad-header{
+        display: none;
     }
 }
