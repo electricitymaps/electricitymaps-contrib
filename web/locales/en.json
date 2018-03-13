@@ -65,7 +65,9 @@
         "lastupdate": "Updated",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
-        "retrynow": "Retry now"
+        "retrynow": "Retry now",
+        "database-ad": "Looking for historical data? Check out our <a href=\"https://data.electricitymap.org\">Database</a>!",
+        "forecast-ad": "Want live data in your app? Try our <a href=\"https://forecast.electricitymap.org\">Forecast API</a>!"
     },
     "wind": "wind",
     "solar": "solar",

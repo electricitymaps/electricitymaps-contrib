@@ -877,6 +877,10 @@ sub {
     font-size: 0.8rem;
 }
 
+.pro-ad-header span{
+    display: none;
+}
+
 .pro-ad-header a{
     color: lightblue !important;
 }
