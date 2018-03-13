@@ -4,6 +4,7 @@
 import arrow
 from collections import defaultdict
 from .lib.validation import validate
+from logging import getLogger
 import requests
 
 TIMEZONE = 'America/Managua'
@@ -189,7 +190,7 @@ def get_production_from_summary(requests_obj):
     return production, datetime_datetime
 
 
-def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=getLogger(__name__)):
     """Requests the last known production mix (in MW) of Nicaragua.
 
     Arguments:
@@ -222,10 +223,10 @@ def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=N
         'source': 'cndc.org.ni'
     }
 
-    return validate(data, expected_range=(86.6, 2165))
+    return validate(data, logger, expected_range=(86.6, 2165))
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
     """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
@@ -285,7 +286,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return data
 
 
-def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=getLogger(__name__)):
     """Requests the most recent known power prices in Nicaragua grid
 
     Arguments:

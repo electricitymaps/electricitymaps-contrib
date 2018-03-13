@@ -8,6 +8,7 @@ from .lib import zonekey
 from .lib import web
 from .lib import IN
 from .lib.validation import validate
+from logging import getLogger
 from operator import itemgetter
 
 station_map = {
@@ -73,7 +74,7 @@ def fetch_data(zone_key, session=None, logger=None):
     return value_map
 
 
-def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logger=getLogger('IN-GJ')):
     """
     Method to get production data of Gujarat
     :param zone_key:
@@ -106,12 +107,12 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logge
         'source': 'sldcguj.com',
     }
 
-    valid_data = validate(data, remove_negative=True)
+    valid_data = validate(data, logger, remove_negative=True)
 
     return valid_data
 
 
-def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None, logger=getLogger('IN-GJ')):
     """
     Method to get consumption data of Gujarat
     :param zone_key:

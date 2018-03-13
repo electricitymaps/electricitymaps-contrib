@@ -15,7 +15,8 @@ function readNDJSON(path) {
 
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
-const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json');
+const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
+  .concat([require('./third_party_maps/DK-DK2-without-BHM.json')]);
 
 const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
 
@@ -180,7 +181,9 @@ const zoneDefinitions = [
   {zoneName: 'CZ', type: 'country', id: 'CZE'},
   {zoneName: 'DE', type: 'country', id: 'DEU'},
   {zoneName: 'DJ', type: 'country', id: 'DJI'},
-  {zoneName: 'DK', type: 'subunits', subunits: ['DNK']},
+  // {zoneName: 'DK', type: 'subunits', subunits: ['DNK']},
+  { zoneName: 'DK-DK1', type: 'states', countryId: 'DNK', states: ['DK.MJ', 'DK.ND', 'DK.SD'] },
+  { zoneName: 'DK-DK2', type: 'country', countryId: 'DK-DK2' },
   {zoneName: 'DK-BHM', type: 'subunits', subunits: ['DNB']},
   {zoneName: 'DM', type: 'country', id: 'DMA'},
   {zoneName: 'DO', type: 'country', id: 'DOM'},

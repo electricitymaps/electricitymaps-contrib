@@ -4,22 +4,27 @@ import arrow
 # The request library is used to fetch content through HTTP
 import requests
 
+# Mappings used to go from country to bidding zone level
 exchanges_mapping = {
     'BY->LT': [
         'BY->LT'
     ],
-    'DE->DK': [
+    'DE->DK-DK1': [
         'DE->DK1',
-        'DE->DK2'
+    ],
+    'DE->DK-DK2': [
+        'DE->DK2',
     ],
     'DE->SE': [
         'DE->SE4'
     ],
-    'DK->NO': [
+    'DK-DK1->NO': [
         'DK1->NO2'
     ],
-    'DK->SE': [
-        'DK1->SE3',
+    'DK-DK1->SE': [
+        'DK1->SE3'
+    ],
+    'DK-DK2->SE': [
         'DK2->SE4'
     ],
     'EE->RU': [
@@ -119,7 +124,9 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=N
 
 def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
                                    logger=None):
-    bidding_zone_a, bidding_zone_b = sorted([bidding_zone1, bidding_zone2])
+    # Convert bidding zone names into statnett zones
+    bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2]]
+    bidding_zone_a, bidding_zone_b = sorted([bidding_zone_1_trimmed, bidding_zone_2_trimmed])
     r = session or requests.session()
     timestamp = arrow.now().timestamp * 1000
     url = 'http://driftsdata.statnett.no/restapi/PhysicalFlowMap/GetFlow?Ticks=%d' % timestamp
@@ -132,10 +139,8 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', ses
         obj))[0]
 
     return {
-        'sortedBiddingZones': '->'.join([bidding_zone_a, bidding_zone_b]),
-        'netFlow': exchange['Value'] if bidding_zone_a == exchange['OutAreaElspotId'] else -1 *
-                                                                                           exchange[
-                                                                                               'Value'],
+        'sortedZoneKeys': '->'.join(sorted([bidding_zone1, bidding_zone2])),
+        'netFlow': exchange['Value'] if bidding_zone_a == exchange['OutAreaElspotId'] else -1 * exchange['Value'],
         'datetime': arrow.get(obj[0]['MeasureDate'] / 1000).datetime,
         'source': 'driftsdata.stattnet.no',
     }

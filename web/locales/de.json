@@ -7,13 +7,13 @@
         "wasemitted": "emittiert wurde, um sie zu produzieren",
         "takeinaccount": "Wir berücksichtigen den",
         "importexport": "Elektrizitätsaustausch",
-        "betweenzones": "zwischen verbundenen Staaten",
+        "betweenzones": "zwischen elektrisch verbundenen Zonen",
         "thisproject": "Dieses Projekt ist",
         "opensource": "Open Source",
         "see": "siehe",
         "datasources": "Datenquellen",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
-        "tip": "Tipp: Klicke auf ein Land, um zu beginnen!"
+        "tip": "Tipp: Klicke auf eine Zone, um zu beginnen!"
     },
     "country-panel": {
         "source": "Quelle",
@@ -28,15 +28,15 @@
         "helpfrom": "mit Unterstützung von"
     },
     "rankings-panel": {
-        "country-ranking": "Rang",
+        "country-ranking": "Rangliste",
         "show-ranking": "Rangliste anzeigen",
-        "search": "Region suchen"
+        "search": "Zone suchen"
     },
     "country-history": {
-        "carbonintensity24h": "spezifische CO2-Emissionen in den letzten 24 Stunden",
-        "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 Stunden",
-        "electricityprices24h": "Strompreis in den letzten 24 Stunden",
-        "Getdata": "Zugang zu Daten aus der Vergangenheit und zur Vorhersage-API"
+        "carbonintensity24h": "spezifische CO2-Emissionen in den letzten 24 h",
+        "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
+        "electricityprices24h": "Strompreis in den letzten 24 h",
+        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API"
     },
     "footer": {
         "likethisvisu": "Findest Du die Visualisierung gut?",
@@ -54,8 +54,8 @@
         "carbonintensity": "spezifische CO2-Emissionen",
         "lowcarbon": "CO2-arm",
         "renewable": "regenerativ",
-        "crossborderexport": "Export über Ländergrenzen",
-        "carbonintensityexport": "spezifische CO2-Emissionen des Exports",
+        "crossborderexport": "Stromexport über Zonengrenzen",
+        "carbonintensityexport": "spezifische CO2-Emissionen der Exporte",
         "ofinstalled": "der installierten Leistung",
         "utilizing": "durch Verwendung von",
         "withcarbonintensity": "mit spezifischen CO2-Emissionen von"
@@ -80,15 +80,15 @@
     "oil": "Öl",
     "unknown": "unbekannt",
 
-    "electricityComesFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-    "emissionsComeFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-    "electricityStoredUsing": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-    "emissionsStoredUsing": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
+    "electricityComesFrom": "%1$s %% der Elektrizität der Zone <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
+    "emissionsComeFrom": "%1$s %% der CO2-Emissionen der Zone <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
+    "electricityStoredUsing": "%1$s %% der Elektrizität der Zone <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
+    "emissionsStoredUsing": "%1$s %% der CO2-Emissionen der Zone <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
 
-    "electricityExportedTo": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden exportiert nach <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden exportiert nach <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> kommen aus <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> kommen aus <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "%1$s %% der Elektrizität der Zone <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Zone <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
+    "emissionsExportedTo": "%1$s %% der CO2-Emissionen der Zone <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Zone <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
+    "electricityImportedFrom": "%1$s %% der Elektrizität der Zone <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Zone <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
+    "emissionsImportedFrom": "%1$s %% der CO2-Emissionen der Zone <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Zone <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
 
     "ofCO2eqPerMinute": "CO2äq pro Minute",
 
@@ -174,7 +174,8 @@
         "CZ": "Tschechien",
         "DE": "Deutschland",
         "DJ": "Dschibuti",
-        "DK": "Dänemark",
+        "DK-DK1": "Dänemark (West)",
+        "DK-DK2": "Dänemark (Ost)",
         "DK-BHM": "Dänemark (Bornholm)",
         "DM": "Dominica",
         "DO": "Dominikanische Republik",
@@ -350,6 +351,9 @@
         "RO": "Rumänien",
         "RS": "Serbien",
         "RU": "Russland",
+        "RU-EU": "Russland",
+        "RU-AS": "Russland",
+        "RU-KGD": "Russland (Kaliningrad)",
         "RW": "Ruanda",
         "SA": "Saudi Arabien",
         "SB": "Salomonen",
@@ -389,13 +393,14 @@
         "TW": "Taiwan",
         "TZ": "Tansania",
         "UA": "Ukraine",
+        "UA-CR": "Ukraine (Krim)",
         "UG": "Uganda",
         "UM": "United States Minor Outlying Islands",
         "US": "USA",
-        "US-CA": "USA (California)",
+        "US-CA": "USA (CAISO)",
         "US-MISO": "USA (MISO)",
-        "US-NEISO": "USA (New England)",
-        "US-NY": "USA (New York)",
+        "US-NEISO": "USA (NEISO)",
+        "US-NY": "USA (NYISO)",
         "US-PJM": "USA (PJM)",
         "UY": "Uruguay",
         "UZ": "Usbekistan",
