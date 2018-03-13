@@ -309,14 +309,14 @@ AreaGraph.prototype.render = function() {
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
         // Need to remove 1px in order to see the 1px line
-        .style('transform', 'translate(0, ' + (height - X_AXIS_HEIGHT) + 'px)')
+        .attr('transform', `translate(0 ${height - X_AXIS_HEIGHT})`)
         .call(xAxis);
 
     // y axis
     var yAxis = d3.axisRight(y)
         .ticks(5);
     this.yAxisElement
-        .style('transform', 'translate(' + (width - Y_AXIS_WIDTH) + 'px, 0)')
+        .attr('transform', `translate(0 ${width - Y_AXIS_WIDTH})`)
         .call(yAxis);
 
     return this;
