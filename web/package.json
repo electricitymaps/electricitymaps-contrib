@@ -5,6 +5,7 @@
   "dependencies": {
     "compression": "^1.7.2",
     "currency-symbol-map": "^4.0.3",
+    "d3-array": "^1.2.1",
     "d3-axis": "^1.0.8",
     "d3-collection": "^1.0.4",
     "d3-format": "^1.2.2",

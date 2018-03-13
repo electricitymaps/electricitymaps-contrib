@@ -3,8 +3,7 @@ const d3 = Object.assign(
   require('d3-array'),
   require('d3-interpolate'),
   require('d3-scale'),
-  require('d3-scale-chromatic')
-
+  require('d3-scale-chromatic'),
 );
 
 
