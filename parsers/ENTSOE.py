@@ -132,24 +132,18 @@ def check_response(response, function_name):
         raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
 
 
-def query_ENTSOE(session, params, target_datetime=None, target_datetime_range=None, span=(-48, 24)):
+def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
     Raises an exception if no API token is found.
     Returns a request object.
     """
-    if target_datetime is None and target_datetime_range is None:
+    if target_datetime is None :
         target_datetime = arrow.utcnow()
-    elif target_datetime_range:
-        # if we have a range, the first datetime is the start, and we compute the span
-        # as being (0, `nb of hours from start to end`)
-        target_datetime = arrow.get(target_datetime_range[0])
-        target_datetime_end = arrow.get(target_datetime_range[1])
-        span = (0, np.math.ceil((target_datetime_end - target_datetime).total_seconds() / 3600))
     else:
-        # when querying for a specific datetime, we only look for a small span
-        span = (-1, 1)
+        # for a specific datetime, fetch 24h values starting from target datetime
+        span = (-1, 48)
         # make sure we have an arrow object
         target_datetime = arrow.get(target_datetime)
     params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
@@ -160,7 +154,7 @@ def query_ENTSOE(session, params, target_datetime=None, target_datetime_range=No
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
-def query_consumption(domain, session, target_datetime=None, target_datetime_range=None):
+def query_consumption(domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -168,16 +162,14 @@ def query_consumption(domain, session, target_datetime=None, target_datetime_ran
         'processType': 'A16',
         'outBiddingZone_Domain': domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime,
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_consumption.__name__)
 
 
-def query_production(psr_type, in_domain, session, target_datetime=None,
-                     target_datetime_range=None):
+def query_production(psr_type, in_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -186,16 +178,14 @@ def query_production(psr_type, in_domain, session, target_datetime=None,
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime,
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_production.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, target_datetime=None,
-                   target_datetime_range=None):
+def query_exchange(in_domain, out_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -203,15 +193,14 @@ def query_exchange(in_domain, out_domain, session, target_datetime=None,
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime,
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_exchange.__name__)
 
 
-def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None, target_datetime_range=None):
+def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None):
     """
     Gets exchange forecast for 48 hours ahead and previous 24 hours.
     Returns a string object if the query succeeds.
@@ -222,15 +211,14 @@ def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None
         'in_Domain': in_domain,
         'out_Domain': out_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime, span=[-24, 48],
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_exchange_forecast.__name__)
 
 
-def query_price(domain, session, target_datetime=None, target_datetime_range=None):
+def query_price(domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
 
     params = {
@@ -238,15 +226,14 @@ def query_price(domain, session, target_datetime=None, target_datetime_range=Non
         'in_Domain': domain,
         'out_Domain': domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime,
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_price.__name__)
 
 
-def query_generation_forecast(in_domain, session, target_datetime=None, target_datetime_range=None):
+def query_generation_forecast(in_domain, session, target_datetime=None):
     """
     Gets generation forecast for 48 hours ahead and previous 24 hours.
     Returns a string object if the query succeeds.
@@ -258,16 +245,14 @@ def query_generation_forecast(in_domain, session, target_datetime=None, target_d
         'processType': 'A01',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime, span=[-24, 48],
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_consumption_forecast(in_domain, session, target_datetime=None,
-                               target_datetime_range=None):
+def query_consumption_forecast(in_domain, session, target_datetime=None):
     """
     Gets consumption forecast for 48 hours ahead and previous 24 hours.
     Returns a string object if the query succeeds.
@@ -278,8 +263,7 @@ def query_consumption_forecast(in_domain, session, target_datetime=None,
         'processType': 'A01',
         'outBiddingZone_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime, span=[-24, 48],
-                            target_datetime_range=target_datetime_range)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
     if response.ok:
         return response.text
     else:
@@ -529,31 +513,18 @@ def get_unknown(values):
                 values.get('Other', 0))
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None,
-                      target_datetime_range=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     """Gets consumption for a specified zone, returns a dictionary."""
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_consumption(query_consumption(domain, session, target_datetime=target_datetime,
-                                                 target_datetime_range=target_datetime_range))
+    parsed = parse_consumption(query_consumption(domain, session, target_datetime=target_datetime))
     if parsed:
         quantities, datetimes = parsed
 
-        # if a specific target_datetime was provided, we keep value corresponding to the
-        # closest datetime
+        # if a target_datetime was requested, we return everything
         if target_datetime:
-            target_datetime = arrow.get(target_datetime)
-            min_dist, dt, quantity = np.inf, 0, 0
-            assert len(datetimes) and len(quantities)
-            for current_dt, quant in zip(datetimes, quantities):
-                dist = np.abs((current_dt - target_datetime).seconds)
-                if dist < min_dist:
-                    dt, min_dist, quantity = current_dt, dist, quant
-
-        # if a time range was requested, we return everything
-        elif target_datetime_range:
             return [{
                 'zoneKey': zone_key,
                 'datetime': dt,
@@ -574,8 +545,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None,
         return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None,
-                     target_datetime_range=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
@@ -590,8 +560,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None,
     # Grab production
     for k in ENTSOE_PARAMETER_DESC.keys():
         parsed = parse_production(query_production(k, domain, session,
-                                                   target_datetime=target_datetime,
-                                                   target_datetime_range=target_datetime_range))
+                                                   target_datetime=target_datetime))
         if parsed:
             productions, datetimes = parsed
             for i in range(len(datetimes)):
@@ -634,22 +603,10 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None,
             'source': 'entsoe.eu'
         })
 
-    to_return = list(filter(validate_production, data))
-
-    if not target_datetime:
-        return to_return
-
-    # if target_datetime was provided, only keep the most relevant
-    target_datetime = arrow.get(target_datetime)
-    if not len(to_return):
-        return None
-
-    most_relevant = sorted(to_return, key=lambda x: closest_in_time_key(x, target_datetime))[0]
-    return [most_relevant]
+    return list(filter(validate_production, data))
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None,
-                   target_datetime_range=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -669,14 +626,12 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     # Grab exchange
     # Import
     parsed = parse_exchange(
-        query_exchange(domain1, domain2, session, target_datetime=target_datetime,
-                       target_datetime_range=target_datetime_range),
+        query_exchange(domain1, domain2, session, target_datetime=target_datetime),
         is_import=True)
     if parsed:
         # Export
         parsed = parse_exchange(
-            xml_text=query_exchange(domain2, domain1, session, target_datetime=target_datetime,
-                                    target_datetime_range=target_datetime_range),
+            xml_text=query_exchange(domain2, domain1, session, target_datetime=target_datetime),
             is_import=False, quantities=parsed[0], datetimes=parsed[1])
         if parsed:
             quantities, datetimes = parsed
@@ -698,23 +653,14 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             'source': 'entsoe.eu'
         })
 
-    if target_datetime:
-        # only keep most relevant
-        most_relevant = sorted(data, key=lambda x: closest_in_time_key(x, target_datetime))[0]
-        return [most_relevant]
-
     return data
 
 
-def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None,
-                            logger=None, target_datetime_range=None):
+def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
     if not session:
         session = requests.session()
     domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
@@ -724,15 +670,13 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     # Grab exchange
     # Import
     parsed = parse_exchange(
-        query_exchange_forecast(domain1, domain2, session, target_datetime=target_datetime,
-                                target_datetime_range=target_datetime_range),
+        query_exchange_forecast(domain1, domain2, session, target_datetime=target_datetime),
         is_import=True)
     if parsed:
         # Export
         parsed = parse_exchange(
             xml_text=query_exchange_forecast(domain2, domain1, session,
-                                             target_datetime=target_datetime,
-                                             target_datetime_range=target_datetime_range),
+                                             target_datetime=target_datetime),
             is_import=False, quantities=parsed[0], datetimes=parsed[1])
         if parsed:
             quantities, datetimes = parsed
@@ -756,8 +700,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     return data
 
 
-def fetch_price(zone_key, session=None, target_datetime=None, logger=None,
-                target_datetime_range=None):
+def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -767,8 +710,7 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=None,
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_price(query_price(domain, session, target_datetime=target_datetime,
-                                     target_datetime_range=target_datetime_range))
+    parsed = parse_price(query_price(domain, session, target_datetime=target_datetime))
     if parsed:
         data = []
         prices, currencies, datetimes = parsed
@@ -781,30 +723,20 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=None,
                 'source': 'entsoe.eu'
             })
 
-        if target_datetime:
-            # only keep most relevant
-            most_relevant = sorted(data, key=lambda x: closest_in_time_key(x, target_datetime))[0]
-            return [most_relevant]
-
         return data
 
 
-def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
-                              target_datetime_range=None, logger=None):
+def fetch_generation_forecast(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_generation_forecast(query_generation_forecast(
-        domain, session, target_datetime=target_datetime,
-        target_datetime_range=target_datetime_range))
+        domain, session, target_datetime=target_datetime))
     if parsed:
         data = []
         values, datetimes = parsed
@@ -819,22 +751,17 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
         return data
 
 
-def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
-                               target_datetime_range=None, logger=None):
+def fetch_consumption_forecast(zone_key, session=None, target_datetime=None, logger=None):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_consumption_forecast(query_consumption_forecast(
-        domain, session, target_datetime=target_datetime,
-        target_datetime_range=target_datetime_range))
+        domain, session, target_datetime=target_datetime))
     if parsed:
         data = []
         values, datetimes = parsed
