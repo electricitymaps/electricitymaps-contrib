@@ -139,8 +139,6 @@ def query_ENTSOE(session, params, target_datetime=None, target_datetime_range=No
     Raises an exception if no API token is found.
     Returns a request object.
     """
-    print('query ENTSOE #####################', target_datetime, target_datetime_range, span)
-
     if target_datetime is None and target_datetime_range is None:
         target_datetime = arrow.utcnow()
     elif target_datetime_range:
@@ -149,7 +147,6 @@ def query_ENTSOE(session, params, target_datetime=None, target_datetime_range=No
         target_datetime = arrow.get(target_datetime_range[0])
         target_datetime_end = arrow.get(target_datetime_range[1])
         span = (0, np.math.ceil((target_datetime_end - target_datetime).total_seconds() / 3600))
-        print('datetime range', target_datetime, span)
     else:
         # when querying for a specific datetime, we only look for a small span
         span = (-1, 1)
@@ -160,7 +157,6 @@ def query_ENTSOE(session, params, target_datetime=None, target_datetime_range=No
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
-    print('ENTSOE PARAMS = {}'.format(params))
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
