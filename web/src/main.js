@@ -252,7 +252,7 @@ d3.select('#checkbox-colorblind').node().checked = getState().application.colorB
 d3.select('#checkbox-colorblind').on('change', () => {
   dispatchApplication('colorBlindModeEnabled', !getState().application.colorBlindModeEnabled);
 });
-updateCo2Scale();
+
 
 // Start initialising map
 try {
