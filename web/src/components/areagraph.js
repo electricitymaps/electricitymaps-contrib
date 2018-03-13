@@ -316,7 +316,7 @@ AreaGraph.prototype.render = function() {
     var yAxis = d3.axisRight(y)
         .ticks(5);
     this.yAxisElement
-        .attr('transform', `translate(0 ${width - Y_AXIS_WIDTH})`)
+        .attr('transform', `translate(${width - Y_AXIS_WIDTH} 0)`)
         .call(yAxis);
 
     return this;
