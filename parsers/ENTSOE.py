@@ -124,6 +124,30 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869']
 }
 
+ENTSOE_UNITS_TO_ZONE = {
+    # DK-DK1
+    'Anholt': 'DK-DK1',
+    'Esbjergvaerket 3': 'DK-DK1',
+    'Fynsvaerket 7': 'DK-DK1',
+    'Horns Rev A': 'DK-DK1',
+    'Horns Rev B': 'DK-DK1',
+    'Nordjyllandsvaerket 3': 'DK-DK1',
+    'Silkeborgvaerket': 'DK-DK1',
+    'Skaerbaekvaerket 3': 'DK-DK1',
+    'Studstrupvaerket 3': 'DK-DK1',
+    'Studstrupvaerket 4': 'DK-DK1',
+    # DK-DK2
+    'Amagervaerket 3': 'DK-DK2',
+    'Asnaesvaerket 2': 'DK-DK2',
+    'Asnaesvaerket 5': 'DK-DK2',
+    'Avedoerevaerket 1': 'DK-DK2',
+    'Avedoerevaerket 2': 'DK-DK2',
+    'Kyndbyvaerket 21': 'DK-DK2',
+    'Kyndbyvaerket 22': 'DK-DK2',
+    'Roedsand 1': 'DK-DK2',
+    'Roedsand 2': 'DK-DK2',
+}
+
 
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
@@ -706,9 +730,15 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None, log
         try:
             values = [ v for v in parse_production_per_units(
                 query_production_per_units(k, domain, session, target_datetime)) if v is not None ]
-            for v in values: v['datetime'] = v['datetime'].datetime
+            for v in values:
+                if not v: continue
+                v['datetime'] = v['datetime'].datetime
+                if not v['unitName'] in ENTSOE_UNITS_TO_ZONE:
+                    logger.warning('Unknown unit %s with id %s' % (v['unitName'], v['unitKey']))
+                else:
+                    v['zoneKey'] = ENTSOE_UNITS_TO_ZONE[v['unitName']]
             if values:
-                data.extend(values)
+                data.extend([ v for v in values if 'zoneKey' in v ])
         except QueryError as e: pass
 
     return data
