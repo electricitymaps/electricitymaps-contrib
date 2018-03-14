@@ -107,6 +107,13 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869']
 }
 
+# Some zone_keys are part of bidding zone domains for price data
+ENTSOE_PRICE_DOMAIN_OVERRIDE = {
+    'AT': '10Y1001A1001A63L',
+    'DE': '10Y1001A1001A63L',
+    'LU': '10Y1001A1001A63L'
+}
+
 
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
@@ -707,7 +714,10 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
     # Note: This is day-ahead prices
     if not session:
         session = requests.session()
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
+    if zone_key in ENTSOE_PRICE_DOMAIN_OVERRIDE:
+        domain = ENTSOE_PRICE_DOMAIN_OVERRIDE[zone_key]
+    else:
+        domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_price(query_price(domain, session, target_datetime=target_datetime))
     if parsed:
