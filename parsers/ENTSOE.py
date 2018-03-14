@@ -115,7 +115,8 @@ ENTSOE_DOMAIN_MAPPINGS = {
 }
 # Generation per unit can only be obtained at EIC (Control Area) level
 ENTSOE_EIC_MAPPING = {
-    'DK': '10Y1001A1001A796'
+    'DK-DK1': '10Y1001A1001A796',
+    'DK-DK2': '10Y1001A1001A796',
 }
 
 # Some exchanges require specific domains
@@ -729,7 +730,7 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None, log
     for k in ENTSOE_PARAMETER_DESC.keys():
         try:
             values = [ v for v in parse_production_per_units(
-                query_production_per_units(k, domain, session, target_datetime)) if v is not None ]
+                query_production_per_units(k, domain, session, target_datetime)) or [] if v is not None ]
             for v in values:
                 if not v: continue
                 v['datetime'] = v['datetime'].datetime
@@ -738,7 +739,7 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None, log
                 else:
                     v['zoneKey'] = ENTSOE_UNITS_TO_ZONE[v['unitName']]
             if values:
-                data.extend([ v for v in values if 'zoneKey' in v ])
+                data.extend([ v for v in values if v.get('zoneKey', None) == zone_key ])
         except QueryError as e: pass
 
     return data
