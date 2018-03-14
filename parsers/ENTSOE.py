@@ -527,14 +527,13 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
         if target_datetime:
             return [{
                 'zoneKey': zone_key,
-                'datetime': dt,
+                'datetime': dt.datetime,
                 'consumption': quantity,
                 'source': 'entsoe.eu'
             } for dt, quantity in zip(datetimes, quantities)]
 
-        else:
-            # else we keep the last stored value
-            dt, quantity = datetimes[-1].datetime, quantities[-1]
+        # else we keep the last stored value
+        dt, quantity = datetimes[-1].datetime, quantities[-1]
         data = {
             'zoneKey': zone_key,
             'datetime': dt,
