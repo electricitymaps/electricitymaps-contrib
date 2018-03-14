@@ -16,8 +16,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow
-import os
-import re
+import logging, os, re
 import requests
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
@@ -44,6 +43,20 @@ ENTSOE_PARAMETER_DESC = {
     'B20': 'Other',
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
+ENTSOE_PARAMETER_GROUPS = {
+    'biomass': ['B01', 'B08', 'B17'],
+    'coal': ['B02', 'B05'],
+    'gas': ['B03', 'B04'],
+    'geothermal': ['B09'],
+    'hydro': ['B11', 'B12'],
+    'hydro storage': ['B10'],
+    'nuclear': ['B14'],
+    'oil': ['B06', 'B07'],
+    'solar': ['B16'],
+    'wind': ['B18', 'B19'],
+    'other': ['B20', 'B13', 'B15']
+}
+ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
 # Define all ENTSOE zone_key <-> domain mapping
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
@@ -99,6 +112,10 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'SK': '10YSK-SEPS-----K',
     'TR': '10YTR-TEIAS----W',
     'UA': '10YUA-WEPS-----0'
+}
+# Generation per unit can only be obtained at EIC (Control Area) level
+ENTSOE_EIC_MAPPING = {
+    'DK': '10Y1001A1001A796'
 }
 
 # Some exchanges require specific domains
@@ -184,6 +201,24 @@ def query_production(psr_type, in_domain, session, target_datetime=None):
         return response.text
     else:
         check_response(response, query_production.__name__)
+
+
+
+def query_production_per_units(psr_type, domain, session, target_datetime=None):
+    """Returns a string object if the query succeeds."""
+
+    params = {
+        'documentType': 'A73',
+        'processType': 'A16',
+        'psrType': psr_type,
+        'in_Domain': domain,
+    }
+    # Note: ENTSOE only supports 1d queries for this type
+    response = query_ENTSOE(session, params, target_datetime, span=(-24, 0))
+    if response.ok:
+        return response.text
+    else:
+        check_response(response, query_production_per_units.__name__)
 
 
 def query_exchange(in_domain, out_domain, session, target_datetime=None):
@@ -329,6 +364,43 @@ def parse_production(xml_text):
                 datetimes.append(datetime)
                 productions.append(quantity if is_production else -1 * quantity)
     return productions, datetimes
+
+
+def parse_production_per_units(xml_text):
+    """Returns a dict indexed by the (datetime, unit_key) key"""
+    values = {}
+
+    if not xml_text:
+        return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    # Get all points
+    for timeseries in soup.find_all('timeseries'):
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
+        psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
+        unit_key = timeseries.find_all('mktpsrtype')[0].find_all('powersystemresources')[0].find_all('mrid')[0].contents[0]
+        unit_name = timeseries.find_all('mktpsrtype')[0].find_all('powersystemresources')[0].find_all('name')[0].contents[0]
+        if not is_production: continue
+        for entry in timeseries.find_all('point'):
+            quantity = float(entry.find_all('quantity')[0].contents[0])
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            key = (unit_key, datetime)
+            if key in values:
+                if is_production:
+                    values[key]['production'] += quantity
+                else:
+                    values[key]['production'] -= quantity
+            else:
+                values[key] = {
+                    'datetime': datetime,
+                    'production': quantity,
+                    'productionType': ENTSOE_PARAMETER_BY_GROUP[psr_type],
+                    'unitKey': unit_key,
+                    'unitName': unit_name
+                }
+    return values.values()
 
 
 def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
@@ -514,7 +586,7 @@ def get_unknown(values):
                 values.get('Other', 0))
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """Gets consumption for a specified zone, returns a dictionary."""
     if not session:
         session = requests.session()
@@ -548,7 +620,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
         return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
@@ -620,7 +692,29 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     return [most_relevant]
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_production_per_units(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+    """
+    Returns a list of all production units and production values as a list
+    of dictionaries
+    """
+    if not session:
+        session = requests.session()
+    domain = ENTSOE_EIC_MAPPING[zone_key]
+    data = []
+    # Iterate over all psr types
+    for k in ENTSOE_PARAMETER_DESC.keys():
+        try:
+            values = [ v for v in parse_production_per_units(
+                query_production_per_units(k, domain, session, target_datetime)) if v is not None ]
+            for v in values: v['datetime'] = v['datetime'].datetime
+            if values:
+                data.extend(values)
+        except QueryError as e: pass
+
+    return data
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -676,7 +770,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 
 def fetch_exchange_forecast(zone_key1, zone_key2, session=None, now=None,
-                            target_datetime=None, logger=None):
+                            target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
@@ -722,7 +816,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, now=None,
     return data
 
 
-def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -754,7 +848,7 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
 
 
 def fetch_generation_forecast(zone_key, session=None, now=None, target_datetime=None,
-                              logger=None):
+                              logger=logging.getLogger(__name__)):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
@@ -782,7 +876,7 @@ def fetch_generation_forecast(zone_key, session=None, now=None, target_datetime=
 
 
 def fetch_consumption_forecast(zone_key, session=None, now=None, target_datetime=None,
-                               logger=None):
+                               logger=logging.getLogger(__name__)):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
