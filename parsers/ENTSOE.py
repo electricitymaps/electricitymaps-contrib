@@ -16,8 +16,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import arrow
-import os
-import re
+import os, logging, re
 import requests
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
@@ -451,6 +450,8 @@ def validate_production(datapoint):
         return p.get('nuclear', None) is not None and p.get('gas', None) is not None
     elif datapoint['zoneKey'] == 'ES':
         p = datapoint['production']
+        total_production = sum([ x for x in p.values() if x is not None ])
+        if (total_production < 10000): return False
         return p.get('coal', None) is not None and p.get('nuclear', None) is not None
     elif datapoint['zoneKey'] == 'DK':
         p = datapoint['production']
@@ -520,7 +521,7 @@ def get_unknown(values):
                 values.get('Other', 0))
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """Gets consumption for a specified zone, returns a dictionary."""
     if not session:
         session = requests.session()
@@ -551,7 +552,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
         return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
@@ -609,10 +610,19 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
             'source': 'entsoe.eu'
         })
 
+        for d in data:
+            for k, v in d['production'].items():
+                if v is None: continue
+                if v < 0 and v > -50:
+                    # Set small negative values to 0
+                    logger.warning('Setting small value of %s (%s) to 0.' % (k, v),
+                        extra={'key': zone_key})
+                    d['production'][k] = 0
+
     return list(filter(validate_production, data))
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -662,7 +672,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return data
 
 
-def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
@@ -706,7 +716,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     return data
 
 
-def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -735,7 +745,7 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=None):
         return data
 
 
-def fetch_generation_forecast(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_generation_forecast(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
@@ -760,7 +770,7 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None, logg
         return data
 
 
-def fetch_consumption_forecast(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_consumption_forecast(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.

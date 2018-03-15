@@ -69,7 +69,8 @@ def fetch_data(zone_key, session=None, logger=None):
                     continue
                 else:
                     value_map['unknown'] += float(literal_eval(v2))
-                    logger.warning('Unknown fuel for station name: {}'.format(v1))
+                    logger.warning('Unknown fuel for station name: {}'.format(v1),
+                        extra={'key': zone_key})
         elif len(row.find_all('td')) == 3:  # will find consumption row
             v1, v2 = (re.sub(r'[\n\t\r]', r'', x.text.strip()) for x in itemgetter(*[0, 2])(row.find_all('td')))
             if v1 == 'Gujarat Catered':
