@@ -121,7 +121,8 @@ ENTSOE_EIC_MAPPING = {
 
 # Some exchanges require specific domains
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
-    'DE->DK-DK1': [ENTSOE_DOMAIN_MAPPINGS['DE'], ENTSOE_DOMAIN_MAPPINGS['DK']],
+    'DE->DK-DK1': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
+    'DE->DK-DK2': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
 }
 # Some zone_keys are part of bidding zone domains for price data
