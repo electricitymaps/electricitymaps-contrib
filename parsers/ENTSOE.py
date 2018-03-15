@@ -729,19 +729,21 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None, log
     # Iterate over all psr types
     for k in ENTSOE_PARAMETER_DESC.keys():
         try:
-            values = [ v for v in parse_production_per_units(
-                query_production_per_units(k, domain, session, target_datetime)) or [] if v is not None ]
+            values = parse_production_per_units(
+                query_production_per_units(k, domain, session, target_datetime)) or []
             for v in values:
-                if not v: continue
+                if not v:
+                    continue
                 v['datetime'] = v['datetime'].datetime
                 v['source'] = 'entsoe.eu'
                 if not v['unitName'] in ENTSOE_UNITS_TO_ZONE:
                     logger.warning('Unknown unit %s with id %s' % (v['unitName'], v['unitKey']))
                 else:
                     v['zoneKey'] = ENTSOE_UNITS_TO_ZONE[v['unitName']]
-            if values:
-                data.extend([ v for v in values if v.get('zoneKey', None) == zone_key ])
-        except QueryError as e: pass
+                    if v['zoneKey'] == zone_key:
+                        data.append(v)
+        except QueryError:
+            pass
 
     return data
 
