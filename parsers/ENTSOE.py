@@ -679,8 +679,13 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     """
     if not session:
         session = requests.session()
-    domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
-    domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
+    sorted_zone_keys = sorted([zone_key1, zone_key2])
+    key = '->'.join(sorted_zone_keys)
+    if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
+        domain1, domain2 = ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[key]
+    else:
+        domain1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+        domain2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     # Create a hashmap with key (datetime)
     exchange_hashmap = {}
     # Grab exchange
@@ -708,7 +713,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
         data.append({
-            'sortedZoneKeys': '->'.join(sorted_zone_keys),
+            'sortedZoneKeys': key,
             'datetime': exchange_date.datetime,
             'netFlow': netFlow if zone_key1[0] == sorted_zone_keys else -1 * netFlow,
             'source': 'entsoe.eu'
