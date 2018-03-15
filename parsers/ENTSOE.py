@@ -797,8 +797,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return data
 
 
-def fetch_exchange_forecast(zone_key1, zone_key2, session=None,
-                            target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
