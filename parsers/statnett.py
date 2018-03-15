@@ -120,8 +120,8 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=l
     return data
 
 
-def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', target_datetime=None,
-                                   session=None, logger=logging.getLogger(__name__)):
+def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
+                                   target_datetime=None, logger=logging.getLogger(__name__)):
     # Convert bidding zone names into statnett zones
     bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2] ]
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone_1_trimmed, bidding_zone_2_trimmed])
@@ -144,9 +144,9 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', tar
     }
 
 
-def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, target_datetime=None, session=None):
+def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=None, target_datetime=None):
     zones = sorted_bidding_zones.split('->')
-    return fetch_exchange_by_bidding_zone(zones[0], zones[1], target_datetime, session)
+    return fetch_exchange_by_bidding_zone(zones[0], zones[1], session, target_datetime)
 
 
 def _sum_of_exchanges(exchanges):
@@ -162,7 +162,7 @@ def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, target_datetime
     r = session or requests.session()
 
     sorted_exchange = '->'.join(sorted([zone_key1, zone_key2]))
-    data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, target_datetime, r),
+    data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r, target_datetime),
                                  exchanges_mapping[sorted_exchange]))
     data['sortedZoneKeys'] = '->'.join(sorted([zone_key1, zone_key2]))
 

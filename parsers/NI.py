@@ -334,7 +334,7 @@ def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=getLog
 
         # hour_data is like "Hora 13:&nbsp;&nbsp;   84.72"
         hour = int(extract_text(hour_data, 'Hora ', ':'))
-        price = float(extract_text(hour_data, '&nbsp;   '))
+        price = float(extract_text(hour_data, '&nbsp;   ').replace(',', '.'))
 
         price_date = midnight_local_time.replace(hour=hour)
         if price_date > now_local_time:
