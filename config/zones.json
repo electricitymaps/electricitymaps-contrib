@@ -712,7 +712,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Copenhagen"
   },
@@ -733,7 +734,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Copenhagen"
   },

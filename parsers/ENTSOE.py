@@ -190,8 +190,6 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     if target_datetime is None :
         target_datetime = arrow.utcnow()
     else:
-        # for a specific datetime, fetch 24h values starting from target datetime
-        span = (-1, 48)
         # make sure we have an arrow object
         target_datetime = arrow.get(target_datetime)
     params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
@@ -736,6 +734,7 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None, log
             for v in values:
                 if not v: continue
                 v['datetime'] = v['datetime'].datetime
+                v['source'] = 'entsoe.eu'
                 if not v['unitName'] in ENTSOE_UNITS_TO_ZONE:
                     logger.warning('Unknown unit %s with id %s' % (v['unitName'], v['unitKey']))
                 else:
