@@ -67,7 +67,7 @@
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "retrynow": "Retry now",
         "database-ad": "Looking for historical data? Check out our <a href=\"https://data.electricitymap.org\">Database</a>!",
-        "forecast-ad": "Want live data in your app? Try our <a href=\"https://forecast.electricitymap.org\">Forecast API</a>!"
+        "forecast-ad": "Want live data in your app or on your device? Try our <a href=\"https://forecast.electricitymap.org\">API</a>!"
     },
     "wind": "wind",
     "solar": "solar",
