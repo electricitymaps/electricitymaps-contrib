@@ -223,11 +223,9 @@ moment.locale(getState().application.locale.toLowerCase());
 
 // Display randomly alternating header campaign message
 const randomBoolean = Math.random() >= 0.5;
-if (randomBoolean) {
-  d3.select('.forecast-ad').style('display', 'initial');
-} else {
-  d3.select('.database-ad').style('display', 'initial');
-}
+
+d3.select('.forecast-ad').classed('visible', randomBoolean);
+d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
 let co2color;

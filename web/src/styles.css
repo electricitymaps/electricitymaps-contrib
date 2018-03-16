@@ -171,6 +171,7 @@ body {
 #header-content .logo {
     display: inline;
     font-family: "Catamaran", sans-serif;
+    margin-right: auto;
 }
 #header-content .logo img {
     vertical-align: text-top;
@@ -879,6 +880,10 @@ sub {
 
 .pro-ad-header span{
     display: none;
+}
+
+.pro-ad-header span.visible{
+    display: inherit;
 }
 
 .pro-ad-header a{
