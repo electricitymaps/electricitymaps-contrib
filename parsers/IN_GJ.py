@@ -36,7 +36,7 @@ def fetch_data(zone_key, session=None, logger=None):
     solar_value = float(literal_eval(solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
     wind_value = float(literal_eval(wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip()))
 
-    hydro_value = thermal_value = gas_value = coal_value = 0.0
+    hydro_value = thermal_value = gas_value = coal_value = unknown = 0.0
 
     value_map = {
         "date": india_date.datetime,
@@ -45,7 +45,8 @@ def fetch_data(zone_key, session=None, logger=None):
         "thermal": thermal_value,
         "wind": wind_value,
         "gas": gas_value,
-        "coal": coal_value
+        "coal": coal_value,
+        "unknown": unknown
     }
 
     cookies_params = {
@@ -58,16 +59,20 @@ def fetch_data(zone_key, session=None, logger=None):
                                  session).find_all('tr')
 
     for row in rows:
-        if len(row.find_all('td')) > 3:
+        if len(row.find_all('td')) > 3:  # will find production rows
             v1, v2 = (re.sub(r'[\n\t\r]', r'', x.text.strip()) for x in itemgetter(*[0, 3])(row.find_all('td')))
             energy_type = [k for k, v in station_map.items() if v1 in v]
             if len(energy_type) > 0:
                 value_map[energy_type[0]] += float(literal_eval(v2))
-        elif len(row.find_all('td')) == 3:
+            else:
+                if 'Station Name' in (v1, v2):  # meta data row
+                    continue
+                else:
+                    value_map['unknown'] += float(literal_eval(v2))
+                    logger.warning('Unknown fuel for station name: {}'.format(v1),
+                        extra={'key': zone_key})
+        elif len(row.find_all('td')) == 3:  # will find consumption row
             v1, v2 = (re.sub(r'[\n\t\r]', r'', x.text.strip()) for x in itemgetter(*[0, 2])(row.find_all('td')))
-            energy_type = [k for k, v in station_map.items() if v1 in v]
-            if len(energy_type) > 0:
-                value_map[energy_type[0]] += float(literal_eval(v2))
             if v1 == 'Gujarat Catered':
                 value_map['total consumption'] = float(literal_eval(v2.split(' ')[0]))
 
@@ -99,7 +104,7 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None, logge
             'solar': value_map['solar'],
             'wind': value_map['wind'],
             'geothermal': None,
-            'unknown': None
+            'unknown': value_map['unknown']
         },
         'storage': {
             'hydro': None

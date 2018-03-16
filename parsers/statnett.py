@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # The arrow library is used to handle datetimes
 import arrow
+import logging
 # The request library is used to fetch content through HTTP
 import requests
 
@@ -79,12 +80,9 @@ exchanges_mapping = {
 }
 
 
-def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=None):
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     r = session or requests.session()
-    timestamp = arrow.now().timestamp * 1000
+    timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp) * 1000
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview?timestamp=%d' % timestamp
     response = r.get(url)
     obj = response.json()
@@ -123,12 +121,12 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=N
 
 
 def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
-                                   logger=None):
+                                   target_datetime=None, logger=logging.getLogger(__name__)):
     # Convert bidding zone names into statnett zones
-    bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2]]
+    bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2] ]
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone_1_trimmed, bidding_zone_2_trimmed])
     r = session or requests.session()
-    timestamp = arrow.now().timestamp * 1000
+    timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp) * 1000
     url = 'http://driftsdata.statnett.no/restapi/PhysicalFlowMap/GetFlow?Ticks=%d' % timestamp
     response = r.get(url)
     obj = response.json()
@@ -146,9 +144,9 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', ses
     }
 
 
-def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=None):
+def _fetch_exchanges_from_sorted_bidding_zones(sorted_bidding_zones, session=None, target_datetime=None):
     zones = sorted_bidding_zones.split('->')
-    return fetch_exchange_by_bidding_zone(zones[0], zones[1], session)
+    return fetch_exchange_by_bidding_zone(zones[0], zones[1], session, target_datetime)
 
 
 def _sum_of_exchanges(exchanges):
@@ -160,11 +158,11 @@ def _sum_of_exchanges(exchanges):
     }
 
 
-def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, logger=None):
+def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     r = session or requests.session()
 
     sorted_exchange = '->'.join(sorted([zone_key1, zone_key2]))
-    data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r),
+    data = _sum_of_exchanges(map(lambda e: _fetch_exchanges_from_sorted_bidding_zones(e, r, target_datetime),
                                  exchanges_mapping[sorted_exchange]))
     data['sortedZoneKeys'] = '->'.join(sorted([zone_key1, zone_key2]))
 
