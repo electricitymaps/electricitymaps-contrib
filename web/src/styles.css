@@ -872,25 +872,25 @@ sub {
     margin-right: 0.4em;
 }
 
-.pro-ad-header {
+.ad-header {
     margin-left: auto;
     margin-right: auto;
     font-size: 0.8rem;
 }
 
-.pro-ad-header span{
+.ad-header span{
     display: none;
 }
 
-.pro-ad-header span.visible{
+.ad-header span.visible{
     display: inherit;
 }
 
-.pro-ad-header a{
+.ad-header a{
     color: lightblue !important;
 }
 
-.pro-ad-header a:hover{
+.ad-header a:hover{
     text-decoration: underline !important;
 }
 
@@ -937,9 +937,6 @@ sub {
     #footer {
         display: table-cell;
     }
-    .pro-ad-header{
-        display: none;
-    } 
     .floating-legend.mobile-collapsed{
         display:none;
     }
