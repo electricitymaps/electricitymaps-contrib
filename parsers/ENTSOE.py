@@ -188,7 +188,7 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     Raises an exception if no API token is found.
     Returns a request object.
     """
-    if target_datetime is None :
+    if target_datetime is None:
         target_datetime = arrow.utcnow()
     else:
         # make sure we have an arrow object
@@ -230,7 +230,6 @@ def query_production(psr_type, in_domain, session, target_datetime=None):
         return response.text
     else:
         check_response(response, query_production.__name__)
-
 
 
 def query_production_per_units(psr_type, domain, session, target_datetime=None):
@@ -408,8 +407,10 @@ def parse_production_per_units(xml_text):
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
-        unit_key = timeseries.find_all('mktpsrtype')[0].find_all('powersystemresources')[0].find_all('mrid')[0].contents[0]
-        unit_name = timeseries.find_all('mktpsrtype')[0].find_all('powersystemresources')[0].find_all('name')[0].contents[0]
+        unit_key = timeseries.find_all('mktpsrtype')[0].find_all(
+            'powersystemresources')[0].find_all('mrid')[0].contents[0]
+        unit_name = timeseries.find_all('mktpsrtype')[0].find_all(
+            'powersystemresources')[0].find_all('name')[0].contents[0]
         if not is_production: continue
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
@@ -546,7 +547,7 @@ def validate_production(datapoint):
         return p.get('nuclear', None) is not None and p.get('gas', None) is not None
     elif datapoint['zoneKey'] == 'ES':
         p = datapoint['production']
-        total_production = sum([ x for x in p.values() if x is not None ])
+        total_production = sum([x for x in p.values() if x is not None])
         if (total_production < 10000): return False
         return p.get('coal', None) is not None and p.get('nuclear', None) is not None
     elif datapoint['zoneKey'] == 'DK':
@@ -617,7 +618,8 @@ def get_unknown(values):
                 values.get('Other', 0))
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_consumption(zone_key, session=None, target_datetime=None,
+                      logger=logging.getLogger(__name__)):
     """Gets consumption for a specified zone, returns a dictionary."""
     if not session:
         session = requests.session()
@@ -648,7 +650,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=loggi
         return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_production(zone_key, session=None, target_datetime=None,
+                     logger=logging.getLogger(__name__)):
     """
     Gets values and corresponding datetimes for all production types in the
     specified zone. Removes any values that are in the future or don't have
@@ -712,13 +715,14 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=loggin
                 if v < 0 and v > -50:
                     # Set small negative values to 0
                     logger.warning('Setting small value of %s (%s) to 0.' % (k, v),
-                        extra={'key': zone_key})
+                                   extra={'key': zone_key})
                     d['production'][k] = 0
 
     return list(filter(validate_production, data))
 
 
-def fetch_production_per_units(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_production_per_units(zone_key, session=None, target_datetime=None,
+                               logger=logging.getLogger(__name__)):
     """
     Returns a list of all production units and production values as a list
     of dictionaries
@@ -749,7 +753,8 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None, log
     return data
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
+                   logger=logging.getLogger(__name__)):
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -799,7 +804,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return data
 
 
-def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None,
+                            logger=logging.getLogger(__name__)):
     """
     Gets exchange forecast between two specified zones.
     Returns a list of dictionaries.
@@ -877,7 +883,8 @@ def fetch_price(zone_key, session=None, target_datetime=None, logger=logging.get
         return data
 
 
-def fetch_generation_forecast(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
+                              logger=logging.getLogger(__name__)):
     """
     Gets generation forecast for specified zone.
     Returns a list of dictionaries.
@@ -902,7 +909,8 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None, logg
         return data
 
 
-def fetch_consumption_forecast(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
+                               logger=logging.getLogger(__name__)):
     """
     Gets consumption forecast for specified zone.
     Returns a list of dictionaries.
