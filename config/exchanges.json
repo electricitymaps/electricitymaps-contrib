@@ -29,6 +29,16 @@
     },
     "rotation": 40
   },
+  "AM->GE": {
+    "lonlat": [
+      44.313,
+      41.205
+    ],
+    "parsers": {
+      "exchange": "GE.fetch_exchange"
+    },
+    "rotation": 0
+  },
   "AR->BR-S": {
     "lonlat": [
       -56.407453,
@@ -159,6 +169,16 @@
       "exchange": "AX.fetch_exchange"
     },
     "rotation": -130
+  },
+  "AZ->GE": {
+    "lonlat": [
+      45.153,
+      41.398
+    ],
+    "parsers": {
+      "exchange": "GE.fetch_exchange"
+    },
+    "rotation": -35
   },
   "AZ->RU": {
     "lonlat": [
@@ -878,6 +898,16 @@
       "exchange": "RU.fetch_exchange"
     },
     "rotation": 0
+  },
+  "GE->TR": {
+    "lonlat": [
+      42.814,
+      41.562
+    ],
+    "parsers": {
+      "exchange": "GE.fetch_exchange"
+    },
+    "rotation": -135
   },
   "GT->MX": {
     "lonlat": [
