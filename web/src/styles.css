@@ -872,25 +872,25 @@ sub {
     margin-right: 0.4em;
 }
 
-.ad-header {
+.center-header {
     margin-left: auto;
     margin-right: auto;
     font-size: 0.8rem;
 }
 
-.ad-header span{
+.center-header span{
     display: none;
 }
 
-.ad-header span.visible{
+.center-header span.visible{
     display: inherit;
 }
 
-.ad-header a{
+.center-header a{
     color: lightblue !important;
 }
 
-.ad-header a:hover{
+.center-header a:hover{
     text-decoration: underline !important;
 }
 
