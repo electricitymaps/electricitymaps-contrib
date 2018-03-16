@@ -551,7 +551,7 @@ d3.select('.country-search-bar input')
     const query = nodes[i].value.toLowerCase();
 
     d3.select('.country-picker-container p')
-      .selectAll('a').each(() => {
+      .selectAll('a').each((obj, i, nodes) => {
         const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
         const listItem = d3.select(nodes[i]);
 
