@@ -428,9 +428,7 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      if (!getState().application.selectedZoneName) {
         windColorbar.currentMarker(Math.sqrt(u * u + v * v));
-      }
     }
   } else {
     windColorbar.currentMarker(undefined);
@@ -441,9 +439,7 @@ function mapMouseOver(lonlat) {
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       const val = grib.getInterpolatedValueAtLonLat(lonlat,
         now, solar.forecasts[0], solar.forecasts[1]);
-      if (!getState().application.selectedZoneName) {
         solarColorbar.currentMarker(val);
-      }
     }
   } else {
     solarColorbar.currentMarker(undefined);
