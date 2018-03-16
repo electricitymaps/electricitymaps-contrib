@@ -1046,6 +1046,23 @@
     },
     "timezone": null
   },
+  "GE": {
+    "_comment": "source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal",
+    "capacity": {
+      "gas": 925,
+      "hydro": 3152,
+      "nuclear": 0,
+      "wind": 20
+    },
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "GE.fetch_production"
+    },
+    "timezone": "Asia/Tbilisi"
+  }, 
   "GR": {
     "capacity": {
       "biomass": 51,
