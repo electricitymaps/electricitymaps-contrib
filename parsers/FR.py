@@ -30,7 +30,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
 
     r = session or requests.session()
     formatted_from = now.shift(days=-1).format('DD/MM/YYYY')
-    formatted_to = now.format('DD/MM/YYYY')
+    formatted_to = now.shift(days=+1).format('DD/MM/YYYY')
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=mix&&dateDeb={}&' \
           'dateFin={}&mode=NORM'.format(formatted_from, formatted_to)
     response = r.get(url)
@@ -93,7 +93,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
 
     r = session or requests.session()
     formatted_from = now.shift(days=-1).format('DD/MM/YYYY')
-    formatted_to = now.format('DD/MM/YYYY')
+    formatted_to = now.shift(days=+1).format('DD/MM/YYYY')
 
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&da' \
           'teDeb={}&dateFin={}&mode=NORM'.format(formatted_from, formatted_to)
