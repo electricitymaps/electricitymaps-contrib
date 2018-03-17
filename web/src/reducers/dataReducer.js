@@ -67,6 +67,9 @@ module.exports = (state = initialDataState, action) => {
         }
       });
 
+      // Set date
+      newGrid.datetime = action.payload.datetime;
+
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {
         const zone = newGrid.zones[key];
