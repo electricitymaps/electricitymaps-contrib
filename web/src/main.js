@@ -1053,6 +1053,27 @@ function routeToPage(pageName, state) {
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
 }
+function tryFetchHistory(state) {
+  const { selectedZoneName } = state.application;
+  if (state.application.customDate) {
+    console.error('Can\'t fetch history when a custom date is provided!');
+  } else if (!state.data.histories[selectedZoneName]) {
+    LoadingService.startLoading('.country-history .loading');
+    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
+      LoadingService.stopLoading('.country-history .loading');
+      if (err) { return console.error(err); }
+      if (!obj || !obj.data) {
+        return console.warn(`Empty history received for ${selectedZoneName}`);
+      }
+      // Save to local cache
+      return dispatch({
+        payload: obj.data,
+        zoneName: selectedZoneName,
+        type: 'HISTORY_DATA',
+      });
+    });
+  }
+}
 
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
@@ -1089,31 +1110,18 @@ observe(state => state.application.selectedZoneName, (k, state) => {
   renderHistory(state);
 
   // Fetch history if needed
-  const { selectedZoneName } = state.application;
-  if (getState().application.customDate) {
-    console.error('Can\'t fetch history when a custom date is provided!');
-  } else if (!state.data.histories[selectedZoneName]) {
-    LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
-      LoadingService.stopLoading('.country-history .loading');
-      if (err) { return console.error(err); }
-      if (!obj || !obj.data) {
-        console.warn(`Empty history received for ${selectedZoneName}`);
-      } else {
-        // Save to local cache
-        return dispatch({
-          payload: obj.data,
-          zoneName: selectedZoneName,
-          type: 'HISTORY_DATA',
-        });
-      }
-    });
-  }
+  tryFetchHistory(state);
 });
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
   if (state.application.showPageState === 'country') {
     renderHistory(state);
+  }
+  // If history was cleared by the grid data for the currently selected country,
+  // try to refetch it.
+  const { selectedZoneName } = state.application;
+  if (selectedZoneName && !state.data.histories[selectedZoneName]) {
+    tryFetchHistory(state);
   }
 });
 // Observe for index change (for example by history graph)
@@ -1189,8 +1197,6 @@ observe(state => state.application.legendVisible, (legendVisible, state) => {
   d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
   d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
 })
-
-
 
 // ** START
 
