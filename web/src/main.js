@@ -909,7 +909,7 @@ function renderHistory(state) {
       // Max export
       d3.min(d3.entries(d.exchange), o =>
         Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-      )
+      ) || 0
       // Max storage
       // ?
     )
@@ -919,11 +919,11 @@ function renderHistory(state) {
       // Max import
       d3.max(d3.entries(d.exchange), o =>
         Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-      ),
+      ) || 0,
       // Max production
       d3.max(d3.entries(d.production), o =>
         Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
-      )
+      ) || 0
     )
   );
 
