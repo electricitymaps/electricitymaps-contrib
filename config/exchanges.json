@@ -979,16 +979,6 @@
     },
     "rotation": 90
   },
-  "IT->MT": {
-    "lonlat": [
-      14.587184,
-      36.324879
-    ],
-    "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
-    },
-    "rotation": 0
-  },
   "KZ->RU": {
     "lonlat": [
       56.884737,
