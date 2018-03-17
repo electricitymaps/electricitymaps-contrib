@@ -81,6 +81,11 @@ function dispatchApplication(key, value) {
 HistoryState.parseInitial(window.location.search);
 const applicationState = HistoryState.getStateFromHistory();
 Object.keys(applicationState).forEach((k) => {
+  if (k === 'selectedZoneName' &&
+    Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
+    // The selectedZoneName doesn't exist, so don't update it
+    return;
+  }
   dispatchApplication(k, applicationState[k]);
 });
 

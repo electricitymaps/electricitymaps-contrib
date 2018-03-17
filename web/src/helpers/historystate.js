@@ -80,4 +80,5 @@ module.exports = {
   getStateFromHistory,
   updateHistoryFromState,
   parseInitial,
-  querystringMappings, };
+  querystringMappings,
+};
