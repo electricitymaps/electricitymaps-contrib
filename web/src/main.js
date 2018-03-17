@@ -865,8 +865,8 @@ function renderCountryList(state) {
   countryListSelector.select('.flag')
     .attr('src', d => flags.flagUri(d.countryCode, 16));
   countryListSelector.on('click', (d) => {
-    dispatchApplication('selectedZoneName', d.countryCode);
     dispatchApplication('showPageState', 'country');
+    dispatchApplication('selectedZoneName', d.countryCode);
   });
 }
 function renderHistory(state) {
