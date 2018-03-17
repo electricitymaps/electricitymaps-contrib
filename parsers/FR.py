@@ -86,7 +86,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
                             data['storage'][MAP_STORAGE[key]] = 0
                         data['storage'][MAP_STORAGE[key]] += -1 * float(value.text)
 
-    return datas.values()
+    return list(datas.values())
 
 
 def fetch_price(zone_key, session=None, target_datetime=None,
@@ -102,7 +102,6 @@ def fetch_price(zone_key, session=None, target_datetime=None,
 
     url = 'http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&da' \
           'teDeb={}&dateFin={}&mode=NORM'.format(formatted_from, formatted_to)
-    print(url)
     response = r.get(url)
     obj = ET.fromstring(response.content)
     datas = {}
@@ -135,7 +134,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
                 data = datas[datetime]
                 data['price'] = float(value.text)
 
-    return datas.values()
+    return list(datas.values())
 
 
 if __name__ == '__main__':
