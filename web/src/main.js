@@ -305,7 +305,6 @@ try {
     dispatchApplication('webglsupported', false);
     dispatchApplication('showPageState', 'highscore');
     document.getElementById('tab').className = 'nomap';
-    document.getElementById('layer-toggles').style.display = 'none';
 
     // Loading is finished
     LoadingService.stopLoading('#loading');
