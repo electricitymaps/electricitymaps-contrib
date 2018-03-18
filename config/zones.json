@@ -1969,6 +1969,17 @@
     },
     "timezone": null
   },
+  "US-SPP": {
+    "capacity": {},
+    "contributors": [
+      "https://github.com/systemcatch",
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SPP.fetch_production"
+    },
+    "timezone": null
+  },
   "UY": {
     "contributors": [
       "https://github.com/jarek",
