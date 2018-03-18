@@ -449,7 +449,7 @@ const zoneDefinitions = [
   {zoneName: 'US-ID', countryId: 'USA', stateId: 'US.ID', type: 'state'},
   // {zoneName: 'US-IL', countryId: 'USA', stateId: 'US.IL', type: 'state'},
   // {zoneName: 'US-IN', countryId: 'USA', stateId: 'US.IN', type: 'state'},
-  {zoneName: 'US-KS', countryId: 'USA', stateId: 'US.KS', type: 'state'},
+  // {zoneName: 'US-KS', countryId: 'USA', stateId: 'US.KS', type: 'state'},
   // {zoneName: 'US-KY', countryId: 'USA', stateId: 'US.KY', type: 'state'},
   // {zoneName: 'US-LA', countryId: 'USA', stateId: 'US.LA', type: 'state'},
   // {zoneName: 'US-MA', countryId: 'USA', stateId: 'US.MA', type: 'state'},
@@ -464,7 +464,7 @@ const zoneDefinitions = [
   {zoneName: 'US-MT', countryId: 'USA', stateId: 'US.MT', type: 'state'},
   {zoneName: 'US-NC', countryId: 'USA', stateId: 'US.NC', type: 'state'},
   // {zoneName: 'US-ND', countryId: 'USA', stateId: 'US.ND', type: 'state'},
-  {zoneName: 'US-NE', countryId: 'USA', stateId: 'US.NE', type: 'state'},
+  // {zoneName: 'US-NE', countryId: 'USA', stateId: 'US.NE', type: 'state'},
   {zoneName: 'US-NEISO', type: 'states', countryId: 'USA', states: [
     'US.CT', 'US.MA', 'US.ME', 'US.NH', 'US.RI', 'US.VT']},
   // {zoneName: 'US-NH', countryId: 'USA', stateId: 'US.NH', type: 'state'},
@@ -473,7 +473,7 @@ const zoneDefinitions = [
   {zoneName: 'US-NV', countryId: 'USA', stateId: 'US.NV', type: 'state'},
   {zoneName: 'US-NY', countryId: 'USA', stateId: 'US.NY', type: 'state'},
   // {zoneName: 'US-OH', countryId: 'USA', stateId: 'US.OH', type: 'state'},
-  {zoneName: 'US-OK', countryId: 'USA', stateId: 'US.OK', type: 'state'},
+  // {zoneName: 'US-OK', countryId: 'USA', stateId: 'US.OK', type: 'state'},
   {zoneName: 'US-OR', countryId: 'USA', stateId: 'US.OR', type: 'state'},
   // {zoneName: 'US-PA', countryId: 'USA', stateId: 'US.PA', type: 'state'},
   {zoneName: 'US-PJM', type: 'states', countryId: 'USA', states: [
@@ -481,6 +481,8 @@ const zoneDefinitions = [
   // {zoneName: 'US-RI', countryId: 'USA', stateId: 'US.RI', type: 'state'},
   {zoneName: 'US-SC', countryId: 'USA', stateId: 'US.SC', type: 'state'},
   // {zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state'},
+  {zoneName: 'US-SPP', type: 'states', countryId: 'USA', states: [
+    'US.KS', 'US.NE','US.OK']},
   {zoneName: 'US-TN', countryId: 'USA', stateId: 'US.TN', type: 'state'},
   {zoneName: 'US-TX', countryId: 'USA', stateId: 'US.TX', type: 'state'},
   {zoneName: 'US-UT', countryId: 'USA', stateId: 'US.UT', type: 'state'},
