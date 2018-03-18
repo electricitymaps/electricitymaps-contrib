@@ -237,8 +237,14 @@ if __name__ == '__main__':
     print('fetch_production(target_datetime=arrow.get("2017-12-31T12:00Z") ->')
     pprint(fetch_production(target_datetime=arrow.get('2017-12-31T12:00Z')))
 
+    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get('2007-03-13T12:00Z')))
+
     print('fetch_exchange("US-NEISO", "CA-QC") ->')
     pprint(fetch_exchange("US-NEISO", "CA-QC"))
 
     print('fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")) ->')
     pprint(fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")))
+
+    print('fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")) ->')
+    pprint(fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")))
