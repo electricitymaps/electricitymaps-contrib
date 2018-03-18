@@ -36,6 +36,8 @@ def get_json_data(target_datetime, params, session=None):
     """Fetches json data for requested params and target_datetime using a post request."""
 
     epoch_time = str(int(time.time()))
+    
+    # when target_datetime is None, arrow.get(None) will return current time
     target_datetime = arrow.get(target_datetime)
     target_ne = target_datetime.to('America/New_York')
     target_ne_day = target_ne.format('MM/DD/YYYY')
@@ -117,11 +119,6 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
       'source': 'mysource.com'
     }
     """
-    if not target_datetime:
-        target_datetime = arrow.now('America/New_York')
-    else:
-        # make sure we have an arrow object
-        target_datetime = arrow.get(target_datetime)
 
     postdata = {
         '_nstmp_chartTitle': 'Fuel+Mix+Graph',
