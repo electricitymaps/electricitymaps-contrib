@@ -876,16 +876,16 @@
   },
   "FI->RU": {
     "capacity": [
-      -160, 
+      0, 
       1560],
     "lonlat": [
-      29.733112,
-      65.422768
+      28.378,
+      60.878
     ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
-    "rotation": 90
+    "rotation": 135
   },
   "FI->SE": {
     "lonlat": [
