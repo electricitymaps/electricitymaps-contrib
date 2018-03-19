@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 """Real time parser for the state of New York."""
-import arrow
 from collections import defaultdict
 from operator import itemgetter
+from urllib.error import HTTPError
+
+import arrow
 import pandas as pd
 
 mapping = {
@@ -81,11 +83,18 @@ def data_parser(df):
 
 def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logger=None):
     """
-    Requests the last known production mix (in MW) of a given country
+    Requests the last known production mix (in MW) of a given zone
+
     Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key: used in case a parser is able to fetch multiple zones
+    session: requests session passed in order to re-use an existing session,
+      not used here due to difficulty providing it to pandas
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
+
     Return:
-    A dictionary in the form:
+    A list of dictionaries in the form:
     {
       'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
@@ -108,12 +117,19 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
     }
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        # ensure we have an arrow object
+        target_datetime = arrow.get(target_datetime)
+    else:
+        target_datetime = arrow.now('America/New_York')
 
-    ny = arrow.now('America/New_York')
-    ny_date = ny.format('YYYYMMDD')
+    ny_date = target_datetime.format('YYYYMMDD')
     mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
-    raw_data = read_csv_data(mix_url)
+    try:
+        raw_data = read_csv_data(mix_url)
+    except HTTPError:
+        # this can happen when target_datetime has no data available
+        return None
+
     clean_data = data_parser(raw_data)
 
     production_mix = []
@@ -133,12 +149,17 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
+
     Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
+    zone_key1, zone_key2: specifies which exchange to get
+    session: requests session passed in order to re-use an existing session,
+      not used here due to difficulty providing it to pandas
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
+
     Return:
-    A dictionary in the form:
+    A list of dictionaries in the form:
     {
       'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
@@ -147,29 +168,52 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     }
     where net flow is from DK into NO
     """
+    url = 'http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv'
+
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    # In the source CSV, positive is flow into NY, negative is flow out of NY.
+    # In Electricity Map, A->B means flow to B is positive.
+    if sorted_zone_keys == 'US-NEISO->US-NY':
+        direction = 1
+        relevant_exchanges = ['SCH - NE - NY', 'SCH - NPX_1385', 'SCH - NPX_CSC']
+    elif sorted_zone_keys == 'US-NY->US-PJM':
+        direction = -1
+        relevant_exchanges = ['SCH - PJ - NY', 'SCH - PJM_HTP', 'SCH - PJM_NEPTUNE', 'SCH - PJM_VFT']
+    elif sorted_zone_keys == 'CA-ON->US-NY':
+        direction = 1
+        relevant_exchanges = ['SCH - OH - NY']
+    elif sorted_zone_keys == 'CA-QC->US-NY':
+        direction = 1
+        relevant_exchanges = ['SCH - HQ_CEDARS', 'SCH - HQ - NY']
+    else:
+        raise NotImplementedError('Exchange pair not supported: {}'.format(sorted_zone_keys))
+
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        # ensure we have an arrow object
+        target_datetime = arrow.get(target_datetime)
+    else:
+        target_datetime = arrow.now('America/New_York')
+    ny_date = target_datetime.format('YYYYMMDD')
+    exchange_url = url.format(ny_date)
 
-    ny = arrow.now('America/New_York')
-    ny_date = ny.format('YYYYMMDD')
-    exchange_url = 'http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv'.format(
-        ny_date)
-    exchange_data = read_csv_data(exchange_url)
+    try:
+        exchange_data = read_csv_data(exchange_url)
+    except HTTPError:
+        # this can happen when target_datetime has no data available
+        return None
 
-    relevant_exchanges = ['SCH - NE - NY', 'SCH - NPX_1385', 'SCH - NPX_CSC']
     new_england_exs = exchange_data.loc[exchange_data['Interface Name'].isin(relevant_exchanges)]
     consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
 
-    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
-
     exchange_5min = []
     for row in consolidated_flows.itertuples():
-        flow = float(row[3])
+        flow = float(row[3]) * direction
         # Timestamp for exchange does not include seconds.
         dt = timestamp_converter(row[0] + ':00')
 
         exchange = {
-            'sortedZoneKeys': sortedcodes,
+            'sortedZoneKeys': sorted_zone_keys,
             'datetime': dt,
             'netFlow': flow,
             'source': 'nyiso.com'
@@ -183,7 +227,24 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    from pprint import pprint
     print('fetch_production() ->')
-    print(fetch_production())
+    pprint(fetch_production())
+
+    print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z")))
+
+    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
+
     print('fetch_exchange(US-NY, US-NEISO)')
-    print(fetch_exchange('US-NY', 'US-NEISO'))
+    pprint(fetch_exchange('US-NY', 'US-NEISO'))
+
+    print('fetch_exchange("US-NY", "CA-QC")')
+    pprint(fetch_exchange('US-NY', 'CA-QC'))
+
+    print('fetch_exchange("US-NY", "CA-QC", target_datetime=arrow.get("2018-03-13T12:00Z"))')
+    pprint(fetch_exchange('US-NY', 'CA-QC', target_datetime=arrow.get("2018-03-13T12:00Z")))
+
+    print('fetch_exchange("US-NY", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")))')
+    pprint(fetch_exchange('US-NY', 'CA-QC', target_datetime=arrow.get('2007-03-13T12:00Z')))
