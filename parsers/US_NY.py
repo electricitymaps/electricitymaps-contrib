@@ -10,7 +10,7 @@ import arrow
 import pandas as pd
 
 mapping = {
-    'Dual Fuel': 'unknown',
+    'Dual Fuel': 'gas',
     'Natural Gas': 'gas',
     'Nuclear': 'nuclear',
     'Other Fossil Fuels': 'unknown',
