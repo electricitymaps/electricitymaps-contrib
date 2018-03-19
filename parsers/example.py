@@ -111,6 +111,7 @@ def fetch_price(zone_key='FR', session=None, target_datetime=None,
     """Requests the last known power price of a given country
 
     Arguments:
+    ----------
     zone_key: used in case a parser is able to fetch multiple countries
     session: request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not
@@ -171,6 +172,7 @@ def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None,
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
+    ----------
     zone_key: used in case a parser is able to fetch multiple countries
     session: request session passed in order to re-use an existing session
     target_datetime: the datetime for which we want production data. If not
