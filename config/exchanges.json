@@ -510,6 +510,16 @@
     },
     "rotation": 135
   },
+  "CA-QC->US-NEISO": {
+    "lonlat": [
+      -71.737,
+      45.011
+    ],
+    "parsers": {
+      "exchange": "US_NEISO.fetch_exchange"
+    },
+    "rotation": 180
+  },
   "CA-QC->US-NY": {
     "lonlat": [
       -73.768,
