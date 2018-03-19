@@ -261,6 +261,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
   - CAISO: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
+  - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
 &nbsp;</details>
 
