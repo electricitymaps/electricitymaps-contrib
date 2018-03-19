@@ -510,6 +510,16 @@
     },
     "rotation": 135
   },
+  "CA-QC->US-NY": {
+    "lonlat": [
+      -73.768,
+      45.004
+    ],
+    "parsers": {
+      "exchange": "US_NY.fetch_exchange"
+    },
+    "rotation": 180
+  },
   "CH->DE": {
     "lonlat": [
       8.806354,
