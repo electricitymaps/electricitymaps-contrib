@@ -1967,6 +1967,15 @@
     "timezone": null
   },
   "US-NY": {
+    "_comment": "hydro incl. 1407 MW pumped storage",
+    "capacity": {
+      "gas": 22117,
+      "coal": 1011,
+      "oil": 2499,
+      "nuclear": 5375,
+      "hydro": 5658,
+      "wind": 1740
+    },
     "contributors": [
       "https://github.com/systemcatch"
     ],
