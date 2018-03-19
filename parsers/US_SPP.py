@@ -51,7 +51,7 @@ def data_processor(df, logger):
 
     # Remove leading whitespace in column headers.
     df.columns = df.columns.str.strip()
-    print(df)
+
     keys_to_remove = ['Coal Market', 'Coal Self', 'GMT MKT Interval', 'Average Actual Load',
                       'Other', 'Waste Heat']
 
@@ -138,7 +138,7 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
     return data
 
 
-# NOTE disabled until discrepancy in MISO SPP flows is resolved. 
+# NOTE disabled until discrepancy in MISO SPP flows is resolved.
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last 24 hours of power exchange (in MW) between two zones
