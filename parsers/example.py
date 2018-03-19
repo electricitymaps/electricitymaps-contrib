@@ -13,7 +13,7 @@ import requests
 
 def fetch_production(zone_key='FR', session=None,
                      target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = None):
+                     logger: logging.Logger = logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -26,12 +26,13 @@ def fetch_production(zone_key='FR', session=None,
       UTC. To convert to local timezone, you can use
       `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
       Note that `arrow.get(None)` returns UTC now.
-    logger: an instance of a `logging.Logger`. Information logged will be
-      publicly available so that correct execution of the logger can be
-      checked. All Exceptions will automatically be logged, so when something's
-      wrong, simply raise an Exception (with an explicit text). Use
-      `logger.warning` or `logger.info` for information that can useful to
-      check if the parser is working correctly.
+    logger: an instance of a `logging.Logger` that will be passed by the
+      backend. Information logged will be publicly available so that correct
+      execution of the logger can be checked. All Exceptions will automatically
+      be logged, so when something's wrong, simply raise an Exception (with an
+      explicit text). Use `logger.warning` or `logger.info` for information
+      that can useful to check if the parser is working correctly. A default
+      logger is used so that logger output can be seen when coding / debugging.
 
     Returns:
     --------
@@ -107,7 +108,7 @@ def fetch_production(zone_key='FR', session=None,
 
 
 def fetch_price(zone_key='FR', session=None, target_datetime=None,
-                logger=None):
+                logger=logging.getLogger(__name__)):
     """Requests the last known power price of a given country
 
     Arguments:
@@ -120,12 +121,13 @@ def fetch_price(zone_key='FR', session=None, target_datetime=None,
       UTC. To convert to local timezone, you can use
       `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
       Note that `arrow.get(None)` returns UTC now.
-    logger: an instance of a `logging.Logger`. Information logged will be
-      publicly available so that correct execution of the logger can be
-      checked. All Exceptions will automatically be logged, so when something's
-      wrong, simply raise an Exception (with an explicit text). Use
-      `logger.warning` or `logger.info` for information that can useful to
-      check if the parser is working correctly.
+    logger: an instance of a `logging.Logger` that will be passed by the
+      backend. Information logged will be publicly available so that correct
+      execution of the logger can be checked. All Exceptions will automatically
+      be logged, so when something's wrong, simply raise an Exception (with an
+      explicit text). Use `logger.warning` or `logger.info` for information
+      that can useful to check if the parser is working correctly. A default
+      logger is used so that logger output can be seen when coding / debugging.
 
     Returns:
     --------
@@ -167,8 +169,7 @@ def fetch_price(zone_key='FR', session=None, target_datetime=None,
 
 
 def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None,
-                   target_datetime=None,
-                   logger=None):
+                   target_datetime=None, logger=logging.getLogger(__name__)):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
@@ -181,12 +182,13 @@ def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None,
       UTC. To convert to local timezone, you can use
       `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
       Note that `arrow.get(None)` returns UTC now.
-    logger: an instance of a `logging.Logger`. Information logged will be
-      publicly available so that correct execution of the logger can be
-      checked. All Exceptions will automatically be logged, so when something's
-      wrong, simply raise an Exception (with an explicit text). Use
-      `logger.warning` or `logger.info` for information that can useful to
-      check if the parser is working correctly.
+    logger: an instance of a `logging.Logger` that will be passed by the
+      backend. Information logged will be publicly available so that correct
+      execution of the logger can be checked. All Exceptions will automatically
+      be logged, so when something's wrong, simply raise an Exception (with an
+      explicit text). Use `logger.warning` or `logger.info` for information
+      that can useful to check if the parser is working correctly. A default
+      logger is used so that logger output can be seen when coding / debugging.
 
     Returns:
     --------
@@ -219,7 +221,7 @@ def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None,
         'source': 'someservice.com',
     }
 
-    # Country codes are sorted in order to enable easier indexing in the DB
+    # Zone keys are sorted in order to enable easier indexing in the database
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
