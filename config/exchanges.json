@@ -318,7 +318,7 @@
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange"
     },
-    "rotation": -20
+    "rotation": 180
   },
   "BR-CS->BR-S": {
     "lonlat": [
