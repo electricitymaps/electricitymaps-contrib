@@ -158,6 +158,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
   - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
+  - Southwest Power Pool: [SPP](https://marketplace.spp.org/pages/generation-mix)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 &nbsp;</details>
 
@@ -376,4 +377,3 @@ from the root directory, replacing `<zone_name>` by the zone identifier of the p
 - `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
-
