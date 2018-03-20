@@ -2,6 +2,7 @@
 
 """Real time parser for the state of New York."""
 from collections import defaultdict
+from datetime import timedelta
 from operator import itemgetter
 from urllib.error import HTTPError
 
@@ -206,11 +207,22 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     new_england_exs = exchange_data.loc[exchange_data['Interface Name'].isin(relevant_exchanges)]
     consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
 
+    now = arrow.utcnow()
+
     exchange_5min = []
     for row in consolidated_flows.itertuples():
         flow = float(row[3]) * direction
         # Timestamp for exchange does not include seconds.
         dt = timestamp_converter(row[0] + ':00')
+
+        if (dt > now) and ((dt - now) < timedelta(seconds=300)):
+            # NYISO exchanges CSV (and only the exchanges CSV) includes data
+            # up to 5 minutes in the future (but only 5 minutes in the future).
+            # This also happens on their official website.
+            # Electricity Map raises error with data in the future, so skip
+            # that datapoint. If it's more than 5 minutes in the future,
+            # it's weird/unexpected and thus worthy of failure and logging.
+            continue
 
         exchange = {
             'sortedZoneKeys': sorted_zone_keys,

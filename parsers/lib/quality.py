@@ -19,10 +19,14 @@ def validate_exchange(item, k):
     if type(item['datetime']) != datetime.datetime:
         raise Exception('datetime %s is not valid for %s' %
                         (item['datetime'], k))
-    if arrow.get(item['datetime']) > arrow.now():
-        raise Exception("Data from %s can't be in the future" % k)
-    if arrow.get(item['datetime']).year < 2000:
-        raise Exception("Data from %s can't be before year 2000" % k)
+    data_time = arrow.get(item['datetime'])
+    if data_time > arrow.now():
+        raise Exception(
+            "Data from %s can't be in the future, data was %s, now is %s" %
+            (k, data_time, arrow.now()))
+    if data_time.year < 2000:
+        raise Exception("Data from %s can't be before year 2000, it was %s" %
+                        (k, data_time))
 
 
 def validate_production(obj, zone_key):
@@ -36,8 +40,11 @@ def validate_production(obj, zone_key):
     if obj.get('zoneKey', None) != zone_key:
         raise Exception("Country codes %s and %s don't match" %
                         (obj.get('zoneKey', None), zone_key))
-    if arrow.get(obj['datetime']) > arrow.now():
-        raise Exception("Data from %s can't be in the future" % zone_key)
+    data_time = arrow.get(obj['datetime'])
+    if data_time > arrow.now():
+        raise Exception(
+            "Data from %s can't be in the future, data was %s, now is %s" %
+            (zone_key, data_time, arrow.now()))
     if (obj.get('production', {}).get('unknown', None) is None and
         obj.get('production', {}).get('coal', None) is None and
         obj.get('production', {}).get('oil', None) is None and
