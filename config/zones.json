@@ -19,10 +19,6 @@
       "https://github.com/corradio"
     ],
     "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
       "production": "AR.fetch_production"
     },
     "timezone": "America/Argentina/Buenos_Aires"
@@ -160,8 +156,6 @@
     "parsers": {
       "consumption": "AX.fetch_consumption",
       "price": "ENTSOE.fetch_price",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "production": "AX.fetch_production"
     },
     "timezone": "Europe/Mariehamn"
