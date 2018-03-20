@@ -457,7 +457,7 @@ const zoneDefinitions = [
   // {zoneName: 'US-ME', countryId: 'USA', stateId: 'US.ME', type: 'state'},
   // {zoneName: 'US-MI', countryId: 'USA', stateId: 'US.MI', type: 'state'},
   {zoneName: 'US-MISO', type: 'states', countryId: 'USA', states: [
-    'US.AR', 'US.IA', 'US.IL', 'US.IN', 'US.LA', 'US.MI', 'US.MN', 'US.MO', 'US.ND', 'US.SD', 'US.WI']},
+    'US.AR', 'US.IA', 'US.IL', 'US.IN', 'US.LA', 'US.MI', 'US.MN', 'US.MO', 'US.WI']},
   // {zoneName: 'US-MN', countryId: 'USA', stateId: 'US.MN', type: 'state'},
   // {zoneName: 'US-MO', countryId: 'USA', stateId: 'US.MO', type: 'state'},
   {zoneName: 'US-MS', countryId: 'USA', stateId: 'US.MS', type: 'state'},
@@ -482,7 +482,7 @@ const zoneDefinitions = [
   {zoneName: 'US-SC', countryId: 'USA', stateId: 'US.SC', type: 'state'},
   // {zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state'},
   {zoneName: 'US-SPP', type: 'states', countryId: 'USA', states: [
-    'US.KS', 'US.NE','US.OK']},
+    'US.KS', 'US.NE','US.OK', 'US.ND', 'US.SD']},
   {zoneName: 'US-TN', countryId: 'USA', stateId: 'US.TN', type: 'state'},
   {zoneName: 'US-TX', countryId: 'USA', stateId: 'US.TX', type: 'state'},
   {zoneName: 'US-UT', countryId: 'USA', stateId: 'US.UT', type: 'state'},
