@@ -165,6 +165,10 @@
       "https://github.com/corradio"
     ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
     "timezone": "Asia/Bahrain"
@@ -215,6 +219,8 @@
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "BG.fetch_production"
     },
@@ -319,6 +325,13 @@
       "oil": 447,
       "solar": 50.9,
       "wind": 70.4
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
     },
     "contributors": [
       "https://github.com/admetny"
@@ -1041,6 +1054,8 @@
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "GB_NIR.fetch_production"
     },
@@ -1679,7 +1694,12 @@
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
-    "parsers": {"production": "RU.fetch_production"
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "RU.fetch_production"
     },
     "timezone": "Europe/Moscow"
   },
@@ -1833,6 +1853,10 @@
       "https://github.com/olivierSemet"
     ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "TR.fetch_production"
     },
     "timezone": "Europe/Istanbul"
@@ -1864,6 +1888,10 @@
       "https://github.com/MariusKroon"
     ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "UA.fetch_production"
     },
     "timezone": "Europe/Kiev"
