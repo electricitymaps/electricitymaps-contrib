@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
-import arrow
 from collections import defaultdict
+
+import arrow
 import requests
+
+from .lib.validation import validate
+
 
 url = 'http://tr.ons.org.br/Content/GetBalancoEnergetico/null'
 
@@ -72,14 +76,6 @@ def production_processor(json_data, zone_key):
     region = regions[zone_key]
     breakdown = json_data[region][u'geracao']
     for generation, val in breakdown.items():
-        # tolerance range
-        if -1 <= totals['solar'] < 0:
-            totals['solar'] = 0.0
-
-        # not tolerance range
-        if totals['solar'] < -1:
-            raise ValueError('the solar value is out of range')
-
         totals[generation] += val
 
     # BR_CS contains the Itaipu Dam.
@@ -139,6 +135,9 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
       },
       'source': 'ons.org.br'
     }
+
+    datapoint = validate(datapoint, logger,
+                         remove_negative=True, required=['hydro'], floor=1000)
 
     return datapoint
 
