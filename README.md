@@ -236,7 +236,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Russia: [Minenergo](https://minenergo.gov.ru/node/532)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Singapore: [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
+- Singapore
+  - Solar (AC): [Solar Irradiance map](https://www.ema.gov.sg/solarmap.aspx) 
+  - Other [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain:
@@ -279,6 +281,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Lithuania-Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
 - Lithuania-Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
 - Norway-Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
+- New Zealand (North Island)-New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
 - Malta-Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
 - Russia-Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
 - Spain-Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
