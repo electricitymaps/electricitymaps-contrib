@@ -1283,9 +1283,6 @@
     "contributors": [
       "https://github.com/corradio"
     ],
-    "parsers": {
-      "production": "IS.fetch_production"
-    },
     "timezone": null
   },
   "IT": {
