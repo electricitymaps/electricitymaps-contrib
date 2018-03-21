@@ -97,7 +97,7 @@ var countryCo2eqFootprint = {
 
 var exportCo2eqFootprint = {
     'CA-QC': {
-        value: 30,
+        carbonIntensity: 30,
         renewable: 0.98,
         lowCarbon: 0.98,
         source: 'StatCan CANSIM Table 127-0002 for 2011-2015',
