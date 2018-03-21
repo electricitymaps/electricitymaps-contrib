@@ -141,6 +141,10 @@
     "rotation": 90
   },
   "AUS-TAS->AUS-VIC": {
+    "capacity": [
+      -500,
+      500
+    ],
     "lonlat": [
       146.096047,
       -39.836207
