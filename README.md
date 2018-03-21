@@ -305,6 +305,11 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 ## Contribute
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 
+### Logger
+
+We have a public [logger](https://kibana.electricitymap.org/app/kibana) which shows warnings and errors for
+all parsers.
+
 ### Running locally
 
 To get started, [clone](https://help.github.com/articles/cloning-a-repository/) or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
@@ -318,6 +323,10 @@ This will watch over source file changes, and recompile if needed.
 Now that the frontend is compiled, you can run the application by running the following command in a new terminal:
 ```
 docker-compose up --build
+```
+If you encounter any errors in the build process try the following command first:
+```
+docker-compose build
 ```
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
