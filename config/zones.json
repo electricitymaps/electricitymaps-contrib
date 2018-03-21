@@ -1432,7 +1432,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "NA.fetch_production"
