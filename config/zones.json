@@ -1077,7 +1077,7 @@
       "production": "GE.fetch_production"
     },
     "timezone": "Asia/Tbilisi"
-  }, 
+  },
   "GR": {
     "capacity": {
       "biomass": 51,
@@ -1994,6 +1994,17 @@
     "parsers": {
       "production": "US_PJM.fetch_production",
       "price": "US_PJM.fetch_price"
+    },
+    "timezone": null
+  },
+  "US-SPP": {
+    "capacity": {},
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SPP.fetch_production"
     },
     "timezone": null
   },

@@ -678,11 +678,6 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
     if not len(production_dates):
         return None
-    # Only take fully observed elements
-    max_counts = max(map(lambda d: len(production_hashmap[d].keys()),
-                         production_dates))
-    production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
-                              production_dates)
 
     data = []
     for production_date in production_dates:
