@@ -95,11 +95,11 @@ var countryCo2eqFootprint = {
     }
 };
 
-var exportCo2eqFootprint = {
+var defaultExportCo2eqFootprint = {
     'CA-QC': {
         carbonIntensity: 30,
-        renewable: 0.98,
-        lowCarbon: 0.98,
+        renewableRatio: 0.98,
+        fossilFuelRatio: 1 - 0.98,
         source: 'StatCan CANSIM Table 127-0002 for 2011-2015',
         comment: 'see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7'
     }
@@ -117,7 +117,9 @@ exports.sourceOf = function(productionMode, countryKey) {
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).source;
 }
-exports.exportIntensityOf = function(zoneKey) {
-    var exportIntensity = exportCo2eqFootprint[zoneKey] || {};
-    return exportIntensity;
-}
+exports.defaultExportIntensityOf = zoneKey =>
+  (defaultExportCo2eqFootprint[zoneKey] || {}).carbonIntensity;
+exports.defaultRenewableRatioOf = zoneKey =>
+  (defaultExportCo2eqFootprint[zoneKey] || {}).renewableRatio;
+exports.defaultFossilFuelRatioOf = zoneKey =>
+  (defaultExportCo2eqFootprint[zoneKey] || {}).fossilFuelRatio;
