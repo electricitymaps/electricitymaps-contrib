@@ -1425,6 +1425,16 @@
     },
     "rotation": 90
   },
+  "US->US-CA": {
+    "lonlat": [
+      -115.846,
+      35.962
+    ],
+    "parsers": {
+      "exchange": "US_CA.fetch_exchange"
+    },
+    "rotation": -135
+  },
   "US-MISO->US-PJM": {
     "lonlat": [
       -84.803,

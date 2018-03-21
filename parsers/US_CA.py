@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
+
+from collections import defaultdict
+
 # The arrow library is used to handle datetimes
 import arrow
 # The pandas library is used to parse content through HTTP
 import pandas
+
+
+FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 
 
 def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logger=None):
@@ -39,8 +45,7 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     # Get the production from the CSV
-    csv_url = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
-    csv = pandas.read_csv(csv_url)
+    csv = pandas.read_csv(FUEL_SOURCE_CSV)
     latest_index = len(csv) - 1
     production_map = {
         'Solar': 'solar',
@@ -58,38 +63,88 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
     storage_map = {
         'Batteries': 'battery'
     }
-    dailyData = []
+    daily_data = []
     for i in range(0, latest_index + 1):
         h, m = map(int, csv['Time'][i].split(':'))
         date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
         data = {
             'zoneKey': zone_key,
-            'production': {},
-            'storage': {},
+            'production': defaultdict(float),
+            'storage': defaultdict(float),
             'source': 'caiso.com',
             'datetime': date.datetime
         }
-        for key, value in production_map.items():
-            prod = float(csv[key][i])
-            # if another mean of production created a value, sum them up
-            if value in data['production']:
-                data['production'][value] += prod
-            else:
-                data['production'][value] = prod
-        for key, value in storage_map.items():
-            storage = -float(csv[key][i])
-            # if another mean of storage created a value, sum them up
-            if value in data['production']:
-                data['storage'][value] += storage
-            else:
-                data['storage'][value] = storage
-        dailyData.append(data)
 
-    return dailyData
+        # map items from names in CAISO CSV to names used in Electricity Map
+        for ca_gen_type, mapped_gen_type in production_map.items():
+            production = float(csv[ca_gen_type][i])
+
+            # if another mean of production created a value, sum them up
+            data['production'][mapped_gen_type] += production
+
+        for ca_storage_type, mapped_storage_type in storage_map.items():
+            storage = -float(csv[ca_storage_type][i])
+
+            # if another mean of storage created a value, sum them up
+            data['storage'][mapped_storage_type] += storage
+
+        daily_data.append(data)
+
+    return daily_data
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+    """Requests the last known power exchange (in MW) between two zones
+    Arguments:
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A dictionary in the form:
+    {
+      'sortedZoneKeys': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    if sorted_zone_keys != 'US->US-CA':
+        raise NotImplementedError('Exchange pair not supported: {}'.format(sorted_zone_keys))
+
+    # CSV has imports to California as positive.
+    # Electricity Map expects A->B to indicate flow to B as positive.
+    # So values in CSV can be used as-is.
+
+    csv = pandas.read_csv(FUEL_SOURCE_CSV)
+    latest_index = len(csv) - 1
+    daily_data = []
+    for i in range(0, latest_index + 1):
+        h, m = map(int, csv['Time'][i].split(':'))
+        date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
+        data = {
+            'sortedZoneKeys': sorted_zone_keys,
+            'datetime': date.datetime,
+            'netFlow': csv['Imports'][i],
+            'source': 'caiso.com'
+        }
+
+        daily_data.append(data)
+
+    return daily_data
 
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    from pprint import pprint
     print('fetch_production() ->')
-    print(fetch_production())
+    pprint(fetch_production())
+
+    print('fetch_exchange("US-CA", "US") ->')
+    pprint(fetch_exchange("US-CA", "US"))
