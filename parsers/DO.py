@@ -64,6 +64,7 @@ thermal_plants = {
                  u'MONTE PLATA SOLAR': 'solar',
                  u'MONTE RIO': 'oil',
                  u'PALAMARA': 'oil',
+                 u'PALENQUE': 'oil',
                  u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
                  u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
                  u'PIMENTEL 1': 'oil',
