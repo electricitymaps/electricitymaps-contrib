@@ -95,6 +95,16 @@ var countryCo2eqFootprint = {
     }
 };
 
+var exportCo2eqFootprint = {
+    'CA-QC': {
+        carbonIntensity: 30,
+        renewable: 0.98,
+        lowCarbon: 0.98,
+        source: 'StatCan CANSIM Table 127-0002 for 2011-2015',
+        comment: 'see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7'
+    }
+}
+
 exports.footprintOf = function(productionMode, countryKey) {
     var defaultFootprint = defaultCo2eqFootprint[productionMode];
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
@@ -106,4 +116,8 @@ exports.sourceOf = function(productionMode, countryKey) {
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).source;
+}
+exports.exportIntensityOf = function(zoneKey) {
+    var exportIntensity = exportCo2eqFootprint[zoneKey] || {};
+    return exportIntensity;
 }
