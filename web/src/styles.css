@@ -146,7 +146,7 @@ body {
     -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
 }
 #header #header-content {
-    display: block;
+    display: flex;
     width: 100%;
     font-size: 1.0rem;
     height: 50px;
@@ -871,6 +871,28 @@ sub {
     margin-right: 0.4em;
 }
 
+.center-header {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.8rem;
+}
+
+.center-header span{
+    display: none;
+}
+
+.center-header span.visible{
+    display: inherit;
+}
+
+.center-header a{
+    color: lightblue !important;
+}
+
+.center-header a:hover{
+    text-decoration: underline !important;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
@@ -895,6 +917,9 @@ sub {
 @media (max-width: 768px) {
     #header {
         min-height: 90px; /* required for old Safari */
+    }
+    #header-content .logo {
+        margin-right: auto;
     }
     .large-screen-visible {
         display: none;

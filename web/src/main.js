@@ -226,6 +226,12 @@ moment.locale(getState().application.locale.toLowerCase());
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
+// Display randomly alternating header campaign message
+const randomBoolean = Math.random() >= 0.5;
+
+d3.select('.api-ad').classed('visible', randomBoolean);
+d3.select('.database-ad').classed('visible', !randomBoolean);
+
 // Set up co2 scales
 let co2color;
 let co2Colorbars;
