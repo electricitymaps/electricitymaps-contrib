@@ -98,6 +98,14 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
 
 
 def fetch_historical_production(target_datetime):
+    return fetch_historical_data(target_datetime)[0]
+
+
+def fetch_historical_exchange(target_datetime):
+    return fetch_historical_data(target_datetime)[1]
+
+
+def fetch_historical_data(target_datetime):
     # caiso.com provides daily data until the day before today
     # get a clean date at the beginning of yesterday
     target_date = arrow.get(target_datetime).to('US/Pacific').replace(
@@ -116,7 +124,7 @@ def fetch_historical_production(target_datetime):
         names=['Hour', 'RENEWABLES', 'NUCLEAR', 'THERMAL', 'IMPORTS', 'HYDRO'],
         skipinitialspace=True, engine='python')
 
-    daily_data = []
+    daily_data, import_data = [], []
 
     for i in range(0, 24):
         data = {
@@ -139,8 +147,16 @@ def fetch_historical_production(target_datetime):
             'datetime': target_date.shift(hours=i + 1).datetime,
         }
         daily_data.append(data)
+        import_data.append(
+            {
+                'sortedZoneKeys': 'US->US-CA',
+                'datetime': '2017-01-01T00:00:00Z',
+                'netFlow': other_resources['IMPORTS'][i],
+                'source': 'caiso.com'
+            }
+        )
 
-    return daily_data
+    return daily_data, import_data
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
@@ -160,15 +176,14 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     }
     where net flow is from DK into NO
     """
-    if target_datetime:
-        raise NotImplementedError(
-            'This parser is not yet able to parse past dates')
-
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
-
     if sorted_zone_keys != 'US->US-CA':
         raise NotImplementedError(
             'Exchange pair not supported: {}'.format(sorted_zone_keys))
+
+    if target_datetime:
+        return fetch_historical_data(target_datetime)
+
 
     # CSV has imports to California as positive.
     # Electricity Map expects A->B to indicate flow to B as positive.
