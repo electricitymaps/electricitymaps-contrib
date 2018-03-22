@@ -126,7 +126,7 @@ def fetch_historical_data(target_datetime):
     daily_data, import_data = [], []
 
     for i in range(0, 24):
-        data = {
+        daily_data.append({
             'countryCode': 'US-CA',
             'storage': {},
             'source': 'caiso.com',
@@ -144,8 +144,7 @@ def fetch_historical_data(target_datetime):
                 'unknown': other_resources['THERMAL'][i]
             },
             'datetime': target_date.shift(hours=i + 1).datetime,
-        }
-        daily_data.append(data)
+        })
         import_data.append(
             {
                 'sortedZoneKeys': 'US->US-CA',
