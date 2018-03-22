@@ -42,8 +42,7 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
     }
     """
     if target_datetime:
-        raise NotImplementedError(
-            'This parser is not yet able to parse past dates')
+        return fetch_historical_production(target_datetime)
 
     target_datetime = arrow.get(target_datetime)
 
@@ -150,7 +149,7 @@ def fetch_historical_data(target_datetime):
         import_data.append(
             {
                 'sortedZoneKeys': 'US->US-CA',
-                'datetime': '2017-01-01T00:00:00Z',
+                'datetime': target_date.shift(hours=i + 1).datetime,
                 'netFlow': other_resources['IMPORTS'][i],
                 'source': 'caiso.com'
             }
@@ -163,9 +162,10 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
+    zone_key1: the first country code
+    zone_key2: the second country code; order of the two codes in params
+      doesn't matter
+    session: request session passed in order to re-use an existing session
     Return:
     A dictionary in the form:
     {
@@ -182,7 +182,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
             'Exchange pair not supported: {}'.format(sorted_zone_keys))
 
     if target_datetime:
-        return fetch_historical_data(target_datetime)
+        return fetch_historical_exchange(target_datetime)
 
 
     # CSV has imports to California as positive.
@@ -209,7 +209,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
+    "Main method, not used by Electricity Map backend, but handy for testing"
 
     from pprint import pprint
 
