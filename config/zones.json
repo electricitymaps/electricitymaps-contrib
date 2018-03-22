@@ -949,7 +949,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Helsinki"
   },
@@ -1431,7 +1432,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "NA.fetch_production"
@@ -1582,7 +1584,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Warsaw"
   },
@@ -1740,7 +1743,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production"
+      "production": "statnett.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Stockholm"
   },

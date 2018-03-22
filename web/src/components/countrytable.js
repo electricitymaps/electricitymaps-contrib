@@ -513,13 +513,16 @@ CountryTable.prototype.data = function(arg) {
 
     // Prepare axis
     if (that._displayByEmissions) {
-        var value = d3.max(this.co2Scale.domain());
+        var maxAxisValue = d3.max(this.co2Scale.domain());
         var p = d3.precisionPrefix(
             (d3.max(this.co2Scale.domain()) - d3.min(this.co2Scale.domain())) / (this.SCALE_TICKS - 1),
-            value);
-        var f = d3.formatPrefix('.' + p, value);
+            maxAxisValue);
+        var f = d3.formatPrefix('.' + p, maxAxisValue);
         this.axis = d3.axisTop(this.co2Scale)
-            .tickFormat(function (d) { return f(d) + 't/min'; });
+            .tickFormat(function (d) { 
+                // convert to kgs if max value is below 1t
+                return maxAxisValue <= 1 ? `${d*1000} kg/min` : `${f(d)} t/min`
+                })
     }
     else {
         var value = d3.max(this.powerScale.domain()) * 1e6;
