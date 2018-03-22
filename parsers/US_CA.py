@@ -7,16 +7,16 @@ import arrow
 # The pandas library is used to parse content through HTTP
 import pandas
 
-
 FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 
 
-def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
+                     logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
+    zone_key: used in case a parser is able to fetch multiple countries
+    session: request session passed in order to re-use an existing session
 
     Return:
     A dictionary in the form:
@@ -42,8 +42,11 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
     }
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
+
+    target_datetime = arrow.get(target_datetime)
+
     # Get the production from the CSV
     csv = pandas.read_csv(FUEL_SOURCE_CSV)
     latest_index = len(csv) - 1
@@ -66,7 +69,8 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
     daily_data = []
     for i in range(0, latest_index + 1):
         h, m = map(int, csv['Time'][i].split(':'))
-        date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
+        date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m,
+                                                       second=0, microsecond=0)
         data = {
             'zoneKey': zone_key,
             'production': defaultdict(float),
@@ -93,7 +97,54 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None, logge
     return daily_data
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_historical_production(target_datetime):
+    # caiso.com provides daily data until the day before today
+    # get a clean date at the beginning of yesterday
+    target_date = arrow.get(target_datetime).to('US/Pacific').replace(
+        hour=0, minute=0, second=0, microsecond=0)
+
+    url = 'http://content.caiso.com/green/renewrpt/' + target_date.format(
+        'YYYYMMDD') + '_DailyRenewablesWatch.txt'
+
+    renewable_resources = pandas.read_table(
+        url, sep='\t\t', skiprows=2, header=None,
+        names=['Hour', 'GEOTHERMAL', 'BIOMASS', 'BIOGAS', 'SMALL HYDRO',
+               'WIND TOTAL', 'SOLAR PV', 'SOLAR THERMAL'],
+        skipfooter=27, skipinitialspace=True, engine='python')
+    other_resources = pandas.read_table(
+        url, sep='\t\t', skiprows=30, header=None,
+        names=['Hour', 'RENEWABLES', 'NUCLEAR', 'THERMAL', 'IMPORTS', 'HYDRO'],
+        skipinitialspace=True, engine='python')
+
+    daily_data = []
+
+    for i in range(0, 24):
+        data = {
+            'countryCode': 'US-CA',
+            'storage': {},
+            'source': 'caiso.com',
+            'production': {
+                'biomass': renewable_resources['BIOMASS'][i],
+                'gas': renewable_resources['BIOGAS'][i],
+                'hydro': (renewable_resources['SMALL HYDRO'][i] +
+                          other_resources['HYDRO'][i]),
+                'nuclear': other_resources['NUCLEAR'][i],
+                'solar': (renewable_resources['SOLAR PV'][i] +
+                          renewable_resources['SOLAR THERMAL'][i]),
+                'wind': renewable_resources['WIND TOTAL'][i],
+                'geothermal': renewable_resources['GEOTHERMAL'][i],
+                # this is not specified in the list,
+                'unknown': other_resources['THERMAL'][i]
+            },
+            'datetime': target_date.shift(hours=i + 1).datetime,
+        }
+        daily_data.append(data)
+
+    return daily_data
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
+                   logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     zone_key1           -- the first country code
@@ -110,12 +161,14 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     where net flow is from DK into NO
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
 
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     if sorted_zone_keys != 'US->US-CA':
-        raise NotImplementedError('Exchange pair not supported: {}'.format(sorted_zone_keys))
+        raise NotImplementedError(
+            'Exchange pair not supported: {}'.format(sorted_zone_keys))
 
     # CSV has imports to California as positive.
     # Electricity Map expects A->B to indicate flow to B as positive.
@@ -126,7 +179,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     daily_data = []
     for i in range(0, latest_index + 1):
         h, m = map(int, csv['Time'][i].split(':'))
-        date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m, second=0, microsecond=0)
+        date = arrow.utcnow().to('US/Pacific').replace(hour=h, minute=m,
+                                                       second=0, microsecond=0)
         data = {
             'sortedZoneKeys': sorted_zone_keys,
             'datetime': date.datetime,
@@ -143,6 +197,7 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     from pprint import pprint
+
     print('fetch_production() ->')
     pprint(fetch_production())
 
