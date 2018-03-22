@@ -171,7 +171,6 @@ body {
 #header-content .logo {
     display: inline;
     font-family: "Catamaran", sans-serif;
-    margin-right: auto;
 }
 #header-content .logo img {
     vertical-align: text-top;
@@ -918,6 +917,9 @@ sub {
 @media (max-width: 768px) {
     #header {
         min-height: 90px; /* required for old Safari */
+    }
+    #header-content .logo {
+        margin-right: auto;
     }
     .large-screen-visible {
         display: none;
