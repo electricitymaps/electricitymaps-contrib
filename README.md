@@ -25,7 +25,7 @@ Check the [contributing](#contribute) section for more details.
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
 **Why do you calculate the carbon intensity of *consumption*?**  
-In short, citizens should not responsible for the emissions associated with all the products they export, but only for what they consume.
+In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 
@@ -40,7 +40,7 @@ CO2 intensity on the other hand only describes where is the best place to put th
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
 
 **Is delayed data useful?**  
-While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
+While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can be used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
 **Can scheduled/assumed generation data be used?**  
 The electricitymap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
@@ -69,8 +69,8 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 
 ### Real-time electricity data sources
-&nbsp;<details><summary>Click to see the full list</summary>
 Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
+&nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
 - Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
@@ -107,6 +107,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Georgia: [GSE](http://www.gse.com.ge/home)
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Guatemala : [AMM](http://www.amm.org.gt)
@@ -157,13 +158,13 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
   - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
+  - Southwest Power Pool: [SPP](https://marketplace.spp.org/pages/generation-mix)
 - Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 &nbsp;</details>
 
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) file.
-
-&nbsp;<details><summary>Click to see the full list</summary>
+&nbsp;<details><summary>Click to see the full list of sources</summary>
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
 - Austria
@@ -197,6 +198,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Wind: [EWEA](http://www.ewea.org/fileadmin/files/library/publications/statistics/EWEA-Annual-Statistics-2015.pdf)
   - Other: [RTE](http://clients.rte-france.com/lang/an/visiteurs/vie/prod/parc_reference.jsp)
 - Germany: [BNetzA](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
+- Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
@@ -234,7 +236,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Romania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Russia: [Minenergo](https://minenergo.gov.ru/node/532)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Singapore: [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
+- Singapore
+  - Solar (AC): [Solar Irradiance map](https://www.ema.gov.sg/solarmap.aspx) 
+  - Other [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Spain:
@@ -260,6 +264,35 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
 &nbsp;</details>
 
+### Cross-border transmission capacity data sources
+Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap/blob/master/config/exchanges.json) file.
+&nbsp;<details><summary>Click to see the full list of sources</summary>  
+- Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
+- Denmark (West) <-> Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
+- Denmark (East) <-> Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
+- Denmark (East) <-> Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
+- Denmark (West) <-> Sweden: ["Konti-Skan": 550 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
+- Estonia <-> Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
+- Germany <-> Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
+- Great Britain <-> North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
+- Great Britain <-> Ireland: [“East-West Interconnector”: 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
+- Great Britain <-> France: [“Cross-Channel”: 2000 MW](https://en.wikipedia.org/wiki/NorNed)
+- Great Britain <-> Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
+- Greece <-> Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
+- Lithuania <-> Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
+- Lithuania <-> Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
+- Norway <-> Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
+- New Zealand (North Island) <-> New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
+- Malta <-> Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
+- Russia --> Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
+- Spain <-> Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
+- Sweden <-> Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
+  
+A <-> B: bidirectional operation, with power flow either "from A to B" or "from B to A"
+
+A --> B: unidirectional operation, only with power flow "from A to B"
+&nbsp;</details>
+
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
@@ -280,6 +313,10 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 ## Contribute
 Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 
+### Logger
+
+We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/1710fdd0-2460-11e8-a779-9d01de8d7a71) which shows warnings and errors for all parsers.
+
 ### Running locally
 
 To get started, [clone](https://help.github.com/articles/cloning-a-repository/) or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
@@ -290,6 +327,10 @@ docker-compose run --rm web npm run watch
 ```
 This will watch over source file changes, and recompile if needed.
 
+If you encounter any errors in the build process try the following command first:
+```
+docker-compose build
+```
 Now that the frontend is compiled, you can run the application by running the following command in a new terminal:
 ```
 docker-compose up --build
@@ -374,4 +415,3 @@ from the root directory, replacing `<zone_name>` by the zone identifier of the p
 - `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
-

@@ -23,25 +23,33 @@ generation_mapping = {
 }
 
 
-def get_json_data(session=None):
-    """Fetches json data for past 2 days using a post request."""
+def timestring_converter(time_string):
+    """Converts ISO-8601 time strings in neiso data into aware datetime objects."""
+
+    dt_naive = arrow.get(time_string)
+    dt_aware = dt_naive.replace(tzinfo='America/New_York').datetime
+
+    return dt_aware
+
+
+def get_json_data(target_datetime, params, session=None):
+    """Fetches json data for requested params and target_datetime using a post request."""
 
     epoch_time = str(int(time.time()))
-    ne = arrow.now('America/New_York')
-    today = ne.format('MM/DD/YYYY')
-    yesterday = ne.shift(days=-1).format('MM/DD/YYYY')
+    
+    # when target_datetime is None, arrow.get(None) will return current time
+    target_datetime = arrow.get(target_datetime)
+    target_ne = target_datetime.to('America/New_York')
+    target_ne_day = target_ne.format('MM/DD/YYYY')
 
     postdata = {
         '_nstmp_formDate': epoch_time,
-        '_nstmp_startDate': yesterday,
-        '_nstmp_endDate': today,
+        '_nstmp_startDate': target_ne_day,
+        '_nstmp_endDate': target_ne_day,
         '_nstmp_twodays': 'false',
-        '_nstmp_chartTitle': 'Fuel+Mix+Graph',
-        '_nstmp_requestType': 'genfuelmix',
-        '_nstmp_fuelType': 'all',
-        '_nstmp_height': '250',
         '_nstmp_showtwodays': 'false'
     }
+    postdata.update(params)
 
     s = session or requests.Session()
 
@@ -52,16 +60,7 @@ def get_json_data(session=None):
     return raw_data
 
 
-def timestring_converter(time_string):
-    """Converts ISO-8601 time strings in neiso data into aware datetime objects."""
-
-    dt_naive = arrow.get(time_string)
-    dt_aware = dt_naive.replace(tzinfo='America/New_York').datetime
-
-    return dt_aware
-
-
-def data_processer(raw_data):
+def production_data_processer(raw_data):
     """
     Takes raw json data and removes unnecessary keys.
     Separates datetime key and converts to a datetime object.
@@ -91,7 +90,12 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
+    zone_key: specifies which zone to get
+    session: request session passed in order to re-use an existing session
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
+
     Return:
     A list of dictionaries in the form:
     {
@@ -115,11 +119,16 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
       'source': 'mysource.com'
     }
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    get_json = get_json_data()
-    points = data_processer(get_json)
+    postdata = {
+        '_nstmp_chartTitle': 'Fuel+Mix+Graph',
+        '_nstmp_requestType': 'genfuelmix',
+        '_nstmp_fuelType': 'all',
+        '_nstmp_height': '250'
+    }
+
+    production_json = get_json_data(target_datetime, postdata, session)
+    points = production_data_processer(production_json)
 
     # Hydro pumped storage is included within the general hydro category.
     production_mix = []
@@ -138,8 +147,104 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
     return production_mix
 
 
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+    """Requests the last known power exchange (in MW) between two zones
+
+    Arguments:
+    zone_key1, zone_key2: specifies which exchange to get
+    session (optional): request session passed in order to re-use an existing session
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
+
+    Return:
+    A list of dictionaries in the form:
+    [{
+      'sortedZoneKeys': 'CA-QC->US-NEISO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }]
+    """
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    # For directions, note that ISO-NE always reports its import as negative
+
+    if sorted_zone_keys == 'CA-NB->US-NEISO':
+        # CA-NB->US-NEISO means import to NEISO should be positive
+        multiplier = -1
+
+        postdata = {
+            '_nstmp_zone0': '4010'  # ".I.SALBRYNB345 1"
+        }
+
+    elif sorted_zone_keys == "CA-QC->US-NEISO":
+        # CA-QC->US-NEISO means import to NEISO should be positive
+        multiplier = -1
+
+        postdata = {
+            '_nstmp_zone0': '4012',  # ".I.HQ_P1_P2345 5"
+            '_nstmp_zone1': '4013'  # ".I.HQHIGATE120 2"
+        }
+
+    elif sorted_zone_keys == 'US-NEISO->US-NY':
+        # US-NEISO->US-NY means import to NEISO should be negative
+        multiplier = 1
+
+        postdata = {
+            '_nstmp_zone0': '4014',  # ".I.SHOREHAM138 99"
+            '_nstmp_zone1': '4017',  # ".I.NRTHPORT138 5"
+            '_nstmp_zone2': '4011'  # ".I.ROSETON 345 1"
+        }
+
+    else:
+        raise Exception('Exchange pair not supported: {}'.format(sorted_zone_keys))
+
+    postdata['_nstmp_requestType'] = 'externalflow'
+
+    exchange_data = get_json_data(target_datetime, postdata, session)
+
+    summed_exchanges = defaultdict(int)
+    for exchange_key, exchange_values in exchange_data.items():
+        # sum up values from separate "exchanges" for the same date.
+        # this works because the timestamp of exchanges is always reported
+        # in exact 5-minute intervals by the API,
+        # e.g. "2018-03-18T00:05:00.000-04:00"
+        for datapoint in exchange_values:
+            dt = timestring_converter(datapoint['BeginDate'])
+            summed_exchanges[dt] += datapoint['Actual']
+
+    result = [
+        {
+            'datetime': timestamp,
+            'sortedZoneKeys': sorted_zone_keys,
+            'netFlow': value * multiplier,
+            'source': 'iso-ne.com'
+        }
+        for timestamp, value in summed_exchanges.items()
+    ]
+
+    return result
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    from pprint import pprint
     print('fetch_production() ->')
-    print(fetch_production())
+    pprint(fetch_production())
+
+    print('fetch_production(target_datetime=arrow.get("2017-12-31T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get('2017-12-31T12:00Z')))
+
+    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get('2007-03-13T12:00Z')))
+
+    print('fetch_exchange("US-NEISO", "CA-QC") ->')
+    pprint(fetch_exchange("US-NEISO", "CA-QC"))
+
+    print('fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")) ->')
+    pprint(fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2017-12-31T12:00Z")))
+
+    print('fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")) ->')
+    pprint(fetch_exchange("US-NEISO", "CA-QC", target_datetime=arrow.get("2007-03-13T12:00Z")))

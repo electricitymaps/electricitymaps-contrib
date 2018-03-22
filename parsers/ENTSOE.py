@@ -117,6 +117,10 @@ ENTSOE_DOMAIN_MAPPINGS = {
 ENTSOE_EIC_MAPPING = {
     'DK-DK1': '10Y1001A1001A796',
     'DK-DK2': '10Y1001A1001A796',
+    'FI': '10YFI-1--------U',
+    'PL': '10YPL-AREA-----S',
+    'SE': '10YSE-1--------K',
+    # TODO: ADD DE
 }
 
 # Some exchanges require specific domains
@@ -124,6 +128,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'DE->DK-DK1': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
     'DE->DK-DK2': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
+    'BY->UA': [ENTSOE_DOMAIN_MAPPINGS['BY'], '10Y1001C--00003F']
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
@@ -154,6 +159,76 @@ ENTSOE_UNITS_TO_ZONE = {
     'Kyndbyvaerket 22': 'DK-DK2',
     'Roedsand 1': 'DK-DK2',
     'Roedsand 2': 'DK-DK2',
+    # FI
+    'Alholmens B2': 'FI',
+    'Haapavesi B1': 'FI',
+    'Kaukaan Voima G10': 'FI',
+    'Keljonlahti B1': 'FI',
+    'Loviisa 1 G11': 'FI',
+    'Loviisa 1 G12': 'FI',
+    'Loviisa 2 G21': 'FI',
+    'Loviisa 2 G22': 'FI',
+    'Olkiluoto 1 B1': 'FI',
+    'Olkiluoto 2 B2': 'FI',
+    'Toppila B2': 'FI',
+    # SE
+    'Bastusel G1': 'SE',
+    'Forsmark block 1 G11': 'SE',
+    'Forsmark block 1 G12': 'SE',
+    'Forsmark block 2 G21': 'SE',
+    'Forsmark block 2 G22': 'SE',
+    'Forsmark block 3 G31': 'SE',
+    'Gallejaur G1': 'SE',
+    'Gallejaur G2': 'SE',
+    'Gasturbiner Halmstad G12': 'SE',
+    'HarsprÃ¥nget G1': 'SE',
+    'HarsprÃ¥nget G2': 'SE',
+    'HarsprÃ¥nget G4': 'SE',
+    'HarsprÃ¥nget G5': 'SE',
+    'KVV Västerås G3': 'SE',
+    'KVV1 VÃ¤rtaverket': 'SE',
+    'KVV6 VÃ¤rtaverket ': 'SE',
+    'KVV8 VÃ¤rtaverket': 'SE',
+    'Karlshamn G1': 'SE',
+    'Karlshamn G2': 'SE',
+    'Karlshamn G3': 'SE',
+    'Letsi G1': 'SE',
+    'Letsi G2': 'SE',
+    'Letsi G3': 'SE',
+    'Ligga G3': 'SE',
+    'Messaure G1': 'SE',
+    'Messaure G2': 'SE',
+    'Messaure G3': 'SE',
+    'Oskarshamn G1Ö+G1V': 'SE',
+    'Oskarshamn G3': 'SE',
+    'Porjus G11': 'SE',
+    'Porjus G12': 'SE',
+    'Porsi G3': 'SE',
+    'Ringhals block 1 G11': 'SE',
+    'Ringhals block 1 G12': 'SE',
+    'Ringhals block 2 G21': 'SE',
+    'Ringhals block 2 G22': 'SE',
+    'Ringhals block 3 G31': 'SE',
+    'Ringhals block 3 G32': 'SE',
+    'Ringhals block 4 G41': 'SE',
+    'Ringhals block 4 G42': 'SE',
+    'Ritsem G1': 'SE',
+    'Rya KVV': 'SE',
+    'Seitevare G1': 'SE',
+    'Stalon G1': 'SE',
+    'Stenungsund B3': 'SE',
+    'Stenungsund B4': 'SE',
+    'Stornorrfors G1': 'SE',
+    'Stornorrfors G2': 'SE',
+    'Stornorrfors G3': 'SE',
+    'Stornorrfors G4': 'SE',
+    'TrÃ¤ngslet G1': 'SE',
+    'TrÃ¤ngslet G2': 'SE',
+    'TrÃ¤ngslet G3': 'SE',
+    'Uppsala KVV': 'SE',
+    'Vietas G1': 'SE',
+    'Vietas G2': 'SE',
+    'Ãbyverket Ãrebro': 'SE',
 }
 
 
@@ -677,11 +752,6 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
     if not len(production_dates):
         return None
-    # Only take fully observed elements
-    max_counts = max(map(lambda d: len(production_hashmap[d].keys()),
-                         production_dates))
-    production_dates = filter(lambda d: len(production_hashmap[d].keys()) == max_counts,
-                              production_dates)
 
     data = []
     for production_date in production_dates:

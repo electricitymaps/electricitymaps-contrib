@@ -23,6 +23,9 @@ const translation = require(__dirname + '/src/helpers/translation');
 const app = express();
 const server = http.Server(app);
 
+// Constants
+const STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
+
 // * Common
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
@@ -32,9 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// * Static and templating
-const STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
-app.use(express.static(STATIC_PATH, {etag: true, maxAge: isProduction ? '24h': '0'}));
+// * Templating
 app.set('view engine', 'ejs');
 
 // * i18n
@@ -186,11 +187,18 @@ app.get('/', (req, res) => {
   }
 });
 app.get('/v1/*', (req, res) =>
-  res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl)
-);
+  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.get('/v2/*', (req, res) =>
-  res.redirect(301, 'https://api.electricitymap.org' + req.originalUrl)
-);
+  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.all('/dist/*.map', (req, res, next) => {
+  if (req.headers['user-agent'] !== 'opbeat-sourcemaps-fetcher/1.0') {
+    return res.status(401).json({ error: 'unauthorized' });
+  }
+  return next();
+});
+
+// Static routes (need to be declared at the end)
+app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
 
 // Start the application
 server.listen(8000, () => {

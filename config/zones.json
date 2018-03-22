@@ -165,6 +165,10 @@
       "https://github.com/corradio"
     ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
     "timezone": "Asia/Bahrain"
@@ -215,6 +219,8 @@
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "BG.fetch_production"
     },
@@ -319,6 +325,13 @@
       "oil": 447,
       "solar": 50.9,
       "wind": 70.4
+    },
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
     },
     "contributors": [
       "https://github.com/admetny"
@@ -936,7 +949,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Helsinki"
   },
@@ -1041,10 +1055,29 @@
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "GB_NIR.fetch_production"
     },
     "timezone": null
+  },
+  "GE": {
+    "_comment": "source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal",
+    "capacity": {
+      "gas": 925,
+      "hydro": 3152,
+      "nuclear": 0,
+      "wind": 20
+    },
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "GE.fetch_production"
+    },
+    "timezone": "Asia/Tbilisi"
   },
   "GR": {
     "capacity": {
@@ -1251,9 +1284,6 @@
     "contributors": [
       "https://github.com/corradio"
     ],
-    "parsers": {
-      "production": "IS.fetch_production"
-    },
     "timezone": null
   },
   "IT": {
@@ -1402,7 +1432,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "NA.fetch_production"
@@ -1553,7 +1584,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Warsaw"
   },
@@ -1662,7 +1694,12 @@
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
-    "parsers": {"production": "RU.fetch_production"
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "RU.fetch_production"
     },
     "timezone": "Europe/Moscow"
   },
@@ -1706,7 +1743,8 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production"
+      "production": "statnett.fetch_production",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Stockholm"
   },
@@ -1725,11 +1763,14 @@
   "SG": {
     "capacity": {
       "biomass": 257,
-      "gas": 10344
+      "gas": 10344,
+      "solar": 110
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "price": "SG.fetch_price",
@@ -1816,6 +1857,10 @@
       "https://github.com/olivierSemet"
     ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "TR.fetch_production"
     },
     "timezone": "Europe/Istanbul"
@@ -1847,6 +1892,10 @@
       "https://github.com/MariusKroon"
     ],
     "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
       "production": "UA.fetch_production"
     },
     "timezone": "Europe/Kiev"
@@ -1949,6 +1998,17 @@
     "parsers": {
       "production": "US_PJM.fetch_production",
       "price": "US_PJM.fetch_price"
+    },
+    "timezone": null
+  },
+  "US-SPP": {
+    "capacity": {},
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SPP.fetch_production"
     },
     "timezone": null
   },

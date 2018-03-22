@@ -95,6 +95,45 @@ var countryCo2eqFootprint = {
     }
 };
 
+var defaultExportCo2eqFootprint = {
+    'AZ': {
+        carbonIntensity: 470,
+        renewableRatio: 0.07,
+        fossilFuelRatio: 0.92,
+        source: 'IEA yearly data for 2015',
+        url: 'https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015'
+    },
+    'CA-NB': {
+        carbonIntensity: 300,
+        renewableRatio: 0.27,
+        fossilFuelRatio: 0.40,
+        source: 'Canada NEB yearly data for 2016',
+        url: 'https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html'
+    },
+    'CA-QC': {
+        carbonIntensity: 30,
+        renewableRatio: 0.98,
+        fossilFuelRatio: 1 - 0.98,
+        source: 'StatCan CANSIM Table 127-0002 for 2011-2015',
+        comment: 'see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7',
+        comment2: 'not using NEB data here since the NEB resolution is 1% which makes a difference at these scales'
+    },
+    'ZA': {
+        carbonIntensity: 750,
+        renewableRatio: 0.03,
+        fossilFuelRatio: 0.92,
+        source: 'IEA yearly data for 2015',
+        url: 'https://www.iea.org/statistics/statisticssearch/report/?country=SOUTHAFRIC&product=electricityandheat&year=2015'
+    },
+    'ZM': {
+        carbonIntensity: 50,
+        renewableRatio: 0.97,
+        fossilFuelRatio: 0.03,
+        source: 'IEA yearly data for 2015',
+        url: 'https://www.iea.org/statistics/statisticssearch/report/?country=ZAMBIA&product=electricityandheat&year=2015'
+    }
+}
+
 exports.footprintOf = function(productionMode, countryKey) {
     var defaultFootprint = defaultCo2eqFootprint[productionMode];
     var countryFootprint = countryCo2eqFootprint[countryKey] || function () { };
@@ -107,3 +146,9 @@ exports.sourceOf = function(productionMode, countryKey) {
     var item = countryFootprint(productionMode) || defaultFootprint;
     return (item || {}).source;
 }
+exports.defaultExportIntensityOf = zoneKey =>
+  (defaultExportCo2eqFootprint[zoneKey] || {}).carbonIntensity;
+exports.defaultRenewableRatioOf = zoneKey =>
+  (defaultExportCo2eqFootprint[zoneKey] || {}).renewableRatio;
+exports.defaultFossilFuelRatioOf = zoneKey =>
+  (defaultExportCo2eqFootprint[zoneKey] || {}).fossilFuelRatio;

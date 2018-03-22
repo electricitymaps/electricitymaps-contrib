@@ -61,11 +61,13 @@ module.exports = (state = initialDataState, action) => {
         const history = state.histories[k];
         const lastHistoryMoment = moment(history[history.length - 1].stateDatetime).utc();
         const stateMoment = moment(action.payload.datetime).utc();
-        if (lastHistoryMoment.add(15, 'minutes') <= stateMoment) {
-          console.log(lastHistoryMoment.toISOString(), stateMoment.toISOString())
+        if (lastHistoryMoment.add(15, 'minutes').isBefore(stateMoment)) {
           delete newState.histories[k];
         }
       });
+
+      // Set date
+      newGrid.datetime = action.payload.datetime;
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {

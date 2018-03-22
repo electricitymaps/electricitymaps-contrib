@@ -81,6 +81,11 @@ function dispatchApplication(key, value) {
 HistoryState.parseInitial(window.location.search);
 const applicationState = HistoryState.getStateFromHistory();
 Object.keys(applicationState).forEach((k) => {
+  if (k === 'selectedZoneName' &&
+    Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
+    // The selectedZoneName doesn't exist, so don't update it
+    return;
+  }
   dispatchApplication(k, applicationState[k]);
 });
 
@@ -311,7 +316,6 @@ try {
     dispatchApplication('webglsupported', false);
     dispatchApplication('showPageState', 'highscore');
     document.getElementById('tab').className = 'nomap';
-    document.getElementById('layer-toggles').style.display = 'none';
 
     // Loading is finished
     LoadingService.stopLoading('#loading');
@@ -434,9 +438,7 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      if (!getState().application.selectedZoneName) {
         windColorbar.currentMarker(Math.sqrt(u * u + v * v));
-      }
     }
   } else {
     windColorbar.currentMarker(undefined);
@@ -447,9 +449,7 @@ function mapMouseOver(lonlat) {
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       const val = grib.getInterpolatedValueAtLonLat(lonlat,
         now, solar.forecasts[0], solar.forecasts[1]);
-      if (!getState().application.selectedZoneName) {
         solarColorbar.currentMarker(val);
-      }
     }
   } else {
     solarColorbar.currentMarker(undefined);
@@ -871,8 +871,8 @@ function renderCountryList(state) {
   countryListSelector.select('.flag')
     .attr('src', d => flags.flagUri(d.countryCode, 16));
   countryListSelector.on('click', (d) => {
-    dispatchApplication('selectedZoneName', d.countryCode);
     dispatchApplication('showPageState', 'country');
+    dispatchApplication('selectedZoneName', d.countryCode);
   });
 }
 function renderHistory(state) {
@@ -920,7 +920,7 @@ function renderHistory(state) {
       // Max export
       d3.min(d3.entries(d.exchange), o =>
         Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-      )
+      ) || 0
       // Max storage
       // ?
     )
@@ -930,11 +930,11 @@ function renderHistory(state) {
       // Max import
       d3.max(d3.entries(d.exchange), o =>
         Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-      ),
+      ) || 0,
       // Max production
       d3.max(d3.entries(d.production), o =>
         Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
-      )
+      ) || 0
     )
   );
 
@@ -1064,6 +1064,27 @@ function routeToPage(pageName, state) {
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
 }
+function tryFetchHistory(state) {
+  const { selectedZoneName } = state.application;
+  if (state.application.customDate) {
+    console.error('Can\'t fetch history when a custom date is provided!');
+  } else if (!state.data.histories[selectedZoneName]) {
+    LoadingService.startLoading('.country-history .loading');
+    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
+      LoadingService.stopLoading('.country-history .loading');
+      if (err) { return console.error(err); }
+      if (!obj || !obj.data) {
+        return console.warn(`Empty history received for ${selectedZoneName}`);
+      }
+      // Save to local cache
+      return dispatch({
+        payload: obj.data,
+        zoneName: selectedZoneName,
+        type: 'HISTORY_DATA',
+      });
+    });
+  }
+}
 
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
@@ -1100,31 +1121,18 @@ observe(state => state.application.selectedZoneName, (k, state) => {
   renderHistory(state);
 
   // Fetch history if needed
-  const { selectedZoneName } = state.application;
-  if (getState().application.customDate) {
-    console.error('Can\'t fetch history when a custom date is provided!');
-  } else if (!state.data.histories[selectedZoneName]) {
-    LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
-      LoadingService.stopLoading('.country-history .loading');
-      if (err) { return console.error(err); }
-      if (!obj || !obj.data) {
-        console.warn(`Empty history received for ${selectedZoneName}`);
-      } else {
-        // Save to local cache
-        return dispatch({
-          payload: obj.data,
-          zoneName: selectedZoneName,
-          type: 'HISTORY_DATA',
-        });
-      }
-    });
-  }
+  tryFetchHistory(state);
 });
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
   if (state.application.showPageState === 'country') {
     renderHistory(state);
+  }
+  // If history was cleared by the grid data for the currently selected country,
+  // try to refetch it.
+  const { selectedZoneName } = state.application;
+  if (selectedZoneName && !state.data.histories[selectedZoneName]) {
+    tryFetchHistory(state);
   }
 });
 // Observe for index change (for example by history graph)
@@ -1200,8 +1208,6 @@ observe(state => state.application.legendVisible, (legendVisible, state) => {
   d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
   d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
 })
-
-
 
 // ** START
 

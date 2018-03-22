@@ -24,7 +24,6 @@ const initialApplicationState = {
   solarEnabled: Cookies.get('solarEnabled') === 'true' || false,
   useRemoteEndpoint: document.domain === '' || isLocalhost,
   windEnabled: Cookies.get('windEnabled') === 'true' || false,
-  
 
   // TODO(olc): refactor this state
   showPageState: 'map',
@@ -48,6 +47,18 @@ const applicationReducer = (state = initialApplicationState, action) => {
       }
 
       return newState;
+    }
+
+    case 'GRID_DATA': {
+      if (Object.keys(action.payload.countries).indexOf(state.selectedZoneName) === -1) {
+        // The selectedZoneName doesn't exist anymore, we need to reset it
+        // TODO(olc): the page state should be inferred from selectedZoneName
+        return Object.assign(state, {
+          selectedZoneName: undefined,
+          showPageState: state.pageToGoBackTo || 'map',
+        });
+      }
+      return state;
     }
 
     default:
