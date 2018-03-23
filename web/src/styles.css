@@ -545,6 +545,7 @@ body {
 .mapboxgl-ctrl-group > button {
     width: 35px !important;
     height: 35px !important;
+    background-size: 100% 100%;
 }
 
 
