@@ -130,8 +130,8 @@ def exchange_processor(text, exchange):
     utility = exchange_mapping[exchange]
 
     try:
-        pattern = re.escape(utility) + r": -?(\d+\.\d\d)"
-        val = re.search(pattern, text).group(1)
+        pattern = re.escape(utility) + r"([\D^-]*?)-?(\d+\.\d\d)"
+        val = re.search(pattern, text).group(2)
         flow = float(val)
     except (AttributeError, ValueError) as e:
         raise Exception("Exchange {} cannot be read.".format(exchange)) from e
