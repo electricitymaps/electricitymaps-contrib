@@ -267,11 +267,13 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 ### Cross-border transmission capacity data sources
 Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap/blob/master/config/exchanges.json) file.
 &nbsp;<details><summary>Click to see the full list of sources</summary>  
+- Åland <-> Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf) 
 - Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
 - Denmark (West) <-> Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
 - Denmark (East) <-> Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
 - Denmark (East) <-> Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
-- Denmark (West) <-> Sweden: ["Konti-Skan": 550 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
+- Denmark (West) <-> Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
 - Estonia <-> Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
 - Germany <-> Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
 - Great Britain <-> North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
