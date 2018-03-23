@@ -500,7 +500,7 @@ body {
 .layer-buttons-container {
     position: absolute;
     right: 10px;
-    top: 80px;
+    top: 90px;
     display: flex;
     flex-direction: column;
 }
@@ -509,12 +509,12 @@ body {
     background-color: #fff;
     border-radius: 7px;
     box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 10px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 57% 57%;
+    background-size: 58% 57%;
     border: none;
     outline: none;
     box-sizing: border-box;
@@ -541,6 +541,11 @@ body {
     background-image: url(../images/weather/sun_active.svg);
 }
 
+/* override mapbox styling */
+.mapboxgl-ctrl-group > button {
+    width: 35px !important;
+    height: 35px !important;
+}
 
 
 /* ** LEGEND ** */
@@ -949,3 +954,4 @@ sub {
         margin-left: 80px;
     }
 }
+
