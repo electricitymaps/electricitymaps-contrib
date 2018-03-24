@@ -128,7 +128,7 @@ def exchange_processor(text, exchange, logger):
     """
 
     utility = exchange_mapping[exchange]
-    # ([\D]*?)([-+]?\d+\.\d\d)
+
     try:
         pattern = re.escape(utility) + r"([\D]*?)([-+]?\d+\.\d\d)"
         val = re.search(pattern, text).group(2)
