@@ -121,19 +121,21 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
     return data
 
 
-def exchange_processor(text, exchange):
+def exchange_processor(text, exchange, logger):
     """
     Takes text produced from OCR and extracts exchange flow.
     Returns a float or None.
     """
 
     utility = exchange_mapping[exchange]
-
+    # ([\D]*?)([-+]?\d+\.\d\d)
     try:
-        pattern = re.escape(utility) + r"([\D^-]*?)-?(\d+\.\d\d)"
+        pattern = re.escape(utility) + r"([\D]*?)([-+]?\d+\.\d\d)"
         val = re.search(pattern, text).group(2)
         flow = float(val)
     except (AttributeError, ValueError) as e:
+        logger.warning("""{} regex match failed on the following text.
+                          {}""".format(exchange, text))
         raise Exception("Exchange {} cannot be read.".format(exchange)) from e
 
     return flow
@@ -165,9 +167,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
                                    logger=logger)
 
     if sorted_codes == 'NA->ZA':
-        flow = exchange_processor(raw_text, 'NA->ZA')
+        flow = exchange_processor(raw_text, 'NA->ZA', logger=logger)
     elif sorted_codes == 'NA->ZM':
-        flow = exchange_processor(raw_text, 'NA->ZM')
+        flow = exchange_processor(raw_text, 'NA->ZM', logger=logger)
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 
