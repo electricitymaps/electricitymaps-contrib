@@ -152,6 +152,7 @@ co2Sub = function(str) {
 
                 <div class="panel left-panel">
 
+
                     <div class="left-panel-info">
                         <div class="left-panel-initial-text">
                             <p>
@@ -164,7 +165,32 @@ co2Sub = function(str) {
                                 <span style="font-size: 1.2em; color: white;"><i><%- __('panel-initial-text.tip') %> ⟶</i></span>
                             </p>
                         </div>
+                        <hr />
+                    </div>
 
+                    <div class="left-panel-highscore">
+                        <div class="left-panel-toolbar large-screen-visible">
+                            <div class="left-panel-toolbar-title">
+                                <span id="left-panel-highscore-back">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </span>
+                                <!-- <%- __('rankings-panel.country-ranking') %> -->
+                            </div>
+                            <div class="left-panel-toolbar-right-placeholder"></div>
+                            
+                        </div>
+
+                        <div class="country-search-bar">
+                            <input placeholder="<%- __('rankings-panel.search') %>"></input>
+                        </div>
+
+                        <div class="country-picker-container">
+                            <p></p>
+                        </div>
+
+                    </div>
+
+                    <div class="left-panel-info">
                         <div>
                             <hr />
                             <p>
@@ -202,9 +228,6 @@ co2Sub = function(str) {
                         </div>
 
                         <div class="country-panel">
-
-
-
                             <div class="country-table-header">
                                 <div class="country-table-header-inner country-col-headlines">
                                         <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>  
@@ -283,25 +306,6 @@ co2Sub = function(str) {
                         </div>
                     </div>
 
-                    <div class="left-panel-highscore">
-                        <div class="left-panel-toolbar large-screen-visible">
-                            <div class="left-panel-toolbar-title">
-                                <span id="left-panel-highscore-back">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </span>
-                                <%- __('rankings-panel.country-ranking') %>
-                            </div>
-                            <div class="left-panel-toolbar-right-placeholder"></div>
-                        </div>
-
-                        <div class="country-search-bar">
-                            <input placeholder="<%- __('rankings-panel.search') %>"></input>
-                        </div>
-
-                        <div class="country-picker-container">
-                            <p></p>
-                        </div>
-                    </div>
 
                     <div class="left-panel-social">
                         <p>

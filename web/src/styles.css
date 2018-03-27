@@ -99,13 +99,12 @@ line, path {
 .country-history .loading {
     background-size: 1.7rem;
 }
-body {
+html, body, #main {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
 #main {
     position: fixed; /* This is done in order to ensure that dragging will not affect the body */
     width: 100vw;
-    height: inherit;
     display: flex;
     flex-direction: column; /* children will be stacked vertically */
     align-items: stretch; /* force children to take 100% width */
@@ -201,7 +200,7 @@ body {
     align-items: stretch;
     position: relative;
     overflow-y: auto;
-    flex-grow: 1; /* take available vertical space */
+    flex: 1 1 auto;
 }
 
 .map-layer {
@@ -237,6 +236,8 @@ body {
     -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     z-index: 1;
+    display: flex;
+    flex-direction: column;
 
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -691,6 +692,14 @@ div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
+.left-panel-highscore {
+    display:flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: -1rem;
+    overflow-y: hidden;
+}
+
 .country-search-bar {
     padding: 10px 10px 10px 0px;
 }
@@ -707,6 +716,7 @@ div.highscore-button:hover {
 }
 
 .country-picker-container {
+    overflow-y: auto;
 }
 .country-picker-container p {
     margin: -0.25rem 0 0;
@@ -954,5 +964,16 @@ sub {
     .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
         margin-left: 80px;
     }
+}
+
+/* custom scrollbars in chrome*/
+div::-webkit-scrollbar {
+    width: 6px;
+}
+div::-webkit-scrollbar-track-piece {
+    background: #464646;
+}
+div::-webkit-scrollbar-thumb {
+    background: #888;
 }
 

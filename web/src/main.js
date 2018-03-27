@@ -1019,14 +1019,18 @@ function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
   d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
+  d3.selectAll(`.left-panel .left-panel-highscore`).style('display', undefined);
 
   // Hide info screen on large screen only
   d3.selectAll('.left-panel .left-panel-info')
-    // Only show on info or map
-    .style('display', (pageName === 'info' || pageName === 'map') ? undefined : 'none')
-    // but hide for small screens on all but info
+    .style('display', (pageName !== 'country' ) ? undefined : 'none')
+    // hide info screen on small screens on all views but info
     .classed('large-screen-visible', pageName !== 'info');
 
+  // hide rankings list from info view on small screens
+  d3.selectAll('.left-panel .left-panel-highscore')
+    .classed('large-screen-visible', pageName !== 'highscore')
+    
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
