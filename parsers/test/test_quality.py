@@ -2,8 +2,8 @@
 
 """Tests for quality.py."""
 import unittest
-from electricitymap.parsers.lib.quality import validate_consumption, validate_exchange, validate_production
-from electricitymap.parsers.test.mocks.quality_check import *
+from parsers.lib.quality import validate_consumption, validate_exchange, validate_production
+from parsers.test.mocks.quality_check import *
 
 
 class ConsumptionTestCase(unittest.TestCase):
