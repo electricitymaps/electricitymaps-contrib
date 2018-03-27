@@ -1,4 +1,5 @@
 import datetime
+import warnings
 
 import arrow
 
@@ -36,14 +37,17 @@ def validate_production(obj, zone_key):
     if 'datetime' not in obj:
         raise ValidationError(
             'datetime was not returned for %s' % zone_key)
-    if 'zoneKey' not in obj:
+    if 'countryCode' in obj:
+        warnings.warn('object has field `countryCode`. It should have '
+                      '`zoneKey` instead. In {}'.format(obj))
+    if 'zoneKey' not in obj and 'countryCode' not in obj:
         raise ValidationError('zoneKey was not returned for %s' % zone_key)
-    if type(obj['datetime']) != datetime.datetime:
+    if not isinstance(type(obj['datetime']), datetime.datetime):
         raise ValidationError('datetime %s is not valid for %s' %
                               (obj['datetime'], zone_key))
-    if obj.get('zoneKey', None) != zone_key:
-        raise ValidationError("Country codes %s and %s don't match" %
-                              (obj.get('zoneKey', None), zone_key))
+    if (obj.get('zoneKey', None) or obj.get('countryCode', None)) != zone_key:
+        raise ValidationError("Zone keys %s and %s don't match in %s" %
+                              (obj.get('zoneKey', None), zone_key, obj))
     data_time = arrow.get(obj['datetime'])
     if data_time > arrow.now():
         raise ValidationError(

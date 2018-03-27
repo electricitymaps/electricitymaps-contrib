@@ -127,7 +127,7 @@ def fetch_historical_data(target_datetime):
 
     for i in range(0, 24):
         daily_data.append({
-            'countryCode': 'US-CA',
+            'zoneKey': 'US-CA',
             'storage': {},
             'source': 'caiso.com',
             'production': {
