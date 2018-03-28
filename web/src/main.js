@@ -3,7 +3,9 @@
 import ZoneMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
+import dispatchApplication from './helpers/dispatcher';
 import CircularGauge from './components/circulargauge';
+import ZoneList from './components/zonelist';
 
 // Libraries
 const d3 = Object.assign(
@@ -65,17 +67,6 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
-function dispatchApplication(key, value) {
-  // Do not dispatch unnecessary events
-  if (getState().application[key] === value) {
-    return;
-  }
-  dispatch({
-    key,
-    value,
-    type: 'APPLICATION_STATE_UPDATE',
-  });
-}
 
 // Set state depending on URL params
 HistoryState.parseInitial(window.location.search);
@@ -144,8 +135,8 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-// TODO: Move to component
-let countryListSelector;
+const zoneList = new ZoneList('.country-picker-container p');
+
 
 // Initialise mobile app (cordova)
 const app = {
@@ -232,6 +223,8 @@ const randomBoolean = Math.random() >= 0.5;
 d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
+
+
 // Set up co2 scales
 let co2color;
 let co2Colorbars;
@@ -252,12 +245,8 @@ function updateCo2Scale() {
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-  if (countryListSelector) {
-    countryListSelector
-      .select('div.emission-rect')
-      .style('background-color', d =>
-        (d.co2intensity ? co2color(d.co2intensity) : 'gray'));
-  }
+
+  zoneList.setCo2ColorScale(co2color);
 }
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', () => {
@@ -736,7 +725,7 @@ function toggleSolar() {
 d3.select('.solar-button').on('click', toggleSolar);
 
 // Legend 
-function toggleLegend(){
+function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
  d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
@@ -829,52 +818,7 @@ function renderCountryTable(state) {
     countryTable.data(d).render(true);
   }
 }
-function renderCountryList(state) {
-  // TODO(olc): refactor into component
-  const countries = state.data.grid.zones;
-  const validCountries = d3.values(countries)
-    .filter(d => d.co2intensity)
-    .sort((x, y) => {
-      if (!x.co2intensity && !x.countryCode) {
-        return d3.ascending(
-          x.shortname || x.countryCode,
-          y.shortname || y.countryCode);
-      } else {
-        return d3.ascending(
-          x.co2intensity || Infinity,
-          y.co2intensity || Infinity);
-      }
-    });
-  const selector = d3.select('.country-picker-container p')
-    .selectAll('a')
-    .data(validCountries);
-  const enterA = selector.enter().append('a');
-  enterA
-    .append('div')
-    .attr('class', 'emission-rect');
-  enterA
-    .append('span')
-    .attr('class', 'name');
-  enterA
-    .append('img')
-    .attr('class', 'flag');
-  enterA
-    .append('span')
-    .attr('class', 'rank');
-  countryListSelector = enterA.merge(selector);
-  countryListSelector.select('span.name')
-    .text(d => ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' ')
-  countryListSelector.select('div.emission-rect')
-    .style('background-color', (d) => {
-      return d.co2intensity ? co2color(d.co2intensity) : 'gray';
-    });
-  countryListSelector.select('.flag')
-    .attr('src', d => flags.flagUri(d.countryCode, 16));
-  countryListSelector.on('click', (d) => {
-    dispatchApplication('showPageState', 'country');
-    dispatchApplication('selectedZoneName', d.countryCode);
-  });
-}
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -1095,7 +1039,7 @@ observe(state => state.data.grid.zones, (zones, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.setData(Object.values(zones));
   }
-  renderCountryList(state);
+  zoneList.render(zones);
 });
 // Observe for grid exchanges change
 observe(state => state.data.grid.exchanges, (exchanges) => {
