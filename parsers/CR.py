@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+import logging
+
 import arrow
 import pandas as pd
 import requests
@@ -98,12 +100,7 @@ POWER_PLANTS = {
     u'Volcán': 'hydro',
 }
 
-unmapped = set()
-
-
-def unknown_plants():
-    for plant in unmapped:
-        print('{} is not mapped to generation type!'.format(plant))
+CHARACTERISTIC_NAME = 'Angostura'
 
 
 def empty_record(zone_key):
@@ -127,65 +124,69 @@ def empty_record(zone_key):
     }
 
 
-def df_to_data(zone_key, day, df):
+def df_to_data(zone_key, day, df, logger):
     df = df.dropna(axis=1, how='any')
     # Check for empty dataframe
     if df.shape == (1, 1):
         return []
-    df = df.drop([u'Intercambio Sur', u'Intercambio Norte', u'Total'])
+    df = df.drop(['Intercambio Sur', 'Intercambio Norte', 'Total'], errors='ignore')
     df = df.iloc[:, :-1]
 
-    data = []
-    hours = 0
+    results = []
+    hour = 0
     for column in df:
-        data.append(empty_record(zone_key))
+        data = empty_record(zone_key)
+        data_time = day.replace(hour=hour, minute=0, second=0, microsecond=0).datetime
         for index, value in df[column].items():
-            current = len(data) - 1
             source = POWER_PLANTS.get(index)
-            if source is None:
+            if not source:
                 source = 'unknown'
-                unmapped.add(index)
-            data[current]['datetime'] = day.replace(hours=hours).datetime
-            data[current]['production'][source] += max(0.0, value)
-        hours += 1
+                logger.warning('{} is not mapped to generation type'.format(source),
+                               extra={'key': zone_key})
+            data['datetime'] = data_time
+            data['production'][source] += max(0.0, value)
+        hour += 1
+        results.append(data)
 
-    return data
+    return results
 
 
-def fetch_production(zone_key='CR', session=None, target_datetime=None, logger=None):
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+def fetch_production(zone_key='CR', session=None,
+                     target_datetime=None, logger=logging.getLogger(__name__)):
+    # ensure we have an arrow object. if no target_datetime is specified, this defaults to now.
+    target_datetime = arrow.get(target_datetime).to(TIMEZONE)
+
+    if target_datetime < arrow.get('2012-07-01'):
+        # data availability limit found by manual trial and error
+        logger.error('CR API does not provide data before 2012-07-01, '
+                     '{} was requested'.format(target_datetime),
+                     extra={"key": zone_key})
+        return None
+
     # Do not use existing session as some amount of cache is taking place
     r = requests.session()
     url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
     response = r.get(url)
-    df_yesterday = pd.read_html(response.text, skiprows=1, index_col=0, header=0)[0]
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    yesterday_date = soup.select('#formPosdespacho:pickFechaInputDate')[0]['value']
     jsf_view_state = soup.select('#javax.faces.ViewState')[0]['value']
-
-    yesterday = arrow.get(yesterday_date, 'DD/MM/YYYY', tzinfo=TIMEZONE)
-    today = yesterday.shift(days=+1)
 
     data = [
         ('formPosdespacho', 'formPosdespacho'),
-        ('formPosdespacho:pickFechaInputDate', today.format(DATE_FORMAT)),
-        ('formPosdespacho:pickFechaInputCurrentDate', today.format(MONTH_FORMAT)),
-        ('formPosdespacho:j_id35.x', ''),
-        ('formPosdespacho:j_id35.y', ''),
+        ('formPosdespacho:txtFechaInicio_input', target_datetime.format(DATE_FORMAT)),
+        ('formPosdespacho:pickFecha', ''),
+        ('formPosdespacho:j_idt60_selection', ''),
+        ('formPosdespacho:j_idt60_scrollState', '0,1915'),
         ('javax.faces.ViewState', jsf_view_state),
     ]
     response = r.post(url, cookies={}, data=data)
-    df_today = pd.read_html(response.text, skiprows=1, index_col=0)[0]
 
-    ydata = df_to_data(zone_key, yesterday, df_yesterday)
-    tdata = df_to_data(zone_key, today, df_today)
-    production = ydata + tdata
-    unknown_plants()
+    # tell pandas which table to use by providing CHARACTERISTIC_NAME
+    df = pd.read_html(response.text, match=CHARACTERISTIC_NAME, skiprows=1, index_col=0)[0]
 
-    return production
+    results = df_to_data(zone_key, target_datetime, df, logger)
+
+    return results
 
 
 def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None):
@@ -209,7 +210,7 @@ def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     df = pd.read_csv('http://www.enteoperador.org/newsite/flash/data.csv', index_col=False)
@@ -234,7 +235,21 @@ def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    from pprint import pprint
+
     print('fetch_production() ->')
-    print(fetch_production())
+    pprint(fetch_production())
+
+    print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get('2018-03-13T12:00Z')))
+
+    # this should work
+    print('fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get('2013-03-13T12:00Z')))
+
+    # this should return None
+    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get('2007-03-13T12:00Z')))
+
     print('fetch_exchange() ->')
     print(fetch_exchange())

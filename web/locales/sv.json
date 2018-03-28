@@ -65,7 +65,9 @@
         "lastupdate": "Uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
-        "retrynow": "Försök igen"
+        "retrynow": "Försök igen",
+        "database-ad": "Letar du efter historisk data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
+        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>"
     },
     "wind": "vind",
     "solar": "sol",
@@ -401,6 +403,7 @@
         "US-NEISO": "USA (New England)",
         "US-NY": "USA (New York)",
         "US-PJM": "USA (PJM)",
+        "US-SPP": "USA (SPP)",
         "US-HI": "Hawaii",
         "UY": "Uruguay",
         "UZ": "Uzbekistan",

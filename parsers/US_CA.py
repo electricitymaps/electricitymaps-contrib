@@ -127,21 +127,21 @@ def fetch_historical_data(target_datetime):
 
     for i in range(0, 24):
         daily_data.append({
-            'countryCode': 'US-CA',
+            'zoneKey': 'US-CA',
             'storage': {},
             'source': 'caiso.com',
             'production': {
-                'biomass': renewable_resources['BIOMASS'][i],
-                'gas': renewable_resources['BIOGAS'][i],
-                'hydro': (renewable_resources['SMALL HYDRO'][i] +
-                          other_resources['HYDRO'][i]),
-                'nuclear': other_resources['NUCLEAR'][i],
-                'solar': (renewable_resources['SOLAR PV'][i] +
-                          renewable_resources['SOLAR THERMAL'][i]),
-                'wind': renewable_resources['WIND TOTAL'][i],
-                'geothermal': renewable_resources['GEOTHERMAL'][i],
+                'biomass': float(renewable_resources['BIOMASS'][i]),
+                'gas': float(renewable_resources['BIOGAS'][i]),
+                'hydro': float((renewable_resources['SMALL HYDRO'][i] +
+                          other_resources['HYDRO'][i])),
+                'nuclear': float(other_resources['NUCLEAR'][i]),
+                'solar': float((renewable_resources['SOLAR PV'][i] +
+                          renewable_resources['SOLAR THERMAL'][i])),
+                'wind': float(renewable_resources['WIND TOTAL'][i]),
+                'geothermal': float(renewable_resources['GEOTHERMAL'][i]),
                 # this is not specified in the list,
-                'unknown': other_resources['THERMAL'][i]
+                'unknown': float(other_resources['THERMAL'][i])
             },
             'datetime': target_date.shift(hours=i + 1).datetime,
         })

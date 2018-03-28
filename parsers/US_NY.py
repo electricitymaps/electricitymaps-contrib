@@ -9,8 +9,15 @@ from urllib.error import HTTPError
 import arrow
 import pandas as pd
 
+# Dual Fuel systems can run either Natural Gas or Oil, they represent
+# significantly more capacity in NY State than plants that can only
+# burn Natural Gas. When looking up fuel usage for NY in 2016 in
+# https://www.eia.gov/electricity/data/state/annual_generation_state.xls
+# 100 times more energy came from NG than Oil. That means Oil
+# consumption in the Dual Fuel systems is roughly ~1%, and to a first
+# approximation it's just Natural Gas.
 mapping = {
-    'Dual Fuel': 'unknown',
+    'Dual Fuel': 'gas',
     'Natural Gas': 'gas',
     'Nuclear': 'nuclear',
     'Other Fossil Fuels': 'unknown',
