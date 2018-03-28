@@ -7,7 +7,7 @@ Each one is designed to test some part of the validation functions.
 
 import datetime
 
-dt = datetime.datetime.now()
+dt = datetime.datetime.utcnow()
 
 prod = {
         'biomass': 15.0,
