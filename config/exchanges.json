@@ -1299,13 +1299,13 @@
   },
   "MY-WM->SG": {
     "lonlat": [
-      103.769521,
-      1.452184
+      103.539048,
+      2.016154
     ],
     "parsers": {
       "exchange": "MY_WM.fetch_exchange"
     },
-    "rotation": 180
+    "rotation": 155
   },
   "MY-WM->TH": {
     "lonlat": [
