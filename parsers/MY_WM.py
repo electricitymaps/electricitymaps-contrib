@@ -8,11 +8,17 @@
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import datetime
+from dateutil import parser
+from logging import getLogger
 from pytz import timezone
 import requests
+from xml.etree import ElementTree
 
 fuel_mix_url = 'https://www.gso.org.my/SystemData/FuelMix.aspx'
 current_gen_url = 'https://www.gso.org.my/SystemData/CurrentGen.aspx'
+exchanges_url = 'https://www.gso.org.my/SystemData/TieLine.aspx'
+
+# Exchange with Thailand made up of EGAT and HVDC ties. Singapore exchange is PLTG tie.
 
 fuel_mapping = {
     'ST-Coal': 'coal',
@@ -158,8 +164,184 @@ def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logge
     return production
 
 
+def extract_hidden_values(req):
+    """
+    Gets current aspx page values to enable post requests to be sent.
+    Returns a dictionary.
+    """
+
+    soup = BeautifulSoup(req.content, 'html.parser')
+
+    # Find and define parameters needed to send a POST request.
+    viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
+    viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
+    eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
+    jschartviewerstate = soup.find("input", attrs={'id': 'MainContent_ctl17_JsChartViewerState'})['value']
+
+    hidden_values = {'viewstategenerator': viewstategenerator,
+                     'viewstate': viewstate,
+                     'eventvalidation': eventvalidation,
+                     'jschartviewerstate': jschartviewerstate}
+
+    return hidden_values
+
+
+def xml_processor(text):
+    """
+    Creates xml elementtree from response.text object.
+    Returns a list of tuples in the form (datetime, float).
+    """
+
+    raw_data = ElementTree.fromstring(text)
+
+    datapoints = []
+    for child in raw_data.findall('DataTable'):
+        ts= child.find('Tarikhmasa').text
+        val = child.find('MW').text
+        dt = parser.parse(ts)
+        flow = float(val)
+        datapoints.append((dt, flow))
+
+    return datapoints
+
+
+def post_to_switch(tie, session):
+    """
+    Makes a post request to switch exchange tie shown on aspx page.
+    This is required before xml data can be extracted.
+    Returns a response object.
+    """
+
+    req = session.get(exchanges_url)
+    hidden_values = extract_hidden_values(req)
+
+    headers = {"Content-Type":	"application/x-www-form-urlencoded"}
+
+    switch_tie = {'__VIEWSTATE': hidden_values['viewstate'],
+                  '__VIEWSTATEGENERATOR': hidden_values['viewstategenerator'],
+                  '__EVENTVALIDATION': hidden_values['eventvalidation'],
+                  'ctl00$MainContent$ctl12': tie,
+                  'MainContent_ctl17_callBackURL': '/SystemData/TieLine.aspx?cdLoopBack=1',
+                  'MainContent_ctl17_JsChartViewerState': hidden_values['jschartviewerstate'],
+                  'ctl00$MainContent$Plot': 'Plot'
+                  }
+
+    switch_req = session.post(exchanges_url, headers=headers, data=switch_tie)
+
+    return switch_req
+
+
+def post_to_extract(tie, hidden_values, session):
+    """
+    Makes a post request to retrieve xml data from aspx page.
+    Returns a response.text object.
+    """
+
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+
+    postdata = {'__VIEWSTATE': hidden_values['viewstate'],
+                '__VIEWSTATEGENERATOR': hidden_values['viewstategenerator'],
+                '__EVENTVALIDATION': hidden_values['eventvalidation'],
+                'ctl00$MainContent$ctl12': tie,
+                'MainContent_ctl17_callBackURL': '/SystemData/TieLine.aspx?cdLoopBack=1',
+                'MainContent_ctl17_JsChartViewerState': hidden_values['jschartviewerstate'],
+                'ctl00$MainContent$ctl21.x': 10,
+                'ctl00$MainContent$ctl21.y': 7
+                }
+
+    req = session.post(exchanges_url, headers=headers, data=postdata)
+
+    return req.text
+
+
+def zip_and_merge(egat_data, hvdc_data, logger):
+    """
+    Joins the EGAT and HVDC ties that form the MY-WM->TH exchange.
+    Returns a list of tuples in the form (datetime, float).
+    """
+
+    merged_data = zip(egat_data, hvdc_data)
+
+    simplified_data = []
+    for item in merged_data:
+        if item[0][0] == item[1][0]:
+            # Make sure datetimes are equal.
+            combined = item[0][0], sum([item[0][1], item[1][1]])
+            simplified_data.append(combined)
+        else:
+            logger.warning('Date mismatch between EGAT and HVDC ties for MY-WM->TH, skipping datapoint.')
+            continue
+
+    return simplified_data
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
+    """Requests the last known power exchange (in MW) between two zones
+    Arguments:
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+    Return:
+    A list of dictionaries in the form:
+    {
+      'sortedZoneKeys': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    s=session or requests.Session()
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+
+    if sortedcodes == 'MY-WM->TH':
+        # Get the EGAT data.
+        req = s.get(exchanges_url)
+        egat_hidden_values = extract_hidden_values(req)
+        egat_data = post_to_extract('EGAT', egat_hidden_values, s)
+
+        # Switch to HVDC and get data.
+        hvdc_switch_req = post_to_switch('HVDC', s)
+        hvdc_hidden_values = extract_hidden_values(hvdc_switch_req)
+        hvdc_data = post_to_extract('HVDC', hvdc_hidden_values, s)
+
+        processed_egat = xml_processor(egat_data)
+        processed_hvdc = xml_processor(hvdc_data)
+
+        data = zip_and_merge(processed_egat, processed_hvdc, logger)
+    elif sortedcodes == 'MY-WM->SG':
+        req = s.get(exchanges_url)
+        pltg_switch_req = post_to_switch('PLTG', s)
+
+        pltg_hidden_values = extract_hidden_values(pltg_switch_req)
+        pltg_data = post_to_extract('PLTG', pltg_hidden_values, s)
+        data = xml_processor(pltg_data)
+    else:
+        raise NotImplementedError('The exchange {} is not implemented'.format(sortedcodes))
+
+    exchange_data = []
+    for datapoint in data:
+        exchange = {
+            'sortedZoneKeys': sortedcodes,
+            'datetime': datapoint[0],
+            'netFlow': datapoint[1],
+            'source': 'gso.org.my'
+        }
+        exchange_data.append(exchange)
+
+    return exchange_data
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_exchange(MY-WM, TH)')
+    print(fetch_exchange('MY-WM', 'TH'))
+    print('fetch_exchange(MY-WM, SG)')
+    print(fetch_exchange('MY-WM', 'SG'))
