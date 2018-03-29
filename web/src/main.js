@@ -6,6 +6,7 @@ import { event as currentEvent } from 'd3-selection';
 import dispatchApplication from './helpers/dispatcher';
 import CircularGauge from './components/circulargauge';
 import ZoneList from './components/zonelist';
+import SearchBar from './components/searchbar';
 
 // Libraries
 const d3 = Object.assign(
@@ -42,7 +43,6 @@ const thirdPartyServices = require('./services/thirdparty');
 
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
-const flags = require('./helpers/flags');
 const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
@@ -135,8 +135,8 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-const zoneList = new ZoneList('.country-picker-container p');
-
+const zoneList = new ZoneList('.zone-list p');
+const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -222,8 +222,6 @@ const randomBoolean = Math.random() >= 0.5;
 
 d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
-
-
 
 // Set up co2 scales
 let co2color;
@@ -539,25 +537,6 @@ function setLastUpdated() {
 // Re-check every minute
 setInterval(setLastUpdated, 60 * 1000);
 
-// Add search bar with handler
-// TODO(olc): move to component
-d3.select('.country-search-bar input')
-  .on('keyup', (obj, i, nodes) => {
-    const query = nodes[i].value.toLowerCase();
-
-    d3.select('.country-picker-container p')
-      .selectAll('a').each((obj, i, nodes) => {
-        const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
-        const listItem = d3.select(nodes[i]);
-
-        if (zoneName.indexOf(query) !== -1) {
-          listItem.style('display', '');
-        } else {
-          listItem.style('display', 'none');
-        }
-      });
-  });
-
 function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
   if (err) {
     console.error(err);
@@ -710,6 +689,8 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
+
+
 // Wind
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
@@ -728,27 +709,7 @@ d3.select('.solar-button').on('click', toggleSolar);
 function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
- d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
-
-
-// Close button on left-panel
-d3.selectAll('#left-panel-country-back')
-  .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
-  });
-
-// Close button on highscore (only triggered on large screens)
-d3.selectAll('#left-panel-highscore-back')
-  .on('click', () => dispatchApplication('showPageState', 'map'));
-
-// Highscore button click
-d3.selectAll('.highscore-button')
-  .on('click', () => dispatchApplication('showPageState', 'highscore'));
-
-// Mobile toolbar buttons
-d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
-d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 
 // Map click
 // TODO(olc): make sure to assign even if map is not ready yet
@@ -763,6 +724,40 @@ if (typeof zoneMap !== 'undefined') {
       dispatchApplication('selectedZoneName', d.countryCode);
     });
 }
+
+// * Left panel *
+
+// Search bar
+zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
+
+// Close button
+d3.selectAll('#left-panel-country-back')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+  });
+
+// Zone list
+zoneList.setClickHandler((selectedCountry) => {
+  dispatchApplication('showPageState', 'country');
+  dispatchApplication('selectedZoneName', selectedCountry.countryCode);
+});
+
+// Close button on highscore (only triggered on large screens)
+d3.selectAll('#left-panel-highscore-back')
+  .on('click', () => dispatchApplication('showPageState', 'map'));
+
+// Highscore button click
+d3.selectAll('.highscore-button')
+  .on('click', () => dispatchApplication('showPageState', 'highscore'));
+
+// Mobile toolbar buttons
+d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
+d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+
+
+
+
 
 
 // *** OBSERVERS ***
@@ -812,7 +807,7 @@ function renderContributors(state) {
 function renderCountryTable(state) {
   const d = getCurrentZoneData(state);
   if (!d) {
-    // In this cases there's nothing to do,
+    // In this case there's nothing to do,
     // as the countryTable doesn't support receiving null data
   } else {
     countryTable.data(d).render(true);
@@ -1039,7 +1034,8 @@ observe(state => state.data.grid.zones, (zones, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.setData(Object.values(zones));
   }
-  zoneList.render(zones);
+  zoneList.setZones(zones);
+  zoneList.render();
 });
 // Observe for grid exchanges change
 observe(state => state.data.grid.exchanges, (exchanges) => {
@@ -1156,6 +1152,12 @@ observe(state => state.application.legendVisible, (legendVisible, state) => {
   d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
   d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
 })
+
+// Observe for search query change
+observe(state => state.application.searchQuery, (searchQuery, state) => {
+  zoneList.filterZonesByQuery(searchQuery);
+});
+
 
 // ** START
 

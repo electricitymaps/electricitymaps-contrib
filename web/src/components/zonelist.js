@@ -1,5 +1,3 @@
-import dispatchApplication from '../helpers/dispatcher';
-
 const translation = require('../helpers/translation');
 const flags = require('../helpers/flags');
 
@@ -16,17 +14,41 @@ export default class ZoneList {
 
     const config = argConfig || {};
     this.co2ColorScale = config.co2ColorScale;
+    this.clickHandler = config.clickHandler;
+    if (config.zones) {
+      this._sortAndValidateZones(config.zones);
+    }
   }
 
-  render(zones) {
+  setZones(zones) {
     this._sortAndValidateZones(zones);
-    this._createListItems();
-    this._setItemAttributes();
-    this._setItemClickHandlers();
   }
 
   setCo2ColorScale(colorScale) {
     this.co2ColorScale = colorScale;
+  }
+
+  setClickHandler(clickHandler) {
+    this.clickHandler = clickHandler;
+  }
+
+  filterZonesByQuery(query) {
+    d3.select(this.selectorId).selectAll('a').each((obj, i, nodes) => {
+      const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
+      const listItem = d3.select(nodes[i]);
+
+      if (zoneName.indexOf(query) !== -1) {
+        listItem.style('display', 'inherit');
+      } else {
+        listItem.style('display', 'none');
+      }
+    });
+  }
+
+  render() {
+    this._createListItems();
+    this._setItemAttributes();
+    this._setItemClickHandlers();
   }
 
   _sortAndValidateZones(zones) {
@@ -47,11 +69,10 @@ export default class ZoneList {
   }
 
   _createListItems() {
-    const selector = d3.select(this.selectorId) // '.country-picker-container p'
+    this.selector = d3.select(this.selectorId)
       .selectAll('a')
       .data(this.zones);
-
-    const enterA = selector.enter().append('a');
+    const enterA = this.selector.enter().append('a');
     enterA
       .append('div')
       .attr('class', 'emission-rect');
@@ -65,7 +86,7 @@ export default class ZoneList {
       .append('span')
       .attr('class', 'rank');
 
-    this.selector = enterA.merge(selector);
+    this.selector = enterA.merge(this.selector);
   }
 
   _setItemAttributes() {
@@ -76,23 +97,20 @@ export default class ZoneList {
 
   _setItemTexts() {
     this.selector.select('span.name')
-      .text(d => ` ${translation.translate(`zoneShortName.${d.countryCode}`) || d.countryCode} `);
+      .text(zone => ` ${translation.translate(`zoneShortName.${zone.countryCode}`) || zone.countryCode} `);
   }
 
   _setItemBackgroundColors() {
     this.selector.select('div.emission-rect')
-      .style('background-color', d => (d.co2intensity && this.co2ColorScale ? this.co2ColorScale(d.co2intensity) : 'gray'));
+      .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
   }
 
   _setItemFlags() {
     this.selector.select('.flag')
-      .attr('src', d => flags.flagUri(d.countryCode, 16));
+      .attr('src', zone => flags.flagUri(zone.countryCode, 16));
   }
 
   _setItemClickHandlers() {
-    this.selector.on('click', (d) => {
-      dispatchApplication('showPageState', 'country');
-      dispatchApplication('selectedZoneName', d.countryCode);
-    });
+    this.selector.on('click', this.clickHandler);
   }
 }

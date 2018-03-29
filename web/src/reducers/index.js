@@ -19,6 +19,7 @@ const initialApplicationState = {
   isLocalhost,
   legendVisible: false,
   locale: window.locale,
+  searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
   solarEnabled: Cookies.get('solarEnabled') === 'true' || false,

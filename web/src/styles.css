@@ -700,10 +700,10 @@ div.highscore-button:hover {
     overflow-y: hidden;
 }
 
-.country-search-bar {
+.zone-search-bar {
     padding: 10px 10px 10px 0px;
 }
-.country-search-bar input {
+.zone-search-bar input {
     background: inherit;
     color: inherit;
     border: none;
@@ -715,13 +715,13 @@ div.highscore-button:hover {
     font-family: inherit;
 }
 
-.country-picker-container {
+.zone-list {
     overflow-y: auto;
 }
-.country-picker-container p {
+.zone-list p {
     margin: -0.25rem 0 0;
 }
-.country-picker-container a {
+.zone-list a {
     display: block;
     font-size: 1rem;
     justify-content: space-between;
@@ -734,23 +734,23 @@ div.highscore-button:hover {
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.country-picker-container a:hover {
+.zone-list a:hover {
     text-decoration: none;
     background: rgba(255,255,255,0.1)
 }
-.country-picker-container .emission-rect {
+.zone-list .emission-rect {
     width: 0.8rem;
     height: 0.8rem;
 }
 
-.country-picker-container a > span {
+.zone-list a > span {
     flex-grow: 1;
     line-height: 1.2rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.country-picker-container .rank {
+.zone-list .rank {
     color: darkgray;
     font-size: 0.6em;
 }
