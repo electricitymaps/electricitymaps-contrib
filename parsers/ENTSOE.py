@@ -58,6 +58,7 @@ ENTSOE_PARAMETER_GROUPS = {
 }
 ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
 # Define all ENTSOE zone_key <-> domain mapping
+# see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
@@ -69,6 +70,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'CH': '10YCH-SWISSGRIDZ',
     'CZ': '10YCZ-CEPS-----N',
     'DE': '10Y1001A1001A83F',
+    'DE-AT-LU': '10Y1001A1001A63L',
     'DK': '10Y1001A1001A65H',
     'DK-DK1': '10YDK-1--------W',
     'DK-DK2': '10YDK-2--------M',
@@ -125,17 +127,21 @@ ENTSOE_EIC_MAPPING = {
 
 # Some exchanges require specific domains
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
-    'DE->DK-DK1': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
-    'DE->DK-DK2': ['10Y1001A1001A63L', ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
+    'DE->DK-DK1': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
+                   ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
+    'DE->DK-DK2': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
+                   ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
+    'DE->SE-SE4': [ENTSOE_DOMAIN_MAPPINGS['SE-SE4'],
+                   ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
     'BY->UA': [ENTSOE_DOMAIN_MAPPINGS['BY'], '10Y1001C--00003F']
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
-    'AT': '10Y1001A1001A63L',
-    'DE': '10Y1001A1001A63L',
+    'AT': ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
+    'DE': ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
     'IE': '10Y1001A1001A59C',
-    'LU': '10Y1001A1001A63L',
+    'LU': ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
 }
 
 ENTSOE_UNITS_TO_ZONE = {
