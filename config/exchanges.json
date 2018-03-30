@@ -914,6 +914,11 @@
     },
     "rotation": -30
   },
+  "FI->NO-NO4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "FI->RU": {
     "capacity": [
       -1560,
@@ -1371,6 +1376,11 @@
     },
     "rotation": 0
   },
+  "NL->NO-NO2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "NO->SE": {
     "lonlat": [
       12.308438,
@@ -1382,7 +1392,42 @@
     },
     "rotation": 90
   },
+  "NO-NO1->NO-NO2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO1->NO-NO3": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO1->NO-NO5": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "NO-NO1->SE-SE3": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO2->NO-NO5": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->NO-NO2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->NO-NO4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->NO-NO5": {
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
