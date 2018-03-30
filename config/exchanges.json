@@ -716,6 +716,11 @@
     },
     "rotation": 0
   },
+  "DE->SE-SE4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "DK-BHM->SE": {
     "capacity": [
       -60,
@@ -933,6 +938,16 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -50
+  },
+  "FI->SE-SE1": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "FI->SE-SE3": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "FR->GB": {
     "capacity": [
@@ -1237,6 +1252,11 @@
     },
     "rotation": -90
   },
+  "LT->SE-SE4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "LV->RU": {
     "lonlat": [
       27.7336,
@@ -1362,6 +1382,26 @@
     },
     "rotation": 90
   },
+  "NO-NO1->SE-SE3": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO3->SE-SE2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO4->SE-SE2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "NO-NO4->SE-SE1": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
   "NO->RU": {
     "lonlat": [
       30.1437,
@@ -1400,6 +1440,11 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
+  },
+  "PL->SE-SE4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "PL->SK": {
     "lonlat": [
@@ -1450,6 +1495,21 @@
       "exchange": "RU.fetch_exchange"
     },
     "rotation": -135
+  },
+  "SE-SE1->SE-SE2": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "SE-SE2->SE-SE3": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
+  },
+  "SE-SE3->SE-SE4": {
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    }
   },
   "SK->UA": {
     "lonlat": [
