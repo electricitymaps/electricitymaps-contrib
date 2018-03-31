@@ -23,6 +23,8 @@ GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
                       'PURPA Other': 'biomass'
                       }
 
+TIMEZONE = tz.gettz("America/Boise")
+
 
 def get_data(session=None):
     """Returns a list of dictionaries."""
@@ -40,8 +42,7 @@ def timestamp_converter(timestamp):
     """Converts a str timestamp into an aware datetime object."""
 
     dt_naive = parser.parse(timestamp)
-    mountain_time = tz.gettz("America/Boise")
-    dt_aware = dt_naive.replace(tzinfo=dt_naive.tzinfo or mountain_time)
+    dt_aware = dt_naive.replace(tzinfo=TIMEZONE)
 
     return dt_aware
 
@@ -56,6 +57,9 @@ def data_processer(raw_data, logger):
     dt_key = lambda x: x['datetime']
     grouped = groupby(raw_data, dt_key)
 
+    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent'}
+    known_keys = GENERATION_MAPPING.keys() | keys_to_ignore
+
     unmapped = set()
     parsed_data = []
     for group in grouped:
@@ -66,13 +70,11 @@ def data_processer(raw_data, logger):
         for gen_type in generation:
             production[gen_type['name']] = float(gen_type['data'])
 
-        keys_to_remove = {'Load', 'Net Purchases', 'Inadvertent'}
-        known_keys = GENERATION_MAPPING.keys() | set() | keys_to_remove
         current_keys = production.keys() | set()
-
         unknown_keys = current_keys - known_keys
-        keys_to_remove = keys_to_remove | unknown_keys
         unmapped = unmapped | unknown_keys
+
+        keys_to_remove = keys_to_ignore | unknown_keys
 
         for key in keys_to_remove:
             production.pop(key)
@@ -87,14 +89,14 @@ def data_processer(raw_data, logger):
     return parsed_data
 
 
-def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)):
+def fetch_production(zone_key = 'US-IPC', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given zone
     Arguments:
     zone_key (optional) -- used in case a parser is able to fetch multiple zones
     session (optional) -- request session passed in order to re-use an existing session
     Return:
-    A dictionary in the form:
+    A list of dictionaries in the form:
     {
       'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
