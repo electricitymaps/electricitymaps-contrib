@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 from collections import defaultdict
+import logging
+import re
 
 import arrow
 from PIL import Image
 from pytesseract import image_to_string
-import re
 import requests
 
 TIMEZONE = 'Asia/Singapore'
@@ -40,18 +41,10 @@ There is no real-time information on fuel for steam turbines.
 
 For Electricity Map, we map CCGT and GT to gas, and ST to "unknown".
 
-There appears to be no real-time data for solar production.
-Installed solar has been rising rapidly, but from a very low base.
-Per Singapore Energy Statistics 2016 pg 96, total installed solar PV capacity at end of 2015 was 45.8 MWac.
-Per https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Statistics/47RSU.pdf
-total installed solar capacity in 2017Q1 was 129.8 MWp / 99.9 MWac, so capacity doubled during 2016.
-However, when producing at max capacity this would only be about 2% of summer mid-night demand of around 5 GW.
-So for now this won't introduce a big inaccuracy.
+The Energy Market Authority estimates current solar production and publishes it at
+https://www.ema.gov.sg/solarmap.aspx
 
-There exists an interconnection to Malaysia. Its capacity is apparently 2x 200 MW,
-which is potentially 5-10% of normal use. I was unable to find data on its use
-(not even historical, let along real-time). The Singapore Energy Statistics 2016 document
-does not note any electricity exports or imports.
+There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
 """
 
 TYPE_MAPPINGS = {
@@ -61,28 +54,33 @@ TYPE_MAPPINGS = {
 }
 
 
-def get_solar(session=None):
+def get_solar(session, logger):
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
     Returns a float or None.
     """
 
-    s = session or requests.Session()
     url = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
-    solar_image = Image.open(s.get(url, stream=True).raw)
+    solar_image = Image.open(session.get(url, stream=True).raw)
 
     gray = solar_image.convert('L')
-    threshold_filter = lambda x: 0 if x<77 else 255
+    threshold_filter = lambda x: 0 if x < 77 else 255
     black_white = gray.point(threshold_filter, '1')
 
     text = image_to_string(black_white, lang='eng')
 
-    pattern = r'Est. PV Output: (.*)MWac'
-    val = re.search(pattern, text, re.MULTILINE).group(1)
+    try:
+        pattern = r'Est. PV Output: (.*)MWac'
+        val = re.search(pattern, text, re.MULTILINE).group(1)
 
-    time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
-    time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
+        time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
+        time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
+    except AttributeError:
+        msg = 'Unable to get values for SG solar from OCR text: {}'.format(text)
+        logger.warning(msg, extra={'key': 'SG'})
+        return None
+
     solar_dt = arrow.get(time_string).replace(tzinfo='Asia/Singapore')
     singapore_dt = arrow.now('Asia/Singapore')
     diff = singapore_dt - solar_dt
@@ -159,7 +157,8 @@ def sg_data_to_datetime(data):
     return data_datetime
 
 
-def fetch_production(zone_key='SG', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='SG', session=None, target_datetime=None,
+                     logger=logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of Singapore.
 
     Arguments:
@@ -202,12 +201,12 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None, logger=N
 
         else:
             # unrecognized - log it, then add into unknown
-            print(
-            'Singapore has unrecognized generation type "{}" with production share {}%'.format(
-                gen_type, gen_percent))
+            msg = ('Singapore has unrecognized generation type "{}" '
+                   'with production share {}%').format(gen_type, gen_percent)
+            logger.warning(msg)
             generation_by_type['unknown'] += gen_mw
 
-    generation_by_type['solar'] = get_solar(session=None)
+    generation_by_type['solar'] = get_solar(requests_obj, logger)
 
     # some generation methods that are not used in Singapore
     generation_by_type.update({
@@ -216,12 +215,16 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None, logger=N
         'hydro': 0
     })
 
+    source = 'emcsg.com'
+    if generation_by_type['solar']:
+        source += ', ema.gov.sg'
+
     return {
         'datetime': sg_data_to_datetime(data),
         'zoneKey': zone_key,
         'production': generation_by_type,
         'storage': {},  # there is no known electricity storage in Singapore
-        'source': 'emcsg.com'
+        'source': source
     }
 
 
