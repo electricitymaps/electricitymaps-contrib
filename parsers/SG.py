@@ -87,7 +87,9 @@ def get_solar(session, logger):
 
     # Need to be sure we don't get old data if image stops updating.
     if diff.seconds > 3600:
-        print('Singapore solar data is too old to use.')
+        msg = ('Singapore solar data is too old to use, '
+               'parsed data timestamp was {}.').format(solar_dt)
+        logger.warning(msg, extra={'key': 'SG'})
         return None
 
     # At night format changes from 0.00 to 0
@@ -95,16 +97,18 @@ def get_solar(session, logger):
     # This try/except will make sure no invalid data is returned.
     try:
         solar = float(val)
-    except ValueError as err:
+    except ValueError:
         if len(val) == 1 and 'O' in val:
             solar = 0.0
         else:
-            print("Singapore solar data is unreadable - got {}.".format(val))
-            solar = None
+            msg = "Singapore solar data is unreadable - got {}.".format(val)
+            logger.warning(msg, extra={'key': 'SG'})
+            return None
     else:
         if solar > 200.0:
-            print("Singapore solar generation is way over capacity - got {}".format(val))
-            solar = None
+            msg = "Solar generation is way over capacity - got {}".format(val)
+            logger.warning(msg, extra={'key': 'SG'})
+            return None
 
     return solar
 
