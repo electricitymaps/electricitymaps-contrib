@@ -731,11 +731,11 @@ function toggleSolar() {
 }
 d3.select('.solar-button').on('click', toggleSolar);
 
-// Legend 
-function toggleLegend(){
+// Legend
+function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
- d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
+d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 
 
 // Close button on left-panel
@@ -756,6 +756,15 @@ d3.selectAll('.highscore-button')
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+
+// Keyboard shortcuts
+document.addEventListener('keyup', (e) => {
+  if (e.key === '/') {
+    // Focus on search box
+    dispatchApplication('showPageState', 'highscore');
+    d3.select('.country-search-bar input').node().focus();
+  }
+}, false);
 
 // Map click
 // TODO(olc): make sure to assign even if map is not ready yet
