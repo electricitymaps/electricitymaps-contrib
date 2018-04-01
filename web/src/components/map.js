@@ -106,6 +106,7 @@ export default class Map {
     this.userIsUsingTouch = false;
 
     this.center = undefined;
+    this.zoom = config.zoom;
 
     if (!mapboxgl.supported()) {
       throw 'WebGL not supported';
@@ -119,7 +120,7 @@ export default class Map {
         version: 8,
         sources: {},
         layers: [],
-        zoom: config.zoom || 3,
+        zoom: this.zoom || 3,
         center: this.center || [0, 50],
       },
     });
@@ -141,8 +142,9 @@ export default class Map {
     const loadingInterval = setInterval(() => {
       if (this.map.loaded()) {
         clearInterval(loadingInterval);
-        // For some reason, setCenter commands that are called too soon are ignored.
+        // For some reason, setCenter/setZoom commands that are called too soon are ignored.
         if (this.center) { this.map.setCenter(this.center); }
+        if (this.zoom) { this.map.setZoom(this.zoom); }
         this.mapLoadedHandlers.forEach(h => h(this));
       }
     }, 100);
@@ -403,6 +405,12 @@ export default class Map {
   setCenter(center) {
     this.center = center;
     this.map.panTo(center);
+    return this;
+  }
+
+  setZoom(zoom) {
+    this.zoom = zoom;
+    this.map.zoomTo(zoom);
     return this;
   }
 
