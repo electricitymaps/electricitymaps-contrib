@@ -224,6 +224,29 @@ body {
     color: lightgray;
     font-size: 0.8rem;
 }
+
+/* Left-panel collapse button */
+#left-panel-collapse-button {
+    left: 24rem; /* should be same as .left-panel width */
+    top: 0.5rem;
+    position: absolute;
+    background-color: rgb(70, 70, 70);
+    width: 1.5rem;
+    height: 3rem;
+    line-height: 3rem; /* vertically center */
+    text-align: center; /* horizontally center */
+    color: lightgray;
+
+    box-shadow: 6px 0 20px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
+    -moz-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
+    z-index: 1; /* in order to be above left-panel */
+}
+#left-panel-collapse-button:hover {
+    cursor: pointer;
+}
+
+/* Left-panel */
 .left-panel {
     padding: 1rem;
     line-height: 1.2rem;
@@ -679,9 +702,9 @@ label[for="checkbox-colorblind"] {
 
 div.highscore-button {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 18px;
+    top: 8px;
+    left: 32px;
+    padding: 15px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     cursor: pointer;

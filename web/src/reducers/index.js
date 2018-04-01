@@ -15,6 +15,7 @@ const initialApplicationState = {
   customDate: null,
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
+  isLeftPanelCollapsed: false,
   isProduction: window.location.href.indexOf('electricitymap') !== -1,
   isLocalhost,
   legendVisible: false,
