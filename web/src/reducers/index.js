@@ -50,7 +50,9 @@ const applicationReducer = (state = initialApplicationState, action) => {
     }
 
     case 'GRID_DATA': {
-      if (Object.keys(action.payload.countries).indexOf(state.selectedZoneName) === -1) {
+      const selectedZoneNameExists =
+        Object.keys(action.payload.countries).indexOf(state.selectedZoneName) !== -1;
+      if (state.selectedZoneName != null && !selectedZoneNameExists) {
         // The selectedZoneName doesn't exist anymore, we need to reset it
         // TODO(olc): the page state should be inferred from selectedZoneName
         return Object.assign(state, {

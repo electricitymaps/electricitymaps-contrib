@@ -478,10 +478,8 @@ function renderMap(state) {
       zoneMap.setCenter([0, 50]);
     }
   }
-  if (exchangeLayer) {
-    exchangeLayer.render();
-  }
 
+  // Render Wind
   if (getState().application.windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable wind if the drawing goes wrong
@@ -505,6 +503,7 @@ function renderMap(state) {
     windLayer.hide();
   }
 
+  // Render Solar
   if (getState().application.solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable solar if the drawing goes wrong
@@ -531,6 +530,7 @@ function renderMap(state) {
   }
 
   // Resize map to make sure it takes all container space
+  // Warning: this causes a flicker
   zoneMap.map.resize();
 }
 
@@ -1169,7 +1169,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 });
 // Observe for wind settings change
 observe(state => state.application.windEnabled, (windEnabled, state) => {
-
   d3.selectAll('.wind-button').classed('active', windEnabled);
   d3.select('.wind-potential-legend').classed('visible', windEnabled);
 
@@ -1202,12 +1201,12 @@ observe(state => state.data.grid, (grid) => {
 });
 
 // Observe for legend visibility change
-observe(state => state.application.legendVisible, (legendVisible, state) => {
+observe(state => state.application.legendVisible, (legendVisible, _) => {
   d3.selectAll('.floating-legend').classed('mobile-collapsed', !legendVisible);
   d3.select('.floating-legend-container').classed('mobile-collapsed', !legendVisible);
   d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
   d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
-})
+});
 
 // ** START
 
