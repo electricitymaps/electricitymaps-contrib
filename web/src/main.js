@@ -463,12 +463,8 @@ function renderMap(state) {
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { selectedZoneName, callerLocation } = state.application;
     if (selectedZoneName) {
-      const selectedZone = state.data.grid.zones[selectedZoneName];
-      const selectedZoneCoordinates = selectedZone.geometry.coordinates[0][0];
-      const lon = d3.mean(selectedZoneCoordinates, d => d[0]);
-      const lat = d3.mean(selectedZoneCoordinates, d => d[1]);
-      console.log('Centering on selectedZoneName @', [lon, lat]);
-      zoneMap.setCenter([lon, lat]);
+      centerOnZoneName(state, selectedZoneName);
+      console.log(`Centering on selectedZoneName ${selectedZoneName}`);
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
@@ -873,6 +869,8 @@ function renderCountryList(state) {
   countryListSelector.on('click', (d) => {
     dispatchApplication('showPageState', 'country');
     dispatchApplication('selectedZoneName', d.countryCode);
+    // Center map
+    centerOnZoneName(getState(), d.countryCode);
   });
 }
 function renderHistory(state) {
@@ -1085,6 +1083,14 @@ function tryFetchHistory(state) {
     });
   }
 }
+function centerOnZoneName(state, zoneName) {
+  if (typeof zoneMap === 'undefined') { return; }
+  const selectedZone = state.data.grid.zones[zoneName];
+  const selectedZoneCoordinates = selectedZone.geometry.coordinates[0][0];
+  const lon = d3.mean(selectedZoneCoordinates, d => d[0]);
+  const lat = d3.mean(selectedZoneCoordinates, d => d[1]);
+  zoneMap.setCenter([lon, lat]);
+}
 
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
@@ -1115,6 +1121,7 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 observe(state => state.application.selectedZoneName, (k, state) => {
   if (!state.application.selectedZoneName) { return; }
 
+  // Render
   renderCountryTable(state);
   renderGauges(state);
   renderContributors(state);
