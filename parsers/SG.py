@@ -219,16 +219,12 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None,
         'hydro': 0
     })
 
-    source = 'emcsg.com'
-    if generation_by_type['solar']:
-        source += ', ema.gov.sg'
-
     return {
         'datetime': sg_data_to_datetime(data),
         'zoneKey': zone_key,
         'production': generation_by_type,
         'storage': {},  # there is no known electricity storage in Singapore
-        'source': source
+        'source': 'emcsg.com, ema.gov.sg'
     }
 
 
