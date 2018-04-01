@@ -97,7 +97,6 @@ const ENDPOINT = getState().application.useRemoteEndpoint ?
 // or to component state
 let currentMoment;
 let mapDraggedSinceStart = false;
-let mapLoaded = false;
 let wind;
 let solar;
 let tableDisplayEmissions = false;
@@ -270,12 +269,13 @@ try {
   zoneMap = new ZoneMap('zones')
     .setCo2color(co2color)
     .onDragEnd(() => {
-      // Somehow there is a drag event sent before the map is loaded.
+      // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
-      if (!mapDraggedSinceStart && mapLoaded) { mapDraggedSinceStart = true; }
+      if (!mapDraggedSinceStart && getState().data.grid.datetime) {
+        mapDraggedSinceStart = true;
+      }
     })
     .onMapLoaded((map) => {
-      mapLoaded = true;
       // Nest the exchange layer inside
       const el = document.createElement('div');
       el.id = 'arrows-layer';
