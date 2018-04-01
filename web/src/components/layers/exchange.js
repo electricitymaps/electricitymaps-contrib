@@ -23,6 +23,9 @@ class ExchangeLayer {
     /* This is the *map* transform applied at last render */
     this.initialMapTransform = undefined;
 
+    /* Set arrow scale */
+    this.arrowScale = 0.04 + (map.map.getZoom() - 1.5) * 0.1;
+
     this.projection = (lonlat) => {
       /*
       `map.projection()` is relative to viewport
@@ -151,7 +154,7 @@ class ExchangeLayer {
       .style('transform', (d) => {
         const center = this.projection(d.lonlat);
         const rotation = d.rotation + (d.netFlow > 0 ? 180 : 0);
-        return `translateX(${center[0]}px) translateY(${center[1]}px) rotate(${rotation}deg) scale(0.15) translateZ(0)`;
+        return `translateX(${center[0]}px) translateY(${center[1]}px) rotate(${rotation}deg) scale(${this.arrowScale}) translateZ(0)`;
       });
     merged
       .attr('src', (d) => {

@@ -266,7 +266,7 @@ d3.select('#checkbox-colorblind').on('change', () => {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones')
+  zoneMap = new ZoneMap('zones', { zoom: 1.5 })
     .setCo2color(co2color)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
@@ -463,8 +463,8 @@ function renderMap(state) {
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { selectedZoneName, callerLocation } = state.application;
     if (selectedZoneName) {
-      centerOnZoneName(state, selectedZoneName);
       console.log(`Centering on selectedZoneName ${selectedZoneName}`);
+      centerOnZoneName(state, selectedZoneName, 4);
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
@@ -762,7 +762,9 @@ document.addEventListener('keyup', (e) => {
   if (e.key === '/') {
     // Focus on search box
     dispatchApplication('showPageState', 'highscore');
-    d3.select('.country-search-bar input').node().focus();
+    const el = d3.select('.country-search-bar input').node();
+    el.value = '';
+    el.focus();
   }
 }, false);
 
@@ -878,8 +880,10 @@ function renderCountryList(state) {
   countryListSelector.on('click', (d) => {
     dispatchApplication('showPageState', 'country');
     dispatchApplication('selectedZoneName', d.countryCode);
-    // Center map
-    centerOnZoneName(getState(), d.countryCode);
+    // Center and zoom map
+    if (zoneMap !== 'undefined') {
+      centerOnZoneName(getState(), d.countryCode, 4);
+    }
   });
 }
 function renderHistory(state) {
@@ -1092,13 +1096,29 @@ function tryFetchHistory(state) {
     });
   }
 }
-function centerOnZoneName(state, zoneName) {
+function centerOnZoneName(state, zoneName, zoomLevel) {
   if (typeof zoneMap === 'undefined') { return; }
   const selectedZone = state.data.grid.zones[zoneName];
-  const selectedZoneCoordinates = selectedZone.geometry.coordinates[0][0];
-  const lon = d3.mean(selectedZoneCoordinates, d => d[0]);
-  const lat = d3.mean(selectedZoneCoordinates, d => d[1]);
+  const selectedZoneCoordinates = [];
+  selectedZone.geometry.coordinates.forEach((geojson) => {
+    // selectedZoneCoordinates.push(geojson[0]);
+    geojson[0].forEach((coord) => {
+      selectedZoneCoordinates.push(coord);
+    });
+  });
+  const maxLon = d3.max(selectedZoneCoordinates, d => d[0]);
+  const minLon = d3.min(selectedZoneCoordinates, d => d[0]);
+  const maxLat = d3.max(selectedZoneCoordinates, d => d[1]);
+  const minLat = d3.min(selectedZoneCoordinates, d => d[1]);
+  const lon = d3.mean([minLon, maxLon]);
+  const lat = d3.mean([minLat, maxLat]);
+
   zoneMap.setCenter([lon, lat]);
+  if (zoomLevel) {
+    // Remember to set center and zoom in case the map wasn't loaded yet
+    zoneMap.setZoom(zoomLevel);
+    zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
+  }
 }
 
 // Observe for grid zones change
