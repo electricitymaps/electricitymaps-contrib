@@ -552,18 +552,29 @@ d3.select('.country-search-bar input')
   .on('keyup', (obj, i, nodes) => {
     const query = nodes[i].value.toLowerCase();
 
-    d3.select('.country-picker-container p')
-      .selectAll('a').each((obj, i, nodes) => {
+    d3.selectAll('.country-picker-container p a')
+      .each((obj, i, nodes) => {
         const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
         const listItem = d3.select(nodes[i]);
 
         if (zoneName.indexOf(query) !== -1) {
-          listItem.style('display', '');
+          listItem.style('display', undefined);
         } else {
           listItem.style('display', 'none');
         }
       });
   });
+d3.select('.country-search-bar input').node().addEventListener('keypress', (e) => {
+  if (e.keyCode === 13) {
+    // Enter pressed, count how many visible
+    const nodes = d3.selectAll('.country-picker-container p a')
+      .nodes().filter(d => d.style.display !== 'none');
+    if (nodes.length === 1) {
+      // Only one node, go!
+      nodes[0].click();
+    }
+  }
+});
 
 function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
   if (err) {
