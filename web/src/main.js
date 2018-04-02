@@ -779,6 +779,10 @@ document.addEventListener('keyup', (e) => {
   }
 }, false);
 
+// Collapse button
+document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
+  dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
+
 // Map click
 // TODO(olc): make sure to assign even if map is not ready yet
 if (typeof zoneMap !== 'undefined') {
@@ -1037,6 +1041,18 @@ function renderHistory(state) {
       .render();
   });
 }
+function renderLeftPanelCollapseButton(state) {
+  const { isLeftPanelCollapsed } = state.application;
+  d3.select('.left-panel')
+    .style('display', isLeftPanelCollapsed ? 'none' : undefined);
+  d3.select('#left-panel-collapse-button')
+    .style('left', isLeftPanelCollapsed ? '0px' : undefined)
+    .select('i.fa')
+    .attr('class', `fa fa-caret-${isLeftPanelCollapsed ? 'right' : 'left'}`);
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.map.resize();
+  }
+}
 function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
@@ -1240,20 +1256,22 @@ Object.values(HistoryState.querystringMappings).forEach((k) => {
     HistoryState.updateHistoryFromState(state.application);
   });
 });
-// Observe for datetimechanes
+// Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {
   if (grid && grid.datetime) {
     setLastUpdated();
   }
 });
-
 // Observe for legend visibility change
-observe(state => state.application.legendVisible, (legendVisible, _) => {
+observe(state => state.application.legendVisible, (legendVisible) => {
   d3.selectAll('.floating-legend').classed('mobile-collapsed', !legendVisible);
   d3.select('.floating-legend-container').classed('mobile-collapsed', !legendVisible);
   d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
   d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
 });
+// Observe for left panel collapse
+observe(state => state.application.isLeftPanelCollapsed, (_, state) =>
+  renderLeftPanelCollapseButton(state));
 
 // ** START
 
