@@ -92,7 +92,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
 def fetch_price(zone_key, session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)):
     if target_datetime:
-        now = arrow.get(target_datetime, 'Europe/Paris')
+        now = arrow.get(target_datetime, tz='Europe/Paris')
     else:
         now = arrow.now(tz='Europe/Paris')
 
