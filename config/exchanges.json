@@ -1417,11 +1417,6 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
-  "NO-NO3->NO-NO2": {
-    "parsers": {
-      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
-    }
-  },
   "NO-NO3->NO-NO4": {
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
