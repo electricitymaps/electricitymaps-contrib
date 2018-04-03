@@ -1788,7 +1788,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production",
+      "production": "SE.fetch_production",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Stockholm"
