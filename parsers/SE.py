@@ -68,7 +68,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
             'production': dict(prod),
             'datetime': dt.replace(minute=0),
             'zoneKey': 'SE',
-            'storage': None,
+            'storage': {},
             'source': 'svk.se'
         })
 
