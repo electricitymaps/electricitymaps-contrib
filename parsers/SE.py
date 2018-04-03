@@ -56,8 +56,6 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
 
     # SVK returns almost a point per minute, but only nuclear is updated
     # with that granularity. Other points are updated every hour, at minute 6
-    # So we'll keep only one datapoint per hour, and datetimes where minute > 6
-    # only keep one datapoint per hour, and only values where minute > 6
     to_return = []
     last_inserted_datetime = datetime.datetime(2010, 1, 1)
     for dt in datetimes:
@@ -71,7 +69,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
             'datetime': dt.replace(minute=0),
             'zoneKey': 'SE',
             'storage': None,
-            'source': 'www.svk.se'
+            'source': 'svk.se'
         })
 
     return to_return
