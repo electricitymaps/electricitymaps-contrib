@@ -93,6 +93,10 @@ power_plant_type = {
     'BRAGTG06': 'gas',
     'BRC1DI01': 'oil',
     'BRCHTG01': 'gas',
+    'BRKETG01': 'gas',
+    'BRKETG02': 'gas',
+    'BRKETG03': 'gas',
+    'BRKETG04': 'gas',    
     'BROWTG01': 'gas',
     'BROWTG02': 'gas',
     'BSASTG01': 'gas',
@@ -200,6 +204,7 @@ power_plant_type = {
     'INDETG01': 'gas',
     'INDETG02': 'gas',
     'INDETG03': 'gas',
+    'INDETG04': 'gas',
     'INTADI01': 'oil',
     'ISBATV01': 'gas',
     'ISVEDI01': 'oil',
@@ -320,6 +325,9 @@ power_plant_type = {
     'PATATG02': 'gas',
     'PATATV01': 'gas',
     'PBANHI': 'hydro',
+    'PEDRTG01': 'gas',
+    'PEDRTG02': 'gas',
+    'PEDRTG03': 'gas',
     'PEHUDI01': 'oil',
     'PERZDI01': 'oil',
     'PERZDI02': 'oil',
@@ -473,7 +481,11 @@ power_plant_type = {
     'ZAPATG01': 'gas',
     'ZAPATG02': 'gas',
     'ZAPATG03': 'gas',
-    'ZAPATG04': 'gas'
+    'ZAPATG04': 'gas',
+    'ZARATG01': 'gas',
+    'ZARATG02': 'gas',
+    'ZARATG03': 'gas',
+    'ZARATG04': 'gas'
 }
 
 # URL's for thermal and hydro pages and data sources respectively.

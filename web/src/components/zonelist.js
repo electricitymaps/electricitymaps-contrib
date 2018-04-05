@@ -45,6 +45,14 @@ export default class ZoneList {
     });
   }
 
+  clickFirstItemIfVisibleListHasExactlyOneItem() {
+    const visibleListItems = d3.selectAll(`${this.selectorId} .link-container`).nodes()
+      .filter(node => node.style.display !== 'none');
+    if (visibleListItems.length === 1) {
+      visibleListItems[0].click();
+    }
+  }
+
   render() {
     this._createListItems();
     this._setItemAttributes();

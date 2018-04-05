@@ -91,7 +91,7 @@ module.exports = (state = initialDataState, action) => {
         const [key, value] = entry;
         const zone = newGrid.zones[key];
         if (!zone) {
-          console.warn(`${zone} has no country definition.`);
+          console.warn(`${key} has no zone configuration.`);
           return;
         }
         // Assign data from payload

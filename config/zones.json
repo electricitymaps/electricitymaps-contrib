@@ -1558,7 +1558,11 @@
   },
   "NO-NO5": {
     "parsers": {
-      "price": "ENTSOE.fetch_price"
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": null
   },
@@ -1784,7 +1788,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production",
+      "production": "SE.fetch_production",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Stockholm"
@@ -1795,7 +1799,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production"
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": null
   },
@@ -1805,7 +1809,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production"
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": null
   },
@@ -1815,7 +1819,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production"
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": null
   },
@@ -1825,7 +1829,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "statnett.fetch_production"
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": null
   },
