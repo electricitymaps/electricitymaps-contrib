@@ -2004,6 +2004,12 @@
     "timezone": null
   },
   "US-IPC": {
+    "capacity": {
+      "hydro": 1709,
+      "coal": 1118,
+      "gas": 762,
+      "oil": 5
+    },
     "contributors": [
       "https://github.com/systemcatch"
     ],
