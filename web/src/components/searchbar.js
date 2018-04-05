@@ -22,6 +22,12 @@ export default class SearchBar {
     this.enterKeypressHandler = enterKeypressHandler;
   }
 
+  focus() {
+    const inputNode = this.selector.node();
+    inputNode.value = '';
+    inputNode.focus();
+  }
+
   _setupInputHandler() {
     this.selector.on('keyup', (obj, i, nodes) => {
       const query = nodes[i].value.toLowerCase();

@@ -711,11 +711,7 @@ d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 // Keyboard shortcuts
 document.addEventListener('keyup', (e) => {
   if (e.key === '/') {
-    // Focus on search box
-    dispatchApplication('showPageState', 'highscore');
-    const el = d3.select('.country-search-bar input').node();
-    el.value = '';
-    el.focus();
+    zoneSearchBar.focus();
   }
 }, false);
 
