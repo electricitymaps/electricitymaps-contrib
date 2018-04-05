@@ -419,12 +419,12 @@ def query_consumption_forecast(in_domain, session, target_datetime=None):
 def datetime_from_position(start, position, resolution):
     """Finds time granularity of data."""
 
-    m = re.search('PT(\d+)([M])', resolution)
+    m = re.search(r'PT(\d+)([M])', resolution)
     if m:
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == 'M':
-            return start.replace(minutes=position * digits)
+            return start.replace(minutes=(position - 1) * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
