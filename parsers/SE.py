@@ -66,10 +66,14 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
         prod = productions[dt]
         to_return.append({
             'production': dict(prod),
-            'datetime': dt.replace(minute=0).datetime,
+            'datetime': dt.replace(minute=0),
             'zoneKey': 'SE',
             'storage': {},
             'source': 'svk.se'
         })
 
     return to_return
+
+
+if __name__ == '__main__':
+    print(fetch_production())
