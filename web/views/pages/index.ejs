@@ -165,23 +165,17 @@ co2Sub = function(str) {
                                 <span style="font-size: 1.2em; color: white;"><i><%- __('panel-initial-text.tip') %> ⟶</i></span>
                             </p>
                         </div>
-                        <hr />
                     </div>
 
                     <div class="left-panel-highscore">
                         <div class="left-panel-toolbar large-screen-visible">
                             <div class="left-panel-toolbar-title">
-                                <span id="left-panel-highscore-back">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </span>
-                                <!-- <%- __('rankings-panel.country-ranking') %> -->
-                            </div>
-                            <div class="left-panel-toolbar-right-placeholder"></div>
-                            
+                                 <!-- <%- __('left-panel.rankings-header') %> -->
+                            </div>                            
                         </div>
 
                         <div class="zone-search-bar">
-                            <input placeholder="<%- __('rankings-panel.search') %>"></input>
+                            <input placeholder="<%- __('left-panel.search') %>"></input>
                         </div>
 
                         <div class="zone-list">
@@ -192,7 +186,6 @@ co2Sub = function(str) {
 
                     <div class="left-panel-info">
                         <div>
-                            <hr />
                             <p>
                                 <input type="checkbox" id="checkbox-colorblind" />
                                 <label for="checkbox-colorblind"><%- __('legends.colorblindmode') %></label>
@@ -349,9 +342,6 @@ co2Sub = function(str) {
                             data-show-screen-name="false"
                             data-show-count="false"
                             data-lang="<%= locale %>"></a>
-                    </div>
-                    <div class="highscore-button">
-                        <%- __('rankings-panel.show-ranking') %>
                     </div>
                     <div class="floating-legend-container">
                         <div class="floating-legend-mobile-header">

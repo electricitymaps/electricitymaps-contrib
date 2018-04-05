@@ -245,6 +245,7 @@ function updateCo2Scale() {
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
 
   zoneList.setCo2ColorScale(co2color);
+  zoneList.render();
 }
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', () => {
@@ -743,17 +744,12 @@ zoneList.setClickHandler((selectedCountry) => {
   dispatchApplication('selectedZoneName', selectedCountry.countryCode);
 });
 
-// Close button on highscore (only triggered on large screens)
-d3.selectAll('#left-panel-highscore-back')
-  .on('click', () => dispatchApplication('showPageState', 'map'));
-
-// Highscore button click
-d3.selectAll('.highscore-button')
-  .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+d3.selectAll('.highscore-button')
+  .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
 
 

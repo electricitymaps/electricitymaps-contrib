@@ -16,12 +16,14 @@ export default class ZoneList {
     this.co2ColorScale = config.co2ColorScale;
     this.clickHandler = config.clickHandler;
     if (config.zones) {
-      this._sortAndValidateZones(config.zones);
+      this.setZones(config.zones);
     }
   }
 
-  setZones(zones) {
-    this._sortAndValidateZones(zones);
+  setZones(zonesData) {
+    const zones = d3.values(zonesData);
+    const validatedAndSortedZones = this._sortAndValidateZones(zones);
+    this.zones = this._decorateZones(validatedAndSortedZones);
   }
 
   setCo2ColorScale(colorScale) {
@@ -33,12 +35,10 @@ export default class ZoneList {
   }
 
   filterZonesByQuery(query) {
-    d3.select(this.selectorId).selectAll('a').each((obj, i, nodes) => {
-      const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
+    d3.select(this.selectorId).selectAll('.link-container').each((zone, i, nodes) => {
       const listItem = d3.select(nodes[i]);
-
-      if (zoneName.indexOf(query) !== -1) {
-        listItem.style('display', 'inherit');
+      if (this._zoneMatchesQuery(zone, query)) {
+        listItem.style('display', 'block');
       } else {
         listItem.style('display', 'none');
       }
@@ -51,8 +51,13 @@ export default class ZoneList {
     this._setItemClickHandlers();
   }
 
+  _zoneMatchesQuery(zone, query) {
+    return zone.countryName.toLowerCase().indexOf(query) !== -1
+    || zone.zoneName.toLowerCase().indexOf(query) !== -1;
+  }
+
   _sortAndValidateZones(zones) {
-    this.zones = d3.values(zones)
+    return zones
       .filter(d => d.co2intensity)
       .sort((x, y) => {
         if (!x.co2intensity && !x.countryCode) {
@@ -68,46 +73,111 @@ export default class ZoneList {
       });
   }
 
+  _decorateZones(zones) {
+    const zonesWithRankings = this._saveZoneRankings(zones);
+    return this._splitZoneNamesIntoPrimaryAndSecondary(zonesWithRankings);
+  }
+
+  _saveZoneRankings(zones) {
+    return zones.map((zone) => {
+      const ret = Object.assign({}, zone);
+      ret.ranking = zones.indexOf(zone) + 1;
+      return ret;
+    });
+  }
+
+  _splitZoneNamesIntoPrimaryAndSecondary(zones) {
+    return zones.map((zone) => {
+      const zoneFullName = translation.translate(`zoneShortName.${zone.countryCode}`) || zone.countryCode;
+      const leftParanthesisIndex = zoneFullName.indexOf('(');
+      const rightParanthesisIndex = zoneFullName.indexOf(')');
+      const ret = Object.assign({}, zone);
+
+      if (leftParanthesisIndex !== -1 && rightParanthesisIndex !== -1) {
+        ret.countryName = zoneFullName.substring(0, leftParanthesisIndex - 1);
+        ret.zoneName = zoneFullName
+          .substring(leftParanthesisIndex + 1, rightParanthesisIndex);
+      } else {
+        ret.countryName = '';
+        ret.zoneName = zoneFullName;
+      }
+      return ret;
+    });
+  }
+
   _createListItems() {
     this.selector = d3.select(this.selectorId)
       .selectAll('a')
       .data(this.zones);
-    const enterA = this.selector.enter().append('a');
+
+    const linkContainers = this.selector.enter().append('div').attr('class', 'link-container');
+
+    const enterA = linkContainers.append('a');
+
     enterA
       .append('div')
-      .attr('class', 'emission-rect');
-    enterA
-      .append('span')
-      .attr('class', 'name');
+      .attr('class', 'ranking');
     enterA
       .append('img')
       .attr('class', 'flag');
-    enterA
-      .append('span')
-      .attr('class', 'rank');
 
-    this.selector = enterA.merge(this.selector);
+    const nameDiv = enterA
+      .append('div')
+      .attr('class', 'name');
+    nameDiv.append('div')
+      .attr('class', 'zone-name');
+    nameDiv.append('div')
+      .attr('class', 'country-name');
+
+    const emissionsDiv = enterA
+      .append('div')
+      .attr('class', 'emissions');
+
+    emissionsDiv
+      .append('div')
+      .attr('class', 'emissions-value');
+
+    emissionsDiv
+      .append('div')
+      .attr('class', 'emissions-unit');
+
+    linkContainers.append('hr'); // border between items
+
+    this.selector = linkContainers.merge(this.selector);
   }
 
   _setItemAttributes() {
-    this._setItemTexts();
-    this._setItemBackgroundColors();
+    this._setItemRanks();
     this._setItemFlags();
+    this._setItemNames();
+    this._setItemEmissions();
   }
 
-  _setItemTexts() {
-    this.selector.select('span.name')
-      .text(zone => ` ${translation.translate(`zoneShortName.${zone.countryCode}`) || zone.countryCode} `);
+  _setItemNames() {
+    this.selector.select('.zone-name')
+      .text(zone => zone.zoneName);
+
+    this.selector.select('.country-name')
+      .text(zone => zone.countryName);
   }
 
-  _setItemBackgroundColors() {
-    this.selector.select('div.emission-rect')
-      .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
+  _setItemRanks() {
+    this.selector.select('div.ranking')
+      .text(zone => zone.ranking);
   }
 
   _setItemFlags() {
     this.selector.select('.flag')
-      .attr('src', zone => flags.flagUri(zone.countryCode, 16));
+      .attr('src', zone => flags.flagUri(zone.countryCode, 32));
+  }
+
+  _setItemEmissions() {
+    this.selector.select('.emissions')
+      .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
+    this.selector.select('.emissions .emissions-value')
+      .text(zone => (zone.co2intensity ? Math.round(zone.co2intensity) : '-'));
+    this.selector.select('.emissions .emissions-unit')
+      .html('gCO<sub>2</sub>eq/kWh');
   }
 
   _setItemClickHandlers() {

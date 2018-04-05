@@ -224,7 +224,7 @@ html, body, #main {
     font-size: 0.8rem;
 }
 .left-panel {
-    padding: 1rem;
+    padding: 1rem 0;
     line-height: 1.2rem;
     width: 24rem;
     position: relative;
@@ -301,6 +301,11 @@ html, body, #main {
 .left-panel-toolbar-right-placeholder {
     width: 2.875rem;
 }
+
+.left-panel-info, .left-panel-social, .left-panel-country {
+    padding: 0 1rem;
+}
+
 
 .country-name-time {
     font-size: smaller;
@@ -696,12 +701,11 @@ div.highscore-button:hover {
     display:flex;
     flex-direction: column;
     flex: 1;
-    margin-right: -1rem;
     overflow-y: hidden;
 }
 
 .zone-search-bar {
-    padding: 10px 10px 10px 0px;
+    padding: 0px 1rem 0.5rem 1rem;
 }
 .zone-search-bar input {
     background: inherit;
@@ -716,43 +720,83 @@ div.highscore-button:hover {
 }
 
 .zone-list {
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 .zone-list p {
     margin: -0.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 .zone-list a {
-    display: block;
+    display: flex;
     font-size: 1rem;
-    justify-content: space-between;
-    align-items: baseline;
-    line-height: 1.8rem;
+    justify-content: end;
+    align-items: center;
     box-sizing: content-box;
 
     /* formatting */
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    height: 35px;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    line-height: 1rem;
 }
 .zone-list a:hover {
     text-decoration: none;
     background: rgba(255,255,255,0.1)
 }
-.zone-list .emission-rect {
-    width: 0.8rem;
-    height: 0.8rem;
+
+/* separator line between list items */
+.zone-list hr {
+    width: 50%;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.zone-list a > span {
-    flex-grow: 1;
-    line-height: 1.2rem;
+
+.zone-list .ranking {
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.zone-list .flag{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.zone-list .name{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    flex: 1;
 }
-.zone-list .rank {
-    color: darkgray;
-    font-size: 0.6em;
+
+.zone-list .country-name {
+    font-size: 0.8rem;
+}
+
+.zone-list .emissions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-right: 10px;
+}
+
+.zone-list .emissions-value {
+    line-height: 1.6rem;
+}
+
+.zone-list .emissions-unit {
+    font-size: 0.6rem;
+    line-height: 0.3rem;
 }
 
 .slack-button {
