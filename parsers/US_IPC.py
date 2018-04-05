@@ -11,16 +11,19 @@ import requests
 # NOTE No pumped storage yet but future ideas can be found at the following url.
 # https://docs.idahopower.com/pdfs/AboutUs/PlanningForFuture/irp/IRP.pdf
 
+# Renewable energy (PURPA) is likely bought with credits from outside the Utility
+# area and not supplied to customers. For that reason those types are commented out. 
+
 PRODUCTION_URL = 'https://api.idahopower.com/Energy/Api/V1/GenerationAndDemand/Subset'
 
-GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
+GENERATION_MAPPING = {#'Non-Utility Geothermal': 'geothermal',
                       'Hydro': 'hydro',
                       'Coal': 'coal',
                       'Diesel': 'oil',
-                      'PURPA/Non-Utility Wind': 'wind',
-                      'Natural Gas': 'gas',
-                      'PURPA/Non-Utility Solar': 'solar',
-                      'PURPA Other': 'biomass'
+                      #'PURPA/Non-Utility Wind': 'wind',
+                      'Natural Gas': 'gas'
+                      #'PURPA/Non-Utility Solar': 'solar',
+                      #'PURPA Other': 'biomass'
                       }
 
 TIMEZONE = tz.gettz("America/Boise")
@@ -57,7 +60,8 @@ def data_processer(raw_data, logger):
     dt_key = lambda x: x['datetime']
     grouped = groupby(raw_data, dt_key)
 
-    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent'}
+    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent','Non-Utility Geothermal',
+                      'PURPA/Non-Utility Wind', 'PURPA/Non-Utility Solar', 'PURPA Other'}
     known_keys = GENERATION_MAPPING.keys() | keys_to_ignore
 
     unmapped = set()
