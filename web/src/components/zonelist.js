@@ -83,7 +83,7 @@ export default class ZoneList {
 
   _decorateZones(zones) {
     const zonesWithRankings = this._saveZoneRankings(zones);
-    return this._splitZoneNamesIntoPrimaryAndSecondary(zonesWithRankings);
+    return this._splitZoneFullNamesIntoCountryAndZoneNames(zonesWithRankings);
   }
 
   _saveZoneRankings(zones) {
@@ -94,7 +94,7 @@ export default class ZoneList {
     });
   }
 
-  _splitZoneNamesIntoPrimaryAndSecondary(zones) {
+  _splitZoneFullNamesIntoCountryAndZoneNames(zones) {
     return zones.map((zone) => {
       const zoneFullName = translation.translate(`zoneShortName.${zone.countryCode}`) || zone.countryCode;
       const leftParanthesisIndex = zoneFullName.indexOf('(');
