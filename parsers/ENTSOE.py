@@ -645,6 +645,8 @@ def validate_production(datapoint, logger):
         return validate(datapoint, logger=logger, required=['coal'])
     elif datapoint['zoneKey'] == 'IE':
         return validate(datapoint, logger=logger, required=['coal'])
+    elif datapoint['zoneKey'] == 'IT':
+        return validate(datapoint, logger=logger, required=['coal'], expected_range=(5000, 50000))
     elif datapoint['zoneKey'] == 'NO':
         return validate(datapoint, logger=logger, required=['hydro'], expected_range=(5000, 50000))
     elif datapoint['zoneKey'] == 'PT':
