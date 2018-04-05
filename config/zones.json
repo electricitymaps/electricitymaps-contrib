@@ -1798,7 +1798,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
+      "price": "ENTSOE.fetch_price"
     },
     "timezone": null
   },
@@ -1807,7 +1807,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
+      "price": "ENTSOE.fetch_price"
     },
     "timezone": null
   },
@@ -1816,7 +1816,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
+      "price": "ENTSOE.fetch_price"
     },
     "timezone": null
   },
@@ -1825,7 +1825,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
+      "price": "ENTSOE.fetch_price"
     },
     "timezone": null
   },
