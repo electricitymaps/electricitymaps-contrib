@@ -2012,7 +2012,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_MISO.fetch_production"
+      "production": "US_MISO.fetch_production",
+      "consumptionForecast": "IEA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2086,7 +2087,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_SPP.fetch_production"
+      "production": "US_SPP.fetch_production",
+      "consumptionForecast": "IEA.fetch_consumption_forecast"
     },
     "timezone": null
   },
