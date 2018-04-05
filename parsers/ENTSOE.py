@@ -15,9 +15,12 @@ Consumption Forecast
 import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
+
 import arrow
 import logging, os, re
 import requests
+
+from .lib.validation import validate
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -419,12 +422,12 @@ def query_consumption_forecast(in_domain, session, target_datetime=None):
 def datetime_from_position(start, position, resolution):
     """Finds time granularity of data."""
 
-    m = re.search('PT(\d+)([M])', resolution)
+    m = re.search(r'PT(\d+)([M])', resolution)
     if m:
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == 'M':
-            return start.replace(minutes=position * digits)
+            return start.replace(minutes=(position - 1) * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
@@ -608,7 +611,7 @@ def parse_consumption_forecast(xml_text):
     return values, datetimes
 
 
-def validate_production(datapoint):
+def validate_production(datapoint, logger):
     """
     Production data can sometimes be available but clearly wrong.
 
@@ -636,6 +639,18 @@ def validate_production(datapoint):
         p = datapoint['production']
         return (p.get('coal', None) is not None and p.get('gas', None) is not None
                 and p.get('wind', None) is not None)
+    elif 'DK-' in datapoint['zoneKey']:
+        return validate(datapoint, logger=logger, required=['coal'])
+    elif datapoint['zoneKey'] == 'HU':
+        return validate(datapoint, logger=logger, required=['coal'])
+    elif datapoint['zoneKey'] == 'IE':
+        return validate(datapoint, logger=logger, required=['coal'])
+    elif datapoint['zoneKey'] == 'IT':
+        return validate(datapoint, logger=logger, required=['coal'], expected_range=(5000, 50000))
+    elif datapoint['zoneKey'] == 'NO':
+        return validate(datapoint, logger=logger, required=['hydro'], expected_range=(5000, 50000))
+    elif datapoint['zoneKey'] == 'PT':
+        return validate(datapoint, logger=logger, required=['coal'])
     elif datapoint['zoneKey'] == 'DE':
         p = datapoint['production']
         return (p.get('coal', None) is not None and p.get('gas', None) is not None and
@@ -795,7 +810,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                                    extra={'key': zone_key})
                     d['production'][k] = 0
 
-    return list(filter(validate_production, data))
+    return list(filter(lambda x: validate_production(x, logger), data))
 
 
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,

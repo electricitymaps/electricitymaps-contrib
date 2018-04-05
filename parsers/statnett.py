@@ -19,13 +19,22 @@ exchanges_mapping = {
     'DE->SE': [
         'DE->SE4'
     ],
+    'DE->SE-SE4': [
+        'DE->SE4'
+    ],
     'DK-DK1->NO': [
         'DK1->NO2'
     ],
     'DK-DK1->SE': [
         'DK1->SE3'
     ],
+    'DK-DK1->SE-SE3': [
+        'DK1->SE3'
+    ],
     'DK-DK2->SE': [
+        'DK2->SE4'
+    ],
+    'DK-DK2->SE-SE4': [
         'DK2->SE4'
     ],
     'EE->RU': [
@@ -47,10 +56,19 @@ exchanges_mapping = {
         'FI->SE1',
         'FI->SE3'
     ],
+    'FI->SE-SE1': [
+        'FI->SE1',
+    ],
+    'FI->SE-SE3': [
+        'FI->SE3'
+    ],
     'LT->LV': [
         'LT->LV'
     ],
     'LT->SE': [
+        'LT->SE4'
+    ],
+    'LT->SE-SE4': [
         'LT->SE4'
     ],
     'LT->PL': [
@@ -75,8 +93,20 @@ exchanges_mapping = {
         'NO4->RU'
     ],
     'PL->SE': [
+        'PL->SE4',
+    ],
+    'PL->SE-SE4': [
         'PL->SE4'
-    ]
+    ],
+    'SE-SE1->SE-SE2': [
+        'SE1->SE2'
+    ],
+    'SE-SE2->SE-SE3': [
+        'SE1->SE2'
+    ],
+    'SE-SE3->SE-SE4': [
+        'SE1->SE2'
+    ],
 }
 
 

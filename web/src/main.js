@@ -97,7 +97,6 @@ const ENDPOINT = getState().application.useRemoteEndpoint ?
 // or to component state
 let currentMoment;
 let mapDraggedSinceStart = false;
-let mapLoaded = false;
 let wind;
 let solar;
 let tableDisplayEmissions = false;
@@ -267,15 +266,16 @@ d3.select('#checkbox-colorblind').on('change', () => {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones')
+  zoneMap = new ZoneMap('zones', { zoom: 1.5 })
     .setCo2color(co2color)
     .onDragEnd(() => {
-      // Somehow there is a drag event sent before the map is loaded.
+      // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
-      if (!mapDraggedSinceStart && mapLoaded) { mapDraggedSinceStart = true; }
+      if (!mapDraggedSinceStart && getState().data.grid.datetime) {
+        mapDraggedSinceStart = true;
+      }
     })
     .onMapLoaded((map) => {
-      mapLoaded = true;
       // Nest the exchange layer inside
       const el = document.createElement('div');
       el.id = 'arrows-layer';
@@ -463,12 +463,8 @@ function renderMap(state) {
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { selectedZoneName, callerLocation } = state.application;
     if (selectedZoneName) {
-      const selectedZone = state.data.grid.zones[selectedZoneName];
-      const selectedZoneCoordinates = selectedZone.geometry.coordinates[0][0];
-      const lon = d3.mean(selectedZoneCoordinates, d => d[0]);
-      const lat = d3.mean(selectedZoneCoordinates, d => d[1]);
-      console.log('Centering on selectedZoneName @', [lon, lat]);
-      zoneMap.setCenter([lon, lat]);
+      console.log(`Centering on selectedZoneName ${selectedZoneName}`);
+      centerOnZoneName(state, selectedZoneName, 4);
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
@@ -478,10 +474,8 @@ function renderMap(state) {
       zoneMap.setCenter([0, 50]);
     }
   }
-  if (exchangeLayer) {
-    exchangeLayer.render();
-  }
 
+  // Render Wind
   if (getState().application.windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable wind if the drawing goes wrong
@@ -505,6 +499,7 @@ function renderMap(state) {
     windLayer.hide();
   }
 
+  // Render Solar
   if (getState().application.solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable solar if the drawing goes wrong
@@ -531,6 +526,7 @@ function renderMap(state) {
   }
 
   // Resize map to make sure it takes all container space
+  // Warning: this causes a flicker
   zoneMap.map.resize();
 }
 
@@ -556,18 +552,29 @@ d3.select('.country-search-bar input')
   .on('keyup', (obj, i, nodes) => {
     const query = nodes[i].value.toLowerCase();
 
-    d3.select('.country-picker-container p')
-      .selectAll('a').each((obj, i, nodes) => {
+    d3.selectAll('.country-picker-container p a')
+      .each((obj, i, nodes) => {
         const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
         const listItem = d3.select(nodes[i]);
 
         if (zoneName.indexOf(query) !== -1) {
-          listItem.style('display', '');
+          listItem.style('display', undefined);
         } else {
           listItem.style('display', 'none');
         }
       });
   });
+d3.select('.country-search-bar input').node().addEventListener('keypress', (e) => {
+  if (e.keyCode === 13) {
+    // Enter pressed, count how many visible
+    const nodes = d3.selectAll('.country-picker-container p a')
+      .nodes().filter(d => d.style.display !== 'none');
+    if (nodes.length === 1) {
+      // Only one node, go!
+      nodes[0].click();
+    }
+  }
+});
 
 function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
   if (err) {
@@ -735,11 +742,11 @@ function toggleSolar() {
 }
 d3.select('.solar-button').on('click', toggleSolar);
 
-// Legend 
-function toggleLegend(){
+// Legend
+function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
- d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
+d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 
 
 // Close button on left-panel
@@ -760,6 +767,21 @@ d3.selectAll('.highscore-button')
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+
+// Keyboard shortcuts
+document.addEventListener('keyup', (e) => {
+  if (e.key === '/') {
+    // Focus on search box
+    dispatchApplication('showPageState', 'highscore');
+    const el = d3.select('.country-search-bar input').node();
+    el.value = '';
+    el.focus();
+  }
+}, false);
+
+// Collapse button
+document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
+  dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
 
 // Map click
 // TODO(olc): make sure to assign even if map is not ready yet
@@ -873,6 +895,10 @@ function renderCountryList(state) {
   countryListSelector.on('click', (d) => {
     dispatchApplication('showPageState', 'country');
     dispatchApplication('selectedZoneName', d.countryCode);
+    // Center and zoom map
+    if (zoneMap !== 'undefined') {
+      centerOnZoneName(getState(), d.countryCode, 4);
+    }
   });
 }
 function renderHistory(state) {
@@ -1015,6 +1041,18 @@ function renderHistory(state) {
       .render();
   });
 }
+function renderLeftPanelCollapseButton(state) {
+  const { isLeftPanelCollapsed } = state.application;
+  d3.select('.left-panel')
+    .style('display', isLeftPanelCollapsed ? 'none' : undefined);
+  d3.select('#left-panel-collapse-button')
+    .style('left', isLeftPanelCollapsed ? '0px' : undefined)
+    .select('i.fa')
+    .attr('class', `fa fa-caret-${isLeftPanelCollapsed ? 'right' : 'left'}`);
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.map.resize();
+  }
+}
 function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
@@ -1085,6 +1123,30 @@ function tryFetchHistory(state) {
     });
   }
 }
+function centerOnZoneName(state, zoneName, zoomLevel) {
+  if (typeof zoneMap === 'undefined') { return; }
+  const selectedZone = state.data.grid.zones[zoneName];
+  const selectedZoneCoordinates = [];
+  selectedZone.geometry.coordinates.forEach((geojson) => {
+    // selectedZoneCoordinates.push(geojson[0]);
+    geojson[0].forEach((coord) => {
+      selectedZoneCoordinates.push(coord);
+    });
+  });
+  const maxLon = d3.max(selectedZoneCoordinates, d => d[0]);
+  const minLon = d3.min(selectedZoneCoordinates, d => d[0]);
+  const maxLat = d3.max(selectedZoneCoordinates, d => d[1]);
+  const minLat = d3.min(selectedZoneCoordinates, d => d[1]);
+  const lon = d3.mean([minLon, maxLon]);
+  const lat = d3.mean([minLat, maxLat]);
+
+  zoneMap.setCenter([lon, lat]);
+  if (zoomLevel) {
+    // Remember to set center and zoom in case the map wasn't loaded yet
+    zoneMap.setZoom(zoomLevel);
+    zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
+  }
+}
 
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
@@ -1115,6 +1177,7 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 observe(state => state.application.selectedZoneName, (k, state) => {
   if (!state.application.selectedZoneName) { return; }
 
+  // Render
   renderCountryTable(state);
   renderGauges(state);
   renderContributors(state);
@@ -1169,7 +1232,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 });
 // Observe for wind settings change
 observe(state => state.application.windEnabled, (windEnabled, state) => {
-
   d3.selectAll('.wind-button').classed('active', windEnabled);
   d3.select('.wind-potential-legend').classed('visible', windEnabled);
 
@@ -1194,20 +1256,22 @@ Object.values(HistoryState.querystringMappings).forEach((k) => {
     HistoryState.updateHistoryFromState(state.application);
   });
 });
-// Observe for datetimechanes
+// Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {
   if (grid && grid.datetime) {
     setLastUpdated();
   }
 });
-
 // Observe for legend visibility change
-observe(state => state.application.legendVisible, (legendVisible, state) => {
+observe(state => state.application.legendVisible, (legendVisible) => {
   d3.selectAll('.floating-legend').classed('mobile-collapsed', !legendVisible);
   d3.select('.floating-legend-container').classed('mobile-collapsed', !legendVisible);
   d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
   d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
-})
+});
+// Observe for left panel collapse
+observe(state => state.application.isLeftPanelCollapsed, (_, state) =>
+  renderLeftPanelCollapseButton(state));
 
 // ** START
 
