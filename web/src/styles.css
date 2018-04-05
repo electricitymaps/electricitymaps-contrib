@@ -746,7 +746,7 @@ div.highscore-button:hover {
     overflow-y: scroll;
 }
 .zone-list p {
-    margin: -0.25rem 0 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
