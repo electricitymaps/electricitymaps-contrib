@@ -27,10 +27,10 @@
         "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.",
         "helpfrom": "with help from"
     },
-    "rankings-panel": {
-        "country-ranking": "Ranking",
-        "show-ranking": "Show ranking",
-        "search": "Search a zone"
+    "left-panel": {
+        "zone-list-header-title": "Climate Impact by Area",
+        "zone-list-header-subtitle": "Ranked by carbon intensity (gCO<sub>2</sub>eq/kWh)",
+        "search": "Search areas"
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",

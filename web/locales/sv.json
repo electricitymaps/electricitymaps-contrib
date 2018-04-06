@@ -27,11 +27,6 @@
         "co2signal": "Vår <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras.",
         "helpfrom": "med hjälp från"
     },
-    "rankings-panel": {
-        "country-ranking": "Rankning",
-        "show-ranking": "Visa rankning",
-        "search": "Sök på region"
-    },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
         "electricityorigin24h": "Källa för el under de senaste 24 timmarna",

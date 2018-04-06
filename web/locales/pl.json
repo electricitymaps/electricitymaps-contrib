@@ -30,11 +30,6 @@
         "co2signal": "Nasz <a href=\"%s\" target=\"blank\">CO2 Signal</a> pomaga urządzeniom i samochodom elektrycznym pobierać prąd w odpowiednim momencie, w szczególności podczas przekraczania granic.",
         "helpfrom": "z wkładem"
     },
-    "rankings-panel": {
-        "country-ranking": "Ranking",
-        "show-ranking": "Zobacz rankingi",
-        "search": "Szukaj"
-    },
     "country-history": {
         "carbonintensity24h": "Emisja CO2 w ostatnich 24 godzinach",
         "electricityorgin24h": "Źródła energii elektrycznej w ostatnich 24 godzinach",
