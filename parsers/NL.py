@@ -43,12 +43,12 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
 
     # Fill missing values by propagating the value forward
     df_consumptions_with_exchanges = df_consumptions.join(df_exchanges).fillna(
-        method='ffill')
+        method='ffill', limit=3)  # Limit to 3 x 15min
 
     # Load = Generation + netImports
     # => Generation = Load - netImports
-    df_total_generations = df_consumptions_with_exchanges['consumption'] - \
-        df_consumptions_with_exchanges['NL_import']
+    df_total_generations = (df_consumptions_with_exchanges['consumption'] -
+        df_consumptions_with_exchanges['NL_import'])
 
     # Fetch all production
     productions = ENTSOE.fetch_production(zone_key=zone_key, session=r,
