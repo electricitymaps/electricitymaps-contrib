@@ -62,7 +62,7 @@ def timestamp_checker(session=None, logger=None):
         scada_time = arrow.get(timestamp, ' DD/MM/YYYY HH:mm:ss')
     except arrow.parser.ParserError as e:
         logger.warning('Namibia scada timestamp cannot be read, got {}.'.format(timestamp))
-        return None
+        return True
 
     data_time = scada_time.replace(tzinfo='Africa/Windhoek')
     current_time = arrow.now('Africa/Windhoek')
@@ -72,7 +72,7 @@ def timestamp_checker(session=None, logger=None):
     if diff.seconds > 3600:
         raise ValueError('Namibia scada data is too old to use, data is {} hours old.'.format(diff.seconds/3600))
     else:
-        return None
+        return True
 
 
 def data_processor(text):
