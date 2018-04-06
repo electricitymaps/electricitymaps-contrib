@@ -201,7 +201,7 @@ body {
     align-items: stretch;
     position: relative;
     overflow-y: auto;
-    flex-grow: 1; /* take available vertical space */
+    flex: 1 1 auto;
 }
 
 .map-layer {
@@ -248,8 +248,7 @@ body {
 
 /* Left-panel */
 .left-panel {
-    padding: 1rem;
-    line-height: 1.2rem;
+    padding: 1rem 0;
     width: 24rem;
     position: relative;
     overflow-y: auto;
@@ -260,6 +259,8 @@ body {
     -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
     z-index: 1;
+    display: flex;
+    flex-direction: column;
 
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -323,6 +324,12 @@ body {
 .left-panel-toolbar-right-placeholder {
     width: 2.875rem;
 }
+
+.left-panel-info, .left-panel-social, .left-panel-country {
+    padding: 0 1rem;
+    line-height: 1.2rem;
+}
+
 
 .country-name-time {
     font-size: smaller;
@@ -714,10 +721,17 @@ div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
-.country-search-bar {
-    padding: 10px 10px 10px 0px;
+.left-panel-zone-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: hidden;
 }
-.country-search-bar input {
+
+.zone-search-bar {
+    padding: 0px 1rem 0.5rem 1rem;
+}
+.zone-search-bar input {
     background: inherit;
     color: inherit;
     border: none;
@@ -729,44 +743,84 @@ div.highscore-button:hover {
     font-family: inherit;
 }
 
-.country-picker-container {
+.zone-list-header {
+    padding: 0 1rem 0.5rem 1rem;
 }
-.country-picker-container p {
-    margin: -0.25rem 0 0;
+
+.zone-list-header .title {
+    font-size: 1.3rem;
 }
-.country-picker-container a {
-    display: block;
+
+.zone-list-header .subtitle {
+    font-size: 0.7rem;
+    color: darkgray;
+}
+
+.zone-list {
+    overflow-y: scroll;
+}
+.zone-list p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.zone-list a {
+    display: flex;
     font-size: 1rem;
-    justify-content: space-between;
-    align-items: baseline;
-    line-height: 1.8rem;
+    justify-content: end;
+    align-items: center;
     box-sizing: content-box;
 
     /* formatting */
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    height: 25px;
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    line-height: 1rem;
 }
-.country-picker-container a:hover {
+.zone-list a:hover {
     text-decoration: none;
     background: rgba(255,255,255,0.1)
 }
-.country-picker-container .emission-rect {
-    width: 0.8rem;
-    height: 0.8rem;
+
+.zone-list .ranking {
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 
-.country-picker-container a > span {
-    flex-grow: 1;
-    line-height: 1.2rem;
+.zone-list .flag {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.zone-list .name {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    flex: 1;
 }
-.country-picker-container .rank {
-    color: darkgray;
-    font-size: 0.6em;
+
+.zone-list .zone-name {
+    font-size: 0.9rem;
 }
+
+.zone-list .country-name {
+    font-size: 0.7rem;
+}
+
+.zone-list .co2-intensity-tag {
+    border-radius: 3px;    
+    margin-right: 10px;
+    height: 17px;
+    width: 17px;
+}
+
+
 
 .slack-button {
     display: inline-block;
@@ -977,5 +1031,16 @@ sub {
     .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
         margin-left: 80px;
     }
+}
+
+/* custom scrollbars in chrome*/
+div::-webkit-scrollbar {
+    width: 6px;
+}
+div::-webkit-scrollbar-track-piece {
+    background: #464646;
+}
+div::-webkit-scrollbar-thumb {
+    background: #888;
 }
 

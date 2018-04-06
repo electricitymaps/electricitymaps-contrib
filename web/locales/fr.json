@@ -27,11 +27,6 @@
         "co2signal": "Notre <a href=\"%s\" target=\"blank\">CO2 Signal</a> permet aux appareils et voitures électriques de consommer au bon moment.",
         "helpfrom": "avec l'aide de"
     },
-    "rankings-panel": {
-        "country-ranking": "Classement",
-        "show-ranking": "Montrer classement",
-        "search": "Chercher une zone"
-    },
     "country-history": {
         "carbonintensity24h": "Intensité carbone des 24 dernières heures",
         "electricityorigin24h": "Origine de l'électricité des 24 dernières heures",

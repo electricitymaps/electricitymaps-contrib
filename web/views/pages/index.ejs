@@ -152,6 +152,7 @@ co2Sub = function(str) {
 
                 <div class="panel left-panel">
 
+
                     <div class="left-panel-info">
                         <div class="left-panel-initial-text">
                             <p>
@@ -160,13 +161,28 @@ co2Sub = function(str) {
                             <p>
                                 <%- __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%- __('panel-initial-text.importexport') %></span><span class="large-screen-visible" style="white-space: nowrap;"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 0.9em;" /></span> <%- __('panel-initial-text.betweenzones') %>.
                             </p>
-                            <p class="large-screen-visible">
-                                <span style="font-size: 1.2em; color: white;"><i><%- __('panel-initial-text.tip') %> ⟶</i></span>
-                            </p>
+                        </div>
+                    </div>
+
+                    <div class="left-panel-zone-list">
+
+                        <div class="zone-list-header">
+                            <div class="title"> <%- __('left-panel.zone-list-header-title') %></div>
+                            <div class="subtitle"> <%- __('left-panel.zone-list-header-subtitle') %></div>
                         </div>
 
+                        <div class="zone-search-bar">
+                            <input placeholder="<%- __('left-panel.search') %>"></input>
+                        </div>
+
+                        <div class="zone-list">
+                            <p></p>
+                        </div>
+
+                    </div>
+
+                    <div class="left-panel-info">
                         <div>
-                            <hr />
                             <p>
                                 <input type="checkbox" id="checkbox-colorblind" />
                                 <label for="checkbox-colorblind"><%- __('legends.colorblindmode') %></label>
@@ -202,9 +218,6 @@ co2Sub = function(str) {
                         </div>
 
                         <div class="country-panel">
-
-
-
                             <div class="country-table-header">
                                 <div class="country-table-header-inner country-col-headlines">
                                         <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>  
@@ -283,25 +296,6 @@ co2Sub = function(str) {
                         </div>
                     </div>
 
-                    <div class="left-panel-highscore">
-                        <div class="left-panel-toolbar large-screen-visible">
-                            <div class="left-panel-toolbar-title">
-                                <span id="left-panel-highscore-back">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </span>
-                                <%- __('rankings-panel.country-ranking') %>
-                            </div>
-                            <div class="left-panel-toolbar-right-placeholder"></div>
-                        </div>
-
-                        <div class="country-search-bar">
-                            <input placeholder="<%- __('rankings-panel.search') %>"></input>
-                        </div>
-
-                        <div class="country-picker-container">
-                            <p></p>
-                        </div>
-                    </div>
 
                     <div class="left-panel-social">
                         <p>
@@ -345,9 +339,6 @@ co2Sub = function(str) {
                             data-show-screen-name="false"
                             data-show-count="false"
                             data-lang="<%= locale %>"></a>
-                    </div>
-                    <div class="highscore-button">
-                        <%- __('rankings-panel.show-ranking') %>
                     </div>
                     <div class="floating-legend-container">
                         <div class="floating-legend-mobile-header">

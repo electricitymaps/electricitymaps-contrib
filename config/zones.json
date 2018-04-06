@@ -1196,6 +1196,16 @@
     "timezone": null
   },
   "IN-CT": {
+      "capacity": {
+      "biomass": 228,
+      "coal": 22968,
+      "gas": 0,
+      "hydro": 196,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 185,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/blackleg"
     ],
@@ -1207,6 +1217,16 @@
     "timezone": null
   },
   "IN-DL": {
+      "_comment": "biomass capacity is lower (16 MW) than generation from biomass, therefore not included",
+      "capacity": {
+      "coal": 840,
+      "gas": 2208,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 70,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/blackleg"
     ],
@@ -1217,13 +1237,37 @@
     },
     "timezone": null
   },
+    "IN-GJ": {
+      "capacity": {
+      "biomass": 65,
+      "coal": 15492,
+      "gas": 7551,
+      "hydro": 2019,
+      "nuclear": 440,
+      "oil": 0,
+      "solar": 1587,
+      "wind": 5570
+    },
+    "contributors": [
+      "https://github.com/sahitya-pavurala"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "consumption": "IN_GJ.fetch_consumption",
+      "production": "IN_GJ.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IN-KA": {
     "capacity": {
-      "biomass": 140,
-      "coal": 6860,
-      "hydro": 3656.6,
-      "solar": 959,
-      "wind": 3595
+      "biomass": 1605,
+      "coal": 9480,
+      "gas": 0,
+      "hydro": 4888,
+      "nuclear": 880,
+      "oil": 153,
+      "solar": 3657,
+      "wind": 3860
     },
     "contributors": [
       "https://github.com/blackleg"
@@ -1236,6 +1280,16 @@
     "timezone": null
   },
   "IN-PB": {
+    "capacity": {
+      "biomass": 203,
+      "coal": 6540,
+      "gas": 0,
+      "hydro": 1377,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 913,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/blackleg"
@@ -1247,18 +1301,17 @@
     },
     "timezone": null
   },
-  "IN-GJ": {
-    "contributors": [
-      "https://github.com/sahitya-pavurala"
-    ],
-    "flag_file_name": "in.png",
-    "parsers": {
-      "consumption": "IN_GJ.fetch_consumption",
-      "production": "IN_GJ.fetch_production"
-    },
-    "timezone": "Asia/Kolkata"
-  },
   "IN-UP": {
+      "capacity": {
+      "biomass": 1963,
+      "coal": 21843,
+      "gas": 1493,
+      "hydro": 527,
+      "nuclear": 440,
+      "oil": 0,
+      "solar": 551,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/sahitya-pavurala"
     ],
@@ -1479,7 +1532,7 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "NL.fetch_production"
     },
     "timezone": null
   },
@@ -1991,7 +2044,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_CA.fetch_production"
+      "production": "US_CA.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2028,7 +2082,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_MISO.fetch_production"
+      "production": "US_MISO.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2047,7 +2102,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_NEISO.fetch_production"
+      "production": "US_NEISO.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2066,7 +2122,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_NY.fetch_production"
+      "production": "US_NY.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2091,7 +2148,8 @@
     "flag_file_name": "us.png",
     "parsers": {
       "production": "US_PJM.fetch_production",
-      "price": "US_PJM.fetch_price"
+      "price": "US_PJM.fetch_price",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2102,7 +2160,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_SPP.fetch_production"
+      "production": "US_SPP.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
