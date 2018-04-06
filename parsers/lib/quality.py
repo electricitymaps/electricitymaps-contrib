@@ -20,7 +20,7 @@ def validate_consumption(obj, zone_key):
     if obj['consumption'] is not None and obj['consumption'] < 0:
         raise ValidationError('%s: consumption has negative value '
                               '%s' % (zone_key, obj['consumption']))
-    validate_year(obj, obj)
+    validate_year(obj, zone_key)
 
 
 def validate_exchange(item, k):
