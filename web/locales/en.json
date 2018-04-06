@@ -30,7 +30,7 @@
     "left-panel": {
         "zone-list-header-title": "Climate impact by area",
         "zone-list-header-subtitle": "Ranked by carbon intensity (gCO<sub>2</sub>eq/kWh)",
-        "search": "Search"
+        "search": "Search areas"
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",

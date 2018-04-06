@@ -407,7 +407,6 @@ html, body, #main {
 .left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
-    display: none;
 }
 .left-panel-initial-text p:first-child {
     margin-top: 0px;
