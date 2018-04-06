@@ -57,10 +57,11 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     # Flatten production dictionaries (we ignore storage)
     for p in productions:
         # We here assume 0 storage
-        # Set coal, gas, nuclear to unknown
         p['production']['coal'] = None
         p['production']['gas'] = None
         p['production']['nuclear'] = None
+        p['production']['biomass'] = None
+
         p['production']['unknown'] = 0
         Z = sum([x or 0 for x in p['production'].values()])
         p['production']['unknown'] = df_total_generations[p['datetime']] - Z
