@@ -8,11 +8,19 @@ class ValidationError(ValueError):
     pass
 
 
+def validate_year(item, k):
+    data_time = arrow.get(item['datetime'])
+    if data_time.year < 2000:
+        raise ValidationError("Data from %s can't be before year 2000, it was "
+                              "%s" % (k, data_time))
+
+
 def validate_consumption(obj, zone_key):
     # Data quality check
     if obj['consumption'] is not None and obj['consumption'] < 0:
         raise ValidationError('%s: consumption has negative value '
                               '%s' % (zone_key, obj['consumption']))
+    validate_year(obj, obj)
 
 
 def validate_exchange(item, k):
@@ -28,9 +36,7 @@ def validate_exchange(item, k):
     if data_time > arrow.now():
         raise ValidationError("Data from %s can't be in the future, data was "
                               "%s, now is %s" % (k, data_time, arrow.now()))
-    if data_time.year < 2000:
-        raise ValidationError("Data from %s can't be before year 2000, it was "
-                              "%s" % (k, data_time))
+    validate_year(item, k)
 
 
 def validate_production(obj, zone_key):
@@ -69,3 +75,4 @@ def validate_production(obj, zone_key):
         if v < 0:
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
+    validate_year(obj, zone_key)
