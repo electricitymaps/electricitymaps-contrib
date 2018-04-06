@@ -762,8 +762,8 @@ div.highscore-button:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    height: 35px;
-    padding: 0.5rem 0 0.5rem 0.5rem;
+    height: 25px;
+    padding: 0.3rem 0 0.3rem 0.5rem;
     line-height: 1rem;
 }
 .zone-list a:hover {
@@ -799,27 +799,31 @@ div.highscore-button:hover {
     flex: 1;
 }
 
+.zone-list .zone-name {
+    font-size: 0.9rem;
+}
+
 .zone-list .country-name {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .zone-list .emissions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
     border-radius: 5px;
     padding: 0 5px;
     margin-right: 10px;
 }
 
 .zone-list .emissions-value {
-    line-height: 1.6rem;
+    line-height: 1.4rem;
+    font-size: 0.9rem;
 }
 
 .zone-list .emissions-unit {
     font-size: 0.6rem;
-    line-height: 0.3rem;
+    line-height: 0.4rem;
 }
 
 .slack-button {

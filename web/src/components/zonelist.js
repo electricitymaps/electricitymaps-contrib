@@ -145,11 +145,11 @@ export default class ZoneList {
       .append('div')
       .attr('class', 'emissions-value');
 
-    emissionsDiv
-      .append('div')
-      .attr('class', 'emissions-unit');
+    // emissionsDiv
+    //   .append('div')
+    //   .attr('class', 'emissions-unit');
 
-    linkContainers.append('hr'); // border between items
+    // linkContainers.append('hr'); // border between items
 
     this.selector = linkContainers.merge(this.selector);
   }
@@ -183,7 +183,7 @@ export default class ZoneList {
     this.selector.select('.emissions')
       .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
     this.selector.select('.emissions .emissions-value')
-      .text(zone => (zone.co2intensity ? Math.round(zone.co2intensity) : '-'));
+      .text(zone => (zone.co2intensity ? `${Math.round(zone.co2intensity)}g` : '-'));
     this.selector.select('.emissions .emissions-unit')
       .html('gCO<sub>2</sub>eq/kWh');
   }
