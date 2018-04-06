@@ -27,10 +27,6 @@
         "addeditsource": "<a href=\"%s\" target=\"_blank\">أضف أو عدّل على المصدر</a>",
         "co2signal": "<a href=\"%s\" target=\"blank\">إشارة ثاني أكسيد الكربون (CO2)</a>تساعد الأجهزة والمركبات على استهلاك الكهرباء في الوقت المناسب، خاصة عند عبور الحدود."
     },
-    "rankings-panel": {
-        "country-ranking": "التصنيف",
-        "show-ranking": "إظهار التصنيف"
-    },
     "country-history": {
         "carbonintensity24h": "كثافة الكربون في آخر 24 ساعة مضت"
     },

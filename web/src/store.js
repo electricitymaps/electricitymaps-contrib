@@ -28,8 +28,21 @@ const observe = (select, onChange) => {
 
 const { dispatch, getState } = store;
 
+const dispatchApplication = (key, value) => {
+  // Do not dispatch unnecessary events
+  if (getState().application[key] === value) {
+    return;
+  }
+  dispatch({
+    key,
+    value,
+    type: 'APPLICATION_STATE_UPDATE',
+  });
+};
+
 module.exports = {
   dispatch,
+  dispatchApplication,
   getState,
   observe,
 };
