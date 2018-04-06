@@ -1236,6 +1236,16 @@
     "timezone": null
   },
   "IN-PB": {
+    "_comment": "coal capacity includes entire 'thermal' category of npp.gov.in",
+    "capacity": {
+      "biomass": 203,
+      "coal": 6540,
+      "hydro": 1377,
+      "nuclear": 0,
+      "oil": 117,
+      "solar": 913,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/blackleg"
