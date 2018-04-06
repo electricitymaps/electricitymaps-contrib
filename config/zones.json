@@ -1991,7 +1991,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_CA.fetch_production"
+      "production": "US_CA.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2012,7 +2013,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_MISO.fetch_production"
+      "production": "US_MISO.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2031,7 +2033,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_NEISO.fetch_production"
+      "production": "US_NEISO.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2050,7 +2053,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_NY.fetch_production"
+      "production": "US_NY.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2075,7 +2079,8 @@
     "flag_file_name": "us.png",
     "parsers": {
       "production": "US_PJM.fetch_production",
-      "price": "US_PJM.fetch_price"
+      "price": "US_PJM.fetch_price",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
@@ -2086,7 +2091,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_SPP.fetch_production"
+      "production": "US_SPP.fetch_production",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
     "timezone": null
   },
