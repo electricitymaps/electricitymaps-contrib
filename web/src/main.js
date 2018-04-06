@@ -737,7 +737,7 @@ if (typeof zoneMap !== 'undefined') {
 
 // Search bar
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
-zoneSearchBar.onEnterKeypress(() => zoneList.clickFirstItemIfVisibleListHasExactlyOneItem());
+zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Close button
 d3.selectAll('#left-panel-country-back')
@@ -762,10 +762,7 @@ d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageStat
 d3.selectAll('.highscore-button')
   .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
-
-
-
-
+  
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
@@ -976,16 +973,16 @@ function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
   d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
-  d3.selectAll(`.left-panel .left-panel-highscore`).style('display', undefined);
+  d3.selectAll(`.left-panel .left-panel-zone-list`).style('display', undefined);
 
-  // Hide info screen on large screen only
+  // Replace left panel by country view (large screen only)
   d3.selectAll('.left-panel .left-panel-info')
     .style('display', (pageName !== 'country' ) ? undefined : 'none')
-    // hide info screen on small screens on all views but info
+    // Hide info panel on small screens on all views but info view
     .classed('large-screen-visible', pageName !== 'info');
 
-  // hide rankings list from info view on small screens
-  d3.selectAll('.left-panel .left-panel-highscore')
+  // Hide zone list from info view on small screens
+  d3.selectAll('.left-panel .left-panel-zone-list')
     .classed('large-screen-visible', pageName !== 'highscore')
     
   // Hide map on small screens

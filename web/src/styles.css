@@ -720,8 +720,8 @@ div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
-.left-panel-highscore {
-    display:flex;
+.left-panel-zone-list {
+    display: flex;
     flex-direction: column;
     flex: 1;
     overflow-y: hidden;
@@ -784,14 +784,6 @@ div.highscore-button:hover {
     background: rgba(255,255,255,0.1)
 }
 
-/* separator line between list items */
-.zone-list hr {
-    width: 50%;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-
 .zone-list .ranking {
     width: 2rem;
     display: flex;
@@ -800,12 +792,12 @@ div.highscore-button:hover {
     text-align: center;
 }
 
-.zone-list .flag{
+.zone-list .flag {
     margin-right: 10px;
     margin-left: 10px;
 }
 
-.zone-list .name{
+.zone-list .name {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -820,26 +812,14 @@ div.highscore-button:hover {
     font-size: 0.7rem;
 }
 
-.zone-list .emissions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 3px;
-    
+.zone-list .co2-intensity-tag {
+    border-radius: 3px;    
     margin-right: 10px;
     height: 17px;
     width: 17px;
 }
 
-.zone-list .emissions-value {
-    line-height: 1.4rem;
-    font-size: 0.9rem;
-}
 
-.zone-list .emissions-unit {
-    font-size: 0.6rem;
-    line-height: 0.4rem;
-}
 
 .slack-button {
     display: inline-block;

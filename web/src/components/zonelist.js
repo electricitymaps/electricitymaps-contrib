@@ -35,23 +35,25 @@ export default class ZoneList {
   }
 
   filterZonesByQuery(query) {
-    d3.select(this.selectorId).selectAll('.link-container').each((zone, i, nodes) => {
+    d3.select(this.selectorId).selectAll('a').each((zone, i, nodes) => {
       const listItem = d3.select(nodes[i]);
       if (this._zoneMatchesQuery(zone, query)) {
-        listItem.style('display', 'block');
+        listItem.style('display', 'inherit');
       } else {
         listItem.style('display', 'none');
       }
     });
   }
 
-  clickFirstItemIfVisibleListHasExactlyOneItem() {
+  clickSelectedItem() {
+    // Item is selected when it is the only item visible in the list
     const visibleListItems = d3.selectAll(`${this.selectorId} .link-container`).nodes()
       .filter(node => node.style.display !== 'none');
     if (visibleListItems.length === 1) {
       visibleListItems[0].click();
     }
   }
+
 
   render() {
     this._createListItems();
@@ -118,47 +120,25 @@ export default class ZoneList {
       .selectAll('a')
       .data(this.zones);
 
-    const linkContainers = this.selector.enter().append('div').attr('class', 'link-container');
+    const itemLinks = this.selector.enter().append('a');
 
-    const enterA = linkContainers.append('a');
+    itemLinks.append('div').attr('class', 'ranking');
+    itemLinks.append('img').attr('class', 'flag');
 
-    enterA
-      .append('div')
-      .attr('class', 'ranking');
-    enterA
-      .append('img')
-      .attr('class', 'flag');
+    const nameDiv = itemLinks.append('div').attr('class', 'name');
+    nameDiv.append('div').attr('class', 'zone-name');
+    nameDiv.append('div').attr('class', 'country-name');
 
-    const nameDiv = enterA
-      .append('div')
-      .attr('class', 'name');
-    nameDiv.append('div')
-      .attr('class', 'zone-name');
-    nameDiv.append('div')
-      .attr('class', 'country-name');
+    itemLinks.append('div').attr('class', 'co2-intensity-tag');
 
-    const emissionsDiv = enterA
-      .append('div')
-      .attr('class', 'emissions');
-
-    // emissionsDiv
-    //   .append('div')
-    //   .attr('class', 'emissions-value');
-
-    // emissionsDiv
-    //   .append('div')
-    //   .attr('class', 'emissions-unit');
-
-    // linkContainers.append('hr'); // border between items
-
-    this.selector = linkContainers.merge(this.selector);
+    this.selector = itemLinks.merge(this.selector);
   }
 
   _setItemAttributes() {
     this._setItemRanks();
     this._setItemFlags();
     this._setItemNames();
-    this._setItemEmissions();
+    this._setItemCO2IntensityTag();
   }
 
   _setItemNames() {
@@ -179,13 +159,9 @@ export default class ZoneList {
       .attr('src', zone => flags.flagUri(zone.countryCode, 32));
   }
 
-  _setItemEmissions() {
-    this.selector.select('.emissions')
+  _setItemCO2IntensityTag() {
+    this.selector.select('.co2-intensity-tag')
       .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
-    // this.selector.select('.emissions .emissions-value')
-    //   .text(zone => (zone.co2intensity ? `${Math.round(zone.co2intensity)}g` : '-'));
-    // this.selector.select('.emissions .emissions-unit')
-    //   .html('gCO<sub>2</sub>eq/kWh');
   }
 
   _setItemClickHandlers() {

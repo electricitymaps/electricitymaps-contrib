@@ -29,14 +29,20 @@ export default class SearchBar {
   }
 
   _setupInputHandler() {
-    this.selector.on('keyup', (obj, i, nodes) => {
-      const query = nodes[i].value.toLowerCase();
-      this.searchHandler(query);
-    });
-    this.selector.node().addEventListener('keypress', (e) => {
-      if (e.keyCode === ENTER_KEY_CODE) {
-        this.enterKeypressHandler();
-      }
-    });
+    if (this.searchHandler != null) {
+      this.selector.on('keyup', (obj, i, nodes) => {
+        const query = nodes[i].value.toLowerCase();
+        this.searchHandler(query);
+      });
+    }
+
+    if (this.enterKeypressHandler != null) {
+      this.selector.node().addEventListener('keypress', (e) => {
+        if (e.keyCode === ENTER_KEY_CODE) {
+          this.enterKeypressHandler();
+        }
+      });
+    }
+
   }
 }
