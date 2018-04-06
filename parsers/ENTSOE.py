@@ -600,7 +600,7 @@ def validate_production(datapoint, logger):
         return (p.get('coal', None) is not None and p.get('gas', None) is not None
                 and p.get('wind', None) is not None)
     elif 'DK-' in datapoint['zoneKey']:
-        return validate(datapoint, logger=logger, required=['coal'])
+        return validate(datapoint, logger=logger, required=['coal', 'solar', 'wind'])
     elif datapoint['zoneKey'] == 'HU':
         return validate(datapoint, logger=logger, required=['coal'])
     elif datapoint['zoneKey'] == 'IE':
