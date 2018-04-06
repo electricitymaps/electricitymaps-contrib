@@ -28,7 +28,9 @@
         "helpfrom": "with help from"
     },
     "left-panel": {
-        "search": "Search zones"
+        "zone-list-header-title": "Electricity zones",
+        "zone-list-header-subtitle": "Ranked by carbon intensity (gCO<sub>2</sub>eq/kWh)",
+        "search": "Search"
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",

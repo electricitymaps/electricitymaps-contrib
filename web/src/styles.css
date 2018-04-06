@@ -248,7 +248,6 @@ html, body, #main {
 /* Left-panel */
 .left-panel {
     padding: 1rem 0;
-    line-height: 1.2rem;
     width: 24rem;
     position: relative;
     overflow-y: auto;
@@ -327,6 +326,7 @@ html, body, #main {
 
 .left-panel-info, .left-panel-social, .left-panel-country {
     padding: 0 1rem;
+    line-height: 1.2rem;
 }
 
 
@@ -407,6 +407,7 @@ html, body, #main {
 .left-panel-initial-text {
     font-size: 1.1em;
     color: darkgrey;
+    display: none;
 }
 .left-panel-initial-text p:first-child {
     margin-top: 0px;
@@ -742,6 +743,19 @@ div.highscore-button:hover {
     font-family: inherit;
 }
 
+.zone-list-header {
+    padding: 0 1rem 0.5rem 1rem;
+}
+
+.zone-list-header .title {
+    font-size: 1.3rem;
+}
+
+.zone-list-header .subtitle {
+    font-size: 0.7rem;
+    color: darkgray;
+}
+
 .zone-list {
     overflow-y: scroll;
 }
@@ -811,9 +825,11 @@ div.highscore-button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 5px;
-    padding: 0 5px;
+    border-radius: 3px;
+    
     margin-right: 10px;
+    height: 20px;
+    width: 20px;
 }
 
 .zone-list .emissions-value {
