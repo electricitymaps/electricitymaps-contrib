@@ -50,11 +50,16 @@ def get_text_from_image(link, expected_size, new_size, logger, session=None):
     return text
 
 
-def timestamp_checker(session=None, logger=None):
+def check_timestamp(session=None, logger=None):
+    """
+    Sometimes the Scada Dashboard image stops updating for a while.
+    This function tries to ensure that only data younger than 1 hour
+    is accepted.
+    """
 
-    scada_info = get_text_from_image(session=session, link=timestamp_link, \
-                                    expected_size=(600,20), new_size=(1200,40), \
-                                    logger=logger)
+    scada_info = get_text_from_image(session=session, link=timestamp_link,
+                                     expected_size=(600,20), new_size=(1200,40),
+                                     logger=logger)
 
     timestamp = scada_info.split(':', 1)[1]
 
@@ -62,7 +67,8 @@ def timestamp_checker(session=None, logger=None):
         scada_time = arrow.get(timestamp, ' DD/MM/YYYY HH:mm:ss')
     except arrow.parser.ParserError as e:
         logger.warning('Namibia scada timestamp cannot be read, got {}.'.format(timestamp))
-        return True
+        # The OCR of the Scada dashboard is not very reliable, on failure safer to assume data is good.
+        return
 
     data_time = scada_time.replace(tzinfo='Africa/Windhoek')
     current_time = arrow.now('Africa/Windhoek')
@@ -71,8 +77,6 @@ def timestamp_checker(session=None, logger=None):
     # Need to be sure we don't get old data if image stops updating.
     if diff.seconds > 3600:
         raise ValueError('Namibia scada data is too old to use, data is {} hours old.'.format(diff.seconds/3600))
-    else:
-        return True
 
 
 def data_processor(text):
@@ -130,7 +134,7 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
                                    logger=logger)
 
     production = data_processor(raw_text)
-    check_timestamp = timestamp_checker(session=session, logger=logger)
+    check_timestamp(session=session, logger=logger)
 
     data = {
           'zoneKey': zone_key,
@@ -201,7 +205,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if flow is not None:
         flow = -1 * flow
 
-    check_timestamp = timestamp_checker(session=session, logger=logger)
+    check_timestamp(session=session, logger=logger)
 
     exchange = {'sortedZoneKeys': sorted_codes,
                 'datetime': arrow.now('Africa/Windhoek').datetime,
