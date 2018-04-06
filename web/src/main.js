@@ -4,6 +4,8 @@ import ZoneMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
+import ZoneList from './components/zonelist';
+import SearchBar from './components/searchbar';
 
 // Libraries
 const d3 = Object.assign(
@@ -19,7 +21,7 @@ const Cookies = require('js-cookie');
 const moment = require('moment');
 
 // State management
-const { dispatch, getState, observe } = require('./store');
+const { dispatch, dispatchApplication, getState, observe } = require('./store');
 
 // Components
 const AreaGraph = require('./components/areagraph');
@@ -40,7 +42,6 @@ const thirdPartyServices = require('./services/thirdparty');
 
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
-const flags = require('./helpers/flags');
 const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
@@ -65,17 +66,6 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
-function dispatchApplication(key, value) {
-  // Do not dispatch unnecessary events
-  if (getState().application[key] === value) {
-    return;
-  }
-  dispatch({
-    key,
-    value,
-    type: 'APPLICATION_STATE_UPDATE',
-  });
-}
 
 // Set state depending on URL params
 HistoryState.parseInitial(window.location.search);
@@ -143,8 +133,8 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-// TODO: Move to component
-let countryListSelector;
+const zoneList = new ZoneList('.zone-list p');
+const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -251,12 +241,9 @@ function updateCo2Scale() {
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-  if (countryListSelector) {
-    countryListSelector
-      .select('div.emission-rect')
-      .style('background-color', d =>
-        (d.co2intensity ? co2color(d.co2intensity) : 'gray'));
-  }
+
+  zoneList.setCo2ColorScale(co2color);
+  zoneList.render();
 }
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', () => {
@@ -546,36 +533,6 @@ function setLastUpdated() {
 // Re-check every minute
 setInterval(setLastUpdated, 60 * 1000);
 
-// Add search bar with handler
-// TODO(olc): move to component
-d3.select('.country-search-bar input')
-  .on('keyup', (obj, i, nodes) => {
-    const query = nodes[i].value.toLowerCase();
-
-    d3.selectAll('.country-picker-container p a')
-      .each((obj, i, nodes) => {
-        const zoneName = (obj.shortname || obj.countryCode).toLowerCase();
-        const listItem = d3.select(nodes[i]);
-
-        if (zoneName.indexOf(query) !== -1) {
-          listItem.style('display', undefined);
-        } else {
-          listItem.style('display', 'none');
-        }
-      });
-  });
-d3.select('.country-search-bar input').node().addEventListener('keypress', (e) => {
-  if (e.keyCode === 13) {
-    // Enter pressed, count how many visible
-    const nodes = d3.selectAll('.country-picker-container p a')
-      .nodes().filter(d => d.style.display !== 'none');
-    if (nodes.length === 1) {
-      // Only one node, go!
-      nodes[0].click();
-    }
-  }
-});
-
 function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
   if (err) {
     console.error(err);
@@ -728,6 +685,8 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
+
+
 // Wind
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
@@ -742,40 +701,16 @@ function toggleSolar() {
 }
 d3.select('.solar-button').on('click', toggleSolar);
 
-// Legend
+// Legend 
 function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
 d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 
-
-// Close button on left-panel
-d3.selectAll('#left-panel-country-back')
-  .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
-  });
-
-// Close button on highscore (only triggered on large screens)
-d3.selectAll('#left-panel-highscore-back')
-  .on('click', () => dispatchApplication('showPageState', 'map'));
-
-// Highscore button click
-d3.selectAll('.highscore-button')
-  .on('click', () => dispatchApplication('showPageState', 'highscore'));
-
-// Mobile toolbar buttons
-d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
-d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
-
 // Keyboard shortcuts
 document.addEventListener('keyup', (e) => {
   if (e.key === '/') {
-    // Focus on search box
-    dispatchApplication('showPageState', 'highscore');
-    const el = d3.select('.country-search-bar input').node();
-    el.value = '';
-    el.focus();
+    zoneSearchBar.focus();
   }
 }, false);
 
@@ -792,10 +727,41 @@ if (typeof zoneMap !== 'undefined') {
       dispatchApplication('selectedZoneName', undefined);
     })
     .onCountryClick((d) => {
+      dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
       dispatchApplication('selectedZoneName', d.countryCode);
     });
 }
+
+// * Left panel *
+
+// Search bar
+zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
+zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
+
+// Close button
+d3.selectAll('#left-panel-country-back')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+  });
+
+// Zone list
+zoneList.setClickHandler((selectedCountry) => {
+  dispatchApplication('showPageState', 'country');
+  dispatchApplication('selectedZoneName', selectedCountry.countryCode);
+  if (zoneMap !== 'undefined') {
+    centerOnZoneName(getState(), selectedCountry.countryCode, 4);
+  }
+});
+
+
+// Mobile toolbar buttons
+d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
+d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
+d3.selectAll('.highscore-button')
+  .on('click', () => dispatchApplication('showPageState', 'highscore'));
+
 
 
 // *** OBSERVERS ***
@@ -845,61 +811,11 @@ function renderContributors(state) {
 function renderCountryTable(state) {
   const d = getCurrentZoneData(state);
   if (!d) {
-    // In this cases there's nothing to do,
+    // In this case there's nothing to do,
     // as the countryTable doesn't support receiving null data
   } else {
     countryTable.data(d).render(true);
   }
-}
-function renderCountryList(state) {
-  // TODO(olc): refactor into component
-  const countries = state.data.grid.zones;
-  const validCountries = d3.values(countries)
-    .filter(d => d.co2intensity)
-    .sort((x, y) => {
-      if (!x.co2intensity && !x.countryCode) {
-        return d3.ascending(
-          x.shortname || x.countryCode,
-          y.shortname || y.countryCode);
-      } else {
-        return d3.ascending(
-          x.co2intensity || Infinity,
-          y.co2intensity || Infinity);
-      }
-    });
-  const selector = d3.select('.country-picker-container p')
-    .selectAll('a')
-    .data(validCountries);
-  const enterA = selector.enter().append('a');
-  enterA
-    .append('div')
-    .attr('class', 'emission-rect');
-  enterA
-    .append('span')
-    .attr('class', 'name');
-  enterA
-    .append('img')
-    .attr('class', 'flag');
-  enterA
-    .append('span')
-    .attr('class', 'rank');
-  countryListSelector = enterA.merge(selector);
-  countryListSelector.select('span.name')
-    .text(d => ' ' + (translation.translate('zoneShortName.' + d.countryCode) || d.countryCode) + ' ')
-  countryListSelector.select('div.emission-rect')
-    .style('background-color', (d) => {
-      return d.co2intensity ? co2color(d.co2intensity) : 'gray';
-    });
-  countryListSelector.select('.flag')
-    .attr('src', d => flags.flagUri(d.countryCode, 16));
-  countryListSelector.on('click', (d) => {
-    dispatchApplication('showPageState', 'country');
-    dispatchApplication('selectedZoneName', d.countryCode);
-    // Center and zoom map
-    if (zoneMap !== 'undefined') {
-      centerOnZoneName(getState(), d.countryCode, 4);
-    }
-  });
 }
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
@@ -1057,14 +973,18 @@ function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
   d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
+  d3.selectAll(`.left-panel .left-panel-zone-list`).style('display', undefined);
 
-  // Hide info screen on large screen only
+  // Replace left panel by country view (large screen only)
   d3.selectAll('.left-panel .left-panel-info')
-    // Only show on info or map
-    .style('display', (pageName === 'info' || pageName === 'map') ? undefined : 'none')
-    // but hide for small screens on all but info
+    .style('display', (pageName !== 'country' ) ? undefined : 'none')
+    // Hide info panel on small screens on all views but info view
     .classed('large-screen-visible', pageName !== 'info');
 
+  // Hide zone list from info view on small screens
+  d3.selectAll('.left-panel .left-panel-zone-list')
+    .classed('large-screen-visible', pageName !== 'highscore')
+    
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
@@ -1153,7 +1073,8 @@ observe(state => state.data.grid.zones, (zones, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.setData(Object.values(zones));
   }
-  renderCountryList(state);
+  zoneList.setZones(zones);
+  zoneList.render();
 });
 // Observe for grid exchanges change
 observe(state => state.data.grid.exchanges, (exchanges) => {
@@ -1272,6 +1193,12 @@ observe(state => state.application.legendVisible, (legendVisible) => {
 // Observe for left panel collapse
 observe(state => state.application.isLeftPanelCollapsed, (_, state) =>
   renderLeftPanelCollapseButton(state));
+
+// Observe for search query change
+observe(state => state.application.searchQuery, (searchQuery, state) => {
+  zoneList.filterZonesByQuery(searchQuery);
+});
+
 
 // ** START
 

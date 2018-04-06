@@ -27,10 +27,6 @@
         "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>",
         "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
     },
-    "rankings-panel": {
-        "country-ranking": "國家排名",
-        "show-ranking": "顯示排名"
-    },
     "country-history": {
         "carbonintensity24h": "過去24小時的碳強度"
     },

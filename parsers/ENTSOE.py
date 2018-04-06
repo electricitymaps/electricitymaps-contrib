@@ -431,23 +431,25 @@ def datetime_from_position(start, position, resolution):
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
-def parse_consumption(xml_text):
+def parse_scalar(xml_text):
     """Returns a tuple containing two lists."""
 
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
-    quantities = []
+    values = []
     datetimes = []
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         for entry in timeseries.find_all('point'):
-            quantities.append(float(entry.find_all('quantity')[0].contents[0]))
             position = int(entry.find_all('position')[0].contents[0])
-            datetimes.append(datetime_from_position(datetime_start, position, resolution))
-    return quantities, datetimes
+            value = float(entry.find_all('quantity')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            values.append(value)
+            datetimes.append(datetime)
+    return values, datetimes
 
 
 def parse_production(xml_text):
@@ -569,48 +571,6 @@ def parse_price(xml_text):
     return prices, currencies, datetimes
 
 
-def parse_generation_forecast(xml_text):
-    """Returns a tuple containing two lists."""
-
-    if not xml_text:
-        return None
-    soup = BeautifulSoup(xml_text, 'html.parser')
-    # Get all points
-    values = []
-    datetimes = []
-    for timeseries in soup.find_all('timeseries'):
-        resolution = timeseries.find_all('resolution')[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
-        for entry in timeseries.find_all('point'):
-            position = int(entry.find_all('position')[0].contents[0])
-            value = float(entry.find_all('quantity')[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            values.append(value)
-            datetimes.append(datetime)
-    return values, datetimes
-
-
-def parse_consumption_forecast(xml_text):
-    """Returns a tuple containing two lists."""
-
-    if not xml_text:
-        return None
-    soup = BeautifulSoup(xml_text, 'html.parser')
-    # Get all points
-    values = []
-    datetimes = []
-    for timeseries in soup.find_all('timeseries'):
-        resolution = timeseries.find_all('resolution')[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
-        for entry in timeseries.find_all('point'):
-            position = int(entry.find_all('position')[0].contents[0])
-            value = float(entry.find_all('quantity')[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            values.append(value)
-            datetimes.append(datetime)
-    return values, datetimes
-
-
 def validate_production(datapoint, logger):
     """
     Production data can sometimes be available but clearly wrong.
@@ -640,7 +600,7 @@ def validate_production(datapoint, logger):
         return (p.get('coal', None) is not None and p.get('gas', None) is not None
                 and p.get('wind', None) is not None)
     elif 'DK-' in datapoint['zoneKey']:
-        return validate(datapoint, logger=logger, required=['coal'])
+        return validate(datapoint, logger=logger, required=['coal', 'solar', 'wind'])
     elif datapoint['zoneKey'] == 'HU':
         return validate(datapoint, logger=logger, required=['coal'])
     elif datapoint['zoneKey'] == 'IE':
@@ -722,7 +682,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_consumption(query_consumption(domain, session, target_datetime=target_datetime))
+    parsed = parse_scalar(
+        query_consumption(domain, session, target_datetime=target_datetime))
     if parsed:
         quantities, datetimes = parsed
 
@@ -762,8 +723,9 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     production_hashmap = defaultdict(lambda: {})
     # Grab production
     for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(query_production(k, domain, session,
-                                                   target_datetime=target_datetime))
+        parsed = parse_production(
+            query_production(k, domain, session,
+                             target_datetime=target_datetime))
         if parsed:
             productions, datetimes = parsed
             for i in range(len(datetimes)):
@@ -946,7 +908,8 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     return data
 
 
-def fetch_price(zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_price(zone_key, session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
     """
     Gets day-ahead price for specified zone.
     Returns a list of dictionaries.
@@ -985,7 +948,7 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_generation_forecast(query_generation_forecast(
+    parsed = parse_scalar(query_generation_forecast(
         domain, session, target_datetime=target_datetime))
     if parsed:
         data = []
@@ -1011,7 +974,7 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_consumption_forecast(query_consumption_forecast(
+    parsed = parse_scalar(query_consumption_forecast(
         domain, session, target_datetime=target_datetime))
     if parsed:
         data = []

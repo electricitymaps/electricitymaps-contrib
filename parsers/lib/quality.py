@@ -8,11 +8,26 @@ class ValidationError(ValueError):
     pass
 
 
+def validate_reasonable_time(item, k):
+    data_time = arrow.get(item['datetime'])
+    if data_time.year < 2000:
+        raise ValidationError("Data from %s can't be before year 2000, it was "
+                              "%s" % (k, data_time))
+
+    arrow_now = arrow.utcnow()
+    if data_time > arrow_now:
+        raise ValidationError(
+            "Data from %s can't be in the future, data was %s, now is "
+            "%s" % (k, data_time, arrow_now))
+
+
+
 def validate_consumption(obj, zone_key):
     # Data quality check
     if obj['consumption'] is not None and obj['consumption'] < 0:
         raise ValidationError('%s: consumption has negative value '
                               '%s' % (zone_key, obj['consumption']))
+    validate_reasonable_time(obj, zone_key)
 
 
 def validate_exchange(item, k):
@@ -24,13 +39,7 @@ def validate_exchange(item, k):
     if type(item['datetime']) != datetime.datetime:
         raise ValidationError('datetime %s is not valid for %s' %
                               (item['datetime'], k))
-    data_time = arrow.get(item['datetime'])
-    if data_time > arrow.now():
-        raise ValidationError("Data from %s can't be in the future, data was "
-                              "%s, now is %s" % (k, data_time, arrow.now()))
-    if data_time.year < 2000:
-        raise ValidationError("Data from %s can't be before year 2000, it was "
-                              "%s" % (k, data_time))
+    validate_reasonable_time(item, k)
 
 
 def validate_production(obj, zone_key):
@@ -48,12 +57,6 @@ def validate_production(obj, zone_key):
     if (obj.get('zoneKey', None) or obj.get('countryCode', None)) != zone_key:
         raise ValidationError("Zone keys %s and %s don't match in %s" %
                               (obj.get('zoneKey', None), zone_key, obj))
-    data_time = arrow.get(obj['datetime'])
-    arrow_now = arrow.utcnow()
-    if data_time > arrow_now:
-        raise ValidationError(
-            "Data from %s can't be in the future, data was %s, now is "
-            "%s" % (zone_key, data_time, arrow_now))
 
     if ((obj.get('production', {}).get('unknown', None) is None and
          obj.get('production', {}).get('coal', None) is None and
@@ -69,3 +72,4 @@ def validate_production(obj, zone_key):
         if v < 0:
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
+    validate_reasonable_time(obj, zone_key)

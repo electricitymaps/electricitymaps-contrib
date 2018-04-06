@@ -99,7 +99,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
 - Cyprus : [TSO](http://www.dsm.org.cy/en/daily-system-generation-on-the-transmission-system-mw)
 - Denmark: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-  - Bornholm: [PowerlabDK](http://bornholm.powerlab.dk/)
+- Denmark (Bornholm): [PowerlabDK](http://bornholm.powerlab.dk/)
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -118,9 +118,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Andhra Pradesh): [CORE Dashboard](http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
 - India (Chhattisgarh): [cspc.co.in](http://117.239.199.203/csptcl/GEN.aspx)
 - India (Delhi): [delhisldc](http://www.delhisldc.org/Redirect.aspx?Loc=0804)
+- India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTimeDemand.php)
 - India (Karnataka): [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
-- India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTimeDemand.php)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -147,13 +147,14 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Spain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
-- Sweden: [Statnett](http://www.statnett.no/en/Market-and-operations/Data-from-the-power-system/Nordic-power-balance/)
+- Sweden: [SVK](https://www.svk.se/en/national-grid/the-control-room/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States of America
   - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
+  - Idaho Power Company: [IPC](https://www.idahopower.com/energy/delivering-power/generation-and-demand/)
   - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
@@ -213,10 +214,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
-- India (Karnataka)
-  - Coal: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
-  - Hydro: [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
-  - Renewables [kptclsldc.com](http://kptclsldc.com/StateNCEP.aspx)
+- India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENMIN](https://enmin.lrv.lt/en/sectoral-policy/renewable-energy-sources)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
@@ -237,7 +235,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Russia: [Minenergo](https://minenergo.gov.ru/node/532)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Singapore
-  - Solar (AC): [Solar Irradiance map](https://www.ema.gov.sg/solarmap.aspx) 
+  - Solar (AC): [Solar Irradiance map](https://www.ema.gov.sg/solarmap.aspx)
   - Other [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -269,7 +267,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap/blob/master/config/exchanges.json) file.
 &nbsp;<details><summary>Click to see the full list of sources</summary>  
 - Åland <-> Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf) 
+- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
 - Denmark (West) <-> Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
 - Denmark (East) <-> Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
@@ -290,7 +288,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Russia --> Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
 - Spain <-> Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
 - Sweden <-> Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
-  
+
 A <-> B: bidirectional operation, with power flow either "from A to B" or "from B to A"
 
 A --> B: unidirectional operation, only with power flow "from A to B"
