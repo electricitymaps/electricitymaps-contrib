@@ -47,7 +47,7 @@ export default class ZoneList {
 
   clickSelectedItem() {
     // Item is selected when it is the only item visible in the list
-    const visibleListItems = d3.selectAll(`${this.selectorId} .link-container`).nodes()
+    const visibleListItems = d3.select(this.selectorId).selectAll('a').nodes()
       .filter(node => node.style.display !== 'none');
     if (visibleListItems.length === 1) {
       visibleListItems[0].click();

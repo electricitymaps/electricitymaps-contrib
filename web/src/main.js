@@ -3,7 +3,6 @@
 import ZoneMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
-import dispatchApplication from './helpers/dispatcher';
 import CircularGauge from './components/circulargauge';
 import ZoneList from './components/zonelist';
 import SearchBar from './components/searchbar';
@@ -22,7 +21,7 @@ const Cookies = require('js-cookie');
 const moment = require('moment');
 
 // State management
-const { dispatch, getState, observe } = require('./store');
+const { dispatch, dispatchApplication, getState, observe } = require('./store');
 
 // Components
 const AreaGraph = require('./components/areagraph');
@@ -762,7 +761,7 @@ d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageStat
 d3.selectAll('.highscore-button')
   .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
-  
+
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react

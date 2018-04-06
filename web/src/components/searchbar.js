@@ -11,7 +11,7 @@ export default class SearchBar {
     const config = argConfig || {};
     this.searchHandler = config.searchHandler;
     this.enterKeypressHandler = config.enterKeypressHandler;
-    this._setupInputHandler();
+    this._setupEventHandlers();
   }
 
   onSearch(searchHandler) {
@@ -28,21 +28,18 @@ export default class SearchBar {
     inputNode.focus();
   }
 
-  _setupInputHandler() {
-    if (this.searchHandler != null) {
-      this.selector.on('keyup', (obj, i, nodes) => {
+  _setupEventHandlers() {
+    this.selector.on('keyup', (obj, i, nodes) => {
+      if (this.searchHandler != null) {
         const query = nodes[i].value.toLowerCase();
         this.searchHandler(query);
-      });
-    }
+      }
+    });
 
-    if (this.enterKeypressHandler != null) {
-      this.selector.node().addEventListener('keypress', (e) => {
-        if (e.keyCode === ENTER_KEY_CODE) {
-          this.enterKeypressHandler();
-        }
-      });
-    }
-
+    this.selector.node().addEventListener('keypress', (e) => {
+      if (this.enterKeypressHandler != null && e.keyCode === ENTER_KEY_CODE) {
+        this.enterKeypressHandler();
+      }
+    });
   }
 }
