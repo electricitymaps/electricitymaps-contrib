@@ -13,12 +13,13 @@ def check_key_is_present(datapoint, key, logger):
     return True
 
 
-def check_expected_range(datapoint, value, expected_range, logger):
+def check_expected_range(datapoint, value, expected_range, logger, key=None):
     low, high = min(expected_range), max(expected_range)
     if not (low <= value <= high):
+        key_str = 'for key `{}`'.format(key) if key else ''
         logger.warning("{} reported total of {}MW falls outside range "
-                       "of {}".format(datapoint['zoneKey'], value,
-                                      expected_range),
+                       "of {} {}".format(datapoint['zoneKey'], value,
+                                         expected_range, key_str),
                        extra={'key': datapoint['zoneKey']})
         return
     return True
@@ -125,7 +126,7 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
                 if not check_key_is_present(datapoint, key, logger):
                     return
                 if not check_expected_range(datapoint, generation[key], range_,
-                                            logger):
+                                            logger, key=key):
                     return
         else:
             total = sum(v for k, v in generation.items() if v is not None)
