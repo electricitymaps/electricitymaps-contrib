@@ -21,7 +21,6 @@ def validate_reasonable_time(item, k):
             "%s" % (k, data_time, arrow_now))
 
 
-
 def validate_consumption(obj, zone_key):
     # Data quality check
     if obj['consumption'] is not None and obj['consumption'] < 0:
