@@ -727,6 +727,7 @@ if (typeof zoneMap !== 'undefined') {
       dispatchApplication('selectedZoneName', undefined);
     })
     .onCountryClick((d) => {
+      dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
       dispatchApplication('selectedZoneName', d.countryCode);
     });
