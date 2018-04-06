@@ -27,10 +27,6 @@
         "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a>はデバイスと電源車の電源消費を最適化するにオススメサービスです（特に境域を渡るのがある場合に）",
         "helpfrom": "次の方の協力のおかげで"
     },
-    "rankings-panel": {
-        "country-ranking": "ランキング",
-        "show-ranking": "ランキングを見る"
-    },
     "country-history": {
         "carbonintensity24h": "最近の２４時間の二酸化炭素の排出",
         "electricityorigin24h": "最近の２４時間の電力の元",
