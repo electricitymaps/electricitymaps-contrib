@@ -17,7 +17,7 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
     low, high = min(expected_range), max(expected_range)
     if not (low <= value <= high):
         key_str = 'for key `{}`'.format(key) if key else ''
-        logger.warning("{} reported total of {}MW falls outside range "
+        logger.warning("{} reported total of {:.2f}MW falls outside range "
                        "of {} {}".format(datapoint['zoneKey'], value,
                                          expected_range, key_str),
                        extra={'key': datapoint['zoneKey']})
@@ -103,7 +103,7 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
     if remove_negative:
         for key, val in generation.items():
             if val is not None and -5.0 < val < 0.0:
-                logger.warning("{} returned {}, setting to None".format(
+                logger.warning("{} returned {:.2f}, setting to None".format(
                     key, val), extra={'key': datapoint['zoneKey']})
                 generation[key] = None
 
