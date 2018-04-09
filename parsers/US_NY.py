@@ -16,6 +16,9 @@ import pandas as pd
 # 100 times more energy came from NG than Oil. That means Oil
 # consumption in the Dual Fuel systems is roughly ~1%, and to a first
 # approximation it's just Natural Gas.
+
+# Pumped storage is present but is not split into a separate category.
+
 mapping = {
     'Dual Fuel': 'gas',
     'Natural Gas': 'gas',
@@ -146,7 +149,7 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
             'zoneKey': zone_key,
             'datetime': timestamp_converter(datapoint[0]),
             'production': datapoint[1],
-            'storage': {'hydro': None},
+            'storage': {},
             'source': 'nyiso.com'
         }
 
