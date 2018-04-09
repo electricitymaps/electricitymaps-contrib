@@ -20,6 +20,8 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                                             session=r,
                                             target_datetime=now,
                                             logger=logger)
+    if not consumptions:
+        return
     for c in consumptions:
         del c['source']
     df_consumptions = pd.DataFrame.from_dict(consumptions).set_index(
@@ -34,6 +36,8 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                                          session=r,
                                          target_datetime=now,
                                          logger=logger)
+        if not exchange:
+            return
         for e in exchange:
             e['NL_import'] = e['netFlow'] if zone_2 == 'NL' else -1 * e['netFlow']
             del e['source']
@@ -54,6 +58,8 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     # Fetch all production
     productions = ENTSOE.fetch_production(zone_key=zone_key, session=r,
                                           target_datetime=now, logger=logger)
+    if not productions:
+        return
 
     # Flatten production dictionaries (we ignore storage)
     for p in productions:
