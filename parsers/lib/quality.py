@@ -21,7 +21,6 @@ def validate_reasonable_time(item, k):
             "%s" % (k, data_time, arrow_now))
 
 
-
 def validate_consumption(obj, zone_key):
     # Data quality check
     if obj['consumption'] is not None and obj['consumption'] < 0:
@@ -66,6 +65,14 @@ def validate_production(obj, zone_key):
         raise ValidationError(
             "Coal or oil or unknown production value is required for"
             " %s" % zone_key)
+    if 'storage' in obj:
+        if not isinstance(obj['storage'], dict):
+            raise ValidationError('storage value must be a dict, was '
+                                  '{}'.format(obj['storage']))
+        not_allowed_keys = set(obj['storage']) - {'battery', 'hydro'}
+        if not_allowed_keys:
+            raise ValidationError('unexpected keys in storage: {}'.format(
+                not_allowed_keys))
     for k, v in obj['production'].items():
         if v is None:
             continue
