@@ -388,6 +388,11 @@ The parser can also return an array of objects if multiple time values can be fe
 
 Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
 
+Run all of the parser tests with the following command from the root directory.
+```
+python3 -m unittest discover parsers/test/
+```
+
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
 ### Generating a new map

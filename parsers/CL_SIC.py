@@ -396,7 +396,7 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
           'zoneKey': zone_key,
           'datetime': dt,
           'production': production,
-          'storage': {'hydro': None},
+          'storage': {},
           'source': 'sic.coordinador.cl'
         }
 
