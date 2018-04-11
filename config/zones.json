@@ -1159,6 +1159,16 @@
     "timezone": "Europe/Copenhagen"
   },
   "DK-DK1": {
+    "bounding_box": [
+      [
+        10.535889,
+        54.380557
+      ],
+      [
+        12.788086,
+        56.365250
+      ]
+    ],
     "capacity": {
       "biomass": 326,
       "coal": 2775,
@@ -1181,6 +1191,16 @@
     "timezone": "Europe/Copenhagen"
   },
   "DK-DK2": {
+    "bounding_box": [
+      [
+        7.261963,
+        54.661124
+      ],
+      [
+        11.304932,
+        57.803798
+      ]
+    ],
     "capacity": {
       "biomass": 234,
       "coal": 2072,
