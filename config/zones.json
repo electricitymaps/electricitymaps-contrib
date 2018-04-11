@@ -3954,9 +3954,17 @@
     "timezone": null
   },
   "US-SPP": {
-    "capacity": {},
+    "capacity": {
+      "coal": 26060,
+      "gas": 34260,
+      "hydro": 3420,
+      "nuclear": 2110,
+      "oil": 1690,
+      "wind": 16130
+    },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/Hyric89"
     ],
     "flag_file_name": "us.png",
     "parsers": {
