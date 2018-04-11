@@ -261,6 +261,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
+  - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 &nbsp;</details>
 
 ### Cross-border transmission capacity data sources

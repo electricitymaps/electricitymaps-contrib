@@ -2168,12 +2168,12 @@
   },
   "US-SPP": {
     "capacity": {
-      "wind": 16130,
+      "coal": 26060,
+      "gas": 34260,
       "hydro": 3420,
       "nuclear": 2110,
-      "gas": 34260,
-      "coal": 26060,
-      "oil": 1690
+      "oil": 1690,
+      "wind": 16130
     },
     "contributors": [
       "https://github.com/systemcatch",
