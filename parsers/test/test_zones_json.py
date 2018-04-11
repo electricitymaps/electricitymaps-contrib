@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-"""Tests for BR.py"""
 import json
 import unittest
 
