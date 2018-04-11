@@ -27,7 +27,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Klimatpåverkan per region",
-        "zone-list-header-subtitle": "Rankad efter utsläpp av koldioxid (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Rankad efter utsläpp av koldioxid från elproduktion (gCO2eq/kWh)",
         "search": "Sök efter region"
     },
     "country-history": {
