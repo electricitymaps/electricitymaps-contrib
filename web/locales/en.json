@@ -12,8 +12,7 @@
         "opensource": "Open Source",
         "see": "see",
         "datasources": "data sources",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>",
-        "tip": "Tip: Click on a territory to start exploring"
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "country-panel": {
         "source": "Source",
@@ -24,7 +23,6 @@
         "bysource": "by source",
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.",
         "helpfrom": "with help from"
     },
     "left-panel": {
@@ -62,7 +60,6 @@
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
-        "lastupdate": "Updated",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "retrynow": "Retry now",

@@ -14,9 +14,7 @@
         "opensource": "開源資料",
         "see": "看",
         "datasources": "數據來源",
-        "contribute": "通過<a href=\"%s\" target=\"_blank\">添加你的國家</a>進行貢獻",
-
-        "tip": "提示：點擊一個國家/地區開始探索"
+        "contribute": "通過<a href=\"%s\" target=\"_blank\">添加你的國家</a>進行貢獻"
     },
     "country-panel": {
         "source": "來源",
@@ -24,8 +22,7 @@
         "electricityproduction": "電力生產",
         "bysource": "按來源",
         "emissions": "碳排放量",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或編輯來源</a>"
     },
     "country-history": {
         "carbonintensity24h": "過去24小時的碳強度"
@@ -53,7 +50,6 @@
     },
     "misc": {
         "maintitle": "生活用電二氧化碳排放量",
-        "lastupdate": "最後更新",
         "oops": "哎呀！ 我們無法連線到服務器。 我們會在幾秒鐘後再試一次。",
         "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">這裏</a>重新載入。"
     },

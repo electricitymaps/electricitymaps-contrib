@@ -12,8 +12,7 @@
         "opensource": "Open Source",
         "see": "siehe",
         "datasources": "Datenquellen",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
-        "tip": "Tipp: Klicke auf eine Zone, um zu beginnen!"
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
     },
     "country-panel": {
         "source": "Quelle",
@@ -24,7 +23,6 @@
         "bysource": "nach Quellen",
         "emissions": "CO2-Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
-        "co2signal": "Unser <a href=\"%s\" target=\"blank\">CO2 Signal</a> hilft Geräten und elektrischen Fahrzeugen, Elektrizität zur richtigen Zeit zu konsumieren, insbesondere bei Grenzübertritt.",
         "helpfrom": "mit Unterstützung von"
     },
     "country-history": {
@@ -57,7 +55,6 @@
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
-        "lastupdate": "Letzte Aktualisierung",
         "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden nochmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a> um sie zu laden.",
         "retrynow": "Erneut versuchen"
