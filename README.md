@@ -154,6 +154,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States of America
   - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
+  - Idaho Power Company: [IPC](https://www.idahopower.com/energy/delivering-power/generation-and-demand/)
   - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
@@ -234,7 +235,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Russia: [Minenergo](https://minenergo.gov.ru/node/532)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Singapore
-  - Solar (AC): [Solar Irradiance map](https://www.ema.gov.sg/solarmap.aspx) 
+  - Solar (AC): [Solar Irradiance map](https://www.ema.gov.sg/solarmap.aspx)
   - Other [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -266,7 +267,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap/blob/master/config/exchanges.json) file.
 &nbsp;<details><summary>Click to see the full list of sources</summary>  
 - Åland <-> Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf) 
+- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
 - Denmark (West) <-> Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
 - Denmark (East) <-> Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
@@ -287,7 +288,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Russia --> Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
 - Spain <-> Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
 - Sweden <-> Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
-  
+
 A <-> B: bidirectional operation, with power flow either "from A to B" or "from B to A"
 
 A --> B: unidirectional operation, only with power flow "from A to B"
@@ -386,6 +387,11 @@ Storage values can be both positive (when storing energy) or negative (when the 
 The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
 
 Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
+
+Run all of the parser tests with the following command from the root directory.
+```
+python3 -m unittest discover parsers/test/
+```
 
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 

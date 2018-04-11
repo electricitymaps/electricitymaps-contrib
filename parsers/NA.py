@@ -12,6 +12,7 @@ import re
 import requests
 
 
+timestamp_link = 'http://www.nampower.com.na/gis/images/File_Info.png'
 generation_link = 'http://www.nampower.com.na/gis/images/Gx.png'
 exchanges_link = 'http://www.nampower.com.na/gis/images/Imports_Exports.png'
 
@@ -39,17 +40,43 @@ def get_text_from_image(link, expected_size, new_size, logger, session=None):
     img = Image.open(s.get(link, stream=True).raw)
 
     if img.size != expected_size:
-        if (logger):
-            logger.warning("Check Namibia Scada dashboard for {} changes.".format(link),
-                extras={'key': 'NA'})
-        else:
-            print("Check Namibia Scada dashboard for {} changes.".format(link))
+        logger.warning("Check Namibia Scada dashboard for {} changes.".format(link),
+            extras={'key': 'NA'})
 
     gray = img.convert('L')
     gray_enlarged = gray.resize(new_size, Image.LANCZOS)
     text = image_to_string(gray_enlarged, lang='eng')
 
     return text
+
+
+def check_timestamp(session=None, logger=None):
+    """
+    Sometimes the Scada Dashboard image stops updating for a while.
+    This function tries to ensure that only data younger than 1 hour
+    is accepted.
+    """
+
+    scada_info = get_text_from_image(session=session, link=timestamp_link,
+                                     expected_size=(600,20), new_size=(1200,40),
+                                     logger=logger)
+
+    timestamp = scada_info.split(':', 1)[1]
+
+    try:
+        scada_time = arrow.get(timestamp, ' DD/MM/YYYY HH:mm:ss')
+    except arrow.parser.ParserError as e:
+        logger.warning('Namibia scada timestamp cannot be read, got {}.'.format(timestamp))
+        # The OCR of the Scada dashboard is not very reliable, on failure safer to assume data is good.
+        return
+
+    data_time = scada_time.replace(tzinfo='Africa/Windhoek')
+    current_time = arrow.now('Africa/Windhoek')
+    diff = current_time - data_time
+
+    # Need to be sure we don't get old data if image stops updating.
+    if diff.seconds > 3600:
+        raise ValueError('Namibia scada data is too old to use, data is {} hours old.'.format(diff.seconds/3600))
 
 
 def data_processor(text):
@@ -107,6 +134,7 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
                                    logger=logger)
 
     production = data_processor(raw_text)
+    check_timestamp(session=session, logger=logger)
 
     data = {
           'zoneKey': zone_key,
@@ -176,6 +204,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     #Import considered positive in data source.
     if flow is not None:
         flow = -1 * flow
+
+    check_timestamp(session=session, logger=logger)
 
     exchange = {'sortedZoneKeys': sorted_codes,
                 'datetime': arrow.now('Africa/Windhoek').datetime,

@@ -77,6 +77,9 @@ var countryCo2eqFootprint = {
     'FI': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 700, source: null} : null;
     },
+    'NL': function (productionMode) {
+        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 563, source: 'assumes 57% gas, 33% coal, 5% biomass, 4% nuclear'} : null;
+    },  // Source: Derived from 2017 annual average: coal  30.0%, co-generation(gas)  19.0%, gas 28.0%, coke-oven-gas 5.0%, nuclear 4.0%, Wind  7.7%, biomass (waste) 4.90%, solar 1.40%, accoring to http://en-tran-ce.org/newsletter-renewable-energy-in-the-netherlands/
     'NO': function (productionMode) {
         if (productionMode == 'hydro') {
             // Source: Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"
