@@ -5,7 +5,9 @@
 from logging import getLogger
 
 
-def check_key_is_present(datapoint, key, logger):
+def has_value_for_key(datapoint, key, logger):
+    """checks that the key exists in datapoint and that the corresponding value
+    is not None"""
     if datapoint['production'].get(key, None) is None:
         logger.warning("Required generation type {} is missing from {}".format(
             key, datapoint['zoneKey']), extra={'key': datapoint['zoneKey']})
@@ -109,7 +111,7 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
 
     if required:
         for item in required:
-            if not check_key_is_present(datapoint, item, logger):
+            if not has_value_for_key(datapoint, item, logger):
                 return
 
     if floor:
@@ -123,7 +125,7 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
     if expected_range:
         if isinstance(expected_range, dict):
             for key, range_ in expected_range.items():
-                if not check_key_is_present(datapoint, key, logger):
+                if not has_value_for_key(datapoint, key, logger):
                     return
                 if not check_expected_range(datapoint, generation[key], range_,
                                             logger, key=key):
