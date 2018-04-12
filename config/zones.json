@@ -884,6 +884,17 @@
     ]
   },
   "CL-SIC": {
+    "capacity": {
+      "biomass": 466,
+      "coal": 2348,
+      "gas": 2482,
+      "geothermal": 55,
+      "hydro": 7222,
+      "nuclear": 0,
+      "oil": 2645,
+      "solar": 2142,
+      "wind": 1420
+      },
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
