@@ -885,11 +885,13 @@
   },
   "CL-SIC": {
     "capacity": {
+      "battery storage": 0,
       "biomass": 466,
       "coal": 2348,
       "gas": 2482,
       "geothermal": 55,
       "hydro": 7222,
+      "hydro storage": 0,
       "nuclear": 0,
       "oil": 2645,
       "solar": 2142,
