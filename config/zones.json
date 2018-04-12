@@ -1,6 +1,16 @@
 {
   "AD": {
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        0.9064563390001013,
+        41.92867747000005
+      ],
+      [
+        2.2650907800001505,
+        43.14936167400003
+      ]
+    ]
   },
   "AE": {
     "bounding_box": [
@@ -66,11 +76,11 @@
   "AQ": {
     "bounding_box": [
       [
-        -180.0,
-        -90.0
+        -180,
+        -90
       ],
       [
-        180.0,
+        180,
         -63.2706604895
       ]
     ]
@@ -163,11 +173,31 @@
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        148.26945193885587,
+        -36.41961598109262
+      ],
+      [
+        149.90440026326144,
+        -34.63950855917267
+      ]
+    ]
   },
   "AUS-NT": {
     "flag_file_name": "au.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        128.50011587536375,
+        -26.499911390797962
+      ],
+      [
+        138.50018768629417,
+        -10.468357028999876
+      ]
+    ]
   },
   "AUS-QLD": {
     "contributors": [
@@ -179,7 +209,17 @@
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        137.5001868021792,
+        -29.670622246919024
+      ],
+      [
+        154.0488387380003,
+        -8.740166924999826
+      ]
+    ]
   },
   "AUS-SA": {
     "contributors": [
@@ -191,7 +231,17 @@
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        128.50011600215169,
+        -38.57057057099979
+      ],
+      [
+        141.50010704970066,
+        -25.499911390797962
+      ]
+    ]
   },
   "AUS-TAS": {
     "contributors": [
@@ -203,7 +253,17 @@
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        143.33716881600026,
+        -44.1412899719998
+      ],
+      [
+        148.98454837300017,
+        -39.07146575299984
+      ]
+    ]
   },
   "AUS-VIC": {
     "contributors": [
@@ -215,7 +275,17 @@
       "price": "AU.fetch_price",
       "production": "AU.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        140.46708580936263,
+        -39.64495208099984
+      ],
+      [
+        150.47207507627593,
+        -33.486452325214685
+      ]
+    ]
   },
   "AUS-WA": {
     "contributors": [
@@ -227,7 +297,17 @@
     "parsers": {
       "production": "AU_WA.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        112.41944420700008,
+        -35.637872002999956
+      ],
+      [
+        129.50011656788791,
+        -13.223565362999949
+      ]
+    ]
   },
   "AW": {
     "capacity": {
@@ -241,7 +321,17 @@
     "parsers": {
       "production": "AW.fetch_production"
     },
-    "timezone": "America/Aruba"
+    "timezone": "America/Aruba",
+    "bounding_box": [
+      [
+        -70.56240800699987,
+        11.917669989000046
+      ],
+      [
+        -69.37682044199994,
+        13.132147528000104
+      ]
+    ]
   },
   "AX": {
     "capacity": {
@@ -260,7 +350,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "AX.fetch_production"
     },
-    "timezone": "Europe/Mariehamn"
+    "timezone": "Europe/Mariehamn",
+    "bounding_box": [
+      [
+        19.013194207000083,
+        59.40448639500012
+      ],
+      [
+        21.59669030000012,
+        60.98078034100014
+      ]
+    ]
   },
   "AZ": {
     "bounding_box": [
@@ -485,7 +585,17 @@
     "parsers": {
       "production": "BR.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -67.33051469619625,
+        -14.162844600948802
+      ],
+      [
+        -59.32226030077226,
+        -7.500493258457112
+      ]
+    ]
   },
   "BR-N": {
     "capacity": {
@@ -501,7 +611,17 @@
     "parsers": {
       "production": "BR.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -55.2979158185602,
+        -1.7192017552567194
+      ],
+      [
+        -49.37304648399993,
+        4.941122259000181
+      ]
+    ]
   },
   "BR-NE": {
     "capacity": {
@@ -519,7 +639,17 @@
     "parsers": {
       "production": "BR.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -38.74484351301771,
+        -12.068905937658784
+      ],
+      [
+        -35.90615240593988,
+        -9.026808362815672
+      ]
+    ]
   },
   "BR-S": {
     "capacity": {
@@ -537,7 +667,17 @@
     "parsers": {
       "production": "BR.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -55.11244991099991,
+        -27.20477792675979
+      ],
+      [
+        -47.53248898038211,
+        -22.021725762533777
+      ]
+    ]
   },
   "BS": {
     "bounding_box": [
@@ -546,7 +686,7 @@
         23.71
       ],
       [
-        -77.0,
+        -77,
         27.04
       ]
     ]
@@ -643,7 +783,17 @@
       "price": "CA_AB.fetch_price",
       "production": "CA_AB.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -120.50101599759016,
+        48.4925145470001
+      ],
+      [
+        -109.49932108789892,
+        60.50005890629359
+      ]
+    ]
   },
   "CA-BC": {
     "capacity": {
@@ -654,7 +804,17 @@
       "wind": 673
     },
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -139.56020662181913,
+        47.80609772300011
+      ],
+      [
+        -113.53745235883926,
+        60.50005890629359
+      ]
+    ]
   },
   "CA-MB": {
     "capacity": {
@@ -665,7 +825,17 @@
       "wind": 237
     },
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -102.50159786704786,
+        48.492669576869844
+      ],
+      [
+        -88.44699962056833,
+        60.500059011375754
+      ]
+    ]
   },
   "CA-NB": {
     "_comment": "gas includes an 88 MW cogeneration plant",
@@ -685,7 +855,17 @@
     "parsers": {
       "production": "CA_NB.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -69.56355977593142,
+        44.102757112000205
+      ],
+      [
+        -63.27110755099994,
+        48.57514069200005
+      ]
+    ]
   },
   "CA-NL": {
     "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
@@ -696,7 +876,17 @@
       "wind": 54.3
     },
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -68.3080677526246,
+        46.118353583000186
+      ],
+      [
+        -52.11660722599996,
+        60.87274609304416
+      ]
+    ]
   },
   "CA-NS": {
     "_comment": "http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW",
@@ -715,15 +905,45 @@
     "parsers": {
       "production": "CA_NS.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -66.82774817599997,
+        42.92206452000019
+      ],
+      [
+        -59.188628709999904,
+        47.53481679900011
+      ]
+    ]
   },
   "CA-NT": {
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -136.94538692906352,
+        59.5000589062935
+      ],
+      [
+        -101.48658586274732,
+        79.26634349200017
+      ]
+    ]
   },
   "CA-NU": {
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -121.1808194650578,
+        51.41864655200018
+      ],
+      [
+        -60.585479295999846,
+        83.61652252800013
+      ]
+    ]
   },
   "CA-ON": {
     "capacity": {
@@ -742,7 +962,17 @@
       "price": "CA_ON.fetch_price",
       "production": "CA_ON.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -95.66119498965699,
+        41.229466804384714
+      ],
+      [
+        -73.84780324445131,
+        57.36127350500004
+      ]
+    ]
   },
   "CA-PE": {
     "capacity": {
@@ -756,7 +986,17 @@
     "parsers": {
       "production": "CA_PE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -64.9168188139999,
+        45.4507510440001
+      ],
+      [
+        -61.47695878799993,
+        47.567328192000076
+      ]
+    ]
   },
   "CA-QC": {
     "_comment": "http://www.hydroquebec.com/generation/",
@@ -766,7 +1006,17 @@
       "oil": 130
     },
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -80.26561438699991,
+        44.49802968400007
+      ],
+      [
+        -56.60087602420913,
+        63.0938174500001
+      ]
+    ]
   },
   "CA-SK": {
     "capacity": {
@@ -776,7 +1026,17 @@
       "wind": 221
     },
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -110.49997270417693,
+        48.49261789994816
+      ],
+      [
+        -100.86433964677866,
+        60.50005890629359
+      ]
+    ]
   },
   "CA-YT": {
     "contributors": [
@@ -786,7 +1046,17 @@
     "parsers": {
       "production": "CA_YT.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -141.50554863710892,
+        59.500058906146876
+      ],
+      [
+        -123.31910336003193,
+        70.15420156500005
+      ]
+    ]
   },
   "CD": {
     "bounding_box": [
@@ -891,7 +1161,17 @@
     "parsers": {
       "production": "CL_SIC.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -109.9537247389999,
+        -44.544998116734845
+      ],
+      [
+        -67.80210526499991,
+        -24.791191963069267
+      ]
+    ]
   },
   "CL-SING": {
     "capacity": {
@@ -911,7 +1191,17 @@
     "parsers": {
       "production": "CL_SING.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -71.23998509499998,
+        -26.528631180029834
+      ],
+      [
+        -66.5139668379999,
+        -20.427688032788268
+      ]
+    ]
   },
   "CM": {
     "bounding_box": [
@@ -1166,7 +1456,7 @@
       ],
       [
         12.788086,
-        56.365250
+        56.36525
       ]
     ],
     "capacity": {
@@ -1311,7 +1601,7 @@
     "bounding_box": [
       [
         24.70007,
-        22.0
+        22
       ],
       [
         36.86623,
@@ -1378,7 +1668,17 @@
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": "Atlantic/Canary"
+    "timezone": "Atlantic/Canary",
+    "bounding_box": [
+      [
+        -15.007069464999915,
+        27.55068594000015
+      ],
+      [
+        -12.91779537699989,
+        29.74331289300015
+      ]
+    ]
   },
   "ES-CN-GC": {
     "contributors": [
@@ -1390,7 +1690,17 @@
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": "Atlantic/Canary"
+    "timezone": "Atlantic/Canary",
+    "bounding_box": [
+      [
+        -16.321766730999855,
+        27.23436107000005
+      ],
+      [
+        -14.863636847999885,
+        28.679754950000174
+      ]
+    ]
   },
   "ES-CN-HI": {
     "capacity": {
@@ -1407,7 +1717,17 @@
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": "Atlantic/Canary"
+    "timezone": "Atlantic/Canary",
+    "bounding_box": [
+      [
+        -18.66722571499986,
+        27.14223867400007
+      ],
+      [
+        -17.379261847999913,
+        28.352036851000108
+      ]
+    ]
   },
   "ES-CN-IG": {
     "capacity": {
@@ -1422,7 +1742,17 @@
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": "Atlantic/Canary"
+    "timezone": "Atlantic/Canary",
+    "bounding_box": [
+      [
+        -17.843376510999917,
+        27.51910613200006
+      ],
+      [
+        -16.598419696999883,
+        28.717716638000084
+      ]
+    ]
   },
   "ES-CN-LP": {
     "contributors": [
@@ -1434,7 +1764,17 @@
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": "Atlantic/Canary"
+    "timezone": "Atlantic/Canary",
+    "bounding_box": [
+      [
+        -18.502186652999853,
+        27.955389716000084
+      ],
+      [
+        -17.22104415999985,
+        29.355619032000007
+      ]
+    ]
   },
   "ES-CN-TE": {
     "contributors": [
@@ -1446,7 +1786,17 @@
       "consumption": "ES_CN.fetch_consumption",
       "production": "ES_CN.fetch_production"
     },
-    "timezone": "Atlantic/Canary"
+    "timezone": "Atlantic/Canary",
+    "bounding_box": [
+      [
+        -17.416058089999865,
+        27.497096487000093
+      ],
+      [
+        -15.617746548999946,
+        29.08344147300015
+      ]
+    ]
   },
   "ES-IB": {
     "capacity": {
@@ -1464,7 +1814,17 @@
       "consumption": "ES_IB.fetch_consumption",
       "production": "ES_IB.fetch_production"
     },
-    "timezone": "Europe/Madrid"
+    "timezone": "Europe/Madrid",
+    "bounding_box": [
+      [
+        0.7121688160000872,
+        38.13864630700006
+      ],
+      [
+        4.837087436000104,
+        40.57941315300012
+      ]
+    ]
   },
   "ET": {
     "bounding_box": [
@@ -1517,11 +1877,11 @@
   "FJ": {
     "bounding_box": [
       [
-        -180.0,
+        -180,
         -18.28799
       ],
       [
-        180.0,
+        180,
         -16.0208822567
       ]
     ]
@@ -1550,7 +1910,17 @@
     "parsers": {
       "production": "FO.fetch_production"
     },
-    "timezone": "Atlantic/Faroe"
+    "timezone": "Atlantic/Faroe",
+    "bounding_box": [
+      [
+        -8.144154425999943,
+        60.894110419000086
+      ],
+      [
+        -5.775786912999905,
+        62.89891185100005
+      ]
+    ]
   },
   "FR": {
     "_comment": "hydro incl. 4975 MW pumped storage.",
@@ -1656,7 +2026,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "GB_NIR.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -8.673837442999911,
+        53.53457265800016
+      ],
+      [
+        -4.930775519999884,
+        55.81134674700017
+      ]
+    ]
   },
   "GE": {
     "_comment": "source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal",
@@ -1992,7 +2372,17 @@
       "consumption": "IN_AP.fetch_consumption",
       "production": "IN_AP.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        76.21948286304365,
+        12.131916612162016
+      ],
+      [
+        85.28003991000008,
+        20.391292628951703
+      ]
+    ]
   },
   "IN-CT": {
     "capacity": {
@@ -2013,7 +2403,17 @@
       "consumption": "IN_CT.fetch_consumption",
       "production": "IN_CT.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        79.76055870971675,
+        17.276072903441786
+      ],
+      [
+        84.85333214706088,
+        24.640232245122036
+      ]
+    ]
   },
   "IN-DL": {
     "_comment": "biomass capacity is lower (16 MW) than generation from biomass, therefore not included",
@@ -2034,7 +2434,17 @@
       "consumption": "IN_DL.fetch_consumption",
       "production": "IN_DL.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        76.3336877786681,
+        27.932605902840095
+      ],
+      [
+        77.83753299275344,
+        29.382087511129754
+      ]
+    ]
   },
   "IN-GJ": {
     "capacity": {
@@ -2055,7 +2465,17 @@
       "consumption": "IN_GJ.fetch_consumption",
       "production": "IN_GJ.fetch_production"
     },
-    "timezone": "Asia/Kolkata"
+    "timezone": "Asia/Kolkata",
+    "bounding_box": [
+      [
+        67.64340254000018,
+        19.572644470095213
+      ],
+      [
+        74.95905236227674,
+        25.208362942495825
+      ]
+    ]
   },
   "IN-KA": {
     "capacity": {
@@ -2076,7 +2496,17 @@
       "consumption": "IN_KA.fetch_consumption",
       "production": "IN_KA.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        73.59115644600661,
+        11.125595607751208
+      ],
+      [
+        79.06898237493664,
+        18.96081146897413
+      ]
+    ]
   },
   "IN-PB": {
     "capacity": {
@@ -2098,7 +2528,17 @@
       "consumption": "IN_PB.fetch_consumption",
       "production": "IN_PB.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        73.34234501100013,
+        29.059823920137802
+      ],
+      [
+        77.41037560365123,
+        33.016749376582425
+      ]
+    ]
   },
   "IN-UP": {
     "capacity": {
@@ -2119,7 +2559,17 @@
       "consumption": "IN_UP.fetch_consumption",
       "production": "IN_UP.fetch_production"
     },
-    "timezone": "Asia/Kolkata"
+    "timezone": "Asia/Kolkata",
+    "bounding_box": [
+      [
+        76.5581702012937,
+        23.411047268416667
+      ],
+      [
+        85.11243777868054,
+        30.902020574789645
+      ]
+    ]
   },
   "IQ": {
     "bounding_box": [
@@ -2629,7 +3079,17 @@
     ]
   },
   "MT": {
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        13.683604363000086,
+        35.301214911
+      ],
+      [
+        15.067149285000113,
+        36.5755882830001
+      ]
+    ]
   },
   "MW": {
     "bounding_box": [
@@ -2679,7 +3139,17 @@
     "parsers": {
       "production": "MY_WM.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        99.14522806000014,
+        0.7704531920001614
+      ],
+      [
+        104.79468834700015,
+        7.207963766000191
+      ]
+    ]
   },
   "MZ": {
     "bounding_box": [
@@ -2933,7 +3403,17 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        172.17408287900022,
+        -42.12029387799984
+      ],
+      [
+        179.06617272200023,
+        -33.89763762799993
+      ]
+    ]
   },
   "NZ-NZS": {
     "contributors": [
@@ -2944,7 +3424,17 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        165.9664819670002,
+        -47.77760182099989
+      ],
+      [
+        174.90137780000023,
+        -40.00212981599989
+      ]
+    ]
   },
   "OM": {
     "bounding_box": [
@@ -3131,11 +3621,31 @@
   },
   "PT-AC": {
     "flag_file_name": "pt.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -31.784901495999918,
+        36.43431224200016
+      ],
+      [
+        -24.51219641799986,
+        40.22833893400015
+      ]
+    ]
   },
   "PT-MA": {
     "flag_file_name": "pt.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -17.752105272999927,
+        29.529242255000057
+      ],
+      [
+        -15.354969855999883,
+        33.61078522300012
+      ]
+    ]
   },
   "PY": {
     "bounding_box": [
@@ -3229,11 +3739,11 @@
   "RU": {
     "bounding_box": [
       [
-        -180.0,
+        -180,
         41.151416124
       ],
       [
-        180.0,
+        180,
         81.2504
       ]
     ],
@@ -3264,15 +3774,45 @@
   },
   "RU-AS": {
     "flag_file_name": "ru.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -180.4999999999999,
+        41.79511139500019
+      ],
+      [
+        180.50000000000028,
+        77.62579987200013
+      ]
+    ]
   },
   "RU-EU": {
     "flag_file_name": "ru.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        35.357377557328505,
+        58.708375963180174
+      ],
+      [
+        69.53394616000008,
+        82.35871002800013
+      ]
+    ]
   },
   "RU-KGD": {
     "flag_file_name": "ru.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        19.10954837300008,
+        53.842937318000054
+      ],
+      [
+        23.348351684000107,
+        55.78995961500016
+      ]
+    ]
   },
   "RW": {
     "bounding_box": [
@@ -3318,7 +3858,7 @@
       ],
       [
         38.4100899595,
-        22.0
+        22
       ]
     ]
   },
@@ -3407,7 +3947,17 @@
       "price": "SG.fetch_price",
       "production": "SG.fetch_production"
     },
-    "timezone": "Asia/Singapore"
+    "timezone": "Asia/Singapore",
+    "bounding_box": [
+      [
+        103.14039147200003,
+        0.7643089860000885
+      ],
+      [
+        104.50342858200003,
+        1.9486351580000445
+      ]
+    ]
   },
   "SI": {
     "_comment": "hydro incl. 180 MW pumped storage",
@@ -3723,7 +4273,7 @@
     "bounding_box": [
       [
         -61.95,
-        10.0
+        10
       ],
       [
         -60.895,
@@ -3799,7 +4349,17 @@
     "timezone": "Europe/Kiev"
   },
   "UA-CR": {
-    "timezone": "Europe/Kiev"
+    "timezone": "Europe/Kiev",
+    "bounding_box": [
+      [
+        31.981618686000104,
+        43.88104889500005
+      ],
+      [
+        37.13835696700005,
+        46.716899045472104
+      ]
+    ]
   },
   "UG": {
     "bounding_box": [
@@ -3827,7 +4387,17 @@
   },
   "US-AK": {
     "flag_file_name": "us.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -179.64350338399993,
+        50.71539948100022
+      ],
+      [
+        180.28093509200022,
+        71.91250234600014
+      ]
+    ]
   },
   "US-CA": {
     "capacity": {
@@ -3847,11 +4417,31 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_CA.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -124.9092019709999,
+        32.03166949000371
+      ],
+      [
+        -113.61906132172261,
+        42.499540221404175
+      ]
+    ]
   },
   "US-HI": {
     "flag_file_name": "us.png",
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -178.80436616299988,
+        18.40611714300016
+      ],
+      [
+        -154.31406356599993,
+        28.901678575000147
+      ]
+    ]
   },
   "US-IPC": {
     "capacity": {
@@ -3885,7 +4475,17 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_MISO.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -93.40172733814615,
+        41.991799921851396
+      ],
+      [
+        -86.35286760864014,
+        47.58159536389269
+      ]
+    ]
   },
   "US-NEISO": {
     "capacity": {
@@ -3905,7 +4505,17 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_NEISO.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -73.93854374389866,
+        42.22927654897353
+      ],
+      [
+        -71.00570682970636,
+        45.51373107491463
+      ]
+    ]
   },
   "US-NY": {
     "_comment": "hydro incl. 1407 MW pumped storage",
@@ -3925,7 +4535,17 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_NY.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -80.26300663544788,
+        39.99943456200015
+      ],
+      [
+        -71.35741126199989,
+        45.51012196900015
+      ]
+    ]
   },
   "US-PJM": {
     "capacity": {
@@ -3951,7 +4571,17 @@
       "price": "US_PJM.fetch_price",
       "production": "US_PJM.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -90.07794804136901,
+        35.9986369002728
+      ],
+      [
+        -81.46522831443511,
+        39.646219908521914
+      ]
+    ]
   },
   "US-SPP": {
     "capacity": {
