@@ -1,17 +1,17 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "This shows in real-time",
-        "whereelectricitycomesfrom": "where your electricity comes from",
-        "and": "and",
-        "howmuchco2": "how much CO2",
-        "wasemitted": "was emitted to produce it",
-        "takeinaccount": "We take into account electricity",
-        "importexport": "imports and exports",
-        "betweenzones": "between zones",
-        "thisproject": "This project is",
+        "thisshowsrealtime": "Карта в режиме реального времени иллюстрирует",
+        "whereelectricitycomesfrom": "из каких источников производитcя электричество",
+        "and": "и",
+        "howmuchco2": "сколько CO2эк",
+        "wasemitted": "был выпущен, чтобы произвести его",
+        "takeinaccount": "Мы учитываем",
+        "importexport": "перетоки",
+        "betweenzones": " между зонами",
+        "thisproject": "Этот проект",
         "opensource": "Open Source",
-        "see": "see",
-        "datasources": "data sources",
+        "see": "см.",
+        "datasources": "источники данных",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "country-panel": {
