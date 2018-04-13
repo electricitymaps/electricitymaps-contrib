@@ -70,6 +70,7 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
         raise TypeError('Unexpected **kwargs: %r' % kwargs)
 
     generation = datapoint['production']
+    storage = datapoint.get('storage', {})
 
     if remove_negative:
         for key, val in generation.items():
@@ -86,7 +87,8 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
                 return None
 
     if floor:
-        total = sum(v for k, v in generation.items() if v is not None)
+        total = (sum(v for k, v in generation.items() if v is not None)
+                 + sum(v for k, v in storage.items() if v is not None))
         if total < floor:
             logger.warning("{} reported total of {}MW does not meet {}MW floor value".format(
                 datapoint['zoneKey'], total, floor), extra={'key': datapoint['zoneKey']})
@@ -95,7 +97,8 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
     if expected_range:
         low = min(expected_range)
         high = max(expected_range)
-        total = sum(v for k, v in generation.items() if v is not None)
+        total = (sum(v for k, v in generation.items() if v is not None)
+                 + sum(v for k, v in storage.items() if v is not None))
         if low <= total <= high:
             pass
         else:
