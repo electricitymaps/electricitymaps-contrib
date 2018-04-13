@@ -12,8 +12,7 @@
         "opensource": "öppen källkod",
         "see": "se",
         "datasources": "datakällor",
-        "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>",
-        "tip": "Tips: Klicka på en region för att börja utforska"
+        "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
     "country-panel": {
         "source": "källa",
@@ -24,8 +23,12 @@
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
-        "co2signal": "Vår <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjälper elutrustning och elfordon att konsumera el vid rätt tid, speciellt när landsgränser passeras.",
         "helpfrom": "med hjälp från"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Klimatpåverkan per region",
+        "zone-list-header-subtitle": "Rankad efter utsläpp av koldioxid från elproduktion (gCO2eq/kWh)",
+        "search": "Sök efter region"
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
@@ -57,7 +60,6 @@
     },
     "misc": {
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
-        "lastupdate": "Uppdaterad",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
         "retrynow": "Försök igen",
@@ -172,6 +174,8 @@
         "DE": "Tyskland",
         "DJ": "Djibouti",
         "DK": "Danmark",
+        "DK-DK1": "Danmark (Väst)",
+        "DK-DK2": "Danmark (Ost)",
         "DK-BHM": "Danmark (Bornholm)",
         "DM": "Dominica",
         "DO": "Dominikanska republiken",
@@ -196,6 +200,7 @@
         "FM": "Mikronesien",
         "FO": "Färöarna",
         "FR": "Frankrike",
+        "FR-COR": "Frankrike (Korsika)",
         "GA": "Gabon",
         "GB": "Storbritannien",
         "GB-NIR": "Nordirland",
@@ -323,6 +328,8 @@
         "NP": "Nepal",
         "NR": "Nauru",
         "NU": "Niue",
+        "NZ-NZA": "New Zealand (Aucklandöarna)",
+        "NZ-NZC": "New Zealand (Chathamöarna)",
         "NZ-NZN": "Nya Zeeland (Nordön)",
         "NZ-NZS": "Nya Zeeland (Sydön)",
         "OM": "Oman",
@@ -394,6 +401,7 @@
         "UM": "Förenta staternas mindre öar i Oceanien och Västindien",
         "US": "USA",
         "US-CA": "USA (Kalifornien)",
+        "US-IPC": "USA (IPC)",
         "US-MISO": "USA (MISO)",
         "US-NEISO": "USA (New England)",
         "US-NY": "USA (New York)",
@@ -411,6 +419,7 @@
         "VU": "Vanuatu",
         "WF": "Wallis- och Futunaöarna",
         "WS": "Samoa",
+        "XX": "Nordcypern",
         "YE": "Jemen",
         "YT": "Mayotte",
         "ZA": "Sydafrika",

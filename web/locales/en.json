@@ -12,8 +12,7 @@
         "opensource": "Open Source",
         "see": "see",
         "datasources": "data sources",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>",
-        "tip": "Tip: Click on a territory to start exploring"
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "country-panel": {
         "source": "Source",
@@ -24,12 +23,11 @@
         "bysource": "by source",
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders.",
         "helpfrom": "with help from"
     },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",
-        "zone-list-header-subtitle": "Ranked by carbon intensity (gCO<sub>2</sub>eq/kWh)",
+        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO2eq/kWh)",
         "search": "Search areas"
     },
     "country-history": {
@@ -62,7 +60,6 @@
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
-        "lastupdate": "Updated",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "retrynow": "Retry now",
@@ -177,6 +174,8 @@
         "DE": "Germany",
         "DJ": "Djibouti",
         "DK": "Denmark",
+        "DK-DK1": "Denmark (West)",
+        "DK-DK2": "Denmark (East)",
         "DK-BHM": "Denmark (Bornholm)",
         "DM": "Dominica",
         "DO": "Dominican Republic",
@@ -201,6 +200,7 @@
         "FM": "Micronesia",
         "FO": "Faroe Islands",
         "FR": "France",
+        "FR-COR": "France (Corsica)",
         "GA": "Gabon",
         "GB": "Great Britain",
         "GB-NIR": "Northern Ireland",
@@ -328,6 +328,8 @@
         "NP": "Nepal",
         "NR": "Nauru",
         "NU": "Niue",
+        "NZ-NZA": "New Zealand (Auckland Islands)",
+        "NZ-NZC": "New Zealand (Chatham Islands)",
         "NZ-NZN": "New Zealand (North Island)",
         "NZ-NZS": "New Zealand (South Island)",
         "OM": "Oman",
@@ -417,6 +419,7 @@
         "VU": "Vanuatu",
         "WF": "Wallis and Futuna",
         "WS": "Samoa",
+        "XX": "Northern Cyprus",
         "YE": "Yemen",
         "YT": "Mayotte",
         "ZA": "South Africa",

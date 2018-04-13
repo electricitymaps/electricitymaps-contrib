@@ -12,8 +12,7 @@
         "opensource": "Open Source",
         "see": "voir",
         "datasources": "source des données",
-        "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>",
-        "tip": "Cliquez sur une zone pour explorer"
+        "contribute": "Contribuez en <a href=\"%s\" target=\"_blank\">ajoutant votre pays</a>"
     },
     "country-panel": {
         "source": "source",
@@ -24,7 +23,6 @@
         "bysource": "par source",
         "emissions": "Emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
-        "co2signal": "Notre <a href=\"%s\" target=\"blank\">CO2 Signal</a> permet aux appareils et voitures électriques de consommer au bon moment.",
         "helpfrom": "avec l'aide de"
     },
     "country-history": {
@@ -57,7 +55,6 @@
     },
     "misc": {
         "maintitle": "Emissions CO2 de la consommation électrique en temps réel",
-        "lastupdate": "Dernière mise à jour",
         "oops": "Oups! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant"
