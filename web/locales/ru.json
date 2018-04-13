@@ -22,7 +22,7 @@
         "electricityproduction": "Производство электричества",
         "bysource": "по видам генерации",
         "emissions": "Углеродные выбросы",
-        "addeditsource": "<a href=\%s\ target=\_blank\>добавить или изменить источник</a>",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">добавить или изменить источник</a>",
         "helpfrom": "с помощью"
     },
     "left-panel": {
