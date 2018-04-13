@@ -1,4 +1,96 @@
 {
+    "panel-initial-text": {
+        "thisshowsrealtime": "This shows in real-time",
+        "whereelectricitycomesfrom": "where your electricity comes from",
+        "and": "and",
+        "howmuchco2": "how much CO2",
+        "wasemitted": "was emitted to produce it",
+        "takeinaccount": "We take into account electricity",
+        "importexport": "imports and exports",
+        "betweenzones": "between zones",
+        "thisproject": "This project is",
+        "opensource": "Open Source",
+        "see": "see",
+        "datasources": "data sources",
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
+    },
+    "country-panel": {
+        "source": "Source",
+        "carbonintensity": "Carbon Intensity",
+        "lowcarbon": "Low-carbon",
+        "renewable": "Renewable",
+        "electricityproduction": "Electricity production",
+        "bysource": "by source",
+        "emissions": "Carbon emissions",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
+        "helpfrom": "with help from"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Climate Impact by Area",
+        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO2eq/kWh)",
+        "search": "Search areas"
+    },
+    "country-history": {
+        "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "electricityorigin24h": "Origin of electricity in the last 24 hours",
+        "electricityprices24h": "Electricity prices in the last 24 hours",
+        "Getdata": "Get historical data and forecast API"
+    },
+    "footer": {
+        "likethisvisu": "Like the visualization?",
+        "loveyourfeedback": "We'd love your feedback",
+        "foundbugs": "Found bugs or have ideas? Report them",
+        "here": "here"
+    },
+    "legends": {
+        "windpotential": "Wind power potential",
+        "solarpotential": "Solar power potential",
+        "colorblindmode": "color blind mode",
+        "carbonintensity": "Carbon intensity"
+    },
+    "tooltips": {
+        "carbonintensity": "Carbon intensity",
+        "lowcarbon": "Low-carbon",
+        "renewable": "Renewable",
+        "crossborderexport": "Cross-border export",
+        "carbonintensityexport": "Carbon intensity of export",
+        "ofinstalled": "of installed capacity",
+        "utilizing": "utilizing",
+        "withcarbonintensity": "with a carbon intensity of"
+    },
+    "misc": {
+        "maintitle": "Live CO2 emissions of electricity consumption",
+        "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
+        "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+        "retrynow": "Retry now",
+        "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
+        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>"
+    },
+"wind": "ВЭС",
+"solar": "СЭС",
+"hydro": "ГЭС",
+"hydro storage": "ГАЭС",
+"battery storage": "аккумуляторы",
+"biomass": "биотопливо",
+"nuclear": "АЭС",
+"geothermal": "ГеоТЭС",
+"gas": "газ",
+"coal": "уголь",
+"oil": "нефтепродукты",
+"unknown": "неизвестно",
+
+    "electricityComesFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
+    "emissionsComeFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
+    "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
+    "emissionsStoredUsing": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+
+    "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+
+    "ofCO2eqPerMinute": "of CO2eq per minute",
+
     "zoneShortName": {
         "AD": "Андорра",
         "AE": "Объединенные Арабские Эмираты",
@@ -332,6 +424,6 @@
         "YT": "Майотта",
         "ZA": "Южная Африка",
         "ZM": "Замбия",
-        "ZW": "Зимбабве »
+        "ZW": "Зимбабве"
     }
 }
