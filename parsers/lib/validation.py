@@ -116,8 +116,9 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
                 return
 
     if floor:
+        # when adding power to the system, storage key is negative
         total = (sum(v for k, v in generation.items() if v is not None)
-                 + sum(v for k, v in storage.items() if v is not None))
+                 - sum(v for k, v in storage.items() if v is not None))
         if total < floor:
             logger.warning("{} reported total of {}MW does not meet {}MW floor"
                            " value".format(datapoint['zoneKey'], total, floor),
@@ -133,8 +134,9 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
                                             logger, key=key):
                     return
         else:
+            # when adding power to the system, storage key is negative
             total = (sum(v for k, v in generation.items() if v is not None)
-                     + sum(v for k, v in storage.items() if v is not None))
+                     - sum(v for k, v in storage.items() if v is not None))
             if not check_expected_range(datapoint, total, expected_range,
                                         logger):
                 return
