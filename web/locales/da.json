@@ -14,9 +14,7 @@
         "opensource": "Open Source",
         "see": "se",
         "datasources": "kildekode",
-        "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit territorie</a>",
-
-        "tip": "Tip: Klik på et territorie for at udforske"
+        "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit territorie</a>"
     },
     "country-panel": {
         "source": "kilde",
@@ -24,8 +22,7 @@
         "electricityproduction": "Elproduktion",
         "bysource": "per kilde",
         "emissions": "CO2 udledning",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
-        "co2signal": "Vores <a href=\"%s\" target=\"blank\">CO2 Signal</a> hjælper elektriske apparater og elbiler med at bruge elektricitet på rette tidspunkt, især på tværs af grænserne."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>"
     },
     "country-history": {
         "carbonintensity24h": "CO2 intensitet i de sidste 24 timer"
@@ -52,7 +49,6 @@
     },
     "misc": {
         "maintitle": "Realtids CO2-udledning af elforbruget",
-        "lastupdate": "Sidst opdateret",
         "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
         "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere.",
         "retrynow": "Prøv igen nu"

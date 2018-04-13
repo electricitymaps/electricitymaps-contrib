@@ -12,8 +12,7 @@
         "opensource": "オープンソースです",
         "see": "",
         "datasources": "データソースを見る",
-        "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>",
-        "tip": "チップ: 国にクリックして観てくささい"
+        "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>"
     },
     "country-panel": {
         "source": "ソース",
@@ -24,7 +23,6 @@
         "bysource": "ソース分け",
         "emissions": "二酸化炭素排出",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ソースを追加または編集する</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a>はデバイスと電源車の電源消費を最適化するにオススメサービスです（特に境域を渡るのがある場合に）",
         "helpfrom": "次の方の協力のおかげで"
     },
     "country-history": {
@@ -55,7 +53,6 @@
     },
     "misc": {
         "maintitle": "ライブ二酸化炭素排出地図",
-        "lastupdate": "最新アップデート",
         "oops": "ごめん!サーバーにの接続に問題がありました、数秒後にまた試します",
         "newversion": "新しいバージョンが使える、リロードするには<a onClick=\"location.reload(true);\">こちら</a>にタップしてください",
         "retrynow": "今すぐリトライ"

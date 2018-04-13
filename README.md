@@ -181,9 +181,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Canada (Ontario): [Gridwatch](http://live.gridwatch.ca/total-capacity.html)
 - Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
+- Chile (SIC)
+  - Geothermal, Hydro, Solar, Wind: [SIC](https://sic.coordinador.cl/capacidad-instalada/)
+  - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
 - Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
-  - Other: [CIGRE](http://www.cigre.org/var/cigre/storage/original/application/6a789c1375a22a39e14a284bee7ff988.pdf)
+  - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (DK1 and DK2): [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (Bornholm)
@@ -261,6 +264,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
+  - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 &nbsp;</details>
 
 ### Cross-border transmission capacity data sources
@@ -387,6 +391,11 @@ Storage values can be both positive (when storing energy) or negative (when the 
 The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
 
 Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
+
+Run all of the parser tests with the following command from the root directory.
+```
+python3 -m unittest discover parsers/test/
+```
 
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
