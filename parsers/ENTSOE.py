@@ -611,6 +611,8 @@ def validate_production(datapoint, logger):
         return validate(datapoint, logger=logger, required=['hydro'], expected_range=(5000, 50000))
     elif datapoint['zoneKey'] == 'PT':
         return validate(datapoint, logger=logger, required=['coal'])
+    elif datapoint['zoneKey'] == 'RS':
+        return validate(datapoint, logger=logger, required=['coal'])
     elif datapoint['zoneKey'] == 'DE':
         p = datapoint['production']
         return (p.get('coal', None) is not None and p.get('gas', None) is not None and
