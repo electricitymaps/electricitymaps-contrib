@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import logging
+
 # The arrow library is used to handle datetimes
 from arrow import get
 # The request library is used to fetch content through HTTP
@@ -7,6 +9,19 @@ from requests import Session
 from reescraper import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
                         LaPalma, Tenerife)
 from .lib.exceptions import ParserException
+from .lib.validation import validate
+
+
+# Minimum valid zone demand. This is used to eliminate some cases
+# where generation for one or more modes is obviously missing.
+FLOORS = {
+    'ES-CN-FVLZ': 50,
+    'ES-CN-GC': 150,
+    'ES-CN-IG': 3,
+    'ES-CN-LP': 10,
+    'ES-CN-TE': 150,
+    'ES-CN-HI': 2
+}
 
 
 def fetch_island_data(zone_key, session):
@@ -70,7 +85,8 @@ def fetch_consumption(zone_key='ES-CN', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None,
+                     logger=logging.getLogger(__name__)):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
@@ -101,6 +117,9 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
                     },
                     'source': 'demanda.ree.es',
                 }
+                response_data = validate(response_data, logger,
+                                         floor=FLOORS[zone_key])
+
                 data.append(response_data)
     else:
         for response in island_data:
@@ -125,6 +144,9 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
                     },
                     'source': 'demanda.ree.es',
                 }
+                response_data = validate(response_data, logger,
+                                         floor=FLOORS[zone_key])
+
                 data.append(response_data)
 
     return data
