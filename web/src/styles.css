@@ -299,11 +299,12 @@ body {
 .left-panel-country-toolbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 0 0 1rem;
     position: relative;
 }
 .left-panel-toolbar .left-panel-toolbar-back,
-#left-panel-country-back, #left-panel-highscore-back {
+#left-panel-highscore-back {
     line-height: 1;
     cursor: pointer;
     font-size: 1rem;
@@ -311,6 +312,11 @@ body {
     right: 0px;
     top: 0px;
     position: absolute;
+}
+#left-panel-country-back {
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.2rem;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
 #left-panel-country-back:hover, #left-panel-highscore-back:hover {
@@ -814,7 +820,7 @@ div.highscore-button:hover {
 }
 
 .zone-list .co2-intensity-tag {
-    border-radius: 3px;    
+    border-radius: 3px;
     margin-right: 10px;
     height: 17px;
     width: 17px;
