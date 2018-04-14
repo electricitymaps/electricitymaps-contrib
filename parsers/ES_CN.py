@@ -120,7 +120,10 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                 response_data = validate(response_data, logger,
                                          floor=FLOORS[zone_key])
 
-                data.append(response_data)
+                if response_data:
+                    # append if valid
+                    data.append(response_data)
+
     else:
         for response in island_data:
             if response.production() > 0:
@@ -147,7 +150,9 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                 response_data = validate(response_data, logger,
                                          floor=FLOORS[zone_key])
 
-                data.append(response_data)
+                if response_data:
+                    # append if valid
+                    data.append(response_data)
 
     return data
 
