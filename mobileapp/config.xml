@@ -65,6 +65,10 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-code-push" spec="^1.11.7" />
     <plugin name="cordova-universal-links-plugin" spec="https://github.com/flipflopapp/cordova-universal-links-plugin" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="1267173759989113" />
+        <variable name="APP_NAME" value="Electricity Map" />
+    </plugin>
     <engine name="android" spec="^6.4.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
