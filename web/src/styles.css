@@ -341,11 +341,11 @@ body {
 .country-name-time {
     font-size: smaller;
     margin: auto;
-    width: 84%;
+    width: 90%;
 }
 .country-name-time-table {
     display: table;
-    margin: auto;
+    margin-left: 1rem;
 }
 .country-name-time .flag {
   vertical-align: bottom;
