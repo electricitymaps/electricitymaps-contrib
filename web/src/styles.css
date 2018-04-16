@@ -986,7 +986,6 @@ sub {
 
 .modal {
     display: flex;
-    justify-content: space-between;
     max-width: 880px;
     width: 100%;
     height: 488px;
@@ -1019,6 +1018,7 @@ sub {
     background-color: white;
     height: 48px;
     width: 48px;
+    border: none;
     border-radius: 25px;
     font-size: 32px;
     transition: background-color 0.3s ease-in-out;
@@ -1029,8 +1029,6 @@ sub {
 .modal .modal-left-button:focus, .modal .modal-right-button:focus {
     outline: 0;
 }
-
-
 
 .modal .modal-left-button.hidden {
     display: none;
@@ -1194,7 +1192,7 @@ sub {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin: 0 40px;
+        padding: 0 40px;
         height: 40%;
         min-height: 245px;
     }

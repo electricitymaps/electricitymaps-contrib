@@ -57,7 +57,8 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
   // capacity
   var capacity = (country.capacity || {})[mode]
   var hasCapacity = capacity !== undefined && capacity >= (country.production[mode] || 0);
-  var capacityFactor = hasCapacity && Math.round(absValue / capacity * 100) || '?';
+  var capacityFactor = (hasCapacity && absValue != null) ?
+    Math.round(absValue / capacity * 100) : '?';
   tooltip.select('#capacity-factor').text(capacityFactor + ' %');
   tooltip.select('#capacity-factor-detail').html(
     (format(absValue) || '?') + ' ' +
