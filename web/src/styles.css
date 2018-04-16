@@ -298,8 +298,6 @@ body {
 .left-panel-toolbar,
 .left-panel-country-toolbar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin: 0 0 1rem;
     position: relative;
 }
@@ -317,6 +315,9 @@ body {
     cursor: pointer;
     font-size: 1rem;
     padding: 0.2rem;
+    position: absolute;
+    left: 0;
+    top: .6rem;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
 #left-panel-country-back:hover, #left-panel-highscore-back:hover {
@@ -339,6 +340,12 @@ body {
 
 .country-name-time {
     font-size: smaller;
+    margin: auto;
+    width: 84%;
+}
+.country-name-time-table {
+    display: table;
+    margin: auto;
 }
 .country-name-time .flag {
   vertical-align: bottom;
