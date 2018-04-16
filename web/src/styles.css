@@ -1010,7 +1010,7 @@ sub {
 }
 
 /* Small devices (phones, etc.) */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     #header {
         min-height: 90px; /* required for old Safari */
     }
