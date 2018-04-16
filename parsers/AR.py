@@ -847,8 +847,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     # Only hourly data is available.
     if target_datetime:
-        # arrow object required.
-        lookup_time = target_datetime.floor('hour').format('DD/MM/YYYY HH:mm')
+        lookup_time = arrow.get(target_datetime).floor('hour').format('DD/MM/YYYY HH:mm')
     else:
         current_time = arrow.now('UTC-3')
         if current_time.minute < 30:
