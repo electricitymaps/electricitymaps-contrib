@@ -2684,16 +2684,6 @@
     "timezone": "Europe/Belgrade"
   },
   "RU": {
-    "bounding_box": [
-      [
-        -180,
-        41.151416124
-      ],
-      [
-        180,
-        81.2504
-      ]
-    ],
     "capacity": {
       "biomass": 0,
       "coal": 44868,
@@ -2720,16 +2710,6 @@
     "timezone": "Europe/Moscow"
   },
   "RU-AS": {
-    "bounding_box": [
-      [
-        -180.4999999999999,
-        41.79511139500019
-      ],
-      [
-        180.50000000000028,
-        77.62579987200013
-      ]
-    ],
     "flag_file_name": "ru.png",
     "timezone": null
   },
