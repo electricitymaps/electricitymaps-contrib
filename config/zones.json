@@ -2556,16 +2556,6 @@
     "timezone": "Europe/Warsaw"
   },
   "PT": {
-    "bounding_box": [
-      [
-        -10,
-        37
-      ],
-      [
-        -7,
-        42
-      ]
-    ],
     "capacity": {
       "biomass": 598,
       "coal": 1756,
@@ -2588,7 +2578,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": "Europe/Lisbon"
+    "timezone": "Europe/Lisbon",
+    "bounding_box": [
+      [
+        -9.997466600999928,
+        36.46588776200015
+      ],
+      [
+        -5.705947224999932,
+        42.65362965999999
+      ]
+    ]
   },
   "PT-AC": {
     "bounding_box": [
