@@ -66,7 +66,8 @@
       48.909846
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -76,7 +77,8 @@
       47.696804
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -30
   },
@@ -86,7 +88,8 @@
       47.444264
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 120
   },
@@ -96,7 +99,8 @@
       46.741723
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -140
   },
@@ -238,7 +242,8 @@
       50.255806
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -135
   },
@@ -248,7 +253,8 @@
       49.990503
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 100
   },
@@ -258,7 +264,8 @@
       51.425174
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -611,7 +618,8 @@
       50.227335
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -60
   },
@@ -621,7 +629,8 @@
       50.269487
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 45
   },
@@ -631,7 +640,8 @@
       49.089498
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 135
   },
@@ -667,7 +677,8 @@
       48.931337
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -110
   },
@@ -677,7 +688,8 @@
       49.847692
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
   },
@@ -687,7 +699,8 @@
       52.159037
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
   },
@@ -697,7 +710,8 @@
       52.410625
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
   },
@@ -880,7 +894,8 @@
       42.9
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 20
   },
@@ -900,7 +915,8 @@
       40
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
   },
@@ -964,7 +980,8 @@
       50.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
   },
@@ -974,7 +991,8 @@
       44.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
   },
@@ -1002,7 +1020,8 @@
       53
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -80
   },
@@ -1016,7 +1035,8 @@
       52.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
   },
@@ -1228,7 +1248,8 @@
       54.247411
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "statnett.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 180
   },

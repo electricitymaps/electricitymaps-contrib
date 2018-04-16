@@ -14,9 +14,7 @@
         "opensource": "开源资料",
         "see": "看",
         "datasources": "数据来源",
-        "contribute": "通过<a href=\"%s\" target=\"_blank\">添加你的国家</a>进行贡献",
-
-        "tip": "提示：点击一个国家/地区开始探索"
+        "contribute": "通过<a href=\"%s\" target=\"_blank\">添加你的国家</a>进行贡献"
     },
     "country-panel": {
         "source": "来源",
@@ -24,8 +22,7 @@
         "electricityproduction": "电力生产",
         "bysource": "按来源",
         "emissions": "碳排放量",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或编辑来源</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a> helps devices and electric vehicles consume electricity at the right time, especially when crossing borders."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">新增或编辑来源</a>"
     },
     "rankings-panel": {
         "country-ranking": "国家排名",
@@ -57,7 +54,6 @@
     },
     "misc": {
         "maintitle": "生活用电二氧化碳排放量",
-        "lastupdate": "最后更新",
         "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
         "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">这里</a>重新载入。"
     },

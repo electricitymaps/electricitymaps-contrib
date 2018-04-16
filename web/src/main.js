@@ -982,7 +982,7 @@ function routeToPage(pageName, state) {
   // Hide all panels - we will show only the ones we need
   d3.selectAll('.left-panel > div').style('display', 'none');
   d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
-  d3.selectAll(`.left-panel .left-panel-zone-list`).style('display', undefined);
+  d3.selectAll('.left-panel .left-panel-zone-list').style('display', (pageName !== 'country' ) ? undefined : 'none');
 
   // Replace left panel by country view (large screen only)
   d3.selectAll('.left-panel .left-panel-info')
@@ -998,17 +998,6 @@ function routeToPage(pageName, state) {
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
   d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
-
-  // Analytics
-  // TODO(olc): where should we put all tracking code?
-  // at the source events, or in observers?
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
-  if (pageName === 'country') {
-    thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
-  }
 
   if (pageName === 'map') {
     d3.select('.left-panel').classed('large-screen-visible', true);
@@ -1102,10 +1091,25 @@ observe(state => state.data.grid, (grid, state) => {
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
   routeToPage(showPageState, state);
+
+  // Analytics
+  // Note: `selectedZoneName` will not yet be changed here
+  // TODO: Refactor
+  const params = Object.assign({}, getState().application);
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('pageview', params);
 });
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (k, state) => {
   if (!state.application.selectedZoneName) { return; }
+
+  // Analytics
+  // TODO: Refactor
+  const params = Object.assign({}, getState().application);
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
 
   // Render
   renderCountryTable(state);

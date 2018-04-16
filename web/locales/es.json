@@ -14,9 +14,7 @@
         "opensource": "Código abierto",
         "see": "ver",
         "datasources": "fuente de datos",
-        "contribute": "Contribuye <a href=\"%s\" target=\"_blank\">añadiendo tu país</a>",
-
-        "tip": "Consejo: Haz click sobre un país para comenzar a explorar"
+        "contribute": "Contribuye <a href=\"%s\" target=\"_blank\">añadiendo tu país</a>"
     },
     "country-panel": {
         "source": "fuente",
@@ -24,8 +22,7 @@
         "electricityproduction": "Producción de electricidad",
         "bysource": "por fuente",
         "emissions": "Emisiones",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o editar fuente de datos</a>",
-        "co2signal": "Nuestro <a href=\"%s\" target=\"blank\">CO2 Signal</a> ayuda a dispositivos y vehículos eléctricos a consumir electricidad en el momento adecuado, especialmente cuando se cruzan fronteras."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o editar fuente de datos</a>"
     },
     "country-history": {
         "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas"
@@ -53,7 +50,6 @@
     },
     "misc": {
         "maintitle": "Emisiones de CO2 del consumo eléctrico en tiempo real",
-        "lastupdate": "Última actualización",
         "oops": "¡Ups! Estamos teniendo problemas con el servidor. Lo intentaremos de nuevo en unos segundos.",
         "newversion": "¡Está disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar."
     },

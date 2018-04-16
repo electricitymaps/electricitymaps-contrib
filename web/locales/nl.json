@@ -14,9 +14,7 @@
         "opensource": "Open Source",
         "see": "zie",
         "datasources": "data sources",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
-
-        "tip": "Tip: Klik op een land om alle informatie te ontdekken"
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
     },
     "country-panel": {
         "source": "bron",
@@ -24,8 +22,7 @@
         "electricityproduction": "Elektriciteitsproductie",
         "bysource": "per bron",
         "emissions": "CO2 uitstoot",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "co2signal": "Ons product <a href=\"%s\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>"
     },
     "country-history": {
         "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
@@ -53,7 +50,6 @@
     },
     "misc": {
         "maintitle": "Live CO2 uitstoot van het elektriciteitsverbruik",
-        "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
     },

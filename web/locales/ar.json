@@ -14,9 +14,7 @@
         "opensource": "مفتوح المصدر",
         "see": "انظر",
         "datasources": "مصادر البيانات",
-        "contribute": "مساهمة من <a href=\"%s\" target=\"_blank\">إضافة منطقتك</a>",
-
-        "tip": "تلميح: اضغط على منطقة ما حتى تبدأ الاستطلاع"
+        "contribute": "مساهمة من <a href=\"%s\" target=\"_blank\">إضافة منطقتك</a>"
     },
     "country-panel": {
         "source": "المصدر",
@@ -24,8 +22,7 @@
         "electricityproduction": "إنتاج الكهرباء",
         "bysource": "عبر المصدر",
         "emissions": "انبعاثات الكربون",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">أضف أو عدّل على المصدر</a>",
-        "co2signal": "<a href=\"%s\" target=\"blank\">إشارة ثاني أكسيد الكربون (CO2)</a>تساعد الأجهزة والمركبات على استهلاك الكهرباء في الوقت المناسب، خاصة عند عبور الحدود."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">أضف أو عدّل على المصدر</a>"
     },
     "country-history": {
         "carbonintensity24h": "كثافة الكربون في آخر 24 ساعة مضت"
@@ -53,7 +50,6 @@
     },
     "misc": {
         "maintitle": "انبعاثات غاز ثاني أكسيد الكربون الحية من استهلاك الكهرباء",
-        "lastupdate": "محدّث",
         "oops": "نواجه مشكلات عند الاتصال بالخادم، سنعاود المحاولة خلال ثوان",
         "newversion": "يوجد نسخة جديدة متوفرة! اضغط <a onClick=\"location.reload(true);\">هنا</a> لإعادة التحميل",
         "retrynow": "أعد المحاولة الآن"

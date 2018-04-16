@@ -5,10 +5,13 @@ from datetime import datetime
 from io import StringIO
 from operator import itemgetter
 
+import logging
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
+
+from .lib.validation import validate
 
 thermal_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
 wind_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
@@ -217,7 +220,8 @@ def merge_production(thermal_data, wind_data):
     return joined_data
 
 
-def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
+                     logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
         Arguments:
@@ -261,18 +265,19 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None, logg
 
     for datapoint in merge:
         production_mix = {
-          'zoneKey': zone_key,
-          'datetime': datapoint.get('datetime', 0.0),
-          'production': {
-              'coal': datapoint.get('coal', 0.0),
-              'gas': datapoint.get('gas', 0.0),
-              'oil': datapoint.get('oil', 0.0),
-              'solar': None,
-              'wind': datapoint.get('wind', 0.0)
-          },
-          'source': 'soni.ltd.uk'
+            'zoneKey': zone_key,
+            'datetime': datapoint.get('datetime', 0.0),
+            'production': {
+                'coal': datapoint.get('coal', 0.0),
+                'gas': datapoint.get('gas', 0.0),
+                'oil': datapoint.get('oil', 0.0),
+                'solar': None,
+                'wind': datapoint.get('wind', 0.0)
+            },
+            'source': 'soni.ltd.uk'
         }
-        production_mix_by_quarter_hour.append(production_mix)
+        production_mix_by_quarter_hour.append(
+            validate(production_mix, logger=logger, required=['gas', 'coal']))
 
     return production_mix_by_quarter_hour
 
