@@ -6,6 +6,7 @@ import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
 import ZoneList from './components/zonelist';
 import SearchBar from './components/searchbar';
+import OnboardingModal from './components/onboardingmodal';
 
 // Libraries
 const d3 = Object.assign(
@@ -99,6 +100,7 @@ LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
+let onboardingModal;
 
 // ** Create components
 const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
@@ -211,6 +213,10 @@ moment.locale(getState().application.locale.toLowerCase());
   params.embeddedUri = params.isEmbedded ? document.referrer : null;
   thirdPartyServices.track('Visit', params);
 })();
+
+if (!getState().application.onboardingSeen) {
+  onboardingModal = new OnboardingModal('#main');
+}
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
@@ -762,7 +768,10 @@ d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageStat
 d3.selectAll('.highscore-button')
   .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
-
+// Onboarding modal
+if (onboardingModal) {
+  onboardingModal.onDismiss(() => Cookies.set('onboardingSeen', true, { expires: 365 }));
+}
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react

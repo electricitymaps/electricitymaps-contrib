@@ -90,7 +90,7 @@ line, path {
     height: 100%;
     position: absolute;
     top: 0;
-    z-index: 999;
+    z-index: 500;
 }
 #loading {
     /* That's the main loading overlay */
@@ -405,13 +405,7 @@ body {
     opacity: 1.0
 }
 
-.left-panel-initial-text {
-    font-size: 1.1em;
-    color: darkgrey;
-}
-.left-panel-initial-text p:first-child {
-    margin-top: 0px;
-}
+
 .country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
@@ -694,7 +688,7 @@ label[for="checkbox-colorblind"] {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 100;
 
     box-sizing: border-box;
     opacity: 0;
@@ -976,6 +970,147 @@ sub {
     text-decoration: underline !important;
 }
 
+.modal-background-overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 500;
+    zoom: 1;
+	filter: alpha(opacity=50);
+    opacity: 0.5;
+    background-color: black;
+}
+
+.modal {
+    display: flex;
+    justify-content: space-between;
+    max-width: 880px;
+    width: 100%;
+    height: 488px;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal .modal-left-button-container, .modal .modal-right-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 75px;
+    width: 100%;
+}
+
+.modal .modal-left-button-container { 
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.modal .modal-right-button-container {
+    align-items: flex-end;
+    margin-right: 10px;
+}
+
+.modal .modal-left-button, .modal .modal-right-button {
+    background-color: white;
+    height: 48px;
+    width: 48px;
+    border-radius: 25px;
+    font-size: 32px;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+    color: dimgray;
+}
+
+.modal .modal-left-button:focus, .modal .modal-right-button:focus {
+    outline: 0;
+}
+
+
+
+.modal .modal-left-button.hidden {
+    display: none;
+}
+
+.modal .modal-footer{
+    height: 40px;
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.modal .modal-footer .modal-footer-circle {
+    background-color: rgb(145, 145, 145);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    margin: 0 4px;
+    width: 8px;
+}
+
+.modal .modal-footer .modal-footer-circle.highlight{
+    background-color: white;
+}
+
+.modal .modal-body { 
+    flex: 1;
+    border-radius: 15px;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    max-width: 700px;
+}
+
+.modal .modal-header {
+    height: 58%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.modal .modal-text {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    padding: 25px 55px;
+    text-align: center;
+    height: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal .modal-text h1 {
+    font-size: 3rem;
+}
+
+.modal .modal-text h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.modal .modal-text h1, .modal .modal-text h2{
+    font-weight: normal;
+}
+
+.modal .logo-header {
+    background-size: 180px !important;
+    background-position-y: 70% !important;
+}
+
+.modal .brand-text {
+    padding-top: 0;
+    line-height: 3rem;
+}
+
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
@@ -993,6 +1128,10 @@ sub {
     }
     .floating-legend-mobile-header{
         display: none;
+    }
+
+    .modal .modal-left-button:hover, .modal .modal-right-button:hover {
+        background-color: rgb(220, 220, 220);
     }
 }
 
@@ -1031,6 +1170,57 @@ sub {
     .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
         margin-left: 80px;
     }
+
+    .modal {
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .modal .modal-text h1 {
+        font-size: 2rem;
+    }
+
+    .modal .modal-header {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        background-size: contain;
+        background-position: center;
+        height: 40%;
+        min-height: 200px;
+    }
+
+    .modal .modal-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 40px;
+        height: 40%;
+        min-height: 245px;
+    }
+
+    .modal .brand-text {
+        height: 25%;
+    }
+
+    .modal .modal-body {
+        max-width: inherit;
+        border-radius: 0;
+
+    }
+    .modal .modal-left-button-container {
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+    }
+
+    .modal .modal-right-button-container {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+    }
+
+
 }
 
 /* custom scrollbars in chrome*/

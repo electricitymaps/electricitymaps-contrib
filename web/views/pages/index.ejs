@@ -55,10 +55,12 @@ co2Sub = function(str) {
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= stylesHash %>.css">
         <link rel="stylesheet" type="text/css" href="dist/vendor.<%= vendorStylesHash %>.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+ 
 
         <!-- Language -->
         <% for(var i=0; i<alternateUrls.length; i++) {%>
@@ -151,18 +153,6 @@ co2Sub = function(str) {
                 </div>
 
                 <div class="panel left-panel">
-
-
-                    <div class="left-panel-info">
-                        <div class="left-panel-initial-text">
-                            <p>
-                                <%- __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%- __('panel-initial-text.whereelectricitycomesfrom') %></span> <%- __('panel-initial-text.and') %> <span style="color: lightgray"><%- co2Sub(__('panel-initial-text.howmuchco2')) %></span> <%- __('panel-initial-text.wasemitted') %>.
-                            </p>
-                            <p>
-                                <%- __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%- __('panel-initial-text.importexport') %></span><span class="large-screen-visible" style="white-space: nowrap;"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 0.9em;" /></span> <%- __('panel-initial-text.betweenzones') %>.
-                            </p>
-                        </div>
-                    </div>
 
                     <div class="left-panel-zone-list">
 

@@ -15,6 +15,24 @@
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>",
         "tip": "Tip: Click on a territory to start exploring"
     },
+    "onboarding-modal": {
+        "view1": {
+            "header": "The Electricity Map",
+            "subtitle": "Mapping the environmental cost of electricity"
+        },
+        "view2": {
+            "header": "See the real-time CO<sub>2</sub> emissions of your electricity",
+            "text": "We rank areas around the world by their Carbon Intensity of electricity consumption (gCO<sub>2</sub>eq/kWh). Lower carbon intensity means more environmentally friendly electricity."
+        },
+        "view3": {
+            "header": "Know where your electricity comes from",
+            "text": "Arrows on the map indicate imports and exports of electricity between different areas. Click on an area to see more detailed information about the electricity consumed there."
+        },
+        "view4": {
+            "header": "Explore the potential for wind and solar energy",
+            "text": "Wind and solar energy are two of the most potent renewable energy sources. Press the sun and wind buttons to display the strength of wind and sunshine throughout the world."
+        }
+    },
     "country-panel": {
         "source": "Source",
         "carbonintensity": "Carbon Intensity",
