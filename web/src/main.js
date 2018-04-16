@@ -990,17 +990,6 @@ function routeToPage(pageName, state) {
   // sizes are set properly
   d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
 
-  // Analytics
-  // TODO(olc): where should we put all tracking code?
-  // at the source events, or in observers?
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
-  if (pageName === 'country') {
-    thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
-  }
-
   if (pageName === 'map') {
     d3.select('.left-panel').classed('large-screen-visible', true);
     renderMap(state);
@@ -1093,10 +1082,25 @@ observe(state => state.data.grid, (grid, state) => {
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
   routeToPage(showPageState, state);
+
+  // Analytics
+  // Note: `selectedZoneName` will not yet be changed here
+  // TODO: Refactor
+  const params = Object.assign({}, getState().application);
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('pageview', params);
 });
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (k, state) => {
   if (!state.application.selectedZoneName) { return; }
+
+  // Analytics
+  // TODO: Refactor
+  const params = Object.assign({}, getState().application);
+  params.bundleVersion = params.bundleHash;
+  params.embeddedUri = params.isEmbedded ? document.referrer : null;
+  thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
 
   // Render
   renderCountryTable(state);
