@@ -88,13 +88,7 @@ def parse_page(session):
 
         obj[k] = v
 
-    # Note that the Salto Grande is counted as hydro, whereas it really is a hydro *import*
-    # However, because it is coming directly from the hydro dam, we can count it as local production
-    # and not as an import. This should be verified though.
-    # If this assumption is not correct, then the following line should be uncommented.
-    # obj['Hidráulica'] -= max(0, obj['Interconexión Salto Grande'])
-
-    # see https://github.com/tmrowco/electricitymap/issues/1325
+    # https://github.com/tmrowco/electricitymap/issues/1325#issuecomment-380453296
     salto_grande = get_salto_grande(session)
     obj['Hidráulica'] = obj.get('Hidráulica', 0.0) + salto_grande
 
