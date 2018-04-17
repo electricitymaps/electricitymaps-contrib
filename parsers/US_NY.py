@@ -133,6 +133,10 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
     else:
         target_datetime = arrow.now('America/New_York')
 
+    if (arrow.now() - target_datetime).days > 9:
+        raise NotImplementedError('you can get data older than 9 days at the '
+                                  'url http://mis.nyiso.com/public/')
+
     ny_date = target_datetime.format('YYYYMMDD')
     mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
     try:
