@@ -19,6 +19,31 @@ MAP_GENERATION = {
 }
 INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 
+SALTO_GRANDE_URL = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
+
+
+def get_salto_grande(session):
+    """
+    Finds the current generation from the Salto Grande Dam that is
+    allocated to Uruguay.
+    """
+
+    current_time = arrow.now('UTC-3')
+    if current_time.minute < 30:
+        # Data for current hour seems to be available after 30mins.
+        current_time = current_time.shift(hours=-1)
+    lookup_time = current_time.floor('hour').format('DD/MM/YYYY HH:mm')
+
+    s = session or requests.Session()
+    url = SALTO_GRANDE_URL + lookup_time
+    response = s.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    tie = soup.find("div", style = "position:absolute; top:143; left:597")
+    generation = float(tie.text)
+
+    return generation
+
 
 def parse_page(session):
     r = session or requests.session()
@@ -69,13 +94,17 @@ def parse_page(session):
     # If this assumption is not correct, then the following line should be uncommented.
     # obj['Hidráulica'] -= max(0, obj['Interconexión Salto Grande'])
 
+    # see https://github.com/tmrowco/electricitymap/issues/1325
+    salto_grande = get_salto_grande(session)
+    obj['Hidráulica'] = obj.get('Hidráulica', 0.0) + salto_grande
+
     return obj
 
 
 def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     obj = parse_page(session)
 
     data = {
@@ -106,7 +135,7 @@ def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_dateti
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     # set comparison
     if {zone_key1, zone_key2} != {'UY', 'BR'}:
         return None
@@ -126,5 +155,7 @@ def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_dateti
 
 
 if __name__ == '__main__':
+    print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_exchange(UY, BR) ->')
     print(fetch_exchange('UY', 'BR'))
