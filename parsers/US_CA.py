@@ -132,16 +132,15 @@ def fetch_historical_data(target_datetime):
             'source': 'caiso.com',
             'production': {
                 'biomass': float(renewable_resources['BIOMASS'][i]),
-                'gas': float(renewable_resources['BIOGAS'][i]),
-                'hydro': float((renewable_resources['SMALL HYDRO'][i] +
-                          other_resources['HYDRO'][i])),
+                'gas': float(renewable_resources['BIOGAS'][i])
+                       + float(other_resources['THERMAL'][i]),
+                'hydro': float(renewable_resources['SMALL HYDRO'][i])
+                         + float(other_resources['HYDRO'][i]),
                 'nuclear': float(other_resources['NUCLEAR'][i]),
-                'solar': float((renewable_resources['SOLAR PV'][i] +
-                          renewable_resources['SOLAR THERMAL'][i])),
+                'solar': float(renewable_resources['SOLAR PV'][i])
+                         + float(renewable_resources['SOLAR THERMAL'][i]),
                 'wind': float(renewable_resources['WIND TOTAL'][i]),
                 'geothermal': float(renewable_resources['GEOTHERMAL'][i]),
-                # this is not specified in the list,
-                'unknown': float(other_resources['THERMAL'][i])
             },
             'datetime': target_date.shift(hours=i + 1).datetime,
         })
@@ -182,7 +181,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     if target_datetime:
         return fetch_historical_exchange(target_datetime)
-
 
     # CSV has imports to California as positive.
     # Electricity Map expects A->B to indicate flow to B as positive.

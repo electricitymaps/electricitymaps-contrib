@@ -96,7 +96,7 @@ power_plant_type = {
     'BRKETG01': 'gas',
     'BRKETG02': 'gas',
     'BRKETG03': 'gas',
-    'BRKETG04': 'gas',    
+    'BRKETG04': 'gas',
     'BROWTG01': 'gas',
     'BROWTG02': 'gas',
     'BSASTG01': 'gas',
@@ -519,6 +519,12 @@ thurl = ('http://portalweb.cammesa.com/Reserved.ReportViewerWebControl.'
 
 cammesa_url = 'http://portalweb.cammesa.com/default.aspx'
 
+tie_mapping = {'CL-SING': "position:absolute; top:349; left:585",
+               'PY': "position:absolute; top:67; left:649",
+               'UY_1': "position:absolute; top:203; left:533",
+               'UY_2': "position:absolute; top:226; left:515"
+               }
+
 
 def webparser(req):
     """Takes content from webpage and returns all text as a list of strings"""
@@ -781,6 +787,106 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=N
     return production_mix
 
 
+def direction_finder(direction, exchange):
+    """
+    Uses the 'src' attribute of an "img" tag to find the
+    direction of flow. In the data source small arrow images
+    are used to show flow direction.
+    """
+
+    if direction == "/uflujpot.nsf/f90.gif":
+        # flow from Argentina
+        return 1
+    elif direction == "/uflujpot.nsf/f270.gif":
+        # flow to Argentina
+        return -1
+    else:
+        raise ValueError('Flow direction for {} cannot be determined, got {}'.format(exchange, direction))
+
+
+def tie_finder(exchange_url, exchange, session):
+    """
+    Finds tie data using div tag style attribute.
+    Returns a float.
+    """
+
+    req = session.get(exchange_url)
+    soup = BeautifulSoup(req.text, 'html.parser')
+
+    tie = soup.find("div", style = tie_mapping[exchange])
+    flow = float(tie.text)
+    direction_tag = tie.find_next("img")
+    direction = direction_finder(direction_tag['src'], exchange)
+
+    netflow = flow*direction
+
+    return netflow
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+    """Requests the last known power exchange (in MW) between two zones
+
+    Arguments:
+    zone_key1, zone_key2: specifies which exchange to get
+    session: requests session passed in order to re-use an existing session,
+      not used here due to difficulty providing it to pandas
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
+
+    Return:
+    A list of dictionaries in the form:
+    {
+      'sortedZoneKeys': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+
+    # Only hourly data is available.
+    if target_datetime:
+        lookup_time = arrow.get(target_datetime).floor('hour').format('DD/MM/YYYY HH:mm')
+    else:
+        current_time = arrow.now('UTC-3')
+        if current_time.minute < 30:
+            # Data for current hour seems to be available after 30mins.
+            current_time = current_time.shift(hours=-1)
+        lookup_time = current_time.floor('hour').format('DD/MM/YYYY HH:mm')
+
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+
+    if sortedcodes == 'AR->CL-SING':
+        base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Unifilar de NOA&'
+    else:
+        base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
+
+    exchange_url = base_url + lookup_time
+
+    s = session or requests.Session()
+
+    if sortedcodes == 'AR->UY':
+        first_tie = tie_finder(exchange_url, 'UY_1', s)
+        second_tie = tie_finder(exchange_url, 'UY_2', s)
+        flow = first_tie + second_tie
+    elif sortedcodes == 'AR->PY':
+        flow = tie_finder(exchange_url, 'PY', s)
+    elif sortedcodes == 'AR->CL-SING':
+        flow = tie_finder(exchange_url, 'CL-SING', s)
+    else:
+        raise NotImplementedError('This exchange is not currently implemented')
+
+    exchange = {
+      'sortedZoneKeys': sortedcodes,
+      'datetime': arrow.now('UTC-3').datetime,
+      'netFlow': flow,
+      'source': 'cammesa.com'
+    }
+
+    return exchange
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -788,3 +894,9 @@ if __name__ == '__main__':
     print(fetch_production())
     print('fetch_price() ->')
     print(fetch_price())
+    print('fetch_exchange(AR, PY) ->')
+    print(fetch_exchange('AR', 'PY'))
+    print('fetch_exchange(AR, UY) ->')
+    print(fetch_exchange('AR', 'UY'))
+    print('fetch_exchange(AR, CL-SING) ->')
+    print(fetch_exchange('AR', 'CL-SING'))
