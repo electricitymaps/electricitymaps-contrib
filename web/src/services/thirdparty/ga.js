@@ -19,7 +19,18 @@ class GoogleAnalyticsThirdParty {
     }
 
     track(event, data) {
+      if (!window.isCordova) {
         this.inst('event', event, data, { send_to: 'UA-79729918-1' });
+      } else {
+        // For now, keep tracking using the legacy system
+        this.inst('event', event, data, { send_to: 'UA-79729918-1' });
+        // Hack
+        if (event === 'pageview') {
+          cordova.plugins.firebase.analytics.setCurrentScreen(data.showPageState);
+        } else {
+          cordova.plugins.firebase.analytics.logEvent(event, data);
+        }
+      }
     }
 
     config() {
