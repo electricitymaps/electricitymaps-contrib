@@ -16,7 +16,7 @@ import requests
 
 PRODUCTION_URL = 'https://api.idahopower.com/Energy/Api/V1/GenerationAndDemand/Subset'
 
-GENERATION_MAPPING = {#'Non-Utility Geothermal': 'geothermal',
+GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
                       'Hydro': 'hydro',
                       'Coal': 'coal',
                       'Diesel': 'oil',
@@ -60,7 +60,7 @@ def data_processer(raw_data, logger):
     dt_key = lambda x: x['datetime']
     grouped = groupby(raw_data, dt_key)
 
-    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent','Non-Utility Geothermal',
+    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent',
                       'PURPA/Non-Utility Wind', 'PURPA/Non-Utility Solar', 'PURPA Other'}
     known_keys = GENERATION_MAPPING.keys() | keys_to_ignore
 
