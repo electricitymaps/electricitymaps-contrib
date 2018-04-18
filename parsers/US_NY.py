@@ -18,6 +18,7 @@ import pandas as pd
 # approximation it's just Natural Gas.
 
 # Pumped storage is present but is not split into a separate category.
+from arrow.parser import ParserError
 
 mapping = {
     'Dual Fuel': 'gas',
@@ -44,8 +45,10 @@ def timestamp_converter(timestamp_string):
     """
     Converts timestamps in nyiso data into aware datetime objects.
     """
-
-    dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss')
+    try:
+        dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss')
+    except ParserError:
+        dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm')
     dt_aware = dt_naive.replace(tzinfo='America/New_York').datetime
 
     return dt_aware
