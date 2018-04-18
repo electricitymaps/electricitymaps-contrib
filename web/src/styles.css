@@ -1021,7 +1021,7 @@ sub {
     border: none;
     border-radius: 25px;
     font-size: 32px;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
     color: dimgray;
 }
@@ -1032,6 +1032,15 @@ sub {
 
 .modal .modal-left-button.hidden {
     display: none;
+}
+
+.modal .modal-right-button.green{
+    color:##009800;
+}
+
+.modal .modal-right-button.green:hover{
+    background-color: #95f395;
+    color: inherit;
 }
 
 .modal .modal-footer{

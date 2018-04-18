@@ -111,7 +111,7 @@ export default class OnboardingModal {
     this.rightButton = rightButtonContainer.append('button').attr('class', 'modal-right-button');
     this.rightButton.append('i').attr('class', 'material-icons');
     this.rightButton.on('click', () => {
-      if (this.currentViewIndex === this.views.length - 1) {
+      if (this._modalIsAtLastView()) {
         this.dismiss();
       } else {
         this.showNextView();
@@ -131,7 +131,6 @@ export default class OnboardingModal {
     }
     this.modalFooterCircles[0].classed('highlight', true);
   }
-
   _updateBody() {
     this.modalBody.html(null);
 
@@ -145,13 +144,24 @@ export default class OnboardingModal {
   }
 
   _updateSideButtons() {
-    this.leftButton.classed('hidden', this.currentViewIndex === 0);
-    this.rightButton.select('i').text(this.currentViewIndex === this.views.length - 1 ? 'check' : 'arrow_forward');
+    this.leftButton.classed('hidden', this._modalIsAtFirstView());
+    
+    this.rightButton.select('i').text(this._modalIsAtLastView() ? 'check' : 'arrow_forward');
+    this.rightButton.classed('green', this._modalIsAtLastView());  
   }
+
 
   _updateFooter() {
     for (let i = 0; i < this.modalFooterCircles.length; i += 1) {
       this.modalFooterCircles[i].classed('highlight', i === this.currentViewIndex);
     }
+  }
+
+  _modalIsAtFirstView() {
+    return this.currentViewIndex === 0;
+  }
+
+  _modalIsAtLastView() {
+    return this.currentViewIndex === this.views.length - 1;
   }
 }
