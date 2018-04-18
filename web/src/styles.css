@@ -259,6 +259,19 @@ body {
     cursor: pointer;
 }
 
+#left-panel-collapse-button.collapsed {
+    left: 0px;
+}
+
+#left-panel-collapse-button i{
+    transform: rotate(90deg);
+}
+
+#left-panel-collapse-button.collapsed i{
+    transform: rotate(-90deg);
+}
+
+
 /* Left-panel */
 .left-panel {
     padding: 1rem 0;

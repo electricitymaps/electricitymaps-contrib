@@ -964,9 +964,7 @@ function renderLeftPanelCollapseButton(state) {
   d3.select('.left-panel')
     .style('display', isLeftPanelCollapsed ? 'none' : undefined);
   d3.select('#left-panel-collapse-button')
-    .style('left', isLeftPanelCollapsed ? '0px' : undefined)
-    .select('i')
-    .text(`arrow_${isLeftPanelCollapsed ? 'right' : 'left'}`);
+    .classed('collapsed', isLeftPanelCollapsed)
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
