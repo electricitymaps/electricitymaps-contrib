@@ -184,10 +184,7 @@ const app = {
 
   onResume() {
     // Count a pageview
-    const params = getState().application;
-    params.bundleVersion = params.bundleHash;
-    params.embeddedUri = params.isEmbedded ? document.referrer : null;
-    thirdPartyServices.track('Visit', params);
+    thirdPartyServices.trackWithCurrentApplicationState('Visit'),
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
@@ -207,15 +204,11 @@ function catchError(e) {
 moment.locale(getState().application.locale.toLowerCase());
 
 // Analytics
-(() => {
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('Visit', params);
-})();
+thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
 if (!getState().application.onboardingSeen && !getState().isEmbedded) {
   onboardingModal = new OnboardingModal('#main');
+  thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
 
 // Display embedded warning
@@ -546,10 +539,7 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
   }
 
   // Track pageview
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
+  thirdPartyServices.trackWithCurrentApplicationState('pageview');
 
   // Is there a new version?
   d3.select('#new-version')
@@ -770,7 +760,10 @@ d3.selectAll('.highscore-button')
 
 // Onboarding modal
 if (onboardingModal) {
-  onboardingModal.onDismiss(() => Cookies.set('onboardingSeen', true, { expires: 365 }));
+  onboardingModal.onDismiss(() => {
+    Cookies.set('onboardingSeen', true, { expires: 365 });
+    dispatchApplication('onboardingSeen', true);
+  });
 }
 
 // *** OBSERVERS ***
@@ -1094,22 +1087,14 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 
   // Analytics
   // Note: `selectedZoneName` will not yet be changed here
-  // TODO: Refactor
-  const params = Object.assign({}, getState().application);
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
+  thirdPartyServices.trackWithCurrentApplicationState('pageview');
 });
 // Observe for zone change (for example after map click)
-observe(state => state.application.selectedZoneName, (k, state) => {
-  if (!state.application.selectedZoneName) { return; }
+observe(state => state.application.selectedZoneName, (selctedZoneName, state) => {
+  if (!selectedZoneName) { return; }
 
   // Analytics
-  // TODO: Refactor
-  const params = Object.assign({}, getState().application);
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
+  thirdPartyServices.track('countryClick', { countryCode: selectedZoneName });
 
   // Render
   renderCountryTable(state);
