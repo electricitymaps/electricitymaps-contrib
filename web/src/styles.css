@@ -99,6 +99,16 @@ line, path {
 .country-history .loading {
     background-size: 1.7rem;
 }
+.country-history .material-icons {
+    font-size: 1rem;
+}
+
+.country-history small{
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
 body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
@@ -233,9 +243,12 @@ body {
     background-color: rgb(70, 70, 70);
     width: 1.5rem;
     height: 3rem;
-    line-height: 3rem; /* vertically center */
-    text-align: center; /* horizontally center */
     color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 
     box-shadow: 6px 0 20px rgba(0,0,0,0.3);
     -webkit-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
@@ -314,7 +327,6 @@ body {
 #left-panel-country-back {
     cursor: pointer;
     font-size: 1.3rem;
-    padding: 0.2rem;
     position: absolute;
     left: 0;
 }
@@ -630,8 +642,7 @@ body {
 }
 
 .floating-legend-mobile-header .toggle-legend-button{
-    width: 25px;
-    height: 25px;
+    font-size: 24px;
     position: absolute;
     right: 5px;
     top: 5px;
@@ -879,9 +890,9 @@ div.highscore-button:hover {
 }
 #tab-content {
     display: flex;
+    height: 40px;
 }
 #tab #tab-content .list-item {
-    font-size: 0.7rem;
     display: flex;
 
     align-items: center;
@@ -889,7 +900,6 @@ div.highscore-button:hover {
     text-align: center;
 
     width: 50%;
-    line-height: 1.2rem;
 
     margin-bottom: 2px; /* For the border */
 }
@@ -916,9 +926,6 @@ div.highscore-button:hover {
 #tab #tab-content .list-item.active.solar-button {
     border-bottom-color: lightgreen;
 }
-#tab #tab-content div {
-    margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
-}
 #tab #tab-content a {
     padding-top: 0.2rem;
     padding-bottom: 0.6rem;
@@ -929,7 +936,7 @@ div.highscore-button:hover {
     text-decoration: none;
 }
 #tab #tab-content i {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 #tab #tab-content img {
     height: 1.2rem;
@@ -945,13 +952,18 @@ sub {
     background-color: gold;
     color: rgb(76,76,76);
     font-weight: bold;
-    padding-bottom: 0.10rem;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    padding-top: 0.05rem;
-    font-size: 0.7em;
-    vertical-align: bottom;
-    margin-left: 0.1em;
+    padding: 0.2rem;
+    font-size: 0.8em;
+    margin-left: 0.4em;
+    line-height: 0.8em;
+    margin-bottom: 0.2em;
+    display: flex;
+    align-items: center;
+}
+
+.pro .material-icons {
+    font-size: inherit;
+    margin-right: 0.1em;
 }
 
 .contributors img {
@@ -1238,6 +1250,10 @@ sub {
         position: absolute;
         bottom: 20px;
         right: 10px;
+    }
+
+    #left-panel-collapse-button {
+        display: none;
     }
 
 

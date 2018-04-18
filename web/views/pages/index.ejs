@@ -54,7 +54,6 @@ co2Sub = function(str) {
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= stylesHash %>.css">
         <link rel="stylesheet" type="text/css" href="dist/vendor.<%= vendorStylesHash %>.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
 
@@ -128,17 +127,17 @@ co2Sub = function(str) {
                     <div id="tab-content">
                         <a class="list-item map-button">
                             <div>
-                                <i class="fa fa-map-o" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">map</i>
                             </div>
                         </a>
                         <a class="list-item highscore-button">
                             <div>
-                                <i class="fa fa-list" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">view_list</i>
                             </div>
                         </a>
                         <a class="list-item info-button">
                             <div>
-                                <i class="fa fa-info" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">info</i>
                             </div>
                         </a>
                     </div>
@@ -190,7 +189,7 @@ co2Sub = function(str) {
                     <div class="left-panel-country">
                         <div class="left-panel-country-toolbar">
                             <span id="left-panel-country-back">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">arrow_back</i>
                             </span>
                             <div class="country-name-time">
                                 <div class="country-name-time-table">
@@ -251,8 +250,8 @@ co2Sub = function(str) {
                                 </span>
                                 <br />
                                 <small class="large-screen-visible">
-                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
-                                    <span class="pro"><i class="fa fa-lock" aria-hidden="true"></i> pro</span>
+                                    <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
+                                    <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
                                 </small>
                                 <svg id="country-history-carbon"></svg>
 
@@ -262,8 +261,8 @@ co2Sub = function(str) {
                                 </span>
                                 <br />
                                 <small class="large-screen-visible">
-                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
-                                    <span class="pro"><i class="fa fa-lock" aria-hidden="true"></i> pro</span>
+                                    <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
+                                    <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
                                 </small>
                                 <svg id="country-history-mix"></svg>
 
@@ -331,8 +330,11 @@ co2Sub = function(str) {
                     </div>
                     <div class="floating-legend-container">
                         <div class="floating-legend-mobile-header">
-                            <span>Legend</span><img class="toggle-legend-button down" src="images/material-icons/ic_call_received_lightgrey_24px.svg">
-                            <img class="toggle-legend-button up visible" src="images/material-icons/ic_call_made_lightgrey_24px.svg">
+                            <span>Legend</span>
+                            <i class="material-icons toggle-legend-button up">call_made</i>
+                            <i class="material-icons toggle-legend-button down visible">call_received</i>
+                        <!-- <img class="toggle-legend-button down" src="images/material-icons/ic_call_received_lightgrey_24px.svg">
+                        <img class="toggle-legend-button up visible" src="images/material-icons/ic_call_made_lightgrey_24px.svg"> -->
                         </div>
                         <div class="wind-potential-legend floating-legend">
                                 <div class="legend-header"><%- __('legends.windpotential') %> <small>(m/s)</small></div>
@@ -363,7 +365,7 @@ co2Sub = function(str) {
                 </div>
 
                 <div id="left-panel-collapse-button" class="large-screen-visible">
-                    <i class="fa fa-caret-left"></i>
+                    <i class="material-icons">arrow_left</i>
                 </div>
 
                 <!-- end #inner -->
