@@ -214,7 +214,7 @@ moment.locale(getState().application.locale.toLowerCase());
   thirdPartyServices.track('Visit', params);
 })();
 
-if (!getState().application.onboardingSeen) {
+if (!getState().application.onboardingSeen && !getState().isEmbedded) {
   onboardingModal = new OnboardingModal('#main');
 }
 
