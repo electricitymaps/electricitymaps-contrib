@@ -1090,7 +1090,7 @@ observe(state => state.application.showPageState, (showPageState, state) => {
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
 });
 // Observe for zone change (for example after map click)
-observe(state => state.application.selectedZoneName, (selctedZoneName, state) => {
+observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
   if (!selectedZoneName) { return; }
 
   // Analytics
