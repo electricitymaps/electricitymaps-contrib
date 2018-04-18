@@ -12,16 +12,16 @@ const defaultViews = [{
       <div><h2>${translation.translate('onboarding-modal.view1.subtitle')}</h2></div>`,
 },
 {
-  headerImage: 'images/mapExtract.png',
+  headerImage: 'images/onboarding/mapExtract.png',
   textHtml: `<div><h2>${translation.translate('onboarding-modal.view2.header')}</h2></div>
       <div>${translation.translate('onboarding-modal.view2.text')}</div>`,
 }, {
-  headerImage: 'images/exchangeArrows.png',
+  headerImage: 'images/onboarding/exchangeArrows.png',
   textHtml: `<div><h2>${translation.translate('onboarding-modal.view3.header')}</h2></div> 
       <div>${translation.translate('onboarding-modal.view3.text')}</div>`,
 },
 {
-  headerImage: 'images/splitLayers.png',
+  headerImage: 'images/onboarding/splitLayers.png',
   textHtml: `<div><h2>${translation.translate('onboarding-modal.view4.header')}</h2></div>
       <div>${translation.translate('onboarding-modal.view4.text')}</div>`,
 },
