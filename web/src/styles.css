@@ -1106,6 +1106,7 @@ sub {
 .modal .brand-text {
     padding-top: 0;
     line-height: 3rem;
+    font-family: "Catamaran", sans-serif;
 }
 
 
