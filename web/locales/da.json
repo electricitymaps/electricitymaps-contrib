@@ -1,15 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Dette viser i realtid",
-        "whereelectricitycomesfrom": "hvor din elektricitet kommer fra",
-        "and": "og",
-        "howmuchco2": "hvor meget CO2",
-        "wasemitted": "der er blevet udledt for at producere den",
-
-        "takeinaccount": "Vi medtager",
-        "importexport": "import og eksport af elektricitet",
-        "betweenzones": "mellem lande",
-
         "thisproject": "Projektet er",
         "opensource": "Open Source",
         "see": "se",

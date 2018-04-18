@@ -1,13 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Hier siehst Du in Echtzeit,",
-        "whereelectricitycomesfrom": "aus welchen Quellen Deine Elektrizität stammt",
-        "and": "und",
-        "howmuchco2": "wie viel CO2",
-        "wasemitted": "emittiert wurde, um sie zu produzieren",
-        "takeinaccount": "Wir berücksichtigen den",
-        "importexport": "Elektrizitätsaustausch",
-        "betweenzones": "zwischen elektrisch verbundenen Zonen",
         "thisproject": "Dieses Projekt ist",
         "opensource": "Open Source",
         "see": "siehe",

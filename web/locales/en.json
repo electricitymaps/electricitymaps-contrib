@@ -1,13 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "This shows in real-time",
-        "whereelectricitycomesfrom": "where your electricity comes from",
-        "and": "and",
-        "howmuchco2": "how much CO2",
-        "wasemitted": "was emitted to produce it",
-        "takeinaccount": "We take into account electricity",
-        "importexport": "imports and exports",
-        "betweenzones": "between zones",
         "thisproject": "This project is",
         "opensource": "Open Source",
         "see": "see",
