@@ -75,7 +75,9 @@ def check_timestamp(session=None, logger=None):
     diff = current_time - data_time
 
     # Need to be sure we don't get old data if image stops updating.
-    if diff.seconds > 3600:
+    # In April 2018, timestamp is regularly just over an hour old.
+    # We think it might be due to DST misconfiguration, so allow up to 2 hours.
+    if diff.seconds > 7200:
         raise ValueError('Namibia scada data is too old to use, data is {} hours old.'.format(diff.seconds/3600))
 
 
