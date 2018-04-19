@@ -15,7 +15,7 @@ MAP_GENERATION = {
     'Eólica': 'wind',
     'Fotovoltaica': 'solar',
     'Biomasa': 'biomass',
-    'Térmica': 'unknown'
+    'Térmica': 'oil'
 }
 INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 
