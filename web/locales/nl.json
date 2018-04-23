@@ -1,15 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Dit toont live",
-        "whereelectricitycomesfrom": "waar je elektriciteit vandaan komt",
-        "and": "en",
-        "howmuchco2": "hoeveel CO2",
-        "wasemitted": "werd uitgestoten bij de productie ervan",
-
-        "takeinaccount": "We nemen de elektriciteit in beschouwing afkomstig van",
-        "importexport": "invoer en uitvoer",
-        "betweenzones": "tussen landen",
-
         "thisproject": "Dit project is",
         "opensource": "Open Source",
         "see": "zie",

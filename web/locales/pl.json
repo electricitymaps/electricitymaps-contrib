@@ -1,15 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Projekt pokazuje w czasie rzeczywistym",
-        "whereelectricitycomesfrom": "skąd pochodzi używana przez Ciebie energia elektryczna",
-        "and": "oraz",
-        "howmuchco2": "jakie ilości CO2",
-        "wasemitted": "zostały wyemitowane do jej produkcji",
-
-        "takeinaccount": "Bierzemy pod uwagę",
-        "importexport": "import i eksport",
-        "betweenzones": "energii elektrycznej pomiędzy regionami",
-
         "thisproject": "Ten projekt jest",
         "opensource": "Open Source",
         "see": "zobacz",

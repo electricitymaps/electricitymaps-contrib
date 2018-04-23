@@ -1,15 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "ما يظهر هو في الوقت الحالي",
-        "whereelectricitycomesfrom": "من أين تأتي الكهرباء إليك",
-        "and": "و",
-        "howmuchco2": "كم كمية غاز ثاني أكسيد الكربون (CO2)",
-        "wasemitted": "انبعثت لانتاجها",
-
-        "takeinaccount": "نأخذ الكهرباء بعين الاعتبار",
-        "importexport": "الواردات والصادرات",
-        "betweenzones": "بين الدول",
-
         "thisproject": "هذا المشروع",
         "opensource": "مفتوح المصدر",
         "see": "انظر",

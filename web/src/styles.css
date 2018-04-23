@@ -90,7 +90,7 @@ line, path {
     height: 100%;
     position: absolute;
     top: 0;
-    z-index: 999;
+    z-index: 500;
 }
 #loading {
     /* That's the main loading overlay */
@@ -99,6 +99,16 @@ line, path {
 .country-history .loading {
     background-size: 1.7rem;
 }
+.country-history .material-icons {
+    font-size: 1rem;
+}
+
+.country-history small{
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
 body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
@@ -233,9 +243,12 @@ body {
     background-color: rgb(70, 70, 70);
     width: 1.5rem;
     height: 3rem;
-    line-height: 3rem; /* vertically center */
-    text-align: center; /* horizontally center */
     color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 
     box-shadow: 6px 0 20px rgba(0,0,0,0.3);
     -webkit-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
@@ -245,6 +258,19 @@ body {
 #left-panel-collapse-button:hover {
     cursor: pointer;
 }
+
+#left-panel-collapse-button.collapsed {
+    left: 0px;
+}
+
+#left-panel-collapse-button i{
+    transform: rotate(90deg);
+}
+
+#left-panel-collapse-button.collapsed i{
+    transform: rotate(-90deg);
+}
+
 
 /* Left-panel */
 .left-panel {
@@ -314,7 +340,6 @@ body {
 #left-panel-country-back {
     cursor: pointer;
     font-size: 1.3rem;
-    padding: 0.2rem;
     position: absolute;
     left: 0;
 }
@@ -417,13 +442,7 @@ body {
     opacity: 1.0
 }
 
-.left-panel-initial-text {
-    font-size: 1.1em;
-    color: darkgrey;
-}
-.left-panel-initial-text p:first-child {
-    margin-top: 0px;
-}
+
 .country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
@@ -636,8 +655,7 @@ body {
 }
 
 .floating-legend-mobile-header .toggle-legend-button{
-    width: 25px;
-    height: 25px;
+    font-size: 24px;
     position: absolute;
     right: 5px;
     top: 5px;
@@ -706,7 +724,7 @@ label[for="checkbox-colorblind"] {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 100;
 
     box-sizing: border-box;
     opacity: 0;
@@ -885,9 +903,9 @@ div.highscore-button:hover {
 }
 #tab-content {
     display: flex;
+    height: 40px;
 }
 #tab #tab-content .list-item {
-    font-size: 0.7rem;
     display: flex;
 
     align-items: center;
@@ -895,7 +913,6 @@ div.highscore-button:hover {
     text-align: center;
 
     width: 50%;
-    line-height: 1.2rem;
 
     margin-bottom: 2px; /* For the border */
 }
@@ -922,9 +939,6 @@ div.highscore-button:hover {
 #tab #tab-content .list-item.active.solar-button {
     border-bottom-color: lightgreen;
 }
-#tab #tab-content div {
-    margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
-}
 #tab #tab-content a {
     padding-top: 0.2rem;
     padding-bottom: 0.6rem;
@@ -935,7 +949,7 @@ div.highscore-button:hover {
     text-decoration: none;
 }
 #tab #tab-content i {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 #tab #tab-content img {
     height: 1.2rem;
@@ -951,13 +965,18 @@ sub {
     background-color: gold;
     color: rgb(76,76,76);
     font-weight: bold;
-    padding-bottom: 0.10rem;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    padding-top: 0.05rem;
-    font-size: 0.7em;
-    vertical-align: bottom;
-    margin-left: 0.1em;
+    padding: 0.2rem;
+    font-size: 0.8em;
+    margin-left: 0.4em;
+    line-height: 0.8em;
+    margin-bottom: 0.2em;
+    display: flex;
+    align-items: center;
+}
+
+.pro .material-icons {
+    font-size: inherit;
+    margin-right: 0.1em;
 }
 
 .contributors img {
@@ -988,6 +1007,158 @@ sub {
     text-decoration: underline !important;
 }
 
+.modal-background-overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 500;
+    zoom: 1;
+	filter: alpha(opacity=50);
+    opacity: 0.5;
+    background-color: black;
+}
+
+.modal {
+    display: flex;
+    max-width: 880px;
+    width: 100%;
+    height: 488px;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal .modal-left-button-container, .modal .modal-right-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 75px;
+    width: 100%;
+}
+
+.modal .modal-left-button-container { 
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.modal .modal-right-button-container {
+    align-items: flex-end;
+    margin-right: 10px;
+}
+
+.modal .modal-left-button, .modal .modal-right-button {
+    background-color: white;
+    height: 48px;
+    width: 48px;
+    border: none;
+    border-radius: 25px;
+    font-size: 32px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color: dimgray;
+}
+
+.modal .modal-left-button:focus, .modal .modal-right-button:focus {
+    outline: 0;
+}
+
+.modal .modal-left-button.hidden {
+    display: none;
+}
+
+.modal .modal-right-button.green{
+    color:##009800;
+}
+
+.modal .modal-right-button.green:hover{
+    background-color: #95f395;
+    color: inherit;
+}
+
+.modal .modal-footer{
+    height: 40px;
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.modal .modal-footer .modal-footer-circle {
+    background-color: rgb(145, 145, 145);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    margin: 0 4px;
+    width: 8px;
+}
+
+.modal .modal-footer .modal-footer-circle.highlight{
+    background-color: white;
+}
+
+.modal .modal-body { 
+    flex: 1;
+    border-radius: 15px;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    max-width: 700px;
+}
+
+.modal .modal-header {
+    height: 58%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.modal .modal-text {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    padding: 25px 55px;
+    text-align: center;
+    height: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal .modal-text h1 {
+    font-size: 3rem;
+}
+
+.modal .modal-text h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.modal .modal-text h1, .modal .modal-text h2{
+    font-weight: normal;
+}
+
+.modal .logo-header {
+    background-size: 180px !important;
+    background-position-y: 70% !important;
+}
+
+.modal .brand-text {
+    padding-top: 0;
+    line-height: 3rem;
+    font-family: "Catamaran", sans-serif;
+}
+
+.mobile-watermark {
+    float: right;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .small-screen-visible {
@@ -1006,6 +1177,15 @@ sub {
     .floating-legend-mobile-header{
         display: none;
     }
+
+    .modal .modal-left-button:hover, .modal .modal-right-button:hover {
+        background-color: rgb(220, 220, 220);
+    }
+
+    .left-panel-info {
+        padding-top: 0.5rem;
+    }
+    
 }
 
 /* Small devices (phones, etc.) */
@@ -1043,6 +1223,64 @@ sub {
     .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
         margin-left: 80px;
     }
+
+    .modal {
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .modal .modal-text h1 {
+        font-size: 2rem;
+    }
+
+    .modal .modal-header {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        background-size: contain;
+        background-position: center;
+        height: 40%;
+        min-height: 200px;
+    }
+
+    .modal .modal-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 40%;
+        min-height: 245px;
+    }
+
+    .modal .brand-text {
+        height: 25%;
+    }
+
+    .modal .modal-body {
+        max-width: inherit;
+        border-radius: 0;
+
+    }
+    .modal .modal-left-button-container {
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+    }
+
+    .modal .modal-right-button-container {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+    }
+
+    #left-panel-collapse-button {
+        display: none;
+    }
+    .left-panel {
+        padding-bottom: 0;
+    } 
+
+
 }
 
 /* custom scrollbars in chrome*/

@@ -54,11 +54,11 @@ co2Sub = function(str) {
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="dist/styles.<%= stylesHash %>.css">
         <link rel="stylesheet" type="text/css" href="dist/vendor.<%= vendorStylesHash %>.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+        <link href="css/CatamaranFont.css" rel="stylesheet">
+        <link href="css/MaterialIcons.css" rel="stylesheet">
+ 
 
         <!-- Language -->
         <% for(var i=0; i<alternateUrls.length; i++) {%>
@@ -126,17 +126,17 @@ co2Sub = function(str) {
                     <div id="tab-content">
                         <a class="list-item map-button">
                             <div>
-                                <i class="fa fa-map-o" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">map</i>
                             </div>
                         </a>
                         <a class="list-item highscore-button">
                             <div>
-                                <i class="fa fa-list" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">view_list</i>
                             </div>
                         </a>
                         <a class="list-item info-button">
                             <div>
-                                <i class="fa fa-info" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">info</i>
                             </div>
                         </a>
                     </div>
@@ -151,18 +151,6 @@ co2Sub = function(str) {
                 </div>
 
                 <div class="panel left-panel">
-
-
-                    <div class="left-panel-info">
-                        <div class="left-panel-initial-text">
-                            <p>
-                                <%- __('panel-initial-text.thisshowsrealtime') %> <span style="color: lightgray"><%- __('panel-initial-text.whereelectricitycomesfrom') %></span> <%- __('panel-initial-text.and') %> <span style="color: lightgray"><%- co2Sub(__('panel-initial-text.howmuchco2')) %></span> <%- __('panel-initial-text.wasemitted') %>.
-                            </p>
-                            <p>
-                                <%- __('panel-initial-text.takeinaccount') %> <span style="color: lightgray"><%- __('panel-initial-text.importexport') %></span><span class="large-screen-visible" style="white-space: nowrap;"> <img src="images/arrow-400-animated-0.gif" style="width: 1em; transform: rotate(90deg); transform-origin: 0; margin-left: 0.9em;" /></span> <%- __('panel-initial-text.betweenzones') %>.
-                            </p>
-                        </div>
-                    </div>
 
                     <div class="left-panel-zone-list">
 
@@ -183,10 +171,17 @@ co2Sub = function(str) {
 
                     <div class="left-panel-info">
                         <div>
-                            <p>
-                                <input type="checkbox" id="checkbox-colorblind" />
-                                <label for="checkbox-colorblind"><%- __('legends.colorblindmode') %></label>
+                            <p class="small-screen-visible">
+                                    <%- __('mobile-info-tab.map-info-text') %> 
                             </p>
+                            <p class="small-screen-visible">
+                                    <%- __('mobile-info-tab.electricity-origins-text') %> 
+                            </p>
+                            <p class="small-screen-visible">
+                                    <%- __('mobile-info-tab.wind-solar-text') %> 
+                            </p>
+
+
 
                             <%- __('footer.foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%- __('footer.here') %></a>.<br />
                             <p>
@@ -195,12 +190,52 @@ co2Sub = function(str) {
                             <p>
                                 <%- __('footer.likethisvisu') %> <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank"><%- __('footer.loveyourfeedback') %></a>!
                             </p>
+                            <p>
+                                    <input type="checkbox" id="checkbox-colorblind" />
+                                    <label for="checkbox-colorblind"><%- __('legends.colorblindmode') %></label>
+                            </p>
                         </div>
+                        <div class="left-panel-social">
+                                <p>
+                                    <!-- Facebook share -->
+                                    <div class="fb-share-button"
+                                         data-href="https://www.electricitymap.org/"
+                                         data-layout="button_count">
+                                    </div>
+                                    <!-- Twitter share -->
+                                    <a class="twitter-share-button"
+                                       data-url="https://www.electricitymap.org"
+                                       data-via="tmrowco"
+                                       data-lang="<%= locale %>"></a>
+                                    <!-- Slack -->
+                                    <span class="slack-button">
+                                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                            <span class="slack-ico"></span>
+                                            <span class="slack-text">Slack</span>
+                                        </a>
+                                    </span>
+                                </p>
+                                <div class="small-screen-visible mobile-watermark">
+                                        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
+                                        <br />
+                                        <div class="fb-like"
+                                            data-href="https://www.facebook.com/tmrowco"
+                                            data-layout="button"
+                                            data-action="like"
+                                            data-size="small"
+                                            data-show-faces="false">
+                                        </div>&nbsp;<a class="twitter-follow-button"
+                                            href="https://twitter.com/tmrowco"
+                                            data-show-screen-name="false"
+                                            data-show-count="false"
+                                            data-lang="<%= locale %>"></a>
+                                    </div>
+                            </div>
                     </div>
                     <div class="left-panel-country">
                         <div class="left-panel-country-toolbar">
                             <span id="left-panel-country-back">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                <i class="material-icons" aria-hidden="true">arrow_back</i>
                             </span>
                             <div class="country-name-time">
                                 <div class="country-name-time-table">
@@ -244,7 +279,7 @@ co2Sub = function(str) {
 
                             <div class="country-show-emissions-wrap">
                                 <div class="menu">
-                                    <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricityproduction') %></a>
+                                    <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricity') %></a>
                                     |
                                     <a id="emissions" href="javascript:toggleSource(true)"><%- co2Sub(__('country-panel.emissions')) %></a>
                                 </div>
@@ -261,8 +296,8 @@ co2Sub = function(str) {
                                 </span>
                                 <br />
                                 <small class="large-screen-visible">
-                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
-                                    <span class="pro"><i class="fa fa-lock" aria-hidden="true"></i> pro</span>
+                                    <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
+                                    <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
                                 </small>
                                 <svg id="country-history-carbon"></svg>
 
@@ -272,8 +307,8 @@ co2Sub = function(str) {
                                 </span>
                                 <br />
                                 <small class="large-screen-visible">
-                                    <i class="fa fa-download" aria-hidden="true"></i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
-                                    <span class="pro"><i class="fa fa-lock" aria-hidden="true"></i> pro</span>
+                                    <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
+                                    <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
                                 </small>
                                 <svg id="country-history-mix"></svg>
 
@@ -296,27 +331,7 @@ co2Sub = function(str) {
                     </div>
 
 
-                    <div class="left-panel-social">
-                        <p>
-                            <!-- Facebook share -->
-                            <div class="fb-share-button"
-                                 data-href="https://www.electricitymap.org/"
-                                 data-layout="button_count">
-                            </div>
-                            <!-- Twitter share -->
-                            <a class="twitter-share-button"
-                               data-url="https://www.electricitymap.org"
-                               data-via="tmrowco"
-                               data-lang="<%= locale %>"></a>
-                            <!-- Slack -->
-                            <span class="slack-button">
-                                <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                                    <span class="slack-ico"></span>
-                                    <span class="slack-text">Slack</span>
-                                </a>
-                            </span>
-                        </p>
-                    </div>
+
 
                 </div>
 
@@ -324,7 +339,7 @@ co2Sub = function(str) {
                     <div id="zones" class="map-layer"></div>
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
-                    <div class="watermark">
+                    <div class="watermark large-screen-visible">
                         <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
                         <br />
                         <div class="fb-like"
@@ -341,8 +356,9 @@ co2Sub = function(str) {
                     </div>
                     <div class="floating-legend-container">
                         <div class="floating-legend-mobile-header">
-                            <span>Legend</span><img class="toggle-legend-button down" src="images/material-icons/ic_call_received_lightgrey_24px.svg">
-                            <img class="toggle-legend-button up visible" src="images/material-icons/ic_call_made_lightgrey_24px.svg">
+                            <span>Legend</span>
+                            <i class="material-icons toggle-legend-button up">call_made</i>
+                            <i class="material-icons toggle-legend-button down visible">call_received</i>
                         </div>
                         <div class="wind-potential-legend floating-legend">
                                 <div class="legend-header"><%- __('legends.windpotential') %> <small>(m/s)</small></div>
@@ -373,7 +389,7 @@ co2Sub = function(str) {
                 </div>
 
                 <div id="left-panel-collapse-button" class="large-screen-visible">
-                    <i class="fa fa-caret-left"></i>
+                    <i class="material-icons">arrow_drop_down</i>
                 </div>
 
                 <!-- end #inner -->

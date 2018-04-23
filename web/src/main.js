@@ -6,6 +6,7 @@ import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
 import ZoneList from './components/zonelist';
 import SearchBar from './components/searchbar';
+import OnboardingModal from './components/onboardingmodal';
 
 // Libraries
 const d3 = Object.assign(
@@ -99,6 +100,7 @@ LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
+let onboardingModal;
 
 // ** Create components
 const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
@@ -182,10 +184,7 @@ const app = {
 
   onResume() {
     // Count a pageview
-    const params = getState().application;
-    params.bundleVersion = params.bundleHash;
-    params.embeddedUri = params.isEmbedded ? document.referrer : null;
-    thirdPartyServices.track('Visit', params);
+    thirdPartyServices.trackWithCurrentApplicationState('Visit'),
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
@@ -205,12 +204,12 @@ function catchError(e) {
 moment.locale(getState().application.locale.toLowerCase());
 
 // Analytics
-(() => {
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('Visit', params);
-})();
+thirdPartyServices.trackWithCurrentApplicationState('Visit');
+
+if (!getState().application.onboardingSeen && !getState().isEmbedded) {
+  onboardingModal = new OnboardingModal('#main');
+  thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
+}
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
@@ -540,10 +539,7 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
   }
 
   // Track pageview
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
+  thirdPartyServices.trackWithCurrentApplicationState('pageview');
 
   // Is there a new version?
   d3.select('#new-version')
@@ -762,7 +758,13 @@ d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageStat
 d3.selectAll('.highscore-button')
   .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
-
+// Onboarding modal
+if (onboardingModal) {
+  onboardingModal.onDismiss(() => {
+    Cookies.set('onboardingSeen', true, { expires: 365 });
+    dispatchApplication('onboardingSeen', true);
+  });
+}
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
@@ -962,9 +964,7 @@ function renderLeftPanelCollapseButton(state) {
   d3.select('.left-panel')
     .style('display', isLeftPanelCollapsed ? 'none' : undefined);
   d3.select('#left-panel-collapse-button')
-    .style('left', isLeftPanelCollapsed ? '0px' : undefined)
-    .select('i.fa')
-    .attr('class', `fa fa-caret-${isLeftPanelCollapsed ? 'right' : 'left'}`);
+    .classed('collapsed', isLeftPanelCollapsed)
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
@@ -1085,22 +1085,14 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 
   // Analytics
   // Note: `selectedZoneName` will not yet be changed here
-  // TODO: Refactor
-  const params = Object.assign({}, getState().application);
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
+  thirdPartyServices.trackWithCurrentApplicationState('pageview');
 });
 // Observe for zone change (for example after map click)
-observe(state => state.application.selectedZoneName, (k, state) => {
-  if (!state.application.selectedZoneName) { return; }
+observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
+  if (!selectedZoneName) { return; }
 
   // Analytics
-  // TODO: Refactor
-  const params = Object.assign({}, getState().application);
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
+  thirdPartyServices.track('countryClick', { countryCode: selectedZoneName });
 
   // Render
   renderCountryTable(state);
