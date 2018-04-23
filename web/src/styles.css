@@ -1178,6 +1178,11 @@ sub {
     .modal .modal-left-button:hover, .modal .modal-right-button:hover {
         background-color: rgb(220, 220, 220);
     }
+
+    .left-panel-info {
+        padding-top: 0.5rem;
+    }
+    
 }
 
 /* Small devices (phones, etc.) */
