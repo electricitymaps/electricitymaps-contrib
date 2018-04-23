@@ -1155,6 +1155,9 @@ sub {
     font-family: "Catamaran", sans-serif;
 }
 
+.mobile-watermark {
+    float: right;
+}
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
@@ -1273,6 +1276,9 @@ sub {
     #left-panel-collapse-button {
         display: none;
     }
+    .left-panel {
+        padding-bottom: 0;
+    } 
 
 
 }

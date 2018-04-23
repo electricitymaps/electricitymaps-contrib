@@ -194,22 +194,43 @@ co2Sub = function(str) {
                                     <input type="checkbox" id="checkbox-colorblind" />
                                     <label for="checkbox-colorblind"><%- __('legends.colorblindmode') %></label>
                             </p>
-                            <div class="watermark small-screen-visible">
-                                    <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
-                                    <br />
-                                    <div class="fb-like"
-                                        data-href="https://www.facebook.com/tmrowco"
-                                        data-layout="button"
-                                        data-action="like"
-                                        data-size="small"
-                                        data-show-faces="false">
-                                    </div>&nbsp;<a class="twitter-follow-button"
-                                        href="https://twitter.com/tmrowco"
-                                        data-show-screen-name="false"
-                                        data-show-count="false"
-                                        data-lang="<%= locale %>"></a>
-                                </div>
                         </div>
+                        <div class="left-panel-social">
+                                <p>
+                                    <!-- Facebook share -->
+                                    <div class="fb-share-button"
+                                         data-href="https://www.electricitymap.org/"
+                                         data-layout="button_count">
+                                    </div>
+                                    <!-- Twitter share -->
+                                    <a class="twitter-share-button"
+                                       data-url="https://www.electricitymap.org"
+                                       data-via="tmrowco"
+                                       data-lang="<%= locale %>"></a>
+                                    <!-- Slack -->
+                                    <span class="slack-button">
+                                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                            <span class="slack-ico"></span>
+                                            <span class="slack-text">Slack</span>
+                                        </a>
+                                    </span>
+                                </p>
+                                <div class="small-screen-visible mobile-watermark">
+                                        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
+                                        <br />
+                                        <div class="fb-like"
+                                            data-href="https://www.facebook.com/tmrowco"
+                                            data-layout="button"
+                                            data-action="like"
+                                            data-size="small"
+                                            data-show-faces="false">
+                                        </div>&nbsp;<a class="twitter-follow-button"
+                                            href="https://twitter.com/tmrowco"
+                                            data-show-screen-name="false"
+                                            data-show-count="false"
+                                            data-lang="<%= locale %>"></a>
+                                    </div>
+                            </div>
                     </div>
                     <div class="left-panel-country">
                         <div class="left-panel-country-toolbar">
@@ -310,27 +331,7 @@ co2Sub = function(str) {
                     </div>
 
 
-                    <div class="left-panel-social">
-                        <p>
-                            <!-- Facebook share -->
-                            <div class="fb-share-button"
-                                 data-href="https://www.electricitymap.org/"
-                                 data-layout="button_count">
-                            </div>
-                            <!-- Twitter share -->
-                            <a class="twitter-share-button"
-                               data-url="https://www.electricitymap.org"
-                               data-via="tmrowco"
-                               data-lang="<%= locale %>"></a>
-                            <!-- Slack -->
-                            <span class="slack-button">
-                                <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                                    <span class="slack-ico"></span>
-                                    <span class="slack-text">Slack</span>
-                                </a>
-                            </span>
-                        </p>
-                    </div>
+
 
                 </div>
 
