@@ -1,8 +1,10 @@
 const translation = require('../helpers/translation');
 const d3 = Object.assign(
-{},
+  {},
   require('d3-selection'),
 );
+
+const SPACE_KEY_CODE = 32;
 
 const defaultViews = [{
   headerImage: 'images/ms-icon-310x310.png',
@@ -36,6 +38,7 @@ export default class OnboardingModal {
 
     this.selectorId = selectorId;
     this.currentViewIndex = 0;
+    this._setupSpaceKeypressDismiss();
     this._setupLayout();
   }
 
@@ -71,6 +74,14 @@ export default class OnboardingModal {
     } else {
       throw new Error('Cannot show next view: No more views to show');
     }
+  }
+
+  _setupSpaceKeypressDismiss() {
+    document.addEventListener('keypress', (e) => {
+      if (e.keyCode === SPACE_KEY_CODE) {
+        this.dismiss();
+      }
+    });
   }
 
   _setupLayout() {
@@ -145,9 +156,9 @@ export default class OnboardingModal {
 
   _updateSideButtons() {
     this.leftButton.classed('hidden', this._modalIsAtFirstView());
-    
+
     this.rightButton.select('i').text(this._modalIsAtLastView() ? 'check' : 'arrow_forward');
-    this.rightButton.classed('green', this._modalIsAtLastView());  
+    this.rightButton.classed('green', this._modalIsAtLastView());
   }
 
 
