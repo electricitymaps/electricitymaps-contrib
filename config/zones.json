@@ -3098,6 +3098,7 @@
     "capacity": {
       "coal": 1118,
       "gas": 762,
+      "geothermal": 51,
       "hydro": 1709,
       "oil": 5
     },
