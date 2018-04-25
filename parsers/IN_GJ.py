@@ -56,10 +56,9 @@ def fetch_data(zone_key, session=None, logger=None):
     wind_html = web.get_response_soup(
         zone_key, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
 
-    india_date = arrow.get(
+    values['date'] =  arrow.get(
         solar_html.find_all('tr')[0].text.split('\t')[-1].strip()
-        + ' Asia/Kolkata', 'D-MM-YYYY H:mm:ss ZZZ')
-
+        + ' Asia/Kolkata', 'D-MM-YYYY H:mm:ss ZZZ').datetime
     values['solar'] = to_float(
         solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
     values['wind'] = to_float(
