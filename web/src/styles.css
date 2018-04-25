@@ -1156,7 +1156,11 @@ sub {
 }
 
 .mobile-watermark {
-    float: right;
+    text-align: center;
+    margin: 2.5rem 0 1rem 0;
+}
+.mobile-watermark div {
+    padding-top: 0.5rem;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */
