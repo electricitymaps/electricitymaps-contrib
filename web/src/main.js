@@ -1,12 +1,13 @@
 'use strict';
 
-import ZoneMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
-import ZoneList from './components/zonelist';
-import SearchBar from './components/searchbar';
+import ContributorList from './components/contributorlist';
 import OnboardingModal from './components/onboardingmodal';
+import SearchBar from './components/searchbar';
+import ZoneList from './components/zonelist';
+import ZoneMap from './components/map';
 
 // Libraries
 const d3 = Object.assign(
@@ -30,6 +31,7 @@ const LineGraph = require('./components/linegraph');
 const CountryTable = require('./components/countrytable');
 const HorizontalColorbar = require('./components/horizontalcolorbar');
 const Tooltip = require('./components/tooltip');
+
 
 // Layer Components
 const ExchangeLayer = require('./components/layers/exchange');
@@ -126,6 +128,7 @@ const priceTooltip = new Tooltip('#price-tooltip');
 
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+const contributorList = new ContributorList('.contributors');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -796,20 +799,14 @@ function renderGauges(state) {
     countryRenewableGauge.setPercentage(countryRenewablePercentage);
   }
 }
+
+
 function renderContributors(state) {
   const { selectedZoneName } = state.application;
-  // TODO(olc): move to component
-  const selector = d3.selectAll('.contributors').selectAll('a')
-    .data((zonesConfig[selectedZoneName] || {}).contributors || []);
-  const enterA = selector.enter().append('a')
-    .attr('target', '_blank');
-  const enterImg = enterA.append('img');
-  enterA.merge(selector)
-    .attr('href', d => d);
-  enterImg.merge(selector.select('img'))
-    .attr('src', d => `${d}.png`);
-  selector.exit().remove();
+  contributorList.setContributors((zonesConfig[selectedZoneName] || {}).contributors || []);
+  contributorList.render();
 }
+
 function renderCountryTable(state) {
   const d = getCurrentZoneData(state);
   if (!d) {
