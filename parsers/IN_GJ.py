@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import ast
 import collections
 from operator import itemgetter
 import arrow
@@ -40,6 +41,10 @@ station_map = {
 }
 
 
+def to_float(s):
+    return float(ast.literal_eval(s))
+
+
 def fetch_data(zone_key, session=None, logger=None):
     session = session or requests.session()
 
@@ -55,9 +60,9 @@ def fetch_data(zone_key, session=None, logger=None):
         solar_html.find_all('tr')[0].text.split('\t')[-1].strip()
         + ' Asia/Kolkata', 'D-MM-YYYY H:mm:ss ZZZ')
 
-    values['solar'] = float(
+    values['solar'] = to_float(
         solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
-    values['wind'] = float(
+    values['wind'] = to_float(
         wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
 
     cookies_params = {
@@ -77,7 +82,7 @@ def fetch_data(zone_key, session=None, logger=None):
                       for x in itemgetter(*[0, 3])(elements))
             energy_type = [k for k, v in station_map.items() if v1 in v]
             if len(energy_type) > 0:
-                values[energy_type[0]] += float(v2)
+                values[energy_type[0]] += to_float(v2)
             else:
                 if 'StationName' in (v1, v2):  # meta data row
                     continue
@@ -88,7 +93,7 @@ def fetch_data(zone_key, session=None, logger=None):
                         logger.warning(
                             'Unknown fuel for station name: {}'.format(v1),
                             extra={'key': zone_key})
-                        values['unknown'] += float(v2)
+                        values['unknown'] += to_float(v2)
                     except (SyntaxError, ValueError) as e:
                         # handle float failures
                         logger.warning(
@@ -99,7 +104,7 @@ def fetch_data(zone_key, session=None, logger=None):
             v1, v2 = (re.sub(r'\s+', r'', x.text)
                       for x in itemgetter(*[0, 2])(elements))
             if v1 == 'GujaratCatered':
-                values['total consumption'] = float(v2.split('MW')[0])
+                values['total consumption'] = to_float(v2.split('MW')[0])
 
     return values
 
