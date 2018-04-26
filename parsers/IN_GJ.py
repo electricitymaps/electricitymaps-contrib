@@ -6,6 +6,7 @@ import collections
 from operator import itemgetter
 import arrow
 import requests
+import itertools
 from .lib import zonekey, web, IN
 from .lib.validation import validate
 from logging import getLogger
@@ -23,7 +24,7 @@ station_map = {
              "EPGL(I+II)",
              "Adani(I+II+III)",
              "BECL(I+II)",
-             "CGPL "],
+             "CGPL"],
     "hydro": ["Ukai(Hydro)",
               "Kadana(Hydro)",
               "SSP(RBPH)"],
@@ -43,6 +44,19 @@ station_map = {
 
 def to_float(s):
     return float(ast.literal_eval(s))
+
+
+def split_and_sum(expression):
+    """
+    Avoid using literal_eval for simple addition expressions.
+    Returns sum of all positive numbers.
+    """
+
+    split_vals = expression.split('+')
+    float_vals = [float(v) for v in split_vals]
+    total = sum([v for v in float_vals if v > 0.0])
+
+    return total
 
 
 def fetch_data(zone_key, session=None, logger=None):
@@ -81,7 +95,8 @@ def fetch_data(zone_key, session=None, logger=None):
                       for x in itemgetter(*[0, 3])(elements))
             energy_type = [k for k, v in station_map.items() if v1 in v]
             if len(energy_type) > 0:
-                values[energy_type[0]] += to_float(v2)
+                v2 = split_and_sum(v2)
+                values[energy_type[0]] += v2
             else:
                 if 'StationName' in (v1, v2):  # meta data row
                     continue
@@ -92,8 +107,9 @@ def fetch_data(zone_key, session=None, logger=None):
                         logger.warning(
                             'Unknown fuel for station name: {}'.format(v1),
                             extra={'key': zone_key})
-                        values['unknown'] += to_float(v2)
-                    except (SyntaxError, ValueError) as e:
+                        v2 = split_and_sum(v2)
+                        values['unknown'] += v2
+                    except ValueError as e:
                         # handle float failures
                         logger.warning(
                             "couldn't convert {} to float".format(v2),
@@ -104,6 +120,23 @@ def fetch_data(zone_key, session=None, logger=None):
                       for x in itemgetter(*[0, 2])(elements))
             if v1 == 'GujaratCatered':
                 values['total consumption'] = to_float(v2.split('MW')[0])
+        elif len(elements) == 1:
+            # CGPL/KAPP/KAWAS/JHANOR plants have a different html structure.
+            plant_name = re.sub(r'\s+', r'', elements[0].text)
+            known_plants = itertools.chain.from_iterable(station_map.values())
+
+            if plant_name in known_plants:
+                energy_type = [k for k, v in station_map.items() if plant_name in v][0]
+                generation_tag = row.find_all_next("td")[3]
+                val = float(re.sub(r'\s+', r'', generation_tag.text))
+                if val > 0:
+                    values[energy_type] += val
+            else:
+                if plant_name and plant_name != 'GMR':
+                    # GMR is outside Gujarat, sometimes plant_name is ''
+                    logger.warning(
+                        'Unknown fuel for station name: {}'.format(plant_name),
+                        extra={'key': zone_key})
 
     return values
 
