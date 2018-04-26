@@ -431,7 +431,7 @@ def datetime_from_position(start, position, resolution):
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
-def parse_scalar(xml_text):
+def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False):
     """Returns a tuple containing two lists."""
 
     if not xml_text:
@@ -443,6 +443,12 @@ def parse_scalar(xml_text):
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        if only_inBiddingZone_Domain:
+            if not len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())):
+                continue
+        elif only_outBiddingZone_Domain:
+            if not len(timeseries.find_all('outBiddingZone_Domain.mRID'.lower())):
+                continue
         for entry in timeseries.find_all('point'):
             position = int(entry.find_all('position')[0].contents[0])
             value = float(entry.find_all('quantity')[0].contents[0])
@@ -685,7 +691,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
-        query_consumption(domain, session, target_datetime=target_datetime))
+        query_consumption(domain, session, target_datetime=target_datetime),
+        only_outBiddingZone_Domain=True)
     if parsed:
         quantities, datetimes = parsed
 
@@ -951,7 +958,7 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(query_generation_forecast(
-        domain, session, target_datetime=target_datetime))
+        domain, session, target_datetime=target_datetime), only_inBiddingZone_Domain=True)
     if parsed:
         data = []
         values, datetimes = parsed
@@ -977,7 +984,7 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(query_consumption_forecast(
-        domain, session, target_datetime=target_datetime))
+        domain, session, target_datetime=target_datetime), only_outBiddingZone_Domain=True)
     if parsed:
         data = []
         values, datetimes = parsed
