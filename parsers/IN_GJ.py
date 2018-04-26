@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import re
-import ast
 import collections
 from operator import itemgetter
 import arrow
@@ -42,10 +41,6 @@ station_map = {
 }
 
 
-def to_float(s):
-    return float(ast.literal_eval(s))
-
-
 def split_and_sum(expression):
     """
     Avoid using literal_eval for simple addition expressions.
@@ -73,9 +68,9 @@ def fetch_data(zone_key, session=None, logger=None):
     values['date'] =  arrow.get(
         solar_html.find_all('tr')[0].text.split('\t')[-1].strip()
         + ' Asia/Kolkata', 'D-MM-YYYY H:mm:ss ZZZ').datetime
-    values['solar'] = to_float(
+    values['solar'] = split_and_sum(
         solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
-    values['wind'] = to_float(
+    values['wind'] = split_and_sum(
         wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
 
     cookies_params = {
@@ -119,7 +114,7 @@ def fetch_data(zone_key, session=None, logger=None):
             v1, v2 = (re.sub(r'\s+', r'', x.text)
                       for x in itemgetter(*[0, 2])(elements))
             if v1 == 'GujaratCatered':
-                values['total consumption'] = to_float(v2.split('MW')[0])
+                values['total consumption'] = split_and_sum(v2.split('MW')[0])
         elif len(elements) == 1:
             # CGPL/KAPP/KAWAS/JHANOR plants have a different html structure.
             plant_name = re.sub(r'\s+', r'', elements[0].text)
