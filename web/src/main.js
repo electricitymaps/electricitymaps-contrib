@@ -693,12 +693,31 @@ function toggleWind() {
 }
 d3.select('.wind-button').on('click', toggleWind);
 
+const windLayerButtonTooltip = d3.select('#wind-layer-button-tooltip');
+
+d3.select('.wind-button').on('mouseover', () => {
+  windLayerButtonTooltip.classed('hidden', false);
+});
+d3.select('.wind-button').on('mouseout', () => {
+  windLayerButtonTooltip.classed('hidden', true);
+});
+
+
 // Solar
 function toggleSolar() {
   if (typeof solarLayer === 'undefined') { return; }
   dispatchApplication('solarEnabled', !getState().application.solarEnabled);
 }
 d3.select('.solar-button').on('click', toggleSolar);
+
+const solarLayerButtonTooltip = d3.select('#solar-layer-button-tooltip');
+
+d3.select('.solar-button').on('mouseover', () => {
+  solarLayerButtonTooltip.classed('hidden', false);
+});
+d3.select('.solar-button').on('mouseout', () => {
+  solarLayerButtonTooltip.classed('hidden', true);
+});
 
 // Legend 
 function toggleLegend() {
@@ -1131,6 +1150,8 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.select('.solar-potential-legend').classed('visible', solarEnabled);
   Cookies.set('solarEnabled', solarEnabled);
 
+  solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
+
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
@@ -1148,6 +1169,8 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   d3.selectAll('.wind-button').classed('active', windEnabled);
   d3.select('.wind-potential-legend').classed('visible', windEnabled);
+
+  windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
   Cookies.set('windEnabled', windEnabled);
 

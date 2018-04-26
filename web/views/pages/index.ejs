@@ -374,9 +374,27 @@ co2Sub = function(str) {
                         </div>
                     </div>
                     <div class="layer-buttons-container">
-                        <button class="layer-button wind-button"/>
-                        <button class="layer-button solar-button"/>
+                        <div>
+                                <button class="layer-button wind-button"></button>
+                                <div id="wind-layer-button-tooltip"  class="layer-button-tooltip hidden">
+                                        <div class="tooltip-container">
+                                            <div class="tooltip-text"><%- __('tooltips.showWindLayer') %></div>
+                                            <div class="arrow"></div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div>
+                                <button class="layer-button solar-button"></button>
+                                <div id="solar-layer-button-tooltip" class="layer-button-tooltip hidden">
+                                        <div class="tooltip-container">
+                                                <div class="tooltip-text"><%- __('tooltips.showSolarLayer') %></div>
+                                                <div class="arrow"></div>
+                                        </div>
+                                </div>
+                        </div>
+
                     </div>
+
 
 
                 </div>
