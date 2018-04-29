@@ -113,6 +113,13 @@ var defaultExportCo2eqFootprint = {
         source: 'IEA yearly data for 2015',
         url: 'https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015'
     },
+    'CA-BC': {
+        carbonIntensity: 9,
+        renewableRatio: 0.98,
+        fossilFuelRatio: 0.02,
+        source: 'BC Hydro GHG Intensities and Annual Service Plan Report (2017)',
+        url: 'https://www.bchydro.com/about/sustainability/climate_action/greenhouse_gases.html'
+    },
     'CA-NB': {
         carbonIntensity: 300,
         renewableRatio: 0.27,
