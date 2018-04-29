@@ -591,12 +591,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 356,
-      "gas": 514,
-      "hydro": 15004,
-      "oil": 46,
-      "wind": 673
+      "biomass": 838,
+      "gas": 507,
+      "hydro": 15898,
+      "solar": 1,
+      "wind": 704
     },
+    "contributors": [
+      "https://github.com/daveachuk"
+    ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
