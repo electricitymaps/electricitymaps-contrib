@@ -40,7 +40,7 @@ zones = JSON.parse(fs.readFileSync('../config/zones.json', 'utf8'));
 
 for (const [zone, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones.json, do not add RU
-  if (!(zone in zones) || zone === 'RU')
+  if (!(zone in zones) || zone === 'RU' || zone === 'RU-AS')
     continue;
   // do not modifiy current bounding boxes
   if (zones[zone].bounding_box)
