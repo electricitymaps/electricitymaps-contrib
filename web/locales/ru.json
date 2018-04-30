@@ -16,7 +16,7 @@
     },
     "country-panel": {
         "source": "Источник",
-        "carbonintensity": "Выпуск углерода (CO2эк)",
+        "carbonintensity": "Выпуск углерода (CO2эк/кВт⋅ч)",
         "lowcarbon": "низкии уровень CO2",
         "renewable": "ВИЭ",
         "electricityproduction": "Производство электричества",
@@ -26,7 +26,7 @@
         "helpfrom": "с помощью"
     },
     "left-panel": {
-        "zone-list-header-title": "Climate Impact by Area",
+        "zone-list-header-title": "Влияние зон на климат",
         "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO2eq/kWh)",
         "search": "Search areas"
     },
@@ -43,13 +43,13 @@
         "here": "here"
     },
     "legends": {
-        "windpotential": "Wind power potential",
-        "solarpotential": "Solar power potential",
-        "colorblindmode": "color blind mode",
-        "carbonintensity": "Carbon intensity"
+        "windpotential": "ветровой потенциал",
+        "solarpotential": "солнечной потенциал",
+        "colorblindmode": "Режим для дальтоников",
+        "carbonintensity": "Выпуск углерода"
     },
     "tooltips": {
-        "carbonintensity": "Carbon intensity",
+        "carbonintensity": "Выпуск углерода",
         "lowcarbon": "Low-carbon",
         "renewable": "Renewable",
         "crossborderexport": "Cross-border export",
