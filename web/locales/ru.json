@@ -15,19 +15,19 @@
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "country-panel": {
-        "source": "Источник",
-        "carbonintensity": "Интенсивность выбросов CO2 (CO2эк/кВт⋅ч)",
-        "lowcarbon": "низкии уровень CO2",
+        "source": "источник",
+        "carbonintensity": "интенсивность выбросов CO2 (CO2эк/кВт⋅ч)",
+        "lowcarbon": "с низким уровнем CO2",
         "renewable": "ВИЭ",
-        "electricityproduction": "Производство электричества",
+        "electricityproduction": "производство электричества",
         "bysource": "по видам генерации",
-        "emissions": "Углеродные выбросы",
+        "emissions": "эмиссии CO2эк",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">добавить или изменить источник</a>",
         "helpfrom": "с помощью"
     },
     "left-panel": {
         "zone-list-header-title": "Влияние зон на климат",
-        "zone-list-header-subtitle": "Сортировка по интенсивности выбросов CO2 (CO2эк/кВт⋅ч)",
+        "zone-list-header-subtitle": "Сортированы по интенсивности CO2 (CO2эк/кВт⋅ч)",
         "search": "Найти зону"
     },
     "country-history": {
@@ -38,7 +38,7 @@
     },
     "footer": {
         "likethisvisu": "Нравится визуализация?",
-        "loveyourfeedback": "Мы рады услышать ваши отзывы",
+        "loveyourfeedback": "Мы рады услышать Ваши отзывы",
         "foundbugs": "Вы обнаружили ошибку или у Вас эсть идея? Сообщите нам о них",
         "here": "здесь"
     },
