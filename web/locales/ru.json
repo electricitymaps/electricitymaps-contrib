@@ -79,17 +79,17 @@
         "oil": "нефтепродукты",
         "unknown": "неизвестно",
 
-    "electricityComesFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-    "emissionsComeFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-    "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-    "emissionsStoredUsing": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+    "electricityComesFrom": "%1$s %% доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> вырабатываются на базе (топлива) <b>%3$s</b>",
+    "emissionsComeFrom": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущенны из-за использования (топлива) <b>%3$s</b>",
+    "electricityStoredUsing": "%1$s %% доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> использованны для аккумуляции в <b>%3$s<b>",
+    "emissionsStoredUsing": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущенны из-за аккумуляции в <b>%3$s<?b>",
 
-    "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "%1$s %% доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> экспортируются в зону <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "%1$s %% доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> имспортируются из зоны <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> импортируются из зоны <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "CO2эк в минуту",
 
     "zoneShortName": {
         "AD": "Андорра",
