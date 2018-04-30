@@ -85,7 +85,7 @@
     "emissionsStoredUsing": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущенны из-за аккумуляции в <b>%3$s<?b>",
 
     "electricityExportedTo": "%1$s %% доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> экспортируются в зону <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> экспортируются в зону <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> имспортируются из зоны <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "%1$s %% эмисии CO2 зоны <img id=\"country-flag\"></img> <b>%2$s</b> импортируются из зоны <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
