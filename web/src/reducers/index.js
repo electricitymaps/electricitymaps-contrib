@@ -20,6 +20,7 @@ const initialApplicationState = {
   isLocalhost,
   legendVisible: false,
   locale: window.locale,
+  onboardingSeen: Cookies.get('onboardingSeen') === 'true' || false,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,

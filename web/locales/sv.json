@@ -1,13 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Detta visar i realtid",
-        "whereelectricitycomesfrom": "var din el kommer från",
-        "and": "och",
-        "howmuchco2": "hur mycket CO2",
-        "wasemitted": "som släpptes ut för att producera den",
-        "takeinaccount": "Vi tar hänsyn till",
-        "importexport": "import och export",
-        "betweenzones": "av el mellan zoner",
         "thisproject": "Detta projekt har",
         "opensource": "öppen källkod",
         "see": "se",

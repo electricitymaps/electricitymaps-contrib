@@ -1,25 +1,40 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "This shows in real-time",
-        "whereelectricitycomesfrom": "where your electricity comes from",
-        "and": "and",
-        "howmuchco2": "how much CO2",
-        "wasemitted": "was emitted to produce it",
-        "takeinaccount": "We take into account electricity",
-        "importexport": "imports and exports",
-        "betweenzones": "between zones",
         "thisproject": "This project is",
         "opensource": "Open Source",
         "see": "see",
         "datasources": "data sources",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
+    "mobile-info-tab": {
+        "map-info-text": "This map shows how much CO<sub>2</sub> is emitted to produce your electricity, in real-time. We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity.",
+        "electricity-origins-text": "Arrows on the map indicate flows of electricity between different areas. Tap on an area to see more information about the origins of its electricity.",
+        "wind-solar-text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
+    },
+    "onboarding-modal": {
+        "view1": {
+            "header": "The Electricity Map",
+            "subtitle": "Mapping the climate impact of electricity"
+        },
+        "view2": {
+            "header": "See how much CO<sub>2</sub> is emitted to produce your electricity, in real-time.",
+            "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
+        },
+        "view3": {
+            "header": "Know where your electricity comes from",
+            "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
+        },
+        "view4": {
+            "header": "Real-time wind and solar conditions",
+            "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
+        }
+    },
     "country-panel": {
         "source": "Source",
         "carbonintensity": "Carbon Intensity",
         "lowcarbon": "Low-carbon",
         "renewable": "Renewable",
-        "electricityproduction": "Electricity production",
+        "electricity": "Electricity",
         "bysource": "by source",
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
@@ -56,7 +71,11 @@
         "carbonintensityexport": "Carbon intensity of export",
         "ofinstalled": "of installed capacity",
         "utilizing": "utilizing",
-        "withcarbonintensity": "with a carbon intensity of"
+        "withcarbonintensity": "with a carbon intensity of",
+        "showWindLayer": "Show wind layer",
+        "hideWindLayer": "Hide wind layer",
+        "showSolarLayer": "Show solar layer",
+        "hideSolarLayer": "Hide solar layer"
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",

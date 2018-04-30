@@ -81,6 +81,11 @@ def production_data_processer(raw_data):
             # Need to avoid duplicate keys overwriting.
             production[generation_mapping[k]] += v
 
+        # move small negative values to 0
+        for k, v in production.items():
+            if -5 < v < 0:
+                production[k] = 0
+
         clean_data.append((dt, dict(production)))
 
     return sorted(clean_data)

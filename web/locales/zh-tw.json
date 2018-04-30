@@ -1,15 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "即時資訊",
-        "whereelectricitycomesfrom": "電力來自哪裡",
-        "and": "和",
-        "howmuchco2": "多少二氧化碳",
-        "wasemitted": "被排放生產",
-
-        "takeinaccount": "我們考慮到電力",
-        "importexport": "匯入及匯出",
-        "betweenzones": "國家之間",
-
         "thisproject": "這個項目是",
         "opensource": "開源資料",
         "see": "看",
