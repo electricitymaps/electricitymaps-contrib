@@ -37,9 +37,9 @@
         "Getdata": "Доступ к историческим данным и к API для прогноза"
     },
     "footer": {
-        "likethisvisu": "Тебе нравится визуализация?",
-        "loveyourfeedback": "Мы рады услышать твои отзывы",
-        "foundbugs": "Ты обнаружил ошибку или у тебя эсть идея? Сообщи нам о них",
+        "likethisvisu": "Нравится визуализация?",
+        "loveyourfeedback": "Мы рады услышать ваши отзывы",
+        "foundbugs": "Вы обнаружили ошибку или у Вас эсть идея? Сообщите нам о них",
         "here": "здесь"
     },
     "legends": {
@@ -59,12 +59,12 @@
         "withcarbonintensity": "Интенсивность выбросов CO2"
     },
     "misc": {
-        "maintitle": "Live CO2 emissions of electricity consumption",
-        "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-        "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
-        "retrynow": "Retry now",
-        "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>"
+        "maintitle": "Эмиссии CO2 производства электроенергии в прямом эфире",
+        "oops": "Ой! У нас возникли проблемы с доступом к серверу. Подождите несколько секунд.",
+        "newversion": "Доступна новая версия! Нажмите <a onClick=\"location.reload(true);\">здесь</a> чтобы обновить сайт.",
+        "retrynow": "Повторить попытку",
+        "database-ad": "Ищите исторические данные? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
+        "api-ad": "Хотите получить данные в прямом эфире для приложения или электронного устройства? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>"
     },
         "wind": "ВЭС",
         "solar": "СЭС",
