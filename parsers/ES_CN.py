@@ -6,10 +6,10 @@ import logging
 from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
+from ree import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
                         LaPalma, Tenerife)
-from .lib.exceptions import ParserException
-from .lib.validation import validate
+from parsers.lib.exceptions import ParserException
+from parsers.lib.validation import validate
 
 
 # Minimum valid zone demand. This is used to eliminate some cases
