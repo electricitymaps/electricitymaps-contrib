@@ -3,8 +3,8 @@ import unittest
 from requests import Session
 from parsers import ES_IB
 from mock import patch
-from reescraper import BalearicIslands
-from reescraper import Response
+from ree import BalearicIslands
+from ree import Response
 
 
 class TestESIB(unittest.TestCase):
