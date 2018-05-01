@@ -105,13 +105,13 @@ co2Sub = function(str) {
                     <div class="logo">
                         <img src="images/icon_noborder_small.png" />
                         <b>Electricity Map</b> &nbsp;<span style="color: orange">Live</span>
-                        <span class="maintitle">
+                        <span class="maintitle small-screen-hidden">
                              · <a href="https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">Database</a>
                              · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
                         </span>
                     </div>
 
-                    <div class="center-header large-screen-visible">
+                    <div class="center-header small-screen-hidden">
                         <span class="api-ad"><%- __('misc.api-ad') %> </span>
                         <span class="database-ad"><%- __('misc.database-ad') %> </span>
                     </div>
@@ -167,7 +167,7 @@ co2Sub = function(str) {
                             <p></p>
                         </div>
 
-                        <div class="info-text large-screen-visible">
+                        <div class="info-text small-screen-hidden">
                             <p>
                                 <%- __('footer.foundbugs') %> <a href="https://github.com/corradio/electricitymap/issues/new" target="_blank"><%- __('footer.here') %></a>.<br />
                             </p>
@@ -208,7 +208,7 @@ co2Sub = function(str) {
 
                     </div>
 
-                    <div class="mobile-info-tab">
+                    <div class="mobile-info-tab large-screen-hidden">
                         <p>
                                 <%- __('mobile-info-tab.map-info-text') %> 
                         </p>
@@ -332,7 +332,7 @@ co2Sub = function(str) {
                                     <%- co2Sub(__('country-history.carbonintensity24h')) %>
                                 </span>
                                 <br />
-                                <small class="large-screen-visible">
+                                <small class="small-screen-hidden">
                                     <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
                                     <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
                                 </small>
@@ -343,7 +343,7 @@ co2Sub = function(str) {
                                     <%- __('country-history.electricityorigin24h') %>
                                 </span>
                                 <br />
-                                <small class="large-screen-visible">
+                                <small class="small-screen-hidden">
                                     <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
                                     <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
                                 </small>
@@ -394,7 +394,7 @@ co2Sub = function(str) {
                     <div id="zones" class="map-layer"></div>
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
-                    <div class="watermark large-screen-visible">
+                    <div class="watermark small-screen-hidden">
                         <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
                         <br />
                         <div class="fb-like"
@@ -461,7 +461,7 @@ co2Sub = function(str) {
                     <div class="inner"><%- __('misc.newversion') %></div>
                 </div>
 
-                <div id="left-panel-collapse-button" class="large-screen-visible">
+                <div id="left-panel-collapse-button" class="small-screen-hidden">
                     <i class="material-icons">arrow_drop_down</i>
                 </div>
 

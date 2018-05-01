@@ -357,7 +357,7 @@ body {
 }
 
 .mobile-info-tab, .left-panel-zone-details {
-    display: none;
+    display: flex;
     padding: 0 1rem;
     line-height: 1.2rem;
     flex-direction: column;
@@ -817,7 +817,7 @@ div.highscore-button:hover {
 }
 
 .left-panel-zone-list {
-    display: none;
+    display: flex;
     flex-direction: column;
     flex: 1;
     overflow-y: hidden;
@@ -1238,7 +1238,7 @@ sub {
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
-    .small-screen-visible {
+    .large-screen-hidden {
         display: none;
     }
     #tab {
@@ -1262,10 +1262,6 @@ sub {
     .mobile-info-tab {
         padding-top: 0.5rem;
     }
-
-    .large-screen-visible {
-        display: inherit;
-    }
     
 }
 
@@ -1277,7 +1273,7 @@ sub {
     #header-content .logo {
         margin-right: auto;
     }
-    .large-screen-visible {
+    .small-screen-hidden {
         display: none;
     }
     .left-panel, #map-container {
@@ -1360,13 +1356,6 @@ sub {
     .left-panel {
         padding-bottom: 0;
     } 
-
-    .small-screen-visible {
-        display: inherit;
-    }
-    .maintitle {
-        display: none;
-    }
 
 }
 

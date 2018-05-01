@@ -987,21 +987,22 @@ function renderLeftPanelCollapseButton(state) {
 }
 function routeToPage(pageName, state) {
 
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-visible', pageName !== 'country');
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-visible', pageName === 'highscore');
 
-  d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-visible', pageName === 'info');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country');
 
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-visible', pageName === 'country');
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-visible', pageName === 'country');
+  d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-hidden', pageName !== 'country');
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-hidden', pageName !== 'country');
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
-  d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
+  d3.selectAll('#map-container').classed('small-screen-hidden', pageName !== 'map');
 
   if (pageName === 'map') {
-    d3.select('.left-panel').classed('large-screen-visible', true);
+    d3.select('.left-panel').classed('small-screen-hidden', true);
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
@@ -1009,7 +1010,7 @@ function routeToPage(pageName, state) {
     if (state.application.windEnabled && windColorbar) windColorbar.render();
     if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
-    d3.select('.left-panel').classed('large-screen-visible', false);
+    d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
     if (pageName === 'info') {
       if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
