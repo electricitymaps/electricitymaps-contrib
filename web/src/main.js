@@ -758,7 +758,7 @@ zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Close button
-d3.selectAll('#left-panel-country-back')
+d3.selectAll('#left-panel-zone-details-back')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
     dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
@@ -986,20 +986,14 @@ function renderLeftPanelCollapseButton(state) {
   }
 }
 function routeToPage(pageName, state) {
-  // Hide all panels - we will show only the ones we need
-  d3.selectAll('.left-panel > div').style('display', 'none');
-  d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
-  d3.selectAll('.left-panel .left-panel-zone-list').style('display', (pageName !== 'country' ) ? undefined : 'none');
 
-  // Replace left panel by country view (large screen only)
-  d3.selectAll('.left-panel .left-panel-info')
-    .style('display', (pageName !== 'country' ) ? undefined : 'none')
-    // Hide info panel on small screens on all views but info view
-    .classed('large-screen-visible', pageName !== 'info');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-visible', pageName !== 'country');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-visible', pageName === 'highscore');
 
-  // Hide zone list from info view on small screens
-  d3.selectAll('.left-panel .left-panel-zone-list')
-    .classed('large-screen-visible', pageName !== 'highscore')
+  d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-visible', pageName === 'info');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-visible', pageName === 'country');
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-visible', pageName === 'country');
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
