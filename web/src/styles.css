@@ -1134,6 +1134,9 @@ sub {
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     color: dimgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal .modal-left-button:focus, .modal .modal-right-button:focus {
