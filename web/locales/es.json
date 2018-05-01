@@ -68,99 +68,381 @@
     "ofCO2eqPerMinute": "of CO2eq per minute",
 
     "zoneShortName": {
-        "AD": "Andorra",
-        "AL": "Albania",
-        "AM": "Armenia",
-        "AT": "Austria",
-        "AR": "Argentina",
-        "AX": "Åland",
-        "BA": "Bosnia y Herzegovina",
-        "BE": "Bélgica",
-        "BG": "Bulgaria",
-        "BY": "Bielorrusia",
-        "CH": "Suiza",
-        "CR": "Costa Rica",
-        "CZ": "Rep. Checa",
-        "DE": "Alemania",
-        "DK": "Dinamarca",
-        "EE": "Estonia",
-        "ES": "España",
-        "ES-IB": "España (Islas Baleares)",
-        "ES-CN-FVLZ": "España (Fuerteventura/Lanzarote)",
-        "ES-CN-GC": "España (Gran Canaria)",
-        "ES-CN-HI": "España (El Hierro)",
-        "ES-CN-IG": "España (Isla de la Gomera)",
-        "ES-CN-LP": "España (La Palma)",
-        "ES-CN-TE": "España (Tenerife)",
-        "FI": "Finlandia",
-        "FR": "Francia",
-        "GB": "Reino Unido",
-        "GB-NIR": "Irlanda del Norte",
-        "GR": "Grecia",
-        "GT": "Guatemala",
-        "HN": "Honduras",
-        "HR": "Croacia",
-        "HU": "Hungría",
-        "IE": "Irlanda",
-        "IS": "Islandia",
-        "IT": "Italia",
-        "IN-AN": "India (Islas de Andamán y Nicobar)",
-        "IN-AP": "India (Andhra Pradesh)",
-        "IN-AR": "India (Arunachal Pradesh)",
-        "IN-AS": "India (Assam)",
-        "IN-BR": "India (Bihar)",
-        "IN-CT": "India (Chhattisgarh)",
-        "IN-DL": "India (Delhi)",
-        "IN-GA": "India (Goa)",
-        "IN-GJ": "India (Gujarat)",
-        "IN-HP": "India (Himachal Pradesh)",
-        "IN-HR": "India (Haryana)",
-        "IN-JH": "India (Jharkhand)",
-        "IN-JK": "India (Jammu y Cachemira)",
-        "IN-KA": "India (Karnataka)",
-        "IN-KL": "India (Kerala)",
-        "IN-MH": "India (Maharashtra)",
-        "IN-ML": "India (Meghalaya)",
-        "IN-MN": "India (Manipur)",
-        "IN-MP": "India (Madhya Pradesh)",
-        "IN-MZ": "India (Mizoram)",
-        "IN-NL": "India (Nagaland)",
-        "IN-OR": "India (Orissa)",
-        "IN-PB": "India (Punjab)",
-        "IN-PY": "India (Pondicherry)",
-        "IN-RJ": "India (Rajasthan)",
-        "IN-SK": "India (Sikkim)",
-        "IN-TL": "India (Tamil Nadu)",
-        "IN-TR": "India (Tripura)",
-        "IN-UP": "India (Uttar Pradesh)",
-        "IN-UT": "India (Uttarakhand)",
-        "IN-WB": "India (Bengala Occidental)",
-        "LT": "Lituania",
-        "LU": "Luxemburgo",
-        "LV": "Letonia",
-        "MD": "Moldavia",
-        "ME": "Montenegro",
-        "MK": "Rep. de Macedonia (FYROM)",
-        "MT": "Malta",
-        "NI": "Nicaragua",
-        "NL": "Holanda",
-        "NO": "Noruega",
-        "PA": "Panamá",
-        "PE": "Perú",
-        "PL": "Polonia",
-        "PT": "Portugal",
-        "PT-AC": "Portugal (Azores)",
-        "PT-MA": "Portugal (Madeira)",
-        "RO": "Rumanía",
-        "RS": "Serbia",
-        "RU": "Rusia",
-        "SE": "Suecia",
-        "SG": "Singapur",
-        "SI": "Eslovenia",
-        "SK": "Eslovaquia",
-        "SV": "El Salvador",
-        "TR": "Turquía",
-        "UA": "Ucrania",
-        "UY": "Uruguay"
+        "AD": {
+            "countryName": "",
+            "zoneName": "Andorra"
+          },
+          "AL": {
+            "countryName": "",
+            "zoneName": "Albania"
+          },
+          "AM": {
+            "countryName": "",
+            "zoneName": "Armenia"
+          },
+          "AT": {
+            "countryName": "",
+            "zoneName": "Austria"
+          },
+          "AR": {
+            "countryName": "",
+            "zoneName": "Argentina"
+          },
+          "AX": {
+            "countryName": "",
+            "zoneName": "Åland"
+          },
+          "BA": {
+            "countryName": "",
+            "zoneName": "Bosnia y Herzegovina"
+          },
+          "BE": {
+            "countryName": "",
+            "zoneName": "Bélgica"
+          },
+          "BG": {
+            "countryName": "",
+            "zoneName": "Bulgaria"
+          },
+          "BY": {
+            "countryName": "",
+            "zoneName": "Bielorrusia"
+          },
+          "CH": {
+            "countryName": "",
+            "zoneName": "Suiza"
+          },
+          "CR": {
+            "countryName": "",
+            "zoneName": "Costa Rica"
+          },
+          "CZ": {
+            "countryName": "",
+            "zoneName": "Rep. Checa"
+          },
+          "DE": {
+            "countryName": "",
+            "zoneName": "Alemania"
+          },
+          "DK": {
+            "countryName": "",
+            "zoneName": "Dinamarca"
+          },
+          "EE": {
+            "countryName": "",
+            "zoneName": "Estonia"
+          },
+          "ES": {
+            "countryName": "",
+            "zoneName": "España"
+          },
+          "ES-IB": {
+            "countryName": "España",
+            "zoneName": "Islas Baleares"
+          },
+          "ES-CN-FVLZ": {
+            "countryName": "España",
+            "zoneName": "Fuerteventura/Lanzarote"
+          },
+          "ES-CN-GC": {
+            "countryName": "España",
+            "zoneName": "Gran Canaria"
+          },
+          "ES-CN-HI": {
+            "countryName": "España",
+            "zoneName": "El Hierro"
+          },
+          "ES-CN-IG": {
+            "countryName": "España",
+            "zoneName": "Isla de la Gomera"
+          },
+          "ES-CN-LP": {
+            "countryName": "España",
+            "zoneName": "La Palma"
+          },
+          "ES-CN-TE": {
+            "countryName": "España",
+            "zoneName": "Tenerife"
+          },
+          "FI": {
+            "countryName": "",
+            "zoneName": "Finlandia"
+          },
+          "FR": {
+            "countryName": "",
+            "zoneName": "Francia"
+          },
+          "GB": {
+            "countryName": "",
+            "zoneName": "Reino Unido"
+          },
+          "GB-NIR": {
+            "countryName": "",
+            "zoneName": "Irlanda del Norte"
+          },
+          "GR": {
+            "countryName": "",
+            "zoneName": "Grecia"
+          },
+          "GT": {
+            "countryName": "",
+            "zoneName": "Guatemala"
+          },
+          "HN": {
+            "countryName": "",
+            "zoneName": "Honduras"
+          },
+          "HR": {
+            "countryName": "",
+            "zoneName": "Croacia"
+          },
+          "HU": {
+            "countryName": "",
+            "zoneName": "Hungría"
+          },
+          "IE": {
+            "countryName": "",
+            "zoneName": "Irlanda"
+          },
+          "IS": {
+            "countryName": "",
+            "zoneName": "Islandia"
+          },
+          "IT": {
+            "countryName": "",
+            "zoneName": "Italia"
+          },
+          "IN-AN": {
+            "countryName": "India",
+            "zoneName": "Islas de Andamán y Nicobar"
+          },
+          "IN-AP": {
+            "countryName": "India",
+            "zoneName": "Andhra Pradesh"
+          },
+          "IN-AR": {
+            "countryName": "India",
+            "zoneName": "Arunachal Pradesh"
+          },
+          "IN-AS": {
+            "countryName": "India",
+            "zoneName": "Assam"
+          },
+          "IN-BR": {
+            "countryName": "India",
+            "zoneName": "Bihar"
+          },
+          "IN-CT": {
+            "countryName": "India",
+            "zoneName": "Chhattisgarh"
+          },
+          "IN-DL": {
+            "countryName": "India",
+            "zoneName": "Delhi"
+          },
+          "IN-GA": {
+            "countryName": "India",
+            "zoneName": "Goa"
+          },
+          "IN-GJ": {
+            "countryName": "India",
+            "zoneName": "Gujarat"
+          },
+          "IN-HP": {
+            "countryName": "India",
+            "zoneName": "Himachal Pradesh"
+          },
+          "IN-HR": {
+            "countryName": "India",
+            "zoneName": "Haryana"
+          },
+          "IN-JH": {
+            "countryName": "India",
+            "zoneName": "Jharkhand"
+          },
+          "IN-JK": {
+            "countryName": "India",
+            "zoneName": "Jammu y Cachemira"
+          },
+          "IN-KA": {
+            "countryName": "India",
+            "zoneName": "Karnataka"
+          },
+          "IN-KL": {
+            "countryName": "India",
+            "zoneName": "Kerala"
+          },
+          "IN-MH": {
+            "countryName": "India",
+            "zoneName": "Maharashtra"
+          },
+          "IN-ML": {
+            "countryName": "India",
+            "zoneName": "Meghalaya"
+          },
+          "IN-MN": {
+            "countryName": "India",
+            "zoneName": "Manipur"
+          },
+          "IN-MP": {
+            "countryName": "India",
+            "zoneName": "Madhya Pradesh"
+          },
+          "IN-MZ": {
+            "countryName": "India",
+            "zoneName": "Mizoram"
+          },
+          "IN-NL": {
+            "countryName": "India",
+            "zoneName": "Nagaland"
+          },
+          "IN-OR": {
+            "countryName": "India",
+            "zoneName": "Orissa"
+          },
+          "IN-PB": {
+            "countryName": "India",
+            "zoneName": "Punjab"
+          },
+          "IN-PY": {
+            "countryName": "India",
+            "zoneName": "Pondicherry"
+          },
+          "IN-RJ": {
+            "countryName": "India",
+            "zoneName": "Rajasthan"
+          },
+          "IN-SK": {
+            "countryName": "India",
+            "zoneName": "Sikkim"
+          },
+          "IN-TL": {
+            "countryName": "India",
+            "zoneName": "Tamil Nadu"
+          },
+          "IN-TR": {
+            "countryName": "India",
+            "zoneName": "Tripura"
+          },
+          "IN-UP": {
+            "countryName": "India",
+            "zoneName": "Uttar Pradesh"
+          },
+          "IN-UT": {
+            "countryName": "India",
+            "zoneName": "Uttarakhand"
+          },
+          "IN-WB": {
+            "countryName": "India",
+            "zoneName": "Bengala Occidental"
+          },
+          "LT": {
+            "countryName": "",
+            "zoneName": "Lituania"
+          },
+          "LU": {
+            "countryName": "",
+            "zoneName": "Luxemburgo"
+          },
+          "LV": {
+            "countryName": "",
+            "zoneName": "Letonia"
+          },
+          "MD": {
+            "countryName": "",
+            "zoneName": "Moldavia"
+          },
+          "ME": {
+            "countryName": "",
+            "zoneName": "Montenegro"
+          },
+          "MK": {
+            "countryName": "Rep. de Macedonia",
+            "zoneName": "FYROM"
+          },
+          "MT": {
+            "countryName": "",
+            "zoneName": "Malta"
+          },
+          "NI": {
+            "countryName": "",
+            "zoneName": "Nicaragua"
+          },
+          "NL": {
+            "countryName": "",
+            "zoneName": "Holanda"
+          },
+          "NO": {
+            "countryName": "",
+            "zoneName": "Noruega"
+          },
+          "PA": {
+            "countryName": "",
+            "zoneName": "Panamá"
+          },
+          "PE": {
+            "countryName": "",
+            "zoneName": "Perú"
+          },
+          "PL": {
+            "countryName": "",
+            "zoneName": "Polonia"
+          },
+          "PT": {
+            "countryName": "",
+            "zoneName": "Portugal"
+          },
+          "PT-AC": {
+            "countryName": "Portugal",
+            "zoneName": "Azores"
+          },
+          "PT-MA": {
+            "countryName": "Portugal",
+            "zoneName": "Madeira"
+          },
+          "RO": {
+            "countryName": "",
+            "zoneName": "Rumanía"
+          },
+          "RS": {
+            "countryName": "",
+            "zoneName": "Serbia"
+          },
+          "RU": {
+            "countryName": "",
+            "zoneName": "Rusia"
+          },
+          "SE": {
+            "countryName": "",
+            "zoneName": "Suecia"
+          },
+          "SG": {
+            "countryName": "",
+            "zoneName": "Singapur"
+          },
+          "SI": {
+            "countryName": "",
+            "zoneName": "Eslovenia"
+          },
+          "SK": {
+            "countryName": "",
+            "zoneName": "Eslovaquia"
+          },
+          "SV": {
+            "countryName": "",
+            "zoneName": "El Salvador"
+          },
+          "TR": {
+            "countryName": "",
+            "zoneName": "Turquía"
+          },
+          "UA": {
+            "countryName": "",
+            "zoneName": "Ucrania"
+          },
+          "UY": {
+            "countryName": "",
+            "zoneName": "Uruguay"
+          }
     }
 }
