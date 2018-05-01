@@ -298,6 +298,7 @@ body {
     font-size: 1.6em;
     margin: 0;
 }
+
 .left-panel > svg {
     display: block;
 }
@@ -322,8 +323,7 @@ body {
     stroke: gray;
 }
 .left-panel-toolbar,
-.left-panel-country-toolbar {
-    display: flex;
+.left-panel-zone-details-toolbar {
     margin: 0 0 1rem;
     position: relative;
 }
@@ -337,18 +337,18 @@ body {
     top: 0px;
     position: absolute;
 }
-#left-panel-country-back {
+#left-panel-zone-details-back {
     cursor: pointer;
     font-size: 1.3rem;
     position: absolute;
     left: 0;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
-#left-panel-country-back:hover, #left-panel-highscore-back:hover {
+#left-panel-zone-details-back:hover, #left-panel-highscore-back:hover {
     color: white;
 }
 .left-panel .left-panel-toolbar-title,
-.left-panel-country .country-name {
+.left-panel-zone-details .country-name {
     font-size: 1.2rem;
     line-height: 1.5rem;
 }
@@ -356,11 +356,31 @@ body {
     width: 2.875rem;
 }
 
-.left-panel-info, .left-panel-social, .left-panel-country {
+.mobile-info-tab, .left-panel-zone-details {
+    display: flex;
     padding: 0 1rem;
     line-height: 1.2rem;
+    flex-direction: column;
 }
 
+.mobile-info-tab p{
+    margin: 0.6rem 0;
+}
+.mobile-info-tab p:first-child {
+    margin-top: 0;
+}
+.mobile-info-tab .info-text{
+    padding-top: 1.5rem;
+}
+.mobile-info-tab .info-text p{
+    margin: 0.6rem 0;
+}
+
+
+.info-text p{
+    margin: 0.4rem 0;
+    line-height: 1.2rem;
+}
 
 .country-name-time {
     font-size: smaller;
@@ -803,6 +823,13 @@ div.highscore-button:hover {
     overflow-y: hidden;
 }
 
+.left-panel-zone-list .info-text {
+    flex-direction: column;
+    padding: 0rem 1rem;
+}
+
+
+
 .zone-search-bar {
     padding: 0px 1rem 0.5rem 1rem;
 }
@@ -833,6 +860,7 @@ div.highscore-button:hover {
 
 .zone-list {
     overflow-y: scroll;
+    flex: 1;
 }
 .zone-list p {
     margin: 0;
@@ -1201,12 +1229,16 @@ sub {
 }
 
 .mobile-watermark {
-    float: right;
+    text-align: center;
+    margin: 2.5rem 0 1rem 0;
+}
+.mobile-watermark div {
+    padding-top: 0.5rem;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
-    .small-screen-visible {
+    .large-screen-hidden {
         display: none;
     }
     #tab {
@@ -1227,7 +1259,7 @@ sub {
         background-color: rgb(220, 220, 220);
     }
 
-    .left-panel-info {
+    .mobile-info-tab {
         padding-top: 0.5rem;
     }
     
@@ -1241,7 +1273,7 @@ sub {
     #header-content .logo {
         margin-right: auto;
     }
-    .large-screen-visible {
+    .small-screen-hidden {
         display: none;
     }
     .left-panel, #map-container {
@@ -1324,7 +1356,6 @@ sub {
     .left-panel {
         padding-bottom: 0;
     } 
-
 
 }
 
