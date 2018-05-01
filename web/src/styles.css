@@ -356,7 +356,7 @@ body {
     width: 2.875rem;
 }
 
-.left-panel-info, .left-panel-social, .left-panel-country {
+.left-panel-info, .left-panel-country {
     padding: 0 1rem;
     line-height: 1.2rem;
 }
