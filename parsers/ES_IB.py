@@ -4,8 +4,8 @@
 from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import BalearicIslands
-from .lib.exceptions import ParserException
+from ree import BalearicIslands
+from parsers.lib.exceptions import ParserException
 
 
 def fetch_consumption(zone_key='ES-IB', session=None, target_datetime=None, logger=None):

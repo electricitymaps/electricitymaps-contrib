@@ -10,7 +10,7 @@ class Test_IN_AP(unittest.TestCase):
     def setUp(self):
         self.session = Session()
         self.adapter = Adapter()
-        self.session.mount('http://', self.adapter)
+        self.session.mount('https://', self.adapter)
         response_text = resource_string("parsers.test.mocks", "IN_AP.html")
         self.adapter.register_uri(ANY, ANY, text=str(response_text))
 
