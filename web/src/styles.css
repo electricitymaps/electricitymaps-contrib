@@ -566,6 +566,10 @@ body {
     flex-direction: column;
 }
 
+.layer-buttons-container > div{
+    position: relative;
+}
+
 .layer-button {
     background-color: #fff;
     border-radius: 7px;
@@ -585,6 +589,8 @@ body {
 .layer-button:hover{
     background-color: rgb(235, 230, 230);
 }
+
+
 
 .wind-button{
     background-image: url(../images/weather/wind.svg);
@@ -608,6 +614,45 @@ body {
     height: 35px !important;
     background-size: 100% 100%;
 }
+
+.layer-button-tooltip {
+    position: absolute;
+    left: -120px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100px;
+    top: -32px;
+}
+
+.layer-button-tooltip.hidden {
+    display: none;
+}
+
+.layer-button-tooltip .tooltip-container {
+    display: flex;
+    align-items: center;
+}
+
+.layer-button-tooltip .tooltip-text {
+    background-color: rgb(70, 70, 70);;
+    color: lightgray;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.layer-button-tooltip .arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7.5px 0 7.5px 10px;
+    border-color: transparent transparent transparent rgb(70, 70, 70);;
+}
+
+
 
 
 /* ** LEGEND ** */

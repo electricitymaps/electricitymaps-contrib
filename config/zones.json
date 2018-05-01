@@ -591,12 +591,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 356,
-      "gas": 514,
-      "hydro": 15004,
-      "oil": 46,
-      "wind": 673
+      "biomass": 838,
+      "gas": 507,
+      "hydro": 15898,
+      "solar": 1,
+      "wind": 704
     },
+    "contributors": [
+      "https://github.com/daveachuk"
+    ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
@@ -3109,7 +3112,17 @@
     "parsers": {
       "production": "US_IPC.fetch_production"
     },
-    "timezone": "America/Boise"
+    "timezone": "America/Boise",
+    "bounding_box": [
+      [
+        -117.7153503854119,
+        41.49954022140409
+      ],
+      [
+        -110.5502380803231,
+        49.49251454705444
+      ]
+    ]
   },
   "US-MISO": {
     "bounding_box": [
@@ -3253,7 +3266,17 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_SPP.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -104.55665897762971,
+        42.01833904950752
+      ],
+      [
+        -95.95355839210612,
+        46.44202068870379
+      ]
+    ]
   },
   "UY": {
     "bounding_box": [
