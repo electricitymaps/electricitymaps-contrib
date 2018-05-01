@@ -52,6 +52,7 @@ POWER_PLANTS = {
     u'La Esperanza (CoopeL)': 'hydro',
     u'La Joya': 'hydro',
     u'Los Negros': 'hydro',
+    u'Los Negros II': 'hydro',
     u'Los Santos': 'wind',
     u'MOVASA': 'wind',
     u'Matamoros': 'unknown',
@@ -59,6 +60,7 @@ POWER_PLANTS = {
     u'Miravalles II': 'geothermal',
     u'Miravalles III': 'geothermal',
     u'Miravalles V': 'geothermal',
+    u'Moín I': 'oil',
     u'Moín II': 'oil',
     u'Moín III': 'oil',
     u'Orosí': 'wind',
@@ -133,6 +135,7 @@ def df_to_data(zone_key, day, df, logger):
     df = df.iloc[:, :-1]
 
     results = []
+    unknown_plants = set()
     hour = 0
     for column in df:
         data = empty_record(zone_key)
@@ -141,12 +144,15 @@ def df_to_data(zone_key, day, df, logger):
             source = POWER_PLANTS.get(index)
             if not source:
                 source = 'unknown'
-                logger.warning('{} is not mapped to generation type'.format(source),
-                               extra={'key': zone_key})
+                unknown_plants.add(index)
             data['datetime'] = data_time
             data['production'][source] += max(0.0, value)
         hour += 1
         results.append(data)
+
+    for plant in unknown_plants:
+        logger.warning('{} is not mapped to generation type'.format(plant),
+                       extra={'key': zone_key})
 
     return results
 
