@@ -61,8 +61,12 @@ export default class ZoneList {
     this._setItemClickHandlers();
   }
 
-  _zoneMatchesQuery(zone, query) {
-    return translation.getFullZoneName(zone.countryCode).toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  _zoneMatchesQuery(zone, queryString) {
+    const queries = queryString.split(' ');
+    return queries.every(query =>
+      translation.getFullZoneName(zone.countryCode)
+        .toLowerCase()
+        .indexOf(query.toLowerCase()) !== -1);
   }
 
   _sortAndValidateZones(zones) {
