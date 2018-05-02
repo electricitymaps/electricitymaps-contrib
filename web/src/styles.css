@@ -1280,6 +1280,9 @@ sub {
     .left-panel {
         padding: 0 0 1rem 0;
     }
+    .left-panel-zone-details {
+        padding: 1rem;
+    }
     .left-panel, #map-container {
         width: 100%;
     }
