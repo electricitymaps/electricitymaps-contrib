@@ -695,12 +695,15 @@ d3.select('.wind-button').on('click', toggleWind);
 
 const windLayerButtonTooltip = d3.select('#wind-layer-button-tooltip');
 
-d3.select('.wind-button').on('mouseover', () => {
-  windLayerButtonTooltip.classed('hidden', false);
-});
-d3.select('.wind-button').on('mouseout', () => {
-  windLayerButtonTooltip.classed('hidden', true);
-});
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.wind-button').on('mouseover', () => {
+    windLayerButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.wind-button').on('mouseout', () => {
+    windLayerButtonTooltip.classed('hidden', true);
+  });
+}
 
 
 // Solar
@@ -712,12 +715,15 @@ d3.select('.solar-button').on('click', toggleSolar);
 
 const solarLayerButtonTooltip = d3.select('#solar-layer-button-tooltip');
 
-d3.select('.solar-button').on('mouseover', () => {
-  solarLayerButtonTooltip.classed('hidden', false);
-});
-d3.select('.solar-button').on('mouseout', () => {
-  solarLayerButtonTooltip.classed('hidden', true);
-});
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.solar-button').on('mouseover', () => {
+    solarLayerButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.solar-button').on('mouseout', () => {
+    solarLayerButtonTooltip.classed('hidden', true);
+  });
+}
 
 // Legend 
 function toggleLegend() {
