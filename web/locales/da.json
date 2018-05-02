@@ -69,187 +69,141 @@
 
     "zoneShortName": {
         "AL": {
-            "countryName": "",
             "zoneName": "Albanien"
           },
           "AT": {
-            "countryName": "",
             "zoneName": "Østrig"
           },
           "AX": {
-            "countryName": "",
             "zoneName": "Åland"
           },
           "BA": {
-            "countryName": "",
             "zoneName": "Bosnien-Hercegovina"
           },
           "BE": {
-            "countryName": "",
             "zoneName": "Belgien"
           },
           "BG": {
-            "countryName": "",
             "zoneName": "Bulgarien"
           },
           "BY": {
-            "countryName": "",
             "zoneName": "Belarus"
           },
           "CH": {
-            "countryName": "",
             "zoneName": "Schweiz"
           },
           "CZ": {
-            "countryName": "",
             "zoneName": "Tjekkiet"
           },
           "DE": {
-            "countryName": "",
             "zoneName": "Tyskland"
           },
           "DK": {
-            "countryName": "",
             "zoneName": "Danmark"
           },
           "EE": {
-            "countryName": "",
             "zoneName": "Estland"
           },
           "ES": {
-            "countryName": "",
             "zoneName": "Spanien"
           },
           "FI": {
-            "countryName": "",
             "zoneName": "Finland"
           },
           "FR": {
-            "countryName": "",
             "zoneName": "Frankrig"
           },
           "GB": {
-            "countryName": "",
             "zoneName": "Storbritannien"
           },
           "GB-NIR": {
-            "countryName": "",
             "zoneName": "Nordirland"
           },
           "GR": {
-            "countryName": "",
             "zoneName": "Grækenland"
           },
           "HR": {
-            "countryName": "",
             "zoneName": "Kroatien"
           },
           "HU": {
-            "countryName": "",
             "zoneName": "Ungarn"
           },
           "IE": {
-            "countryName": "",
             "zoneName": "Irland"
           },
           "IS": {
-            "countryName": "",
             "zoneName": "Island"
           },
           "IT": {
-            "countryName": "",
             "zoneName": "Italien"
           },
           "LT": {
-            "countryName": "",
             "zoneName": "Litauen"
           },
           "LU": {
-            "countryName": "",
             "zoneName": "Luxemburg"
           },
           "LV": {
-            "countryName": "",
             "zoneName": "Letland"
           },
           "MD": {
-            "countryName": "",
             "zoneName": "Moldavien"
           },
           "ME": {
-            "countryName": "",
             "zoneName": "Montenegro"
           },
           "MK": {
-            "countryName": "",
             "zoneName": "Makedonien"
           },
           "MT": {
-            "countryName": "",
             "zoneName": "Malta"
           },
           "NL": {
-            "countryName": "",
             "zoneName": "Holland"
           },
           "NO": {
-            "countryName": "",
             "zoneName": "Norge"
           },
           "PE": {
-            "countryName": "",
             "zoneName": "Peru"
           },
           "PL": {
-            "countryName": "",
             "zoneName": "Polen"
           },
           "PT": {
-            "countryName": "",
             "zoneName": "Portugal"
           },
           "RO": {
-            "countryName": "",
             "zoneName": "Rumænien"
           },
           "RS": {
-            "countryName": "",
             "zoneName": "Serbien"
           },
           "RU": {
-            "countryName": "",
             "zoneName": "Rusland"
           },
           "SE": {
-            "countryName": "",
             "zoneName": "Sverige"
           },
           "SG": {
-            "countryName": "",
             "zoneName": "Singapore"
           },
           "SI": {
-            "countryName": "",
             "zoneName": "Slovenien"
           },
           "SK": {
-            "countryName": "",
             "zoneName": "Slovakiet"
           },
           "TR": {
-            "countryName": "",
             "zoneName": "Tyrkiet"
           },
           "TW": {
-            "countryName": "",
             "zoneName": "Taiwan"
           },
           "UA": {
-            "countryName": "",
             "zoneName": "Ukraine"
           },
           "UY": {
-            "countryName": "",
             "zoneName": "Uruguay"
           }      
     }

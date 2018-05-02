@@ -70,23 +70,18 @@
 
     "zoneShortName": {
         "AD": {
-            "countryName": "",
             "zoneName": "أندورا"
           },
           "AL": {
-            "countryName": "",
             "zoneName": "ألبانيا"
           },
           "AM": {
-            "countryName": "",
             "zoneName": "أرمينيا"
           },
           "AT": {
-            "countryName": "",
             "zoneName": "النمسا"
           },
           "AR": {
-            "countryName": "",
             "zoneName": "الأرجنتين"
           },
           "AUS-NSW": {
@@ -118,27 +113,21 @@
             "zoneName": "أستراليا الغربية"
           },
           "AX": {
-            "countryName": "",
             "zoneName": "جزر_أولاند"
           },
           "AZ": {
-            "countryName": "",
             "zoneName": "أذربيجان"
           },
           "BA": {
-            "countryName": "",
             "zoneName": "البوسنة والهرسك"
           },
           "BE": {
-            "countryName": "",
             "zoneName": "بلجيكا"
           },
           "BG": {
-            "countryName": "",
             "zoneName": "بلغاريا"
           },
           "BY": {
-            "countryName": "",
             "zoneName": "بيلاروسا"
           },
           "CA-AB": {
@@ -194,43 +183,33 @@
             "zoneName": "يوكون"
           },
           "CH": {
-            "countryName": "",
             "zoneName": "سويسرا"
           },
           "CR": {
-            "countryName": "",
             "zoneName": "كوستاريكا"
           },
           "CY": {
-            "countryName": "",
             "zoneName": "قبرص"
           },
           "CZ": {
-            "countryName": "",
             "zoneName": "تشيكيا"
           },
           "DE": {
-            "countryName": "",
             "zoneName": "ألمانيا"
           },
           "DK": {
-            "countryName": "",
             "zoneName": "الدنمارك"
           },
           "DZ": {
-            "countryName": "",
             "zoneName": "الجزائر"
           },
           "EE": {
-            "countryName": "",
             "zoneName": "إستونيا"
           },
           "EG": {
-            "countryName": "",
             "zoneName": "مصر"
           },
           "ES": {
-            "countryName": "",
             "zoneName": "إسبانيا"
           },
           "ES-IB": {
@@ -242,131 +221,99 @@
             "zoneName": "جزر الكناري"
           },
           "FI": {
-            "countryName": "",
             "zoneName": "فنلندا"
           },
           "FO": {
-            "countryName": "",
             "zoneName": "جزر فارو"
           },
           "FR": {
-            "countryName": "",
             "zoneName": "فرنسا"
           },
           "GB": {
-            "countryName": "",
             "zoneName": "بريطانيا العظمى"
           },
           "GB-NIR": {
-            "countryName": "",
             "zoneName": "إيرلندا الشمالية"
           },
           "GE": {
-            "countryName": "",
             "zoneName": "جورجيا"
           },
           "GR": {
-            "countryName": "",
             "zoneName": "اليونان"
           },
           "GT": {
-            "countryName": "",
             "zoneName": "غواتيمالا"
           },
           "HN": {
-            "countryName": "",
             "zoneName": "هندوراس"
           },
           "HR": {
-            "countryName": "",
             "zoneName": "كرواتيا"
           },
           "HU": {
-            "countryName": "",
             "zoneName": "هنغاريا"
           },
           "IE": {
-            "countryName": "",
             "zoneName": "أيرلندا"
           },
           "IL": {
-            "countryName": "",
             "zoneName": "إسرائيل"
           },
           "IQ": {
-            "countryName": "",
             "zoneName": "العراق"
           },
           "IR": {
-            "countryName": "",
             "zoneName": "إيران"
           },
           "IS": {
-            "countryName": "",
             "zoneName": "آيسلندا"
           },
           "IT": {
-            "countryName": "",
             "zoneName": "إيطاليا"
           },
           "JO": {
-            "countryName": "",
             "zoneName": "الاردن"
           },
           "KZ": {
-            "countryName": "",
             "zoneName": "كازاخستان"
           },
           "LB": {
-            "countryName": "",
             "zoneName": "لبنان"
           },
           "LT": {
-            "countryName": "",
             "zoneName": "ليتوانيا"
           },
           "LU": {
-            "countryName": "",
             "zoneName": "لوكسمبورغ"
           },
           "LV": {
-            "countryName": "",
             "zoneName": "لاتفيا"
           },
           "LY": {
-            "countryName": "",
             "zoneName": "ليبيا"
           },
           "MA": {
-            "countryName": "",
             "zoneName": "المغرب"
           },
           "MD": {
-            "countryName": "",
             "zoneName": "مولدوفا"
           },
           "ME": {
-            "countryName": "",
             "zoneName": "الجبل الاسود"
           },
           "MK": {
-            "countryName": "",
             "zoneName": "جمهورية مقدونيا"
           },
           "MT": {
-            "countryName": "",
             "zoneName": "مالطا"
           },
           "NI": {
-            "countryName": "",
             "zoneName": "نيكاراغوا"
           },
           "NL": {
-            "countryName": "",
             "zoneName": "هولندا"
           },
           "NO": {
-            "countryName": "",
             "zoneName": "نورواي"
           },
           "NZ-NZN": {
@@ -378,23 +325,18 @@
             "zoneName": "الجزيرة الجنوبية"
           },
           "PA": {
-            "countryName": "",
             "zoneName": "بنما"
           },
           "PE": {
-            "countryName": "",
             "zoneName": "البيرو"
           },
           "PL": {
-            "countryName": "",
             "zoneName": "بولندا"
           },
           "PS": {
-            "countryName": "",
             "zoneName": "دولة فلسطين"
           },
           "PT": {
-            "countryName": "",
             "zoneName": "البرتغال"
           },
           "PT-AC": {
@@ -406,71 +348,54 @@
             "zoneName": "ماديرا"
           },
           "RO": {
-            "countryName": "",
             "zoneName": "رومانيا"
           },
           "RS": {
-            "countryName": "",
             "zoneName": "صربيا"
           },
           "RU": {
-            "countryName": "",
             "zoneName": "روسيا"
           },
           "SA": {
-            "countryName": "",
             "zoneName": "المملكة العربية السعودية"
           },
           "SE": {
-            "countryName": "",
             "zoneName": "السويد"
           },
           "SI": {
-            "countryName": "",
             "zoneName": "سلوفينيا"
           },
           "SK": {
-            "countryName": "",
             "zoneName": "سلوفايكا"
           },
           "SV": {
-            "countryName": "",
             "zoneName": "السلفادور"
           },
           "SY": {
-            "countryName": "",
             "zoneName": "سوريا"
           },
           "TM": {
-            "countryName": "",
             "zoneName": "تركمانستان"
           },
           "TN": {
-            "countryName": "",
             "zoneName": "تونس"
           },
           "TR": {
-            "countryName": "",
             "zoneName": "تركيا"
           },
           "TW": {
-            "countryName": "",
             "zoneName": "تايوان"
           },
           "UA": {
-            "countryName": "",
             "zoneName": "أوكرانيا"
           },
           "US": {
-            "countryName": "",
             "zoneName": "الولايات المتحدة الأمريكية"
           },
           "UY": {
-            "countryName": "",
             "zoneName": "أورغواي"
           },
           "UZ": {
-            "countryName": "",
             "zoneName": "أوزبكستان"
           }
     }

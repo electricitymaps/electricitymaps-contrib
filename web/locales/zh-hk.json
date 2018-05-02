@@ -68,347 +68,261 @@
 
     "zoneShortName": {
         "AL": {
-            "countryName": "",
             "zoneName": "阿爾巴尼亞"
           },
           "AM": {
-            "countryName": "",
             "zoneName": "亞美尼亞"
           },
           "AT": {
-            "countryName": "",
             "zoneName": "奧地利"
           },
           "AUS-NSW": {
-            "countryName": "",
             "zoneName": "澳大利亞（新南威爾士州）"
           },
           "AUS-NT": {
-            "countryName": "",
             "zoneName": "澳大利亞（北領地）"
           },
           "AUS-QLD": {
-            "countryName": "",
             "zoneName": "澳大利亞（昆士蘭州）"
           },
           "AUS-SA": {
-            "countryName": "",
             "zoneName": "澳大利亞（南澳大利亞）"
           },
           "AUS-TAS": {
-            "countryName": "",
             "zoneName": "澳大利亞（塔斯馬尼亞）"
           },
           "AUS-VIC": {
-            "countryName": "",
             "zoneName": "澳大利亞（維多利亞）"
           },
           "AUS-WA": {
-            "countryName": "",
             "zoneName": "澳大利亞（西澳大利亞）"
           },
           "AX": {
-            "countryName": "",
             "zoneName": "奧蘭群島"
           },
           "AZ": {
-            "countryName": "",
             "zoneName": "阿塞拜疆"
           },
           "BA": {
-            "countryName": "",
             "zoneName": "波斯尼亞和黑塞哥維那"
           },
           "BE": {
-            "countryName": "",
             "zoneName": "比利時"
           },
           "BG": {
-            "countryName": "",
             "zoneName": "保加利亞"
           },
           "BY": {
-            "countryName": "",
             "zoneName": "白俄羅斯"
           },
           "CA-AB": {
-            "countryName": "",
             "zoneName": "加拿大（阿爾伯塔）"
           },
           "CA-BC": {
-            "countryName": "",
             "zoneName": "加拿大（不列顛哥倫比亞省）"
           },
           "CA-MB": {
-            "countryName": "",
             "zoneName": "加拿大（馬尼托巴省）"
           },
           "CA-NB": {
-            "countryName": "",
             "zoneName": "加拿大（新不倫瑞克）"
           },
           "CA-NS": {
-            "countryName": "",
             "zoneName": "加拿大（新斯科舍省）"
           },
           "CA-ON": {
-            "countryName": "",
             "zoneName": "加拿大（安大略省）"
           },
           "CA-PE": {
-            "countryName": "",
             "zoneName": "加拿大（太子港）"
           },
           "CA-QC": {
-            "countryName": "",
             "zoneName": "加拿大（魁北克）"
           },
           "CA-SK": {
-            "countryName": "",
             "zoneName": "加拿大（薩斯喀徹溫省）"
           },
           "CH": {
-            "countryName": "",
             "zoneName": "瑞士"
           },
           "CN": {
-            "countryName": "",
             "zoneName": "中國"
           },
           "CY": {
-            "countryName": "",
             "zoneName": "塞浦路斯"
           },
           "CZ": {
-            "countryName": "",
             "zoneName": "捷克"
           },
           "DE": {
-            "countryName": "",
             "zoneName": "德國"
           },
           "DK": {
-            "countryName": "",
             "zoneName": "丹麥"
           },
           "DZ": {
-            "countryName": "",
             "zoneName": "阿爾及利亞"
           },
           "EE": {
-            "countryName": "",
             "zoneName": "愛沙尼亞"
           },
           "EG": {
-            "countryName": "",
             "zoneName": "埃及"
           },
           "ES": {
-            "countryName": "",
             "zoneName": "西班牙"
           },
           "FI": {
-            "countryName": "",
             "zoneName": "芬蘭"
           },
           "FO": {
-            "countryName": "",
             "zoneName": "法羅群島"
           },
           "FR": {
-            "countryName": "",
             "zoneName": "法國"
           },
           "GB": {
-            "countryName": "",
             "zoneName": "英國"
           },
           "GB-NIR": {
-            "countryName": "",
             "zoneName": "北愛爾蘭"
           },
           "GE": {
-            "countryName": "",
             "zoneName": "格魯吉亞"
           },
           "GR": {
-            "countryName": "",
             "zoneName": "希臘"
           },
           "HR": {
-            "countryName": "",
             "zoneName": "克羅地亞"
           },
           "HU": {
-            "countryName": "",
             "zoneName": "匈牙利"
           },
           "IE": {
-            "countryName": "",
             "zoneName": "愛爾蘭"
           },
           "IL": {
-            "countryName": "",
             "zoneName": "以色列"
           },
           "IQ": {
-            "countryName": "",
             "zoneName": "伊拉克"
           },
           "IR": {
-            "countryName": "",
             "zoneName": "伊朗"
           },
           "IS": {
-            "countryName": "",
             "zoneName": "冰島"
           },
           "IT": {
-            "countryName": "",
             "zoneName": "義大利"
           },
           "JO": {
-            "countryName": "",
             "zoneName": "約旦"
           },
           "JP": {
-            "countryName": "",
             "zoneName": "日本"
           },
           "KR": {
-            "countryName": "",
             "zoneName": "南韓"
           },
           "KZ": {
-            "countryName": "",
             "zoneName": "哈薩克斯坦"
           },
           "LB": {
-            "countryName": "",
             "zoneName": "黎巴嫩"
           },
           "LT": {
-            "countryName": "",
             "zoneName": "立陶宛"
           },
           "LU": {
-            "countryName": "",
             "zoneName": "盧森堡"
           },
           "LV": {
-            "countryName": "",
             "zoneName": "拉脫維亞"
           },
           "LY": {
-            "countryName": "",
             "zoneName": "利比亞"
           },
           "MA": {
-            "countryName": "",
             "zoneName": "摩洛哥"
           },
           "MD": {
-            "countryName": "",
             "zoneName": "摩爾多瓦"
           },
           "ME": {
-            "countryName": "",
             "zoneName": "黑山共和國"
           },
           "MK": {
-            "countryName": "",
             "zoneName": "馬其頓共和國"
           },
           "MT": {
-            "countryName": "",
             "zoneName": "馬耳他"
           },
           "NL": {
-            "countryName": "",
             "zoneName": "荷蘭"
           },
           "NO": {
-            "countryName": "",
             "zoneName": "挪威"
           },
           "NZ-NZN": {
-            "countryName": "",
             "zoneName": "紐西蘭（北島）"
           },
           "NZ-NZS": {
-            "countryName": "",
             "zoneName": "紐西蘭（南島）"
           },
           "PL": {
-            "countryName": "",
             "zoneName": "波蘭"
           },
           "PS": {
-            "countryName": "",
             "zoneName": "巴勒斯坦"
           },
           "PT": {
-            "countryName": "",
             "zoneName": "葡萄牙"
           },
           "RO": {
-            "countryName": "",
             "zoneName": "羅馬尼亞"
           },
           "RS": {
-            "countryName": "",
             "zoneName": "塞爾維亞"
           },
           "RU": {
-            "countryName": "",
             "zoneName": "俄羅斯"
           },
           "SA": {
-            "countryName": "",
             "zoneName": "沙烏地阿拉伯"
           },
           "SE": {
-            "countryName": "",
             "zoneName": "瑞典"
           },
           "SI": {
-            "countryName": "",
             "zoneName": "斯洛維尼亞"
           },
           "SK": {
-            "countryName": "",
             "zoneName": "斯洛伐克"
           },
           "SY": {
-            "countryName": "",
             "zoneName": "敘利亞"
           },
           "TM": {
-            "countryName": "",
             "zoneName": "土庫曼斯坦"
           },
           "TN": {
-            "countryName": "",
             "zoneName": "突尼西亞"
           },
           "TR": {
-            "countryName": "",
             "zoneName": "土耳其"
           },
           "TW": {
-            "countryName": "",
             "zoneName": "台灣"
           },
           "UA": {
-            "countryName": "",
             "zoneName": "烏克蘭"
           },
           "US": {
-            "countryName": "",
             "zoneName": "美國"
           },
           "UZ": {
-            "countryName": "",
             "zoneName": "烏茲別克"
           }
     }

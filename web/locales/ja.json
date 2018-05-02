@@ -75,23 +75,18 @@
 
     "zoneShortName": {
         "AD": {
-            "countryName": "",
             "zoneName": "アンドラ"
           },
           "AL": {
-            "countryName": "",
             "zoneName": "アルバニア"
           },
           "AM": {
-            "countryName": "",
             "zoneName": "アルメニア"
           },
           "AT": {
-            "countryName": "",
             "zoneName": "オーストリア"
           },
           "AR": {
-            "countryName": "",
             "zoneName": "アルゼンチン"
           },
           "AUS-NSW": {
@@ -123,27 +118,21 @@
             "zoneName": "西 オーストラリア"
           },
           "AX": {
-            "countryName": "",
             "zoneName": "オーランド諸島"
           },
           "AZ": {
-            "countryName": "",
             "zoneName": "アゼルバイジャン"
           },
           "BA": {
-            "countryName": "",
             "zoneName": "ボスニア・ヘルツェゴビナ"
           },
           "BE": {
-            "countryName": "",
             "zoneName": "ベルギー"
           },
           "BG": {
-            "countryName": "",
             "zoneName": "ブルガリア"
           },
           "BO": {
-            "countryName": "",
             "zoneName": "ボリビア"
           },
           "BR-CS": {
@@ -163,7 +152,6 @@
             "zoneName": "南"
           },
           "BY": {
-            "countryName": "",
             "zoneName": "ベラルーシ"
           },
           "CA-AB": {
@@ -219,47 +207,36 @@
             "zoneName": "ユーコン"
           },
           "CH": {
-            "countryName": "",
             "zoneName": "スイス"
           },
           "CR": {
-            "countryName": "",
             "zoneName": "コスタリカ"
           },
           "CY": {
-            "countryName": "",
             "zoneName": "キプロス"
           },
           "CZ": {
-            "countryName": "",
             "zoneName": "チェコ"
           },
           "DE": {
-            "countryName": "",
             "zoneName": "ドイツ"
           },
           "DK": {
-            "countryName": "",
             "zoneName": "デンマーク"
           },
           "DO": {
-            "countryName": "",
             "zoneName": "ドミニカ共和国"
           },
           "DZ": {
-            "countryName": "",
             "zoneName": "アルジェリア"
           },
           "EE": {
-            "countryName": "",
             "zoneName": "エストニア"
           },
           "EG": {
-            "countryName": "",
             "zoneName": "エジプト"
           },
           "ES": {
-            "countryName": "",
             "zoneName": "スペイン"
           },
           "ES-IB": {
@@ -271,55 +248,42 @@
             "zoneName": "カナリア諸島"
           },
           "FI": {
-            "countryName": "",
             "zoneName": "フィンランド"
           },
           "FO": {
-            "countryName": "",
             "zoneName": "フェロー諸島"
           },
           "FR": {
-            "countryName": "",
             "zoneName": "フランス"
           },
           "GB": {
-            "countryName": "",
             "zoneName": "イギリス"
           },
           "GB-NIR": {
-            "countryName": "",
             "zoneName": "北アイルランド"
           },
           "GE": {
-            "countryName": "",
             "zoneName": "ジョージア州"
           },
           "GR": {
-            "countryName": "",
             "zoneName": "ギリシャ"
           },
           "GT": {
-            "countryName": "",
             "zoneName": "グアテマラ"
           },
           "HN": {
-            "countryName": "",
             "zoneName": "ホンジュラス"
           },
           "HR": {
-            "countryName": "",
             "zoneName": "クロアチア"
           },
           "HU": {
-            "countryName": "",
             "zoneName": "ハンガリー"
           },
           "IE": {
-            "countryName": "",
             "zoneName": "アイルランド"
           },
           "IL": {
-            "countryName": "",
             "zoneName": "イスラエル"
           },
           "IN-AN": {
@@ -447,79 +411,60 @@
             "zoneName": "西ベンガル州"
           },
           "IQ": {
-            "countryName": "",
             "zoneName": "イラク"
           },
           "IR": {
-            "countryName": "",
             "zoneName": "イラン"
           },
           "IS": {
-            "countryName": "",
             "zoneName": "アイスランド"
           },
           "IT": {
-            "countryName": "",
             "zoneName": "イタリア"
           },
           "JO": {
-            "countryName": "",
             "zoneName": "ヨルダン"
           },
           "KZ": {
-            "countryName": "",
             "zoneName": "カザフスタン"
           },
           "LB": {
-            "countryName": "",
             "zoneName": "レバノン"
           },
           "LT": {
-            "countryName": "",
             "zoneName": "リトアニア"
           },
           "LU": {
-            "countryName": "",
             "zoneName": "ルクセンブルク"
           },
           "LV": {
-            "countryName": "",
             "zoneName": "ラトビア"
           },
           "LY": {
-            "countryName": "",
             "zoneName": "リビア"
           },
           "MA": {
-            "countryName": "",
             "zoneName": "モロッコ"
           },
           "MD": {
-            "countryName": "",
             "zoneName": "モルドバ"
           },
           "ME": {
-            "countryName": "",
             "zoneName": "モンテネグロ"
           },
           "MK": {
-            "countryName": "",
             "zoneName": "マケドニア共和国"
           },
           "MT": {
-            "countryName": "",
             "zoneName": "マルタ"
           },
           "NI": {
-            "countryName": "",
             "zoneName": "ニカラグア"
           },
           "NL": {
-            "countryName": "",
             "zoneName": "オランダ"
           },
           "NO": {
-            "countryName": "",
             "zoneName": "ノルウェー"
           },
           "NZ-NZN": {
@@ -531,23 +476,18 @@
             "zoneName": "南島"
           },
           "PA": {
-            "countryName": "",
             "zoneName": "パナマ"
           },
           "PE": {
-            "countryName": "",
             "zoneName": "ペルー"
           },
           "PL": {
-            "countryName": "",
             "zoneName": "ポーランド"
           },
           "PS": {
-            "countryName": "",
             "zoneName": "パレスチナ"
           },
           "PT": {
-            "countryName": "",
             "zoneName": "ポルトガル"
           },
           "PT-AC": {
@@ -559,75 +499,57 @@
             "zoneName": "マデイラ"
           },
           "RO": {
-            "countryName": "",
             "zoneName": "ルーマニア"
           },
           "RS": {
-            "countryName": "",
             "zoneName": "セルビア"
           },
           "RU": {
-            "countryName": "",
             "zoneName": "ロシア"
           },
           "SA": {
-            "countryName": "",
             "zoneName": "サウジアラビア"
           },
           "SE": {
-            "countryName": "",
             "zoneName": "スウェーデン"
           },
           "SG": {
-            "countryName": "",
             "zoneName": "シンガポール"
           },
           "SI": {
-            "countryName": "",
             "zoneName": "スロベニア"
           },
           "SK": {
-            "countryName": "",
             "zoneName": "スロバキア"
           },
           "SV": {
-            "countryName": "",
             "zoneName": "エルサルバドル"
           },
           "SY": {
-            "countryName": "",
             "zoneName": "シリア"
           },
           "TM": {
-            "countryName": "",
             "zoneName": "トルクメニスタン"
           },
           "TN": {
-            "countryName": "",
             "zoneName": "チュニジア"
           },
           "TR": {
-            "countryName": "",
             "zoneName": "トルコ"
           },
           "TW": {
-            "countryName": "",
             "zoneName": "台湾"
           },
           "UA": {
-            "countryName": "",
             "zoneName": "ウクライナ"
           },
           "US": {
-            "countryName": "",
             "zoneName": "アメリカ合衆国"
           },
           "UY": {
-            "countryName": "",
             "zoneName": "ウルグアイ"
           },
           "UZ": {
-            "countryName": "",
             "zoneName": "ウズベキスタン"
           }
     }
