@@ -366,9 +366,7 @@ body {
 .mobile-info-tab p{
     margin: 0.6rem 0;
 }
-.mobile-info-tab p:first-child {
-    margin-top: 0;
-}
+
 .mobile-info-tab .info-text{
     padding-top: 1.5rem;
 }
@@ -851,6 +849,7 @@ div.highscore-button:hover {
 
 .zone-list-header .title {
     font-size: 1.3rem;
+    font-family: "Catamaran", sans-serif;
 }
 
 .zone-list-header .subtitle {
@@ -973,31 +972,35 @@ div.highscore-button:hover {
 
 #tab {
     position: relative;
+    background-color: rgb(164, 164, 164);
 }
 #tab-content {
     display: flex;
-    height: 40px;
+    height: 56px;
 }
 #tab #tab-content .list-item {
     display: flex;
 
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
+    flex-direction: column;
 
     width: 50%;
-
-    margin-bottom: 2px; /* For the border */
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-top: 8px;
+    font-family: "Catamaran", sans-serif;
+    color: #6b6b6b;
 }
 #tab.nomap #tab-content .list-item.map-button,
-#tab.nomap #tab-content .list-item.wind-toggle,
-#tab.nomap #tab-content .list-item.solar-toggle {
+{
     display: none;
 }
 #tab #tab-content .list-item.active {
     color: white;
-    border-bottom: 2px solid white;
-    margin-bottom: 0px;
+    font-size: 14px;
+    padding-top: 6px;
 }
 
 #tab #tab-content .list-item.active img,
@@ -1008,13 +1011,8 @@ div.highscore-button:hover {
     -o-filter: brightness(0%) invert(1);
     filter: brightness(0%) invert(1);
 }
-#tab #tab-content .list-item.active.wind-button,
-#tab #tab-content .list-item.active.solar-button {
-    border-bottom-color: lightgreen;
-}
+
 #tab #tab-content a {
-    padding-top: 0.2rem;
-    padding-bottom: 0.6rem;
     color: darkgrey;
 }
 #tab #tab-content a:hover {
@@ -1022,12 +1020,9 @@ div.highscore-button:hover {
     text-decoration: none;
 }
 #tab #tab-content i {
-    font-size: 1.5rem;
+    font-size: 24px;
 }
-#tab #tab-content img {
-    height: 1.2rem;
-    filter: unset;
-}
+
 
 sub {
     font-size: 60%;
@@ -1271,13 +1266,16 @@ sub {
 /* Small devices (phones, etc.) */
 @media (max-width: 767px) {
     #header {
-        min-height: 90px; /* required for old Safari */
+        min-height: 50px; /* required for old Safari */
     }
     #header-content .logo {
         margin-right: auto;
     }
     .small-screen-hidden {
         display: none;
+    }
+    .left-panel {
+        padding: 0 0 1rem 0;
     }
     .left-panel, #map-container {
         width: 100%;

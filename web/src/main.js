@@ -1021,6 +1021,9 @@ function routeToPage(pageName, state) {
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
+  if (pageName === 'country') {
+    d3.selectAll('#tab .highscore-button').classed('active', true);
+  }
 }
 function tryFetchHistory(state) {
   const { selectedZoneName } = state.application;
