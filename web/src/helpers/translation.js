@@ -37,8 +37,6 @@ exports.getFullZoneName = function getFullZoneName(zoneCode) {
   const countryName = exports.translate(`zoneShortName.${zoneCode}.countryName`);
   if (!countryName) {
     return zoneName;
-  }
-  var ret = `${zoneName} (${countryName})`;
- 
+  } 
   return `${zoneName} (${countryName})`;
 };
