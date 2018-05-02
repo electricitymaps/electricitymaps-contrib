@@ -67,14 +67,12 @@ def data_processor(df, logger):
     for index, row in df.iterrows():
         production = row.to_dict()
 
-        for key in keys_to_remove:
-            production.pop(key)
-
         dt = production.pop('Date/Time')
-        mapped_production = {GENERATION_MAPPING[k]:v for k,v in production.items()}
+        dt = dt.to_datetime()
+        mapped_production = {GENERATION_MAPPING[k]:v for k,v in production.items()
+                             if k not in keys_to_remove}
 
         processed_data.append((dt, mapped_production))
-
 
     return processed_data
 
@@ -122,6 +120,8 @@ def fetch_production(zone_key='US-BPA', session=None, target_datetime=None, logg
                      'production': item[1],
                      'storage': {},
                      'source': 'bpa.gov'}
+
+        data.append(datapoint)
 
     return data
 
