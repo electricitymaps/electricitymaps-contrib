@@ -127,8 +127,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     var datetime = this._data.stateDatetime || this._data.datetime;
     panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
     panel.select('.country-name').text(
-        translation.translate(
-            'zoneShortName.' + this._data.countryCode) || this._data.countryCode);
+        translation.getFullZoneName(this._data.countryCode));
     panel.selectAll('.country-time')
         .text(datetime ? moment(datetime).format('LL LT') : '?');
 
