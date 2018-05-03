@@ -630,13 +630,13 @@ def validate_production(datapoint, logger):
 def get_biomass(values):
     if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
         return values.get('Biomass', 0) + \
-               values.get('Fossil Peat', 0) + \
                values.get('Waste', 0)
 
 
 def get_coal(values):
     if 'Fossil Brown coal/Lignite' in values or 'Fossil Hard coal' in values:
         return values.get('Fossil Brown coal/Lignite', 0) + \
+               values.get('Fossil Peat', 0) + \
                values.get('Fossil Hard coal', 0)
 
 
