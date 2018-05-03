@@ -193,10 +193,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Denmark (Bornholm)
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
-- Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Estonia:
+  - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=EST)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
 - Finland
-  - Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
+  - Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France: [RTE](http://bilan-electrique-2017.rte-france.com/production/le-parc-de-production-national/)
 - Germany: [BNetzA](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
@@ -210,7 +212,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Iceland: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
 - Ireland
   - All production types: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Wind: [IWEA](http://www.iwea.com/index.cfm/page/windenergyfaqs?#q21)
+  - Biomass, Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=IRL)
 - Italy
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
