@@ -3053,6 +3053,24 @@
     "flag_file_name": "us.png",
     "timezone": null
   },
+  "US-BPA": {
+    "capacity":{
+      "biomass": 447,
+      "coal": 60,
+      "gas": 1817,
+      "hydro": 22191,
+      "nuclear": 1191,
+      "wind": 4051
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_BPA.fetch_production"
+    },
+    "timezone": null
+  },
   "US-CA": {
     "bounding_box": [
       [

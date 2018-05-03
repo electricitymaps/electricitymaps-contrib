@@ -1119,6 +1119,9 @@
           "US": {
             "zoneName": "United States of America"
           },
+          "US-BPA": {
+            "zoneName": "United States of America (BPA)"
+          },
           "US-CA": {
             "countryName": "United States of America",
             "zoneName": "California"
