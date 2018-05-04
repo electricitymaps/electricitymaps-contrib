@@ -695,12 +695,15 @@ d3.select('.wind-button').on('click', toggleWind);
 
 const windLayerButtonTooltip = d3.select('#wind-layer-button-tooltip');
 
-d3.select('.wind-button').on('mouseover', () => {
-  windLayerButtonTooltip.classed('hidden', false);
-});
-d3.select('.wind-button').on('mouseout', () => {
-  windLayerButtonTooltip.classed('hidden', true);
-});
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.wind-button').on('mouseover', () => {
+    windLayerButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.wind-button').on('mouseout', () => {
+    windLayerButtonTooltip.classed('hidden', true);
+  });
+}
 
 
 // Solar
@@ -712,12 +715,15 @@ d3.select('.solar-button').on('click', toggleSolar);
 
 const solarLayerButtonTooltip = d3.select('#solar-layer-button-tooltip');
 
-d3.select('.solar-button').on('mouseover', () => {
-  solarLayerButtonTooltip.classed('hidden', false);
-});
-d3.select('.solar-button').on('mouseout', () => {
-  solarLayerButtonTooltip.classed('hidden', true);
-});
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.solar-button').on('mouseover', () => {
+    solarLayerButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.solar-button').on('mouseout', () => {
+    solarLayerButtonTooltip.classed('hidden', true);
+  });
+}
 
 // Legend 
 function toggleLegend() {
@@ -758,7 +764,7 @@ zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Close button
-d3.selectAll('#left-panel-country-back')
+d3.selectAll('#left-panel-zone-details-back')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
     dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
@@ -986,28 +992,23 @@ function renderLeftPanelCollapseButton(state) {
   }
 }
 function routeToPage(pageName, state) {
-  // Hide all panels - we will show only the ones we need
-  d3.selectAll('.left-panel > div').style('display', 'none');
-  d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
-  d3.selectAll('.left-panel .left-panel-zone-list').style('display', (pageName !== 'country' ) ? undefined : 'none');
 
-  // Replace left panel by country view (large screen only)
-  d3.selectAll('.left-panel .left-panel-info')
-    .style('display', (pageName !== 'country' ) ? undefined : 'none')
-    // Hide info panel on small screens on all views but info view
-    .classed('large-screen-visible', pageName !== 'info');
 
-  // Hide zone list from info view on small screens
-  d3.selectAll('.left-panel .left-panel-zone-list')
-    .classed('large-screen-visible', pageName !== 'highscore')
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country');
+
+  d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-hidden', pageName !== 'country');
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-hidden', pageName !== 'country');
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
-  d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
+  d3.selectAll('#map-container').classed('small-screen-hidden', pageName !== 'map');
 
   if (pageName === 'map') {
-    d3.select('.left-panel').classed('large-screen-visible', true);
+    d3.select('.left-panel').classed('small-screen-hidden', true);
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
@@ -1015,7 +1016,7 @@ function routeToPage(pageName, state) {
     if (state.application.windEnabled && windColorbar) windColorbar.render();
     if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
-    d3.select('.left-panel').classed('large-screen-visible', false);
+    d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
     if (pageName === 'info') {
       if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
@@ -1026,6 +1027,9 @@ function routeToPage(pageName, state) {
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
+  if (pageName === 'country') {
+    d3.selectAll('#tab .highscore-button').classed('active', true);
+  }
 }
 function tryFetchHistory(state) {
   const { selectedZoneName } = state.application;

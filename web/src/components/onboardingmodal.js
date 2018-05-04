@@ -112,14 +112,14 @@ export default class OnboardingModal {
 
   _setupLeftButton() {
     const leftButtonContainer = this.rootContainer.append('div').attr('class', 'modal-left-button-container');
-    this.leftButton = leftButtonContainer.append('button').attr('class', 'modal-left-button');
+    this.leftButton = leftButtonContainer.append('div').attr('class', 'modal-left-button');
     this.leftButton.append('i').attr('class', 'material-icons').text('arrow_back');
     this.leftButton.on('click', () => this.showPreviousView());
   }
 
   _setupRightButton() {
     const rightButtonContainer = this.rootContainer.append('div').attr('class', 'modal-right-button-container');
-    this.rightButton = rightButtonContainer.append('button').attr('class', 'modal-right-button');
+    this.rightButton = rightButtonContainer.append('div').attr('class', 'modal-right-button');
     this.rightButton.append('i').attr('class', 'material-icons');
     this.rightButton.on('click', () => {
       if (this._modalIsAtLastView()) {

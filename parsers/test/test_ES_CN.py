@@ -3,8 +3,8 @@ import unittest
 from arrow import get
 from parsers import ES_CN
 from mock import patch
-from reescraper import Response
-from reescraper import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
+from ree import Response
+from ree import ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura, LaPalma, Tenerife
 
 
 class TestESIB(unittest.TestCase):

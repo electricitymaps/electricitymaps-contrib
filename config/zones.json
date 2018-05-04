@@ -591,12 +591,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 356,
-      "gas": 514,
-      "hydro": 15004,
-      "oil": 46,
-      "wind": 673
+      "biomass": 838,
+      "gas": 507,
+      "hydro": 15898,
+      "solar": 1,
+      "wind": 704
     },
+    "contributors": [
+      "https://github.com/daveachuk"
+    ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
@@ -1231,14 +1234,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 97,
-      "coal": 0,
-      "gas": 205,
-      "hydro": 0,
+      "biomass": 217,
+      "coal": 5,
+      "gas": 204,
+      "hydro": 8,
       "nuclear": 0,
-      "oil": 1975,
-      "solar": 1,
-      "wind": 375
+      "oil": 1976,
+      "solar": 11,
+      "wind": 487
     },
     "contributors": [
       "https://github.com/corradio"
@@ -1530,14 +1533,13 @@
       ]
     ],
     "capacity": {
-      "coal": 2930,
-      "gas": 10909,
-      "geothermal": 2,
-      "hydro": 23575,
+      "coal": 2997,
+      "gas": 11850,
+      "hydro": 25510,
       "nuclear": 63130,
-      "oil": 6670,
-      "solar": 6580,
-      "wind": 10358
+      "oil": 4098,
+      "solar": 7660,
+      "wind": 13550
     },
     "contributors": [
       "https://github.com/corradio"
@@ -1684,6 +1686,9 @@
     },
     "timezone": null
   },
+  "GR-IS": {
+    "timezone": null
+  },
   "GT": {
     "bounding_box": [
       [
@@ -1775,15 +1780,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 344,
-      "coal": 855,
-      "gas": 3801,
-      "hydro": 508,
+      "biomass": 107,
+      "coal": 1199,
+      "gas": 4265,
+      "hydro": 216,
+      "hydro storage": 292,
       "nuclear": 0,
-      "oil": 811,
-      "solar": 0,
+      "oil": 1272,
+      "solar": 10,
       "unknown": 647,
-      "wind": 3025
+      "wind": 3253
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3048,6 +3054,24 @@
       ]
     ],
     "flag_file_name": "us.png",
+    "timezone": null
+  },
+  "US-BPA": {
+    "capacity":{
+      "biomass": 447,
+      "coal": 60,
+      "gas": 1817,
+      "hydro": 22191,
+      "nuclear": 1191,
+      "wind": 4051
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_BPA.fetch_production"
+    },
     "timezone": null
   },
   "US-CA": {

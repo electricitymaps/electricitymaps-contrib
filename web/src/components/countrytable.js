@@ -123,12 +123,11 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     // Set header
     var header = d3.select('.country-table-header');
-    var panel = d3.select('.left-panel-country');
+    var panel = d3.select('.left-panel-zone-details');
     var datetime = this._data.stateDatetime || this._data.datetime;
     panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
     panel.select('.country-name').text(
-        translation.translate(
-            'zoneShortName.' + this._data.countryCode) || this._data.countryCode);
+        translation.getFullZoneName(this._data.countryCode));
     panel.selectAll('.country-time')
         .text(datetime ? moment(datetime).format('LL LT') : '?');
 
@@ -346,12 +345,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(Math.round(this._data.co2intensity) || '?');
     var hasFossilFuelData = this._data.fossilFuelRatio != null;
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.selectAll('.left-panel-country .lowcarbon-percentage')
+    d3.selectAll('.left-panel-zone-details .lowcarbon-percentage')
         .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
 
     var hasRenewableData = this._data.renewableRatio != null;
     var renewablePercent = this._data.renewableRatio * 100;
-    d3.selectAll('.left-panel-country .renewable-percentage')
+    d3.selectAll('.left-panel-zone-details .renewable-percentage')
         .text(hasRenewableData ? Math.round(renewablePercent) : '?');
 
     var priceData = this._data.price || {};
@@ -361,7 +360,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
     d3.select('.country-spot-price-currency')
         .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
-    d3.select('#country-emission-rect, .left-panel-country .emission-rect')
+    d3.select('#country-emission-rect, .left-panel-zone-details .emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',

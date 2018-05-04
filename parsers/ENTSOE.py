@@ -47,8 +47,8 @@ ENTSOE_PARAMETER_DESC = {
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
-    'biomass': ['B01', 'B08', 'B17'],
-    'coal': ['B02', 'B05'],
+    'biomass': ['B01', 'B17'],
+    'coal': ['B02', 'B05', 'B08'],
     'gas': ['B03', 'B04'],
     'geothermal': ['B09'],
     'hydro': ['B11', 'B12'],
@@ -628,16 +628,17 @@ def validate_production(datapoint, logger):
 
 
 def get_biomass(values):
-    if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
-        return values.get('Biomass', 0) + \
-               values.get('Fossil Peat', 0) + \
-               values.get('Waste', 0)
+    if 'Biomass' in values or 'Waste' in values:
+        return (values.get('Biomass', 0)
+                + values.get('Waste', 0))
 
 
 def get_coal(values):
-    if 'Fossil Brown coal/Lignite' in values or 'Fossil Hard coal' in values:
-        return values.get('Fossil Brown coal/Lignite', 0) + \
-               values.get('Fossil Hard coal', 0)
+    if 'Fossil Brown coal/Lignite' in values or 'Fossil Peat' in values \
+       or 'Fossil Hard coal' in values:
+        return (values.get('Fossil Brown coal/Lignite', 0)
+                + values.get('Fossil Peat', 0)
+                + values.get('Fossil Hard coal', 0))
 
 
 def get_gas(values):
