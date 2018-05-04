@@ -634,8 +634,8 @@ def get_biomass(values):
 
 
 def get_coal(values):
-    if True and ('Fossil Brown coal/Lignite' in values or 'Fossil Peat' in values
-                 or 'Fossil Hard coal' in values):
+    if 'Fossil Brown coal/Lignite' in values or 'Fossil Peat' in values \
+       or 'Fossil Hard coal' in values:
         return (values.get('Fossil Brown coal/Lignite', 0)
                 + values.get('Fossil Peat', 0)
                 + values.get('Fossil Hard coal', 0))
