@@ -2,7 +2,7 @@ var exports = module.exports = {};
 
 // Import all locales
 var locales = {};
-['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'].forEach(function(d) {
+['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'].forEach(function(d) {
     locales[d] = require('../../locales/' + d + '.json');
 })
 var vsprintf = require('sprintf-js').vsprintf;
@@ -28,3 +28,15 @@ exports.translate = function() {
     args.unshift(locale)
     return exports.translateWithLocale.apply(null, args);
 }
+
+exports.getFullZoneName = function getFullZoneName(zoneCode) {
+  const zoneName = exports.translate(`zoneShortName.${zoneCode}.zoneName`);
+  if (!zoneName) {
+    return zoneCode;
+  }
+  const countryName = exports.translate(`zoneShortName.${zoneCode}.countryName`);
+  if (!countryName) {
+    return zoneName;
+  } 
+  return `${zoneName} (${countryName})`;
+};

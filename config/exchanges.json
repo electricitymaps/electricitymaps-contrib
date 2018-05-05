@@ -49,6 +49,36 @@
     },
     "rotation": 110
   },
+  "AR->CL-SING": {
+    "lonlat": [
+      -68.291,
+      -24.547
+    ],
+    "parsers": {
+      "exchange": "AR.fetch_exchange"
+    },
+    "rotation": -45
+  },
+  "AR->PY": {
+    "lonlat": [
+      -60.293,
+      -24.026
+    ],
+    "parsers": {
+      "exchange": "AR.fetch_exchange"
+    },
+    "rotation": 35
+  },
+  "AR->UY": {
+    "lonlat": [
+      -58.162,
+      -32.166
+    ],
+    "parsers": {
+      "exchange": "AR.fetch_exchange"
+    },
+    "rotation": 90
+  },
   "AT->CH": {
     "lonlat": [
       9.597882,
@@ -894,7 +924,8 @@
       42.9
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 20
   },
@@ -914,7 +945,8 @@
       40
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
   },
@@ -978,7 +1010,8 @@
       50.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
   },
@@ -988,7 +1021,8 @@
       44.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
   },
@@ -1016,7 +1050,8 @@
       53
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -80
   },
@@ -1030,7 +1065,8 @@
       52.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
   },
@@ -1242,7 +1278,8 @@
       54.247411
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "statnett.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 180
   },

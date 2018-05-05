@@ -1,15 +1,5 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Projekt pokazuje w czasie rzeczywistym",
-        "whereelectricitycomesfrom": "skąd pochodzi używana przez Ciebie energia elektryczna",
-        "and": "oraz",
-        "howmuchco2": "jakie ilości CO2",
-        "wasemitted": "zostały wyemitowane do jej produkcji",
-
-        "takeinaccount": "Bierzemy pod uwagę",
-        "importexport": "import i eksport",
-        "betweenzones": "energii elektrycznej pomiędzy regionami",
-
         "thisproject": "Ten projekt jest",
         "opensource": "Open Source",
         "see": "zobacz",
@@ -88,215 +78,713 @@
     "ofCO2eqPerMinute": "CO2eq na minutę",
 
     "zoneShortName": {
-        "AE": "Zjednoczone Emiraty Arabskie",
-        "AL": "Albania",
-        "AF": "Afganistan",
-        "AR": "Argentyna",
-        "AT": "Austria",
-        "AUS-NSW": "Australia (Nowa Południowa Walia)",
-        "AUS-NT": "Australia (Terytorium Północne)",
-        "AUS-QLD": "Australia (Queensland)",
-        "AUS-SA": "Australia (Australia Południowa)",
-        "AUS-TAS": "Australia (Tasmania)",
-        "AUS-VIC": "Australia (Wiktoria)",
-        "AUS-WA": "Australia (Australia Zachodnia)",
-        "AX": "Wyspy Alandzkie",
-        "AZ": "Azerbejdżan",
-        "BA": "Bośnia i Hercegowina",
-        "BD": "Bangladesz",
-        "BE": "Belgia",
-        "BG": "Bułgaria",
-        "BH": "Bahrajn",
-        "BO": "Boliwia",
-        "BR-CS": "Brazylia (centralna)",
-        "BR-N": "Brazylia (północna)",
-        "BR-NE": "Brazylia (północno-wschodnia)",
-        "BR-S": "Brazylia (południowa)",
-        "BY": "Białoruś",
-        "CA-AB": "Kanada (Alberta)",
-        "CA-BC": "Kanada (Kolumbia Brytyjska)",
-        "CA-MB": "Kanada (Manitoba)",
-        "CA-NL": "Kanada (Nowa Fundlandia i Labrador)",
-        "CA-NB": "Kanada (Nowy Brunszwik)",
-        "CA-NT": "Kanada (Terytoria Północno-Zachodnie)",
-        "CA-NS": "Kanada (Nowa Szkocja)",
-        "CA-NU": "Kanada (Nunavut)",
-        "CA-ON": "Kanada (Ontario)",
-        "CA-PE": "Kanada (Wyspa Księcia Edwarda)",
-        "CA-QC": "Kanada (Quebec)",
-        "CA-SK": "Kanada (Saskatchewan)",
-        "CA-YT": "Kanada (Jukon)",
-        "CD": "Demokratyczna Republika Konga",
-        "CF": "Republika Środkowoafrykańska",
-        "CG": "Kongo",
-        "CH": "Szwajcaria",
-        "CI": "Wybrzeże Kości Słoniowej",
-        "CL": "Chile",
-        "CM": "Kamerun",
-        "CN": "Chiny",
-        "CO": "Kolumbia",
-        "CR": "Kostaryka",
-        "CU": "Kuba",
-        "CV": "Republika Zielonego Przylądka",
-        "CZ": "Czechy",
-        "DE": "Niemcy",
-        "DJ": "Dżibuti",
-        "DK": "Dania",
-        "DK-BHM": "Dania (Bornholm)",
-        "DO": "Dominikana",
-        "DZ": "Algieria",
-        "EC": "Ekwador",
-        "EE": "Estonia",
-        "EG": "Egipt",
-        "EH": "Sahara Zachodnia",
-        "ER": "Erytrea",
-        "ES": "Hiszpania",
-        "ES-IB": "Hiszpania (Baleary)",
-        "ES-CN-FVLZ": "Hiszpania (Fuerteventura/Lanzarote)",
-        "ES-CN-GC": "Hiszpania (Gran Canaria)",
-        "ES-CN-HI": "Hiszpania (El Hierro)",
-        "ES-CN-IG": "Hiszpania (La Gomera)",
-        "ES-CN-LP": "Hiszpania (La Palma)",
-        "ES-CN-TE": "Hiszpania (Teneryfa)",
-        "ET": "Etiopia",
-        "FI": "Finlandia",
-        "FO": "Wyspy Owcze",
-        "FR": "Francja",
-        "FR-COR": "Francja (Korsyka)",
-        "GB": "Wielka Brytania",
-        "GB-NIR": "Irlandia Północna",
-        "GE": "Gruzja",
-        "GF": "Gujana Francuska",
-        "GL": "Grenlandia",
-        "GN": "Gwinea",
-        "GQ": "Gwinea Równikowa",
-        "GR": "Grecja",
-        "GT": "Gwatemala",
-        "GW": "Gwinea Bissau",
-        "GY": "Gujana",
-        "HN": "Honduras",
-        "HR": "Chorwacja",
-        "HU": "Węgry",
-        "ID": "Indonezja",
-        "IE": "Irlandia",
-        "IL": "Izrael",
-        "IN-AN": "Indie (Andamany i Nikobary)",
-        "IN-AP": "Indie (Andhra Pradesh)",
-        "IN-AR": "Indie (Arunachal Pradesh)",
-        "IN-AS": "Indie (Asam)",
-        "IN-BR": "Indie (Bihar)",
-        "IN-CT": "Indie (Chhattisgarh)",
-        "IN-DL": "Indie (Delhi)",
-        "IN-GA": "Indie (Goa)",
-        "IN-GJ": "Indie (Gudźarat)",
-        "IN-HP": "Indie (Himachal Pradesh)",
-        "IN-HR": "Indie (Hariana)",
-        "IN-JH": "Indie (Jharkhand)",
-        "IN-JK": "Indie (Dżammu i Kaszmir)",
-        "IN-KA": "Indie (Karnataka)",
-        "IN-KL": "Indie (Kerala)",
-        "IN-MH": "Indie (Maharasztra)",
-        "IN-ML": "Indie (Meghalaya)",
-        "IN-MN": "Indie (Manipur)",
-        "IN-MP": "Indie (Madhya Pradesh)",
-        "IN-MZ": "Indie (Mizoram)",
-        "IN-NL": "Indie (Nagaland)",
-        "IN-OR": "Indie (Orisa)",
-        "IN-PB": "Indie (Pendżab)",
-        "IN-PY": "Indie (Puducherry)",
-        "IN-RJ": "Indie (Radżastan)",
-        "IN-SK": "Indie (Sikkim)",
-        "IN-TL": "Indie (Tamilnadu)",
-        "IN-TR": "Indie (Tripura)",
-        "IN-UP": "Indie (Uttar Pradesh)",
-        "IN-UT": "Indie (Uttarakhand)",
-        "IN-WB": "Indie (Bengal Zachodni)",
-        "IQ": "Irak",
-        "IS": "Islandia",
-        "IT": "Włochy",
-        "JM": "Jamajka",
-        "JO": "Jordania",
-        "JP": "Japonia",
-        "KE": "Kenia",
-        "KG": "Kirgistan",
-        "KH": "Kambodża",
-        "KM": "Komory",
-        "KP": "Korea Północna",
-        "KR": "Korea Południowa",
-        "KW": "Kuwejt",
-        "KZ": "Kazachstan",
-        "LB": "Liban",
-        "LT": "Litwa",
-        "LU": "Luksemburg",
-        "LV": "Łotwa",
-        "LY": "Libia",
-        "MA": "Maroko",
-        "MD": "Mołdawia",
-        "ME": "Czarnogóra",
-        "MG": "Madagaskar",
-        "MK": "Macedonia",
-        "MM": "Mjanma",
-        "MR": "Mauretania",
-        "MT": "Malta",
-        "MX": "Meksyk",
-        "MY-EM": "Malezja (Borneo)",
-        "MY-WM": "Malezja (półwysep)",
-        "MZ": "Mozambik",
-        "NI": "Nikaragua",
-        "NL": "Holandia",
-        "NO": "Norwegia",
-        "NZ-NZN": "Nowa Zelandia (Wyspa Północna)",
-        "NZ-NZS": "Nowa Zelandia (Wyspa Południowa)",
-        "PA": "Panama",
-        "PE": "Peru",
-        "PG": "Papua-Nowa Gwinea",
-        "PH": "Filipiny",
-        "PL": "Polska",
-        "PS": "Palestyna",
-        "PT": "Portugalia",
-        "PT-AC": "Portugalia (Azory)",
-        "PT-MA": "Portugalia (Madera)",
-        "PY": "Paragwaj",
-        "QA": "Katar",
-        "RO": "Rumunia",
-        "RS": "Serbia",
-        "RU": "Rosja",
-        "RU-E": "Rosja",
-        "RU-KGD": "Rosja (Kaliningrad)",
-        "SA": "Arabia Saudyjska",
-        "SE": "Szwecja",
-        "SG": "Singapur",
-        "SI": "Słowenia",
-        "SJ": "Svalbard i Jan Mayen",
-        "SK": "Słowacja",
-        "SR": "Surinam",
-        "SS": "Sudan Południowy",
-        "ST": "Wyspy Świętego Tomasza i Książęca",
-        "SV": "Salwador",
-        "SZ": "Suazi",
-        "TD": "Czad",
-        "TJ": "Tadżykistan",
-        "TL": "Timor Wschodni",
-        "TH": "Tajlandia",
-        "TN": "Tunezja",
-        "TR": "Turcja",
-        "TT": "Trynidad i Tobago",
-        "TW": "Tajwan",
-        "UA": "Ukraina",
-        "US": "USA",
-        "US-AK": "USA (Alaska)",
-        "US-CA": "USA (Kalifornia)",
-        "US-MISO": "USA (sieć MISO)",
-        "US-NEISO": "USA (Nowa Anglia)",
-        "US-NY": "USA (Nowy Jork)",
-        "US-PJM": "USA (sieć PJM)",
-        "US-HI": "USA (Hawaje)",
-        "UY": "Urugwaj",
-        "VE": "Wenezuela",
-        "VN": "Wietnam",
-        "YE": "Jemen",
-        "ZA": "Południowa Afryka",
-        "ZM": "Zambia",
-        "ZW": "Zimbabwe"
+        "AE": {
+            "zoneName": "Zjednoczone Emiraty Arabskie"
+          },
+          "AL": {
+            "zoneName": "Albania"
+          },
+          "AF": {
+            "zoneName": "Afganistan"
+          },
+          "AR": {
+            "zoneName": "Argentyna"
+          },
+          "AT": {
+            "zoneName": "Austria"
+          },
+          "AUS-NSW": {
+            "countryName": "Australia",
+            "zoneName": "Nowa Południowa Walia"
+          },
+          "AUS-NT": {
+            "countryName": "Australia",
+            "zoneName": "Terytorium Północne"
+          },
+          "AUS-QLD": {
+            "countryName": "Australia",
+            "zoneName": "Queensland"
+          },
+          "AUS-SA": {
+            "countryName": "Australia",
+            "zoneName": "Australia Południowa"
+          },
+          "AUS-TAS": {
+            "countryName": "Australia",
+            "zoneName": "Tasmania"
+          },
+          "AUS-VIC": {
+            "countryName": "Australia",
+            "zoneName": "Wiktoria"
+          },
+          "AUS-WA": {
+            "countryName": "Australia",
+            "zoneName": "Australia Zachodnia"
+          },
+          "AX": {
+            "zoneName": "Wyspy Alandzkie"
+          },
+          "AZ": {
+            "zoneName": "Azerbejdżan"
+          },
+          "BA": {
+            "zoneName": "Bośnia i Hercegowina"
+          },
+          "BD": {
+            "zoneName": "Bangladesz"
+          },
+          "BE": {
+            "zoneName": "Belgia"
+          },
+          "BG": {
+            "zoneName": "Bułgaria"
+          },
+          "BH": {
+            "zoneName": "Bahrajn"
+          },
+          "BO": {
+            "zoneName": "Boliwia"
+          },
+          "BR-CS": {
+            "countryName": "Brazylia",
+            "zoneName": "centralna"
+          },
+          "BR-N": {
+            "countryName": "Brazylia",
+            "zoneName": "północna"
+          },
+          "BR-NE": {
+            "countryName": "Brazylia",
+            "zoneName": "północno-wschodnia"
+          },
+          "BR-S": {
+            "countryName": "Brazylia",
+            "zoneName": "południowa"
+          },
+          "BY": {
+            "zoneName": "Białoruś"
+          },
+          "CA-AB": {
+            "countryName": "Kanada",
+            "zoneName": "Alberta"
+          },
+          "CA-BC": {
+            "countryName": "Kanada",
+            "zoneName": "Kolumbia Brytyjska"
+          },
+          "CA-MB": {
+            "countryName": "Kanada",
+            "zoneName": "Manitoba"
+          },
+          "CA-NL": {
+            "countryName": "Kanada",
+            "zoneName": "Nowa Fundlandia i Labrador"
+          },
+          "CA-NB": {
+            "countryName": "Kanada",
+            "zoneName": "Nowy Brunszwik"
+          },
+          "CA-NT": {
+            "countryName": "Kanada",
+            "zoneName": "Terytoria Północno-Zachodnie"
+          },
+          "CA-NS": {
+            "countryName": "Kanada",
+            "zoneName": "Nowa Szkocja"
+          },
+          "CA-NU": {
+            "countryName": "Kanada",
+            "zoneName": "Nunavut"
+          },
+          "CA-ON": {
+            "countryName": "Kanada",
+            "zoneName": "Ontario"
+          },
+          "CA-PE": {
+            "countryName": "Kanada",
+            "zoneName": "Wyspa Księcia Edwarda"
+          },
+          "CA-QC": {
+            "countryName": "Kanada",
+            "zoneName": "Quebec"
+          },
+          "CA-SK": {
+            "countryName": "Kanada",
+            "zoneName": "Saskatchewan"
+          },
+          "CA-YT": {
+            "countryName": "Kanada",
+            "zoneName": "Jukon"
+          },
+          "CD": {
+            "zoneName": "Demokratyczna Republika Konga"
+          },
+          "CF": {
+            "zoneName": "Republika Środkowoafrykańska"
+          },
+          "CG": {
+            "zoneName": "Kongo"
+          },
+          "CH": {
+            "zoneName": "Szwajcaria"
+          },
+          "CI": {
+            "zoneName": "Wybrzeże Kości Słoniowej"
+          },
+          "CL": {
+            "zoneName": "Chile"
+          },
+          "CM": {
+            "zoneName": "Kamerun"
+          },
+          "CN": {
+            "zoneName": "Chiny"
+          },
+          "CO": {
+            "zoneName": "Kolumbia"
+          },
+          "CR": {
+            "zoneName": "Kostaryka"
+          },
+          "CU": {
+            "zoneName": "Kuba"
+          },
+          "CV": {
+            "zoneName": "Republika Zielonego Przylądka"
+          },
+          "CZ": {
+            "zoneName": "Czechy"
+          },
+          "DE": {
+            "zoneName": "Niemcy"
+          },
+          "DJ": {
+            "zoneName": "Dżibuti"
+          },
+          "DK": {
+            "zoneName": "Dania"
+          },
+          "DK-BHM": {
+            "countryName": "Dania",
+            "zoneName": "Bornholm"
+          },
+          "DO": {
+            "zoneName": "Dominikana"
+          },
+          "DZ": {
+            "zoneName": "Algieria"
+          },
+          "EC": {
+            "zoneName": "Ekwador"
+          },
+          "EE": {
+            "zoneName": "Estonia"
+          },
+          "EG": {
+            "zoneName": "Egipt"
+          },
+          "EH": {
+            "zoneName": "Sahara Zachodnia"
+          },
+          "ER": {
+            "zoneName": "Erytrea"
+          },
+          "ES": {
+            "zoneName": "Hiszpania"
+          },
+          "ES-IB": {
+            "countryName": "Hiszpania",
+            "zoneName": "Baleary"
+          },
+          "ES-CN-FVLZ": {
+            "countryName": "Hiszpania",
+            "zoneName": "Fuerteventura/Lanzarote"
+          },
+          "ES-CN-GC": {
+            "countryName": "Hiszpania",
+            "zoneName": "Gran Canaria"
+          },
+          "ES-CN-HI": {
+            "countryName": "Hiszpania",
+            "zoneName": "El Hierro"
+          },
+          "ES-CN-IG": {
+            "countryName": "Hiszpania",
+            "zoneName": "La Gomera"
+          },
+          "ES-CN-LP": {
+            "countryName": "Hiszpania",
+            "zoneName": "La Palma"
+          },
+          "ES-CN-TE": {
+            "countryName": "Hiszpania",
+            "zoneName": "Teneryfa"
+          },
+          "ET": {
+            "zoneName": "Etiopia"
+          },
+          "FI": {
+            "zoneName": "Finlandia"
+          },
+          "FO": {
+            "zoneName": "Wyspy Owcze"
+          },
+          "FR": {
+            "zoneName": "Francja"
+          },
+          "FR-COR": {
+            "countryName": "Francja",
+            "zoneName": "Korsyka"
+          },
+          "GB": {
+            "zoneName": "Wielka Brytania"
+          },
+          "GB-NIR": {
+            "zoneName": "Irlandia Północna"
+          },
+          "GE": {
+            "zoneName": "Gruzja"
+          },
+          "GF": {
+            "zoneName": "Gujana Francuska"
+          },
+          "GL": {
+            "zoneName": "Grenlandia"
+          },
+          "GN": {
+            "zoneName": "Gwinea"
+          },
+          "GQ": {
+            "zoneName": "Gwinea Równikowa"
+          },
+          "GR": {
+            "zoneName": "Grecja"
+          },
+          "GT": {
+            "zoneName": "Gwatemala"
+          },
+          "GW": {
+            "zoneName": "Gwinea Bissau"
+          },
+          "GY": {
+            "zoneName": "Gujana"
+          },
+          "HN": {
+            "zoneName": "Honduras"
+          },
+          "HR": {
+            "zoneName": "Chorwacja"
+          },
+          "HU": {
+            "zoneName": "Węgry"
+          },
+          "ID": {
+            "zoneName": "Indonezja"
+          },
+          "IE": {
+            "zoneName": "Irlandia"
+          },
+          "IL": {
+            "zoneName": "Izrael"
+          },
+          "IN-AN": {
+            "countryName": "Indie",
+            "zoneName": "Andamany i Nikobary"
+          },
+          "IN-AP": {
+            "countryName": "Indie",
+            "zoneName": "Andhra Pradesh"
+          },
+          "IN-AR": {
+            "countryName": "Indie",
+            "zoneName": "Arunachal Pradesh"
+          },
+          "IN-AS": {
+            "countryName": "Indie",
+            "zoneName": "Asam"
+          },
+          "IN-BR": {
+            "countryName": "Indie",
+            "zoneName": "Bihar"
+          },
+          "IN-CT": {
+            "countryName": "Indie",
+            "zoneName": "Chhattisgarh"
+          },
+          "IN-DL": {
+            "countryName": "Indie",
+            "zoneName": "Delhi"
+          },
+          "IN-GA": {
+            "countryName": "Indie",
+            "zoneName": "Goa"
+          },
+          "IN-GJ": {
+            "countryName": "Indie",
+            "zoneName": "Gudźarat"
+          },
+          "IN-HP": {
+            "countryName": "Indie",
+            "zoneName": "Himachal Pradesh"
+          },
+          "IN-HR": {
+            "countryName": "Indie",
+            "zoneName": "Hariana"
+          },
+          "IN-JH": {
+            "countryName": "Indie",
+            "zoneName": "Jharkhand"
+          },
+          "IN-JK": {
+            "countryName": "Indie",
+            "zoneName": "Dżammu i Kaszmir"
+          },
+          "IN-KA": {
+            "countryName": "Indie",
+            "zoneName": "Karnataka"
+          },
+          "IN-KL": {
+            "countryName": "Indie",
+            "zoneName": "Kerala"
+          },
+          "IN-MH": {
+            "countryName": "Indie",
+            "zoneName": "Maharasztra"
+          },
+          "IN-ML": {
+            "countryName": "Indie",
+            "zoneName": "Meghalaya"
+          },
+          "IN-MN": {
+            "countryName": "Indie",
+            "zoneName": "Manipur"
+          },
+          "IN-MP": {
+            "countryName": "Indie",
+            "zoneName": "Madhya Pradesh"
+          },
+          "IN-MZ": {
+            "countryName": "Indie",
+            "zoneName": "Mizoram"
+          },
+          "IN-NL": {
+            "countryName": "Indie",
+            "zoneName": "Nagaland"
+          },
+          "IN-OR": {
+            "countryName": "Indie",
+            "zoneName": "Orisa"
+          },
+          "IN-PB": {
+            "countryName": "Indie",
+            "zoneName": "Pendżab"
+          },
+          "IN-PY": {
+            "countryName": "Indie",
+            "zoneName": "Puducherry"
+          },
+          "IN-RJ": {
+            "countryName": "Indie",
+            "zoneName": "Radżastan"
+          },
+          "IN-SK": {
+            "countryName": "Indie",
+            "zoneName": "Sikkim"
+          },
+          "IN-TL": {
+            "countryName": "Indie",
+            "zoneName": "Tamilnadu"
+          },
+          "IN-TR": {
+            "countryName": "Indie",
+            "zoneName": "Tripura"
+          },
+          "IN-UP": {
+            "countryName": "Indie",
+            "zoneName": "Uttar Pradesh"
+          },
+          "IN-UT": {
+            "countryName": "Indie",
+            "zoneName": "Uttarakhand"
+          },
+          "IN-WB": {
+            "countryName": "Indie",
+            "zoneName": "Bengal Zachodni"
+          },
+          "IQ": {
+            "zoneName": "Irak"
+          },
+          "IS": {
+            "zoneName": "Islandia"
+          },
+          "IT": {
+            "zoneName": "Włochy"
+          },
+          "JM": {
+            "zoneName": "Jamajka"
+          },
+          "JO": {
+            "zoneName": "Jordania"
+          },
+          "JP": {
+            "zoneName": "Japonia"
+          },
+          "KE": {
+            "zoneName": "Kenia"
+          },
+          "KG": {
+            "zoneName": "Kirgistan"
+          },
+          "KH": {
+            "zoneName": "Kambodża"
+          },
+          "KM": {
+            "zoneName": "Komory"
+          },
+          "KP": {
+            "zoneName": "Korea Północna"
+          },
+          "KR": {
+            "zoneName": "Korea Południowa"
+          },
+          "KW": {
+            "zoneName": "Kuwejt"
+          },
+          "KZ": {
+            "zoneName": "Kazachstan"
+          },
+          "LB": {
+            "zoneName": "Liban"
+          },
+          "LT": {
+            "zoneName": "Litwa"
+          },
+          "LU": {
+            "zoneName": "Luksemburg"
+          },
+          "LV": {
+            "zoneName": "Łotwa"
+          },
+          "LY": {
+            "zoneName": "Libia"
+          },
+          "MA": {
+            "zoneName": "Maroko"
+          },
+          "MD": {
+            "zoneName": "Mołdawia"
+          },
+          "ME": {
+            "zoneName": "Czarnogóra"
+          },
+          "MG": {
+            "zoneName": "Madagaskar"
+          },
+          "MK": {
+            "zoneName": "Macedonia"
+          },
+          "MM": {
+            "zoneName": "Mjanma"
+          },
+          "MR": {
+            "zoneName": "Mauretania"
+          },
+          "MT": {
+            "zoneName": "Malta"
+          },
+          "MX": {
+            "zoneName": "Meksyk"
+          },
+          "MY-EM": {
+            "countryName": "Malezja",
+            "zoneName": "Borneo"
+          },
+          "MY-WM": {
+            "countryName": "Malezja",
+            "zoneName": "półwysep"
+          },
+          "MZ": {
+            "zoneName": "Mozambik"
+          },
+          "NI": {
+            "zoneName": "Nikaragua"
+          },
+          "NL": {
+            "zoneName": "Holandia"
+          },
+          "NO": {
+            "zoneName": "Norwegia"
+          },
+          "NZ-NZN": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspa Północna"
+          },
+          "NZ-NZS": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspa Południowa"
+          },
+          "PA": {
+            "zoneName": "Panama"
+          },
+          "PE": {
+            "zoneName": "Peru"
+          },
+          "PG": {
+            "zoneName": "Papua-Nowa Gwinea"
+          },
+          "PH": {
+            "zoneName": "Filipiny"
+          },
+          "PL": {
+            "zoneName": "Polska"
+          },
+          "PS": {
+            "zoneName": "Palestyna"
+          },
+          "PT": {
+            "zoneName": "Portugalia"
+          },
+          "PT-AC": {
+            "countryName": "Portugalia",
+            "zoneName": "Azory"
+          },
+          "PT-MA": {
+            "countryName": "Portugalia",
+            "zoneName": "Madera"
+          },
+          "PY": {
+            "zoneName": "Paragwaj"
+          },
+          "QA": {
+            "zoneName": "Katar"
+          },
+          "RO": {
+            "zoneName": "Rumunia"
+          },
+          "RS": {
+            "zoneName": "Serbia"
+          },
+          "RU": {
+            "zoneName": "Rosja"
+          },
+          "RU-E": {
+            "zoneName": "Rosja"
+          },
+          "RU-KGD": {
+            "countryName": "Rosja",
+            "zoneName": "Kaliningrad"
+          },
+          "SA": {
+            "zoneName": "Arabia Saudyjska"
+          },
+          "SE": {
+            "zoneName": "Szwecja"
+          },
+          "SG": {
+            "zoneName": "Singapur"
+          },
+          "SI": {
+            "zoneName": "Słowenia"
+          },
+          "SJ": {
+            "zoneName": "Svalbard i Jan Mayen"
+          },
+          "SK": {
+            "zoneName": "Słowacja"
+          },
+          "SR": {
+            "zoneName": "Surinam"
+          },
+          "SS": {
+            "zoneName": "Sudan Południowy"
+          },
+          "ST": {
+            "zoneName": "Wyspy Świętego Tomasza i Książęca"
+          },
+          "SV": {
+            "zoneName": "Salwador"
+          },
+          "SZ": {
+            "zoneName": "Suazi"
+          },
+          "TD": {
+            "zoneName": "Czad"
+          },
+          "TJ": {
+            "zoneName": "Tadżykistan"
+          },
+          "TL": {
+            "zoneName": "Timor Wschodni"
+          },
+          "TH": {
+            "zoneName": "Tajlandia"
+          },
+          "TN": {
+            "zoneName": "Tunezja"
+          },
+          "TR": {
+            "zoneName": "Turcja"
+          },
+          "TT": {
+            "zoneName": "Trynidad i Tobago"
+          },
+          "TW": {
+            "zoneName": "Tajwan"
+          },
+          "UA": {
+            "zoneName": "Ukraina"
+          },
+          "US": {
+            "zoneName": "USA"
+          },
+          "US-AK": {
+            "countryName": "USA",
+            "zoneName": "Alaska"
+          },
+          "US-CA": {
+            "countryName": "USA",
+            "zoneName": "Kalifornia"
+          },
+          "US-MISO": {
+            "countryName": "USA",
+            "zoneName": "sieć MISO"
+          },
+          "US-NEISO": {
+            "countryName": "USA",
+            "zoneName": "Nowa Anglia"
+          },
+          "US-NY": {
+            "countryName": "USA",
+            "zoneName": "Nowy Jork"
+          },
+          "US-PJM": {
+            "countryName": "USA",
+            "zoneName": "sieć PJM"
+          },
+          "US-HI": {
+            "countryName": "USA",
+            "zoneName": "Hawaje"
+          },
+          "UY": {
+            "zoneName": "Urugwaj"
+          },
+          "VE": {
+            "zoneName": "Wenezuela"
+          },
+          "VN": {
+            "zoneName": "Wietnam"
+          },
+          "YE": {
+            "zoneName": "Jemen"
+          },
+          "ZA": {
+            "zoneName": "Południowa Afryka"
+          },
+          "ZM": {
+            "zoneName": "Zambia"
+          },
+          "ZW": {
+            "zoneName": "Zimbabwe"
+          }
     }
 }

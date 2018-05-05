@@ -87,8 +87,7 @@ module.exports.showProduction = function(tooltipInstance, mode, country, display
       translation.translate(
         langString,
         productionProportion,
-        translation.translate(
-            'zoneShortName.' + country.countryCode) || country.countryCode,
+        translation.getFullZoneName(country.countryCode),
         domainName)))
   .select('#country-flag')
     .classed('flag', true)
@@ -137,8 +136,8 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
   tooltip.select('#line1')
     .html(formatting.co2Sub(translation.translate(langString,
       exchangeProportion,
-      translation.translate('zoneShortName.' + country.countryCode) || country.countryCode,
-      translation.translate('zoneShortName.' + key) || key)));
+      translation.getFullZoneName(country.countryCode),
+      translation.getFullZoneName(key))));
   tooltip.select('#line1 #country-flag')
     .classed('flag', true)
     .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
@@ -169,7 +168,7 @@ module.exports.showExchange = function(tooltipInstance, key, country, displayByE
   tooltip.select('.emission-intensity')
     .text(Math.round(co2intensity) || '?');
   tooltip.select('.country-exchange-source-name')
-    .text(translation.translate('zoneShortName.' + o) || o)
+    .text(translation.getFullZoneName(o))
     .style('font-weight', 'bold');
 
   tooltipInstance.show();
@@ -182,7 +181,7 @@ module.exports.showMapCountry = function(tooltipInstance, countryData, co2color,
   tooltip.select('#country-flag')
     .attr('src', flags.flagUri(countryData.countryCode, 16));
   tooltip.select('#country-name')
-    .text(translation.translate('zoneShortName.' + countryData.countryCode) || countryData.countryCode)
+    .text(translation.getFullZoneName(countryData.countryCode))
     .style('font-weight', 'bold');
   tooltip.select('.emission-rect')
     .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
@@ -211,10 +210,10 @@ module.exports.showMapExchange = function(tooltipInstance, exchangeData, co2colo
   const i = exchangeData.netFlow > 0 ? 0 : 1;
   const ctrFrom = exchangeData.countryCodes[i];
   tooltip.selectAll('span#from')
-    .text(translation.translate('zoneShortName.' + ctrFrom) || ctrFrom);
+    .text(translation.getFullZoneName(ctrFrom));
   const ctrTo = exchangeData.countryCodes[(i + 1) % 2];
   tooltip.select('span#to')
-    .text(translation.translate('zoneShortName.' + ctrTo) || ctrTo);
+    .text(translation.getFullZoneName(ctrTo));
   tooltip.select('span#flow')
     .text(Math.abs(Math.round(exchangeData.netFlow)));
   tooltip.select('img.flag.from')

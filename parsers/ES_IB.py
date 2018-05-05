@@ -4,7 +4,7 @@
 from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import BalearicIslands
+from ree import BalearicIslands
 from .lib.exceptions import ParserException
 
 

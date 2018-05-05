@@ -23,7 +23,7 @@ export default class ZoneList {
   setZones(zonesData) {
     const zones = d3.values(zonesData);
     const validatedAndSortedZones = this._sortAndValidateZones(zones);
-    this.zones = this._decorateZones(validatedAndSortedZones);
+    this.zones = this._saveZoneRankings(validatedAndSortedZones);
   }
 
   setCo2ColorScale(colorScale) {
@@ -61,9 +61,12 @@ export default class ZoneList {
     this._setItemClickHandlers();
   }
 
-  _zoneMatchesQuery(zone, query) {
-    return zone.countryName.toLowerCase().indexOf(query) !== -1
-    || zone.zoneName.toLowerCase().indexOf(query) !== -1;
+  _zoneMatchesQuery(zone, queryString) {
+    const queries = queryString.split(' ');
+    return queries.every(query =>
+      translation.getFullZoneName(zone.countryCode)
+        .toLowerCase()
+        .indexOf(query.toLowerCase()) !== -1);
   }
 
   _sortAndValidateZones(zones) {
@@ -83,34 +86,10 @@ export default class ZoneList {
       });
   }
 
-  _decorateZones(zones) {
-    const zonesWithRankings = this._saveZoneRankings(zones);
-    return this._splitZoneFullNamesIntoCountryAndZoneNames(zonesWithRankings);
-  }
-
   _saveZoneRankings(zones) {
     return zones.map((zone) => {
       const ret = Object.assign({}, zone);
       ret.ranking = zones.indexOf(zone) + 1;
-      return ret;
-    });
-  }
-
-  _splitZoneFullNamesIntoCountryAndZoneNames(zones) {
-    return zones.map((zone) => {
-      const zoneFullName = translation.translate(`zoneShortName.${zone.countryCode}`) || zone.countryCode;
-      const leftParanthesisIndex = zoneFullName.indexOf('(');
-      const rightParanthesisIndex = zoneFullName.indexOf(')');
-      const ret = Object.assign({}, zone);
-
-      if (leftParanthesisIndex !== -1 && rightParanthesisIndex !== -1) {
-        ret.countryName = zoneFullName.substring(0, leftParanthesisIndex - 1);
-        ret.zoneName = zoneFullName
-          .substring(leftParanthesisIndex + 1, rightParanthesisIndex);
-      } else {
-        ret.countryName = '';
-        ret.zoneName = zoneFullName;
-      }
       return ret;
     });
   }
@@ -143,10 +122,10 @@ export default class ZoneList {
 
   _setItemNames() {
     this.selector.select('.zone-name')
-      .text(zone => zone.zoneName);
+      .text(zone => translation.translate(`zoneShortName.${zone.countryCode}.zoneName`));
 
     this.selector.select('.country-name')
-      .text(zone => zone.countryName);
+      .text(zone => translation.translate(`zoneShortName.${zone.countryCode}.countryName`));
   }
 
   _setItemRanks() {
