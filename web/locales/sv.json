@@ -366,7 +366,7 @@
           },
           "DK-DK2": {
             "countryName": "Danmark",
-            "zoneName": "Ost"
+            "zoneName": "Öst"
           },
           "DK-BHM": {
             "countryName": "Danmark",
@@ -869,11 +869,11 @@
             "zoneName": "Niue"
           },
           "NZ-NZA": {
-            "countryName": "New Zealand",
+            "countryName": "Nya Zeeland",
             "zoneName": "Aucklandöarna"
           },
           "NZ-NZC": {
-            "countryName": "New Zealand",
+            "countryName": "Nya Zeeland",
             "zoneName": "Chathamöarna"
           },
           "NZ-NZN": {
