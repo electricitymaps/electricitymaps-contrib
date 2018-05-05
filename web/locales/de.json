@@ -4,7 +4,7 @@
         "opensource": "Open Source",
         "see": "siehe",
         "datasources": "Datenquellen",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
+        "contribute": "Wirke mit indem du <a href=\"%s\" target=\"_blank\">dein land hinzufügst</a>"
     },
     "country-panel": {
         "source": "Quelle",
@@ -229,7 +229,7 @@
           },
           "CA-BC": {
             "countryName": "Kanada",
-            "zoneName": "British Columbia"
+            "zoneName": "Britisch-Kolumbien"
           },
           "CA-MB": {
             "countryName": "Kanada",
@@ -237,7 +237,7 @@
           },
           "CA-NL": {
             "countryName": "Kanada",
-            "zoneName": "Newfoundland and Labrador"
+            "zoneName": "Neufundland und Labrador"
           },
           "CA-NB": {
             "countryName": "Kanada",
@@ -578,7 +578,7 @@
           },
           "IN-JK": {
             "countryName": "Indien",
-            "zoneName": "Jammu and Kashmir"
+            "zoneName": "Jammu und Kaschmir"
           },
           "IN-KA": {
             "countryName": "Indien",
@@ -855,11 +855,11 @@
           },
           "NZ-NZN": {
             "countryName": "Neuseeland",
-            "zoneName": "North Island"
+            "zoneName": "Nord Insel"
           },
           "NZ-NZS": {
             "countryName": "Neuseeland",
-            "zoneName": "South Island"
+            "zoneName": "Süd Insel"
           },
           "OM": {
             "zoneName": "Oman"
