@@ -6,12 +6,35 @@
         "datasources": "datakällor",
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
+    "mobile-info-tab": {
+        "map-info-text": "Denna karta visar hur mycket CO<sub>2</sub> som släpps ut för att producera din el, i realtid. Vi färglägger områden runt om i världen baserat på deras utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el.",
+        "electricity-origins-text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om ursprunget för dess el.",
+        "wind-solar-text": "Elproduktion från sol och vind är beroende av vädret. Tryck på knapparna sol och vind för att i realtid visa vindstyrka och solsken över hela världen."
+    },
+    "onboarding-modal": {
+        "view1": {
+            "header": "Elkartan",
+            "subtitle": "Kartlägg klimatpåverkan från elproduktion"
+        },
+        "view2": {
+            "header": "Se hur mycket CO<sub>2</sub> som släpps ut när din el produceras, i realtid.",
+            "text": "Vi färglägger områden runt om i världen baserat på deras utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
+        },
+        "view3": {
+            "header": "Vet var din el kommer från",
+            "text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om ursprunget för dess el."
+        },
+        "view4": {
+            "header": "Vind- och solförhållanden i realtid",
+            "text": "Elproduktion från sol och vind är beroende av vädret. Tryck på knapparna sol och vind för att i realtid visa vindstyrka och solsken över hela världen."
+        }
+    },
     "country-panel": {
         "source": "källa",
         "carbonintensity": "Utsläpp av koldioxid",
         "lowcarbon": "Fosilfritt",
         "renewable": "Förnybart",
-        "electricityproduction": "Elproduktion",
+        "electricity": "Elproduktion",
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
@@ -48,7 +71,11 @@
         "carbonintensityexport": "Utsläpp av koldioxid för export",
         "ofinstalled": "av installerad kapacitet",
         "utilizing": "utnyttjar",
-        "withcarbonintensity": "med ett utsläpp av koldioxid på"
+        "withcarbonintensity": "med ett utsläpp av koldioxid på",
+        "showWindLayer": "Visa vind-lager",
+        "hideWindLayer": "Dölj vind-lager",
+        "showSolarLayer": "Visa sol-lager",
+        "hideSolarLayer": "Dölj sol-lager"
     },
     "misc": {
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
@@ -496,6 +523,10 @@
           },
           "GR": {
             "zoneName": "Grekland"
+          },
+          "GR-IS": {
+            "countryName": "Grekland",
+            "zoneName": "Egeiska öarna"
           },
           "GS": {
             "zoneName": "Sydgeorgien och Sydsandwichöarna"
@@ -1092,6 +1123,10 @@
           },
           "US": {
             "zoneName": "USA"
+          },
+          "US-BPA": {
+            "countryName": "USA",
+            "zoneName": "BPA"
           },
           "US-CA": {
             "countryName": "USA",
