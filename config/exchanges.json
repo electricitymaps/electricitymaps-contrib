@@ -505,7 +505,7 @@
       46.7349
     ],
     "parsers": {
-      "exchange": "CA_NB.fetch_exchange"
+      "exchange": "CA_PE.fetch_exchange"
     },
     "rotation": 90
   },
