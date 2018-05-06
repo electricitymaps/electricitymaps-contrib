@@ -151,7 +151,7 @@ class TestESIB(unittest.TestCase):
         el_hierro.return_value = [
             Response(self.morning, 10.0, 1.5, 2.0, 0.5, 2.5, 2.5, 0.4, 5.0),
             Response(self.afternoon, 5.6, 1.7, 0.0, 1.6, 0.0, 0.0, 0.0, 2.4),
-            Response(self.evening, 12.0, 2.0, 2.0, 0.5, 2.5, 2.5, 0.0, 3.0),
+            Response(self.evening, 12.0, 0.0, 2.0, 0.5, 2.5, 0.0, 0.0, 3.0),
             Response(self.empty_production, 12.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
         ]
         gran_canaria.return_value = []
@@ -188,7 +188,7 @@ class TestESIB(unittest.TestCase):
                 self.assertEqual(production['storage']['hydro'], -2.4)
             elif self.evening == production['datetime']:
                 self.assertEqual(production['production']['gas'], 4.5)
-                self.assertEqual(production['production']['oil'], 4.5)
+                self.assertEqual(production['production']['oil'], 0.0)
                 self.assertEqual(production['production']['hydro'], 0.0)
                 self.assertEqual(production['production']['solar'], 0.0)
                 self.assertEqual(production['production']['wind'], 0.5)
