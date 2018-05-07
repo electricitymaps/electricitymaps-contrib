@@ -150,11 +150,12 @@ def parse_production(csv_text, target_datetime=None,
         fields = line.split(',')
 
         # create the datetime
-        datetime = datetime_from_date_sp(fields[1], fields[2])
+        date_obj = dt.datetime.strptime(fields[3], '%Y%m%d%H%M%S')
+        datetime = arrow.get(date_obj).replace(minutes=-5).to('Europe/London')
 
         data = {
             'zoneKey': 'GB',
-            'datetime': datetime,
+            'datetime': datetime.datetime,
             'production': {},
             'storage': {},
             'source': 'bmreports.com'
