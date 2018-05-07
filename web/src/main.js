@@ -415,7 +415,7 @@ window.toggleSource = (state) => {
   document.getElementById('country-history-electricity-carbonintensity')
     .textContent = translation.translate(
       tableDisplayEmissions ?
-        'country-history.carbonintensity24h' : 'country-history.electricityorigin24h');
+        'country-history.emissionsorigin24h' : 'country-history.electricityorigin24h');
 };
 
 function mapMouseOver(lonlat) {
