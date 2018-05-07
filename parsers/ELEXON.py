@@ -16,7 +16,7 @@ import os
 import arrow
 import logging
 import requests
-import dateutil
+import datetime as dt
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
@@ -176,13 +176,12 @@ def parse_production(csv_text, target_datetime=None,
 
 
 def datetime_from_date_sp(date, sp):
-    date = '{}-{}-{}'.format(date[:4], date[4:6], date[6:8])
+    date = dt.datetime.strptime(date, '%Y%m%d').date()
     sp = int(sp)
-    hour = str(int((sp - 1) / 2)).zfill(2)
-    minute = '00' if sp % 2 == 1 else '30'
-    date_str = '{} {}:{}'.format(date, hour, minute)
-    datetime = arrow.get(date_str).replace(tzinfo=dateutil.tz.gettz('Europe/London'))
-    return datetime.datetime
+    hour = int((sp - 1) / 2)
+    minute = 0 if sp % 2 == 1 else 30
+    datetime = arrow.get(dt.datetime.combine(date, dt.time(hour, minute)))
+    return datetime.replace(tzinfo='Europe/London').datetime
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
