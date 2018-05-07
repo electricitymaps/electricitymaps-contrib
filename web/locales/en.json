@@ -75,7 +75,9 @@
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
-        "hideSolarLayer": "Hide solar layer"
+        "hideSolarLayer": "Hide solar layer",
+        "noParserInfo": "No data available",
+        "temporaryDataOutage": "Data temporarily unavailable"
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
