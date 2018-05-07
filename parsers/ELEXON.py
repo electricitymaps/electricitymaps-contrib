@@ -73,8 +73,7 @@ def query_exchange(session, target_datetime=None):
         'ServiceType': 'csv'
     }
     response = query_ELEXON('INTERFUELHH', session, params, target_datetime)
-    response = response.content.decode()
-    return response
+    return response.text
 
 
 def query_production(session, target_datetime=None):
@@ -82,8 +81,7 @@ def query_production(session, target_datetime=None):
         'ServiceType': 'csv'
     }
     response = query_ELEXON('FUELINST', session, params, target_datetime)
-    response = response.content.decode()
-    return response
+    return response.text
 
 
 def parse_exchange(zone_key1, zone_key2, csv_text, target_datetime=None,
@@ -100,17 +98,17 @@ def parse_exchange(zone_key1, zone_key2, csv_text, target_datetime=None,
     # check field count in report is as expected
     field_count = len(lines[1].split(','))
     if field_count != EXPECTED_FIELDS['INTERFUELHH']:
-        logger.warning(
+        raise ValueError(
             'Expected {} fields in INTERFUELHH report, got {}'.format(
-                EXPECTED_FIELDS['INTERFUELHH'], field_count
-            )
-        )
+                EXPECTED_FIELDS['INTERFUELHH'], field_count))
 
     for line in lines[1:-1]:
         fields = line.split(',')
 
-        # create the datetime
-        datetime = datetime_from_date_sp(fields[1], fields[2])
+        # settlement date / period combinations are always local time
+        date = dt.datetime.strptime(fields[1], '%Y%m%d').date()
+        settlement_period = int(fields[2])
+        datetime = datetime_from_date_sp(date, settlement_period)
 
         data = {
             'sortedZoneKeys': exchange,
@@ -123,10 +121,7 @@ def parse_exchange(zone_key1, zone_key2, csv_text, target_datetime=None,
         data['netFlow'] = float(fields[EXCHANGES[exchange]]) * multiplier
         data_points.append(data)
 
-    if not target_datetime:
-        return data_points[-1]
-    else:
-        return data_points
+    return data_points
 
 
 def parse_production(csv_text, target_datetime=None,
@@ -140,17 +135,18 @@ def parse_production(csv_text, target_datetime=None,
     # check field count in report is as expected
     field_count = len(lines[1].split(','))
     if field_count != EXPECTED_FIELDS['FUELINST']:
-        logger.warning(
+        raise ValueError(
             'Expected {} fields in FUELINST report, got {}'.format(
-                EXPECTED_FIELDS['FUELINST'], field_count
-            )
-        )
+                EXPECTED_FIELDS['FUELINST'], field_count))
 
     for line in lines[1:-1]:
         fields = line.split(',')
 
-        # create the datetime
-        date_obj = dt.datetime.strptime(fields[3], '%Y%m%d%H%M%S')
+        # all timestamps are always GMT in ELEXON.
+        # the publish time of a datapoint is five minutes after that
+        # datapoint e.g. datapoint of 09:00 has a publish time of 09:05
+        publish_time = fields[3]
+        date_obj = dt.datetime.strptime(publish_time, '%Y%m%d%H%M%S')
         datetime = arrow.get(date_obj).replace(minutes=-5).to('Europe/London')
 
         data = {
@@ -170,18 +166,11 @@ def parse_production(csv_text, target_datetime=None,
 
         data_points.append(data)
 
-    if not target_datetime:
-        return data_points[-1]
-    else:
-        return data_points
+    return data_points
 
 
 def datetime_from_date_sp(date, sp):
-    date = dt.datetime.strptime(date, '%Y%m%d').date()
-    sp = int(sp)
-    hour = int((sp - 1) / 2)
-    minute = 0 if sp % 2 == 1 else 30
-    datetime = arrow.get(dt.datetime.combine(date, dt.time(hour, minute)))
+    datetime = arrow.get(date).shift(minutes=30 * (sp - 1))
     return datetime.replace(tzinfo='Europe/London').datetime
 
 
@@ -200,3 +189,23 @@ def fetch_production(session=None, target_datetime=None,
     response = query_production(session, target_datetime)
     data = parse_production(response, target_datetime, logger)
     return data
+
+
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy 
+    for testing."""
+
+    print('fetch_production() ->')
+    print(fetch_production())
+
+    print('fetch_exchange(FR, GB) ->')
+    print(fetch_exchange('FR', 'GB'))
+
+    print('fetch_exchange(GB, IE) ->')
+    print(fetch_exchange('GB', 'IE'))
+
+    print('fetch_exchange(GB, NL) ->')
+    print(fetch_exchange('GB', 'NL'))
+
+    print('fetch_exchange(GB-NIR, IE) ->')
+    print(fetch_exchange('GB-NIR', 'IE'))
