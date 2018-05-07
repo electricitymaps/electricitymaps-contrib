@@ -20,7 +20,8 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.translate(`zoneShortName.${key}`);
+  zone.shortname = translation.getFullZoneName(key);
+  zone.hasParser = zoneConfig.parsers && zoneConfig.parsers.production !== undefined;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
@@ -148,7 +149,15 @@ module.exports = (state = initialDataState, action) => {
     case 'HISTORY_DATA': {
       // Create new histories
       const newHistories = Object.assign({}, state.histories);
-      newHistories[action.zoneName] = action.payload;
+
+      // Add 'hasParser' flag to all zone history observations
+      const zoneHistory = action.payload.map((observation) => {
+        const ret = Object.assign({}, observation);
+        ret.hasParser = true;
+        return ret;
+      });
+
+      newHistories[action.zoneName] = zoneHistory;
       // Create new state
       const newState = Object.assign({}, state);
       newState.histories = newHistories;

@@ -1,4 +1,5 @@
 const translation = require('../helpers/translation');
+const formatting = require('../helpers/formatting');
 const d3 = Object.assign(
   {},
   require('d3-selection'),
@@ -15,7 +16,7 @@ const defaultViews = [{
 },
 {
   headerImage: 'images/onboarding/mapExtract.png',
-  textHtml: `<div><h2>${translation.translate('onboarding-modal.view2.header')}</h2></div>
+  textHtml: `<div><h2>${formatting.co2Sub(translation.translate('onboarding-modal.view2.header'))}</h2></div>
       <div>${translation.translate('onboarding-modal.view2.text')}</div>`,
 }, {
   headerImage: 'images/onboarding/exchangeArrows.png',
@@ -112,14 +113,14 @@ export default class OnboardingModal {
 
   _setupLeftButton() {
     const leftButtonContainer = this.rootContainer.append('div').attr('class', 'modal-left-button-container');
-    this.leftButton = leftButtonContainer.append('button').attr('class', 'modal-left-button');
+    this.leftButton = leftButtonContainer.append('div').attr('class', 'modal-left-button');
     this.leftButton.append('i').attr('class', 'material-icons').text('arrow_back');
     this.leftButton.on('click', () => this.showPreviousView());
   }
 
   _setupRightButton() {
     const rightButtonContainer = this.rootContainer.append('div').attr('class', 'modal-right-button-container');
-    this.rightButton = rightButtonContainer.append('button').attr('class', 'modal-right-button');
+    this.rightButton = rightButtonContainer.append('div').attr('class', 'modal-right-button');
     this.rightButton.append('i').attr('class', 'material-icons');
     this.rightButton.on('click', () => {
       if (this._modalIsAtLastView()) {

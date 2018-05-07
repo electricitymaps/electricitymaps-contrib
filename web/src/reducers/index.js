@@ -16,6 +16,8 @@ const initialApplicationState = {
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
+  isMobile:
+  (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
   isProduction: window.location.href.indexOf('electricitymap') !== -1,
   isLocalhost,
   legendVisible: false,

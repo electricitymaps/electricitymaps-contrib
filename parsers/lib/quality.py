@@ -63,7 +63,7 @@ def validate_production(obj, zone_key):
          obj.get('production', {}).get('gas', None) is None and zone_key
          not in ['CH', 'NO', 'AUS-TAS', 'DK-BHM', 'US-NEISO'])):
         raise ValidationError(
-            "Coal or oil or unknown production value is required for"
+            "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key)
     if 'storage' in obj:
         if not isinstance(obj['storage'], dict):
