@@ -7,7 +7,7 @@
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "mobile-info-tab": {
-        "map-info-text": "This map shows how much CO<sub>2</sub> is emitted to produce your electricity, in real-time. We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity.",
+        "map-info-text": "This map shows how much CO2 is emitted to produce your electricity, in real-time. We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity.",
         "electricity-origins-text": "Arrows on the map indicate flows of electricity between different areas. Tap on an area to see more information about the origins of its electricity.",
         "wind-solar-text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     },
@@ -17,7 +17,7 @@
             "subtitle": "Mapping the climate impact of electricity"
         },
         "view2": {
-            "header": "See how much CO<sub>2</sub> is emitted to produce your electricity, in real-time.",
+            "header": "See how much CO2 is emitted to produce your electricity, in real-time.",
             "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
         },
         "view3": {
@@ -47,6 +47,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "emissionsorigin24h": "Origin of emissions in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
         "Getdata": "Get historical data and forecast API"
@@ -1126,7 +1127,8 @@
             "zoneName": "United States of America"
           },
           "US-BPA": {
-            "zoneName": "United States of America (BPA)"
+            "countryName": "United States of America",
+            "zoneName": "BPA"
           },
           "US-CA": {
             "countryName": "United States of America",
