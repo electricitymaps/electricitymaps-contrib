@@ -940,7 +940,6 @@ function renderHistory(state) {
         if (!d.countryCode) {
           d.countryCode = selectedZoneName;
         }
-        d.hasParser = true;
         countryTable
           .powerScaleDomain([lo, hi])
           .co2ScaleDomain([lo_emission, hi_emission]);
