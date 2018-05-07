@@ -187,11 +187,11 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     tooltip.select('.country-emission-intensity')
       .text(Math.round(countryData.co2intensity) || '?');
 
-    const hasFossilFuelData = countryData.fossilFuelRatio !== null;
+    const hasFossilFuelData = countryData.fossilFuelRatio !== undefined || countryData.fossilFuelRatio !== null;
     const fossilFuelPercent = countryData.fossilFuelRatio * 100;
     tooltip.select('.lowcarbon-percentage')
       .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
-    const hasRenewableData = countryData.renewableRatio !== null;
+    const hasRenewableData = countryData.renewableRatio !== undefined || countryData.renewableRatio !== null;
     const renewablePercent = countryData.renewableRatio * 100;
     tooltip.select('.renewable-percentage')
       .text(hasRenewableData ? Math.round(renewablePercent) : '?');
