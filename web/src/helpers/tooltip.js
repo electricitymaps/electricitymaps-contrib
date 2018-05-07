@@ -181,7 +181,6 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     .style('font-weight', 'bold');
 
   if (countryData.hasParser) {
-    tooltip.select('.zone-details').style('display', 'block');
     tooltip.select('.emission-rect')
       .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
     tooltip.select('.country-emission-intensity')
