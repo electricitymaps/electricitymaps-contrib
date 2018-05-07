@@ -471,12 +471,24 @@ co2Sub = function(str) {
             </div>
         </div>
         <div id="country-tooltip" class="tooltip panel">
-            <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />
-            <img id="country-flag" class="flag"></img> <span id="country-name"></span>:
-            <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
-            <br />
-            <%- co2Sub(__('tooltips.lowcarbon')) %>: <span class="lowcarbon-percentage"></span> %<br />
-            <%-        __('tooltips.renewable')  %>: <span class="renewable-percentage"></span> %
+
+            <div class="zone-name-header">
+                    <img id="country-flag" class="flag"></img> <span id="country-name"></span>
+            </div>
+            <div class="zone-details">
+                    <div>
+                        <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />        
+                        <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />        
+                    </div>
+                    <%- co2Sub(__('tooltips.lowcarbon')) %>: <span class="lowcarbon-percentage"></span>%<br />
+                    <%-        __('tooltips.renewable')  %>: <span class="renewable-percentage"></span>%
+            </div>
+            <div class="temporary-outage-text">
+                    <%-        __('tooltips.temporaryDataOutage')  %>
+            </div>
+            <div class="no-parser-text">
+                    <%-        __('tooltips.noParserInfo')  %>
+            </div>
         </div>
         <div id="exchange-tooltip" class="tooltip panel">
             <%- __('tooltips.crossborderexport') %>:<br />
