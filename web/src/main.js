@@ -105,7 +105,7 @@ let solarLayer;
 let onboardingModal;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),

@@ -38,7 +38,8 @@
         "bysource": "by source",
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "helpfrom": "with help from"
+        "helpfrom": "with help from",
+        "nodata": "No data"
     },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",

@@ -1,3 +1,5 @@
+import NoDataOverlay from '../components/nodataoverlay'
+
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -24,10 +26,14 @@ function CountryTable(selector, modeColor, modeOrder) {
 
     this.root = d3.select(selector);
 
+    this.tableNoDataOverlay = new NoDataOverlay(selector);
+    this.headerNoDataOverlay = new NoDataOverlay('.country-table-header');
+    this.container = this.root.append('svg').attr('class', 'country-table');
+    
     // Create containers
-    this.headerRoot = this.root.append('g');
-    this.productionRoot = this.root.append('g');
-    this.exchangeRoot = this.root.append('g');
+    this.headerRoot = this.container.append('g');
+    this.productionRoot = this.container.append('g');
+    this.exchangeRoot = this.container.append('g');
 
     // Constants
     this.ROW_HEIGHT = 13; // Height of the rects
@@ -87,12 +93,13 @@ function CountryTable(selector, modeColor, modeOrder) {
         .style('fill', 'darkgray')
         .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
+    
 }
 
 CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
-    var width = this.root.node().getBoundingClientRect().width;
+    var width = this.container.node().getBoundingClientRect().width;
     if (width === 0) { return; }
     if (!this._exchangeData) { return; }
 
@@ -121,6 +128,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', ' + this.X_AXIS_HEIGHT +')')
         .call(this.axis);
 
+
+
     // Set header
     var header = d3.select('.country-table-header');
     var panel = d3.select('.left-panel-zone-details');
@@ -136,6 +145,10 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     /*selection.select('rect.capacity')
         .attr('fill', function (d) { return that.co2color()(d.gCo2eqPerkWh); })
         .attr('stroke', function (d) { return that.co2color()(d.gCo2eqPerkWh); });*/
+
+    this.headerNoDataOverlay.showIfElseHide(!this.hasProductionData);
+    this.tableNoDataOverlay.showIfElseHide(!this.hasProductionData);
+
     if (that._displayByEmissions)
         selection.select('rect.capacity')
             .transition()
@@ -429,7 +442,7 @@ CountryTable.prototype.resize = function() {
     this.exchangeRoot
         .attr('transform', 'translate(0,' + this.yExchange + ')');
 
-    this.root
+    this.container
         .attr('height', this.yExchange + this.exchangeHeight);
 }
 
@@ -476,6 +489,9 @@ CountryTable.prototype.data = function(arg) {
             gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
         };
     });
+
+    this.hasProductionData = this.sortedProductionData.some(zone => zone.production);
+
 
     // update scales
     this.powerScale
