@@ -117,9 +117,9 @@ var defaultExportCo2eqFootprint = {
         carbonIntensity: 47,
         renewableRatio: 0.97,
         fossilFuelRatio: 0.03,
-        source: 'List of Generating Stations in BC (Wikipedia)',
+        source: 'List of Generating Stations in BC (Wikipedia) / IPCC 2014 Emissions Factors By Source',
         url: 'https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia',
-        comment: 'All grid-connected stations tallied by fuel source and converted to gCO2eq/MWh using IPCC 2014 averages'
+        comment: 'Average carbon intensity using 2016 mean production per fuel source (88% hydro, 9% biomass, 1% wind, 1% gas) and IPCC 2014 default lifecycle emission factors'
     },
     'CA-NB': {
         carbonIntensity: 300,
