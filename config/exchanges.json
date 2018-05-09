@@ -1442,8 +1442,8 @@
   },
   "NO-NO1->NO-NO2": {
     "lonlat": [
-      9,
-      59.4
+      9.3,
+      59
     ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast",

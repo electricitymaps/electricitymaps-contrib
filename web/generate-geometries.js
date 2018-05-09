@@ -197,7 +197,7 @@ const zoneDefinitions = [
   {zoneName: 'DJ', type: 'country', id: 'DJI'},
   // {zoneName: 'DK', type: 'subunits', subunits: ['DNK']},
   { zoneName: 'DK-DK1', type: 'states', countryId: 'DNK', states: ['DK.MJ', 'DK.ND', 'DK.SD'] },
-  { zoneName: 'DK-DK2', type: 'country', countryId: 'DK-DK2' },
+  { zoneName: 'DK-DK2', type: 'subZone', id: 'DK-DK2' },
   {zoneName: 'DK-BHM', type: 'subunits', subunits: ['DNB']},
   {zoneName: 'DM', type: 'country', id: 'DMA'},
   {zoneName: 'DO', type: 'country', id: 'DOM'},
