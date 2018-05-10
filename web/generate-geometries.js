@@ -16,7 +16,18 @@ function readNDJSON(path) {
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
 const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
-  .concat([require('./third_party_maps/DK-DK2-without-BHM.json')]);
+  .concat([
+    require('./third_party_maps/DK-DK2-without-BHM.json'),
+    require('./third_party_maps/NO-NO1.json'),
+    require('./third_party_maps/NO-NO2.json'),
+    require('./third_party_maps/NO-NO3.json'),
+    require('./third_party_maps/NO-NO4.json'),
+    require('./third_party_maps/NO-NO5.json'),
+    require('./third_party_maps/SE-SE1.json'),
+    require('./third_party_maps/SE-SE2.json'),
+    require('./third_party_maps/SE-SE3.json'),
+    require('./third_party_maps/SE-SE4.json'),
+  ]);
 
 const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
 
@@ -53,6 +64,9 @@ function hascMatch(properties, hasc) {
 
 function getCountry(countryId) {
   return geomerge(...allGeos.filter(d => d.id === countryId));
+}
+function getByPropertiesId(zoneId) {
+  return geomerge(...allGeos.filter(d => d.properties.id === zoneId));
 }
 function getSubUnit(subid) {
   return geomerge(...allGeos.filter(d => d.properties.subid === subid));
@@ -183,7 +197,7 @@ const zoneDefinitions = [
   {zoneName: 'DJ', type: 'country', id: 'DJI'},
   // {zoneName: 'DK', type: 'subunits', subunits: ['DNK']},
   { zoneName: 'DK-DK1', type: 'states', countryId: 'DNK', states: ['DK.MJ', 'DK.ND', 'DK.SD'] },
-  { zoneName: 'DK-DK2', type: 'country', countryId: 'DK-DK2' },
+  { zoneName: 'DK-DK2', type: 'subZone', id: 'DK-DK2' },
   {zoneName: 'DK-BHM', type: 'subunits', subunits: ['DNB']},
   {zoneName: 'DM', type: 'country', id: 'DMA'},
   {zoneName: 'DO', type: 'country', id: 'DOM'},
@@ -348,7 +362,12 @@ const zoneDefinitions = [
   {zoneName: 'NG', type: 'country', id: 'NGA'},
   {zoneName: 'NI', type: 'country', id: 'NIC'},
   {zoneName: 'NL', type: 'country', id: 'NLD'},
-  {zoneName: 'NO', type: 'country', id: 'NOR'},
+  // {zoneName: 'NO', type: 'country', id: 'NOR'},
+  { zoneName: 'NO-NO1', type: 'subZone', id: 'NO-NO1' },
+  { zoneName: 'NO-NO2', type: 'subZone', id: 'NO-NO2' },
+  { zoneName: 'NO-NO3', type: 'subZone', id: 'NO-NO3' },
+  { zoneName: 'NO-NO4', type: 'subZone', id: 'NO-NO4' },
+  { zoneName: 'NO-NO5', type: 'subZone', id: 'NO-NO5' },
   {zoneName: 'NP', type: 'country', id: 'NPL'},
   // {zoneName: 'NZ', type: 'country', id: 'NZL'},
   {zoneName: 'NU', type: 'country', id: 'NIU'},
@@ -397,6 +416,10 @@ const zoneDefinitions = [
   {zoneName: 'SC', type: 'country', id: 'SYC'},
   {zoneName: 'SD', type: 'country', id: 'SDN'},
   {zoneName: 'SE', type: 'country', id: 'SWE'},
+  // { zoneName: 'SE-SE1', type: 'subZone', id: 'SE-SE1' },
+  // { zoneName: 'SE-SE2', type: 'subZone', id: 'SE-SE2' },
+  // { zoneName: 'SE-SE3', type: 'subZone', id: 'SE-SE3' },
+  // { zoneName: 'SE-SE4', type: 'subZone', id: 'SE-SE4' },
   {zoneName: 'SG', type: 'country', id: 'SGP'},
   {zoneName: 'SH', type: 'country', id: 'SHN'},
   {zoneName: 'SI', type: 'country', id: 'SVN'},
@@ -543,6 +566,9 @@ const getDataForZone = (zone, mergeStates) => {
   }
   else if (zone.type === 'fips'){
     return getStateByFips(zone.fips[0], zone.fips[1]);
+  }
+  else if (zone.type === 'subZone') {
+    return getByPropertiesId(zone.id);
   }
   else{
     console.warn('unknown type for zone ', zone);

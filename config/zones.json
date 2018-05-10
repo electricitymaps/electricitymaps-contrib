@@ -2401,6 +2401,13 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
+    "subZoneNames": [
+      "NO-NO1",
+      "NO-NO2",
+      "NO-NO3",
+      "NO-NO4",
+      "NO-NO5"
+    ],
     "timezone": "Europe/Oslo"
   },
   "NO-NO1": {
@@ -2411,7 +2418,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        7.610326512408815,
+        58.38472727500012
+      ],
+      [
+        13.388184448000061,
+        63.128901615737796
+      ]
+    ]
   },
   "NO-NO2": {
     "parsers": {
@@ -2421,7 +2438,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        4.570648634000037,
+        57.49315013200005
+      ],
+      [
+        11.014170769000089,
+        60.73048157269916
+      ]
+    ]
   },
   "NO-NO3": {
     "parsers": {
@@ -2431,7 +2458,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        4.143809441000116,
+        60.43027545054864
+      ],
+      [
+        14.661440063000043,
+        65.490423895
+      ]
+    ]
   },
   "NO-NO4": {
     "parsers": {
@@ -2441,7 +2478,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        11.018809441000087,
+        63.879640651798496
+      ],
+      [
+        31.576996290000153,
+        71.6652692730001
+      ]
+    ]
   },
   "NO-NO5": {
     "parsers": {
@@ -2451,7 +2498,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        4.27686608200014,
+        59.59392557929161
+      ],
+      [
+        10.10473435728148,
+        62.338893003403086
+      ]
+    ]
   },
   "NZ-NZN": {
     "bounding_box": [
@@ -2797,7 +2854,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        14.926272420000089,
+        63.65992801849613
+      ],
+      [
+        24.663413534000114,
+        69.53635569300009
+      ]
+    ]
   },
   "SE-SE2": {
     "parsers": {
@@ -2806,7 +2873,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        11.492425171000093,
+        60.280991513822045
+      ],
+      [
+        21.486074487958014,
+        66.78799631800014
+      ]
+    ]
   },
   "SE-SE3": {
     "parsers": {
@@ -2815,7 +2892,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        10.608164910000113,
+        56.392035223000065
+      ],
+      [
+        19.8385522800001,
+        62.67478628775066
+      ]
+    ]
   },
   "SE-SE4": {
     "parsers": {
@@ -2824,7 +2911,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        11.951426629000139,
+        54.84267812700013
+      ],
+      [
+        17.624522332000083,
+        57.85822174700009
+      ]
+    ]
   },
   "SG": {
     "bounding_box": [
@@ -3067,7 +3164,7 @@
     "timezone": null
   },
   "US-BPA": {
-    "capacity":{
+    "capacity": {
       "biomass": 447,
       "coal": 60,
       "gas": 1817,
@@ -3082,7 +3179,17 @@
     "parsers": {
       "production": "US_BPA.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -125.23460723799991,
+        45.066312681984755
+      ],
+      [
+        -116.37882694730573,
+        49.49251489298911
+      ]
+    ]
   },
   "US-CA": {
     "bounding_box": [
