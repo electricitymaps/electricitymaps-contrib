@@ -1408,7 +1408,8 @@
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
-    }
+    },
+    "rotation": 0
   },
   "NO-NO1->NO-NO2": {
     "lonlat": [
