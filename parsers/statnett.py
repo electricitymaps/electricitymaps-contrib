@@ -117,6 +117,9 @@ exchanges_mapping = {
     'NO-NO3->NO-NO5': [
         'NO3->NO5'
     ],
+    'NO-NO3->SE': [
+        'NO3->SE2'
+    ],
     'NO-NO3->SE-SE2': [
         'NO3->SE2'
     ],
