@@ -889,8 +889,25 @@
           "NL": {
             "zoneName": "Netherlands"
           },
-          "NO": {
-            "zoneName": "Norway"
+          "NO-NO1": {
+            "countryName": "Norway",
+            "zoneName": "Southeast Norway"
+          },
+          "NO-NO2": {
+            "countryName": "Norway",
+            "zoneName": "Southwest Norway"
+          },
+          "NO-NO3": {
+            "countryName": "Norway",
+            "zoneName": "Middle Norway"
+          },
+          "NO-NO4": {
+            "countryName": "Norway",
+            "zoneName": "North Norway"
+          },
+          "NO-NO5": {
+            "countryName": "Norway",
+            "zoneName": "West Norway"
           },
           "NP": {
             "zoneName": "Nepal"
