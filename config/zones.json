@@ -1697,17 +1697,7 @@
     "timezone": null
   },
   "GR-IS": {
-    "timezone": null,
-    "bounding_box": [
-      [
-        199.5,
-        199.5
-      ],
-      [
-        -199.5,
-        -199.5
-      ]
-    ]
+    "timezone": null
   },
   "GT": {
     "bounding_box": [
