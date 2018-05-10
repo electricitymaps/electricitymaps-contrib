@@ -5,11 +5,13 @@
 # https://www.engerati.com/article/chile%E2%80%99s-grid-be-unified-new-transmission-highway
 
 from __future__ import print_function
+import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
 import datetime
 import json
 from pytz import timezone
+import pandas as pd
 import re
 import requests
 
@@ -35,6 +37,54 @@ plant_map = {
              u"Real Valle de los Vientos": "wind",
              u"date": "datetime"
              }
+
+generation_mapping = {'Gas Natural': 'gas',
+                      'Eólico': 'wind',
+                      'Otro (Compensación Activa)': 'unknown',
+                      'Solar': 'solar',
+                      'Cogeneración': 'biomass',
+                      'Geotérmica': 'geothermal',
+                      'Hidro': 'hydro'}
+
+
+def get_old_data(lookup_time, session=None):
+    """Fetches data for past days, returns a list of tuples."""
+
+    s=session or requests.Session()
+    data_url = "http://cdec2.cdec-sing.cl/pls/portal/cdec.pck_oper_real_2_pub.qry_gen_real_2?p_fecha_ini={0}&p_fecha_fin={0}&p_informe=E".format(lookup_time)
+
+    data_req = s.get(data_url)
+    df = pd.read_html(data_req.text, decimal=',', thousands = '', header=0, index_col=0)
+    df = df[-2]
+
+    if df.shape != (14, 26):
+        raise AttributeError('Format for Cl-SING historical data has changed, check for new tables or generation types.')
+
+    data = []
+    for col in df:
+        if col not in ['25', 'Total']:
+            hour = int(col)
+            production = df[col].to_dict()
+            production['coal'] = production['Carbón + Petcoke'] + production['Carbón'] + production['Petcoke']
+            production['oil'] = production['Diesel + Fuel Oil'] + production['Diesel'] + production['Fuel Oil Nro. 6']
+
+            keys_to_remove = ['Carbón + Petcoke', 'Carbón', 'Petcoke', 'Diesel + Fuel Oil', 'Diesel', 'Fuel Oil Nro. 6', 'Total']
+
+            for k in keys_to_remove:
+                production.pop(k)
+
+            production = {generation_mapping.get(k,k):v for k,v in production.items()}
+
+            try:
+                dt = arrow.get(lookup_time).replace(hour=hour, tzinfo='Chile/Continental').datetime
+            except ValueError:
+                # Midnight is defined as 24 not 0 at end of day.
+                dt = arrow.get(lookup_time).shift(days=+1)
+                dt = dt.replace(tzinfo='Chile/Continental').datetime
+
+            data.append((dt, production))
+
+    return data
 
 
 def get_data(session=None):
@@ -101,8 +151,9 @@ def data_processer(data, logger):
                 # datetime key is a string!
                 datapoint[key] = val
 
-        datapoint['datetime'] = convert_time_str(datapoint['datetime'])
-        clean_data.append(datapoint)
+        dt = convert_time_str(datapoint['datetime'])
+        datapoint.pop('datetime')
+        clean_data.append((dt, dict(datapoint)))
 
     return clean_data
 
@@ -136,20 +187,18 @@ def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, log
     }
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        lookup_time = arrow.get(target_datetime).floor('day').format('DD-MM-YYYY')
+        dp = get_old_data(lookup_time, session)
+    else:
+        gd = get_data(session)
+        dp = data_processer(gd, logger)
 
-    gd = get_data(session=None)
-    dp = data_processer(gd, logger)
     production_mix_by_hour = []
     for point in dp:
         production_mix = {
           'zoneKey': zone_key,
-          'datetime': point['datetime'],
-          'production': {
-              'solar': point.get('solar', 0.0),
-              'wind': point.get('wind', 0.0),
-              'unknown': point.get('unknown', 0.0)
-          },
+          'datetime': point[0],
+          'production': point[1],
           'source': 'sger.coordinadorelectrico.cl'
         }
         production_mix_by_hour.append(production_mix)
@@ -162,3 +211,5 @@ if __name__ == '__main__':
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_production(target_datetime=01/01/2018)')
+    print(fetch_production(target_datetime='01/01/2018'))
