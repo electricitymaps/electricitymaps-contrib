@@ -1397,6 +1397,14 @@
     "rotation": 0
   },
   "NL->NO-NO2": {
+    "capacity": [
+      -700,
+      700
+    ],
+    "lonlat": [
+      5.795449,
+      55.859727
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -1411,7 +1419,7 @@
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 70
+    "rotation": -110
   },
   "NO-NO1->NO-NO3": {
     "lonlat": [
@@ -1422,7 +1430,7 @@
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 135
+    "rotation": -45
   },
   "NO-NO1->NO-NO5": {
     "lonlat": [
@@ -1433,7 +1441,7 @@
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 90
+    "rotation": -90
   },
   "NO-NO1->SE": {
     "lonlat": [
@@ -1444,7 +1452,7 @@
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 270
+    "rotation": 90
   },
   "NO-NO1->SE-SE3": {
     "parsers": {
@@ -1453,14 +1461,14 @@
   },
   "NO-NO2->NO-NO5": {
     "lonlat": [
-      7.866013,
-      61.8
+      7.461,
+      60.0
     ],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 170
+    "rotation": -10
   },
   "NO-NO3->NO-NO4": {
     "lonlat": [
@@ -1471,7 +1479,7 @@
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 210
+    "rotation": 30
   },
   "NO-NO3->NO-NO5": {
     "lonlat": [
@@ -1482,7 +1490,7 @@
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 320
+    "rotation": 140
   },
   "NO-NO3->SE": {
     "lonlat": [
@@ -1494,7 +1502,7 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
 
     },
-    "rotation": 270
+    "rotation": 90
   },
   "NO-NO3->SE-SE2": {
     "parsers": {
@@ -1509,7 +1517,7 @@
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
-    "rotation": 310
+    "rotation": 130
   },
   "NO-NO4->SE-SE2": {
     "parsers": {
