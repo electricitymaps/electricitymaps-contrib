@@ -80,14 +80,6 @@ var countryCo2eqFootprint = {
     'NL': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 563, source: 'assumes 57% gas, 33% coal, 5% biomass, 4% nuclear'} : null;
     },  // Source: Derived from 2017 annual average: coal  30.0%, co-generation(gas)  19.0%, gas 28.0%, coke-oven-gas 5.0%, nuclear 4.0%, Wind  7.7%, biomass (waste) 4.90%, solar 1.40%, accoring to http://en-tran-ce.org/newsletter-renewable-energy-in-the-netherlands/
-    'NO': function (productionMode) {
-        if (productionMode == 'hydro') {
-            // Source: Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"
-            return {value: 1.9, source: 'Ostford Research 2015'};
-        } else if (productionMode == 'unknown' || productionMode == 'other') {
-            return {value: 700, source: null};
-        };
-    },
     'SE': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 362, source: 'assumes 72% biomass, 28% conventional thermal'} : null;
     },
@@ -112,6 +104,14 @@ var defaultExportCo2eqFootprint = {
         fossilFuelRatio: 0.92,
         source: 'IEA yearly data for 2015',
         url: 'https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015'
+    },
+    'CA-BC': {
+        carbonIntensity: 47,
+        renewableRatio: 0.97,
+        fossilFuelRatio: 0.03,
+        source: 'List of Generating Stations in BC (Wikipedia) / IPCC 2014 Emissions Factors By Source',
+        url: 'https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia',
+        comment: 'Average carbon intensity using 2016 mean production per fuel source (88% hydro, 9% biomass, 1% wind, 1% gas) and IPCC 2014 default lifecycle emission factors'
     },
     'CA-NB': {
         carbonIntensity: 300,
