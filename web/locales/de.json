@@ -4,7 +4,7 @@
         "opensource": "Open Source",
         "see": "siehe",
         "datasources": "Datenquellen",
-        "contribute": "Wirke mit indem du <a href=\"%s\" target=\"_blank\">dein Land hinzufügst</a>"
+        "contribute": "Wirke mit, indem du <a href=\"%s\" target=\"_blank\">dein Land hinzufügst</a>"
     },
     "country-panel": {
         "source": "Quelle",
@@ -855,11 +855,11 @@
           },
           "NZ-NZN": {
             "countryName": "Neuseeland",
-            "zoneName": "Nord Insel"
+            "zoneName": "Nordinsel"
           },
           "NZ-NZS": {
             "countryName": "Neuseeland",
-            "zoneName": "Süd Insel"
+            "zoneName": "Südinsel"
           },
           "OM": {
             "zoneName": "Oman"
