@@ -96,6 +96,9 @@ line, path {
     /* That's the main loading overlay */
     background-size: 10rem;
 }
+.country-panel {
+    position: relative;
+}
 .country-history .loading {
     background-size: 1.7rem;
 }
@@ -361,6 +364,7 @@ body {
     padding: 0 1rem;
     line-height: 1.2rem;
     flex-direction: column;
+    height: 100%;
 }
 
 .mobile-info-tab p{
@@ -374,6 +378,10 @@ body {
     margin: 0.6rem 0;
 }
 
+.left-panel-zone-details .social-buttons{
+    margin-top: auto;
+    margin-bottom: -6px;
+}
 
 .info-text p{
     margin: 0.4rem 0;
@@ -1281,6 +1289,30 @@ sub {
     font-size: 1.3rem;
     line-height: 50px;
     z-index: 500;
+}
+
+.zone-details-no-data-message{
+    display: none;
+    background-color: orange;
+    margin: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+.zone-details-no-data-message.visible, .zone-details-no-parser-message.visible{
+    display: block;
+}
+
+.zone-details-no-parser-message{
+    display: none;
+    background-color: rgb(70, 70, 70);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding: 0.5rem 0; 
+}
+
+.all-screens-hidden {
+    display: none;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */

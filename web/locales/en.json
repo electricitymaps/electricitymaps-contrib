@@ -39,7 +39,9 @@
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "helpfrom": "with help from",
-        "nodata": "No data"
+        "nodata": "No data",
+        "noDataInfo": "Live data is temporarily unavailable for this area.",
+        "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>."
     },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",

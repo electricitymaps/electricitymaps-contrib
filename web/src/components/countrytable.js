@@ -15,6 +15,8 @@ var moment = require('moment');
 var flags = require('../helpers/flags');
 var translation = require('../helpers/translation');
 
+const allChildrenSelector = '.country-table-header,.country-show-emissions-wrap,.country-table-container,.country-history';
+
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
 // with a % scale.
@@ -99,10 +101,36 @@ function CountryTable(selector, modeColor, modeOrder) {
 CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
-    var width = this.container.node().getBoundingClientRect().width;
-    if (width === 0) { return; }
+    if (this.root.node().getBoundingClientRect.width === 0){
+        return;
+    }
+
+    if (!this._data) {
+        return;
+    }
+
+    d3.selectAll(allChildrenSelector).classed('all-screens-hidden', this.isMissingParser);
+    d3.select('.zone-details-no-parser-message').classed('visible', this.isMissingParser);
+ 
+    // Set header
+    const panel = d3.select('.left-panel-zone-details');
+    const datetime = this._data.stateDatetime || this._data.datetime;
+    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
+    panel.select('.country-name').text(
+        translation.getFullZoneName(this._data.countryCode));
+
+    panel.selectAll('.country-time')
+        .text(datetime ? moment(datetime).format('LL LT') : '');
+        
+    if (this.isMissingParser){
+        return;
+    }
+
+    const width = this.container.node().getBoundingClientRect().width;
+    
     if (!this._exchangeData) { return; }
 
+    
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
     this.powerScale
@@ -129,17 +157,6 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .call(this.axis);
 
 
-
-    // Set header
-    var header = d3.select('.country-table-header');
-    var panel = d3.select('.left-panel-zone-details');
-    var datetime = this._data.stateDatetime || this._data.datetime;
-    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
-    panel.select('.country-name').text(
-        translation.getFullZoneName(this._data.countryCode));
-    panel.selectAll('.country-time')
-        .text(datetime ? moment(datetime).format('LL LT') : '?');
-
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
     /*selection.select('rect.capacity')
@@ -148,6 +165,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     this.headerNoDataOverlay.showIfElseHide(!this.hasProductionData);
     this.tableNoDataOverlay.showIfElseHide(!this.hasProductionData);
+
 
     if (that._displayByEmissions)
         selection.select('rect.capacity')
@@ -393,9 +411,12 @@ CountryTable.prototype.displayByEmissions = function(arg) {
         this._displayByEmissions = arg;
         // Quick hack to re-render
         // TODO: In principle we shouldn't be calling `.data()`
-        this
+        if (this._data){
+            this
             .data(this._data)
             .render();
+        }
+
     }
     return this;
 }
@@ -491,6 +512,7 @@ CountryTable.prototype.data = function(arg) {
     });
 
     this.hasProductionData = this.sortedProductionData.some(zone => zone.production);
+    this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser
 
 
     // update scales
