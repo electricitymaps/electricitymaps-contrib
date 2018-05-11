@@ -128,6 +128,14 @@ var defaultExportCo2eqFootprint = {
         comment: 'see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7',
         comment2: 'not using NEB data here since the NEB resolution is 1% which makes a difference at these scales'
     },
+    'RU-KGD': {
+        carbonIntensity: 480,
+        renewableRatio: 0.02,
+        fossilFuelRatio: 1 - 0.02,
+        source: 'Energy security in Kaliningrad and geopolitics (2/2014)',
+        comment: 'see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants',
+        comment2: 'About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.'
+    },
     'ZA': {
         carbonIntensity: 750,
         renewableRatio: 0.03,
