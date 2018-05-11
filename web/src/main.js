@@ -841,6 +841,12 @@ function renderCountryTable(state) {
     countryTable.data(d).render(true);
   }
 }
+
+function renderZoneMessage(state) {
+  const d = getCurrentZoneData(state);
+  d3.select('.zone-details-no-data-message').classed('visible', !d.co2intensity && d.hasParser);
+}
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -1117,6 +1123,7 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   // Render
   renderCountryTable(state);
   renderGauges(state);
+  renderZoneMessage(state);
   renderContributors(state);
   renderHistory(state);
 

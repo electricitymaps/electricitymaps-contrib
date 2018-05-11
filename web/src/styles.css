@@ -1293,10 +1293,13 @@ sub {
 
 .zone-details-no-data-message{
     display: none;
-    background-color: orange;
+    background-color: darkred;
+    color: white;
     margin: 1rem;
     border: 1px solid lightgrey;
     border-radius: 5px;
+    padding: 5px;
+    text-align: center;
 }
 .zone-details-no-data-message.visible, .zone-details-no-parser-message.visible{
     display: block;

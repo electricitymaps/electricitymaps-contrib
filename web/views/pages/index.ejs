@@ -251,10 +251,6 @@ co2Sub = function(str) {
                     </div>
                     <div class="left-panel-zone-details">
  
-                        <div class="zone-details-no-data-message">
-                                %- __('country-panel.noDataInfo') %>
-                        </div>
-
                         <div class="left-panel-zone-details-toolbar">
                             <span id="left-panel-zone-details-back">
                                 <i class="material-icons" aria-hidden="true">arrow_back</i>
@@ -271,7 +267,11 @@ co2Sub = function(str) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="zone-details-no-data-message">
+                                <%- __('country-panel.noDataInfo') %>
+                            </div>
                         </div>
+
 
                         <div class="country-panel">
                             <div class="zone-details-no-parser-message">
@@ -301,6 +301,8 @@ co2Sub = function(str) {
                                     </div>
                                 </div>
                             </div>
+
+
 
                             <div class="country-show-emissions-wrap">
                                 <div class="menu">
