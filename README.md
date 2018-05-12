@@ -301,6 +301,7 @@ A --> B: unidirectional operation, only with power flow "from A to B"
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Singapore: [EMC](https://www.emcsg.com)
+- Turkey: [EPIAS](https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml)
 - Other: [ENTSO-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)
 
 ### Real-time weather data sources
