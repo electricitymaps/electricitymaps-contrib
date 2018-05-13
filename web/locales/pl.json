@@ -9,7 +9,7 @@
     "mobile-info-tab": {
         "map-info-text": "Mapa pokazuje, ile CO2 jest aktualnie emitowanie przy produkcji twojej energii elektrycznej. Regiony są kolorowane według intensywności emisji CO2, wliczając potencjał tworzenia efektu cieplarnianego, jednostkowo według zużywanej tam energii elektrycznej. Zieleńsze odcienie oznaczają bardziej przyjazną dla klimatu energię elektryczną.",
         "electricity-origins-text": "Strzałki wykazują, gdzie i ile energii płynie pomiedzy regionami. Naciśnij region aby dowiedzieć się więcej o źródłach energii elektrycznej tam zużywanej.",
-        "wind-solar-text": "Produkcja wiatrowa i słoneczna zależy od pogody. Użyj przycisków \"wiatr\" i \"słońce\" aby zobaczyć aktualne prędkości wiatru i nasłonecznienie dookoła świata."
+        "wind-solar-text": "Produkcja wiatrowa i słoneczna zależą od pogody. Użyj przycisków \"wiatr\" i \"słońce\" aby zobaczyć aktualne prędkości wiatru i nasłonecznienie dookoła świata."
     },
     "onboarding-modal": {
         "view1": {
@@ -26,7 +26,7 @@
         },
         "view4": {
             "header": "Aktualne warunki wiatrowe i słoneczne",
-            "text": "Produkcja wiatrowa i słoneczna zależy od pogody. Użyj przycisków \"wiatr\" i \"słońce\" aby zobaczyć aktualne prędkości wiatru i nasłonecznienie dookoła świata."
+            "text": "Produkcja wiatrowa i słoneczna zależą od pogody. Użyj przycisków \"wiatr\" i \"słońce\" aby zobaczyć aktualne prędkości wiatru i nasłonecznienie dookoła świata."
         }
     },
     "country-panel": {
@@ -421,7 +421,7 @@
             "zoneName": "Grecja"
           },
           "GR-IS": {
-            "countryName": "Greece",
+            "countryName": "Grecja",
             "zoneName": "Wyspy Egejskie"
           },
           "GT": {
