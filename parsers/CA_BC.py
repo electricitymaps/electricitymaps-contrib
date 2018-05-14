@@ -38,8 +38,8 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
     datetime = arrow.get(
         arrow.get(obj[0], 'DD-MMM-YY HH:mm:ss').datetime, timezone).datetime
 
-    if (zone_key1 == 'CA-BC' and zone_key2 == 'US'):
-        sortedZoneKeys = 'CA-BC->US'
+    if (zone_key1 == 'CA-BC' and zone_key2 == 'US-BPA'):
+        sortedZoneKeys = 'CA-BC->US-BPA'
         netFlow = float(obj[1])
     elif (zone_key1 == 'CA-AB' and zone_key2 == 'CA-BC'):
         sortedZoneKeys = 'CA-AB->CA-BC'
@@ -58,5 +58,7 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_exchange() ->')
-    print(fetch_exchange())
+    print('fetch_exchange(CA-BC, US-BPA) ->')
+    print(fetch_exchange('CA-BC', 'US-BPA'))
+    print('fetch_exchange(CA-AB, CA-BC) ->')
+    print(fetch_exchange('CA-AB', 'CA-BC'))
