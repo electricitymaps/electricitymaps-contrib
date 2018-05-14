@@ -4,8 +4,10 @@ import requests
 import re
 import json
 import arrow
+import logging
 from bs4 import BeautifulSoup
 import datetime as dt
+from .lib import zonekey
 
 SEARCH_DATA = re.compile(r'var gunlukUretimEgrisiData = (?P<data>.*);')
 TIMEZONE = 'Europe/Istanbul'
@@ -59,8 +61,16 @@ def get_last_data_idx(productions):
     return len(productions) - 1  # full day
 
 
-def fetch_price():
-    soup = BeautifulSoup(requests.get(PRICE_URL).text, 'html.parser')
+def fetch_price(zone_key='TR', session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
+    if target_datetime:
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
+
+    zonekey.assert_zone_key(zone_key, 'TR')
+
+    r = session or requests.session()
+    soup = BeautifulSoup(r.get(PRICE_URL).text, 'html.parser')
     cells = soup.select('.TexAlCenter')
 
     # data is in td elements with class "TexAlCenter" and role "gridcell"
