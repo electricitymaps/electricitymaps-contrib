@@ -839,12 +839,13 @@ function renderCountryTable(state) {
     // as the countryTable doesn't support receiving null data
   } else {
     countryTable.data(d).render(true);
-  }
-}
 
-function renderZoneMessage(state) {
-  const d = getCurrentZoneData(state);
-  d3.select('.zone-details-no-data-message').classed('visible', !d.co2intensity && d.hasParser);
+    const zoneHasParser = d.hasParser === undefined || !d.hasParser;
+    countryTable.showNoParserMessageIf(zoneHasParser);
+    const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
+    const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
+    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp, dataIsMostRecentDatapoint);
+  }
 }
 
 function renderHistory(state) {
@@ -1123,7 +1124,6 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   // Render
   renderCountryTable(state);
   renderGauges(state);
-  renderZoneMessage(state);
   renderContributors(state);
   renderHistory(state);
 

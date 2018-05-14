@@ -267,9 +267,6 @@ co2Sub = function(str) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="zone-details-no-data-message">
-                                <%- __('country-panel.noDataInfo') %>
-                            </div>
                         </div>
 
 
@@ -277,44 +274,46 @@ co2Sub = function(str) {
                             <div class="zone-details-no-parser-message">
                                     <%- __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap#adding-a-new-country') %>
                             </div>
-                            <div class="country-table-header">
-                                <div class="country-table-header-inner country-col-headlines">
-                                        <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>
-                                        <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.lowcarbon')) %></div>
-                                        <div class="country-col country-col-headline"><%- __('country-panel.renewable') %></div>
-                                </div>
-                                <div class="country-table-header-inner">
 
-                                    <div class="country-col country-emission-intensity-wrap">
-                                        <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
-                                            <div><span class="country-emission-intensity"></span>g</div>
+                            <div class="country-panel-wrap">
+                                <div class="country-table-header">
+                                    <div class="country-table-header-inner country-col-headlines">
+                                            <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>
+                                            <div class="country-col country-col-headline"><%- co2Sub(__('country-panel.lowcarbon')) %></div>
+                                            <div class="country-col country-col-headline"><%- __('country-panel.renewable') %></div>
+                                    </div>
+                                    <div class="country-table-header-inner">
+    
+                                        <div class="country-col country-emission-intensity-wrap">
+                                            <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
+                                                <div><span class="country-emission-intensity"></span>g</div>
+                                            </div>
+                                            <div class="country-col-subtext">(gCO<sub>2</sub>eq/kWh)</div>
                                         </div>
-                                        <div class="country-col-subtext">(gCO<sub>2</sub>eq/kWh)</div>
-                                    </div>
-                                    <div class="country-col country-lowcarbon-wrap">
-                                        <div id="country-lowcarbon-gauge" class="country-gauge-wrap"></div>
-                                        <div class="country-col-subtext">
+                                        <div class="country-col country-lowcarbon-wrap">
+                                            <div id="country-lowcarbon-gauge" class="country-gauge-wrap"></div>
+                                            <div class="country-col-subtext">
+                                            </div>
+                                        </div>
+                                        <div class="country-col country-renewable-wrap">
+                                            <div id="country-renewable-gauge" class="country-gauge-wrap"></div>
                                         </div>
                                     </div>
-                                    <div class="country-col country-renewable-wrap">
-                                        <div id="country-renewable-gauge" class="country-gauge-wrap"></div>
+                                </div>
+    
+                                <div class="country-show-emissions-wrap">
+                                    <div class="menu">
+                                        <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricity') %></a>
+                                        |
+                                        <a id="emissions" href="javascript:toggleSource(true)"><%- co2Sub(__('country-panel.emissions')) %></a>
+                                    </div>
+                                    <div class="bysource">
+                                        <%- __('country-panel.bysource') %>
                                     </div>
                                 </div>
+                                <div class="country-table-container"></div>
                             </div>
-
-
-
-                            <div class="country-show-emissions-wrap">
-                                <div class="menu">
-                                    <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricity') %></a>
-                                    |
-                                    <a id="emissions" href="javascript:toggleSource(true)"><%- co2Sub(__('country-panel.emissions')) %></a>
-                                </div>
-                                <div class="bysource">
-                                    <%- __('country-panel.bysource') %>
-                                </div>
-                            </div>
-                            <div class="country-table-container"></div>
+                            
                             <hr />
                             <div class="country-history">
                                 <div class="loading overlay"></div>

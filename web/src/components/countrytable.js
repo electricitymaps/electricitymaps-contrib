@@ -28,8 +28,7 @@ function CountryTable(selector, modeColor, modeOrder) {
 
     this.root = d3.select(selector);
 
-    this.tableNoDataOverlay = new NoDataOverlay(selector);
-    this.headerNoDataOverlay = new NoDataOverlay('.country-table-header');
+    this.wrapperNoDataOverlay = new NoDataOverlay('.country-panel-wrap');
     this.container = this.root.append('svg').attr('class', 'country-table');
     
     // Create containers
@@ -108,9 +107,6 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     if (!this._data) {
         return;
     }
-
-    d3.selectAll(allChildrenSelector).classed('all-screens-hidden', this.isMissingParser);
-    d3.select('.zone-details-no-parser-message').classed('visible', this.isMissingParser);
  
     // Set header
     const panel = d3.select('.left-panel-zone-details');
@@ -162,10 +158,6 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     /*selection.select('rect.capacity')
         .attr('fill', function (d) { return that.co2color()(d.gCo2eqPerkWh); })
         .attr('stroke', function (d) { return that.co2color()(d.gCo2eqPerkWh); });*/
-
-    this.headerNoDataOverlay.showIfElseHide(!this.hasProductionData);
-    this.tableNoDataOverlay.showIfElseHide(!this.hasProductionData);
-
 
     if (that._displayByEmissions)
         selection.select('rect.capacity')
@@ -511,10 +503,8 @@ CountryTable.prototype.data = function(arg) {
         };
     });
 
-    this.hasProductionData = this.sortedProductionData.some(zone => zone.production);
     this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser
-
-
+    
     // update scales
     this.powerScale
         .domain(this._powerScaleDomain || [
@@ -601,5 +591,15 @@ CountryTable.prototype.exchangeKeys = function(arg) {
     }
     return this;
 };
+
+CountryTable.prototype.showNoParserMessageIf = function(condition) {
+    d3.selectAll(allChildrenSelector).classed('all-screens-hidden', condition);
+    d3.select('.zone-details-no-parser-message').classed('visible', condition);
+}
+
+CountryTable.prototype.showNoDataMessageIf = function(condition, isRealtimeData) {
+    this.wrapperNoDataOverlay.showIfElseHide(condition);
+    this.wrapperNoDataOverlay.text(translation.translate(isRealtimeData? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp'));
+}
 
 module.exports = CountryTable;

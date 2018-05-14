@@ -14,11 +14,14 @@ export default class NoDataOverlay {
   _setup() {
     this.rootContainer = d3.select(this.selectorId).append('div').attr('class', 'no-data-overlay');
     this.overlayBackground = this.rootContainer.append('div').attr('class', 'overlay no-data-overlay-background');
-    this.overlayTextBox = this.rootContainer.append('div').attr('class', 'no-data-overlay-textbox');
-    this.overlayTextBox.text(translation.translate('country-panel.nodata'));
+    this.overlayTextBox = this.rootContainer.append('div').attr('class', 'no-data-overlay-message');
   }
 
-  showIfElseHide(condition){
+  text(text) {
+    this.overlayTextBox.text(text);
+  }
+
+  showIfElseHide(condition) {
     this.rootContainer.classed('visible', condition);
   }
 

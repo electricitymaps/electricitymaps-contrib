@@ -21,7 +21,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
   zone.shortname = translation.getFullZoneName(key);
-  zone.hasParser = zoneConfig.parsers !== undefined && zoneConfig.parsers.production !== undefined;
+  zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
@@ -125,6 +125,7 @@ module.exports = (state = initialDataState, action) => {
           console.warn(`${key} is missing exchanges`);
         } 
         else if (!Object.keys(zone.production).length) {
+             // Exchange information is removed from observations without production data because it makes the exchange data percentages incorrect
           zone.exchange = {};
         }
 
@@ -160,6 +161,7 @@ module.exports = (state = initialDataState, action) => {
         ret.hasParser = true;
         if (observation.exchange && Object.keys(observation.exchange).length
           && (!observation.production || !Object.keys(observation.production).length)) {
+              // Exchange information is removed from observations without production data because it makes the exchange data percentages incorrect
           ret.exchange = {};
         }
 

@@ -96,7 +96,7 @@ line, path {
     /* That's the main loading overlay */
     background-size: 10rem;
 }
-.country-panel {
+.country-panel-wrap {
     position: relative;
 }
 .country-history .loading {
@@ -1279,29 +1279,17 @@ sub {
     background-color: rgb(70,70,70);
 }
 
-.no-data-overlay-textbox {
-    width: 140px;
-    height: 50px;
-    background: rgb(110, 110, 110);
-    border: 1px lightgrey solid;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1.3rem;
-    line-height: 50px;
-    z-index: 500;
-}
-
-.zone-details-no-data-message{
-    display: none;
-    background-color: darkred;
+.no-data-overlay-message{
+    background-color: #94824f;
     color: white;
     margin: 1rem;
     border: 1px solid lightgrey;
     border-radius: 5px;
     padding: 5px;
     text-align: center;
+    z-index: 600;
 }
-.zone-details-no-data-message.visible, .zone-details-no-parser-message.visible{
+.no-data-overlay-message.visible, .zone-details-no-parser-message.visible{
     display: block;
 }
 
