@@ -105,7 +105,7 @@ let solarLayer;
 let onboardingModal;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
@@ -839,8 +839,15 @@ function renderCountryTable(state) {
     // as the countryTable doesn't support receiving null data
   } else {
     countryTable.data(d).render(true);
+
+    const zoneHasParser = d.hasParser === undefined || !d.hasParser;
+    countryTable.showNoParserMessageIf(zoneHasParser);
+    const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
+    const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
+    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp, dataIsMostRecentDatapoint);
   }
 }
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
