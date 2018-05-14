@@ -241,6 +241,96 @@ ENTSOE_UNITS_TO_ZONE = {
     'Ãbyverket Ãrebro': 'SE',
 }
 
+VALIDATIONS = {
+    # This is a list of criteria to ensure validity of data,
+    # used in validate_production()
+    # Note that "required" means data is present in ENTSOE.
+    # It will still work if data is present but 0.
+    # "expected_range" and "floor" only count production and storage
+    # - not exchanges!
+    'AT': {
+        'required': ['hydro'],
+    },
+    'BE': {
+        'required': ['gas', 'nuclear'],
+        'expected_range': (3000, 25000),
+    },
+    'BG': {
+        'required': ['coal', 'nuclear', 'hydro'],
+        'expected_range': (2000, 20000),
+    },
+    'CZ': {
+        # usual load is in 7-12 GW range
+        'required': ['coal', 'nuclear'],
+        'expected_range': (3000, 25000),
+    },
+    'DE': {
+        # Germany sometimes has problems with categories of generation missing from ENTSOE.
+        # Normally there is constant production of a few GW from hydro and biomass
+        # and when those are missing this can indicate that others are missing as well.
+        # We have also never seen unknown being 0.
+        # Usual load is in 30 to 80 GW range.
+        'required': ['coal', 'gas', 'nuclear',
+                     'biomass', 'hydro', 'unknown'],
+        'expected_range': (20000, 100000),
+    },
+    'EE': {
+        'required': ['oil'],
+    },
+    'ES': {
+        'required': ['coal', 'nuclear'],
+        'expected_range': (10000, 80000),
+    },
+    'FI': {
+        'required': ['coal', 'nuclear', 'hydro', 'biomass'],
+        'expected_range': (2000, 20000),
+    },
+    'GB': {
+        # usual load is in 15 to 50 GW range
+        'required': ['coal', 'gas', 'nuclear'],
+        'expected_range': (10000, 80000),
+    },
+    'GR': {
+        'required': ['coal', 'gas'],
+        'expected_range': (2000, 20000),
+    },
+    'HU': {
+        'required': ['coal', 'nuclear'],
+    },
+    'IE': {
+        'required': ['coal'],
+        'expected_range': (1000, 15000),
+    },
+    'IT': {
+        'required': ['coal'],
+        'expected_range': (5000, 50000),
+    },
+    'PL': {
+        # usual load is in 10-20 GW range and coal is always present
+        'required': ['coal'],
+        'expected_range': (5000, 35000),
+    },
+    'PT': {
+        'required': ['coal', 'gas'],
+        'expected_range': (1000, 20000),
+    },
+    'RO': {
+        'required': ['coal', 'nuclear', 'hydro'],
+        'expected_range': (2000, 25000),
+    },
+    'RS': {
+        'required': ['coal'],
+    },
+    'SI': {
+        # own total generation capacity is around 4 GW
+        'required': ['nuclear'],
+        'expected_range': (1000, 5000),
+    },
+    'SK': {
+        'required': ['nuclear']
+    },
+}
+
 
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
@@ -589,42 +679,20 @@ def validate_production(datapoint, logger):
     False if invalid and True otherwise.
     """
 
-    codes = ('GB', 'GR', 'PT')
-    if datapoint['zoneKey'] in codes:
-        p = datapoint['production']
-        return p.get('coal', None) is not None and p.get('gas', None) is not None
-    elif datapoint['zoneKey'] == 'BE':
-        p = datapoint['production']
-        return p.get('nuclear', None) is not None and p.get('gas', None) is not None
-    elif datapoint['zoneKey'] == 'ES':
-        p = datapoint['production']
-        total_production = sum([x for x in p.values() if x is not None])
-        if (total_production < 10000): return False
-        return p.get('coal', None) is not None and p.get('nuclear', None) is not None
-    elif datapoint['zoneKey'] == 'DK':
-        p = datapoint['production']
-        return (p.get('coal', None) is not None and p.get('gas', None) is not None
-                and p.get('wind', None) is not None)
-    elif 'DK-' in datapoint['zoneKey']:
+    zone_key = datapoint['zoneKey']
+
+    validation_criteria = VALIDATIONS.get(zone_key, {})
+
+    if validation_criteria:
+        return validate(datapoint, logger=logger, **validation_criteria)
+
+    if zone_key.startswith('DK-'):
         return validate(datapoint, logger=logger, required=['coal', 'solar', 'wind'])
-    elif datapoint['zoneKey'] == 'HU':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'IE':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'IT':
-        return validate(datapoint, logger=logger, required=['coal'], expected_range=(5000, 50000))
-    elif datapoint['zoneKey'] == 'NO':
-        return validate(datapoint, logger=logger, required=['hydro'], expected_range=(5000, 50000))
-    elif datapoint['zoneKey'] == 'PT':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'RS':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'DE':
-        p = datapoint['production']
-        return (p.get('coal', None) is not None and p.get('gas', None) is not None and
-                p.get('nuclear', None) is not None)
-    else:
-        return True
+
+    if zone_key.startswith('NO-'):
+        return validate(datapoint, logger=logger, required=['hydro'])
+
+    return True
 
 
 def get_biomass(values):

@@ -96,6 +96,9 @@ line, path {
     /* That's the main loading overlay */
     background-size: 10rem;
 }
+.country-panel-wrap {
+    position: relative;
+}
 .country-history .loading {
     background-size: 1.7rem;
 }
@@ -361,6 +364,7 @@ body {
     padding: 0 1rem;
     line-height: 1.2rem;
     flex-direction: column;
+    height: 100%;
 }
 
 .mobile-info-tab p{
@@ -374,6 +378,10 @@ body {
     margin: 0.6rem 0;
 }
 
+.left-panel-zone-details .social-buttons{
+    margin-top: auto;
+    margin-bottom: -6px;
+}
 
 .info-text p{
     margin: 0.4rem 0;
@@ -396,8 +404,12 @@ body {
 .country-time {
   white-space: nowrap;
 }
-.country-table {
+.country-table-container {
     width: 100%;
+    position: relative;
+}
+.country-table-header {
+    position: relative;
 }
 .country-table-header-inner {
     display: flex;
@@ -1244,6 +1256,54 @@ sub {
 }
 .mobile-watermark div {
     padding-top: 0.5rem;
+}
+
+.no-data-overlay {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.no-data-overlay.visible{
+    display: flex;
+}
+
+.no-data-overlay-background{
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.6;
+    background-color: rgb(70,70,70);
+}
+
+.no-data-overlay-message{
+    background-color: #94824f;
+    color: white;
+    margin: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    z-index: 600;
+}
+.no-data-overlay-message.visible, .zone-details-no-parser-message.visible{
+    display: block;
+}
+
+.zone-details-no-parser-message{
+    display: none;
+    background-color: rgb(70, 70, 70);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding: 0.5rem 0; 
+}
+
+.all-screens-hidden {
+    display: none;
 }
 
 /* Medium and large devices (tablets, desktops, etc.) */
