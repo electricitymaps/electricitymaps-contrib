@@ -393,11 +393,11 @@
         },
         "DK-DK1": {
             "countryName": "Dänemark",
-            "zoneName": "West"
+            "zoneName": "West-Dänemark"
         },
         "DK-DK2": {
             "countryName": "Dänemark",
-            "zoneName": "Ost"
+            "zoneName": "Ost-Dänemark"
         },
         "DK-BHM": {
             "countryName": "Dänemark",
