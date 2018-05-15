@@ -466,6 +466,10 @@ CountryTable.prototype.data = function(arg) {
     this._data = arg;
 
     if (!this._data) { return this }
+
+    this.hasProductionData = this._data.production !== undefined && Object.keys(this._data.production).length > 0;
+    this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser;
+    
     if (this._exchangeKeys) {
         this._exchangeData = this._exchangeKeys
             .map(function(k) {
@@ -479,6 +483,10 @@ CountryTable.prototype.data = function(arg) {
             .sort(function(x, y) {
                 return d3.ascending(x.key, y.key);
             });
+    }
+    if (!this.hasProductionData){
+        // Remove exchange data values if no production is present, as table is greyed out
+        this._exchangeData.forEach(d => d.value = undefined);
     }
 
     // Construct a list having each production in the same order as this.MODES.
@@ -503,7 +511,6 @@ CountryTable.prototype.data = function(arg) {
         };
     });
 
-    this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser
     
     // update scales
     this.powerScale
