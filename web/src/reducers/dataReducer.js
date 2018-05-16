@@ -124,10 +124,6 @@ module.exports = (state = initialDataState, action) => {
         if (!zone.exchange || !Object.keys(zone.exchange).length) {
           console.warn(`${key} is missing exchanges`);
         } 
-        else if (!Object.keys(zone.production).length) {
-             // Exchange information is removed from observations without production data because it makes the exchange data percentages incorrect
-          zone.exchange = {};
-        }
 
       });
 
@@ -161,7 +157,7 @@ module.exports = (state = initialDataState, action) => {
         ret.hasParser = true;
         if (observation.exchange && Object.keys(observation.exchange).length
           && (!observation.production || !Object.keys(observation.production).length)) {
-              // Exchange information is removed from observations without production data because it makes the exchange data percentages incorrect
+              // Exchange information is not shown in history observations without production data, as the percentages are incorrect
           ret.exchange = {};
         }
 
