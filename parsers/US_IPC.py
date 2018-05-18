@@ -21,7 +21,7 @@ GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
                       'Coal': 'coal',
                       'Diesel': 'oil',
                       'PURPA/Non-Utility Wind': 'wind',
-                      'Natural Gas': 'gas'
+                      'Natural Gas': 'gas',
                       'PURPA/Non-Utility Solar': 'solar'
                       #'PURPA Other': 'biomass'
                       }
