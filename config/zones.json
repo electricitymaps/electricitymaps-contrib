@@ -2991,7 +2991,9 @@
       "gas": 762,
       "geothermal": 51,
       "hydro": 1709,
-      "oil": 5
+      "oil": 5,
+      "solar": 291,
+      "wind": 682
     },
     "contributors": [
       "https://github.com/systemcatch"
