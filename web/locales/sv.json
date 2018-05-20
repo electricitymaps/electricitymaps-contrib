@@ -38,7 +38,10 @@
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
-        "helpfrom": "med hjälp från"
+        "helpfrom": "med hjälp från",
+        "noDataAtTimestamp": "Data är tillfälligt otillgänglig för den valda tiden",
+        "noLiveData": "Aktuell data är tillfälligt otillgänglig för detta område",
+        "noParserInfo": "Vi har ännu ingen information om detta område.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för området</a>."
     },
     "left-panel": {
         "zone-list-header-title": "Klimatpåverkan per region",
@@ -47,6 +50,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
+        "emissionsorigin24h": "Källa för utsläpp de senaste 24 timmarna",
         "electricityorigin24h": "Källa för el under de senaste 24 timmarna",
         "electricityprices24h": "Elpriser under de senaste 24 timmarna",
         "Getdata": "API för att hämta historisk data och prognos"
@@ -75,7 +79,9 @@
         "showWindLayer": "Visa vind-lager",
         "hideWindLayer": "Dölj vind-lager",
         "showSolarLayer": "Visa sol-lager",
-        "hideSolarLayer": "Dölj sol-lager"
+        "hideSolarLayer": "Dölj sol-lager",
+        "noParserInfo": "Ingen data tillgänglig",
+        "temporaryDataOutage": "Data tillfälligt otillgänglig"
     },
     "misc": {
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
@@ -887,8 +893,25 @@
           "NL": {
             "zoneName": "Nederländerna"
           },
-          "NO": {
-            "zoneName": "Norge"
+          "NO-NO1": {
+            "countryName": "Norge",
+            "zoneName": "Sydöstra Norge"
+          },
+          "NO-NO2": {
+            "countryName": "Norge",
+            "zoneName": "Sydvästra Norge"
+          },
+          "NO-NO3": {
+            "countryName": "Norge",
+            "zoneName": "Mellersta Norge"
+          },
+          "NO-NO4": {
+            "countryName": "Norge",
+            "zoneName": "Norra Norge"
+          },
+          "NO-NO5": {
+            "countryName": "Norge",
+            "zoneName": "Västra Norge"
           },
           "NP": {
             "zoneName": "Nepal"
