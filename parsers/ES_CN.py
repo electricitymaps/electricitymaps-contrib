@@ -23,40 +23,40 @@ FLOORS = {
     'ES-CN-HI': 2
 }
 
-
+# TODO: Remove verify SSL config when working without it.
 def fetch_island_data(zone_key, session):
     if zone_key == 'ES-CN-FVLZ':
-        lanzarote_fuerteventura_data = LanzaroteFuerteventura(session).get_all()
+        lanzarote_fuerteventura_data = LanzaroteFuerteventura(session, verify=False).get_all()
         if not lanzarote_fuerteventura_data:
             raise ParserException(zone_key, "LanzaroteFuerteventura not response")
         else:
             return lanzarote_fuerteventura_data
     elif zone_key == 'ES-CN-GC':
-        gran_canaria_data = GranCanaria(session).get_all()
+        gran_canaria_data = GranCanaria(session, verify=False).get_all()
         if not gran_canaria_data:
             raise ParserException(zone_key, "GranCanaria not response")
         else:
             return gran_canaria_data
     elif zone_key == 'ES-CN-IG':
-        gomera_data = Gomera(session).get_all()
+        gomera_data = Gomera(session, verify=False).get_all()
         if not gomera_data:
             raise ParserException(zone_key, "Gomera not response")
         else:
             return gomera_data
     elif zone_key == 'ES-CN-LP':
-        la_palma_data = LaPalma(session).get_all()
+        la_palma_data = LaPalma(session, verify=False).get_all()
         if not la_palma_data:
             raise ParserException(zone_key, "LaPalma not response")
         else:
             return la_palma_data
     elif zone_key == 'ES-CN-TE':
-        tenerife_data = Tenerife(session).get_all()
+        tenerife_data = Tenerife(session, verify=False).get_all()
         if not tenerife_data:
             raise ParserException(zone_key, "Tenerife not response")
         else:
             return tenerife_data
     elif zone_key == 'ES-CN-HI':
-        el_hierro_data = ElHierro(session).get_all()
+        el_hierro_data = ElHierro(session, verify=False).get_all()
         if not el_hierro_data:
             raise ParserException(zone_key, "ElHierro not response")
         else:
