@@ -7,22 +7,22 @@
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
     "mobile-info-tab": {
-        "map-info-text": "Denna karta visar hur mycket CO2 som släpps ut för att producera din el, i realtid. Vi färglägger områden runt om i världen baserat på deras utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el.",
-        "electricity-origins-text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om ursprunget för dess el.",
+        "map-info-text": "Denna karta visar hur mycket CO2 som släpps ut för att producera din el, i realtid. Vi färglägger områden runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el.",
+        "electricity-origins-text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om var elen kommer från.",
         "wind-solar-text": "Elproduktion från sol och vind är beroende av vädret. Tryck på knapparna sol och vind för att i realtid visa vindstyrka och solsken över hela världen."
     },
     "onboarding-modal": {
         "view1": {
-            "header": "Elkartan",
-            "subtitle": "Kartlägg klimatpåverkan från elproduktion"
+            "header": "Electricity Map",
+            "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
         },
         "view2": {
             "header": "Se hur mycket CO2 som släpps ut när din el produceras, i realtid.",
-            "text": "Vi färglägger områden runt om i världen baserat på deras utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
+            "text": "Vi färglägger områden runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
         },
         "view3": {
             "header": "Vet var din el kommer från",
-            "text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om ursprunget för dess el."
+            "text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om var elen kommer från."
         },
         "view4": {
             "header": "Vind- och solförhållanden i realtid",
@@ -89,7 +89,8 @@
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
         "retrynow": "Försök igen",
         "database-ad": "Letar du efter historisk data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
-        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>"
+        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
+        "legend": "Förklaring"
     },
     "wind": "vind",
     "solar": "sol",
