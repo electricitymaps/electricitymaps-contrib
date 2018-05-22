@@ -8,6 +8,8 @@ import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
+import FAQ from './components/faq';
+import { formatPower } from './helpers/formatting';
 
 // Libraries
 const d3 = Object.assign(
@@ -140,6 +142,8 @@ const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorb
 
 const zoneList = new ZoneList('.zone-list p');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
+
+const faq = new FAQ('.mobile-faq');
 
 // Initialise mobile app (cordova)
 const app = {

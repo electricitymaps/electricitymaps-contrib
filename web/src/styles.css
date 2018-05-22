@@ -1306,6 +1306,31 @@ sub {
     display: none;
 }
 
+.faq-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-container .question-answer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-container .question {
+    font-size: 1.3rem;
+    padding: 5px;
+}
+
+.faq-container .answer {
+    display: none;
+    padding: 10px;
+
+}
+
+.faq-container .answer.visible{
+    display: flex;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .large-screen-hidden {
