@@ -6,6 +6,29 @@
         "datasources": "Datenquellen",
         "contribute": "Wirke mit, indem du <a href=\"%s\" target=\"_blank\">dein Land hinzufügst</a>"
     },
+    "mobile-info-tab": {
+      "map-info-text": "Diese Karte zeigt in Echtzeit wie viel CO2 ausgestoßen wird. Wir färben alle Gegenden der Welt mit ihrer Kohlenstoffintensität (einschließlich aller Treibhausgase) der dort verbrauchten Elektrizität. Grünere Farben bedeuten Klima freundlichere Elektrizität.",
+      "electricity-origins-text": "Die Pfeile auf der Karte zeigen die Ströme der Elektrizität zwischen verschiedenen Gegenden. Klicke auf eine Gegend um mehr Informationen über die Herkunft der Elektrizität zusehen.",
+      "wind-solar-text": "Wind- und Solarenergie sind abhängig vom Wetter. Klicke auf den Sonnen- und Windknopf um die Echtzeit Stärke des Windes und des Sonnenscheins überall in der Welt anzuzeigen."
+    },
+    "onboarding-modal": {
+      "view1": {
+        "header": "Die Elektrizitätskarte",
+        "subtitle": "Ausweisung der Folgen der Elektrizität am Klima"
+      },
+      "view2": {
+        "header": "Sieh in Echtzeit wieviel CO2 ausgestoßen wird um deine Elektrizität zuproduzieren",
+        "text": "Wir färben alle Gegenden der Welt mit ihrer Kohlenstoffintensität (einschließlich aller Treibhausgase) der dort verbrauchten Elektrizität. Grünere Farben bedeuten Klima freundlichere Elektrizität."
+      },
+      "view3": {
+        "header": "Wir wissen woher die Elektrizität kommt",
+        "text": "Die Pfeile auf der Karte zeigen die Ströme der Elektrizität zwischen verschiedenen Gegenden. Klicke auf eine Gegend um mehr Informationen über die Herkunft der Elektrizität zusehen."
+      },
+      "view4": {
+        "header": "Echtzeit Wind- und Solarbedingungen",
+        "text": "Wind- und Solarenergie sind abhängig vom Wetter. Klicke auf den Sonnen- und Windknopf um die Echtzeit Stärke des Windes und des Sonnenscheins überall in der Welt anzuzeigen."
+      }
+    },
     "country-panel": {
         "source": "Quelle",
         "carbonintensity": "spezifische CO2-Emissionen",
@@ -16,6 +39,11 @@
         "emissions": "CO2-Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
         "helpfrom": "mit Unterstützung von"
+    },
+    "left-panel": {
+      "zone-list-header-title": "Klimaauswirkung nach Gegend",
+      "zone-list-header-subtitle": "Sortiert nach Kohlenstoffintensität der verbrauchten Elektrizität (gCO2äq/kWh)",
+      "search": "Gegenden suchen"
     },
     "country-history": {
         "carbonintensity24h": "spezifische CO2-Emissionen in den letzten 24 h",
