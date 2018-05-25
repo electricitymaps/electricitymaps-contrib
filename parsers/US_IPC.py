@@ -20,9 +20,9 @@ GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
                       'Hydro': 'hydro',
                       'Coal': 'coal',
                       'Diesel': 'oil',
-                      #'PURPA/Non-Utility Wind': 'wind',
-                      'Natural Gas': 'gas'
-                      #'PURPA/Non-Utility Solar': 'solar',
+                      'PURPA/Non-Utility Wind': 'wind',
+                      'Natural Gas': 'gas',
+                      'PURPA/Non-Utility Solar': 'solar'
                       #'PURPA Other': 'biomass'
                       }
 
@@ -60,8 +60,7 @@ def data_processer(raw_data, logger):
     dt_key = lambda x: x['datetime']
     grouped = groupby(raw_data, dt_key)
 
-    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent',
-                      'PURPA/Non-Utility Wind', 'PURPA/Non-Utility Solar', 'PURPA Other'}
+    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent', 'PURPA Other'}
     known_keys = GENERATION_MAPPING.keys() | keys_to_ignore
 
     unmapped = set()
