@@ -840,11 +840,11 @@ function renderCountryTable(state) {
   } else {
     countryTable.data(d).render(true);
 
-    const zoneHasParser = d.hasParser === undefined || !d.hasParser;
-    countryTable.showNoParserMessageIf(zoneHasParser);
+    const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
+    countryTable.showNoParserMessageIf(zoneIsMissingParser);
     const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
-    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp, dataIsMostRecentDatapoint);
+    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
   }
 }
 
