@@ -65,16 +65,6 @@ class TestINPB(unittest.TestCase):
         expected = "13:33:59"
         self.assertEqual(date_text, expected)
 
-    def test_date_time_strings_to_kolkata_date(self):
-        date_text = "09/06/2017"
-        date_format = "DD/MM/YYYY"
-        time_text = "13:33:59"
-        time_format = "HH:mm:ss"
-        date_time = IN_PB.date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format)
-        self.assertIsNotNone(date_time)
-        expected = get(datetime(2017, 6, 9, 13, 33, 59), 'Asia/Kolkata')
-        self.assertEqual(date_time, expected)
-
 
 if __name__ == '__main__':
     unittest.main()
