@@ -65,6 +65,16 @@ class TestINPB(unittest.TestCase):
         expected = "13:33:59"
         self.assertEqual(date_text, expected)
 
+    def test_read_punjab_consumption_date(self):
+        current = get(datetime(2018, 5, 5, 14, 38, 29), 'Asia/Kolkata')
+        date_text = "02/04/2018"
+        time_text = "14:38:29"
+
+        expected = get(datetime(2018, 4, 2, 14, 38, 29), 'Asia/Kolkata').datetime
+
+        date_time = IN_PB.read_punjab_consumption_date(date_text, time_text, current)
+        self.assertEqual(date_time, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
