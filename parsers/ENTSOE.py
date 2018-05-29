@@ -270,7 +270,7 @@ VALIDATIONS = {
         # and when those are missing this can indicate that others are missing as well.
         # We have also never seen unknown being 0.
         # Usual load is in 30 to 80 GW range.
-        'required': ['coal', 'gas', 'nuclear',
+        'required': ['coal', 'gas', 'nuclear', 'wind',
                      'biomass', 'hydro', 'unknown'],
         'expected_range': (20000, 100000),
     },

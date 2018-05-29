@@ -1,13 +1,14 @@
 arrow==0.10.0
 beautifulsoup4==4.5.3
 demjson==2.2.4
+eiapy==0.1.2
 html5lib==0.999999999
 lxml==3.7.3
 mock==2.0.0
 pandas==0.22.0
 Pillow==4.0.0
 pytesseract==0.2.0
-ree==2.1.0
+ree==2.1.1
 requests==2.18.4
 requests-mock==1.3.0
 tablib==0.12.1
