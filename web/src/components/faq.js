@@ -41,7 +41,7 @@ const faq = {
       },
       whySmallAreas: {
         question: 'Why do you divide the world into smaller areas and not simply show country averages?',
-        answer: 'By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.',
+        answer: 'The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.',
       },
       divideExistingArea: {
         question: 'Can you divide my area into smaller parts?',
