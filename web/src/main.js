@@ -214,7 +214,8 @@ moment.locale(getState().application.locale.toLowerCase());
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
-if (!getState().application.onboardingSeen && !getState().isEmbedded) {
+// do not display onboarding when we've seen it or we're embedded
+if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
   onboardingModal = new OnboardingModal('#main');
   thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
