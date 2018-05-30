@@ -6,11 +6,6 @@
         "datasources": "datakällor",
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
-    "mobile-info-tab": {
-        "map-info-text": "Denna karta visar hur mycket CO2 som släpps ut för att producera din el, i realtid. Vi färglägger områden runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el.",
-        "electricity-origins-text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om var elen kommer från.",
-        "wind-solar-text": "Elproduktion från sol och vind är beroende av vädret. Tryck på knapparna sol och vind för att i realtid visa vindstyrka och solsken över hela världen."
-    },
     "onboarding-modal": {
         "view1": {
             "header": "Electricity Map",

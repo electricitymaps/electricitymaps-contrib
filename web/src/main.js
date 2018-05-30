@@ -8,6 +8,8 @@ import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
+import FAQ from './components/faq';
+import { formatPower } from './helpers/formatting';
 
 // Libraries
 const d3 = Object.assign(
@@ -140,6 +142,9 @@ const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorb
 
 const zoneList = new ZoneList('.zone-list p');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
+
+const faq = new FAQ('.faq');
+const mobileFaq = new FAQ('.mobile-faq');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -764,8 +769,8 @@ if (typeof zoneMap !== 'undefined') {
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
-// Close button
-d3.selectAll('#left-panel-zone-details-back')
+// Back button
+d3.selectAll('.left-panel-back-button')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
     dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
@@ -779,6 +784,13 @@ zoneList.setClickHandler((selectedCountry) => {
     centerOnZoneName(getState(), selectedCountry.countryCode, 4);
   }
 });
+
+// FAQ link
+d3.selectAll('.faq-link')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', 'faq');
+  });
 
 
 // Mobile toolbar buttons
@@ -1003,12 +1015,15 @@ function routeToPage(pageName, state) {
 
 
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country');
+
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
 
   d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
 
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-hidden', pageName !== 'country');
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-hidden', pageName !== 'country');
+  d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
+  
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure

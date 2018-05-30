@@ -6,11 +6,6 @@
         "datasources": "data sources",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
-    "mobile-info-tab": {
-        "map-info-text": "This map shows how much CO2 is emitted to produce your electricity, in real-time. We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity.",
-        "electricity-origins-text": "Arrows on the map indicate flows of electricity between different areas. Tap on an area to see more information about the origins of its electricity.",
-        "wind-solar-text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
-    },
     "onboarding-modal": {
         "view1": {
             "header": "The Electricity Map",
@@ -59,6 +54,8 @@
         "likethisvisu": "Like the visualization?",
         "loveyourfeedback": "We'd love your feedback",
         "foundbugs": "Found bugs or have ideas? Report them",
+        "faq-text": "Anything unclear? Check out our",
+        "faq": "frequently asked questions.",
         "here": "here"
     },
     "legends": {
