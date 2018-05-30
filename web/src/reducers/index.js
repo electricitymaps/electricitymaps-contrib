@@ -14,6 +14,7 @@ const initialApplicationState = {
   colorBlindModeEnabled: Cookies.get('colorBlindModeEnabled') === 'true' || false,
   customDate: null,
   isCordova: window.isCordova,
+  isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
