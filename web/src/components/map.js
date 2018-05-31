@@ -99,10 +99,10 @@ export default class Map {
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
 
-    this.strokeWidth = config.strokeWidth || 0.3;
-    this.strokeColor = config.strokeColor || '#555555';
-    this.clickableFill = config.clickableFill || 'gray';
-    this.nonClickableFill = config.nonClickableFill || 'gray';
+    this.strokeWidth = config.strokeWidth || 0.7;
+    this.strokeColor = config.strokeColor || '#dcdfe5';
+    this.clickableFill = config.clickableFill || '#E7EAEF';
+    this.nonClickableFill = config.nonClickableFill || '#E7EAEF';
     this.userIsUsingTouch = false;
 
     this.center = undefined;

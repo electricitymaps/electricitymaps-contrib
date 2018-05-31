@@ -7,7 +7,7 @@
 
 a {
     text-decoration: none;
-    color: lightblue;
+    color: #113959;
 }
 a:hover {
     cursor: pointer;
@@ -18,7 +18,7 @@ html, body {
     margin: 0 !important;
     padding: 0 !important;
     font-family: "Open Sans", sans-serif;
-    background-color: #32414c; /* water color */
+    background-color: #F3F3F3; /* water color */
 }
 
 hr {
@@ -79,7 +79,7 @@ line, path {
     text-align: right;
 }
 .loading {
-    background: rgb(70, 70, 70) url('../images/loading.svg') no-repeat center center;
+    background: #F3F3F3 url('../images/electricitymap-logo.svg') no-repeat center center;
     background-size: 100%;
     width: 1em;
     height: 1em;
@@ -88,7 +88,7 @@ line, path {
 .overlay {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 500;
 }
@@ -147,16 +147,16 @@ body {
 /* Begin HEADER */
 
 #header {
-    background-color: rgb(70, 70, 70);
+    background-color: #F3F3F3;
     z-index: 2;
     position: relative;
-    color: lightgray;
+    color: #000000;
     min-height: 50px; /* required for old Safari */
 
     /* Shadow */
-    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
-    -webkit-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    box-shadow: 0 0 12px 1px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0 0 12px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 0 12px 1px rgba(0,0,0,0.15);
 }
 #header #header-content {
     display: flex;
@@ -176,9 +176,10 @@ body {
 }
 #header #header-content a {
     color: unset;
+    transition: color 0.4s;
 }
 #header #header-content a:hover {
-    color: orange;
+    color: #113959;
     text-decoration: none;
 }
 #header-content .logo {
@@ -189,8 +190,9 @@ body {
     vertical-align: text-top;
 }
 #header-content .logo img {
-    height: 24px;
+    height: 32px;
     margin-right: 0.2rem;
+    margin-top:-4px;
 }
 #header-content .right-header {
     display: block;
@@ -233,8 +235,8 @@ body {
     display: none;
 }
 .panel {
-    background-color: rgb(70, 70, 70);
-    color: lightgray;
+    background-color: #F3F3F3;
+    color: black;
     font-size: 0.8rem;
 }
 
@@ -243,27 +245,28 @@ body {
     left: 24rem; /* should be same as .left-panel width */
     top: 0.5rem;
     position: absolute;
-    background-color: rgb(70, 70, 70);
+    background-color: #F3F3F3;
     width: 1.5rem;
     height: 3rem;
-    color: lightgray;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     justify-content: center;
-
-
-    box-shadow: 6px 0 20px rgba(0,0,0,0.3);
-    -webkit-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
-    -moz-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
-    z-index: 1; /* in order to be above left-panel */
+    box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.15);
+    -webkit-box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.15);
+    transition: transform 0.8s;
+    z-index: 2; /* in order to be above left-panel */
 }
 #left-panel-collapse-button:hover {
     cursor: pointer;
 }
 
 #left-panel-collapse-button.collapsed {
-    left: 0px;
+    transform: translate(-24rem);
 }
 
 #left-panel-collapse-button i{
@@ -279,25 +282,31 @@ body {
 .left-panel {
     padding: 1rem 0;
     width: 24rem;
-    position: relative;
+    height: calc(100vh - 50px);
+    position: fixed;
     overflow-y: auto;
     border-top: none;
     border-left: none;
     border-bottom: none;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    z-index: 1;
+    box-shadow: 0 24px 15px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 24px 15px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 24px 15px rgba(0,0,0,0.2);
+    z-index: 2;
     display: flex;
     flex-direction: column;
-
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    transition: transform 0.8s;
 }
+
+.left-panel.collapsed {
+    transform: translate(-24rem);
+}
+
 .left-panel h1 {
     line-height: 1.3;
-    color: white;
+    color: black;
     font-size: 1.6em;
     margin: 0;
 }
@@ -306,8 +315,8 @@ body {
     display: block;
 }
 .left-panel, left-panel.text {
-    color: lightgray;
-    fill: lightgray;
+    color: black;
+    fill: #D8D8D8;
 }
 .left-panel .axis .tick line {
     opacity: 0.3;
@@ -361,7 +370,7 @@ body {
 
 .mobile-info-tab, .left-panel-zone-details {
     display: flex;
-    padding: 0 1rem;
+    padding: 0 1.25rem;
     line-height: 1.2rem;
     flex-direction: column;
     height: 100%;
@@ -1092,7 +1101,7 @@ sub {
 }
 
 .center-header a{
-    color: lightblue !important;
+    color: #113959 !important;
 }
 
 .center-header a:hover{

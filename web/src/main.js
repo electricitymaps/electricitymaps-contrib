@@ -991,7 +991,7 @@ function renderHistory(state) {
 function renderLeftPanelCollapseButton(state) {
   const { isLeftPanelCollapsed } = state.application;
   d3.select('.left-panel')
-    .style('display', isLeftPanelCollapsed ? 'none' : undefined);
+    .classed('collapsed', isLeftPanelCollapsed);
   d3.select('#left-panel-collapse-button')
     .classed('collapsed', isLeftPanelCollapsed)
   if (typeof zoneMap !== 'undefined') {
