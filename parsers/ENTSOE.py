@@ -394,11 +394,9 @@ def query_consumption(domain, session, target_datetime=None):
         check_response(response, query_consumption.__name__)
 
 
-def query_production(psr_type, in_domain, session, target_datetime=None):
+def query_production(in_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
-
     params = {
-        'psrType': psr_type,
         'documentType': 'A75',
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
@@ -558,25 +556,26 @@ def parse_production(xml_text):
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
-    productions = []
-    datetimes = []
+    productions = defaultdict(lambda: [])
+    datetimes = defaultdict(lambda: [])
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
+        psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             try:
-                i = datetimes.index(datetime)
+                i = datetimes[psr_type].index(datetime)
                 if is_production:
-                    productions[i] += quantity
+                    productions[psr_type][i] += quantity
                 else:
-                    productions[i] -= quantity
+                    productions[psr_type][i] -= quantity
             except ValueError:  # Not in list
-                datetimes.append(datetime)
-                productions.append(quantity if is_production else -1 * quantity)
+                datetimes[psr_type].append(datetime)
+                productions[psr_type].append(quantity if is_production else -1 * quantity)
     return productions, datetimes
 
 
@@ -803,14 +802,14 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     # Create a double hashmap with keys (datetime, parameter)
     production_hashmap = defaultdict(lambda: {})
     # Grab production
-    for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(
-            query_production(k, domain, session,
-                             target_datetime=target_datetime))
-        if parsed:
-            productions, datetimes = parsed
-            for i in range(len(datetimes)):
-                production_hashmap[datetimes[i]][k] = productions[i]
+    parsed = parse_production(
+        query_production(domain, session,
+                         target_datetime=target_datetime))
+    if parsed:
+        productions, datetimes = parsed
+        for k in productions.keys():
+            for i in range(len(productions)):
+                production_hashmap[datetimes[k][i]][k] = productions[k][i]
 
     # Remove all dates in the future
     production_dates = sorted(set(production_hashmap.keys()), reverse=True)
