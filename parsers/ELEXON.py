@@ -18,7 +18,7 @@ import logging
 import requests
 import datetime as dt
 import pandas as pd
-from StringIO import StringIO
+from io import StringIO
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
