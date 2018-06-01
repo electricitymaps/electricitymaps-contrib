@@ -349,6 +349,8 @@ def check_response(response, function_name):
 
     soup = BeautifulSoup(response.text, 'html.parser')
     text = soup.find_all('text')
+    if not response.ok:
+        raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, response.text))
     if len(text):
         error_text = soup.find_all('text')[0].prettify()
         if 'No matching data found' in error_text:
