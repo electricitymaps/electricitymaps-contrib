@@ -376,6 +376,7 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
+    print('[%s] querying ENTSOE' % arrow.now().isoformat())
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
