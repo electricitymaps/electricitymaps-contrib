@@ -110,20 +110,15 @@ def fetch_production(zone_key='US-SVERI', session=None, target_datetime=None, lo
     }
     """
 
-    if target_datetime is not None:
-        start_date = target_datetime.strftime('%Y-%m-%d')
-        shift_date = target_datetime + timedelta(days=1)
-        end_date = shift_date.strftime('%Y-%m-%d')
-        limits = (start_date, end_date)
-        raw_data = query_api(limits, session=session)
-    else:
-        today = datetime.now()
-        shift_date = today + timedelta(days=1)
-        start_date = today.strftime('%Y-%m-%d')
-        end_date = shift_date.strftime('%Y-%m-%d')
-        limits = (start_date, end_date)
-        raw_data = query_api(limits, session=session)
+    if target_datetime is None:
+        target_datetime = datetime.now()
 
+    start_date = target_datetime.strftime('%Y-%m-%d')
+    shift_date = target_datetime + timedelta(days=1)
+    end_date = shift_date.strftime('%Y-%m-%d')
+    limits = (start_date, end_date)
+
+    raw_data = query_api(limits, session=session)
     processed_data = data_processor(raw_data, logger)
 
     data = []
