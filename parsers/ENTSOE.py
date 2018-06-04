@@ -371,8 +371,8 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     else:
         # make sure we have an arrow object
         target_datetime = arrow.get(target_datetime)
-    params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
-    params['periodEnd'] = target_datetime.replace(hours=+span[1]).format('YYYYMMDDHH00')
+    params['periodStart'] = target_datetime.shift(hours=span[0]).format('YYYYMMDDHH00')
+    params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
@@ -402,7 +402,7 @@ def query_production(in_domain, session, target_datetime=None):
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime, span=(-48, 0))
     if response.ok:
         return response.text
     else:
@@ -557,8 +557,8 @@ def parse_production(xml_text):
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     # Get all points
-    productions = defaultdict(lambda: [])
-    datetimes = defaultdict(lambda: [])
+    productions = []
+    datetimes = []
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
@@ -569,14 +569,15 @@ def parse_production(xml_text):
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             try:
-                i = datetimes[psr_type].index(datetime)
+                i = datetimes.index(datetime)
                 if is_production:
-                    productions[psr_type][i] += quantity
+                    productions[i][psr_type] += quantity
                 else:
-                    productions[psr_type][i] -= quantity
+                    productions[i][psr_type] -= quantity
             except ValueError:  # Not in list
-                datetimes[psr_type].append(datetime)
-                productions[psr_type].append(quantity if is_production else -1 * quantity)
+                datetimes.append(datetime)
+                productions.append(defaultdict(lambda: 0))
+                productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
 
 
@@ -806,22 +807,17 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     parsed = parse_production(
         query_production(domain, session,
                          target_datetime=target_datetime))
-    if parsed:
-        productions, datetimes = parsed
-        for k in productions.keys():
-            for i in range(len(productions)):
-                production_hashmap[datetimes[k][i]][k] = productions[k][i]
 
-    # Remove all dates in the future
-    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
-    if not len(production_dates):
+    if not parsed:
         return None
 
+    productions, production_dates = parsed
+
     data = []
-    for production_date in production_dates:
+    for i in range(len(production_dates)):
         production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
-                             production_hashmap[production_date].items()}
+                             productions[i].items()}
+        production_date = production_dates[i]
 
         data.append({
             'zoneKey': zone_key,
