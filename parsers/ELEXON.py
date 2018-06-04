@@ -154,6 +154,9 @@ def parse_production(csv_text, target_datetime=None,
     # filter out undesired columns
     df = df.iloc[:-1, [7, 8, 9, 4]]
 
+    df['Settlement Date'] = df['Settlement Date'].apply(
+        lambda x: dt.datetime.strptime(x, '%Y-%m-%d'))
+    df['Settlement Period'] = df['Settlement Period'].astype(int)
     df['datetime'] = df.apply(lambda x: datetime_from_date_sp(
         x['Settlement Date'], x['Settlement Period']), axis=1)
 
@@ -168,7 +171,7 @@ def parse_production(csv_text, target_datetime=None,
 
         data_point = {
             'zoneKey': 'GB',
-            'datetime': time,
+            'datetime': time.to_pydatetime(),
             'source': 'bmreports.com',
             'production': dict(),
             'storage': dict()

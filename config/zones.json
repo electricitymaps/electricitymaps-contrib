@@ -1419,14 +1419,15 @@
       "wind": 15621
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ELEXON.fetch_production"
     },
     "timezone": null
   },
@@ -2850,7 +2851,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/olivierSemet"
+      "https://github.com/olivierSemet",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
