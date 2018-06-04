@@ -1,0 +1,1149 @@
+<?xml version="1.0" encoding="UTF-8"?><gmd:MD_Metadata xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<gmd:fileIdentifier>
+<gco:CharacterString>1505847682442r16845862871726713</gco:CharacterString>
+</gmd:fileIdentifier>
+<gmd:language>
+<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</gmd:LanguageCode>
+</gmd:language>
+<gmd:characterSet>
+<gmd:MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</gmd:MD_CharacterSetCode>
+</gmd:characterSet>
+<gmd:hierarchyLevel>
+<gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</gmd:MD_ScopeCode>
+</gmd:hierarchyLevel>
+<gmd:contact>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Oak Ridge National Laboratory</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:phone>
+<gmd:CI_Telephone>
+<gmd:voice>
+<gco:CharacterString>865-241-3976</gco:CharacterString>
+</gmd:voice>
+<gmd:facsimile>
+<gco:CharacterString>865-241-6261</gco:CharacterString>
+</gmd:facsimile>
+</gmd:CI_Telephone>
+</gmd:phone>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:deliveryPoint>
+<gco:CharacterString>One Bethel Valley Rd, MS-6017</gco:CharacterString>
+</gmd:deliveryPoint>
+<gmd:city>
+<gco:CharacterString>Oak Ridge</gco:CharacterString>
+</gmd:city>
+<gmd:administrativeArea>
+<gco:CharacterString>TN</gco:CharacterString>
+</gmd:administrativeArea>
+<gmd:postalCode>
+<gco:CharacterString>37831</gco:CharacterString>
+</gmd:postalCode>
+<gmd:country>
+<gco:CharacterString>US</gco:CharacterString>
+</gmd:country>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:contact>
+<dateStamp>
+<gco:Date>2017-08-02</gco:Date>
+</dateStamp>
+<gmd:metadataStandardName>
+<gco:CharacterString>NAP - Metadata</gco:CharacterString>
+</gmd:metadataStandardName>
+<gmd:metadataStandardVersion>
+<gco:CharacterString>1.2</gco:CharacterString>
+</gmd:metadataStandardVersion>
+<gmd:spatialRepresentationInfo>
+<gmd:MD_VectorSpatialRepresentation>
+<gmd:geometricObjects>
+<gmd:MD_GeometricObjects>
+<gmd:geometricObjectType gco:nilReason="missing"/>
+<gmd:geometricObjectCount>
+<gco:Integer>66</gco:Integer>
+</gmd:geometricObjectCount>
+</gmd:MD_GeometricObjects>
+</gmd:geometricObjects>
+</gmd:MD_VectorSpatialRepresentation>
+</gmd:spatialRepresentationInfo>
+<gmd:identificationInfo>
+<gmd:MD_DataIdentification>
+<gmd:citation>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>Control Areas</gco:CharacterString>
+</gmd:title>
+<gmd:date>
+<gmd:CI_Date>
+<date>
+<gco:Date>2017-08-02</gco:Date>
+</date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</gmd:CI_DateTypeCode>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+<gmd:citedResponsibleParty>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Oak Ridge National Laboratory</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo gco:nilReason="missing"/>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:citedResponsibleParty>
+<gmd:citedResponsibleParty>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Los Alamos National Laboratory</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo gco:nilReason="missing"/>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:citedResponsibleParty>
+<gmd:citedResponsibleParty>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Idaho National Laboratory</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo gco:nilReason="missing"/>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:citedResponsibleParty>
+<gmd:collectiveTitle>
+<gco:CharacterString>HIFLD Open and HIFLD Secure</gco:CharacterString>
+</gmd:collectiveTitle>
+</gmd:CI_Citation>
+</gmd:citation>
+<gmd:abstract>
+<gco:CharacterString>This feature class/shapefile represents electric power control areas. Control Areas, also known as Balancing Authority Areas, are controlled by Balancing Authorities, who are responsible for monitoring and balancing the generation, load, and transmission of electric power within their region, often comprised of the retail service territories of numerous electric power utilities. Each control area is interconnected with neighboring ones to facilitate emergency support, coordinated operations, and power purchases and sales.</gco:CharacterString>
+</gmd:abstract>
+<gmd:purpose>
+<gco:CharacterString>This feature class/shapefile is for the Homeland Infrastructure Foundation Level Database (HIFLD) (https://gii.dhs.gov/HIFLD) as well as the Energy modelling and simulation community.</gco:CharacterString>
+</gmd:purpose>
+<gmd:credit>
+<gco:CharacterString>Oak Ridge National Laboratory (ORNL) Geographic Information Science and Technology (GIST) Group, Los Alamos National Laboratory (LANL), Idaho National Laboratory (INL), National Geospatial-Intelligence Agency (NGA) Homeland Security Infrastructure Program (HSIP) Team</gco:CharacterString>
+</gmd:credit>
+<gmd:status>
+<gmd:MD_ProgressCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed" codeSpace="ISOTC211/19115">completed</gmd:MD_ProgressCode>
+</gmd:status>
+<gmd:pointOfContact>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Oak Ridge National Laboratory</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:phone>
+<gmd:CI_Telephone>
+<gmd:voice>
+<gco:CharacterString>865-241-3976</gco:CharacterString>
+</gmd:voice>
+<gmd:facsimile>
+<gco:CharacterString>865-241-6261</gco:CharacterString>
+</gmd:facsimile>
+</gmd:CI_Telephone>
+</gmd:phone>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:deliveryPoint>
+<gco:CharacterString>One Bethel Valley Rd, MS-6017</gco:CharacterString>
+</gmd:deliveryPoint>
+<gmd:city>
+<gco:CharacterString>Oak Ridge</gco:CharacterString>
+</gmd:city>
+<gmd:administrativeArea>
+<gco:CharacterString>TN</gco:CharacterString>
+</gmd:administrativeArea>
+<gmd:postalCode>
+<gco:CharacterString>37831</gco:CharacterString>
+</gmd:postalCode>
+<gmd:country>
+<gco:CharacterString>US</gco:CharacterString>
+</gmd:country>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:pointOfContact>
+<gmd:resourceMaintenance>
+<gmd:MD_MaintenanceInformation>
+<gmd:maintenanceAndUpdateFrequency>
+<gmd:MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="continual" codeSpace="ISOTC211/19115">continual</gmd:MD_MaintenanceFrequencyCode>
+</gmd:maintenanceAndUpdateFrequency>
+</gmd:MD_MaintenanceInformation>
+</gmd:resourceMaintenance>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>Continental United States</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>USA</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="place" codeSpace="ISOTC211/19115">place</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>Continental United States</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>USA</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="place" codeSpace="ISOTC211/19115">place</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>electricity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>energy infrastructure</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland security</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>name</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>capacity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>balancing authority</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>address</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatt hours</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>transmission</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>homeland defense</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>megawatts</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>emergency response</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>control area</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>peak demand</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:resourceConstraints>
+<gmd:MD_Constraints>
+<gmd:useLimitation>
+<gco:CharacterString>None (Public Use). Users are advised to read the data set's metadata thoroughly to understand appropriate use and data limitations.</gco:CharacterString>
+</gmd:useLimitation>
+</gmd:MD_Constraints>
+</gmd:resourceConstraints>
+<gmd:resourceConstraints>
+<gmd:MD_LegalConstraints>
+<gmd:useLimitation>
+<gco:CharacterString>Distributor assumes no liability for misuse of data.</gco:CharacterString>
+</gmd:useLimitation>
+<gmd:otherConstraints>
+<gco:CharacterString>None (Public Domain Information)</gco:CharacterString>
+</gmd:otherConstraints>
+</gmd:MD_LegalConstraints>
+</gmd:resourceConstraints>
+<gmd:aggregationInfo>
+<gmd:MD_AggregateInformation>
+<gmd:aggregateDataSetName>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>HIFLD Open and HIFLD Secure</gco:CharacterString>
+</gmd:title>
+<gmd:date gco:nilReason="missing"/>
+<gmd:citedResponsibleParty gco:nilReason="missing"/>
+</gmd:CI_Citation>
+</gmd:aggregateDataSetName>
+<gmd:associationType>
+<gmd:DS_AssociationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#DS_AssociationTypeCode" codeListValue="largerWorkCitation" codeSpace="ISOTC211/19115">largerWorkCitation</gmd:DS_AssociationTypeCode>
+</gmd:associationType>
+</gmd:MD_AggregateInformation>
+</gmd:aggregationInfo>
+<gmd:language>
+<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</gmd:LanguageCode>
+</gmd:language>
+<gmd:characterSet>
+<gmd:MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</gmd:MD_CharacterSetCode>
+</gmd:characterSet>
+<gmd:topicCategory>
+<gmd:MD_TopicCategoryCode>structure</gmd:MD_TopicCategoryCode>
+</gmd:topicCategory>
+<gmd:environmentDescription>
+<gco:CharacterString>Microsoft Windows 7 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.1.1.3143</gco:CharacterString>
+</gmd:environmentDescription>
+<gmd:extent>
+<gmd:EX_Extent>
+<gmd:description>
+<gco:CharacterString>Time period date range corresponds to the DATE field.</gco:CharacterString>
+</gmd:description>
+<gmd:temporalElement>
+<gmd:EX_TemporalExtent>
+<gmd:extent>
+<gml:TimePeriod gml:id="N65737">
+<gml:beginPosition>2017-04-20</gml:beginPosition>
+<gml:endPosition>2017-04-20</gml:endPosition>
+</gml:TimePeriod>
+</gmd:extent>
+</gmd:EX_TemporalExtent>
+</gmd:temporalElement>
+</gmd:EX_Extent>
+</gmd:extent>
+<gmd:extent>
+<gmd:EX_Extent>
+<gmd:geographicElement>
+<gmd:EX_GeographicBoundingBox>
+<gmd:westBoundLongitude>
+<gco:Decimal>-124.74648</gco:Decimal>
+</gmd:westBoundLongitude>
+<gmd:eastBoundLongitude>
+<gco:Decimal>-66.950005</gco:Decimal>
+</gmd:eastBoundLongitude>
+<gmd:southBoundLatitude>
+<gco:Decimal>24.521051</gco:Decimal>
+</gmd:southBoundLatitude>
+<gmd:northBoundLatitude>
+<gco:Decimal>49.384359</gco:Decimal>
+</gmd:northBoundLatitude>
+</gmd:EX_GeographicBoundingBox>
+</gmd:geographicElement>
+</gmd:EX_Extent>
+</gmd:extent>
+<gmd:supplementalInformation>
+<gco:CharacterString>None.</gco:CharacterString>
+</gmd:supplementalInformation>
+</gmd:MD_DataIdentification>
+</gmd:identificationInfo>
+<gmd:distributionInfo>
+<gmd:MD_Distribution>
+<gmd:distributionFormat>
+<gmd:MD_Format>
+<gmd:name>
+<gco:CharacterString>Vector Digital Data Set (Polygon)</gco:CharacterString>
+</gmd:name>
+<gmd:version gco:nilReason="missing"/>
+</gmd:MD_Format>
+</gmd:distributionFormat>
+<gmd:distributor>
+<gmd:MD_Distributor>
+<gmd:distributorContact>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>HIFLD Subcommittee</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:electronicMailAddress>
+<gco:CharacterString>hifld@hq.dhs.gov</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor" codeSpace="ISOTC211/19115">distributor</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:distributorContact>
+<gmd:distributionOrderProcess>
+<gmd:MD_StandardOrderProcess>
+<gmd:fees>
+<gco:CharacterString>None. No fees are applicable for obtaining the data set.</gco:CharacterString>
+</gmd:fees>
+</gmd:MD_StandardOrderProcess>
+</gmd:distributionOrderProcess>
+</gmd:MD_Distributor>
+</gmd:distributor>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions/>
+</gmd:transferOptions>
+</gmd:MD_Distribution>
+</gmd:distributionInfo>
+<gmd:dataQualityInfo>
+<gmd:DQ_DataQuality>
+<gmd:scope>
+<gmd:DQ_Scope>
+<gmd:level>
+<gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</gmd:MD_ScopeCode>
+</gmd:level>
+</gmd:DQ_Scope>
+</gmd:scope>
+<gmd:report>
+<gmd:DQ_TopologicalConsistency>
+<gmd:evaluationMethodDescription>
+<gco:CharacterString>Data were extracted from sources (identified in the SOURCE field) and other open source websites to populate the attribute fields; NOT AVAILABLE values (for string and date data types) and Null values (for numeric data types) denote missing data that was not present in the source data. During quality control, attributes were checked to ensure that they fell within the expected ranges or had expected/valid values. Text attribute values were checked for spelling and usage consistency. No topology tests were conducted. All records were verified to occur within the spatial domain of the feature class/shapefile.</gco:CharacterString>
+</gmd:evaluationMethodDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_TopologicalConsistency>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_DomainConsistency>
+<gmd:evaluationMethodDescription>
+<gco:CharacterString>Data were extracted from sources (identified in the SOURCE field) and other open source websites to populate the attribute fields; NOT AVAILABLE values (for string and date data types) and Null values (for numeric data types) denote missing data that was not present in the source data. During quality control, attributes were checked to ensure that they fell within the expected ranges or had expected/valid values. Text attribute values were checked for spelling and usage consistency. No topology tests were conducted. All records were verified to occur within the spatial domain of the feature class/shapefile.</gco:CharacterString>
+</gmd:evaluationMethodDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_DomainConsistency>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_ConceptualConsistency>
+<gmd:measureDescription>
+<gco:CharacterString>Data were extracted from sources (identified in the SOURCE field) and other open source websites to populate the attribute fields; NOT AVAILABLE values (for string and date data types) and Null values (for numeric data types) denote missing data that was not present in the source data. During quality control, attributes were checked to ensure that they fell within the expected ranges or had expected/valid values. Text attribute values were checked for spelling and usage consistency. No topology tests were conducted. All records were verified to occur within the spatial domain of the feature class/shapefile.</gco:CharacterString>
+</gmd:measureDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_ConceptualConsistency>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_CompletenessOmission>
+<gmd:measureDescription>
+<gco:CharacterString>Data is complete as of the most recent date indicated in the Time Period section.</gco:CharacterString>
+</gmd:measureDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_CompletenessOmission>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_QuantitativeAttributeAccuracy>
+<gmd:measureDescription>
+<gco:CharacterString>No formal attribute accuracy test was conducted. Data from the authoritative sources (as identified in other sections of this metadata) is assumed to be correct and accurate. See also “Overview Description” in the “Entities and Attributes” metadata section.</gco:CharacterString>
+</gmd:measureDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_QuantitativeAttributeAccuracy>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_AbsoluteExternalPositionalAccuracy>
+<gmd:measureDescription>
+<gco:CharacterString>None; Users should read and understand the METHOD metadata as well as the Processing Steps.</gco:CharacterString>
+</gmd:measureDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_AbsoluteExternalPositionalAccuracy>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_AbsoluteExternalPositionalAccuracy>
+<gmd:measureDescription>
+<gco:CharacterString>None; dataset contains no vertical data.</gco:CharacterString>
+</gmd:measureDescription>
+<gmd:result gco:nilReason="missing"/>
+</gmd:DQ_AbsoluteExternalPositionalAccuracy>
+</gmd:report>
+<gmd:lineage>
+<gmd:LI_Lineage>
+<gmd:processStep>
+<gmd:LI_ProcessStep>
+<gmd:description>
+<gco:CharacterString>Authoritative data sources are identified through open source research. That data is then acquired and transformed into a usable data format. The properly formatted data then goes through preprocessing steps that includes a georeferencing or spatial adjustment operation to give spatial context to the data. In the absence of more precise geometry, territories are represented with dissolved features from the Retail Service Territories feature class/shapefile, based on available authoritative data sources. The data goes through further refinement using remote sensing techniques. After preprocessing, every record goes through a review process to verify that each polygon encompasses the corresponding territory based on open source information. The DATE field indicates the date in which the review step took place.</gco:CharacterString>
+</gmd:description>
+</gmd:LI_ProcessStep>
+</gmd:processStep>
+<gmd:source>
+<gmd:LI_Source>
+<gmd:sourceCitation>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>see SOURCE field.</gco:CharacterString>
+</gmd:title>
+<gmd:date gco:nilReason="missing"/>
+<gmd:citedResponsibleParty gco:nilReason="missing"/>
+</gmd:CI_Citation>
+</gmd:sourceCitation>
+<gmd:sourceExtent>
+<gmd:EX_Extent>
+<gmd:description>
+<gco:CharacterString>observed</gco:CharacterString>
+</gmd:description>
+<gmd:temporalElement>
+<gmd:EX_TemporalExtent>
+<gmd:extent>
+<gml:TimePeriod gml:id="N65898">
+<gml:beginPosition>2015-01-01</gml:beginPosition>
+<gml:endPosition>2015-12-31</gml:endPosition>
+</gml:TimePeriod>
+</gmd:extent>
+</gmd:EX_TemporalExtent>
+</gmd:temporalElement>
+</gmd:EX_Extent>
+</gmd:sourceExtent>
+</gmd:LI_Source>
+</gmd:source>
+</gmd:LI_Lineage>
+</gmd:lineage>
+</gmd:DQ_DataQuality>
+</gmd:dataQualityInfo>
+</gmd:MD_Metadata>
