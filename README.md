@@ -21,34 +21,34 @@ Check the [contributing](#contribute) section for more details.
 
 ## Frequently asked questions
 
-**How do you define real-time data?**  
+**How do you define real-time data?**
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
-**Why do you calculate the carbon intensity of *consumption*?**  
+**Why do you calculate the carbon intensity of *consumption*?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 
-**Why don't you show emissions per capita?**  
+**Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO2/capita.
 This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
 That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods).
 The CO2/capita metric, by involving the size of the population, and by not integrating all CO2 emission sources, is thus an incomplete metric.
 CO2 intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
-**CO2 emission factors look high - what do they cover exactly?**  
+**CO2 emission factors look high - what do they cover exactly?**
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
 
-**Is delayed data useful?**  
+**Is delayed data useful?**
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can be used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
-**Can scheduled/assumed generation data be used?**  
+**Can scheduled/assumed generation data be used?**
 The electricitymap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
 
-**Can areas other than countries be shown?**  
+**Can areas other than countries be shown?**
 Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
 
-**How can I get access to historical data or the live API?**  
+**How can I get access to historical data or the live API?**
 All this and more can be found **[here](https://pro.electricitymap.org/)**.
 
 ## Data sources
@@ -59,11 +59,9 @@ The carbon intensity of each country is measured from the perspective of a consu
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.js](https://github.com/tmrowco/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed literature:
 - IPCC (2014) Fifth Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
-Country-specific carbon-intensity factors:
+Country-specific fuel carbon-intensity factors:
 - Estonia:
   - Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](http://www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
-- Norway:
-  - Hydro: [Ostford Research (2015) "The inventory and life cycle data for Norwegian hydroelectricity"](http://ostfoldforskning.no/en/publications/Publication/?id=1236)
 
 Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
 
@@ -172,7 +170,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Austria
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)  
+- Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)
 - Belgium: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
@@ -193,10 +191,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Denmark (Bornholm)
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
-- Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Estonia:
+  - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=EST)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
 - Finland
-  - Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
+  - Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France: [RTE](http://bilan-electrique-2017.rte-france.com/production/le-parc-de-production-national/)
 - Germany: [BNetzA](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
@@ -210,7 +210,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Iceland: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
 - Ireland
   - All production types: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Wind: [IWEA](http://www.iwea.com/index.cfm/page/windenergyfaqs?#q21)
+  - Biomass, Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=IRL)
 - Italy
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -268,7 +268,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 
 ### Cross-border transmission capacity data sources
 Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap/blob/master/config/exchanges.json) file.
-&nbsp;<details><summary>Click to see the full list of sources</summary>  
+&nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland <-> Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
@@ -301,6 +301,7 @@ A --> B: unidirectional operation, only with power flow "from A to B"
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Singapore: [EMC](https://www.emcsg.com)
+- Turkey: [EPIAS](https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml)
 - Other: [ENTSO-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)
 
 ### Real-time weather data sources
@@ -399,7 +400,7 @@ python3 -m unittest discover parsers/test/
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
 ### Generating a new map
-If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the [web](https://github.com/tmrowco/electricitymap/tree/master/web) directory then run the following command.  
+If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the [web](https://github.com/tmrowco/electricitymap/tree/master/web) directory then run the following command.
 ```
 ./topogen.sh
 ```

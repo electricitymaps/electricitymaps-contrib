@@ -23,19 +23,19 @@
         42.6882473822
       ]
     ],
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
     "timezone": null
   },
   "AR": {
-    "bounding_box": [
-      [
-        -73.4154357571,
-        -55.25
-      ],
-      [
-        -53.628348965,
-        -21.8323104794
-      ]
-    ],
     "capacity": {
       "gas": 18930,
       "hydro": 11170,
@@ -114,30 +114,10 @@
     "timezone": null
   },
   "AUS-NT": {
-    "bounding_box": [
-      [
-        128.50011587536375,
-        -26.499911390797962
-      ],
-      [
-        138.50018768629417,
-        -10.468357028999876
-      ]
-    ],
     "flag_file_name": "au.png",
     "timezone": null
   },
   "AUS-QLD": {
-    "bounding_box": [
-      [
-        137.5001868021792,
-        -29.670622246919024
-      ],
-      [
-        154.0488387380003,
-        -8.740166924999826
-      ]
-    ],
     "contributors": [
       "https://github.com/jarek",
       "https://github.com/corradio"
@@ -150,16 +130,6 @@
     "timezone": null
   },
   "AUS-SA": {
-    "bounding_box": [
-      [
-        128.50011600215169,
-        -38.57057057099979
-      ],
-      [
-        141.50010704970066,
-        -25.499911390797962
-      ]
-    ],
     "contributors": [
       "https://github.com/jarek",
       "https://github.com/corradio"
@@ -216,16 +186,6 @@
     "timezone": null
   },
   "AUS-WA": {
-    "bounding_box": [
-      [
-        112.41944420700008,
-        -35.637872002999956
-      ],
-      [
-        129.50011656788791,
-        -13.223565362999949
-      ]
-    ],
     "contributors": [
       "https://github.com/jarek",
       "https://github.com/corradio",
@@ -387,16 +347,6 @@
     "timezone": null
   },
   "BO": {
-    "bounding_box": [
-      [
-        -69.5904237535,
-        -22.8729187965
-      ],
-      [
-        -57.4983711412,
-        -9.76198780685
-      ]
-    ],
     "capacity": {
       "hydro": 483.22,
       "unknown": 1344.55,
@@ -559,16 +509,6 @@
     "timezone": null
   },
   "CA-AB": {
-    "bounding_box": [
-      [
-        -120.50101599759016,
-        48.4925145470001
-      ],
-      [
-        -109.49932108789892,
-        60.50005890629359
-      ]
-    ],
     "contributors": [
       "https://github.com/mlucchini"
     ],
@@ -580,16 +520,6 @@
     "timezone": null
   },
   "CA-BC": {
-    "bounding_box": [
-      [
-        -139.56020662181913,
-        47.80609772300011
-      ],
-      [
-        -113.53745235883926,
-        60.50005890629359
-      ]
-    ],
     "capacity": {
       "biomass": 838,
       "gas": 507,
@@ -604,16 +534,6 @@
     "timezone": null
   },
   "CA-MB": {
-    "bounding_box": [
-      [
-        -102.50159786704786,
-        48.492669576869844
-      ],
-      [
-        -88.44699962056833,
-        60.500059011375754
-      ]
-    ],
     "capacity": {
       "coal": 110,
       "gas": 342,
@@ -656,16 +576,6 @@
   },
   "CA-NL": {
     "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
-    "bounding_box": [
-      [
-        -68.3080677526246,
-        46.118353583000186
-      ],
-      [
-        -52.11660722599996,
-        60.87274609304416
-      ]
-    ],
     "capacity": {
       "biomass": 15,
       "hydro": 6726.806,
@@ -705,44 +615,14 @@
     "timezone": null
   },
   "CA-NT": {
-    "bounding_box": [
-      [
-        -136.94538692906352,
-        59.5000589062935
-      ],
-      [
-        -101.48658586274732,
-        79.26634349200017
-      ]
-    ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
   "CA-NU": {
-    "bounding_box": [
-      [
-        -121.1808194650578,
-        51.41864655200018
-      ],
-      [
-        -60.585479295999846,
-        83.61652252800013
-      ]
-    ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
   "CA-ON": {
-    "bounding_box": [
-      [
-        -95.66119498965699,
-        41.229466804384714
-      ],
-      [
-        -73.84780324445131,
-        57.36127350500004
-      ]
-    ],
     "capacity": {
       "biomass": 495,
       "gas": 9943,
@@ -787,16 +667,6 @@
   },
   "CA-QC": {
     "_comment": "http://www.hydroquebec.com/generation/",
-    "bounding_box": [
-      [
-        -80.26561438699991,
-        44.49802968400007
-      ],
-      [
-        -56.60087602420913,
-        63.0938174500001
-      ]
-    ],
     "capacity": {
       "gas": 411,
       "hydro": 36366,
@@ -806,16 +676,6 @@
     "timezone": null
   },
   "CA-SK": {
-    "bounding_box": [
-      [
-        -110.49997270417693,
-        48.49261789994816
-      ],
-      [
-        -100.86433964677866,
-        60.50005890629359
-      ]
-    ],
     "capacity": {
       "coal": 1530,
       "gas": 1824,
@@ -826,16 +686,6 @@
     "timezone": null
   },
   "CA-YT": {
-    "bounding_box": [
-      [
-        -141.50554863710892,
-        59.500058906146876
-      ],
-      [
-        -123.31910336003193,
-        70.15420156500005
-      ]
-    ],
     "contributors": [
       "https://github.com/jarek"
     ],
@@ -881,16 +731,6 @@
     "timezone": null
   },
   "CL-SIC": {
-    "bounding_box": [
-      [
-        -109.9537247389999,
-        -44.544998116734845
-      ],
-      [
-        -67.80210526499991,
-        -24.791191963069267
-      ]
-    ],
     "capacity": {
       "battery storage": 0,
       "biomass": 466,
@@ -1234,14 +1074,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 97,
-      "coal": 0,
-      "gas": 205,
-      "hydro": 0,
+      "biomass": 217,
+      "coal": 5,
+      "gas": 204,
+      "hydro": 8,
       "nuclear": 0,
-      "oil": 1975,
-      "solar": 1,
-      "wind": 375
+      "oil": 1976,
+      "solar": 11,
+      "wind": 487
     },
     "contributors": [
       "https://github.com/corradio"
@@ -1780,15 +1620,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 344,
-      "coal": 855,
-      "gas": 3801,
-      "hydro": 508,
+      "biomass": 107,
+      "coal": 1199,
+      "gas": 4265,
+      "hydro": 216,
+      "hydro storage": 292,
       "nuclear": 0,
-      "oil": 811,
-      "solar": 0,
+      "oil": 1272,
+      "solar": 10,
       "unknown": 647,
-      "wind": 3025
+      "wind": 3253
     },
     "contributors": [
       "https://github.com/corradio"
@@ -2272,16 +2113,6 @@
     "timezone": null
   },
   "NA": {
-    "bounding_box": [
-      [
-        11.7341988461,
-        -29.045461928
-      ],
-      [
-        25.0844433937,
-        -16.9413428687
-      ]
-    ],
     "capacity": {
       "coal": 120,
       "hydro": 330,
@@ -2360,16 +2191,6 @@
     "timezone": null
   },
   "NO": {
-    "bounding_box": [
-      [
-        4.2626953125,
-        57.7276192162
-      ],
-      [
-        20.1708984375,
-        70.8734913193
-      ]
-    ],
     "capacity": {
       "coal": 0,
       "gas": 611,
@@ -2390,6 +2211,13 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
+    "subZoneNames": [
+      "NO-NO1",
+      "NO-NO2",
+      "NO-NO3",
+      "NO-NO4",
+      "NO-NO5"
+    ],
     "timezone": "Europe/Oslo"
   },
   "NO-NO1": {
@@ -2400,7 +2228,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        7.610326512408815,
+        58.38472727500012
+      ],
+      [
+        13.388184448000061,
+        63.128901615737796
+      ]
+    ]
   },
   "NO-NO2": {
     "parsers": {
@@ -2410,7 +2248,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        4.570648634000037,
+        57.49315013200005
+      ],
+      [
+        11.014170769000089,
+        60.73048157269916
+      ]
+    ]
   },
   "NO-NO3": {
     "parsers": {
@@ -2420,7 +2268,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        4.143809441000116,
+        60.43027545054864
+      ],
+      [
+        14.661440063000043,
+        65.490423895
+      ]
+    ]
   },
   "NO-NO4": {
     "parsers": {
@@ -2430,7 +2288,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        11.018809441000087,
+        63.879640651798496
+      ],
+      [
+        31.576996290000153,
+        71.6652692730001
+      ]
+    ]
   },
   "NO-NO5": {
     "parsers": {
@@ -2440,7 +2308,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        4.27686608200014,
+        59.59392557929161
+      ],
+      [
+        10.10473435728148,
+        62.338893003403086
+      ]
+    ]
   },
   "NZ-NZN": {
     "bounding_box": [
@@ -2507,16 +2385,6 @@
     "timezone": "America/Panama"
   },
   "PE": {
-    "bounding_box": [
-      [
-        -81.4109425524,
-        -18.3479753557
-      ],
-      [
-        -68.6650797187,
-        -0.0572054988649
-      ]
-    ],
     "contributors": [
       "https://github.com/corradio"
     ],
@@ -2719,16 +2587,6 @@
     "timezone": null
   },
   "RU-EU": {
-    "bounding_box": [
-      [
-        35.357377557328505,
-        58.708375963180174
-      ],
-      [
-        69.53394616000008,
-        82.35871002800013
-      ]
-    ],
     "flag_file_name": "ru.png",
     "timezone": null
   },
@@ -2786,7 +2644,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        14.926272420000089,
+        63.65992801849613
+      ],
+      [
+        24.663413534000114,
+        69.53635569300009
+      ]
+    ]
   },
   "SE-SE2": {
     "parsers": {
@@ -2795,7 +2663,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        11.492425171000093,
+        60.280991513822045
+      ],
+      [
+        21.486074487958014,
+        66.78799631800014
+      ]
+    ]
   },
   "SE-SE3": {
     "parsers": {
@@ -2804,7 +2682,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        10.608164910000113,
+        56.392035223000065
+      ],
+      [
+        19.8385522800001,
+        62.67478628775066
+      ]
+    ]
   },
   "SE-SE4": {
     "parsers": {
@@ -2813,7 +2701,17 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        11.951426629000139,
+        54.84267812700013
+      ],
+      [
+        17.624522332000083,
+        57.85822174700009
+      ]
+    ]
   },
   "SG": {
     "bounding_box": [
@@ -2937,16 +2835,6 @@
   },
   "TR": {
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
-    "bounding_box": [
-      [
-        26.0433512713,
-        35.8215347357
-      ],
-      [
-        44.7939896991,
-        42.1414848903
-      ]
-    ],
     "capacity": {
       "battery storage": 0,
       "biomass": 510,
@@ -2968,7 +2856,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
+      "price": "TR.fetch_price",
       "production": "TR.fetch_production"
     },
     "timezone": "Europe/Istanbul"
@@ -2997,16 +2885,6 @@
     "timezone": "Asia/Taipei"
   },
   "UA": {
-    "bounding_box": [
-      [
-        22.0856083513,
-        44.3614785833
-      ],
-      [
-        40.0807890155,
-        52.3350745713
-      ]
-    ],
     "capacity": {
       "hydro": 5380.8,
       "hydro storage": 1,
@@ -3042,21 +2920,11 @@
     "timezone": "Europe/Kiev"
   },
   "US-AK": {
-    "bounding_box": [
-      [
-        -179.64350338399993,
-        50.71539948100022
-      ],
-      [
-        180.28093509200022,
-        71.91250234600014
-      ]
-    ],
     "flag_file_name": "us.png",
     "timezone": null
   },
   "US-BPA": {
-    "capacity":{
+    "capacity": {
       "biomass": 447,
       "coal": 60,
       "gas": 1817,
@@ -3071,7 +2939,17 @@
     "parsers": {
       "production": "US_BPA.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        -125.23460723799991,
+        45.066312681984755
+      ],
+      [
+        -116.37882694730573,
+        49.49251489298911
+      ]
+    ]
   },
   "US-CA": {
     "bounding_box": [
@@ -3104,16 +2982,6 @@
     "timezone": null
   },
   "US-HI": {
-    "bounding_box": [
-      [
-        -178.80436616299988,
-        18.40611714300016
-      ],
-      [
-        -154.31406356599993,
-        28.901678575000147
-      ]
-    ],
     "flag_file_name": "us.png",
     "timezone": null
   },
@@ -3123,10 +2991,13 @@
       "gas": 762,
       "geothermal": 51,
       "hydro": 1709,
-      "oil": 5
+      "oil": 5,
+      "solar": 291,
+      "wind": 682
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "us.png",
     "parsers": {

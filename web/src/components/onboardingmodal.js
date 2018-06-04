@@ -1,4 +1,5 @@
 const translation = require('../helpers/translation');
+const formatting = require('../helpers/formatting');
 const d3 = Object.assign(
   {},
   require('d3-selection'),
@@ -15,7 +16,7 @@ const defaultViews = [{
 },
 {
   headerImage: 'images/onboarding/mapExtract.png',
-  textHtml: `<div><h2>${translation.translate('onboarding-modal.view2.header')}</h2></div>
+  textHtml: `<div><h2>${formatting.co2Sub(translation.translate('onboarding-modal.view2.header'))}</h2></div>
       <div>${translation.translate('onboarding-modal.view2.text')}</div>`,
 }, {
   headerImage: 'images/onboarding/exchangeArrows.png',

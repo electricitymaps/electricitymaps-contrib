@@ -6,18 +6,13 @@
         "datasources": "data sources",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
-    "mobile-info-tab": {
-        "map-info-text": "This map shows how much CO<sub>2</sub> is emitted to produce your electricity, in real-time. We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity.",
-        "electricity-origins-text": "Arrows on the map indicate flows of electricity between different areas. Tap on an area to see more information about the origins of its electricity.",
-        "wind-solar-text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
-    },
     "onboarding-modal": {
         "view1": {
             "header": "The Electricity Map",
             "subtitle": "Mapping the climate impact of electricity"
         },
         "view2": {
-            "header": "See how much CO<sub>2</sub> is emitted to produce your electricity, in real-time.",
+            "header": "See how much CO2 is emitted to produce your electricity, in real-time.",
             "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
         },
         "view3": {
@@ -38,7 +33,10 @@
         "bysource": "by source",
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "helpfrom": "with help from"
+        "helpfrom": "with help from",
+        "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
+        "noLiveData": "Live data is temporarily unavailable for this area",
+        "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>."
     },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",
@@ -47,6 +45,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "emissionsorigin24h": "Origin of emissions in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
         "Getdata": "Get historical data and forecast API"
@@ -55,6 +54,8 @@
         "likethisvisu": "Like the visualization?",
         "loveyourfeedback": "We'd love your feedback",
         "foundbugs": "Found bugs or have ideas? Report them",
+        "faq-text": "Anything unclear? Check out our",
+        "faq": "frequently asked questions.",
         "here": "here"
     },
     "legends": {
@@ -75,7 +76,9 @@
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
-        "hideSolarLayer": "Hide solar layer"
+        "hideSolarLayer": "Hide solar layer",
+        "noParserInfo": "No data available",
+        "temporaryDataOutage": "Data temporarily unavailable"
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
@@ -83,7 +86,8 @@
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "retrynow": "Retry now",
         "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>"
+        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+        "legend": "Legend"
     },
     "wind": "wind",
     "solar": "solar",
@@ -886,8 +890,25 @@
           "NL": {
             "zoneName": "Netherlands"
           },
-          "NO": {
-            "zoneName": "Norway"
+          "NO-NO1": {
+            "countryName": "Norway",
+            "zoneName": "Southeast Norway"
+          },
+          "NO-NO2": {
+            "countryName": "Norway",
+            "zoneName": "Southwest Norway"
+          },
+          "NO-NO3": {
+            "countryName": "Norway",
+            "zoneName": "Middle Norway"
+          },
+          "NO-NO4": {
+            "countryName": "Norway",
+            "zoneName": "North Norway"
+          },
+          "NO-NO5": {
+            "countryName": "Norway",
+            "zoneName": "West Norway"
           },
           "NP": {
             "zoneName": "Nepal"
@@ -1124,7 +1145,8 @@
             "zoneName": "United States of America"
           },
           "US-BPA": {
-            "zoneName": "United States of America (BPA)"
+            "countryName": "United States of America",
+            "zoneName": "BPA"
           },
           "US-CA": {
             "countryName": "United States of America",

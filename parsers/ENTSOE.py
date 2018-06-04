@@ -47,8 +47,8 @@ ENTSOE_PARAMETER_DESC = {
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
-    'biomass': ['B01', 'B08', 'B17'],
-    'coal': ['B02', 'B05'],
+    'biomass': ['B01', 'B17'],
+    'coal': ['B02', 'B05', 'B08'],
     'gas': ['B03', 'B04'],
     'geothermal': ['B09'],
     'hydro': ['B11', 'B12'],
@@ -241,6 +241,96 @@ ENTSOE_UNITS_TO_ZONE = {
     'Ãbyverket Ãrebro': 'SE',
 }
 
+VALIDATIONS = {
+    # This is a list of criteria to ensure validity of data,
+    # used in validate_production()
+    # Note that "required" means data is present in ENTSOE.
+    # It will still work if data is present but 0.
+    # "expected_range" and "floor" only count production and storage
+    # - not exchanges!
+    'AT': {
+        'required': ['hydro'],
+    },
+    'BE': {
+        'required': ['gas', 'nuclear'],
+        'expected_range': (3000, 25000),
+    },
+    'BG': {
+        'required': ['coal', 'nuclear', 'hydro'],
+        'expected_range': (2000, 20000),
+    },
+    'CZ': {
+        # usual load is in 7-12 GW range
+        'required': ['coal', 'nuclear'],
+        'expected_range': (3000, 25000),
+    },
+    'DE': {
+        # Germany sometimes has problems with categories of generation missing from ENTSOE.
+        # Normally there is constant production of a few GW from hydro and biomass
+        # and when those are missing this can indicate that others are missing as well.
+        # We have also never seen unknown being 0.
+        # Usual load is in 30 to 80 GW range.
+        'required': ['coal', 'gas', 'nuclear', 'wind',
+                     'biomass', 'hydro', 'unknown'],
+        'expected_range': (20000, 100000),
+    },
+    'EE': {
+        'required': ['oil'],
+    },
+    'ES': {
+        'required': ['coal', 'nuclear'],
+        'expected_range': (10000, 80000),
+    },
+    'FI': {
+        'required': ['coal', 'nuclear', 'hydro', 'biomass'],
+        'expected_range': (2000, 20000),
+    },
+    'GB': {
+        # usual load is in 15 to 50 GW range
+        'required': ['coal', 'gas', 'nuclear'],
+        'expected_range': (10000, 80000),
+    },
+    'GR': {
+        'required': ['coal', 'gas'],
+        'expected_range': (2000, 20000),
+    },
+    'HU': {
+        'required': ['coal', 'nuclear'],
+    },
+    'IE': {
+        'required': ['coal'],
+        'expected_range': (1000, 15000),
+    },
+    'IT': {
+        'required': ['coal'],
+        'expected_range': (5000, 50000),
+    },
+    'PL': {
+        # usual load is in 10-20 GW range and coal is always present
+        'required': ['coal'],
+        'expected_range': (5000, 35000),
+    },
+    'PT': {
+        'required': ['coal', 'gas'],
+        'expected_range': (1000, 20000),
+    },
+    'RO': {
+        'required': ['coal', 'nuclear', 'hydro'],
+        'expected_range': (2000, 25000),
+    },
+    'RS': {
+        'required': ['coal'],
+    },
+    'SI': {
+        # own total generation capacity is around 4 GW
+        'required': ['nuclear'],
+        'expected_range': (1000, 5000),
+    },
+    'SK': {
+        'required': ['nuclear']
+    },
+}
+
 
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
@@ -259,11 +349,14 @@ def check_response(response, function_name):
 
     soup = BeautifulSoup(response.text, 'html.parser')
     text = soup.find_all('text')
-    if len(text):
-        error_text = soup.find_all('text')[0].prettify()
-        if 'No matching data found' in error_text:
-            return
-        raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
+    if not response.ok:
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text:
+                return
+            raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
+        else:
+            raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, response.text))
 
 
 def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
@@ -278,11 +371,12 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     else:
         # make sure we have an arrow object
         target_datetime = arrow.get(target_datetime)
-    params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
-    params['periodEnd'] = target_datetime.replace(hours=+span[1]).format('YYYYMMDDHH00')
+    params['periodStart'] = target_datetime.shift(hours=span[0]).format('YYYYMMDDHH00')
+    params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
+    print('[%s] querying ENTSOE' % arrow.now().isoformat())
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
@@ -301,16 +395,14 @@ def query_consumption(domain, session, target_datetime=None):
         check_response(response, query_consumption.__name__)
 
 
-def query_production(psr_type, in_domain, session, target_datetime=None):
+def query_production(in_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
-
     params = {
-        'psrType': psr_type,
         'documentType': 'A75',
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime, span=(-48, 0))
     if response.ok:
         return response.text
     else:
@@ -471,6 +563,7 @@ def parse_production(xml_text):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
+        psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             position = int(entry.find_all('position')[0].contents[0])
@@ -478,12 +571,13 @@ def parse_production(xml_text):
             try:
                 i = datetimes.index(datetime)
                 if is_production:
-                    productions[i] += quantity
+                    productions[i][psr_type] += quantity
                 else:
-                    productions[i] -= quantity
+                    productions[i][psr_type] -= quantity
             except ValueError:  # Not in list
                 datetimes.append(datetime)
-                productions.append(quantity if is_production else -1 * quantity)
+                productions.append(defaultdict(lambda: 0))
+                productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
 
 
@@ -589,55 +683,34 @@ def validate_production(datapoint, logger):
     False if invalid and True otherwise.
     """
 
-    codes = ('GB', 'GR', 'PT')
-    if datapoint['zoneKey'] in codes:
-        p = datapoint['production']
-        return p.get('coal', None) is not None and p.get('gas', None) is not None
-    elif datapoint['zoneKey'] == 'BE':
-        p = datapoint['production']
-        return p.get('nuclear', None) is not None and p.get('gas', None) is not None
-    elif datapoint['zoneKey'] == 'ES':
-        p = datapoint['production']
-        total_production = sum([x for x in p.values() if x is not None])
-        if (total_production < 10000): return False
-        return p.get('coal', None) is not None and p.get('nuclear', None) is not None
-    elif datapoint['zoneKey'] == 'DK':
-        p = datapoint['production']
-        return (p.get('coal', None) is not None and p.get('gas', None) is not None
-                and p.get('wind', None) is not None)
-    elif 'DK-' in datapoint['zoneKey']:
+    zone_key = datapoint['zoneKey']
+
+    validation_criteria = VALIDATIONS.get(zone_key, {})
+
+    if validation_criteria:
+        return validate(datapoint, logger=logger, **validation_criteria)
+
+    if zone_key.startswith('DK-'):
         return validate(datapoint, logger=logger, required=['coal', 'solar', 'wind'])
-    elif datapoint['zoneKey'] == 'HU':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'IE':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'IT':
-        return validate(datapoint, logger=logger, required=['coal'], expected_range=(5000, 50000))
-    elif datapoint['zoneKey'] == 'NO':
-        return validate(datapoint, logger=logger, required=['hydro'], expected_range=(5000, 50000))
-    elif datapoint['zoneKey'] == 'PT':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'RS':
-        return validate(datapoint, logger=logger, required=['coal'])
-    elif datapoint['zoneKey'] == 'DE':
-        p = datapoint['production']
-        return (p.get('coal', None) is not None and p.get('gas', None) is not None and
-                p.get('nuclear', None) is not None)
-    else:
-        return True
+
+    if zone_key.startswith('NO-'):
+        return validate(datapoint, logger=logger, required=['hydro'])
+
+    return True
 
 
 def get_biomass(values):
-    if 'Biomass' in values or 'Fossil Peat' in values or 'Waste' in values:
-        return values.get('Biomass', 0) + \
-               values.get('Fossil Peat', 0) + \
-               values.get('Waste', 0)
+    if 'Biomass' in values or 'Waste' in values:
+        return (values.get('Biomass', 0)
+                + values.get('Waste', 0))
 
 
 def get_coal(values):
-    if 'Fossil Brown coal/Lignite' in values or 'Fossil Hard coal' in values:
-        return values.get('Fossil Brown coal/Lignite', 0) + \
-               values.get('Fossil Hard coal', 0)
+    if 'Fossil Brown coal/Lignite' in values or 'Fossil Peat' in values \
+       or 'Fossil Hard coal' in values:
+        return (values.get('Fossil Brown coal/Lignite', 0)
+                + values.get('Fossil Peat', 0)
+                + values.get('Fossil Hard coal', 0))
 
 
 def get_gas(values):
@@ -731,25 +804,20 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     # Create a double hashmap with keys (datetime, parameter)
     production_hashmap = defaultdict(lambda: {})
     # Grab production
-    for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(
-            query_production(k, domain, session,
-                             target_datetime=target_datetime))
-        if parsed:
-            productions, datetimes = parsed
-            for i in range(len(datetimes)):
-                production_hashmap[datetimes[i]][k] = productions[i]
+    parsed = parse_production(
+        query_production(domain, session,
+                         target_datetime=target_datetime))
 
-    # Remove all dates in the future
-    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
-    if not len(production_dates):
+    if not parsed:
         return None
 
+    productions, production_dates = parsed
+
     data = []
-    for production_date in production_dates:
+    for i in range(len(production_dates)):
         production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
-                             production_hashmap[production_date].items()}
+                             productions[i].items()}
+        production_date = production_dates[i]
 
         data.append({
             'zoneKey': zone_key,

@@ -8,6 +8,8 @@ import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
+import FAQ from './components/faq';
+import { formatPower } from './helpers/formatting';
 
 // Libraries
 const d3 = Object.assign(
@@ -105,7 +107,7 @@ let solarLayer;
 let onboardingModal;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
@@ -140,6 +142,9 @@ const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorb
 
 const zoneList = new ZoneList('.zone-list p');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
+
+const faq = new FAQ('.faq');
+const mobileFaq = new FAQ('.mobile-faq');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -209,7 +214,8 @@ moment.locale(getState().application.locale.toLowerCase());
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
-if (!getState().application.onboardingSeen && !getState().isEmbedded) {
+// do not display onboarding when we've seen it or we're embedded
+if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
   onboardingModal = new OnboardingModal('#main');
   thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
@@ -415,7 +421,7 @@ window.toggleSource = (state) => {
   document.getElementById('country-history-electricity-carbonintensity')
     .textContent = translation.translate(
       tableDisplayEmissions ?
-        'country-history.carbonintensity24h' : 'country-history.electricityorigin24h');
+        'country-history.emissionsorigin24h' : 'country-history.electricityorigin24h');
 };
 
 function mapMouseOver(lonlat) {
@@ -763,8 +769,8 @@ if (typeof zoneMap !== 'undefined') {
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
-// Close button
-d3.selectAll('#left-panel-zone-details-back')
+// Back button
+d3.selectAll('.left-panel-back-button')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
     dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
@@ -778,6 +784,13 @@ zoneList.setClickHandler((selectedCountry) => {
     centerOnZoneName(getState(), selectedCountry.countryCode, 4);
   }
 });
+
+// FAQ link
+d3.selectAll('.faq-link')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', 'faq');
+  });
 
 
 // Mobile toolbar buttons
@@ -839,8 +852,15 @@ function renderCountryTable(state) {
     // as the countryTable doesn't support receiving null data
   } else {
     countryTable.data(d).render(true);
+
+    const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
+    countryTable.showNoParserMessageIf(zoneIsMissingParser);
+    const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
+    const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
+    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
   }
 }
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -995,12 +1015,15 @@ function routeToPage(pageName, state) {
 
 
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country');
+
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
 
   d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
 
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-hidden', pageName !== 'country');
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-hidden', pageName !== 'country');
+  d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
+  
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure

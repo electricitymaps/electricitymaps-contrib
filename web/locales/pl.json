@@ -6,6 +6,24 @@
         "datasources": "źródła danych",
         "contribute": "Pomóż nam <a href=\"%s\" target=\"_blank\">dodając więcej regionów</a>"
     },
+    "onboarding-modal": {
+        "view1": {
+            "header": "Electricity Map",
+            "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
+        },
+        "view2": {
+            "header": "Zobacz ile CO2 jest aktualnie emitowane przy produkcji twojej energii elektrycznej",
+            "text": "Regiony świata są kolorowane według intensywności emisji CO2, wliczając potencjał tworzenia efektu cieplarnianego, jednostkowo według zużywanej tam energii elektrycznej. Zieleńsze odcienie oznaczają bardziej przyjazną dla klimatu energię elektryczną."
+        },
+        "view3": {
+            "header": "Dowiedz się skąd pochodzi twój prąd",
+            "text": "Strzałki wykazują, gdzie i ile energii płynie pomiedzy regionami. Kliknij region aby dowiedzieć się więcej o źródłach energii elektrycznej tam zużywanej."
+        },
+        "view4": {
+            "header": "Aktualne warunki wiatrowe i słoneczne",
+            "text": "Produkcja wiatrowa i słoneczna zależą od pogody. Użyj przycisków \"wiatr\" i \"słońce\" aby zobaczyć aktualne prędkości wiatru i nasłonecznienie dookoła świata."
+        }
+    },
     "country-panel": {
         "source": "źródło",
         "carbonintensity": "Emisja CO2",
@@ -17,15 +35,21 @@
         "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
         "helpfrom": "z wkładem"
     },
+    "left-panel": {
+        "zone-list-header-title": "Wpływ na klimat",
+        "zone-list-header-subtitle": "według emisji CO2 poprzez wytwarzanie energii elektrycznej (gCO2eq/kWh)",
+        "search": "Szukaj"
+    },
     "country-history": {
         "carbonintensity24h": "Emisja CO2 w ostatnich 24 godzinach",
+        "emissionsorigin24h": "Źródła emisji CO2 w ostatnich 24 godzinach",
         "electricityorigin24h": "Źródła energii elektrycznej w ostatnich 24 godzinach",
         "electricityprices24h": "Ceny energii elektrycznej w ostatnich 24 godzinach",
         "Getdata": "Sprawdź dane historyczne i API z prognozą"
     },
     "footer": {
         "likethisvisu": "Podoba Ci się nasza wizualizacja?",
-        "loveyourfeedback": "Podziel się z nami Twoją opinią",
+        "loveyourfeedback": "Podziel się z nami twoją opinią",
         "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
         "here": "tutaj"
     },
@@ -39,18 +63,25 @@
         "carbonintensity": "Emisja CO2",
         "lowcarbon": "Niskoemisyjne źródła energii",
         "renewable": "Odnawialne źródła energii",
-        "crossborderexport": "Eksport transgraniczny",
+        "crossborderexport": "Eksport",
         "carbonintensityexport": "Emisja CO2 eksportu",
-
         "ofinstalled": "zainstalowanej mocy",
         "utilizing": "wykorzystując",
-        "withcarbonintensity": "z emisją CO2 wynoszącą"
+        "withcarbonintensity": "z emisją CO2 wynoszącą",
+        "showWindLayer": "Pokaż wiatr",
+        "hideWindLayer": "Schowaj wiatr",
+        "showSolarLayer": "Pokaż nasłonecznienie",
+        "hideSolarLayer": "Schowaj nasłonecznienie",
+        "noParserInfo": "Brak danych",
+        "temporaryDataOutage": "Tymczasowy brak danych"
     },
     "misc": {
         "maintitle": "Emisja CO2 konsumpcji energii elektrycznej w czasie rzeczywistym",
         "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
         "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
-        "retrynow": "Spróbuj teraz"
+        "retrynow": "Spróbuj teraz",
+        "database-ad": "Szukasz danych historycznych? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
+        "api-ad": "Chcesz mieć aktualne dane w twoich aplikacjach lub urządzeniach? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>"
     },
     "wind": "wiatrowa",
     "solar": "słoneczna",
@@ -147,19 +178,19 @@
           },
           "BR-CS": {
             "countryName": "Brazylia",
-            "zoneName": "centralna"
+            "zoneName": "Brazylia centralna"
           },
           "BR-N": {
             "countryName": "Brazylia",
-            "zoneName": "północna"
+            "zoneName": "Brazylia północna"
           },
           "BR-NE": {
             "countryName": "Brazylia",
-            "zoneName": "północno-wschodnia"
+            "zoneName": "Brazylia północno-wschodnia"
           },
           "BR-S": {
             "countryName": "Brazylia",
-            "zoneName": "południowa"
+            "zoneName": "Brazylia południowa"
           },
           "BY": {
             "zoneName": "Białoruś"
@@ -264,6 +295,14 @@
           "DK": {
             "zoneName": "Dania"
           },
+          "DK-DK1": {
+            "countryName": "Dania",
+            "zoneName": "Dania zachodnia"
+          },
+          "DK-DK2": {
+            "countryName": "Denmark",
+            "zoneName": "Dania wschodnia"
+          },
           "DK-BHM": {
             "countryName": "Dania",
             "zoneName": "Bornholm"
@@ -296,9 +335,25 @@
             "countryName": "Hiszpania",
             "zoneName": "Baleary"
           },
+          "ES-IB-ML": {
+            "countryName": "Hiszpania",
+            "zoneName": "Majorka"
+          },
+          "ES-IB-MN": {
+            "countryName": "Hiszpania",
+            "zoneName": "Minorka"
+          },
+          "ES-IB-IB": {
+            "countryName": "Hiszpania",
+            "zoneName": "Ibiza"
+          },
+          "ES-IB-FM": {
+            "countryName": "Hiszpania",
+            "zoneName": "Formentera"
+          },
           "ES-CN-FVLZ": {
             "countryName": "Hiszpania",
-            "zoneName": "Fuerteventura/Lanzarote"
+            "zoneName": "Fuerteventura i Lanzarote"
           },
           "ES-CN-GC": {
             "countryName": "Hiszpania",
@@ -359,6 +414,10 @@
           },
           "GR": {
             "zoneName": "Grecja"
+          },
+          "GR-IS": {
+            "countryName": "Grecja",
+            "zoneName": "Wyspy Egejskie"
           },
           "GT": {
             "zoneName": "Gwatemala"
@@ -601,7 +660,7 @@
           },
           "MY-WM": {
             "countryName": "Malezja",
-            "zoneName": "półwysep"
+            "zoneName": "Malezja zachodnia"
           },
           "MZ": {
             "zoneName": "Mozambik"
@@ -614,6 +673,26 @@
           },
           "NO": {
             "zoneName": "Norwegia"
+          },
+          "NO-NO1": {
+            "countryName": "Norwegia",
+            "zoneName": "Norwegia południowo-wschodnia"
+          },
+          "NO-NO2": {
+            "countryName": "Norwegia",
+            "zoneName": "Norwegia południowo-zachodnia"
+          },
+          "NO-NO3": {
+            "countryName": "Norwegia",
+            "zoneName": "Norwegia środkowa"
+          },
+          "NO-NO4": {
+            "countryName": "Norwegia",
+            "zoneName": "Norwegia północna"
+          },
+          "NO-NO5": {
+            "countryName": "Norwegia",
+            "zoneName": "Norwegia zachodnia"
           },
           "NZ-NZN": {
             "countryName": "Nowa Zelandia",
@@ -741,9 +820,17 @@
             "countryName": "USA",
             "zoneName": "Alaska"
           },
+          "US-BPA": {
+            "countryName": "USA",
+            "zoneName": "sieć BPA"
+          },
           "US-CA": {
             "countryName": "USA",
             "zoneName": "Kalifornia"
+          },
+          "US-IPC": {
+            "countryName": "USA",
+            "zoneName": "sieć IPC"
           },
           "US-MISO": {
             "countryName": "USA",
@@ -760,6 +847,10 @@
           "US-PJM": {
             "countryName": "USA",
             "zoneName": "sieć PJM"
+          },
+          "US-SPP": {
+            "countryName": "USA",
+            "zoneName": "sieć SPP"
           },
           "US-HI": {
             "countryName": "USA",

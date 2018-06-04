@@ -21,6 +21,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
   zone.shortname = translation.getFullZoneName(key);
+  zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
@@ -122,7 +123,8 @@ module.exports = (state = initialDataState, action) => {
         });
         if (!zone.exchange || !Object.keys(zone.exchange).length) {
           console.warn(`${key} is missing exchanges`);
-        }
+        } 
+
       });
 
       // Populate exchange pairs for exchange layer
@@ -148,7 +150,22 @@ module.exports = (state = initialDataState, action) => {
     case 'HISTORY_DATA': {
       // Create new histories
       const newHistories = Object.assign({}, state.histories);
-      newHistories[action.zoneName] = action.payload;
+
+      const zoneHistory = action.payload.map((observation) => {
+        const ret = Object.assign({}, observation);
+        
+        ret.hasParser = true;
+        if (observation.exchange && Object.keys(observation.exchange).length
+          && (!observation.production || !Object.keys(observation.production).length)) {
+              // Exchange information is not shown in history observations without production data, as the percentages are incorrect
+          ret.exchange = {};
+        }
+
+        return ret;
+      });
+
+
+      newHistories[action.zoneName] = zoneHistory;
       // Create new state
       const newState = Object.assign({}, state);
       newState.histories = newHistories;
