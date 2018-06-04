@@ -258,7 +258,7 @@ body {
     box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.15);
     -webkit-box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.15);
     -moz-box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.15);
-    transition: transform 0.8s;
+    transition: transform 0.4s;
     z-index: 2; /* in order to be above left-panel */
 }
 #left-panel-collapse-button:hover {
@@ -297,7 +297,7 @@ body {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    transition: transform 0.8s;
+    transition: transform 0.4s;
 }
 
 .left-panel.collapsed {
