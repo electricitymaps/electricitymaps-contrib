@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
+import os
+
 import arrow
 from dateutil import parser
+os.environ.setdefault('EIA_KEY', 'eia_key')
 from eiapy import Series
 import requests
 
