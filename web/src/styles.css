@@ -96,6 +96,12 @@ line, path {
     /* That's the main loading overlay */
     background-size: 10rem;
 }
+
+.country-panel {
+    overflow-y: scroll;
+    margin-bottom: 60px; /* Height of time slider */
+    padding: 0 1rem;
+}
 .country-panel-wrap {
     position: relative;
 }
@@ -277,7 +283,7 @@ body {
 
 /* Left-panel */
 .left-panel {
-    padding: 1rem 0;
+    padding-top: 1rem;
     width: 24rem;
     position: relative;
     overflow-y: auto;
@@ -361,7 +367,6 @@ body {
 
 .mobile-info-tab, .left-panel-zone-details {
     display: flex;
-    padding: 0 1rem;
     line-height: 1.2rem;
     flex-direction: column;
     height: 100%;
@@ -1389,6 +1394,61 @@ sub {
 .mobile-watermark img {
     width: 220px;
 }
+
+.zone-time-slider {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    background: grey;
+    width: 100%;
+    text-align: center;
+}
+
+.zone-time-slider .time-slider-axis-container{
+    width: 85%;    
+    height: 20px;
+    overflow: visible;
+}
+
+.time-slider-axis .tick {
+    font-size: 12px;
+}
+
+.zone-time-slider input {
+    width: 85%;
+    margin-top: 10px;
+}
+
+.zone-time-slider .domain {
+    display: none;
+}
+
+/* 
+// Clear browser default appearances for sliders
+input[type=range] {
+    -webkit-appearance: none; // Hides the slider so that custom slider can be made 
+    width: 100%; // Specific width is required for Firefox. 
+    background: transparent; // Otherwise white in Chrome 
+  }
+  
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  
+  input[type=range]:focus {
+    outline: none; // Removes the blue border 
+  }
+  
+  input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+  
+    // Hides the slider so custom styles can be added 
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+  }
+ */
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {

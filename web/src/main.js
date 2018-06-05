@@ -9,6 +9,7 @@ import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
+import TimeSlider from './components/timeslider.js'
 import { formatPower } from './helpers/formatting';
 
 // Libraries
@@ -145,6 +146,7 @@ const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 const faq = new FAQ('.faq');
 const mobileFaq = new FAQ('.mobile-faq');
+const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
 // Initialise mobile app (cordova)
 const app = {
@@ -869,6 +871,7 @@ function renderHistory(state) {
     countryHistoryCarbonGraph.data([]).render();
     countryHistoryPricesGraph.data([]).render();
     countryHistoryMixGraph.data([]).render();
+    zoneDetailsTimeSlider.data([]).render();
     return;
   }
 
@@ -942,11 +945,16 @@ function renderHistory(state) {
     .data(history);
   countryHistoryMixGraph
     .data(history);
+  
+  zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
   countryTable
     .exchangeKeys(countryHistoryMixGraph.exchangeKeysSet.values())
     .render();
+
+
+  zoneDetailsTimeSlider.onChange(selectedZoneTimeIndex => dispatchApplication('selectedZoneTimeIndex', selectedZoneTimeIndex)).render();
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
@@ -1162,7 +1170,7 @@ observe(state => state.data.histories, (histories, state) => {
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderGauges(state);
   renderCountryTable(state);
-  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach((g) => {
+  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
     g.selectedIndex(i);
   });
 });
