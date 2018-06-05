@@ -3169,6 +3169,16 @@
       ]
     ]
   },
+  "US-SVERI": {
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SVERI.fetch_production"
+    },
+    "timezone": null
+  },
   "UY": {
     "bounding_box": [
       [
