@@ -5,7 +5,7 @@ import click
 
 try:
     from parsers.read_parser_config import parser_key_to_dict
-except:
+except Exception:
     raise ValueError("couldn't do a local import. Please run from the"
                      "`electricitymap` folder: python parsers/test_parser.py "
                      "[OPTIONS] ZONE [DATA_TYPE]")
@@ -22,15 +22,15 @@ def test_parser(zone, data_type, target_datetime):
     parser = parser_key_to_dict[data_type][zone]
     res = parser(zone, target_datetime=target_datetime)
     elapsed_time = time.time() - start
-    try:
+    if isinstance(res, (list, tuple)):
         res_list = iter(res)
-    except:
-        res_list = []
+    else:
+        res_list = [res]
     dts = [e['datetime'] for e in res_list]
-    last_dt = max(dts)
+    last_dt = arrow.get(max(dts)).to('UTC')
     max_dt_warning = (' !!! >2h from now !!!'
                       if (arrow.utcnow() - last_dt).total_seconds() > 2 * 3600
-                      else ' -- OK, <2h from now :)')
+                      else f' -- OK, <2h from now :) ({arrow.utcnow()} UTC)')
 
     print('\n'.join(['parser result:', res.__str__(),
                      '---------------------',
