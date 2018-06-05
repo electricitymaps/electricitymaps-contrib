@@ -82,10 +82,18 @@ def query_exchange(session, target_datetime=None):
 
 def query_production(session, target_datetime=None):
     if target_datetime is None:
-        target_datetime = dt.date.today()
+        target_datetime = dt.datetime.now()
+
+    # we can only fetch one date at a time.
+    # if target_datetime is first 30 minutes of the day fetch the day before.
+    # otherwise fetch the day of target_datetime.
+    if target_datetime.time() <= dt.time(0, 30):
+        settlement_date = target_datetime.date() - dt.timedelta(1)
+    else:
+        settlement_date = target_datetime.date()
 
     params = {
-        'SettlementDate': target_datetime.strftime('%Y-%m-%d'),
+        'SettlementDate': settlement_date.strftime('%Y-%m-%d'),
         'Period': '*',
         'ServiceType': 'csv'
     }
