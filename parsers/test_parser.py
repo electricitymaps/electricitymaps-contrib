@@ -28,16 +28,17 @@ def test_parser(zone, data_type, target_datetime):
         res_list = [res]
     dts = [e['datetime'] for e in res_list]
     last_dt = arrow.get(max(dts)).to('UTC')
-    max_dt_warning = (' !!! >2h from now !!!'
-                      if (arrow.utcnow() - last_dt).total_seconds() > 2 * 3600
-                      else f' -- OK, <2h from now :) ({arrow.utcnow()} UTC)')
+    max_dt_warning = (
+        ' :( >2h from now !!!'
+        if (arrow.utcnow() - last_dt).total_seconds() > 2 * 3600
+        else ' -- OK, <2h from now :) (now={} UTC)'.format(arrow.utcnow()))
 
     print('\n'.join(['parser result:', res.__str__(),
                      '---------------------',
                      'took {:.2f}s'.format(elapsed_time),
-                     f'min returned datetime: {min(dts)}',
-                     f'max returned datetime: {last_dt} UTC {max_dt_warning}',
-                     ]))
+                     'min returned datetime: {}'.format(min(dts)),
+                     'max returned datetime: {} UTC {}'.format(
+                         last_dt, max_dt_warning), ]))
 
 
 
