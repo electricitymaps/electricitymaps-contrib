@@ -1,8 +1,7 @@
 const isProduction = process.env.NODE_ENV === 'production';
-const isErrorReporting = !!process.env.ENABLE_ERROR_REPORTING;
 
 // * Opbeat (must be the first thing started)
-if (isErrorReporting) {
+if (isProduction) {
   console.log('** Running in PRODUCTION mode **');
   var opbeat = require('opbeat').start({
     appId: 'c36849e44e',
@@ -119,7 +118,7 @@ const VENDOR_HASH = getHash('vendor', 'js');
 const VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
 // * Opbeat
-if (isErrorReporting)
+if (isProduction)
   app.use(opbeat.middleware.express())
 function handleError(err) {
   if (!err) return;
