@@ -409,17 +409,31 @@ If your changes involve altering the way countries are displayed on the map a ne
 For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap/blob/master/web/README.md).
 
 ### Testing parsers locally
-We've added a testing server locally. In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
+
+In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
 ```
 pip install -r parsers/requirements.txt
 ```
+#### testing a parser
+From the root folder, use the `test_parser.py` command line utility:
+```python
+python test_parser.py FR price  # get latest price parser for France
+python test_parser.py FR  # defaults to production if no data type is given
+# test a specific datetime (parser needs to be able to fetch past datetimes)
+python test_parser.py DE --target-datetime 2018-01-01T08:00
+```
 
-Then you can run
+#### update the map 
+We've added a testing server locally. 
+
+To add a new country to the map, run
 ```
 PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
 ```
 
-from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This will fetch production and exchanges and assign it a random carbon intensity value. It should appear on the map as you refresh your local browser.
+from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want
+to test. This will fetch production and exchanges and assign it a random carbon intensity value.
+It should appear on the map as you refresh your local browser.
 
 ### Troubleshooting
 
