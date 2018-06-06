@@ -1,5 +1,6 @@
 arrow==0.10.0
 beautifulsoup4==4.5.3
+click==6.7
 demjson==2.2.4
 eiapy==0.1.2
 html5lib==0.999999999
