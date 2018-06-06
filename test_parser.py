@@ -6,9 +6,9 @@ import click
 try:
     from parsers.read_parser_config import parser_key_to_dict
 except Exception:
-    raise ValueError("couldn't do a local import. Please run from the"
-                     "`electricitymap` folder: python test_parser.py "
-                     "[OPTIONS] ZONE [DATA_TYPE]")
+    raise ImportError("couldn't do a local import. Please run from the"
+                      "`electricitymap` folder: python test_parser.py "
+                      "[OPTIONS] ZONE [DATA_TYPE]")
 
 
 @click.command()
