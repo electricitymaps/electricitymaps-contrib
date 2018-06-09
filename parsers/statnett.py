@@ -41,6 +41,9 @@ exchanges_mapping = {
     'EE->RU': [
         'EE->RU'
     ],
+    'EE->RU-1':[
+        'EE->RU'
+    ],
     'EE->LV': [
         'EE->LV'
     ],
@@ -54,6 +57,9 @@ exchanges_mapping = {
         'FI->NO4'
     ],
     'FI->RU': [
+        'FI->RU'
+    ],
+    'FI->RU-1': [
         'FI->RU'
     ],
     'FI->SE': [
@@ -82,6 +88,9 @@ exchanges_mapping = {
         'LT->RU'
     ],
     'LV->RU': [
+        'LV->RU'
+    ],
+    'LV->RU-1': [
         'LV->RU'
     ],
     'NL->NO': [
@@ -126,7 +135,13 @@ exchanges_mapping = {
     'NO->RU': [
         'NO4->RU'
     ],
+    'NO->RU-1': [
+        'NO4->RU'
+    ],
     'NO-NO4->RU': [
+        'NO4->RU'
+    ],
+    'NO-NO4->RU-1': [
         'NO4->RU'
     ],
     'NO-NO4->SE': [
@@ -249,3 +264,7 @@ if __name__ == '__main__':
     print(fetch_production('SE'))
     print('fetch_exchange(NO, SE) ->')
     print(fetch_exchange('NO', 'SE'))
+    print('fetch_exchange(NO-NO4, SE) ->')
+    print(fetch_exchange('NO-NO4', 'RU-1'))
+    print('fetch_exchange(EE, RU-1) ->')
+    print(fetch_exchange('EE', 'RU-1'))
