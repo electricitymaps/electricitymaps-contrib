@@ -16,6 +16,10 @@ import pandas as pd
 # 100 times more energy came from NG than Oil. That means Oil
 # consumption in the Dual Fuel systems is roughly ~1%, and to a first
 # approximation it's just Natural Gas.
+
+# Pumped storage is present but is not split into a separate category.
+from arrow.parser import ParserError
+
 mapping = {
     'Dual Fuel': 'gas',
     'Natural Gas': 'gas',
@@ -41,8 +45,10 @@ def timestamp_converter(timestamp_string):
     """
     Converts timestamps in nyiso data into aware datetime objects.
     """
-
-    dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss')
+    try:
+        dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss')
+    except ParserError:
+        dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm')
     dt_aware = dt_naive.replace(tzinfo='America/New_York').datetime
 
     return dt_aware
@@ -130,6 +136,10 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
     else:
         target_datetime = arrow.now('America/New_York')
 
+    if (arrow.now() - target_datetime).days > 9:
+        raise NotImplementedError('you can get data older than 9 days at the '
+                                  'url http://mis.nyiso.com/public/')
+
     ny_date = target_datetime.format('YYYYMMDD')
     mix_url = 'http://mis.nyiso.com/public/csv/rtfuelmix/{}rtfuelmix.csv'.format(ny_date)
     try:
@@ -146,7 +156,7 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
             'zoneKey': zone_key,
             'datetime': timestamp_converter(datapoint[0]),
             'production': datapoint[1],
-            'storage': {'hydro': None},
+            'storage': {},
             'source': 'nyiso.com'
         }
 

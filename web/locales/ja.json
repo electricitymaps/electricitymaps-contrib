@@ -1,19 +1,10 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "この地図はリアルタイムで",
-        "whereelectricitycomesfrom": "電力の行き先と由来",
-        "and": "と",
-        "howmuchco2": "二酸化炭素の量",
-        "wasemitted": "の生産",
-        "takeinaccount": "電力の国の間の",
-        "importexport": "供給",
-        "betweenzones": "は計算されています",
         "thisproject": "このプロジェクトは",
         "opensource": "オープンソースです",
         "see": "",
         "datasources": "データソースを見る",
-        "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>",
-        "tip": "チップ: 国にクリックして観てくささい"
+        "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>"
     },
     "country-panel": {
         "source": "ソース",
@@ -24,7 +15,6 @@
         "bysource": "ソース分け",
         "emissions": "二酸化炭素排出",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ソースを追加または編集する</a>",
-        "co2signal": "Our <a href=\"%s\" target=\"blank\">CO2 Signal</a>はデバイスと電源車の電源消費を最適化するにオススメサービスです（特に境域を渡るのがある場合に）",
         "helpfrom": "次の方の協力のおかげで"
     },
     "country-history": {
@@ -55,7 +45,6 @@
     },
     "misc": {
         "maintitle": "ライブ二酸化炭素排出地図",
-        "lastupdate": "最新アップデート",
         "oops": "ごめん!サーバーにの接続に問題がありました、数秒後にまた試します",
         "newversion": "新しいバージョンが使える、リロードするには<a onClick=\"location.reload(true);\">こちら</a>にタップしてください",
         "retrynow": "今すぐリトライ"
@@ -85,144 +74,483 @@
     "ofCO2eqPerMinute": "of CO2eq per minute",
 
     "zoneShortName": {
-        "AD": "アンドラ",
-        "AL": "アルバニア",
-        "AM": "アルメニア",
-        "AT": "オーストリア",
-        "AR": "アルゼンチン",
-        "AUS-NSW": "オーストラリア (ニューサウスウェールズ州)",
-        "AUS-NT": "オーストラリア (ノーザンテリトリー)",
-        "AUS-QLD": "オーストラリア (クイーンズランド州)",
-        "AUS-SA": "オーストラリア (南 オーストラリア)",
-        "AUS-TAS": "オーストラリア (タスマニア)",
-        "AUS-VIC": "オーストラリア (ビクトリア州)",
-        "AUS-WA": "オーストラリア (西 オーストラリア)",
-        "AX": "オーランド諸島",
-        "AZ": "アゼルバイジャン",
-        "BA": "ボスニア・ヘルツェゴビナ",
-        "BE": "ベルギー",
-        "BG": "ブルガリア",
-        "BO": "ボリビア",
-        "BR-CS": "ブラジル (中)",
-        "BR-N": "ブラジル (北)",
-        "BR-NE": "ブラジル (東北)",
-        "BR-S": "ブラジル (南)",
-        "BY": "ベラルーシ",
-        "CA-AB": "カナダ (アルバータ州)",
-        "CA-BC": "カナダ (ブリティッシュコロンビア)",
-        "CA-MB": "カナダ (マニトバ州)",
-        "CA-NL": "カナダ (ニューファンドランドアンドラブラドール州)",
-        "CA-NB": "カナダ (ニューブランズウィック)",
-        "CA-NT": "カナダ (ノースウェスト準州)",
-        "CA-NS": "カナダ (ノバスコシア州)",
-        "CA-NU": "カナダ (ヌナブト)",
-        "CA-ON": "カナダ (オンタリオ)",
-        "CA-PE": "カナダ (プリンス・エドワード島)",
-        "CA-QC": "カナダ (ケベック州)",
-        "CA-SK": "カナダ (サスカチュワン州)",
-        "CA-YT": "カナダ (ユーコン)",
-        "CH": "スイス",
-        "CR": "コスタリカ",
-        "CY": "キプロス",
-        "CZ": "チェコ",
-        "DE": "ドイツ",
-        "DK": "デンマーク",
-        "DO": "ドミニカ共和国",
-        "DZ": "アルジェリア",
-        "EE": "エストニア",
-        "EG": "エジプト",
-        "ES": "スペイン",
-        "ES-IB": "スペイン (バレアレス諸島)",
-        "ES-CN": "スペイン (カナリア諸島)",
-        "FI": "フィンランド",
-        "FO": "フェロー諸島",
-        "FR": "フランス",
-        "GB": "イギリス",
-        "GB-NIR": "北アイルランド",
-        "GE": "ジョージア州",
-        "GR": "ギリシャ",
-        "GT": "グアテマラ",
-        "HN": "ホンジュラス",
-        "HR": "クロアチア",
-        "HU": "ハンガリー",
-        "IE": "アイルランド",
-        "IL": "イスラエル",
-        "IN-AN": "インド (アンダマンとニコバル諸島)",
-        "IN-AP": "インド (アンドラ・プラデシュ)",
-        "IN-AR": "インド (アルナチャルプラデーシュ州)",
-        "IN-AS": "インド (アッサム)",
-        "IN-BR": "インド (ビハール)",
-        "IN-CT": "インド (チャッティースガル)",
-        "IN-DL": "インド (デリー)",
-        "IN-GA": "インド (ゴア)",
-        "IN-GJ": "インド (グジャラート州)",
-        "IN-HP": "インド (ヒマーチャルプラデーシュ州)",
-        "IN-HR": "インド (ハリヤーナ)",
-        "IN-JH": "インド (ジャールカンド州)",
-        "IN-JK": "インド (ジャムとカシミール)",
-        "IN-KA": "インド (カルナタカ)",
-        "IN-KL": "インド (ケララ州)",
-        "IN-MH": "インド (マハラシュトラ)",
-        "IN-ML": "インド (メガラヤ)",
-        "IN-MN": "インド (マニプール)",
-        "IN-MP": "インド (マディヤ・プラデシュ)",
-        "IN-MZ": "インド (ミゾラム)",
-        "IN-NL": "インド (ナガランド)",
-        "IN-OR": "インド (オリッサ州)",
-        "IN-PB": "インド (パンジャーブ)",
-        "IN-PY": "インド (ポンディシェリ)",
-        "IN-RJ": "インド (ラージャスターン)",
-        "IN-SK": "インド (シッキム)",
-        "IN-TL": "インド (タミルナードゥ州)",
-        "IN-TR": "インド (トリプラ)",
-        "IN-UP": "インド (ウッタル・プラデーシュ州)",
-        "IN-UT": "インド (ウッタラーカンド州)",
-        "IN-WB": "インド (西ベンガル州)",
-        "IQ": "イラク",
-        "IR": "イラン",
-        "IS": "アイスランド",
-        "IT": "イタリア",
-        "JO": "ヨルダン",
-        "KZ": "カザフスタン",
-        "LB": "レバノン",
-        "LT": "リトアニア",
-        "LU": "ルクセンブルク",
-        "LV": "ラトビア",
-        "LY": "リビア",
-        "MA": "モロッコ",
-        "MD": "モルドバ",
-        "ME": "モンテネグロ",
-        "MK": "マケドニア共和国",
-        "MT": "マルタ",
-        "NI": "ニカラグア",
-        "NL": "オランダ",
-        "NO": "ノルウェー",
-        "NZ-NZN": "ニュージーランド (北島)",
-        "NZ-NZS": "ニュージーランド (南島)",
-        "PA": "パナマ",
-        "PE": "ペルー",
-        "PL": "ポーランド",
-        "PS": "パレスチナ",
-        "PT": "ポルトガル",
-        "PT-AC": "ポルトガル (アゾレス諸島)",
-        "PT-MA": "ポルトガル (マデイラ)",
-        "RO": "ルーマニア",
-        "RS": "セルビア",
-        "RU": "ロシア",
-        "SA": "サウジアラビア",
-        "SE": "スウェーデン",
-        "SG": "シンガポール",
-        "SI": "スロベニア",
-        "SK": "スロバキア",
-        "SV": "エルサルバドル",
-        "SY": "シリア",
-        "TM": "トルクメニスタン",
-        "TN": "チュニジア",
-        "TR": "トルコ",
-        "TW": "台湾",
-        "UA": "ウクライナ",
-        "US": "アメリカ合衆国",
-        "UY": "ウルグアイ",
-        "UZ": "ウズベキスタン"
+        "AD": {
+            "zoneName": "アンドラ"
+          },
+          "AL": {
+            "zoneName": "アルバニア"
+          },
+          "AM": {
+            "zoneName": "アルメニア"
+          },
+          "AT": {
+            "zoneName": "オーストリア"
+          },
+          "AR": {
+            "zoneName": "アルゼンチン"
+          },
+          "AUS-NSW": {
+            "countryName": "オーストラリア",
+            "zoneName": "ニューサウスウェールズ州"
+          },
+          "AUS-NT": {
+            "countryName": "オーストラリア",
+            "zoneName": "ノーザンテリトリー"
+          },
+          "AUS-QLD": {
+            "countryName": "オーストラリア",
+            "zoneName": "クイーンズランド州"
+          },
+          "AUS-SA": {
+            "countryName": "オーストラリア",
+            "zoneName": "南 オーストラリア"
+          },
+          "AUS-TAS": {
+            "countryName": "オーストラリア",
+            "zoneName": "タスマニア"
+          },
+          "AUS-VIC": {
+            "countryName": "オーストラリア",
+            "zoneName": "ビクトリア州"
+          },
+          "AUS-WA": {
+            "countryName": "オーストラリア",
+            "zoneName": "西 オーストラリア"
+          },
+          "AX": {
+            "zoneName": "オーランド諸島"
+          },
+          "AZ": {
+            "zoneName": "アゼルバイジャン"
+          },
+          "BA": {
+            "zoneName": "ボスニア・ヘルツェゴビナ"
+          },
+          "BE": {
+            "zoneName": "ベルギー"
+          },
+          "BG": {
+            "zoneName": "ブルガリア"
+          },
+          "BO": {
+            "zoneName": "ボリビア"
+          },
+          "BR-CS": {
+            "countryName": "ブラジル",
+            "zoneName": "中"
+          },
+          "BR-N": {
+            "countryName": "ブラジル",
+            "zoneName": "北"
+          },
+          "BR-NE": {
+            "countryName": "ブラジル",
+            "zoneName": "東北"
+          },
+          "BR-S": {
+            "countryName": "ブラジル",
+            "zoneName": "南"
+          },
+          "BY": {
+            "zoneName": "ベラルーシ"
+          },
+          "CA-AB": {
+            "countryName": "カナダ",
+            "zoneName": "アルバータ州"
+          },
+          "CA-BC": {
+            "countryName": "カナダ",
+            "zoneName": "ブリティッシュコロンビア"
+          },
+          "CA-MB": {
+            "countryName": "カナダ",
+            "zoneName": "マニトバ州"
+          },
+          "CA-NL": {
+            "countryName": "カナダ",
+            "zoneName": "ニューファンドランドアンドラブラドール州"
+          },
+          "CA-NB": {
+            "countryName": "カナダ",
+            "zoneName": "ニューブランズウィック"
+          },
+          "CA-NT": {
+            "countryName": "カナダ",
+            "zoneName": "ノースウェスト準州"
+          },
+          "CA-NS": {
+            "countryName": "カナダ",
+            "zoneName": "ノバスコシア州"
+          },
+          "CA-NU": {
+            "countryName": "カナダ",
+            "zoneName": "ヌナブト"
+          },
+          "CA-ON": {
+            "countryName": "カナダ",
+            "zoneName": "オンタリオ"
+          },
+          "CA-PE": {
+            "countryName": "カナダ",
+            "zoneName": "プリンス・エドワード島"
+          },
+          "CA-QC": {
+            "countryName": "カナダ",
+            "zoneName": "ケベック州"
+          },
+          "CA-SK": {
+            "countryName": "カナダ",
+            "zoneName": "サスカチュワン州"
+          },
+          "CA-YT": {
+            "countryName": "カナダ",
+            "zoneName": "ユーコン"
+          },
+          "CH": {
+            "zoneName": "スイス"
+          },
+          "CR": {
+            "zoneName": "コスタリカ"
+          },
+          "CY": {
+            "zoneName": "キプロス"
+          },
+          "CZ": {
+            "zoneName": "チェコ"
+          },
+          "DE": {
+            "zoneName": "ドイツ"
+          },
+          "DK": {
+            "zoneName": "デンマーク"
+          },
+          "DO": {
+            "zoneName": "ドミニカ共和国"
+          },
+          "DZ": {
+            "zoneName": "アルジェリア"
+          },
+          "EE": {
+            "zoneName": "エストニア"
+          },
+          "EG": {
+            "zoneName": "エジプト"
+          },
+          "ES": {
+            "zoneName": "スペイン"
+          },
+          "ES-IB": {
+            "countryName": "スペイン",
+            "zoneName": "バレアレス諸島"
+          },
+          "ES-CN": {
+            "countryName": "スペイン",
+            "zoneName": "カナリア諸島"
+          },
+          "FI": {
+            "zoneName": "フィンランド"
+          },
+          "FO": {
+            "zoneName": "フェロー諸島"
+          },
+          "FR": {
+            "zoneName": "フランス"
+          },
+          "GB": {
+            "zoneName": "イギリス"
+          },
+          "GB-NIR": {
+            "zoneName": "北アイルランド"
+          },
+          "GE": {
+            "zoneName": "ジョージア州"
+          },
+          "GR": {
+            "zoneName": "ギリシャ"
+          },
+          "GT": {
+            "zoneName": "グアテマラ"
+          },
+          "HN": {
+            "zoneName": "ホンジュラス"
+          },
+          "HR": {
+            "zoneName": "クロアチア"
+          },
+          "HU": {
+            "zoneName": "ハンガリー"
+          },
+          "IE": {
+            "zoneName": "アイルランド"
+          },
+          "IL": {
+            "zoneName": "イスラエル"
+          },
+          "IN-AN": {
+            "countryName": "インド",
+            "zoneName": "アンダマンとニコバル諸島"
+          },
+          "IN-AP": {
+            "countryName": "インド",
+            "zoneName": "アンドラ・プラデシュ"
+          },
+          "IN-AR": {
+            "countryName": "インド",
+            "zoneName": "アルナチャルプラデーシュ州"
+          },
+          "IN-AS": {
+            "countryName": "インド",
+            "zoneName": "アッサム"
+          },
+          "IN-BR": {
+            "countryName": "インド",
+            "zoneName": "ビハール"
+          },
+          "IN-CT": {
+            "countryName": "インド",
+            "zoneName": "チャッティースガル"
+          },
+          "IN-DL": {
+            "countryName": "インド",
+            "zoneName": "デリー"
+          },
+          "IN-GA": {
+            "countryName": "インド",
+            "zoneName": "ゴア"
+          },
+          "IN-GJ": {
+            "countryName": "インド",
+            "zoneName": "グジャラート州"
+          },
+          "IN-HP": {
+            "countryName": "インド",
+            "zoneName": "ヒマーチャルプラデーシュ州"
+          },
+          "IN-HR": {
+            "countryName": "インド",
+            "zoneName": "ハリヤーナ"
+          },
+          "IN-JH": {
+            "countryName": "インド",
+            "zoneName": "ジャールカンド州"
+          },
+          "IN-JK": {
+            "countryName": "インド",
+            "zoneName": "ジャムとカシミール"
+          },
+          "IN-KA": {
+            "countryName": "インド",
+            "zoneName": "カルナタカ"
+          },
+          "IN-KL": {
+            "countryName": "インド",
+            "zoneName": "ケララ州"
+          },
+          "IN-MH": {
+            "countryName": "インド",
+            "zoneName": "マハラシュトラ"
+          },
+          "IN-ML": {
+            "countryName": "インド",
+            "zoneName": "メガラヤ"
+          },
+          "IN-MN": {
+            "countryName": "インド",
+            "zoneName": "マニプール"
+          },
+          "IN-MP": {
+            "countryName": "インド",
+            "zoneName": "マディヤ・プラデシュ"
+          },
+          "IN-MZ": {
+            "countryName": "インド",
+            "zoneName": "ミゾラム"
+          },
+          "IN-NL": {
+            "countryName": "インド",
+            "zoneName": "ナガランド"
+          },
+          "IN-OR": {
+            "countryName": "インド",
+            "zoneName": "オリッサ州"
+          },
+          "IN-PB": {
+            "countryName": "インド",
+            "zoneName": "パンジャーブ"
+          },
+          "IN-PY": {
+            "countryName": "インド",
+            "zoneName": "ポンディシェリ"
+          },
+          "IN-RJ": {
+            "countryName": "インド",
+            "zoneName": "ラージャスターン"
+          },
+          "IN-SK": {
+            "countryName": "インド",
+            "zoneName": "シッキム"
+          },
+          "IN-TL": {
+            "countryName": "インド",
+            "zoneName": "タミルナードゥ州"
+          },
+          "IN-TR": {
+            "countryName": "インド",
+            "zoneName": "トリプラ"
+          },
+          "IN-UP": {
+            "countryName": "インド",
+            "zoneName": "ウッタル・プラデーシュ州"
+          },
+          "IN-UT": {
+            "countryName": "インド",
+            "zoneName": "ウッタラーカンド州"
+          },
+          "IN-WB": {
+            "countryName": "インド",
+            "zoneName": "西ベンガル州"
+          },
+          "IQ": {
+            "zoneName": "イラク"
+          },
+          "IR": {
+            "zoneName": "イラン"
+          },
+          "IS": {
+            "zoneName": "アイスランド"
+          },
+          "IT": {
+            "zoneName": "イタリア"
+          },
+          "JO": {
+            "zoneName": "ヨルダン"
+          },
+          "KZ": {
+            "zoneName": "カザフスタン"
+          },
+          "LB": {
+            "zoneName": "レバノン"
+          },
+          "LT": {
+            "zoneName": "リトアニア"
+          },
+          "LU": {
+            "zoneName": "ルクセンブルク"
+          },
+          "LV": {
+            "zoneName": "ラトビア"
+          },
+          "LY": {
+            "zoneName": "リビア"
+          },
+          "MA": {
+            "zoneName": "モロッコ"
+          },
+          "MD": {
+            "zoneName": "モルドバ"
+          },
+          "ME": {
+            "zoneName": "モンテネグロ"
+          },
+          "MK": {
+            "zoneName": "マケドニア共和国"
+          },
+          "MT": {
+            "zoneName": "マルタ"
+          },
+          "NI": {
+            "zoneName": "ニカラグア"
+          },
+          "NL": {
+            "zoneName": "オランダ"
+          },
+          "NO": {
+            "zoneName": "ノルウェー"
+          },
+          "NZ-NZN": {
+            "countryName": "ニュージーランド",
+            "zoneName": "北島"
+          },
+          "NZ-NZS": {
+            "countryName": "ニュージーランド",
+            "zoneName": "南島"
+          },
+          "PA": {
+            "zoneName": "パナマ"
+          },
+          "PE": {
+            "zoneName": "ペルー"
+          },
+          "PL": {
+            "zoneName": "ポーランド"
+          },
+          "PS": {
+            "zoneName": "パレスチナ"
+          },
+          "PT": {
+            "zoneName": "ポルトガル"
+          },
+          "PT-AC": {
+            "countryName": "ポルトガル",
+            "zoneName": "アゾレス諸島"
+          },
+          "PT-MA": {
+            "countryName": "ポルトガル",
+            "zoneName": "マデイラ"
+          },
+          "RO": {
+            "zoneName": "ルーマニア"
+          },
+          "RS": {
+            "zoneName": "セルビア"
+          },
+          "RU": {
+            "zoneName": "ロシア"
+          },
+          "SA": {
+            "zoneName": "サウジアラビア"
+          },
+          "SE": {
+            "zoneName": "スウェーデン"
+          },
+          "SG": {
+            "zoneName": "シンガポール"
+          },
+          "SI": {
+            "zoneName": "スロベニア"
+          },
+          "SK": {
+            "zoneName": "スロバキア"
+          },
+          "SV": {
+            "zoneName": "エルサルバドル"
+          },
+          "SY": {
+            "zoneName": "シリア"
+          },
+          "TM": {
+            "zoneName": "トルクメニスタン"
+          },
+          "TN": {
+            "zoneName": "チュニジア"
+          },
+          "TR": {
+            "zoneName": "トルコ"
+          },
+          "TW": {
+            "zoneName": "台湾"
+          },
+          "UA": {
+            "zoneName": "ウクライナ"
+          },
+          "US": {
+            "zoneName": "アメリカ合衆国"
+          },
+          "UY": {
+            "zoneName": "ウルグアイ"
+          },
+          "UZ": {
+            "zoneName": "ウズベキスタン"
+          }
     }
 }

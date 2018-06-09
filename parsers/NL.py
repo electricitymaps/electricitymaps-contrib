@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import arrow
+
+from . import statnett
 from . import ENTSOE
 import logging
 import pandas as pd
@@ -29,7 +31,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
 
     # NL has exchanges with BE, DE, NO, GB
     exchanges = []
-    for exchange_key in ['BE', 'DE', 'NO', 'GB']:
+    for exchange_key in ['BE', 'DE', 'GB']:
         zone_1, zone_2 = sorted([exchange_key, zone_key])
         exchange = ENTSOE.fetch_exchange(zone_key1=zone_1,
                                          zone_key2=zone_2,
@@ -38,10 +40,25 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                                          logger=logger)
         if not exchange:
             return
-        for e in exchange:
-            e['NL_import'] = e['netFlow'] if zone_2 == 'NL' else -1 * e['netFlow']
-            del e['source']
         exchanges.extend(exchange or [])
+
+    # add NO data, fetch once for every hour
+    zone_1, zone_2 = sorted(['NO', zone_key])
+    exchange = [statnett.fetch_exchange(zone_key1=zone_1, zone_key2= zone_2,
+                                        session=r, target_datetime=dt.datetime,
+                                        logger=logger)
+                for dt in arrow.Arrow.range(
+            'hour',
+            arrow.get(min([e['datetime']
+                                for e in exchanges])).replace(minute=0),
+            arrow.get(max([e['datetime']
+                           for e in exchanges])).replace(minute=0))]
+    exchanges.extend(exchange)
+
+    for e in exchanges:
+        e['NL_import'] = e['netFlow'] if zone_2 == 'NL' else -1 * e['netFlow']
+        del e['source']
+
     df_exchanges = pd.DataFrame.from_dict(exchanges).set_index('datetime')
     # Sum all exchanges to NL imports
     df_exchanges = df_exchanges.groupby('datetime').sum()

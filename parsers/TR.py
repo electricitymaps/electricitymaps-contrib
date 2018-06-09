@@ -4,11 +4,18 @@ import requests
 import re
 import json
 import arrow
+import logging
+from bs4 import BeautifulSoup
+import datetime as dt
+from .lib import zonekey
 
 SEARCH_DATA = re.compile(r'var gunlukUretimEgrisiData = (?P<data>.*);')
 TIMEZONE = 'Europe/Istanbul'
 URL = 'https://ytbs.teias.gov.tr/ytbs/frm_login.jsf'
 EMPTY_DAY = -1
+
+PRICE_URL = 'https://seffaflik.epias.com.tr/transparency/piyasalar/' \
+            'gop/ptf.xhtml'
 
 MAP_GENERATION = {
     'akarsu': 'hydro',
@@ -52,6 +59,43 @@ def get_last_data_idx(productions):
         if productions[i]['total'] < 1000:
             return i - 1
     return len(productions) - 1  # full day
+
+
+def fetch_price(zone_key='TR', session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
+    if target_datetime:
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
+
+    zonekey.assert_zone_key(zone_key, 'TR')
+
+    r = session or requests.session()
+    soup = BeautifulSoup(r.get(PRICE_URL).text, 'html.parser')
+    cells = soup.select('.TexAlCenter')
+
+    # data is in td elements with class "TexAlCenter" and role "gridcell"
+    data = list()
+    for cell in cells:
+        if cell.attrs.get('role', '') != 'gridcell':
+            continue
+        data.append(cell.text)
+
+    dates = [dt.datetime.strptime(val, '%d/%m/%Y').date()
+             for i, val in enumerate(data) if i % 3 == 0]
+    times = [dt.datetime.strptime(val, '%H:%M').time()
+             for i, val in enumerate(data) if i % 3 == 1]
+    prices = [float(val.replace(',', '.'))
+              for i, val in enumerate(data) if i % 3 == 2]
+
+    datapoints = [{
+        'zoneKey': 'TR',
+        'currency': 'TRY',
+        'datetime': arrow.get(
+            dt.datetime.combine(date, time)).to('Europe/Istanbul').datetime,
+        'price': price,
+        'source': 'epias.com.tr'
+    } for date, time, price in zip(dates, times, prices)]
+    return datapoints
 
 
 def fetch_production(zone_key='TR', session=None, target_datetime=None, logger=None):
@@ -127,7 +171,10 @@ def fetch_production(zone_key='TR', session=None, target_datetime=None, logger=N
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
+    """Main method, never used by the Electricity Map backend, but handy for
+    testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())

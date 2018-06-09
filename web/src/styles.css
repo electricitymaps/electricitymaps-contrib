@@ -90,15 +90,28 @@ line, path {
     height: 100%;
     position: absolute;
     top: 0;
-    z-index: 999;
+    z-index: 500;
 }
 #loading {
     /* That's the main loading overlay */
     background-size: 10rem;
 }
+.country-panel-wrap {
+    position: relative;
+}
 .country-history .loading {
     background-size: 1.7rem;
 }
+.country-history .material-icons {
+    font-size: 1rem;
+}
+
+.country-history small{
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
 body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
@@ -233,9 +246,12 @@ body {
     background-color: rgb(70, 70, 70);
     width: 1.5rem;
     height: 3rem;
-    line-height: 3rem; /* vertically center */
-    text-align: center; /* horizontally center */
     color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 
     box-shadow: 6px 0 20px rgba(0,0,0,0.3);
     -webkit-box-shadow: 6px 0 20px rgba(0,0,0,0.3);
@@ -245,6 +261,19 @@ body {
 #left-panel-collapse-button:hover {
     cursor: pointer;
 }
+
+#left-panel-collapse-button.collapsed {
+    left: 0px;
+}
+
+#left-panel-collapse-button i{
+    transform: rotate(90deg);
+}
+
+#left-panel-collapse-button.collapsed i{
+    transform: rotate(-90deg);
+}
+
 
 /* Left-panel */
 .left-panel {
@@ -272,6 +301,7 @@ body {
     font-size: 1.6em;
     margin: 0;
 }
+
 .left-panel > svg {
     display: block;
 }
@@ -296,14 +326,12 @@ body {
     stroke: gray;
 }
 .left-panel-toolbar,
-.left-panel-country-toolbar {
-    display: flex;
-    align-items: center;
+.left-panel-zone-details-toolbar {
     margin: 0 0 1rem;
     position: relative;
 }
 .left-panel-toolbar .left-panel-toolbar-back,
-#left-panel-country-back, #left-panel-highscore-back {
+#left-panel-highscore-back {
     line-height: 1;
     cursor: pointer;
     font-size: 1rem;
@@ -312,12 +340,18 @@ body {
     top: 0px;
     position: absolute;
 }
+.left-panel-back-button {
+    cursor: pointer;
+    font-size: 1.3rem;
+    position: absolute;
+    left: 0;
+}
 .left-panel-toolbar .left-panel-toolbar-back:hover,
-#left-panel-country-back:hover, #left-panel-highscore-back:hover {
+.left-panel-back-button:hover, #left-panel-highscore-back:hover {
     color: white;
 }
 .left-panel .left-panel-toolbar-title,
-.left-panel-country .country-name {
+.left-panel-zone-details .country-name {
     font-size: 1.2rem;
     line-height: 1.5rem;
 }
@@ -325,14 +359,40 @@ body {
     width: 2.875rem;
 }
 
-.left-panel-info, .left-panel-social, .left-panel-country {
+.mobile-info-tab, .left-panel-zone-details {
+    display: flex;
     padding: 0 1rem;
+    line-height: 1.2rem;
+    flex-direction: column;
+    height: 100%;
+}
+
+.mobile-info-tab p{
+    margin: 0.6rem 0;
+}
+
+.mobile-info-tab .info-text p{
+    margin: 0.6rem 0;
+}
+
+.left-panel-zone-details .social-buttons{
+    margin-top: auto;
+    margin-bottom: -6px;
+}
+
+.info-text p{
+    margin: 0.4rem 0;
     line-height: 1.2rem;
 }
 
-
 .country-name-time {
     font-size: smaller;
+    margin: auto;
+    width: 90%;
+}
+.country-name-time-table {
+    display: table;
+    margin-left: 1.2rem;
 }
 .country-name-time .flag {
   vertical-align: bottom;
@@ -341,8 +401,12 @@ body {
 .country-time {
   white-space: nowrap;
 }
-.country-table {
+.country-table-container {
     width: 100%;
+    position: relative;
+}
+.country-table-header {
+    position: relative;
 }
 .country-table-header-inner {
     display: flex;
@@ -405,13 +469,7 @@ body {
     opacity: 1.0
 }
 
-.left-panel-initial-text {
-    font-size: 1.1em;
-    color: darkgrey;
-}
-.left-panel-initial-text p:first-child {
-    margin-top: 0px;
-}
+
 .country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
@@ -535,6 +593,10 @@ body {
     flex-direction: column;
 }
 
+.layer-buttons-container > div{
+    position: relative;
+}
+
 .layer-button {
     background-color: #fff;
     border-radius: 7px;
@@ -554,6 +616,8 @@ body {
 .layer-button:hover{
     background-color: rgb(235, 230, 230);
 }
+
+
 
 .wind-button{
     background-image: url(../images/weather/wind.svg);
@@ -577,6 +641,45 @@ body {
     height: 35px !important;
     background-size: 100% 100%;
 }
+
+.layer-button-tooltip {
+    position: absolute;
+    left: -120px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100px;
+    top: -32px;
+}
+
+.layer-button-tooltip.hidden {
+    display: none;
+}
+
+.layer-button-tooltip .tooltip-container {
+    display: flex;
+    align-items: center;
+}
+
+.layer-button-tooltip .tooltip-text {
+    background-color: rgb(70, 70, 70);;
+    color: lightgray;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.layer-button-tooltip .arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7.5px 0 7.5px 10px;
+    border-color: transparent transparent transparent rgb(70, 70, 70);;
+}
+
+
 
 
 /* ** LEGEND ** */
@@ -624,8 +727,7 @@ body {
 }
 
 .floating-legend-mobile-header .toggle-legend-button{
-    width: 25px;
-    height: 25px;
+    font-size: 24px;
     position: absolute;
     right: 5px;
     top: 5px;
@@ -694,11 +796,20 @@ label[for="checkbox-colorblind"] {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 100;
+    border-radius: 5px;
 
     box-sizing: border-box;
     opacity: 0;
 }
+
+#country-tooltip .zone-name-header{
+    margin-bottom: 5px;
+}
+#country-tooltip .zone-details > div{
+    margin-bottom: 5px;
+}
+
 
 .watermark {
     position: absolute;
@@ -728,6 +839,13 @@ div.highscore-button:hover {
     overflow-y: hidden;
 }
 
+.left-panel-zone-list .info-text {
+    flex-direction: column;
+    padding: 0rem 1rem;
+}
+
+
+
 .zone-search-bar {
     padding: 0px 1rem 0.5rem 1rem;
 }
@@ -747,8 +865,9 @@ div.highscore-button:hover {
     padding: 0 1rem 0.5rem 1rem;
 }
 
-.zone-list-header .title {
+.left-panel .title {
     font-size: 1.3rem;
+    font-family: "Catamaran", sans-serif;
 }
 
 .zone-list-header .subtitle {
@@ -758,6 +877,7 @@ div.highscore-button:hover {
 
 .zone-list {
     overflow-y: scroll;
+    flex: 1;
 }
 .zone-list p {
     margin: 0;
@@ -814,7 +934,7 @@ div.highscore-button:hover {
 }
 
 .zone-list .co2-intensity-tag {
-    border-radius: 3px;    
+    border-radius: 3px;
     margin-right: 10px;
     height: 17px;
     width: 17px;
@@ -870,32 +990,38 @@ div.highscore-button:hover {
 
 #tab {
     position: relative;
+    background-color: rgb(70, 70, 70);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
+    z-index: 1;
 }
 #tab-content {
     display: flex;
+    height: 56px;
 }
 #tab #tab-content .list-item {
-    font-size: 0.7rem;
     display: flex;
 
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
+    flex-direction: column;
 
     width: 50%;
-    line-height: 1.2rem;
-
-    margin-bottom: 2px; /* For the border */
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-top: 8px;
+    font-family: "Catamaran", sans-serif;
 }
 #tab.nomap #tab-content .list-item.map-button,
-#tab.nomap #tab-content .list-item.wind-toggle,
-#tab.nomap #tab-content .list-item.solar-toggle {
+{
     display: none;
 }
 #tab #tab-content .list-item.active {
     color: white;
-    border-bottom: 2px solid white;
-    margin-bottom: 0px;
+    font-size: 14px;
+    padding-top: 6px;
 }
 
 #tab #tab-content .list-item.active img,
@@ -906,16 +1032,8 @@ div.highscore-button:hover {
     -o-filter: brightness(0%) invert(1);
     filter: brightness(0%) invert(1);
 }
-#tab #tab-content .list-item.active.wind-button,
-#tab #tab-content .list-item.active.solar-button {
-    border-bottom-color: lightgreen;
-}
-#tab #tab-content div {
-    margin-top: 0.2rem; /* This is to compensate for CSS not centering vertically */
-}
+
 #tab #tab-content a {
-    padding-top: 0.2rem;
-    padding-bottom: 0.6rem;
     color: darkgrey;
 }
 #tab #tab-content a:hover {
@@ -923,12 +1041,9 @@ div.highscore-button:hover {
     text-decoration: none;
 }
 #tab #tab-content i {
-    font-size: 1.1rem;
+    font-size: 24px;
 }
-#tab #tab-content img {
-    height: 1.2rem;
-    filter: unset;
-}
+
 
 sub {
     font-size: 60%;
@@ -939,13 +1054,18 @@ sub {
     background-color: gold;
     color: rgb(76,76,76);
     font-weight: bold;
-    padding-bottom: 0.10rem;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    padding-top: 0.05rem;
-    font-size: 0.7em;
-    vertical-align: bottom;
-    margin-left: 0.1em;
+    padding: 0.2rem;
+    font-size: 0.8em;
+    margin-left: 0.4em;
+    line-height: 0.8em;
+    margin-bottom: 0.2em;
+    display: flex;
+    align-items: center;
+}
+
+.pro .material-icons {
+    font-size: inherit;
+    margin-right: 0.1em;
 }
 
 .contributors img {
@@ -976,9 +1096,303 @@ sub {
     text-decoration: underline !important;
 }
 
+.modal-background-overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 500;
+    zoom: 1;
+	filter: alpha(opacity=50);
+    opacity: 0.5;
+    background-color: black;
+}
+
+.modal {
+    display: flex;
+    max-width: 880px;
+    width: 100%;
+    height: 488px;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal .modal-left-button-container, .modal .modal-right-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 75px;
+    width: 100%;
+}
+
+.modal .modal-left-button-container { 
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.modal .modal-right-button-container {
+    align-items: flex-end;
+    margin-right: 10px;
+}
+
+.modal .modal-left-button, .modal .modal-right-button {
+    background-color: white;
+    height: 48px;
+    width: 48px;
+    border: none;
+    border-radius: 25px;
+    font-size: 32px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color: dimgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .modal-left-button:focus, .modal .modal-right-button:focus {
+    outline: 0;
+}
+
+.modal .modal-left-button.hidden {
+    display: none;
+}
+
+.modal .modal-right-button.green{
+    color:##009800;
+}
+
+.modal .modal-right-button.green:hover{
+    background-color: #95f395;
+    color: inherit;
+}
+
+.modal .modal-footer{
+    height: 40px;
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.modal .modal-footer .modal-footer-circle {
+    background-color: rgb(145, 145, 145);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    margin: 0 4px;
+    width: 8px;
+}
+
+.modal .modal-footer .modal-footer-circle.highlight{
+    background-color: white;
+}
+
+.modal .modal-body { 
+    flex: 1;
+    border-radius: 15px;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    max-width: 700px;
+}
+
+.modal .modal-header {
+    height: 58%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.modal .modal-text {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    padding: 25px 55px;
+    text-align: center;
+    height: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal .modal-text h1 {
+    font-size: 3rem;
+}
+
+.modal .modal-text h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.modal .modal-text h1, .modal .modal-text h2{
+    font-weight: normal;
+}
+
+.modal .logo-header {
+    background-size: 180px !important;
+    background-position-y: 70% !important;
+}
+
+.modal .brand-text {
+    padding-top: 0;
+    line-height: 3rem;
+    font-family: "Catamaran", sans-serif;
+}
+
+.mobile-watermark {
+    text-align: center;
+    margin-top: 1rem;
+}
+.mobile-watermark div {
+    padding-top: 0.5rem;
+}
+
+.no-data-overlay {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.no-data-overlay.visible{
+    display: flex;
+}
+
+.no-data-overlay-background{
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.6;
+    background-color: rgb(70,70,70);
+}
+
+.no-data-overlay-message{
+    background-color: #94824f;
+    color: white;
+    margin: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    z-index: 600;
+}
+.no-data-overlay-message.visible, .zone-details-no-parser-message.visible{
+    display: block;
+}
+
+.zone-details-no-parser-message{
+    display: none;
+    background-color: rgb(70, 70, 70);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding: 0.5rem 0; 
+}
+
+.all-screens-hidden {
+    display: none !important;
+}
+
+.faq-panel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.faq-header {
+    display: flex;
+    flex-direction: row; 
+    margin-left: 15px;
+    align-items: flex-end;
+    height: 30px;
+}
+
+.faq-header .left-panel-back-button{
+    position: initial;
+    margin-right: 10px;
+}
+
+.faq {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px 0px 7px;
+}
+
+.faq-container .question-group-header{
+    padding: 15px 0px 5px 10px;
+}
+
+.faq-container .question-answer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-container .question {
+    font-size: 0.95rem;
+    padding: 5px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.faq-container .question:hover {
+    color: white;
+}
+
+.faq-container .question span{
+    padding-left: 5px;
+}
+
+.faq-container .answer {
+    display: none;
+    padding-right: 5px;
+    padding-left: 10px;
+    margin-left: 11px;
+    margin-bottom: 5px;
+    border-left: 1px solid grey;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+}
+
+.faq-container .answer.visible{
+    display: block;
+}
+
+.mobile-faq .faq-container{
+    padding: 0 0 1rem 0;
+}
+
+.mobile-faq-header{
+    text-align: center;
+    font-size: 1.6rem;
+    font-family: "Catamaran";
+    padding-top: 25px;
+    padding-bottom: 5px;
+}
+
+.mobile-watermark img {
+    width: 220px;
+}
+
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
-    .small-screen-visible {
+    .large-screen-hidden {
         display: none;
     }
     #tab {
@@ -994,18 +1408,33 @@ sub {
     .floating-legend-mobile-header{
         display: none;
     }
+
+    .modal .modal-left-button:hover, .modal .modal-right-button:hover {
+        background-color: rgb(220, 220, 220);
+    }
+
+    .mobile-info-tab {
+        padding-top: 0.5rem;
+    }
+    
 }
 
 /* Small devices (phones, etc.) */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     #header {
-        min-height: 90px; /* required for old Safari */
+        min-height: 50px; /* required for old Safari */
     }
     #header-content .logo {
         margin-right: auto;
     }
-    .large-screen-visible {
+    .small-screen-hidden {
         display: none;
+    }
+    .left-panel {
+        padding: 0 0 1rem 0;
+    }
+    .left-panel-zone-details {
+        padding: 1rem;
     }
     .left-panel, #map-container {
         width: 100%;
@@ -1031,6 +1460,63 @@ sub {
     .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
         margin-left: 80px;
     }
+
+    .modal {
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .modal .modal-text h1 {
+        font-size: 2rem;
+    }
+
+    .modal .modal-header {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        background-size: contain;
+        background-position: center;
+        height: 40%;
+        min-height: 200px;
+    }
+
+    .modal .modal-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 40%;
+        min-height: 245px;
+    }
+
+    .modal .brand-text {
+        height: 25%;
+    }
+
+    .modal .modal-body {
+        max-width: inherit;
+        border-radius: 0;
+
+    }
+    .modal .modal-left-button-container {
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+    }
+
+    .modal .modal-right-button-container {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+    }
+
+    #left-panel-collapse-button {
+        display: none;
+    }
+    .left-panel {
+        padding-bottom: 0;
+    } 
+
 }
 
 /* custom scrollbars in chrome*/

@@ -1,11 +1,15 @@
 'use strict';
 
-import ZoneMap from './components/map';
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
-import ZoneList from './components/zonelist';
+import ContributorList from './components/contributorlist';
+import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
+import ZoneList from './components/zonelist';
+import ZoneMap from './components/map';
+import FAQ from './components/faq';
+import { formatPower } from './helpers/formatting';
 
 // Libraries
 const d3 = Object.assign(
@@ -29,6 +33,7 @@ const LineGraph = require('./components/linegraph');
 const CountryTable = require('./components/countrytable');
 const HorizontalColorbar = require('./components/horizontalcolorbar');
 const Tooltip = require('./components/tooltip');
+
 
 // Layer Components
 const ExchangeLayer = require('./components/layers/exchange');
@@ -99,9 +104,10 @@ LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
+let onboardingModal;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
@@ -124,6 +130,7 @@ const priceTooltip = new Tooltip('#price-tooltip');
 
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+const contributorList = new ContributorList('.contributors');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -135,6 +142,9 @@ const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorb
 
 const zoneList = new ZoneList('.zone-list p');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
+
+const faq = new FAQ('.faq');
+const mobileFaq = new FAQ('.mobile-faq');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -182,10 +192,7 @@ const app = {
 
   onResume() {
     // Count a pageview
-    const params = getState().application;
-    params.bundleVersion = params.bundleHash;
-    params.embeddedUri = params.isEmbedded ? document.referrer : null;
-    thirdPartyServices.track('Visit', params);
+    thirdPartyServices.trackWithCurrentApplicationState('Visit'),
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
@@ -205,12 +212,13 @@ function catchError(e) {
 moment.locale(getState().application.locale.toLowerCase());
 
 // Analytics
-(() => {
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('Visit', params);
-})();
+thirdPartyServices.trackWithCurrentApplicationState('Visit');
+
+// do not display onboarding when we've seen it or we're embedded
+if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
+  onboardingModal = new OnboardingModal('#main');
+  thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
+}
 
 // Display embedded warning
 // d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
@@ -413,7 +421,7 @@ window.toggleSource = (state) => {
   document.getElementById('country-history-electricity-carbonintensity')
     .textContent = translation.translate(
       tableDisplayEmissions ?
-        'country-history.carbonintensity24h' : 'country-history.electricityorigin24h');
+        'country-history.emissionsorigin24h' : 'country-history.electricityorigin24h');
 };
 
 function mapMouseOver(lonlat) {
@@ -540,10 +548,7 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
   }
 
   // Track pageview
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
+  thirdPartyServices.trackWithCurrentApplicationState('pageview');
 
   // Is there a new version?
   d3.select('#new-version')
@@ -694,12 +699,37 @@ function toggleWind() {
 }
 d3.select('.wind-button').on('click', toggleWind);
 
+const windLayerButtonTooltip = d3.select('#wind-layer-button-tooltip');
+
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.wind-button').on('mouseover', () => {
+    windLayerButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.wind-button').on('mouseout', () => {
+    windLayerButtonTooltip.classed('hidden', true);
+  });
+}
+
+
 // Solar
 function toggleSolar() {
   if (typeof solarLayer === 'undefined') { return; }
   dispatchApplication('solarEnabled', !getState().application.solarEnabled);
 }
 d3.select('.solar-button').on('click', toggleSolar);
+
+const solarLayerButtonTooltip = d3.select('#solar-layer-button-tooltip');
+
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.solar-button').on('mouseover', () => {
+    solarLayerButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.solar-button').on('mouseout', () => {
+    solarLayerButtonTooltip.classed('hidden', true);
+  });
+}
 
 // Legend 
 function toggleLegend() {
@@ -739,8 +769,8 @@ if (typeof zoneMap !== 'undefined') {
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
-// Close button
-d3.selectAll('#left-panel-country-back')
+// Back button
+d3.selectAll('.left-panel-back-button')
   .on('click', () => {
     dispatchApplication('selectedZoneName', undefined);
     dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
@@ -755,6 +785,13 @@ zoneList.setClickHandler((selectedCountry) => {
   }
 });
 
+// FAQ link
+d3.selectAll('.faq-link')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', 'faq');
+  });
+
 
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
@@ -762,7 +799,13 @@ d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageStat
 d3.selectAll('.highscore-button')
   .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
-
+// Onboarding modal
+if (onboardingModal) {
+  onboardingModal.onDismiss(() => {
+    Cookies.set('onboardingSeen', true, { expires: 365 });
+    dispatchApplication('onboardingSeen', true);
+  });
+}
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
@@ -794,20 +837,14 @@ function renderGauges(state) {
     countryRenewableGauge.setPercentage(countryRenewablePercentage);
   }
 }
+
+
 function renderContributors(state) {
   const { selectedZoneName } = state.application;
-  // TODO(olc): move to component
-  const selector = d3.selectAll('.contributors').selectAll('a')
-    .data((zonesConfig[selectedZoneName] || {}).contributors || []);
-  const enterA = selector.enter().append('a')
-    .attr('target', '_blank');
-  const enterImg = enterA.append('img');
-  enterA.merge(selector)
-    .attr('href', d => d);
-  enterImg.merge(selector.select('img'))
-    .attr('src', d => `${d}.png`);
-  selector.exit().remove();
+  contributorList.setContributors((zonesConfig[selectedZoneName] || {}).contributors || []);
+  contributorList.render();
 }
+
 function renderCountryTable(state) {
   const d = getCurrentZoneData(state);
   if (!d) {
@@ -815,8 +852,15 @@ function renderCountryTable(state) {
     // as the countryTable doesn't support receiving null data
   } else {
     countryTable.data(d).render(true);
+
+    const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
+    countryTable.showNoParserMessageIf(zoneIsMissingParser);
+    const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
+    const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
+    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
   }
 }
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -962,47 +1006,32 @@ function renderLeftPanelCollapseButton(state) {
   d3.select('.left-panel')
     .style('display', isLeftPanelCollapsed ? 'none' : undefined);
   d3.select('#left-panel-collapse-button')
-    .style('left', isLeftPanelCollapsed ? '0px' : undefined)
-    .select('i.fa')
-    .attr('class', `fa fa-caret-${isLeftPanelCollapsed ? 'right' : 'left'}`);
+    .classed('collapsed', isLeftPanelCollapsed)
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
 }
 function routeToPage(pageName, state) {
-  // Hide all panels - we will show only the ones we need
-  d3.selectAll('.left-panel > div').style('display', 'none');
-  d3.selectAll('.left-panel .left-panel-social').style('display', undefined);
-  d3.selectAll(`.left-panel .left-panel-zone-list`).style('display', undefined);
 
-  // Replace left panel by country view (large screen only)
-  d3.selectAll('.left-panel .left-panel-info')
-    .style('display', (pageName !== 'country' ) ? undefined : 'none')
-    // Hide info panel on small screens on all views but info view
-    .classed('large-screen-visible', pageName !== 'info');
 
-  // Hide zone list from info view on small screens
-  d3.selectAll('.left-panel .left-panel-zone-list')
-    .classed('large-screen-visible', pageName !== 'highscore')
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
+
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
+
+  d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
+
+  d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
+  
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
-  d3.selectAll('#map-container').classed('large-screen-visible', pageName !== 'map');
-
-  // Analytics
-  // TODO(olc): where should we put all tracking code?
-  // at the source events, or in observers?
-  const params = getState().application;
-  params.bundleVersion = params.bundleHash;
-  params.embeddedUri = params.isEmbedded ? document.referrer : null;
-  thirdPartyServices.track('pageview', params);
-  if (pageName === 'country') {
-    thirdPartyServices.track('countryClick', { countryCode: params.selectedZoneName });
-  }
+  d3.selectAll('#map-container').classed('small-screen-hidden', pageName !== 'map');
 
   if (pageName === 'map') {
-    d3.select('.left-panel').classed('large-screen-visible', true);
+    d3.select('.left-panel').classed('small-screen-hidden', true);
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
@@ -1010,7 +1039,7 @@ function routeToPage(pageName, state) {
     if (state.application.windEnabled && windColorbar) windColorbar.render();
     if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
-    d3.select('.left-panel').classed('large-screen-visible', false);
+    d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
     if (pageName === 'info') {
       if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
@@ -1021,6 +1050,9 @@ function routeToPage(pageName, state) {
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
+  if (pageName === 'country') {
+    d3.selectAll('#tab .highscore-button').classed('active', true);
+  }
 }
 function tryFetchHistory(state) {
   const { selectedZoneName } = state.application;
@@ -1093,10 +1125,17 @@ observe(state => state.data.grid, (grid, state) => {
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
   routeToPage(showPageState, state);
+
+  // Analytics
+  // Note: `selectedZoneName` will not yet be changed here
+  thirdPartyServices.trackWithCurrentApplicationState('pageview');
 });
 // Observe for zone change (for example after map click)
-observe(state => state.application.selectedZoneName, (k, state) => {
-  if (!state.application.selectedZoneName) { return; }
+observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
+  if (!selectedZoneName) { return; }
+
+  // Analytics
+  thirdPartyServices.track('countryClick', { countryCode: selectedZoneName });
 
   // Render
   renderCountryTable(state);
@@ -1138,6 +1177,8 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.select('.solar-potential-legend').classed('visible', solarEnabled);
   Cookies.set('solarEnabled', solarEnabled);
 
+  solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
+
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
@@ -1155,6 +1196,8 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   d3.selectAll('.wind-button').classed('active', windEnabled);
   d3.select('.wind-potential-legend').classed('visible', windEnabled);
+
+  windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
   Cookies.set('windEnabled', windEnabled);
 

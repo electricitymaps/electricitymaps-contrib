@@ -1,22 +1,10 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Dit toont live",
-        "whereelectricitycomesfrom": "waar je elektriciteit vandaan komt",
-        "and": "en",
-        "howmuchco2": "hoeveel CO2",
-        "wasemitted": "werd uitgestoten bij de productie ervan",
-
-        "takeinaccount": "We nemen de elektriciteit in beschouwing afkomstig van",
-        "importexport": "invoer en uitvoer",
-        "betweenzones": "tussen landen",
-
         "thisproject": "Dit project is",
         "opensource": "Open Source",
         "see": "zie",
         "datasources": "data sources",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>",
-
-        "tip": "Tip: Klik op een land om alle informatie te ontdekken"
+        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
     },
     "country-panel": {
         "source": "bron",
@@ -24,8 +12,7 @@
         "electricityproduction": "Elektriciteitsproductie",
         "bysource": "per bron",
         "emissions": "CO2 uitstoot",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "co2signal": "Ons product <a href=\"%s\" target=\"blank\">CO2 Signal</a> helpt toestellen en elektrische voertuigen elektriciteit verbruiken op het juiste tijdstip, in het bijzonder bij het overschrijden van de landsgrenzen."
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>"
     },
     "country-history": {
         "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
@@ -53,7 +40,6 @@
     },
     "misc": {
         "maintitle": "Live CO2 uitstoot van het elektriciteitsverbruik",
-        "lastupdate": "Laatst bijgewerkt",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
     },
@@ -82,50 +68,140 @@
     "ofCO2eqPerMinute": "of CO2eq per minute",
 
     "zoneShortName": {
-        "AL": "Albanië",
-        "AT": "Oostenrijk",
-        "AX": "Åland",
-        "BA": "Bosnië-Herzegovina",
-        "BE": "België",
-        "BG": "Bulgarije",
-        "BY": "Wit-Rusland",
-        "CH": "Zwitserland",
-        "CZ": "Tsjechië",
-        "DE": "Duitsland",
-        "DK": "Denemarken",
-        "EE": "Estland",
-        "ES": "Spanje",
-        "FI": "Finland",
-        "FR": "Frankrijk",
-        "GB": "Groot-Brittannië",
-        "GB-NIR": "Noord-Ierland",
-        "GR": "Griekenland",
-        "HR": "Kroatië",
-        "HU": "Hongarije",
-        "IE": "Ierland",
-        "IS": "IJsland",
-        "IT": "Italië",
-        "LT": "Litouwen",
-        "LU": "Luxemburg",
-        "LV": "Letland",
-        "MD": "Moldavië",
-        "ME": "Montenegro",
-        "MK": "Macedonië",
-        "MT": "Malta",
-        "NL": "Nederland",
-        "NO": "Noorwegen",
-        "PE": "Peru",
-        "PL": "Polen",
-        "PT": "Portugal",
-        "RO": "Roemenië",
-        "RS": "Servië",
-        "RU": "Rusland",
-        "SE": "Zweden",
-        "SG": "Singapore",
-        "SI": "Slovenië",
-        "SK": "Slowakije",
-        "TR": "Turkije",
-        "TW": "Taiwan",
-        "UA": "Oekraïne"
+        "AL": {
+            "zoneName": "Albanië"
+          },
+          "AT": {
+            "zoneName": "Oostenrijk"
+          },
+          "AX": {
+            "zoneName": "Åland"
+          },
+          "BA": {
+            "zoneName": "Bosnië-Herzegovina"
+          },
+          "BE": {
+            "zoneName": "België"
+          },
+          "BG": {
+            "zoneName": "Bulgarije"
+          },
+          "BY": {
+            "zoneName": "Wit-Rusland"
+          },
+          "CH": {
+            "zoneName": "Zwitserland"
+          },
+          "CZ": {
+            "zoneName": "Tsjechië"
+          },
+          "DE": {
+            "zoneName": "Duitsland"
+          },
+          "DK": {
+            "zoneName": "Denemarken"
+          },
+          "EE": {
+            "zoneName": "Estland"
+          },
+          "ES": {
+            "zoneName": "Spanje"
+          },
+          "FI": {
+            "zoneName": "Finland"
+          },
+          "FR": {
+            "zoneName": "Frankrijk"
+          },
+          "GB": {
+            "zoneName": "Groot-Brittannië"
+          },
+          "GB-NIR": {
+            "zoneName": "Noord-Ierland"
+          },
+          "GR": {
+            "zoneName": "Griekenland"
+          },
+          "HR": {
+            "zoneName": "Kroatië"
+          },
+          "HU": {
+            "zoneName": "Hongarije"
+          },
+          "IE": {
+            "zoneName": "Ierland"
+          },
+          "IS": {
+            "zoneName": "IJsland"
+          },
+          "IT": {
+            "zoneName": "Italië"
+          },
+          "LT": {
+            "zoneName": "Litouwen"
+          },
+          "LU": {
+            "zoneName": "Luxemburg"
+          },
+          "LV": {
+            "zoneName": "Letland"
+          },
+          "MD": {
+            "zoneName": "Moldavië"
+          },
+          "ME": {
+            "zoneName": "Montenegro"
+          },
+          "MK": {
+            "zoneName": "Macedonië"
+          },
+          "MT": {
+            "zoneName": "Malta"
+          },
+          "NL": {
+            "zoneName": "Nederland"
+          },
+          "NO": {
+            "zoneName": "Noorwegen"
+          },
+          "PE": {
+            "zoneName": "Peru"
+          },
+          "PL": {
+            "zoneName": "Polen"
+          },
+          "PT": {
+            "zoneName": "Portugal"
+          },
+          "RO": {
+            "zoneName": "Roemenië"
+          },
+          "RS": {
+            "zoneName": "Servië"
+          },
+          "RU": {
+            "zoneName": "Rusland"
+          },
+          "SE": {
+            "zoneName": "Zweden"
+          },
+          "SG": {
+            "zoneName": "Singapore"
+          },
+          "SI": {
+            "zoneName": "Slovenië"
+          },
+          "SK": {
+            "zoneName": "Slowakije"
+          },
+          "TR": {
+            "zoneName": "Turkije"
+          },
+          "TW": {
+            "zoneName": "Taiwan"
+          },
+          "UA": {
+            "zoneName": "Oekraïne"
+          }
     }
 }

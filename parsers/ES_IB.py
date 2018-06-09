@@ -56,7 +56,7 @@ def fetch_island_data(zone_key, session):
 def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-
+    
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses)
     data = []
@@ -91,16 +91,16 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
                 'zoneKey': zone_key,
                 'datetime': get(response.timestamp).datetime,
                 'production': {
-                'coal': round(response.carbon, 2),
+                'coal': response.carbon,
                 'gas': round(response.gas + response.combined, 2),
-                'solar': round(response.solar, 2),
+                'solar': response.solar,
                 'oil': round(response.vapor + response.diesel, 2),
-                'wind': round(response.wind, 2),
-                'hydro': round(response.hydraulic, 2),
+                'wind': response.wind,
+                'hydro': response.hydraulic,
                 'biomass': 0.0,
                 'nuclear': 0.0,
                 'geothermal': 0.0,
-                'unknown': round(response.other, 2)
+                'unknown': response.other
             },
             'storage': {
                 'hydro': 0.0,
@@ -136,9 +136,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if not response_ma:
         raise ParserException("ES-IB-MA", "No response")
     elif not response_fo:
-        raise ParserException("ES-IB-IZ", "No response")        
+        raise ParserException("ES-IB-FO", "No response")        
     else:
-
         if sortedZoneKeys == 'ES->ES-IB-MA':
             for response in response_ma:
                 netflow = response.link['pe_ma']
@@ -168,19 +167,15 @@ session = Session
 print("# ES-IB-FO")
 print(fetch_consumption('ES-IB-FO', session))
 print(fetch_production('ES-IB-FO', session))
-
 print("# ES-IB-IZ")
 print(fetch_consumption('ES-IB-IZ', session))
 print(fetch_production('ES-IB-IZ', session))
-
 print("# ES-IB-MA")
 print(fetch_consumption('ES-IB-MA', session))
 print(fetch_production('ES-IB-MA', session))
-
 print("# ES-IB-ME")
 print(fetch_consumption('ES-IB-ME', session))
 print(fetch_production('ES-IB-ME', session))
-
 print("# exchanges")
 print(fetch_exchange('ES', 'ES-IB-MA', session))
 print(fetch_exchange('ES-IB-MA', 'ES-IB-ME', session))
