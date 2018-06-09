@@ -9,7 +9,7 @@ from ree import (Formentera, Ibiza,
 
 ## I had to comment these two due to local issues:
 
-#from .lib.exceptions import ParserException
+from .lib.exceptions import ParserException
 #from .lib.validation import validate
 
 ## Guess we'll need to figure these out later?! Adapted from ES-CN:
