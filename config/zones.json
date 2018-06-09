@@ -2582,6 +2582,34 @@
     },
     "timezone": "Europe/Moscow"
   },
+  "RU-1": {
+    "capacity": {
+      "nuclear": 27929
+    },
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "ru.png",
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
+  },
+  "RU-2": {
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "ru.png",
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
+  },
+  
   "RU-AS": {
     "flag_file_name": "ru.png",
     "timezone": null
