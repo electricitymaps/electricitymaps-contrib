@@ -193,7 +193,9 @@ def parse_production(csv_text, target_datetime=None,
             # check if storage value and if so correct key
             if 'storage' in fuel:
                 fuel_key = fuel.replace('storage', '').strip()
-                data_point['storage'][fuel_key] = quantity
+                # ELEXON storage is negative when storing and positive when
+                # discharging (the opposite to electricitymap)
+                data_point['storage'][fuel_key] = quantity * -1
             else:
                 # if/else structure allows summation of multiple quantities
                 # e.g. 'Wind Onshore' and 'Wind Offshore' both have the
