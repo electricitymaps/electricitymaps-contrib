@@ -1176,6 +1176,10 @@
             "countryName": "United States of America",
             "zoneName": "SPP"
           },
+          "US-SVERI":{
+            "countryName": "United States of America",
+            "zoneName": "SVERI"
+          },
           "US-HI": {
             "zoneName": "Hawaii"
           },

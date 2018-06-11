@@ -9,10 +9,16 @@
     "country-panel": {
         "source": "fuente",
         "carbonintensity": "Intensidad de carbono",
-        "electricityproduction": "Producción de electricidad",
+        "lowcarbon": "Carbón bajo",
+        "renewable": "Renovables",
+        "electricity": "Electricidad",
         "bysource": "por fuente",
-        "emissions": "Emisiones",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o editar fuente de datos</a>"
+        "emissions": "Emisiones de carbón",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o editar fuente</a>",
+        "helpfrom": "Ayuda de",
+        "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
+        "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta área",
+        "noParserInfo": "No tenemos aún información sobre esta area.<br/> ¿Quieres ayudarnos a arreglar esto? Puedes contribuir <a href=\"%s\" target=\"_blank\">añadiendo información de un area</a>."
     },
     "country-history": {
         "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas"
@@ -47,6 +53,7 @@
     "solar": "solar",
     "hydro": "hidráulica",
     "hydro storage": "almac. hidrául.",
+    "battery storage": "almac. de baterías",
     "biomass": "biomasa",
     "nuclear": "nuclear",
     "geothermal": "geotérmico",
