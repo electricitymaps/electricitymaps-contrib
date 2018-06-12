@@ -100,7 +100,7 @@ line, path {
 .country-panel {
     overflow-y: scroll;
     margin-bottom: 60px; /* Height of time slider */
-    padding: 0 1rem;
+    padding: 1rem;
 }
 .country-panel-wrap {
     position: relative;
@@ -283,7 +283,6 @@ body {
 
 /* Left-panel */
 .left-panel {
-    padding-top: 1rem;
     width: 24rem;
     position: relative;
     overflow-y: auto;
@@ -333,8 +332,8 @@ body {
 }
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
-    margin: 0 0 1rem;
     position: relative;
+    padding: 1rem 0 0.5rem 0;
 }
 .left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-highscore-back {
@@ -350,7 +349,7 @@ body {
     cursor: pointer;
     font-size: 1.3rem;
     position: absolute;
-    left: 0;
+    left: 10px;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
 .left-panel-back-button:hover, #left-panel-highscore-back:hover {
@@ -370,6 +369,10 @@ body {
     line-height: 1.2rem;
     flex-direction: column;
     height: 100%;
+}
+
+.mobile-info-tab {
+    padding: 1rem;
 }
 
 .mobile-info-tab p{
@@ -392,8 +395,7 @@ body {
 
 .country-name-time {
     font-size: smaller;
-    margin: auto;
-    width: 90%;
+    margin-left: 25px;
 }
 .country-name-time-table {
     display: table;
@@ -405,6 +407,10 @@ body {
 }
 .country-time {
   white-space: nowrap;
+}
+
+.country-table {
+    width: 100%;    
 }
 .country-table-container {
     width: 100%;
@@ -1398,10 +1404,12 @@ sub {
 .zone-time-slider {
     position: absolute;
     bottom: 0;
-    height: 60px;
-    background: grey;
+    height: 62px;
+    background: rgb(70, 70, 70);
     width: 100%;
     text-align: center;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    overflow-y: hidden;
 }
 
 .zone-time-slider .time-slider-axis-container{
@@ -1414,41 +1422,106 @@ sub {
     font-size: 12px;
 }
 
-.zone-time-slider input {
-    width: 85%;
-    margin-top: 10px;
-}
-
 .zone-time-slider .domain {
     display: none;
 }
 
-/* 
-// Clear browser default appearances for sliders
-input[type=range] {
-    -webkit-appearance: none; // Hides the slider so that custom slider can be made 
-    width: 100%; // Specific width is required for Firefox. 
-    background: transparent; // Otherwise white in Chrome 
-  }
-  
-  input[type=range]::-webkit-slider-thumb {
+
+.time-slider-input {
     -webkit-appearance: none;
-  }
-  
-  input[type=range]:focus {
-    outline: none; // Removes the blue border 
-  }
-  
-  input[type=range]::-ms-track {
-    width: 100%;
-    cursor: pointer;
-  
-    // Hides the slider so custom styles can be added 
+    width: 95%;
+    margin-top: 5px;
+    height: 26px;
     background: transparent; 
+    padding: 0;
+    overflow: visible;
+  }
+  
+  .time-slider-input:focus {
+    outline: none;  
+  }
+  
+/* WebKit/Blink */
+
+.time-slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid gray;
+    height: 26px;
+    width: 26px;
+    border-radius: 17px;    
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -12px;
+  }
+
+  .time-slider-input::-webkit-slider-runnable-track {
+    width: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 3px;
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  
+  .time-slider-input:focus::-webkit-slider-runnable-track {
+    background: white;
+  }
+
+
+  /* IE */
+
+  .time-slider-input::-ms-track {
+    width: 100%;
+    height: 0px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
     border-color: transparent;
     color: transparent;
   }
- */
+  .time-slider-input::-ms-fill-lower {
+    border: 2px solid lightgray;
+    border-radius: 2.6px;
+  }
+
+  .time-slider-input::-ms-fill-upper {
+    border: 2px solid lightgray;
+    border-radius: 2.6px;
+  }
+
+  .time-slider-input::-ms-thumb {
+    border: 1px solid gray;
+    height: 25px;
+    width: 25px;
+    border-radius: 17px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+
+  /* Firefox */
+
+  .time-slider-input::-moz-range-thumb {
+    border: 1px solid gray;
+    height: 24px;
+    width: 24px;
+    border-radius: 17px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  .time-slider-input::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 1.3px;
+    border: 0.2px solid hsl(0, 0%, 0%);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
@@ -1492,9 +1565,6 @@ input[type=range] {
     }
     .left-panel {
         padding: 0 0 1rem 0;
-    }
-    .left-panel-zone-details {
-        padding: 1rem;
     }
     .left-panel, #map-container {
         width: 100%;

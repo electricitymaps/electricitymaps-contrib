@@ -7,6 +7,7 @@ const d3 = Object.assign(
 const moment = require('moment');
 
 const NUMBER_OF_TICKS = 5;
+const AXIS_MARGIN_LEFT = 5;
 
 export default class TimeSlider {
   constructor(selector, dateAccessor) {
@@ -16,56 +17,87 @@ export default class TimeSlider {
   }
 
   _setup() {
-    this.slider = this.rootElement.append('input').attr('type', 'range');
+    this.slider = this.rootElement.append('input').attr('type', 'range').attr('class', 'time-slider-input');
     this.axisContainer = this.rootElement.append('svg').attr('class', 'time-slider-axis-container');
-    this.axis = this.axisContainer.append('g').attr('class', 'time-slider-axis');
-    this.slider.on('input', () => {
+    this.axis = this.axisContainer.append('g').attr('class', 'time-slider-axis')
+      .attr('transform', `translate(${AXIS_MARGIN_LEFT}, 0)`);
+
+    const onChangeAndInput = () => {
       const selectedIndex = this.slider.property('value');
       this._manuallySelectedIndex = selectedIndex;
       this._onChange(selectedIndex);
-    });
+    };
+    this.slider.on('input', onChangeAndInput);
+    this.slider.on('change', onChangeAndInput);
   }
 
   render() {
     if (this._data && this._data.length) {
-      this.timeScale.range([0, this.slider.node().getBoundingClientRect().width]);
-      const xAxis = d3.axisBottom(this.timeScale)
-        .ticks(NUMBER_OF_TICKS)
-        .tickSize(0)
-        .tickValues(this.tickValues)
-        .tickFormat((d, i) => {
-          if (i === NUMBER_OF_TICKS - 1) {
-            return 'Now'; // TODO: Translate
-          }
-          return moment(d).format('LT');
-        });
-      this.axis.call(xAxis);
-      if (this._selectedIndex) {
-        this.slider.property('value', this._selectedIndex);
-      } else {
-        this.slider.property('value', this._data && this._data.length ? this._data.length : 0);
-      }
+      this.timeScale.range([0, this.axisContainer.node().getBoundingClientRect().width - AXIS_MARGIN_LEFT]);
+      this._renderXAxis();
+      this._updateSliderValue();
     }
-
     return this;
+  }
+
+  _renderXAxis() {
+    const xAxis = d3.axisBottom(this.timeScale)
+      .ticks(NUMBER_OF_TICKS)
+      .tickSize(0)
+      .tickValues(this.tickValues)
+      .tickFormat((d, i) => {
+        if (i === NUMBER_OF_TICKS - 1) {
+          return 'Now'; // TODO: Translate
+        }
+        return moment(d).format('LT');
+      });
+    this.axis.call(xAxis);
+    this.axis.selectAll('.tick text').attr('fill', '#D3D3D3'); // html 'lightgray'
+  }
+
+  _updateSliderValue() {
+    if (this._selectedIndex) {
+      this.slider.property('value', this._selectedIndex);
+    } else {
+      this.slider.property('value', this._data && this._data.length ? this._data.length : 0);
+    }
   }
 
   data(data) {
     if (!arguments.length) return this._data;
     this._data = data.map(this.dateAccessor);
-    this.slider.attr('min', 0);
-    this.slider.attr('max', this._data.length - 1);
-    this.timeScale = d3.scaleTime();
-    this.timeScale.domain([moment(this._data[0]).toDate(), moment(this._data[this._data.length - 1]).toDate()]);
+    this._setupSliderRange();
+    this._setupSliderTimeScale();
+    this._sampleTickValues();
+
+    return this;
+  }
+
+  _setupSliderRange() {
+    if (this._data && this.data.length) {
+      this.slider.attr('min', 0);
+      this.slider.attr('max', this._data.length - 1);
+    }
+  }
+
+  _setupSliderTimeScale() {
+    if (this._data && this.data.length) {
+      this.timeScale = d3.scaleTime();
+      const firstDate = moment(this._data[0]).toDate();
+      const lastDate = moment(this._data[this._data.length - 1]).toDate();
+      this.timeScale.domain([firstDate, lastDate]);
+    }
+  }
+
+  _sampleTickValues() {
     this.tickValues = [];
     if (this._data.length >= NUMBER_OF_TICKS) {
       for (let i = 0; i < NUMBER_OF_TICKS; i++) {
-        // TODO: Refactor/simplify
-        this.tickValues.push(moment(this._data[Math.floor(((this._data.length - 1) / (NUMBER_OF_TICKS - 1)) * (i))]).toDate());
+        const sampleIndex = Math.floor(((this._data.length - 1) / (NUMBER_OF_TICKS - 1)) * (i));
+        const sampledTimeStamp = this._data[sampleIndex];
+        this.tickValues.push(moment(sampledTimeStamp).toDate());
       }
     }
-
-    return this;
   }
 
   selectedIndex(index) {
