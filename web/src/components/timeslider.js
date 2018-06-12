@@ -5,6 +5,8 @@ const d3 = Object.assign(
   require('d3-axis'),
 );
 const moment = require('moment');
+const translation = require('../helpers/translation');
+
 
 const NUMBER_OF_TICKS = 5;
 const AXIS_MARGIN_LEFT = 5;
@@ -17,9 +19,13 @@ export default class TimeSlider {
   }
 
   _setup() {
-    this.slider = this.rootElement.append('input').attr('type', 'range').attr('class', 'time-slider-input');
-    this.axisContainer = this.rootElement.append('svg').attr('class', 'time-slider-axis-container');
-    this.axis = this.axisContainer.append('g').attr('class', 'time-slider-axis')
+    this.slider = this.rootElement.append('input')
+      .attr('type', 'range')
+      .attr('class', 'time-slider-input');
+    this.axisContainer = this.rootElement.append('svg')
+      .attr('class', 'time-slider-axis-container');
+    this.axis = this.axisContainer.append('g')
+      .attr('class', 'time-slider-axis')
       .attr('transform', `translate(${AXIS_MARGIN_LEFT}, 0)`);
 
     const onChangeAndInput = () => {
@@ -33,7 +39,8 @@ export default class TimeSlider {
 
   render() {
     if (this._data && this._data.length) {
-      this.timeScale.range([0, this.axisContainer.node().getBoundingClientRect().width - AXIS_MARGIN_LEFT]);
+      const width = this.axisContainer.node().getBoundingClientRect().width - AXIS_MARGIN_LEFT;
+      this.timeScale.range([0, width]);
       this._renderXAxis();
       this._updateSliderValue();
     }
@@ -47,7 +54,7 @@ export default class TimeSlider {
       .tickValues(this.tickValues)
       .tickFormat((d, i) => {
         if (i === NUMBER_OF_TICKS - 1) {
-          return 'Now'; // TODO: Translate
+          return translation.translate('country-panel.now');
         }
         return moment(d).format('LT');
       });
