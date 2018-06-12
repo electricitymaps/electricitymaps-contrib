@@ -7,21 +7,19 @@ from ree import (Formentera, Ibiza,
                  Mallorca, Menorca,
                  BalearicIslands, IberianPeninsula)
 
-## I had to comment these two due to local issues:
-
 from .lib.exceptions import ParserException
-#from .lib.validation import validate
+from .lib.validation import validate
 
 ## Guess we'll need to figure these out later?! Adapted from ES-CN:
 
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.
-#FLOORS = {
-#'ES-IB-FO': 0,
-#'ES-IB-IZ': 0,
-#'ES-IB-MA': 0,
-#'ES-IB-ME': 0,
-#}
+FLOORS = {
+'ES-IB-FO': 0,
+'ES-IB-IZ': 0,
+'ES-IB-MA': 0,
+'ES-IB-ME': 0,
+}
 
 
 def fetch_island_data(zone_key, session):
@@ -56,7 +54,7 @@ def fetch_island_data(zone_key, session):
 def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses)
     data = []
@@ -97,7 +95,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
                 'oil': round(response.vapor + response.diesel, 2),
                 'wind': response.wind,
                 'hydro': response.hydraulic,
-                'biomass': 0.0,
+                'biomass': response.waste,
                 'nuclear': 0.0,
                 'geothermal': 0.0,
                 'unknown': response.other
@@ -109,15 +107,12 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
             'source': 'demanda.ree.es',
         }
 
-## I had to comment the validation due to local issues and the commented FLOORS from above:
+            response_data = validate(response_data, logger,
+                                            floor=FLOORS[zone_key])
 
-#                response_data = validate(response_data, logger,
-#                                         floor=FLOORS[zone_key])
-#
-#                if response_data:
-#                    # append if valid
-#                    data.append(response_data)
-            data.append(response_data) ## delete this line when you uncomment the lines right above
+            if response_data:
+                # append if valid
+                data.append(response_data)
 
     return data
 
@@ -136,7 +131,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if not response_ma:
         raise ParserException("ES-IB-MA", "No response")
     elif not response_fo:
-        raise ParserException("ES-IB-FO", "No response")        
+        raise ParserException("ES-IB-FO", "No response")
     else:
         if sortedZoneKeys == 'ES->ES-IB-MA':
             for response in response_ma:
@@ -162,22 +157,29 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     return exchange
 
-session = Session
-   
-print("# ES-IB-FO")
-print(fetch_consumption('ES-IB-FO', session))
-print(fetch_production('ES-IB-FO', session))
-print("# ES-IB-IZ")
-print(fetch_consumption('ES-IB-IZ', session))
-print(fetch_production('ES-IB-IZ', session))
-print("# ES-IB-MA")
-print(fetch_consumption('ES-IB-MA', session))
-print(fetch_production('ES-IB-MA', session))
-print("# ES-IB-ME")
-print(fetch_consumption('ES-IB-ME', session))
-print(fetch_production('ES-IB-ME', session))
-print("# exchanges")
-print(fetch_exchange('ES', 'ES-IB-MA', session))
-print(fetch_exchange('ES-IB-MA', 'ES-IB-ME', session))
-print(fetch_exchange('ES-IB-MA', 'ES-IB-IZ', session))
-print(fetch_exchange('ES-IB-IZ', 'ES-IB-FO', session)) 
+
+if __name__ == '__main__':
+    print("fetch_consumption(ES-IB-FO)")
+    print(fetch_consumption('ES-IB-FO'))
+    print("fetch_production(ES-IB-FO)")
+    print(fetch_production('ES-IB-FO'))
+    print("fetch_consumption(ES-IB-IZ)")
+    print(fetch_consumption('ES-IB-IZ'))
+    print("fetch_production(ES-IB-IZ)")
+    print(fetch_production('ES-IB-IZ'))
+    print("fetch_consumption(ES-IB-MA)")
+    print(fetch_consumption('ES-IB-MA'))
+    print("fetch_production(ES-IB-MA)")
+    print(fetch_production('ES-IB-MA'))
+    print("fetch_consumption(ES-IB-ME)")
+    print(fetch_consumption('ES-IB-ME'))
+    print("fetch_production(ES-IB-ME)")
+    print(fetch_production('ES-IB-ME'))
+    print("fetch_exchange(ES, ES-IB-MA)")
+    print(fetch_exchange('ES', 'ES-IB-MA'))
+    print("fetch_exchange(ES-IB-MA, ES-IB-ME)")
+    print(fetch_exchange('ES-IB-MA', 'ES-IB-ME'))
+    print("fetch_exchange(ES-IB-MA, ES-IB-IZ)")
+    print(fetch_exchange('ES-IB-MA', 'ES-IB-IZ'))
+    print("fetch_exchange(ES-IB-IZ, ES-IB-FO)")
+    print(fetch_exchange('ES-IB-IZ', 'ES-IB-FO'))
