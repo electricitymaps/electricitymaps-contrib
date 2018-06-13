@@ -993,7 +993,7 @@
       50.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "ELEXON.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
@@ -1033,7 +1033,7 @@
       53
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "ELEXON.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -80
@@ -1048,7 +1048,7 @@
       52.4
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
+      "exchange": "ELEXON.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
