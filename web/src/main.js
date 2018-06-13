@@ -345,12 +345,14 @@ countryTable
       mode, country, displayByEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('openTooltipMode', mode);
   })
   .onProductionMouseMove(() =>
     countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY))
   .onProductionMouseOut(() => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableProductionTooltip.hide();
+    dispatchApplication('openTooltipMode', null);
   });
 
 countryHistoryCarbonGraph
@@ -368,6 +370,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('openTooltipMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseMove((mode, countryData, i) => {
@@ -383,6 +386,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('openTooltipMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseOut((mode, countryData, i) => {
@@ -391,6 +395,7 @@ countryHistoryMixGraph
     const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.hide();
+    dispatchApplication('openTooltipMode', null);
   });
 
 countryHistoryMixGraph
@@ -863,6 +868,37 @@ function renderCountryTable(state) {
   }
 }
 
+
+function renderOpenTooltips(state) {
+
+  const zoneData = getCurrentZoneData(state);
+  const tooltipMode = state.application.openTooltipMode;
+  if (tooltipMode) {
+    const isExchange = modeOrder.indexOf(tooltipMode) === -1;
+    const fun = isExchange ?
+      tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange ?
+      countryTableExchangeTooltip : countryTableProductionTooltip;
+    fun(ttp,
+        tooltipMode, zoneData, tableDisplayEmissions,
+        co2color, co2Colorbars,
+      );
+  }
+
+  if (countryTooltip.isVisible) {
+    tooltipHelper.showMapCountry(countryTooltip, zoneData, co2color, co2Colorbars);
+  }
+
+  if (priceTooltip.isVisible) {
+    const tooltip = d3.select(priceTooltip._selector);
+    tooltip.select('.value').html((zoneData.price || {}).value || '?');
+    tooltip.select('.currency').html(getSymbolFromCurrency((zoneData.price || {}).currency) || '?');
+    priceTooltip.show();
+  }
+
+}
+
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -1170,6 +1206,7 @@ observe(state => state.data.histories, (histories, state) => {
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderGauges(state);
   renderCountryTable(state);
+  renderOpenTooltips(state);
   [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
     g.selectedIndex(i);
   });

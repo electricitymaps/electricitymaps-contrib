@@ -1327,6 +1327,7 @@ sub {
     margin-left: 15px;
     align-items: flex-end;
     height: 30px;
+    padding-top: 1rem;
 }
 
 .faq-header .left-panel-back-button{
