@@ -3131,11 +3131,12 @@
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/jacobbaratta",
-      "https://github.com/hanshyde"
+      "https://github.com/hanshyde",
+      "https://github.com/lorrieq"
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "consumptionForecast": "US_PJM.fetch_consumption_forecast",
       "price": "US_PJM.fetch_price",
       "production": "US_PJM.fetch_production"
     },
