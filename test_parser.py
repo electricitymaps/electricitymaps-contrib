@@ -3,13 +3,7 @@ import time
 import arrow
 import click
 
-try:
-    from parsers.read_parser_config import parser_key_to_dict
-except ImportError:
-    raise ImportError("couldn't do a local import. Please run from the"
-                      "`electricitymap` folder: python test_parser.py "
-                      "[OPTIONS] ZONE [DATA_TYPE]")
-
+from utils.parsers import PARSER_KEY_TO_DICT
 
 @click.command()
 @click.argument('zone')
@@ -19,7 +13,7 @@ def test_parser(zone, data_type, target_datetime):
     if target_datetime:
         target_datetime = arrow.get(target_datetime).datetime
     start = time.time()
-    parser = parser_key_to_dict[data_type][zone]
+    parser = PARSER_KEY_TO_DICT[data_type][zone]
     res = parser(zone, target_datetime=target_datetime)
     elapsed_time = time.time() - start
     if isinstance(res, (list, tuple)):
