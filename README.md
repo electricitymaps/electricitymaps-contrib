@@ -401,9 +401,9 @@ python3 -m unittest discover parsers/test/
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
 
 ### Generating a new map
-If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the [web](https://github.com/tmrowco/electricitymap/tree/master/web) directory then run the following command.
+If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the root directory then run the following command.
 ```
-./topogen.sh
+docker-compose run --rm web ./topogen.sh
 ```
 
 For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap/blob/master/web/README.md).
@@ -423,8 +423,8 @@ python test_parser.py FR  # defaults to production if no data type is given
 python test_parser.py DE --target-datetime 2018-01-01T08:00
 ```
 
-#### update the map 
-We've added a testing server locally. 
+#### update the map
+We've added a testing server locally.
 
 To add a new country to the map, run
 ```
