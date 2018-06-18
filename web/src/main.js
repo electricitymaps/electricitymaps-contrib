@@ -50,6 +50,7 @@ const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
 const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
+const themes = require('./helpers/themes').themes;
 
 const getSymbolFromCurrency = require('currency-symbol-map');
 
@@ -252,11 +253,22 @@ d3.select('#checkbox-colorblind').on('change', () => {
   dispatchApplication('colorBlindModeEnabled', !getState().application.colorBlindModeEnabled);
 });
 
+// update Theme
+let theme;
+function updateTheme() {
+  if (getState().application.brightModeEnabled) {
+    theme = themes.bright;
+  } else {
+    theme = themes.dark;
+  }
+  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
+}
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5 })
+  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
     .setCo2color(co2color)
+    .setTheme(theme)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
@@ -684,7 +696,11 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
-
+// BrightMode
+function toggleBright() {
+  dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
+}
+d3.select('.brightmode-button').on('click', toggleBright);
 
 // Wind
 function toggleWind() {
@@ -1155,6 +1171,13 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
   Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
   updateCo2Scale();
 });
+
+// Observe for bright mode changes
+observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
+  Cookies.set('brightdModeEnabled', brightModeEnabled);
+  updateTheme();
+});
+
 // Observe for solar settings change
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);

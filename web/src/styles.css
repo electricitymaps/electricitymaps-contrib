@@ -18,7 +18,8 @@ html, body {
     margin: 0 !important;
     padding: 0 !important;
     font-family: "Open Sans", sans-serif;
-    background-color: #F3F3F3; /* water color */
+    transition: background-color 800ms;
+    /* background-color: #09263C; water color */
 }
 
 hr {
@@ -147,17 +148,14 @@ body {
 /* Begin HEADER */
 
 #header {
-    background-color: #F3F3F3;
+    background-color: transparent;
     z-index: 2;
-    position: relative;
-    color: #000000;
+    position: fixed;
+    right: 30px;
+    color: #ffffff;
     min-height: 50px; /* required for old Safari */
-
-    /* Shadow */
-    box-shadow: 0 0 12px 1px rgba(0,0,0,0.15);
-    -webkit-box-shadow: 0 0 12px 1px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0 0 12px 1px rgba(0,0,0,0.15);
 }
+
 #header #header-content {
     display: flex;
     width: 100%;
@@ -282,7 +280,7 @@ body {
 .left-panel {
     padding: 1rem 0;
     width: 24rem;
-    height: calc(100vh - 50px);
+    height: 100vh;
     position: fixed;
     overflow-y: auto;
     border-top: none;
@@ -600,7 +598,7 @@ body {
 .layer-buttons-container {
     position: absolute;
     right: 10px;
-    top: 90px;
+    top: 154px;
     display: flex;
     flex-direction: column;
 }
@@ -647,7 +645,20 @@ body {
     background-image: url(../images/weather/sun_active.svg);
 }
 
+.brightmode-button{
+    background-image: url(../images/brightmode.svg);
+    opacity: 50%;
+}
+
+.brightmode.active{
+    background-image: url(../images/brightmode.svg);
+}
+
 /* override mapbox styling */
+.mapboxgl-ctrl-top-right {
+    top: 64px !important;
+}
+
 .mapboxgl-ctrl-group > button {
     width: 35px !important;
     height: 35px !important;
@@ -708,23 +719,23 @@ body {
 .floating-legend-container {
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    right: 0px;
     float: left;
-    background-color: rgb(70, 70, 70); /* IE fallback color (IE does not support background opacity) */
-    background-color: #00000059;
+    background-color: #FAFAFA; /* IE fallback color (IE does not support background opacity) */
+    background-color: #FAFAFA;
     border-radius: 7px;
     padding: 12px 10px 10px 10px;
-    margin-left: -10px;
-    margin-bottom: -10px;
+    margin: 12px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10)
 }
 .floating-legend-container div {
-    color: lightgray;
+    color: black;
     padding-left: 10px;
     padding-bottom: 5px;
     font-size: 0.8rem;
 }
 .floating-legend-container .tick text {
-    fill: lightgray;
+    fill: black;
 }
 .floating-legend-container .tick line,
 .floating-legend-container rect.border {
@@ -824,10 +835,11 @@ label[for="checkbox-colorblind"] {
 
 
 .watermark {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 18px;
+    position: fixed;
+    bottom: -20px;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 12px;
 }
 
 div.highscore-button {

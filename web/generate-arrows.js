@@ -1,13 +1,21 @@
 // Requires `brew install imagemagick`
+// import themes from './helpers/themes'
 
 const child_process = require('child_process');
 const fs = require('fs');
-const d3 = require('d3');
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-collection'),
+  require('d3-scale'),
+);
+
+const { themes } = require('./src/helpers/themes');
 
 const numTicks = 11;
 const co2color = d3.scaleLinear()
-    .domain([0, 375, 725, 800])
-    .range(['green', 'orange', 'rgb(26,13,0)']);
+  .domain(themes.dark.co2Scale.steps)
+  .range(themes.dark.co2Scale.colors);
 const keys = d3.range(0, 800 + 80, 80);
 const colors = {};
 keys.forEach((k) => { colors[k] = co2color(k) });
@@ -15,12 +23,12 @@ keys.forEach((k) => { colors[k] = co2color(k) });
 for(let co2value in colors) {
   // generate specific color
   console.log([
-    'public/images/arrow-template.png',
+    'public/images/arrow-template-new2.png',
     '+level-colors', 'transparent,'+colors[co2value],
     `public/images/arrow-${co2value}.png`
   ])
   child_process.spawn('convert', [
-    'public/images/arrow-template.png',
+    'public/images/arrow-template-new2.png',
     '+level-colors', 'transparent,'+colors[co2value],
     `public/images/arrow-${co2value}.png`
   ]).on('close', (code) => {
@@ -30,13 +38,13 @@ for(let co2value in colors) {
     }
 
     // make an outline
-    const outlineSize = 2;
+    const outlineSize = 0;
     const whiteArrowAfterCo2Intensity = 640;
     child_process.spawn('convert', [
       `public/images/arrow-${co2value}.png`,
       '-bordercolor', 'none',
       '-border', outlineSize,
-      '\(', '-clone', '0', '-alpha', 'off', '-fill', co2value >= whiteArrowAfterCo2Intensity ? 'white' : 'black', '-colorize', '100%', '\)',
+      '\(', '-clone', '0', '-alpha', 'off', '-fill', co2value >= whiteArrowAfterCo2Intensity ? '#0F2537' : '#0F2537', '-colorize', '100%', '\)',
       '\(', '-clone', '0', '-alpha', 'extract', '-morphology', 'edgeout', 'octagon:'+outlineSize, '\)',
       '-compose', 'over',
       '-composite', `public/images/arrow-${co2value}-outline.png`
@@ -51,7 +59,7 @@ for(let co2value in colors) {
         const args = [
           '-dispose', 'none',
           '-delay', '0',
-          `public/images/arrow-${co2value}-outline.png`,
+          `public/images/arrow-${co2value}.png`,
           '-dispose', 'previous',
           '-delay', `${speed}`,
           '-loop', '0',

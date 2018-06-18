@@ -2,8 +2,22 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default class Map {
-  _setupMapColor() {
-    if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
+  _setupMapColor(theme) {
+    if (theme) {
+      if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
+        console.log(theme.clickableFill);
+        const co2Range = theme.co2Scale.steps;
+        const stops = co2Range.map(d => [d, this.co2color(d)]);
+        this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
+          default: theme.clickableFill,
+          property: 'co2intensity',
+          stops,
+        });
+        this.map.setPaintProperty('zones-line', 'line-color', theme.strokeColor);
+        this.map.setPaintProperty('zones-line', 'line-width', theme.strokeWidth);
+        document.body.style.backgroundColor = theme.oceanColor;
+      }
+    } else if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
       // TODO: Duplicated code
       const co2Range = [0, 200, 400, 600, 800, 1000];
       const stops = co2Range.map(d => [d, this.co2color(d)]);
@@ -46,7 +60,7 @@ export default class Map {
       });
       // Create layers
       const paint = {
-        'fill-color': this.clickableFill,
+        'fill-color': this.theme.clickableFill,
       };
       if (this.co2color) {
         const co2Range = [0, 200, 400, 600, 800, 1000];
@@ -54,7 +68,7 @@ export default class Map {
         paint['fill-color'] = {
           stops,
           property: 'co2intensity',
-          default: this.clickableFill,
+          default: this.theme.clickableFill,
         };
       }
       this.map.addLayer({
@@ -69,7 +83,7 @@ export default class Map {
         type: 'fill',
         source: 'non-clickable-world',
         layout: {},
-        paint: { 'fill-color': this.nonClickableFill },
+        paint: { 'fill-color': this.theme.nonClickableFill },
       });
       this.map.addLayer({
         id: 'zones-hover',
@@ -89,8 +103,8 @@ export default class Map {
         source: 'clickable-world',
         layout: {},
         paint: {
-          'line-color': this.strokeColor,
-          'line-width': this.strokeWidth,
+          'line-color': this.theme.strokeColor,
+          'line-width': this.theme.strokeWidth,
         },
       });
     }
@@ -98,11 +112,12 @@ export default class Map {
 
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
+    const theme = argConfig.theme || {};
 
-    this.strokeWidth = config.strokeWidth || 0.7;
-    this.strokeColor = config.strokeColor || '#dcdfe5';
-    this.clickableFill = config.clickableFill || '#E7EAEF';
-    this.nonClickableFill = config.nonClickableFill || '#E7EAEF';
+    this.strokeWidth = theme.strokeWidth || 0.3;
+    this.strokeColor = theme.strokeColor || '#606060';
+    this.clickableFill = theme.clickableFill || '#33414A';
+    this.nonClickableFill = theme.nonClickableFill || '#33414A';
     this.userIsUsingTouch = false;
 
     this.center = undefined;
@@ -299,6 +314,12 @@ export default class Map {
   setCo2color(arg) {
     this.co2color = arg;
     this._setupMapColor();
+    return this;
+  }
+
+  setTheme(arg) {
+    this.theme = arg;
+    this._setupMapColor(this.theme);
     return this;
   }
 

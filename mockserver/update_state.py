@@ -112,7 +112,7 @@ with open('mockserver/public/v3/state', 'r') as f:
         # Update production
         production['datetime'] = arrow.get(production['datetime']).isoformat()
         # Set random co2 value
-        production['co2intensity'] = random() * 500
+        production['co2intensity'] = random() * 800
         # Set aggregates
         production['maxProduction'] = max([x or 0 for x in production['production'].values()])
         production['totalProduction'] = sum([x or 0 for x in production['production'].values()])

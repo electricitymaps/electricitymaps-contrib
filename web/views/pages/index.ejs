@@ -110,16 +110,14 @@ co2Sub = function(str) {
                              · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
                         </span>
                     </div>
-
-                    <div class="center-header small-screen-hidden">
+                    <!-- <div class="center-header small-screen-hidden">
                         <span class="api-ad"><%- __('misc.api-ad') %> </span>
                         <span class="database-ad"><%- __('misc.database-ad') %> </span>
                     </div>
-
                     <div class="right-header">
-                        <span id="small-loading" class="loading"></span>
-                        <span class="current-datetime-from-now"></span>
-                    </div>
+                         <span id="small-loading" class="loading"></span>
+                         <span class="current-datetime-from-now"></span>
+                     </div> -->
                 </div>
             </div>
             <div id="inner">
@@ -382,7 +380,9 @@ co2Sub = function(str) {
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
                     <div class="watermark small-screen-hidden">
-                        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/tomorrow.svg" style="width:130px"/></a>
+                        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+                            <img src="images/built-by-tomorrow.svg" style="width:120px"/>
+                        </a>
                         <br />
                         <div class="fb-like"
                             data-href="https://www.facebook.com/tmrowco"
@@ -430,6 +430,15 @@ co2Sub = function(str) {
                                 <div id="solar-layer-button-tooltip" class="layer-button-tooltip hidden">
                                         <div class="tooltip-container">
                                                 <div class="tooltip-text"><%- __('tooltips.showSolarLayer') %></div>
+                                                <div class="arrow"></div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div>
+                                <button class="layer-button brightmode-button"></button>
+                                <div id="brightmode-layer-button-tooltip" class="layer-button-tooltip hidden">
+                                        <div class="tooltip-container">
+                                                <div class="tooltip-text">toggle dark-mode</div>
                                                 <div class="arrow"></div>
                                         </div>
                                 </div>
