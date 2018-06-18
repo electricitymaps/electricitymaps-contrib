@@ -511,6 +511,24 @@ def query_consumption_forecast(in_domain, session, target_datetime=None):
         check_response(response, query_generation_forecast.__name__)
 
 
+def query_wind_solar_production_forecast(in_domain, session, target_datetime=None):
+    """
+    Gets consumption forecast for 48 hours ahead and previous 24 hours.
+    Returns a string object if the query succeeds.
+    """
+
+    params = {
+        'documentType': 'A69',  # Forecast
+        'processType': 'A01',
+        'in_Domain': in_domain,
+    }
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
+    if response.ok:
+        return response.text
+    else:
+        check_response(response, query_generation_forecast.__name__)
+
+
 def datetime_from_position(start, position, resolution):
     """Finds time granularity of data."""
 
@@ -801,8 +819,6 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Create a double hashmap with keys (datetime, parameter)
-    production_hashmap = defaultdict(lambda: {})
     # Grab production
     parsed = parse_production(
         query_production(domain, session,
@@ -1065,3 +1081,43 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
             })
 
         return data
+
+
+def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
+                               logger=logging.getLogger(__name__)):
+    """
+    Gets values and corresponding datetimes for all production types in the
+    specified zone. Removes any values that are in the future or don't have
+    a datetime associated with them.
+    Returns a list of dictionaries that have been validated.
+    """
+    if not session:
+        session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
+    # Grab production
+    parsed = parse_production(
+        query_wind_solar_production_forecast(domain, session,
+                                             target_datetime=target_datetime))
+
+    if not parsed:
+        return None
+
+    productions, production_dates = parsed
+
+    data = []
+    for i in range(len(production_dates)):
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
+                             productions[i].items()}
+        production_date = production_dates[i]
+
+        data.append({
+            'zoneKey': zone_key,
+            'datetime': production_date.datetime,
+            'production': {
+                'solar': production_values.get('Solar', None),
+                'wind': get_wind(production_values),
+            },
+            'source': 'entsoe.eu'
+        })
+
+    return data
