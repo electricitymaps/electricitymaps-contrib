@@ -9,6 +9,7 @@ import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
+import TimeSlider from './components/timeslider.js'
 import { formatPower } from './helpers/formatting';
 
 // Libraries
@@ -145,6 +146,7 @@ const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 const faq = new FAQ('.faq');
 const mobileFaq = new FAQ('.mobile-faq');
+const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
 // Initialise mobile app (cordova)
 const app = {
@@ -343,12 +345,14 @@ countryTable
       mode, country, displayByEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
   })
   .onProductionMouseMove(() =>
     countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY))
   .onProductionMouseOut(() => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableProductionTooltip.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   });
 
 countryHistoryCarbonGraph
@@ -366,6 +370,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseMove((mode, countryData, i) => {
@@ -381,6 +386,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseOut((mode, countryData, i) => {
@@ -389,6 +395,7 @@ countryHistoryMixGraph
     const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   });
 
 countryHistoryMixGraph
@@ -861,6 +868,37 @@ function renderCountryTable(state) {
   }
 }
 
+
+function renderOpenTooltips(state) {
+
+  const zoneData = getCurrentZoneData(state);
+  const tooltipMode = state.application.tooltipDisplayMode;
+  if (tooltipMode) {
+    const isExchange = modeOrder.indexOf(tooltipMode) === -1;
+    const fun = isExchange ?
+      tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange ?
+      countryTableExchangeTooltip : countryTableProductionTooltip;
+    fun(ttp,
+        tooltipMode, zoneData, tableDisplayEmissions,
+        co2color, co2Colorbars,
+      );
+  }
+
+  if (countryTooltip.isVisible) {
+    tooltipHelper.showMapCountry(countryTooltip, zoneData, co2color, co2Colorbars);
+  }
+
+  if (priceTooltip.isVisible) {
+    const tooltip = d3.select(priceTooltip._selector);
+    tooltip.select('.value').html((zoneData.price || {}).value || '?');
+    tooltip.select('.currency').html(getSymbolFromCurrency((zoneData.price || {}).currency) || '?');
+    priceTooltip.show();
+  }
+
+}
+
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -869,6 +907,7 @@ function renderHistory(state) {
     countryHistoryCarbonGraph.data([]).render();
     countryHistoryPricesGraph.data([]).render();
     countryHistoryMixGraph.data([]).render();
+    zoneDetailsTimeSlider.data([]).render();
     return;
   }
 
@@ -942,11 +981,16 @@ function renderHistory(state) {
     .data(history);
   countryHistoryMixGraph
     .data(history);
+  
+  zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
   countryTable
     .exchangeKeys(countryHistoryMixGraph.exchangeKeysSet.values())
     .render();
+
+
+  zoneDetailsTimeSlider.onChange(selectedZoneTimeIndex => dispatchApplication('selectedZoneTimeIndex', selectedZoneTimeIndex)).render();
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
@@ -1162,7 +1206,8 @@ observe(state => state.data.histories, (histories, state) => {
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderGauges(state);
   renderCountryTable(state);
-  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach((g) => {
+  renderOpenTooltips(state);
+  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
     g.selectedIndex(i);
   });
 });

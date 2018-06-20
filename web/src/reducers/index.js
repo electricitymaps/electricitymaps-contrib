@@ -23,6 +23,7 @@ const initialApplicationState = {
   legendVisible: false,
   locale: window.locale,
   onboardingSeen: Cookies.get('onboardingSeen') === 'true' || false,
+  tooltipDisplayMode: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
