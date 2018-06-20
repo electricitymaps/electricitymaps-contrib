@@ -8,6 +8,7 @@ const moment = require('moment');
 const translation = require('../helpers/translation');
 
 
+const TIME_FORMAT = 'LT'; // Localized time, e.g. "8:30 PM"
 const NUMBER_OF_TICKS = 5;
 const AXIS_MARGIN_LEFT = 5;
 
@@ -56,7 +57,7 @@ export default class TimeSlider {
         if (i === NUMBER_OF_TICKS - 1) {
           return translation.translate('country-panel.now');
         }
-        return moment(d).format('LT');
+        return moment(d).format(TIME_FORMAT);
       });
     this.axis.call(xAxis);
     this.axis.selectAll('.tick text').attr('fill', '#D3D3D3'); // html 'lightgray'

@@ -1441,6 +1441,11 @@ sub {
   .time-slider-input:focus {
     outline: none;  
   }
+
+
+/* Sliders needs to be styled independently for different browsers:
+  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+*/
   
 /* WebKit/Blink */
 
