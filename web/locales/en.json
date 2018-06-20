@@ -104,7 +104,7 @@
     "unknown": "unknown",
 
     "electricityComesFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-    "emissionsComeFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
+    "emissionsComeFrom": "%3$s emitted %1$s %% of greenhouse gases due to electricity being used now in <img id=\"country-flag\"></img> <b>%2$s</b>",
     "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
     "emissionsStoredUsing": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
 
