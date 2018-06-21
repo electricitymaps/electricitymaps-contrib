@@ -634,8 +634,6 @@ body {
     box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
 }
 
-
-
 .wind-button{
     background-image: url(../images/weather/wind.svg);
 }
@@ -679,10 +677,16 @@ body {
     align-items: center;
     justify-content: flex-end;
     top: 4px;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0px);
+    transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
 }
 
 .layer-button-tooltip.hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(10px);
 }
 
 .layer-button-tooltip .tooltip-container {
