@@ -859,15 +859,16 @@ label[for="checkbox-colorblind"] {
 
 .tooltip {
     display: none;
-    border: 1px solid grey;
-    color: darkgrey;
-    padding: 5px;
+    border: 1px solid lightgray;
+    background-color: #FAFAFA;
+    color: black;
+    padding: 12px;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
     border-radius: 5px;
-
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
     box-sizing: border-box;
     opacity: 0;
 }
