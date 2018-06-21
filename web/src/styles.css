@@ -97,8 +97,12 @@ line, path {
     /* That's the main loading overlay */
     background-size: 10rem;
 }
+.country-panel{
+    overflow-y: auto;
+}
 .country-panel-wrap {
     position: relative;
+
 }
 .country-history .loading {
     background-size: 1.7rem;
@@ -282,7 +286,6 @@ body {
     width: 24rem;
     height: 100vh;
     position: fixed;
-    overflow-y: auto;
     border-top: none;
     border-left: none;
     border-bottom: none;
@@ -857,6 +860,7 @@ div.highscore-button:hover {
 }
 
 .left-panel-zone-list {
+    padding: 0rem 1rem;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -865,19 +869,20 @@ div.highscore-button:hover {
 
 .left-panel-zone-list .info-text {
     flex-direction: column;
-    padding: 0rem 1rem;
+    padding: 1rem 1rem 0 1rem;
 }
 
 
 
 .zone-search-bar {
-    padding: 0px 1rem 0.5rem 1rem;
+    padding: 0.75rem 0 1rem 1rem;
 }
 .zone-search-bar input {
-    background: inherit;
+    height:32px;
+    background-color: #FFFFFF;
     color: inherit;
     border: none;
-    border-bottom: 1px solid whitesmoke;
+    border-bottom: 1px solid gray;
     font-weight: 400;
     font-size: 1rem;
     width: 100%;
