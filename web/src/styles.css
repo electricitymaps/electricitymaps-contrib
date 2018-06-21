@@ -163,6 +163,10 @@ body {
     min-height: 50px; /* required for old Safari */
 }
 
+#header.brightmode {
+    color: #000000;
+}
+
 #header #header-content {
     display: flex;
     width: 100%;
@@ -180,25 +184,59 @@ body {
     -webkit-box-sizing: border-box;
 }
 #header #header-content a {
-    color: unset;
+    color: white;
     transition: color 0.4s;
 }
+#header #header-content.brightmode a {
+    color: black;
+}
 #header #header-content a:hover {
-    color: #113959;
+    color: #4178AC;
     text-decoration: none;
 }
 #header-content .logo {
     display: inline;
     font-family: "Catamaran", sans-serif;
 }
-#header-content .logo img {
+
+#header-content .maintitle {
+    color: white;
+    transition: color 0.4s;
+}
+
+#header-content.brightmode .maintitle {
+    color: black;
+}
+
+#header-content .live {
+    color: white;
+    transition: color 0.4s;
+}
+
+#header-content.brightmode .live {
+    color: black;
+}
+
+#header-content .logo .image {
     vertical-align: text-top;
 }
-#header-content .logo img {
+#header-content .logo .image {
+    display: inline-block;
     height: 32px;
+    width:160px;
     margin-right: 0.2rem;
     margin-top:-4px;
 }
+
+#electricitymap-logo{
+    background-image: url(../images/electricitymap-logo-white.svg);
+    background-size: cover;
+}
+
+#header-content.brightmode #electricitymap-logo{
+    background-image: url(../images/electricitymap-logo.svg);
+}
+
 #header-content .right-header {
     display: block;
     float: right;
@@ -208,9 +246,6 @@ body {
 #header-content > div,
 #header-content > span {
     vertical-align: middle;
-}
-#header-content .maintitle {
-    color: darkgray;
 }
 
 /* end HEADER */
@@ -844,13 +879,24 @@ label[for="checkbox-colorblind"] {
     margin-bottom: 5px;
 }
 
-
 .watermark {
     position: fixed;
     bottom: -20px;
     right: 50%;
     transform: translateX(50%);
     padding: 12px;
+}
+
+#built-by-tomorrow{
+    display: inline-block;
+    background-image: url(../images/built-by-tomorrow-white.svg);
+    background-size: cover;
+    width: 150px;
+    height: 16px;
+}
+
+#watermark.brightmode #built-by-tomorrow{
+    background-image: url(../images/built-by-tomorrow.svg)
 }
 
 div.highscore-button {

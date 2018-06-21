@@ -103,8 +103,8 @@ co2Sub = function(str) {
             <div id="header">
                 <div id="header-content">
                     <div class="logo">
-                        <img src="images/electricitymap-logo.svg" />
-                        <span style="font-weight: bold">Live</span>
+                        <div class="image" id="electricitymap-logo"></div>
+                        <span class="live" style="font-weight: bold">Live</span>
                         <span class="maintitle small-screen-hidden">
                              · <a href="https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">Database</a>
                              · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
@@ -379,9 +379,9 @@ co2Sub = function(str) {
                     <div id="zones" class="map-layer"></div>
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
-                    <div class="watermark small-screen-hidden">
+                    <div id="watermark" class="watermark small-screen-hidden">
                         <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-                            <img src="images/built-by-tomorrow.svg" style="width:120px"/>
+                            <div id="built-by-tomorrow"></div>
                         </a>
                         <br />
                         <div class="fb-like"

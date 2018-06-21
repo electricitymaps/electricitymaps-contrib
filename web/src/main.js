@@ -697,9 +697,15 @@ window.retryFetch = () => {
 // cause events to be emitted
 
 // BrightMode
+const electricityMapHeader = d3.select('#header-content');
+const tmrowWatermark = d3.select('#watermark');
+
 function toggleBright() {
   dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
+  electricityMapHeader.classed('brightmode', !electricityMapHeader.classed('brightmode'));
+  tmrowWatermark.classed('brightmode', !tmrowWatermark.classed('brightmode'));
 }
+
 d3.select('.brightmode-button').on('click', toggleBright);
 
 const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
@@ -708,6 +714,7 @@ if (!getState().application.isMobile) {
   // Mouseovers will trigger on click on mobile and is therefore only set on desktop
   d3.select('.brightmode-button').on('mouseover', () => {
     brightModeButtonTooltip.classed('hidden', false);
+
   });
   d3.select('.brightmode-button').on('mouseout', () => {
     brightModeButtonTooltip.classed('hidden', true);
