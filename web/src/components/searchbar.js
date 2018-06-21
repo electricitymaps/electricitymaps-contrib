@@ -12,6 +12,7 @@ export default class SearchBar {
     this.searchHandler = config.searchHandler;
     this.enterKeypressHandler = config.enterKeypressHandler;
     this._setupEventHandlers();
+    this.inputNode = this.selector.node();
   }
 
   onSearch(searchHandler) {
@@ -22,10 +23,20 @@ export default class SearchBar {
     this.enterKeypressHandler = enterKeypressHandler;
   }
 
-  focus() {
-    const inputNode = this.selector.node();
-    inputNode.value = '';
-    inputNode.focus();
+  clearInputAndFocus() {
+    this.inputNode.value = '';
+    this.inputNode.focus();
+  }
+
+  focusWithInput(input) {
+    if (!this.hasFocus()) {
+      this.inputNode.value = this.inputNode.value + input;
+      this.inputNode.focus();
+    }
+  }
+
+  hasFocus() {
+    return document.activeElement === this.inputNode;
   }
 
   _setupEventHandlers() {

@@ -141,7 +141,7 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-const zoneList = new ZoneList('.zone-list p');
+const zoneList = new ZoneList('.zone-list');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 const faq = new FAQ('.faq');
@@ -744,13 +744,6 @@ function toggleLegend() {
 }
 d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 
-// Keyboard shortcuts
-document.addEventListener('keyup', (e) => {
-  if (e.key === '/') {
-    zoneSearchBar.focus();
-  }
-}, false);
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -777,10 +770,15 @@ zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Back button
+
+function goBackToZoneListFromZoneDetails() {
+  dispatchApplication('selectedZoneName', undefined);
+  dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+}
+
 d3.selectAll('.left-panel-back-button')
   .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+    goBackToZoneListFromZoneDetails();
   });
 
 // Zone list
@@ -789,6 +787,33 @@ zoneList.setClickHandler((selectedCountry) => {
   dispatchApplication('selectedZoneName', selectedCountry.countryCode);
   if (zoneMap !== 'undefined') {
     centerOnZoneName(getState(), selectedCountry.countryCode, 4);
+  }
+});
+
+// Keyboard navigation
+document.addEventListener('keyup', (e) => {
+  const currentPage = getState().application.showPageState;
+  if (currentPage === 'map') {
+    if (e.key === 'Enter') {
+      zoneList.clickSelectedItem();
+    } else if (e.key === 'ArrowUp') {
+      zoneList.selectPreviousItem();
+    } else if (e.key === 'ArrowDown') {
+      zoneList.selectNextItem();
+    } else if (e.key === '/') {
+      zoneSearchBar.clearInputAndFocus();
+    } else if (e.key.match(/^[A-z]$/)) {
+      zoneSearchBar.focusWithInput(e.key);
+    } else {
+      zoneSearchBar.focusWithInput('');
+    }
+  } else if (currentPage === 'country') {
+    if (e.key === 'Backspace') {
+      goBackToZoneListFromZoneDetails();
+    } else if (e.key === '/') {
+      goBackToZoneListFromZoneDetails();
+      zoneSearchBar.clearInputAndFocus();
+    }
   }
 });
 
