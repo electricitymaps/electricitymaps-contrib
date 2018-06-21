@@ -915,6 +915,9 @@ div.highscore-button:hover {
     text-decoration: none;
     background: rgba(255,255,255,0.1)
 }
+.zone-list a.selected {
+    background-color: rgba(255,255,255,0.1);
+}
 
 .zone-list .ranking {
     width: 2rem;
@@ -950,6 +953,7 @@ div.highscore-button:hover {
     height: 17px;
     width: 17px;
 }
+
 
 
 
