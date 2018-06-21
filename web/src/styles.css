@@ -613,9 +613,9 @@ body {
 }
 
 .layer-button {
-    background-color: #fff;
+    background-color: #FAFAFA;
     border-radius: 7px;
-    box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
     width: 35px;
     height: 35px;
     margin-bottom: 10px;
@@ -626,10 +626,12 @@ body {
     outline: none;
     box-sizing: border-box;
     cursor: pointer;
+    transition: all 0.4s;
 }
 
 .layer-button:hover{
-    background-color: rgb(235, 230, 230);
+    background-color: #FFFFFF;
+    box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
 }
 
 
@@ -652,11 +654,10 @@ body {
 
 .brightmode-button{
     background-image: url(../images/brightmode.svg);
-    opacity: 50%;
 }
 
-.brightmode.active{
-    background-image: url(../images/brightmode.svg);
+.brightmode-button.active{
+    background-image: url(../images/brightmode_active.svg);
 }
 
 /* override mapbox styling */
@@ -672,13 +673,12 @@ body {
 
 .layer-button-tooltip {
     position: absolute;
-    left: -120px;
-    width: 120px;
+    left: -168px;
+    width: 150px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 100px;
-    top: -32px;
+    top: 4px;
 }
 
 .layer-button-tooltip.hidden {
@@ -691,20 +691,22 @@ body {
 }
 
 .layer-button-tooltip .tooltip-text {
-    background-color: rgb(70, 70, 70);;
-    color: lightgray;
-    border-radius: 5px;
+    background-color:#FAFAFA;
+    color: black;
+    border-radius: 4px;
     text-align: center;
     font-size: 0.9rem;
-    padding: 5px;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
 }
 
 .layer-button-tooltip .arrow {
+    display:none;
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 7.5px 0 7.5px 10px;
-    border-color: transparent transparent transparent rgb(70, 70, 70);;
+    border-color: transparent transparent transparent #FAFAFA;
 }
 
 

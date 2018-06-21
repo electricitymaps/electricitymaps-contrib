@@ -702,6 +702,18 @@ function toggleBright() {
 }
 d3.select('.brightmode-button').on('click', toggleBright);
 
+const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
+
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.brightmode-button').on('mouseover', () => {
+    brightModeButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.brightmode-button').on('mouseout', () => {
+    brightModeButtonTooltip.classed('hidden', true);
+  });
+}
+
 // Wind
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
@@ -740,6 +752,7 @@ if (!getState().application.isMobile) {
     solarLayerButtonTooltip.classed('hidden', true);
   });
 }
+
 
 // Legend 
 function toggleLegend() {
@@ -1174,6 +1187,7 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
+  d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
   Cookies.set('brightdModeEnabled', brightModeEnabled);
   updateTheme();
 });
