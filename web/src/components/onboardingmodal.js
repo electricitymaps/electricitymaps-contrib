@@ -8,7 +8,7 @@ const d3 = Object.assign(
 const SPACE_KEY_CODE = 32;
 
 const defaultViews = [{
-  headerImage: 'images/ms-icon-310x310.png',
+  headerImage: 'images/onboarding/electricymapLogoIcon.svg',
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
   textHtml: `<div><h1>${translation.translate('onboarding-modal.view1.header')}</h1></div>

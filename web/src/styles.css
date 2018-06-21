@@ -1186,7 +1186,6 @@ sub {
     position: absolute;
     left: 0;
     top: 0;
-
     z-index: 500;
     zoom: 1;
 	filter: alpha(opacity=50);
@@ -1248,7 +1247,7 @@ sub {
 }
 
 .modal .modal-right-button.green{
-    color:##009800;
+    color:#009800;
 }
 
 .modal .modal-right-button.green:hover{
@@ -1282,9 +1281,10 @@ sub {
 .modal .modal-body { 
     flex: 1;
     border-radius: 15px;
-    background-color: rgb(70, 70, 70);
+    background-color: #FAFAFA;
     color: white;
     max-width: 700px;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.15);
 }
 
 .modal .modal-header {
@@ -1297,6 +1297,7 @@ sub {
 }
 
 .modal .modal-text {
+    color:#000000;
     font-size: 0.9rem;
     line-height: 1.5rem;
     padding: 25px 55px;
