@@ -527,11 +527,11 @@ body {
     font-weight: bold;
 }
 .emission-rect-overview {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     display: inline-flex;
     font-size: 1rem;
-    border-radius: 0.125rem;
+    border-radius: 1rem;
     color: #fff;
     flex-direction: column;
     justify-content: center;
@@ -543,11 +543,11 @@ body {
 }
 
 
-.left-panel .circular-gauge .background{
-    fill: #383838;
+.circular-gauge .background{
+    fill: #F3F3F3;
 }
 
-.left-panel .circular-gauge .foreground{
+.circular-gauge .foreground{
     fill: #78cde8;
 }
 
@@ -556,8 +556,8 @@ body {
 }
 
 .left-panel .country-gauge-wrap {
-    width: 54px;
-    height: 54px;
+    width: 64px;
+    height: 64px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -567,6 +567,8 @@ body {
 }
 
 .country-col-headline {
+    font-size: 0.85em;
+    padding: 0.5em 0 0 0;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -589,10 +591,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     color: #fff;
-    border-radius: 0.125rem;
+    border-radius: 1rem;
 }
 .country-col.country-lowcarbon-wrap .country-col-box,
 .country-col.country-renewable-wrap .country-col-box {
@@ -878,6 +880,10 @@ label[for="checkbox-colorblind"] {
 }
 #country-tooltip .zone-details > div{
     margin-bottom: 5px;
+}
+
+#country-tooltip .country-col:not(:first-of-type) {
+    margin-left: 1.25rem;
 }
 
 .watermark {

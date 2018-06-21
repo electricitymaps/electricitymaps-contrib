@@ -129,6 +129,8 @@ const priceTooltip = new Tooltip('#price-tooltip');
 
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
+const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
 const contributorList = new ContributorList('.contributors');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
@@ -568,11 +570,11 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
     // Assign country map data
     zoneMap
       .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
       })
       .onZoneMouseMove((d, i, clientX, clientY) => {
         // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
         const rect = node.getBoundingClientRect();
         countryTooltip.update(clientX + rect.left, clientY + rect.top);
       })
@@ -988,7 +990,7 @@ function renderHistory(state) {
           .co2ScaleDomain([lo_emission, hi_emission]);
 
         if (g === countryHistoryCarbonGraph) {
-          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
           countryTooltip.update(
             currentEvent.clientX - 7,
             g.rootElement.node().getBoundingClientRect().top - 7);
