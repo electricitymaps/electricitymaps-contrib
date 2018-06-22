@@ -79,24 +79,35 @@ line, path {
     vertical-align: bottom;
     text-align: right;
 }
-.loading {
+
+#loading.loading.overlay {
+    /* That's the main loading overlay */
     background: #F3F3F3 url('../images/electricitymap-logo.svg') no-repeat center center;
+    background-size: 10rem;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+}
+
+.left-panel .loading{
+    background: #FAFAFA url('../images/electricitymap-logo.svg') no-repeat center center;
     background-size: 100%;
     width: 1em;
     height: 1em;
     display: inline-block;
 }
-.overlay {
+
+.left-panel .overlay{
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 500;
 }
-#loading {
-    /* That's the main loading overlay */
-    background-size: 10rem;
-}
+
 .country-panel{
     overflow-y: auto;
     padding-right: 6px;
