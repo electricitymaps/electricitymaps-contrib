@@ -23,8 +23,8 @@ html, body {
 }
 
 hr {
-    background-color: lightgray;
-    color: lightgray;
+    background-color: #F3F3F3;
+    color: #F3F3F3;
     border: none;
     height: 1px;
 }
@@ -372,7 +372,7 @@ body {
     fill: none;
     opacity: 0.3;
     shape-rendering: crispEdges;
-    stroke: gray;
+    stroke: transparent;
 }
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
@@ -427,8 +427,12 @@ body {
     margin: 0.6rem 0;
 }
 
-.left-panel-zone-details .social-buttons{
+.left-panel-zone-details .detail-bottom-section{
     padding: 1rem 1.25rem;
+}
+
+.left-panel-zone-details .detail-bottom-section .social-buttons{
+    padding: 0 1rem;
 }
 
 .info-text p{
@@ -1492,13 +1496,13 @@ sub {
 }
 
 .zone-time-slider {
-    position: absolute;
     bottom: 0;
     height: 62px;
-    background: rgb(70, 70, 70);
+    padding-top: 0.75rem;
+    background: transparent;
     width: 100%;
+    border-top: 1px solid lightgray;
     text-align: center;
-    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
     overflow-y: hidden;
 }
 
@@ -1510,12 +1514,12 @@ sub {
 
 .time-slider-axis .tick {
     font-size: 12px;
+    fill:black;
 }
 
 .zone-time-slider .domain {
     display: none;
 }
-
 
 .time-slider-input {
     -webkit-appearance: none;
@@ -1540,29 +1544,32 @@ sub {
 
 .time-slider-input::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: 1px solid gray;
     height: 26px;
     width: 26px;
     border-radius: 17px;    
     background: #ffffff;
     cursor: pointer;
     margin-top: -12px;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  }
+  .time-slider-input:hover::-webkit-slider-thumb{
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
   }
 
   .time-slider-input::-webkit-slider-runnable-track {
     width: 100%;
     margin-right: 10px;
     margin-left: 10px;
-    height: 3px;
+    height: 6px;
+    border-radius: 3px;
     cursor: pointer;
-    background: lightgray;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
+    background: #F3F3F3;
   }
   
-  .time-slider-input:focus::-webkit-slider-runnable-track {
+  /* .time-slider-input:focus::-webkit-slider-runnable-track {
     background: white;
-  }
+  } */
 
 
   /* IE */
@@ -1598,21 +1605,26 @@ sub {
   /* Firefox */
 
   .time-slider-input::-moz-range-thumb {
-    border: 1px solid gray;
     height: 24px;
     width: 24px;
     border-radius: 17px;
+    border: none;
     background: #ffffff;
     cursor: pointer;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .time-slider-input:hover::-moz-range-thumb{
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
   }
   
   .time-slider-input::-moz-range-track {
     width: 100%;
-    height: 3px;
+    height: 6px;
     cursor: pointer;
-    background: lightgray;
-    border-radius: 1.3px;
-    border: 0.2px solid hsl(0, 0%, 0%);
+    background: #F3F3F3;
+    border-radius: 3px;
     margin-left: 10px;
     margin-right: 10px;
   }

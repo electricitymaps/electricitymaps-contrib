@@ -128,7 +128,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     
     // Update scale
-    this.barMaxWidth = width - this.LABEL_MAX_WIDTH;
+    this.barMaxWidth = width - this.LABEL_MAX_WIDTH - this.PADDING_X;
     this.powerScale
         .range([0, this.barMaxWidth]);
     this.co2Scale

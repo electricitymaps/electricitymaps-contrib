@@ -264,7 +264,7 @@ d3.select('#checkbox-colorblind').on('change', () => {
 });
 
 // update Theme
-let theme;
+let theme = themes.bright;
 function updateTheme() {
   if (getState().application.brightModeEnabled) {
     theme = themes.bright;

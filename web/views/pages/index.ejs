@@ -101,7 +101,7 @@ co2Sub = function(str) {
     <body lang="<%= locale %>">
         <div id="main">
             <div id="header">
-                <div id="header-content">
+                <div id="header-content" class="brightmode">
                     <div class="logo">
                         <div class="image" id="electricitymap-logo"></div>
                         <span class="live" style="font-weight: bold">Live</span>
@@ -188,7 +188,7 @@ co2Sub = function(str) {
                     </div>
 
                     <div class="mobile-info-tab large-screen-hidden">
-                        <div class="mobile-watermark">
+                        <div class="mobile-watermark" class="brightmode">
                                 <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/built_by_tomorrow.svg"/></a>
                                 <br />
                                 <div class="fb-like"
@@ -346,27 +346,29 @@ co2Sub = function(str) {
 
                             </p>
                         </div>
-                        <div class="social-buttons">
+                        <div class="detail-bottom-section">
                             <div class="zone-time-slider"></div>
-                            <p>
-                                <!-- Facebook share -->
-                                <div class="fb-share-button"
-                                    data-href="https://www.electricitymap.org/"
-                                    data-layout="button_count">
-                                </div>
-                                <!-- Twitter share -->
-                                <a class="twitter-share-button"
-                                data-url="https://www.electricitymap.org"
-                                data-via="tmrowco"
-                                data-lang="<%= locale %>"></a>
-                                <!-- Slack -->
-                                <span class="slack-button">
-                                    <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                                        <span class="slack-ico"></span>
-                                        <span class="slack-text">Slack</span>
-                                    </a>
-                                </span>
-                            </p>
+                            <div class="social-buttons">
+                                <p>
+                                    <!-- Facebook share -->
+                                    <div class="fb-share-button"
+                                        data-href="https://www.electricitymap.org/"
+                                        data-layout="button_count">
+                                    </div>
+                                    <!-- Twitter share -->
+                                    <a class="twitter-share-button"
+                                    data-url="https://www.electricitymap.org"
+                                    data-via="tmrowco"
+                                    data-lang="<%= locale %>"></a>
+                                    <!-- Slack -->
+                                    <span class="slack-button">
+                                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                            <span class="slack-ico"></span>
+                                            <span class="slack-text">Slack</span>
+                                        </a>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="faq-panel">
@@ -385,7 +387,7 @@ co2Sub = function(str) {
                     <div id="zones" class="map-layer"></div>
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
-                    <div id="watermark" class="watermark small-screen-hidden">
+                    <div id="watermark" class="watermark small-screen-hidden brightmode">
                         <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                             <div id="built-by-tomorrow"></div>
                         </a>

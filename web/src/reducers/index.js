@@ -12,7 +12,7 @@ const initialApplicationState = {
   callerLocation: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   colorBlindModeEnabled: Cookies.get('colorBlindModeEnabled') === 'true' || false,
-  brightModeEnabled: Cookies.get('brightModeEnabled') === 'true' || false,
+  brightModeEnabled: Cookies.get('brightModeEnabled') === 'true' || true,
   customDate: null,
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
