@@ -19,7 +19,6 @@ html, body {
     padding: 0 !important;
     font-family: "Open Sans", sans-serif;
     transition: background-color 800ms;
-    /* background-color: #09263C; water color */
 }
 
 hr {
@@ -1389,6 +1388,7 @@ sub {
     filter: alpha(opacity=50);
     opacity: 0.6;
     background-color: rgb(70,70,70);
+    border-radius: 8px;
 }
 
 .no-data-overlay-message{
@@ -1407,11 +1407,10 @@ sub {
 
 .zone-details-no-parser-message{
     display: none;
-    background-color: rgb(70, 70, 70);
+    background-color:#FAFAFA;
     height: 100%;
     width: 100%;
-    position: absolute;
-    padding: 0.5rem 0; 
+    padding: 1rem 0; 
 }
 
 .all-screens-hidden {
