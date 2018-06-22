@@ -12,7 +12,7 @@ export default class Map {
           property: 'co2intensity',
           stops,
         });
-        this.map.setPaintProperty('background', 'paint', theme.oceanColor);
+        this.map.setPaintProperty('background', 'background-color', theme.oceanColor);
         this.map.setPaintProperty('zones-line', 'line-color', theme.strokeColor);
         this.map.setPaintProperty('zones-line', 'line-width', theme.strokeWidth);
       }
