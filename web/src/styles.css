@@ -112,6 +112,7 @@ line, path {
     padding-right: 6px;
     padding-left: 12px;
     margin: 0 calc(1.25rem - 6px) 0 1.25rem;
+    -webkit-overflow-scrolling: touch;
 }
 .country-panel-wrap {
     position: relative;
@@ -168,7 +169,8 @@ body {
     background-color: transparent;
     z-index: 2;
     position: fixed;
-    right: 30px;
+    right: 0;
+    top: 10px;
     color: #ffffff;
     min-height: 50px; /* required for old Safari */
 }
@@ -184,8 +186,8 @@ body {
     height: 50px;
     padding-top: 13px;
     padding-bottom: 13px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 16px;
+    padding-right: 17px;
     line-height: 24px;
 
     /* Force width to include padding */
@@ -232,10 +234,10 @@ body {
 }
 #header-content .logo .image {
     display: inline-block;
-    height: 32px;
-    width:160px;
-    margin-right: 0.2rem;
-    margin-top:-4px;
+    height: 21px;
+    width:139px;
+    margin-right: 4px;
+    margin-top:2px;
 }
 
 #electricitymap-logo{
@@ -657,8 +659,8 @@ body {
 
 .layer-buttons-container {
     position: absolute;
-    right: 10px;
-    top: 154px;
+    right: 16px;
+    top: 156px;
     display: flex;
     flex-direction: column;
 }
@@ -669,7 +671,7 @@ body {
 
 .layer-button {
     background-color: #FAFAFA;
-    border-radius: 7px;
+    border-radius: 6px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
     width: 35px;
     height: 35px;
@@ -695,6 +697,7 @@ body {
 
 .wind-button.active{
     background-image: url(../images/weather/wind_active.svg);
+    background-color: #FFFFFF;
 }
 
 .solar-button{
@@ -703,6 +706,7 @@ body {
 
 .solar-button.active{
     background-image: url(../images/weather/sun_active.svg);
+    background-color: #FFFFFF;
 }
 
 .brightmode-button{
@@ -711,11 +715,25 @@ body {
 
 .brightmode-button.active{
     background-image: url(../images/brightmode_active.svg);
+    background-color: #FFFFFF;
 }
 
 /* override mapbox styling */
 .mapboxgl-ctrl-top-right {
     top: 64px !important;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+    margin-right: 16px !important;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl-group {
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl-group:hover{
+    box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
 }
 
 .mapboxgl-ctrl-group > button {
@@ -789,9 +807,9 @@ body {
     float: left;
     background-color: #FAFAFA; /* IE fallback color (IE does not support background opacity) */
     background-color: #FAFAFA;
-    border-radius: 7px;
+    border-radius: 6px;
     padding: 12px 10px 10px 10px;
-    margin: 12px;
+    margin: 16px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.10)
 }
 .floating-legend-container div {
@@ -811,7 +829,6 @@ body {
 .floating-legend-mobile-header{
     text-align: center;
     font-weight: bold;
-    width: 15em;
     margin-bottom: 5px;
 }
 
@@ -987,6 +1004,7 @@ div.highscore-button:hover {
 .zone-list {
     overflow-y: scroll;
     flex: 1;
+    -webkit-overflow-scrolling: touch;
 }
 .zone-list p {
     margin: 0;
@@ -1103,11 +1121,14 @@ div.highscore-button:hover {
 
 #tab {
     position: relative;
-    background-color: rgb(70, 70, 70);
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
-    z-index: 1;
+    background-color:#FAFAFA;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
+    z-index: 2;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+
 }
 #tab-content {
     display: flex;
@@ -1132,7 +1153,7 @@ div.highscore-button:hover {
     display: none;
 }
 #tab #tab-content .list-item.active {
-    color: white;
+    color: black;
     font-size: 14px;
     padding-top: 6px;
 }
@@ -1147,7 +1168,7 @@ div.highscore-button:hover {
 }
 
 #tab #tab-content a {
-    color: darkgrey;
+    color: #A9A9A9;
 }
 #tab #tab-content a:hover {
     color: white;
@@ -1654,6 +1675,7 @@ sub {
     }
     .floating-legend-container{
         pointer-events: none;
+        right: 0;
     }
     .floating-legend-mobile-header{
         display: none;
@@ -1673,6 +1695,9 @@ sub {
 @media (max-width: 767px) {
     #header {
         min-height: 50px; /* required for old Safari */
+        left: 0;
+        top: 5px;
+        z-index: 3;
     }
     #header-content .logo {
         margin-right: auto;
@@ -1681,7 +1706,9 @@ sub {
         display: none;
     }
     .left-panel {
-        padding: 0 0 1rem 0;
+        padding: 40px 0 0 0;
+        position: relative;
+        height: auto;
     }
     .left-panel, #map-container {
         width: 100%;
@@ -1702,10 +1729,13 @@ sub {
         display:none;
     }
     .floating-legend-container.mobile-collapsed{
-        left: -110px;
+        right: 0;
+        width: 90px;
+        height: 18px;
+        transition: width 0.4s, height 0.4s;
     }
-    .floating-legend-container.mobile-collapsed .floating-legend-mobile-header span {
-        margin-left: 80px;
+    .floating-legend-container.mobile-collapsed .floating-legend-mobile-header {
+        text-align: left;
     }
 
     .modal {
