@@ -197,7 +197,7 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None,
         'source': 'sldcguj.com',
     }
 
-    valid_data = validate(data, logger, remove_negative=True)
+    valid_data = validate(data, logger, remove_negative=True, floor=7000)
 
     return valid_data
 
