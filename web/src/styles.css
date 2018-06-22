@@ -458,6 +458,7 @@ body {
 }
 .country-table-header {
     position: relative;
+    margin: 1rem 0 0 0;
 }
 .country-table-header-inner {
     display: flex;

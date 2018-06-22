@@ -19,16 +19,17 @@ const co2color = d3.scaleLinear()
 const keys = d3.range(0, 800 + 80, 80);
 const colors = {};
 keys.forEach((k) => { colors[k] = co2color(k) });
+colors['nan'] = '#A9A9A9';
 
-for(let co2value in colors) {
+for (let co2value in colors) {
   // generate specific color
   console.log([
-    'public/images/arrow-template-new2.png',
+    'public/images/arrow-template.png',
     '+level-colors', 'transparent,'+colors[co2value],
     `public/images/arrow-${co2value}.png`
   ])
   child_process.spawn('convert', [
-    'public/images/arrow-template-new2.png',
+    'public/images/arrow-template.png',
     '+level-colors', 'transparent,'+colors[co2value],
     `public/images/arrow-${co2value}.png`
   ]).on('close', (code) => {
@@ -38,14 +39,14 @@ for(let co2value in colors) {
     }
 
     // make an outline
-    const outlineSize = 0;
+    const outlineSize = 0.5;
     const whiteArrowAfterCo2Intensity = 640;
     child_process.spawn('convert', [
       `public/images/arrow-${co2value}.png`,
       '-bordercolor', 'none',
       '-border', outlineSize,
-      '\(', '-clone', '0', '-alpha', 'off', '-fill', co2value >= whiteArrowAfterCo2Intensity ? '#0F2537' : '#0F2537', '-colorize', '100%', '\)',
-      '\(', '-clone', '0', '-alpha', 'extract', '-morphology', 'edgeout', 'octagon:'+outlineSize, '\)',
+      '\(', '-clone', '0', '-alpha', 'off', '-fill', '#FFFFFF', '-colorize', '100%', '\)',
+      '\(', '-clone', '0', '-alpha', 'extract', '-morphology', 'edgeout', 'octagon:'+outlineSize,'\)',
       '-compose', 'over',
       '-composite', `public/images/arrow-${co2value}-outline.png`
     ]).on('close', code => {
@@ -78,13 +79,13 @@ for(let co2value in colors) {
 
           fs.unlink(`public/images/arrow-${co2value}.png`, () => {});
           fs.unlink(`public/images/arrow-${co2value}-outline.png`, () => {});
-        })
+        });
 
         child.stderr.on('data', (data) => {
           console.log('stderr:', data);
         });
       });
-    })
+    });
   });
 }
 // echo $color;
