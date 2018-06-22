@@ -4,9 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 export default class Map {
   _setupMapColor(theme) {
     if (theme) {
-      console.log(theme.clickableFill);
       if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
-        console.log(theme.clickableFill);
         const co2Range = theme.co2Scale.steps;
         const stops = co2Range.map(d => [d, this.co2color(d)]);
         this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
@@ -14,6 +12,7 @@ export default class Map {
           property: 'co2intensity',
           stops,
         });
+        this.map.setPaintProperty('background', 'paint', theme.oceanColor);
         this.map.setPaintProperty('zones-line', 'line-color', theme.strokeColor);
         this.map.setPaintProperty('zones-line', 'line-width', theme.strokeWidth);
       }
@@ -71,6 +70,11 @@ export default class Map {
           default: this.theme.clickableFill,
         };
       }
+      this.map.addLayer({
+        id: 'background',
+        type: 'background',
+        paint: { 'background-color': this.theme.oceanColor },
+      });
       this.map.addLayer({
         id: 'clickable-zones-fill',
         type: 'fill',
