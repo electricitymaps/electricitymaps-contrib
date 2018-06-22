@@ -8,6 +8,9 @@ import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
+import FAQ from './components/faq';
+import TimeSlider from './components/timeslider.js'
+import { formatPower } from './helpers/formatting';
 
 // Libraries
 const d3 = Object.assign(
@@ -141,8 +144,12 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-const zoneList = new ZoneList('.zone-list p');
+const zoneList = new ZoneList('.zone-list');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
+
+const faq = new FAQ('.faq');
+const mobileFaq = new FAQ('.mobile-faq');
+const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
 // Initialise mobile app (cordova)
 const app = {
@@ -212,7 +219,8 @@ moment.locale(getState().application.locale.toLowerCase());
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
-if (!getState().application.onboardingSeen && !getState().isEmbedded) {
+// do not display onboarding when we've seen it or we're embedded
+if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
   onboardingModal = new OnboardingModal('#main');
   thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
@@ -351,12 +359,14 @@ countryTable
       mode, country, displayByEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
   })
   .onProductionMouseMove(() =>
     countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY))
   .onProductionMouseOut(() => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableProductionTooltip.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   });
 
 countryHistoryCarbonGraph
@@ -374,6 +384,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseMove((mode, countryData, i) => {
@@ -389,6 +400,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseOut((mode, countryData, i) => {
@@ -397,6 +409,7 @@ countryHistoryMixGraph
     const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   });
 
 countryHistoryMixGraph
@@ -769,13 +782,6 @@ function toggleLegend() {
 }
 d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
 
-// Keyboard shortcuts
-document.addEventListener('keyup', (e) => {
-  if (e.key === '/') {
-    zoneSearchBar.focus();
-  }
-}, false);
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -801,11 +807,16 @@ if (typeof zoneMap !== 'undefined') {
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
-// Close button
-d3.selectAll('#left-panel-zone-details-back')
+// Back button
+
+function goBackToZoneListFromZoneDetails() {
+  dispatchApplication('selectedZoneName', undefined);
+  dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+}
+
+d3.selectAll('.left-panel-back-button')
   .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+    goBackToZoneListFromZoneDetails();
   });
 
 // Zone list
@@ -816,6 +827,40 @@ zoneList.setClickHandler((selectedCountry) => {
     centerOnZoneName(getState(), selectedCountry.countryCode, 4);
   }
 });
+
+// Keyboard navigation
+document.addEventListener('keyup', (e) => {
+  const currentPage = getState().application.showPageState;
+  if (currentPage === 'map') {
+    if (e.key === 'Enter') {
+      zoneList.clickSelectedItem();
+    } else if (e.key === 'ArrowUp') {
+      zoneList.selectPreviousItem();
+    } else if (e.key === 'ArrowDown') {
+      zoneList.selectNextItem();
+    } else if (e.key === '/') {
+      zoneSearchBar.clearInputAndFocus();
+    } else if (e.key.match(/^[A-z]$/)) {
+      zoneSearchBar.focusWithInput(e.key);
+    } else {
+      zoneSearchBar.focusWithInput('');
+    }
+  } else if (currentPage === 'country') {
+    if (e.key === 'Backspace') {
+      goBackToZoneListFromZoneDetails();
+    } else if (e.key === '/') {
+      goBackToZoneListFromZoneDetails();
+      zoneSearchBar.clearInputAndFocus();
+    }
+  }
+});
+
+// FAQ link
+d3.selectAll('.faq-link')
+  .on('click', () => {
+    dispatchApplication('selectedZoneName', undefined);
+    dispatchApplication('showPageState', 'faq');
+  });
 
 
 // Mobile toolbar buttons
@@ -886,6 +931,37 @@ function renderCountryTable(state) {
   }
 }
 
+
+function renderOpenTooltips(state) {
+
+  const zoneData = getCurrentZoneData(state);
+  const tooltipMode = state.application.tooltipDisplayMode;
+  if (tooltipMode) {
+    const isExchange = modeOrder.indexOf(tooltipMode) === -1;
+    const fun = isExchange ?
+      tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange ?
+      countryTableExchangeTooltip : countryTableProductionTooltip;
+    fun(ttp,
+        tooltipMode, zoneData, tableDisplayEmissions,
+        co2color, co2Colorbars,
+      );
+  }
+
+  if (countryTooltip.isVisible) {
+    tooltipHelper.showMapCountry(countryTooltip, zoneData, co2color, co2Colorbars);
+  }
+
+  if (priceTooltip.isVisible) {
+    const tooltip = d3.select(priceTooltip._selector);
+    tooltip.select('.value').html((zoneData.price || {}).value || '?');
+    tooltip.select('.currency').html(getSymbolFromCurrency((zoneData.price || {}).currency) || '?');
+    priceTooltip.show();
+  }
+
+}
+
+
 function renderHistory(state) {
   const { selectedZoneName } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -894,6 +970,7 @@ function renderHistory(state) {
     countryHistoryCarbonGraph.data([]).render();
     countryHistoryPricesGraph.data([]).render();
     countryHistoryMixGraph.data([]).render();
+    zoneDetailsTimeSlider.data([]).render();
     return;
   }
 
@@ -967,11 +1044,16 @@ function renderHistory(state) {
     .data(history);
   countryHistoryMixGraph
     .data(history);
+  
+  zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
   countryTable
     .exchangeKeys(countryHistoryMixGraph.exchangeKeysSet.values())
     .render();
+
+
+  zoneDetailsTimeSlider.onChange(selectedZoneTimeIndex => dispatchApplication('selectedZoneTimeIndex', selectedZoneTimeIndex)).render();
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
@@ -1040,12 +1122,15 @@ function routeToPage(pageName, state) {
 
 
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country');
+
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
 
   d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
 
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('small-screen-hidden', pageName !== 'country');
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('large-screen-hidden', pageName !== 'country');
+  d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
+
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
+  
     
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
@@ -1184,7 +1269,8 @@ observe(state => state.data.histories, (histories, state) => {
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderGauges(state);
   renderCountryTable(state);
-  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach((g) => {
+  renderOpenTooltips(state);
+  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
     g.selectedIndex(i);
   });
 });

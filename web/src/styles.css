@@ -376,7 +376,6 @@ body {
 }
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
-    margin: 0 0 1rem;
     position: relative;
     padding: 1rem 1.25rem 0 1.25rem;
 }
@@ -390,14 +389,14 @@ body {
     top: 0px;
     position: absolute;
 }
-#left-panel-zone-details-back {
+.left-panel-back-button {
     cursor: pointer;
     font-size: 1.3rem;
     position: absolute;
     left: 1.25rem;
 }
 .left-panel-toolbar .left-panel-toolbar-back:hover,
-#left-panel-zone-details-back:hover, #left-panel-highscore-back:hover {
+.left-panel-back-button:hover, #left-panel-highscore-back:hover {
     color: white;
 }
 .left-panel .left-panel-toolbar-title,
@@ -416,13 +415,14 @@ body {
     height: 100%;
 }
 
+.mobile-info-tab {
+    padding: 1rem;
+}
+
 .mobile-info-tab p{
     margin: 0.6rem 0;
 }
 
-.mobile-info-tab .info-text{
-    padding-top: 1.5rem;
-}
 .mobile-info-tab .info-text p{
     margin: 0.6rem 0;
 }
@@ -438,8 +438,7 @@ body {
 
 .country-name-time {
     font-size: smaller;
-    margin: auto;
-    width: 90%;
+    margin-left: 25px;
 }
 .country-name-time-table {
     display: table;
@@ -451,6 +450,10 @@ body {
 }
 .country-time {
   white-space: nowrap;
+}
+
+.country-table {
+    width: 100%;    
 }
 .country-table-container {
     width: 100%;
@@ -958,7 +961,7 @@ div.highscore-button:hover {
     padding: 0 1rem 0.5rem 1rem;
 }
 
-.zone-list-header .title {
+.left-panel .title {
     font-size: 1.3rem;
     font-family: "Catamaran", sans-serif;
 }
@@ -996,6 +999,9 @@ div.highscore-button:hover {
     text-decoration: none;
     background: rgba(255,255,255,0.1)
 }
+.zone-list a.selected {
+    background-color: rgba(255,255,255,0.1);
+}
 
 .zone-list .ranking {
     width: 2rem;
@@ -1031,6 +1037,7 @@ div.highscore-button:hover {
     height: 17px;
     width: 17px;
 }
+
 
 
 
@@ -1342,7 +1349,7 @@ sub {
 
 .mobile-watermark {
     text-align: center;
-    margin: 2.5rem 0 1rem 0;
+    margin-top: 1rem;
 }
 .mobile-watermark div {
     padding-top: 0.5rem;
@@ -1393,8 +1400,223 @@ sub {
 }
 
 .all-screens-hidden {
+    display: none !important;
+}
+
+.faq-panel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.faq-header {
+    display: flex;
+    flex-direction: row; 
+    margin-left: 15px;
+    align-items: flex-end;
+    height: 30px;
+    padding-top: 1rem;
+}
+
+.faq-header .left-panel-back-button{
+    position: initial;
+    margin-right: 10px;
+}
+
+.faq {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px 0px 7px;
+}
+
+.faq-container .question-group-header{
+    padding: 15px 0px 5px 10px;
+}
+
+.faq-container .question-answer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-container .question {
+    font-size: 0.95rem;
+    padding: 5px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.faq-container .question:hover {
+    color: white;
+}
+
+.faq-container .question span{
+    padding-left: 5px;
+}
+
+.faq-container .answer {
+    display: none;
+    padding-right: 5px;
+    padding-left: 10px;
+    margin-left: 11px;
+    margin-bottom: 5px;
+    border-left: 1px solid grey;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+}
+
+.faq-container .answer.visible{
+    display: block;
+}
+
+.mobile-faq .faq-container{
+    padding: 0 0 1rem 0;
+}
+
+.mobile-faq-header{
+    text-align: center;
+    font-size: 1.6rem;
+    font-family: "Catamaran";
+    padding-top: 25px;
+    padding-bottom: 5px;
+}
+
+.mobile-watermark img {
+    width: 220px;
+}
+
+.zone-time-slider {
+    position: absolute;
+    bottom: 0;
+    height: 62px;
+    background: rgb(70, 70, 70);
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    overflow-y: hidden;
+}
+
+.zone-time-slider .time-slider-axis-container{
+    width: 85%;    
+    height: 20px;
+    overflow: visible;
+}
+
+.time-slider-axis .tick {
+    font-size: 12px;
+}
+
+.zone-time-slider .domain {
     display: none;
 }
+
+
+.time-slider-input {
+    -webkit-appearance: none;
+    width: 95%;
+    margin-top: 5px;
+    height: 26px;
+    background: transparent; 
+    padding: 0;
+    overflow: visible;
+  }
+  
+  .time-slider-input:focus {
+    outline: none;  
+  }
+
+
+/* Sliders needs to be styled independently for different browsers:
+  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+*/
+  
+/* WebKit/Blink */
+
+.time-slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid gray;
+    height: 26px;
+    width: 26px;
+    border-radius: 17px;    
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -12px;
+  }
+
+  .time-slider-input::-webkit-slider-runnable-track {
+    width: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 3px;
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  
+  .time-slider-input:focus::-webkit-slider-runnable-track {
+    background: white;
+  }
+
+
+  /* IE */
+
+  .time-slider-input::-ms-track {
+    width: 100%;
+    height: 0px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  .time-slider-input::-ms-fill-lower {
+    border: 2px solid lightgray;
+    border-radius: 2.6px;
+  }
+
+  .time-slider-input::-ms-fill-upper {
+    border: 2px solid lightgray;
+    border-radius: 2.6px;
+  }
+
+  .time-slider-input::-ms-thumb {
+    border: 1px solid gray;
+    height: 25px;
+    width: 25px;
+    border-radius: 17px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+
+  /* Firefox */
+
+  .time-slider-input::-moz-range-thumb {
+    border: 1px solid gray;
+    height: 24px;
+    width: 24px;
+    border-radius: 17px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  .time-slider-input::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    background: lightgray;
+    border-radius: 1.3px;
+    border: 0.2px solid hsl(0, 0%, 0%);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
 
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
@@ -1438,9 +1660,6 @@ sub {
     }
     .left-panel {
         padding: 0 0 1rem 0;
-    }
-    .left-panel-zone-details {
-        padding: 1rem;
     }
     .left-panel, #map-container {
         width: 100%;

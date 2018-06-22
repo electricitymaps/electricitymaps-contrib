@@ -270,7 +270,7 @@ VALIDATIONS = {
         # and when those are missing this can indicate that others are missing as well.
         # We have also never seen unknown being 0.
         # Usual load is in 30 to 80 GW range.
-        'required': ['coal', 'gas', 'nuclear',
+        'required': ['coal', 'gas', 'nuclear', 'wind',
                      'biomass', 'hydro', 'unknown'],
         'expected_range': (20000, 100000),
     },
@@ -349,11 +349,14 @@ def check_response(response, function_name):
 
     soup = BeautifulSoup(response.text, 'html.parser')
     text = soup.find_all('text')
-    if len(text):
-        error_text = soup.find_all('text')[0].prettify()
-        if 'No matching data found' in error_text:
-            return
-        raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
+    if not response.ok:
+        if len(text):
+            error_text = soup.find_all('text')[0].prettify()
+            if 'No matching data found' in error_text:
+                return
+            raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, error_text))
+        else:
+            raise QueryError('{0} failed in ENTSOE.py. Reason: {1}'.format(function_name, response.text))
 
 
 def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
@@ -368,11 +371,12 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     else:
         # make sure we have an arrow object
         target_datetime = arrow.get(target_datetime)
-    params['periodStart'] = target_datetime.replace(hours=span[0]).format('YYYYMMDDHH00')
-    params['periodEnd'] = target_datetime.replace(hours=+span[1]).format('YYYYMMDDHH00')
+    params['periodStart'] = target_datetime.shift(hours=span[0]).format('YYYYMMDDHH00')
+    params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
+    print('[%s] querying ENTSOE' % arrow.now().isoformat())
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
@@ -391,16 +395,14 @@ def query_consumption(domain, session, target_datetime=None):
         check_response(response, query_consumption.__name__)
 
 
-def query_production(psr_type, in_domain, session, target_datetime=None):
+def query_production(in_domain, session, target_datetime=None):
     """Returns a string object if the query succeeds."""
-
     params = {
-        'psrType': psr_type,
         'documentType': 'A75',
         'processType': 'A16',  # Realised
         'in_Domain': in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
+    response = query_ENTSOE(session, params, target_datetime=target_datetime, span=(-48, 0))
     if response.ok:
         return response.text
     else:
@@ -509,6 +511,24 @@ def query_consumption_forecast(in_domain, session, target_datetime=None):
         check_response(response, query_generation_forecast.__name__)
 
 
+def query_wind_solar_production_forecast(in_domain, session, target_datetime=None):
+    """
+    Gets consumption forecast for 48 hours ahead and previous 24 hours.
+    Returns a string object if the query succeeds.
+    """
+
+    params = {
+        'documentType': 'A69',  # Forecast
+        'processType': 'A01',
+        'in_Domain': in_domain,
+    }
+    response = query_ENTSOE(session, params, target_datetime=target_datetime)
+    if response.ok:
+        return response.text
+    else:
+        check_response(response, query_generation_forecast.__name__)
+
+
 def datetime_from_position(start, position, resolution):
     """Finds time granularity of data."""
 
@@ -561,6 +581,7 @@ def parse_production(xml_text):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
+        psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             position = int(entry.find_all('position')[0].contents[0])
@@ -568,12 +589,13 @@ def parse_production(xml_text):
             try:
                 i = datetimes.index(datetime)
                 if is_production:
-                    productions[i] += quantity
+                    productions[i][psr_type] += quantity
                 else:
-                    productions[i] -= quantity
+                    productions[i][psr_type] -= quantity
             except ValueError:  # Not in list
                 datetimes.append(datetime)
-                productions.append(quantity if is_production else -1 * quantity)
+                productions.append(defaultdict(lambda: 0))
+                productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
 
 
@@ -797,28 +819,21 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Create a double hashmap with keys (datetime, parameter)
-    production_hashmap = defaultdict(lambda: {})
     # Grab production
-    for k in ENTSOE_PARAMETER_DESC.keys():
-        parsed = parse_production(
-            query_production(k, domain, session,
-                             target_datetime=target_datetime))
-        if parsed:
-            productions, datetimes = parsed
-            for i in range(len(datetimes)):
-                production_hashmap[datetimes[i]][k] = productions[i]
+    parsed = parse_production(
+        query_production(domain, session,
+                         target_datetime=target_datetime))
 
-    # Remove all dates in the future
-    production_dates = sorted(set(production_hashmap.keys()), reverse=True)
-    production_dates = list(filter(lambda x: x <= arrow.now(), production_dates))
-    if not len(production_dates):
+    if not parsed:
         return None
 
+    productions, production_dates = parsed
+
     data = []
-    for production_date in production_dates:
+    for i in range(len(production_dates)):
         production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
-                             production_hashmap[production_date].items()}
+                             productions[i].items()}
+        production_date = production_dates[i]
 
         data.append({
             'zoneKey': zone_key,
@@ -1066,3 +1081,43 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
             })
 
         return data
+
+
+def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
+                               logger=logging.getLogger(__name__)):
+    """
+    Gets values and corresponding datetimes for all production types in the
+    specified zone. Removes any values that are in the future or don't have
+    a datetime associated with them.
+    Returns a list of dictionaries that have been validated.
+    """
+    if not session:
+        session = requests.session()
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
+    # Grab production
+    parsed = parse_production(
+        query_wind_solar_production_forecast(domain, session,
+                                             target_datetime=target_datetime))
+
+    if not parsed:
+        return None
+
+    productions, production_dates = parsed
+
+    data = []
+    for i in range(len(production_dates)):
+        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
+                             productions[i].items()}
+        production_date = production_dates[i]
+
+        data.append({
+            'zoneKey': zone_key,
+            'datetime': production_date.datetime,
+            'production': {
+                'solar': production_values.get('Solar', None),
+                'wind': get_wind(production_values),
+            },
+            'source': 'entsoe.eu'
+        })
+
+    return data

@@ -65,14 +65,14 @@ class TestINPB(unittest.TestCase):
         expected = "13:33:59"
         self.assertEqual(date_text, expected)
 
-    def test_date_time_strings_to_kolkata_date(self):
-        date_text = "09/06/2017"
-        date_format = "DD/MM/YYYY"
-        time_text = "13:33:59"
-        time_format = "HH:mm:ss"
-        date_time = IN_PB.date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format)
-        self.assertIsNotNone(date_time)
-        expected = get(datetime(2017, 6, 9, 13, 33, 59), 'Asia/Kolkata')
+    def test_read_punjab_consumption_date(self):
+        current = get(datetime(2018, 5, 5, 14, 38, 29), 'Asia/Kolkata')
+        date_text = "02/04/2018"
+        time_text = "14:38:29"
+
+        expected = get(datetime(2018, 4, 2, 14, 38, 29), 'Asia/Kolkata').datetime
+
+        date_time = IN_PB.read_punjab_consumption_date(date_text, time_text, current)
         self.assertEqual(date_time, expected)
 
 

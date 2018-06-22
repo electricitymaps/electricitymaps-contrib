@@ -20,12 +20,6 @@ def read_text_by_regex(regex, text):
     return date_text
 
 
-def date_time_strings_to_kolkata_date(date_text, date_format, time_text, time_format):
-    date_format = date_format + time_format + 'ZZZ'
-    date_time = date_text + time_text + 'Asia/Kolkata'
-    return get(date_time, date_format)
-
-
 def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab production"""
     if target_datetime:
@@ -84,6 +78,36 @@ def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logge
     return data
 
 
+def read_punjab_consumption_date(date_text, time_text, current):
+    """ Read Punjab consumption date, format of this is not consistent.
+        https://github.com/tmrowco/electricitymap/issues/854 """
+    date_time_string = date_text + time_text + 'Asia/Kolkata'
+
+    dates = []
+
+    try:
+        # Try to parse date string using MM/DD/YYYY format.
+        mm_dd_yyyy_format_date = get(date_time_string, "MM/DD/YYYYHH:mm:ssZZZ")
+        if mm_dd_yyyy_format_date and mm_dd_yyyy_format_date < current:
+            dates.append(mm_dd_yyyy_format_date)
+    except ValueError:
+        pass
+
+    try:
+        # Try to parse date string using DD/MM/YYYY format.
+        dd_mm_yyyy_format_date = get(date_time_string, "DD/MM/YYYYHH:mm:ssZZZ")
+        if dd_mm_yyyy_format_date and dd_mm_yyyy_format_date < current:
+            dates.append(dd_mm_yyyy_format_date)
+    except ValueError:
+        pass
+
+    # Get correct date from parsed date array.
+    if len(dates) > 0:
+        return min(dates, key=lambda date: abs(date - current))
+    else:
+        raise Exception('IN-PB', 'Can''t read Punjab consumption date. DateTime String: {0}, Current Date: {1}'.format(date_time_string, current))
+
+
 def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
     """Fetch Punjab consumption"""
     if target_datetime:
@@ -96,7 +120,8 @@ def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logg
     date_text = read_text_by_regex('(\d+/\d+/\d+)', response_text)
     time_text = read_text_by_regex('(\d+:\d+:\d+)', response_text)
 
-    india_date = date_time_strings_to_kolkata_date(date_text, "MM/DD/YYYY", time_text, "HH:mm:ss")
+    india_current_date = utcnow().to('Asia/Kolkata')
+    india_date = read_punjab_consumption_date(date_text, time_text, india_current_date)
 
     punjab_match = search('<tr>(.*?)PUNJAB(.*?)</tr>', response_text, M|I|S).group(0)
     punjab_tr_text = findall('<tr>(.*?)</tr>', punjab_match, M|I|S)[1]

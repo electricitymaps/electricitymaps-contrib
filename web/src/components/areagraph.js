@@ -248,7 +248,7 @@ AreaGraph.prototype.render = function() {
             that._selectedLayerIndex = j;
             that.selectedIndex(i);
             if (that.layerMouseOverHandler) {
-                that.layerMouseOverHandler.call(this, d.key, d[i].data._countryData)
+                that.layerMouseOverHandler.call(this, d.key, d[i].data._countryData, i)
             }
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this, data[i]._countryData, i);

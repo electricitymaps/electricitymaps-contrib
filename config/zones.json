@@ -1419,14 +1419,15 @@
       "wind": 15621
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ELEXON.fetch_production"
     },
     "timezone": null
   },
@@ -2850,7 +2851,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/olivierSemet"
+      "https://github.com/olivierSemet",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2991,10 +2993,13 @@
       "gas": 762,
       "geothermal": 51,
       "hydro": 1709,
-      "oil": 5
+      "oil": 5,
+      "solar": 291,
+      "wind": 682
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -3165,6 +3170,16 @@
         46.44202068870379
       ]
     ]
+  },
+  "US-SVERI": {
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SVERI.fetch_production"
+    },
+    "timezone": null
   },
   "UY": {
     "bounding_box": [

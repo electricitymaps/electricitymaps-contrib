@@ -15,6 +15,8 @@ export default class ZoneList {
     const config = argConfig || {};
     this.co2ColorScale = config.co2ColorScale;
     this.clickHandler = config.clickHandler;
+    this.selectedItemIndex = null;
+    this.visibleListItems = [];
     if (config.zones) {
       this.setZones(config.zones);
     }
@@ -35,30 +37,89 @@ export default class ZoneList {
   }
 
   filterZonesByQuery(query) {
+    this._deHighlightSelectedItem();
     d3.select(this.selectorId).selectAll('a').each((zone, i, nodes) => {
       const listItem = d3.select(nodes[i]);
       if (this._zoneMatchesQuery(zone, query)) {
-        listItem.style('display', 'inherit');
+        listItem.style('display', 'flex');
       } else {
         listItem.style('display', 'none');
       }
     });
+    this._resetToDefaultSelectedItem();
   }
 
   clickSelectedItem() {
-    // Item is selected when it is the only item visible in the list
-    const visibleListItems = d3.select(this.selectorId).selectAll('a').nodes()
-      .filter(node => node.style.display !== 'none');
-    if (visibleListItems.length === 1) {
-      visibleListItems[0].click();
+    this.visibleListItems[this.selectedItemIndex].click();
+  }
+
+  selectNextItem() {
+    if (this.selectedItemIndex === null) {
+      this.selectedItemIndex = 0;
+      this._highlightSelectedItem();
+    } else if (this.selectedItemIndex < this.visibleListItems.length - 1) {
+      this._deHighlightSelectedItem();
+      this.selectedItemIndex += 1;
+      this._highlightSelectedItem();
     }
   }
 
+  selectPreviousItem() {
+    if (this.selectedItemIndex === null) {
+      this.selectedItemIndex = 0;
+      this._highlightSelectedItem();
+    } else if (this.selectedItemIndex >= 1
+        && this.selectedItemIndex < this.visibleListItems.length) {
+      this._deHighlightSelectedItem();
+      this.selectedItemIndex -= 1;
+      this._highlightSelectedItem();
+    }
+  }
 
   render() {
     this._createListItems();
     this._setItemAttributes();
     this._setItemClickHandlers();
+  }
+
+  _resetToDefaultSelectedItem() {
+    if (this.selectedItemIndex !== null) {
+      this.selectedItemIndex = 0;
+    }
+    
+    this.visibleListItems = d3.select(this.selectorId).selectAll('a').nodes()
+      .filter(node => node.style.display !== 'none');
+    if (this.visibleListItems.length) {
+      this._highlightSelectedItem();
+    }
+  }
+
+  _highlightSelectedItem() {
+    const item = this.visibleListItems[this.selectedItemIndex];
+    if (item) {
+      item.setAttribute('class', 'selected');
+      this._scrollToItemIfNeeded(item);
+    }
+  }
+
+  _scrollToItemIfNeeded(item) {
+    const parent = item.parentNode;
+    const parentComputedStyle = window.getComputedStyle(parent, null);
+    const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'));
+    const overTop = item.offsetTop - parent.offsetTop < parent.scrollTop;
+    const overBottom = (item.offsetTop - parent.offsetTop + item.clientHeight - parentBorderTopWidth) > (parent.scrollTop + parent.clientHeight);
+    const alignWithTop = overTop && !overBottom;
+
+    if (overTop || overBottom) {
+      item.scrollIntoView(alignWithTop);
+    }
+  }
+
+  _deHighlightSelectedItem() {
+    const item = this.visibleListItems[this.selectedItemIndex];
+    if (item) {
+      item.setAttribute('class', '');
+    }
   }
 
   _zoneMatchesQuery(zone, queryString) {
@@ -104,12 +165,14 @@ export default class ZoneList {
     itemLinks.append('div').attr('class', 'ranking');
     itemLinks.append('img').attr('class', 'flag');
 
+
     const nameDiv = itemLinks.append('div').attr('class', 'name');
     nameDiv.append('div').attr('class', 'zone-name');
     nameDiv.append('div').attr('class', 'country-name');
 
     itemLinks.append('div').attr('class', 'co2-intensity-tag');
 
+    this.visibleListItems = itemLinks.nodes();
     this.selector = itemLinks.merge(this.selector);
   }
 

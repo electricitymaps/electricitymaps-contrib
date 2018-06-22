@@ -6,23 +6,18 @@
         "datasources": "datakällor",
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
-    "mobile-info-tab": {
-        "map-info-text": "Denna karta visar hur mycket CO2 som släpps ut för att producera din el, i realtid. Vi färglägger områden runt om i världen baserat på deras utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el.",
-        "electricity-origins-text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om ursprunget för dess el.",
-        "wind-solar-text": "Elproduktion från sol och vind är beroende av vädret. Tryck på knapparna sol och vind för att i realtid visa vindstyrka och solsken över hela världen."
-    },
     "onboarding-modal": {
         "view1": {
-            "header": "Elkartan",
-            "subtitle": "Kartlägg klimatpåverkan från elproduktion"
+            "header": "Electricity Map",
+            "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
         },
         "view2": {
             "header": "Se hur mycket CO2 som släpps ut när din el produceras, i realtid.",
-            "text": "Vi färglägger områden runt om i världen baserat på deras utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
+            "text": "Vi färglägger områden runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
         },
         "view3": {
             "header": "Vet var din el kommer från",
-            "text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om ursprunget för dess el."
+            "text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om var elen kommer från."
         },
         "view4": {
             "header": "Vind- och solförhållanden i realtid",
@@ -38,7 +33,10 @@
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
-        "helpfrom": "med hjälp från"
+        "helpfrom": "med hjälp från",
+        "noDataAtTimestamp": "Data är tillfälligt otillgänglig för den valda tiden",
+        "noLiveData": "Aktuell data är tillfälligt otillgänglig för detta område",
+        "noParserInfo": "Vi har ännu ingen information om detta område.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för området</a>."
     },
     "left-panel": {
         "zone-list-header-title": "Klimatpåverkan per region",
@@ -47,6 +45,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
+        "emissionsorigin24h": "Källa för utsläpp de senaste 24 timmarna",
         "electricityorigin24h": "Källa för el under de senaste 24 timmarna",
         "electricityprices24h": "Elpriser under de senaste 24 timmarna",
         "Getdata": "API för att hämta historisk data och prognos"
@@ -75,7 +74,9 @@
         "showWindLayer": "Visa vind-lager",
         "hideWindLayer": "Dölj vind-lager",
         "showSolarLayer": "Visa sol-lager",
-        "hideSolarLayer": "Dölj sol-lager"
+        "hideSolarLayer": "Dölj sol-lager",
+        "noParserInfo": "Ingen data tillgänglig",
+        "temporaryDataOutage": "Data tillfälligt otillgänglig"
     },
     "misc": {
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
@@ -83,7 +84,8 @@
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
         "retrynow": "Försök igen",
         "database-ad": "Letar du efter historisk data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
-        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>"
+        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
+        "legend": "Förklaring"
     },
     "wind": "vind",
     "solar": "sol",
@@ -887,8 +889,25 @@
           "NL": {
             "zoneName": "Nederländerna"
           },
-          "NO": {
-            "zoneName": "Norge"
+          "NO-NO1": {
+            "countryName": "Norge",
+            "zoneName": "Sydöstra Norge"
+          },
+          "NO-NO2": {
+            "countryName": "Norge",
+            "zoneName": "Sydvästra Norge"
+          },
+          "NO-NO3": {
+            "countryName": "Norge",
+            "zoneName": "Mellersta Norge"
+          },
+          "NO-NO4": {
+            "countryName": "Norge",
+            "zoneName": "Norra Norge"
+          },
+          "NO-NO5": {
+            "countryName": "Norge",
+            "zoneName": "Västra Norge"
           },
           "NP": {
             "zoneName": "Nepal"
