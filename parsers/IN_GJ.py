@@ -15,7 +15,7 @@ station_map = {
      "coal": ["Ukai(1-5)+Ukai6",
              "Wanakbori",
              "Gandhinagar",
-             "Sikka(1-2)+Sikka(3-4)",
+             "Sikka(3-4)",
              "KLTPS(1-3)+KLTPS4",
              "SLPP(I+II)",
              "Akrimota",
@@ -28,9 +28,8 @@ station_map = {
               "Kadana(Hydro)",
               "SSP(RBPH)"],
     "gas": ["Utran(Gas)(II)",
-            "Dhuvaran(Gas)(I)+(II)",
-            "GIPCL(I)",
-            "GIPCL(II)",
+            "Dhuvaran(Gas)(I)+(II)+(III)",
+            "GIPCL(I)+(II)",
             "GSEG(I+II)",
             "GPPC",
             "CLPI",
@@ -80,7 +79,7 @@ def fetch_data(zone_key, session=None, logger=None):
 
     rows = web.get_response_soup(
         zone_key,
-        'https://www.sldcguj.com/RealTimeData/RealTimeDemand.php',
+        'http://www.sldcguj.com/RealTimeData/PrintPage.php?page=realtimedemand.php',
         session).find_all('tr')
 
     for row in rows:
