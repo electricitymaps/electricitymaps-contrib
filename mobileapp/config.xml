@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tmrow.electricitymap" version="1.0.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tmrow.electricitymap" version="1.0.13" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Electricity Map</name>
     <description>
         Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
@@ -18,6 +18,7 @@
     <allow-navigation href="https://www.facebook.com/v*/plugins/*" />
     <allow-navigation href="https://platform.twitter.com/*" />
     <platform name="android">
+        <resource-file src="google-services.json" target="google-services.json" />
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
         <preference name="AndroidLaunchMode" value="singleInstance" />
         <preference name="SplashMaintainAspectRatio" value="true" />
@@ -31,6 +32,7 @@
         <icon density="xxxhdpi" src="res/android/mipmap-xxxhdpi/ic_launcher.png" />
     </platform>
     <platform name="ios">
+        <resource-file src="GoogleService-Info.plist" />
         <preference name="CodePushDeploymentKey" value="4uQpHGlWRd7qOyIq-JNAhvjsYXcsEJ-bjzkpG" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
@@ -65,6 +67,13 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-code-push" spec="^1.11.7" />
     <plugin name="cordova-universal-links-plugin" spec="https://github.com/flipflopapp/cordova-universal-links-plugin" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="1267173759989113" />
+        <variable name="APP_NAME" value="Electricity Map" />
+    </plugin>
+    <plugin name="cordova-plugin-firebase-analytics" spec="^0.13.0">
+        <variable name="FIREBASE_VERSION" value="11.6.+" />
+    </plugin>
     <engine name="android" spec="^6.4.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>

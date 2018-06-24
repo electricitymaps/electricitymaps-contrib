@@ -25,6 +25,13 @@ class ConnectionsService {
     });
   }
 
+  trackWithCurrentApplicationState(eventName) {
+    const params = store.getState().application;
+    params.bundleVersion = params.bundleHash;
+    params.embeddedUri = params.isEmbedded ? document.referrer : null;
+    this.track(eventName, params);
+  }
+
   // track google analytics if is available
   ga(){
     if(this._ga !== undefined){

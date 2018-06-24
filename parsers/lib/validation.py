@@ -5,6 +5,28 @@
 from logging import getLogger
 
 
+def has_value_for_key(datapoint, key, logger):
+    """checks that the key exists in datapoint and that the corresponding value
+    is not None"""
+    if datapoint['production'].get(key, None) is None:
+        logger.warning("Required generation type {} is missing from {}".format(
+            key, datapoint['zoneKey']), extra={'key': datapoint['zoneKey']})
+        return None
+    return True
+
+
+def check_expected_range(datapoint, value, expected_range, logger, key=None):
+    low, high = min(expected_range), max(expected_range)
+    if not (low <= value <= high):
+        key_str = 'for key `{}`'.format(key) if key else ''
+        logger.warning("{} reported total of {:.2f}MW falls outside range "
+                       "of {} {}".format(datapoint['zoneKey'], value,
+                                         expected_range, key_str),
+                       extra={'key': datapoint['zoneKey']})
+        return
+    return True
+
+
 def validate(datapoint, logger=getLogger(__name__), **kwargs):
     """
     Validates a production datapoint based on given constraints.
@@ -12,6 +34,7 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
 
     Arguments
     ---------
+    logger
     datapoint: a production datapoint. See examples
     optional keyword arguments
       remove_negative: bool
@@ -26,10 +49,15 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
         Checks production sum is above floor value.
         If this is not the case the datapoint is invalidated.
         Defaults to None
-      expected_range: tuple
+      expected_range: tuple or dict
         Checks production total against expected range.
-        Tuple is in form (low threshold, high threshold).
-        For example (1800, 12000)
+        Tuple is in form (low threshold, high threshold), e.g. (1800, 12000).
+        If a dict, it should be in the form
+        {
+          'nuclear': (low, high),
+          'coal': (low, high),
+        }
+        All keys will be required.
         If the total is outside this range the datapoint will be invalidated.
         Defaults to None.
 
@@ -60,6 +88,9 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
     datapoint
     >>> validate(datapoint, required=['not_a_production_type'])
     None
+    >>> validate(datapoint, required=['gas'],
+    >>>          expected_range={'solar': (0, 1000), 'wind': (100, 2000)})
+    datapoint
     """
 
     remove_negative = kwargs.pop('remove_negative', False)
@@ -70,38 +101,45 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
         raise TypeError('Unexpected **kwargs: %r' % kwargs)
 
     generation = datapoint['production']
+    storage = datapoint.get('storage', {})
 
     if remove_negative:
         for key, val in generation.items():
             if val is not None and -5.0 < val < 0.0:
-                logger.warning("{} returned {}, setting to None".format(
+                logger.warning("{} returned {:.2f}, setting to None".format(
                     key, val), extra={'key': datapoint['zoneKey']})
                 generation[key] = None
 
     if required:
         for item in required:
-            if generation.get(item, None) is None:
-                logger.warning("Required generation type {} is missing from {}".format(
-                    item, datapoint['zoneKey']), extra={'key': datapoint['zoneKey']})
-                return None
+            if not has_value_for_key(datapoint, item, logger):
+                return
 
     if floor:
-        total = sum(v for k, v in generation.items() if v is not None)
+        # when adding power to the system, storage key is negative
+        total = (sum(v for k, v in generation.items() if v is not None)
+                 - sum(v for k, v in storage.items() if v is not None))
         if total < floor:
-            logger.warning("{} reported total of {}MW does not meet {}MW floor value".format(
-                datapoint['zoneKey'], total, floor), extra={'key': datapoint['zoneKey']})
-            return None
+            logger.warning("{} reported total of {}MW does not meet {}MW floor"
+                           " value".format(datapoint['zoneKey'], total, floor),
+                           extra={'key': datapoint['zoneKey']})
+            return
 
     if expected_range:
-        low = min(expected_range)
-        high = max(expected_range)
-        total = sum(v for k, v in generation.items() if v is not None)
-        if low <= total <= high:
-            pass
+        if isinstance(expected_range, dict):
+            for key, range_ in expected_range.items():
+                if not has_value_for_key(datapoint, key, logger):
+                    return
+                if not check_expected_range(datapoint, generation[key], range_,
+                                            logger, key=key):
+                    return
         else:
-            logger.warning("{} reported total of {}MW falls outside range of {}".format(
-                datapoint['zoneKey'], total, expected_range), extra={'key': datapoint['zoneKey']})
-            return None
+            # when adding power to the system, storage key is negative
+            total = (sum(v for k, v in generation.items() if v is not None)
+                     - sum(v for k, v in storage.items() if v is not None))
+            if not check_expected_range(datapoint, total, expected_range,
+                                        logger):
+                return
 
     return datapoint
 
@@ -128,4 +166,5 @@ test_datapoint = {
 }
 
 if __name__ == '__main__':
-    print(validate(test_datapoint, required=['gas'], expected_range=(100, 2000), remove_negative=True))
+    print(validate(test_datapoint, required=['gas'],
+                   expected_range=(100, 2000), remove_negative=True))

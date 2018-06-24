@@ -16,7 +16,18 @@ function readNDJSON(path) {
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
 const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
-  .concat([require('./third_party_maps/DK-DK2-without-BHM.json')]);
+  .concat([
+    require('./third_party_maps/DK-DK2-without-BHM.json'),
+    require('./third_party_maps/NO-NO1.json'),
+    require('./third_party_maps/NO-NO2.json'),
+    require('./third_party_maps/NO-NO3.json'),
+    require('./third_party_maps/NO-NO4.json'),
+    require('./third_party_maps/NO-NO5.json'),
+    require('./third_party_maps/SE-SE1.json'),
+    require('./third_party_maps/SE-SE2.json'),
+    require('./third_party_maps/SE-SE3.json'),
+    require('./third_party_maps/SE-SE4.json'),
+  ]);
 
 const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
 
@@ -53,6 +64,9 @@ function hascMatch(properties, hasc) {
 
 function getCountry(countryId) {
   return geomerge(...allGeos.filter(d => d.id === countryId));
+}
+function getByPropertiesId(zoneId) {
+  return geomerge(...allGeos.filter(d => d.properties.id === zoneId));
 }
 function getSubUnit(subid) {
   return geomerge(...allGeos.filter(d => d.properties.subid === subid));
@@ -183,7 +197,7 @@ const zoneDefinitions = [
   {zoneName: 'DJ', type: 'country', id: 'DJI'},
   // {zoneName: 'DK', type: 'subunits', subunits: ['DNK']},
   { zoneName: 'DK-DK1', type: 'states', countryId: 'DNK', states: ['DK.MJ', 'DK.ND', 'DK.SD'] },
-  { zoneName: 'DK-DK2', type: 'country', countryId: 'DK-DK2' },
+  { zoneName: 'DK-DK2', type: 'subZone', id: 'DK-DK2' },
   {zoneName: 'DK-BHM', type: 'subunits', subunits: ['DNB']},
   {zoneName: 'DM', type: 'country', id: 'DMA'},
   {zoneName: 'DO', type: 'country', id: 'DOM'},
@@ -225,7 +239,10 @@ const zoneDefinitions = [
   {zoneName: 'GN', type: 'country', id: 'GIN'},
   {zoneName: 'GP', type: 'country', id: 'GLP'},
   {zoneName: 'GQ', type: 'country', id: 'GNQ'},
-  {zoneName: 'GR', type: 'country', id: 'GRC'},
+  // {zoneName: 'GR', type: 'country', id: 'GRC'},
+  {zoneName: 'GR', type: 'states', countryId: 'GRC', states: ['GR.AT', 'GR.EP', 'GR.GC','GR.GW',
+      'GR.II', 'GR.MA', 'GR.MC', 'GR.MT', 'GR.MW', 'GR.PP', 'GR.TS']},
+  {zoneName: 'GR-IS', type: 'states', countryId: 'GRC', states: ['GR.AN', 'GR.AS', 'GR.CR']},
   {zoneName: 'GS', type: 'country', id: 'SGS'},
   {zoneName: 'GT', type: 'country', id: 'GTM'},
   {zoneName: 'GU', type: 'country', id: 'GUM'},
@@ -346,7 +363,12 @@ const zoneDefinitions = [
   {zoneName: 'NG', type: 'country', id: 'NGA'},
   {zoneName: 'NI', type: 'country', id: 'NIC'},
   {zoneName: 'NL', type: 'country', id: 'NLD'},
-  {zoneName: 'NO', type: 'country', id: 'NOR'},
+  // {zoneName: 'NO', type: 'country', id: 'NOR'},
+  { zoneName: 'NO-NO1', type: 'subZone', id: 'NO-NO1' },
+  { zoneName: 'NO-NO2', type: 'subZone', id: 'NO-NO2' },
+  { zoneName: 'NO-NO3', type: 'subZone', id: 'NO-NO3' },
+  { zoneName: 'NO-NO4', type: 'subZone', id: 'NO-NO4' },
+  { zoneName: 'NO-NO5', type: 'subZone', id: 'NO-NO5' },
   {zoneName: 'NP', type: 'country', id: 'NPL'},
   // {zoneName: 'NZ', type: 'country', id: 'NZL'},
   {zoneName: 'NU', type: 'country', id: 'NIU'},
@@ -395,6 +417,10 @@ const zoneDefinitions = [
   {zoneName: 'SC', type: 'country', id: 'SYC'},
   {zoneName: 'SD', type: 'country', id: 'SDN'},
   {zoneName: 'SE', type: 'country', id: 'SWE'},
+  // { zoneName: 'SE-SE1', type: 'subZone', id: 'SE-SE1' },
+  // { zoneName: 'SE-SE2', type: 'subZone', id: 'SE-SE2' },
+  // { zoneName: 'SE-SE3', type: 'subZone', id: 'SE-SE3' },
+  // { zoneName: 'SE-SE4', type: 'subZone', id: 'SE-SE4' },
   {zoneName: 'SG', type: 'country', id: 'SGP'},
   {zoneName: 'SH', type: 'country', id: 'SHN'},
   {zoneName: 'SI', type: 'country', id: 'SVN'},
@@ -436,7 +462,7 @@ const zoneDefinitions = [
   // {zoneName: 'US-AK', type: 'subunits', subunits: ['USK']}, // Alaska,
   // {zoneName: 'US-HI', type: 'subunits', subunits: ['USH']}, // Hawaii,
   {zoneName: 'US-AL', countryId: 'USA', stateId: 'US.AL', type: 'state'},
-  {zoneName: 'US-AZ', countryId: 'USA', stateId: 'US.AZ', type: 'state'},
+  // {zoneName: 'US-AZ', countryId: 'USA', stateId: 'US.AZ', type: 'state'},
   // {zoneName: 'US-AR', countryId: 'USA', stateId: 'US.AR', type: 'state'},
   {zoneName: 'US-CA', countryId: 'USA', stateId: 'US.CA', type: 'state'},
   {zoneName: 'US-CO', countryId: 'USA', stateId: 'US.CO', type: 'state'},
@@ -471,7 +497,7 @@ const zoneDefinitions = [
     'US.CT', 'US.MA', 'US.ME', 'US.NH', 'US.RI', 'US.VT']},
   // {zoneName: 'US-NH', countryId: 'USA', stateId: 'US.NH', type: 'state'},
   // {zoneName: 'US-NJ', countryId: 'USA', stateId: 'US.NJ', type: 'state'},
-  {zoneName: 'US-NM', countryId: 'USA', stateId: 'US.NM', type: 'state'},
+  // {zoneName: 'US-NM', countryId: 'USA', stateId: 'US.NM', type: 'state'},
   {zoneName: 'US-NV', countryId: 'USA', stateId: 'US.NV', type: 'state'},
   {zoneName: 'US-NY', countryId: 'USA', stateId: 'US.NY', type: 'state'},
   // {zoneName: 'US-OH', countryId: 'USA', stateId: 'US.OH', type: 'state'},
@@ -485,12 +511,14 @@ const zoneDefinitions = [
   // {zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state'},
   {zoneName: 'US-SPP', type: 'states', countryId: 'USA', states: [
     'US.KS', 'US.NE','US.OK', 'US.ND', 'US.SD']},
+  {zoneName: 'US-SVERI', type: 'states', countryId: 'USA', states: ['US.AZ', 'US.NM']},
   {zoneName: 'US-TN', countryId: 'USA', stateId: 'US.TN', type: 'state'},
   {zoneName: 'US-TX', countryId: 'USA', stateId: 'US.TX', type: 'state'},
   {zoneName: 'US-UT', countryId: 'USA', stateId: 'US.UT', type: 'state'},
   // {zoneName: 'US-VA', countryId: 'USA', stateId: 'US.VA', type: 'state'},
   // {zoneName: 'US-VT', countryId: 'USA', stateId: 'US.VT', type: 'state'},
-  {zoneName: 'US-WA', countryId: 'USA', stateId: 'US.WA', type: 'state'},
+  // {zoneName: 'US-WA', countryId: 'USA', stateId: 'US.WA', type: 'state'},
+  {zoneName: 'US-BPA', countryId: 'USA', stateId: 'US.WA', type: 'state'},
   // {zoneName: 'US-WI', countryId: 'USA', stateId: 'US.WI', type: 'state'},
   // {zoneName: 'US-WV', countryId: 'USA', stateId: 'US.WV', type: 'state'},
   {zoneName: 'US-WY', countryId: 'USA', stateId: 'US.WY', type: 'state'},
@@ -540,6 +568,9 @@ const getDataForZone = (zone, mergeStates) => {
   }
   else if (zone.type === 'fips'){
     return getStateByFips(zone.fips[0], zone.fips[1]);
+  }
+  else if (zone.type === 'subZone') {
+    return getByPropertiesId(zone.id);
   }
   else{
     console.warn('unknown type for zone ', zone);

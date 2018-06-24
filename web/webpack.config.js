@@ -10,6 +10,7 @@ module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
   entry: { bundle: ['babel-polyfill', './src/main.js'], styles: './src/styles.css' },
   module: {
+    noParse: /(mapbox-gl)\.js$/,
     rules: [
       // Extract css files
       {

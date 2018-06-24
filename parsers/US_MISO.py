@@ -115,7 +115,7 @@ def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, log
         'zoneKey': zone_key,
         'datetime': processed_data[0],
         'production': processed_data[1],
-        'storage': {'hydro': None},
+        'storage': {},
         'source': 'misoenergy.org'
     }
 

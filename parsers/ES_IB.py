@@ -4,7 +4,7 @@
 from arrow import get
 # The request library is used to fetch content through HTTP
 from requests import Session
-from reescraper import BalearicIslands
+from ree import BalearicIslands
 from .lib.exceptions import ParserException
 
 
@@ -13,7 +13,9 @@ def fetch_consumption(zone_key='ES-IB', session=None, target_datetime=None, logg
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     ses = session or Session()
-    responses = BalearicIslands(ses).get_all()
+
+    # TODO: Remove verify SSL config when working without it.
+    responses = BalearicIslands(ses, verify=False).get_all()
     if not responses:
         raise ParserException("ES-IB", "No response")
     else:
@@ -37,7 +39,9 @@ def fetch_production(zone_key='ES-IB', session=None, target_datetime=None, logge
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ses = session or Session()
-    responses = BalearicIslands(ses).get_all()
+
+    # TODO: Remove verify SSL config when working without it.
+    responses = BalearicIslands(ses, verify=False).get_all()
 
     if not responses:
         raise ParserException("ES-IB", "No response")
@@ -78,7 +82,9 @@ def fetch_exchange(zone_key1='ES', zone_key2='ES-IB', session=None, target_datet
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     ses = session or Session()
-    responses = BalearicIslands(ses).get_all()
+
+    # TODO: Remove verify SSL config when working without it.
+    responses = BalearicIslands(ses, verify=False).get_all()
     if not responses:
         raise ParserException("ES-IB", "No response")
     else:

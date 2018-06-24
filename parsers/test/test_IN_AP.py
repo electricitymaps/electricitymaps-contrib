@@ -10,7 +10,7 @@ class Test_IN_AP(unittest.TestCase):
     def setUp(self):
         self.session = Session()
         self.adapter = Adapter()
-        self.session.mount('http://', self.adapter)
+        self.session.mount('https://', self.adapter)
         response_text = resource_string("parsers.test.mocks", "IN_AP.html")
         self.adapter.register_uri(ANY, ANY, text=str(response_text))
 
@@ -24,7 +24,8 @@ class Test_IN_AP(unittest.TestCase):
             self.assertIsNotNone(data['production'])
             self.assertIsNotNone(data['storage'])
         except Exception as ex:
-            self.fail("IN_AP.fetch_production() raised Exception: {0}".format(ex.message))
+            self.fail(
+                "IN_AP.fetch_production() raised Exception: {0}".format(ex))
 
     def test_fetch_consumption(self):
         try:
@@ -35,7 +36,8 @@ class Test_IN_AP(unittest.TestCase):
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['consumption'])
         except Exception as ex:
-            self.fail("IN_AP.fetch_consumption() raised Exception: {0}".format(ex.message))
+            self.fail(
+                "IN_AP.fetch_consumption() raised Exception: {0}".format(ex))
 
 
 if __name__ == '__main__':

@@ -30,9 +30,9 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
         'zoneKey': zone_key,
         'datetime': zone_date_time.datetime,
         'production': {
-            'oil': fossil['value'],
-            'wind': wind['value'],
-            'solar': solar['value'],
+            'oil': float(fossil['value']),
+            'wind': float(wind['value']),
+            'solar': float(solar['value']),
         },
         'storage': {},
         'source': 'webaruba.com',

@@ -1,3 +1,5 @@
+import NoDataOverlay from '../components/nodataoverlay'
+
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -13,6 +15,8 @@ var moment = require('moment');
 var flags = require('../helpers/flags');
 var translation = require('../helpers/translation');
 
+const allChildrenSelector = '.country-table-header,.country-show-emissions-wrap,.country-table-container,.country-history';
+
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
 // with a % scale.
@@ -24,10 +28,13 @@ function CountryTable(selector, modeColor, modeOrder) {
 
     this.root = d3.select(selector);
 
+    this.wrapperNoDataOverlay = new NoDataOverlay('.country-panel-wrap');
+    this.container = this.root.append('svg').attr('class', 'country-table');
+    
     // Create containers
-    this.headerRoot = this.root.append('g');
-    this.productionRoot = this.root.append('g');
-    this.exchangeRoot = this.root.append('g');
+    this.headerRoot = this.container.append('g');
+    this.productionRoot = this.container.append('g');
+    this.exchangeRoot = this.container.append('g');
 
     // Constants
     this.ROW_HEIGHT = 13; // Height of the rects
@@ -87,15 +94,39 @@ function CountryTable(selector, modeColor, modeOrder) {
         .style('fill', 'darkgray')
         .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
+    
 }
 
 CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
-    var width = this.root.node().getBoundingClientRect().width;
-    if (width === 0) { return; }
+    if (this.root.node().getBoundingClientRect.width === 0){
+        return;
+    }
+
+    if (!this._data) {
+        return;
+    }
+ 
+    // Set header
+    const panel = d3.select('.left-panel-zone-details');
+    const datetime = this._data.stateDatetime || this._data.datetime;
+    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
+    panel.select('.country-name').text(
+        translation.getFullZoneName(this._data.countryCode));
+
+    panel.selectAll('.country-time')
+        .text(datetime ? moment(datetime).format('LL LT') : '');
+        
+    if (this.isMissingParser){
+        return;
+    }
+
+    const width = this.container.node().getBoundingClientRect().width;
+    
     if (!this._exchangeData) { return; }
 
+    
     // Update scale
     this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
     this.powerScale
@@ -121,22 +152,13 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .attr('transform', 'translate(' + (this.powerScale.range()[0] + this.LABEL_MAX_WIDTH) + ', ' + this.X_AXIS_HEIGHT +')')
         .call(this.axis);
 
-    // Set header
-    var header = d3.select('.country-table-header');
-    var panel = d3.select('.left-panel-country');
-    var datetime = this._data.stateDatetime || this._data.datetime;
-    panel.select('#country-flag').attr('src', flags.flagUri(this._data.countryCode, 24));
-    panel.select('.country-name').text(
-        translation.translate(
-            'zoneShortName.' + this._data.countryCode) || this._data.countryCode);
-    panel.selectAll('.country-time')
-        .text(datetime ? moment(datetime).format('LL LT') : '?');
 
     var selection = this.productionRoot.selectAll('.row')
         .data(this.sortedProductionData);
     /*selection.select('rect.capacity')
         .attr('fill', function (d) { return that.co2color()(d.gCo2eqPerkWh); })
         .attr('stroke', function (d) { return that.co2color()(d.gCo2eqPerkWh); });*/
+
     if (that._displayByEmissions)
         selection.select('rect.capacity')
             .transition()
@@ -346,12 +368,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(Math.round(this._data.co2intensity) || '?');
     var hasFossilFuelData = this._data.fossilFuelRatio != null;
     var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.selectAll('.left-panel-country .lowcarbon-percentage')
+    d3.selectAll('.left-panel-zone-details .lowcarbon-percentage')
         .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
 
     var hasRenewableData = this._data.renewableRatio != null;
     var renewablePercent = this._data.renewableRatio * 100;
-    d3.selectAll('.left-panel-country .renewable-percentage')
+    d3.selectAll('.left-panel-zone-details .renewable-percentage')
         .text(hasRenewableData ? Math.round(renewablePercent) : '?');
 
     var priceData = this._data.price || {};
@@ -361,7 +383,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
     d3.select('.country-spot-price-currency')
         .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
-    d3.select('#country-emission-rect, .left-panel-country .emission-rect')
+    d3.select('#country-emission-rect, .left-panel-zone-details .emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',
@@ -381,9 +403,12 @@ CountryTable.prototype.displayByEmissions = function(arg) {
         this._displayByEmissions = arg;
         // Quick hack to re-render
         // TODO: In principle we shouldn't be calling `.data()`
-        this
+        if (this._data){
+            this
             .data(this._data)
             .render();
+        }
+
     }
     return this;
 }
@@ -430,7 +455,7 @@ CountryTable.prototype.resize = function() {
     this.exchangeRoot
         .attr('transform', 'translate(0,' + this.yExchange + ')');
 
-    this.root
+    this.container
         .attr('height', this.yExchange + this.exchangeHeight);
 }
 
@@ -441,6 +466,10 @@ CountryTable.prototype.data = function(arg) {
     this._data = arg;
 
     if (!this._data) { return this }
+
+    this.hasProductionData = this._data.production !== undefined && Object.keys(this._data.production).length > 0;
+    this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser;
+    
     if (this._exchangeKeys) {
         this._exchangeData = this._exchangeKeys
             .map(function(k) {
@@ -454,6 +483,10 @@ CountryTable.prototype.data = function(arg) {
             .sort(function(x, y) {
                 return d3.ascending(x.key, y.key);
             });
+    }
+    if (!this.hasProductionData){
+        // Remove exchange data values if no production is present, as table is greyed out
+        this._exchangeData.forEach(d => d.value = undefined);
     }
 
     // Construct a list having each production in the same order as this.MODES.
@@ -478,6 +511,7 @@ CountryTable.prototype.data = function(arg) {
         };
     });
 
+    
     // update scales
     this.powerScale
         .domain(this._powerScaleDomain || [
@@ -564,5 +598,15 @@ CountryTable.prototype.exchangeKeys = function(arg) {
     }
     return this;
 };
+
+CountryTable.prototype.showNoParserMessageIf = function(condition) {
+    d3.selectAll(allChildrenSelector).classed('all-screens-hidden', condition);
+    d3.select('.zone-details-no-parser-message').classed('visible', condition);
+}
+
+CountryTable.prototype.showNoDataMessageIf = function(condition, isRealtimeData) {
+    this.wrapperNoDataOverlay.showIfElseHide(condition);
+    this.wrapperNoDataOverlay.text(translation.translate(isRealtimeData? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp'));
+}
 
 module.exports = CountryTable;

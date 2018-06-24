@@ -13,7 +13,7 @@ TYPE_MAPPING = {
     u'tmva367': 'gas',  # CET Nord (CHPP) #3 index
     u'tmva42': 'gas',  # CET-1 Chişinău (CHPP) #6 index
     u'tmva378': 'gas',  # CET-2 Chişinău (CHPP) #5 index
-    u'tmva1024': 'unknown',  # CERS Moldovenească (fuel mix coal, gas, oil) #7 index
+    u'tmva1024': 'gas',  # CERS Moldovenească (fuel mix 2017 99.92% gas, 0.08% oil) #7 index
 }
 
 display_url = 'http://www.moldelectrica.md/ro/activity/system_state'

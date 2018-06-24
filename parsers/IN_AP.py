@@ -3,7 +3,6 @@
 from requests import Session
 from .lib import zonekey, IN, web
 
-
 def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh  production"""
     if target_datetime:
@@ -12,7 +11,7 @@ def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logge
     zonekey.assert_zone_key(zone_key, 'IN-AP')
 
     html = web.get_response_soup(zone_key,
-                                 'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
+                                 'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
     hydro_value = IN.read_value_from_span_id(html, 'lblHydel')
@@ -59,7 +58,7 @@ def fetch_consumption(zone_key='IN-AP', session=None, target_datetime=None, logg
     zonekey.assert_zone_key(zone_key, 'IN-AP')
 
     html = web.get_response_soup(zone_key,
-                                 'http://www.core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
+                                 'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
     demand_value = IN.read_value_from_span_id(html, 'lblGridDemand')

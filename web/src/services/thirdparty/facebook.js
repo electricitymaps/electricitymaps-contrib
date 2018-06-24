@@ -24,7 +24,8 @@ class FacebookThirdParty {
             FB.Event.subscribe('edge.remove', function(e) {
                 // This will happen when they unlike the page
                 if (e == 'https://www.facebook.com/tmrowco') {
-                    require('../thirdparty').track('unlike');
+                    var thirdPartyService = require('../thirdparty');
+                    thirdPartyService.track('unlike');
                     thirdPartyService.ga('event', 'unlike', {
                       event_category: 'social',
                       event_label: 'facebook',
@@ -49,6 +50,10 @@ class FacebookThirdParty {
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+
+        if (window.isCordova) {
+          this.hasLoaded = true;
+        }
     }
 
     track(event, data){
@@ -57,9 +62,17 @@ class FacebookThirdParty {
         } else {
             // Quick hack
            if (event === 'pageview') {
+             if (!window.isCordova) {
                 window.FB.AppEvents.logPageView();
+              } else {
+                // Nothing to do here, as Facebook registers this automatically
+              }
             } else {
+              if (!window.isCordova) {
                 window.FB.AppEvents.logEvent(event, undefined, data);
+              } else {
+                facebookConnectPlugin.logEvent(event, data);
+              }
             }
         }
     }

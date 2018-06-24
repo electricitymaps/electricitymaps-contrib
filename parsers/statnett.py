@@ -4,8 +4,6 @@ import arrow
 import logging
 # The request library is used to fetch content through HTTP
 import requests
-
-# Mappings used to go from country to bidding zone level
 exchanges_mapping = {
     'BY->LT': [
         'BY->LT'
@@ -23,6 +21,9 @@ exchanges_mapping = {
         'DE->SE4'
     ],
     'DK-DK1->NO': [
+        'DK1->NO2'
+    ],
+    'DK-DK1->NO-NO2': [
         'DK1->NO2'
     ],
     'DK-DK1->SE': [
@@ -47,6 +48,9 @@ exchanges_mapping = {
         'EE->FI'
     ],
     'FI->NO': [
+        'FI->NO4'
+    ],
+    'FI->NO-NO4': [
         'FI->NO4'
     ],
     'FI->RU': [
@@ -83,14 +87,51 @@ exchanges_mapping = {
     'NL->NO': [
         'NL->NO2'
     ],
+    'NL->NO-NO2': [
+        'NL->NO2'
+    ],
     'NO->SE': [
         'NO1->SE3',
         'NO3->SE2',
         'NO4->SE1',
         'NO4->SE2'
     ],
+    'NO-NO1->NO-NO2': [
+        'NO1->NO2'
+    ],
+    'NO-NO1->NO-NO3': [
+        'NO1->NO3'
+    ],
+    'NO-NO1->NO-NO5': [
+        'NO1->NO5'
+    ],
+    'NO-NO1->SE': [
+        'NO1->SE3'
+    ],
+    'NO-NO2->NO-NO5': [
+        'NO2->NO5'
+    ],
+    'NO-NO3->NO-NO4': [
+        'NO3->NO4'
+    ],
+    'NO-NO3->NO-NO5': [
+        'NO3->NO5'
+    ],
+    'NO-NO3->SE': [
+        'NO3->SE2'
+    ],
+    'NO-NO3->SE-SE2': [
+        'NO3->SE2'
+    ],
     'NO->RU': [
         'NO4->RU'
+    ],
+    'NO-NO4->RU': [
+        'NO4->RU'
+    ],
+    'NO-NO4->SE': [
+        'NO4->SE1',
+        'NO4->SE2'
     ],
     'PL->SE': [
         'PL->SE4',
@@ -108,6 +149,8 @@ exchanges_mapping = {
         'SE1->SE2'
     ],
 }
+
+# Mappings used to go from country to bidding zone level
 
 
 def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
