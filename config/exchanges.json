@@ -1184,6 +1184,26 @@
     },
     "rotation": 35
   },
+  "IQ->IQ-KUR": {
+    "lonlat": [
+      43.676,
+      35.470
+    ],
+    "parsers": {
+      "exchange": "IQ.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "IQ->IR":{
+    "lonlat": [
+      47.834,
+      31.784
+    ],
+    "parsers": {
+      "exchange": "IQ.fetch_exchange"
+    },
+    "rotation": 90
+  },
   "IT->MT": {
     "capacity": [
       -200,

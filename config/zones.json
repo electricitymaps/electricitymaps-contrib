@@ -1302,7 +1302,7 @@
     "timezone": null
   },
   "IN-UP": {
-      "capacity": {
+    "capacity": {
       "biomass": 1963,
       "coal": 21843,
       "gas": 1493,
@@ -1321,6 +1321,19 @@
       "production": "IN_UP.fetch_production"
     },
     "timezone": "Asia/Kolkata"
+  },
+  "IQ": {
+    "capacity": {},
+    "contributors": [
+      "https://github.com/alixunderplatz",
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "iq.png",
+    "parsers": {
+      "consumption": "IQ.fetch_consumption",
+      "production": "IQ.fetch_production"
+    },
+    "timezone": "Asia/Baghdad"
   },
   "IS": {
     "capacity": {
@@ -1972,7 +1985,7 @@
     },
     "timezone": "America/El_Salvador"
   },
-  "TR": { 
+  "TR": {
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
     "capacity": {
       "biomass": 510,
