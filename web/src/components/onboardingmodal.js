@@ -11,7 +11,7 @@ const defaultViews = [{
   headerImage: 'images/onboarding/electricymapLogoIcon.svg',
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
-  textHtml: `<div><h1>${translation.translate('onboarding-modal.view1.header')}</h1></div>
+  textHtml: `<div><h1>electricityMap</h1></div>
       <div><h2>${translation.translate('onboarding-modal.view1.subtitle')}</h2></div>`,
 },
 {
