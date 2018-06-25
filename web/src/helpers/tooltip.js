@@ -188,7 +188,6 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
 
     const hasFossilFuelData = countryData.fossilFuelRatio !== undefined || countryData.fossilFuelRatio !== null;
     const fossilFuelPercent = countryData.fossilFuelRatio * 100;
-    console.log(Math.round(100 - fossilFuelPercent));
     lowCarbonGauge.setPercentage(Math.round(100 - fossilFuelPercent));
     tooltip.select('.lowcarbon-percentage')
       .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');

@@ -1229,28 +1229,6 @@ sub {
     margin-right: 0.4em;
 }
 
-.center-header {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 0.8rem;
-}
-
-.center-header span{
-    display: none;
-}
-
-.center-header span.visible{
-    display: inherit;
-}
-
-.center-header a{
-    color: #113959 !important;
-}
-
-.center-header a:hover{
-    text-decoration: underline !important;
-}
-
 .modal-background-overlay{
     height: 100%;
     width: 100%;

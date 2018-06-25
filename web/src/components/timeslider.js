@@ -60,7 +60,7 @@ export default class TimeSlider {
         return moment(d).format(TIME_FORMAT);
       });
     this.axis.call(xAxis);
-    this.axis.selectAll('.tick text').attr('fill', '#000000'); // html 'lightgray'
+    this.axis.selectAll('.tick text').attr('fill', '#000000');
   }
 
   _updateSliderValue() {

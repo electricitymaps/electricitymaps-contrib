@@ -111,10 +111,6 @@ co2Sub = function(str) {
                              · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
                         </span>
                     </div>
-                    <!-- <div class="center-header small-screen-hidden">
-                        <span class="api-ad"><%- __('misc.api-ad') %> </span>
-                        <span class="database-ad"><%- __('misc.database-ad') %> </span>
-                    </div> -->
                 </div>
             </div>
             <div id="inner">
@@ -178,9 +174,10 @@ co2Sub = function(str) {
                                     </div>
                                     <!-- Twitter share -->
                                     <a class="twitter-share-button"
-                                    data-url="https://www.electricitymap.org"
-                                    data-via="tmrowco"
-                                    data-lang="<%= locale %>"></a>
+                                        data-url="https://www.electricitymap.org"
+                                        data-via="tmrowco"
+                                        data-lang="<%= locale %>">
+                                    </a>
                                     <!-- Slack -->
                                     <span class="slack-button">
                                         <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
@@ -235,9 +232,10 @@ co2Sub = function(str) {
                                     </div>
                                     <!-- Twitter share -->
                                     <a class="twitter-share-button"
-                                    data-url="https://www.electricitymap.org"
-                                    data-via="tmrowco"
-                                    data-lang="<%= locale %>"></a>
+                                        data-url="https://www.electricitymap.org"
+                                        data-via="tmrowco"
+                                        data-lang="<%= locale %>">
+                                    </a>
                                     <!-- Slack -->
                                     <span class="slack-button">
                                         <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
@@ -549,12 +547,6 @@ co2Sub = function(str) {
                         <div class="country-col-headline"><%- __('country-panel.renewable') %></div>
                     </div>
                 </div>
-                  <!--  <div>
-                        <%- co2Sub(__('tooltips.carbonintensity')) %>:<br />        
-                        <div class="emission-rect"></div> <span class="country-emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />        
-                    </div>
-                    <%- co2Sub(__('tooltips.lowcarbon')) %>: <span class="lowcarbon-percentage"></span>%<br />
-                    <%-        __('tooltips.renewable')  %>: <span class="renewable-percentage"></span>% -->
             </div>
             <div class="temporary-outage-text">
                     <%-        __('tooltips.temporaryDataOutage')  %>

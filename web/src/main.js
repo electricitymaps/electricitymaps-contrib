@@ -110,6 +110,9 @@ let windLayer;
 let solarLayer;
 let onboardingModal;
 
+// Set standard theme
+let theme = themes.bright;
+
 // ** Create components
 const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
 const countryHistoryCarbonGraph = new LineGraph(
@@ -236,17 +239,6 @@ const randomBoolean = Math.random() >= 0.5;
 d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
-// update Theme
-let theme = themes.bright;
-function updateTheme() {
-  if (getState().application.brightModeEnabled) {
-    theme = themes.bright;
-  } else {
-    theme = themes.dark;
-  }
-  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
-}
-
 // Set up co2 scales
 let co2color;
 let co2Colorbars;
@@ -287,7 +279,6 @@ d3.select('#checkbox-colorblind').on('change', () => {
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
     .setCo2color(co2color)
-    .setTheme(theme)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
@@ -1297,7 +1288,13 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
   d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
   Cookies.set('brightdModeEnabled', brightModeEnabled);
-  updateTheme();
+  // update Theme
+  if (getState().application.brightModeEnabled) {
+    theme = themes.bright;
+  } else {
+    theme = themes.dark;
+  }
+  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
 });
 
 // Observe for solar settings change
