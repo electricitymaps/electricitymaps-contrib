@@ -1203,6 +1203,10 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   if (zoomLevel) {
     // Remember to set center and zoom in case the map wasn't loaded yet
     zoneMap.setZoom(zoomLevel);
+    // If the panel is open the zoom doesn't appear perfectly centered because 
+    // it centers on the whole window and not just the visible map part.
+    // something one could fix in the future. It's tricky because one has to project, unproject
+    // and project again taking both starting and ending zoomlevel into account
     zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
   }
 }

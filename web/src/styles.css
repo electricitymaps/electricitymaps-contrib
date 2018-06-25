@@ -81,8 +81,11 @@ line, path {
 
 #loading.loading.overlay {
     /* That's the main loading overlay */
-    background: #F3F3F3 url('../images/electricitymap-logo.svg') no-repeat center center;
-    background-size: 10rem;
+    background-image: url('../images/loading/loading64_FA.gif'), url('../images/loading/electricitymap-text.svg');
+    background-position: calc(50% - 64px) center , center center;
+    background-repeat: no-repeat, no-repeat; 
+    background-size: 36px , 10rem;
+    background-color: #FAFAFA;
     width: 100%;
     height: 100%;
     display: inline-block;
@@ -92,7 +95,7 @@ line, path {
 }
 
 .left-panel .loading{
-    background: #FAFAFA url('../images/electricitymap-logo.svg') no-repeat center center;
+    background: #FAFAFA url('../images/loading/loading64_FA.gif') no-repeat center center;
     background-size: 100%;
     width: 1em;
     height: 1em;
@@ -116,7 +119,7 @@ line, path {
 }
 .country-panel-wrap {
     position: relative;
-
+    padding-top: 120px;
 }
 .country-history .loading {
     background-size: 1.7rem;
@@ -165,7 +168,7 @@ body {
 
 /* Begin HEADER */
 
-#header {
+#header{
     background-color: transparent;
     z-index: 2;
     position: fixed;
@@ -186,8 +189,8 @@ body {
     height: 50px;
     padding-top: 13px;
     padding-bottom: 13px;
-    padding-left: 16px;
-    padding-right: 17px;
+    padding-left: 15px;
+    padding-right: 15px;
     line-height: 24px;
 
     /* Force width to include padding */
@@ -232,7 +235,7 @@ body {
 #header-content .logo .image {
     vertical-align: text-top;
 }
-#header-content .logo .image {
+#header-content .logo .image, #mobile-header .logo .image {
     display: inline-block;
     height: 21px;
     width:139px;
@@ -245,7 +248,7 @@ body {
     background-size: cover;
 }
 
-#header-content.brightmode #electricitymap-logo{
+#header-content.brightmode #electricitymap-logo, #mobile-header #electricitymap-logo{
     background-image: url(../images/electricitymap-logo.svg);
 }
 
@@ -258,7 +261,8 @@ body {
 #header-content > div,
 #header-content > span {
     vertical-align: middle;
-}
+} 
+
 
 /* end HEADER */
 
@@ -429,6 +433,8 @@ body {
 
 .mobile-info-tab {
     padding: 1rem;
+    overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobile-info-tab p{
@@ -476,8 +482,13 @@ body {
     position: relative;
 }
 .country-table-header {
-    position: relative;
-    margin: 1rem 0 0 0;
+    position: absolute;
+    width:100%;
+    padding: 1rem 0 0.5rem 0;
+    position: absolute;
+    left: 0;
+    background-color: #FAFAFA;
+    z-index: 3;
 }
 .country-table-header-inner {
     display: flex;
@@ -1029,10 +1040,10 @@ div.highscore-button:hover {
 }
 .zone-list a:hover {
     text-decoration: none;
-    background: rgba(255,255,255,0.1)
+    background: rgba(255,255,255,1)
 }
 .zone-list a.selected {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,1);
 }
 
 .zone-list .ranking {
@@ -1122,9 +1133,9 @@ div.highscore-button:hover {
 #tab {
     position: relative;
     background-color:#FAFAFA;
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
@@ -1387,7 +1398,7 @@ sub {
     margin-top: 1rem;
 }
 .mobile-watermark div {
-    padding-top: 0.5rem;
+    padding: 0.5rem 0 1rem 0;
 }
 
 .no-data-overlay {
@@ -1488,7 +1499,7 @@ sub {
 }
 
 .faq-container .question:hover {
-    color: white;
+    color: #0A263C;
 }
 
 .faq-container .question span{
@@ -1696,8 +1707,35 @@ sub {
     #header {
         min-height: 50px; /* required for old Safari */
         left: 0;
-        top: 5px;
-        z-index: 3;
+        top: 0;
+        z-index: 2;
+    }
+    #mobile-header{
+        min-height: 50px;
+        -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+        -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+        box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+    }
+    #mobile-header .header-content{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 1rem;
+        height: 50px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        padding-left: 15px;
+        padding-right: 15px;
+        line-height: 24px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    #mobile-header .header-content .logo {
+        display:flex;
+    }
+    #mobile-header .header-content .right-header {
+        font-size: 0.6em;
     }
     #header-content .logo {
         margin-right: auto;
@@ -1706,7 +1744,6 @@ sub {
         display: none;
     }
     .left-panel {
-        padding: 40px 0 0 0;
         position: relative;
         height: auto;
     }
@@ -1715,6 +1752,27 @@ sub {
     }
     .left-panel-welcome {
         display: none;
+    }
+    .left-panel-zone-details .detail-bottom-section{
+        padding: 0;
+    }
+    .left-panel-zone-details-toolbar {
+        position: relative;
+        padding: 1rem 1.25rem 0.5rem 1.25rem;
+    }
+    .country-panel {
+       margin: 0;
+       padding: 0 14px 0 20px;
+    }
+    .country-table-header {
+        position: relative;
+    }
+    .country-panel-wrap {
+        position: relative;
+        padding-top: 0;
+    }
+    .zone-time-slider{
+        padding-top: 4px;
     }
     #country-tooltip.country-tooltip-visible {
         display: none;
