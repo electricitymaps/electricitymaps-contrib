@@ -707,6 +707,10 @@
           "IQ": {
             "zoneName": "Iraq"
           },
+          "IQ-KUR": {
+            "countryName": "Iraq",
+            "zoneName": "Kurdistan"
+          },
           "IR": {
             "zoneName": "Iran"
           },

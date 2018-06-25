@@ -1857,6 +1857,19 @@
     },
     "timezone": "Asia/Kolkata"
   },
+  "IQ": {
+    "capacity": {},
+    "contributors": [
+      "https://github.com/alixunderplatz",
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "iq.png",
+    "parsers": {
+      "consumption": "IQ.fetch_consumption",
+      "production": "IQ.fetch_production"
+    },
+    "timezone": "Asia/Baghdad"
+  },
   "IS": {
     "bounding_box": [
       [

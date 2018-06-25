@@ -120,6 +120,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Karnataka): [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
+- Iraq: [Iraqi Power System](http://109.224.53.139:8080/IPS.php)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
