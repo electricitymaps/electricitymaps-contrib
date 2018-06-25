@@ -21,6 +21,8 @@ const d3 = Object.assign(
   require('d3-request'),
   require('d3-scale'),
   require('d3-selection'),
+  require('d3-scale-chromatic'),
+  require('d3-interpolate'),
 );
 const Cookies = require('js-cookie');
 const moment = require('moment');
@@ -234,14 +236,31 @@ const randomBoolean = Math.random() >= 0.5;
 d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
+// update Theme
+let theme = themes.bright;
+function updateTheme() {
+  if (getState().application.brightModeEnabled) {
+    theme = themes.bright;
+  } else {
+    theme = themes.dark;
+  }
+  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
+}
+
 // Set up co2 scales
 let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
   if (getState().application.colorBlindModeEnabled) {
-    co2color = scales.colorBlindCo2Color;
+    co2color = d3.scaleLinear()
+      .domain(themes.colorblindScale.steps)
+      .range(themes.colorblindScale.colors)
+      .clamp(true);
   } else {
-    co2color = scales.classicalCo2Color;
+    co2color = d3.scaleLinear()
+      .domain(themes.co2Scale.steps)
+      .range(themes.co2Scale.colors)
+      .clamp(true);
   }
 
   co2color.clamp(true);
@@ -250,7 +269,7 @@ function updateCo2Scale() {
     .markerColor('white')
     .domain([0, scales.maxCo2])
     .render());
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color);
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
@@ -263,16 +282,6 @@ d3.select('#checkbox-colorblind').on('change', () => {
   dispatchApplication('colorBlindModeEnabled', !getState().application.colorBlindModeEnabled);
 });
 
-// update Theme
-let theme = themes.bright;
-function updateTheme() {
-  if (getState().application.brightModeEnabled) {
-    theme = themes.bright;
-  } else {
-    theme = themes.dark;
-  }
-  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
-}
 
 // Start initialising map
 try {

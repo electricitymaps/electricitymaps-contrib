@@ -1,10 +1,16 @@
 const themes = {
+  co2Scale: {
+    steps: [0, 150, 600, 750],
+    colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
+  },
+  colorblindScale: {
+    steps: [0, 150, 600, 750],
+    colors: ['#FCFAC4', '#FAB484', '#F57965', '#DA4D6B'],
+  },
   dark: {
     co2Scale: {
       steps: [0, 150, 600, 750],
-      oldsteps: [0, 250, 700, 800],
       colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
-      oldcolors: ['#13663B', '#FFF668', '#BA102F', '#1B0E01'],
     },
     oceanColor: '#0D263A',
     strokeWidth: 0.3,
@@ -15,9 +21,7 @@ const themes = {
   bright: {
     co2Scale: {
       steps: [0, 150, 600, 750],
-      oldsteps: [0, 250, 700, 800],
       colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
-      oldcolors: ['#13663B', '#F5EB4D', '#BA102F', '#1B0E01'],
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,

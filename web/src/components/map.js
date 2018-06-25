@@ -16,15 +16,6 @@ export default class Map {
         this.map.setPaintProperty('zones-line', 'line-color', theme.strokeColor);
         this.map.setPaintProperty('zones-line', 'line-width', theme.strokeWidth);
       }
-    } else if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
-      // TODO: Duplicated code
-      const co2Range = [0, 200, 400, 600, 800, 1000];
-      const stops = co2Range.map(d => [d, this.co2color(d)]);
-      this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
-        default: 'gray',
-        property: 'co2intensity',
-        stops,
-      });
     }
   }
 
@@ -315,9 +306,10 @@ export default class Map {
     return this;
   }
 
-  setCo2color(arg) {
+  setCo2color(arg, theme) {
     this.co2color = arg;
-    this._setupMapColor();
+    this.theme = theme;
+    this._setupMapColor(this.theme);
     return this;
   }
 
