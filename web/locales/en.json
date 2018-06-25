@@ -93,7 +93,7 @@
     "wind": "wind",
     "solar": "solar",
     "hydro": "hydro",
-    "hydro storage": "hydro storage",
+    "hydro storage": "pumped hydro storage",
     "battery storage": "battery storage",
     "biomass": "biomass",
     "nuclear": "nuclear",
@@ -103,15 +103,15 @@
     "oil": "oil",
     "unknown": "unknown",
 
-    "electricityComesFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-    "emissionsComeFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-    "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-    "emissionsStoredUsing": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+    "electricityComesFrom": "%3$s in <img id=\"country-flag\"></img> <b>%2$s</b> is supplying %1$s %% of electricity being used here",
+    "emissionsComeFrom": "%3$s in <img id=\"country-flag\"></img> <b>%2$s</b> is emitting %1$s %% of greenhouses gases due to electricity being used here",
+    "electricityStoredUsing": "%1$s %% of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is being used to fill %3$s",
+    "emissionsStoredUsing": "Please see the Frequently Asked Questions for details",
 
-    "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% of emissions available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "%1$s %% of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is being exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% of emissions due to electricity in <img id=\"country-flag\"></img> <b>%2$s</b> are due to exports to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "%1$s %% of electricity being used in <img id=\"country-flag\"></img> <b>%2$s</b> is from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "Imports from <img id=\"country-exchange-flag\"></img> <b>%3$s</b> are emitting %1$s %% of greenhouses gases due to electricity being used in <img id=\"country-flag\"></img> <b>%2$s</b>",
 
     "ofCO2eqPerMinute": "of CO2eq per minute",
 
@@ -120,7 +120,6 @@
             "zoneName": "Andorra"
           },
           "AE": {
-
             "zoneName": "United Arab Emirates"
           },
           "AF": {
