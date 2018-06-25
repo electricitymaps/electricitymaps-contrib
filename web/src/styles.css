@@ -1601,7 +1601,7 @@ sub {
     border-radius: 17px;    
     background: #ffffff;
     cursor: pointer;
-    margin-top: -12px;
+    margin-top: -8px;
     transition: box-shadow 0.4s;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
   }
@@ -1613,10 +1613,11 @@ sub {
     width: 100%;
     margin-right: 10px;
     margin-left: 10px;
-    height: 6px;
-    border-radius: 3px;
+    height: 12px;
+    border-radius: 4px;
     cursor: pointer;
     background: #F3F3F3;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
   }
   
   /* .time-slider-input:focus::-webkit-slider-runnable-track {
