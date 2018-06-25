@@ -119,7 +119,7 @@ def data_processer(data):
     return production
 
 
-def fetch_consumption_forecast(zone_key='US-PJM', session=None,
+def fetch_consumption_forecast_7_days(zone_key='US-PJM', session=None,
                                target_datetime=None, logger=None):
     """
     Gets consumption forecast for specified zone.

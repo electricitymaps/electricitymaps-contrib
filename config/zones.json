@@ -3136,7 +3136,7 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "consumptionForecast": "US_PJM.fetch_consumption_forecast",
+      "consumptionForecast": "EIA.fetch_consumption_forecast",
       "price": "US_PJM.fetch_price",
       "production": "US_PJM.fetch_production"
     },
