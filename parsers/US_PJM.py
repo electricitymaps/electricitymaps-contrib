@@ -420,8 +420,8 @@ def fetch_price(zone_key='US-PJM', session=None, target_datetime=None, logger=No
 
 
 if __name__ == '__main__':
-    print('fetch_consumption_forecast() ->')
-    print(fetch_consumption_forecast())
+    print('fetch_consumption_forecast_7_days() ->')
+    print(fetch_consumption_forecast_7_days())
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_exchange(US-NY, US-PJM) ->')
