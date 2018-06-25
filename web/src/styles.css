@@ -943,7 +943,7 @@ label[for="checkbox-colorblind"] {
 .watermark .socialicons {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #built-by-tomorrow{
