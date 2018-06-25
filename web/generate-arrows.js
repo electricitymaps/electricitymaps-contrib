@@ -38,22 +38,22 @@ for (let co2value in colors) {
       return;
     }
 
-    // make an outline
-    const outlineSize = 0.5;
-    const whiteArrowAfterCo2Intensity = 640;
-    child_process.spawn('convert', [
-      `public/images/arrow-${co2value}.png`,
-      '-bordercolor', 'none',
-      '-border', outlineSize,
-      '\(', '-clone', '0', '-alpha', 'off', '-fill', '#FFFFFF', '-colorize', '100%', '\)',
-      '\(', '-clone', '0', '-alpha', 'extract', '-morphology', 'edgeout', 'octagon:'+outlineSize,'\)',
-      '-compose', 'over',
-      '-composite', `public/images/arrow-${co2value}-outline.png`
-    ]).on('close', code => {
-      if(code !== 0) {
-        console.log('child exited with code', code);
-        return;
-      }
+    // make an outline (NOT being currently used with new arrow shape)
+    // const outlineSize = 2;
+    // const whiteArrowAfterCo2Intensity = 640;
+    // child_process.spawn('convert', [
+    //   `public/images/arrow-${co2value}.png`,
+    //   '-bordercolor', 'none',
+    //   '-border', outlineSize,
+    //   '\(', '-clone', '0', '-alpha', 'off', '-fill', co2value >= whiteArrowAfterCo2Intensity ? 'white' : 'black', '-colorize', '100%', '\)',
+    //   '\(', '-clone', '0', '-alpha', 'extract', '-morphology', 'edgeout', 'octagon:'+outlineSize, '\)',
+    //   '-compose', 'over',
+    //   '-composite', `public/images/arrow-${co2value}-outline.png`
+    // ]).on('close', code => {
+    //   if(code !== 0) {
+    //     console.log('child exited with code', code);
+    //     return;
+    //   }
 
       // Apply highlight and generate GIF
       [10, 6, 2].forEach((speed, index) => {
@@ -86,7 +86,7 @@ for (let co2value in colors) {
         });
       });
     });
-  });
+  // });
 }
 // echo $color;
 // #convert demo-arrow.png +level-colors transparent,"$color" mod-arrow.png
