@@ -934,10 +934,16 @@ label[for="checkbox-colorblind"] {
 
 .watermark {
     position: fixed;
-    bottom: -20px;
+    bottom: 0;
     right: 50%;
     transform: translateX(50%);
     padding: 12px;
+}
+
+.watermark .socialicons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 #built-by-tomorrow{
@@ -950,6 +956,10 @@ label[for="checkbox-colorblind"] {
 
 #watermark.brightmode #built-by-tomorrow{
     background-image: url(../images/built-by-tomorrow.svg)
+}
+
+#watermark a:hover{
+    text-decoration: none;
 }
 
 div.highscore-button {
