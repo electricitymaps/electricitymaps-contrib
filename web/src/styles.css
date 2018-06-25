@@ -107,14 +107,14 @@ line, path {
     height: 100%;
     position: absolute;
     top: 0;
-    z-index: 500;
+    z-index: 3;
 }
 
 .country-panel{
     overflow-y: auto;
-    padding-right: 6px;
-    padding-left: 12px;
-    margin: 0 calc(1.25rem - 6px) 0 1.25rem;
+    padding-right: calc(2rem - 6px);
+    padding-left: 2rem;
+    margin: 0;
     -webkit-overflow-scrolling: touch;
 }
 .country-panel-wrap {
@@ -488,7 +488,7 @@ body {
     position: absolute;
     left: 0;
     background-color: #FAFAFA;
-    z-index: 3;
+    z-index: 4;
 }
 .country-table-header-inner {
     display: flex;
@@ -1431,7 +1431,7 @@ sub {
     border-radius: 5px;
     padding: 5px;
     text-align: center;
-    z-index: 600;
+    z-index: 2;
 }
 .no-data-overlay-message.visible, .zone-details-no-parser-message.visible{
     display: block;
