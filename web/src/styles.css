@@ -1406,20 +1406,18 @@ sub {
 .no-data-overlay-background{
     zoom: 1;
     filter: alpha(opacity=50);
-    opacity: 0.6;
-    background-color: rgb(70,70,70);
-    border-radius: 8px;
+    opacity: 0.8;
+    background-color:#FAFAFA;
 }
 
 .no-data-overlay-message{
-    background-color: #94824f;
+    background-color: #33414A;
     color: white;
     margin: 1rem;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 6px;
+    padding: 8px;
     text-align: center;
-    z-index: 2;
+    z-index: 3;
 }
 .no-data-overlay-message.visible, .zone-details-no-parser-message.visible{
     display: block;
