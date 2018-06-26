@@ -12,11 +12,11 @@ const themes = {
       steps: [0, 150, 600, 750],
       colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
     },
-    oceanColor: '#0D263A',
+    oceanColor: '#33414A',
     strokeWidth: 0.3,
-    strokeColor: '#33414A',
-    clickableFill: '#54626B',
-    nonClickableFill: '#54626B',
+    strokeColor: '#6D6D6D',
+    clickableFill: '#7A878D',
+    nonClickableFill: '#7A878D',
   },
   bright: {
     co2Scale: {
