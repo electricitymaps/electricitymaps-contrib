@@ -211,7 +211,7 @@ body {
 }
 #header-content .logo {
     display: inline;
-    font-family: "Catamaran", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 #header-content .maintitle {
@@ -240,7 +240,7 @@ body {
     height: 21px;
     width:139px;
     margin-right: 4px;
-    margin-top:2px;
+    margin-top:1.5px;
 }
 
 #electricitymap-logo{
@@ -1015,7 +1015,7 @@ div.highscore-button:hover {
 
 .left-panel .title {
     font-size: 1.3rem;
-    font-family: "Catamaran", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .zone-list-header .subtitle {
@@ -1167,7 +1167,7 @@ div.highscore-button:hover {
     font-size: 12px;
     padding-bottom: 10px;
     padding-top: 8px;
-    font-family: "Catamaran", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 #tab.nomap #tab-content .list-item.map-button,
 {
@@ -1378,7 +1378,7 @@ sub {
 .modal .brand-text {
     padding-top: 0;
     line-height: 3rem;
-    font-family: "Catamaran", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .mobile-watermark {
@@ -1514,7 +1514,7 @@ sub {
 .mobile-faq-header{
     text-align: center;
     font-size: 1.6rem;
-    font-family: "Catamaran";
+    font-family: "Open Sans";
     padding-top: 25px;
     padding-bottom: 5px;
 }
