@@ -93,7 +93,7 @@
     "wind": "wind",
     "solar": "solar",
     "hydro": "hydro",
-    "hydro storage": "hydro storage",
+    "hydro storage": "pumped hydro storage",
     "battery storage": "battery storage",
     "biomass": "biomass",
     "nuclear": "nuclear",
@@ -120,7 +120,6 @@
             "zoneName": "Andorra"
           },
           "AE": {
-
             "zoneName": "United Arab Emirates"
           },
           "AF": {
