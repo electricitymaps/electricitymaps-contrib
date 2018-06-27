@@ -1,3 +1,5 @@
+// TODO: Merge themes and scales
+
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -38,32 +40,16 @@ const solarRange = d3.range(10).map((i) => {
   const a = d3.interpolate(minSolarDayOpacity, maxSolarDayOpacity)(i / (10 - 1));
   return `rgba(${c}, ${c}, ${c}, ${a})`;
 });
-// Insert the night (DWSWRF \in [0, minDayDSWRF]) domain
-// solarDomain.splice(0, 0, 0);
-// solarRange.splice(0, 0, 'rgba(0, 0, 0, ' + nightOpacity + ')');
-// Create scale
+
 const solarColor = d3.scaleLinear()
   .domain(solarDomain)
   .range(solarRange)
   .clamp(true);
 
-
 // ** CO2
 const maxCo2 = 800;
-// const numSteps = Array.from({length: 16}, (v, k) => k*(50*Math.sin(180-(180/16*k))));
-// const nonlinearnum = [50,80,100,120,140,140,150,170,190,210,250,270,320,480,540,620,720]
-// const colSteps = ['#6C1426','#BA0F2F','#F6503D','#FA8D4F','#F9B05E','#FDD782','#FFFDD1','#FFFFE8','#F7FBBE','#D9EEA8','#AFDB95','#7BC47E','#4AAA62','#2E8248','#13653B','#09432B']
-// const colorBlindCo2Color = d3.scaleSequential(d3.interpolateMagma)
-//   .domain([2000, 0])
-//   .clamp(true);
-// const classicalCo2Color = d3.scaleLinear()
-//   .domain([0,150,600,750])
-//   .range(['#2AA364','#F5EB4D','#9E293E','#1B0E01'])
-//   .clamp(true);
 
 module.exports = {
-  // colorBlindCo2Color,
-  // classicalCo2Color,
   maxCo2,
   maxSolarDSWRF,
   solarColor,
