@@ -1217,6 +1217,26 @@
     },
     "rotation": 35
   },
+  "IN-HP->IN-UT": {
+    "lonlat": [
+      77.963512,
+      31.082961
+    ],
+    "parsers": {
+      "exchange": "IN_UT.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "IN-UP->IN-UT": {
+    "lonlat": [
+      78.715271,
+      29.426079
+    ],
+    "parsers": {
+      "exchange": "IN_UT.fetch_exchange"
+    },
+    "rotation": 0
+  },
   "IQ->IQ-KUR": {
     "lonlat": [
       43.676,
