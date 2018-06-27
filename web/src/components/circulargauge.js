@@ -76,6 +76,9 @@ export default class CircularGauge {
     if (this.percentage === percentage) {
       return;
     }
+    if (Number.isNaN(percentage)) {
+      return;
+    }
     this.prevPercentage = this.percentage;
     this.percentage = percentage;
     this.percentageText.text(this.percentage != null ? `${Math.round(this.percentage)}%` : '?');

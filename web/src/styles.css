@@ -825,8 +825,7 @@ body {
 }
 .floating-legend-container div {
     color: black;
-    padding-left: 10px;
-    padding-bottom: 5px;
+    padding: 2px 6px 5px 6px;
     font-size: 0.8rem;
 }
 .floating-legend-container .tick text {
