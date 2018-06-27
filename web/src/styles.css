@@ -1579,6 +1579,7 @@ sub {
     margin-top: -8px;
     transition: box-shadow 0.4s;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid lightgray;
   }
   .time-slider-input:hover::-webkit-slider-thumb{
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
@@ -1777,7 +1778,9 @@ sub {
         width: 90px;
         height: 18px;
         transition: width 0.4s, height 0.4s;
+        padding: 6px 10px 10px;
     }
+
     .floating-legend-container.mobile-collapsed .floating-legend-mobile-header {
         text-align: left;
     }
