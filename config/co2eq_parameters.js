@@ -84,9 +84,19 @@ var countryCo2eqFootprint = {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 362, source: 'assumes 72% biomass, 28% conventional thermal'} : null;
     },
     'RU': function (productionMode) {
-        // Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas) = 567 g/kWh
+        // Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  = 567 g/kWh
         // 2015 production source: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 567, source: 'assumes 76% gas, 23% coal, 1% oil'} : null;
+    },
+    'RU-1': function (productionMode) {
+        // Assumes weighted average emission factor based on estimated 2018 fuel consumption: 7.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 88.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 524 g/kWh
+        // Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural
+        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 524, source: 'assumes 88% gas, 8% coal, <1% oil, 4% other'} : null;
+    },
+    'RU-2': function (productionMode) {
+        // Assumes weighted average emission factor based on estimated 2018 fuel consumption: 86.7% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 8.3% * 490 g/kWh (gas) + 4.6% * 700 g/kWh (other)= 786 g/kWh
+        // Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone
+        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 786, source: 'assumes 87% coal, 8% gas, <1% oil, 5% other'} : null;
     }
 };
 
