@@ -433,6 +433,7 @@ body {
 
 .mobile-info-tab {
     padding: 1rem;
+    line-height: normal !important;
     overflow-y:scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -1384,7 +1385,7 @@ sub {
     text-align: center;
     margin-top: 1rem;
 }
-.mobile-watermark div {
+.mobile-watermark > div {
     padding: 0.5rem 0 1rem 0;
 }
 
