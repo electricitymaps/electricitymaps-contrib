@@ -2584,7 +2584,9 @@
   },
   "RU-1": {
     "capacity": {
-      "nuclear": 27929
+      "nuclear": 27914,
+      "hydro": 19500,
+      "unknown": 125014
     },
     "contributors": [
       "https://github.com/denplis",
@@ -2598,6 +2600,10 @@
     "timezone": "Europe/Moscow"
   },
   "RU-2": {
+    "capacity": {
+      "hydro": 25286,
+      "unknown": 26570
+    },
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/systemcatch",
