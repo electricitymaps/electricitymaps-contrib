@@ -30,8 +30,7 @@ export default class TimeSlider {
       .attr('transform', `translate(${AXIS_MARGIN_LEFT}, 0)`);
 
     const onChangeAndInput = () => {
-      const selectedIndex = this.slider.property('value');
-      this._manuallySelectedIndex = selectedIndex;
+      const selectedIndex = parseInt(this.slider.property('value'), 10);
       this._onChange(selectedIndex);
     };
     this.slider.on('input', onChangeAndInput);
@@ -60,7 +59,7 @@ export default class TimeSlider {
         return moment(d).format(TIME_FORMAT);
       });
     this.axis.call(xAxis);
-    this.axis.selectAll('.tick text').attr('fill', '#D3D3D3'); // html 'lightgray'
+    this.axis.selectAll('.tick text').attr('fill', '#000000');
   }
 
   _updateSliderValue() {
@@ -109,7 +108,7 @@ export default class TimeSlider {
   }
 
   selectedIndex(index) {
-    this._selectedIndex = index || this._manuallySelectedIndex;
+    this._selectedIndex = index;
     this.render();
     return this;
   }

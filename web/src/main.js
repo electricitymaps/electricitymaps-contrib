@@ -21,6 +21,8 @@ const d3 = Object.assign(
   require('d3-request'),
   require('d3-scale'),
   require('d3-selection'),
+  require('d3-scale-chromatic'),
+  require('d3-interpolate'),
 );
 const Cookies = require('js-cookie');
 const moment = require('moment');
@@ -53,6 +55,7 @@ const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
 const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
+const themes = require('./helpers/themes').themes;
 
 const getSymbolFromCurrency = require('currency-symbol-map');
 
@@ -107,6 +110,9 @@ let windLayer;
 let solarLayer;
 let onboardingModal;
 
+// Set standard theme
+let theme = themes.bright;
+
 // ** Create components
 const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
 const countryHistoryCarbonGraph = new LineGraph(
@@ -131,6 +137,8 @@ const priceTooltip = new Tooltip('#price-tooltip');
 
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
+const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
 const contributorList = new ContributorList('.contributors');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
@@ -236,9 +244,15 @@ let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
   if (getState().application.colorBlindModeEnabled) {
-    co2color = scales.colorBlindCo2Color;
+    co2color = d3.scaleLinear()
+      .domain(themes.colorblindScale.steps)
+      .range(themes.colorblindScale.colors)
+      .clamp(true);
   } else {
-    co2color = scales.classicalCo2Color;
+    co2color = d3.scaleLinear()
+      .domain(themes.co2Scale.steps)
+      .range(themes.co2Scale.colors)
+      .clamp(true);
   }
 
   co2color.clamp(true);
@@ -247,7 +261,7 @@ function updateCo2Scale() {
     .markerColor('white')
     .domain([0, scales.maxCo2])
     .render());
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color);
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
@@ -263,7 +277,7 @@ d3.select('#checkbox-colorblind').on('change', () => {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5 })
+  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
     .setCo2color(co2color)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
@@ -569,11 +583,11 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
     // Assign country map data
     zoneMap
       .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
       })
       .onZoneMouseMove((d, i, clientX, clientY) => {
         // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
         const rect = node.getBoundingClientRect();
         countryTooltip.update(clientX + rect.left, clientY + rect.top);
       })
@@ -697,7 +711,30 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
+// BrightMode
+const electricityMapHeader = d3.select('#header-content');
+const tmrowWatermark = d3.select('#watermark');
 
+function toggleBright() {
+  dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
+  electricityMapHeader.classed('brightmode', !electricityMapHeader.classed('brightmode'));
+  tmrowWatermark.classed('brightmode', !tmrowWatermark.classed('brightmode'));
+}
+
+d3.select('.brightmode-button').on('click', toggleBright);
+
+const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
+
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.brightmode-button').on('mouseover', () => {
+    brightModeButtonTooltip.classed('hidden', false);
+
+  });
+  d3.select('.brightmode-button').on('mouseout', () => {
+    brightModeButtonTooltip.classed('hidden', true);
+  });
+}
 
 // Wind
 function toggleWind() {
@@ -737,6 +774,7 @@ if (!getState().application.isMobile) {
     solarLayerButtonTooltip.classed('hidden', true);
   });
 }
+
 
 // Legend 
 function toggleLegend() {
@@ -1034,7 +1072,7 @@ function renderHistory(state) {
           .co2ScaleDomain([lo_emission, hi_emission]);
 
         if (g === countryHistoryCarbonGraph) {
-          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
           countryTooltip.update(
             currentEvent.clientX - 7,
             g.rootElement.node().getBoundingClientRect().top - 7);
@@ -1073,7 +1111,7 @@ function renderHistory(state) {
 function renderLeftPanelCollapseButton(state) {
   const { isLeftPanelCollapsed } = state.application;
   d3.select('.left-panel')
-    .style('display', isLeftPanelCollapsed ? 'none' : undefined);
+    .classed('collapsed', isLeftPanelCollapsed);
   d3.select('#left-panel-collapse-button')
     .classed('collapsed', isLeftPanelCollapsed)
   if (typeof zoneMap !== 'undefined') {
@@ -1165,6 +1203,10 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   if (zoomLevel) {
     // Remember to set center and zoom in case the map wasn't loaded yet
     zoneMap.setZoom(zoomLevel);
+    // If the panel is open the zoom doesn't appear perfectly centered because 
+    // it centers on the whole window and not just the visible map part.
+    // something one could fix in the future. It's tricky because one has to project, unproject
+    // and project again taking both starting and ending zoomlevel into account
     zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
   }
 }
@@ -1241,6 +1283,20 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
   Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
   updateCo2Scale();
 });
+
+// Observe for bright mode changes
+observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
+  d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
+  Cookies.set('brightdModeEnabled', brightModeEnabled);
+  // update Theme
+  if (getState().application.brightModeEnabled) {
+    theme = themes.bright;
+  } else {
+    theme = themes.dark;
+  }
+  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
+});
+
 // Observe for solar settings change
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);

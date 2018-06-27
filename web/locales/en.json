@@ -8,7 +8,6 @@
     },
     "onboarding-modal": {
         "view1": {
-            "header": "The Electricity Map",
             "subtitle": "Mapping the climate impact of electricity"
         },
         "view2": {

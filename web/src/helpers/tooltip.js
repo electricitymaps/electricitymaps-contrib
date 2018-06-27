@@ -169,7 +169,7 @@ module.exports.showExchange = function showExchange(tooltipInstance, key, countr
   tooltipInstance.show();
 };
 
-module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars) {
+module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, lowCarbonGauge, renewableGauge) {
   if (countryData.co2intensity && co2Colorbars) {
     co2Colorbars.forEach((c) => { c.currentMarker(countryData.co2intensity); });
   }
@@ -180,20 +180,28 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     .text(translation.getFullZoneName(countryData.countryCode))
     .style('font-weight', 'bold');
 
-  if (countryData.hasParser) {
+  if (countryData.hasParser && lowCarbonGauge && renewableGauge) {
     tooltip.select('.emission-rect')
       .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
     tooltip.select('.country-emission-intensity')
       .text(Math.round(countryData.co2intensity) || '?');
 
     const hasFossilFuelData = countryData.fossilFuelRatio !== undefined || countryData.fossilFuelRatio !== null;
-    const fossilFuelPercent = countryData.fossilFuelRatio * 100;
-    tooltip.select('.lowcarbon-percentage')
-      .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
+    if (hasFossilFuelData) {
+      const fossilFuelPercent = countryData.fossilFuelRatio * 100;
+      lowCarbonGauge.setPercentage(Math.round(100 - fossilFuelPercent));
+      tooltip.select('.lowcarbon-percentage').text(Math.round(100 - fossilFuelPercent));
+    } else {
+      tooltip.select('.lowcarbon-percentage').text('?');
+    }
     const hasRenewableData = countryData.renewableRatio !== undefined || countryData.renewableRatio !== null;
-    const renewablePercent = countryData.renewableRatio * 100;
-    tooltip.select('.renewable-percentage')
-      .text(hasRenewableData ? Math.round(renewablePercent) : '?');
+    if (hasRenewableData) {
+      const renewablePercent = countryData.renewableRatio * 100;
+      renewableGauge.setPercentage(Math.round(renewablePercent));
+      tooltip.select('.renewable-percentage').text(Math.round(renewablePercent));
+    } else {
+      tooltip.select('.renewable-percentage').text('?');
+    }
   }
   tooltip.select('.zone-details').style('display', countryData.hasParser && countryData.co2intensity ? 'block' : 'none');
   tooltip.select('.temporary-outage-text').style('display', countryData.hasParser && !countryData.co2intensity ? 'block' : 'none');

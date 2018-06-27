@@ -8,7 +8,6 @@
     },
     "onboarding-modal": {
         "view1": {
-            "header": "Electricity Map",
             "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
         },
         "view2": {

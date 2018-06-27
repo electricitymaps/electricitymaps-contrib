@@ -13,7 +13,6 @@
     },
     "onboarding-modal": {
         "view1": {
-            "header": "Electricity Map",
             "subtitle": "Visualisierung der klimarelevanten Emissionen der Stromerzeugung"
         },
         "view2": {

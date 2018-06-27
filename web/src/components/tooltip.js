@@ -10,7 +10,7 @@ function placeTooltip(selector, eventX, eventY) {
   const tooltip = d3.select(selector);
   const w = tooltip.node().getBoundingClientRect().width;
   const h = tooltip.node().getBoundingClientRect().height;
-  const margin = 7;
+  const margin = 16;
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 

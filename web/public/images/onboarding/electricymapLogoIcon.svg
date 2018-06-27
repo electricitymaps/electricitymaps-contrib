@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="117px" height="97px" viewBox="0 0 117 97" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Page 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M60.842,1.553 L9.694,48.423 C8.469,49.544 8.656,51.1 10.106,51.902 L18.063,56.306 C19.516,57.109 19.998,58.91 19.147,60.331 L0.918,90.76 C0.068,92.18 0.45,92.515 1.775,91.507 L56.743,49.654 C58.079,48.637 57.899,47.313 56.367,46.677 L45.885,42.329 C44.356,41.693 43.693,39.961 44.412,38.46 L61.753,2.242 C62.181,1.349 62.21,0.878 61.907,0.878 C61.7,0.878 61.338,1.098 60.842,1.553 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="electricityMap-Logo-smallpadding" transform="translate(-37.000000, -22.000000)">
+            <g id="Page-1" transform="translate(37.000000, 22.000000)">
+                <polygon id="Fill-1" fill="#000000" points="10.2897 12.0421 -0.0003 95.7421 16.3997 89.7441 21.6787 79.1631 9.5577 83.6601 17.5717 18.4731 34.0597 14.3241 50.5457 19.9761 57.5487 13.9121 34.4097 5.9721"></polygon>
+                <polygon id="Fill-2" fill="#000000" points="88.3197 15.9508 100.4307 19.9698 107.5527 83.8638 85.2917 74.9328 60.0417 85.5598 51.9187 82.1068 44.3347 87.5898 60.0267 94.2578 85.3647 83.5948 116.9997 96.2848 107.8257 13.9818 91.3007 8.4978"></polygon>
+                <g id="Group-5" transform="translate(24.000000, 0.029000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-4"></g>
+                    <polygon id="Fill-3" fill="#000000" mask="url(#mask-2)" points="-20.2183 11.7337 66.0207 -5.0293 82.7887 81.2367 -3.4493 97.9997"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
