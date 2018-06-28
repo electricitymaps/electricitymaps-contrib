@@ -1225,7 +1225,7 @@
     "parsers": {
       "exchange": "IN_UT.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 135
   },
   "IN-UP->IN-UT": {
     "lonlat": [
@@ -1235,7 +1235,7 @@
     "parsers": {
       "exchange": "IN_UT.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 45
   },
   "IQ->IQ-KUR": {
     "lonlat": [
