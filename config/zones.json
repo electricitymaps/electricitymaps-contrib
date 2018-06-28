@@ -2596,6 +2596,40 @@
     },
     "timezone": "Europe/Moscow"
   },
+  "RU-1": {
+    "capacity": {
+      "nuclear": 27914,
+      "hydro": 19500,
+      "unknown": 125014
+    },
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "ru.png",
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
+  },
+  "RU-2": {
+    "capacity": {
+      "hydro": 25286,
+      "unknown": 26570
+    },
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "ru.png",
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
+  },
+  
   "RU-AS": {
     "flag_file_name": "ru.png",
     "timezone": null
