@@ -6,22 +6,21 @@
         "datasources": "le fonti dei dati",
         "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo il tuo territorio</a>"
     },
-    //Ancora da tradurre
     "onboarding-modal": {
         "view1": {
-            "subtitle": "Mapping the climate impact of electricity"
+            "subtitle": "Mappatura dell'impatto climatico dell'elettricità"
         },
         "view2": {
-            "header": "See how much CO2 is emitted to produce your electricity, in real-time.",
-            "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
+            "header": "Guarda quanta CO2 è emessa nel produrre la tua elettricità, in tempo reale.",
+            "text": "Coloriamo le aree nel mondo tramite la loro intensità di carbonio (include tutti i gas serra) dell'elettricità che consumano. Più l'area è verde più produce elettricità in maniera ecologica."
         },
         "view3": {
-            "header": "Know where your electricity comes from",
-            "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
+            "header": "Conosci da dove proviene la tua elettricità",
+            "text": "Le frecce sulla mappa indicando i flussi di elettricità tra le diverse aree. Clicca su un'area per vedere più informazioni sull'origine dell'elettricità."
         },
         "view4": {
-            "header": "Real-time wind and solar conditions",
-            "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
+            "header": "Livelli di vento e sole in tempo reale",
+            "text": "La produzione eolica e solare dipendono dal tempo. Premi sui pulsanti del vento e del sole per vedere in tempo reale la forza del vento e del sole nel mondo."
         }
     },
     "country-panel": {
