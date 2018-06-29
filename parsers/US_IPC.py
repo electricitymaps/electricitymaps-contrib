@@ -12,7 +12,7 @@ import requests
 # https://docs.idahopower.com/pdfs/AboutUs/PlanningForFuture/irp/IRP.pdf
 
 # Renewable energy (PURPA) is likely bought with credits from outside the Utility
-# area and not supplied to customers. For that reason those types are commented out. 
+# area and not supplied to customers. For that reason those types are commented out.
 
 PRODUCTION_URL = 'https://api.idahopower.com/Energy/Api/V1/GenerationAndDemand/Subset'
 
@@ -80,7 +80,7 @@ def data_processer(raw_data, logger):
         keys_to_remove = keys_to_ignore | unknown_keys
 
         for key in keys_to_remove:
-            production.pop(key)
+            production.pop(key, None)
 
         production = {GENERATION_MAPPING[k]: v for k, v in production.items()}
 
