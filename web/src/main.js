@@ -1275,7 +1275,7 @@ observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderCountryTable(state);
   renderOpenTooltips(state);
   [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
-    g.selectedIndex(i, state.application.sliderSelectedZoneTimeIndex);
+    g.selectedIndex(i, state.application.previousSelectedZoneTimeIndex);
   });
 });
 // Observe for color blind mode changes
