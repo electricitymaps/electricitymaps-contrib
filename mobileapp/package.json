@@ -6,13 +6,13 @@
     "code-push": "^2.0.4",
     "cordova-android": "^6.4.0",
     "cordova-ios": "^4.5.4",
-    "cordova-plugin-code-push": "^1.11.7",
+    "cordova-plugin-code-push": "^1.11.11",
     "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-device": "^2.0.1",
+    "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-facebook4": "^1.9.1",
-    "cordova-plugin-file": "git+https://github.com/apache/cordova-plugin-file.git#4.3.3",
-    "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git#1.6.3",
+    "cordova-plugin-file": "^4.3.3",
+    "cordova-plugin-file-transfer": "^1.6.3",
     "cordova-plugin-firebase-analytics": "^0.13.0",
     "cordova-plugin-globalization": "^1.0.9",
     "cordova-plugin-splashscreen": "^4.1.0",
@@ -37,7 +37,6 @@
       "cordova-plugin-globalization": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-code-push": {},
       "cordova-universal-links-plugin": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "1267173759989113",
@@ -45,7 +44,11 @@
       },
       "cordova-plugin-firebase-analytics": {
         "FIREBASE_VERSION": "11.6.+"
-      }
+      },
+      "cordova-plugin-code-push": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-zip": {}
     },
     "platforms": [
       "android",
