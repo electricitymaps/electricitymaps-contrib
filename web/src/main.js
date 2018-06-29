@@ -184,10 +184,23 @@ const app = {
     if (cordova.platformId === 'ios') {
       d3.select('#header')
         .style('padding-top', '20px');
+      d3.select('#mobile-header')
+        .style('padding-top', '20px');
       if (typeof zoneMap !== 'undefined') {
         zoneMap.map.resize();
       }
+      // iphone X nodge
+      if (device.model === 'iPhone10,3' || device.model === 'iPhone10,6') {
+        d3.select('#header')
+          .style('padding-top', '30px');
+        d3.select('#mobile-header')
+          .style('padding-top', '30px');
+        if (typeof zoneMap !== 'undefined') {
+          zoneMap.map.resize();
+        }
+      }
     }
+
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
     universalLinks.subscribe(null, (eventData) => {
       HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
