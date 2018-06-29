@@ -2,20 +2,18 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default class Map {
-  _setupMapColor(theme) {
-    if (theme) {
-      if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
-        const co2Range = theme.co2Scale.steps;
-        const stops = co2Range.map(d => [d, this.co2color(d)]);
-        this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
-          default: theme.clickableFill,
-          property: 'co2intensity',
-          stops,
-        });
-        this.map.setPaintProperty('background', 'background-color', theme.oceanColor);
-        this.map.setPaintProperty('zones-line', 'line-color', theme.strokeColor);
-        this.map.setPaintProperty('zones-line', 'line-width', theme.strokeWidth);
-      }
+  _setupMapColor() {
+    if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
+      const co2Range = this.theme.co2Scale.steps;
+      const stops = co2Range.map(d => [d, this.co2color(d)]);
+      this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
+        default: this.theme.clickableFill,
+        property: 'co2intensity',
+        stops,
+      });
+      this.map.setPaintProperty('background', 'background-color', this.theme.oceanColor);
+      this.map.setPaintProperty('zones-line', 'line-color', this.theme.strokeColor);
+      this.map.setPaintProperty('zones-line', 'line-width', this.theme.strokeWidth);
     }
   }
 
@@ -107,12 +105,19 @@ export default class Map {
 
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
-    const theme = argConfig.theme || {};
+    const defaulttheme = {
+      strokeWidth: 0.3,
+      strokeColor: '#FAFAFA',
+      clickableFill: '#D4D9DE',
+      nonClickableFill: '#D4D9DE',
+      oceanColor: '#FAFAFA',
+      co2Scale: {
+        steps: [0, 150, 600, 750],
+        colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
+      },
+    };
 
-    this.strokeWidth = theme.strokeWidth || 0.3;
-    this.strokeColor = theme.strokeColor || '#606060';
-    this.clickableFill = theme.clickableFill || '#33414A';
-    this.nonClickableFill = theme.nonClickableFill || '#33414A';
+    this.theme = argConfig.theme || defaulttheme;
     this.userIsUsingTouch = false;
 
     this.center = undefined;
@@ -309,13 +314,13 @@ export default class Map {
   setCo2color(arg, theme) {
     this.co2color = arg;
     this.theme = theme;
-    this._setupMapColor(this.theme);
+    this._setupMapColor();
     return this;
   }
 
   setTheme(arg) {
     this.theme = arg;
-    this._setupMapColor(this.theme);
+    this._setupMapColor();
     return this;
   }
 
