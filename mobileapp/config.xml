@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.tmrow.electricitymap" version="1.0.13" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Electricity Map</name>
+    <name>electricityMap</name>
     <description>
-        Electricity Map is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
+        electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
     </description>
     <author email="hello@tmrow.com" href="https://www.tmrow.com">
         Tomorrow
@@ -65,15 +65,18 @@
     <plugin name="cordova-plugin-globalization" spec="^1.0.9" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
-    <plugin name="cordova-plugin-code-push" spec="^1.11.7" />
     <plugin name="cordova-universal-links-plugin" spec="https://github.com/flipflopapp/cordova-universal-links-plugin" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="1267173759989113" />
-        <variable name="APP_NAME" value="Electricity Map" />
+        <variable name="APP_NAME" value="electricityMap" />
     </plugin>
     <plugin name="cordova-plugin-firebase-analytics" spec="^0.13.0">
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
+    <plugin name="cordova-plugin-code-push" spec="^1.11.11" />
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-zip" spec="^3.1.0" />
     <engine name="android" spec="^6.4.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
