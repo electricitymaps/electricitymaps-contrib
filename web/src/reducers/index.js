@@ -28,6 +28,7 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
+  previousSelectedZoneTimeIndex: null,
   solarEnabled: Cookies.get('solarEnabled') === 'true' || false,
   useRemoteEndpoint: document.domain === '' || isLocalhost,
   windEnabled: Cookies.get('windEnabled') === 'true' || false,
@@ -68,6 +69,23 @@ const applicationReducer = (state = initialApplicationState, action) => {
         });
       }
       return state;
+    }
+
+    case 'UPDATE_SELECTED_ZONE': {
+      const { selectedZoneName } = action.payload;
+      return Object.assign(state, {
+        selectedZoneName,
+        selectedZoneTimeIndex: null,
+        previousSelectedZoneTimeIndex: null,
+      });
+    }
+
+    case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
+      const { selectedZoneTimeIndex } = action.payload;
+      return Object.assign(state, {
+        selectedZoneTimeIndex,
+        previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
+      });
     }
 
     default:

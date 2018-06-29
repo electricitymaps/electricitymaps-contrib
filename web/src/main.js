@@ -805,12 +805,12 @@ if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
       dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
-      dispatchApplication('selectedZoneName', undefined);
+      dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: undefined}});
     })
     .onCountryClick((d) => {
       dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
-      dispatchApplication('selectedZoneName', d.countryCode);
+      dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
     });
 }
 
@@ -1066,7 +1066,7 @@ function renderHistory(state) {
     .render();
 
 
-  zoneDetailsTimeSlider.onChange(selectedZoneTimeIndex => dispatchApplication('selectedZoneTimeIndex', selectedZoneTimeIndex)).render();
+  zoneDetailsTimeSlider.onChange(selectedZoneTimeIndex => dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex: selectedZoneTimeIndex}})).render();
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
@@ -1257,7 +1257,6 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
   if (!selectedZoneName) { return; }
-
   // Analytics
   thirdPartyServices.track('countryClick', { countryCode: selectedZoneName });
 
@@ -1266,6 +1265,7 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   renderGauges(state);
   renderContributors(state);
   renderHistory(state);
+  zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
   tryFetchHistory(state);
@@ -1288,7 +1288,7 @@ observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderCountryTable(state);
   renderOpenTooltips(state);
   [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
-    g.selectedIndex(i);
+    g.selectedIndex(i, state.application.previousSelectedZoneTimeIndex);
   });
 });
 // Observe for color blind mode changes

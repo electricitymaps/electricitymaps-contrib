@@ -107,8 +107,8 @@ export default class TimeSlider {
     }
   }
 
-  selectedIndex(index) {
-    this._selectedIndex = index;
+  selectedIndex(index, previousIndex) {
+    this._selectedIndex = index || previousIndex;
     this.render();
     return this;
   }

@@ -428,7 +428,8 @@ body {
     display: flex;
     line-height: 1.2rem;
     flex-direction: column;
-    height: 100%;
+    flex: 1;
+    overflow: hidden;
 }
 
 .mobile-info-tab {
@@ -1531,7 +1532,7 @@ sub {
     width: 100%;
     border-top: 1px solid lightgray;
     text-align: center;
-    overflow-y: hidden;
+    overflow-y: visible;
 }
 
 .zone-time-slider .time-slider-axis-container{
@@ -1557,6 +1558,7 @@ sub {
     background: transparent; 
     padding: 0;
     overflow: visible;
+    border: none;
   }
   
   .time-slider-input:focus {
@@ -1751,6 +1753,8 @@ sub {
     .country-panel {
        margin: 0;
        padding: 0 14px 0 20px;
+       -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
+
     }
     .country-table-header {
         position: relative;
