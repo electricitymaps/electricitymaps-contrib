@@ -3229,6 +3229,10 @@
     },
     "timezone": null
   },
+  "US-intoCA": {
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "UY": {
     "bounding_box": [
       [
