@@ -140,6 +140,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'BY->UA': [ENTSOE_DOMAIN_MAPPINGS['BY'], '10Y1001C--00003F'],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
+    'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
+                   ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
