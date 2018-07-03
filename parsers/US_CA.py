@@ -146,9 +146,9 @@ def fetch_historical_data(target_datetime):
         })
         import_data.append(
             {
-                'sortedZoneKeys': 'US-intoCA->US-CA',
+                'sortedZoneKeys': 'US-CA->US-intoCA',
                 'datetime': target_date.shift(hours=i + 1).datetime,
-                'netFlow': other_resources['IMPORTS'][i],
+                'netFlow': other_resources['IMPORTS'][i] * -1,
                 'source': 'caiso.com'
             }
         )
@@ -196,7 +196,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
         data = {
             'sortedZoneKeys': sorted_zone_keys,
             'datetime': date.datetime,
-            'netFlow': csv['Imports'][i],
+            'netFlow': csv['Imports'][i] * -1,
             'source': 'caiso.com'
         }
 
