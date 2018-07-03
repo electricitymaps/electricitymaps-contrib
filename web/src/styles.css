@@ -119,12 +119,7 @@ line, path {
 }
 .country-panel-wrap {
     position: relative;
-    padding-top: 160px;
-}
-.country-panel-wrap .bysource {
-    font-size: smaller;
-    position: relative;
-    top: 0.8rem;
+    padding-top: 120px;
 }
 .country-history .loading {
     background-size: 1.7rem;
@@ -606,8 +601,7 @@ body {
 
 .country-col-headline {
     font-size: 0.85em;
-    padding: 0.75em 0 0 0;
-    line-height: 1.25em;
+    padding: 0.5em 0 0 0;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -622,7 +616,7 @@ body {
 .country-col .country-col-subtext {
     margin-top: 0.375rem;
     font-size: 0.5rem;
-    line-height: 0rem;
+    line-height: 0.5rem;
 }
 .country-col .country-col-box {
     margin: 0 auto;
@@ -659,7 +653,9 @@ body {
     margin: 1.2rem 0 0 0;
     font-size: 1.1em;
 }
-
+.country-show-emissions-wrap .bysource {
+    font-size: smaller;
+}
 .country-show-emissions-wrap .menu {
     font-size: smaller;
     text-align: center;
@@ -1205,9 +1201,7 @@ div.highscore-button:hover {
 }
 
 
-.sub {
-    position: relative;
-    top: 0.8ex;
+sub {
     font-size: 60%;
 }
 
@@ -1769,7 +1763,6 @@ div.highscore-button:hover {
         position: relative;
         padding-top: 0;
     }
-
     .zone-time-slider{
         padding-top: 4px;
     }
