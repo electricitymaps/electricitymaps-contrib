@@ -107,7 +107,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return exchange
 
 
-print(fetch_production())
-print(fetch_consumption())
-print(fetch_exchange('IQ', 'IR'))
-print(fetch_exchange('IQ', 'IQ-KUR'))
+if __name__ == '__main__':
+    print(fetch_production())
+    print(fetch_consumption())
+    print(fetch_exchange('IQ', 'IR'))
+    print(fetch_exchange('IQ', 'IQ-KUR'))
