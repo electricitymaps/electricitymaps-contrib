@@ -4,7 +4,7 @@ var d3 = require('d3-format');
 var translation = require('./translation');
 
 var co2Sub = module.exports.co2Sub = function (str) {
-  return str.replace('CO2', 'CO<sub>2</sub>');
+  return str.replace('CO2', 'CO<span class="sub">2</span>');
 };
 module.exports.formatPower = function (d, numDigits) {
   // Assume MW input
