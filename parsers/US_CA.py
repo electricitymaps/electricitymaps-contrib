@@ -146,7 +146,7 @@ def fetch_historical_data(target_datetime):
         })
         import_data.append(
             {
-                'sortedZoneKeys': 'US->US-CA',
+                'sortedZoneKeys': 'US-intoCA->US-CA',
                 'datetime': target_date.shift(hours=i + 1).datetime,
                 'netFlow': other_resources['IMPORTS'][i],
                 'source': 'caiso.com'
@@ -175,7 +175,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     where net flow is from DK into NO
     """
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
-    if sorted_zone_keys != 'US->US-CA':
+    if sorted_zone_keys != 'US-CA->US-intoCA':
         raise NotImplementedError(
             'Exchange pair not supported: {}'.format(sorted_zone_keys))
 
@@ -213,5 +213,5 @@ if __name__ == '__main__':
     print('fetch_production() ->')
     pprint(fetch_production())
 
-    print('fetch_exchange("US-CA", "US") ->')
-    pprint(fetch_exchange("US-CA", "US"))
+    print('fetch_exchange("US-CA", "US-intoCA") ->')
+    pprint(fetch_exchange("US-CA", "US-intoCA"))

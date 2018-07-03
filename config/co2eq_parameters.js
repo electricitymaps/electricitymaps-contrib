@@ -146,6 +146,13 @@ var defaultExportCo2eqFootprint = {
         comment: 'see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants',
         comment2: 'About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.'
     },
+    'US-intoCA' {
+        carbonIntensity: 325,
+        renewableRatio: 0.30,
+        fossilFuelRatio: 0.70,
+        source: 'https://github.com/tmrowco/electricitymap/issues/1497',
+        comment: 'Renewable ratio assumed as average 25% hydro with some wind/solar; low-carbon assumed as with average 20% nuclear; from information in Github issue we assume it is either mostly from source with hydro or from source with nuclear but not both'
+    },
     'ZA': {
         carbonIntensity: 750,
         renewableRatio: 0.03,
