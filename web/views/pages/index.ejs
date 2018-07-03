@@ -1,6 +1,6 @@
 <%
 co2Sub = function(str) {
-    return (str || '').replace("CO2", "CO<sub>2</sub>");
+    return (str || '').replace("CO2", "CO<span class='sub'>2</span>");
 }
 %>
 <!DOCTYPE html>
@@ -284,7 +284,7 @@ co2Sub = function(str) {
                                             <div><span class="country-emission-intensity"></span>g</div>
                                         </div>
                                         <div class="country-col-headline"><%- co2Sub(__('country-panel.carbonintensity')) %></div>
-                                        <div class="country-col-subtext">(gCO<sub>2</sub>eq/kWh)</div>
+                                        <div class="country-col-subtext">(gCO<span class="sub">2</span>eq/kWh)</div>
                                     </div>
                                     <div class="country-col country-lowcarbon-wrap">
                                         <div id="country-lowcarbon-gauge" class="country-gauge-wrap"></div>
@@ -296,18 +296,18 @@ co2Sub = function(str) {
                                         <div class="country-col-headline"><%- __('country-panel.renewable') %></div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="country-panel-wrap">
                                 <div class="country-show-emissions-wrap">
                                     <div class="menu">
                                         <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricity') %></a>
                                         |
                                         <a id="emissions" href="javascript:toggleSource(true)"><%- co2Sub(__('country-panel.emissions')) %></a>
                                     </div>
-                                    <div class="bysource">
-                                        <%- __('country-panel.bysource') %>
-                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="country-panel-wrap">
+                                <div class="bysource">
+                                    <%- __('country-panel.bysource') %>
                                 </div>
                                 <div class="country-table-container"></div>
                             </div>
@@ -434,7 +434,7 @@ co2Sub = function(str) {
                                 <svg class="solar-potential-bar potential-bar colorbar"></svg>
                         </div>
                         <div class="co2-legend floating-legend">
-                                <div class="legend-header"><%- co2Sub(__('legends.carbonintensity'))%> <small>(gCO<sub>2</sub>eq/kWh)</small></div>
+                                <div class="legend-header"><%- co2Sub(__('legends.carbonintensity'))%> <small>(gCO<span class="sub">2</span>eq/kWh)</small></div>
                                 <svg class="co2-colorbar colorbar potential-bar"></svg>
                         </div>
                     </div>
@@ -544,7 +544,7 @@ co2Sub = function(str) {
             <img class="from flag"></img> <span id="from"></span> → <img class="to flag"></img> <span id="to"></span>: <span id="flow" style="font-weight: bold"></span> MW<br />
             <br />
             <%- co2Sub(__('tooltips.carbonintensityexport')) %>:<br />
-            <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<sub>2</sub>eq/kWh
+            <div class="emission-rect"></div> <span class="country-emission-intensity emission-intensity"></span> gCO<span class="sub">2</span>eq/kWh
         </div>
         <div id="price-tooltip" class="tooltip panel">
             <span class="value"></span> <span class="currency"></span>/MWh
@@ -558,7 +558,7 @@ co2Sub = function(str) {
                 <small>(<span id="capacity-factor-detail"></span>)</small><br />
                 <br />
                 <%- co2Sub(__('tooltips.withcarbonintensity')) %><br />
-                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<sub>2</sub>eq/kWh <small>(<%- __('country-panel.source') %>: <span class="emission-source"></span>)</small>
+                <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<span class="sub">2</span>eq/kWh <small>(<%- __('country-panel.source') %>: <span class="emission-source"></span>)</small>
             </span>
         </div>
         <div id="countrypanel-exchange-tooltip" class="tooltip panel">
@@ -570,7 +570,7 @@ co2Sub = function(str) {
                 <small>(<span id="capacity-factor-detail"></span>)</small><br />
                 <br />
                 <%- co2Sub(__('tooltips.withcarbonintensity')) %><br />
-                <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<sub>2</sub>eq/kWh<br />
+                <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<span class="sub">2</span>eq/kWh<br />
             </span>
         </div>
     </body>
