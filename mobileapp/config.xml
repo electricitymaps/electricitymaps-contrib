@@ -23,7 +23,7 @@
         <preference name="AndroidLaunchMode" value="singleInstance" />
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashScreenDelay" value="0" />
-        <preference name="StatusBarStyle" value="lightcontent" />
+        <preference name="StatusBarStyle" value="default" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/android/mipmap-ldpi/ic_launcher.png" />
         <icon density="mdpi" src="res/android/mipmap-mdpi/ic_launcher.png" />
