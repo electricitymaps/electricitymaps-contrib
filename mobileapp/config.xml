@@ -23,6 +23,7 @@
         <preference name="AndroidLaunchMode" value="singleInstance" />
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashScreenDelay" value="0" />
+        <preference name="StatusBarStyle" value="default" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/android/mipmap-ldpi/ic_launcher.png" />
         <icon density="mdpi" src="res/android/mipmap-mdpi/ic_launcher.png" />
@@ -34,6 +35,7 @@
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
         <preference name="CodePushDeploymentKey" value="4uQpHGlWRd7qOyIq-JNAhvjsYXcsEJ-bjzkpG" />
+        <preference name="StatusBarStyle" value="default" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
@@ -64,7 +66,6 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-globalization" spec="^1.0.9" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-universal-links-plugin" spec="https://github.com/flipflopapp/cordova-universal-links-plugin" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="1267173759989113" />
@@ -73,6 +74,7 @@
     <plugin name="cordova-plugin-firebase-analytics" spec="^0.13.0">
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-code-push" spec="^1.11.11" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
