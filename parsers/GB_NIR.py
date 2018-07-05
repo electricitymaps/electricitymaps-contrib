@@ -13,9 +13,9 @@ from dateutil import parser, tz
 
 from .lib.validation import validate
 
-thermal_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
-wind_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
-exchange_url = 'http://www.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx'
+thermal_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
+wind_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
+exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx'
 # Positive values represent imports to Northern Ireland.
 # Negative value represent exports from Northern Ireland.
 
