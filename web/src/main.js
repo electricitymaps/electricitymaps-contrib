@@ -223,7 +223,7 @@ app.initialize();
 
 function catchError(e) {
   console.error(`Error Caught! ${e}`);
-  thirdPartyServices.opbeat('captureException', e);
+  thirdPartyServices.reportError(e);
   thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
   const params = getState().application;
   params.name = e.name;
