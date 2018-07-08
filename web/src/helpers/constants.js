@@ -28,7 +28,7 @@ const modeOrder = [
   'unknown',
 ];
 const PRODUCTION_MODES = modeOrder.filter(d => d.indexOf('storage') === -1);
-const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1);
+const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d => d.replace(' storage', ''));
 
 module.exports = {
   modeColor,
