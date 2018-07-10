@@ -1868,10 +1868,6 @@
         31.292794
       ]
     ],
-    "capacity": {
-      "gas": 0,
-      "hydro": 0
-    },
     "contributors": [
       "https://github.com/alixunderplatz",
       "https://github.com/lorrieq"
