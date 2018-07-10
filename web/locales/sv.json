@@ -82,6 +82,7 @@
         "hideWindLayer": "Dölj vind-lager",
         "showSolarLayer": "Visa sol-lager",
         "hideSolarLayer": "Dölj sol-lager",
+        "toggleDarkMode": "Växla mörkt läge",
         "noParserInfo": "Ingen data tillgänglig",
         "temporaryDataOutage": "Data tillfälligt otillgänglig"
     },
