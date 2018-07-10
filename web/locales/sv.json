@@ -6,6 +6,11 @@
         "datasources": "datakällor",
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
+    "mobile-main-menu": {
+        "map": "Karta",
+        "areas": "Områden",
+        "about": "Om"
+    },
     "onboarding-modal": {
         "view1": {
             "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
@@ -87,7 +92,8 @@
         "retrynow": "Försök igen",
         "database-ad": "Letar du efter historisk data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
         "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
-        "legend": "Förklaring"
+        "legend": "Förklaring",
+        "faq": "Vanliga frågor"
     },
     "wind": "vind",
     "solar": "sol",
