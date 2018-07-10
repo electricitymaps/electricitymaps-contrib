@@ -247,7 +247,7 @@ co2Sub = function(str) {
                         </div>
 
                         <div class="mobile-faq-header">
-                                Frequently Asked Questions
+                                <%- __('misc.faq') %>
                         </div>
                         <div class="mobile-faq">
                         </div>
@@ -403,7 +403,7 @@ co2Sub = function(str) {
                             <span class="left-panel-back-button">
                                     <i class="material-icons" aria-hidden="true">arrow_back</i>
                             </span>
-                            <span class="title">Frequently Asked Questions</span>
+                            <span class="title"><%- __('misc.faq') %></span>
                         </div>
                         <div class="faq"></div>
                     </div>
@@ -430,7 +430,7 @@ co2Sub = function(str) {
                                 <svg class="wind-potential-bar potential-bar colorbar"></svg>
                         </div>
                         <div class="solar-potential-legend floating-legend">
-                                <div class="legend-header"><%- __('legends.solarpotential') %> <small>(W/m<sup>2</sup>)</small></div>
+                                <div class="legend-header"><%- __('legends.solarpotential') %> <small>(W/m<span class='sup'>2</span>)</small></div>
                                 <svg class="solar-potential-bar potential-bar colorbar"></svg>
                         </div>
                         <div class="co2-legend floating-legend">
@@ -461,7 +461,7 @@ co2Sub = function(str) {
                                 <button class="layer-button brightmode-button"></button>
                                 <div id="brightmode-layer-button-tooltip" class="layer-button-tooltip hidden">
                                         <div class="tooltip-container">
-                                                <div class="tooltip-text">toggle dark-mode</div>
+                                                <div class="tooltip-text"><%- __('tooltips.toggleDarkMode') %></div>
                                                 <div class="arrow"></div>
                                         </div>
                                 </div>
@@ -491,19 +491,19 @@ co2Sub = function(str) {
                     <a class="list-item map-button">
 
                             <i class="material-icons" aria-hidden="true">map</i>
-                            <span class="tab-label">Map</span>
+                            <span class="tab-label"><%- __('mobile-main-menu.map') %></span>
 
                     </a>
                     <a class="list-item highscore-button">
 
                             <i class="material-icons" aria-hidden="true">view_list</i>
-                            <span class="tab-label">Areas</span>
+                            <span class="tab-label"><%- __('mobile-main-menu.areas') %></span>
 
                     </a>
                     <a class="list-item info-button">
 
                             <i class="material-icons" aria-hidden="true">info</i>
-                            <span class="tab-label">About</span>
+                            <span class="tab-label"><%- __('mobile-main-menu.about') %></span>
 
                     </a>
                 </div>
