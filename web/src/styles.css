@@ -1210,6 +1210,12 @@ div.highscore-button:hover {
     font-size: 60%;
 }
 
+.sup {
+    position: relative;
+    top: -0.8ex;
+    font-size: 60%;
+}
+
 .pro {
     border-radius: 0.25rem;
     background-color: gold;
