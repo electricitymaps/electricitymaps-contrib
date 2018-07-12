@@ -1719,7 +1719,7 @@
     },
     "rotation": 90
   },
-  "US-CA->US-intoCA": {
+  "US->US-CA": {
     "lonlat": [
       -115.846,
       35.962
@@ -1727,7 +1727,7 @@
     "parsers": {
       "exchange": "US_CA.fetch_exchange"
     },
-    "rotation": 45
+    "rotation": -135
   },
   "US-BPA->US-IPC": {
     "lonlat": [
