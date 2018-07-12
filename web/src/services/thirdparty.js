@@ -8,7 +8,7 @@ class ConnectionsService {
       this.addConnection(require('./thirdparty/facebook'));
       this._ga = this.addConnection(require('./thirdparty/ga'));
       this.addConnection(require('./thirdparty/mixpanel'));
-      this._opbeat = this.addConnection(require('./thirdparty/opbeat'));
+      this._stackdriver = this.addConnection(require('./thirdparty/stackdriver'));
     }
   }
 
@@ -41,12 +41,14 @@ class ConnectionsService {
     }
   }
 
-  // track opbeat
-  opbeat(){
-    if(this._opbeat !== undefined){
+  // track errors
+  reportError() {
+    if (this._stackdriver !== undefined) {
       try {
-        this._opbeat.opbeat(...arguments);
-      } catch(err) { console.error('Opbeat analytics track error: ' + err); }
+        this._stackdriver.report(...arguments);
+      } catch(err) {
+        console.error('Error while reporting error: ' + err);
+      }
     }
   }
 }

@@ -6,6 +6,11 @@
         "datasources": "data sources",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
+    "mobile-main-menu": {
+        "map": "Map",
+        "areas": "Areas",
+        "about": "About"
+    },
     "onboarding-modal": {
         "view1": {
             "subtitle": "Mapping the climate impact of electricity"
@@ -77,6 +82,7 @@
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
         "hideSolarLayer": "Hide solar layer",
+        "toggleDarkMode": "Toggle dark-mode",
         "noParserInfo": "No data available",
         "temporaryDataOutage": "Data temporarily unavailable"
     },
@@ -87,12 +93,13 @@
         "retrynow": "Retry now",
         "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
-        "legend": "Legend"
+        "legend": "Legend",
+        "faq": "Frequently Asked Questions"
     },
     "wind": "wind",
     "solar": "solar",
     "hydro": "hydro",
-    "hydro storage": "pumped hydro storage",
+    "hydro storage": "hydro storage",
     "battery storage": "battery storage",
     "biomass": "biomass",
     "nuclear": "nuclear",

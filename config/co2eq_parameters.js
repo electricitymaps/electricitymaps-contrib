@@ -101,13 +101,6 @@ var countryCo2eqFootprint = {
 };
 
 var defaultExportCo2eqFootprint = {
-  'AL': {
-        carbonIntensity: 24,
-        renewableRatio: 1.00,
-        fossilFuelRatio: 0.00,
-        source: 'IEA yearly data for 2015',
-        url: 'https://www.iea.org/statistics/statisticssearch/report/?country=ALBANIA&product=electricityandheat&year=2015'
-    },
     'AZ': {
         carbonIntensity: 470,
         renewableRatio: 0.07,

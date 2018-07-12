@@ -6,6 +6,11 @@
         "datasources": "datakällor",
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
+    "mobile-main-menu": {
+        "map": "Karta",
+        "areas": "Områden",
+        "about": "Om"
+    },
     "onboarding-modal": {
         "view1": {
             "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
@@ -35,7 +40,8 @@
         "helpfrom": "med hjälp från",
         "noDataAtTimestamp": "Data är tillfälligt otillgänglig för den valda tiden",
         "noLiveData": "Aktuell data är tillfälligt otillgänglig för detta område",
-        "noParserInfo": "Vi har ännu ingen information om detta område.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för området</a>."
+        "noParserInfo": "Vi har ännu ingen information om detta område.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för området</a>.",
+        "now": "Nu"
     },
     "left-panel": {
         "zone-list-header-title": "Klimatpåverkan per region",
@@ -53,6 +59,8 @@
         "likethisvisu": "Gillar du visualiseringen?",
         "loveyourfeedback": "Berätta gärna vad du tycker",
         "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
+        "faq-text": "Någonting oklart? Kolla in våra",
+        "faq": "vanliga frågor.",
         "here": "här"
     },
     "legends": {
@@ -74,6 +82,7 @@
         "hideWindLayer": "Dölj vind-lager",
         "showSolarLayer": "Visa sol-lager",
         "hideSolarLayer": "Dölj sol-lager",
+        "toggleDarkMode": "Växla mörkt läge",
         "noParserInfo": "Ingen data tillgänglig",
         "temporaryDataOutage": "Data tillfälligt otillgänglig"
     },
@@ -84,7 +93,8 @@
         "retrynow": "Försök igen",
         "database-ad": "Letar du efter historisk data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
         "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
-        "legend": "Förklaring"
+        "legend": "Förklaring",
+        "faq": "Vanliga frågor"
     },
     "wind": "vind",
     "solar": "sol",
@@ -100,14 +110,14 @@
     "unknown": "okänd",
 
     "electricityComesFrom": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> kommer från %3$s",
-    "emissionsComeFrom": "%1$s %% av utsläppen i <img id=\"country-flag\"></img> <b>%2$s</b> kommer från %3$s",
+    "emissionsComeFrom": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> kommer från %3$s",
     "electricityStoredUsing": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> lagras med %3$s",
-    "emissionsStoredUsing": "%1$s %% av utsläppen i <img id=\"country-flag\"></img> <b>%2$s</b> lagras med %3$s",
+    "emissionsStoredUsing": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> lagras med %3$s",
 
     "electricityExportedTo": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% av utsläppen i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> importeres från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% av utsläppen i <img id=\"country-flag\"></img> <b>%2$s</b> importeres från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> importeres från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "av CO2eq per minut",
 
@@ -704,6 +714,10 @@
           "IQ": {
             "zoneName": "Irak"
           },
+          "IQ-KUR": {
+            "countryName": "Irak",
+            "zoneName": "Kurdistan"
+          },
           "IR": {
             "zoneName": "Iran"
           },
@@ -1173,6 +1187,10 @@
           "US-SPP": {
             "countryName": "USA",
             "zoneName": "SPP"
+          },
+          "US-SVERI":{
+            "countryName": "USA",
+            "zoneName": "SVERI"
           },
           "US-HI": {
             "zoneName": "Hawaii"

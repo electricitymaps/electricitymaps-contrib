@@ -1857,6 +1857,27 @@
     },
     "timezone": "Asia/Kolkata"
   },
+  "IN-UT": {
+    "bounding_box": [
+      [
+        77.611412,
+        28.542876
+      ],
+      [
+        80.940177,
+        31.292794
+      ]
+    ],
+    "contributors": [
+      "https://github.com/alixunderplatz",
+      "https://github.com/lorrieq"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_UT.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IQ": {
     "capacity": {},
     "contributors": [

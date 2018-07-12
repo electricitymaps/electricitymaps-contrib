@@ -33,7 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('[name].' + (isProduction ? '[contenthash]' : 'dev') + '.css'),
+    new ExtractTextPlugin('[name].' + (isProduction ? '[hash]' : 'dev') + '.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     function() {
       this.plugin('done', function(stats) {
