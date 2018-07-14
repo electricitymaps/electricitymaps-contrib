@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import datetime
+
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
@@ -153,41 +155,83 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
       'source': 'mysource.com'
     }
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    r = session or requests.session()
-    url = 'http://live.gridwatch.ca/WebServices/GridWatchWebApp.asmx/GetHomeViewData_v2'
-    response = r.get(url)
-    obj = response.json()
-    exchanges = obj['intertieLineData']
+    exchange_maps = {
+        'MANITOBA': 'CA-MB->CA-ON',
+        'MANITOBA SK': 'CA-MB->CA-ON',
+        'MICHIGAN': 'CA-ON->US-MISO',
+        'MINNESOTA': 'CA-ON->US-MISO',
+        'NEW-YORK': 'CA-ON->US-NY',
+        'PQ.AT': 'CA-ON->CA-QC',
+        'PQ.B5D.B31L': 'CA-ON->CA-QC',
+        'PQ.D4Z': 'CA-ON->CA-QC',
+        'PQ.D5A': 'CA-ON->CA-QC',
+        'PQ.H4Z': 'CA-ON->CA-QC',
+        'PQ.H9A': 'CA-ON->CA-QC',
+        'PQ.P33C': 'CA-ON->CA-QC',
+        'PQ.Q4C': 'CA-ON->CA-QC',
+        'PQ.X2Y': 'CA-ON->CA-QC'
+    }
 
-    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
-    # Everything -> CA_ON corresponds to an import to ON
-    # In the data, "net" represents an export
-    # So everything -> CA_ON must be reversed
-    if sortedZoneKeys == 'CA-MB->CA-ON':
-        keys = ['MANITOBA', 'MANITOBA SK']
-        direction = -1
-    elif sortedZoneKeys == 'CA-ON->US-NY':
-        keys = ['NEW-YORK']
-        direction = 1
-    elif sortedZoneKeys == 'CA-ON->US-MISO':
-        keys = ['MICHIGAN', 'MINNESOTA']
-        direction = 1
-    elif sortedZoneKeys == 'CA-ON->CA-QC':
-        keys = filter(lambda k: k[:2] == 'PQ', exchanges.keys())
-        direction = 1
-    else:
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    if sorted_zone_keys not in exchange_maps.values():
         raise NotImplementedError('This exchange pair is not implemented')
 
-    data = {
-        'datetime': max(map(lambda x: arrow.get(arrow.get(
-            exchanges[x]['dateReported']).datetime, timezone).datetime, keys)),
-        'sortedZoneKeys': sortedZoneKeys,
-        'netFlow': sum(map(lambda x: float(exchanges[x]['net'].replace(',', '')), keys)) * direction,
-        'source': 'gridwatch.ca'
-    }
+    # TODO: verify timezone handling vs filename on server
+    dt = arrow.get(arrow.get(target_datetime, timezone))
+    filename = dt.format('YYYYMMDD')
+
+    r = session or requests.session()
+    #url = 'http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{}.xml'.format(filename)
+    #response = r.get(url)
+    #soup = BeautifulSoup(response.text, 'html.parser')
+    with open('PUB_IntertieScheduleFlow_{}.xml'.format(filename)) as f:
+        # temporary for faster debugging...
+        soup = BeautifulSoup(f.read(), 'html5lib')
+
+    interties = soup.find_all('intertiezone')
+
+    for intertie in interties:
+        intertie_name = intertie.find('intertiezonename').text
+
+        if intertie_name not in exchange_maps:
+            logger.warning('CA-ON: unrecognized intertie name {}, please implement it!'.format(intertie_name))
+            continue
+
+        mapping = exchange_maps[intertie_name]
+        print(intertie_name, mapping)
+
+        if not mapping == sorted_zone_keys:
+            # we're not interested in data for this zone, skip it
+            continue
+
+        # in the XML, flow into Ontario is always negative.
+        # in EM, for 'CA-MB->CA-ON', flow into Ontario is positive.
+        if mapping.startswith('CA-ON->'):
+            direction = 1
+        else:
+            direction = -1
+
+        actuals = intertie.find_all('actual')
+
+        data = []
+
+        for actual in actuals:
+            hour = int(actual.find('hour').text) - 1
+            minute = (int(actual.find('interval').text) - 1) * 5
+            flow = float(actual.find('flow').text) * direction
+
+            data.append(
+                {
+                    'datetime': datetime.datetime(dt.year, dt.month, dt.day, hour, minute),  # TODO: timezone?
+                    'sortedZoneKeys': sorted_zone_keys,
+                    'netFlow': flow,
+                    'source': 'ieso.ca'
+                }
+            )
+
+            # TODO: we will need to add up values for same datetime for exchanges with more than one intertie
 
     return data
 
@@ -196,8 +240,11 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
-    print(fetch_production())
+    #print(fetch_production())
     print('fetch_price() ->')
-    print(fetch_price())
+    #print(fetch_price())
     print('fetch_exchange("CA-ON", "US-NY") ->')
-    print(fetch_exchange("CA-ON", "US-NY"))
+    #print(fetch_exchange("CA-ON", "US-NY"))
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=datetime.datetime(2018, 4, 14, 12, 0)) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=datetime.datetime(2018, 4, 14, 12, 0)))
+    # TODO: give examples of exchange right now, and exchange 2 months ago
