@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from collections import defaultdict
 import datetime
 
 # The arrow library is used to handle datetimes
@@ -192,6 +193,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     interties = soup.find_all('intertiezone')
 
+    sought_intertie_flows = defaultdict(list)
+
     for intertie in interties:
         intertie_name = intertie.find('intertiezonename').text
 
@@ -215,23 +218,29 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
         actuals = intertie.find_all('actual')
 
-        data = []
-
         for actual in actuals:
             hour = int(actual.find('hour').text) - 1
             minute = (int(actual.find('interval').text) - 1) * 5
             flow = float(actual.find('flow').text) * direction
 
-            data.append(
-                {
-                    'datetime': datetime.datetime(dt.year, dt.month, dt.day, hour, minute),  # TODO: timezone?
-                    'sortedZoneKeys': sorted_zone_keys,
-                    'netFlow': flow,
-                    'source': 'ieso.ca'
-                }
-            )
+            flow_dt = datetime.datetime(dt.year, dt.month, dt.day, hour, minute)  # TODO: timezone?
 
-            # TODO: we will need to add up values for same datetime for exchanges with more than one intertie
+            sought_intertie_flows[flow_dt].append(flow)
+
+    # add up values for same datetime for exchanges with more than one intertie
+    data = [
+        {
+            'datetime': flow_dt,
+            'sortedZoneKeys': sorted_zone_keys,
+            'netFlow': sum(flow_figures),
+            'source': 'ieso.ca'
+        }
+        for flow_dt, flow_figures in sought_intertie_flows.items()
+    ]
+
+    # being constructed from a dict, data is not guaranteed to be in chronological order.
+    # sort it for clean-ness and easier debugging.
+    data = sorted(data, key=lambda dp: dp['datetime'])
 
     return data
 
