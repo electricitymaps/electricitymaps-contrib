@@ -1432,7 +1432,7 @@
       32.607
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_CA.fetch_exchange"
     },
     "rotation": -10
   },
