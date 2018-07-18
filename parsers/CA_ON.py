@@ -5,6 +5,10 @@ import datetime
 
 # The arrow library is used to handle datetimes
 import arrow
+
+# pytz gets tzinfo objects
+import pytz
+
 # The request library is used to fetch content through HTTP
 import requests
 
@@ -20,6 +24,7 @@ MAP_GENERATION = {
 }
 
 timezone = 'Canada/Eastern'
+tz_obj = pytz.timezone(timezone)
 
 
 def fetch_production(zone_key='CA-ON', session=None, target_datetime=None, logger=None):
@@ -144,17 +149,20 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
+    zone_key: used in case a parser is able to fetch multiple zones
+    session: requests session passed in order to re-use an existing session,
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
 
     Return:
-    A dictionary in the form:
-    {
+    A list of dictionaries in the form:
+    [{
       'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
-    }
+    }]
     """
 
     exchange_maps = {
@@ -179,17 +187,13 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if sorted_zone_keys not in exchange_maps.values():
         raise NotImplementedError('This exchange pair is not implemented')
 
-    # TODO: verify timezone handling vs filename on server
-    dt = arrow.get(arrow.get(target_datetime, timezone))
+    dt = arrow.get(target_datetime).to(tz_obj)
     filename = dt.format('YYYYMMDD')
 
     r = session or requests.session()
-    #url = 'http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{}.xml'.format(filename)
-    #response = r.get(url)
-    #soup = BeautifulSoup(response.text, 'html.parser')
-    with open('PUB_IntertieScheduleFlow_{}.xml'.format(filename)) as f:
-        # temporary for faster debugging...
-        soup = BeautifulSoup(f.read(), 'html5lib')
+    url = 'http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{}.xml'.format(filename)
+    response = r.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
 
     interties = soup.find_all('intertiezone')
 
@@ -203,7 +207,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             continue
 
         mapping = exchange_maps[intertie_name]
-        print(intertie_name, mapping)
 
         if not mapping == sorted_zone_keys:
             # we're not interested in data for this zone, skip it
@@ -223,9 +226,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             minute = (int(actual.find('interval').text) - 1) * 5
             flow = float(actual.find('flow').text) * direction
 
-            flow_dt = datetime.datetime(dt.year, dt.month, dt.day, hour, minute)  # TODO: timezone?
+            dt_aware = datetime.datetime(dt.year, dt.month, dt.day, hour, minute, tzinfo=tz_obj)
 
-            sought_intertie_flows[flow_dt].append(flow)
+            sought_intertie_flows[dt_aware].append(flow)
 
     # add up values for same datetime for exchanges with more than one intertie
     data = [
@@ -249,11 +252,26 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
-    #print(fetch_production())
+    print(fetch_production())
     print('fetch_price() ->')
-    #print(fetch_price())
+    print(fetch_price())
     print('fetch_exchange("CA-ON", "US-NY") ->')
-    #print(fetch_exchange("CA-ON", "US-NY"))
-    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=datetime.datetime(2018, 4, 14, 12, 0)) ->')
-    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=datetime.datetime(2018, 4, 14, 12, 0)))
-    # TODO: give examples of exchange right now, and exchange 2 months ago
+    print(fetch_exchange("CA-ON", "US-NY"))
+
+    now = arrow.utcnow()
+
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.datetime)) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.datetime))
+
+    print('we expect correct results when time in UTC and Ontario differs')
+    print('data should be for {}'.format(now.replace(hour=2).to(tz_obj).format('YYYY-MM-DD')))
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.replace(hour=2)) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.replace(hour=2)))
+
+    print('we expect results for 2 months ago')
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(months=-2).datetime)) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(months=-2).datetime))
+
+    print('there are likely no results for 2 years ago')
+    print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(years=-2).datetime)) ->')
+    print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(years=-2).datetime))
