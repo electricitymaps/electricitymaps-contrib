@@ -195,7 +195,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     s = session or requests.Session()
 
-    if sorted_zone_keys == 'MX->US-CA':
+    if sorted_zone_keys == 'MX-BC->US-CA':
         netflow = fetch_MX_exchange(s)
         exchange = {
           'sortedZoneKeys': sorted_zone_keys,
@@ -240,7 +240,7 @@ if __name__ == '__main__':
     pprint(fetch_production())
 
     print('fetch_exchange("US-CA", "US") ->')
-    pprint(fetch_exchange("US-CA", "US"))
+    #pprint(fetch_exchange("US-CA", "US"))
 
-    print('fetch_exchange("MX", "US-CA")')
-    pprint(fetch_exchange("MX", "US-CA"))
+    print('fetch_exchange("MX-BC", "US-CA")')
+    pprint(fetch_exchange("MX-BC", "US-CA"))

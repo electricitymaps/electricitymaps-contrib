@@ -868,6 +868,10 @@
           "MX": {
             "zoneName": "Mexico"
           },
+          "MX-BC": {
+            "countryName": "Mexico",
+            "zoneName": "Baja California"
+          },
           "MY-EM": {
             "countryName": "Malaysia",
             "zoneName": "Borneo"
