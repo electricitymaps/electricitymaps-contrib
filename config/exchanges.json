@@ -1724,7 +1724,9 @@
       -115.846,
       35.962
     ],
-    "parsers": {},
+    "parsers": {
+      "exchange": "US_CA.fetch_exchange"
+    },
     "rotation": -135
   },
   "US-BPA->US-IPC": {
