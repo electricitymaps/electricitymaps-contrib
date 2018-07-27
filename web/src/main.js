@@ -805,12 +805,16 @@ if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
       dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
-      dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: undefined}});
+      if (getState().application.selectedZoneName !== null) {
+        dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: null}});
+      }
     })
     .onCountryClick((d) => {
       dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
-      dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
+      if (getState().application.selectedZoneName !== d.countryCode) {
+        dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
+      }
     });
 }
 
@@ -1066,7 +1070,11 @@ function renderHistory(state) {
     .render();
 
 
-  zoneDetailsTimeSlider.onChange(selectedZoneTimeIndex => dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex: selectedZoneTimeIndex}})).render();
+  zoneDetailsTimeSlider.onChange((selectedZoneTimeIndex) => {
+    if (getState().application.selectedZoneTimeIndex !== selectedZoneTimeIndex) {
+      dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex: selectedZoneTimeIndex}})
+    }
+  }).render();
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
