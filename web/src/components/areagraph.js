@@ -17,6 +17,15 @@ function AreaGraph(selector, modeColor, modeOrder) {
     var that = this;
 
     this.rootElement = d3.select(selector);
+
+    // Create axis
+    this.xAxisElement = this.rootElement.append('g')
+        .attr('class', 'x axis')
+        .style('pointer-events', 'none');
+    this.yAxisElement = this.rootElement.append('g')
+        .attr('class', 'y axis')
+        .style('pointer-events', 'none');
+    
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
         .style('cursor', 'pointer')
@@ -26,20 +35,13 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .style('display', 'none')
         .style('pointer-events', 'none')
         .style('shape-rendering', 'crispEdges')
+
     this.markerElement = this.rootElement.append('circle')
         .style('pointer-events', 'none')
         .style('display', 'none')
         .attr('r', 6)
         .style('stroke', 'black')
         .style('stroke-width', 1.5);
-
-    // Create axis
-    this.xAxisElement = this.rootElement.append('g')
-        .attr('class', 'x axis')
-        .style('pointer-events', 'none');
-    this.yAxisElement = this.rootElement.append('g')
-        .attr('class', 'y axis')
-        .style('pointer-events', 'none');
 
     // Create scales
     this.x = d3.scaleTime();
