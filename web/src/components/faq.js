@@ -72,6 +72,10 @@ const faq = {
         question: 'Do you take into account imports and exports of electricity?',
         answer: 'Yes, we do. Imports and exports can be see on the map as small arrows between different areas [link to question about arrows]. Detailed information can be seen in the charts shown when you click on an area.',
       },
+      emissionsOfStored: {
+        question: 'What about emissions generating electricity which is then stored in batteries or used to fill reservoirs?',
+        answer: 'As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.',
+      },
       guaranteesOfOrigin: {
         question: 'What are green certificates, and how are they taken into account?',
         answer: 'When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving other non-renewable electricity producers a way to "compensate" for their emissions and the right to claim that the electricity they produce comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity is green, when this is not true in the physical sense. This problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based, physical picture of the power grid, in order to responsibilize consumers.',
