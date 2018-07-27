@@ -15,4 +15,5 @@ docker rm $CONTAINER_ID
 
 # Run node in order to build index.html
 echo 'Generating index pages..'
+yarn add ejs
 node generate-index.js
