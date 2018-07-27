@@ -18,7 +18,8 @@ MAPPING = {'Wind': 'wind',
            'Solar': 'solar',
            'Natural Gas': 'gas',
            'Diesel Fuel Oil': 'oil',
-           'Waste Disposal Services': 'biomass'
+           'Waste Disposal Services': 'biomass',
+           'Coal': 'coal'
             }
 
 TIE_MAPPING = {'US-MISO->US-SPP': ['AMRN', 'DPC', 'GRE', 'MDU', 'MEC', 'NSP', 'OTP']}
@@ -50,8 +51,7 @@ def data_processor(df, logger):
     # Remove leading whitespace in column headers.
     df.columns = df.columns.str.strip()
 
-    keys_to_remove = {'Coal Market', 'Coal Self', 'GMT MKT Interval', 'Average Actual Load',
-                      'Other', 'Waste Heat'}
+    keys_to_remove = {'GMT MKT Interval', 'Average Actual Load', 'Other', 'Waste Heat'}
 
     # Check for new generation columns.
     known_keys = MAPPING.keys() | keys_to_remove
@@ -68,7 +68,6 @@ def data_processor(df, logger):
     processed_data = []
     for index, row in df.iterrows():
         production = row.to_dict()
-        production['coal'] = production['Coal Market'] + production['Coal Self']
 
         extra_unknowns = sum([production[k] for k in unknown_keys])
         production['unknown'] = production['Other'] + production['Waste Heat'] + extra_unknowns
