@@ -73,7 +73,7 @@ const faq = {
         answer: 'Yes, we do. Imports and exports can be see on the map as small arrows between different areas [link to question about arrows]. Detailed information can be seen in the charts shown when you click on an area.',
       },
       emissionsOfStored: {
-        question: 'What about emissions generating electricity which is then stored in batteries or used to fill reservoirs?',
+        question: 'What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?',
         answer: 'As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.',
       },
       guaranteesOfOrigin: {
