@@ -25,7 +25,7 @@ function AreaGraph(selector, modeColor, modeOrder) {
     this.yAxisElement = this.rootElement.append('g')
         .attr('class', 'y axis')
         .style('pointer-events', 'none');
-    
+
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
         .style('cursor', 'pointer')
@@ -310,15 +310,14 @@ AreaGraph.prototype.render = function() {
         .ticks(5)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
-        // Need to remove 1px in order to see the 1px line
-        .attr('transform', `translate(0 ${height - X_AXIS_HEIGHT})`)
+        .attr('transform', `translate(-1 ${height - X_AXIS_HEIGHT - 1})`)
         .call(xAxis);
 
     // y axis
     var yAxis = d3.axisRight(y)
         .ticks(5);
     this.yAxisElement
-        .attr('transform', `translate(${width - Y_AXIS_WIDTH} 0)`)
+        .attr('transform', `translate(${width - Y_AXIS_WIDTH - 1} -1)`)
         .call(yAxis);
 
     return this;

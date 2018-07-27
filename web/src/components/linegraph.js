@@ -14,6 +14,15 @@ var moment = require('moment');
 
 function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
     this.rootElement = d3.select(selector);
+
+    // Create axis
+    this.xAxisElement = this.rootElement.append('g')
+        .attr('class', 'x axis')
+        .style('pointer-events', 'none');
+    this.yAxisElement = this.rootElement.append('g')
+        .attr('class', 'y axis')
+        .style('pointer-events', 'none');
+
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
         .style('cursor', 'pointer')
@@ -38,14 +47,6 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
     this.yAccessor = yAccessor;
     this.definedAccessor = definedAccessor;
     this._gradient = true;
-
-    // Create axis
-    this.xAxisElement = this.rootElement.append('g')
-        .attr('class', 'x axis')
-        .style('pointer-events', 'none');
-    this.yAxisElement = this.rootElement.append('g')
-        .attr('class', 'y axis')
-        .style('pointer-events', 'none');
 
     // Create scales
     var x, y;
@@ -250,15 +251,14 @@ LineGraph.prototype.render = function () {
         .ticks(5)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
-        // Need to remove 1px in order to see the 1px line
-        .attr('transform', `translate(0 ${height - X_AXIS_HEIGHT})`) // Need to use transform attribute (and not css property) due to lack of IE support: https://aheadcreative.co.uk/articles/svg-transitions-not-working-ie11/
+        .attr('transform', `translate(-1 ${height - X_AXIS_HEIGHT - 1})`) // Need to use transform attribute (and not css property) due to lack of IE support: https://aheadcreative.co.uk/articles/svg-transitions-not-working-ie11/
         .call(xAxis);
 
     // y axis
     var yAxis = d3.axisRight(y)
         .ticks(5);
     this.yAxisElement
-        .attr('transform', `translate(${width - Y_AXIS_WIDTH} 0)`)
+        .attr('transform', `translate(${width - Y_AXIS_WIDTH - 1} -1)`)
         .call(yAxis);
 
     return this;
