@@ -32,16 +32,12 @@ class TestUSSPP(unittest.TestCase):
         with self.subTest():
             self.assertEqual(len(data), 23)
 
-        # Multiple coal keys in data source, ensure they are summed correctly.
-        with self.subTest():
-            self.assertEqual(round(datapoint['production']['coal'], 2), 15963.60)
-
         # Unknown keys must be assigned and summed.
         with self.subTest():
-            self.assertEqual(round(datapoint['production']['unknown'], 2), 63.67)
+            self.assertEqual(round(datapoint['production']['unknown'], 2), 33.1)
 
         with self.subTest():
-            expected_dt = get(datetime(2018, 2, 23, 12, 25), 'UTC').datetime
+            expected_dt = get(datetime(2018, 7, 27, 11, 45), 'UTC').datetime
             self.assertEqual(datapoint['datetime'], expected_dt)
 
         with self.subTest():
