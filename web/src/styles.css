@@ -1432,7 +1432,7 @@ div.highscore-button:hover {
     background-color:#FAFAFA;
     height: 100%;
     width: 100%;
-    padding: 1rem 0; 
+    padding-top: 80px;
 }
 
 .all-screens-hidden {
