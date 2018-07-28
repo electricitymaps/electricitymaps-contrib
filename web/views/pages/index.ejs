@@ -253,30 +253,28 @@ co2Sub = function(str) {
                     </div>
                     <div class="left-panel-zone-details">
 
-                        <div class="left-panel-zone-details-toolbar">
-                            <span class="left-panel-back-button">
-                                <i class="material-icons" aria-hidden="true">arrow_back</i>
-                            </span>
-                            <div class="country-name-time">
-                                <div class="country-name-time-table">
-                                    <div style="display: table-cell">
-                                        <img id="country-flag" class="flag"></img>
-                                    </div>
-
-                                    <div style="display: table-cell">
-                                        <div class="country-name"></div>
-                                        <div class="country-time">?</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                         <div class="country-panel">
                             <div class="zone-details-no-parser-message">
                                     <%- __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap#adding-a-new-country') %>
                             </div>
                             <div class="country-table-header">
+                                <div class="left-panel-zone-details-toolbar">
+                                    <span class="left-panel-back-button">
+                                        <i class="material-icons" aria-hidden="true">arrow_back</i>
+                                    </span>
+                                    <div class="country-name-time">
+                                        <div class="country-name-time-table">
+                                            <div style="display: table-cell">
+                                                <img id="country-flag" class="flag"></img>
+                                            </div>
+
+                                            <div style="display: table-cell">
+                                                <div class="country-name"></div>
+                                                <div class="country-time">?</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="country-table-header-inner">
                                     <div class="country-col country-emission-intensity-wrap">
                                         <div id="country-emission-rect" class="country-col-box emission-rect emission-rect-overview">
@@ -372,31 +370,33 @@ co2Sub = function(str) {
                                 </p>
                             </div>
                         </div>
-                        <div class="detail-bottom-section">
-                            <div class="zone-time-slider"></div>
-                            <div class="social-buttons small-screen-hidden">
-                                <p>
-                                    <!-- Facebook share -->
-                                    <div class="fb-share-button"
-                                        data-href="https://www.electricitymap.org/"
-                                        data-layout="button_count">
-                                    </div>
-                                    <!-- Twitter share -->
-                                    <a class="twitter-share-button"
-                                    data-url="https://www.electricitymap.org"
-                                    data-via="electricitymap"
-                                    data-lang="<%= locale %>"></a>
-                                    <!-- Slack -->
-                                    <span class="slack-button">
-                                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                                            <span class="slack-ico"></span>
-                                            <span class="slack-text">Slack</span>
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
+                    </div>
+
+                    <div class="detail-bottom-section">
+                        <div class="zone-time-slider"></div>
+                        <div class="social-buttons small-screen-hidden">
+                            <p>
+                                <!-- Facebook share -->
+                                <div class="fb-share-button"
+                                    data-href="https://www.electricitymap.org/"
+                                    data-layout="button_count">
+                                </div>
+                                <!-- Twitter share -->
+                                <a class="twitter-share-button"
+                                data-url="https://www.electricitymap.org"
+                                data-via="electricitymap"
+                                data-lang="<%= locale %>"></a>
+                                <!-- Slack -->
+                                <span class="slack-button">
+                                    <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                        <span class="slack-ico"></span>
+                                        <span class="slack-text">Slack</span>
+                                    </a>
+                                </span>
+                            </p>
                         </div>
                     </div>
+
                     <div class="faq-panel">
                         <div class="faq-header">
                             <span class="left-panel-back-button">

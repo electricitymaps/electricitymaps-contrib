@@ -119,7 +119,7 @@ line, path {
 }
 .country-panel-wrap {
     position: relative;
-    padding-top: 160px;
+    padding-top: 200px;
 }
 .country-panel-wrap .bysource {
     font-size: smaller;
@@ -397,7 +397,7 @@ body {
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
     position: relative;
-    padding: 1rem 1.25rem 0 1.25rem;
+    padding: 1rem 1.25rem 1rem 1.25rem;
 }
 .left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-highscore-back {
@@ -430,7 +430,7 @@ body {
 
 .mobile-info-tab, .left-panel-zone-details {
     line-height: 1.2rem;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .mobile-info-tab {
@@ -448,11 +448,7 @@ body {
     margin: 0.6rem 0;
 }
 
-.left-panel-zone-details .detail-bottom-section{
-    padding: 0rem 1rem 1.25rem;
-}
-
-.left-panel-zone-details .detail-bottom-section .social-buttons{
+.detail-bottom-section .social-buttons{
     padding: 0 1rem;
 }
 
@@ -487,7 +483,7 @@ body {
 .country-table-header {
     position: absolute;
     width:100%;
-    padding: 1rem 0 0.5rem 0;
+    padding: 0 0 0.5rem 0;
     position: absolute;
     left: 0;
     background-color: #FAFAFA;
@@ -1147,8 +1143,6 @@ div.highscore-button:hover {
     -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
 
 }
 #tab-content {
@@ -1711,6 +1705,7 @@ div.highscore-button:hover {
         -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
         -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
         box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+        z-index: 999; /* required for the box-shadow to overlay everything */
     }
     #mobile-header .header-content{
         display: flex;
@@ -1741,6 +1736,7 @@ div.highscore-button:hover {
     }
     .left-panel {
         position: relative;
+        height: unset;
     }
     .left-panel, #map-container {
         width: 100%;
@@ -1753,7 +1749,7 @@ div.highscore-button:hover {
     }
     .left-panel-zone-details-toolbar {
         position: relative;
-        padding: 1rem 1.25rem 0.5rem 1.25rem;
+        padding: 0.5rem 1.25rem 0.5rem 1.25rem;
     }
     .country-panel {
        margin: 0;
