@@ -276,7 +276,6 @@ body {
     flex-direction: row;
     align-items: stretch;
     position: relative;
-    overflow-y: auto;
     flex: 1 1 auto;
 }
 
@@ -430,10 +429,7 @@ body {
 }
 
 .mobile-info-tab, .left-panel-zone-details {
-    display: flex;
     line-height: 1.2rem;
-    flex-direction: column;
-    flex: 1;
     overflow: hidden;
 }
 
@@ -1745,7 +1741,6 @@ div.highscore-button:hover {
     }
     .left-panel {
         position: relative;
-        height: auto;
     }
     .left-panel, #map-container {
         width: 100%;

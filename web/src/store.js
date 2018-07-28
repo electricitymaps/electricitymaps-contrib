@@ -2,7 +2,7 @@ const redux = require('redux');
 const reduxLogger = require('redux-logger').logger;
 const reducer = require('./reducers');
 
- const isProduction = window.location.href.indexOf('electricitymap') !== -1;
+const isProduction = window.location.href.indexOf('electricitymap') !== -1;
 
 const store = isProduction ?
   redux.createStore(
