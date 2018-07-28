@@ -5,6 +5,7 @@ const modeColor = {
   'hydro': '#2772b2',
   'hydro storage': '#0052cc',
   'battery': 'lightgray',
+  'battery storage': 'lightgray',
   'biomass': '#166a57',
   'geothermal': 'yellow',
   'nuclear': '#AEB800',
