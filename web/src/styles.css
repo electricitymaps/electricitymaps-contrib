@@ -342,7 +342,6 @@ body {
 .left-panel {
     padding: 0;
     width: 24rem;
-    height: 100vh;
     background-color: #FAFAFA;
     position: fixed;
     box-shadow: 0 24px 15px rgba(0,0,0,0.2);
@@ -449,6 +448,10 @@ body {
 
 .mobile-info-tab .info-text p{
     margin: 0.6rem 0;
+}
+
+.detail-bottom-section{
+    flex: 1 0 auto;
 }
 
 .detail-bottom-section .social-buttons{
@@ -1146,6 +1149,7 @@ div.highscore-button:hover {
     -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
+    flex: 1 0 auto;
 
 }
 #tab-content {
@@ -1692,6 +1696,10 @@ div.highscore-button:hover {
     .mobile-info-tab {
         padding-top: 0.5rem;
     }
+
+    .left-panel {
+        height: 100vh; /* Should only be set on desktop */
+    }
     
 }
 
@@ -1739,7 +1747,6 @@ div.highscore-button:hover {
     }
     .left-panel {
         position: relative;
-        height: unset;
     }
     .left-panel, #map-container {
         width: 100%;
