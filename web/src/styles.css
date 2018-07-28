@@ -1173,8 +1173,7 @@ div.highscore-button:hover {
     padding-top: 8px;
     font-family: "Open Sans", sans-serif;
 }
-#tab.nomap #tab-content .list-item.map-button,
-{
+#tab.nomap #tab-content .list-item.map-button {
     display: none;
 }
 #tab #tab-content .list-item.active {
