@@ -111,7 +111,7 @@ line, path {
 }
 
 .country-panel{
-    overflow-y: auto;
+    overflow-y: scroll;
     padding-right: calc(2rem - 6px);
     padding-left: 2rem;
     margin: 0;
@@ -428,9 +428,12 @@ body {
     width: 2.875rem;
 }
 
-.mobile-info-tab, .left-panel-zone-details {
+.left-panel-zone-details {
+    display: flex;
     line-height: 1.2rem;
-    overflow-y: scroll;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: hidden;
 }
 
 .mobile-info-tab {
@@ -1749,7 +1752,7 @@ div.highscore-button:hover {
     }
     .left-panel-zone-details-toolbar {
         position: relative;
-        padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+        padding: 1rem 1.25rem 0.5rem 1.25rem;
     }
     .country-panel {
        margin: 0;
