@@ -14,6 +14,8 @@ const modeColor = {
   'unknown': 'lightgray',
 };
 const modeOrder = [
+  'nuclear',
+  'coal',
   'wind',
   'solar',
   'hydro',
@@ -21,9 +23,7 @@ const modeOrder = [
   'battery storage',
   'geothermal',
   'biomass',
-  'nuclear',
   'gas',
-  'coal',
   'oil',
   'unknown',
 ];
