@@ -36,7 +36,7 @@ That country now has a low CO<sub>2</sub>/capita number because we only count CO
 The CO<sub>2</sub>/capita metric, by involving the size of the population, and by not integrating all CO<sub>2</sub> emission sources, is thus an incomplete metric.
 CO<sub>2</sub> intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
-**CO<sub>2</sub> emission factors look high - what do they cover exactly?**
+**CO<sub>2</sub> emission factors look high — what do they cover exactly?**
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
 
 **Is delayed data useful?**
@@ -272,32 +272,32 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 ### Cross-border transmission capacity data sources
 Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/exchanges.json) file.
 &nbsp;<details><summary>Click to see the full list of sources</summary>
-- Åland <-> Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
-- Denmark (West) <-> Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
-- Denmark (East) <-> Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
-- Denmark (East) <-> Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
-- Denmark (West) <-> Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
-- Estonia <-> Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
-- Germany <-> Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
-- Great Britain <-> North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
-- Great Britain <-> Ireland: [“East-West Interconnector”: 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
-- Great Britain <-> France: [“Cross-Channel”: 2000 MW](https://en.wikipedia.org/wiki/NorNed)
-- Great Britain <-> Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
-- Greece <-> Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
-- Lithuania <-> Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
-- Lithuania <-> Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
-- Norway <-> Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
-- New Zealand (North Island) <-> New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
-- Malta <-> Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
-- Russia --> Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
-- Spain <-> Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
-- Sweden <-> Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
+- Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
+- Denmark (West) ⇄ Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
+- Denmark (East) ⇄ Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
+- Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
+- Denmark (West) ⇄ Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
+- Estonia ⇄ Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
+- Germany ⇄ Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
+- Great Britain ⇄ North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
+- Great Britain ⇄ Ireland: [“East-West Interconnector”: 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
+- Great Britain ⇄ France: [“Cross-Channel”: 2000 MW](https://en.wikipedia.org/wiki/NorNed)
+- Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
+- Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
+- Lithuania ⇄ Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
+- Lithuania ⇄ Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
+- Norway ⇄ Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
+- New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
+- Malta ⇄ Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
+- Russia ⇉ Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
+- Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
+- Sweden ⇄ Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
 
-A <-> B: bidirectional operation, with power flow either "from A to B" or "from B to A"
+A ⇄ B: bidirectional operation, with power flow either "from A to B" or "from B to A"
 
-A --> B: unidirectional operation, only with power flow "from A to B"
+A ⇉ B: unidirectional operation, only with power flow "from A to B"
 &nbsp;</details>
 
 ### Electricity prices (day-ahead) data sources
