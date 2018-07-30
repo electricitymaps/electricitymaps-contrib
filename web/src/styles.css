@@ -116,6 +116,7 @@ line, path {
     padding-left: 2rem;
     margin: 0;
     -webkit-overflow-scrolling: touch;
+    flex: 1 1 0px;
 }
 .country-panel-wrap {
     position: relative;
@@ -449,7 +450,7 @@ body {
 }
 
 .detail-bottom-section{
-    flex: 1 0 auto;
+    flex: 0 0 auto;
 }
 
 .detail-bottom-section .social-buttons{
@@ -1147,7 +1148,7 @@ div.highscore-button:hover {
     -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
 
 }
 #tab-content {
