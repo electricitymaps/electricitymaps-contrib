@@ -15,8 +15,6 @@ var moment = require('moment');
 var flags = require('../helpers/flags');
 var translation = require('../helpers/translation');
 
-const allChildrenSelector = '.country-table-header,.country-show-emissions-wrap,.country-table-container,.country-history';
-
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
 // with a % scale.
@@ -600,6 +598,7 @@ CountryTable.prototype.exchangeKeys = function(arg) {
 };
 
 CountryTable.prototype.showNoParserMessageIf = function(condition) {
+  const allChildrenSelector = 'p,.country-table-header-inner,.country-show-emissions-wrap,.country-panel-wrap,.country-history';
     d3.selectAll(allChildrenSelector).classed('all-screens-hidden', condition);
     d3.select('.zone-details-no-parser-message').classed('visible', condition);
 }

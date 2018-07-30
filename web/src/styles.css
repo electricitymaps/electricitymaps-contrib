@@ -111,15 +111,16 @@ line, path {
 }
 
 .country-panel{
-    overflow-y: auto;
+    overflow-y: scroll;
     padding-right: calc(2rem - 6px);
     padding-left: 2rem;
     margin: 0;
     -webkit-overflow-scrolling: touch;
+    flex: 1 1 0px;
 }
 .country-panel-wrap {
     position: relative;
-    padding-top: 160px;
+    padding-top: 200px;
 }
 .country-panel-wrap .bysource {
     font-size: smaller;
@@ -276,7 +277,6 @@ body {
     flex-direction: row;
     align-items: stretch;
     position: relative;
-    overflow-y: auto;
     flex: 1 1 auto;
 }
 
@@ -343,7 +343,6 @@ body {
 .left-panel {
     padding: 0;
     width: 24rem;
-    height: 100vh;
     background-color: #FAFAFA;
     position: fixed;
     box-shadow: 0 24px 15px rgba(0,0,0,0.2);
@@ -396,7 +395,7 @@ body {
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
     position: relative;
-    padding: 1rem 1.25rem 0 1.25rem;
+    padding: 1rem 1.25rem 1rem 1.25rem;
 }
 .left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-highscore-back {
@@ -427,12 +426,12 @@ body {
     width: 2.875rem;
 }
 
-.mobile-info-tab, .left-panel-zone-details {
+.left-panel-zone-details {
     display: flex;
     line-height: 1.2rem;
     flex-direction: column;
     flex: 1;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 .mobile-info-tab {
@@ -440,6 +439,7 @@ body {
     line-height: normal !important;
     overflow-y:scroll;
     -webkit-overflow-scrolling: touch;
+    flex: 1 1 0px;
 }
 
 .mobile-info-tab p{
@@ -450,11 +450,11 @@ body {
     margin: 0.6rem 0;
 }
 
-.left-panel-zone-details .detail-bottom-section{
-    padding: 0rem 1rem 1.25rem;
+.detail-bottom-section{
+    flex: 0 0 auto;
 }
 
-.left-panel-zone-details .detail-bottom-section .social-buttons{
+.detail-bottom-section .social-buttons{
     padding: 0 1rem;
 }
 
@@ -489,7 +489,7 @@ body {
 .country-table-header {
     position: absolute;
     width:100%;
-    padding: 1rem 0 0.5rem 0;
+    padding: 0 0 0.5rem 0;
     position: absolute;
     left: 0;
     background-color: #FAFAFA;
@@ -982,7 +982,7 @@ div.highscore-button:hover {
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 0px;
     overflow-y: hidden;
 }
 
@@ -1149,8 +1149,7 @@ div.highscore-button:hover {
     -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
+    flex: 0 0 auto;
 
 }
 #tab-content {
@@ -1171,8 +1170,7 @@ div.highscore-button:hover {
     padding-top: 8px;
     font-family: "Open Sans", sans-serif;
 }
-#tab.nomap #tab-content .list-item.map-button,
-{
+#tab.nomap #tab-content .list-item.map-button {
     display: none;
 }
 #tab #tab-content .list-item.active {
@@ -1438,7 +1436,7 @@ div.highscore-button:hover {
     background-color:#FAFAFA;
     height: 100%;
     width: 100%;
-    padding: 1rem 0; 
+    padding-top: 80px;
 }
 
 .all-screens-hidden {
@@ -1698,6 +1696,10 @@ div.highscore-button:hover {
     .mobile-info-tab {
         padding-top: 0.5rem;
     }
+
+    .left-panel {
+        height: 100vh; /* Should only be set on desktop */
+    }
     
 }
 
@@ -1714,6 +1716,7 @@ div.highscore-button:hover {
         -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
         -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
         box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+        z-index: 999; /* required for the box-shadow to overlay everything */
     }
     #mobile-header .header-content{
         display: flex;
@@ -1744,7 +1747,6 @@ div.highscore-button:hover {
     }
     .left-panel {
         position: relative;
-        height: auto;
     }
     .left-panel, #map-container {
         width: 100%;
