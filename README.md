@@ -30,13 +30,13 @@ Consumption-based accounting (CBA) is a very important aspect of climate policy,
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 
 **Why don't you show emissions per capita?**
-A country that has few inhabitants but a lot of factories will appear high on CO2/capita.
+A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
 This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
-That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods).
-The CO2/capita metric, by involving the size of the population, and by not integrating all CO2 emission sources, is thus an incomplete metric.
-CO2 intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
+That country now has a low CO<sub>2</sub>/capita number because we only count CO<sub>2</sub> for electricity (not for imported/exported goods).
+The CO<sub>2</sub>/capita metric, by involving the size of the population, and by not integrating all CO<sub>2</sub> emission sources, is thus an incomplete metric.
+CO<sub>2</sub> intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
-**CO2 emission factors look high - what do they cover exactly?**
+**CO<sub>2</sub> emission factors look high - what do they cover exactly?**
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
 
 **Is delayed data useful?**
