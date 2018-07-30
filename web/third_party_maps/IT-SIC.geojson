@@ -1,0 +1,2505 @@
+
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "IT-SIC",
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.45627680000,
+                        37.86270050000
+                    ],
+                    [
+                        12.45627680000,
+                        37.86270050000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.52893500000,
+                        38.06408660000
+                    ],
+                    [
+                        12.52893500000,
+                        38.06408660000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.16557550000,
+                        37.56134510000
+                    ],
+                    [
+                        15.16557550000,
+                        37.56134510000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.20336910000,
+                        37.23547530000
+                    ],
+                    [
+                        15.20336910000,
+                        37.23547530000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.03371530000,
+                        38.06850670000
+                    ],
+                    [
+                        13.03371530000,
+                        38.06850670000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.46421830000,
+                        37.86853970000
+                    ],
+                    [
+                        12.46421830000,
+                        37.86853970000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.42358980000,
+                        37.99005200000
+                    ],
+                    [
+                        12.42358980000,
+                        37.99005200000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.49762670000,
+                        38.01282270000
+                    ],
+                    [
+                        12.49762670000,
+                        38.01282270000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.30200660000,
+                        37.04360950000
+                    ],
+                    [
+                        15.30200660000,
+                        37.04360950000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.24524690000,
+                        37.25293550000
+                    ],
+                    [
+                        15.24524690000,
+                        37.25293550000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.26283770000,
+                        36.97904360000
+                    ],
+                    [
+                        15.26283770000,
+                        36.97904360000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.14292040000,
+                        36.68431800000
+                    ],
+                    [
+                        15.15401520000,
+                        36.68905950000
+                    ],
+                    [
+                        15.15411930000,
+                        36.68889260000
+                    ],
+                    [
+                        15.14292040000,
+                        36.68431800000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.23295660000,
+                        38.21028930000
+                    ],
+                    [
+                        13.23295660000,
+                        38.21028930000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.46892110000,
+                        37.73072770000
+                    ],
+                    [
+                        12.46892110000,
+                        37.73072770000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.85575520000,
+                        37.11275450000
+                    ],
+                    [
+                        13.85575520000,
+                        37.11275450000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.48788560000,
+                        38.01266290000
+                    ],
+                    [
+                        12.48788560000,
+                        38.01266290000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.10339060000,
+                        36.79229710000
+                    ],
+                    [
+                        15.10339060000,
+                        36.79229710000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.03218240000,
+                        38.06646530000
+                    ],
+                    [
+                        13.03218240000,
+                        38.06646530000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.28124870000,
+                        37.00418010000
+                    ],
+                    [
+                        15.28124870000,
+                        37.00418010000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.53723150000,
+                        38.11342360000
+                    ],
+                    [
+                        13.53723150000,
+                        38.11342360000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.16569560000,
+                        37.56075310000
+                    ],
+                    [
+                        15.16569560000,
+                        37.56075310000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.72403110000,
+                        37.97562800000
+                    ],
+                    [
+                        13.73427570000,
+                        37.97559670000
+                    ],
+                    [
+                        13.73445610000,
+                        37.97564220000
+                    ],
+                    [
+                        13.72403110000,
+                        37.97562800000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.41183070000,
+                        37.99205000000
+                    ],
+                    [
+                        12.41183070000,
+                        37.99205000000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        14.93156680000,
+                        36.68605020000
+                    ],
+                    [
+                        14.93156680000,
+                        36.68605020000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.22373380000,
+                        37.21175930000
+                    ],
+                    [
+                        15.22373380000,
+                        37.21175930000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "IT-SIC"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.42424720000,
+                        37.80207050000
+                    ],
+                    [
+                        12.44441830000,
+                        37.82032950000
+                    ],
+                    [
+                        12.44436630000,
+                        37.82154700000
+                    ],
+                    [
+                        12.44047580000,
+                        37.80996360000
+                    ],
+                    [
+                        12.44067760000,
+                        37.80987410000
+                    ],
+                    [
+                        12.46086040000,
+                        37.81634220000
+                    ],
+                    [
+                        12.46114440000,
+                        37.81664380000
+                    ],
+                    [
+                        12.48581150000,
+                        37.87355870000
+                    ],
+                    [
+                        12.48591020000,
+                        37.87375810000
+                    ],
+                    [
+                        12.45830740000,
+                        37.90781870000
+                    ],
+                    [
+                        12.45824850000,
+                        37.90800190000
+                    ],
+                    [
+                        12.49595830000,
+                        37.95296890000
+                    ],
+                    [
+                        12.49625440000,
+                        37.95303120000
+                    ],
+                    [
+                        12.50523460000,
+                        38.01124520000
+                    ],
+                    [
+                        12.50526620000,
+                        38.01129740000
+                    ],
+                    [
+                        12.52194630000,
+                        38.01313180000
+                    ],
+                    [
+                        12.52209840000,
+                        38.01316320000
+                    ],
+                    [
+                        12.49166210000,
+                        38.01687640000
+                    ],
+                    [
+                        12.49153070000,
+                        38.01693160000
+                    ],
+                    [
+                        12.52021320000,
+                        38.02238140000
+                    ],
+                    [
+                        12.52034280000,
+                        38.02243830000
+                    ],
+                    [
+                        12.56172830000,
+                        38.06549250000
+                    ],
+                    [
+                        12.56173340000,
+                        38.06560050000
+                    ],
+                    [
+                        12.63887540000,
+                        38.07513530000
+                    ],
+                    [
+                        12.63903770000,
+                        38.07518110000
+                    ],
+                    [
+                        12.66190720000,
+                        38.09278190000
+                    ],
+                    [
+                        12.66214310000,
+                        38.09307020000
+                    ],
+                    [
+                        12.65970590000,
+                        38.11098710000
+                    ],
+                    [
+                        12.65990460000,
+                        38.11129050000
+                    ],
+                    [
+                        12.71026360000,
+                        38.10885690000
+                    ],
+                    [
+                        12.71047650000,
+                        38.10896970000
+                    ],
+                    [
+                        12.73765810000,
+                        38.13931050000
+                    ],
+                    [
+                        12.73774470000,
+                        38.13944240000
+                    ],
+                    [
+                        12.71669900000,
+                        38.17194640000
+                    ],
+                    [
+                        12.71634600000,
+                        38.17262220000
+                    ],
+                    [
+                        12.72942740000,
+                        38.18898960000
+                    ],
+                    [
+                        12.73064810000,
+                        38.18935230000
+                    ],
+                    [
+                        12.73685230000,
+                        38.17645210000
+                    ],
+                    [
+                        12.73726040000,
+                        38.17629920000
+                    ],
+                    [
+                        12.77134670000,
+                        38.17539100000
+                    ],
+                    [
+                        12.77146730000,
+                        38.17528700000
+                    ],
+                    [
+                        12.76751040000,
+                        38.15675740000
+                    ],
+                    [
+                        12.76738920000,
+                        38.15665520000
+                    ],
+                    [
+                        12.81118540000,
+                        38.07964560000
+                    ],
+                    [
+                        12.81132900000,
+                        38.07945380000
+                    ],
+                    [
+                        12.90228960000,
+                        38.02455080000
+                    ],
+                    [
+                        12.90285290000,
+                        38.02453810000
+                    ],
+                    [
+                        12.97019360000,
+                        38.03767190000
+                    ],
+                    [
+                        12.97435080000,
+                        38.03904700000
+                    ],
+                    [
+                        13.07710200000,
+                        38.08728230000
+                    ],
+                    [
+                        13.07770220000,
+                        38.08758170000
+                    ],
+                    [
+                        13.05240130000,
+                        38.13854440000
+                    ],
+                    [
+                        13.05239510000,
+                        38.13880140000
+                    ],
+                    [
+                        13.07220280000,
+                        38.14169130000
+                    ],
+                    [
+                        13.07231870000,
+                        38.14177100000
+                    ],
+                    [
+                        13.07721990000,
+                        38.17156460000
+                    ],
+                    [
+                        13.07734630000,
+                        38.17197390000
+                    ],
+                    [
+                        13.10546240000,
+                        38.19055110000
+                    ],
+                    [
+                        13.10574150000,
+                        38.19078540000
+                    ],
+                    [
+                        13.18983760000,
+                        38.16910880000
+                    ],
+                    [
+                        13.19109760000,
+                        38.16924530000
+                    ],
+                    [
+                        13.23597520000,
+                        38.18508490000
+                    ],
+                    [
+                        13.23641670000,
+                        38.18537350000
+                    ],
+                    [
+                        13.24127570000,
+                        38.20380820000
+                    ],
+                    [
+                        13.24144670000,
+                        38.20395000000
+                    ],
+                    [
+                        13.27390840000,
+                        38.19815640000
+                    ],
+                    [
+                        13.27410620000,
+                        38.19815310000
+                    ],
+                    [
+                        13.31720170000,
+                        38.22437570000
+                    ],
+                    [
+                        13.31818890000,
+                        38.22427470000
+                    ],
+                    [
+                        13.32786770000,
+                        38.20093560000
+                    ],
+                    [
+                        13.32812480000,
+                        38.20059160000
+                    ],
+                    [
+                        13.36559730000,
+                        38.18248630000
+                    ],
+                    [
+                        13.36570430000,
+                        38.18231630000
+                    ],
+                    [
+                        13.37568290000,
+                        38.12644300000
+                    ],
+                    [
+                        13.38050760000,
+                        38.12243250000
+                    ],
+                    [
+                        13.36353990000,
+                        38.12999530000
+                    ],
+                    [
+                        13.36280380000,
+                        38.12986880000
+                    ],
+                    [
+                        13.38350330000,
+                        38.10899260000
+                    ],
+                    [
+                        13.38369450000,
+                        38.10886800000
+                    ],
+                    [
+                        13.44160700000,
+                        38.09484340000
+                    ],
+                    [
+                        13.44228520000,
+                        38.09480350000
+                    ],
+                    [
+                        13.48993070000,
+                        38.10205770000
+                    ],
+                    [
+                        13.49116230000,
+                        38.10234980000
+                    ],
+                    [
+                        13.50748880000,
+                        38.11930960000
+                    ],
+                    [
+                        13.50752440000,
+                        38.11937680000
+                    ],
+                    [
+                        13.53770190000,
+                        38.11270910000
+                    ],
+                    [
+                        13.53777210000,
+                        38.11269130000
+                    ],
+                    [
+                        13.53641700000,
+                        38.06734300000
+                    ],
+                    [
+                        13.53642320000,
+                        38.06730290000
+                    ],
+                    [
+                        13.56642170000,
+                        38.03874300000
+                    ],
+                    [
+                        13.56645160000,
+                        38.03869800000
+                    ],
+                    [
+                        13.74351090000,
+                        37.97027400000
+                    ],
+                    [
+                        13.74422480000,
+                        37.97017610000
+                    ],
+                    [
+                        13.75289970000,
+                        37.97557940000
+                    ],
+                    [
+                        13.75392920000,
+                        37.99009140000
+                    ],
+                    [
+                        13.75281810000,
+                        37.97080130000
+                    ],
+                    [
+                        13.75295430000,
+                        37.97073820000
+                    ],
+                    [
+                        13.79942330000,
+                        37.97559960000
+                    ],
+                    [
+                        13.79976110000,
+                        37.97565430000
+                    ],
+                    [
+                        13.94944170000,
+                        38.03086730000
+                    ],
+                    [
+                        13.94956750000,
+                        38.03099480000
+                    ],
+                    [
+                        14.02166940000,
+                        38.04156950000
+                    ],
+                    [
+                        14.02186280000,
+                        38.04163870000
+                    ],
+                    [
+                        14.06437520000,
+                        38.01857360000
+                    ],
+                    [
+                        14.06512870000,
+                        38.01843590000
+                    ],
+                    [
+                        14.12617710000,
+                        38.01681320000
+                    ],
+                    [
+                        14.12629580000,
+                        38.01681730000
+                    ],
+                    [
+                        14.14709600000,
+                        38.02990240000
+                    ],
+                    [
+                        14.14727790000,
+                        38.03016090000
+                    ],
+                    [
+                        14.28825810000,
+                        38.00695040000
+                    ],
+                    [
+                        14.28884150000,
+                        38.00692700000
+                    ],
+                    [
+                        14.37314490000,
+                        38.01583930000
+                    ],
+                    [
+                        14.37339600000,
+                        38.01584520000
+                    ],
+                    [
+                        14.42604790000,
+                        38.04020690000
+                    ],
+                    [
+                        14.42686210000,
+                        38.04040420000
+                    ],
+                    [
+                        14.52542730000,
+                        38.04235040000
+                    ],
+                    [
+                        14.52570660000,
+                        38.04239750000
+                    ],
+                    [
+                        14.63738910000,
+                        38.07368190000
+                    ],
+                    [
+                        14.63793020000,
+                        38.07396540000
+                    ],
+                    [
+                        14.74869170000,
+                        38.16593530000
+                    ],
+                    [
+                        14.74872960000,
+                        38.16600540000
+                    ],
+                    [
+                        14.78697750000,
+                        38.15150710000
+                    ],
+                    [
+                        14.78772800000,
+                        38.15158210000
+                    ],
+                    [
+                        14.88904920000,
+                        38.17186390000
+                    ],
+                    [
+                        14.88926840000,
+                        38.17190050000
+                    ],
+                    [
+                        14.91553680000,
+                        38.19267150000
+                    ],
+                    [
+                        14.91570020000,
+                        38.19273250000
+                    ],
+                    [
+                        14.97202610000,
+                        38.15218610000
+                    ],
+                    [
+                        14.97251080000,
+                        38.15186760000
+                    ],
+                    [
+                        15.04467060000,
+                        38.15187420000
+                    ],
+                    [
+                        15.04482150000,
+                        38.15204250000
+                    ],
+                    [
+                        15.06430390000,
+                        38.14334600000
+                    ],
+                    [
+                        15.06452190000,
+                        38.14303910000
+                    ],
+                    [
+                        15.05839940000,
+                        38.12949090000
+                    ],
+                    [
+                        15.05899190000,
+                        38.12910870000
+                    ],
+                    [
+                        15.09574220000,
+                        38.12084280000
+                    ],
+                    [
+                        15.09621980000,
+                        38.12092440000
+                    ],
+                    [
+                        15.16929610000,
+                        38.15069840000
+                    ],
+                    [
+                        15.16952270000,
+                        38.15079390000
+                    ],
+                    [
+                        15.21218060000,
+                        38.18637830000
+                    ],
+                    [
+                        15.21329720000,
+                        38.18727770000
+                    ],
+                    [
+                        15.24092720000,
+                        38.24237640000
+                    ],
+                    [
+                        15.24104010000,
+                        38.24291570000
+                    ],
+                    [
+                        15.23080670000,
+                        38.27127790000
+                    ],
+                    [
+                        15.23110630000,
+                        38.27143510000
+                    ],
+                    [
+                        15.25349900000,
+                        38.24574180000
+                    ],
+                    [
+                        15.25371700000,
+                        38.24531080000
+                    ],
+                    [
+                        15.24090960000,
+                        38.21756410000
+                    ],
+                    [
+                        15.24128190000,
+                        38.21685670000
+                    ],
+                    [
+                        15.28613440000,
+                        38.20611520000
+                    ],
+                    [
+                        15.28622630000,
+                        38.20604750000
+                    ],
+                    [
+                        15.42901170000,
+                        38.24227830000
+                    ],
+                    [
+                        15.42956320000,
+                        38.24237130000
+                    ],
+                    [
+                        15.54021550000,
+                        38.30120490000
+                    ],
+                    [
+                        15.54151960000,
+                        38.30143010000
+                    ],
+                    [
+                        15.65285740000,
+                        38.26790580000
+                    ],
+                    [
+                        15.65291130000,
+                        38.26751470000
+                    ],
+                    [
+                        15.57234270000,
+                        38.23400430000
+                    ],
+                    [
+                        15.57185620000,
+                        38.23346100000
+                    ],
+                    [
+                        15.55775900000,
+                        38.19155730000
+                    ],
+                    [
+                        15.55760000000,
+                        38.19047220000
+                    ],
+                    [
+                        15.57476550000,
+                        38.19394710000
+                    ],
+                    [
+                        15.57484690000,
+                        38.19375380000
+                    ],
+                    [
+                        15.49379530000,
+                        38.07511950000
+                    ],
+                    [
+                        15.49359540000,
+                        38.07474410000
+                    ],
+                    [
+                        15.30570010000,
+                        37.87749680000
+                    ],
+                    [
+                        15.30530110000,
+                        37.87708430000
+                    ],
+                    [
+                        15.30545530000,
+                        37.85165560000
+                    ],
+                    [
+                        15.30540330000,
+                        37.85157500000
+                    ],
+                    [
+                        15.27339710000,
+                        37.83600600000
+                    ],
+                    [
+                        15.27307140000,
+                        37.83575170000
+                    ],
+                    [
+                        15.27668810000,
+                        37.82185000000
+                    ],
+                    [
+                        15.27670160000,
+                        37.82175650000
+                    ],
+                    [
+                        15.21555840000,
+                        37.75906200000
+                    ],
+                    [
+                        15.21176710000,
+                        37.75393070000
+                    ],
+                    [
+                        15.21933410000,
+                        37.70869830000
+                    ],
+                    [
+                        15.21940900000,
+                        37.70863960000
+                    ],
+                    [
+                        15.17438060000,
+                        37.63251850000
+                    ],
+                    [
+                        15.17435280000,
+                        37.63248860000
+                    ],
+                    [
+                        15.17682330000,
+                        37.57626070000
+                    ],
+                    [
+                        15.17682060000,
+                        37.57617780000
+                    ],
+                    [
+                        15.11249720000,
+                        37.53170030000
+                    ],
+                    [
+                        15.11245400000,
+                        37.53168110000
+                    ],
+                    [
+                        15.09990140000,
+                        37.48401250000
+                    ],
+                    [
+                        15.09984590000,
+                        37.48388990000
+                    ],
+                    [
+                        15.09056060000,
+                        37.49984700000
+                    ],
+                    [
+                        15.09026750000,
+                        37.49971300000
+                    ],
+                    [
+                        15.09828770000,
+                        37.32061950000
+                    ],
+                    [
+                        15.09848040000,
+                        37.31994910000
+                    ],
+                    [
+                        15.18606960000,
+                        37.28261090000
+                    ],
+                    [
+                        15.18610760000,
+                        37.28241710000
+                    ],
+                    [
+                        15.20643850000,
+                        37.29330260000
+                    ],
+                    [
+                        15.20659790000,
+                        37.29336500000
+                    ],
+                    [
+                        15.25733160000,
+                        37.24379990000
+                    ],
+                    [
+                        15.25741070000,
+                        37.24374930000
+                    ],
+                    [
+                        15.24706960000,
+                        37.23193700000
+                    ],
+                    [
+                        15.24694550000,
+                        37.23182410000
+                    ],
+                    [
+                        15.22580000000,
+                        37.24090520000
+                    ],
+                    [
+                        15.22522870000,
+                        37.24046840000
+                    ],
+                    [
+                        15.22647640000,
+                        37.21277130000
+                    ],
+                    [
+                        15.22643160000,
+                        37.21275080000
+                    ],
+                    [
+                        15.21408030000,
+                        37.24737880000
+                    ],
+                    [
+                        15.21394840000,
+                        37.24747680000
+                    ],
+                    [
+                        15.18994860000,
+                        37.23603770000
+                    ],
+                    [
+                        15.18962300000,
+                        37.23591690000
+                    ],
+                    [
+                        15.18588370000,
+                        37.18938340000
+                    ],
+                    [
+                        15.18587450000,
+                        37.18927760000
+                    ],
+                    [
+                        15.20673320000,
+                        37.15270490000
+                    ],
+                    [
+                        15.20698750000,
+                        37.15245770000
+                    ],
+                    [
+                        15.23279360000,
+                        37.15892400000
+                    ],
+                    [
+                        15.23321570000,
+                        37.15911930000
+                    ],
+                    [
+                        15.24427200000,
+                        37.14637310000
+                    ],
+                    [
+                        15.24446830000,
+                        37.14619530000
+                    ],
+                    [
+                        15.22020880000,
+                        37.14362430000
+                    ],
+                    [
+                        15.22007040000,
+                        37.14339810000
+                    ],
+                    [
+                        15.23707170000,
+                        37.11517420000
+                    ],
+                    [
+                        15.23721950000,
+                        37.11505980000
+                    ],
+                    [
+                        15.29573990000,
+                        37.10650820000
+                    ],
+                    [
+                        15.29593600000,
+                        37.10649310000
+                    ],
+                    [
+                        15.29877490000,
+                        37.05943260000
+                    ],
+                    [
+                        15.29881860000,
+                        37.05927850000
+                    ],
+                    [
+                        15.27827610000,
+                        37.06534490000
+                    ],
+                    [
+                        15.27810730000,
+                        37.06531040000
+                    ],
+                    [
+                        15.27555110000,
+                        37.03940920000
+                    ],
+                    [
+                        15.27566040000,
+                        37.03912230000
+                    ],
+                    [
+                        15.30811950000,
+                        37.04171860000
+                    ],
+                    [
+                        15.30824730000,
+                        37.04167520000
+                    ],
+                    [
+                        15.33668840000,
+                        37.00766010000
+                    ],
+                    [
+                        15.33672510000,
+                        37.00762800000
+                    ],
+                    [
+                        15.27561460000,
+                        37.00735220000
+                    ],
+                    [
+                        15.27490140000,
+                        37.00702920000
+                    ],
+                    [
+                        15.26182570000,
+                        36.97399830000
+                    ],
+                    [
+                        15.26180260000,
+                        36.97395870000
+                    ],
+                    [
+                        15.21043330000,
+                        36.96448670000
+                    ],
+                    [
+                        15.20935240000,
+                        36.96398250000
+                    ],
+                    [
+                        15.15401450000,
+                        36.91537770000
+                    ],
+                    [
+                        15.15307560000,
+                        36.91426800000
+                    ],
+                    [
+                        15.09416910000,
+                        36.79950170000
+                    ],
+                    [
+                        15.09414230000,
+                        36.79930550000
+                    ],
+                    [
+                        15.14071940000,
+                        36.68551700000
+                    ],
+                    [
+                        15.14072690000,
+                        36.68539910000
+                    ],
+                    [
+                        15.13199070000,
+                        36.66707520000
+                    ],
+                    [
+                        15.13165090000,
+                        36.66675620000
+                    ],
+                    [
+                        15.11606120000,
+                        36.67498190000
+                    ],
+                    [
+                        15.11576320000,
+                        36.67491240000
+                    ],
+                    [
+                        15.07992050000,
+                        36.64685950000
+                    ],
+                    [
+                        15.07979390000,
+                        36.64678690000
+                    ],
+                    [
+                        15.01946580000,
+                        36.70178510000
+                    ],
+                    [
+                        15.01860020000,
+                        36.70205520000
+                    ],
+                    [
+                        14.95685640000,
+                        36.69426260000
+                    ],
+                    [
+                        14.95662130000,
+                        36.69416380000
+                    ],
+                    [
+                        14.87818050000,
+                        36.73103540000
+                    ],
+                    [
+                        14.87594010000,
+                        36.73106620000
+                    ],
+                    [
+                        14.83659820000,
+                        36.72285740000
+                    ],
+                    [
+                        14.83616740000,
+                        36.72269240000
+                    ],
+                    [
+                        14.82747180000,
+                        36.71522410000
+                    ],
+                    [
+                        14.82692910000,
+                        36.71495730000
+                    ],
+                    [
+                        14.83989470000,
+                        36.70798290000
+                    ],
+                    [
+                        14.83937660000,
+                        36.70779590000
+                    ],
+                    [
+                        14.81918630000,
+                        36.71691930000
+                    ],
+                    [
+                        14.81846880000,
+                        36.71692240000
+                    ],
+                    [
+                        14.78174380000,
+                        36.70387790000
+                    ],
+                    [
+                        14.78104880000,
+                        36.70380660000
+                    ],
+                    [
+                        14.68990330000,
+                        36.72133460000
+                    ],
+                    [
+                        14.68954630000,
+                        36.72144150000
+                    ],
+                    [
+                        14.63032220000,
+                        36.76494710000
+                    ],
+                    [
+                        14.62941900000,
+                        36.76522080000
+                    ],
+                    [
+                        14.49323780000,
+                        36.78646030000
+                    ],
+                    [
+                        14.49308680000,
+                        36.78649430000
+                    ],
+                    [
+                        14.45914850000,
+                        36.81611990000
+                    ],
+                    [
+                        14.45897680000,
+                        36.81625630000
+                    ],
+                    [
+                        14.44439580000,
+                        36.86972020000
+                    ],
+                    [
+                        14.44427650000,
+                        36.86999200000
+                    ],
+                    [
+                        14.37922930000,
+                        36.96083730000
+                    ],
+                    [
+                        14.37653560000,
+                        36.96399530000
+                    ],
+                    [
+                        14.26104330000,
+                        37.05726150000
+                    ],
+                    [
+                        14.26090300000,
+                        37.05801650000
+                    ],
+                    [
+                        14.06900070000,
+                        37.11081570000
+                    ],
+                    [
+                        14.06793130000,
+                        37.11093970000
+                    ],
+                    [
+                        13.97480900000,
+                        37.10840790000
+                    ],
+                    [
+                        13.97449460000,
+                        37.10852880000
+                    ],
+                    [
+                        13.94715930000,
+                        37.10056700000
+                    ],
+                    [
+                        13.94658820000,
+                        37.10040170000
+                    ],
+                    [
+                        13.94373630000,
+                        37.08496340000
+                    ],
+                    [
+                        13.94322150000,
+                        37.08470230000
+                    ],
+                    [
+                        13.94599420000,
+                        37.09670320000
+                    ],
+                    [
+                        13.94570850000,
+                        37.09757770000
+                    ],
+                    [
+                        13.93286990000,
+                        37.09516810000
+                    ],
+                    [
+                        13.93169310000,
+                        37.09486790000
+                    ],
+                    [
+                        13.93992230000,
+                        37.08448230000
+                    ],
+                    [
+                        13.93965770000,
+                        37.08450300000
+                    ],
+                    [
+                        13.87658880000,
+                        37.10154810000
+                    ],
+                    [
+                        13.87589880000,
+                        37.10167350000
+                    ],
+                    [
+                        13.82521610000,
+                        37.14400170000
+                    ],
+                    [
+                        13.82429490000,
+                        37.14438310000
+                    ],
+                    [
+                        13.75042770000,
+                        37.14944290000
+                    ],
+                    [
+                        13.75010810000,
+                        37.14949710000
+                    ],
+                    [
+                        13.66171860000,
+                        37.19387330000
+                    ],
+                    [
+                        13.66134920000,
+                        37.19398680000
+                    ],
+                    [
+                        13.63878990000,
+                        37.22974680000
+                    ],
+                    [
+                        13.63842650000,
+                        37.23020370000
+                    ],
+                    [
+                        13.57874470000,
+                        37.25822170000
+                    ],
+                    [
+                        13.57863310000,
+                        37.25823510000
+                    ],
+                    [
+                        13.55785370000,
+                        37.28432550000
+                    ],
+                    [
+                        13.55556020000,
+                        37.28562090000
+                    ],
+                    [
+                        13.52416060000,
+                        37.28652270000
+                    ],
+                    [
+                        13.52408920000,
+                        37.28649700000
+                    ],
+                    [
+                        13.52758670000,
+                        37.27477770000
+                    ],
+                    [
+                        13.52744290000,
+                        37.27473320000
+                    ],
+                    [
+                        13.51187090000,
+                        37.29084670000
+                    ],
+                    [
+                        13.51005110000,
+                        37.29134640000
+                    ],
+                    [
+                        13.44936420000,
+                        37.29309500000
+                    ],
+                    [
+                        13.44855970000,
+                        37.29329650000
+                    ],
+                    [
+                        13.40379710000,
+                        37.33218500000
+                    ],
+                    [
+                        13.40350660000,
+                        37.33239830000
+                    ],
+                    [
+                        13.27299870000,
+                        37.38900560000
+                    ],
+                    [
+                        13.27233020000,
+                        37.38918830000
+                    ],
+                    [
+                        13.25436730000,
+                        37.42384960000
+                    ],
+                    [
+                        13.25388880000,
+                        37.42439820000
+                    ],
+                    [
+                        13.16965170000,
+                        37.49179990000
+                    ],
+                    [
+                        13.16927120000,
+                        37.49209440000
+                    ],
+                    [
+                        13.07815410000,
+                        37.50567570000
+                    ],
+                    [
+                        13.07786930000,
+                        37.50569650000
+                    ],
+                    [
+                        13.02052080000,
+                        37.49516720000
+                    ],
+                    [
+                        13.02010940000,
+                        37.49528200000
+                    ],
+                    [
+                        12.96365570000,
+                        37.56206330000
+                    ],
+                    [
+                        12.96346750000,
+                        37.56229180000
+                    ],
+                    [
+                        12.91759500000,
+                        37.57697400000
+                    ],
+                    [
+                        12.91757000000,
+                        37.57712870000
+                    ],
+                    [
+                        12.78145300000,
+                        37.58090310000
+                    ],
+                    [
+                        12.78039280000,
+                        37.58087030000
+                    ],
+                    [
+                        12.67326230000,
+                        37.56007290000
+                    ],
+                    [
+                        12.67295710000,
+                        37.56008140000
+                    ],
+                    [
+                        12.60655560000,
+                        37.64130510000
+                    ],
+                    [
+                        12.60658190000,
+                        37.64134530000
+                    ],
+                    [
+                        12.49949340000,
+                        37.67553710000
+                    ],
+                    [
+                        12.49911000000,
+                        37.67571660000
+                    ],
+                    [
+                        12.47011340000,
+                        37.70494010000
+                    ],
+                    [
+                        12.46978750000,
+                        37.70511680000
+                    ],
+                    [
+                        12.45490800000,
+                        37.77342610000
+                    ],
+                    [
+                        12.45497900000,
+                        37.77350710000
+                    ],
+                    [
+                        12.42424720000,
+                        37.80207050000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.09161250000,
+                        37.40295610000
+                    ],
+                    [
+                        15.09161250000,
+                        37.40295610000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        12.48899030000,
+                        38.01191430000
+                    ],
+                    [
+                        12.48899030000,
+                        38.01191430000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.18608700000,
+                        36.94250420000
+                    ],
+                    [
+                        15.18608700000,
+                        36.94250420000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.07024710000,
+                        38.14481880000
+                    ],
+                    [
+                        13.07024710000,
+                        38.14481880000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.11846700000,
+                        36.73819460000
+                    ],
+                    [
+                        15.11846700000,
+                        36.73819460000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        13.03280150000,
+                        38.06775930000
+                    ],
+                    [
+                        13.03280150000,
+                        38.06775930000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.27018130000,
+                        37.81784910000
+                    ],
+                    [
+                        15.27018130000,
+                        37.81784910000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.29783230000,
+                        37.07214370000
+                    ],
+                    [
+                        15.29783230000,
+                        37.07214370000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.30406630000,
+                        37.04102930000
+                    ],
+                    [
+                        15.30406630000,
+                        37.04102930000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.07661340000,
+                        36.64531300000
+                    ],
+                    [
+                        15.07661340000,
+                        36.64531300000
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "admin_level": "0",
+                "alltags": "{}",
+                "boundary": "adminstrative",
+                "id": "1",
+                "localname": "union_of_selected_boundaries",
+                "name": "union_of_selected_boundaries",
+                "note": "",
+                "official_name": "union_of_selected_boundaries",
+                "rpath": "",
+                "srid": "4326",
+                "timestamp": "",
+                "wikidata": "",
+                "wikipedia": ""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        15.16508620000,
+                        37.56003870000
+                    ],
+                    [
+                        15.16508620000,
+                        37.56003870000
+                    ]
+                ]
+            }
+        }
+    ]
+}
