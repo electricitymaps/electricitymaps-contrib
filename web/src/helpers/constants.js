@@ -17,12 +17,12 @@ const modeColor = {
 const modeOrder = [
   'nuclear',
   'coal',
+  'geothermal',
   'wind',
   'solar',
   'hydro',
   'hydro storage',
   'battery storage',
-  'geothermal',
   'biomass',
   'gas',
   'oil',
