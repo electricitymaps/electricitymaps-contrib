@@ -439,6 +439,7 @@ body {
     line-height: normal !important;
     overflow-y:scroll;
     -webkit-overflow-scrolling: touch;
+    flex: 1 1 0px;
 }
 
 .mobile-info-tab p{
@@ -981,7 +982,7 @@ div.highscore-button:hover {
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 0px;
     overflow-y: hidden;
 }
 
