@@ -17,3 +17,7 @@ docker rm $CONTAINER_ID
 echo 'Generating index pages..'
 yarn add ejs
 node generate-index.js
+
+# Generate icons
+app-icon generate -i icon_ios.png --platforms=ios
+app-icon generate -i icon_android.png --platforms=android

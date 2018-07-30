@@ -25,12 +25,6 @@
         <preference name="SplashScreenDelay" value="0" />
         <preference name="StatusBarStyle" value="default" />
         <allow-intent href="market:*" />
-        <icon density="ldpi" src="res/android/mipmap-ldpi/ic_launcher.png" />
-        <icon density="mdpi" src="res/android/mipmap-mdpi/ic_launcher.png" />
-        <icon density="hdpi" src="res/android/mipmap-hdpi/ic_launcher.png" />
-        <icon density="xhdpi" src="res/android/mipmap-xhdpi/ic_launcher.png" />
-        <icon density="xxhdpi" src="res/android/mipmap-xxhdpi/ic_launcher.png" />
-        <icon density="xxxhdpi" src="res/android/mipmap-xxxhdpi/ic_launcher.png" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
@@ -39,23 +33,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
-        <icon height="180" src="res/ios/Icon-App-60x60@3x.png" width="180" />
-        <icon height="60" src="res/ios/Icon-App-60x60@1x.png" width="60" />
-        <icon height="120" src="res/ios/Icon-App-60x60@2x.png" width="120" />
-        <icon height="76" src="res/ios/Icon-App-76x76@1x.png" width="76" />
-        <icon height="152" src="res/ios/Icon-App-76x76@2x.png" width="152" />
-        <icon height="40" src="res/ios/Icon-App-40x40@1x.png" width="40" />
-        <icon height="80" src="res/ios/Icon-App-40x40@2x.png" width="80" />
-        <icon height="57" src="res/ios/Icon-App-57x57@1x.png" width="57" />
-        <icon height="114" src="res/ios/Icon-App-57x57@1x.png" width="114" />
-        <icon height="72" src="res/ios/Icon-App-72x72@1x.png" width="72" />
-        <icon height="144" src="res/ios/Icon-App-72x72@2x.png" width="144" />
-        <icon height="29" src="res/ios/Icon-App-29x29@1x.png" width="29" />
-        <icon height="58" src="res/ios/Icon-App-29x29@2x.png" width="58" />
-        <icon height="50" src="res/ios/Icon-Small-50x50@1x.png" width="50" />
-        <icon height="100" src="res/ios/Icon-Small-50x50@2x.png" width="100" />
-        <icon height="167" src="res/ios/Icon-App-83.5x83.5@2x.png" width="167" />
-        <icon height="1024" src="res/ios/Icon-App-1024@1x.png" width="1024" />
     </platform>
     <universal-links>
         <host name="electricitymap.org" scheme="https" />

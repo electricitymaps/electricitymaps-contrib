@@ -1,6 +1,17 @@
+Requires docker build (from project folder / parent repository)
+```
+docker-compose build public_web 
+```
+
 To build js:
 ```
 ./build.sh
+```
+
+when installing for first time, run
+```
+npm install
+cordova prepare
 ```
 
 To build cordova:
