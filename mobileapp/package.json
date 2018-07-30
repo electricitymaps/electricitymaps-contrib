@@ -21,7 +21,7 @@
     "cordova-plugin-zip": "^3.1.0",
     "cordova-support-google-services": "^1.1.0",
     "cordova-universal-links-plugin": "git+https://github.com/flipflopapp/cordova-universal-links-plugin.git",
-    "ejs": "^2.5.5",
+    "ejs": "^2.6.1",
     "i18n": "^0.8.3"
   },
   "repository": {

@@ -378,9 +378,8 @@ body {
     color: black;
 }
 .left-panel .axis .tick line {
-    opacity: 0.3;
-    shape-rendering: crispEdges;
-    stroke: gray;
+    shape-rendering: auto;
+    stroke: lightgray;
     stroke-width: 1;
 }
 .left-panel .axis .tick text {
@@ -389,9 +388,8 @@ body {
 }
 .left-panel .axis path.domain {
     fill: none;
-    opacity: 0.3;
-    shape-rendering: crispEdges;
-    stroke: transparent;
+    shape-rendering: auto;
+    stroke: lightgray;
 }
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
