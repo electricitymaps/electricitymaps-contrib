@@ -1,4 +1,5 @@
 const translation = require('../helpers/translation');
+const formatting  = require('../helpers/formatting');
 
 const d3 = Object.assign(
   {},
@@ -236,7 +237,7 @@ export default class FAQ {
     const questionContainer = entryContainer.append('div').attr('class', 'question');
     questionContainer.append('i').attr('class', 'material-icons').text('expand_more');
     questionContainer.append('span').text(questionEntryTexts.question);
-    const answer = entryContainer.append('div').attr('class', 'answer').html(questionEntryTexts.answer);
+    const answer = entryContainer.append('div').attr('class', 'answer').html(formatting.co2Sub(questionEntryTexts.answer));
     if (answerLinkTargetEntryId) {
       answer.selectAll('.entry-link').on('click', () => {
         this._toggleAnswer(answerLinkTargetEntryId);
