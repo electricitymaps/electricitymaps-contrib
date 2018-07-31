@@ -213,7 +213,7 @@ def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None,
 
     data = {
         'zoneKey': zone_key,
-        'datetime': value_map['date'],
+        'datetime': value_map['date'].datetime,
         'consumption': value_map['total consumption'],
         'source': 'sldcguj.com'
     }
