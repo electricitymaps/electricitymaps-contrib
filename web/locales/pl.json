@@ -745,8 +745,19 @@
           "RU": {
             "zoneName": "Rosja"
           },
-          "RU-E": {
+          "RU-EU": {
             "zoneName": "Rosja"
+          },
+          "RU-AS": {
+            "zoneName": "Rosja"
+          },
+          "RU-1": {
+            "countryName": "Rosja",
+            "zoneName": "Rosja europejska i Ural"
+          },
+          "RU-2": {
+            "countryName": "Rosja",
+            "zoneName": "Syberia"
           },
           "RU-KGD": {
             "countryName": "Rosja",
