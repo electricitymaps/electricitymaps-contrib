@@ -964,6 +964,14 @@
         "RU-EU": {
           "zoneName": "Россия"
         },
+        "RU-1": {
+          "countryName": "Россия",
+          "zoneName": "Европейская часть и Урал"
+        },
+        "RU-2": {
+          "countryName": "Россия",
+          "zoneName": "Сибирь"
+        },
         "RU-KGD": {
           "countryName": "Россия",
           "zoneName": "Калининград"

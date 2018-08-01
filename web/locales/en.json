@@ -1013,6 +1013,14 @@
           "RU": {
             "zoneName": "Russia"
           },
+          "RU-1": {
+            "countryName": "Russia",
+            "zoneName": "European Russia and Ural"
+          },
+          "RU-2": {
+            "countryName": "Russia",
+            "zoneName": "Siberia"
+          },
           "RU-EU": {
             "zoneName": "Russia"
           },

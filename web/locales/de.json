@@ -1013,6 +1013,14 @@
         "RU-AS": {
             "zoneName": "Russland"
         },
+        "RU-1": {
+            "countryName": "Russland",
+            "zoneName": "Europäischer Teil und Ural Region"
+        },
+        "RU-2": {
+            "countryName": "Russland",
+            "zoneName": "Sibirien"
+        },
         "RU-KGD": {
             "countryName": "Russland",
             "zoneName": "Kaliningrad"
