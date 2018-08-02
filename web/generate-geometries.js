@@ -305,7 +305,20 @@ const zoneDefinitions = [
   {zoneName: 'IT', type: 'country', id: 'ITA'},
   {zoneName: 'JE', type: 'country', id: 'JEY'},
   {zoneName: 'JM', type: 'country', id: 'JAM'},
-  {zoneName: 'JP', type: 'country', id: 'JPN'},
+  //{zoneName: 'JP', type: 'country', id: 'JPN'},
+  { zoneName: 'JP-CB', type: 'subZone', id: 'JP-CB' },
+  { zoneName: 'JP-CG', type: 'administrations', administrations: [
+    'JPN-1824', 'JPN-1826', 'JPN-1825', 'JPN-1822', 'JPN-1821'] },
+  { zoneName: 'JP-HKD', type: 'administrations', administrations: ['JPN-1847'] },
+  { zoneName: 'JP-HR', type: 'subZone', id: 'JP-HR' },
+  { zoneName: 'JP-KN', type: 'subZone', id: 'JP-KN' },
+  { zoneName: 'JP-KY', type: 'subZone', id: 'JP-KY' },
+  { zoneName: 'JP-ON', type: 'subZone', id: 'JP-ON' },
+  { zoneName: 'JP-SK', type: 'administrations', administrations: [
+    'JPN-1836', 'JPN-1833', 'JPN-1832', 'JPN-1834'] },
+  { zoneName: 'JP-TH', type: 'administrations', administrations: [
+    'JPN-1867', 'JPN-1868', 'JPN-1862', 'JPN-1863', 'JPN-1865', 'JPN-1866', 'JPN-1864'] },
+  { zoneName: 'JP-TK', type: 'subZone', id: 'JP-TK' },
   {zoneName: 'JO', type: 'country', id: 'JOR'},
   {zoneName: 'KE', type: 'country', id: 'KEN'},
   {zoneName: 'KG', type: 'country', id: 'KGZ'},
