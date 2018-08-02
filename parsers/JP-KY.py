@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
 
-import occtonet
+from . import occtonet
 
 def fetch_production(zone_key='JP-KY', session=None,target_datetime=None,
                      logger: logging.Logger = logging.getLogger(__name__)):
