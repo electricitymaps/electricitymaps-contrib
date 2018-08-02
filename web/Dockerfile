@@ -10,6 +10,8 @@ ADD web /home/web
 ADD config /home/config
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
+
+RUN bash topogen.sh
 RUN yarn run build-release
 
 EXPOSE 8000
