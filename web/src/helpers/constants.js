@@ -12,7 +12,7 @@ const modeColor = {
   'gas': '#bb2f51',
   'coal': '#ac8c35',
   'oil': '#867d66',
-  'unknown': 'lightgray',
+  'unknown': '#ACACAC',
 };
 const modeOrder = [
   'nuclear',
