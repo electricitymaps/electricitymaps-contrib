@@ -27,7 +27,7 @@ stages:
           set -euo pipefail
           python --version
           pip --version
-          pip install flake8 pylint
+          pip install flake8 pylint==1.8.2
           sudo apt-get install libxml2-dev
           pip install -r parsers/requirements.txt
           # stop the build if there are Python syntax errors or undefined names
