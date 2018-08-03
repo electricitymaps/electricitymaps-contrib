@@ -117,6 +117,7 @@ def fetch_consumption(zone_key='JP-TK', target_datetime=None,
     
     df = pd.read_csv(consumption_url[zone_key], skiprows=[x for x in range(startrow)], encoding = 'shift-jis')
     df.columns = ['Date', 'Time', 'cons']
+    # Convert from 万kW to MW
     df['cons'] = 10*df['cons']
     df = df.dropna()
     df['datetime'] = df.apply(parse_dt, axis=1)
@@ -126,3 +127,9 @@ def fetch_consumption(zone_key='JP-TK', target_datetime=None,
 
 def parse_dt(row):
     return arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),'YYYY-M-D H:mm').replace(tzinfo='Asia/Tokyo').datetime
+
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+
+    print('fetch_production() ->')
+    print(fetch_production())
