@@ -106,7 +106,12 @@ def fetch_production(zone_key='JP-KY', session=None,target_datetime=None,
 
     generation = cons + exch
     
-
+    # hard-code biomass and geothermal here?
     data['production']['unknown'] = generation-nuclear-solar
     
     return data
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+
+    print('fetch_production() ->')
+    print(fetch_production())
