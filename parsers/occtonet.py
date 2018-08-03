@@ -181,3 +181,12 @@ def get_data(session, payload, cookies):
 
 def parse_dt(row):
     return arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-')).replace(tzinfo='Asia/Tokyo').datetime
+
+if __name__ == '__main__':
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+
+    print('fetch_exchange(JP-CB, JP-HR) ->')
+    print(fetch_exchange('JP-CB', 'JP-HR')[-3:])
+    print('fetch_exchange(JP-CG, JP-KY) ->')
+    print(fetch_exchange('JP-CG', 'JP-KY')[-3:])
+    
