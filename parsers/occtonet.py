@@ -81,8 +81,7 @@ def fetch_exchange(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     
         df2 = pd.concat([data_1,data])
         df2 = df2.set_index(['Date', 'Time'])
-        print(df.head())
-        print(df2.head())
+        
         df = df + df2
         df = df.reset_index()
         
