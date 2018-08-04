@@ -93,22 +93,22 @@ def fetch_consumption(zone_key='JP-TK', target_datetime=None,
     """
     datestamp = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y%m%d')
     consumption_url = {
-        'JP-HKD': "".join(['http://denkiyoho.hepco.co.jp/area/data/juyo_01_',
-                           datestamp, '.csv']),
-        'JP-TH': "".join(['http://setsuden.tohoku-epco.co.jp/common/demand/juyo_02_',
-                          datestamp, '.csv']),
+        'JP-HKD': 'http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv'.format(datestamp),
+        'JP-TH': 'http://setsuden.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv'.format(datestamp),
         'JP-TK': 'http://www.tepco.co.jp/forecast/html/images/juyo-j.csv',
-        'JP-HR': "".join(['http://www.rikuden.co.jp/denki-yoho/csv/juyo_05_', datestamp, '.csv']),
+        'JP-HR': 'http://www.rikuden.co.jp/denki-yoho/csv/juyo_05_{}.csv'.format(datestamp),
         'JP-CB': 'http://denki-yoho.chuden.jp/denki_yoho_content_data/juyo_cepco003.csv',
         'JP-KN': 'http://www.kepco.co.jp/yamasou/juyo1_kansai.csv',
-        'JP-CG': "".join(['http://www.energia.co.jp/jukyuu/sys/juyo_07_', datestamp, '.csv']),
+        'JP-CG': 'http://www.energia.co.jp/jukyuu/sys/juyo_07_{}.csv'.format(datestamp),
         'JP-SK': 'http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv'
         }
+    # First roughly 40 rows of the consumption files have hourly data,
+    # the parser skips to the rows with 5-min actual values 
     if zone_key == 'JP-KN':
         startrow = 44
     else:
         startrow = 42
-    df = pd.read_csv(consumption_url[zone_key], skiprows=[x for x in range(startrow)],
+    df = pd.read_csv(consumption_url[zone_key], skiprows=list(range(startrow)),
                      encoding='shift-jis')
     df.columns = ['Date', 'Time', 'cons']
     # Convert 万kW to MW
