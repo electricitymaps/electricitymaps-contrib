@@ -27,12 +27,12 @@ const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
     require('./third_party_maps/SE-SE2.json'),
     require('./third_party_maps/SE-SE3.json'),
     require('./third_party_maps/SE-SE4.json'),
-    require('./third_party_maps/JP-CB.json'),
-    require('./third_party_maps/JP-HR.json'),
-    require('./third_party_maps/JP-KN.json'),
-    require('./third_party_maps/JP-KY.json'),
-    require('./third_party_maps/JP-ON.json'),
-    require('./third_party_maps/JP-TK.json'),
+    require('./third_party_maps/JP-CB.geojson'),
+    require('./third_party_maps/JP-HR.geojson'),
+    require('./third_party_maps/JP-KN.geojson'),
+    require('./third_party_maps/JP-KY.geojson'),
+    require('./third_party_maps/JP-ON.geojson'),
+    require('./third_party_maps/JP-TK.geojson'),
   ]);
 
 const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
