@@ -113,8 +113,8 @@ def fetch_production(zone_key='JP-KY', session=None, target_datetime=None,
     solar = soup.find("td", class_="puProgressSun__num").get_text()
     # convert from 万kW to MW
     solar = float(solar)*10
-    data['production']['solar'] = solar
-    # add nuclear
+    
+    # add nuclear power plants
     # Sendai and Genkai
     url_s = ''.join(['http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?',
                      'A=s_power.fdat&B=ncp_state.fdat&_=1520532401043'])
@@ -127,28 +127,30 @@ def fetch_production(zone_key='JP-KY', session=None, target_datetime=None,
     genkai = re.findall('(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*'
                         +'(?:[eE][-+]?\d+)?(?=&)', genkai)
     nuclear = 0
-    if len(sendai) > 0:
-        for i in range(len(sendai)):
-            nuclear = nuclear + float(sendai[i])
-    if len(genkai) > 0:
-        for i in range(len(genkai)):
-            nuclear = nuclear + float(genkai[i])
+    for sendai_i in sendai:
+        nuclear += float(sendai_i)
+    for genkai_i in genkai:
+        nuclear += float(genkai_i)
     # convert from 万kW to MW
     nuclear = nuclear*10
-    data['production']['nuclear'] = nuclear
+    
     # add the exchange JP-CG->JP-KY
     exch_list = occtonet.fetch_exchange('JP-KY', 'JP-CG')
-    # find the exchange timestamp that agrees with the consumption one
-    exch_newer = True
-    ind = 0
-    while exch_newer:
-        ind = ind - 1
-        exch_newer = (exch_list[ind]['datetime'] > dt)
-    exch = -1*exch_list[ind]['netFlow']
-    generation = cons + exch
-    # hard-code geothermal and biomass?
-    data['production']['unknown'] = generation-nuclear-solar
-    return data
+   # find the nearest exchanges in time to consumption timestamp
+    nearest_exchanges = sorted(exch_list, key=lambda exch: abs(exch['datetime'] - dt))
+    # take the nearest exchange
+    exch = nearest_exchanges[0]
+    # check that consumption and exchange timestamps are within a 15 minute window
+    if abs(dt - exch['datetime']).seconds <= 900:
+        
+        generation = cons - exch['netFlow']
+        data['production']['solar'] = solar
+        data['production']['nuclear'] = nuclear
+        data['production']['unknown'] = generation-nuclear-solar
+        
+        return data
+    else:
+        return []
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
