@@ -28,11 +28,7 @@ def fetch(session=None):
 
 
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
+    """Requests the last known production mix (in MW) of a given zone
 
     Return:
     A dictionary in the form:
@@ -58,7 +54,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
     }
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError('This parser is not able to retrieve data for past dates')
 
     obj = fetch(session)
 
@@ -83,7 +79,8 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
             'geothermal': productions.get('Geothermal', {'generation': 0.0})['generation'],
             'wind': productions.get('Wind', {'generation': 0.0})['generation'],
             'hydro': productions.get('Hydro', {'generation': 0.0})['generation'],
-            'unknown': productions.get('Co-Gen', {'generation': 0.0})['generation']
+            'unknown': productions.get('Co-Gen', {'generation': 0.0})['generation'],
+            'nuclear': 0  # famous issue in NZ politics
         },
         'capacity': {
             'coal': productions.get('Gas/Coal', {'capacity': 0.0})['capacity'],
@@ -103,26 +100,22 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
 
 def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_datetime=None,
                    logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
+    """Requests the last known power exchange (in MW) between New Zealand's two islands
 
     Return:
-    A dictionary in the form:
-    {
+    A list of dictionaries in the form:
+    [{
       'sortedZoneKeys': 'DK->NO',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
-    }
+    }]
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError('This parser is not able to retrieve data for past dates')
 
     obj = fetch(session)['soHVDCDailyGraph']
-    datetime_start = arrow.get(arrow.now().datetime, 'Pacific/Auckland').floor('day')
+    datetime_start = arrow.now().to(timezone).floor('day')
     data = []
     for item in obj['data']['mw_north']:
         datetime = datetime_start.replace(minutes=+item[0])
