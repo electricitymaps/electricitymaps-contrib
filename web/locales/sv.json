@@ -1015,6 +1015,14 @@
           "RU": {
             "zoneName": "Ryssland"
           },
+          "RU-1": {
+            "countryName": "Ryssland",
+            "zoneName": "Europeiska Ryssland och Ural"
+          },
+          "RU-2": {
+            "countryName": "Ryssland",
+            "zoneName": "Sibirien"
+          },
           "RU-EU": {
             "zoneName": "Ryssland"
           },
