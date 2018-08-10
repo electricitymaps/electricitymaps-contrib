@@ -17,7 +17,7 @@ EXCHANGES = {"MX-NO->MX-NW": "IntercambioNTE-NOR",
              "MX-CE->MX-OC": "IntercambioOCC-CEL",
              "MX-NE->MX-OC": "IntercambioNES-OCC",
              "MX-NO->MX-OC": "IntercambioNTE-OCC",
-             "MX-NO->MX-OC": "IntercambioNOR-OCC",
+             "MX-NW->MX-OC": "IntercambioNOR-OCC",
              "MX-NO->US": "IntercambioUSA-NTE",
              "MX-NE->US": "IntercambioUSA-NES",
              "BZ->MX-PN": "IntercambioPEN-BEL"
@@ -41,7 +41,8 @@ def fetch_MX_exchange(sorted_zone_keys, s):
     val = val.translate(trantab)
     flow = float(val)
 
-    if sorted_zone_keys in ["BZ->MX-PN", "MX-CE->MX-OR"]:
+    if sorted_zone_keys in ["BZ->MX-PN", "MX-CE->MX-OR", "MX-CE->MX-OC"]:
+        # reversal needed for these zones due to EM ordering
         flow = -1*flow
 
     return flow
