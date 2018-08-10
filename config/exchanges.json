@@ -439,6 +439,16 @@
     },
     "rotation": 90
   },
+  "BZ->MX-PN":{
+    "lonlat": [
+      -88.627,
+      18.240
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 0
+  },
   "CA-AB->CA-BC": {
     "lonlat": [
       -119.811359,
@@ -1426,15 +1436,135 @@
     },
     "rotation": 0
   },
-  "MX->US-CA": {
+  "MX-BC->US-CA": {
     "lonlat": [
       -116.027,
       32.607
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_CA.fetch_exchange"
     },
     "rotation": -10
+  },
+  "MX-CE->MX-OC":{
+    "lonlat": [
+      -99.102,
+      19.041
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": -35
+  },
+  "MX-CE->MX-OR":{
+    "lonlat": [
+      -97.328,
+      18.094
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 150
+  },
+  "MX-NE->MX-NO":{
+    "lonlat": [
+      -101.151,
+      26.323
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "MX-NE->MX-OC":{
+    "lonlat": [
+      -100.371,
+      23.221
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": -160
+  },
+  "MX-NE->MX-OR":{
+    "lonlat": [
+      -98.130,
+      22.345
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 170
+  },
+  "MX-NO->MX-NW":{
+    "lonlat": [
+      -108.721,
+      29.325
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "MX-NW->MX-OC":{
+    "lonlat": [
+      -105.557,
+      22.675
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 145
+  },
+  "MX-NO->MX-OC":{
+    "lonlat": [
+      -103.755,
+      23.946
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 150
+  },
+  "MX-NE->US":{
+    "lonlat": [
+      -98.042,
+      26.057
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "MX-NO->US":{
+    "lonlat": [
+      -107.292,
+      31.709
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "MX-OC->MX-OR":{
+    "lonlat": [
+      -101.272,
+      18.480
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 145
+  },
+  "MX-OR->MX-PN":{
+    "lonlat": [
+      -92.175,
+      18.250
+    ],
+    "parsers": {
+      "exchange": "MX.fetch_exchange"
+    },
+    "rotation": 90
   },
   "NA->ZA":{
     "lonlat": [
