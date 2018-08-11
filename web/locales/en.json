@@ -610,6 +610,10 @@
             "countryName": "India",
             "zoneName": "Delhi"
           },
+          "IN-DN": {
+            "countryName": "India",
+            "zoneName": "Dadra and Nagar Haveli"
+          },
           "IN-GA": {
             "countryName": "India",
             "zoneName": "Goa"
@@ -686,7 +690,7 @@
             "countryName": "India",
             "zoneName": "Sikkim"
           },
-          "IN-TL": {
+          "IN-TN": {
             "countryName": "India",
             "zoneName": "Tamil Nadu"
           },
@@ -904,6 +908,38 @@
           },
           "MX": {
             "zoneName": "Mexico"
+          },
+          "MX-BC": {
+            "countryName": "Mexico",
+            "zoneName": "Baja California"
+          },
+          "MX-CE": {
+            "countryName": "Mexico",
+            "zoneName": "Central"
+          },
+          "MX-NE": {
+            "countryName": "Mexico",
+            "zoneName": "North East"
+          },
+          "MX-NO": {
+            "countryName": "Mexico",
+            "zoneName": "North"
+          },
+          "MX-NW": {
+            "countryName": "Mexico",
+            "zoneName": "North West"
+          },
+          "MX-OC": {
+            "countryName": "Mexico",
+            "zoneName": "Occidental"
+          },
+          "MX-OR": {
+            "countryName": "Mexico",
+            "zoneName": "Oriental"
+          },
+          "MX-PN": {
+            "countryName": "Mexico",
+            "zoneName": "Peninsula"
           },
           "MY-EM": {
             "countryName": "Malaysia",

@@ -264,7 +264,7 @@ if __name__ == '__main__':
     print(fetch_production('SE'))
     print('fetch_exchange(NO, SE) ->')
     print(fetch_exchange('NO', 'SE'))
-    print('fetch_exchange(NO-NO4, SE) ->')
+    print('fetch_exchange(NO-NO4, RU-1) ->')
     print(fetch_exchange('NO-NO4', 'RU-1'))
     print('fetch_exchange(EE, RU-1) ->')
     print(fetch_exchange('EE', 'RU-1'))
