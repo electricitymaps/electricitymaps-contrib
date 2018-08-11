@@ -1301,6 +1301,106 @@
     },
     "rotation": 90
   },
+  "JP-CB->JP-HR": {
+    "lonlat": [
+      136.85,
+      36.35
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "JP-CB->JP-KN": {
+    "lonlat": [
+      136.42,
+      35.04
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "JP-CB->JP-TK": {
+    "lonlat": [
+      138.24,
+      35.34
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "JP-CG->JP-KN": {
+    "lonlat": [
+      134.27,
+      34.98
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "JP-CG->JP-KY": {
+    "lonlat": [
+      130.96,
+      33.965
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": -170
+  },
+  "JP-CG->JP-SK": {
+    "lonlat": [
+      133.81,
+      34.40
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": 175
+  },
+  "JP-HKD->JP-TH": {
+    "lonlat": [
+      140.847,
+      41.643
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": 170
+  },
+  "JP-HR->JP-KN": {
+    "lonlat": [
+      136.13,
+      35.57
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": -170
+  },
+  "JP-KN->JP-SK": {
+    "lonlat": [
+      134.89,
+      33.95
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": -95
+  },
+  "JP-TH->JP-TK": {
+    "lonlat": [
+      140.16,
+      37.08
+    ],
+    "parsers": {
+      "exchange": "occtonet.fetch_exchange"
+    },
+    "rotation": -150
+  },
   "LT->LV": {
     "lonlat": [
       24.373981,
