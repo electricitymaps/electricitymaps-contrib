@@ -966,6 +966,7 @@
       "https://github.com/corradio"
     ],
     "parsers": {
+      "price": "ENTSOE.fetch_price",
       "production": "DK_BHM.fetch_production"
     },
     "timezone": "Europe/Copenhagen"
