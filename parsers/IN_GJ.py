@@ -70,7 +70,7 @@ def fetch_data(zone_key, session=None, logger=None):
     cells = [c.text.strip() for c in soup.find_all('td')]
 
     # get wind and solar values
-    values['date'] = arrow.get(cells[1], 'DD-MM-YYYY HH:mm:ss').replace(
+    values['date'] = arrow.get(cells[1], 'D-MM-YYYY H:mm:ss').replace(
         tzinfo='Asia/Kolkata')
     [wind_solar_index] = [i for i, c in enumerate(cells) if c == '(Wind+Solar) Generation']
     value = cells[wind_solar_index + 1]

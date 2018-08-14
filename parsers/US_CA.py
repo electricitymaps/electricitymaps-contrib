@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
-
-# The arrow library is used to handle datetimes
 import arrow
-# The pandas library is used to parse content through HTTP
 import pandas
+import requests
+from bs4 import BeautifulSoup
+from collections import defaultdict
 
 FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 
+MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
 def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
                      logger=None):
@@ -156,6 +156,23 @@ def fetch_historical_data(target_datetime):
     return daily_data, import_data
 
 
+def fetch_MX_exchange(s):
+    req = s.get(MX_EXCHANGE_URL)
+    soup = BeautifulSoup(req.text, 'html.parser')
+    exchange_div = soup.find("div", attrs={'id': 'IntercambioUSA-BCA'})
+    val = exchange_div.text
+
+    # cenace html uses unicode hyphens instead of minus signs
+    try:
+        val = val.replace(chr(8208), chr(45))
+    except ValueError:
+        pass
+
+    # negative value indicates flow from CA to MX
+
+    return float(val)
+
+
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=None):
     """Requests the last known power exchange (in MW) between two zones
@@ -175,9 +192,18 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     where net flow is from DK into NO
     """
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
-    if sorted_zone_keys != 'US->US-CA':
-        raise NotImplementedError(
-            'Exchange pair not supported: {}'.format(sorted_zone_keys))
+
+    s = session or requests.Session()
+
+    if sorted_zone_keys == 'MX-BC->US-CA':
+        netflow = fetch_MX_exchange(s)
+        exchange = {
+          'sortedZoneKeys': sorted_zone_keys,
+          'datetime': arrow.now('America/Tijuana').datetime,
+          'netFlow': netflow,
+          'source': 'cenace.gob.mx'
+        }
+        return exchange
 
     if target_datetime:
         return fetch_historical_exchange(target_datetime)
@@ -214,4 +240,7 @@ if __name__ == '__main__':
     pprint(fetch_production())
 
     print('fetch_exchange("US-CA", "US") ->')
-    pprint(fetch_exchange("US-CA", "US"))
+    #pprint(fetch_exchange("US-CA", "US"))
+
+    print('fetch_exchange("MX-BC", "US-CA")')
+    pprint(fetch_exchange("MX-BC", "US-CA"))

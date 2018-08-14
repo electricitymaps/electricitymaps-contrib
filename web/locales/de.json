@@ -606,6 +606,10 @@
             "countryName": "Indien",
             "zoneName": "Delhi"
         },
+        "IN-DN": {
+            "countryName": "Indien",
+            "zoneName": "Dadra und Nagar Haveli"
+        },
         "IN-GA": {
             "countryName": "Indien",
             "zoneName": "Goa"
@@ -682,7 +686,7 @@
             "countryName": "Indien",
             "zoneName": "Sikkim"
         },
-        "IN-TL": {
+        "IN-TN": {
             "countryName": "Indien",
             "zoneName": "Tamil Nadu"
         },
