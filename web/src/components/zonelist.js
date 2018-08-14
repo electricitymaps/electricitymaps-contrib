@@ -26,6 +26,7 @@ export default class ZoneList {
     const zones = d3.values(zonesData);
     const validatedAndSortedZones = this._sortAndValidateZones(zones);
     this.zones = this._saveZoneRankings(validatedAndSortedZones);
+    return this;
   }
 
   setCo2ColorScale(colorScale) {

@@ -557,13 +557,13 @@ CountryTable.prototype.data = function(arg) {
                 })
     }
     else {
-        var value = d3.max(this.powerScale.domain()) * 1e6;
+        var value = d3.max(this.powerScale.domain());
         var p = d3.precisionPrefix(
             (d3.max(this.powerScale.domain()) - d3.min(this.powerScale.domain())) / (this.SCALE_TICKS - 1) * 1e6,
             value);
         var f = d3.formatPrefix('.' + p, value);
         this.axis = d3.axisTop(this.powerScale)
-            .tickFormat(function (d) { return f(d * 1e6) + 'W'; });
+            .tickFormat(function (d) { return f(d) + '%'; });
     }
 
     return this;

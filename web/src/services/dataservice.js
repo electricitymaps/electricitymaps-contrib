@@ -66,34 +66,38 @@ var getGfsTargetTimeBefore = exports.getGfsTargetTimeBefore = function(datetime)
   return horizon;
 }
 var getGfsRefTimeForTarget = exports.getGfsRefTimeForTarget = function(datetime) {
-    // Warning: solar will not be available at horizon 0
-    // so always do at least horizon 1
-    var origin = moment(datetime).subtract(1, 'hour');
-    while ((origin.hour() % GFS_STEP_ORIGIN) != 0)
-      origin.subtract(1, 'hour');
-    return origin;
-  }
-  exports.fetchGfs = function(endpoint, key, datetime, callback) {
-    var targetTimeBefore = getGfsTargetTimeBefore(datetime);
-    var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
-    // Note: d3.queue runs tasks in parallel
-    var tryModulo = false;//window.customDate != undefined;
-    return d3.queue()
-    .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true, tryModulo, false)
-    .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true, false, tryModulo)
-    .await(function(err, before, after) {
-      if (err) return callback(err, null);
-      return callback(null, { forecasts: [before.data, after.data] });
-    });
-  }
-  exports.fetchNothing = function(callback) {
-    return callback(null, null);
-  }
-  exports.fetchState = function(endpoint, datetime, callback) {
-    var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
-    return protectedJsonRequest(endpoint, path, callback);
-  }
-  exports.fetchHistory = function(endpoint, zone_name, callback) {
-    var path = '/v3/history?countryCode=' + zone_name;
-    return protectedJsonRequest(endpoint, path, callback);
-  }
+  // Warning: solar will not be available at horizon 0
+  // so always do at least horizon 1
+  var origin = moment(datetime).subtract(1, 'hour');
+  while ((origin.hour() % GFS_STEP_ORIGIN) != 0)
+    origin.subtract(1, 'hour');
+  return origin;
+}
+exports.fetchGfs = function(endpoint, key, datetime, callback) {
+  var targetTimeBefore = getGfsTargetTimeBefore(datetime);
+  var targetTimeAfter = moment(targetTimeBefore).add(GFS_STEP_HORIZON, 'hour');
+  // Note: d3.queue runs tasks in parallel
+  var tryModulo = false;//window.customDate != undefined;
+  return d3.queue()
+  .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeBefore), targetTimeBefore, true, tryModulo, false)
+  .defer(fetchForecast, endpoint, key, getGfsRefTimeForTarget(targetTimeAfter), targetTimeAfter, true, false, tryModulo)
+  .await(function(err, before, after) {
+    if (err) return callback(err, null);
+    return callback(null, { forecasts: [before.data, after.data] });
+  });
+}
+exports.fetchNothing = function(callback) {
+  return callback(null, null);
+}
+exports.fetchState = function(endpoint, datetime, callback) {
+  var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
+  return protectedJsonRequest(endpoint, path, callback);
+}
+exports.fetchHistory = function(endpoint, zone_name, callback) {
+  var path = '/v3/history?countryCode=' + zone_name;
+  return protectedJsonRequest(endpoint, path, callback);
+}
+
+exports.fetchResidualMixes = callback =>
+  d3.csv('data/AIBResidualMix2017.csv')
+    .get(null, callback);

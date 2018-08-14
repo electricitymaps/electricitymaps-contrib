@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const fs = require('fs');
-const glob = require('glob');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -23,10 +22,10 @@ module.exports = {
       },
       {
         test: [/\.js$/],
-        exclude: [/node_modules/],
+        exclude: [/node_modules/, /co2eq_parameters.js$/],
         loader: 'babel-loader',
         query: {
-        plugins: ['transform-runtime'],
+          plugins: ['transform-runtime'],
           presets: ['es2015'] // that's ES6
         }
       }

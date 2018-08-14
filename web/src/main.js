@@ -238,7 +238,8 @@ moment.locale(getState().application.locale.toLowerCase());
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
 // do not display onboarding when we've seen it or we're embedded
-if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
+// if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
+if (false) {
   onboardingModal = new OnboardingModal('#main');
   thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
@@ -290,7 +291,7 @@ d3.select('#checkbox-colorblind').on('change', () => {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
+  zoneMap = new ZoneMap('zones', { zoom: 3.0, theme })
     .setCo2color(co2color)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
@@ -500,7 +501,7 @@ function renderMap(state) {
       zoneMap.setCenter(callerLocation);
       hasCenteredMap = true;
     } else {
-      zoneMap.setCenter([0, 50]);
+      zoneMap.setCenter([-10, 55]);
     }
   }
 
@@ -590,31 +591,6 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
       clientVersion !== getState().application.bundleHash &&
       !getState().application.isLocalhost && !getState().application.isCordova
     ));
-
-  const node = document.getElementById('map-container');
-  if (typeof zoneMap !== 'undefined') {
-    // Assign country map data
-    zoneMap
-      .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
-      })
-      .onZoneMouseMove((d, i, clientX, clientY) => {
-        // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
-        const rect = node.getBoundingClientRect();
-        countryTooltip.update(clientX + rect.left, clientY + rect.top);
-      })
-      .onMouseMove((lonlat) => {
-        mapMouseOver(lonlat);
-      })
-      .onZoneMouseOut(() => {
-        if (co2Colorbars) {
-          co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-        }
-        mapMouseOver(undefined);
-        countryTooltip.hide();
-      });
-  }
 
   // Render weather if provided
   // Do not overwrite with null/undefined
@@ -815,6 +791,26 @@ if (typeof zoneMap !== 'undefined') {
       if (getState().application.selectedZoneName !== d.countryCode) {
         dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
       }
+    })
+    .onCountryMouseOver((d) => {
+      tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
+    })
+    .onZoneMouseMove((d, i, clientX, clientY) => {
+      const node = document.getElementById('map-container');
+      // TODO: Check that i changed before calling showMapCountry
+      tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars, tooltipLowCarbonGauge, tooltipRenewableGauge);
+      const rect = node.getBoundingClientRect();
+      countryTooltip.update(clientX + rect.left, clientY + rect.top);
+    })
+    .onMouseMove((lonlat) => {
+      mapMouseOver(lonlat);
+    })
+    .onZoneMouseOut(() => {
+      if (co2Colorbars) {
+        co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+      }
+      mapMouseOver(undefined);
+      countryTooltip.hide();
     });
 }
 
@@ -899,16 +895,21 @@ if (onboardingModal) {
 // to state changes and cause a side-effect
 
 function getCurrentZoneData(state) {
-  const { grid } = state.data;
   const zoneName = state.application.selectedZoneName;
-  const i = state.application.selectedZoneTimeIndex;
-  if (!grid || !zoneName) {
-    return null;
+  if (false) {
+    const { grid } = state.data;
+    const i = state.application.selectedZoneTimeIndex;
+    if (!grid || !zoneName) {
+      return null;
+    }
+    if (i == null) {
+      return grid.zones[zoneName];
+    }
+    return (state.data.histories[zoneName] || {})[i];
+  } else {
+    // Residual mix
+    return state.data.residualMixes[zoneName];
   }
-  if (i == null) {
-    return grid.zones[zoneName];
-  }
-  return (state.data.histories[zoneName] || {})[i];
 }
 
 function renderGauges(state) {
@@ -950,7 +951,6 @@ function renderCountryTable(state) {
 
 
 function renderOpenTooltips(state) {
-
   const zoneData = getCurrentZoneData(state);
   const tooltipMode = state.application.tooltipDisplayMode;
   if (tooltipMode) {
@@ -959,10 +959,11 @@ function renderOpenTooltips(state) {
       tooltipHelper.showExchange : tooltipHelper.showProduction;
     const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
-    fun(ttp,
-        tooltipMode, zoneData, tableDisplayEmissions,
-        co2color, co2Colorbars,
-      );
+    fun(
+      ttp,
+      tooltipMode, zoneData, tableDisplayEmissions,
+      co2color, co2Colorbars,
+    );
   }
 
   if (countryTooltip.isVisible) {
@@ -1237,8 +1238,9 @@ observe(state => state.data.grid.zones, (zones, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.setData(Object.values(zones));
   }
-  zoneList.setZones(zones);
-  zoneList.render();
+  zoneList
+    .setZones(zones)
+    .render();
 });
 // Observe for grid exchanges change
 observe(state => state.data.grid.exchanges, (exchanges) => {
@@ -1253,6 +1255,20 @@ observe(state => state.data.grid, (grid, state) => {
   renderCountryTable(state);
   renderGauges(state);
   renderMap(state);
+});
+// Observe for residual mix change
+observe(state => state.data.residualMixes, (residualMixes, state) => {
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.setData(Object.values(residualMixes));
+  }
+
+  renderCountryTable(state);
+  renderGauges(state);
+  renderMap(state);
+
+  zoneList
+    .setZones(residualMixes)
+    .render();
 });
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
@@ -1276,7 +1292,7 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
-  tryFetchHistory(state);
+  // tryFetchHistory(state);
 });
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
@@ -1287,7 +1303,7 @@ observe(state => state.data.histories, (histories, state) => {
   // try to refetch it.
   const { selectedZoneName } = state.application;
   if (selectedZoneName && !state.data.histories[selectedZoneName]) {
-    tryFetchHistory(state);
+    // tryFetchHistory(state);
   }
 });
 // Observe for index change (for example by history graph)
@@ -1393,9 +1409,19 @@ observe(state => state.application.searchQuery, (searchQuery, state) => {
 // ** START
 
 // Start a fetch and show loading screen
-fetch(true, () => {
-  if (!getState().application.customDate) {
-    // Further calls to `fetch` won't show loading screen
-    setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
+// fetch(true, () => {
+//   if (!getState().application.customDate) {
+//     // Further calls to `fetch` won't show loading screen
+//     setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
+//   }
+// });
+
+DataService.fetchResidualMixes((err, res) => {
+  if (err) {
+    return console.error(err);
   }
+  return dispatch({
+    payload: res,
+    type: 'RESIDUAL_MIX_DATA',
+  });
 });

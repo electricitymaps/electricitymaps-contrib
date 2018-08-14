@@ -121,7 +121,7 @@ line, path {
 }
 .country-panel-wrap {
     position: relative;
-    padding-top: 200px;
+    padding-top: 170px;
 }
 .country-panel-wrap .bysource {
     font-size: smaller;
@@ -139,6 +139,10 @@ line, path {
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
+}
+
+.country-history {
+    display: none;
 }
 
 body {
@@ -657,6 +661,7 @@ body {
 .country-show-emissions-wrap {
     margin: 1.2rem 0 0 0;
     font-size: 1.1em;
+    display: none;
 }
 
 .country-show-emissions-wrap .menu {
@@ -1541,6 +1546,7 @@ div.highscore-button:hover {
     border-top: 1px solid lightgray;
     text-align: center;
     overflow-y: visible;
+    display: none;
 }
 
 .zone-time-slider .time-slider-axis-container{
@@ -1819,7 +1825,7 @@ div.highscore-button:hover {
         background-size: contain;
         background-position: center;
         height: 40%;
-        min-height: 200px;
+        min-height: 170px;
     }
 
     .modal .modal-text {

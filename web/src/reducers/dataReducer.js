@@ -6,6 +6,7 @@ const translation = require('../helpers/translation');
 
 const exchangesConfig = require('../../../config/exchanges.json');
 const zonesConfig = require('../../../config/zones.json');
+const co2eqParameters = require('../../../config/co2eq_parameters');
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -39,6 +40,7 @@ Object.entries(exchanges).forEach((entry) => {
 const initialDataState = {
   // Here we will store data items
   grid: { zones, exchanges },
+  residualMixes: {},
   histories: {},
   solar: null, // TODO(olc)
   wind: null, // TODO(olc)
@@ -153,11 +155,11 @@ module.exports = (state = initialDataState, action) => {
 
       const zoneHistory = action.payload.map((observation) => {
         const ret = Object.assign({}, observation);
-        
+
         ret.hasParser = true;
         if (observation.exchange && Object.keys(observation.exchange).length
           && (!observation.production || !Object.keys(observation.production).length)) {
-              // Exchange information is not shown in history observations without production data, as the percentages are incorrect
+          // Exchange information is not shown in history observations without production data, as the percentages are incorrect
           ret.exchange = {};
         }
 
@@ -169,6 +171,84 @@ module.exports = (state = initialDataState, action) => {
       // Create new state
       const newState = Object.assign({}, state);
       newState.histories = newHistories;
+
+      return newState;
+    }
+
+    case 'RESIDUAL_MIX_DATA': {
+      const zoneMapping = {};
+      Object.keys(zonesConfig).forEach((k) => {
+        if (zonesConfig[k].subZoneNames) {
+          zoneMapping[k] = zonesConfig[k].subZoneNames;
+        }
+      });
+
+      // Create new object
+      const newResidualMixes = {};
+
+      // Start by copying all existing static attributes
+      Object.keys(state.grid.zones).forEach((zoneKey) => {
+        const item = state.grid.zones[zoneKey];
+        newResidualMixes[zoneKey] = {
+          countryCode: zoneKey,
+          geometry: item.geometry,
+          totalDischarge: 0,
+          totalImport: 0,
+        };
+      });
+
+      action.payload.forEach((item) => {
+        const residualZoneKeys = zoneMapping[item.Zone] || [item.Zone];
+        residualZoneKeys.forEach((zoneKey) => {
+          const value = newResidualMixes[zoneKey];
+          value.countryCode = zoneKey;
+          value.production = {
+            gas: +item['Gas'],
+            geothermal: +item['Geothermal'],
+            biomass: +item['Biomass'],
+            coal: +item['HardCoal'] + +item['Lignite'],
+            nuclear: +item['Nuclear'],
+            oil: +item['Oil'],
+            hydro: +item['HydroAndMarine'],
+            solar: +item['Solar'],
+            wind: +item['Wind'],
+            unknown: +item['RenewablesUnspecified'] + +item['FossilUnspecified'],
+          };
+          value.exchange = {};
+          value.hasParser = true;
+          value.renewableRatio =
+            (value.production.geothermal +
+            value.production.biomass +
+            value.production.hydro +
+            value.production.solar +
+            value.production.wind) / 100.0;
+          value.fossilFuelRatio =
+            (value.production.gas +
+            value.production.coal +
+            value.production.oil +
+            value.production.unknown) / 100.0;
+          value.maxProduction =
+            Math.max(...Object.keys(value.production)
+              .map(k => value.production[k]));
+          value.totalProduction =
+            Object.keys(value.production)
+              .map(k => value.production[k])
+              .reduce((a, b) => a + b, 0);
+          value.co2intensity = Object.keys(value.production)
+            .map(k => co2eqParameters.footprintOf(k, zoneKey) * value.production[k] / 100.0)
+            .reduce((a, b) => a + b, 0);
+          value.productionCo2Intensities = {};
+          value.productionCo2IntensitySources = {};
+          Object.keys(value.production).forEach((k) => {
+            value.productionCo2Intensities[k] = co2eqParameters.footprintOf(k, zoneKey);
+            value.productionCo2IntensitySources[k] = co2eqParameters.sourceOf(k, zoneKey);
+          });
+        });
+      });
+
+      // Create new state
+      const newState = Object.assign({}, state);
+      newState.residualMixes = newResidualMixes;
 
       return newState;
     }
