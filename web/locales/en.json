@@ -738,8 +738,45 @@
           "JO": {
             "zoneName": "Jordan"
           },
-          "JP": {
-            "zoneName": "Japan"
+          "JP-CB": {
+            "countryName": "Japan",
+            "zoneName": "Chūbu"
+          },
+          "JP-CG": {
+            "countryName": "Japan",
+            "zoneName": "Chūgoku"
+          },
+          "JP-HKD": {
+            "countryName": "Japan",
+            "zoneName": "Hokkaidō"
+          },
+          "JP-HR": {
+            "countryName": "Japan",
+            "zoneName": "Hokuriku"
+          },
+          "JP-KN": {
+            "countryName": "Japan",
+            "zoneName": "Kansai"
+          },
+          "JP-KY": {
+            "countryName": "Japan",
+            "zoneName": "Kyūshū"
+          },
+          "JP-ON": {
+            "countryName": "Japan",
+            "zoneName": "Okinawa"
+          },
+          "JP-SK": {
+            "countryName": "Japan",
+            "zoneName": "Shikoku"
+          },
+          "JP-TH": {
+            "countryName": "Japan",
+            "zoneName": "Tōhoku"
+          },
+          "JP-TK": {
+            "countryName": "Japan",
+            "zoneName": "Tōkyō"
           },
           "KE": {
             "zoneName": "Kenya"

@@ -1955,6 +1955,177 @@
     },
     "timezone": "Europe/Rome"
   },
+  "JP-CB": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        135.84,
+        33.82
+      ],
+      [
+        138.72,
+        37.17
+      ]
+    ]
+  },
+  "JP-CG": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        130.66,
+        33.585
+      ],
+      [
+        134.54,
+        35.74
+      ]
+    ]
+  },
+  "JP-HKD": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        139.35,
+        41.30
+      ],
+      [
+        146.00,
+        45.97
+      ]
+    ]
+  },
+  "JP-HR": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        135.80,
+        35.39
+      ],
+      [
+        137.75,
+        37.90
+      ]
+    ]
+  },
+  "JP-KN": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        134.24,
+        33.29
+      ],
+      [
+        136.38,
+        36.01
+      ]
+    ]
+  },
+  "JP-KY": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP-KY.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        128.29,
+        27.03
+      ],
+      [
+        131.89,
+        35.11
+      ]
+    ]
+  },
+  "JP-SK": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        132.15,
+        32.53
+      ],
+      [
+        134.69,
+        34.63
+      ]
+    ]
+  },
+  "JP-TH": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        137.65,
+        36.65
+      ],
+      [
+        142.00,
+        41.66
+      ]
+    ]
+  },
+  "JP-TK": {
+    "contributors": [
+      "https://github.com/tmslaine"
+    ],
+    "parsers": {
+      "production": "JP.fetch_production"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        138.50,
+        34.52
+      ],
+      [
+        141.16,
+        37.17
+      ]
+    ]
+  },
   "LT": {
     "_comment": "hydro incl. 900 MW pumped storage",
     "bounding_box": [
