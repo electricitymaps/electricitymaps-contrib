@@ -17,7 +17,7 @@ from . import occtonet
 # JP-KY  : Kyushu
 # JP-ON  : Okinawa
 
-def fetch_production(zone_key='JP-TK', target_datetime=None,
+def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """
     Calculates production from consumption and imports for a given area
