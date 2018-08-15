@@ -131,8 +131,10 @@ def fetch_exchange(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     df['sortedZoneKeys'] = sortedZoneKeys
     df = df[['source', 'datetime', 'netFlow', 'sortedZoneKeys']]
     
-    return df.to_dict('records')
-    
+    results = df.to_dict('records')
+    for result in results:
+        result['datetime'] = result['datetime'].to_pydatetime()
+    return results
     
     
 def get_cookies(session=None):
