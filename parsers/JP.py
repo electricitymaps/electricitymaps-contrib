@@ -36,7 +36,7 @@ def fetch_production(zone_key='JP-TK', target_datetime=None,
         'JP-SK':['JP-KN', 'JP-CG'],
         'JP-CG':['JP-KN', 'JP-SK', 'JP-KY']
         }
-    df = fetch_consumption(zone_key, target_datetime)
+    df = fetch_consumption_df(zone_key, target_datetime)
     df['imports'] = 0
     for zone in exch_map[zone_key]:
         df2 = occtonet.fetch_exchange(zone_key, zone, target_datetime)
@@ -66,7 +66,7 @@ def fetch_production(zone_key='JP-TK', target_datetime=None,
     for i in range(df.shape[0]):
         data = {
             'zoneKey': zone_key,
-            'datetime': df.loc[i, 'datetime'],
+            'datetime': df.loc[i, 'datetime'].to_pydatetime(),
             'production': {
                 'biomass': None,
                 'coal': None,
@@ -86,7 +86,7 @@ def fetch_production(zone_key='JP-TK', target_datetime=None,
     return datalist
 
 
-def fetch_consumption(zone_key='JP-TK', target_datetime=None,
+def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
                       logger=logging.getLogger(__name__)):
     """
     Returns the consumption for an area as a pandas DataFrame
