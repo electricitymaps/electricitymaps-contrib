@@ -215,7 +215,7 @@ const app = {
 
   onResume() {
     // Count a pageview
-    thirdPartyServices.trackWithCurrentApplicationState('Visit'),
+    thirdPartyServices.trackWithCurrentApplicationState('Visit');
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
