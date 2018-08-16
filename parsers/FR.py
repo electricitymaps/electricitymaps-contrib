@@ -60,7 +60,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
     df = pd.DataFrame(data)
 
     # filter out desired columns and convert values to float
-    value_columns = MAP_GENERATION.keys() + MAP_HYDRO
+    value_columns = list(MAP_GENERATION.keys()) + MAP_HYDRO
     df = df[['date_heure'] + value_columns]
     df[value_columns] = df[value_columns].astype(float)
 
