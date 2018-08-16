@@ -1383,7 +1383,8 @@
       "wind": 13550
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
