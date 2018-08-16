@@ -986,6 +986,10 @@
       "biomass": 326,
       "coal": 2775,
       "gas": 1700,
+      "nuclear": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "geothermal": 0,
       "oil": 292,
       "solar": 421,
       "wind": 3809
@@ -1018,6 +1022,10 @@
       "biomass": 234,
       "coal": 2072,
       "gas": 1241,
+      "nuclear": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "geothermal": 0,
       "oil": 759,
       "solar": 180,
       "wind": 1036
