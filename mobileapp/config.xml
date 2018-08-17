@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tmrow.electricitymap" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tmrow.electricitymap" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>electricityMap</name>
     <description>
         electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
@@ -52,9 +52,9 @@
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
-    <plugin name="cordova-plugin-code-push" spec="^1.11.11" />
-    <plugin name="cordova-plugin-file" spec="^4.3.3" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-code-push" spec="^1.11.12" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
     <engine name="android" spec="^6.4.0" />
     <engine name="ios" spec="^4.5.4" />
