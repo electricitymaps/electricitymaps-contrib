@@ -44,10 +44,10 @@
       "cordova-plugin-firebase-analytics": {
         "FIREBASE_VERSION": "11.6.+"
       },
-      "cordova-plugin-zip": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-code-push": {}
+      "cordova-plugin-code-push": {},
+      "cordova-plugin-zip": {}
     },
     "platforms": [
       "android",
