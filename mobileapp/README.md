@@ -53,3 +53,13 @@ ld: library not found for -lGoogleToolboxForMac
 ```
 
 while building for ios, you should run `pod install` from the `platforms/ios` directory.
+
+
+If you get ablank screen on iOS, as https://github.com/Microsoft/cordova-plugin-code-push/issues/434 hardcodes the cordova-plugin-file version, you must:
+
+```
+cordova plugin rm cordova-plugin-file --force
+cordova plugin rm cordova-plugin-file-transfer --force
+cordova plugin add cordova-plugin-file@latest
+cordova plugin add cordova-plugin-file-transfer@latest
+```

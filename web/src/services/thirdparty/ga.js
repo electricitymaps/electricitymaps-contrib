@@ -24,11 +24,22 @@ class GoogleAnalyticsThirdParty {
       } else {
         // For now, keep tracking using the legacy system
         this.inst('event', event, data, { send_to: 'UA-79729918-1' });
-        // Hack
-        if (event === 'pageview') {
-          cordova.plugins.firebase.analytics.setCurrentScreen(data.showPageState);
+        if (typeof facebookConnectPlugin === 'undefined') {
+          document.addEventListener('deviceready', function() {
+            // Hack
+            if (event === 'pageview') {
+              cordova.plugins.firebase.analytics.setCurrentScreen(data.showPageState);
+            } else {
+              cordova.plugins.firebase.analytics.logEvent(event, data);
+            }
+          }, false);
         } else {
-          cordova.plugins.firebase.analytics.logEvent(event, data);
+          // Duplicated code
+          if (event === 'pageview') {
+            cordova.plugins.firebase.analytics.setCurrentScreen(data.showPageState);
+          } else {
+            cordova.plugins.firebase.analytics.logEvent(event, data);
+          }
         }
       }
     }
