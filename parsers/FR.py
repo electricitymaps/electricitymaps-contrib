@@ -4,6 +4,8 @@ import arrow
 import json
 import logging
 import os
+import math
+
 import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
@@ -26,6 +28,11 @@ MAP_HYDRO = [
     'hydraulique_step_turbinage',
     'pompage'
 ]
+
+def is_not_nan_and_truthy(v):
+    if isinstance(v, float) and math.isnan(v):
+        return False
+    return bool(v)
 
 
 def fetch_production(zone_key='FR', session=None, target_datetime=None,
@@ -75,6 +82,11 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
         storage = {
             'hydro': row[1]['pompage'] * -1 + row[1]['hydraulique_step_turbinage'] * -1
         }
+
+        # if all production values are null, ignore datapoint
+        if not any([is_not_nan_and_truthy(v)
+                    for k, v in production.items()]):
+            continue
 
         datapoints.append({
             'zoneKey': zone_key,
