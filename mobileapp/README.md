@@ -42,6 +42,10 @@ code-push promote electricitymap-{ios,android} Staging Production
 
 Note about releases: bumping the release number will cause a new binary to be created. All code-push updates are tied to a binary version, meaning that apps will only update to code-push updates that are compatible with their binary version.
 
+## App/Play Store Release Checklist
+- Run a debug build on iOS/Android and check that code-push properly installs an update.
+- Check app icons
+
 ## Troubleshooting
 
 If you get
@@ -63,3 +67,5 @@ cordova plugin rm cordova-plugin-file-transfer --force
 cordova plugin add cordova-plugin-file@latest
 cordova plugin add cordova-plugin-file-transfer@latest
 ```
+
+If the Android icons are not working, check the AndroidManifest.xml and double check that the key "@mipmap/ic_launcher" is correctly set (and not @mipmap/icon)
