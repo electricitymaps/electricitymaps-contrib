@@ -8,7 +8,7 @@
     },
     "mobile-main-menu": {
         "map": "Karta",
-        "areas": "Områden",
+        "areas": "Regioner",
         "about": "Om"
     },
     "onboarding-modal": {
@@ -17,11 +17,11 @@
         },
         "view2": {
             "header": "Se hur mycket CO2 som släpps ut när din el produceras, i realtid.",
-            "text": "Vi färglägger områden runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
+            "text": "Vi färglägger regioner runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
         },
         "view3": {
             "header": "Vet var din el kommer från",
-            "text": "Pilar på kartan visar flöden av el mellan olika områden. Tryck på ett område för att se mer information om var elen kommer från."
+            "text": "Pilar på kartan visar flöden av el mellan olika regioner. Tryck på en region för att se mer information om var elen kommer från."
         },
         "view4": {
             "header": "Vind- och solförhållanden i realtid",
@@ -38,9 +38,9 @@
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
         "helpfrom": "med hjälp från",
-        "noDataAtTimestamp": "Data är tillfälligt otillgänglig för den valda tiden",
-        "noLiveData": "Aktuell data är tillfälligt otillgänglig för detta område",
-        "noParserInfo": "Vi har ännu ingen information om detta område.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för området</a>.",
+        "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
+        "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
+        "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
         "now": "Nu"
     },
     "left-panel": {
@@ -612,6 +612,10 @@
             "countryName": "Indien",
             "zoneName": "Delhi"
         },
+        "IN-DN": {
+            "countryName": "Indien",
+            "zoneName": "Dadra och Nagar Haveli"
+        },
         "IN-GA": {
             "countryName": "Indien",
             "zoneName": "Goa"
@@ -736,8 +740,45 @@
         "JO": {
             "zoneName": "Jordanien"
         },
-        "JP": {
-            "zoneName": "Japan"
+        "JP-CB": {
+            "countryName": "Japan",
+            "zoneName": "Chūbu"
+        },
+        "JP-CG": {
+            "countryName": "Japan",
+            "zoneName": "Chūgoku"
+        },
+        "JP-HKD": {
+            "countryName": "Japan",
+            "zoneName": "Hokkaidō"
+        },
+        "JP-HR": {
+            "countryName": "Japan",
+            "zoneName": "Hokuriku"
+        },
+        "JP-KN": {
+            "countryName": "Japan",
+            "zoneName": "Kansai"
+        },
+        "JP-KY": {
+            "countryName": "Japan",
+            "zoneName": "Kyūshū"
+        },
+        "JP-ON": {
+            "countryName": "Japan",
+            "zoneName": "Okinawa"
+        },
+        "JP-SK": {
+            "countryName": "Japan",
+            "zoneName": "Shikoku"
+        },
+        "JP-TH": {
+            "countryName": "Japan",
+            "zoneName": "Tōhoku"
+        },
+        "JP-TK": {
+            "countryName": "Japan",
+            "zoneName": "Tōkyō"
         },
         "KE": {
             "zoneName": "Kenya"
@@ -869,6 +910,38 @@
         },
         "MX": {
             "zoneName": "Mexiko"
+        },
+        "MX-BC": {
+            "countryName": "Mexiko",
+            "zoneName": "Baja California"
+        },
+        "MX-CE": {
+            "countryName": "Mexiko",
+            "zoneName": "Centrala"
+        },
+        "MX-NE": {
+            "countryName": "Mexiko",
+            "zoneName": "Nordöstra"
+        },
+        "MX-NO": {
+            "countryName": "Mexiko",
+            "zoneName": "Norra"
+        },
+        "MX-NW": {
+            "countryName": "Mexiko",
+            "zoneName": "Nordvästra"
+        },
+        "MX-OC": {
+            "countryName": "Mexiko",
+            "zoneName": "Occidental"
+        },
+        "MX-OR": {
+            "countryName": "Mexiko",
+            "zoneName": "Oriental"
+        },
+        "MX-PN": {
+            "countryName": "Mexico",
+            "zoneName": "Peninsula"
         },
         "MY-EM": {
             "countryName": "Malaysia",
