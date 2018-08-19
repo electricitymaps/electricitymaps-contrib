@@ -6,10 +6,10 @@
         "datasources": "Datenquellen",
         "contribute": "Wirke mit, indem du <a href=\"%s\" target=\"_blank\">dein Land hinzufügst</a>"
     },
-    "mobile-info-tab": {
-        "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO2-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
-        "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
-        "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
+    "mobile-main-menu": {
+        "map": "Karte",
+        "areas": "Gegenden",
+        "about": "Über"
     },
     "onboarding-modal": {
         "view1": {
@@ -40,7 +40,8 @@
         "helpfrom": "mit Unterstützung von",
         "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
         "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
-        "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>."
+        "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>.",
+        "now": "Jetzt"
     },
     "left-panel": {
         "zone-list-header-title": "Klimaeinfluss der Regionen",
@@ -58,6 +59,8 @@
         "likethisvisu": "Findest du die Visualisierung gut?",
         "loveyourfeedback": "Wir freuen uns über dein Feedback",
         "foundbugs": "Hast du Bugs gefunden? Hast du Ideen zur Verbesserung der Karte?",
+        "faq-text": "Irgendetwas unklar? Guck in unseren",
+        "faq": "oft gestallten Fragen.",
         "here": "Teile sie uns hier mit"
     },
     "legends": {
@@ -79,6 +82,7 @@
         "hideWindLayer": "Windlayer verbergen",
         "showSolarLayer": "Solarlayer anzeigen",
         "hideSolarLayer": "Solarlayer verbergen",
+        "toggleDarkMode": "Nachtmodus umschalten",
         "noParserInfo": "Keine Daten verfügbar",
         "temporaryDataOutage": "Daten sind momentan nicht verfügbar"
     },
@@ -88,7 +92,9 @@
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
         "retrynow": "Erneut versuchen",
         "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
-        "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>"
+        "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
+        "legend": "Legende",
+        "faq": "Oft gestellte Fragen"
     },
     "wind": "Windenergie",
     "solar": "Photovoltaik",
@@ -1078,7 +1084,7 @@
             "zoneName": "Suriname"
         },
         "SS": {
-        "zoneName": "Südsudan"
+            "zoneName": "Südsudan"
         },
         "ST": {
             "zoneName": "Sao Tome und Principe"
@@ -1248,5 +1254,10 @@
         "ZW": {
             "zoneName": "Simbabwe"
         }
+    },
+    "mobile-info-tab": {
+        "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO2-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
+        "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
+        "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
     }
 }
