@@ -219,7 +219,9 @@ const app = {
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
-app.initialize();
+if (getState().application.isCordova) {
+  app.initialize();
+}
 
 function catchError(e) {
   console.error(`Error Caught! ${e}`);
