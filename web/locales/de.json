@@ -1,7 +1,7 @@
 {
     "panel-initial-text": {
         "thisproject": "Dieses Projekt ist",
-        "opensource": "Open Source",
+        "opensource": "open source",
         "see": "siehe",
         "datasources": "Datenquellen",
         "contribute": "Wirke mit, indem du <a href=\"%s\" target=\"_blank\">dein Land hinzufügst</a>"
@@ -33,7 +33,7 @@
         "carbonintensity": "spezifische CO2-Emissionen",
         "lowcarbon": "CO2-arm",
         "renewable": "regenerativ",
-        "electricityproduction": "Elektrizität",
+        "electricity": "Elektrizität",
         "bysource": "Ursprung:",
         "emissions": "CO2-Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
@@ -41,7 +41,8 @@
         "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
         "noLiveData": "Echtzeit-Daten für diese Region sind momentan leider nicht verfügbar",
         "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>.",
-        "now": "Jetzt"
+        "now": "Jetzt",
+        "electricityproduction": "Elektrizität"
     },
     "left-panel": {
         "zone-list-header-title": "Klimaeinfluss der Regionen",
@@ -108,19 +109,15 @@
     "coal": "Kohle",
     "oil": "Öl",
     "unknown": "unbekannt",
-
     "electricityComesFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
     "emissionsComeFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
     "electricityStoredUsing": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
     "emissionsStoredUsing": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-
     "electricityExportedTo": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
     "emissionsExportedTo": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
     "electricityImportedFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
     "emissionsImportedFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-
     "ofCO2eqPerMinute": "CO2äq pro Minute",
-
     "zoneShortName": {
         "AD": {
             "zoneName": "Andorra"
@@ -164,7 +161,7 @@
         },
         "AUS-NT": {
             "countryName": "Australien",
-            "zoneName": "Northern Territory"
+            "zoneName": "Nordterritorium"
         },
         "AUS-QLD": {
             "countryName": "Australien",
@@ -172,7 +169,7 @@
         },
         "AUS-SA": {
             "countryName": "Australien",
-            "zoneName": "South Australia"
+            "zoneName": "Südaustralien"
         },
         "AUS-TAS": {
             "countryName": "Australien",
@@ -184,7 +181,7 @@
         },
         "AUS-WA": {
             "countryName": "Australien",
-            "zoneName": "Western Australia"
+            "zoneName": "Westaustralien"
         },
         "AW": {
             "zoneName": "Aruba"
@@ -223,7 +220,7 @@
             "zoneName": "Benin"
         },
         "BM": {
-            "zoneName": "Bermuda"
+            "zoneName": "Bermudas"
         },
         "BN": {
             "zoneName": "Brunei"
@@ -260,7 +257,7 @@
             "zoneName": "Bouvetinsel"
         },
         "BW": {
-            "zoneName": "Botswana"
+            "zoneName": "Botsuana"
         },
         "BY": {
             "zoneName": "Weißrussland"
@@ -290,11 +287,11 @@
         },
         "CA-NT": {
             "countryName": "Kanada",
-            "zoneName": "Northwest Territories"
+            "zoneName": "Nordwest Territorien"
         },
         "CA-NS": {
             "countryName": "Kanada",
-            "zoneName": "Nova Scotia"
+            "zoneName": "Neuschottland"
         },
         "CA-NU": {
             "countryName": "Kanada",
@@ -306,11 +303,11 @@
         },
         "CA-PE": {
             "countryName": "Kanada",
-            "zoneName": "Prince Edward Island"
+            "zoneName": "Prince-Edward-Insel"
         },
         "CA-QC": {
             "countryName": "Kanada",
-            "zoneName": "Québec"
+            "zoneName": "Quebec"
         },
         "CA-SK": {
             "countryName": "Kanada",
@@ -492,12 +489,12 @@
             "zoneName": "Gabun"
         },
         "GB": {
-            "countryName": "Vereinigtes Königreich",
-            "zoneName": "Großbritannien"
+            "zoneName": "Großbritannien",
+            "countryName": "Vereinigtes Königreich"
         },
         "GB-NIR": {
-            "countryName": "Vereinigtes Königreich",
-            "zoneName": "Nordirland"
+            "zoneName": "Nordirland",
+            "countryName": "Vereinigtes Königreich"
         },
         "GD": {
             "zoneName": "Grenada"
@@ -582,11 +579,11 @@
             "zoneName": "Israel"
         },
         "IM": {
-            "zoneName": "Isle of Man"
+            "zoneName": "Insel Man"
         },
         "IN-AN": {
             "countryName": "Indien",
-            "zoneName": "Andaman and Nicobar Islands"
+            "zoneName": "Andamanen- und Nikobareninseln"
         },
         "IN-AP": {
             "countryName": "Indien",
@@ -658,7 +655,7 @@
         },
         "IN-MN": {
             "countryName": "Indien",
-            "zoneName": "Manipur"
+            "zoneName": "manipur"
         },
         "IN-MP": {
             "countryName": "Indien",
@@ -678,7 +675,7 @@
         },
         "IN-PB": {
             "countryName": "Indien",
-            "zoneName": "Punjab"
+            "zoneName": "Pandschab"
         },
         "IN-PY": {
             "countryName": "Indien",
@@ -710,13 +707,17 @@
         },
         "IN-WB": {
             "countryName": "Indien",
-            "zoneName": "West Bengal"
+            "zoneName": "Westbengalen"
         },
         "IO": {
             "zoneName": "Britisches Territorium im Indischen Ozean"
         },
         "IQ": {
             "zoneName": "Irak"
+        },
+        "IQ-KUR": {
+            "countryName": "Iraq",
+            "zoneName": "Kurdistan"
         },
         "IR": {
             "zoneName": "Iran"
@@ -736,8 +737,45 @@
         "JO": {
             "zoneName": "Jordanien"
         },
-        "JP": {
-            "zoneName": "Japan"
+        "JP-CB": {
+            "countryName": "Japan",
+            "zoneName": "Chūbu"
+        },
+        "JP-CG": {
+            "countryName": "Japan",
+            "zoneName": "Chūgoku"
+        },
+        "JP-HKD": {
+            "countryName": "Japan",
+            "zoneName": "Hokkaidō"
+        },
+        "JP-HR": {
+            "countryName": "Japan",
+            "zoneName": "Hokuriku"
+        },
+        "JP-KN": {
+            "countryName": "Japan",
+            "zoneName": "Kansai"
+        },
+        "JP-KY": {
+            "countryName": "Japan",
+            "zoneName": "Kyūshū"
+        },
+        "JP-ON": {
+            "countryName": "Japan",
+            "zoneName": "Okinawa"
+        },
+        "JP-SK": {
+            "countryName": "Japan",
+            "zoneName": "Shikoku"
+        },
+        "JP-TH": {
+            "countryName": "Japan",
+            "zoneName": "Tōhoku"
+        },
+        "JP-TK": {
+            "countryName": "Japan",
+            "zoneName": "Tōkyō"
         },
         "KE": {
             "zoneName": "Kenia"
@@ -828,6 +866,7 @@
             "zoneName": "Marshallinseln"
         },
         "MK": {
+            "countryName": "Rep. von Mazedonien",
             "zoneName": "Mazedonien"
         },
         "ML": {
@@ -840,7 +879,7 @@
             "zoneName": "Mongolei"
         },
         "MO": {
-            "zoneName": "Macao"
+            "zoneName": "Macau"
         },
         "MP": {
             "zoneName": "Nördliche Marianen"
@@ -868,6 +907,38 @@
         },
         "MX": {
             "zoneName": "Mexiko"
+        },
+        "MX-BC": {
+            "countryName": "Mexiko",
+            "zoneName": "Baja Kalifornien"
+        },
+        "MX-CE": {
+            "countryName": "Mexiko",
+            "zoneName": "Zentrale"
+        },
+        "MX-NE": {
+            "countryName": "Mexiko",
+            "zoneName": "Nordosten"
+        },
+        "MX-NO": {
+            "countryName": "Mexiko",
+            "zoneName": "Nord"
+        },
+        "MX-NW": {
+            "countryName": "Mexiko",
+            "zoneName": "Nordwesten"
+        },
+        "MX-OC": {
+            "countryName": "Mexiko",
+            "zoneName": "westlich"
+        },
+        "MX-OR": {
+            "countryName": "Mexiko",
+            "zoneName": "östlich"
+        },
+        "MX-PN": {
+            "countryName": "Mexiko",
+            "zoneName": "Halbinsel"
         },
         "MY-EM": {
             "countryName": "Malaysia",
@@ -900,9 +971,6 @@
         },
         "NL": {
             "zoneName": "Niederlande"
-        },
-        "NO": {
-            "zoneName": "Norwegen"
         },
         "NO-NO1": {
             "countryName": "Norwegen",
@@ -1006,7 +1074,7 @@
             "zoneName": "Katar"
         },
         "RE": {
-            "zoneName": "Réunion"
+            "zoneName": "Treffen"
         },
         "RO": {
             "zoneName": "Rumänien"
@@ -1017,12 +1085,6 @@
         "RU": {
             "zoneName": "Russland"
         },
-        "RU-EU": {
-            "zoneName": "Russland"
-        },
-        "RU-AS": {
-            "zoneName": "Russland"
-        },
         "RU-1": {
             "countryName": "Russland",
             "zoneName": "Europäischer Teil und Ural Region"
@@ -1030,6 +1092,12 @@
         "RU-2": {
             "countryName": "Russland",
             "zoneName": "Sibirien"
+        },
+        "RU-EU": {
+            "zoneName": "Russland"
+        },
+        "RU-AS": {
+            "zoneName": "Russland"
         },
         "RU-KGD": {
             "countryName": "Russland",
@@ -1081,7 +1149,7 @@
             "zoneName": "Somalia"
         },
         "SR": {
-            "zoneName": "Suriname"
+            "zoneName": "Surinam"
         },
         "SS": {
             "zoneName": "Südsudan"
@@ -1161,7 +1229,7 @@
             "zoneName": "Uganda"
         },
         "UM": {
-            "zoneName": "United States Minor Outlying Islands"
+            "zoneName": "Vereinigte Staaten Minor Outlying Islands"
         },
         "US": {
             "zoneName": "USA"
@@ -1197,6 +1265,10 @@
         "US-SPP": {
             "countryName": "USA",
             "zoneName": "SPP"
+        },
+        "US-SVERI": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "SVERI"
         },
         "US-HI": {
             "zoneName": "Hawaii"
@@ -1253,6 +1325,12 @@
         },
         "ZW": {
             "zoneName": "Simbabwe"
+        },
+        "JP": {
+            "zoneName": "Japan"
+        },
+        "NO": {
+            "zoneName": "Norwegen"
         }
     },
     "mobile-info-tab": {

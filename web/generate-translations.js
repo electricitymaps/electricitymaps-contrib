@@ -2,7 +2,7 @@ const {translate} = require('deepl-translator');
 const deepmerge = require('deepmerge');
 const fs = require('fs');
 
-const translatable = ['de', 'fr', 'es', 'it', 'nl', 'pl'];
+const translatable = ['de', 'fr', 'es', 'nl', 'pl'];
 let files = process.argv.slice(2);
 if (files.length === 0) {
   files = translatable.map(s => {
