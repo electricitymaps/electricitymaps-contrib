@@ -39,6 +39,8 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "css-loader": "^0.28.10",
+    "deepl-translator": "^1.2.1",
+    "deepmerge": "^2.1.1",
     "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
