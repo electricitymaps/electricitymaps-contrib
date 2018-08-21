@@ -229,19 +229,19 @@
           },
           "BR-CS": {
             "countryName": "Brasile",
-            "zoneName": "Brasile centrale"
+            "zoneName": "Centrale"
           },
           "BR-N": {
             "countryName": "Brasile",
-            "zoneName": "Brasile settentrionale"
+            "zoneName": "Nord"
           },
           "BR-NE": {
             "countryName": "Brasile",
-            "zoneName": "Brasile nord-orientale"
+            "zoneName": "Nord-ovest"
           },
           "BR-S": {
             "countryName": "Brasile",
-            "zoneName": "Brasile meridionale"
+            "zoneName": "Sud"
           },
           "BS": {
             "zoneName": "Bahamas"
@@ -727,8 +727,45 @@
           "JO": {
             "zoneName": "Giordania"
           },
-          "JP": {
-            "zoneName": "Giappone"
+          "JP-CB": {
+            "countryName": "Giappone",
+            "zoneName": "Chūbu"
+          },
+          "JP-CG": {
+            "countryName": "Giappone",
+            "zoneName": "Chūgoku"
+          },
+          "JP-HKD": {
+            "countryName": "Giappone",
+            "zoneName": "Hokkaidō"
+          },
+          "JP-HR": {
+            "countryName": "Giappone",
+            "zoneName": "Hokuriku"
+          },
+          "JP-KN": {
+            "countryName": "Giappone",
+            "zoneName": "Kansai"
+          },
+          "JP-KY": {
+            "countryName": "Giappone",
+            "zoneName": "Kyūshū"
+          },
+          "JP-ON": {
+            "countryName": "Giappone",
+            "zoneName": "Okinawa"
+          },
+          "JP-SK": {
+            "countryName": "Giappone",
+            "zoneName": "Shikoku"
+          },
+          "JP-TH": {
+            "countryName": "Giappone",
+            "zoneName": "Tōhoku"
+          },
+          "JP-TK": {
+            "countryName": "Giappone",
+            "zoneName": "Tōkyō"
           },
           "KE": {
             "zoneName": "Kenya"
@@ -855,6 +892,38 @@
           },
           "MX": {
             "zoneName": "Messico"
+          },
+          "MX-BC": {
+            "countryName": "Messico",
+            "zoneName": "Bassa California"
+          },
+          "MX-CE": {
+            "countryName": "Messico",
+            "zoneName": "Centrale"
+          },
+          "MX-NE": {
+            "countryName": "Messico",
+            "zoneName": "Nord-est"
+          },
+          "MX-NO": {
+            "countryName": "Messico",
+            "zoneName": "Nord"
+          },
+          "MX-NW": {
+            "countryName": "Messico",
+            "zoneName": "Nord-ovest"
+          },
+          "MX-OC": {
+            "countryName": "Messico",
+            "zoneName": "Occidentale"
+          },
+          "MX-OR": {
+            "countryName": "Messico",
+            "zoneName": "Orientale"
+          },
+          "MX-PN": {
+            "countryName": "Messico",
+            "zoneName": "Penisola"
           },
           "MY-EM": {
             "countryName": "Malesia",
@@ -1247,6 +1316,10 @@
           "US-TN": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Tennessee"
+          },
+          "US-UT": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Utah"
           },
           "US-WA": {
             "countryName": "Stati Uniti d'America",
