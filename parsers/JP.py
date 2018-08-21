@@ -3,6 +3,7 @@
 import logging
 # The arrow library is used to handle datetimes
 import arrow
+import datetime as dt
 import pandas as pd
 from . import occtonet
 
@@ -16,6 +17,8 @@ from . import occtonet
 # JP-SK  : Shikoku
 # JP-KY  : Kyushu
 # JP-ON  : Okinawa
+# JP-CG  : Chūgoku
+
 
 def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
@@ -118,6 +121,43 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
     df = df[['datetime', 'cons']]
     return df
 
+
+def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
+    if target_datetime is None:
+        target_datetime = dt.datetime.now() + dt.timedelta(days=1)
+
+    url = 'http://www.jepx.org/market/excel/spot_{}.csv'.format(
+        target_datetime.year)
+    df = pd.read_csv(url)
+
+    df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+    df.columns = ['Date', 'Period', 'JP-HKD', 'JP-TH', 'JP-TK', 'JP-CB',
+                  'JP-HR', 'JP-KN', 'JP-CG', 'JP-SK', 'JP-KY']
+
+    if zone_key not in df.columns[2:]:
+        return []
+
+    start = target_datetime - dt.timedelta(days=1)
+    df['Date'] = df['Date'].apply(lambda x: dt.datetime.strptime(x, '%Y/%m/%d'))
+    df = df[(df['Date'] >= start.date()) & (df['Date'] <= target_datetime.date())]
+
+    df['datetime'] = df.apply(lambda row: arrow.get(row['Date']).shift(
+        minutes=30 * (row['Period'] - 1)).replace(tzinfo='Asia/Tokyo'), axis=1)
+
+    data = list()
+    for row in df.iterrows():
+        data.append({
+            'zoneKey': zone_key,
+            'currency': 'JPY',
+            'datetime': row[1]['datetime'].datetime,
+            'price': row[1][zone_key],
+            'source': 'jepx.org'
+        })
+
+    return data
+
+
 def parse_dt(row):
     """
     Parses timestamps from date and time
@@ -125,8 +165,11 @@ def parse_dt(row):
     return arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
                      'YYYY-M-D H:mm').replace(tzinfo='Asia/Tokyo').datetime
 
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_price() ->')
+    print(fetch_price())
