@@ -31,7 +31,7 @@
     "country-panel": {
         "source": "källa",
         "carbonintensity": "Utsläpp av koldioxid",
-        "lowcarbon": "Fosilfritt",
+        "lowcarbon": "Fossilfritt",
         "renewable": "Förnybart",
         "electricity": "Elproduktion",
         "bysource": "per källa",
@@ -71,7 +71,7 @@
     },
     "tooltips": {
         "carbonintensity": "Utsläpp av koldioxid",
-        "lowcarbon": "Fosilfritt",
+        "lowcarbon": "Fossilfritt",
         "renewable": "Förnybart",
         "crossborderexport": "Gränsöverskridande export",
         "carbonintensityexport": "Utsläpp av koldioxid för export",
