@@ -5,7 +5,7 @@ from arrow import get
 from requests import Session
 from ree import (Formentera, Ibiza,
                  Mallorca, Menorca,
-                 BalearicIslands, IberianPeninsula)
+                 BalearicIslands)
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate
@@ -15,10 +15,11 @@ from .lib.validation import validate
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.
 FLOORS = {
-'ES-IB-FO': 0,
-'ES-IB-IZ': 0,
-'ES-IB-MA': 0,
-'ES-IB-ME': 0,
+    'ES-IB': 0,
+    'ES-IB-FO': 0,
+    'ES-IB-IZ': 0,
+    'ES-IB-MA': 0,
+    'ES-IB-ME': 0,
 }
 
 
@@ -47,6 +48,12 @@ def fetch_island_data(zone_key, session):
             raise ParserException(zone_key, "Menorca doesn't respond")
         else:
             return menorca_data
+    elif zone_key == 'ES-IB':
+        balearic_islands = BalearicIslands(session, verify=False).get_all()
+        if not balearic_islands:
+            raise ParserException(zone_key, "Balearic Islands doesn't respond")
+        else:
+            return balearic_islands
     else:
         raise ParserException(zone_key, 'Can\'t read this country code {0}'.format(zone_key))
 
@@ -122,43 +129,60 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     ses = session or Session()
-    response_ma = Mallorca(ses, verify=False).get_all()
-    response_fo = Formentera(ses, verify=False).get_all()
 
-    if not response_ma:
-        raise ParserException("ES-IB-MA", "No response")
-    elif not response_fo:
-        raise ParserException("ES-IB-FO", "No response")
+    if sorted_zone_keys == 'ES->ES-IB':
+        responses = BalearicIslands(ses, verify=False).get_all()
+        if not responses:
+            raise ParserException("ES-IB", "No responses")
+    elif sorted_zone_keys == 'ES->ES-IB-MA' or sorted_zone_keys == 'ES-IB-MA->ES-IB-ME' or sorted_zone_keys == 'ES-IB-IZ->ES-IB-MA':
+        responses = Mallorca(ses, verify=False).get_all()
+        if not responses:
+            raise ParserException("ES-IB-MA", "No responses")
+    elif sorted_zone_keys == 'ES-IB-FO->ES-IB-IZ':
+        responses = Formentera(ses, verify=False).get_all()
+        if not responses:
+            raise ParserException("ES-IB-FO", "No responses")
     else:
-        if sortedZoneKeys == 'ES->ES-IB-MA':
-            for response in response_ma:
-                netflow = response.link['pe_ma']
-        elif sortedZoneKeys == 'ES-IB-MA->ES-IB-ME':
-            for response in response_ma:
-                netflow = response.link['ma_me']
-        elif sortedZoneKeys == 'ES-IB-IZ->ES-IB-MA':
-            for response in response_ma:
-                netflow = response.link['ma_ib']
-        elif sortedZoneKeys == 'ES-IB-FO->ES-IB-IZ':
-            for response in response_fo:
-                netflow = -1 * response.link['ib_fo']
+        raise NotImplementedError('This exchange pair is not implemented')
+
+    exchanges = []
+    for response in responses:
+
+        if sorted_zone_keys == 'ES-IB-MA->ES-IB-ME':
+            net_flow = response.link['ma_me']
+        elif sorted_zone_keys == 'ES-IB-IZ->ES-IB-MA':
+            net_flow = response.link['ma_ib']
+        elif sorted_zone_keys == 'ES-IB-FO->ES-IB-IZ':
+            net_flow = -1 * response.link['ib_fo']
         else:
-            raise NotImplementedError('This exchange pair is not implemented')
+            net_flow = response.link['pe_ma']
 
         exchange = {
-            'sortedZoneKeys': sortedZoneKeys,
+            'sortedZoneKeys': sorted_zone_keys,
             'datetime': get(response.timestamp).datetime,
-            'netFlow': netflow,
-            'source': 'demanda.ree.es'
+            'netFlow': net_flow,
+            'source': 'demanda.ree.es',
         }
 
-    return exchange
+        exchanges.append(exchange)
+
+    return exchanges
 
 
 if __name__ == '__main__':
+    session = Session
+    print("fetch_consumption(ES-IB)")
+    print(fetch_consumption('ES-IB', session))
+
+    print("fetch_production(ES-IB)")
+    print(fetch_production('ES-IB', session))
+
+    print("fetch_exchange(ES, ES-IB)")
+    print(fetch_exchange('ES', 'ES-IB', session))
+
     print("fetch_consumption(ES-IB-FO)")
     print(fetch_consumption('ES-IB-FO'))
     print("fetch_production(ES-IB-FO)")
