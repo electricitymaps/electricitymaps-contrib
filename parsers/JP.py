@@ -127,8 +127,12 @@ def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
     if target_datetime is None:
         target_datetime = dt.datetime.now() + dt.timedelta(days=1)
 
-    url = 'http://www.jepx.org/market/excel/spot_{}.csv'.format(
-        target_datetime.year)
+    # price files contain data for fiscal year and not calendar year.
+    if target_datetime.month <= 3:
+        fiscal_year = target_datetime.year - 1
+    else:
+        fiscal_year = target_datetime.year
+    url = 'http://www.jepx.org/market/excel/spot_{}.csv'.format(fiscal_year)
     df = pd.read_csv(url)
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
