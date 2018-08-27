@@ -24,7 +24,7 @@ class GoogleAnalyticsThirdParty {
       } else {
         // For now, keep tracking using the legacy system
         this.inst('event', event, data, { send_to: 'UA-79729918-1' });
-        if (typeof facebookConnectPlugin === 'undefined') {
+        if (typeof cordova.plugins === 'undefined') {
           document.addEventListener('deviceready', function() {
             // Hack
             if (event === 'pageview') {

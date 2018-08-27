@@ -18,8 +18,9 @@
     "cordova-plugin-statusbar": "^2.4.1",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-plugin-zip": "^3.1.0",
+    "cordova-support-android-plugin": "^0.3.7",
     "cordova-support-google-services": "^1.1.0",
-    "cordova-universal-links-plugin": "git+https://github.com/flipflopapp/cordova-universal-links-plugin.git",
+    "cordova-universal-links-plugin": "^1.2.1",
     "ejs": "^2.6.1",
     "i18n": "^0.8.3"
   },
@@ -36,22 +37,22 @@
       "cordova-plugin-globalization": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
-      "cordova-universal-links-plugin": {},
       "cordova-plugin-facebook4": {
         "APP_ID": "1267173759989113",
         "APP_NAME": "Electricity Map"
       },
-      "cordova-plugin-firebase-analytics": {
-        "FIREBASE_VERSION": "11.6.+"
-      },
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-code-push": {},
-      "cordova-plugin-zip": {}
+      "cordova-plugin-zip": {},
+      "cordova-universal-links-plugin": {},
+      "cordova-plugin-firebase-analytics": {
+        "FIREBASE_VERSION": "11.6.+"
+      }
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   },
   "devDependencies": {
