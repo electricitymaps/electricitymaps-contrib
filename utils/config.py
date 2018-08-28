@@ -37,3 +37,6 @@ for k, v in EXCHANGES_CONFIG.items():
         if zone_name_1 not in ZONE_NEIGHBOURS:
             ZONE_NEIGHBOURS[zone_name_1] = set()
         ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+# we want neighbors to always be in the same order
+for zone, neighbors in ZONE_NEIGHBOURS.items():
+    ZONE_NEIGHBOURS[zone] = sorted(neighbors)
