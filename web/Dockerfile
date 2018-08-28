@@ -7,18 +7,16 @@ ADD web/package.json /home/web/package.json
 ADD web/yarn.lock /home/web/yarn.lock
 RUN yarn
 
+# Add sources
+ADD config /home/config
+ADD web /home/web
+
 # Generate map
-ADD web/build /home/web/build
-ADD web/third_party_maps /home/web/third_party_maps
-ADD web/generate-geometries.js web/topogen.sh /home/web/
-ADD web/src/world.json /home/web/src/world.json
 RUN bash topogen.sh
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
 # Build
-ADD config /home/config
-ADD web /home/web
 RUN yarn run build-release
 
 EXPOSE 8000
