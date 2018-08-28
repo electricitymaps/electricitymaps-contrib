@@ -1966,10 +1966,12 @@
   },
   "JP-CB": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -1985,10 +1987,12 @@
   },
   "JP-CG": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2004,10 +2008,12 @@
   },
   "JP-HKD": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2023,10 +2029,12 @@
   },
   "JP-HR": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2042,10 +2050,12 @@
   },
   "JP-KN": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2061,10 +2071,12 @@
   },
   "JP-KY": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP-KY.fetch_production"
+      "production": "JP-KY.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2080,10 +2092,12 @@
   },
   "JP-SK": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2099,10 +2113,12 @@
   },
   "JP-TH": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
@@ -2118,10 +2134,12 @@
   },
   "JP-TK": {
     "contributors": [
-      "https://github.com/tmslaine"
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
-      "production": "JP.fetch_production"
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
     "bounding_box": [
