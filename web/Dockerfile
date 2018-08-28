@@ -17,6 +17,7 @@ RUN bash topogen.sh
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
 # Build
+# (note: this will override the world.json that was previously created)
 ADD config /home/config
 ADD web /home/web
 RUN yarn run build-release
