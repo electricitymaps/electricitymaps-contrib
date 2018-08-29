@@ -133,7 +133,7 @@ def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
     else:
         fiscal_year = target_datetime.year
     url = 'http://www.jepx.org/market/excel/spot_{}.csv'.format(fiscal_year)
-    df = pd.read_csv(url)
+    df = pd.read_csv(url, encoding='shift-jis')
 
     df = df.iloc[:, [0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
     df.columns = ['Date', 'Period', 'JP-HKD', 'JP-TH', 'JP-TK', 'JP-CB',
