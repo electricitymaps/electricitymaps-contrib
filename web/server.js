@@ -168,6 +168,7 @@ app.get('/', (req, res) => {
         res.statusCode = 401;
         res.setHeader('WWW-Authenticate', 'Basic realm="example"');
         res.end('Access denied');
+        return;
       }
       res.cookie('electricitymap-token', process.env['ELECTRICITYMAP_PUBLIC_TOKEN']);
     }
