@@ -170,7 +170,7 @@ app.get('/', (req, res) => {
         res.end('Access denied');
         return;
       }
-      res.cookie('electricitymap-token', process.env['ELECTRICITYMAP_PUBLIC_TOKEN']);
+      res.cookie('electricitymap-token', process.env['ELECTRICITYMAP_TOKEN']);
     }
     res.render('pages/index', {
       alternateUrls: locales.map(function(l) {
