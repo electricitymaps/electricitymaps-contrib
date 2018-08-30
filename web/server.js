@@ -16,7 +16,7 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const i18n = require('i18n');
-var auth = require('basic-auth')
+const auth = require('basic-auth');
 
 // Custom module
 const translation = require(__dirname + '/src/helpers/translation');
@@ -161,7 +161,7 @@ app.get('/', (req, res) => {
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
 
     // basic auth and time machine cookie if we're in the back in time container
-    if (process.env['ELECTRICITYMAP_PUBLIC_TOKEN']){
+    if (process.env['BASIC_AUTH_USERNAME']){
       let user = auth(req);
       if (!(user && user.name === process.env['BASIC_AUTH_USERNAME']
           && user.pass === process.env['BASIC_AUTH_PASSWORD'])){
