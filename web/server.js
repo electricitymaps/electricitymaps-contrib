@@ -161,10 +161,16 @@ app.get('/', (req, res) => {
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
 
     // basic auth and time machine cookie if we're in the back in time container
-    if (process.env['BASIC_AUTH_USERNAME']){
+    if (process.env['BASIC_AUTH_USERNAME;']){
       let user = auth(req);
-      if (!(user && user.name === process.env['BASIC_AUTH_USERNAME']
-          && user.pass === process.env['BASIC_AUTH_PASSWORD'])){
+      let authorized = false;
+      if (user){
+        let ix = process.env['BASIC_AUTH_USERNAMES'].split(';').indexOf(user.name);
+        if (ix !== -1 && user.pass === process.env['BASIC_AUTH_PASSWORDS'].split(';')[ix]){
+          authorized = true;
+        }
+      }
+      if (!authorized){
         res.statusCode = 401;
         res.setHeader('WWW-Authenticate', 'Basic realm="example"');
         res.end('Access denied');
@@ -174,7 +180,7 @@ app.get('/', (req, res) => {
     }
     res.render('pages/index', {
       alternateUrls: locales.map(function(l) {
-        if (fullUrl.indexOf('lang') != -1) {
+        if (fullUrl.indexOf('lang') !== -1) {
           return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
         } else {
           if (Object.keys(req.query).length) {
