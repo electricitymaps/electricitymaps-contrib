@@ -16,6 +16,7 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const i18n = require('i18n');
+const auth = require('basic-auth');
 
 // Custom module
 const translation = require(__dirname + '/src/helpers/translation');
@@ -158,9 +159,30 @@ app.get('/', (req, res) => {
     }
     const { locale } = res;
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
+
+    // basic auth for premium access
+    if (process.env.BASIC_AUTH_CREDENTIALS) {
+      const user = auth(req);
+      let authorized = false;
+      if (user) {
+        process.env.BASIC_AUTH_CREDENTIALS.split(',').forEach((cred) => {
+          const [name, pass] = cred.split(':');
+          if (name === user.name && pass === user.pass) {
+            authorized = true;
+          }
+        });
+      }
+      if (!authorized) {
+        res.statusCode = 401;
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
+        res.end('Access denied');
+        return;
+      }
+      res.cookie('electricitymap-token', process.env['ELECTRICITYMAP_TOKEN']);
+    }
     res.render('pages/index', {
       alternateUrls: locales.map(function(l) {
-        if (fullUrl.indexOf('lang') != -1) {
+        if (fullUrl.indexOf('lang') !== -1) {
           return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
         } else {
           if (Object.keys(req.query).length) {
