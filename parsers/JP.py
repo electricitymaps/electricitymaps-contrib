@@ -155,7 +155,7 @@ def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
             'zoneKey': zone_key,
             'currency': 'JPY',
             'datetime': row[1]['datetime'].datetime,
-            'price': row[1][zone_key],
+            'price': 1000*row[1][zone_key],# Convert from JPY/kWh to JPY/MWh
             'source': 'jepx.org'
         })
 
