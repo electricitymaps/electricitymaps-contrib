@@ -160,19 +160,21 @@ app.get('/', (req, res) => {
     const { locale } = res;
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
 
-    // basic auth and time machine cookie if we're in the back in time container
-    if (process.env['BASIC_AUTH_USERNAME;']){
-      let user = auth(req);
+    // basic auth for premium access
+    if (process.env.BASIC_AUTH_CREDENTIALS) {
+      const user = auth(req);
       let authorized = false;
-      if (user){
-        let ix = process.env['BASIC_AUTH_USERNAMES'].split(';').indexOf(user.name);
-        if (ix !== -1 && user.pass === process.env['BASIC_AUTH_PASSWORDS'].split(';')[ix]){
-          authorized = true;
-        }
+      if (user) {
+        process.env.BASIC_AUTH_CREDENTIALS.split(',').forEach((cred) => {
+          const [name, pass] = cred.split(':');
+          if (name === user.name && pass === user.pass) {
+            authorized = true;
+          }
+        });
       }
-      if (!authorized){
+      if (!authorized) {
         res.statusCode = 401;
-        res.setHeader('WWW-Authenticate', 'Basic realm="example"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
         res.end('Access denied');
         return;
       }
