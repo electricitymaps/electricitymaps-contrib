@@ -8,7 +8,7 @@
     },
     "mobile-main-menu": {
         "map": "Karte",
-        "areas": "Gegenden",
+        "areas": "Bereiche",
         "about": "Über"
     },
     "onboarding-modal": {
@@ -118,6 +118,73 @@
     "electricityImportedFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
     "emissionsImportedFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
     "ofCO2eqPerMinute": "CO2äq pro Minute",
+    "theMap": {
+        "groupName": "Die Karte",
+        "mapColors-question": "Was bedeuten die Farben auf der Karte?",
+        "mapColors-answer": "Wir färben Bereiche der Karte nach der der ausgestoßenen Treibhausgase für jede dort verbrauchte Einheit der Elektrizität (es ist die <a href=\"#carbonIntensity\" class=\"entry-link\">Kohlenstoffintensität</a>). Grünere Farben bedeuten einen klimafreundlichere Elektrizitätsverbrauch.",
+        "mapArrows-question": "Was bedeuten die Pfeile zwischen den Bereiche auf der Karte?",
+        "mapArrows-answer": "Die Pfeile zwischen den Bereiche zeigen den physischen Fluss (Importe und Exporte) der Elektrizität zwischen Bereiche: Je schneller sie blinken, desto schneller ist der Fluss. Der Fluss der Elektrizität ist wichtig, weil, wenn man Elektrizität aus benachbarten Bereiche importiert, auch auch die Kohlenstoffemissionen, die mit dem Produkt verbunden sind, importiert.",
+        "mapSolarWindButtons-question": "Was machen die “Sonne” und “Wind” Knöpfe auf der Karte?",
+        "mapSolarWindButtons-answer": "Die Knöpfe schalten die Anzeige der Echtzeit Windgeschwindigkeit und der Sonneneinstrahlung um, welche den möglichen Ügergang zu Solar- und Wind basierten Alternativenergien in verschiedenen Bereiche anzeigen. Beachten Sie, dass dies nur ein oberflächlicher Hinweis ist, da das tatsächliche Potenzial bei der Installation von Windkraftanlagen und Solarzellen auch von vielen anderen Faktoren abhängt.",
+        "mapNuclearColors-question": "Warum werden nuklear betriebene Länder auf der Karte grün dargestellt?",
+        "mapNuclearColors-answer": "Die Kernenergieproduktion hat eine sehr niedrige Kohlenstoffintensität (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\") Quelle</a>), und nuklear betriebene Länder sind daher auf der Karte grün dargestellt. Dies bedeutet nicht, dass es keine anderen ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist), aber diese Herausforderungen stehen in keinem Zusammenhang mit den Emissionen von Treibhausgasen und sind daher nicht Gegenstand dieser Karte.",
+        "mapColorBlind-question": "Ich bin farbenblind. Wie kann ich die Karte lesen?",
+        "mapColorBlind-answer": "Sie können die in der Karte angezeigten Farben ändern, indem Sie die Einstellung “Farbenblind-Modus“ aktivieren. Sie befindet sich unten links auf dem Desktop und in dem Tab “Informationen“ der mobilen Anwendung."
+    },
+    "mapAreas": {
+        "groupName": "Bereiche in der Karte",
+        "noData-question": "Warum sind die Daten für mein Gebiet nicht verfügbar?",
+        "noData-answer": " Entweder weil die Datenquellen des Gebiets vorübergehend nicht verfügbar sind oder weil wir noch keine Datenquellen für das Gebiet eingerichtet haben. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
+        "whySmallAreas-question": "Warum ist die Welt in kleinere Gebiete eingeteilt und zeigt nicht einfach nur Länderdurchschnitte an?",
+        "whySmallAreas-answer": "Die Bereiche sind die kleinsten geografischen Bereiche, für die wir Daten haben. Durch den Zugang zu Informationen auf höchstem Granularitätsniveau können Stromverbraucher in verschiedenen Bereichen genauer über die Herkunft des von ihnen verbrauchten Stroms und die damit verbundenen Klimaauswirkungen informiert werden.",
+        "divideExistingArea-question": "Können Sie meinen Bereich in kleinere Teile aufteilen?",
+        "divideExistingArea-answer": "Sicher, wenn es für jeden Teil des Gebietes eigene Datenquellen gibt. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
+        "seeHistoricalData-question": "Kann ich die Geschichte eines Bereiches sehen, die weiter zurückliegt als 24 Stunden?",
+        "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
+    },
+    "methodology": {
+        "groupName": "Unsere Methoden",
+        "carbonIntensity-question": "Was ist \"Kohlenstoffintensität\"?",
+        "carbonIntensity-answer": "Die Kohlenstoffintensität ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO2eq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir messen die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO2 als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einem Gebiet verbraucht wird, unter Berücksichtigung der Kohlenstoffintensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
+        "consumptionFocus-question": "Warum wird die Kohlenstoffintensität des Stromverbrauchs statt der der Produktion berechnet?",
+        "consumptionFocus-answer": "Wir glauben, dass die Bürger für den Strom, den sie verbrauchen, verantwortlich sein sollten und nicht für den Strom, der in dem Bereich produziert wird, in dem sie leben. Darüber hinaus sind wir der Meinung, dass Bereiche nicht in der Lage sein sollten, eine geringe Klimawirkung zu \"fälschen\", indem sie einfach die schmutzige Energieerzeugung in andere Bereiche verlagern und dann den Strom aus diesen Bereichen importieren.",
+        "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen \"erneuerbar\" und \"kohlenstoffarm\"?",
+        "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Die kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Kernenergieerzeugung.",
+        "importsAndExports-question": "Werden Stromimporte und -exporte berücksichtigt?",
+        "importsAndExports-answer": "Ja, das tun wir. Importe und Exporte können auf der Karte als kleine Pfeile zwischen verschiedenen Bereichen angezeigt werden[Link zur Frage nach Pfeilen]. Detaillierte Informationen finden Sie in den angezeigten Grafiken, wenn Sie auf einen Bereich klicken.",
+        "emissionsOfStored-question": "Was ist mit den Emissionen aus der Stromerzeugung, die dann in Batterien gespeichert oder zum Füllen von Reservoirs verwendet werden?",
+        "emissionsOfStored-answer": "Da derzeit nur ein kleiner Teil des Stroms gespeichert wird, dürften Ungenauigkeiten bei der Modellierung dieser Emissionen derzeit keinen großen Unterschied zur Gesamtmenge machen. Angesichts der zunehmenden Bedeutung der Lagerung hoffen wir jedoch, sie in Kürze in unserem Modell besser berücksichtigen zu können.",
+        "guaranteesOfOrigin-question": "Was sind grüne Zertifikate und wie werden sie berücksichtigt?",
+        "guaranteesOfOrigin-answer": "Wenn Produzenten von erneuerbarer Energie Strom produzieren, können sie Herkunftsnachweise (oder Renewable Energy Certificates) erstellen - ein Beweis dafür, dass erneuerbarer Strom produziert und in das Stromnetz eingespeist wurde. Diese Garantien können dann verkauft werden, was anderen nicht erneuerbaren Stromerzeugern einen Weg gibt, ihre Emissionen zu \"kompensieren\" und das Recht zu behaupten, dass der von ihnen erzeugte Strom aus erneuerbaren Quellen stammt, unabhängig von seiner tatsächlichen, physischen Quelle. Dies ist problematisch, da es die Anreize der Verbraucher, Strom zum besten Zeitpunkt zu verbrauchen (z.B. wenn die Menge an erneuerbarem Strom im Netz am höchsten ist), beseitigt. Diese Karte schließt daher Herkunftsnachweise aus und bietet stattdessen ein ortsbezogenes, physisches Bild des Stromnetzes, um die Verbraucher zu verantworten.",
+        "otherSources-question": "Warum zeigen Sie nicht andere Emissionsquellen als die Stromerzeugung?",
+        "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir morgen aktiv an der Entwicklung von <a href=\"#whoAreYou\" class=\"entry-link\">neuen Lösungen zur Quantifizierung der Klimaauswirkungen Ihrer täglichen Entscheidungen </a>.",
+        "homeSolarPanel-question": "Was ist, wenn ich eine Solarzelle in meinem Haus installiert habe?",
+        "homeSolarPanel-answer": "Wir messen die Kohlenstoffintensität des lokalen Stromnetzes, so dass jeder Strom, den Sie direkt von Ihrer Solarzelle (netzunabhängig) verbrauchen, nicht Teil unserer Messungen ist. Wenn Ihre Solarzelle jedoch Strom in Ihr lokales Stromnetz liefert, wird seine Produktion in unseren Statistiken in Bereichen erfasst, in denen Schätzungen der lokalen Solarenergieproduktion öffentlich zugänglich gemacht werden (z.B. in Frankreich und Großbritannien).",
+        "emissionsPerCapita-question": "Warum zeigen Sie nicht die Emissionen pro Kopf?",
+        "emissionsPerCapita-answer": "Ein Teil des in einem Bereich verbrauchten Stroms wird für die Herstellung von physischen Gütern und Produkten verwendet, die später exportiert und in anderen Bereichen verbraucht werden. Diese Produktion und damit auch der Stromverbrauch und die damit verbundenen Emissionen werden durch den Verbrauch von Produkten in den <em>Importbereichen</em> und nicht in dem Bereich, in dem die Produktion stattfindet, getrieben. Wir glauben, dass die Menschen nur für das verantwortlich sein sollten, was sie konsumieren, nicht für Produkte, die in dem Gebiet hergestellt werden, in dem sie leben, in dem sie es nicht selbst konsumieren. In diesem Sinne ist es irreführend, die Pro-Kopf-Emissionen des Stromverbrauchs für die Gebiete anzugeben."
+    },
+    "data": {
+        "groupName": "Unsere Daten",
+        "dataOrigins-question": "Wie erhalten Sie Ihre Daten?",
+        "dataOrigins-answer": "Wir berechnen alle unsere Daten aus öffentlich zugänglichen Daten, die von Stromnetzbetreibern, Behörden und anderen veröffentlicht werden. Sie können auf einen Bereich klicken, um mehr über die Herkunft der Daten zu erfahren.",
+        "dataDownload-question": "Kann ich Ihre Daten herunterladen?",
+        "dataDownload-answer": "Sie können Zugang zu allen unseren Daten in unserer <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
+        "dataIntegration-question": "Kann ich Ihre Daten in Echtzeit in meine Anwendung oder mein Gerät integrieren?",
+        "dataIntegration-answer": "Ja! Wir verkaufen Zugang zu einer <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Echtzeit API</a>, die Zukunftsprognosen beinhaltet."
+    },
+    "aboutUs": {
+        "groupName": "Über uns",
+        "whoAreYou-question": "Wer sind Sie?",
+        "whoAreYou-answer": "Die electricityMap wird entwickelt und gepflegt von <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, einem kleinen dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
+        "feedback-question": "Kann ich Ihnen Feedback geben?",
+        "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:hello@tmrow.com\">senden Sie uns eine E-Mail!</a>",
+        "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
+        "contribute-answer": "Ja! Die electricityMap ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitarbeitern ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
+        "workTogether-question": "Können wir zusammen arbeiten?",
+        "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:hello@tmrow.com\">Schicken Sie uns eine E-Mail!</a>",
+        "disclaimer-question": "Haftungsausschluss",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Tomorrow übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der electricityMap oder der daraus abgeleiteten Informationen entstehen.  Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Tomorrow nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Recht auf Preisangabe) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
+    },
     "zoneShortName": {
         "AD": {
             "zoneName": "Andorra"
