@@ -1308,7 +1308,7 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
   d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
-  Cookies.set('brightdModeEnabled', brightModeEnabled);
+  Cookies.set('brightModeEnabled', brightModeEnabled);
   // update Theme
   if (getState().application.brightModeEnabled) {
     theme = themes.bright;
