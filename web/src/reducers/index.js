@@ -6,13 +6,21 @@ const dataReducer = require('./dataReducer');
 const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
   window.location.href.indexOf('192.') !== -1;
 
+const cookieGetBool = (key, defaultValue) => {
+  const val = Cookies.get(key);
+  if (key == null) {
+    return defaultValue;
+  }
+  return val === 'true';
+};
+
 const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
   bundleHash: window.bundleHash,
   callerLocation: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
-  colorBlindModeEnabled: Cookies.get('colorBlindModeEnabled') === 'true' || false,
-  brightModeEnabled: Cookies.get('brightModeEnabled') === 'true' || true,
+  colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
+  brightModeEnabled: cookieGetBool('brightModeEnabled', true),
   customDate: null,
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
@@ -23,15 +31,15 @@ const initialApplicationState = {
   isLocalhost,
   legendVisible: false,
   locale: window.locale,
-  onboardingSeen: Cookies.get('onboardingSeen') === 'true' || false,
+  onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
   previousSelectedZoneTimeIndex: null,
-  solarEnabled: Cookies.get('solarEnabled') === 'true' || false,
+  solarEnabled: cookieGetBool('solarEnabled', false),
   useRemoteEndpoint: document.domain === '' || isLocalhost,
-  windEnabled: Cookies.get('windEnabled') === 'true' || false,
+  windEnabled: cookieGetBool('windEnabled', false),
 
   // TODO(olc): refactor this state
   showPageState: 'map',

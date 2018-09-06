@@ -727,24 +727,15 @@ window.retryFetch = () => {
 // cause events to be emitted
 
 // BrightMode
-const electricityMapHeader = d3.select('#header-content');
-const tmrowWatermark = d3.select('#watermark');
-
 function toggleBright() {
   dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
-  electricityMapHeader.classed('brightmode', !electricityMapHeader.classed('brightmode'));
-  tmrowWatermark.classed('brightmode', !tmrowWatermark.classed('brightmode'));
 }
-
 d3.select('.brightmode-button').on('click', toggleBright);
-
 const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
-
 if (!getState().application.isMobile) {
   // Mouseovers will trigger on click on mobile and is therefore only set on desktop
   d3.select('.brightmode-button').on('mouseover', () => {
     brightModeButtonTooltip.classed('hidden', false);
-
   });
   d3.select('.brightmode-button').on('mouseout', () => {
     brightModeButtonTooltip.classed('hidden', true);
@@ -791,7 +782,7 @@ if (!getState().application.isMobile) {
 }
 
 
-// Legend 
+// Legend
 function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
@@ -952,7 +943,6 @@ function renderCountryTable(state) {
 
 
 function renderOpenTooltips(state) {
-
   const zoneData = getCurrentZoneData(state);
   const tooltipMode = state.application.tooltipDisplayMode;
   if (tooltipMode) {
@@ -962,9 +952,9 @@ function renderOpenTooltips(state) {
     const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
-        tooltipMode, zoneData, tableDisplayEmissions,
-        co2color, co2Colorbars,
-      );
+      tooltipMode, zoneData, tableDisplayEmissions,
+      co2color, co2Colorbars,
+    );
   }
 
   if (countryTooltip.isVisible) {
@@ -977,7 +967,6 @@ function renderOpenTooltips(state) {
     tooltip.select('.currency').html(getSymbolFromCurrency((zoneData.price || {}).currency) || '?');
     priceTooltip.show();
   }
-
 }
 
 
@@ -1141,9 +1130,8 @@ function renderLeftPanelCollapseButton(state) {
     zoneMap.map.resize();
   }
 }
+
 function routeToPage(pageName, state) {
-
-
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
 
   d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
@@ -1154,7 +1142,6 @@ function routeToPage(pageName, state) {
 
   d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
   
-    
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
@@ -1310,7 +1297,7 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
   d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
-  Cookies.set('brightdModeEnabled', brightModeEnabled);
+  Cookies.set('brightModeEnabled', brightModeEnabled);
   // update Theme
   if (getState().application.brightModeEnabled) {
     theme = themes.bright;
@@ -1385,10 +1372,16 @@ observe(state => state.application.legendVisible, (legendVisible) => {
 // Observe for left panel collapse
 observe(state => state.application.isLeftPanelCollapsed, (_, state) =>
   renderLeftPanelCollapseButton(state));
-
 // Observe for search query change
 observe(state => state.application.searchQuery, (searchQuery, state) => {
   zoneList.filterZonesByQuery(searchQuery);
+});
+// Observe for brightmode change
+observe(state => state.application.brightModeEnabled, (brightModeEnabled, _) => {
+  const electricityMapHeader = d3.select('#header-content');
+  const tmrowWatermark = d3.select('#watermark');
+  electricityMapHeader.classed('brightmode', brightModeEnabled);
+  tmrowWatermark.classed('brightmode', brightModeEnabled);
 });
 
 
