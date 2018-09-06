@@ -53,7 +53,7 @@
         "emissionsorigin24h": "Origin of emissions in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
-        "Getdata": "Get historical data and forecast API"
+        "Getdata": "Get historical data, marginal and forecast API"
     },
     "footer": {
         "likethisvisu": "Like the visualization?",
