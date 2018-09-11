@@ -52,7 +52,7 @@ def get_data(session=None):
 
     except AttributeError:
         # No data is available between 12am-1am.
-        raise ValueError('No data is currently available for Malaysia.')
+        raise ValueError('No production data is currently available for West Malaysia.')
 
     mix_header = mixsoup.find('tr', {"class": "gridheader"})
     mix_table = mix_header.find_parent("table")
@@ -173,10 +173,13 @@ def extract_hidden_values(req):
     soup = BeautifulSoup(req.content, 'html.parser')
 
     # Find and define parameters needed to send a POST request.
-    viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
-    viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
-    eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
-    jschartviewerstate = soup.find("input", attrs={'id': 'MainContent_ctl17_JsChartViewerState'})['value']
+    try:
+        viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
+        viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
+        eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
+        jschartviewerstate = soup.find("input", attrs={'id': 'MainContent_ctl17_JsChartViewerState'})['value']
+    except TypeError:
+        raise ValueError('No exchange data is currently available for West Malaysia.')
 
     hidden_values = {'viewstategenerator': viewstategenerator,
                      'viewstate': viewstate,
