@@ -87,7 +87,7 @@ export default class Map {
           'fill-color': 'white',
           'fill-opacity': 0.3,
         },
-        filter:  ['==', 'zoneId', ''],
+        filter: ['==', 'zoneId', ''],
       });
       // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
       this.map.addLayer({
@@ -142,7 +142,6 @@ export default class Map {
 
     this.map.dragRotate.disable();
     this.map.touchZoomRotate.disableRotation();
-    this.map.doubleClickZoom.disable(); /* Transform scale is not given properly when enabled */
 
     this.map.on('load', () => {
       // Here we need to set all styles
@@ -175,11 +174,13 @@ export default class Map {
     this.dragEndHandlers = [];
     this.mapLoadedHandlers = [];
 
-    this.map.on('touchstart', e => {
+    this.map.on('touchstart', (e) => {
       // the user actually touched the screen!
       // he has a touch feature AND is using it. See #1090
-      this.userIsUsingTouch = true;
-      console.log('user is using touch');
+      if (!this.userIsUsingTouch) {
+        this.userIsUsingTouch = true;
+        console.log('user is using touch');
+      }
     });
 
     this.map.on('mouseenter', 'clickable-zones-fill', (e) => {
@@ -233,23 +234,29 @@ export default class Map {
         this.zoneMouseOutHandler.call(this);
       }
     });
-    this.map.on('click', (e) => {
-      const features = this.map.queryRenderedFeatures(e.point);
-      if (!features.length) {
-        if (this.seaClickHandler) {
-          this.seaClickHandler.call(this);
-        }
-      } else if (this.countryClickHandler) {
-        const i = features[0].properties.zoneId;
-        this.countryClickHandler.call(this, this.data[i], i);
-      }
-    });
 
     // *** PAN/ZOOM ***
     let dragInitialTransform;
     let dragStartTransform;
     let isDragging = false;
     let endTimeout = null;
+
+    this.map.on('click', (e) => {
+      // Here we have to wait a certain time to be sure
+      // that the click is not a double click zoom
+      setTimeout(() => {
+        if (isDragging) { return; }
+        const features = this.map.queryRenderedFeatures(e.point);
+        if (!features.length) {
+          if (this.seaClickHandler) {
+            this.seaClickHandler.call(this);
+          }
+        } else if (this.countryClickHandler) {
+          const i = features[0].properties.zoneId;
+          this.countryClickHandler.call(this, this.data[i], i);
+        }
+      }, 200);
+    });
 
     const onPanZoom = (e) => {
       if (endTimeout) {
@@ -266,6 +273,8 @@ export default class Map {
 
     const onPanZoomStart = (e) => {
       // For some reason, MapBox gives us many start events inside a single zoom.
+      // They are on desktop when scroll zoom for `zoomstart` and `movestart`.
+      // It works however for `dragstart`.
       // Those apply for touch events on mobile
       // They are removed here:
       if (isDragging) { return; }
