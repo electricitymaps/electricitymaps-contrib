@@ -8,7 +8,7 @@ const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
 
 const cookieGetBool = (key, defaultValue) => {
   const val = Cookies.get(key);
-  if (key == null) {
+  if (val == null) {
     return defaultValue;
   }
   return val === 'true';

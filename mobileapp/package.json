@@ -6,7 +6,7 @@
     "code-push": "^2.0.6",
     "cordova-android": "^6.4.0",
     "cordova-ios": "^4.5.4",
-    "cordova-plugin-code-push": "^1.11.12",
+    "cordova-plugin-code-push": "^1.11.13",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-facebook4": "^1.9.1",
@@ -43,12 +43,12 @@
       },
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-code-push": {},
       "cordova-plugin-zip": {},
       "cordova-universal-links-plugin": {},
       "cordova-plugin-firebase-analytics": {
         "FIREBASE_VERSION": "11.6.+"
-      }
+      },
+      "cordova-plugin-code-push": {}
     },
     "platforms": [
       "ios",
