@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from arrow import get
 from collections import defaultdict
 from datetime import datetime
 from io import StringIO
