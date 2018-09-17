@@ -98,13 +98,13 @@ for k in exchange_parser_keys:
         if type(exchange) == list:
             exchange = exchange[-1]
         if not exchange:
-            print(f'Warning: no exchange data returned by {k}')
+            print('Warning: no exchange data returned by %s' % k)
         else:
             exchanges.append(exchange)
-            print(f'Collected {k}')
+            print('Collected %s' % k)
             # pp.pprint(exchange)
     except Exception as e:
-        print(f'Error collecting {k}')
+        print('Error collecting %s' % k)
         traceback.print_exc()
 
 # Load and update state
