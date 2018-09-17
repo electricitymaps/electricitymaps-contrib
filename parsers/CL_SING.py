@@ -204,14 +204,14 @@ def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, log
         production_mix_by_hour.append(production_mix)
 
     # if production is the same for at least 3 in the last 48 hours, it's
-    # considered constant
+    # considered constant. Using round because of floating-point precision.
     c = Counter([round(sum(v for _, v in e['production'].items()), 3)
                  for e in production_mix_by_hour])
     most_common = c.most_common(1)[0]
     if most_common[1] > 3:
         raise ValueError(
             f'Detected constant production in CL-SING. Value {most_common[0]} '
-            f'happened {most_common[1]} times in the last 48 hours.')
+            f'occured {most_common[1]} times in the last 48 hours.')
 
     return production_mix_by_hour
 
