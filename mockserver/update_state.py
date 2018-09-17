@@ -104,6 +104,7 @@ for k in exchange_parser_keys:
             print(f'Collected {k}')
             # pp.pprint(exchange)
     except Exception as e:
+        print(f'Error collecting {k}')
         traceback.print_exc()
 
 # Load and update state
