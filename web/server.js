@@ -1,15 +1,5 @@
 const isProduction = process.env.NODE_ENV === 'production';
 
-// * Opbeat (must be the first thing started)
-if (isProduction) {
-  console.log('** Running in PRODUCTION mode **');
-  var opbeat = require('opbeat').start({
-    appId: 'c36849e44e',
-    organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
-    secretToken: process.env['OPBEAT_SECRET']
-  });
-}
-
 // Modules
 const compression = require('compression');
 const express = require('express');
@@ -118,12 +108,9 @@ const STYLES_HASH = getHash('styles', 'css');
 const VENDOR_HASH = getHash('vendor', 'js');
 const VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
-// * Opbeat
-if (isProduction)
-  app.use(opbeat.middleware.express())
+// * Error handling
 function handleError(err) {
   if (!err) return;
-  if (opbeat) opbeat.captureError(err);
   console.error(err);
 }
 
@@ -214,12 +201,12 @@ app.get('/v1/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.all('/dist/*.map', (req, res, next) => {
-  if (req.headers['user-agent'] !== 'opbeat-sourcemaps-fetcher/1.0') {
-    return res.status(401).json({ error: 'unauthorized' });
-  }
-  return next();
-});
+// app.all('/dist/*.map', (req, res, next) => {
+//   if (req.headers['user-agent'] !== 'opbeat-sourcemaps-fetcher/1.0') {
+//     return res.status(401).json({ error: 'unauthorized' });
+//   }
+//   return next();
+// });
 
 // Static routes (need to be declared at the end)
 app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
