@@ -37,7 +37,7 @@ def get_text_from_image(link, expected_size, new_size, logger, session=None):
     """
 
     s = session or requests.Session()
-    img = Image.open(s.get(link, stream=True).raw)
+    img = Image.open(s.get(link, stream=True, verify=False).raw)
 
     if img.size != expected_size:
         logger.warning("Check Namibia Scada dashboard for {} changes.".format(link),
