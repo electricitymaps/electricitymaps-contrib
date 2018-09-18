@@ -91,6 +91,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'IT-CNO': '10Y1001A1001A70O',
     'IT-CSO': '10Y1001A1001A71M',
     'IT-NO': '10Y1001A1001A73I',
+    'IT-PR': '10Y1001A1001A76C',
     'IT-SAR': '10Y1001A1001A74G',
     'IT-SIC': '10Y1001A1001A75E',
     'IT-SO': '10Y1001A1001A788',
@@ -145,12 +146,15 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
                    ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
     'DE->SE-SE4': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
+    'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
+    # 'FR-COR->IT-SAR': [],
     'GR->IT-SO': ['10YGR-HTSO-----Y', '10Y1001A1001A699'],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
+    'IT-SIC->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['IT-SIC'], '10Y1001A1001A77A'],
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
@@ -880,6 +884,32 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                     d['production'][k] = 0
 
     return list(filter(lambda x: validate_production(x, logger), data))
+
+
+ZONE_KEY_AGGREGATES = [
+    'IT-SIC': ['IT-SIC', 'IT-PR'],
+    'IT-SO': ['IT-FO', 'IT-BR', 'IT-RO', 'IT-SO'],
+]
+
+
+def _sum_production(productions):
+    """
+    If all are None -> sum will be None
+    Else, None are replaced by zeros
+    """
+
+    
+
+
+def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
+                               logger=logging.getLogger(__name__)):
+    if zone_key not in ZONE_KEY_AGGREGATES:
+        raise ValueError(f'Unknown aggregate key {zone_key}')
+
+    values = [fetch_production(k, session, target_datetime, logger)
+              for k in ZONE_KEY_AGGREGATES[zone_key]]
+
+
 
 
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,

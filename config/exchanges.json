@@ -1049,6 +1049,28 @@
     },
     "rotation": 70
   },
+  "FR-COR->IT-CNO": {
+    "lonlat": [
+      10.091148,
+      42.686804
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 45
+  },
+  "FR-COR->IT-SAR": {
+    "lonlat": [
+      9.123283,
+      41.293785
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 0
+  },
   "GB->GB-NIR": {
     "capacity": [
       -500,
@@ -1380,6 +1402,17 @@
     "lonlat": [
       13.596393,
       46.105418
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
+  "IT-SIC->IT-SO": {
+    "lonlat": [
+      15.65,
+      38.1
     ],
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
