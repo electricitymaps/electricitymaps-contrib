@@ -927,6 +927,7 @@ def _sum_production(productions, zone_key):
             if production['datetime'] in to_return_index:
                 # Merge
                 i = to_return_index[production['datetime']]
+                assert production['datetime'] == to_return[i]['datetime']
                 for key_type in ['production', 'storage']:
                     for (key, value) in production[key_type].items():
                         if key in to_return[i][key_type]:
