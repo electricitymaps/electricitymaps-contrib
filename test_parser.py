@@ -49,7 +49,7 @@ def test_parser(zone, data_type, target_datetime):
     res = parser(*args, target_datetime=target_datetime)
 
     if not res:
-        print(f'Error: parser returned nothing ({res})')
+        print('Error: parser returned nothing ({})'.format(res))
         return
 
     elapsed_time = time.time() - start
