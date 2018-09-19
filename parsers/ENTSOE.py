@@ -20,6 +20,8 @@ import arrow
 import logging, os, re
 import requests
 
+import pandas as pd
+
 from .lib.validation import validate
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
@@ -88,10 +90,13 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'HU': '10YHU-MAVIR----U',
     'IE': '10YIE-1001A00010',
     'IT': '10YIT-GRTN-----B',
+    'IT-BR': '10Y1001A1001A699',
     'IT-CNO': '10Y1001A1001A70O',
     'IT-CSO': '10Y1001A1001A71M',
+    'IT-FO': '10Y1001A1001A72K',
     'IT-NO': '10Y1001A1001A73I',
     'IT-PR': '10Y1001A1001A76C',
+    'IT-RO': '10Y1001A1001A77A',
     'IT-SAR': '10Y1001A1001A74G',
     'IT-SIC': '10Y1001A1001A75E',
     'IT-SO': '10Y1001A1001A788',
@@ -148,7 +153,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
     # 'FR-COR->IT-SAR': [],
-    'GR->IT-SO': ['10YGR-HTSO-----Y', '10Y1001A1001A699'],
+    'GR->IT-SO': ['10YGR-HTSO-----Y', ENTSOE_DOMAIN_MAPPINGS['IT-BR']],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
@@ -886,30 +891,70 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     return list(filter(lambda x: validate_production(x, logger), data))
 
 
-ZONE_KEY_AGGREGATES = [
+ZONE_KEY_AGGREGATES = {
     'IT-SIC': ['IT-SIC', 'IT-PR'],
     'IT-SO': ['IT-FO', 'IT-BR', 'IT-RO', 'IT-SO'],
-]
+}
 
 
-def _sum_production(productions):
+def _sum_production(productions, zone_key):
     """
     If all are None -> sum will be None
     Else, None are replaced by zeros
     """
 
-    
+    to_return = None
+    to_return_index = None  # A pd.Series that maps datatime to position
+    for production_series in productions:
+
+        if not production_series:
+            return None  # Return if one of the productions is None
+
+        for production in production_series:
+            # Set correct zoneKey
+            production['zoneKey'] = zone_key
+
+        if not to_return:
+            to_return = production_series
+            to_return_index = pd.Series(
+                dict((production['datetime'], i)
+                     for (i, production) in enumerate(production_series)))
+        else:
+            index_series = pd.Series(
+                dict((production['datetime'], i)
+                     for (i, production) in enumerate(production_series)))
+            # Check if the production datetime is already in the list
+            if production['datetime'] in to_return_index:
+                # Merge
+                i = to_return_index[production['datetime']]
+                for key_type in ['production', 'storage']:
+                    for (key, value) in production[key_type].items():
+                        if key in to_return[i][key_type]:
+                            # Merge
+                            if to_return[i][key_type][key] is None and value is None:
+                                # If both are None, keep None
+                                pass
+                            else:
+                                to_return[i][key_type][key] = (to_return[i][key_type][key] or 0) + (value or 0)
+                        else:
+                            to_return[i][key_type][key] = value
+            else:
+                # Simply add
+                to_return.append(production)
+                to_return_index[production['datetime']] = len(to_return) - 1
+
+    return to_return
 
 
 def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)):
     if zone_key not in ZONE_KEY_AGGREGATES:
-        raise ValueError(f'Unknown aggregate key {zone_key}')
+        raise ValueError('Unknown aggregate key %s' % zone_key)
 
-    values = [fetch_production(k, session, target_datetime, logger)
-              for k in ZONE_KEY_AGGREGATES[zone_key]]
-
-
+    return _sum_production(
+        [fetch_production(k, session, target_datetime, logger)
+         for k in ZONE_KEY_AGGREGATES[zone_key]],
+        zone_key)
 
 
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,

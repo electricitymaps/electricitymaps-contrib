@@ -2026,11 +2026,10 @@
       "https://github.com/corradio"
     ],
     "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production_aggregate"
     },
     "timezone": "Europe/Rome"
   },
@@ -2039,11 +2038,10 @@
       "https://github.com/corradio"
     ],
     "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "ENTSOE.fetch_production_aggregate"
     },
     "timezone": "Europe/Rome"
   },
