@@ -62,7 +62,7 @@ def test_parser(zone, data_type, target_datetime):
         dts = [e['datetime'] for e in res_list]
     except:
         print('Parser output lacks `datetime` key for at least some of the '
-              f'ouput. Full ouput: \n\n{res}\n')
+              'ouput. Full ouput: \n\n{}\n'.format(res))
         return
 
     last_dt = arrow.get(max(dts)).to('UTC')
