@@ -47,17 +47,24 @@ def test_parser(zone, data_type, target_datetime):
     else:
         args = [zone]
     res = parser(*args, target_datetime=target_datetime)
+
+    if not res:
+        print(f'Error: parser returned nothing ({res})')
+        return
+
     elapsed_time = time.time() - start
     if isinstance(res, (list, tuple)):
         res_list = iter(res)
     else:
         res_list = [res]
+
     try:
         dts = [e['datetime'] for e in res_list]
     except:
         print('Parser output lacks `datetime` key for at least some of the '
               f'ouput. Full ouput: \n\n{res}\n')
         return
+
     last_dt = arrow.get(max(dts)).to('UTC')
     max_dt_warning = (
         ' :( >2h from now !!!'
@@ -70,7 +77,6 @@ def test_parser(zone, data_type, target_datetime):
                      'min returned datetime: {}'.format(min(dts)),
                      'max returned datetime: {} UTC {}'.format(
                          last_dt, max_dt_warning), ]))
-
 
 
 if __name__ == '__main__':
