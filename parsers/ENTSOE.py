@@ -904,7 +904,7 @@ def _sum_production(productions, zone_key):
     """
 
     to_return = None
-    to_return_index = None  # A pd.Series that maps datatime to position
+    to_return_index = None  # A pd.Series that maps datetime to position
     for production_series in productions:
 
         if not production_series:
