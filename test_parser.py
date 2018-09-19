@@ -52,7 +52,12 @@ def test_parser(zone, data_type, target_datetime):
         res_list = iter(res)
     else:
         res_list = [res]
-    dts = [e['datetime'] for e in res_list]
+    try:
+        dts = [e['datetime'] for e in res_list]
+    except:
+        print('Parser output lacks `datetime` key for at least some of the '
+              f'ouput. Full ouput: \n\n{res}\n')
+        return
     last_dt = arrow.get(max(dts)).to('UTC')
     max_dt_warning = (
         ' :( >2h from now !!!'
