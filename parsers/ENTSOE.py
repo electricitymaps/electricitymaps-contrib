@@ -23,6 +23,7 @@ import requests
 import pandas as pd
 
 from .lib.validation import validate
+from .lib.utils import sum_production_dicts
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -897,54 +898,40 @@ ZONE_KEY_AGGREGATES = {
 }
 
 
-def _sum_production(productions, zone_key):
+def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     """
-    If all are None -> sum will be None
-    Else, None are replaced by zeros
+    Given multiple parser outputs, sum the production and storage
+    of corresponding datetimes to create a production list.
+    This will drop rows where the datetime is missing in at least a
+    parser_output.
     """
+    if merge_source is None:
+        merge_source = parser_outputs[0][0]['source']
+    prod_and_storage_dfs = [
+        pd.DataFrame(output).set_index('datetime')[['production', 'storage']]
+        for output in parser_outputs
+    ]
+    to_return = prod_and_storage_dfs[0]
+    for prod_and_storage in prod_and_storage_dfs[1:]:
+        # `inner` join drops rows where one of the production is missing
+        to_return = to_return.join(
+            prod_and_storage, how='inner', rsuffix='_other')
+        to_return['production'] = to_return.apply(
+            lambda row: sum_production_dicts(row.production,
+                                             row.production_other),
+            axis=1)
+        to_return['storage'] = to_return.apply(
+            lambda row: sum_production_dicts(row.storage, row.storage_other),
+            axis=1)
+        to_return = to_return[['production', 'storage']]
 
-    to_return = None
-    to_return_index = None  # A pd.Series that maps datatime to position
-    for production_series in productions:
-
-        if not production_series:
-            return None  # Return if one of the productions is None
-
-        for production in production_series:
-            # Set correct zoneKey
-            production['zoneKey'] = zone_key
-
-        if not to_return:
-            to_return = production_series
-            to_return_index = pd.Series(
-                dict((production['datetime'], i)
-                     for (i, production) in enumerate(production_series)))
-        else:
-            index_series = pd.Series(
-                dict((production['datetime'], i)
-                     for (i, production) in enumerate(production_series)))
-            # Check if the production datetime is already in the list
-            if production['datetime'] in to_return_index:
-                # Merge
-                i = to_return_index[production['datetime']]
-                assert production['datetime'] == to_return[i]['datetime']
-                for key_type in ['production', 'storage']:
-                    for (key, value) in production[key_type].items():
-                        if key in to_return[i][key_type]:
-                            # Merge
-                            if to_return[i][key_type][key] is None and value is None:
-                                # If both are None, keep None
-                                pass
-                            else:
-                                to_return[i][key_type][key] = (to_return[i][key_type][key] or 0) + (value or 0)
-                        else:
-                            to_return[i][key_type][key] = value
-            else:
-                # Simply add
-                to_return.append(production)
-                to_return_index[production['datetime']] = len(to_return) - 1
-
-    return to_return
+    return [{
+        'datetime': dt.to_datetime(),
+        'production': row.production,
+        'storage': row.storage,
+        'source': merge_source,
+        'zoneKey': merge_zone_key,
+    } for dt, row in to_return.iterrows()]
 
 
 def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
@@ -952,7 +939,7 @@ def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
     if zone_key not in ZONE_KEY_AGGREGATES:
         raise ValueError('Unknown aggregate key %s' % zone_key)
 
-    return _sum_production(
+    return merge_production_outputs(
         [fetch_production(k, session, target_datetime, logger)
          for k in ZONE_KEY_AGGREGATES[zone_key]],
         zone_key)
