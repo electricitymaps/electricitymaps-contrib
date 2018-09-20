@@ -6,6 +6,11 @@
         "datasources": "le fonti dei dati",
         "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo il tuo territorio</a>"
     },
+    "mobile-main-menu": {
+        "map": "Mappa",
+        "areas": "Aree",
+        "about": "Info"
+    },
     "onboarding-modal": {
         "view1": {
             "subtitle": "Mappatura dell'impatto climatico dell'elettricità"
@@ -717,6 +722,30 @@
           },
           "IT": {
             "zoneName": "Italia"
+          },
+          "IT-CNO": {
+            "countryName": "Italia",
+            "zoneName": "Centro-nord"
+          },
+          "IT-CSO": {
+            "countryName": "Italia",
+            "zoneName": "Centro-sud"
+          },
+          "IT-NO": {
+            "countryName": "Italia",
+            "zoneName": "Nord"
+          },
+          "IT-SAR": {
+            "countryName": "Italia",
+            "zoneName": "Sardegna"
+          },
+          "IT-SIC": {
+            "countryName": "Italia",
+            "zoneName": "Sicilia"
+          },
+          "IT-SO": {
+            "countryName": "Italia",
+            "zoneName": "Sud"
           },
           "JE": {
             "zoneName": "Jersey"
