@@ -97,9 +97,14 @@ for k in exchange_parser_keys:
         exchange = getattr(mod, fun_name)(sorted_zone_names[0], sorted_zone_names[1])
         if type(exchange) == list:
             exchange = exchange[-1]
-        exchanges.append(exchange)
-        pp.pprint(exchange)
+        if not exchange:
+            print('Warning: no exchange data returned by %s' % k)
+        else:
+            exchanges.append(exchange)
+            print('Collected %s' % k)
+            # pp.pprint(exchange)
     except Exception as e:
+        print('Error collecting %s' % k)
         traceback.print_exc()
 
 # Load and update state

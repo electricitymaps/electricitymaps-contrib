@@ -795,6 +795,30 @@
           "IT": {
             "zoneName": "Italy"
           },
+          "IT-CNO": {
+            "countryName": "Italy",
+            "zoneName": "Central North"
+          },
+          "IT-CSO": {
+            "countryName": "Italy",
+            "zoneName": "Central South"
+          },
+          "IT-NO": {
+            "countryName": "Italy",
+            "zoneName": "North"
+          },
+          "IT-SAR": {
+            "countryName": "Italy",
+            "zoneName": "Sardinia"
+          },
+          "IT-SIC": {
+            "countryName": "Italy",
+            "zoneName": "Sicily"
+          },
+          "IT-SO": {
+            "countryName": "Italy",
+            "zoneName": "South"
+          },
           "JE": {
             "zoneName": "Jersey"
           },

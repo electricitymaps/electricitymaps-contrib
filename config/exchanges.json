@@ -129,6 +129,16 @@
       46.741723
     ],
     "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -140
+  },
+  "AT->IT-NO": {
+    "lonlat": [
+      12.344464,
+      46.741723
+    ],
+    "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
@@ -617,6 +627,16 @@
       46.113596
     ],
     "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 180
+  },
+  "CH->IT-NO": {
+    "lonlat": [
+      9.047334,
+      46.113596
+    ],
+    "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
@@ -1014,10 +1034,42 @@
       44.4
     ],
     "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 70
+  },
+  "FR->IT-NO": {
+    "lonlat": [
+      6.9,
+      44.4
+    ],
+    "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 70
+  },
+  "FR-COR->IT-CNO": {
+    "lonlat": [
+      10.091148,
+      42.686804
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 45
+  },
+  "FR-COR->IT-SAR": {
+    "lonlat": [
+      9.123283,
+      41.293785
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 0
   },
   "GB->GB-NIR": {
     "capacity": [
@@ -1113,7 +1165,22 @@
       38.902132
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -90
+  },
+  "GR->IT-SO": {
+    "capacity": [
+      -500,
+      500
+    ],
+    "lonlat": [
+      18.759248,
+      38.902132
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
   },
@@ -1277,7 +1344,83 @@
     },
     "rotation": 90
   },
-  "IT->MT": {
+  "IT->SI": {
+    "lonlat": [
+      13.596393,
+      46.105418
+    ],
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
+  "IT-CNO->IT-CSO": {
+    "lonlat": [
+      13,
+      42.6
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 135
+  },
+  "IT-CNO->IT-NO": {
+    "lonlat": [
+      11.5,
+      44.1
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 0
+  },
+  "IT-CSO->IT-SAR": {
+    "lonlat": [
+      11.189622,
+      41.042731
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -135
+  },
+  "IT-CSO->IT-SO": {
+    "lonlat": [
+      15.4,
+      41.0
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
+  "IT-NO->SI": {
+    "lonlat": [
+      13.596393,
+      46.105418
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
+  "IT-SIC->IT-SO": {
+    "lonlat": [
+      15.65,
+      38.1
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
+  "IT-SIC->MT": {
     "capacity": [
       -200,
       200
@@ -1287,19 +1430,10 @@
       36.264287
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -160
-  },
-  "IT->SI": {
-    "lonlat": [
-      13.596393,
-      46.105418
-    ],
-    "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
-    },
-    "rotation": 90
   },
   "JP-CB->JP-HR": {
     "lonlat": [

@@ -1956,13 +1956,154 @@
       "https://github.com/corradio"
     ],
     "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast"
+    },
+    "subZoneNames": [
+      "IT-CNO",
+      "IT-CSO",
+      "IT-NO",
+      "IT-SAR",
+      "IT-SIC",
+      "IT-SO"
+    ],
+    "timezone": "Europe/Rome"
+  },
+  "IT-CNO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": "Europe/Rome"
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        9.186982333667714,
+        41.81872803200014
+      ],
+      [
+        14.40552664686598,
+        44.982966555562086
+      ]
+    ]
+  },
+  "IT-CSO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        10.951496463496312,
+        39.49396986000008
+      ],
+      [
+        16.29054702002901,
+        43.40156077856554
+      ]
+    ]
+  },
+  "IT-NO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        6.1027283120000675,
+        43.24286154752235
+      ],
+      [
+        14.394686320000034,
+        47.585214945000075
+      ]
+    ]
+  },
+  "IT-SAR": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        7.633799675000148,
+        38.36432526200005
+      ],
+      [
+        10.326670769000089,
+        41.76264069200013
+      ]
+    ]
+  },
+  "IT-SIC": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production_aggregate"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        11.422211134000122,
+        34.98924388200004
+      ],
+      [
+        16.151621941000144,
+        39.311957098000164
+      ]
+    ]
+  },
+  "IT-SO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production_aggregate"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        13.445700757783754,
+        37.419012762000136
+      ],
+      [
+        19.01742597700013,
+        42.57794649582388
+      ]
+    ]
   },
   "JP-CB": {
     "contributors": [
@@ -2019,10 +2160,10 @@
     "bounding_box": [
       [
         139.35,
-        41.30
+        41.3
       ],
       [
-        146.00,
+        146,
         45.97
       ]
     ]
@@ -2039,12 +2180,12 @@
     "timezone": "Asia/Tokyo",
     "bounding_box": [
       [
-        135.80,
+        135.8,
         35.39
       ],
       [
         137.75,
-        37.90
+        37.9
       ]
     ]
   },
@@ -2127,7 +2268,7 @@
         36.65
       ],
       [
-        142.00,
+        142,
         41.66
       ]
     ]
@@ -2144,7 +2285,7 @@
     "timezone": "Asia/Tokyo",
     "bounding_box": [
       [
-        138.50,
+        138.5,
         34.52
       ],
       [
@@ -2849,7 +2990,6 @@
     },
     "timezone": "Europe/Moscow"
   },
-  
   "RU-AS": {
     "flag_file_name": "ru.png",
     "timezone": null

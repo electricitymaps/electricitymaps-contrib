@@ -20,7 +20,10 @@ import arrow
 import logging, os, re
 import requests
 
+import pandas as pd
+
 from .lib.validation import validate
+from .lib.utils import sum_production_dicts
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -88,6 +91,16 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'HU': '10YHU-MAVIR----U',
     'IE': '10YIE-1001A00010',
     'IT': '10YIT-GRTN-----B',
+    'IT-BR': '10Y1001A1001A699',
+    'IT-CNO': '10Y1001A1001A70O',
+    'IT-CSO': '10Y1001A1001A71M',
+    'IT-FO': '10Y1001A1001A72K',
+    'IT-NO': '10Y1001A1001A73I',
+    'IT-PR': '10Y1001A1001A76C',
+    'IT-RO': '10Y1001A1001A77A',
+    'IT-SAR': '10Y1001A1001A74G',
+    'IT-SIC': '10Y1001A1001A75E',
+    'IT-SO': '10Y1001A1001A788',
     'LT': '10YLT-1001A0008Q',
     'LU': '10YLU-CEGEDEL-NQ',
     'LV': '10YLV-1001A00074',
@@ -130,18 +143,24 @@ ENTSOE_EIC_MAPPING = {
 
 # Some exchanges require specific domains
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
+    'AT->IT-NO': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
+                  ENTSOE_DOMAIN_MAPPINGS['IT-NO']],
+    'BY->UA': [ENTSOE_DOMAIN_MAPPINGS['BY'], '10Y1001C--00003F'],
     'DE->DK-DK1': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
                    ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
     'DE->DK-DK2': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
                    ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
     'DE->SE-SE4': [ENTSOE_DOMAIN_MAPPINGS['DE-AT-LU'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
-    'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
-    'BY->UA': [ENTSOE_DOMAIN_MAPPINGS['BY'], '10Y1001C--00003F'],
+    'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
+    # 'FR-COR->IT-SAR': [],
+    'GR->IT-SO': ['10YGR-HTSO-----Y', ENTSOE_DOMAIN_MAPPINGS['IT-BR']],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
+    'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
+    'IT-SIC->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['IT-SIC'], '10Y1001A1001A77A'],
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
@@ -871,6 +890,59 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                     d['production'][k] = 0
 
     return list(filter(lambda x: validate_production(x, logger), data))
+
+
+ZONE_KEY_AGGREGATES = {
+    'IT-SIC': ['IT-SIC', 'IT-PR'],
+    'IT-SO': ['IT-FO', 'IT-BR', 'IT-RO', 'IT-SO'],
+}
+
+
+def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
+    """
+    Given multiple parser outputs, sum the production and storage
+    of corresponding datetimes to create a production list.
+    This will drop rows where the datetime is missing in at least a
+    parser_output.
+    """
+    if merge_source is None:
+        merge_source = parser_outputs[0][0]['source']
+    prod_and_storage_dfs = [
+        pd.DataFrame(output).set_index('datetime')[['production', 'storage']]
+        for output in parser_outputs
+    ]
+    to_return = prod_and_storage_dfs[0]
+    for prod_and_storage in prod_and_storage_dfs[1:]:
+        # `inner` join drops rows where one of the production is missing
+        to_return = to_return.join(
+            prod_and_storage, how='inner', rsuffix='_other')
+        to_return['production'] = to_return.apply(
+            lambda row: sum_production_dicts(row.production,
+                                             row.production_other),
+            axis=1)
+        to_return['storage'] = to_return.apply(
+            lambda row: sum_production_dicts(row.storage, row.storage_other),
+            axis=1)
+        to_return = to_return[['production', 'storage']]
+
+    return [{
+        'datetime': dt.to_datetime(),
+        'production': row.production,
+        'storage': row.storage,
+        'source': merge_source,
+        'zoneKey': merge_zone_key,
+    } for dt, row in to_return.iterrows()]
+
+
+def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
+                               logger=logging.getLogger(__name__)):
+    if zone_key not in ZONE_KEY_AGGREGATES:
+        raise ValueError('Unknown aggregate key %s' % zone_key)
+
+    return merge_production_outputs(
+        [fetch_production(k, session, target_datetime, logger)
+         for k in ZONE_KEY_AGGREGATES[zone_key]],
+        zone_key)
 
 
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,
