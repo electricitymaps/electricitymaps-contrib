@@ -210,8 +210,8 @@ def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, log
     most_common = c.most_common(1)[0]
     if most_common[1] > 3:
         raise ValueError(
-            f'Detected constant production in CL-SING. Value {most_common[0]} '
-            f'occured {most_common[1]} times in the last 48 hours.')
+            'Detected constant prod in CL-SING. Value {} occured {} times in '
+            'the last 48 hours.'.format(most_common[0], most_common[1]))
 
     return production_mix_by_hour
 
