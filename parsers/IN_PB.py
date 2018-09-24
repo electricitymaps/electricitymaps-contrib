@@ -21,6 +21,7 @@ def read_text_by_regex(regex, text):
 
 
 def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
+    raise ValueError('Parser temporarily disabled')
     """Fetch Punjab production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -109,6 +110,7 @@ def read_punjab_consumption_date(date_text, time_text, current):
 
 
 def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
+    raise ValueError('Parser temporarily disabled')
     """Fetch Punjab consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
