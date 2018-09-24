@@ -7,7 +7,7 @@
 from __future__ import print_function
 import arrow
 from bs4 import BeautifulSoup
-from collections import defaultdict
+from collections import defaultdict, Counter
 import datetime
 import json
 from pytz import timezone
@@ -202,6 +202,16 @@ def fetch_production(zone_key='CL-SING', session=None, target_datetime=None, log
           'source': 'sger.coordinadorelectrico.cl'
         }
         production_mix_by_hour.append(production_mix)
+
+    # if production is the same for at least 3 in the last 48 hours, it's
+    # considered constant. Using round because of floating-point precision.
+    c = Counter([round(sum(v for _, v in e['production'].items()), 3)
+                 for e in production_mix_by_hour])
+    most_common = c.most_common(1)[0]
+    if most_common[1] > 3:
+        raise ValueError(
+            'Detected constant prod in CL-SING. Value {} occured {} times in '
+            'the last 48 hours.'.format(most_common[0], most_common[1]))
 
     return production_mix_by_hour
 
