@@ -488,25 +488,34 @@ CountryTable.prototype.data = function(arg) {
     }
 
     // Construct a list having each production in the same order as this.MODES.
-    this.sortedProductionData = this.MODES.map(function (d) {
-        var footprint = !d.isStorage ? 
-            that._data.productionCo2Intensities ? 
-                that._data.productionCo2Intensities[d.mode] :
-                undefined :
-            0;
-        var production = !d.isStorage ? (that._data.production || {})[d.mode] : undefined;
-        var storage = d.isStorage ? (that._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
-        var capacity = (that._data.capacity || {})[d.mode];
-        return {
-            production: production,
-            storage: storage,
-            isStorage: d.isStorage,
-            capacity: capacity,
-            mode: d.mode,
-            text: translation.translate(d.mode),
-            gCo2eqPerkWh: footprint,
-            gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
-        };
+    this.sortedProductionData = this.MODES.map((d) => {
+      let footprint;
+      let storage = d.isStorage ? (this._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
+      const production = !d.isStorage ? (this._data.production || {})[d.mode] : undefined;
+      if (d.isStorage) {
+        storage = (this._data.storage || {})[d.mode.replace(' storage', '')];
+        if (storage > 0) {
+          // Storage
+          footprint = (this._data.storageCo2Intensities || {})[d.mode.replace(' storage', '')];
+        } else {
+          // Discharge
+          // if (this._data.dischargeCo2Intensities) { debugger }
+          footprint = (this._data.dischargeCo2Intensities || {})[d.mode.replace(' storage', '')];
+        }
+      } else {
+        footprint = (this._data.productionCo2Intensities || {})[d.mode];
+      }
+      const capacity = (this._data.capacity || {})[d.mode];
+      return {
+        production: production,
+        storage: storage,
+        isStorage: d.isStorage,
+        capacity: capacity,
+        mode: d.mode,
+        text: translation.translate(d.mode),
+        gCo2eqPerkWh: footprint,
+        gCo2eqPerH: footprint * 1000.0 * Math.max(d.isStorage ? Math.abs(storage) : production, 0)
+      };
     });
 
     

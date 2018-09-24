@@ -55,7 +55,7 @@
     <plugin name="cordova-plugin-firebase-analytics" spec="^0.13.0">
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
+    <plugin name="cordova-plugin-code-push" spec="^1.11.13" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^6.4.0" />
-    <plugin name="cordova-plugin-code-push" spec="^1.11.13" />
 </widget>

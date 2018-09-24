@@ -30,7 +30,7 @@ def fetch_MX_exchange(sorted_zone_keys, s):
     Returns a float.
     """
 
-    req = s.get(MX_EXCHANGE_URL)
+    req = s.get(MX_EXCHANGE_URL, verify=False)
     soup = BeautifulSoup(req.text, 'html.parser')
     exchange_div = soup.find("div", attrs={'id': EXCHANGES[sorted_zone_keys]})
     val = exchange_div.text

@@ -20,7 +20,7 @@ exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx'
 # Negative value represent exports from Northern Ireland.
 
 
-def get_data(url, session=None):
+def get_data(url, target_datetime, session=None):
     """
     Requests data from a specified url in CSV format.
     Returns a response.text object.
@@ -42,10 +42,15 @@ def get_data(url, session=None):
     eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
 
     # Set date for post request.
-    current_date = datetime.now().date()
-    month = current_date.month
-    day = current_date.day
-    year = current_date.year
+    if target_datetime:
+        target_date = target_datetime.date()
+    else:
+        # get the latest data
+        target_date = datetime.now().date()
+
+    month = target_date.month
+    day = target_date.day
+    year = target_date.year
 
     FromDatePicker_clientState = '|0|01%s-%s-%s-0-0-0-0||[[[[]],[],[]],[{%s},[]],"01%s-%s-%s-0-0-0-0"]' % (year, month, day, '', year, month, day)
     ToDatePicker_clientState = '|0|01%s-%s-%s-0-0-0-0||[[[[]],[],[]],[{%s},[]],"01%s-%s-%s-0-0-0-0"]' % (year, month, day, '', year, month, day)
@@ -250,11 +255,9 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
           'source': 'mysource.com'
         }
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    thermal_data = get_data(thermal_url)
-    wind_data = get_data(wind_url)
+    thermal_data = get_data(thermal_url, target_datetime)
+    wind_data = get_data(wind_url, target_datetime)
     thermal_df = create_thermal_df(thermal_data)
     wind_df = create_wind_df(wind_data)
     thermal = thermal_processor(thermal_df)
@@ -296,10 +299,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
       'source': 'mysource.com'
     }
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    exchange_data = get_data(exchange_url)
+    exchange_data = get_data(exchange_url, target_datetime)
     exchange_dataframe = create_exchange_df(exchange_data)
     if '->'.join(sorted([zone_key1, zone_key2])) == 'GB->GB-NIR':
         moyle = moyle_processor(exchange_dataframe)
