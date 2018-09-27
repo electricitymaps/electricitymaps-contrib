@@ -236,6 +236,8 @@ const zoneDefinitions = [
   { zoneName: 'GA', type: 'country', id: 'GAB'},
   { zoneName: 'GB', type: 'subunits', subunits: ['ENG', 'SCT', 'WLS']},
   { zoneName: 'GB-NIR', type: 'subunits', subunits: ['NIR']},
+  // {zoneName: 'GB-ORK', type: 'administrations', administrations: ['GB-2744']},
+  // {zoneName: 'GB-ZET', type: 'administrations', administrations: ['GB-2747']},
   { zoneName: 'GD', type: 'country', id: 'GRD'},
   { zoneName: 'GE', type: 'country', id: 'GEO'},
   { zoneName: 'GF', type: 'country', id: 'GUF'},
