@@ -1281,7 +1281,13 @@ div.highscore-button:hover {
     margin-right: 10px;
 }
 
-.modal .modal-left-button, .modal .modal-right-button {
+.modal .modal-close-button-container{
+    position: absolute;
+    padding:10px;
+    right:0;
+}
+
+.modal .modal-left-button, .modal .modal-right-button, .modal .modal-close-button {
     background-color: white;
     height: 48px;
     width: 48px;
@@ -1290,10 +1296,17 @@ div.highscore-button:hover {
     font-size: 32px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-    color: dimgray;
+    color: #333333;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal .modal-close-button {
+    height: 36px;
+    width: 36px;
+    background-color: #333333;
+    color: white;
 }
 
 .modal .modal-left-button:focus, .modal .modal-right-button:focus {
@@ -1338,6 +1351,7 @@ div.highscore-button:hover {
 
 .modal .modal-body { 
     flex: 1;
+    position: relative;
     border-radius: 15px;
     background-color: #FAFAFA;
     color: white;
@@ -1844,12 +1858,28 @@ div.highscore-button:hover {
         position: absolute;
         bottom: 20px;
         left: 10px;
+        z-index: 999;
     }
 
     .modal .modal-right-button-container {
         position: absolute;
         bottom: 20px;
         right: 10px;
+    }
+
+    .modal .modal-left-button, .modal .modal-right-button {
+        background-color: #333333;
+        color: white;
+    }
+
+    .modal .modal-right-button.green{
+        background-color: #009800;
+        color:white;
+    }
+    
+    .modal .modal-right-button.green:hover{
+        background-color: #95f395;
+        color: inherit;
     }
 
     #left-panel-collapse-button {
