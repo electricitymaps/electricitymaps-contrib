@@ -1246,8 +1246,8 @@ div.highscore-button:hover {
     top: 0;
     z-index: 500;
     zoom: 1;
-	filter: alpha(opacity=50);
-    opacity: 0.5;
+	filter: alpha(opacity=10);
+    opacity: 0.1;
     background-color: black;
 }
 
@@ -1818,8 +1818,11 @@ div.highscore-button:hover {
     }
 
     .modal {
-        height: 100%;
         width: 100%;
+        left: 0;
+        bottom: 0;
+        top: auto;
+        transform: none;
     }
 
 
@@ -1828,9 +1831,9 @@ div.highscore-button:hover {
     }
 
     .modal .modal-header {
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
-        background-size: contain;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        background-size: cover;
         background-position: center;
         height: 40%;
         min-height: 200px;
@@ -1839,7 +1842,7 @@ div.highscore-button:hover {
     .modal .modal-text {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         padding: 0 40px;
         height: 40%;
         min-height: 245px;
@@ -1851,7 +1854,7 @@ div.highscore-button:hover {
 
     .modal .modal-body {
         max-width: inherit;
-        border-radius: 0;
+        border-radius: 8px 8px 0 0;
 
     }
     .modal .modal-left-button-container {
@@ -1870,6 +1873,12 @@ div.highscore-button:hover {
     .modal .modal-left-button, .modal .modal-right-button {
         background-color: #333333;
         color: white;
+    }
+
+    .modal .modal-close-button {
+        background-color: white;
+        color:#333333 ;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     }
 
     .modal .modal-right-button.green{
