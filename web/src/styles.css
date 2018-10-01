@@ -1825,6 +1825,9 @@ div.highscore-button:hover {
         transform: none;
     }
 
+    .modal-background-overlay{
+        opacity: 0;
+    }
 
     .modal .modal-text h1 {
         font-size: 2rem;
