@@ -116,8 +116,8 @@
 
     "electricityExportedTo": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> exporteras till <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> importeres från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> importeres från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "%1$s %% av elen i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "av CO2eq per minut",
 
