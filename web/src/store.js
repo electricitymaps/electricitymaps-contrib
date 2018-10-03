@@ -1,20 +1,21 @@
-const redux = require('redux');
-const reduxLogger = require('redux-logger').logger;
-const reducer = require('./reducers');
+import { compose, createStore, applyMiddleware } from 'redux';
+import { logger } from 'redux-logger';
+import reducer from './reducers';
 
-const isProduction = window.location.href.indexOf('electricitymap') !== -1;
 
-const store = isProduction ?
-  redux.createStore(
-    reducer,
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
+
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(...middlewares),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
-  :
-  redux.createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    redux.applyMiddleware(reduxLogger),
-  );
+);
 
 // Utility to react to store changes
 const observe = (select, onChange) => {
