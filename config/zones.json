@@ -1477,7 +1477,10 @@
     "timezone": null
   },
   "GB-ORK": {
-    "capacity": {},
+    "capacity": {
+      "wind": 48,
+      "solar": 1.2
+    },
     "contributors": [
     "https://github.com/systemcatch"
     ],
