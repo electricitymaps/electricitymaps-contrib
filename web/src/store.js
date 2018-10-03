@@ -1,12 +1,11 @@
 import { compose, createStore, applyMiddleware } from 'redux';
-import { logger } from 'redux-logger';
 import reducer from './reducers';
 
 
 const middlewares = [];
 
 if (process.env.NODE_ENV === 'development') {
-  middlewares.push(logger);
+  middlewares.push(require('redux-logger').logger);
 }
 
 const store = createStore(
