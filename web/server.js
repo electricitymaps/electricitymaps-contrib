@@ -202,8 +202,15 @@ app.get('/v1/*', (req, res) =>
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.all('/dist/*.map', (req, res, next) => {
-  // Allow bugsnag
-  if (['104.196.245.109', '104.196.254.247'].index(req.headers['x-forwarded-for']) !== -1) {
+  // Allow bugsnag (2 first) + sentry
+  if ([
+    '104.196.245.109',
+    '104.196.254.247',
+    '35.184.238.160',
+    '104.155.159.182',
+    '104.155.149.19',
+    '130.211.230.102',
+  ].index(req.headers['x-forwarded-for']) !== -1) {
     return res.status(401).json({ error: 'unauthorized' });
   }
   return next();
