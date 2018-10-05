@@ -1,20 +1,17 @@
-import { compose, createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 
-
-const middlewares = [];
-
-if (process.env.NODE_ENV === 'development') {
-  middlewares.push(require('redux-logger').logger);
-}
-
-const store = createStore(
-  reducer,
-  compose(
-    applyMiddleware(...middlewares),
+const store = process.env.NODE_ENV === 'production' ?
+  createStore(
+    reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
-);
+  :
+  createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(require('redux-logger').logger),
+  );
 
 // Utility to react to store changes
 const observe = (select, onChange) => {

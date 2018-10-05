@@ -55,7 +55,7 @@ class ConnectionsService {
   }
 
   // track errors
-  reportError() {
+  reportError(e) {
     if (this._stackdriver !== undefined) {
       try {
         this._stackdriver.report(...arguments);
@@ -65,14 +65,14 @@ class ConnectionsService {
     }
     if (bugsnagClient !== undefined) {
       try {
-        bugsnagClient.notify(arguments[0]);
+        bugsnagClient.notify(e);
       } catch (err) {
         console.error('Error while reporting error: ' + err);
       }
     }
     if (Sentry !== undefined) {
       try {
-        Sentry.captureException(arguments[0]);
+        Sentry.captureException(e);
       } catch (err) {
         console.error('Error while reporting error: ' + err);
       }
