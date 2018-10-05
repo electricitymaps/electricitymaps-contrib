@@ -63,9 +63,16 @@ class ConnectionsService {
         console.error('Error while reporting error: ' + err);
       }
     }
-    if (this.bugsnagClient !== undefined) {
+    if (bugsnagClient !== undefined) {
       try {
         bugsnagClient.notify(arguments[0]);
+      } catch (err) {
+        console.error('Error while reporting error: ' + err);
+      }
+    }
+    if (Sentry !== undefined) {
+      try {
+        Sentry.captureException(arguments[0]);
       } catch (err) {
         console.error('Error while reporting error: ' + err);
       }
