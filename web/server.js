@@ -201,12 +201,13 @@ app.get('/v1/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-// app.all('/dist/*.map', (req, res, next) => {
-//   if (req.headers['user-agent'] !== 'opbeat-sourcemaps-fetcher/1.0') {
-//     return res.status(401).json({ error: 'unauthorized' });
-//   }
-//   return next();
-// });
+app.all('/dist/*.map', (req, res, next) => {
+  // Allow bugsnag
+  if (['104.196.245.109', '104.196.254.247'].index(req.headers['x-forwarded-for']) !== -1) {
+    return res.status(401).json({ error: 'unauthorized' });
+  }
+  return next();
+});
 
 // Static routes (need to be declared at the end)
 app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));

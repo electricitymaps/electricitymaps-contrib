@@ -1,4 +1,17 @@
+import bugsnag from 'bugsnag-js';
+import * as Sentry from '@sentry/browser';
+
 const store = require('../store');
+
+const bugsnagClient = bugsnag({
+  apiKey: 'ab57d4f7207c97344bc61a8c2e48d176',
+  appVersion: store.getState().application.bundleHash,
+});
+
+Sentry.init({
+  dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
+  release: store.getState().application.bundleHash,
+});
 
 class ConnectionsService {
   constructor() {
@@ -47,6 +60,13 @@ class ConnectionsService {
       try {
         this._stackdriver.report(...arguments);
       } catch(err) {
+        console.error('Error while reporting error: ' + err);
+      }
+    }
+    if (this.bugsnagClient !== undefined) {
+      try {
+        bugsnagClient.notify(arguments[0]);
+      } catch (err) {
         console.error('Error while reporting error: ' + err);
       }
     }
