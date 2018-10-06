@@ -210,7 +210,7 @@ app.all('/dist/*.map', (req, res, next) => {
     '104.155.159.182',
     '104.155.149.19',
     '130.211.230.102',
-  ].index(req.headers['x-forwarded-for']) !== -1) {
+  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
     return res.status(401).json({ error: 'unauthorized' });
   }
   return next();
