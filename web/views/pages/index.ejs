@@ -70,7 +70,20 @@ co2Sub = function(str) {
 
         <!-- Add crash reporting early on so we catch all errors -->
         <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
-        <script>window.bugsnagClient = bugsnag('ab57d4f7207c97344bc61a8c2e48d176')</script>
+        <script>
+            window.bugsnagClient = bugsnag({
+                apiKey: 'ab57d4f7207c97344bc61a8c2e48d176',
+                consoleBreadcrumbsEnabled: false, // payload is too large else
+                appVersion: '<%= bundleHash %>',
+            });
+        </script>
+        <script src="https://browser.sentry-cdn.com/4.0.6/bundle.min.js" crossorigin="anonymous"></script>
+        <script>
+            Sentry.init({
+                dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
+                release: '<%= bundleHash %>',
+            });
+        </script>
 
         <!-- Google App Indexing (Android) -->
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/electricitymap.org" />

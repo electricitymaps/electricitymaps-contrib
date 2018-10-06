@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
-    "@sentry/browser": "4.0.6",
     "basic-auth": "^2.0.0",
     "compression": "^1.7.2",
     "currency-symbol-map": "^4.0.3",
