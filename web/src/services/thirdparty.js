@@ -1,6 +1,6 @@
 const store = require('../store');
 
-const { bugsnagClient, Sentry } = window;
+const { Sentry } = window;
 
 class ConnectionsService {
   constructor() {
@@ -49,13 +49,6 @@ class ConnectionsService {
       try {
         this._stackdriver.report(...arguments);
       } catch(err) {
-        console.error('Error while reporting error: ' + err);
-      }
-    }
-    if (bugsnagClient !== undefined) {
-      try {
-        bugsnagClient.notify(e);
-      } catch (err) {
         console.error('Error while reporting error: ' + err);
       }
     }
