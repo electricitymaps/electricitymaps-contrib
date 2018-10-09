@@ -1482,12 +1482,21 @@
       "solar": 1.2
     },
     "contributors": [
-    "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/maxbellec"
     ],
     "flag_file_name": "gb.png",
     "parsers": {
       "production": "GB_ORK.fetch_production"
     },
+    "timezone": null
+  },
+  "GB-SHI": {
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/maxbellec"
+    ],
+    "flag_file_name": "gb.png",
     "timezone": null
   },
   "GE": {

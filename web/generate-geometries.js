@@ -15,8 +15,7 @@ function readNDJSON(path) {
 
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
-const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
-  .concat([
+const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     require('./third_party_maps/DK-DK2-without-BHM.json'),
     require('./third_party_maps/NO-NO1.json'),
     require('./third_party_maps/NO-NO2.json'),
@@ -234,10 +233,8 @@ const zoneDefinitions = [
   { zoneName: 'FR', type: 'subunits', subunits: ['FXX']},
   { zoneName: 'FR-COR', type: 'subunits', subunits: ['FXC']},
   { zoneName: 'GA', type: 'country', id: 'GAB'},
-  { zoneName: 'GB', type: 'subunits', subunits: ['ENG', 'SCT', 'WLS']},
+  // special case for GB. See below
   { zoneName: 'GB-NIR', type: 'subunits', subunits: ['NIR']},
-  // {zoneName: 'GB-ORK', type: 'administrations', administrations: ['GB-2744']},
-  // {zoneName: 'GB-ZET', type: 'administrations', administrations: ['GB-2747']},
   { zoneName: 'GD', type: 'country', id: 'GRD'},
   { zoneName: 'GE', type: 'country', id: 'GEO'},
   { zoneName: 'GF', type: 'country', id: 'GUF'},
@@ -684,16 +681,25 @@ zoneDefinitions.forEach(zone => {
       'only once in zoneDefinitions');
   // Avoid zone with moreDetails
   if ( !('moreDetails' in zone) || !zone.moreDetails) {
-  	zones[zone.zoneName] = getDataForZone(zone, true);
+    zones[zone.zoneName] = getDataForZone(zone, true);
   }
 });
+
+// special case for GB, as we separate two islands from it
+const scotland = allGeos.filter(d => d.properties.gu_a3 === 'SCT');
+zones['GB-SHI'] = geomerge(...scotland.filter(d => d.properties.adm1_code === 'GBR-2747'));
+zones['GB-ORK'] = geomerge(...scotland.filter(d => d.properties.adm1_code === 'GBR-2744'));
+const allButScotland = getSubUnits(['ENG', 'WLS']);
+const scotlandButIslands = scotland.filter(d => (
+  d.properties.adm1_code !== 'GBR-2747' && d.properties.adm1_code !== 'GBR-2744'));
+zones['GB'] = geomerge(...[allButScotland, ...scotlandButIslands]);
 
 // create zonesMoreDetails by getting zone having moreDetails===true
 let zonesMoreDetails = {};
 zoneDefinitions.forEach(zone => {
   // Take only zones having modeDetails
   if (('moreDetails' in zone) && zone.moreDetails) {
-	if (zone.zoneName in zonesMoreDetails || zone.zoneName in zones)
+  if (zone.zoneName in zonesMoreDetails || zone.zoneName in zones)
       throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present ' +
         'only once in zoneDefinitions');
   zonesMoreDetails[zone.zoneName] = getDataForZone(zone, true);
