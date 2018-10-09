@@ -73,10 +73,18 @@ def validate_production(obj, zone_key):
         if not_allowed_keys:
             raise ValidationError('unexpected keys in storage: {}'.format(
                 not_allowed_keys))
+    total_production = sum(obj['production'].values())
+    negative_threshold = total_production * 0.001
     for k, v in obj['production'].items():
         if v is None:
             continue
         if v < 0:
+            if abs(v) < negative_threshold:
+                # let through slightly negative values
+                warnings.warn('%s: Setting small negative value of %s (%s) to 0.' %
+                              (zone_key, k, v))
+                obj['production'][key] = 0
+
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
     validate_reasonable_time(obj, zone_key)
