@@ -83,7 +83,7 @@ def validate_production(obj, zone_key):
                 # let through slightly negative values
                 warnings.warn('%s: Setting small negative value of %s (%s) to 0.' %
                               (zone_key, k, v))
-                obj['production'][key] = 0
+                obj['production'][k] = 0
 
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
