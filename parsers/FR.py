@@ -81,7 +81,6 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
                 production[value] = 0
             else:
                 production[value] = row[1][key]
-    return list(filter(lambda x: validate_production(x, logger), data))
 
         # Hydro is a special case!
         production['hydro'] = row[1]['hydraulique_lacs'] + row[1]['hydraulique_fil_eau_eclusee']
