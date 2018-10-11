@@ -26,6 +26,7 @@ const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     require('./third_party_maps/SE-SE2.json'),
     require('./third_party_maps/SE-SE3.json'),
     require('./third_party_maps/SE-SE4.json'),
+    require('./third_party_maps/sct-no-islands.json'),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-CB.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-HR.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-KN.geojson')),
@@ -233,8 +234,10 @@ const zoneDefinitions = [
   { zoneName: 'FR', type: 'subunits', subunits: ['FXX']},
   { zoneName: 'FR-COR', type: 'subunits', subunits: ['FXC']},
   { zoneName: 'GA', type: 'country', id: 'GAB'},
-  // special case for GB. See below
+  { zoneName: 'GB', type: 'subunits', subunits: ['SCT-no-islands', 'ENG', 'WLS']},
   { zoneName: 'GB-NIR', type: 'subunits', subunits: ['NIR']},
+  { zoneName: 'GB-ORK', type: 'administrations', administrations: ['GBR-2744']},
+  { zoneName: 'GB-SHI', type: 'administrations', administrations: ['GBR-2747']},
   { zoneName: 'GD', type: 'country', id: 'GRD'},
   { zoneName: 'GE', type: 'country', id: 'GEO'},
   { zoneName: 'GF', type: 'country', id: 'GUF'},
@@ -684,15 +687,6 @@ zoneDefinitions.forEach(zone => {
     zones[zone.zoneName] = getDataForZone(zone, true);
   }
 });
-
-// special case for GB, as we separate two islands from it
-const scotland = allGeos.filter(d => d.properties.gu_a3 === 'SCT');
-zones['GB-SHI'] = geomerge(...scotland.filter(d => d.properties.adm1_code === 'GBR-2747'));
-zones['GB-ORK'] = geomerge(...scotland.filter(d => d.properties.adm1_code === 'GBR-2744'));
-const allButScotland = getSubUnits(['ENG', 'WLS']);
-const scotlandButIslands = scotland.filter(d => (
-  d.properties.adm1_code !== 'GBR-2747' && d.properties.adm1_code !== 'GBR-2744'));
-zones['GB'] = geomerge(...[allButScotland, ...scotlandButIslands]);
 
 // create zonesMoreDetails by getting zone having moreDetails===true
 let zonesMoreDetails = {};
