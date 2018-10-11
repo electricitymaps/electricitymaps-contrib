@@ -15,7 +15,6 @@ TZ = 'Europe/London'
 DATETIME_LINK = 'https://www.ssen.co.uk/ANM/'
 GENERATION_LINK = 'https://www.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726'
 
-# TODO map correctly
 GENERATION_MAPPING = {"Live Demand": "Demand",
                       "Orkney ANM": "ANM Renewables",
                       "Non-ANM Renewable Generation": "Renewables"}
