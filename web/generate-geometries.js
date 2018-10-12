@@ -234,6 +234,7 @@ const zoneDefinitions = [
   { zoneName: 'FR', type: 'subunits', subunits: ['FXX']},
   { zoneName: 'FR-COR', type: 'subunits', subunits: ['FXC']},
   { zoneName: 'GA', type: 'country', id: 'GAB'},
+  // see https://github.com/tmrowco/electricitymap-contrib/pull/1615 for how SCT-no-islands is generated
   { zoneName: 'GB', type: 'subunits', subunits: ['SCT-no-islands', 'ENG', 'WLS']},
   { zoneName: 'GB-NIR', type: 'subunits', subunits: ['NIR']},
   { zoneName: 'GB-ORK', type: 'administrations', administrations: ['GBR-2744']},
