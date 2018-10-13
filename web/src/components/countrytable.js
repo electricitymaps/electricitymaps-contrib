@@ -121,9 +121,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     }
 
     const width = this.root.node().getBoundingClientRect().width;
+
+    if (width <= 0) {
+      return;
+    }
     
     if (!this._exchangeData) { return; }
-
     
     // Update scale
     this.barMaxWidth = width - this.LABEL_MAX_WIDTH - this.PADDING_X;

@@ -9,8 +9,7 @@ import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
-import TimeSlider from './components/timeslider.js'
-import { formatPower } from './helpers/formatting';
+import TimeSlider from './components/timeslider.js';
 
 // Libraries
 const d3 = Object.assign(
@@ -1246,6 +1245,17 @@ observe(state => state.data.grid, (grid, state) => {
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
   routeToPage(showPageState, state);
+
+  /*
+  Although not optimal, we have to also re-render here
+  in case the `state.application.selectedZoneName` observer
+  triggered a countryTable re-render while the table was hidden,
+  meaning that the re-render was cancelled.
+  */
+  if (showPageState === 'country') {
+    renderCountryTable(state);
+    renderHistory(state);
+  }
 
   // Analytics
   // Note: `selectedZoneName` will not yet be changed here
