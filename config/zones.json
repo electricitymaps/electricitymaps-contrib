@@ -1476,6 +1476,29 @@
     },
     "timezone": null
   },
+  "GB-ORK": {
+    "capacity": {
+      "wind": 48,
+      "solar": 1.2
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/maxbellec"
+    ],
+    "flag_file_name": "gb.png",
+    "parsers": {
+      "production": "GB_ORK.fetch_production"
+    },
+    "timezone": null
+  },
+  "GB-SHI": {
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/maxbellec"
+    ],
+    "flag_file_name": "gb.png",
+    "timezone": null
+  },
   "GE": {
     "_comment": "source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal",
     "bounding_box": [

@@ -563,6 +563,18 @@
           "GB-NIR": {
             "zoneName": "Northern Ireland"
           },
+          "GB-ORK": {
+            "countryName": "Great Britain",
+            "zoneName": "Orkney Islands"
+          },
+          "GB-SHI": {
+            "countryName": "Great Britain",
+            "zoneName": "Shetland Islands"
+          },
+          "GB-ZET": {
+            "countryName": "Great Britain",
+            "zoneName": "Shetland Islands"
+          },
           "GD": {
             "zoneName": "Grenada"
           },

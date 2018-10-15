@@ -1055,6 +1055,16 @@
     },
     "rotation": -110
   },
+  "GB->GB-ORK": {
+    "lonlat": [
+      -3.329,
+      58.723
+    ],
+    "parsers": {
+      "exchange": "GB_ORK.fetch_exchange"
+    },
+    "rotation": 10
+  },
   "GB->IE": {
     "capacity": [
       -500,
