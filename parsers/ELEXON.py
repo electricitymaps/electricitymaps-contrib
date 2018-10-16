@@ -235,11 +235,13 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
     required = ['coal', 'gas', 'nuclear']
     expected_range = {
         'coal': (0, 10000),
-        'gas': (100, 20000),
+        'gas': (100, 30000),
         'nuclear': (100, 20000)
     }
-    data = list(filter(lambda x: validate(
-        x, required=required, expected_range=expected_range), data))
+    data = [x for x in data
+            if validate(
+                x, required=required, expected_range=expected_range,
+                logger=logger)]
 
     return data
 
