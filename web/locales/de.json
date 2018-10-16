@@ -1398,6 +1398,42 @@
         "US-SVERI": {
             "countryName": "Vereinigte Staaten von Amerika",
             "zoneName": "SVERI"
+        },
+        "GB-ORK": {
+            "countryName": "Groß Britannien",
+            "zoneName": "Orkney Islands"
+        },
+        "GB-SHI": {
+            "countryName": "Groß Britannien",
+            "zoneName": "Shetland Islands"
+        },
+        "GB-ZET": {
+            "countryName": "Groß Britannien",
+            "zoneName": "Shetland Islands"
+        },
+        "IT-CNO": {
+            "countryName": "Italien",
+            "zoneName": "Zentral-Nord-Italien"
+        },
+        "IT-CSO": {
+            "countryName": "Italien",
+            "zoneName": "Zentral-Süd-Italien"
+        },
+        "IT-NO": {
+            "countryName": "Italien",
+            "zoneName": "Nord-Italien"
+        },
+        "IT-SAR": {
+            "countryName": "Italien",
+            "zoneName": "Sardinien"
+        },
+        "IT-SIC": {
+            "countryName": "Italien",
+            "zoneName": "Sizilien"
+        },
+        "IT-SO": {
+            "countryName": "Italien",
+            "zoneName": "Süd-Italien"
         }
     },
     "mobile-info-tab": {
