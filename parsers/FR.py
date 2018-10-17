@@ -10,6 +10,8 @@ import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
 
+from contrib.parsers.lib.validation import validate_diffs
+
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
 MAP_GENERATION = {
@@ -100,6 +102,16 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
             'storage': storage,
             'source': 'opendata.reseaux-energies.fr'
         })
+
+    max_diffs = {
+        'hydro': 1600,
+        'solar': 500,
+        'coal': 500,
+        'wind': 1000,
+        'nuclear': 1300,
+    }
+
+    datapoints = validate_diffs(datapoints, max_diffs, logger)
 
     return datapoints
 

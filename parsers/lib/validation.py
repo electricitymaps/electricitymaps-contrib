@@ -3,6 +3,10 @@
 """Centralised validation function for all parsers."""
 
 from logging import getLogger
+import logging
+
+import numpy as np
+import pandas as pd
 
 
 def has_value_for_key(datapoint, key, logger):
@@ -25,6 +29,45 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
                        extra={'key': datapoint['zoneKey']})
         return
     return True
+
+
+def validate_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
+    """
+
+    Parameters
+    ----------
+    datapoints: a list of datapoints having a 'production' field
+    max_diff: dict representing the max allowed diff per energy type
+    logger
+
+    Returns
+    -------
+    the same list of datapoints, with the ones having a too big diff removed
+    """
+    # sort datapoins by datetime
+    datapoints = sorted(datapoints, key=lambda x: x['datetime'])
+
+    ok_diff = np.ones_like(datapoints, dtype=bool)
+    for energy, max_diff in max_diff.items():
+        series = pd.Series(
+            [datapoint['production'].get(energy, np.nan)
+             for datapoint in datapoints])
+        new_diffs = np.abs(series.diff()) < max_diff
+        if not new_diffs[1:].all():
+            wrongs_ixs = new_diffs[~new_diffs].index
+            wrongs_ixs_and_previous = sorted(
+                {ix - 1 for ix in wrongs_ixs} | set(wrongs_ixs))
+            to_display = [
+                (datapoints[i]['datetime'], datapoints[i]['production'][energy])
+                for i in wrongs_ixs_and_previous if i > 0]
+            logger.warning(
+                f'some datapoints have a too high diff for {energy}: '
+                f'{to_display}')
+        ok_diff &= new_diffs
+    # first datapoint is always OK
+    ok_diff.iloc[0] = True
+
+    return [datapoints[i] for i in ok_diff[ok_diff].index]
 
 
 def validate(datapoint, logger=getLogger(__name__), **kwargs):
