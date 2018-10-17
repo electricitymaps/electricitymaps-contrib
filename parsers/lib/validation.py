@@ -27,7 +27,7 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
     return True
 
 
-def validate(datapoint, logger=getLogger(__name__), **kwargs):
+def validate(datapoint, logger, **kwargs):
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -84,14 +84,16 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
     >>>       'source': 'mysource.com'
     >>> }
 
-    >>> validate(datapoint, required=['gas'], expected_range=(100, 2000))
+    >>> validate(datapoint, None, required=['gas'], expected_range=(100, 2000))
     datapoint
-    >>> validate(datapoint, required=['not_a_production_type'])
+    >>> validate(datapoint, None, required=['not_a_production_type'])
     None
-    >>> validate(datapoint, required=['gas'],
+    >>> validate(datapoint, None, required=['gas'],
     >>>          expected_range={'solar': (0, 1000), 'wind': (100, 2000)})
     datapoint
     """
+    if logger is None:
+        logger = getLogger(__name__)
 
     remove_negative = kwargs.pop('remove_negative', False)
     required = kwargs.pop('required', [])
@@ -166,5 +168,5 @@ test_datapoint = {
 }
 
 if __name__ == '__main__':
-    print(validate(test_datapoint, required=['gas'],
+    print(validate(test_datapoint, None, required=['gas'],
                    expected_range=(100, 2000), remove_negative=True))

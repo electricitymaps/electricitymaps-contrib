@@ -66,7 +66,7 @@ def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=N
             data[i]['production'][MAP_GENERATION[k]] = \
                 data[i]['production'].get(MAP_GENERATION[k], 0) + v['Valor'] / interval_hours
 
-    return list(filter(lambda x: validate(x, required=['gas'], floor=0.0, ) is not None, data))
+    return list(filter(lambda x: validate(x, logger, required=['gas'], floor=0.0, ) is not None, data))
 
 
 if __name__ == '__main__':
