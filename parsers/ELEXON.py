@@ -240,8 +240,7 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
     }
     data = [x for x in data
             if validate(
-                x, required=required, expected_range=expected_range,
-                logger=logger)]
+                x, logger, required=required, expected_range=expected_range)]
 
     return data
 

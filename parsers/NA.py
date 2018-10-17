@@ -146,7 +146,7 @@ def fetch_production(zone_key = 'NA', session=None, target_datetime=None, logger
           'source': 'nampower.com.na'
           }
 
-    data = validate(data, required=['hydro'])
+    data = validate(data, logger, required=['hydro'])
 
     return data
 
