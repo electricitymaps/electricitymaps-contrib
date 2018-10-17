@@ -1397,7 +1397,8 @@
       36.35
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -1407,7 +1408,8 @@
       35.04
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": -90
   },
@@ -1417,7 +1419,8 @@
       35.34
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": 90
   },
@@ -1427,7 +1430,8 @@
       34.98
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": 90
   },
@@ -1437,7 +1441,8 @@
       33.965
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": -170
   },
@@ -1447,7 +1452,8 @@
       34.40
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": 175
   },
@@ -1457,7 +1463,8 @@
       41.643
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": 170
   },
@@ -1467,7 +1474,8 @@
       35.57
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": -170
   },
@@ -1477,7 +1485,8 @@
       33.95
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": -95
   },
@@ -1487,7 +1496,8 @@
       37.08
     ],
     "parsers": {
-      "exchange": "occtonet.fetch_exchange"
+      "exchange": "occtonet.fetch_exchange",
+      "exchangeForecast": "occtonet.fetch_exchange_forecast"
     },
     "rotation": -150
   },
