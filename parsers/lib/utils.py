@@ -1,3 +1,5 @@
+import math
+
 def sum_production_dicts(prod1: dict, prod2: dict()):
     """
     Sum two productions dictionnaries. For a production mode key, if both
