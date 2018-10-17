@@ -70,8 +70,8 @@ def validate_production_diffs(
                 (datapoints[i]['datetime'], datapoints[i]['production'][energy])
                 for i in wrongs_ixs_and_previous if i > 0]
             logger.warning(
-                f'some datapoints have a too high production value difference '
-                f'for {energy}: {to_display}')
+                'some datapoints have a too high production value difference '
+                'for {}: {}'.format(energy, to_display))
         ok_diff &= new_diffs
     # first datapoint is always OK
     ok_diff.iloc[0] = True
