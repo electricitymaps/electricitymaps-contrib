@@ -52,7 +52,8 @@ def validate_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
         series = pd.Series(
             [datapoint['production'].get(energy, np.nan)
              for datapoint in datapoints])
-        new_diffs = np.abs(series.diff()) < max_diff
+        # nan is always allowed (can be disallowed using `validate` function)
+        new_diffs = (np.abs(series.diff()) < max_diff) | series.isna()
         if not new_diffs[1:].all():
             wrongs_ixs = new_diffs[~new_diffs].index
             wrongs_ixs_and_previous = sorted(
