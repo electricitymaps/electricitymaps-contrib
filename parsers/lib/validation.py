@@ -7,6 +7,7 @@ import logging
 
 import numpy as np
 import pandas as pd
+from .utils import nan_to_zero
 
 
 def has_value_for_key(datapoint, key, logger):
@@ -31,7 +32,8 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
     return True
 
 
-def validate_production_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
+def validate_production_diffs(
+        datapoints: list, max_diff: dict, logger: logging.Logger):
     """
 
     Parameters
@@ -49,9 +51,15 @@ def validate_production_diffs(datapoints: list, max_diff: dict, logger: logging.
 
     ok_diff = np.ones_like(datapoints, dtype=bool)
     for energy, max_diff in max_diff.items():
-        series = pd.Series(
-            [datapoint['production'].get(energy, np.nan)
-             for datapoint in datapoints])
+        if 'energy' == 'total':
+            series = pd.Series(
+                [sum([nan_to_zero(v)
+                     for en, v in datapoint['production'].items()])
+                 for datapoint in datapoints])
+        else:
+            series = pd.Series(
+                [datapoint['production'].get(energy, np.nan)
+                 for datapoint in datapoints])
         # nan is always allowed (can be disallowed using `validate` function)
         new_diffs = (np.abs(series.diff()) < max_diff) | series.isna()
         if not new_diffs[1:].all():
