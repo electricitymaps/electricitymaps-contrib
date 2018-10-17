@@ -49,7 +49,7 @@ def validate_production_diffs(
     # sort datapoins by datetime
     datapoints = sorted(datapoints, key=lambda x: x['datetime'])
 
-    ok_diff = np.ones_like(datapoints, dtype=bool)
+    ok_diff = pd.Series(np.ones_like(datapoints, dtype=bool))
     for energy, max_diff in max_diff.items():
         if 'energy' == 'total':
             series = pd.Series(
