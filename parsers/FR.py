@@ -10,7 +10,7 @@ import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
 
-from contrib.parsers.lib.validation import validate_production_diffs
+from .lib.validation import validate_production_diffs
 
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
