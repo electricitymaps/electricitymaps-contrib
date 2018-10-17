@@ -31,7 +31,7 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
     return True
 
 
-def validate_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
+def validate_production_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
     """
 
     Parameters
@@ -62,8 +62,8 @@ def validate_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
                 (datapoints[i]['datetime'], datapoints[i]['production'][energy])
                 for i in wrongs_ixs_and_previous if i > 0]
             logger.warning(
-                f'some datapoints have a too high diff for {energy}: '
-                f'{to_display}')
+                f'some datapoints have a too high production value difference '
+                f'for {energy}: {to_display}')
         ok_diff &= new_diffs
     # first datapoint is always OK
     ok_diff.iloc[0] = True
