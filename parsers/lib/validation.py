@@ -53,8 +53,7 @@ def validate_production_diffs(
     for energy, max_diff in max_diff.items():
         if 'energy' == 'total':
             series = pd.Series(
-                [sum([nan_to_zero(v)
-                     for en, v in datapoint['production'].items()])
+                [np.nansum([v for v in datapoint['production'].values()])
                  for datapoint in datapoints])
         else:
             series = pd.Series(
