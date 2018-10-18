@@ -962,8 +962,10 @@ function renderOpenTooltips(state) {
 
   if (priceTooltip.isVisible) {
     const tooltip = d3.select(priceTooltip._selector);
-    tooltip.select('.value').html((zoneData.price || {}).value || '?');
-    tooltip.select('.currency').html(getSymbolFromCurrency((zoneData.price || {}).currency) || '?');
+    const priceIsDefined = zoneData.price != null && zoneData.price.value != null;
+    tooltip.select('.value').html(priceIsDefined ? zoneData.price.value : '?');
+    tooltip.select('.currency').html(priceIsDefined ?
+      getSymbolFromCurrency(zoneData.price.currency) : '?');
     priceTooltip.show();
   }
 }
