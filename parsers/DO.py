@@ -3,6 +3,7 @@
 import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
+import logging
 from math import isnan
 import numpy as np
 from operator import itemgetter
@@ -22,7 +23,7 @@ except NameError:
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
-# Solar generation has no data available currently but multiple projects are planned/under construction.
+# Solar generation now has some data available but multiple projects are planned/under construction.
 
 url = 'http://184.168.74.190:81/ReportesGraficos/ReportePostdespacho.aspx'
 
@@ -67,11 +68,13 @@ thermal_plants = {
                  u'PALENQUE': 'oil',
                  u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
                  u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
+                 u'PARQUE FOTOVOLTAICO MONTECRISTI SOLAR1': 'solar',
                  u'PIMENTEL 1': 'oil',
                  u'PIMENTEL 2': 'oil',
                  u'PIMENTEL 3': 'oil',
                  u'QUISQUEYA 1': 'gas',
                  u'QUISQUEYA 2': 'gas',
+                 u'QUISQUEYA 1 SAN PEDRO': 'oil',
                  u'RIO SAN JUAN': 'oil',
                  u'SAN FELIPE': 'oil',
                  u'SAN FELIPE CC': 'gas',
@@ -279,7 +282,7 @@ def merge_production(thermal, total):
     return final
 
 
-def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
