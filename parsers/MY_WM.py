@@ -265,6 +265,7 @@ def zip_and_merge(egat_data, hvdc_data, logger):
 
     merged_data = zip(egat_data, hvdc_data)
 
+    mismatch_count = 0
     simplified_data = []
     for item in merged_data:
         if item[0][0] == item[1][0]:
@@ -272,8 +273,12 @@ def zip_and_merge(egat_data, hvdc_data, logger):
             combined = item[0][0], sum([item[0][1], item[1][1]])
             simplified_data.append(combined)
         else:
-            logger.warning('Date mismatch between EGAT and HVDC ties for MY-WM->TH, skipping datapoint.')
+            # avoid producing excess warnings
+            mismatch_count += 1
             continue
+
+    if mismatch_count > 0:
+        logger.warning('{} date mismatches between EGAT and HVDC ties found for MY-WM->TH, skipped datapoints.'.format(mismatch_count), extra={'key': 'MY-WM'})
 
     return simplified_data
 
