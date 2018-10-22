@@ -123,8 +123,7 @@ module.exports = (state = initialDataState, action) => {
         });
         if (!zone.exchange || !Object.keys(zone.exchange).length) {
           console.warn(`${key} is missing exchanges`);
-        } 
-
+        }
       });
 
       // Populate exchange pairs for exchange layer
