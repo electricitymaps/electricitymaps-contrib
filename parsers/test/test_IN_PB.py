@@ -35,8 +35,11 @@ class TestINPB(unittest.TestCase):
 
     def test_fetch_production(self):
         response_text = resource_string("parsers.test.mocks", "IN_PB_pbGenReal.html")
+        solar_response_text = resource_string("parsers.test.mocks", "IN_PB_solarppW.html")
         self.adapter.register_uri("GET", "http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal",
                                   content=response_text)
+        self.adapter.register_uri("GET", "http://www.punjabsldc.org/solarppW.asp?pg=solarppW",
+                                  content=solar_response_text)
         try:
             data = IN_PB.fetch_production('IN-PB', self.session)
             self.assertIsNotNone(data)
@@ -45,6 +48,7 @@ class TestINPB(unittest.TestCase):
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])
             self.assertEqual(data['production']['hydro'], 554.0)
+            self.assertEqual(data['production']['solar'], 6.78)
             self.assertIsNotNone(data['storage'])
         except Exception as ex:
             self.fail("IN_KA.fetch_production() raised Exception: {0}".format(ex.message))
