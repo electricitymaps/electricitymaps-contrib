@@ -18,7 +18,7 @@ class GoogleAnalyticsThirdParty {
           'dimension6': 'solarEnabled',
           'dimension7': 'windEnabled',
           'dimension8': 'embeddedUri',
-          'dimension8': 'selectedZoneName',
+          'dimension9': 'selectedZoneName',
         }
       }
     );
