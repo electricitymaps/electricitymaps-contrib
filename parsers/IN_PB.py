@@ -25,7 +25,7 @@ def read_text_by_regex(regex, text):
     return date_text
 
 
-def get_solar(zone_key, session):
+def get_biomass_solar(zone_key, session):
     response_text = web.get_response_text(
         zone_key, 'http://www.punjabsldc.org/solarppW.asp?pg=solarppW',
         session)
@@ -41,12 +41,15 @@ def get_solar(zone_key, session):
 
     df = pd.DataFrame(rows, columns=columns)
     df = df[~(df.loc[:, 'Name of Project/Location'] == '')]  # remove blank rows
-    df = df[~df.loc[:, 'Name of Project/Location'].str.contains('BIOMASS')]  # remove biomass units
     df = df[~df.loc[:, 'Name of Project/Location'].str.contains('Total')]  # remove total rows
     df = df[df.loc[:, 'Telemetry Data Status'] != 'SUSPECT']  # remove suspect units
 
-    solar_value = round(df['Generation(MW)'].astype(float).sum(), 2)
-    return solar_value
+    biomass = df[df.loc[:, 'Name of Project/Location'].str.contains('BIOMASS')]  # filter biomass units
+    solar = df[~df.loc[:, 'Name of Project/Location'].str.contains('BIOMASS')]  # filter solar units
+
+    biomass_value = round(biomass['Generation(MW)'].astype(float).sum(), 2)
+    solar_value = round(solar['Generation(MW)'].astype(float).sum(), 2)
+    return biomass_value, solar_value
 
 
 def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
@@ -79,13 +82,13 @@ def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logge
     ipp_text = ipp_match.group(0)
     ipp_value = re.findall('\d+', ipp_text)[0]
 
-    solar_value = get_solar(zone_key, session)
+    biomass_value, solar_value = get_biomass_solar(zone_key, session)
 
     data = {
         'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'production': {
-            'biomass': 0.0,
+            'biomass': float(biomass_value),
             'coal': round(float(thermal_value) + float(ipp_value), 2),
             'gas': 0.0,
             'hydro': float(hydro_value),
