@@ -802,6 +802,8 @@ if (typeof zoneMap !== 'undefined') {
       }
     })
     .onCountryClick((d) => {
+      // Analytics
+      thirdPartyServices.track('countryClick', { countryCode: d.countryCode });
       dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== d.countryCode) {
@@ -1266,9 +1268,6 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
   if (!selectedZoneName) { return; }
-  // Analytics
-  thirdPartyServices.track('countryClick', { countryCode: selectedZoneName });
-
   // Render
   renderCountryTable(state);
   renderGauges(state);
