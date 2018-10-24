@@ -803,12 +803,12 @@ if (typeof zoneMap !== 'undefined') {
     })
     .onCountryClick((d) => {
       // Analytics
-      thirdPartyServices.track('countryClick', { countryCode: d.countryCode });
       dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== d.countryCode) {
         dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
       }
+      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
 }
 

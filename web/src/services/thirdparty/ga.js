@@ -1,39 +1,43 @@
 class GoogleAnalyticsThirdParty {
   constructor() {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-79729918-1',
-        {
-          'custom_map': {
-            'dimension1': 'clientType',
-            'dimension2': 'colorBlindModeEnabled',
-            'dimension3': 'brightModeEnabled',
-            'dimension4': 'isCordova',
-            'dimension5': 'isEmbedded',
-            'dimension6': 'solarEnabled',
-            'dimension7': 'windEnabled',
-            'dimension8': 'embeddedUri',
-          }
+    // Permanent values should be set using
+    // https://developers.google.com/analytics/devguides/collection/gtagjs/setting-values
+
+    gtag('config', 'UA-79729918-1',
+      {
+        'custom_map': {
+          'dimension1': 'clientType',
+          'dimension2': 'colorBlindModeEnabled',
+          'dimension3': 'brightModeEnabled',
+          'dimension4': 'isCordova',
+          'dimension5': 'isEmbedded',
+          'dimension6': 'solarEnabled',
+          'dimension7': 'windEnabled',
+          'dimension8': 'embeddedUri',
+          'dimension8': 'selectedZoneName',
         }
-      );
-      // Remember to add
-      // <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
-      // in head
-      this.inst = gtag;
+      }
+    );
+    // Remember to add
+    // <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
+    // in head
+    this.inst = gtag;
 
-      window.onerror = function(message, url, line, col, errObject) {
-          gtag('event', 'exception', {
-              description: errObject,
-              fatal: true,  // set to true if the exception is fatal
-          });
-      };
+    window.onerror = function(message, url, line, col, errObject) {
+        gtag('event', 'exception', {
+            description: errObject,
+            fatal: true,  // set to true if the exception is fatal
+        });
+    };
   }
 
   track(event, data) {
     // In both cases, track using GA
-    this.inst('event', event, data, { send_to: 'UA-79729918-1' });
+    this.inst('event', event, data);
     if (window.isCordova) {
       if (typeof cordova.plugins === 'undefined') {
         document.addEventListener('deviceready', function() {
