@@ -48,7 +48,6 @@ class TestINPB(unittest.TestCase):
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])
             self.assertEqual(data['production']['hydro'], 554.0)
-            self.assertEqual(data['production']['solar'], 6.78)
             self.assertIsNotNone(data['storage'])
         except Exception as ex:
             self.fail("IN_KA.fetch_production() raised Exception: {0}".format(ex.message))
