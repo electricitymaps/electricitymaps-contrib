@@ -25,7 +25,15 @@ def read_text_by_regex(regex, text):
     return date_text
 
 
-def get_biomass_solar(zone_key, session):
+def parse_datetime_string(dt_str):
+    try:
+        return arrow.get(dt_str, 'DD-MM-YYYY HH:mm:ss')
+    except arrow.parser.ParserError:
+        # if bad format, return arbitrary old date
+        return arrow.get('01-01-1900 00:00:00', 'DD-MM-YYYY HH:mm:ss')
+
+
+def get_biomass_solar(zone_key, session, date):
     response_text = web.get_response_text(
         zone_key, 'http://www.punjabsldc.org/solarppW.asp?pg=solarppW',
         session)
@@ -40,9 +48,12 @@ def get_biomass_solar(zone_key, session):
     rows = [row[1:5] + [row[5] + ' ' + row[6]] + row[7:] for row in rows]  # make datetime
 
     df = pd.DataFrame(rows, columns=columns)
-    df = df[~(df.loc[:, 'Name of Project/Location'] == '')]  # remove blank rows
-    df = df[~df.loc[:, 'Name of Project/Location'].str.contains('Total')]  # remove total rows
-    df = df[df.loc[:, 'Telemetry Data Status'] != 'SUSPECT']  # remove suspect units
+    df = df[~(df['Name of Project/Location'] == '')]  # remove blank rows
+    df = df[~df['Name of Project/Location'].str.contains('Total')]  # remove total rows
+    df = df[df['Telemetry Data Status'] != 'SUSPECT']  # remove suspect units
+
+    df['Last Updated at:'] = df['Last Updated at:'].apply(parse_datetime_string)
+    df = df[df['Last Updated at:'] >= date.shift(minutes=-30)]
 
     biomass = df[df.loc[:, 'Name of Project/Location'].str.contains('BIOMASS')]  # filter biomass units
     solar = df[~df.loc[:, 'Name of Project/Location'].str.contains('BIOMASS')]  # filter solar units
@@ -82,7 +93,7 @@ def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logge
     ipp_text = ipp_match.group(0)
     ipp_value = re.findall('\d+', ipp_text)[0]
 
-    biomass_value, solar_value = get_biomass_solar(zone_key, session)
+    biomass_value, solar_value = get_biomass_solar(zone_key, session, india_date)
 
     data = {
         'zoneKey': zone_key,
