@@ -144,6 +144,11 @@ def fetch_exchange_forecast(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     """
     #get target date in time zone Asia/Tokyo
     query_date = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y/%m/%d')
+    # Forecasts ahead of current date are not available
+    if query_date > arrow.get().to('Asia/Tokyo').strftime('%Y/%m/%d'):
+        raise NotImplementedError(
+            "Future dates(local time) not implemented for selected exchange")
+    
     sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     exch_id = exchange_mapping[sortedZoneKeys]
     # Login to occtonet
@@ -417,4 +422,8 @@ if __name__ == '__main__':
     print(fetch_exchange('JP-CB', 'JP-HR')[-3:])
     print('fetch_exchange(JP-CG, JP-KY) ->')
     print(fetch_exchange('JP-CG', 'JP-KY')[-3:])
+    print('fetch_exchange_forecast(JP-CB, JP-HR) ->')
+    print(fetch_exchange_forecast('JP-CB', 'JP-HR')[-3:])
+    print('fetch_exchange_forecast(JP-CG, JP-KY) ->')
+    print(fetch_exchange_forecast('JP-CG', 'JP-KY')[-3:])
     
