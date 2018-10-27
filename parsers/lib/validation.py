@@ -39,7 +39,7 @@ def validate_production_diffs(
     Parameters
     ----------
     datapoints: a list of datapoints having a 'production' field
-    max_diff: dict representing the max allowed diff per energy type
+    max_diff: dict representing the max allowed diff (in MW) per energy type
     logger
 
     Returns

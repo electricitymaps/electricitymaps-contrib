@@ -8,7 +8,7 @@ from ree import (Formentera, Ibiza,
                  BalearicIslands)
 
 from .lib.exceptions import ParserException
-from .lib.validation import validate
+from .lib.validation import validate, validate_production_diffs
 
 ## Guess we'll need to figure these out later?! Adapted from ES-CN:
 
@@ -78,7 +78,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key, session=None, target_datetime=None,
+                     logger=logging.getLogger(__name__)):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -115,11 +116,15 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
         }
 
             response_data = validate(response_data, logger,
-                                            floor=FLOORS[zone_key])
+                                            floor=FLOORS[zone_key],
+                                            expected_range = {'coal': (50,600)})
 
             if response_data:
                 # append if valid
                 data.append(response_data)
+
+    # granularity is 10 minutes, drops points with change in coal > 100MW
+    data = validate_production_diffs(data, {'coal': 100}, logger)
 
     return data
 
@@ -175,35 +180,35 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 if __name__ == '__main__':
     session = Session
     print("fetch_consumption(ES-IB)")
-    print(fetch_consumption('ES-IB', session))
+    #print(fetch_consumption('ES-IB', session))
 
     print("fetch_production(ES-IB)")
     print(fetch_production('ES-IB', session))
 
     print("fetch_exchange(ES, ES-IB)")
-    print(fetch_exchange('ES', 'ES-IB', session))
+    #print(fetch_exchange('ES', 'ES-IB', session))
 
-    print("fetch_consumption(ES-IB-FO)")
-    print(fetch_consumption('ES-IB-FO'))
-    print("fetch_production(ES-IB-FO)")
-    print(fetch_production('ES-IB-FO'))
-    print("fetch_consumption(ES-IB-IZ)")
-    print(fetch_consumption('ES-IB-IZ'))
-    print("fetch_production(ES-IB-IZ)")
-    print(fetch_production('ES-IB-IZ'))
-    print("fetch_consumption(ES-IB-MA)")
-    print(fetch_consumption('ES-IB-MA'))
-    print("fetch_production(ES-IB-MA)")
-    print(fetch_production('ES-IB-MA'))
-    print("fetch_consumption(ES-IB-ME)")
-    print(fetch_consumption('ES-IB-ME'))
-    print("fetch_production(ES-IB-ME)")
-    print(fetch_production('ES-IB-ME'))
-    print("fetch_exchange(ES, ES-IB-MA)")
-    print(fetch_exchange('ES', 'ES-IB-MA'))
-    print("fetch_exchange(ES-IB-MA, ES-IB-ME)")
-    print(fetch_exchange('ES-IB-MA', 'ES-IB-ME'))
-    print("fetch_exchange(ES-IB-MA, ES-IB-IZ)")
-    print(fetch_exchange('ES-IB-MA', 'ES-IB-IZ'))
-    print("fetch_exchange(ES-IB-IZ, ES-IB-FO)")
-    print(fetch_exchange('ES-IB-IZ', 'ES-IB-FO'))
+    # print("fetch_consumption(ES-IB-FO)")
+    # print(fetch_consumption('ES-IB-FO'))
+    # print("fetch_production(ES-IB-FO)")
+    # print(fetch_production('ES-IB-FO'))
+    # print("fetch_consumption(ES-IB-IZ)")
+    # print(fetch_consumption('ES-IB-IZ'))
+    # print("fetch_production(ES-IB-IZ)")
+    # print(fetch_production('ES-IB-IZ'))
+    # print("fetch_consumption(ES-IB-MA)")
+    # print(fetch_consumption('ES-IB-MA'))
+    # print("fetch_production(ES-IB-MA)")
+    # print(fetch_production('ES-IB-MA'))
+    # print("fetch_consumption(ES-IB-ME)")
+    # print(fetch_consumption('ES-IB-ME'))
+    # print("fetch_production(ES-IB-ME)")
+    # print(fetch_production('ES-IB-ME'))
+    # print("fetch_exchange(ES, ES-IB-MA)")
+    # print(fetch_exchange('ES', 'ES-IB-MA'))
+    # print("fetch_exchange(ES-IB-MA, ES-IB-ME)")
+    # print(fetch_exchange('ES-IB-MA', 'ES-IB-ME'))
+    # print("fetch_exchange(ES-IB-MA, ES-IB-IZ)")
+    # print(fetch_exchange('ES-IB-MA', 'ES-IB-IZ'))
+    # print("fetch_exchange(ES-IB-IZ, ES-IB-FO)")
+    # print(fetch_exchange('ES-IB-IZ', 'ES-IB-FO'))
