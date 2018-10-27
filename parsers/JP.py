@@ -65,7 +65,6 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
         else:
             df['imports'] = df['imports']-df[exchname]
     df['prod'] = df['cons']-df['imports']
-    df = df[['datetime', 'prod']]
     # add a row to production for each entry in the dictionary:
     
     datalist = []
@@ -172,7 +171,6 @@ def fetch_consumption_forecast(zone_key='JP-KY', target_datetime=None,
     df.columns = ['Date', 'Time', 'fcst']
 
     df['datetime'] = df.apply(parse_dt, axis=1)
-    df = df[['datetime', 'fcst']]
 
     # convert from 万kW to MW
     df['fcst'] = 10*df['fcst']
