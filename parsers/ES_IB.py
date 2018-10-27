@@ -91,6 +91,11 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 ## I saw generation from "genAux" (generacion auxiliar) today on Formentera, which should probably be added to response.other in ree
 ## Formentera mostly only has some solar generation during the day, importing from Ibiza all of the time, which probably has to be considered for response.production() > 0: ?
 
+    if zone_key == 'ES-IB':
+        expected_range = {'coal': (50,600)}
+    else:
+        expected_range = None
+
     for response in island_data:
         if response.production() > 0:
             response_data = {
@@ -117,14 +122,15 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
             response_data = validate(response_data, logger,
                                             floor=FLOORS[zone_key],
-                                            expected_range = {'coal': (50,600)})
+                                            expected_range = expected_range)
 
             if response_data:
                 # append if valid
                 data.append(response_data)
 
-    # granularity is 10 minutes, drops points with change in coal > 100MW
-    data = validate_production_diffs(data, {'coal': 100}, logger)
+    if len(data) > 1:
+        # granularity is 10 minutes, drops points with change in coal > 100MW
+        data = validate_production_diffs(data, {'coal': 100}, logger)
 
     return data
 
