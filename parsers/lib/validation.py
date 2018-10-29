@@ -46,6 +46,10 @@ def validate_production_diffs(
     -------
     the same list of datapoints, with the ones having a too big diff removed
     """
+
+    if len(datapoints) < 2:
+        return datapoints
+
     # sort datapoins by datetime
     datapoints = sorted(datapoints, key=lambda x: x['datetime'])
 
