@@ -2136,6 +2136,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2157,6 +2158,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2178,6 +2180,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2199,6 +2202,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2220,6 +2224,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2241,6 +2246,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP-KY.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2262,6 +2268,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2283,6 +2290,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
@@ -2304,6 +2312,7 @@
       "https://github.com/lorrieq"
     ],
     "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
       "production": "JP.fetch_production",
       "price": "JP.fetch_price"
     },
