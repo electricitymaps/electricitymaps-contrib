@@ -1036,8 +1036,7 @@
       41.293785
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
-      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+        
     },
     "rotation": 0
   },
