@@ -675,7 +675,7 @@ body {
 .layer-buttons-container {
     position: absolute;
     right: 16px;
-    top: 156px;
+    top: 201px;
     display: flex;
     flex-direction: column;
 }
@@ -733,9 +733,99 @@ body {
     background-color: #FFFFFF;
 }
 
+.prodcons-toggle-container {
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    height: 36px;
+    transition: all 0.4s;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    background-color: #FAFAFA;
+    border-radius: 18px;
+}
+.prodcons-toggle-container:hover {
+    box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
+}
+
+.production-toggle {
+    background: #F3F3F3;
+    border-radius: 14px;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+    display: flex;
+    height: 28px; 
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    align-self: center;
+    margin: 0 8px 0 4px;
+}
+
+.production-toggle-item {
+    font-size: 14px; 
+    line-height: 28px;
+    padding: 0 12px;
+    border-radius: 14px 4px 4px 14px;
+    z-index: 9;
+}
+
+.production-toggle-item:last-child{
+    padding: 0 12px;
+    border-radius: 4px 14px 14px 4px;
+}
+
+.production-toggle-active-overlay {
+    position: absolute;
+    background: #FFFFFF;
+    height: 28px; 
+    width: 108px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+    z-index: 8;
+    transition: all 0.4s;
+    border-radius: 4px 14px 14px 4px;
+}
+.production-toggle-active-overlay.prod {
+    left:0;
+    width: 100px;
+    border-radius: 14px 4px 4px 14px;
+    margin: 0 8px 0 4px;
+}
+
+.production-toggle-item.active {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+
+}
+
+.production-toggle-info {
+    height: 28px; 
+    width: 28px;
+    border-radius: 18px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: 0 4px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.1);
+    font-weight: bold;
+    line-height: 28px;
+    transition: all 0.4s;
+}
+
+.production-toggle-info:hover {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+}
+
 /* override mapbox styling */
 .mapboxgl-ctrl-top-right {
-    top: 64px !important;
+    top: 109px !important;
 }
 
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
