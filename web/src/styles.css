@@ -1261,6 +1261,7 @@ div.highscore-button:hover {
     padding-bottom: 10px;
     padding-top: 8px;
     font-family: "Open Sans", sans-serif;
+    transition: padding-top 0.4s;
 }
 #tab.nomap #tab-content .list-item.map-button {
     display: none;
@@ -1271,20 +1272,36 @@ div.highscore-button:hover {
     padding-top: 6px;
 }
 
-#tab #tab-content .list-item.active img,
-#tab #tab-content a:hover img {
-    -webkit-filter: brightness(0%) invert(1);
-    -moz-filter: brightness(0%) invert(1);
-    -ms-filter: brightness(0%) invert(1);
-    -o-filter: brightness(0%) invert(1);
-    filter: brightness(0%) invert(1);
+#tab #tab-content .list-item.active img {
+    -webkit-filter: brightness(0%) invert(0);
+    -moz-filter: brightness(0%) invert(0);
+    -ms-filter: brightness(0%) invert(0);
+    -o-filter: brightness(0%) invert(0);
+    filter: brightness(0%) invert(0);
+}
+
+#tab #tab-content .list-item img {
+    -webkit-filter: brightness(0%) invert(0.5);
+    -moz-filter: brightness(0%) invert(0.5);
+    -ms-filter: brightness(0%) invert(0.5);
+    -o-filter: brightness(0%) invert(0.5);
+    filter: brightness(0%) invert(0.5);
 }
 
 #tab #tab-content a {
-    color: #A9A9A9;
+    color: rgba(0,0,0,0.5);
 }
+#tab #tab-content a .tab-label {
+    font-size: 12px;
+}
+
+#tab #tab-content a .tab-icon-custom {
+    width: 24px;
+    height: 24px;
+}
+
 #tab #tab-content a:hover {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 #tab #tab-content i {
@@ -1812,6 +1829,7 @@ div.highscore-button:hover {
 /* Small devices (phones, etc.) */
 @media (max-width: 767px) {
     #header {
+        display:none;
         min-height: 50px; /* required for old Safari */
         left: 0;
         top: 0;
@@ -1848,6 +1866,17 @@ div.highscore-button:hover {
     #header-content .logo {
         margin-right: auto;
     }
+    .prodcons-toggle-container{
+        top: 16px;
+    }
+    .layer-buttons-container{
+        top: 148px;   
+    }
+
+    .mapboxgl-ctrl-top-right{
+        top: 56px !important;
+    }
+
     .small-screen-hidden {
         display: none;
     }
