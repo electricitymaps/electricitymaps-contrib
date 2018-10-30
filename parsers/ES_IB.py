@@ -130,7 +130,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
     if len(data) > 1:
         # granularity is 10 minutes, drops points with change in coal > 100MW
-        data = validate_production_diffs(data, {'coal': 100}, logger)
+        data = validate_production_diffs(data, {'coal': 150}, logger)
 
     return data
 
