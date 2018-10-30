@@ -68,13 +68,23 @@ co2Sub = function(str) {
         <link rel="canonical" href="<%- fullUrl %>" />
         <% } %>
 
+        <!-- Set Global Variables -->
+        <script>
+            var bundleHash = '<%= bundleHash %>';
+            var locale = '<%= locale %>';
+            var FBLocale = '<%= FBLocale %>';
+            var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
+        </script>
+
         <!-- Add crash reporting early on so we catch all errors -->
         <script src="https://browser.sentry-cdn.com/4.0.6/bundle.min.js" crossorigin="anonymous"></script>
         <script>
-            Sentry.init({
-                dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
-                release: '<%= bundleHash %>',
-            });
+            if (bundleHash !== 'dev') {
+                Sentry.init({
+                    dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
+                    release: '<%= bundleHash %>',
+                });
+            }
         </script>
 
         <!-- Google App Indexing (Android) -->
@@ -97,14 +107,6 @@ co2Sub = function(str) {
 
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
-
-        <!-- Set Global Variables -->
-        <script>
-            var bundleHash = '<%= bundleHash %>';
-            var locale = '<%= locale %>';
-            var FBLocale = '<%= FBLocale %>';
-            var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
-        </script>
     </head>
     <body lang="<%= locale %>">
         <div id="main">

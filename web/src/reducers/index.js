@@ -22,6 +22,7 @@ const initialApplicationState = {
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
   customDate: null,
+  electricityMixMode: 'production',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
@@ -60,6 +61,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
       if (key === 'showPageState' &&
           state.showPageState !== 'country') {
         newState.pageToGoBackTo = state.showPageState;
+      }
+
+      if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
+        throw Error(`Unknown electricityMixMode "${value}"`);
       }
 
       return newState;
