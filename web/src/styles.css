@@ -1951,7 +1951,7 @@ div.highscore-button:hover {
         bottom: 56px;
         top: auto;
         transform: none;
-        height: 400px;
+        height: 420px;
     }
 
     .modal-background-overlay{
@@ -1965,7 +1965,6 @@ div.highscore-button:hover {
     .modal .modal-text.brand-text h2 {
         font-size: 1.125rem;
         line-height: 1.375rem;
-
     }
 
     .modal .modal-footer {
@@ -2012,7 +2011,7 @@ div.highscore-button:hover {
     }
     .modal .modal-left-button-container {
         position: absolute;
-        bottom: 10px;
+        bottom: 32px;
         left: 10px;
         margin: 0;
         z-index: 999;
@@ -2020,7 +2019,7 @@ div.highscore-button:hover {
 
     .modal .modal-right-button-container {
         position: absolute;
-        bottom: 10px;
+        bottom: 32px;
         right: 10px;
         margin: 0;
     }
