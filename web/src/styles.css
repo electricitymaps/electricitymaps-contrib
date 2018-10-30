@@ -782,18 +782,19 @@ body {
 
 .production-toggle-active-overlay {
     position: absolute;
+    left: 100px;
     background: #FFFFFF;
     height: 28px; 
-    width: 108px;
+    width: 110px;
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
     z-index: 8;
+    border-radius: 14px;
     transition: all 0.4s;
-    border-radius: 4px 14px 14px 4px;
 }
 .production-toggle-active-overlay.prod {
     left:0;
     width: 100px;
-    border-radius: 14px 4px 4px 14px;
+    border-radius: 14px;
     margin: 0 8px 0 4px;
 }
 

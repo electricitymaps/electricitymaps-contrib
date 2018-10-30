@@ -794,6 +794,15 @@ if (!getState().application.isMobile) {
   });
 }
 
+// Production/Consumption
+function toggleElectricityMixMode() {
+  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
+    ? 'production'
+    : 'consumption');
+  const activeToggle = d3.select('.production-toggle-active-overlay');
+  activeToggle.classed('prod', !activeToggle.classed('prod'));
+}
+d3.select('.production-toggle').on('click', toggleElectricityMixMode);
 
 // Legend
 function toggleLegend() {
