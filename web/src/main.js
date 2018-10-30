@@ -799,13 +799,10 @@ function toggleElectricityMixMode() {
   dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
     ? 'production'
     : 'consumption');
-  const activeToggle = d3.select('.production-toggle-active-overlay');
-  activeToggle.classed('prod', !activeToggle.classed('prod'));
 }
 d3.select('.production-toggle').on('click', toggleElectricityMixMode);
 
 const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
-
 d3.select('.production-toggle-info').on('click', () => {
   prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
 });
@@ -1308,6 +1305,8 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderCountryTable(state);
   renderGauges(state);
   countryHistoryCarbonGraph.render();
+  const activeToggle = d3.select('.production-toggle-active-overlay');
+  activeToggle.classed('prod', !activeToggle.classed('prod'));
 });
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
