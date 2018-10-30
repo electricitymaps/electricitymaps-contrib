@@ -804,6 +804,12 @@ function toggleElectricityMixMode() {
 }
 d3.select('.production-toggle').on('click', toggleElectricityMixMode);
 
+const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
+
+d3.select('.production-toggle-info').on('click', () => {
+  prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
+});
+
 // Legend
 function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
@@ -1476,9 +1482,3 @@ fetch(true, () => {
     setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
   }
 });
-
-window.toggleElectricityMixMode = () => {
-  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
-      ? 'production'
-      : 'consumption');
-}

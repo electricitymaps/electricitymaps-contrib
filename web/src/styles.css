@@ -892,7 +892,15 @@ body {
     border-color: transparent transparent transparent #FAFAFA;
 }
 
+#production-toggle-tooltip {
+    left: 4px;
+    width: 204px;
+    top: 49px;
+}
 
+#production-toggle-tooltip .tooltip-text {
+    text-align: center;
+}
 
 
 /* ** LEGEND ** */
@@ -1961,7 +1969,12 @@ div.highscore-button:hover {
     }
 
     .modal .modal-footer {
-        display: none;
+        bottom: 0;
+        height: 36px;
+    }
+    .modal .modal-footer .modal-footer-circle {
+        width: 6px;
+        height: 6px;
     }
 
     .modal .modal-header {
@@ -1999,15 +2012,17 @@ div.highscore-button:hover {
     }
     .modal .modal-left-button-container {
         position: absolute;
-        bottom: 30px;
+        bottom: 10px;
         left: 10px;
+        margin: 0;
         z-index: 999;
     }
 
     .modal .modal-right-button-container {
         position: absolute;
-        bottom: 30px;
+        bottom: 10px;
         right: 10px;
+        margin: 0;
     }
 
     .modal .modal-left-button, .modal .modal-right-button {
