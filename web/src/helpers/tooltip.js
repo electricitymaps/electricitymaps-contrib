@@ -7,11 +7,12 @@ const formatting = require('./formatting');
 
 // Production
 const FLAG_SIZE = 16;
-module.exports.showProduction = function showProduction(tooltipInstance, mode, country, displayByEmissions, co2color, co2Colorbars) {
+module.exports.showProduction = function showProduction(
+  tooltipInstance, mode, country, displayByEmissions, co2color, co2Colorbars, electricityMixMode)
+{
   const selector = tooltipInstance._selector;
 
   if (!country.productionCo2Intensities) { return; }
-  if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(co2intensity); });
   const tooltip = d3.select(selector);
   tooltip.selectAll('#mode').text(translation.translate(mode) || mode);
 
@@ -21,7 +22,7 @@ module.exports.showProduction = function showProduction(tooltipInstance, mode, c
 
   const isStorage = value < 0;
 
-  var co2intensity = value < 0 ?
+  const co2intensity = value < 0 ?
     undefined :
     mode.indexOf('storage') !== -1 ?
       country.dischargeCo2Intensities[mode.replace(' storage', '')] :
@@ -31,6 +32,8 @@ module.exports.showProduction = function showProduction(tooltipInstance, mode, c
     mode.indexOf('storage') !== -1 ?
       country.dischargeCo2IntensitySources[mode.replace(' storage', '')] :
       country.productionCo2IntensitySources[mode];
+
+  if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(co2intensity); });
 
   tooltip.select('.emission-rect')
     .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
@@ -169,9 +172,13 @@ module.exports.showExchange = function showExchange(tooltipInstance, key, countr
   tooltipInstance.show();
 };
 
-module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, lowCarbonGauge, renewableGauge) {
-  if (countryData.co2intensity && co2Colorbars) {
-    co2Colorbars.forEach((c) => { c.currentMarker(countryData.co2intensity); });
+module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, lowCarbonGauge, renewableGauge, electricityMixMode) {
+  const co2intensity = electricityMixMode === 'consumption'
+    ? countryData.co2intensity
+    : countryData.co2intensityProduction;
+
+  if (co2intensity && co2Colorbars) {
+    co2Colorbars.forEach((c) => { c.currentMarker(co2intensity); });
   }
   const tooltip = d3.select(tooltipInstance._selector);
   tooltip.select('#country-flag')
@@ -182,39 +189,48 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
 
   if (countryData.hasParser && lowCarbonGauge && renewableGauge) {
     tooltip.select('.emission-rect')
-      .style('background-color', countryData.co2intensity ? co2color(countryData.co2intensity) : 'gray');
+      .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
     tooltip.select('.country-emission-intensity')
-      .text(Math.round(countryData.co2intensity) || '?');
+      .text(Math.round(co2intensity) || '?');
 
-    const hasFossilFuelData = countryData.fossilFuelRatio !== undefined || countryData.fossilFuelRatio !== null;
+    const fossilFuelRatio = electricityMixMode === 'consumption'
+      ? countryData.fossilFuelRatio
+      : countryData.fossilFuelRatioProduction;
+    const hasFossilFuelData = fossilFuelRatio != null;
     if (hasFossilFuelData) {
-      const fossilFuelPercent = countryData.fossilFuelRatio * 100;
+      const fossilFuelPercent = fossilFuelRatio * 100;
       lowCarbonGauge.setPercentage(Math.round(100 - fossilFuelPercent));
       tooltip.select('.lowcarbon-percentage').text(Math.round(100 - fossilFuelPercent));
     } else {
       tooltip.select('.lowcarbon-percentage').text('?');
     }
-    const hasRenewableData = countryData.renewableRatio !== undefined || countryData.renewableRatio !== null;
+
+    const renewableRatio = electricityMixMode === 'consumption'
+      ? countryData.renewableRatio
+      : countryData.renewableRatioProduction;
+    const hasRenewableData = renewableRatio != null;
     if (hasRenewableData) {
-      const renewablePercent = countryData.renewableRatio * 100;
+      const renewablePercent = renewableRatio * 100;
       renewableGauge.setPercentage(Math.round(renewablePercent));
       tooltip.select('.renewable-percentage').text(Math.round(renewablePercent));
     } else {
       tooltip.select('.renewable-percentage').text('?');
     }
   }
-  tooltip.select('.zone-details').style('display', countryData.hasParser && countryData.co2intensity ? 'block' : 'none');
-  tooltip.select('.temporary-outage-text').style('display', countryData.hasParser && !countryData.co2intensity ? 'block' : 'none');
+  tooltip.select('.zone-details').style('display', countryData.hasParser && co2intensity ? 'block' : 'none');
+  tooltip.select('.temporary-outage-text').style('display', countryData.hasParser && !co2intensity ? 'block' : 'none');
   tooltip.select('.no-parser-text').style('display', !countryData.hasParser ? 'block' : 'none');
 
   tooltipInstance.show();
 };
 
 module.exports.showMapExchange = function showMapExchange(tooltipInstance, exchangeData, co2color, co2Colorbars) {
+  const { co2intensity } = exchangeData;
+
   const tooltip = d3.select(tooltipInstance._selector);
-  if (exchangeData.co2intensity && co2Colorbars) { co2Colorbars.forEach((c) => { c.currentMarker(exchangeData.co2intensity); }); }
+  if (co2intensity && co2Colorbars) { co2Colorbars.forEach((c) => { c.currentMarker(co2intensity); }); }
   tooltip.select('.emission-rect')
-    .style('background-color', exchangeData.co2intensity ? co2color(exchangeData.co2intensity) : 'gray');
+    .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
   const i = exchangeData.netFlow > 0 ? 0 : 1;
   const ctrFrom = exchangeData.countryCodes[i];
   tooltip.selectAll('span#from')
@@ -229,7 +245,7 @@ module.exports.showMapExchange = function showMapExchange(tooltipInstance, excha
   tooltip.select('img.flag.to')
     .attr('src', flags.flagUri(exchangeData.countryCodes[(i + 1) % 2], 16));
   tooltip.select('.country-emission-intensity')
-    .text(Math.round(exchangeData.co2intensity) || '?');
+    .text(Math.round(co2intensity) || '?');
 
   tooltipInstance.show();
 };
