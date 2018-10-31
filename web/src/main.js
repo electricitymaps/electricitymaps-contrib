@@ -113,7 +113,8 @@ let onboardingModal;
 let theme = themes.bright;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder)
+  .electricityMixMode(getState().application.electricityMixMode);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
@@ -1305,8 +1306,8 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderCountryTable(state);
   renderGauges(state);
   countryHistoryCarbonGraph.render();
-  const activeToggle = d3.select('.production-toggle-active-overlay');
-  activeToggle.classed('prod', !activeToggle.classed('prod'));
+  d3.select('.production-toggle-active-overlay')
+    .classed('prod', electricityMixMode === 'production');
 });
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
