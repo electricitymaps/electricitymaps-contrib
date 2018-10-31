@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+import datetime as dt
 import logging
 
 import arrow
@@ -160,8 +161,16 @@ def df_to_data(zone_key, day, df, logger):
 
 def fetch_production(zone_key='CR', session=None,
                      target_datetime=None, logger=logging.getLogger(__name__)):
-    # ensure we have an arrow object. if no target_datetime is specified, this defaults to now.
+    # ensure we have an arrow object.
+    # if no target_datetime is specified, this defaults to now.
     target_datetime = arrow.get(target_datetime).to(TIMEZONE)
+
+    # if before 01:30am on the current day then fetch previous day due to
+    # data lag.
+    today = arrow.get().to(TIMEZONE).date()
+    if target_datetime.date() == today:
+        target_datetime = target_datetime if target_datetime.time() >= dt.time(1, 30) \
+            else target_datetime.shift(days=-1)
 
     if target_datetime < arrow.get('2012-07-01'):
         # data availability limit found by manual trial and error
