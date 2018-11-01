@@ -114,6 +114,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Iceland: [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- India: [meritindia](http://meritindia.in/)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
 - India (Chhattisgarh): [cspc.co.in](http://117.239.199.203/csptcl/GEN.aspx)
 - India (Delhi): [delhisldc](http://www.delhisldc.org/Redirect.aspx?Loc=0804)

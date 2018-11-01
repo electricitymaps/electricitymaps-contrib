@@ -1679,6 +1679,17 @@
     },
     "timezone": "Europe/Dublin"
   },
+  "IN": {
+    "bounding_box": [],
+    "capacity": {},
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "parsers": {
+      "production": "IN.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IN-AP": {
     "bounding_box": [
       [
