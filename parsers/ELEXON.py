@@ -30,7 +30,7 @@ REPORT_META = {
         'skiprows': 5
     },
     'INTERFUELHH': {
-        'expected_fields': 7,
+        'expected_fields': 8,
         'skiprows': 0
     }
 }
@@ -55,7 +55,8 @@ EXCHANGES = {
     'FR->GB': 3,
     'GB-NIR->IE': 4,
     'GB->NL': 5,
-    'GB->IE': 6
+    'GB->IE': 6,
+    'BE->GB': 7
 }
 
 
