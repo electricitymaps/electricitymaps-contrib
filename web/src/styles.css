@@ -675,7 +675,7 @@ body {
 .layer-buttons-container {
     position: absolute;
     right: 16px;
-    top: 156px;
+    top: 201px;
     display: flex;
     flex-direction: column;
 }
@@ -733,9 +733,100 @@ body {
     background-color: #FFFFFF;
 }
 
+.prodcons-toggle-container {
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    height: 36px;
+    transition: all 0.4s;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    background-color: #FAFAFA;
+    border-radius: 18px;
+}
+.prodcons-toggle-container:hover {
+    box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
+}
+
+.production-toggle {
+    background: #F3F3F3;
+    border-radius: 14px;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+    display: flex;
+    height: 28px; 
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    align-self: center;
+    margin: 0 8px 0 4px;
+}
+
+.production-toggle-item {
+    font-size: 14px; 
+    line-height: 28px;
+    padding: 0 12px;
+    border-radius: 14px 4px 4px 14px;
+    z-index: 9;
+}
+
+.production-toggle-item:last-child{
+    padding: 0 12px;
+    border-radius: 4px 14px 14px 4px;
+}
+
+.production-toggle-active-overlay {
+    position: absolute;
+    left: 100px;
+    background: #FFFFFF;
+    height: 28px; 
+    width: 110px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+    z-index: 8;
+    border-radius: 14px;
+    transition: all 0.4s;
+}
+.production-toggle-active-overlay.prod {
+    left:0;
+    width: 100px;
+    border-radius: 14px;
+    margin: 0 8px 0 4px;
+}
+
+.production-toggle-item.active {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+
+}
+
+.production-toggle-info {
+    height: 28px; 
+    width: 28px;
+    border-radius: 18px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: 0 4px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.1);
+    font-weight: bold;
+    line-height: 28px;
+    transition: all 0.4s;
+}
+
+.production-toggle-info:hover {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+}
+
 /* override mapbox styling */
 .mapboxgl-ctrl-top-right {
-    top: 64px !important;
+    top: 109px !important;
 }
 
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
@@ -801,7 +892,15 @@ body {
     border-color: transparent transparent transparent #FAFAFA;
 }
 
+#production-toggle-tooltip {
+    left: 4px;
+    width: 204px;
+    top: 49px;
+}
 
+#production-toggle-tooltip .tooltip-text {
+    text-align: center;
+}
 
 
 /* ** LEGEND ** */
@@ -1170,6 +1269,7 @@ div.highscore-button:hover {
     padding-bottom: 10px;
     padding-top: 8px;
     font-family: "Open Sans", sans-serif;
+    transition: padding-top 0.4s;
 }
 #tab.nomap #tab-content .list-item.map-button {
     display: none;
@@ -1180,20 +1280,36 @@ div.highscore-button:hover {
     padding-top: 6px;
 }
 
-#tab #tab-content .list-item.active img,
-#tab #tab-content a:hover img {
-    -webkit-filter: brightness(0%) invert(1);
-    -moz-filter: brightness(0%) invert(1);
-    -ms-filter: brightness(0%) invert(1);
-    -o-filter: brightness(0%) invert(1);
-    filter: brightness(0%) invert(1);
+#tab #tab-content .list-item.active img {
+    -webkit-filter: brightness(0%) invert(0);
+    -moz-filter: brightness(0%) invert(0);
+    -ms-filter: brightness(0%) invert(0);
+    -o-filter: brightness(0%) invert(0);
+    filter: brightness(0%) invert(0);
+}
+
+#tab #tab-content .list-item img {
+    -webkit-filter: brightness(0%) invert(0.5);
+    -moz-filter: brightness(0%) invert(0.5);
+    -ms-filter: brightness(0%) invert(0.5);
+    -o-filter: brightness(0%) invert(0.5);
+    filter: brightness(0%) invert(0.5);
 }
 
 #tab #tab-content a {
-    color: #A9A9A9;
+    color: rgba(0,0,0,0.5);
 }
+#tab #tab-content a .tab-label {
+    font-size: 12px;
+}
+
+#tab #tab-content a .tab-icon-custom {
+    width: 24px;
+    height: 24px;
+}
+
 #tab #tab-content a:hover {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 #tab #tab-content i {
@@ -1721,6 +1837,7 @@ div.highscore-button:hover {
 /* Small devices (phones, etc.) */
 @media (max-width: 767px) {
     #header {
+        display:none;
         min-height: 50px; /* required for old Safari */
         left: 0;
         top: 0;
@@ -1757,6 +1874,17 @@ div.highscore-button:hover {
     #header-content .logo {
         margin-right: auto;
     }
+    .prodcons-toggle-container{
+        top: 16px;
+    }
+    .layer-buttons-container{
+        top: 148px;   
+    }
+
+    .mapboxgl-ctrl-top-right{
+        top: 56px !important;
+    }
+
     .small-screen-hidden {
         display: none;
     }
@@ -1820,9 +1948,10 @@ div.highscore-button:hover {
     .modal {
         width: 100%;
         left: 0;
-        bottom: 0;
+        bottom: 56px;
         top: auto;
         transform: none;
+        height: 420px;
     }
 
     .modal-background-overlay{
@@ -1831,6 +1960,20 @@ div.highscore-button:hover {
 
     .modal .modal-text h1 {
         font-size: 2rem;
+    }
+
+    .modal .modal-text.brand-text h2 {
+        font-size: 1.125rem;
+        line-height: 1.375rem;
+    }
+
+    .modal .modal-footer {
+        bottom: 0;
+        height: 36px;
+    }
+    .modal .modal-footer .modal-footer-circle {
+        width: 6px;
+        height: 6px;
     }
 
     .modal .modal-header {
@@ -1845,10 +1988,15 @@ div.highscore-button:hover {
     .modal .modal-text {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding: 0 40px;
+        justify-content: flex-start;
+        padding: 16px 16px;
         height: 40%;
-        min-height: 245px;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+    }
+
+    .modal .modal-text h2{
+        font-size: 1rem;
     }
 
     .modal .brand-text {
@@ -1858,25 +2006,35 @@ div.highscore-button:hover {
     .modal .modal-body {
         max-width: inherit;
         border-radius: 8px 8px 0 0;
+        box-shadow: 0 -10px 30px 0 rgba(0,0,0,0.15);
 
     }
     .modal .modal-left-button-container {
         position: absolute;
-        bottom: 20px;
+        bottom: 32px;
         left: 10px;
+        margin: 0;
         z-index: 999;
     }
 
     .modal .modal-right-button-container {
         position: absolute;
-        bottom: 20px;
+        bottom: 32px;
         right: 10px;
+        margin: 0;
     }
 
     .modal .modal-left-button, .modal .modal-right-button {
         background-color: #333333;
         color: white;
+        height: 32px;
+        width: 32px;
     }
+
+    .modal .modal-left-button .material-icons, .modal .modal-right-button .material-icons {
+        font-size: 18px;
+    }
+
 
     .modal .modal-close-button {
         background-color: white;

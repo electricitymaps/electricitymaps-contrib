@@ -446,6 +446,28 @@ co2Sub = function(str) {
                                 <svg class="co2-colorbar colorbar potential-bar"></svg>
                         </div>
                     </div>
+                    <div class="prodcons-toggle-container">
+                        <div class="production-toggle">
+                            <div class="production-toggle-active-overlay">
+                            </div>                           
+                            <div class="production-toggle-item">
+                                production
+                            </div>
+                            <div class="production-toggle-item">
+                                consumption
+                            </div>
+                        </div>
+                        <div class="production-toggle-info">
+                            i
+                        </div>
+                        <div id="production-toggle-tooltip"  class="layer-button-tooltip hidden">
+                            <div class="tooltip-container">
+                                <div class="tooltip-text"> <b>consumption</b> takes imports and exports into account, <b>production</b> ignores them</div>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="layer-buttons-container">
                         <div>
                                 <button class="layer-button wind-button"></button>
@@ -498,20 +520,20 @@ co2Sub = function(str) {
                 <div id="tab-content">
                     <a class="list-item map-button">
 
-                            <i class="material-icons" aria-hidden="true">map</i>
-                            <span class="tab-label"><%- __('mobile-main-menu.map') %></span>
+                        <img class="tab-icon-custom" src="images/electricitymap-icon.svg"/>
+                        <span class="tab-label"><%- __('mobile-main-menu.map') %></span>
 
                     </a>
                     <a class="list-item highscore-button">
 
-                            <i class="material-icons" aria-hidden="true">view_list</i>
-                            <span class="tab-label"><%- __('mobile-main-menu.areas') %></span>
+                        <i class="material-icons" aria-hidden="true">view_list</i>
+                        <span class="tab-label"><%- __('mobile-main-menu.areas') %></span>
 
                     </a>
                     <a class="list-item info-button">
 
-                            <i class="material-icons" aria-hidden="true">info</i>
-                            <span class="tab-label"><%- __('mobile-main-menu.about') %></span>
+                        <i class="material-icons" aria-hidden="true">info</i>
+                        <span class="tab-label"><%- __('mobile-main-menu.about') %></span>
 
                     </a>
                 </div>

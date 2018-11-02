@@ -113,7 +113,8 @@ let onboardingModal;
 let theme = themes.bright;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder)
+  .electricityMixMode(getState().application.electricityMixMode);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
@@ -794,6 +795,18 @@ if (!getState().application.isMobile) {
   });
 }
 
+// Production/Consumption
+function toggleElectricityMixMode() {
+  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
+    ? 'production'
+    : 'consumption');
+}
+d3.select('.production-toggle').on('click', toggleElectricityMixMode);
+
+const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
+d3.select('.production-toggle-info').on('click', () => {
+  prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
+});
 
 // Legend
 function toggleLegend() {
@@ -1293,6 +1306,8 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderCountryTable(state);
   renderGauges(state);
   countryHistoryCarbonGraph.render();
+  d3.select('.production-toggle-active-overlay')
+    .classed('prod', electricityMixMode === 'production');
 });
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
@@ -1467,9 +1482,3 @@ fetch(true, () => {
     setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
   }
 });
-
-window.toggleElectricityMixMode = () => {
-  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
-      ? 'production'
-      : 'consumption');
-}

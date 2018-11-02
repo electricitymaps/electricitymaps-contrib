@@ -7,7 +7,7 @@
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "mobile-main-menu": {
-        "map": "Map",
+        "map": "electricityMap",
         "areas": "Areas",
         "about": "About"
     },
