@@ -131,7 +131,8 @@ const countryHistoryPricesGraph = new LineGraph(
   d => (d.price || {}).value,
   d => d.price && d.price.value != null,
 ).gradient(false);
-const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder);
+const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
+  .electricityMixMode(getState().application.electricityMixMode);
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
@@ -460,10 +461,12 @@ window.toggleSource = (state) => {
   d3.select('.country-show-emissions-wrap a#production')
     .classed('selected', !tableDisplayEmissions);
   // update wording, see #893
+  const mixModeKey = getState().application.electricityMixMode === 'consumption'
+    ? 'origin' : 'production';
   document.getElementById('country-history-electricity-carbonintensity')
     .textContent = translation.translate(
       tableDisplayEmissions ?
-        'country-history.emissionsorigin24h' : 'country-history.electricityorigin24h');
+        `country-history.emissions${mixModeKey}24h` : `country-history.electricity${mixModeKey}24h`);
 };
 
 function mapMouseOver(lonlat) {
@@ -1015,7 +1018,7 @@ function renderOpenTooltips(state) {
 
 
 function renderHistory(state) {
-  const { selectedZoneName } = state.application;
+  const { selectedZoneName, electricityMixMode } = state.application;
   const history = state.data.histories[selectedZoneName];
 
   if (!history) {
@@ -1100,6 +1103,7 @@ function renderHistory(state) {
       .range(['yellow', 'red']))
     .data(history);
   countryHistoryMixGraph
+    .electricityMixMode(electricityMixMode)
     .data(history);
   
   zoneDetailsTimeSlider.data(history);
@@ -1305,9 +1309,17 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderMap(state);
   renderCountryTable(state);
   renderGauges(state);
-  countryHistoryCarbonGraph.render();
+  renderHistory(state);
   d3.select('.production-toggle-active-overlay')
     .classed('prod', electricityMixMode === 'production');
+  d3.select('a#production')
+    .text(translation.translate(`country-panel.electricity${electricityMixMode}`));
+  document.getElementById('country-history-electricity-carbonintensity')
+    .innerHTML = translation.translate(
+      tableDisplayEmissions
+        ? `country-history.emissions${electricityMixMode === 'production' ? 'production' : 'origin'}24h`
+        : `country-history.electricity${electricityMixMode === 'production' ? 'production' : 'origin'}24h`
+    );
 });
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
