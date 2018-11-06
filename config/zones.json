@@ -1679,6 +1679,25 @@
     },
     "timezone": "Europe/Dublin"
   },
+  "IN": {
+    "bounding_box": [],
+    "capacity": {
+      "solar": 26000,
+      "wind": 34000,
+      "coal": 196000,
+      "hydro": 50000,
+      "gas": 25000,
+      "nuclear": 6700,
+      "biomass": 9400
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "parsers": {
+      "production": "IN.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IN-AP": {
     "bounding_box": [
       [
