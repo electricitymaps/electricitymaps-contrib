@@ -80,6 +80,9 @@ var countryCo2eqFootprint = {
     'GB-ORK': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 13, source: 'assumes 95% wind, 5% solar'} : null;
     }, // Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
+    'IN': function (productionMode) {
+        return (productionMode == 'unknown' || productionMode == 'other') ? {value: 26, source: 'assumes 43% solar PV and 57% wind'} : null;
+    },
     'NL': function (productionMode) {
         return (productionMode == 'unknown' || productionMode == 'other') ? {value: 563, source: 'assumes 57% gas, 33% coal, 5% biomass, 4% nuclear'} : null;
     },  // Source: Derived from 2017 annual average: coal  30.0%, co-generation(gas)  19.0%, gas 28.0%, coke-oven-gas 5.0%, nuclear 4.0%, Wind  7.7%, biomass (waste) 4.90%, solar 1.40%, accoring to http://en-tran-ce.org/newsletter-renewable-energy-in-the-netherlands/
