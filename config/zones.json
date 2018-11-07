@@ -1680,7 +1680,6 @@
     "timezone": "Europe/Dublin"
   },
   "IN": {
-    "bounding_box": [],
     "capacity": {
       "solar": 26000,
       "wind": 34000,
