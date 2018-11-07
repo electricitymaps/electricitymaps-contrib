@@ -302,7 +302,7 @@ co2Sub = function(str) {
                                 </div>
                                 <div class="country-show-emissions-wrap">
                                     <div class="menu">
-                                        <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricity') %></a>
+                                        <a id="production" href="javascript:toggleSource(false)"></a>
                                         |
                                         <a id="emissions" href="javascript:toggleSource(true)"><%- co2Sub(__('country-panel.emissions')) %></a>
                                     </div>
@@ -334,9 +334,7 @@ co2Sub = function(str) {
                                 <svg id="country-history-carbon"></svg>
 
                                 <div class="loading overlay"></div>
-                                <span class="country-history-title" id="country-history-electricity-carbonintensity">
-                                    <%- __('country-history.electricityorigin24h') %>
-                                </span>
+                                <span class="country-history-title" id="country-history-electricity-carbonintensity"></span>
                                 <br />
                                 <small class="small-screen-hidden">
                                     <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
