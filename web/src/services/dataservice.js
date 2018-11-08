@@ -6,18 +6,21 @@ const d3 = Object.assign(
   {},
   require('d3-queue'),
   require('d3-request'),
-  );
+);
 var moment = require('moment');
 
 // API
 function protectedJsonRequest(endpoint, path, callback) {
   const now = new Date().getTime();
   const md = forge.md.sha256.create();
-  const signature = md.update(ELECTRICITYMAP_PUBLIC_TOKEN + path + now).digest().toHex();
+  const tk = (endpoint.indexOf('localhost') !== -1)
+    ? 'development'
+    : ELECTRICITYMAP_PUBLIC_TOKEN;
+  const signature = md.update(tk + path + now).digest().toHex();
   const req = d3.json(endpoint + path)
     .header('electricitymap-token', Cookies.get('electricitymap-token'))
     .header('x-request-timestamp', now)
-    .header('x-signature', signature)
+    .header('x-signature', signature);
 
   return req.get(null, callback);
 }

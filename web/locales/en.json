@@ -7,7 +7,7 @@
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
     },
     "mobile-main-menu": {
-        "map": "Map",
+        "map": "electricityMap",
         "areas": "Areas",
         "about": "About"
     },
@@ -33,7 +33,8 @@
         "carbonintensity": "Carbon Intensity",
         "lowcarbon": "Low-carbon",
         "renewable": "Renewable",
-        "electricity": "Electricity",
+        "electricityproduction": "Electricity production",
+        "electricityconsumption": "Electricity consumption",
         "bysource": "by source",
         "emissions": "Carbon emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
@@ -51,7 +52,9 @@
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",
         "emissionsorigin24h": "Origin of emissions in the last 24 hours",
+        "emissionsproduction24h": "Emissions produced in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
+        "electricityproduction24h": "Electricity production in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
         "Getdata": "Get historical data, marginal and forecast API"
     },

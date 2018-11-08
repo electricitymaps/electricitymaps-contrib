@@ -92,15 +92,17 @@ AreaGraph.prototype.data = function (arg) {
                 }
             }
         })
-        // Add exchange
-        d3.entries(d.exchange).forEach(function(o) {
-            exchangeKeysSet.add(o.key);
-            obj[o.key] = Math.max(0, o.value);
-            if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
-                // in tCO2eq/min
-                obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-            }
-        });
+        if (that._electricityMixMode === 'consumption') {
+          // Add exchange
+          d3.entries(d.exchange).forEach(function(o) {
+              exchangeKeysSet.add(o.key);
+              obj[o.key] = Math.max(0, o.value);
+              if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
+                  // in tCO2eq/min
+                  obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+              }
+          });
+        }
         // Keep a pointer to original data
         obj._countryData = d;
         return obj;
@@ -108,8 +110,10 @@ AreaGraph.prototype.data = function (arg) {
 
     // Prepare stack
     // Order is defined here, from bottom to top
-    this.stackKeys = this.modeOrder
-        .concat(exchangeKeysSet.values())
+    this.stackKeys = this.modeOrder;
+    if (this._electricityMixMode === 'consumption') {
+      this.stackKeys = this.stackKeys.concat(exchangeKeysSet.values());
+    }
     this.stack = d3.stack()
         .offset(d3.stackOffsetDiverging)
         .keys(this.stackKeys)(this._data);
@@ -424,5 +428,11 @@ AreaGraph.prototype.displayByEmissions = function(arg) {
     }
     return this;
 }
+
+AreaGraph.prototype.electricityMixMode = function(arg) {
+  if (!arguments.length) return this._electricityMixMode;
+  else this._electricityMixMode = arg;
+  return this;
+};
 
 module.exports = AreaGraph;

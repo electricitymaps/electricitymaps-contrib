@@ -13,6 +13,7 @@
         "renewable": "Vedvarende",
         "electricity": "Elektricitet",
         "electricityproduction": "Elproduktion",
+        "electricityconsumption": "Elforbrug",
         "bysource": "per kilde",
         "emissions": "CO2 udledning",
         "helpfrom": "med hjælp fra",
@@ -21,7 +22,9 @@
     "country-history": {
         "carbonintensity24h": "CO2 intensitet i de sidste 24 timer",
         "emissionsorigin24h": "CO2 udledningens oprindelse i de sidste 24 timer",
+        "emissionsproduction24h": "CO2 udledt i de sidste 24 timer",
         "electricityorigin24h": "Elektricitets oprindelse i de sidste 24 timer",
+        "electricityproduction24h": "Elproduktionen i de sidste 24 timer",
         "electricityprices24h": "Elprisen i de sidste 24 timer"
     },
     "footer": {

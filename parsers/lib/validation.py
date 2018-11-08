@@ -39,13 +39,17 @@ def validate_production_diffs(
     Parameters
     ----------
     datapoints: a list of datapoints having a 'production' field
-    max_diff: dict representing the max allowed diff per energy type
+    max_diff: dict representing the max allowed diff (in MW) per energy type
     logger
 
     Returns
     -------
     the same list of datapoints, with the ones having a too big diff removed
     """
+
+    if len(datapoints) < 2:
+        return datapoints
+
     # sort datapoins by datetime
     datapoints = sorted(datapoints, key=lambda x: x['datetime'])
 

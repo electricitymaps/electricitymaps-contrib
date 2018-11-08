@@ -68,13 +68,23 @@ co2Sub = function(str) {
         <link rel="canonical" href="<%- fullUrl %>" />
         <% } %>
 
+        <!-- Set Global Variables -->
+        <script>
+            var bundleHash = '<%= bundleHash %>';
+            var locale = '<%= locale %>';
+            var FBLocale = '<%= FBLocale %>';
+            var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
+        </script>
+
         <!-- Add crash reporting early on so we catch all errors -->
         <script src="https://browser.sentry-cdn.com/4.0.6/bundle.min.js" crossorigin="anonymous"></script>
         <script>
-            Sentry.init({
-                dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
-                release: '<%= bundleHash %>',
-            });
+            if (bundleHash !== 'dev') {
+                Sentry.init({
+                    dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
+                    release: '<%= bundleHash %>',
+                });
+            }
         </script>
 
         <!-- Google App Indexing (Android) -->
@@ -97,14 +107,6 @@ co2Sub = function(str) {
 
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
-
-        <!-- Set Global Variables -->
-        <script>
-            var bundleHash = '<%= bundleHash %>';
-            var locale = '<%= locale %>';
-            var FBLocale = '<%= FBLocale %>';
-            var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
-        </script>
     </head>
     <body lang="<%= locale %>">
         <div id="main">
@@ -300,7 +302,7 @@ co2Sub = function(str) {
                                 </div>
                                 <div class="country-show-emissions-wrap">
                                     <div class="menu">
-                                        <a id="production" href="javascript:toggleSource(false)"><%- __('country-panel.electricity') %></a>
+                                        <a id="production" href="javascript:toggleSource(false)"></a>
                                         |
                                         <a id="emissions" href="javascript:toggleSource(true)"><%- co2Sub(__('country-panel.emissions')) %></a>
                                     </div>
@@ -332,9 +334,7 @@ co2Sub = function(str) {
                                 <svg id="country-history-carbon"></svg>
 
                                 <div class="loading overlay"></div>
-                                <span class="country-history-title" id="country-history-electricity-carbonintensity">
-                                    <%- __('country-history.electricityorigin24h') %>
-                                </span>
+                                <span class="country-history-title" id="country-history-electricity-carbonintensity"></span>
                                 <br />
                                 <small class="small-screen-hidden">
                                     <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
@@ -444,6 +444,28 @@ co2Sub = function(str) {
                                 <svg class="co2-colorbar colorbar potential-bar"></svg>
                         </div>
                     </div>
+                    <div class="prodcons-toggle-container">
+                        <div class="production-toggle">
+                            <div class="production-toggle-active-overlay">
+                            </div>                           
+                            <div class="production-toggle-item">
+                                production
+                            </div>
+                            <div class="production-toggle-item">
+                                consumption
+                            </div>
+                        </div>
+                        <div class="production-toggle-info">
+                            i
+                        </div>
+                        <div id="production-toggle-tooltip"  class="layer-button-tooltip hidden">
+                            <div class="tooltip-container">
+                                <div class="tooltip-text"> <b>consumption</b> takes imports and exports into account, <b>production</b> ignores them</div>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="layer-buttons-container">
                         <div>
                                 <button class="layer-button wind-button"></button>
@@ -496,20 +518,20 @@ co2Sub = function(str) {
                 <div id="tab-content">
                     <a class="list-item map-button">
 
-                            <i class="material-icons" aria-hidden="true">map</i>
-                            <span class="tab-label"><%- __('mobile-main-menu.map') %></span>
+                        <img class="tab-icon-custom" src="images/electricitymap-icon.svg"/>
+                        <span class="tab-label"><%- __('mobile-main-menu.map') %></span>
 
                     </a>
                     <a class="list-item highscore-button">
 
-                            <i class="material-icons" aria-hidden="true">view_list</i>
-                            <span class="tab-label"><%- __('mobile-main-menu.areas') %></span>
+                        <i class="material-icons" aria-hidden="true">view_list</i>
+                        <span class="tab-label"><%- __('mobile-main-menu.areas') %></span>
 
                     </a>
                     <a class="list-item info-button">
 
-                            <i class="material-icons" aria-hidden="true">info</i>
-                            <span class="tab-label"><%- __('mobile-main-menu.about') %></span>
+                        <i class="material-icons" aria-hidden="true">info</i>
+                        <span class="tab-label"><%- __('mobile-main-menu.about') %></span>
 
                     </a>
                 </div>
