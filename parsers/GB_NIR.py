@@ -16,8 +16,8 @@ from .lib.validation import validate
 thermal_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
 wind_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
 exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx'
-# Positive values represent imports to Northern Ireland.
-# Negative value represent exports from Northern Ireland.
+# Positive values represent exports to Northern Ireland.
+# Negative value represent imports from Northern Ireland.
 
 
 def get_data(url, target_datetime, session=None):
@@ -174,7 +174,7 @@ def moyle_processor(df):
         snapshot = {}
         snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
                                                            dayfirst=True))
-        snapshot['netFlow'] = row['Total_Moyle_Load_MW']
+        snapshot['netFlow'] = -1 * row['Total_Moyle_Load_MW']
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedZoneKeys'] = 'GB->GB-NIR'
         datapoints.append(snapshot)
@@ -196,7 +196,7 @@ def IE_processor(df):
         netFlow = (row['Total_Str_Let_Load_MW'] +
                    row['Total_Enn_Cor_Load_MW'] +
                    row['Total_Tan_Lou_Load_MW'])
-        snapshot['netFlow'] = -1 * (netFlow)
+        snapshot['netFlow'] = netFlow
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedZoneKeys'] = 'GB-NIR->IE'
         datapoints.append(snapshot)
