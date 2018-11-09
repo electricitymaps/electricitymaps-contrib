@@ -12,6 +12,7 @@
         "carbonintensity": "Intensité carbone",
         "lowcarbon": "Bas carbone",
         "electricityproduction": "Production électrique",
+        "electricityconsumption": "Consommation éléctrique",
         "bysource": "par source",
         "emissions": "Emissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
@@ -19,9 +20,12 @@
     },
     "country-history": {
         "carbonintensity24h": "Intensité carbone des 24 dernières heures",
+        "emissionsorigin24h": "Origine des émissions des 24 dernières heures",
+        "emissionsproduction24h": "Emissions produites dans les 24 dernières heures",
         "electricityorigin24h": "Origine de l'électricité des 24 dernières heures",
+        "electricityproduction24h": "Production éléctrique des dernières 24 heures",
         "electricityprices24h": "Prix de l'électricité des 24 dernières heures",
-        "Getdata": "Obtenir l'historique et l'API de prévision"
+        "Getdata": "Obtenir les données historiques, marginales, et l'API de prévision"
     },
     "footer": {
         "likethisvisu": "Vous aimez cette visualisation?",
