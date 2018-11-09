@@ -173,6 +173,11 @@ module.exports.showExchange = function showExchange(tooltipInstance, key, countr
 };
 
 module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, lowCarbonGauge, renewableGauge, electricityMixMode) {
+  if (!countryData) {
+    tooltipInstance.hide();
+    return;
+  }
+
   const co2intensity = electricityMixMode === 'consumption'
     ? countryData.co2intensity
     : countryData.co2intensityProduction;

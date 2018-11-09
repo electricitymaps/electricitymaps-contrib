@@ -119,11 +119,11 @@ const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
   d => (getState().application.electricityMixMode === 'consumption'
-    ? d.co2intensity
-    : d.co2intensityProduction),
+    ? (d || {}).co2intensity
+    : (d || {}).co2intensityProduction),
   d => (getState().application.electricityMixMode === 'consumption'
-    ? d.co2intensity
-    : d.co2intensityProduction),
+    ? (d || {}).co2intensity
+    : (d || {}).co2intensityProduction),
 );
 const countryHistoryPricesGraph = new LineGraph(
   '#country-history-prices',
