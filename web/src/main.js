@@ -9,7 +9,7 @@ import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
-import TimeSlider from './components/timeslider.js';
+import TimeSlider from './components/timeslider';
 
 // Libraries
 const d3 = Object.assign(
@@ -299,6 +299,7 @@ d3.select('#checkbox-colorblind').on('change', () => {
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
     .setCo2color(co2color)
+    .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
