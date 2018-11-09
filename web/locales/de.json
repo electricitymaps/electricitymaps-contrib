@@ -57,7 +57,7 @@
         "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
         "electricityproduction24h": "Erzeugte Elektrizität in den letzten 24 h",
         "electricityprices24h": "Strompreis in den letzten 24 h",
-        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API"
+        "Getdata": "Zugang zu historischen & marginalen Daten und zur Vorhersage-API"
     },
     "footer": {
         "likethisvisu": "Findest du die Visualisierung gut?",
