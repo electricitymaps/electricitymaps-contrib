@@ -54,6 +54,10 @@ export default class ZoneList {
   }
 
   clickSelectedItem() {
+    // Nothing to do if no item is selected
+    if (!this.visibleListItems[this.selectedItemIndex]) {
+      return;
+    }
     this.visibleListItems[this.selectedItemIndex].click();
   }
 
