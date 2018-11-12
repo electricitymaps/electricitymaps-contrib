@@ -18,6 +18,7 @@ You can also see a list of missing data displayed as warnings in the developer c
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
 Check the [contributing](#contribute) section for more details.
+Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
 
 ## Frequently asked questions
 
