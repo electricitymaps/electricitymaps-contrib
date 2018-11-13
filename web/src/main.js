@@ -4,6 +4,7 @@
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
 import ContributorList from './components/contributorlist';
+import Referral from './components/referral';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
@@ -145,6 +146,8 @@ const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
 const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
 const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
 const contributorList = new ContributorList('.contributors');
+const referral = new Referral('.referral-link');
+
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -742,6 +745,7 @@ window.retryFetch = () => {
 };
 
 
+
 // *** DISPATCHERS ***
 // Declare and attach all event handlers that will
 // cause events to be emitted
@@ -960,6 +964,11 @@ function renderGauges(state) {
   }
 }
 
+function renderReferral(state) {
+  const { selectedZoneName } = state.application;
+  referral.setReferralZone(selectedZoneName);
+  referral.render();
+}
 
 function renderContributors(state) {
   const { selectedZoneName } = state.application;
@@ -1365,6 +1374,7 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   renderGauges(state);
   renderContributors(state);
   renderHistory(state);
+  renderReferral(state);
   zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
