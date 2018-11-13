@@ -144,7 +144,7 @@ line, path {
 
 .referral-link {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .referral {
