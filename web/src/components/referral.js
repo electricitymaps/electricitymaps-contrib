@@ -40,13 +40,3 @@ export default class Referral {
     }
   }
 }
-
-
-// <a id="referral-link" href="#">
-//   <div class="referral barry">
-//       <p class="sponsored-message-text">sponsored message</p>
-//       <p class="referral-text"> Know the footprint of your electricity consumption with barry </p>        
-//       <img class="barry-logo" src="images/barry.png"/>
-//       <img class="external-link-icon" src="images/external-link.svg"/>
-//   </div>
-// </a>
