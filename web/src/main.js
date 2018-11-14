@@ -592,7 +592,7 @@ function setLastUpdated() {
 // Re-check every minute
 setInterval(setLastUpdated, 60 * 1000);
 
-function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
   if (err) {
     console.error(err);
     return;
@@ -647,6 +647,7 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
   if (argSolar) solar = argSolar;
 
   dispatchApplication('callerLocation', callerLocation);
+  dispatchApplication('callerZone', callerZone);
   dispatch({
     payload: state,
     type: 'GRID_DATA',
@@ -719,7 +720,7 @@ function fetch(showLoading, callback) {
   Q.await((err, clientVersion, state, solar, wind) => {
     handleConnectionReturnCode(err);
     if (!err) {
-      dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
+      dataLoaded(err, clientVersion, state.data.callerLocation, state.data.callerZone, state.data, solar, wind);
     }
     if (showLoading) {
       LoadingService.stopLoading('#loading');
@@ -965,9 +966,13 @@ function renderGauges(state) {
 }
 
 function renderReferral(state) {
-  const { selectedZoneName } = state.application;
-  referral.setReferralZone(selectedZoneName);
+  const { selectedZoneName, callerZone } = state.application;
+  referral.setCallerZone(callerZone);
+  referral.setSelectedZone(selectedZoneName);
   referral.render();
+  if (referral.isVisible()) {
+    thirdPartyServices.trackWithCurrentApplicationState('referralShown');
+  }
 }
 
 function renderContributors(state) {
@@ -1379,6 +1384,11 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
 
   // Fetch history if needed
   tryFetchHistory(state);
+});
+// Observe for caller zone changed
+observe(state => state.application.callerZone, (callerZone, state) => {
+  // Render
+  renderReferral(state);
 });
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
