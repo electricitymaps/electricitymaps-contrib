@@ -10,6 +10,7 @@ from parsers.test.mocks.quality_check import *
 class ProductionTestCase(unittest.TestCase):
     """Tests for ENTSOE's validate_production."""
     test_logger = logging.getLogger()
+    test_logger.setLevel(logging.ERROR)
 
     def test_missing_required_biomass_in_DE(self):
         validated = validate_production(p10, self.test_logger)
