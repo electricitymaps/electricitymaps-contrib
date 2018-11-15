@@ -18,14 +18,16 @@ MAP_GENERATION_1 = {
     'P_GES': 'hydro',
     'P_GRES': 'unknown',
     'P_TES': 'unknown',
-    'P_BS': 'unknown'
+    'P_BS': 'unknown',
+    'P_REN': 'solar'
 }
 
 MAP_GENERATION_2 = {
     'P_GES': 'hydro',
     'P_GRES': 'unknown',
     'P_TES': 'unknown',
-    'P_BS': 'unknown'
+    'P_BS': 'unknown',
+    'P_REN': 'solar'
 }
 
 exchange_ids = {'CN->RU-AS': "764",
@@ -144,7 +146,6 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
             continue
 
         # Default values
-        row['production']['solar'] = None
         row['production']['biomass'] = None
         row['production']['geothermal'] = None
 
