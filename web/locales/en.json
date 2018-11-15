@@ -504,9 +504,21 @@
           "ES": {
             "zoneName": "Spain"
           },
-          "ES-IB": {
+          "ES-IB-FO": {
             "countryName": "Spain",
-            "zoneName": "Balearic Islands"
+            "zoneName": "Formentera"
+          },
+          "ES-IB-IZ": {
+            "countryName": "Spain",
+            "zoneName": "Ibiza"
+          },
+          "ES-IB-MA": {
+            "countryName": "Spain",
+            "zoneName": "Mallorca"
+          },
+          "ES-IB-ME": {
+            "countryName": "Spain",
+            "zoneName": "Menorca"
           },
           "ES-CN-FVLZ": {
             "countryName": "Spain",
