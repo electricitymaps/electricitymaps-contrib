@@ -32,15 +32,6 @@ def get_json_data(logger, session=None):
     return json_data
 
 
-def add_default_tz(timestamp):
-    """Adds EST timezone to datetime object if tz = None."""
-
-    EST = tz.gettz('America/New_York')
-    modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or EST)
-
-    return modified_timestamp
-
-
 def data_processer(json_data, logger):
     """
     Identifies any unknown fuel types and logs a warning.
@@ -70,8 +61,8 @@ def data_processer(json_data, logger):
         raise ValueError('Timezone reported for US-MISO has changed.')
 
     time_data = " ".join(useful_time_parts)
-    dt_naive = parser.parse(time_data)
-    dt = add_default_tz(dt_naive)
+    tzinfos = {"EST": tz.gettz('America/New_York')}
+    dt = parser.parse(time_data, tzinfos=tzinfos)
 
     return dt, production
 
