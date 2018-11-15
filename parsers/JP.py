@@ -126,7 +126,7 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
     df = df[['datetime', 'cons']]
     return df
 
-def fetch_consumption_forecast(zone_key='JP-KY', target_datetime=None,
+def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=None,
                       logger=logging.getLogger(__name__)):
     """
     Gets consumption forecast for specified zone.
