@@ -33,7 +33,8 @@
         "carbonintensity": "spezifische CO2-Emissionen",
         "lowcarbon": "CO2-arm",
         "renewable": "regenerativ",
-        "electricityproduction": "Elektrizität",
+        "electricityproduction": "Stromerzeugung",
+        "electricityconsumption": "Stromverbrauch",
         "bysource": "Ursprung:",
         "emissions": "CO2-Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
@@ -52,7 +53,9 @@
     "country-history": {
         "carbonintensity24h": "spezifische CO2-Emissionen in den letzten 24 h",
         "emissionsorigin24h": "Ursprung der Emissionen in den letzten 24 h",
+        "emissionsproduction24h": "Erzeugte Emissionen in den letzten 24 h",
         "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
+        "electricityproduction24h": "Erzeugte Elektrizität in den letzten 24 h",
         "electricityprices24h": "Strompreis in den letzten 24 h",
         "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API"
     },
