@@ -371,10 +371,12 @@ countryTable
       d, country, displayByEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', d);
   })
   .onExchangeMouseOut(() => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableExchangeTooltip.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   })
   .onProductionMouseOver((mode, country, displayByEmissions) => {
     tooltipHelper.showProduction(
