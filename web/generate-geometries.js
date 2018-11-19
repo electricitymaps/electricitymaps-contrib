@@ -33,6 +33,10 @@ const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     JSON.parse(fs.readFileSync('./third_party_maps/JP-KY.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-ON.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-TK.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-FO.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-IZ.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-MA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-ME.geojson')),
   ]);
 
 const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
@@ -223,7 +227,11 @@ const zoneDefinitions = [
   { zoneName: 'ES-CN-TE', type: 'country', id: 'Tenerife'},
   { zoneName: 'ES-CN-GC', type: 'country', id: 'Gran Canaria'},
   { zoneName: 'ES-CN-FVLZ', type: 'countries', countries: ['Fuerteventura', 'Lanzarote']},
-  { zoneName: 'ES-IB', type: 'subunits', subunits: ['ESI']}, //Spain Balearic islands
+  // { zoneName: 'ES-IB', type: 'subunits', subunits: ['ESI']}, //Spain Balearic islands
+  { zoneName: 'ES-IB-FO', type: 'subZone', id: 'ES-IB-FO', moreDetails: true},
+  { zoneName: 'ES-IB-IZ', type: 'subZone', id: 'ES-IB-IZ'},
+  { zoneName: 'ES-IB-MA', type: 'subZone', id: 'ES-IB-MA'},
+  { zoneName: 'ES-IB-ME', type: 'subZone', id: 'ES-IB-ME'},
   { zoneName: 'ET', type: 'country', id: 'ETH'},
   { zoneName: 'FI', type: 'country', id: 'FIN'},
   { zoneName: 'FJ', type: 'country', id: 'FJI'},
@@ -734,6 +742,6 @@ topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
 // Merge topoMoreDetails into topo
 mergeTopoJsonSingleZone(topo, topoMoreDetails);
 
-topo = topojson.filter(topo, topojson.filterWeight(topo, 0.01));
+topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 topo = topojson.quantize(topo, 1e5);
 fs.writeFileSync('src/world.json', JSON.stringify(topo));

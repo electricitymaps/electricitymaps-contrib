@@ -126,7 +126,7 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
     df = df[['datetime', 'cons']]
     return df
 
-def fetch_consumption_forecast(zone_key='JP-KY', target_datetime=None,
+def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=None,
                       logger=logging.getLogger(__name__)):
     """
     Gets consumption forecast for specified zone.
@@ -178,14 +178,13 @@ def fetch_consumption_forecast(zone_key='JP-KY', target_datetime=None,
     df = df.loc[df['fcst']>0]
     # return format
     data = []
-    #for i in range(df.shape[0]):
     for i in df.index:
-            data.append({
-                'zoneKey': zone_key,
-                'datetime': df.loc[i,'datetime'].to_pydatetime(),
-                'value': df.loc[i,'fcst'],
-                'source': sources[zone_key]
-            })
+        data.append({
+            'zoneKey': zone_key,
+            'datetime': df.loc[i, 'datetime'].to_pydatetime(),
+            'value': float(df.loc[i, 'fcst']),
+            'source': sources[zone_key]
+        })
     return data
 
 def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,

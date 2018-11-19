@@ -6,7 +6,7 @@ RESOLUTION=10m
 COUNTRIES_FILENAME=ne_${RESOLUTION}_admin_0_map_subunits
 
 STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces_lakes
-STATES_FILTER="['AUS', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'GBR', 'GRC', 'IND', 'ITA', 'JPN', 'MEX', 'MYS', 'RUS', 'USA']"
+STATES_FILTER="['AUS', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'ESP', 'GBR', 'GRC', 'IND', 'ITA', 'JPN', 'MEX', 'MYS', 'RUS', 'USA']"
 
 NODE_MODULES_PATH="node_modules/.bin"
 

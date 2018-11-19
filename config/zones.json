@@ -1283,26 +1283,50 @@
     },
     "timezone": "Atlantic/Canary"
   },
-  "ES-IB": {
-    "bounding_box": [
-      [
-        0.7121688160000872,
-        38.13864630700006
-      ],
-      [
-        4.837087436000104,
-        40.57941315300012
-      ]
-    ],
-    "capacity": {
-      "battery storage": 0,
-      "coal": 510,
-      "hydro storage": 0,
-      "solar": 78,
-      "wind": 0
-    },
+  "ES-IB-FO": {
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-IZ": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-MA": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-ME": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1323,16 +1347,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 2866,
-      "coal": 2854,
-      "gas": 1795,
+      "biomass": 1970,
+      "coal": 3413,
+      "gas": 1865,
       "geothermal": 0,
-      "hydro": 3207,
+      "hydro": 3149,
       "nuclear": 2782,
-      "oil": 1427,
+      "oil": 1386,
       "solar": 0,
-      "unknown": 648,
-      "wind": 1598
+      "unknown": 619,
+      "wind": 1908
     },
     "contributors": [
       "https://github.com/corradio"
