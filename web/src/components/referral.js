@@ -32,7 +32,7 @@ export default class Referral {
       selector.selectAll('*').remove();
       selector.attr('class', 'referral-link')
         .attr('target', '_blank')
-        .attr('href', 'https://www.getbarry.co/?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=electricitymap')
+        .attr('href', 'https://in.getbarry.co/emap2?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=electricitymap')
         .on('click', () => {
           thirdPartyServices.trackWithCurrentApplicationState('referralClicked');
         });
@@ -42,7 +42,7 @@ export default class Referral {
         .text('sponsored message')
         .attr('class', 'sponsored-message-text');
       refferalContent.append('p')
-        .text('Få fodaftrykket af dit eget elforbrug med barry')
+        .text('Se hvordan Barry, fremtidens el-leverandør, vil bruge vores data')
         .attr('class', 'referral-text');
       refferalContent.append('img')
         .attr('src', 'images/barry.png')
