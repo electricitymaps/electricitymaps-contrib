@@ -32,7 +32,7 @@ export default class Referral {
       selector.selectAll('*').remove();
       selector.attr('class', 'referral-link')
         .attr('target', '_blank')
-        .attr('href', 'https://news.getbarry.co/electricitymap')
+        .attr('href', 'https://in.getbarry.co/emap2?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=electricitymap')
         .on('click', () => {
           thirdPartyServices.trackWithCurrentApplicationState('referralClicked');
         });
