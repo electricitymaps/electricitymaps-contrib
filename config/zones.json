@@ -731,6 +731,16 @@
     "timezone": null
   },
   "CL-SIC": {
+    "bounding_box": [
+      [
+        -74.625132,
+        -43.246595
+      ],
+      [
+        -67.249115,
+        -22.382339
+      ]
+    ],
     "capacity": {
       "battery storage": 0,
       "biomass": 466,
@@ -3408,6 +3418,20 @@
     "flag_file_name": "us.png",
     "timezone": null
   },
+  "US-AL": {
+    "bounding_box": [
+      [
+        -88.191130,
+        30.166662
+      ],
+      [
+        -85.009698,
+        34.956744
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-BPA": {
     "capacity": {
       "biomass": 447,
@@ -3464,6 +3488,34 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_CA.fetch_production"
     },
+    "timezone": null
+  },
+  "US-TX": {
+    "bounding_box": [
+      [
+        -106.963657,
+        26.485219
+      ],
+      [
+        -90.539219,
+        36.265205
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
+  "US-GA": {
+    "bounding_box": [
+      [
+        -85.601474,
+        30.503252
+      ],
+      [
+        -80.763430,
+        34.975541
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-HI": {
@@ -3528,6 +3580,20 @@
     },
     "timezone": null
   },
+  "US-NC": {
+    "bounding_box": [
+      [
+        -84.232364,
+        33.654000
+      ],
+      [
+        -75.644807,
+        36.579671
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-NEISO": {
     "bounding_box": [
       [
@@ -3558,6 +3624,20 @@
     },
     "timezone": null
   },
+  "US-NV": {
+    "bounding_box": [
+      [
+        -120,
+        35
+      ],
+      [
+        -114,
+        42
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-NY": {
     "_comment": "hydro incl. 1407 MW pumped storage",
     "bounding_box": [
@@ -3586,6 +3666,20 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_NY.fetch_production"
     },
+    "timezone": null
+  },
+  "US-OR": {
+    "bounding_box": [
+      [
+        -124.697592,
+        42.005176
+      ],
+      [
+        -116.632557,
+        46.194588
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-PJM": {
@@ -3625,6 +3719,20 @@
     },
     "timezone": null
   },
+  "US-SC": {
+    "bounding_box": [
+      [
+        -83.110764,
+        31.964076
+      ],
+      [
+        -78.581890,
+        35.068720
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-SPP": {
     "capacity": {
       "coal": 26060,
@@ -3656,6 +3764,16 @@
     ]
   },
   "US-SVERI": {
+    "bounding_box": [
+      [
+        -115.412018,
+        32.001824
+      ],
+      [
+        -103.051202,
+        36.967691
+      ]
+    ],
     "contributors": [
       "https://github.com/systemcatch"
     ],
@@ -3663,6 +3781,20 @@
     "parsers": {
       "production": "US_SVERI.fetch_production"
     },
+    "timezone": null
+  },
+  "US-TN": {
+    "bounding_box": [
+      [
+        -90.323361,
+        34.881666
+      ],
+      [
+        -81.934704,
+        36.674417
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "UY": {

@@ -1352,6 +1352,10 @@
           "US": {
             "zoneName": "United States of America"
           },
+          "US-AL": {
+            "countryName": "United States of America",
+            "zoneName": "Alabama"
+          },
           "US-BPA": {
             "countryName": "United States of America",
             "zoneName": "BPA"
@@ -1359,6 +1363,10 @@
           "US-CA": {
             "countryName": "United States of America",
             "zoneName": "California"
+          },
+          "US-ERCOT": {
+            "countryName": "United States of America",
+            "zoneName": "ERCOT"
           },
           "US-IPC": {
             "countryName": "United States of America",
@@ -1368,17 +1376,33 @@
             "countryName": "United States of America",
             "zoneName": "MISO"
           },
+          "US-NC": {
+            "countryName": "United States of America",
+            "zoneName": "North Carolina"
+          },
           "US-NEISO": {
             "countryName": "United States of America",
             "zoneName": "New England"
+          },
+          "US-NV": {
+            "countryName": "United States of America",
+            "zoneName": "Nevada"
           },
           "US-NY": {
             "countryName": "United States of America",
             "zoneName": "New York"
           },
+          "US-OR": {
+            "countryName": "United States of America",
+            "zoneName": "Oregon"
+          },
           "US-PJM": {
             "countryName": "United States of America",
             "zoneName": "PJM"
+          },
+          "US-SC": {
+            "countryName": "United States of America",
+            "zoneName": "South Carolina"
           },
           "US-SPP": {
             "countryName": "United States of America",
@@ -1387,6 +1411,10 @@
           "US-SVERI":{
             "countryName": "United States of America",
             "zoneName": "SVERI"
+          },
+          "US-TN": {
+            "countryName": "United States of America",
+            "zoneName": "Tennessee"
           },
           "US-HI": {
             "zoneName": "Hawaii"
