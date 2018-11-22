@@ -34,11 +34,3 @@ TopoJSON format, which is a more compressed format than geoJSON. It only stores 
 on a grid. All together, this allows to convert a ~`24MB` file to a ~`1MB` one.
 
 The final file is named `world.json` and is the one sent to the client.
-
-## How to update bounding box
-Bounding boxes are used to interpolate weather data over an electricityMap zone.
-To generate automatically bounding box for all zones in `zones.json`that does not already have existing bounding boxes, run
-```
-docker-compose run --rm web bash -c './topogen.sh && node generate-zone-bounding-boxes.js'
-```
-(runnnig topogen.sh before will make sure the latest version of world.json is being used)
