@@ -6,7 +6,7 @@ The world map data is open source and provided by [NACIS](http://nacis.org/initi
 
 To generate a new world.json run the following command from the web directory after making changes.
 ```
-./topogen.sh
+docker-compose run --rm web ./topogen.sh
 ```
 
 ### `topogen.sh`
@@ -21,9 +21,7 @@ and added to the `web/build` folder
 
 ### `generate-geometries.js`
 
-The variables `zoneDefinitions` relates each zone from the Electricity Map to how it is
-described by data from NACIS (or third party). A zone can correspond to a country, a
-group of countries, a state, a group of states...
+The variables `zoneDefinitions` should be updated manually to reflect intended changes in mapping between electricityMa zones and NACIS geometries. It relates each zone from the electricityMap to how it is described by data from NACIS (or third party). A zone can correspond to a country, a group of countries, a state, a group of states...
 
 The function `geomerge` merges a list of GeoJSON Polygons or MultiPolygons into a single
 multi-polygon. This allows to merge a group of geometries into a single one.
@@ -36,3 +34,11 @@ TopoJSON format, which is a more compressed format than geoJSON. It only stores 
 on a grid. All together, this allows to convert a ~`24MB` file to a ~`1MB` one.
 
 The final file is named `world.json` and is the one sent to the client.
+
+## How to update bounding box
+Bounding boxes are used to interpolate weather data over an electricityMap zone.
+To generate automatically bounding box for all zones in `zones.json`that does not already have existing bounding boxes, run
+```
+docker-compose run --rm web bash -c './topogen.sh && node generate-zone-bounding-boxes.js'
+```
+(runnnig topogen.sh before will make sure the latest version of world.json is being used)
