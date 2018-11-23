@@ -731,6 +731,16 @@
     "timezone": null
   },
   "CL-SIC": {
+    "bounding_box": [
+      [
+        -74.625132,
+        -43.246595
+      ],
+      [
+        -67.249115,
+        -22.382339
+      ]
+    ],
     "capacity": {
       "battery storage": 0,
       "biomass": 466,
@@ -1283,26 +1293,50 @@
     },
     "timezone": "Atlantic/Canary"
   },
-  "ES-IB": {
-    "bounding_box": [
-      [
-        0.7121688160000872,
-        38.13864630700006
-      ],
-      [
-        4.837087436000104,
-        40.57941315300012
-      ]
-    ],
-    "capacity": {
-      "battery storage": 0,
-      "coal": 510,
-      "hydro storage": 0,
-      "solar": 78,
-      "wind": 0
-    },
+  "ES-IB-FO": {
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-IZ": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-MA": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-ME": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1323,16 +1357,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 2866,
-      "coal": 2854,
-      "gas": 1795,
+      "biomass": 1970,
+      "coal": 3413,
+      "gas": 1865,
       "geothermal": 0,
-      "hydro": 3207,
+      "hydro": 3149,
       "nuclear": 2782,
-      "oil": 1427,
+      "oil": 1386,
       "solar": 0,
-      "unknown": 648,
-      "wind": 1598
+      "unknown": 619,
+      "wind": 1908
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3384,6 +3418,20 @@
     "flag_file_name": "us.png",
     "timezone": null
   },
+  "US-AL": {
+    "bounding_box": [
+      [
+        -88.191130,
+        30.166662
+      ],
+      [
+        -85.009698,
+        34.956744
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-BPA": {
     "capacity": {
       "biomass": 447,
@@ -3440,6 +3488,34 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_CA.fetch_production"
     },
+    "timezone": null
+  },
+  "US-TX": {
+    "bounding_box": [
+      [
+        -106.963657,
+        26.485219
+      ],
+      [
+        -90.539219,
+        36.265205
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
+  "US-GA": {
+    "bounding_box": [
+      [
+        -85.601474,
+        30.503252
+      ],
+      [
+        -80.763430,
+        34.975541
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-HI": {
@@ -3504,6 +3580,20 @@
     },
     "timezone": null
   },
+  "US-NC": {
+    "bounding_box": [
+      [
+        -84.232364,
+        33.654000
+      ],
+      [
+        -75.644807,
+        36.579671
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-NEISO": {
     "bounding_box": [
       [
@@ -3534,6 +3624,20 @@
     },
     "timezone": null
   },
+  "US-NV": {
+    "bounding_box": [
+      [
+        -120,
+        35
+      ],
+      [
+        -114,
+        42
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-NY": {
     "_comment": "hydro incl. 1407 MW pumped storage",
     "bounding_box": [
@@ -3562,6 +3666,20 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_NY.fetch_production"
     },
+    "timezone": null
+  },
+  "US-OR": {
+    "bounding_box": [
+      [
+        -124.697592,
+        42.005176
+      ],
+      [
+        -116.632557,
+        46.194588
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-PJM": {
@@ -3601,6 +3719,20 @@
     },
     "timezone": null
   },
+  "US-SC": {
+    "bounding_box": [
+      [
+        -83.110764,
+        31.964076
+      ],
+      [
+        -78.581890,
+        35.068720
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-SPP": {
     "capacity": {
       "coal": 26060,
@@ -3632,6 +3764,16 @@
     ]
   },
   "US-SVERI": {
+    "bounding_box": [
+      [
+        -115.412018,
+        32.001824
+      ],
+      [
+        -103.051202,
+        36.967691
+      ]
+    ],
     "contributors": [
       "https://github.com/systemcatch"
     ],
@@ -3639,6 +3781,20 @@
     "parsers": {
       "production": "US_SVERI.fetch_production"
     },
+    "timezone": null
+  },
+  "US-TN": {
+    "bounding_box": [
+      [
+        -90.323361,
+        34.881666
+      ],
+      [
+        -81.934704,
+        36.674417
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "UY": {

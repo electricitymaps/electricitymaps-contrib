@@ -504,9 +504,21 @@
           "ES": {
             "zoneName": "Spain"
           },
-          "ES-IB": {
+          "ES-IB-FO": {
             "countryName": "Spain",
-            "zoneName": "Balearic Islands"
+            "zoneName": "Formentera"
+          },
+          "ES-IB-IZ": {
+            "countryName": "Spain",
+            "zoneName": "Ibiza"
+          },
+          "ES-IB-MA": {
+            "countryName": "Spain",
+            "zoneName": "Mallorca"
+          },
+          "ES-IB-ME": {
+            "countryName": "Spain",
+            "zoneName": "Menorca"
           },
           "ES-CN-FVLZ": {
             "countryName": "Spain",
@@ -1340,6 +1352,10 @@
           "US": {
             "zoneName": "United States of America"
           },
+          "US-AL": {
+            "countryName": "United States of America",
+            "zoneName": "Alabama"
+          },
           "US-BPA": {
             "countryName": "United States of America",
             "zoneName": "BPA"
@@ -1347,6 +1363,10 @@
           "US-CA": {
             "countryName": "United States of America",
             "zoneName": "California"
+          },
+          "US-HI": {
+            "countryName": "United States of America",
+            "zoneName": "Hawaii"
           },
           "US-IPC": {
             "countryName": "United States of America",
@@ -1356,17 +1376,33 @@
             "countryName": "United States of America",
             "zoneName": "MISO"
           },
+          "US-NC": {
+            "countryName": "United States of America",
+            "zoneName": "North Carolina"
+          },
           "US-NEISO": {
             "countryName": "United States of America",
             "zoneName": "New England"
+          },
+          "US-NV": {
+            "countryName": "United States of America",
+            "zoneName": "Nevada"
           },
           "US-NY": {
             "countryName": "United States of America",
             "zoneName": "New York"
           },
+          "US-OR": {
+            "countryName": "United States of America",
+            "zoneName": "Oregon"
+          },
           "US-PJM": {
             "countryName": "United States of America",
             "zoneName": "PJM"
+          },
+          "US-SC": {
+            "countryName": "United States of America",
+            "zoneName": "South Carolina"
           },
           "US-SPP": {
             "countryName": "United States of America",
@@ -1376,8 +1412,13 @@
             "countryName": "United States of America",
             "zoneName": "SVERI"
           },
-          "US-HI": {
-            "zoneName": "Hawaii"
+          "US-TN": {
+            "countryName": "United States of America",
+            "zoneName": "Tennessee"
+          },
+          "US-TX": {
+            "countryName": "United States of America",
+            "zoneName": "Texas"
           },
           "UY": {
             "zoneName": "Uruguay"

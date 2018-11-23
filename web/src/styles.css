@@ -141,6 +141,55 @@ line, path {
     align-items: center;
 }
 
+
+.referral-link {
+    color: inherit;
+    text-decoration: none !important;
+}
+
+.referral {
+    margin: 16px 0;
+}
+
+.referral.barry {
+    position: relative;
+    border-radius: 8px;
+    padding: 8px;
+    color: white;
+    background-image: linear-gradient(to bottom right, #FF4B9B, #EF7B40);
+}
+
+.referral .barry-logo {
+    position: absolute;
+    width: 60px;
+    bottom: 8px;
+    right: 8px;
+}
+
+.referral .external-link-icon {
+    position: absolute;
+    width: 14px;
+    top: 4px;
+    right: 4px;
+}
+
+.sponsored-message-text{
+    color: black;
+    font-size: 7px;
+    opacity: 0.5;
+    margin: 0;
+    position: absolute;
+    top: -16px;
+    left: 10px;  
+}
+
+.referral-text {
+    font-size: 14px;
+    width: 75%;
+    font-weight: normal;
+    margin: 6px 0;
+}
+
 body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }

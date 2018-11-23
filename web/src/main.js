@@ -4,6 +4,7 @@
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
 import ContributorList from './components/contributorlist';
+import Referral from './components/referral';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
@@ -145,6 +146,8 @@ const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
 const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
 const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
 const contributorList = new ContributorList('.contributors');
+const referral = new Referral('.referral-link');
+
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -589,7 +592,7 @@ function setLastUpdated() {
 // Re-check every minute
 setInterval(setLastUpdated, 60 * 1000);
 
-function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
   if (err) {
     console.error(err);
     return;
@@ -644,6 +647,7 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
   if (argSolar) solar = argSolar;
 
   dispatchApplication('callerLocation', callerLocation);
+  dispatchApplication('callerZone', callerZone);
   dispatch({
     payload: state,
     type: 'GRID_DATA',
@@ -716,7 +720,7 @@ function fetch(showLoading, callback) {
   Q.await((err, clientVersion, state, solar, wind) => {
     handleConnectionReturnCode(err);
     if (!err) {
-      dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
+      dataLoaded(err, clientVersion, state.data.callerLocation, state.data.callerZone, state.data, solar, wind);
     }
     if (showLoading) {
       LoadingService.stopLoading('#loading');
@@ -740,6 +744,7 @@ window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
   fetch(false);
 };
+
 
 
 // *** DISPATCHERS ***
@@ -960,6 +965,15 @@ function renderGauges(state) {
   }
 }
 
+function renderReferral(state) {
+  const { selectedZoneName, callerZone } = state.application;
+  referral.setCallerZone(callerZone);
+  referral.setSelectedZone(selectedZoneName);
+  referral.render();
+  if (referral.isVisible()) {
+    thirdPartyServices.trackWithCurrentApplicationState('referralShown');
+  }
+}
 
 function renderContributors(state) {
   const { selectedZoneName } = state.application;
@@ -1365,10 +1379,16 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   renderGauges(state);
   renderContributors(state);
   renderHistory(state);
+  renderReferral(state);
   zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
   tryFetchHistory(state);
+});
+// Observe for caller zone changed
+observe(state => state.application.callerZone, (callerZone, state) => {
+  // Render
+  renderReferral(state);
 });
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
