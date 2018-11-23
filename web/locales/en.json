@@ -1364,9 +1364,9 @@
             "countryName": "United States of America",
             "zoneName": "California"
           },
-          "US-ERCOT": {
+          "US-HI": {
             "countryName": "United States of America",
-            "zoneName": "ERCOT"
+            "zoneName": "Hawaii"
           },
           "US-IPC": {
             "countryName": "United States of America",
@@ -1416,8 +1416,9 @@
             "countryName": "United States of America",
             "zoneName": "Tennessee"
           },
-          "US-HI": {
-            "zoneName": "Hawaii"
+          "US-TX": {
+            "countryName": "United States of America",
+            "zoneName": "Texas"
           },
           "UY": {
             "zoneName": "Uruguay"
