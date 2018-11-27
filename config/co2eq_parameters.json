@@ -1,0 +1,90 @@
+{
+  "defaults": {
+    "biomass": {
+      "value": 230, "source": "IPCC 2014"
+    },
+    "coal": {
+      "value": 820, "source": "IPCC 2014"
+    },
+    "gas": {
+      "value": 490, "source": "IPCC 2014"
+    },
+    "hydro": {
+      "value": 24, "source": "IPCC 2014"
+    },
+    "hydro discharge": {
+      "_comment": "Here we use the world average",
+      "value": 301.13684338512996, "source": "World average intensity by Tomorrow"
+    },
+    "battery discharge": {
+      "value": 0, "source": "TODO"
+    },
+    "nuclear": {
+      "value": 12, "source": "IPCC 2014"
+    },
+    "oil": {
+      "_comment": "UK Parliamentary Office of Science and Technology (2006) 'Carbon footprint of electricity generation'",
+      "value": 650, "source": "UK POST 2014"
+    },
+    "solar": {
+      "value": 45, "source": "IPCC 2014"
+    },
+    "wind": {
+      "value": 11, "source": "IPCC 2014"
+    },
+    "geothermal": {
+      "value": 38, "source": "IPCC 2014"
+    },
+    "unknown": {
+      "_comment": "assume conventional",
+      "value": 700, "source": "assumes thermal (coal, gas, oil or biomass)"
+    }
+  },
+  "zoneOverrides": {
+    "EE": {
+      "oil": {
+        "value": 1515, "source": "EASAC 2007"
+      }
+    },
+    "GB-ORK": {
+      "unknown":{
+        "_comment": "Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf",
+        "value": 13, "source": "assumes 95% wind, 5% solar"
+      }
+    },
+    "IN": {
+      "unknown":{
+        "value": 26, "source": "assumes 43% solar PV and 57% wind"
+      }
+    },
+    "NL": {
+      "unknown":{
+        "_comment": "Source: Derived from 2017 annual average: coal  30.0%, co-generation(gas)  19.0%, gas 28.0%, coke-oven-gas 5.0%, nuclear 4.0%, Wind  7.7%, biomass (waste) 4.90%, solar 1.40%, accoring to http://en-tran-ce.org/newsletter-renewable-energy-in-the-netherlands/",
+        "value": 563, "source": "assumes 57% gas, 33% coal, 5% biomass, 4% nuclear"
+      }
+    },
+    "SE": {
+      "unknown":{
+        "value": 362, "source": "assumes 72% biomass, 28% conventional thermal"
+      }
+    },
+    "RU": {
+      "unknown":{
+        "_comment": "Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  = 567 g/kWh; 2015 production source: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat",
+        "value": 567, "source": "assumes 76% gas, 23% coal, 1% oil"
+      }
+    },
+    "RU-1": {
+      "unknown":{
+        "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 7.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 88.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 524 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural",
+        "value": 524, "source": "assumes 88% gas, 8% coal, <1% oil, 4% other"
+      }
+    },
+    "RU-2": {
+      "unknown":{
+        "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 86.7% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 8.3% * 490 g/kWh (gas) + 4.6% * 700 g/kWh (other)= 786 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone",
+        "value": 786, "source": "assumes 87% coal, 8% gas, <1% oil, 5% other"
+      }
+    }
+  }
+}

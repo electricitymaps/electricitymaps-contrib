@@ -40,3 +40,12 @@ for k, v in EXCHANGES_CONFIG.items():
 # we want neighbors to always be in the same order
 for zone, neighbors in ZONE_NEIGHBOURS.items():
     ZONE_NEIGHBOURS[zone] = sorted(neighbors)
+
+CO2EQ_PARAMETERS = json.load(open(relative_path(
+    __file__, '../config/co2eq_parameters.json')))
+
+def emission_factors(zone_key):
+    override = CO2EQ_PARAMETERS['zoneOverrides'].get(zone_key, {})
+    defaults = CO2EQ_PARAMETERS['defaults']
+    merged = {**defaults, **override}
+    return dict([ (k, (v or {}).get('value')) for (k, v) in merged.items() ])
