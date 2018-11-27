@@ -12,6 +12,10 @@
     "hydro": {
       "value": 24, "source": "IPCC 2014"
     },
+    "hydro charge": {
+      "_comment": "Emissions are counted at discharge",
+      "value": 0, "source": "Tomorrow"
+    },
     "hydro discharge": {
       "_comment": "Here we use the world average",
       "value": 301.13684338512996, "source": "World average intensity by Tomorrow"
