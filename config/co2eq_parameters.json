@@ -31,7 +31,7 @@
         "value": 0
       },
       "hydro discharge": {
-        "_comment": "Here we use the world average",
+        "_comment": "As a default fallback, we use here the annual mean carbon intensity of all electricityMap zones",
         "source": "World average intensity by Tomorrow",
         "value": 301.13684338512996
       },
