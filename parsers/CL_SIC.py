@@ -6,12 +6,13 @@ import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
 from datetime import datetime
+import logging
 import pandas as pd
 import re
 import requests
 
 
-thermal_plants = {
+THERMAL_PLANTS = {
   "Taltal 2 GNL": "gas",
   "Taltal 2": "gas",
   "Taltal 2 Diesel": "oil",
@@ -210,36 +211,66 @@ thermal_plants = {
   "HBS GNL": "gas",
   "Rey": "oil",
   "El Nogal": "oil",
-  "Lepanto": "biomass"
+  "Lepanto": "biomass",
+  "Sta Fe": "unknown",
+  "Collipulli": "unknown",
+  "Totoral": "unknown",
+  "Ancali": "unknown",
+  "Nueva Renca": "gas",
+  "Laja CMPC": "biomass",
+  "Curanilahue": "coal",
+  "Cabrero": "biomass",
+  "Curacautin": "geothermal",
+  "D. Almagro": "gas",
+  "Concon": "gas",
+  "Lautaro": "biomass",
+  "Degan": "oil"
 }
 
 
-def get_xls_data(session = None):
+def get_xls_data(target_datetime = None, session = None):
     """Finds and reads .xls file from url into a pandas dataframe."""
 
-    s = session or requests.Session()
-    document_url = 'https://sic.coordinador.cl/informes-y-documentos/fichas/operacion-real/'
-    req = s.get(document_url)
-    soup = BeautifulSoup(req.text, 'html.parser')
+    if not target_datetime:
+        s = session or requests.Session()
+        document_url = 'https://sic.coordinador.cl/informes-y-documentos/fichas/operacion-real/'
+        req = s.get(document_url)
+        soup = BeautifulSoup(req.text, 'html.parser')
 
-    # Find the latest file.
-    generation_link = soup.find("a", {"title": "Descargar archivo"})
-    extension = generation_link["href"]
-    base_url = "https://sic.coordinador.cl"
-    data_url = base_url + extension
+        # Find the latest file.
+        generation_link = soup.find("a", {"title": "Descargar archivo"})
+        extension = generation_link["href"]
+        base_url = "https://sic.coordinador.cl"
+        data_url = base_url + extension
 
-    date_pattern = r'OP(\d+)\.xls'
-    date_str = re.search(date_pattern, extension).group(1)
+        date_pattern = r'OP(\d+)\.xls'
+        date_str = re.search(date_pattern, extension).group(1)
+        date_no_tz = arrow.get(date_str, "YYMMDD")
+        date = date_no_tz.replace(tzinfo='Chile/Continental')
+    else:
+        lookup_date = target_datetime.format('YYMMDD')
+        year = target_datetime.format('YY')
+        data_url = 'https://sic.coordinador.cl/wp-content/uploads/estadisticas/operdiar/{0}/OP{1}.xls'.format(year, lookup_date)
+        date = target_datetime.replace(tzinfo='Chile/Continental')
 
-    date_no_tz = arrow.get(date_str, "YYMMDD")
-    date = date_no_tz.replace(tzinfo='Chile/Continental')
-
+    # Multiple tables in first excel sheet, only top one is needed.
     col_names = ['Plants'] + list(range(1,24)) + [0]
-    df = pd.read_excel(data_url, skiprows=[0,1,2,3], header=None, index_col=0, skip_footer=300, usecols=25, names=col_names)
+    df = pd.read_excel(data_url, skiprows=[0,1,2], header=None, index_col=0, sheet_name="gen_real", usecols=25, names=col_names)
     df = df.reset_index(drop=True)
     df = df.set_index("Plants")
 
-    return df, date
+    OLD_FORMAT = False
+    # Table layout changed in January 2016, old format will cause total processing to fail.
+    try:
+        df_end = df.index.get_loc('Eólico')
+    except KeyError:
+        df_end = df.index.get_loc('Total Generación SIC')
+        OLD_FORMAT = True
+
+    # Remove unneeded rows.
+    df = df.iloc[:df_end+1]
+
+    return df, date, OLD_FORMAT
 
 
 def combine_generating_units(generation, gen_vals):
@@ -266,7 +297,7 @@ def thermal_processer(df, logger):
 
     # Log any new plants that have been added.
     data_plants = list(thermal_df.index)
-    map_plants = list(thermal_plants.keys())
+    map_plants = list(THERMAL_PLANTS.keys())
     unmapped = list(set(data_plants) - set(map_plants))
 
     for plant in unmapped:
@@ -276,11 +307,17 @@ def thermal_processer(df, logger):
     gas_generation = []
     oil_generation = []
     biomass_generation = []
+    geothermal_generation = []
     unknown_generation = []
 
-    for plant in thermal_plants.keys():
-        plant_vals = thermal_df.loc[plant].to_dict()
-        plant_type = thermal_plants[plant]
+    for plant in THERMAL_PLANTS.keys():
+        try:
+            plant_vals = thermal_df.loc[plant].to_dict()
+        except KeyError:
+            # plant is missing from df
+            continue
+
+        plant_type = THERMAL_PLANTS[plant]
         if plant_type == 'coal':
             coal_generation.append(plant_vals)
         elif plant_type == 'gas':
@@ -289,6 +326,8 @@ def thermal_processer(df, logger):
             oil_generation.append(plant_vals)
         elif plant_type == 'biomass':
             biomass_generation.append(plant_vals)
+        elif plant_type == 'geothermal':
+            geothermal_generation.append(plant_vals)
         else:
             unknown_generation.append(plant_vals)
 
@@ -296,18 +335,20 @@ def thermal_processer(df, logger):
     gas_vals = defaultdict(lambda: 0.0)
     oil_vals = defaultdict(lambda: 0.0)
     biomass_vals = defaultdict(lambda: 0.0)
+    geothermal_vals = defaultdict(lambda: 0.0)
     unknown_vals = defaultdict(lambda: 0.0)
 
     coal = combine_generating_units(coal_generation, coal_vals)
     gas = combine_generating_units(gas_generation, gas_vals)
     oil = combine_generating_units(oil_generation, oil_vals)
     biomass = combine_generating_units(biomass_generation, biomass_vals)
+    geothermal = combine_generating_units(geothermal_generation, geothermal_vals)
     unknown = combine_generating_units(unknown_generation, unknown_vals)
 
-    return coal, gas, oil, biomass, unknown
+    return coal, gas, oil, biomass, geothermal, unknown
 
 
-def data_processer(df, date, logger):
+def data_processer(df, date, old_format, logger):
     """
     Extracts aggregated data for hydro, solar and wind from dataframe.
     Combines with thermal data and an arrow object timestamp.
@@ -319,13 +360,23 @@ def data_processer(df, date, logger):
     gas_vals = thermal_generation[1]
     oil_vals = thermal_generation[2]
     biomass_vals = thermal_generation[3]
-    unknown_vals = thermal_generation[4]
+    geothermal_vals = thermal_generation[4]
+    unknown_vals = thermal_generation[5]
 
     total = df.loc['Total Generación SIC']
 
-    hydro = df.loc['Hidroeléctrico'].to_dict()
-    solar = df.loc['Solar'].to_dict()
-    wind = df.loc['Eólico'].to_dict()
+    if old_format==True:
+        solar = df.loc['Solares'].to_dict()
+        wind = df.loc['Eólicas'].to_dict()
+
+        hydro_running = df.loc['Pasada'].to_dict()
+        hydro_dam = df.loc['Embalse'].to_dict()
+        hydro_joined = defaultdict(lambda: 0.0)
+        hydro = combine_generating_units([hydro_running, hydro_dam], hydro_joined)
+    else:
+        hydro = df.loc['Hidroeléctrico'].to_dict()
+        solar = df.loc['Solar'].to_dict()
+        wind = df.loc['Eólico'].to_dict()
 
     hydro_vals = {k: hydro[k]*total[k] for k in hydro}
     solar_vals = {k: solar[k]*total[k] for k in solar}
@@ -334,14 +385,15 @@ def data_processer(df, date, logger):
     generation_by_hour = []
     for hour in range(0,24):
         production = {}
-        production['hydro'] = hydro_vals[hour]
-        production['wind'] = wind_vals[hour]
-        production['solar'] = solar_vals[hour]
-        production['coal'] = coal_vals[hour]
-        production['gas'] = gas_vals[hour]
-        production['oil'] = oil_vals[hour]
-        production['biomass'] = biomass_vals[hour]
-        production['unknown'] = unknown_vals[hour]
+        production['hydro'] = hydro_vals.get(hour, 0.0)
+        production['wind'] = wind_vals.get(hour, 0.0)
+        production['solar'] = solar_vals.get(hour, 0.0)
+        production['coal'] = coal_vals.get(hour, 0.0)
+        production['gas'] = gas_vals.get(hour, 0.0)
+        production['oil'] = oil_vals.get(hour, 0.0)
+        production['biomass'] = biomass_vals.get(hour, 0.0)
+        production['geothermal'] = geothermal_vals.get(hour, 0.0)
+        production['unknown'] = unknown_vals.get(hour, 0.0)
 
         if hour == 0:
             # Midnight data is for a new day.
@@ -354,7 +406,7 @@ def data_processer(df, date, logger):
     return generation_by_hour
 
 
-def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -384,8 +436,8 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
     }
     """
 
-    gxd = get_xls_data(session = None)
-    processing = data_processer(gxd[0], gxd[1], logger)
+    gxd = get_xls_data(target_datetime = target_datetime, session = None)
+    processing = data_processer(gxd[0], gxd[1], gxd[2], logger)
 
     data_by_hour = []
     for processed_data in processing:
@@ -410,3 +462,5 @@ if __name__ == '__main__':
 
     print('fetch_production() ->')
     print(fetch_production())
+    #print('fetch_production(target_datetime=2016-01-01)')
+    #print(fetch_production(target_datetime=arrow.get('2016-01-01')))
