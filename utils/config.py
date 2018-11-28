@@ -45,17 +45,7 @@ CO2EQ_PARAMETERS = json.load(open(relative_path(
     __file__, '../config/co2eq_parameters.json')))
 
 def emission_factors(zone_key):
-    fallback_carbon_intensity = CO2EQ_PARAMETERS['fallbackZoneMixes'].get(zone_key, {}).get('carbonIntensity');
     override = CO2EQ_PARAMETERS['emissionFactors']['zoneOverrides'].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS['emissionFactors']['defaults']
     merged = {**defaults, **override}
-    if fallback_carbon_intensity:
-        merged['battery storage'] = {
-            'value': fallback_carbon_intensity,
-            'source': 'Annual carbon intensity'
-        }
-        merged['hydro storage'] = {
-            'value': fallback_carbon_intensity,
-            'source': 'Annual carbon intensity'
-        }
     return dict([(k, (v or {}).get('value')) for (k, v) in merged.items()])

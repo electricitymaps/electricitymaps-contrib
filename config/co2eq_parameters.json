@@ -65,10 +65,230 @@
       }
     },
     "zoneOverrides": {
+      "AR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 297.18891097799343
+        }
+      },
+      "AT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 228.79772971259385
+        }
+      },
+      "AUS-NSW": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 726.0064734066499
+        }
+      },
+      "AUS-QLD": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 766.6875812088138
+        }
+      },
+      "AUS-SA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 336.55253056678424
+        }
+      },
+      "AUS-TAS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 128.59069995581274
+        }
+      },
+      "AUS-VIC": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 682.6761763130781
+        }
+      },
+      "AUS-WA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 611.2821372774696
+        }
+      },
+      "BA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 717.9419102176483
+        }
+      },
+      "BE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 221.2633924759543
+        }
+      },
+      "BG": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 418.2092755632947
+        }
+      },
+      "BO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 558.083871451602
+        }
+      },
+      "BR-CS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 143.78721239840618
+        }
+      },
+      "BR-N": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 310.87795272553205
+        }
+      },
+      "BR-NE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 240.54214408759694
+        }
+      },
+      "BR-S": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 123.14921411453244
+        }
+      },
+      "CA-AB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 597.2654373454017
+        }
+      },
+      "CA-NS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 557.5937668126903
+        }
+      },
+      "CA-ON": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 34.64876799001495
+        }
+      },
+      "CA-PE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 61.455304595109254
+        }
+      },
+      "CA-YT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 40.98482440401805
+        }
+      },
+      "CL-SING": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 614.2555591940885
+        }
+      },
+      "CR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 52.16941300335089
+        }
+      },
+      "CY": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 603.5400311246383
+        }
+      },
+      "CZ": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 468.13784243029494
+        }
+      },
+      "DE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 374.766067234906
+        }
+      },
+      "DK-DK1": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 228.86202884669197
+        }
+      },
+      "DK-DK2": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 282.74731819331896
+        }
+      },
+      "DO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 501.6151583506052
+        }
+      },
       "EE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 1124.6394396486162
+        },
         "oil": {
           "source": "EASAC 2007",
           "value": 1515
+        }
+      },
+      "ES": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 218.72186556374749
+        }
+      },
+      "ES-IB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 610.5081243078652
+        }
+      },
+      "FI": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 159.44929538773565
+        }
+      },
+      "FO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 366.7153663910574
+        }
+      },
+      "FR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 66.70290054165834
+        }
+      },
+      "GB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 297.6489439788152
+        }
+      },
+      "GB-NIR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 429.1422388841488
         }
       },
       "GB-ORK": {
@@ -78,18 +298,238 @@
           "value": 13
         }
       },
+      "GR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 501.15075317431626
+        }
+      },
+      "GT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 178.67099686684926
+        }
+      },
+      "HU": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 284.044315979312
+        }
+      },
+      "IE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 381.21842143892457
+        }
+      },
       "IN": {
         "unknown": {
           "source": "assumes 43% solar PV and 57% wind",
           "value": 26
         }
       },
+      "IN-AP": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 615.9045832043543
+        }
+      },
+      "IN-CT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 817.7789768570119
+        }
+      },
+      "IN-DL": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 516.3746020945765
+        }
+      },
+      "IN-KA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 589.9391089569107
+        }
+      },
+      "IN-PB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 683.2474466710828
+        }
+      },
+      "IT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 0.0
+        }
+      },
+      "IT-CNO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 275.1929511304738
+        }
+      },
+      "IT-CSO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 478.3907617891565
+        }
+      },
+      "IT-NO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 441.1009257379535
+        }
+      },
+      "IT-SAR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 553.1809530582154
+        }
+      },
+      "IT-SIC": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 346.96726185833967
+        }
+      },
+      "IT-SO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 413.76308999360253
+        }
+      },
+      "LT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 343.46364929118215
+        }
+      },
+      "LV": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 439.92440182955363
+        }
+      },
+      "MD": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 561.0445799682287
+        }
+      },
+      "ME": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 653.1426279273578
+        }
+      },
+      "MK": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 592.2185925876988
+        }
+      },
+      "MY-WM": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 628.4027273315369
+        }
+      },
+      "NI": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 310.27206722101863
+        }
+      },
       "NL": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 462.73049119238584
+        },
         "unknown": {
           "_comment": "Source: Derived from 2017 annual average: coal  30.0%, co-generation(gas)  19.0%, gas 28.0%, coke-oven-gas 5.0%, nuclear 4.0%, Wind  7.7%, biomass (waste) 4.90%, solar 1.40%.",
           "_url": "http://en-tran-ce.org/newsletter-renewable-energy-in-the-netherlands/",
           "source": "assumes 57% gas, 33% coal, 5% biomass, 4% nuclear",
           "value": 563
+        }
+      },
+      "NO-NO1": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 34.68921708986348
+        }
+      },
+      "NO-NO2": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 38.029382343634545
+        }
+      },
+      "NO-NO3": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 34.770101548310805
+        }
+      },
+      "NO-NO4": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 52.84871316612463
+        }
+      },
+      "NO-NO5": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 39.54793629854753
+        }
+      },
+      "NZ-NZN": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 185.19400206781782
+        }
+      },
+      "NZ-NZS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 38.164465763002966
+        }
+      },
+      "PA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 102.19192466757119
+        }
+      },
+      "PE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 230.4833489303414
+        }
+      },
+      "PL": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 674.7698898846445
+        }
+      },
+      "PT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 335.432540600138
+        }
+      },
+      "RO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 322.2371072531047
+        }
+      },
+      "RS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 565.0389007015892
         }
       },
       "RU": {
@@ -115,9 +555,91 @@
         }
       },
       "SE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 46.02408724838775
+        },
         "unknown": {
           "source": "assumes 72% biomass, 28% conventional thermal",
           "value": 362
+        }
+      },
+      "SG": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 494.8124797719261
+        }
+      },
+      "SI": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 246.34741810042195
+        }
+      },
+      "SK": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 330.75564085967403
+        }
+      },
+      "SV": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 191.73780595765206
+        }
+      },
+      "TR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 466.47377297431035
+        }
+      },
+      "TW": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 572.7823963016652
+        }
+      },
+      "UA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 327.45956174640236
+        }
+      },
+      "US-CA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 238.49244489880175
+        }
+      },
+      "US-NEISO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 273.7550391054897
+        }
+      },
+      "US-NY": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 200.76883108658194
+        }
+      },
+      "US-PJM": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 399.77646355214347
+        }
+      },
+      "US-SPP": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 448.61411758480546
+        }
+      },
+      "UY": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 53.102596044553806
         }
       }
     }
