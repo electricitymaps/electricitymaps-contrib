@@ -50,6 +50,10 @@ def emission_factors(zone_key):
     defaults = CO2EQ_PARAMETERS['emissionFactors']['defaults']
     merged = {**defaults, **override}
     if fallback_carbon_intensity:
+        merged['battery storage'] = {
+            'value': fallback_carbon_intensity,
+            'source': 'Annual carbon intensity'
+        }
         merged['hydro storage'] = {
             'value': fallback_carbon_intensity,
             'source': 'Annual carbon intensity'

@@ -13,7 +13,7 @@ exports.footprintOf = function(mode, zoneKey) {
 };
 exports.sourceOf = function(mode, zoneKey) {
   const fallbackCarbonIntensity = (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).carbonIntensity;
-  if (mode === 'hydro discharge' && fallbackCarbonIntensity) {
+  if (mode.indexOf('discharge') !== -1 && fallbackCarbonIntensity) {
     return 'Annual carbon intensity';
   }
   const defaultFootprint = co2eqParameters.emissionFactors.defaults[mode];

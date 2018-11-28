@@ -1,9 +1,15 @@
 {
   "emissionFactors": {
     "defaults": {
-      "battery discharge": {
-        "source": "TODO",
+      "battery charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "Tomorrow",
         "value": 0
+      },
+      "battery discharge": {
+        "_comment": "As a default fallback, we use here the annual mean carbon intensity of all electricityMap zones",
+        "source": "World average intensity by Tomorrow",
+        "value": 301.13684338512996
       },
       "biomass": {
         "source": "IPCC 2014",
