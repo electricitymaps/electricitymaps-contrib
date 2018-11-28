@@ -12,6 +12,10 @@ exports.footprintOf = function(mode, zoneKey) {
   return (override || defaultFootprint || {}).value;
 };
 exports.sourceOf = function(mode, zoneKey) {
+  const fallbackCarbonIntensity = (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).carbonIntensity;
+  if (mode === 'hydro discharge' && fallbackCarbonIntensity) {
+    return 'Annual carbon intensity';
+  }
   const defaultFootprint = co2eqParameters.emissionFactors.defaults[mode];
   const override = (co2eqParameters.emissionFactors.zoneOverrides[zoneKey] || {})[mode];
   return (override || defaultFootprint || {}).source;
