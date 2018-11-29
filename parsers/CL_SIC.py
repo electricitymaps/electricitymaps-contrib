@@ -248,6 +248,7 @@ def get_xls_data(target_datetime = None, session = None):
         date_no_tz = arrow.get(date_str, "YYMMDD")
         date = date_no_tz.replace(tzinfo='Chile/Continental')
     else:
+        target_datetime = arrow.get(target_datetime)
         lookup_date = target_datetime.format('YYMMDD')
         year = target_datetime.format('YY')
         data_url = 'https://sic.coordinador.cl/wp-content/uploads/estadisticas/operdiar/{0}/OP{1}.xls'.format(year, lookup_date)
@@ -310,14 +311,10 @@ def thermal_processer(df, logger):
     geothermal_generation = []
     unknown_generation = []
 
-    for plant in THERMAL_PLANTS.keys():
-        try:
-            plant_vals = thermal_df.loc[plant].to_dict()
-        except KeyError:
-            # plant is missing from df
-            continue
+    for plant in data_plants:
+        plant_vals = thermal_df.loc[plant].to_dict()
 
-        plant_type = THERMAL_PLANTS[plant]
+        plant_type = THERMAL_PLANTS.get(plant, 'unknown')
         if plant_type == 'coal':
             coal_generation.append(plant_vals)
         elif plant_type == 'gas':
@@ -348,7 +345,7 @@ def thermal_processer(df, logger):
     return coal, gas, oil, biomass, geothermal, unknown
 
 
-def data_processer(df, date, old_format, logger):
+def data_processer(df, date, is_old_format, logger):
     """
     Extracts aggregated data for hydro, solar and wind from dataframe.
     Combines with thermal data and an arrow object timestamp.
@@ -365,22 +362,21 @@ def data_processer(df, date, old_format, logger):
 
     total = df.loc['Total Generación SIC']
 
-    if old_format==True:
-        solar = df.loc['Solares'].to_dict()
-        wind = df.loc['Eólicas'].to_dict()
+    if is_old_format:
+        solar_vals = df.loc['Solares'].to_dict()
+        wind_vals = df.loc['Eólicas'].to_dict()
 
         hydro_running = df.loc['Pasada'].to_dict()
         hydro_dam = df.loc['Embalse'].to_dict()
         hydro_joined = defaultdict(lambda: 0.0)
-        hydro = combine_generating_units([hydro_running, hydro_dam], hydro_joined)
+        hydro_vals = combine_generating_units([hydro_running, hydro_dam], hydro_joined)
     else:
         hydro = df.loc['Hidroeléctrico'].to_dict()
         solar = df.loc['Solar'].to_dict()
         wind = df.loc['Eólico'].to_dict()
-
-    hydro_vals = {k: hydro[k]*total[k] for k in hydro}
-    solar_vals = {k: solar[k]*total[k] for k in solar}
-    wind_vals = {k: wind[k]*total[k] for k in wind}
+        hydro_vals = {k: hydro[k]*total[k] for k in hydro}
+        solar_vals = {k: solar[k]*total[k] for k in solar}
+        wind_vals = {k: wind[k]*total[k] for k in wind}
 
     generation_by_hour = []
     for hour in range(0,24):
@@ -462,5 +458,5 @@ if __name__ == '__main__':
 
     print('fetch_production() ->')
     print(fetch_production())
-    #print('fetch_production(target_datetime=2016-01-01)')
-    #print(fetch_production(target_datetime=arrow.get('2016-01-01')))
+    #print('fetch_production(target_datetime=2015-01-02)')
+    #print(fetch_production(target_datetime='2015-01-02'))
