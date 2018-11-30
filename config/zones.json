@@ -2381,7 +2381,6 @@
     ]
   },
   "LT": {
-    "_comment": "hydro incl. 900 MW pumped storage",
     "bounding_box": [
       [
         21.0558004086,
@@ -2393,12 +2392,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 100,
-      "gas": 1719,
-      "hydro": 1028,
-      "oil": 160,
-      "solar": 73,
-      "wind": 499
+      "biomass": 124,
+      "gas": 1873,
+      "hydro": 128,
+      "hydro storage": 900,
+      "oil": 0,
+      "solar": 82,
+      "wind": 509,
+      "unknown": 37
     },
     "contributors": [
       "https://github.com/corradio"
