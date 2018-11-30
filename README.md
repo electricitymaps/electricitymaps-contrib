@@ -164,7 +164,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
 - Sweden: [SVK](https://www.svk.se/en/national-grid/the-control-room/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
+- Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States of America
@@ -270,6 +270,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey: [TEİAŞ](https://www.teias.gov.tr/)
 - Ukraine: [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
 - United States of America

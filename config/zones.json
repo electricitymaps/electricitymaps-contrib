@@ -3367,9 +3367,6 @@
         25.2954588893
       ]
     ],
-    "capacity": {
-      "hydro storage": 2602
-    },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/MariusKroon"
