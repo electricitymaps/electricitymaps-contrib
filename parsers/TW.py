@@ -62,6 +62,7 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
             'gas': gas_capacity,
             'oil': oil_capacity,
             'hydro': production.ix['Hydro'].capacity,
+            'hydro storage':production.ix['Pumping Gen'].capacity,
             'nuclear': production.ix['Nuclear'].capacity,
             'solar': production.ix['Solar'].capacity,
             'wind': production.ix['Wind'].capacity,
