@@ -727,7 +727,7 @@ zoneFeatures.forEach((data) => {
 zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 
 // Write unsimplified list of geojson, without state merges
-fs.writeFileSync('build/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
+fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
 
 // Simplify all countries
 const topojson = require('topojson');
