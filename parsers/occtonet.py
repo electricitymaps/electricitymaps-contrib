@@ -78,7 +78,7 @@ def fetch_exchange(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     query_date = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y/%m/%d')
     #get d-1 in tz Asia/Tokyo
     query_date_1 = arrow.get(target_datetime).shift(days=-1).to('Asia/Tokyo').strftime('%Y/%m/%d')
-    
+
     sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     exch_id = exchange_mapping[sortedZoneKeys]
     r = session or requests.session()
@@ -97,25 +97,25 @@ def fetch_exchange(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     df = pd.concat([data_1,data])
     # CB-HR -exceptions
     if sortedZoneKeys == 'JP-CB->JP-HR':
-        
+
         df = df.set_index(['Date', 'Time'])
-        
+
         Headers = get_headers(r, exch_id[1], query_date, Cookies)
         Headers_1 = get_headers(r, exch_id[1], query_date_1, Cookies)
-    
+
         Headers = get_request_token(r, Headers, Cookies)
         Headers_1 = get_request_token(r, Headers_1, Cookies)
-    
+
         data = get_exchange(r, Headers, Cookies)
         data_1 = get_exchange(r, Headers_1, Cookies)
-    
+
         df2 = pd.concat([data_1,data])
         df2 = df2.set_index(['Date', 'Time'])
-        
+
         df = df + df2
         df = df.reset_index()
-        
-    # fix occurrences of 24:00hrs    
+
+    # fix occurrences of 24:00hrs
     list24 = list(df.index[df['Time']=='24:00'])
     for idx in list24:
         df.loc[idx, 'Date'] = arrow.get(df.loc[idx, 'Date']).shift(days=1).strftime('%Y/%m/%d')
@@ -124,13 +124,13 @@ def fetch_exchange(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     flows_to_revert = ['JP-CB->JP-TK', 'JP-CG->JP-KN', 'JP-CG->JP-SK']
     if sortedZoneKeys in flows_to_revert:
         df['netFlow'] = -1 * df['netFlow']
-    
+
     df['source'] = 'occtonet.occto.or.jp'
     df['datetime'] = df.apply(parse_dt, axis=1)
-    
+
     df['sortedZoneKeys'] = sortedZoneKeys
     df = df[['source', 'datetime', 'netFlow', 'sortedZoneKeys']]
-    
+
     results = df.to_dict('records')
     for result in results:
         result['datetime'] = result['datetime'].to_pydatetime()
@@ -148,7 +148,7 @@ def fetch_exchange_forecast(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     if query_date > arrow.get().to('Asia/Tokyo').strftime('%Y/%m/%d'):
         raise NotImplementedError(
             "Future dates(local time) not implemented for selected exchange")
-    
+
     sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     exch_id = exchange_mapping[sortedZoneKeys]
     # Login to occtonet
@@ -160,7 +160,7 @@ def fetch_exchange_forecast(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     df = get_exchange_fcst(r, Headers, Cookies)
     # CB-HR -exceptions
     if sortedZoneKeys == 'JP-CB->JP-HR':
-        
+
         df = df.set_index(['Date', 'Time'])
         Headers = get_headers(r, exch_id[1], query_date, Cookies)
         Headers = get_request_token(r, Headers, Cookies)
@@ -168,8 +168,8 @@ def fetch_exchange_forecast(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
         df2 = df2.set_index(['Date', 'Time'])
         df = df + df2
         df = df.reset_index()
-        
-    # fix possible occurrences of 24:00hrs    
+
+    # fix possible occurrences of 24:00hrs
     list24 = list(df.index[df['Time']=='24:00'])
     for idx in list24:
         df.loc[idx, 'Date'] = arrow.get(str(df.loc[idx, 'Date'])).shift(days=1).strftime('%Y/%m/%d')
@@ -178,7 +178,7 @@ def fetch_exchange_forecast(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     flows_to_revert = ['JP-CB->JP-TK', 'JP-CG->JP-KN', 'JP-CG->JP-SK']
     if sortedZoneKeys in flows_to_revert:
         df['netFlow'] = -1 * df['netFlow']
-    # Add zonekey, source    
+    # Add zonekey, source
     df['source'] = 'occtonet.occto.or.jp'
     df['datetime'] = df.apply(parse_dt, axis=1)
     df['sortedZoneKeys'] = sortedZoneKeys
@@ -187,8 +187,8 @@ def fetch_exchange_forecast(zone_key1='JP-TH', zone_key2='JP-TK', session=None,
     results = df.to_dict('records')
     for result in results:
         result['datetime'] = result['datetime'].to_pydatetime()
-    return results   
-    
+    return results
+
 def get_cookies(session=None):
     s = session or requests.session()
     s.get('http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login')
@@ -223,8 +223,7 @@ def get_headers(session, exch_id, date, cookies):
     headers=r.text
     headers = eval(headers.replace('false', 'False').replace('null', 'None'))
     if headers['root']['errMessage']:
-        print(headers['root']['errMessage'])
-        return None
+        raise RuntimeError('Headers not available due to {}'.format(headers['root']['errMessage']))
     else:
         payload['msgArea'] = headers['root']['bizRoot']['header']['msgArea']['value']
         payload['searchReqHdn'] = headers['root']['bizRoot']['header']['searchReqHdn']['value']
@@ -239,10 +238,9 @@ def get_request_token(session, payload, cookies):
                +'fwExtention.pathInfo=CA01S070C&fwExtention.prgbrh=0',
                cookies=cookies, data=payload)
     headers=r.text
-    headers = eval(headers.replace('false', 'False').replace('null', 'None')) 
+    headers = eval(headers.replace('false', 'False').replace('null', 'None'))
     if headers['root']['errFields']:
-        print(headers['root']['errMessage'])
-        return None
+        raise RuntimeError('Request token not available due to {}'.format(headers['root']['errFields']))
     else:
         payload['downloadKey'] = headers['root']['bizRoot']['header']['downloadKey']['value']
         payload['requestToken'] = headers['root']['bizRoot']['header']['requestToken']['value']
@@ -335,10 +333,10 @@ def zone_headers(zone, date):
           }
 
     with requests.Session() as s:
-    
-    
+
+
         r = s.get('http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login')
-    
+
     r2 = s.post('http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/CB01S020C?fwExtention.pathInfo=CB01S020C&fwExtention.prgbrh=0',
                    cookies=s.cookies, data=payload)
     r2.encoding = 'utf-8'
@@ -351,7 +349,7 @@ def solve_flows(headers):
     Solves flow equations for each node inside a zone for a given day,
     allowing possibly to add large isolated thermal generators, pump storages etc. to eMap
     Japanese regions in the future
-    
+
     Expects a dictionary argument obtained by function zone_headers(zone, date)
     Returns net generation for each node at 30 minute intervals in a Pandas DataFrame
     """
@@ -387,12 +385,12 @@ def solve_flows(headers):
         col = df.columns[i]
         src = col.split(' → ')[0]
         tgt = col.split(' → ')[-1]
-    
+
         if src in df2.columns:
             df2[src] = df2[src]+pd.to_numeric(df.iloc[:,i])
         else:
             df2[src] = pd.to_numeric(df.iloc[:,i])
-    
+
         if tgt in df2.columns:
             df2[tgt] = df2[tgt]-pd.to_numeric(df.iloc[:,i])
         else:
@@ -426,4 +424,3 @@ if __name__ == '__main__':
     print(fetch_exchange_forecast('JP-CB', 'JP-HR')[-3:])
     print('fetch_exchange_forecast(JP-CG, JP-KY) ->')
     print(fetch_exchange_forecast('JP-CG', 'JP-KY')[-3:])
-    
