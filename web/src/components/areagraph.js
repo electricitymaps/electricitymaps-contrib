@@ -86,7 +86,7 @@ AreaGraph.prototype.data = function (arg) {
             if (isFinite(value) && that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
                 if (isStorage && obj[k] >= 0) {
-                    obj[k] *= d.dischargeCo2Intensities[k] / 1e3 / 60.0
+                    obj[k] *= d.dischargeCo2Intensities[k.replace(' storage', '')] / 1e3 / 60.0
                 } else {
                     obj[k] *= d.productionCo2Intensities[k] / 1e3 / 60.0
                 }
