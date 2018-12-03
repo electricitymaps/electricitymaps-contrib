@@ -992,11 +992,13 @@ function renderCountryTable(state) {
       .data(d)
       .render(true);
 
+    const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
+
     const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
     countryTable.showNoParserMessageIf(zoneIsMissingParser);
-    const zoneHasProductionDataAtTimestamp = !d.production;
+    const zoneHasNotProductionDataAtTimestamp = (!d.production || !Object.keys(d.production).length) && zonesThatCanHaveZeroProduction.indexOf(state.application.selectedZoneName) === -1;
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
-    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
+    countryTable.showNoDataMessageIf(zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
   }
 }
 
