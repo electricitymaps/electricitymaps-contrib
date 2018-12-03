@@ -994,7 +994,7 @@ function renderCountryTable(state) {
 
     const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
     countryTable.showNoParserMessageIf(zoneIsMissingParser);
-    const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
+    const zoneHasProductionDataAtTimestamp = !d.production;
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
     countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
   }
