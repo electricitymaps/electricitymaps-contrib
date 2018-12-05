@@ -8,6 +8,7 @@ ADD web/yarn.lock /home/web/yarn.lock
 RUN yarn
 
 # Generate map
+RUN mkdir -p public/dist/
 ADD web/build /home/web/build
 ADD web/third_party_maps /home/web/third_party_maps
 ADD web/generate-geometries.js web/topogen.sh /home/web/

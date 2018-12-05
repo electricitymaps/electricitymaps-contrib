@@ -8,7 +8,7 @@ function readNDJSON(path) {
     .map(JSON.parse);
 }
 
-let zones = readNDJSON('build/zonegeometries.json');
+let zones = readNDJSON('public/dist/zonegeometries.json');
 if (args.length > 0) {
   zones = zones.filter(d => d.properties.zoneName === args[0]);
 }
