@@ -112,16 +112,16 @@ line, path {
 }
 
 .country-panel{
-    overflow-y: scroll;
-    padding-right: calc(2rem - 6px);
-    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
     margin: 0;
     -webkit-overflow-scrolling: touch;
     flex: 1 1 0px;
 }
 .country-panel-wrap {
-    position: relative;
-    padding-top: 200px;
+    overflow-y: scroll;
+    padding: 0 1.5rem;
 }
 .country-panel-wrap .bysource {
     font-size: smaller;
@@ -537,13 +537,11 @@ body {
     position: relative;
 }
 .country-table-header {
-    position: absolute;
-    width:100%;
-    padding: 0 0 0.5rem 0;
-    position: absolute;
+    padding: 0 16px;
     left: 0;
     background-color: #FAFAFA;
     z-index: 4;
+    border-bottom: 1px solid lightgray;
 }
 .country-table-header-inner {
     display: flex;
@@ -1714,7 +1712,7 @@ div.highscore-button:hover {
 .zone-time-slider {
     bottom: 0;
     height: 62px;
-    padding-top: 0.75rem;
+    padding-top: 0.25rem;
     background: transparent;
     width: 100%;
     border-top: 1px solid lightgray;
@@ -1954,10 +1952,11 @@ div.highscore-button:hover {
         padding: 1rem 1.25rem 0.5rem 1.25rem;
     }
     .country-panel {
-       margin: 0;
-       padding: 0 14px 0 20px;
+        margin: 0;
+        display: block;
+        overflow-y: scroll;
        -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
-
+        margin-bottom: 67px; /* height of .zone-time-slider*/
     }
     .country-table-header {
         position: relative;
@@ -1965,10 +1964,17 @@ div.highscore-button:hover {
     .country-panel-wrap {
         position: relative;
         padding-top: 0;
+        overflow: hidden;
+    }
+
+    .detail-bottom-section{
+        position: absolute;
+        bottom: 0;
     }
 
     .zone-time-slider{
         padding-top: 4px;
+        background-color: #FAFAFA;
     }
     #country-tooltip.country-tooltip-visible {
         display: none;
