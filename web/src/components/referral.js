@@ -30,17 +30,23 @@ export default class Referral {
     if (this.isVisible()) {
       const selector = d3.selectAll(this.selectorId);
       selector.selectAll('*').remove();
-      selector.attr('class', 'referral-link')
+      selector.attr('class', 'referral-link');
+      selector.append('p')
+        .text('sponsored message')
+        .attr('class', 'sponsored-message-text')
+        .append('a')
+        .text(' - hide')
+        .attr('class', 'hide-referral')
+        .on('click', () => {
+          selector.selectAll('*').remove();
+        });
+      const refferalContent = selector.append('a')
+        .attr('class', 'referral barry')
         .attr('target', '_blank')
         .attr('href', 'https://in.getbarry.co/emap2?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=electricitymap')
         .on('click', () => {
           thirdPartyServices.trackWithCurrentApplicationState('referralClicked');
         });
-      const refferalContent = selector.append('div')
-        .attr('class', 'referral barry');
-      refferalContent.append('p')
-        .text('sponsored message')
-        .attr('class', 'sponsored-message-text');
       refferalContent.append('p')
         .text('Se hvordan Barry, fremtidens el-leverandør, vil bruge vores data')
         .attr('class', 'referral-text');

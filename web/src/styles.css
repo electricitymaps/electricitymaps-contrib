@@ -144,19 +144,21 @@ line, path {
 
 .referral-link {
     color: inherit;
-    text-decoration: none !important;
 }
 
 .referral {
-    margin: 16px 0;
+    margin: 24px 0;
 }
 
 .referral.barry {
+    display: block;
     position: relative;
     border-radius: 8px;
     padding: 8px;
     color: white;
     background-image: linear-gradient(to bottom right, #FF4B9B, #EF7B40);
+    text-decoration: none !important;
+    margin: 0;
 }
 
 .referral .barry-logo {
@@ -178,9 +180,14 @@ line, path {
     font-size: 7px;
     opacity: 0.5;
     margin: 0;
-    position: absolute;
-    top: -16px;
+    position: relative;
+    top: 0;
     left: 10px;  
+    margin: 8px 0 2px 0;
+}
+
+.hide-referral{
+    font-weight: bold;
 }
 
 .referral-text {
