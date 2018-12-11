@@ -5,8 +5,9 @@
 import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
-from datetime import datetime
+from itertools import groupby
 import logging
+import operator
 import pandas as pd
 import re
 import requests
@@ -453,6 +454,95 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
     return data_by_hour
 
 
+def cleaner(raw_chunk):
+    """Takes dict and extracts date_string and flow value.
+    Returns tuple in the form (datetime,flow)
+    """
+    date_str = raw_chunk['fecha']
+    hour = raw_chunk['intervalos']
+
+    dt_naive = arrow.get(date_str, 'YYYY-MM-DD')
+    dt_aware = dt_naive.replace(hour=hour, tzinfo='Chile/Continental').datetime
+
+    flow = -1*raw_chunk['potencia_sum']
+
+    return dt_aware, flow
+
+
+def group_and_consolidate(mess):
+    """Takes a list of 2 element tuples, groups them by first element (datetime)
+    then sums 2nd elements of the group.
+    Returns a list of tuples in the form (datetime,flow).
+    """
+
+    data = []
+    for dt, flow in groupby(sorted(mess), lambda d: d[0]):
+        netflow = sum(map(operator.itemgetter(1), flow))
+        data.append((dt, netflow))
+
+    return data
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+    """Requests the last known power exchange (in MW) between two zones
+    Arguments:
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+    target_datetime (optional)      -- string in form YYYYMMDDTHHZ
+    Return:
+    A list of dictionaries in the form:
+    {
+      'sortedZoneKeys': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+
+    if not target_datetime:
+        raise ValueError('Target datetime is required for Cl-SIC->CL-SING')
+
+    arr_target_dt = arrow.get(target_datetime, 'YYYYMMDD')
+    lookup_date = arr_target_dt.format('YYYY-MM-DD')
+
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+    url = '''https://sipub.coordinador.cl/api/v1/recursos/potencia_transitada?
+             tramo_nombre__in=Los+Changos+%C2%96+Cumbre++500KV+C1+%2F+Cumbres+500+kV
+             %2CLos+Changos+%C2%96+Cumbre++500KV+C2+%2F+Cumbres+500+kV%2C%2C%2C%2C
+             &fecha__gte={0}&fecha__lte={0}'''.format(lookup_date)
+
+    headers = {'Referer': ('https://www.coordinador.cl/sistema-informacion-publica/'
+                          'portal-de-operaciones/operacion-real/potencia-transitada-por-lineas/'),
+               'Origin': 'https://www.coordinador.cl'}
+
+    req = requests.get(url, headers=headers)
+    raw_json = req.json()
+    raw_data = raw_json['aggs']
+
+    # check to see if data is available, empty list returned if not
+    # interconnection is comprised of 2 lines
+    # data lags about 4 days behind
+    if not raw_data:
+        raise ValueError('No data available for {} on {}'.format(sortedcodes, lookup_date))
+
+    clean_data = [cleaner(data_chunk) for data_chunk in raw_data]
+    consolidated = group_and_consolidate(clean_data)
+
+    data_by_hour = []
+    for datapoint in consolidated:
+        exchange = {
+          'sortedZoneKeys': sortedcodes,
+          'datetime': datapoint[0],
+          'netFlow': datapoint[1],
+          'source': 'sipub.coordinador.cl'}
+
+        data_by_hour.append(exchange)
+
+    return data_by_hour
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -460,3 +550,5 @@ if __name__ == '__main__':
     print(fetch_production())
     #print('fetch_production(target_datetime=2015-01-02)')
     #print(fetch_production(target_datetime='2015-01-02'))
+    print('fetch_exchange(CL-SIC, CL-SING)')
+    print(fetch_exchange('CL-SIC', 'CL-SING', target_datetime='20181201'))
