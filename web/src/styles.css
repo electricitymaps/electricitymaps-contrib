@@ -116,7 +116,6 @@ line, path {
     flex-direction: column;
     overflow-y: hidden;
     margin: 0;
-    -webkit-overflow-scrolling: touch;
     flex: 1 1 0px;
 }
 .country-panel-wrap {
@@ -181,8 +180,9 @@ line, path {
     opacity: 0.5;
     margin: 0;
     position: relative;
+    font-size: smaller;
     top: 0;
-    left: 10px;  
+    left: 0;  
     margin: 8px 0 2px 0;
 }
 
@@ -508,7 +508,7 @@ body {
 }
 
 .detail-bottom-section{
-    flex: 0 0 auto;
+
 }
 
 .detail-bottom-section .social-buttons{
@@ -544,7 +544,7 @@ body {
     position: relative;
 }
 .country-table-header {
-    padding: 0 16px;
+    padding: 0;
     left: 0;
     background-color: #FAFAFA;
     z-index: 4;
@@ -1962,6 +1962,7 @@ div.highscore-button:hover {
         margin: 0;
         display: block;
         overflow-y: scroll;
+        -webkit-overflow-scrolling: touch; 
        -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
         margin-bottom: 67px; /* height of .zone-time-slider*/
     }
@@ -1975,8 +1976,9 @@ div.highscore-button:hover {
     }
 
     .detail-bottom-section{
-        position: absolute;
-        bottom: 0;
+        position: fixed;
+        bottom: 58px;
+        z-index: 999;
     }
 
     .zone-time-slider{
