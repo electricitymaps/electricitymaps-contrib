@@ -1964,7 +1964,7 @@ div.highscore-button:hover {
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch; 
        -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
-        margin-bottom: 67px; /* height of .zone-time-slider*/
+        margin-bottom: 60px; /* height of .zone-time-slider plus padding*/
     }
     .country-table-header {
         position: relative;
