@@ -262,7 +262,6 @@ co2Sub = function(str) {
                         <div class="mobile-faq"></div>
                     </div>
                     <div class="left-panel-zone-details">
-
                         <div class="country-panel">
                             <div class="country-table-header">
                                 <div class="left-panel-zone-details-toolbar">
@@ -308,103 +307,99 @@ co2Sub = function(str) {
                                     </div>
                                 </div>
                             </div>
-
                             <div class="country-panel-wrap">
+                                <div class="referral-link">
+                                </div>
                                 <div class="bysource">
                                     <%- __('country-panel.bysource') %>
                                 </div>
                                 <div class="country-table-container"></div>
-                            </div>
-
-                            <div class="zone-details-no-parser-message">
+                                <div class="zone-details-no-parser-message">
                                 <%- __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-country') %>
+                                </div>
+
+                                <hr />
+                                <div class="country-history">
+                                    <div class="loading overlay"></div>
+                                    <span class="country-history-title">
+                                        <%- co2Sub(__('country-history.carbonintensity24h')) %>
+                                    </span>
+                                    <br />
+                                    <small class="small-screen-hidden">
+                                        <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
+                                        <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
+                                    </small>
+                                    <svg id="country-history-carbon"></svg>
+
+                                    <div class="loading overlay"></div>
+                                    <span class="country-history-title" id="country-history-electricity-carbonintensity"></span>
+                                    <br />
+                                    <small class="small-screen-hidden">
+                                        <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
+                                        <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
+                                    </small>
+                                    <svg id="country-history-mix"></svg>
+
+                                    <div class="loading overlay"></div>
+                                    <span class="country-history-title">
+                                        <%- __('country-history.electricityprices24h') %>
+                                    </span>
+                                    <svg id="country-history-prices"></svg>
+                                </div>
+                                <hr />
+                                <p>
+                                    <%- __('country-panel.source')%>:
+                                    <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank"><span class="country-data-source"></span></a><small> (<%- __('country-panel.addeditsource', 'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers') %>)</small> <%- __('country-panel.helpfrom')%>
+                                    <p class="contributors">
+                                    </p>
+                                </p>
+                                <div class="social-buttons large-screen-hidden">
+                                    <p>
+                                        <!-- Facebook share -->
+                                        <div class="fb-share-button"
+                                            data-href="https://www.electricitymap.org/"
+                                            data-layout="button_count">
+                                        </div>
+                                        <!-- Twitter share -->
+                                        <a class="twitter-share-button"
+                                        data-url="https://www.electricitymap.org"
+                                        data-via="electricitymap"
+                                        data-lang="<%= locale %>"></a>
+                                        <!-- Slack -->
+                                        <span class="slack-button">
+                                            <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                                <span class="slack-ico"></span>
+                                                <span class="slack-text">Slack</span>
+                                            </a>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
-
-                            <hr />
-                            <div class="country-history">
-                                <div class="loading overlay"></div>
-                                <span class="country-history-title">
-                                    <%- co2Sub(__('country-history.carbonintensity24h')) %>
-                                </span>
-                                <br />
-                                <small class="small-screen-hidden">
-                                    <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
-                                    <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
-                                </small>
-                                <svg id="country-history-carbon"></svg>
-
-                                <div class="loading overlay"></div>
-                                <span class="country-history-title" id="country-history-electricity-carbonintensity"></span>
-                                <br />
-                                <small class="small-screen-hidden">
-                                    <i class="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank"><%- __('country-history.Getdata') %></a>
-                                    <span class="pro"><i class="material-icons" aria-hidden="true">lock</i> pro</span>
-                                </small>
-                                <svg id="country-history-mix"></svg>
-
-                                <div class="loading overlay"></div>
-                                <span class="country-history-title">
-                                    <%- __('country-history.electricityprices24h') %>
-                                </span>
-                                <svg id="country-history-prices"></svg>
-                            </div>
-                            <hr />
-                            <a class="referral-link">
-                            </a>
+                    </div>
+                    <div class="detail-bottom-section">
+                        <div class="zone-time-slider"></div>
+                        <div class="social-buttons small-screen-hidden">
                             <p>
-
-                                <%- __('country-panel.source')%>:
-                                <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank"><span class="country-data-source"></span></a><small> (<%- __('country-panel.addeditsource', 'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers') %>)</small> <%- __('country-panel.helpfrom')%>
-                                <p class="contributors">
-                                </p>
-
+                                <!-- Facebook share -->
+                                <div class="fb-share-button"
+                                    data-href="https://www.electricitymap.org/"
+                                    data-layout="button_count">
+                                </div>
+                                <!-- Twitter share -->
+                                <a class="twitter-share-button"
+                                data-url="https://www.electricitymap.org"
+                                data-via="electricitymap"
+                                data-lang="<%= locale %>"></a>
+                                <!-- Slack -->
+                                <span class="slack-button">
+                                    <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
+                                        <span class="slack-ico"></span>
+                                        <span class="slack-text">Slack</span>
+                                    </a>
+                                </span>
                             </p>
-                            <div class="social-buttons large-screen-hidden">
-                                <p>
-                                    <!-- Facebook share -->
-                                    <div class="fb-share-button"
-                                        data-href="https://www.electricitymap.org/"
-                                        data-layout="button_count">
-                                    </div>
-                                    <!-- Twitter share -->
-                                    <a class="twitter-share-button"
-                                    data-url="https://www.electricitymap.org"
-                                    data-via="electricitymap"
-                                    data-lang="<%= locale %>"></a>
-                                    <!-- Slack -->
-                                    <span class="slack-button">
-                                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                                            <span class="slack-ico"></span>
-                                            <span class="slack-text">Slack</span>
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
                         </div>
-                        <div class="detail-bottom-section">
-                            <div class="zone-time-slider"></div>
-                            <div class="social-buttons small-screen-hidden">
-                                <p>
-                                    <!-- Facebook share -->
-                                    <div class="fb-share-button"
-                                        data-href="https://www.electricitymap.org/"
-                                        data-layout="button_count">
-                                    </div>
-                                    <!-- Twitter share -->
-                                    <a class="twitter-share-button"
-                                    data-url="https://www.electricitymap.org"
-                                    data-via="electricitymap"
-                                    data-lang="<%= locale %>"></a>
-                                    <!-- Slack -->
-                                    <span class="slack-button">
-                                        <a href="https://slack.tmrow.co" target="_blank" class="slack-btn">
-                                            <span class="slack-ico"></span>
-                                            <span class="slack-text">Slack</span>
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                     <div class="faq-panel">
                         <div class="faq-header">
