@@ -10,7 +10,7 @@ import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
 
-from .lib.validation import validate_production_diffs
+from .lib.validation import validate, validate_production_diffs
 
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
@@ -95,13 +95,15 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
                     for k, v in production.items()]):
             continue
 
-        datapoints.append({
+        datapoint = {
             'zoneKey': zone_key,
             'datetime': arrow.get(row[1]['date_heure']).datetime,
             'production': production,
             'storage': storage,
             'source': 'opendata.reseaux-energies.fr'
-        })
+        }
+        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro'])
+        datapoints.append(datapoint)
 
     max_diffs = {
         'hydro': 1600,

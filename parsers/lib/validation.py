@@ -3,7 +3,7 @@
 """Centralised validation function for all parsers."""
 
 from logging import getLogger
-import logging
+import math, logging
 
 import numpy as np
 import pandas as pd
@@ -13,7 +13,8 @@ from .utils import nan_to_zero
 def has_value_for_key(datapoint, key, logger):
     """checks that the key exists in datapoint and that the corresponding value
     is not None"""
-    if datapoint['production'].get(key, None) is None:
+    v = datapoint['production'].get(key, None)
+    if v is None or math.isnan(v):
         logger.warning("Required generation type {} is missing from {}".format(
             key, datapoint['zoneKey']), extra={'key': datapoint['zoneKey']})
         return None
@@ -49,6 +50,11 @@ def validate_production_diffs(
 
     if len(datapoints) < 2:
         return datapoints
+
+    # ignore points that are None
+    # TODO(olc): do diffs on each chunks of consecutive non-None points
+    # intead of simply remove None
+    datapoints = [x for x in datapoints if x]
 
     # sort datapoins by datetime
     datapoints = sorted(datapoints, key=lambda x: x['datetime'])
