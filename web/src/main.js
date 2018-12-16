@@ -39,7 +39,7 @@ const Tooltip = require('./components/tooltip');
 
 
 // Layer Components
-const ExchangeLayer = require('./components/layers/exchange');
+const ExchangeLayer = require('./components/layers/exchange2');
 const SolarLayer = require('./components/layers/solar');
 const WindLayer = require('./components/layers/wind');
 
@@ -102,7 +102,7 @@ let tableDisplayEmissions = false;
 let hasCenteredMap = false;
 
 // Set up objects
-let exchangeLayer = null;
+let exchangeLayer;
 LoadingService.startLoading('#loading');
 LoadingService.startLoading('#small-loading');
 let zoneMap;
@@ -318,26 +318,26 @@ try {
         .parentNode
         .appendChild(el);
       // Create exchange layer as a result
-      exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
-        .onExchangeMouseOver((d) => {
-          tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
-        })
-        .onExchangeMouseMove(() => {
-          exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
-        })
-        .onExchangeMouseOut((d) => {
-          if (d.co2intensity && co2Colorbars) {
-            co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-          }
-          exchangeTooltip.hide();
-        })
-        .onExchangeClick((d) => {
-          console.log(d);
-        })
-        .setData(getState().application.electricityMixMode === 'consumption'
-          ? Object.values(getState().data.grid.exchanges)
-          : [])
-        .render();
+      // exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
+      //   .onExchangeMouseOver((d) => {
+      //     tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
+      //   })
+      //   .onExchangeMouseMove(() => {
+      //     exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
+      //   })
+      //   .onExchangeMouseOut((d) => {
+      //     if (d.co2intensity && co2Colorbars) {
+      //       co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+      //     }
+      //     exchangeTooltip.hide();
+      //   })
+      //   .onExchangeClick((d) => {
+      //     console.log(d);
+      //   })
+      //   .setData(getState().application.electricityMixMode === 'consumption'
+      //     ? Object.values(getState().data.grid.exchanges)
+      //     : [])
+      //   .render();
       LoadingService.stopLoading('#loading');
       LoadingService.stopLoading('#small-loading');
       if (thirdPartyServices._ga) {
@@ -346,6 +346,7 @@ try {
     });
   windLayer = new WindLayer('wind', zoneMap);
   solarLayer = new SolarLayer('solar', zoneMap);
+  exchangeLayer = new ExchangeLayer('exchange', zoneMap);
   dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
