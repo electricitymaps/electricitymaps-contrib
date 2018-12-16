@@ -20,6 +20,8 @@ import datetime as dt
 import pandas as pd
 from io import StringIO
 
+from .lib.validation import validate
+
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
 REPORT_META = {
@@ -28,7 +30,7 @@ REPORT_META = {
         'skiprows': 5
     },
     'INTERFUELHH': {
-        'expected_fields': 7,
+        'expected_fields': 8,
         'skiprows': 0
     }
 }
@@ -53,7 +55,8 @@ EXCHANGES = {
     'FR->GB': 3,
     'GB-NIR->IE': 4,
     'GB->NL': 5,
-    'GB->IE': 6
+    'GB->IE': 6,
+    'BE->GB': 7
 }
 
 
@@ -229,6 +232,17 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
     session = session or requests.session()
     response = query_production(session, target_datetime)
     data = parse_production(response, target_datetime, logger)
+
+    required = ['coal', 'gas', 'nuclear']
+    expected_range = {
+        'coal': (0, 10000),
+        'gas': (100, 30000),
+        'nuclear': (100, 20000)
+    }
+    data = [x for x in data
+            if validate(
+                x, logger, required=required, expected_range=expected_range)]
+
     return data
 
 

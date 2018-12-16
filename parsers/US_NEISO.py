@@ -4,6 +4,7 @@
 """Real time parser for the New England ISO (NEISO) area."""
 import arrow
 from collections import defaultdict
+import logging
 import requests
 import time
 
@@ -36,7 +37,7 @@ def get_json_data(target_datetime, params, session=None):
     """Fetches json data for requested params and target_datetime using a post request."""
 
     epoch_time = str(int(time.time()))
-    
+
     # when target_datetime is None, arrow.get(None) will return current time
     target_datetime = arrow.get(target_datetime)
     target_ne = target_datetime.to('America/New_York')
@@ -60,21 +61,39 @@ def get_json_data(target_datetime, params, session=None):
     return raw_data
 
 
-def production_data_processer(raw_data):
+def production_data_processer(raw_data, logger):
     """
     Takes raw json data and removes unnecessary keys.
     Separates datetime key and converts to a datetime object.
     Maps generation to type and returns a list of tuples.
     """
 
+    other_keys = {'BeginDateMs', 'Renewables', 'BeginDate', 'Other'}
+    known_keys = generation_mapping.keys() | other_keys
+
+    unmapped = set()
     clean_data = []
+    counter = 0
     for datapoint in raw_data:
-        keys_to_remove = ('BeginDateMs', 'Renewables')
+        current_keys = datapoint.keys() | set()
+        unknown_keys = current_keys - known_keys
+        unmapped = unmapped | unknown_keys
+
+        keys_to_remove = {'BeginDateMs', 'Renewables'} | unknown_keys
         for k in keys_to_remove:
             datapoint.pop(k, None)
 
         time_string = datapoint.pop('BeginDate', None)
-        dt = timestring_converter(time_string)
+        if time_string:
+            dt = timestring_converter(time_string)
+        else:
+            # passing None to arrow.get() will return current time
+            counter += 1
+            logger.warning('Skipping US-NEISO datapoint missing timestamp.', extra={'key': 'US-NEISO'})
+            continue
+
+        # neiso storage flow signs are opposite to EM
+        battery_storage = -1*datapoint.pop('Other', 0.0)
 
         production = defaultdict(lambda: 0.0)
         for k, v in datapoint.items():
@@ -86,12 +105,18 @@ def production_data_processer(raw_data):
             if -5 < v < 0:
                 production[k] = 0
 
-        clean_data.append((dt, dict(production)))
+        clean_data.append((dt, dict(production), battery_storage))
+
+    for key in unmapped:
+        logger.warning('Key \'{}\' in US-NEISO is not mapped to type.'.format(key), extra={'key': 'US-NEISO'})
+
+    if counter > 0:
+        logger.warning('Skipped {} US-NEISO datapoints that were missing timestamps.'.format(counter), extra={'key': 'US-NEISO'})
 
     return sorted(clean_data)
 
 
-def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -133,7 +158,7 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
     }
 
     production_json = get_json_data(target_datetime, postdata, session)
-    points = production_data_processer(production_json)
+    points = production_data_processer(production_json, logger)
 
     # Hydro pumped storage is included within the general hydro category.
     production_mix = []
@@ -144,6 +169,7 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
             'production': item[1],
             'storage': {
                 'hydro': None,
+                'battery': item[2]
             },
             'source': 'iso-ne.com'
         }

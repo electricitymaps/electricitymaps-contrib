@@ -731,6 +731,16 @@
     "timezone": null
   },
   "CL-SIC": {
+    "bounding_box": [
+      [
+        -74.625132,
+        -43.246595
+      ],
+      [
+        -67.249115,
+        -22.382339
+      ]
+    ],
     "capacity": {
       "battery storage": 0,
       "biomass": 466,
@@ -886,17 +896,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 9501,
-      "coal": 46336,
-      "gas": 29731,
+      "biomass": 7400,
+      "coal": 46250,
+      "gas": 29550,
       "geothermal": 39,
       "hydro": 5490,
       "hydro storage": 9440,
       "nuclear": 9516,
       "oil": 4437,
-      "solar": 40716,
+      "solar": 44320,
       "unknown": 3137,
-      "wind": 49592
+      "wind": 58190
     },
     "contributors": [
       "https://github.com/corradio"
@@ -966,6 +976,7 @@
       "https://github.com/corradio"
     ],
     "parsers": {
+      "price": "ENTSOE.fetch_price",
       "production": "DK_BHM.fetch_production"
     },
     "timezone": "Europe/Copenhagen"
@@ -985,6 +996,11 @@
       "biomass": 326,
       "coal": 2775,
       "gas": 1700,
+      "nuclear": 0,
+      "hydro": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "geothermal": 0,
       "oil": 292,
       "solar": 421,
       "wind": 3809
@@ -1017,6 +1033,11 @@
       "biomass": 234,
       "coal": 2072,
       "gas": 1241,
+      "nuclear": 0,
+      "hydro": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "geothermal": 0,
       "oil": 759,
       "solar": 180,
       "wind": 1036
@@ -1272,26 +1293,50 @@
     },
     "timezone": "Atlantic/Canary"
   },
-  "ES-IB": {
-    "bounding_box": [
-      [
-        0.7121688160000872,
-        38.13864630700006
-      ],
-      [
-        4.837087436000104,
-        40.57941315300012
-      ]
-    ],
-    "capacity": {
-      "battery storage": 0,
-      "coal": 510,
-      "hydro storage": 0,
-      "solar": 78,
-      "wind": 0
-    },
+  "ES-IB-FO": {
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-IZ": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-MA": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES_IB.fetch_consumption",
+      "production": "ES_IB.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-IB-ME": {
+    "contributors": [
+      "https://github.com/blackleg",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1312,16 +1357,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 2866,
-      "coal": 2854,
-      "gas": 1795,
+      "biomass": 1970,
+      "coal": 3413,
+      "gas": 1865,
       "geothermal": 0,
-      "hydro": 3207,
+      "hydro": 3149,
       "nuclear": 2782,
-      "oil": 1427,
+      "oil": 1386,
       "solar": 0,
-      "unknown": 648,
-      "wind": 1598
+      "unknown": 619,
+      "wind": 1908
     },
     "contributors": [
       "https://github.com/corradio"
@@ -1382,7 +1427,8 @@
       "wind": 13550
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/lorrieq"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1462,6 +1508,29 @@
       "price": "ENTSOE.fetch_price",
       "production": "GB_NIR.fetch_production"
     },
+    "timezone": null
+  },
+  "GB-ORK": {
+    "capacity": {
+      "wind": 48,
+      "solar": 1.2
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/maxbellec"
+    ],
+    "flag_file_name": "gb.png",
+    "parsers": {
+      "production": "GB_ORK.fetch_production"
+    },
+    "timezone": null
+  },
+  "GB-SHI": {
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/maxbellec"
+    ],
+    "flag_file_name": "gb.png",
     "timezone": null
   },
   "GE": {
@@ -1643,6 +1712,24 @@
       "production": "ENTSOE.fetch_production"
     },
     "timezone": "Europe/Dublin"
+  },
+  "IN": {
+    "capacity": {
+      "solar": 26000,
+      "wind": 34000,
+      "coal": 196000,
+      "hydro": 50000,
+      "gas": 25000,
+      "nuclear": 6700,
+      "biomass": 9400
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "parsers": {
+      "production": "IN.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
   },
   "IN-AP": {
     "bounding_box": [
@@ -1857,6 +1944,40 @@
     },
     "timezone": "Asia/Kolkata"
   },
+  "IN-UT": {
+    "bounding_box": [
+      [
+        77.611412,
+        28.542876
+      ],
+      [
+        80.940177,
+        31.292794
+      ]
+    ],
+    "contributors": [
+      "https://github.com/alixunderplatz",
+      "https://github.com/lorrieq"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_UT.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
+  "IQ": {
+    "capacity": {},
+    "contributors": [
+      "https://github.com/alixunderplatz",
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "iq.png",
+    "parsers": {
+      "consumption": "IQ.fetch_consumption",
+      "production": "IQ.fetch_production"
+    },
+    "timezone": "Asia/Baghdad"
+  },
   "IS": {
     "bounding_box": [
       [
@@ -1912,16 +2033,354 @@
       "https://github.com/corradio"
     ],
     "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast"
+    },
+    "subZoneNames": [
+      "IT-CNO",
+      "IT-CSO",
+      "IT-NO",
+      "IT-SAR",
+      "IT-SIC",
+      "IT-SO"
+    ],
+    "timezone": "Europe/Rome"
+  },
+  "IT-CNO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": "Europe/Rome"
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        9.186982333667714,
+        41.81872803200014
+      ],
+      [
+        14.40552664686598,
+        44.982966555562086
+      ]
+    ]
+  },
+  "IT-CSO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        10.951496463496312,
+        39.49396986000008
+      ],
+      [
+        16.29054702002901,
+        43.40156077856554
+      ]
+    ]
+  },
+  "IT-NO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        6.1027283120000675,
+        43.24286154752235
+      ],
+      [
+        14.394686320000034,
+        47.585214945000075
+      ]
+    ]
+  },
+  "IT-SAR": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        7.633799675000148,
+        38.36432526200005
+      ],
+      [
+        10.326670769000089,
+        41.76264069200013
+      ]
+    ]
+  },
+  "IT-SIC": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production_aggregate"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        11.422211134000122,
+        34.98924388200004
+      ],
+      [
+        16.151621941000144,
+        39.311957098000164
+      ]
+    ]
+  },
+  "IT-SO": {
+    "contributors": [
+      "https://github.com/corradio"
+    ],
+    "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production_aggregate"
+    },
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        13.445700757783754,
+        37.419012762000136
+      ],
+      [
+        19.01742597700013,
+        42.57794649582388
+      ]
+    ]
+  },
+  "JP-CB": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        135.84,
+        33.82
+      ],
+      [
+        138.72,
+        37.17
+      ]
+    ]
+  },
+  "JP-CG": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        130.66,
+        33.585
+      ],
+      [
+        134.54,
+        35.74
+      ]
+    ]
+  },
+  "JP-HKD": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        139.35,
+        41.3
+      ],
+      [
+        146,
+        45.97
+      ]
+    ]
+  },
+  "JP-HR": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        135.8,
+        35.39
+      ],
+      [
+        137.75,
+        37.9
+      ]
+    ]
+  },
+  "JP-KN": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        134.24,
+        33.29
+      ],
+      [
+        136.38,
+        36.01
+      ]
+    ]
+  },
+  "JP-KY": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP-KY.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        128.29,
+        27.03
+      ],
+      [
+        131.89,
+        35.11
+      ]
+    ]
+  },
+  "JP-SK": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        132.15,
+        32.53
+      ],
+      [
+        134.69,
+        34.63
+      ]
+    ]
+  },
+  "JP-TH": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        137.65,
+        36.65
+      ],
+      [
+        142,
+        41.66
+      ]
+    ]
+  },
+  "JP-TK": {
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/lorrieq"
+    ],
+    "parsers": {
+      "consumptionForecast": "JP.fetch_consumption_forecast",
+      "production": "JP.fetch_production",
+      "price": "JP.fetch_price"
+    },
+    "timezone": "Asia/Tokyo",
+    "bounding_box": [
+      [
+        138.5,
+        34.52
+      ],
+      [
+        141.16,
+        37.17
+      ]
+    ]
   },
   "LT": {
-    "_comment": "hydro incl. 900 MW pumped storage",
     "bounding_box": [
       [
         21.0558004086,
@@ -1933,12 +2392,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 100,
-      "gas": 1719,
-      "hydro": 1028,
-      "oil": 160,
-      "solar": 73,
-      "wind": 499
+      "biomass": 124,
+      "gas": 1873,
+      "hydro": 128,
+      "hydro storage": 900,
+      "oil": 0,
+      "solar": 82,
+      "wind": 509,
+      "unknown": 37
     },
     "contributors": [
       "https://github.com/corradio"
@@ -2583,6 +3044,39 @@
     },
     "timezone": "Europe/Moscow"
   },
+  "RU-1": {
+    "capacity": {
+      "nuclear": 27914,
+      "hydro": 19500,
+      "unknown": 125014
+    },
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "ru.png",
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
+  },
+  "RU-2": {
+    "capacity": {
+      "hydro": 25286,
+      "unknown": 26570
+    },
+    "contributors": [
+      "https://github.com/denplis",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "flag_file_name": "ru.png",
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow"
+  },
   "RU-AS": {
     "flag_file_name": "ru.png",
     "timezone": null
@@ -2874,9 +3368,6 @@
         25.2954588893
       ]
     ],
-    "capacity": {
-      "hydro storage": 2602
-    },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/MariusKroon"
@@ -2922,6 +3413,20 @@
     "timezone": "Europe/Kiev"
   },
   "US-AK": {
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
+  "US-AL": {
+    "bounding_box": [
+      [
+        -88.191130,
+        30.166662
+      ],
+      [
+        -85.009698,
+        34.956744
+      ]
+    ],
     "flag_file_name": "us.png",
     "timezone": null
   },
@@ -2981,6 +3486,34 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_CA.fetch_production"
     },
+    "timezone": null
+  },
+  "US-TX": {
+    "bounding_box": [
+      [
+        -106.963657,
+        26.485219
+      ],
+      [
+        -90.539219,
+        36.265205
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
+  "US-GA": {
+    "bounding_box": [
+      [
+        -85.601474,
+        30.503252
+      ],
+      [
+        -80.763430,
+        34.975541
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-HI": {
@@ -3045,6 +3578,20 @@
     },
     "timezone": null
   },
+  "US-NC": {
+    "bounding_box": [
+      [
+        -84.232364,
+        33.654000
+      ],
+      [
+        -75.644807,
+        36.579671
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-NEISO": {
     "bounding_box": [
       [
@@ -3073,6 +3620,20 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "US_NEISO.fetch_production"
     },
+    "timezone": null
+  },
+  "US-NV": {
+    "bounding_box": [
+      [
+        -120,
+        35
+      ],
+      [
+        -114,
+        42
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-NY": {
@@ -3105,6 +3666,20 @@
     },
     "timezone": null
   },
+  "US-OR": {
+    "bounding_box": [
+      [
+        -124.697592,
+        42.005176
+      ],
+      [
+        -116.632557,
+        46.194588
+      ]
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-PJM": {
     "bounding_box": [
       [
@@ -3131,7 +3706,8 @@
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/jacobbaratta",
-      "https://github.com/hanshyde"
+      "https://github.com/hanshyde",
+      "https://github.com/lorrieq"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -3139,6 +3715,20 @@
       "price": "US_PJM.fetch_price",
       "production": "US_PJM.fetch_production"
     },
+    "timezone": null
+  },
+  "US-SC": {
+    "bounding_box": [
+      [
+        -83.110764,
+        31.964076
+      ],
+      [
+        -78.581890,
+        35.068720
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "US-SPP": {
@@ -3172,6 +3762,16 @@
     ]
   },
   "US-SVERI": {
+    "bounding_box": [
+      [
+        -115.412018,
+        32.001824
+      ],
+      [
+        -103.051202,
+        36.967691
+      ]
+    ],
     "contributors": [
       "https://github.com/systemcatch"
     ],
@@ -3179,6 +3779,20 @@
     "parsers": {
       "production": "US_SVERI.fetch_production"
     },
+    "timezone": null
+  },
+  "US-TN": {
+    "bounding_box": [
+      [
+        -90.323361,
+        34.881666
+      ],
+      [
+        -81.934704,
+        36.674417
+      ]
+    ],
+    "flag_file_name": "us.png",
     "timezone": null
   },
   "UY": {

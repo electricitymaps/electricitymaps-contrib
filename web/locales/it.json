@@ -1,32 +1,56 @@
 {
     "panel-initial-text": {
-        "thisshowsrealtime": "Questo progetto ti mostra in tempo reale",
-        "whereelectricitycomesfrom": "da dove viene la tua elettricità",
-        "and": "e",
-        "howmuchco2": "quanta CO2",
-        "wasemitted": "è stata emessa per produrla",
-        "takeinaccount": "Seguendo le frecce vedrai quale elettricità",
-        "importexport": "è importata ed esportata",
-        "betweenzones": "attraverso le nazioni",
         "thisproject": "Questo progetto è",
         "opensource": "libero",
         "see": "Vedi",
         "datasources": "le fonti dei dati",
-        "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo la tua nazione</a>"
+        "contribute": "Contribuisci <a href=\"%s\" target=\"_blank\">aggiungendo il tuo territorio</a>"
+    },
+    "mobile-main-menu": {
+        "map": "Mappa",
+        "areas": "Aree",
+        "about": "Info"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "Mappatura dell'impatto climatico dell'elettricità"
+        },
+        "view2": {
+            "header": "Guarda quanta CO2 è emessa nel produrre la tua elettricità, in tempo reale.",
+            "text": "Coloriamo le aree nel mondo tramite la loro intensità di carbonio (include tutti i gas serra) dell'elettricità che consumano. Più l'area è verde più produce elettricità in maniera ecologica."
+        },
+        "view3": {
+            "header": "Conosci da dove proviene la tua elettricità",
+            "text": "Le frecce sulla mappa indicando i flussi di elettricità tra le diverse aree. Clicca su un'area per vedere più informazioni sull'origine dell'elettricità."
+        },
+        "view4": {
+            "header": "Livelli di vento e sole in tempo reale",
+            "text": "La produzione eolica e solare dipendono dal tempo. Premi sui pulsanti del vento e del sole per vedere in tempo reale la forza del vento e del sole nel mondo."
+        }
     },
     "country-panel": {
         "source": "Fonte",
         "carbonintensity": "Intensità di carbonio",
         "lowcarbon": "Basse emissioni",
         "renewable": "Rinnovabile",
-        "electricityproduction": "Produzione di elettricità",
+        "electricity": "Elettricità",
         "bysource": "Per fonte",
         "emissions": "Emissioni di carbonio",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
-        "helpfrom": "con l'aiuto di"
+        "helpfrom": "con l'aiuto di",
+        "noDataAtTimestamp": "Dati temporaneamente non disponibili per l'ora selezionata",
+        "noLiveData": "Dati in tempo reale temporaneamente non disponibili per quest'area",
+        "noParserInfo": "Non abbiamo ancora informazioni per quest'area.<br/> Vuoi aiutarci a sistemare questo problema? Puoi contribuire <a href=\"%s\" target=\"_blank\">aggiungendo i dati dell'area</a>.",
+        "now": "Ora"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Impatto climatico per area",
+        "zone-list-header-subtitle": "Classificazione per intensità di carbonio dell'elettricità consumata (gCO2eq/kWh)",
+        "search": "Cerca un'area..."
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
+        "emissionsorigin24h": "Origine delle emissioni nelle ultime 24 ore",
         "electricityorigin24h": "Origine dell'elettricità nelle ultime 24 ore",
         "electricityprices24h": "Prezzi dell'elettricità nelle ultime 24 ore",
         "Getdata": "Ottieni API di dati storici e previsioni"
@@ -34,7 +58,9 @@
     "footer": {
         "likethisvisu": "Ti piace questo progetto?",
         "loveyourfeedback": "Dicci cosa ne pensi",
-        "foundbugs": "Hai delle idee o hai trovato dei problemi? Scrivici ",
+        "foundbugs": "Hai delle idee o hai trovato dei problemi? Scrivici",
+        "faq-text": "Qualcosa non è chiaro? Dai un'occhiata alle nostre",
+        "faq": "domande poste frequentemente.",
         "here": "qua"
     },
     "legends": {
@@ -51,7 +77,13 @@
         "carbonintensityexport": "Intensità di carbonio nell'esportazione",
         "ofinstalled": "della capacità installata",
         "utilizing": "Utilizzando il",
-        "withcarbonintensity": "Con un'intensità di carbonio di:"
+        "withcarbonintensity": "Con un'intensità di carbonio di:",
+        "showWindLayer": "Mostra livello del vento",
+        "hideWindLayer": "Nascondi livello del vento",
+        "showSolarLayer": "Mostra livello del sole",
+        "hideSolarLayer": "Nascondi livello del sole",
+        "noParserInfo": "Nessun dato disponibile",
+        "temporaryDataOutage": "Dati temporeanamente non disponibili"
     },
     "misc": {
         "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
@@ -59,7 +91,8 @@
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
         "retrynow": "Riprova ora",
         "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
-        "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>"
+        "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
+        "legend": "Legenda"
     },
     "wind": "Eolico",
     "solar": "Fotovoltaico",
@@ -87,7 +120,10 @@
     "ofCO2eqPerMinute": "di CO2eq per minuto",
 
     "zoneShortName": {
-        "AE": {
+        "AD": {
+            "zoneName": "Andorra"
+          },
+          "AE": {
             "zoneName": "Emirati Arabi Uniti"
           },
           "AF": {
@@ -95,6 +131,9 @@
           },
           "AG": {
             "zoneName": "Antigua e Barbuda"
+          },
+          "AI": {
+            "zoneName": "Anguilla"
           },
           "AL": {
             "zoneName": "Albania"
@@ -110,6 +149,9 @@
           },
           "AR": {
             "zoneName": "Argentina"
+          },
+          "AS": {
+            "zoneName": "Samoa Americane"
           },
           "AT": {
             "zoneName": "Austria"
@@ -142,6 +184,9 @@
             "countryName": "Australia",
             "zoneName": "Australia occidentale"
           },
+          "AW": {
+            "zoneName": "Aruba"
+          },
           "AX": {
             "zoneName": "Isole Åland"
           },
@@ -166,14 +211,26 @@
           "BG": {
             "zoneName": "Bulgaria"
           },
+          "BH": {
+            "zoneName": "Bahrein"
+          },
           "BI": {
             "zoneName": "Burundi"
           },
           "BJ": {
             "zoneName": "Benin"
           },
+          "BM": {
+            "zoneName": "Bermuda"
+          },
+          "BN": {
+            "zoneName": "Brunei"
+          },
           "BO": {
             "zoneName": "Bolivia"
+          },
+          "BQ": {
+            "zoneName": "Bonaire, Sant'Eustachio e Saba"
           },
           "BR-CS": {
             "countryName": "Brasile",
@@ -181,11 +238,11 @@
           },
           "BR-N": {
             "countryName": "Brasile",
-            "zoneName": "Amazzonia"
+            "zoneName": "Nord"
           },
           "BR-NE": {
             "countryName": "Brasile",
-            "zoneName": "Nord-Est"
+            "zoneName": "Nord-ovest"
           },
           "BR-S": {
             "countryName": "Brasile",
@@ -196,6 +253,9 @@
           },
           "BT": {
             "zoneName": "Bhutan"
+          },
+          "BV": {
+            "zoneName": "Isola Bouvet"
           },
           "BW": {
             "zoneName": "Botswana"
@@ -258,6 +318,9 @@
             "countryName": "Canada",
             "zoneName": "Yukon"
           },
+          "CC": {
+            "zoneName": "Isole Cocos"
+          },
           "CD": {
             "zoneName": "Repubblica Democratica del Congo"
           },
@@ -310,6 +373,12 @@
           "CV": {
             "zoneName": "Capo Verde"
           },
+          "CW": {
+            "zoneName": "Curaçao"
+          },
+          "CX": {
+            "zoneName": "Isola di Natale"
+          },
           "CY": {
             "zoneName": "Cipro"
           },
@@ -319,11 +388,23 @@
           "DE": {
             "zoneName": "Germania"
           },
+          "DJ": {
+            "zoneName": "Gibuti"
+          },
           "DK": {
             "zoneName": "Danimarca"
           },
-          "DJ": {
-            "zoneName": "Gibuti"
+          "DK-DK1": {
+            "countryName": "Danimarca",
+            "zoneName": "Danimarca occidentale"
+          },
+          "DK-DK2": {
+            "countryName": "Danimarca",
+            "zoneName": "Danimarca orientale"
+          },
+          "DK-BHM": {
+            "countryName": "Danimarca",
+            "zoneName": "Bornholm"
           },
           "DM": {
             "zoneName": "Dominica"
@@ -344,7 +425,7 @@
             "zoneName": "Egitto"
           },
           "EH": {
-            "zoneName": "Sahara Occidentale"
+            "zoneName": "Sahara occidentale"
           },
           "ER": {
             "zoneName": "Eritrea"
@@ -392,6 +473,9 @@
           "FI": {
             "zoneName": "Finlandia"
           },
+          "FM": {
+            "zoneName": "Micronesia"
+          },
           "FO": {
             "zoneName": "Isole Faroe"
           },
@@ -420,8 +504,14 @@
           "GF": {
             "zoneName": "Guyana Francese"
           },
+          "GG": {
+            "zoneName": "Guernsey"
+          },
           "GH": {
             "zoneName": "Ghana"
+          },
+          "GI": {
+            "zoneName": "Gibilterra"
           },
           "GL": {
             "zoneName": "Groenlandia"
@@ -441,17 +531,27 @@
           "GR": {
             "zoneName": "Grecia"
           },
+          "GR-IS": {
+            "countryName": "Grecia",
+            "zoneName": "Isole egee"
+          },
           "GS": {
             "zoneName": "Georgia del Sud e Isole Sandwich"
           },
           "GT": {
             "zoneName": "Guatemala"
           },
+          "GU": {
+            "zoneName": "Guam"
+          },
           "GW": {
             "zoneName": "Guinea-Bissau"
           },
           "GY": {
             "zoneName": "Guyana"
+          },
+          "HK": {
+            "zoneName": "Hong Kong"
           },
           "HM": {
             "zoneName": "Isole Heard e McDonald"
@@ -602,10 +702,17 @@
           },
           "IN-WB": {
             "countryName": "India",
-            "zoneName": "Bengala Occidentale"
+            "zoneName": "Bengala occidentale"
+          },
+          "IO": {
+            "zoneName": "Territorio britannico dell'Oceano Indiano"
           },
           "IQ": {
             "zoneName": "Iraq"
+          },
+          "IQ-KUR": {
+            "countryName": "Iraq",
+            "zoneName": "Kurdistan"
           },
           "IR": {
             "zoneName": "Iran"
@@ -616,14 +723,78 @@
           "IT": {
             "zoneName": "Italia"
           },
+          "IT-CNO": {
+            "countryName": "Italia",
+            "zoneName": "Centro-nord"
+          },
+          "IT-CSO": {
+            "countryName": "Italia",
+            "zoneName": "Centro-sud"
+          },
+          "IT-NO": {
+            "countryName": "Italia",
+            "zoneName": "Nord"
+          },
+          "IT-SAR": {
+            "countryName": "Italia",
+            "zoneName": "Sardegna"
+          },
+          "IT-SIC": {
+            "countryName": "Italia",
+            "zoneName": "Sicilia"
+          },
+          "IT-SO": {
+            "countryName": "Italia",
+            "zoneName": "Sud"
+          },
+          "JE": {
+            "zoneName": "Jersey"
+          },
           "JM": {
             "zoneName": "Giamaica"
           },
           "JO": {
             "zoneName": "Giordania"
           },
-          "JP": {
-            "zoneName": "Giappone"
+          "JP-CB": {
+            "countryName": "Giappone",
+            "zoneName": "Chūbu"
+          },
+          "JP-CG": {
+            "countryName": "Giappone",
+            "zoneName": "Chūgoku"
+          },
+          "JP-HKD": {
+            "countryName": "Giappone",
+            "zoneName": "Hokkaidō"
+          },
+          "JP-HR": {
+            "countryName": "Giappone",
+            "zoneName": "Hokuriku"
+          },
+          "JP-KN": {
+            "countryName": "Giappone",
+            "zoneName": "Kansai"
+          },
+          "JP-KY": {
+            "countryName": "Giappone",
+            "zoneName": "Kyūshū"
+          },
+          "JP-ON": {
+            "countryName": "Giappone",
+            "zoneName": "Okinawa"
+          },
+          "JP-SK": {
+            "countryName": "Giappone",
+            "zoneName": "Shikoku"
+          },
+          "JP-TH": {
+            "countryName": "Giappone",
+            "zoneName": "Tōhoku"
+          },
+          "JP-TK": {
+            "countryName": "Giappone",
+            "zoneName": "Tōkyō"
           },
           "KE": {
             "zoneName": "Kenya"
@@ -634,8 +805,14 @@
           "KH": {
             "zoneName": "Cambogia"
           },
+          "KI": {
+            "zoneName": "Kiribati"
+          },
           "KM": {
             "zoneName": "Comore"
+          },
+          "KN": {
+            "zoneName": "Saint Kitts e Nevis"
           },
           "KP": {
             "zoneName": "Corea del Nord"
@@ -645,6 +822,9 @@
           },
           "KW": {
             "zoneName": "Kuwait"
+          },
+          "KY": {
+            "zoneName": "Isole Cayman"
           },
           "KZ": {
             "zoneName": "Kazakistan"
@@ -657,6 +837,9 @@
           },
           "LC": {
             "zoneName": "Santa Lucia"
+          },
+          "LI": {
+            "zoneName": "Liechtenstein"
           },
           "LK": {
             "zoneName": "Sri Lanka"
@@ -682,6 +865,9 @@
           "MA": {
             "zoneName": "Marocco"
           },
+          "MC": {
+            "zoneName": "Monaco"
+          },
           "MD": {
             "zoneName": "Moldavia"
           },
@@ -693,6 +879,9 @@
           },
           "MG": {
             "zoneName": "Madagascar"
+          },
+          "MH": {
+            "zoneName": "Isole Marshall"
           },
           "MK": {
             "zoneName": "Macedonia"
@@ -706,6 +895,12 @@
           "MN": {
             "zoneName": "Mongolia"
           },
+          "MO": {
+            "zoneName": "Macao"
+          },
+          "MP": {
+            "zoneName": "Isole Marianne settentrionali"
+          },
           "MQ": {
             "zoneName": "Martinica"
           },
@@ -718,18 +913,53 @@
           "MU": {
             "zoneName": "Mauritius"
           },
+          "MV": {
+            "zoneName": "Maldive"
+          },
           "MW": {
             "zoneName": "Malawi"
           },
           "MX": {
             "zoneName": "Messico"
           },
+          "MX-BC": {
+            "countryName": "Messico",
+            "zoneName": "Bassa California"
+          },
+          "MX-CE": {
+            "countryName": "Messico",
+            "zoneName": "Centrale"
+          },
+          "MX-NE": {
+            "countryName": "Messico",
+            "zoneName": "Nord-est"
+          },
+          "MX-NO": {
+            "countryName": "Messico",
+            "zoneName": "Nord"
+          },
+          "MX-NW": {
+            "countryName": "Messico",
+            "zoneName": "Nord-ovest"
+          },
+          "MX-OC": {
+            "countryName": "Messico",
+            "zoneName": "Occidentale"
+          },
+          "MX-OR": {
+            "countryName": "Messico",
+            "zoneName": "Orientale"
+          },
+          "MX-PN": {
+            "countryName": "Messico",
+            "zoneName": "Penisola"
+          },
           "MY-EM": {
             "countryName": "Malesia",
             "zoneName": "Borneo"
           },
           "MY-WM": {
-            "zoneName": "Malesia Occidentale"
+            "zoneName": "Malesia occidentale"
           },
           "MZ": {
             "zoneName": "Mozambico"
@@ -743,6 +973,9 @@
           "NE": {
             "zoneName": "Niger"
           },
+          "NF": {
+            "zoneName": "Isola Norfolk"
+          },
           "NG": {
             "zoneName": "Nigeria"
           },
@@ -752,11 +985,37 @@
           "NL": {
             "zoneName": "Paesi Bassi"
           },
+          "NO": {
+            "zoneName": "Norvegia"
+          },
+          "NO-NO1": {
+            "countryName": "Norvegia",
+            "zoneName": "Norvegia sudorientale"
+          },
+          "NO-NO2": {
+            "countryName": "Norvegia",
+            "zoneName": "Norvegia sudoccidentale"
+          },
+          "NO-NO3": {
+            "countryName": "Norvegia",
+            "zoneName": "Norvegia centrale"
+          },
+          "NO-NO4": {
+            "countryName": "Norvegia",
+            "zoneName": "Norvegia settentrionale"
+          },
+          "NO-NO5": {
+            "countryName": "Norvegia",
+            "zoneName": "Norvegia orientale"
+          },
           "NP": {
             "zoneName": "Nepal"
           },
-          "NO": {
-            "zoneName": "Norvegia"
+          "NR": {
+            "zoneName": "Nauru"
+          },
+          "NU": {
+            "zoneName": "Niue"
           },
           "NZ-NZA": {
             "countryName": "Nuova Zelanda",
@@ -798,6 +1057,12 @@
           "PL": {
             "zoneName": "Polonia"
           },
+          "PM": {
+            "zoneName": "Saint-Pierre e Miquelon"
+          },
+          "PN": {
+            "zoneName": "Pitcairn"
+          },
           "PR": {
             "zoneName": "Porto Rico"
           },
@@ -814,6 +1079,9 @@
           "PT-MA": {
             "countryName": "Portogallo",
             "zoneName": "Madera"
+          },
+          "PW": {
+            "zoneName": "Palau"
           },
           "PY": {
             "zoneName": "Paraguay"
@@ -833,6 +1101,16 @@
           "RU": {
             "zoneName": "Russia"
           },
+          "RU-EU": {
+            "zoneName": "Russia"
+          },
+          "RU-AS": {
+            "zoneName": "Russia"
+          },
+          "RU-KGD": {
+            "countryName": "Russia",
+            "zoneName": "Kaliningrad"
+          },
           "RW": {
             "zoneName": "Ruanda"
           },
@@ -842,6 +1120,9 @@
           "SB": {
             "zoneName": "Isole Salomone"
           },
+          "SC": {
+            "zoneName": "Seychelles"
+          },
           "SD": {
             "zoneName": "Sudan"
           },
@@ -850,6 +1131,9 @@
           },
           "SG": {
             "zoneName": "Singapore"
+          },
+          "SH": {
+            "zoneName": "Sant'Elena, Ascensione e Tristan da Cunha"
           },
           "SI": {
             "zoneName": "Slovenia"
@@ -862,6 +1146,9 @@
           },
           "SL": {
             "zoneName": "Sierra Leone"
+          },
+          "SM": {
+            "zoneName": "San Marino"
           },
           "SN": {
             "zoneName": "Senegal"
@@ -881,11 +1168,18 @@
           "SV": {
             "zoneName": "El Salvador"
           },
+          "SX": {
+            "countryName": "Sint Maarten",
+            "zoneName": "Olanda"
+          },
           "SY": {
             "zoneName": "Siria"
           },
           "SZ": {
             "zoneName": "Swaziland"
+          },
+          "TC": {
+            "zoneName": "Turks e Caicos"
           },
           "TD": {
             "zoneName": "Ciad"
@@ -902,17 +1196,29 @@
           "TJ": {
             "zoneName": "Tagikistan"
           },
+          "TK": {
+            "zoneName": "Tokelau"
+          },
+          "TL": {
+            "zoneName": "Timor-Leste"
+          },
           "TM": {
             "zoneName": "Turkmenistan"
           },
           "TN": {
             "zoneName": "Tunisia"
           },
+          "TO": {
+            "zoneName": "Tonga"
+          },
           "TR": {
             "zoneName": "Turchia"
           },
           "TT": {
             "zoneName": "Trinidad e Tobago"
+          },
+          "TV": {
+            "zoneName": "Tuvalu"
           },
           "TW": {
             "zoneName": "Taiwan"
@@ -933,6 +1239,9 @@
           "UM": {
             "zoneName": "Isole minori esterne degli Stati Uniti d'America"
           },
+          "US": {
+            "zoneName": "Stati Uniti d'America"
+          },
           "US-AL": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Alabama"
@@ -944,6 +1253,10 @@
           "US-AZ": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Arizona"
+          },
+          "US-BPA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "BPA"
           },
           "US-CA": {
             "countryName": "Stati Uniti d'America",
@@ -968,6 +1281,10 @@
           "US-ID": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Ideaho"
+          },
+          "US-IPC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "IPC"
           },
           "US-MISO": {
             "countryName": "Stati Uniti d'America",
@@ -1017,6 +1334,10 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "SPP"
           },
+          "US-SVERI":{
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "SVERI"
+          },
           "US-TX": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Texas"
@@ -1024,6 +1345,10 @@
           "US-TN": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Tennessee"
+          },
+          "US-UT": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Utah"
           },
           "US-WA": {
             "countryName": "Stati Uniti d'America",
@@ -1039,17 +1364,34 @@
           "UZ": {
             "zoneName": "Uzbekistan"
           },
+          "VA": {
+            "zoneName": "Città del Vaticano"
+          },
           "VC": {
             "zoneName": "San Vincenzo e Grenadine"
           },
           "VE": {
             "zoneName": "Venezuela"
           },
+          "VG": {
+            "countryName": "Isole Vergini",
+            "zoneName": "Isole Vergini"
+          },
+          "VI": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Isole Vergini"
+          },
           "VN": {
             "zoneName": "Vietnam"
           },
           "VU": {
             "zoneName": "Vanuatu"
+          },
+          "WF": {
+            "zoneName": "Wallis e Futuna"
+          },
+          "WS": {
+            "zoneName": "Samoa"
           },
           "XX": {
             "zoneName": "Cipro del Nord"

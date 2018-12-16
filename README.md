@@ -1,23 +1,24 @@
-# electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap.svg?style=shield)](https://circleci.com/gh/blackleg/electricitymap) [![Twitter Follow](https://img.shields.io/twitter/follow/tmrowco.svg?style=social&label=Follow)](https://twitter.com/tmrowco)
-A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/), optimized for Google Chrome. Try it out at [http://www.electricitymap.org](http://www.electricitymap.org), or download the app:
+# electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/tmrowco/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
+A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/), maintained by [Tomorrow](https://www.tmrow.com). Try it out at [http://www.electricitymap.org](http://www.electricitymap.org), or download the app:
 
 [![Get it on Google Play](https://cloud.githubusercontent.com/assets/1655848/25219122/99b446e6-25ad-11e7-934f-9491d2eb6c9b.png)](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) [![Get it on the Apple Store](https://cloud.githubusercontent.com/assets/1655848/25218927/e0ec8bdc-25ac-11e7-8df8-7ab62787303e.png)](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)
 
 
-![image](https://cloud.githubusercontent.com/assets/1655848/20340757/5ada5cf6-abe3-11e6-97c4-e68929b8a135.png)
+![image](https://www.electricitymap.org/images/electricitymap_social_image.jpg)
 
 You can [contribute](#contribute) by
 - **[adding a new country on the map](#adding-a-new-country)**
 - correcting [data sources](#data-sources) and [capacities](#updating-country-capacities)
-- [translating](https://github.com/tmrowco/electricitymap/tree/master/web/locales) the map
-- fixing existing [issues](https://github.com/tmrowco/electricitymap/issues)
-- submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap/issues) section.
+- [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
+- fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
+- submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
 
 You can also see a list of missing data displayed as warnings in the developer console, or question marks in the country panel:
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
 Check the [contributing](#contribute) section for more details.
+Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
 
 ## Frequently asked questions
 
@@ -30,13 +31,13 @@ Consumption-based accounting (CBA) is a very important aspect of climate policy,
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 
 **Why don't you show emissions per capita?**
-A country that has few inhabitants but a lot of factories will appear high on CO2/capita.
+A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
 This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
-That country now has a low co2/cap number because we only count CO2 for electricity (not for imported/exported goods).
-The CO2/capita metric, by involving the size of the population, and by not integrating all CO2 emission sources, is thus an incomplete metric.
-CO2 intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
+That country now has a low CO<sub>2</sub>/capita number because we only count CO<sub>2</sub> for electricity (not for imported/exported goods).
+The CO<sub>2</sub>/capita metric, by involving the size of the population, and by not integrating all CO<sub>2</sub> emission sources, is thus an incomplete metric.
+CO<sub>2</sub> intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
-**CO2 emission factors look high - what do they cover exactly?**
+**CO<sub>2</sub> emission factors look high — what do they cover exactly?**
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
 
 **Is delayed data useful?**
@@ -56,18 +57,18 @@ All this and more can be found **[here](https://pro.electricitymap.org/)**.
 ### Carbon intensity calculation and data source
 The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO<sub>2</sub>eq (grams CO<sub>2</sub> equivalent), meaning each greenhouse gas is converted to its CO<sub>2</sub> equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO<sub>2</sub> over the same period).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.js](https://github.com/tmrowco/electricitymap/blob/master/config/co2eq_parameters.js). These numbers come from the following scientific peer reviewed literature:
+The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/co2eq_parameters.json). These numbers come from the following scientific peer reviewed literature:
 - IPCC (2014) Fifth Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
 Country-specific fuel carbon-intensity factors:
 - Estonia:
   - Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](http://www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
 
-Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
+Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap-contrib/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
 
 
 ### Real-time electricity data sources
-Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers)
+Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers)
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
@@ -103,16 +104,18 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Faroe Islands: [SEV](https://w3.sev.fo/framleidsla/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
+- France: [RTE](https://opendata.reseaux-energies.fr)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Georgia: [GSE](http://www.gse.com.ge/home)
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Guatemala : [AMM](http://www.amm.org.gt)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Iceland: [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- India: [meritindia](http://meritindia.in/)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
 - India (Chhattisgarh): [cspc.co.in](http://117.239.199.203/csptcl/GEN.aspx)
 - India (Delhi): [delhisldc](http://www.delhisldc.org/Redirect.aspx?Loc=0804)
@@ -120,6 +123,20 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Karnataka): [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
+- India (Uttarakhand): [uksldc](http://uksldc.in/real-time-data.php)
+- Iraq: [Iraqi Power System](http://109.224.53.139:8080/IPS.php)
+- Japan (Exchanges): [OCCTO](http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login)
+- Japan (Chūbu): [Chūden](http://denki-yoho.chuden.jp/)
+- Japan (Chūgoku): [Energia](http://www.energia.co.jp/jukyuu/)
+- Japan (Hokkaidō): [Hokuden](http://denkiyoho.hepco.co.jp/area_forecast.html)
+- Japan (Hokuriku): [Rikuden](http://www.rikuden.co.jp/denki-yoho/)
+- Japan (Kansai): [Kepco](http://www.kepco.co.jp/energy_supply/supply/denkiyoho/)
+- Japan (Kyūshū): [Kyūden](http://www.kyuden.co.jp/power_usages/pc.html)
+- Japan (Kyūshū/Genkai NPP): [Kyūden](http://www.kyuden.co.jp/php/nuclear/genkai/rename.php?A=g_power.fdat&B=ncp_state.fdat&_=1520532904073)
+- Japan (Kyūshū/Sendai NPP): [Kyūden](http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?A=s_power.fdat&B=ncp_state.fdat&_=1520532401043)
+- Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
+- Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
+- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
@@ -147,7 +164,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
 - Sweden: [SVK](https://www.svk.se/en/national-grid/the-control-room/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Taiwan: [TAIPOWER](http://www.taipower.com.tw/content/new_info/new_info_in.aspx?LinkID=27)
+- Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United States of America
@@ -164,7 +181,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 &nbsp;</details>
 
 ### Production capacity data sources
-Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) file.
+Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file.
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
@@ -196,11 +213,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=EST)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
-- Finland
-  - Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=FIN)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France: [RTE](http://bilan-electrique-2017.rte-france.com/production/le-parc-de-production-national/)
-- Germany: [BNetzA](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
+- Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst.htm?year=2018&period=annual&type=power_inst)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -215,10 +230,11 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Italy
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- India: [mercomindia](https://mercomindia.com/solar-indias-installed-power-capacity/)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
 - India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Lithuania: [ENMIN](https://enmin.lrv.lt/en/sectoral-policy/renewable-energy-sources)
+- Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova: [FAS](http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf)
 - Montenegro: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
@@ -254,6 +270,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey: [TEİAŞ](https://www.teias.gov.tr/)
 - Ukraine: [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
 - United States of America
@@ -268,38 +285,39 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 &nbsp;</details>
 
 ### Cross-border transmission capacity data sources
-Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap/blob/master/config/exchanges.json) file.
+Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/exchanges.json) file.
 &nbsp;<details><summary>Click to see the full list of sources</summary>
-- Åland <-> Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Åland <-> Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Australia (Victoria) <-> Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
-- Denmark (West) <-> Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
-- Denmark (East) <-> Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
-- Denmark (East) <-> Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
-- Denmark (West) <-> Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
-- Estonia <-> Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
-- Germany <-> Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
-- Great Britain <-> North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
-- Great Britain <-> Ireland: [“East-West Interconnector”: 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
-- Great Britain <-> France: [“Cross-Channel”: 2000 MW](https://en.wikipedia.org/wiki/NorNed)
-- Great Britain <-> Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
-- Greece <-> Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
-- Lithuania <-> Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
-- Lithuania <-> Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
-- Norway <-> Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
-- New Zealand (North Island) <-> New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
-- Malta <-> Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
-- Russia --> Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
-- Spain <-> Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
-- Sweden <-> Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
+- Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
+- Denmark (West) ⇄ Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
+- Denmark (East) ⇄ Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
+- Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
+- Denmark (West) ⇄ Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
+- Estonia ⇄ Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
+- Germany ⇄ Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
+- Great Britain ⇄ North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
+- Great Britain ⇄ Ireland: [“East-West Interconnector”: 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
+- Great Britain ⇄ France: [“Cross-Channel”: 2000 MW](https://en.wikipedia.org/wiki/NorNed)
+- Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
+- Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
+- Lithuania ⇄ Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
+- Lithuania ⇄ Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
+- Norway ⇄ Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
+- New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
+- Malta ⇄ Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
+- Russia ⇉ Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
+- Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
+- Sweden ⇄ Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
 
-A <-> B: bidirectional operation, with power flow either "from A to B" or "from B to A"
+A ⇄ B: bidirectional operation, with power flow either "from A to B" or "from B to A"
 
-A --> B: unidirectional operation, only with power flow "from A to B"
+A ⇉ B: unidirectional operation, only with power flow "from A to B"
 &nbsp;</details>
 
 ### Electricity prices (day-ahead) data sources
 - France: [RTE](http://www.rte-france.com/en/eco2mix/eco2mix-mix-energetique-en)
+- Japan: [JEPX](http://www.jepx.org)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Singapore: [EMC](https://www.emcsg.com)
 - Turkey: [EPIAS](https://seffaflik.epias.com.tr/transparency/piyasalar/gop/ptf.xhtml)
@@ -349,11 +367,11 @@ If you have issues building the map locally check out the [Troubleshooting](###T
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
 ### Updating country capacities
-If you want to update or add production capacities for a country then head over to the [zones file](https://github.com/tmrowco/electricitymap/blob/master/config/zones.json) and make any changes needed.
+If you want to update or add production capacities for a country then head over to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make any changes needed.
 The zones use ISO 3166-1 codes as identifiers, a list of which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes).
 
 ### Adding a new country
-It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
+It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap-contrib/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
 A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
@@ -391,22 +409,22 @@ Storage values can be both positive (when storing energy) or negative (when the 
 
 The parser can also return an array of objects if multiple time values can be fetched. The backend will automatically update past values properly.
 
-Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
+Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
 
 Run all of the parser tests with the following command from the root directory.
 ```
 python3 -m unittest discover parsers/test/
 ```
 
-For more info, check out the [example parser](https://github.com/tmrowco/electricitymap/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap/tree/master/parsers).
+For more info, check out the [example parser](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
 
 ### Generating a new map
-If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the [web](https://github.com/tmrowco/electricitymap/tree/master/web) directory then run the following command.
+If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the root directory then run the following command.
 ```
-./topogen.sh
+docker-compose run --rm web ./topogen.sh
 ```
 
-For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap/blob/master/web/README.md).
+For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
 
 ### Testing parsers locally
 
@@ -420,11 +438,11 @@ From the root folder, use the `test_parser.py` command line utility:
 python test_parser.py FR price  # get latest price parser for France
 python test_parser.py FR  # defaults to production if no data type is given
 # test a specific datetime (parser needs to be able to fetch past datetimes)
-python test_parser.py DE --target-datetime 2018-01-01T08:00
+python test_parser.py DE --target_datetime 2018-01-01T08:00
 ```
 
-#### update the map 
-We've added a testing server locally. 
+#### update the map
+We've added a testing server locally.
 
 To add a new country to the map, run
 ```

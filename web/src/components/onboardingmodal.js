@@ -8,10 +8,10 @@ const d3 = Object.assign(
 const SPACE_KEY_CODE = 32;
 
 const defaultViews = [{
-  headerImage: 'images/ms-icon-310x310.png',
+  headerImage: 'images/onboarding/electricymapLogoIcon.svg',
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
-  textHtml: `<div><h1>${translation.translate('onboarding-modal.view1.header')}</h1></div>
+  textHtml: `<div><h1>electricityMap</h1></div>
       <div><h2>${translation.translate('onboarding-modal.view1.subtitle')}</h2></div>`,
 },
 {
@@ -86,8 +86,8 @@ export default class OnboardingModal {
   }
 
   _setupLayout() {
-    this._setupBackgroundOverlay();
     this._setupRootContainer();
+    this._setupBackgroundOverlay();
     this._setupLeftButton();
     this._setupBody();
     this._setupFooter();
@@ -97,6 +97,9 @@ export default class OnboardingModal {
 
   _setupBackgroundOverlay() {
     this.backgroundOverlay = d3.select(this.selectorId).append('div').attr('class', 'modal-background-overlay');
+    this.backgroundOverlay.on('click', () => {
+      this.dismiss();
+    });
   }
 
   _setupRootContainer() {
@@ -135,6 +138,15 @@ export default class OnboardingModal {
     this.modalBody = this.rootContainer.append('div').attr('class', 'modal-body');
   }
 
+  _setupCloseButton() {
+    const closeButtonContainer = this.modalBody.append('div').attr('class', 'modal-close-button-container');
+    this.closeButton = closeButtonContainer.append('div').attr('class', 'modal-close-button');
+    this.closeButton.append('i').attr('class', 'material-icons').text('close');
+    this.closeButton.on('click', () => {
+      this.dismiss();
+    });
+  }
+
   _setupFooter() {
     this.modalFooter = this.rootContainer.append('div').attr('class', 'modal-footer');
     this.modalFooterCircles = [];
@@ -147,6 +159,7 @@ export default class OnboardingModal {
     this.modalBody.html(null);
 
     const currentView = this.views[this.currentViewIndex];
+    this._setupCloseButton();
 
     this.modalBody.append('div').attr('class', `modal-header ${currentView.headerCssClass || ''}`)
       .style('background-image', `url("${currentView.headerImage}")`);

@@ -5,13 +5,15 @@
 import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
-from datetime import datetime
+from itertools import groupby
+import logging
+import operator
 import pandas as pd
 import re
 import requests
 
 
-thermal_plants = {
+THERMAL_PLANTS = {
   "Taltal 2 GNL": "gas",
   "Taltal 2": "gas",
   "Taltal 2 Diesel": "oil",
@@ -210,36 +212,67 @@ thermal_plants = {
   "HBS GNL": "gas",
   "Rey": "oil",
   "El Nogal": "oil",
-  "Lepanto": "biomass"
+  "Lepanto": "biomass",
+  "Sta Fe": "unknown",
+  "Collipulli": "unknown",
+  "Totoral": "unknown",
+  "Ancali": "unknown",
+  "Nueva Renca": "gas",
+  "Laja CMPC": "biomass",
+  "Curanilahue": "coal",
+  "Cabrero": "biomass",
+  "Curacautin": "geothermal",
+  "D. Almagro": "gas",
+  "Concon": "gas",
+  "Lautaro": "biomass",
+  "Degan": "oil"
 }
 
 
-def get_xls_data(session = None):
+def get_xls_data(target_datetime = None, session = None):
     """Finds and reads .xls file from url into a pandas dataframe."""
 
-    s = session or requests.Session()
-    document_url = 'https://sic.coordinador.cl/informes-y-documentos/fichas/operacion-real/'
-    req = s.get(document_url)
-    soup = BeautifulSoup(req.text, 'html.parser')
+    if not target_datetime:
+        s = session or requests.Session()
+        document_url = 'https://sic.coordinador.cl/informes-y-documentos/fichas/operacion-real/'
+        req = s.get(document_url)
+        soup = BeautifulSoup(req.text, 'html.parser')
 
-    # Find the latest file.
-    generation_link = soup.find("a", {"title": "Descargar archivo"})
-    extension = generation_link["href"]
-    base_url = "https://sic.coordinador.cl"
-    data_url = base_url + extension
+        # Find the latest file.
+        generation_link = soup.find("a", {"title": "Descargar archivo"})
+        extension = generation_link["href"]
+        base_url = "https://sic.coordinador.cl"
+        data_url = base_url + extension
 
-    date_pattern = r'OP(\d+)\.xls'
-    date_str = re.search(date_pattern, extension).group(1)
+        date_pattern = r'OP(\d+)\.xls'
+        date_str = re.search(date_pattern, extension).group(1)
+        date_no_tz = arrow.get(date_str, "YYMMDD")
+        date = date_no_tz.replace(tzinfo='Chile/Continental')
+    else:
+        target_datetime = arrow.get(target_datetime)
+        lookup_date = target_datetime.format('YYMMDD')
+        year = target_datetime.format('YY')
+        data_url = 'https://sic.coordinador.cl/wp-content/uploads/estadisticas/operdiar/{0}/OP{1}.xls'.format(year, lookup_date)
+        date = target_datetime.replace(tzinfo='Chile/Continental')
 
-    date_no_tz = arrow.get(date_str, "YYMMDD")
-    date = date_no_tz.replace(tzinfo='Chile/Continental')
-
+    # Multiple tables in first excel sheet, only top one is needed.
     col_names = ['Plants'] + list(range(1,24)) + [0]
-    df = pd.read_excel(data_url, skiprows=[0,1,2,3], header=None, index_col=0, skip_footer=300, usecols=25, names=col_names)
+    df = pd.read_excel(data_url, skiprows=[0,1,2], header=None, index_col=0, sheet_name="gen_real", usecols=25, names=col_names)
     df = df.reset_index(drop=True)
     df = df.set_index("Plants")
 
-    return df, date
+    OLD_FORMAT = False
+    # Table layout changed in January 2016, old format will cause total processing to fail.
+    try:
+        df_end = df.index.get_loc('Eólico')
+    except KeyError:
+        df_end = df.index.get_loc('Total Generación SIC')
+        OLD_FORMAT = True
+
+    # Remove unneeded rows.
+    df = df.iloc[:df_end+1]
+
+    return df, date, OLD_FORMAT
 
 
 def combine_generating_units(generation, gen_vals):
@@ -266,7 +299,7 @@ def thermal_processer(df, logger):
 
     # Log any new plants that have been added.
     data_plants = list(thermal_df.index)
-    map_plants = list(thermal_plants.keys())
+    map_plants = list(THERMAL_PLANTS.keys())
     unmapped = list(set(data_plants) - set(map_plants))
 
     for plant in unmapped:
@@ -276,11 +309,13 @@ def thermal_processer(df, logger):
     gas_generation = []
     oil_generation = []
     biomass_generation = []
+    geothermal_generation = []
     unknown_generation = []
 
-    for plant in thermal_plants.keys():
+    for plant in data_plants:
         plant_vals = thermal_df.loc[plant].to_dict()
-        plant_type = thermal_plants[plant]
+
+        plant_type = THERMAL_PLANTS.get(plant, 'unknown')
         if plant_type == 'coal':
             coal_generation.append(plant_vals)
         elif plant_type == 'gas':
@@ -289,6 +324,8 @@ def thermal_processer(df, logger):
             oil_generation.append(plant_vals)
         elif plant_type == 'biomass':
             biomass_generation.append(plant_vals)
+        elif plant_type == 'geothermal':
+            geothermal_generation.append(plant_vals)
         else:
             unknown_generation.append(plant_vals)
 
@@ -296,18 +333,20 @@ def thermal_processer(df, logger):
     gas_vals = defaultdict(lambda: 0.0)
     oil_vals = defaultdict(lambda: 0.0)
     biomass_vals = defaultdict(lambda: 0.0)
+    geothermal_vals = defaultdict(lambda: 0.0)
     unknown_vals = defaultdict(lambda: 0.0)
 
     coal = combine_generating_units(coal_generation, coal_vals)
     gas = combine_generating_units(gas_generation, gas_vals)
     oil = combine_generating_units(oil_generation, oil_vals)
     biomass = combine_generating_units(biomass_generation, biomass_vals)
+    geothermal = combine_generating_units(geothermal_generation, geothermal_vals)
     unknown = combine_generating_units(unknown_generation, unknown_vals)
 
-    return coal, gas, oil, biomass, unknown
+    return coal, gas, oil, biomass, geothermal, unknown
 
 
-def data_processer(df, date, logger):
+def data_processer(df, date, is_old_format, logger):
     """
     Extracts aggregated data for hydro, solar and wind from dataframe.
     Combines with thermal data and an arrow object timestamp.
@@ -319,29 +358,39 @@ def data_processer(df, date, logger):
     gas_vals = thermal_generation[1]
     oil_vals = thermal_generation[2]
     biomass_vals = thermal_generation[3]
-    unknown_vals = thermal_generation[4]
+    geothermal_vals = thermal_generation[4]
+    unknown_vals = thermal_generation[5]
 
     total = df.loc['Total Generación SIC']
 
-    hydro = df.loc['Hidroeléctrico'].to_dict()
-    solar = df.loc['Solar'].to_dict()
-    wind = df.loc['Eólico'].to_dict()
+    if is_old_format:
+        solar_vals = df.loc['Solares'].to_dict()
+        wind_vals = df.loc['Eólicas'].to_dict()
 
-    hydro_vals = {k: hydro[k]*total[k] for k in hydro}
-    solar_vals = {k: solar[k]*total[k] for k in solar}
-    wind_vals = {k: wind[k]*total[k] for k in wind}
+        hydro_running = df.loc['Pasada'].to_dict()
+        hydro_dam = df.loc['Embalse'].to_dict()
+        hydro_joined = defaultdict(lambda: 0.0)
+        hydro_vals = combine_generating_units([hydro_running, hydro_dam], hydro_joined)
+    else:
+        hydro = df.loc['Hidroeléctrico'].to_dict()
+        solar = df.loc['Solar'].to_dict()
+        wind = df.loc['Eólico'].to_dict()
+        hydro_vals = {k: hydro[k]*total[k] for k in hydro}
+        solar_vals = {k: solar[k]*total[k] for k in solar}
+        wind_vals = {k: wind[k]*total[k] for k in wind}
 
     generation_by_hour = []
     for hour in range(0,24):
         production = {}
-        production['hydro'] = hydro_vals[hour]
-        production['wind'] = wind_vals[hour]
-        production['solar'] = solar_vals[hour]
-        production['coal'] = coal_vals[hour]
-        production['gas'] = gas_vals[hour]
-        production['oil'] = oil_vals[hour]
-        production['biomass'] = biomass_vals[hour]
-        production['unknown'] = unknown_vals[hour]
+        production['hydro'] = hydro_vals.get(hour, 0.0)
+        production['wind'] = wind_vals.get(hour, 0.0)
+        production['solar'] = solar_vals.get(hour, 0.0)
+        production['coal'] = coal_vals.get(hour, 0.0)
+        production['gas'] = gas_vals.get(hour, 0.0)
+        production['oil'] = oil_vals.get(hour, 0.0)
+        production['biomass'] = biomass_vals.get(hour, 0.0)
+        production['geothermal'] = geothermal_vals.get(hour, 0.0)
+        production['unknown'] = unknown_vals.get(hour, 0.0)
 
         if hour == 0:
             # Midnight data is for a new day.
@@ -354,7 +403,7 @@ def data_processer(df, date, logger):
     return generation_by_hour
 
 
-def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -384,8 +433,8 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
     }
     """
 
-    gxd = get_xls_data(session = None)
-    processing = data_processer(gxd[0], gxd[1], logger)
+    gxd = get_xls_data(target_datetime = target_datetime, session = None)
+    processing = data_processer(gxd[0], gxd[1], gxd[2], logger)
 
     data_by_hour = []
     for processed_data in processing:
@@ -405,8 +454,101 @@ def fetch_production(zone_key = 'CL-SIC', session=None, target_datetime=None, lo
     return data_by_hour
 
 
+def cleaner(raw_chunk):
+    """Takes dict and extracts date_string and flow value.
+    Returns tuple in the form (datetime,flow)
+    """
+    date_str = raw_chunk['fecha']
+    hour = raw_chunk['intervalos']
+
+    dt_naive = arrow.get(date_str, 'YYYY-MM-DD')
+    dt_aware = dt_naive.replace(hour=hour, tzinfo='Chile/Continental').datetime
+
+    flow = -1*raw_chunk['potencia_sum']
+
+    return dt_aware, flow
+
+
+def group_and_consolidate(mess):
+    """Takes a list of 2 element tuples, groups them by first element (datetime)
+    then sums 2nd elements of the group.
+    Returns a list of tuples in the form (datetime,flow).
+    """
+
+    data = []
+    for dt, flow in groupby(sorted(mess), lambda d: d[0]):
+        netflow = sum(map(operator.itemgetter(1), flow))
+        data.append((dt, netflow))
+
+    return data
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+    """Requests the last known power exchange (in MW) between two zones
+    Arguments:
+    zone_key1           -- the first country code
+    zone_key2           -- the second country code; order of the two codes in params doesn't matter
+    session (optional)      -- request session passed in order to re-use an existing session
+    target_datetime (optional)      -- string in form YYYYMMDDTHHZ
+    Return:
+    A list of dictionaries in the form:
+    {
+      'sortedZoneKeys': 'DK->NO',
+      'datetime': '2017-01-01T00:00:00Z',
+      'netFlow': 0.0,
+      'source': 'mysource.com'
+    }
+    where net flow is from DK into NO
+    """
+
+    if not target_datetime:
+        raise ValueError('Target datetime is required for Cl-SIC->CL-SING')
+
+    arr_target_dt = arrow.get(target_datetime, 'YYYYMMDD')
+    lookup_date = arr_target_dt.format('YYYY-MM-DD')
+
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+    url = '''https://sipub.coordinador.cl/api/v1/recursos/potencia_transitada?
+             tramo_nombre__in=Los+Changos+%C2%96+Cumbre++500KV+C1+%2F+Cumbres+500+kV
+             %2CLos+Changos+%C2%96+Cumbre++500KV+C2+%2F+Cumbres+500+kV%2C%2C%2C%2C
+             &fecha__gte={0}&fecha__lte={0}'''.format(lookup_date)
+
+    headers = {'Referer': ('https://www.coordinador.cl/sistema-informacion-publica/'
+                          'portal-de-operaciones/operacion-real/potencia-transitada-por-lineas/'),
+               'Origin': 'https://www.coordinador.cl'}
+
+    req = requests.get(url, headers=headers)
+    raw_json = req.json()
+    raw_data = raw_json['aggs']
+
+    # check to see if data is available, empty list returned if not
+    # interconnection is comprised of 2 lines
+    # data lags about 4 days behind
+    if not raw_data:
+        raise ValueError('No data available for {} on {}'.format(sortedcodes, lookup_date))
+
+    clean_data = [cleaner(data_chunk) for data_chunk in raw_data]
+    consolidated = group_and_consolidate(clean_data)
+
+    data_by_hour = []
+    for datapoint in consolidated:
+        exchange = {
+          'sortedZoneKeys': sortedcodes,
+          'datetime': datapoint[0],
+          'netFlow': datapoint[1],
+          'source': 'sipub.coordinador.cl'}
+
+        data_by_hour.append(exchange)
+
+    return data_by_hour
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
+    #print('fetch_production(target_datetime=2015-01-02)')
+    #print(fetch_production(target_datetime='2015-01-02'))
+    print('fetch_exchange(CL-SIC, CL-SING)')
+    print(fetch_exchange('CL-SIC', 'CL-SING', target_datetime='20181201'))

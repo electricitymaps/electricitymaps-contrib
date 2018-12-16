@@ -10,7 +10,7 @@ function placeTooltip(selector, eventX, eventY) {
   const tooltip = d3.select(selector);
   const w = tooltip.node().getBoundingClientRect().width;
   const h = tooltip.node().getBoundingClientRect().height;
-  const margin = 7;
+  const margin = 16;
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
@@ -52,6 +52,7 @@ function Tooltip(selector) {
 Tooltip.prototype.show = function() {
     if (this.isShowing) { return; }
     this.isShowing = true;
+    this.isVisible = true;
     d3.select(this._selector)
         .style('display', 'block')
         .transition()
@@ -65,6 +66,7 @@ Tooltip.prototype.update = function(x, y) {
 }
 Tooltip.prototype.hide = function() {
     this.isShowing = false;
+    this.isVisible = false;
     d3.select(this._selector)
         .style('width', null) // this is a temporary fix for the 100% width problem
         .transition()

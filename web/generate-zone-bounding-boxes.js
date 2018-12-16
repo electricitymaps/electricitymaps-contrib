@@ -1,12 +1,17 @@
 const fs = require('fs');
 
+const args = process.argv.slice(2);
+
 function readNDJSON(path) {
   return fs.readFileSync(path, 'utf8').split('\n')
     .filter(d => d !== '')
     .map(JSON.parse);
 }
 
-let zones = readNDJSON('build/zonegeometries.json');
+let zones = readNDJSON('public/dist/zonegeometries.json');
+if (args.length > 0) {
+  zones = zones.filter(d => d.properties.zoneName === args[0]);
+}
 
 let allCoords = [];
 const boundingBoxes = {};

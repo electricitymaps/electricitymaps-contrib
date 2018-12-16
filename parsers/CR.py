@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+import datetime as dt
 import logging
 
 import arrow
@@ -67,6 +68,7 @@ POWER_PLANTS = {
     u'Orotina': 'unknown',
     u'Otros': 'unknown',
     u'PE Mogote': 'wind',
+    u'PE Río Naranjo': 'hydro',
     u'PEG': 'wind',
     u'Pailas': 'geothermal',
     u'Parque Solar Juanilama': 'solar',
@@ -151,7 +153,7 @@ def df_to_data(zone_key, day, df, logger):
         results.append(data)
 
     for plant in unknown_plants:
-        logger.warning('{} is not mapped to generation type'.format(plant),
+        logger.warning(u'{} is not mapped to generation type'.format(plant),
                        extra={'key': zone_key})
 
     return results
@@ -159,8 +161,16 @@ def df_to_data(zone_key, day, df, logger):
 
 def fetch_production(zone_key='CR', session=None,
                      target_datetime=None, logger=logging.getLogger(__name__)):
-    # ensure we have an arrow object. if no target_datetime is specified, this defaults to now.
+    # ensure we have an arrow object.
+    # if no target_datetime is specified, this defaults to now.
     target_datetime = arrow.get(target_datetime).to(TIMEZONE)
+
+    # if before 01:30am on the current day then fetch previous day due to
+    # data lag.
+    today = arrow.get().to(TIMEZONE).date()
+    if target_datetime.date() == today:
+        target_datetime = target_datetime if target_datetime.time() >= dt.time(1, 30) \
+            else target_datetime.shift(days=-1)
 
     if target_datetime < arrow.get('2012-07-01'):
         # data availability limit found by manual trial and error
@@ -171,21 +181,19 @@ def fetch_production(zone_key='CR', session=None,
 
     # Do not use existing session as some amount of cache is taking place
     r = requests.session()
-    url = 'https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
+    url = 'https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
     response = r.get(url)
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    jsf_view_state = soup.select('#javax.faces.ViewState')[0]['value']
+    jsf_view_state = soup.find("input", {"name": 'javax.faces.ViewState'})['value']
 
     data = [
-        ('formPosdespacho', 'formPosdespacho'),
         ('formPosdespacho:txtFechaInicio_input', target_datetime.format(DATE_FORMAT)),
         ('formPosdespacho:pickFecha', ''),
-        ('formPosdespacho:j_idt60_selection', ''),
-        ('formPosdespacho:j_idt60_scrollState', '0,1915'),
+        ('formPosdespacho_SUBMIT', 1),
         ('javax.faces.ViewState', jsf_view_state),
     ]
-    response = r.post(url, cookies={}, data=data)
+    response = r.post(url, data=data)
 
     # tell pandas which table to use by providing CHARACTERISTIC_NAME
     df = pd.read_html(response.text, match=CHARACTERISTIC_NAME, skiprows=1, index_col=0)[0]

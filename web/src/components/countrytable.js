@@ -15,8 +15,6 @@ var moment = require('moment');
 var flags = require('../helpers/flags');
 var translation = require('../helpers/translation');
 
-const allChildrenSelector = '.country-table-header,.country-show-emissions-wrap,.country-table-container,.country-history';
-
 // TODO:
 // All non-path (i.e. non-axis) elements should be drawn
 // with a % scale.
@@ -94,7 +92,6 @@ function CountryTable(selector, modeColor, modeOrder) {
         .style('fill', 'darkgray')
         .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
-    
 }
 
 CountryTable.prototype.render = function(ignoreTransitions) {
@@ -122,13 +119,16 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         return;
     }
 
-    const width = this.container.node().getBoundingClientRect().width;
+    const width = this.root.node().getBoundingClientRect().width;
+
+    if (width <= 0) {
+      return;
+    }
     
     if (!this._exchangeData) { return; }
-
     
     // Update scale
-    this.barMaxWidth = width - 2 * this.PADDING_X - this.LABEL_MAX_WIDTH;
+    this.barMaxWidth = width - this.LABEL_MAX_WIDTH - this.PADDING_X;
     this.powerScale
         .range([0, this.barMaxWidth]);
     this.co2Scale
@@ -236,9 +236,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     // Construct exchanges
     function getExchangeCo2eq(d) {
-        return d.value > 0 ? 
-            (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
-            : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
+      const co2intensity = that._electricityMixMode === 'consumption'
+        ? that._data.co2intensity
+        : that._data.co2intensityProduction;
+      const exchangeCo2Intensities = that._data.exchangeCo2Intensities
+        return d.value > 0
+            ? (exchangeCo2Intensities !== undefined && exchangeCo2Intensities[d.key] !== undefined)
+              ? exchangeCo2Intensities[d.key]
+              : undefined
+            : (co2intensity !== undefined) ? co2intensity : undefined;
     }
     var selection = this.exchangeRoot.selectAll('.row')
         .data(this._exchangeData);
@@ -364,17 +370,11 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     gNewRow.merge(selection).select('text')
         .text(function(d) { return d.key; });
+    const co2intensity = this._electricityMixMode === 'consumption'
+      ? this._data.co2intensity
+      : this._data.co2intensityProduction;
     d3.select('.country-emission-intensity')
-        .text(Math.round(this._data.co2intensity) || '?');
-    var hasFossilFuelData = this._data.fossilFuelRatio != null;
-    var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.selectAll('.left-panel-zone-details .lowcarbon-percentage')
-        .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
-
-    var hasRenewableData = this._data.renewableRatio != null;
-    var renewablePercent = this._data.renewableRatio * 100;
-    d3.selectAll('.left-panel-zone-details .renewable-percentage')
-        .text(hasRenewableData ? Math.round(renewablePercent) : '?');
+        .text(Math.round(co2intensity) || '?');
 
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
@@ -387,8 +387,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',
-            this._data.co2intensity ?
-                that.co2color()(this._data.co2intensity) : 'gray');
+            co2intensity ?
+                that.co2color()(co2intensity) : 'gray');
     d3.select('.country-data-source')
         .text(this._data.source || '?');
 
@@ -445,19 +445,21 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
 }
 
 CountryTable.prototype.resize = function() {
-    this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
-    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
+  this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
+  this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
-    this.yProduction = this.X_AXIS_HEIGHT + this.PADDING_Y;
-    this.productionRoot
-        .attr('transform', 'translate(0,' + this.yProduction + ')');
-    this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;
-    this.exchangeRoot
-        .attr('transform', 'translate(0,' + this.yExchange + ')');
+  this.yProduction = this.X_AXIS_HEIGHT + this.PADDING_Y;
+  this.productionRoot
+    .attr('transform', 'translate(0,' + this.yProduction + ')');
+  this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;
+  this.exchangeRoot
+    .attr('transform', 'translate(0,' + this.yExchange + ')');
 
-    this.container
-        .attr('height', this.yExchange + this.exchangeHeight);
-}
+  this.container
+    .attr('height', this.yExchange + this.exchangeHeight);
+
+  return this;
+};
 
 CountryTable.prototype.data = function(arg) {
     var that = this;
@@ -465,24 +467,28 @@ CountryTable.prototype.data = function(arg) {
 
     this._data = arg;
 
-    if (!this._data) { return this }
+    if (!this._data) { return this; }
 
     this.hasProductionData = this._data.production !== undefined && Object.keys(this._data.production).length > 0;
     this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser;
-    
-    if (this._exchangeKeys) {
-        this._exchangeData = this._exchangeKeys
-            .map(function(k) {
-                return { key: k, value: (that._data.exchange || {})[k] }
-            })
-            .sort(function(x, y) {
-                return d3.ascending(x.key, y.key);
-            });
+
+    if (this._electricityMixMode === 'consumption') {
+      if (this._exchangeKeys) {
+          this._exchangeData = this._exchangeKeys
+              .map(function(k) {
+                  return { key: k, value: (that._data.exchange || {})[k] }
+              })
+              .sort(function(x, y) {
+                  return d3.ascending(x.key, y.key);
+              });
+      } else {
+          this._exchangeData = d3.entries(this._data.exchange)
+              .sort(function(x, y) {
+                  return d3.ascending(x.key, y.key);
+              });
+      }
     } else {
-        this._exchangeData = d3.entries(this._data.exchange)
-            .sort(function(x, y) {
-                return d3.ascending(x.key, y.key);
-            });
+      this._exchangeData = [];
     }
     if (!this.hasProductionData){
         // Remove exchange data values if no production is present, as table is greyed out
@@ -490,25 +496,34 @@ CountryTable.prototype.data = function(arg) {
     }
 
     // Construct a list having each production in the same order as this.MODES.
-    this.sortedProductionData = this.MODES.map(function (d) {
-        var footprint = !d.isStorage ? 
-            that._data.productionCo2Intensities ? 
-                that._data.productionCo2Intensities[d.mode] :
-                undefined :
-            0;
-        var production = !d.isStorage ? (that._data.production || {})[d.mode] : undefined;
-        var storage = d.isStorage ? (that._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
-        var capacity = (that._data.capacity || {})[d.mode];
-        return {
-            production: production,
-            storage: storage,
-            isStorage: d.isStorage,
-            capacity: capacity,
-            mode: d.mode,
-            text: translation.translate(d.mode),
-            gCo2eqPerkWh: footprint,
-            gCo2eqPerH: footprint * 1000.0 * Math.max(production, 0)
-        };
+    this.sortedProductionData = this.MODES.map((d) => {
+      let footprint;
+      let storage = d.isStorage ? (this._data.storage || {})[d.mode.replace(' storage', '')] : undefined;
+      const production = !d.isStorage ? (this._data.production || {})[d.mode] : undefined;
+      if (d.isStorage) {
+        storage = (this._data.storage || {})[d.mode.replace(' storage', '')];
+        if (storage > 0) {
+          // Storage
+          footprint = (this._data.storageCo2Intensities || {})[d.mode.replace(' storage', '')];
+        } else {
+          // Discharge
+          // if (this._data.dischargeCo2Intensities) { debugger }
+          footprint = (this._data.dischargeCo2Intensities || {})[d.mode.replace(' storage', '')];
+        }
+      } else {
+        footprint = (this._data.productionCo2Intensities || {})[d.mode];
+      }
+      const capacity = (this._data.capacity || {})[d.mode];
+      return {
+        production: production,
+        storage: storage,
+        isStorage: d.isStorage,
+        capacity: capacity,
+        mode: d.mode,
+        text: translation.translate(d.mode),
+        gCo2eqPerkWh: footprint,
+        gCo2eqPerH: footprint * 1000.0 * Math.max(d.isStorage ? Math.abs(storage) : production, 0)
+      };
     });
 
     
@@ -529,12 +544,16 @@ CountryTable.prototype.data = function(arg) {
                 this._data.maxImportCapacity || 0)
         ]);
     // co2 scale in tCO2eq/min
-    var maxCO2eqExport = d3.max(this._exchangeData, function (d) {
-        return d.value >= 0 ? 0 : (that._data.co2intensity / 1e3 * -d.value / 60.0 || 0);
+    const maxCO2eqExport = d3.max(this._exchangeData, (d) => {
+      const co2intensity = this._electricityMixMode === 'consumption'
+        ? this.co2intensity
+        : this.co2intensityProduction;
+      return d.value >= 0 ? 0 : (co2intensity / 1e3 * -d.value / 60.0 || 0);
     });
-    var maxCO2eqImport = d3.max(this._exchangeData, function (d) {
-        if (!that._data.exchangeCo2Intensities) return 0;
-        return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
+    const maxCO2eqImport = d3.max(this._exchangeData, (d) => {
+      const exchangeCo2Intensities = this.exchangeCo2Intensities;
+      if (!exchangeCo2Intensities) return 0;
+      return d.value <= 0 ? 0 : exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
     });
     this.co2Scale // in tCO2eq/min
         .domain(this._co2ScaleDomain || [
@@ -599,7 +618,14 @@ CountryTable.prototype.exchangeKeys = function(arg) {
     return this;
 };
 
+CountryTable.prototype.electricityMixMode = function(arg) {
+  if (!arguments.length) return this._electricityMixMode;
+  else this._electricityMixMode = arg;
+  return this;
+};
+
 CountryTable.prototype.showNoParserMessageIf = function(condition) {
+  const allChildrenSelector = 'p,.country-table-header-inner,.country-show-emissions-wrap,.country-panel-wrap,.country-history';
     d3.selectAll(allChildrenSelector).classed('all-screens-hidden', condition);
     d3.select('.zone-details-no-parser-message').classed('visible', condition);
 }

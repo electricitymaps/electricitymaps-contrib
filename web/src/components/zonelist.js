@@ -15,6 +15,8 @@ export default class ZoneList {
     const config = argConfig || {};
     this.co2ColorScale = config.co2ColorScale;
     this.clickHandler = config.clickHandler;
+    this.selectedItemIndex = null;
+    this.visibleListItems = [];
     if (config.zones) {
       this.setZones(config.zones);
     }
@@ -34,31 +36,98 @@ export default class ZoneList {
     this.clickHandler = clickHandler;
   }
 
+  setElectricityMixMode(arg) {
+    this.electricityMixMode = arg;
+  }
+
   filterZonesByQuery(query) {
+    this._deHighlightSelectedItem();
     d3.select(this.selectorId).selectAll('a').each((zone, i, nodes) => {
       const listItem = d3.select(nodes[i]);
       if (this._zoneMatchesQuery(zone, query)) {
-        listItem.style('display', 'inherit');
+        listItem.style('display', 'flex');
       } else {
         listItem.style('display', 'none');
       }
     });
+    this._resetToDefaultSelectedItem();
   }
 
   clickSelectedItem() {
-    // Item is selected when it is the only item visible in the list
-    const visibleListItems = d3.select(this.selectorId).selectAll('a').nodes()
-      .filter(node => node.style.display !== 'none');
-    if (visibleListItems.length === 1) {
-      visibleListItems[0].click();
+    // Nothing to do if no item is selected
+    if (!this.visibleListItems[this.selectedItemIndex]) {
+      return;
+    }
+    this.visibleListItems[this.selectedItemIndex].click();
+  }
+
+  selectNextItem() {
+    if (this.selectedItemIndex === null) {
+      this.selectedItemIndex = 0;
+      this._highlightSelectedItem();
+    } else if (this.selectedItemIndex < this.visibleListItems.length - 1) {
+      this._deHighlightSelectedItem();
+      this.selectedItemIndex += 1;
+      this._highlightSelectedItem();
     }
   }
 
+  selectPreviousItem() {
+    if (this.selectedItemIndex === null) {
+      this.selectedItemIndex = 0;
+      this._highlightSelectedItem();
+    } else if (this.selectedItemIndex >= 1
+        && this.selectedItemIndex < this.visibleListItems.length) {
+      this._deHighlightSelectedItem();
+      this.selectedItemIndex -= 1;
+      this._highlightSelectedItem();
+    }
+  }
 
   render() {
     this._createListItems();
     this._setItemAttributes();
     this._setItemClickHandlers();
+  }
+
+  _resetToDefaultSelectedItem() {
+    if (this.selectedItemIndex !== null) {
+      this.selectedItemIndex = 0;
+    }
+    
+    this.visibleListItems = d3.select(this.selectorId).selectAll('a').nodes()
+      .filter(node => node.style.display !== 'none');
+    if (this.visibleListItems.length) {
+      this._highlightSelectedItem();
+    }
+  }
+
+  _highlightSelectedItem() {
+    const item = this.visibleListItems[this.selectedItemIndex];
+    if (item) {
+      item.setAttribute('class', 'selected');
+      this._scrollToItemIfNeeded(item);
+    }
+  }
+
+  _scrollToItemIfNeeded(item) {
+    const parent = item.parentNode;
+    const parentComputedStyle = window.getComputedStyle(parent, null);
+    const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'));
+    const overTop = item.offsetTop - parent.offsetTop < parent.scrollTop;
+    const overBottom = (item.offsetTop - parent.offsetTop + item.clientHeight - parentBorderTopWidth) > (parent.scrollTop + parent.clientHeight);
+    const alignWithTop = overTop && !overBottom;
+
+    if (overTop || overBottom) {
+      item.scrollIntoView(alignWithTop);
+    }
+  }
+
+  _deHighlightSelectedItem() {
+    const item = this.visibleListItems[this.selectedItemIndex];
+    if (item) {
+      item.setAttribute('class', '');
+    }
   }
 
   _zoneMatchesQuery(zone, queryString) {
@@ -69,9 +138,16 @@ export default class ZoneList {
         .indexOf(query.toLowerCase()) !== -1);
   }
 
+  _getCo2IntensityAccessor() {
+    return d => (this.electricityMixMode === 'consumption'
+      ? d.co2intensity
+      : d.co2intensityProduction);
+  }
+
   _sortAndValidateZones(zones) {
+    const accessor = this._getCo2IntensityAccessor();
     return zones
-      .filter(d => d.co2intensity)
+      .filter(accessor)
       .sort((x, y) => {
         if (!x.co2intensity && !x.countryCode) {
           return d3.ascending(
@@ -80,8 +156,8 @@ export default class ZoneList {
           );
         }
         return d3.ascending(
-          x.co2intensity || Infinity,
-          y.co2intensity || Infinity,
+          accessor(x) || Infinity,
+          accessor(y) || Infinity,
         );
       });
   }
@@ -104,12 +180,14 @@ export default class ZoneList {
     itemLinks.append('div').attr('class', 'ranking');
     itemLinks.append('img').attr('class', 'flag');
 
+
     const nameDiv = itemLinks.append('div').attr('class', 'name');
     nameDiv.append('div').attr('class', 'zone-name');
     nameDiv.append('div').attr('class', 'country-name');
 
     itemLinks.append('div').attr('class', 'co2-intensity-tag');
 
+    this.visibleListItems = itemLinks.nodes();
     this.selector = itemLinks.merge(this.selector);
   }
 
@@ -139,8 +217,9 @@ export default class ZoneList {
   }
 
   _setItemCO2IntensityTag() {
+    const accessor = this._getCo2IntensityAccessor();
     this.selector.select('.co2-intensity-tag')
-      .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
+      .style('background-color', zone => (accessor(zone) && this.co2ColorScale ? this.co2ColorScale(accessor(zone)) : 'gray'));
   }
 
   _setItemClickHandlers() {

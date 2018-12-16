@@ -60,7 +60,7 @@ function getStateFromHistory() {
 
 // Parse initial history state
 function parseInitial(arg) {
-  const querystrings = arg.replace('\?','').split('&');
+  const querystrings = arg.replace('\?', '').split('&');
   const validKeys = Object.keys(querystringMappings);
   querystrings.forEach((d) => {
     const pair = d.split('=');

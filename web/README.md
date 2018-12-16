@@ -6,7 +6,7 @@ The world map data is open source and provided by [NACIS](http://nacis.org/initi
 
 To generate a new world.json run the following command from the web directory after making changes.
 ```
-./topogen.sh
+docker-compose run --rm web ./topogen.sh
 ```
 
 ### `topogen.sh`
@@ -21,9 +21,7 @@ and added to the `web/build` folder
 
 ### `generate-geometries.js`
 
-The variables `zoneDefinitions` relates each zone from the Electricity Map to how it is
-described by data from NACIS (or third party). A zone can correspond to a country, a
-group of countries, a state, a group of states...
+The variables `zoneDefinitions` should be updated manually to reflect intended changes in mapping between electricityMap zones and NACIS geometries. It relates each zone from the electricityMap to how it is described by data from NACIS (or third party). A zone can correspond to a country, a group of countries, a state, a group of states...
 
 The function `geomerge` merges a list of GeoJSON Polygons or MultiPolygons into a single
 multi-polygon. This allows to merge a group of geometries into a single one.

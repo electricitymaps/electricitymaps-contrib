@@ -5,30 +5,35 @@ const modeColor = {
   'hydro': '#2772b2',
   'hydro storage': '#0052cc',
   'battery': 'lightgray',
+  'battery storage': 'lightgray',
   'biomass': '#166a57',
   'geothermal': 'yellow',
   'nuclear': '#AEB800',
   'gas': '#bb2f51',
   'coal': '#ac8c35',
   'oil': '#867d66',
-  'unknown': 'lightgray',
+  'unknown': '#ACACAC',
 };
 const modeOrder = [
+  'nuclear',
+  'coal',
+  'geothermal',
   'wind',
   'solar',
   'hydro',
   'hydro storage',
   'battery storage',
-  'geothermal',
   'biomass',
-  'nuclear',
   'gas',
-  'coal',
   'oil',
   'unknown',
 ];
+const PRODUCTION_MODES = modeOrder.filter(d => d.indexOf('storage') === -1);
+const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d => d.replace(' storage', ''));
 
 module.exports = {
   modeColor,
   modeOrder,
+  PRODUCTION_MODES,
+  STORAGE_MODES,
 };

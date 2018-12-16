@@ -6,13 +6,24 @@ const dataReducer = require('./dataReducer');
 const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
   window.location.href.indexOf('192.') !== -1;
 
+const cookieGetBool = (key, defaultValue) => {
+  const val = Cookies.get(key);
+  if (val == null) {
+    return defaultValue;
+  }
+  return val === 'true';
+};
+
 const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
   bundleHash: window.bundleHash,
   callerLocation: null,
+  callerZone: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
-  colorBlindModeEnabled: Cookies.get('colorBlindModeEnabled') === 'true' || false,
+  colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
+  brightModeEnabled: cookieGetBool('brightModeEnabled', true),
   customDate: null,
+  electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
@@ -22,13 +33,15 @@ const initialApplicationState = {
   isLocalhost,
   legendVisible: false,
   locale: window.locale,
-  onboardingSeen: Cookies.get('onboardingSeen') === 'true' || false,
+  onboardingSeen: cookieGetBool('onboardingSeen', false),
+  tooltipDisplayMode: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
-  solarEnabled: Cookies.get('solarEnabled') === 'true' || false,
+  previousSelectedZoneTimeIndex: null,
+  solarEnabled: cookieGetBool('solarEnabled', false),
   useRemoteEndpoint: document.domain === '' || isLocalhost,
-  windEnabled: Cookies.get('windEnabled') === 'true' || false,
+  windEnabled: cookieGetBool('windEnabled', false),
 
   // TODO(olc): refactor this state
   showPageState: 'map',
@@ -51,6 +64,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
         newState.pageToGoBackTo = state.showPageState;
       }
 
+      if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
+        throw Error(`Unknown electricityMixMode "${value}"`);
+      }
+
       return newState;
     }
 
@@ -66,6 +83,23 @@ const applicationReducer = (state = initialApplicationState, action) => {
         });
       }
       return state;
+    }
+
+    case 'UPDATE_SELECTED_ZONE': {
+      const { selectedZoneName } = action.payload;
+      return Object.assign(state, {
+        selectedZoneName,
+        selectedZoneTimeIndex: null,
+        previousSelectedZoneTimeIndex: null,
+      });
+    }
+
+    case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
+      const { selectedZoneTimeIndex } = action.payload;
+      return Object.assign(state, {
+        selectedZoneTimeIndex,
+        previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
+      });
     }
 
     default:

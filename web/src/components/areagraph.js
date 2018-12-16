@@ -17,6 +17,15 @@ function AreaGraph(selector, modeColor, modeOrder) {
     var that = this;
 
     this.rootElement = d3.select(selector);
+
+    // Create axis
+    this.xAxisElement = this.rootElement.append('g')
+        .attr('class', 'x axis')
+        .style('pointer-events', 'none');
+    this.yAxisElement = this.rootElement.append('g')
+        .attr('class', 'y axis')
+        .style('pointer-events', 'none');
+
     this.graphElement = this.rootElement.append('g');
     this.interactionRect = this.graphElement.append('rect')
         .style('cursor', 'pointer')
@@ -26,20 +35,13 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .style('display', 'none')
         .style('pointer-events', 'none')
         .style('shape-rendering', 'crispEdges')
+
     this.markerElement = this.rootElement.append('circle')
         .style('pointer-events', 'none')
         .style('display', 'none')
         .attr('r', 6)
         .style('stroke', 'black')
         .style('stroke-width', 1.5);
-
-    // Create axis
-    this.xAxisElement = this.rootElement.append('g')
-        .attr('class', 'x axis')
-        .style('pointer-events', 'none');
-    this.yAxisElement = this.rootElement.append('g')
-        .attr('class', 'y axis')
-        .style('pointer-events', 'none');
 
     // Create scales
     this.x = d3.scaleTime();
@@ -84,21 +86,23 @@ AreaGraph.prototype.data = function (arg) {
             if (isFinite(value) && that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
                 if (isStorage && obj[k] >= 0) {
-                    obj[k] *= d.dischargeCo2Intensities[k] / 1e3 / 60.0
+                    obj[k] *= d.dischargeCo2Intensities[k.replace(' storage', '')] / 1e3 / 60.0
                 } else {
                     obj[k] *= d.productionCo2Intensities[k] / 1e3 / 60.0
                 }
             }
         })
-        // Add exchange
-        d3.entries(d.exchange).forEach(function(o) {
-            exchangeKeysSet.add(o.key);
-            obj[o.key] = Math.max(0, o.value);
-            if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
-                // in tCO2eq/min
-                obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-            }
-        });
+        if (that._electricityMixMode === 'consumption') {
+          // Add exchange
+          d3.entries(d.exchange).forEach(function(o) {
+              exchangeKeysSet.add(o.key);
+              obj[o.key] = Math.max(0, o.value);
+              if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
+                  // in tCO2eq/min
+                  obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
+              }
+          });
+        }
         // Keep a pointer to original data
         obj._countryData = d;
         return obj;
@@ -106,8 +110,10 @@ AreaGraph.prototype.data = function (arg) {
 
     // Prepare stack
     // Order is defined here, from bottom to top
-    this.stackKeys = this.modeOrder
-        .concat(exchangeKeysSet.values())
+    this.stackKeys = this.modeOrder;
+    if (this._electricityMixMode === 'consumption') {
+      this.stackKeys = this.stackKeys.concat(exchangeKeysSet.values());
+    }
     this.stack = d3.stack()
         .offset(d3.stackOffsetDiverging)
         .keys(this.stackKeys)(this._data);
@@ -248,7 +254,7 @@ AreaGraph.prototype.render = function() {
             that._selectedLayerIndex = j;
             that.selectedIndex(i);
             if (that.layerMouseOverHandler) {
-                that.layerMouseOverHandler.call(this, d.key, d[i].data._countryData)
+                that.layerMouseOverHandler.call(this, d.key, d[i].data._countryData, i)
             }
             if (that.mouseOverHandler)
                 that.mouseOverHandler.call(this, data[i]._countryData, i);
@@ -308,15 +314,14 @@ AreaGraph.prototype.render = function() {
         .ticks(5)
         .tickFormat(function(d) { return moment(d).format('LT'); });
     this.xAxisElement
-        // Need to remove 1px in order to see the 1px line
-        .attr('transform', `translate(0 ${height - X_AXIS_HEIGHT})`)
+        .attr('transform', `translate(-1 ${height - X_AXIS_HEIGHT - 1})`)
         .call(xAxis);
 
     // y axis
     var yAxis = d3.axisRight(y)
         .ticks(5);
     this.yAxisElement
-        .attr('transform', `translate(${width - Y_AXIS_WIDTH} 0)`)
+        .attr('transform', `translate(${width - Y_AXIS_WIDTH - 1} -1)`)
         .call(yAxis);
 
     return this;
@@ -423,5 +428,11 @@ AreaGraph.prototype.displayByEmissions = function(arg) {
     }
     return this;
 }
+
+AreaGraph.prototype.electricityMixMode = function(arg) {
+  if (!arguments.length) return this._electricityMixMode;
+  else this._electricityMixMode = arg;
+  return this;
+};
 
 module.exports = AreaGraph;

@@ -4,14 +4,16 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 export default class Map {
   _setupMapColor() {
     if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
-      // TODO: Duplicated code
-      const co2Range = [0, 200, 400, 600, 800, 1000];
+      const co2Range = this.theme.co2Scale.steps;
       const stops = co2Range.map(d => [d, this.co2color(d)]);
       this.map.setPaintProperty('clickable-zones-fill', 'fill-color', {
-        default: 'gray',
+        default: this.theme.clickableFill,
         property: 'co2intensity',
         stops,
       });
+      this.map.setPaintProperty('background', 'background-color', this.theme.oceanColor);
+      this.map.setPaintProperty('zones-line', 'line-color', this.theme.strokeColor);
+      this.map.setPaintProperty('zones-line', 'line-width', this.theme.strokeWidth);
     }
   }
 
@@ -46,7 +48,7 @@ export default class Map {
       });
       // Create layers
       const paint = {
-        'fill-color': this.clickableFill,
+        'fill-color': this.theme.clickableFill,
       };
       if (this.co2color) {
         const co2Range = [0, 200, 400, 600, 800, 1000];
@@ -54,9 +56,14 @@ export default class Map {
         paint['fill-color'] = {
           stops,
           property: 'co2intensity',
-          default: this.clickableFill,
+          default: this.theme.clickableFill,
         };
       }
+      this.map.addLayer({
+        id: 'background',
+        type: 'background',
+        paint: { 'background-color': this.theme.oceanColor },
+      });
       this.map.addLayer({
         id: 'clickable-zones-fill',
         type: 'fill',
@@ -69,7 +76,7 @@ export default class Map {
         type: 'fill',
         source: 'non-clickable-world',
         layout: {},
-        paint: { 'fill-color': this.nonClickableFill },
+        paint: { 'fill-color': this.theme.nonClickableFill },
       });
       this.map.addLayer({
         id: 'zones-hover',
@@ -80,7 +87,7 @@ export default class Map {
           'fill-color': 'white',
           'fill-opacity': 0.3,
         },
-        filter:  ['==', 'zoneId', ''],
+        filter: ['==', 'zoneId', ''],
       });
       // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
       this.map.addLayer({
@@ -89,8 +96,8 @@ export default class Map {
         source: 'clickable-world',
         layout: {},
         paint: {
-          'line-color': this.strokeColor,
-          'line-width': this.strokeWidth,
+          'line-color': this.theme.strokeColor,
+          'line-width': this.theme.strokeWidth,
         },
       });
     }
@@ -98,11 +105,19 @@ export default class Map {
 
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
+    const defaulttheme = {
+      strokeWidth: 0.3,
+      strokeColor: '#FAFAFA',
+      clickableFill: '#D4D9DE',
+      nonClickableFill: '#D4D9DE',
+      oceanColor: '#FAFAFA',
+      co2Scale: {
+        steps: [0, 150, 600, 750],
+        colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
+      },
+    };
 
-    this.strokeWidth = config.strokeWidth || 0.3;
-    this.strokeColor = config.strokeColor || '#555555';
-    this.clickableFill = config.clickableFill || 'gray';
-    this.nonClickableFill = config.nonClickableFill || 'gray';
+    this.theme = argConfig.theme || defaulttheme;
     this.userIsUsingTouch = false;
 
     this.center = undefined;
@@ -127,7 +142,6 @@ export default class Map {
 
     this.map.dragRotate.disable();
     this.map.touchZoomRotate.disableRotation();
-    this.map.doubleClickZoom.disable(); /* Transform scale is not given properly when enabled */
 
     this.map.on('load', () => {
       // Here we need to set all styles
@@ -160,11 +174,13 @@ export default class Map {
     this.dragEndHandlers = [];
     this.mapLoadedHandlers = [];
 
-    this.map.on('touchstart', e => {
+    this.map.on('touchstart', (e) => {
       // the user actually touched the screen!
       // he has a touch feature AND is using it. See #1090
-      this.userIsUsingTouch = true;
-      console.log('user is using touch');
+      if (!this.userIsUsingTouch) {
+        this.userIsUsingTouch = true;
+        console.log('user is using touch');
+      }
     });
 
     this.map.on('mouseenter', 'clickable-zones-fill', (e) => {
@@ -218,23 +234,29 @@ export default class Map {
         this.zoneMouseOutHandler.call(this);
       }
     });
-    this.map.on('click', (e) => {
-      const features = this.map.queryRenderedFeatures(e.point);
-      if (!features.length) {
-        if (this.seaClickHandler) {
-          this.seaClickHandler.call(this);
-        }
-      } else if (this.countryClickHandler) {
-        const i = features[0].properties.zoneId;
-        this.countryClickHandler.call(this, this.data[i], i);
-      }
-    });
 
     // *** PAN/ZOOM ***
     let dragInitialTransform;
     let dragStartTransform;
     let isDragging = false;
     let endTimeout = null;
+
+    this.map.on('click', (e) => {
+      // Here we have to wait a certain time to be sure
+      // that the click is not a double click zoom
+      setTimeout(() => {
+        if (isDragging) { return; }
+        const features = this.map.queryRenderedFeatures(e.point);
+        if (!features.length) {
+          if (this.seaClickHandler) {
+            this.seaClickHandler.call(this);
+          }
+        } else if (this.countryClickHandler) {
+          const i = features[0].properties.zoneId;
+          this.countryClickHandler.call(this, this.data[i], i);
+        }
+      }, 200);
+    });
 
     const onPanZoom = (e) => {
       if (endTimeout) {
@@ -251,6 +273,8 @@ export default class Map {
 
     const onPanZoomStart = (e) => {
       // For some reason, MapBox gives us many start events inside a single zoom.
+      // They are on desktop when scroll zoom for `zoomstart` and `movestart`.
+      // It works however for `dragstart`.
       // Those apply for touch events on mobile
       // They are removed here:
       if (isDragging) { return; }
@@ -296,8 +320,15 @@ export default class Map {
     return this;
   }
 
-  setCo2color(arg) {
+  setCo2color(arg, theme) {
     this.co2color = arg;
+    this.theme = theme;
+    this._setupMapColor();
+    return this;
+  }
+
+  setTheme(arg) {
+    this.theme = arg;
     this._setupMapColor();
     return this;
   }

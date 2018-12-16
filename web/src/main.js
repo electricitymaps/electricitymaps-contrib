@@ -4,12 +4,13 @@
 import { event as currentEvent } from 'd3-selection';
 import CircularGauge from './components/circulargauge';
 import ContributorList from './components/contributorlist';
+import Referral from './components/referral';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
-import { formatPower } from './helpers/formatting';
+import TimeSlider from './components/timeslider';
 
 // Libraries
 const d3 = Object.assign(
@@ -20,6 +21,8 @@ const d3 = Object.assign(
   require('d3-request'),
   require('d3-scale'),
   require('d3-selection'),
+  require('d3-scale-chromatic'),
+  require('d3-interpolate'),
 );
 const Cookies = require('js-cookie');
 const moment = require('moment');
@@ -52,6 +55,7 @@ const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
 const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
+const themes = require('./helpers/themes').themes;
 
 const getSymbolFromCurrency = require('currency-symbol-map');
 
@@ -106,13 +110,21 @@ let windLayer;
 let solarLayer;
 let onboardingModal;
 
+// Set standard theme
+let theme = themes.bright;
+
 // ** Create components
-const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder);
+const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder)
+  .electricityMixMode(getState().application.electricityMixMode);
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
   d => moment(d.stateDatetime).toDate(),
-  d => d.co2intensity,
-  d => d.co2intensity != null,
+  d => (getState().application.electricityMixMode === 'consumption'
+    ? (d || {}).co2intensity
+    : (d || {}).co2intensityProduction),
+  d => (getState().application.electricityMixMode === 'consumption'
+    ? (d || {}).co2intensity
+    : (d || {}).co2intensityProduction),
 );
 const countryHistoryPricesGraph = new LineGraph(
   '#country-history-prices',
@@ -120,7 +132,8 @@ const countryHistoryPricesGraph = new LineGraph(
   d => (d.price || {}).value,
   d => d.price && d.price.value != null,
 ).gradient(false);
-const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder);
+const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
+  .electricityMixMode(getState().application.electricityMixMode);
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
@@ -130,7 +143,11 @@ const priceTooltip = new Tooltip('#price-tooltip');
 
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
+const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
+const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
 const contributorList = new ContributorList('.contributors');
+const referral = new Referral('.referral-link');
+
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -140,11 +157,12 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-const zoneList = new ZoneList('.zone-list p');
+const zoneList = new ZoneList('.zone-list');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 const faq = new FAQ('.faq');
 const mobileFaq = new FAQ('.mobile-faq');
+const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
 // Initialise mobile app (cordova)
 const app = {
@@ -174,10 +192,23 @@ const app = {
     if (cordova.platformId === 'ios') {
       d3.select('#header')
         .style('padding-top', '20px');
+      d3.select('#mobile-header')
+        .style('padding-top', '20px');
       if (typeof zoneMap !== 'undefined') {
         zoneMap.map.resize();
       }
+      // iphone X nodge
+      if (device.model === 'iPhone10,3' || device.model === 'iPhone10,6') {
+        d3.select('#header')
+          .style('padding-top', '30px');
+        d3.select('#mobile-header')
+          .style('padding-top', '30px');
+        if (typeof zoneMap !== 'undefined') {
+          zoneMap.map.resize();
+        }
+      }
     }
+
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
     universalLinks.subscribe(null, (eventData) => {
       HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
@@ -192,15 +223,17 @@ const app = {
 
   onResume() {
     // Count a pageview
-    thirdPartyServices.trackWithCurrentApplicationState('Visit'),
+    thirdPartyServices.trackWithCurrentApplicationState('Visit');
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };
-app.initialize();
+if (getState().application.isCordova) {
+  app.initialize();
+}
 
 function catchError(e) {
   console.error(`Error Caught! ${e}`);
-  thirdPartyServices.opbeat('captureException', e);
+  thirdPartyServices.reportError(e);
   thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
   const params = getState().application;
   params.name = e.name;
@@ -234,9 +267,15 @@ let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
   if (getState().application.colorBlindModeEnabled) {
-    co2color = scales.colorBlindCo2Color;
+    co2color = d3.scaleLinear()
+      .domain(themes.colorblindScale.steps)
+      .range(themes.colorblindScale.colors)
+      .clamp(true);
   } else {
-    co2color = scales.classicalCo2Color;
+    co2color = d3.scaleLinear()
+      .domain(themes.co2Scale.steps)
+      .range(themes.co2Scale.colors)
+      .clamp(true);
   }
 
   co2color.clamp(true);
@@ -245,7 +284,7 @@ function updateCo2Scale() {
     .markerColor('white')
     .domain([0, scales.maxCo2])
     .render());
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color);
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
@@ -261,8 +300,9 @@ d3.select('#checkbox-colorblind').on('change', () => {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5 })
+  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
     .setCo2color(co2color)
+    .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
@@ -294,7 +334,9 @@ try {
         .onExchangeClick((d) => {
           console.log(d);
         })
-        .setData(Object.values(getState().data.grid.exchanges))
+        .setData(getState().application.electricityMixMode === 'consumption'
+          ? Object.values(getState().data.grid.exchanges)
+          : [])
         .render();
       LoadingService.stopLoading('#loading');
       LoadingService.stopLoading('#small-loading');
@@ -332,10 +374,12 @@ countryTable
       d, country, displayByEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', d);
   })
   .onExchangeMouseOut(() => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableExchangeTooltip.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   })
   .onProductionMouseOver((mode, country, displayByEmissions) => {
     tooltipHelper.showProduction(
@@ -343,12 +387,14 @@ countryTable
       mode, country, displayByEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
   })
   .onProductionMouseMove(() =>
     countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY))
   .onProductionMouseOut(() => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     countryTableProductionTooltip.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   });
 
 countryHistoryCarbonGraph
@@ -366,6 +412,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseMove((mode, countryData, i) => {
@@ -381,6 +428,7 @@ countryHistoryMixGraph
       mode, countryData, tableDisplayEmissions,
       co2color, co2Colorbars,
     );
+    dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseOut((mode, countryData, i) => {
@@ -389,6 +437,7 @@ countryHistoryMixGraph
     const ttp = isExchange ?
       countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.hide();
+    dispatchApplication('tooltipDisplayMode', null);
   });
 
 countryHistoryMixGraph
@@ -418,10 +467,12 @@ window.toggleSource = (state) => {
   d3.select('.country-show-emissions-wrap a#production')
     .classed('selected', !tableDisplayEmissions);
   // update wording, see #893
+  const mixModeKey = getState().application.electricityMixMode === 'consumption'
+    ? 'origin' : 'production';
   document.getElementById('country-history-electricity-carbonintensity')
     .textContent = translation.translate(
       tableDisplayEmissions ?
-        'country-history.emissionsorigin24h' : 'country-history.electricityorigin24h');
+        `country-history.emissions${mixModeKey}24h` : `country-history.electricity${mixModeKey}24h`);
 };
 
 function mapMouseOver(lonlat) {
@@ -541,7 +592,7 @@ function setLastUpdated() {
 // Re-check every minute
 setInterval(setLastUpdated, 60 * 1000);
 
-function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind) {
+function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
   if (err) {
     console.error(err);
     return;
@@ -562,11 +613,19 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
     // Assign country map data
     zoneMap
       .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        tooltipHelper.showMapCountry(
+          countryTooltip, d, co2color, co2Colorbars,
+          tooltipLowCarbonGauge, tooltipRenewableGauge,
+          getState().application.electricityMixMode,
+        );
       })
       .onZoneMouseMove((d, i, clientX, clientY) => {
         // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+        tooltipHelper.showMapCountry(
+          countryTooltip, d, co2color, co2Colorbars,
+          tooltipLowCarbonGauge, tooltipRenewableGauge,
+          getState().application.electricityMixMode,
+        );
         const rect = node.getBoundingClientRect();
         countryTooltip.update(clientX + rect.left, clientY + rect.top);
       })
@@ -588,6 +647,7 @@ function dataLoaded(err, clientVersion, callerLocation, state, argSolar, argWind
   if (argSolar) solar = argSolar;
 
   dispatchApplication('callerLocation', callerLocation);
+  dispatchApplication('callerZone', callerZone);
   dispatch({
     payload: state,
     type: 'GRID_DATA',
@@ -660,7 +720,7 @@ function fetch(showLoading, callback) {
   Q.await((err, clientVersion, state, solar, wind) => {
     handleConnectionReturnCode(err);
     if (!err) {
-      dataLoaded(err, clientVersion, state.data.callerLocation, state.data, solar, wind);
+      dataLoaded(err, clientVersion, state.data.callerLocation, state.data.callerZone, state.data, solar, wind);
     }
     if (showLoading) {
       LoadingService.stopLoading('#loading');
@@ -686,11 +746,26 @@ window.retryFetch = () => {
 };
 
 
+
 // *** DISPATCHERS ***
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
-
+// BrightMode
+function toggleBright() {
+  dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
+}
+d3.select('.brightmode-button').on('click', toggleBright);
+const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.brightmode-button').on('mouseover', () => {
+    brightModeButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.brightmode-button').on('mouseout', () => {
+    brightModeButtonTooltip.classed('hidden', true);
+  });
+}
 
 // Wind
 function toggleWind() {
@@ -731,18 +806,24 @@ if (!getState().application.isMobile) {
   });
 }
 
-// Legend 
+// Production/Consumption
+function toggleElectricityMixMode() {
+  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
+    ? 'production'
+    : 'consumption');
+}
+d3.select('.production-toggle').on('click', toggleElectricityMixMode);
+
+const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
+d3.select('.production-toggle-info').on('click', () => {
+  prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
+});
+
+// Legend
 function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
 }
 d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
-
-// Keyboard shortcuts
-document.addEventListener('keyup', (e) => {
-  if (e.key === '/') {
-    zoneSearchBar.focus();
-  }
-}, false);
 
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
@@ -754,12 +835,18 @@ if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
       dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
-      dispatchApplication('selectedZoneName', undefined);
+      if (getState().application.selectedZoneName !== null) {
+        dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: null}});
+      }
     })
     .onCountryClick((d) => {
+      // Analytics
       dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
-      dispatchApplication('selectedZoneName', d.countryCode);
+      if (getState().application.selectedZoneName !== d.countryCode) {
+        dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
+      }
+      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
 }
 
@@ -770,10 +857,15 @@ zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
 zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Back button
+
+function goBackToZoneListFromZoneDetails() {
+  dispatchApplication('selectedZoneName', undefined);
+  dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+}
+
 d3.selectAll('.left-panel-back-button')
   .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+    goBackToZoneListFromZoneDetails();
   });
 
 // Zone list
@@ -782,6 +874,33 @@ zoneList.setClickHandler((selectedCountry) => {
   dispatchApplication('selectedZoneName', selectedCountry.countryCode);
   if (zoneMap !== 'undefined') {
     centerOnZoneName(getState(), selectedCountry.countryCode, 4);
+  }
+});
+
+// Keyboard navigation
+document.addEventListener('keyup', (e) => {
+  const currentPage = getState().application.showPageState;
+  if (currentPage === 'map') {
+    if (e.key === 'Enter') {
+      zoneList.clickSelectedItem();
+    } else if (e.key === 'ArrowUp') {
+      zoneList.selectPreviousItem();
+    } else if (e.key === 'ArrowDown') {
+      zoneList.selectNextItem();
+    } else if (e.key === '/') {
+      zoneSearchBar.clearInputAndFocus();
+    } else if (e.key.match(/^[A-z]$/)) {
+      zoneSearchBar.focusWithInput(e.key);
+    } else {
+      zoneSearchBar.focusWithInput('');
+    }
+  } else if (currentPage === 'country') {
+    if (e.key === 'Backspace') {
+      goBackToZoneListFromZoneDetails();
+    } else if (e.key === '/') {
+      goBackToZoneListFromZoneDetails();
+      zoneSearchBar.clearInputAndFocus();
+    }
   }
 });
 
@@ -830,14 +949,31 @@ function renderGauges(state) {
     countryLowCarbonGauge.setPercentage(null);
     countryRenewableGauge.setPercentage(null);
   } else {
-    const countryLowCarbonPercentage = d.fossilFuelRatio != null ?
-      100 - (d.fossilFuelRatio * 100) : null;
+    const fossilFuelRatio = state.application.electricityMixMode === 'consumption'
+      ? d.fossilFuelRatio
+      : d.fossilFuelRatioProduction;
+    const countryLowCarbonPercentage = fossilFuelRatio != null ?
+      100 - (fossilFuelRatio * 100) : null;
     countryLowCarbonGauge.setPercentage(countryLowCarbonPercentage);
-    const countryRenewablePercentage = d.renewableRatio != null ? d.renewableRatio * 100 : null;
+
+    const renewableRatio = state.application.electricityMixMode === 'consumption'
+      ? d.renewableRatio
+      : d.renewableRatioProduction;
+    const countryRenewablePercentage = renewableRatio != null ?
+      renewableRatio * 100 : null;
     countryRenewableGauge.setPercentage(countryRenewablePercentage);
   }
 }
 
+function renderReferral(state) {
+  const { selectedZoneName, callerZone } = state.application;
+  referral.setCallerZone(callerZone);
+  referral.setSelectedZone(selectedZoneName);
+  referral.render();
+  if (referral.isVisible()) {
+    thirdPartyServices.trackWithCurrentApplicationState('referralShown');
+  }
+}
 
 function renderContributors(state) {
   const { selectedZoneName } = state.application;
@@ -851,24 +987,64 @@ function renderCountryTable(state) {
     // In this case there's nothing to do,
     // as the countryTable doesn't support receiving null data
   } else {
-    countryTable.data(d).render(true);
+    countryTable
+      .electricityMixMode(state.application.electricityMixMode)
+      .data(d)
+      .render(true);
+
+    const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
 
     const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
     countryTable.showNoParserMessageIf(zoneIsMissingParser);
-    const zoneHasProductionDataAtTimestamp = !d.production || !Object.keys(d.production).length;
+    const zoneHasNotProductionDataAtTimestamp = (!d.production || !Object.keys(d.production).length) && zonesThatCanHaveZeroProduction.indexOf(state.application.selectedZoneName) === -1;
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
-    countryTable.showNoDataMessageIf(zoneHasProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
+    countryTable.showNoDataMessageIf(zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
   }
 }
 
+
+function renderOpenTooltips(state) {
+  const zoneData = getCurrentZoneData(state);
+  const tooltipMode = state.application.tooltipDisplayMode;
+  if (tooltipMode) {
+    const isExchange = modeOrder.indexOf(tooltipMode) === -1;
+    const fun = isExchange ?
+      tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange ?
+      countryTableExchangeTooltip : countryTableProductionTooltip;
+    fun(ttp,
+      tooltipMode, zoneData, tableDisplayEmissions,
+      co2color, co2Colorbars,
+    );
+  }
+
+  if (countryTooltip.isVisible) {
+    tooltipHelper.showMapCountry(
+      countryTooltip, zoneData, co2color, co2Colorbars,
+      state.application.electricityMixMode,
+    );
+  }
+
+  if (priceTooltip.isVisible) {
+    const tooltip = d3.select(priceTooltip._selector);
+    const priceIsDefined = zoneData.price != null && zoneData.price.value != null;
+    tooltip.select('.value').html(priceIsDefined ? zoneData.price.value : '?');
+    tooltip.select('.currency').html(priceIsDefined ?
+      getSymbolFromCurrency(zoneData.price.currency) : '?');
+    priceTooltip.show();
+  }
+}
+
+
 function renderHistory(state) {
-  const { selectedZoneName } = state.application;
+  const { selectedZoneName, electricityMixMode } = state.application;
   const history = state.data.histories[selectedZoneName];
 
   if (!history) {
     countryHistoryCarbonGraph.data([]).render();
     countryHistoryPricesGraph.data([]).render();
     countryHistoryMixGraph.data([]).render();
+    zoneDetailsTimeSlider.data([]).render();
     return;
   }
 
@@ -925,7 +1101,12 @@ function renderHistory(state) {
   );
 
   // Figure out the highest CO2 emissions
-  const hi_co2 = d3.max(history, d => d.co2intensity);
+  const hi_co2 = d3.max(
+    history,
+    d => (getState().application.electricityMixMode === 'consumption'
+      ? d.co2intensity
+      : d.co2intensityProduction)
+  );
   countryHistoryCarbonGraph.y.domain([0, 1.1 * hi_co2]);
 
   // Create price color scale
@@ -941,12 +1122,22 @@ function renderHistory(state) {
       .range(['yellow', 'red']))
     .data(history);
   countryHistoryMixGraph
+    .electricityMixMode(electricityMixMode)
     .data(history);
+  
+  zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
   countryTable
     .exchangeKeys(countryHistoryMixGraph.exchangeKeysSet.values())
     .render();
+
+
+  zoneDetailsTimeSlider.onChange((selectedZoneTimeIndex) => {
+    if (getState().application.selectedZoneTimeIndex !== selectedZoneTimeIndex) {
+      dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex: selectedZoneTimeIndex}})
+    }
+  }).render();
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
@@ -965,7 +1156,11 @@ function renderHistory(state) {
           .co2ScaleDomain([lo_emission, hi_emission]);
 
         if (g === countryHistoryCarbonGraph) {
-          tooltipHelper.showMapCountry(countryTooltip, d, co2color, co2Colorbars);
+          tooltipHelper.showMapCountry(
+            countryTooltip, d, co2color, co2Colorbars,
+            tooltipLowCarbonGauge, tooltipRenewableGauge,
+            state.application.electricityMixMode,
+          );
           countryTooltip.update(
             currentEvent.clientX - 7,
             g.rootElement.node().getBoundingClientRect().top - 7);
@@ -1004,16 +1199,15 @@ function renderHistory(state) {
 function renderLeftPanelCollapseButton(state) {
   const { isLeftPanelCollapsed } = state.application;
   d3.select('.left-panel')
-    .style('display', isLeftPanelCollapsed ? 'none' : undefined);
+    .classed('collapsed', isLeftPanelCollapsed);
   d3.select('#left-panel-collapse-button')
-    .classed('collapsed', isLeftPanelCollapsed)
+    .classed('collapsed', isLeftPanelCollapsed);
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
 }
+
 function routeToPage(pageName, state) {
-
-
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
 
   d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
@@ -1024,7 +1218,6 @@ function routeToPage(pageName, state) {
 
   d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
   
-    
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
@@ -1096,25 +1289,64 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   if (zoomLevel) {
     // Remember to set center and zoom in case the map wasn't loaded yet
     zoneMap.setZoom(zoomLevel);
+    // If the panel is open the zoom doesn't appear perfectly centered because 
+    // it centers on the whole window and not just the visible map part.
+    // something one could fix in the future. It's tricky because one has to project, unproject
+    // and project again taking both starting and ending zoomlevel into account
     zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
   }
 }
-
-// Observe for grid zones change
-observe(state => state.data.grid.zones, (zones, state) => {
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.setData(Object.values(zones));
-  }
-  zoneList.setZones(zones);
-  zoneList.render();
-});
-// Observe for grid exchanges change
-observe(state => state.data.grid.exchanges, (exchanges) => {
+function renderExchanges(state) {
+  const { exchanges } = state.data.grid;
+  const { electricityMixMode } = state.application;
   if (exchangeLayer) {
     exchangeLayer
-      .setData(Object.values(exchanges))
+      .setData(electricityMixMode === 'consumption'
+        ? Object.values(exchanges)
+        : [])
       .render();
   }
+}
+function renderZones(state) {
+  const { zones } = state.data.grid;
+  const { electricityMixMode } = state.application;
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.setData(electricityMixMode === 'consumption'
+      ? Object.values(zones)
+      : Object.values(zones)
+        .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
+  }
+  zoneList.setElectricityMixMode(electricityMixMode);
+  zoneList.setZones(zones);
+  zoneList.render();
+}
+
+// Observe for electricityMixMode change
+observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
+  renderExchanges(state);
+  renderZones(state);
+  renderMap(state);
+  renderCountryTable(state);
+  renderGauges(state);
+  renderHistory(state);
+  d3.select('.production-toggle-active-overlay')
+    .classed('prod', electricityMixMode === 'production');
+  d3.select('a#production')
+    .text(translation.translate(`country-panel.electricity${electricityMixMode}`));
+  document.getElementById('country-history-electricity-carbonintensity')
+    .innerHTML = translation.translate(
+      tableDisplayEmissions
+        ? `country-history.emissions${electricityMixMode === 'production' ? 'production' : 'origin'}24h`
+        : `country-history.electricity${electricityMixMode === 'production' ? 'production' : 'origin'}24h`
+    );
+});
+// Observe for grid zones change
+observe(state => state.data.grid.zones, (zones, state) => {
+  renderZones(state);
+});
+// Observe for grid exchanges change
+observe(state => state.data.grid.exchanges, (exchanges, state) => {
+  renderExchanges(state);
 });
 // Observe for grid change
 observe(state => state.data.grid, (grid, state) => {
@@ -1126,6 +1358,17 @@ observe(state => state.data.grid, (grid, state) => {
 observe(state => state.application.showPageState, (showPageState, state) => {
   routeToPage(showPageState, state);
 
+  /*
+  Although not optimal, we have to also re-render here
+  in case the `state.application.selectedZoneName` observer
+  triggered a countryTable re-render while the table was hidden,
+  meaning that the re-render was cancelled.
+  */
+  if (showPageState === 'country') {
+    renderCountryTable(state);
+    renderHistory(state);
+  }
+
   // Analytics
   // Note: `selectedZoneName` will not yet be changed here
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
@@ -1133,18 +1376,21 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
   if (!selectedZoneName) { return; }
-
-  // Analytics
-  thirdPartyServices.track('countryClick', { countryCode: selectedZoneName });
-
   // Render
   renderCountryTable(state);
   renderGauges(state);
   renderContributors(state);
   renderHistory(state);
+  renderReferral(state);
+  zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
   tryFetchHistory(state);
+});
+// Observe for caller zone changed
+observe(state => state.application.callerZone, (callerZone, state) => {
+  // Render
+  renderReferral(state);
 });
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
@@ -1162,8 +1408,9 @@ observe(state => state.data.histories, (histories, state) => {
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderGauges(state);
   renderCountryTable(state);
-  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph].forEach((g) => {
-    g.selectedIndex(i);
+  renderOpenTooltips(state);
+  [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
+    g.selectedIndex(i, state.application.previousSelectedZoneTimeIndex);
   });
 });
 // Observe for color blind mode changes
@@ -1171,6 +1418,20 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
   Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
   updateCo2Scale();
 });
+
+// Observe for bright mode changes
+observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
+  d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
+  Cookies.set('brightModeEnabled', brightModeEnabled);
+  // update Theme
+  if (getState().application.brightModeEnabled) {
+    theme = themes.bright;
+  } else {
+    theme = themes.dark;
+  }
+  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
+});
+
 // Observe for solar settings change
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);
@@ -1236,10 +1497,16 @@ observe(state => state.application.legendVisible, (legendVisible) => {
 // Observe for left panel collapse
 observe(state => state.application.isLeftPanelCollapsed, (_, state) =>
   renderLeftPanelCollapseButton(state));
-
 // Observe for search query change
 observe(state => state.application.searchQuery, (searchQuery, state) => {
   zoneList.filterZonesByQuery(searchQuery);
+});
+// Observe for brightmode change
+observe(state => state.application.brightModeEnabled, (brightModeEnabled, _) => {
+  const electricityMapHeader = d3.select('#header-content');
+  const tmrowWatermark = d3.select('#watermark');
+  electricityMapHeader.classed('brightmode', brightModeEnabled);
+  tmrowWatermark.classed('brightmode', brightModeEnabled);
 });
 
 

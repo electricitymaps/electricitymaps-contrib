@@ -52,7 +52,7 @@ def get_data(session=None):
 
     except AttributeError:
         # No data is available between 12am-1am.
-        raise ValueError('No data is currently available for Malaysia.')
+        raise ValueError('No production data is currently available for West Malaysia.')
 
     mix_header = mixsoup.find('tr', {"class": "gridheader"})
     mix_table = mix_header.find_parent("table")
@@ -173,10 +173,13 @@ def extract_hidden_values(req):
     soup = BeautifulSoup(req.content, 'html.parser')
 
     # Find and define parameters needed to send a POST request.
-    viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
-    viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
-    eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
-    jschartviewerstate = soup.find("input", attrs={'id': 'MainContent_ctl17_JsChartViewerState'})['value']
+    try:
+        viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
+        viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
+        eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
+        jschartviewerstate = soup.find("input", attrs={'id': 'MainContent_ctl17_JsChartViewerState'})['value']
+    except TypeError:
+        raise ValueError('No exchange data is currently available for West Malaysia.')
 
     hidden_values = {'viewstategenerator': viewstategenerator,
                      'viewstate': viewstate,
@@ -262,6 +265,7 @@ def zip_and_merge(egat_data, hvdc_data, logger):
 
     merged_data = zip(egat_data, hvdc_data)
 
+    mismatch_count = 0
     simplified_data = []
     for item in merged_data:
         if item[0][0] == item[1][0]:
@@ -269,8 +273,12 @@ def zip_and_merge(egat_data, hvdc_data, logger):
             combined = item[0][0], sum([item[0][1], item[1][1]])
             simplified_data.append(combined)
         else:
-            logger.warning('Date mismatch between EGAT and HVDC ties for MY-WM->TH, skipping datapoint.')
+            # avoid producing excess warnings
+            mismatch_count += 1
             continue
+
+    if mismatch_count > 0:
+        logger.warning('{} date mismatches between EGAT and HVDC ties found for MY-WM->TH, skipped datapoints.'.format(mismatch_count), extra={'key': 'MY-WM'})
 
     return simplified_data
 

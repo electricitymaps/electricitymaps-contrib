@@ -20,9 +20,9 @@ DAY_AHEAD = {
 }
 
 EXCHANGES = {
-    'MX->US-CA': 'EBA.CISO-CFE.ID.H',
+    'MX-BC->US-CA': 'EBA.CISO-CFE.ID.H',
     'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
-    'US-ERCOT->US-SPP': 'EBA.ERCO-SWPP.ID.H',
+    'US-SPP->US-TX': 'SWPP.ID.H-EBA.ERCO',
     'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
     'US-MISO->US-SPP': 'EBA.MISO-SWPP.ID.H',
     'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
@@ -85,7 +85,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     data = []
     for datapoint in raw_data:
-        if sortedcodes == 'MX->US-CA':
+        if sortedcodes == 'MX-BC->US-CA':
             datapoint[1] = -1*datapoint[1]
 
         exchange = {'sortedZoneKeys': sortedcodes,
@@ -102,4 +102,4 @@ if __name__ == '__main__':
     "Main method, never used by the Electricity Map backend, but handy for testing."
 
     print(fetch_consumption_forecast('US-NY'))
-    print(fetch_exchange('MX', 'US-CA'))
+    print(fetch_exchange('MX-BC', 'US-CA'))

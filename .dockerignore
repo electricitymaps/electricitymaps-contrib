@@ -11,9 +11,7 @@ mobileapp
 datascience
 
 web/node_modules
-web/build
 web/public/dist
-web/third_party_maps
 web/zonegeometries.json
 
 screenshots*

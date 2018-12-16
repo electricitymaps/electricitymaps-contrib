@@ -14,7 +14,7 @@ exports.startLoading = (selector) => {
     d3.selectAll(selector)
       .style('display', null)
       .transition()
-      .style('opacity', 0.8);
+      .style('opacity', 1);
   }
   stack[selector].push(undefined);
 };

@@ -1,0 +1,67 @@
+version: 2
+executorType: machine
+stages:
+  build:
+    workDir: ~/electricitymap
+    steps:
+      - type: checkout
+      - type: shell
+        name: Set Python version
+        command: pyenv global 3.5.2
+      - type: shell
+        name: Upgrade pip
+        command: pip install --upgrade pip
+      - type: shell
+        name: Install Docker Compose
+        command: pip install docker-compose==1.17.1
+      - type: shell
+        name: Show versions
+        command: |
+          docker --version
+          docker-compose --version
+      - restore_cache:
+          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+      - type: shell
+        name: Lint
+        command: |
+          set -euo pipefail
+          python --version
+          pip --version
+          pip install flake8 pylint==1.8.2
+          sudo apt-get install libxml2-dev
+          pip install -r parsers/requirements.txt
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
+          # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          pylint -E parsers/*.py -d unsubscriptable-object,unsupported-assignment-operation
+          python -m unittest discover parsers/test
+          npm install -g jsonlint
+          jsonlint -q config/*.json
+      - save_cache:
+          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          paths:
+            - "~/.cache/pip"
+      - type: shell
+        name: Build
+        command: |
+          set -euo pipefail
+          docker-compose build
+          docker-compose run web npm run build-release
+      - type: shell
+        name: Start environment
+        command: |
+          set -euo pipefail
+          docker-compose up -d
+          sleep 20
+          docker-compose logs web
+      - type: shell
+        name: Run tests
+        command: |
+          docker-compose ps
+          curl --fail -i http://localhost:8000/
+          curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/exchanges?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/production?countryCode=FR
+          curl --fail -i http://localhost:8000/v1/price?countryCode=FR
+          curl --fail -i http://localhost:8000/v2/history?countryCode=FR

@@ -1,92 +1,121 @@
 #!/usr/bin/env python3
 
 import arrow
+import json
 import logging
+import os
+import math
+
+import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
 
+from .lib.validation import validate, validate_production_diffs
+
+API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
+
 MAP_GENERATION = {
-    u'Nucl\xe9aire': 'nuclear',
-    'Charbon': 'coal',
-    'Gaz': 'gas',
-    'Fioul': 'oil',
-    'Hydraulique': 'hydro',
-    'Eolien': 'wind',
-    'Solaire': 'solar',
-    'Autres': 'biomass'
+    'nucleaire': 'nuclear',
+    'charbon': 'coal',
+    'gaz': 'gas',
+    'fioul': 'oil',
+    'eolien': 'wind',
+    'solaire': 'solar',
+    'bioenergies': 'biomass'
 }
-MAP_STORAGE = {
-    'Pompage': 'hydro',
-    'Hydraulique': 'hydro',
-}
+
+MAP_HYDRO = [
+    'hydraulique_fil_eau_eclusee',
+    'hydraulique_lacs',
+    'hydraulique_step_turbinage',
+    'pompage'
+]
+
+def is_not_nan_and_truthy(v):
+    if isinstance(v, float) and math.isnan(v):
+        return False
+    return bool(v)
 
 
 def fetch_production(zone_key='FR', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     if target_datetime:
-        now = arrow.get(target_datetime, 'Europe/Paris')
+        to = arrow.get(target_datetime, 'Europe/Paris')
     else:
-        now = arrow.now(tz='Europe/Paris')
+        to = arrow.now(tz='Europe/Paris')
 
+    # setup request
     r = session or requests.session()
-    formatted_from = now.shift(days=-1).format('DD/MM/YYYY')
-    formatted_to = now.format('DD/MM/YYYY')
-    url = 'http://www.rte-france.com/getEco2MixXml.php?type=mix&dateDeb={}&' \
-          'dateFin={}&mode=NORM'.format(formatted_from, formatted_to)
-    response = r.get(url)
-    obj = ET.fromstring(response.content)
-    datas = {}
-    mixtr = obj[7]
+    formatted_from = to.shift(days=-1).format('YYYY-MM-DDTHH:mm')
+    formatted_to = to.format('YYYY-MM-DDTHH:mm')
 
-    for mixtr in obj:
-        if mixtr.tag != 'mixtr':
+    params = {
+        'dataset': 'eco2mix-national-tr',
+        'q': 'date_heure >= {} AND date_heure <= {}'.format(
+            formatted_from, formatted_to),
+        'timezone': 'Europe/Paris',
+        'rows': 100
+    }
+
+    if 'RESEAUX_ENERGIES_TOKEN' not in os.environ:
+        raise Exception(
+            'No RESEAUX_ENERGIES_TOKEN found! Please add it into secrets.env!')
+    params['apikey'] = os.environ['RESEAUX_ENERGIES_TOKEN']
+
+    # make request and create dataframe with response
+    response = r.get(API_ENDPOINT, params=params)
+    data = json.loads(response.content)
+    data = [d['fields'] for d in data['records']]
+    df = pd.DataFrame(data)
+
+    # filter out desired columns and convert values to float
+    value_columns = list(MAP_GENERATION.keys()) + MAP_HYDRO
+    df = df[['date_heure'] + value_columns]
+    df[value_columns] = df[value_columns].astype(float)
+
+    datapoints = list()
+    for row in df.iterrows():
+        production = dict()
+        for key, value in MAP_GENERATION.items():
+             # Set small negative values to 0
+            if row[1][key] < 0 and row[1][key] > -50:
+                logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
+                production[value] = 0
+            else:
+                production[value] = row[1][key]
+
+        # Hydro is a special case!
+        production['hydro'] = row[1]['hydraulique_lacs'] + row[1]['hydraulique_fil_eau_eclusee']
+        storage = {
+            'hydro': row[1]['pompage'] * -1 + row[1]['hydraulique_step_turbinage'] * -1
+        }
+
+        # if all production values are null, ignore datapoint
+        if not any([is_not_nan_and_truthy(v)
+                    for k, v in production.items()]):
             continue
 
-        start_date = arrow.get(arrow.get(mixtr.attrib['date']).datetime, 'Europe/Paris')
+        datapoint = {
+            'zoneKey': zone_key,
+            'datetime': arrow.get(row[1]['date_heure']).datetime,
+            'production': production,
+            'storage': storage,
+            'source': 'opendata.reseaux-energies.fr'
+        }
+        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro'])
+        datapoints.append(datapoint)
 
-        # Iterate over mix
-        for item in mixtr:
-            key = item.get('v')
-            granularite = item.get('granularite')
-            value = None
-            # Iterate over time
-            for value in item:
-                period = int(value.attrib['periode'])
-                datetime = start_date.replace(minutes=+(period * 15.0)).datetime
-                if not datetime in datas:
-                    datas[datetime] = {
-                        'zoneKey': zone_key,
-                        'datetime': datetime,
-                        'production': {},
-                        'storage': {},
-                        'source': 'rte-france.com',
-                    }
-                data = datas[datetime]
+    max_diffs = {
+        'hydro': 1600,
+        'solar': 500,
+        'coal': 500,
+        'wind': 1000,
+        'nuclear': 1300,
+    }
 
-                if key == 'Hydraulique':
-                    # Hydro is a special case!
-                    if granularite == 'Global':
-                        continue
-                    elif granularite in ['FEE', 'LAC']:
-                        if not MAP_GENERATION[key] in data['production']:
-                            data['production'][MAP_GENERATION[key]] = 0
-                        # Run of the river or conventional
-                        data['production'][MAP_GENERATION[key]] += float(
-                            value.text)
-                    elif granularite == 'STT':
-                        if not MAP_STORAGE[key] in data['storage']:
-                            data['storage'][MAP_STORAGE[key]] = 0
-                        # Pumped storage generation
-                        data['storage'][MAP_STORAGE[key]] += -1 * float(value.text)
-                elif granularite == 'Global':
-                    if key in MAP_GENERATION:
-                        data['production'][MAP_GENERATION[key]] = float(value.text)
-                    elif key in MAP_STORAGE:
-                        if not MAP_STORAGE[key] in data['storage']:
-                            data['storage'][MAP_STORAGE[key]] = 0
-                        data['storage'][MAP_STORAGE[key]] += -1 * float(value.text)
+    datapoints = validate_production_diffs(datapoints, max_diffs, logger)
 
-    return list(datas.values())
+    return datapoints
 
 
 def fetch_price(zone_key, session=None, target_datetime=None,

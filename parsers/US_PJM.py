@@ -6,9 +6,13 @@ import arrow
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
 import demjson
+import json
+import os
 import re
 import requests
 
+# Used for consumption forecast data.
+API_ENDPOINT = 'https://api.pjm.com/api/v1/'
 # Used for both production and price data.
 url = 'http://www.pjm.com/markets-and-operations.aspx'
 
@@ -113,6 +117,50 @@ def data_processer(data):
         production[gen_type] = production.get(gen_type, 0.0) + gen_value
 
     return production
+
+
+def fetch_consumption_forecast_7_days(zone_key='US-PJM', session=None,
+                               target_datetime=None, logger=None):
+    """
+    Gets consumption forecast for specified zone.
+    Returns a list of dictionaries.
+    """
+
+    if target_datetime:
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
+    if not session:
+        session = requests.session()
+
+    if 'PJM_TOKEN' not in os.environ:
+        raise Exception('No PJM_TOKEN found! Please add it to secrets.env!')
+    headers = {'Ocp-Apim-Subscription-Key': os.environ['PJM_TOKEN']}
+
+    # startRow must be set if forecast_area is set.
+    # RTO_COMBINED is area for whole PJM zone.
+    params = {
+        'download': True,
+        'startRow': 1,
+        'forecast_area': 'RTO_COMBINED'
+    }
+
+    # query API
+    url = API_ENDPOINT + 'load_frcstd_7_day'
+    resp = requests.get(url, params, headers=headers)
+    data = json.loads(resp.content)
+
+    data_points = list()
+    for elem in data:
+        utc_datetime = elem['forecast_datetime_beginning_utc']
+        data_point = {
+            'zoneKey': zone_key,
+            'datetime': arrow.get(utc_datetime).replace(tzinfo='UTC').datetime,
+            'value': elem['forecast_load_mw'],
+            'source': 'pjm.com'
+        }
+        data_points.append(data_point)
+
+    return data_points
 
 
 def fetch_production(zone_key='US-PJM', session=None, target_datetime=None, logger=None):
@@ -372,6 +420,8 @@ def fetch_price(zone_key='US-PJM', session=None, target_datetime=None, logger=No
 
 
 if __name__ == '__main__':
+    print('fetch_consumption_forecast_7_days() ->')
+    print(fetch_consumption_forecast_7_days())
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_exchange(US-NY, US-PJM) ->')

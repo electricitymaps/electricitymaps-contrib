@@ -32,7 +32,7 @@ Object.entries(exchanges).forEach((entry) => {
   const [key, value] = entry;
   value.countryCodes = key.split('->').sort();
   if (key.split('->')[0] !== value.countryCodes[0]) {
-    console.error(`Exchange sorted key pair ${key} is not sorted alphabetically`);
+    console.warn(`Exchange sorted key pair ${key} is not sorted alphabetically`);
   }
 });
 
@@ -112,19 +112,18 @@ module.exports = (state = initialDataState, action) => {
           //    console.warn(`${key} is missing production or storage of ' + mode`);
           // Check validity of production
           if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-            console.error(`${key} has negative production of ${mode}`);
+            console.warn(`${key} has negative production of ${mode}`);
           }
           // Check load factors > 1
           if (zone.production[mode] !== undefined &&
             (zone.capacity || {})[mode] !== undefined &&
             zone.production[mode] > zone.capacity[mode]) {
-            console.error(`${key} produces more than its capacity of ${mode}`);
+            console.warn(`${key} produces more than its capacity of ${mode}`);
           }
         });
         if (!zone.exchange || !Object.keys(zone.exchange).length) {
           console.warn(`${key} is missing exchanges`);
-        } 
-
+        }
       });
 
       // Populate exchange pairs for exchange layer
@@ -132,7 +131,7 @@ module.exports = (state = initialDataState, action) => {
         const [key, value] = entry;
         const exchange = newGrid.exchanges[key];
         if (!exchange || !exchange.lonlat) {
-          console.error(`Missing exchange configuration for ${key}`);
+          console.warn(`Missing exchange configuration for ${key}`);
           return;
         }
         // Assign all data

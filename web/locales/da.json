@@ -9,13 +9,23 @@
     "country-panel": {
         "source": "kilde",
         "carbonintensity": "CO2 intensitet",
+        "lowcarbon": "Lav CO2",
+        "renewable": "Vedvarende",
+        "electricity": "Elektricitet",
         "electricityproduction": "Elproduktion",
+        "electricityconsumption": "Elforbrug",
         "bysource": "per kilde",
         "emissions": "CO2 udledning",
+        "helpfrom": "med hjælp fra",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer"
+        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer",
+        "emissionsorigin24h": "CO2 udledningens oprindelse i de sidste 24 timer",
+        "emissionsproduction24h": "CO2 udledt i de sidste 24 timer",
+        "electricityorigin24h": "Elektricitets oprindelse i de sidste 24 timer",
+        "electricityproduction24h": "Elproduktionen i de sidste 24 timer",
+        "electricityprices24h": "Elprisen i de sidste 24 timer"
     },
     "footer": {
         "likethisvisu": "Kan du lide visualiseringen?",
@@ -47,6 +57,7 @@
     "solar": "Sol",
     "hydro": "Hydro",
     "hydro storage": "Hydro lagring",
+    "batteri storage": "Batteri lagring",
     "biomass": "Biomasse",
     "nuclear": "Atomkraft",
     "geothermal": "Geotermi",
@@ -100,6 +111,14 @@
           },
           "DK": {
             "zoneName": "Danmark"
+          },
+          "DK-DK1": {
+            "countryName": "Danmark",
+            "zoneName": "Vest Denmark"
+          },
+          "DK-DK2": {
+            "countryName": "Danmark",
+            "zoneName": "Øst Denmark"
           },
           "EE": {
             "zoneName": "Estland"
@@ -163,6 +182,26 @@
           },
           "NO": {
             "zoneName": "Norge"
+          },
+          "NO-NO1": {
+            "countryName": "Norge",
+            "zoneName": "Sydøst Norge"
+          },
+          "NO-NO2": {
+            "countryName": "Norge",
+            "zoneName": "Sydvest Norge"
+          },
+          "NO-NO3": {
+            "countryName": "Norge",
+            "zoneName": "Midt Norge"
+          },
+          "NO-NO4": {
+            "countryName": "Norge",
+            "zoneName": "Nord Norge"
+          },
+          "NO-NO5": {
+            "countryName": "Norge",
+            "zoneName": "Vest Norge"
           },
           "PE": {
             "zoneName": "Peru"

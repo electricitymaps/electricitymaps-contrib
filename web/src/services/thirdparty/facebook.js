@@ -71,7 +71,13 @@ class FacebookThirdParty {
               if (!window.isCordova) {
                 window.FB.AppEvents.logEvent(event, undefined, data);
               } else {
-                facebookConnectPlugin.logEvent(event, data);
+                if (typeof facebookConnectPlugin === 'undefined') {
+                  document.addEventListener('deviceready', function() {
+                    facebookConnectPlugin.logEvent(event, data);
+                  }, false);
+                } else {
+                  facebookConnectPlugin.logEvent(event, data);
+                }
               }
             }
         }

@@ -10,12 +10,13 @@ from .lib import zonekey, web, IN
 from .lib.validation import validate
 from logging import getLogger
 
+SLDCGUJ_URL = 'http://www.sldcguj.com/RealTimeData/PrintPage.php?page=realtimedemand.php'
 
 station_map = {
      "coal": ["Ukai(1-5)+Ukai6",
              "Wanakbori",
              "Gandhinagar",
-             "Sikka(1-2)+Sikka(3-4)",
+             "Sikka(3-4)",
              "KLTPS(1-3)+KLTPS4",
              "SLPP(I+II)",
              "Akrimota",
@@ -28,9 +29,8 @@ station_map = {
               "Kadana(Hydro)",
               "SSP(RBPH)"],
     "gas": ["Utran(Gas)(II)",
-            "Dhuvaran(Gas)(I)+(II)",
-            "GIPCL(I)",
-            "GIPCL(II)",
+            "Dhuvaran(Gas)(I)+(II)+(III)",
+            "GIPCL(I)+(II)",
             "GSEG(I+II)",
             "GPPC",
             "CLPI",
@@ -60,29 +60,23 @@ def fetch_data(zone_key, session=None, logger=None):
     values = collections.Counter()
     zonekey.assert_zone_key(zone_key, 'IN-GJ')
 
-    solar_html = web.get_response_soup(
-        zone_key, 'https://www.sldcguj.com/RealTimeData/GujSolar.php', session)
-    wind_html = web.get_response_soup(
-        zone_key, 'https://www.sldcguj.com/RealTimeData/wind.php', session)
-
-    values['date'] =  arrow.get(
-        solar_html.find_all('tr')[0].text.split('\t')[-1].strip()
-        + ' Asia/Kolkata', 'D-MM-YYYY H:mm:ss ZZZ').datetime
-    values['solar'] = split_and_sum(
-        solar_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
-    values['wind'] = split_and_sum(
-        wind_html.find_all('tr')[-1].find_all('td')[-1].text.strip())
-
     cookies_params = {
         'ASPSESSIONIDSUQQQTRD': 'ODMNNHADJFGCMLFFGFEMOGBL',
         'PHPSESSID': 'a301jk6p1p8d50dduflceeg6l1'
     }
 
-    rows = web.get_response_soup(
-        zone_key,
-        'https://www.sldcguj.com/RealTimeData/RealTimeDemand.php',
-        session).find_all('tr')
+    soup = web.get_response_soup(zone_key, SLDCGUJ_URL, session)
+    rows = soup.find_all('tr')
+    cells = [c.text.strip() for c in soup.find_all('td')]
 
+    # get wind and solar values
+    values['date'] = arrow.get(cells[1], 'D-MM-YYYY H:mm:ss').replace(
+        tzinfo='Asia/Kolkata')
+    [wind_solar_index] = [i for i, c in enumerate(cells) if c == '(Wind+Solar) Generation']
+    value = cells[wind_solar_index + 1]
+    values['wind'], values['solar'] = [int(v) for v in value.split(' + ')]
+
+    # get other production values
     for row in rows:
         elements = row.find_all('td')
         if len(elements) > 3:  # will find production rows
@@ -178,7 +172,7 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None,
 
     data = {
         'zoneKey': zone_key,
-        'datetime': value_map['date'],
+        'datetime': value_map['date'].datetime,
         'production': {
             'biomass': None,
             'coal': value_map.get('coal', 0),
@@ -197,7 +191,7 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None,
         'source': 'sldcguj.com',
     }
 
-    valid_data = validate(data, logger, remove_negative=True)
+    valid_data = validate(data, logger, remove_negative=True, floor=7000)
 
     return valid_data
 
@@ -219,7 +213,7 @@ def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None,
 
     data = {
         'zoneKey': zone_key,
-        'datetime': value_map['date'],
+        'datetime': value_map['date'].datetime,
         'consumption': value_map['total consumption'],
         'source': 'sldcguj.com'
     }

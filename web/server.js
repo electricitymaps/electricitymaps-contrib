@@ -1,21 +1,12 @@
 const isProduction = process.env.NODE_ENV === 'production';
 
-// * Opbeat (must be the first thing started)
-if (isProduction) {
-  console.log('** Running in PRODUCTION mode **');
-  var opbeat = require('opbeat').start({
-    appId: 'c36849e44e',
-    organizationId: '093c53b0da9d43c4976cd0737fe0f2b1',
-    secretToken: process.env['OPBEAT_SECRET']
-  });
-}
-
 // Modules
 const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const i18n = require('i18n');
+const auth = require('basic-auth');
 
 // Custom module
 const translation = require(__dirname + '/src/helpers/translation');
@@ -117,12 +108,9 @@ const STYLES_HASH = getHash('styles', 'css');
 const VENDOR_HASH = getHash('vendor', 'js');
 const VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
-// * Opbeat
-if (isProduction)
-  app.use(opbeat.middleware.express())
+// * Error handling
 function handleError(err) {
   if (!err) return;
-  if (opbeat) opbeat.captureError(err);
   console.error(err);
 }
 
@@ -158,9 +146,30 @@ app.get('/', (req, res) => {
     }
     const { locale } = res;
     const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
+
+    // basic auth for premium access
+    if (process.env.BASIC_AUTH_CREDENTIALS) {
+      const user = auth(req);
+      let authorized = false;
+      if (user) {
+        process.env.BASIC_AUTH_CREDENTIALS.split(',').forEach((cred) => {
+          const [name, pass] = cred.split(':');
+          if (name === user.name && pass === user.pass) {
+            authorized = true;
+          }
+        });
+      }
+      if (!authorized) {
+        res.statusCode = 401;
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
+        res.end('Access denied');
+        return;
+      }
+      res.cookie('electricitymap-token', process.env['ELECTRICITYMAP_TOKEN']);
+    }
     res.render('pages/index', {
       alternateUrls: locales.map(function(l) {
-        if (fullUrl.indexOf('lang') != -1) {
+        if (fullUrl.indexOf('lang') !== -1) {
           return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
         } else {
           if (Object.keys(req.query).length) {
@@ -193,7 +202,15 @@ app.get('/v1/*', (req, res) =>
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.all('/dist/*.map', (req, res, next) => {
-  if (req.headers['user-agent'] !== 'opbeat-sourcemaps-fetcher/1.0') {
+  // Allow bugsnag (2 first) + sentry
+  if ([
+    '104.196.245.109',
+    '104.196.254.247',
+    '35.184.238.160',
+    '104.155.159.182',
+    '104.155.149.19',
+    '130.211.230.102',
+  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
     return res.status(401).json({ error: 'unauthorized' });
   }
   return next();

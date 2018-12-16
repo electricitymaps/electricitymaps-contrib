@@ -10,8 +10,8 @@ export default class CircularGauge {
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
 
-    this.radius = config.radius || '27';
-    this.lineWidth = config.lineWidth || '5';
+    this.radius = config.radius || '32';
+    this.lineWidth = config.lineWidth || '6';
     this.fontSize = config.fontSize || '1rem';
 
     this.arc = d3.arc()
@@ -73,6 +73,12 @@ export default class CircularGauge {
   }
 
   setPercentage(percentage) {
+    if (this.percentage === percentage) {
+      return;
+    }
+    if (Number.isNaN(percentage)) {
+      return;
+    }
     this.prevPercentage = this.percentage;
     this.percentage = percentage;
     this.percentageText.text(this.percentage != null ? `${Math.round(this.percentage)}%` : '?');
