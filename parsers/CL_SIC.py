@@ -504,7 +504,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if not target_datetime:
         raise ValueError('Target datetime is required for Cl-SIC->CL-SING')
 
-    arr_target_dt = arrow.get(target_datetime, 'YYYYMMDD')
+    arr_target_dt = arrow.get(target_datetime)
     lookup_date = arr_target_dt.format('YYYY-MM-DD')
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
