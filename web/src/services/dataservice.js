@@ -1,6 +1,7 @@
 var exports = module.exports = {};
 
-var forge = require('node-forge');
+import { sha256 } from 'js-sha256';
+
 var Cookies = require('js-cookie');
 const d3 = Object.assign(
   {},
@@ -12,11 +13,10 @@ var moment = require('moment');
 // API
 function protectedJsonRequest(endpoint, path, callback) {
   const now = new Date().getTime();
-  const md = forge.md.sha256.create();
   const tk = (endpoint.indexOf('localhost') !== -1)
     ? 'development'
     : ELECTRICITYMAP_PUBLIC_TOKEN;
-  const signature = md.update(tk + path + now).digest().toHex();
+  const signature = sha256(tk + path + now);
   const req = d3.json(endpoint + path)
     .header('electricitymap-token', Cookies.get('electricitymap-token'))
     .header('x-request-timestamp', now)
