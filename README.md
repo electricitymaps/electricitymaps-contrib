@@ -29,6 +29,7 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
+We published our methodology [here](https://arxiv.org/abs/1812.06679).
 
 **Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
@@ -64,7 +65,7 @@ Country-specific fuel carbon-intensity factors:
 - Estonia:
   - Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](http://www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
 
-Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap-contrib/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation.
+Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap-contrib/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation. We also published our methodology [here](https://arxiv.org/abs/1812.06679).
 
 
 ### Real-time electricity data sources
