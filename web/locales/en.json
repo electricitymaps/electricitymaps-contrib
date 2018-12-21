@@ -156,7 +156,7 @@
         "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
         "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine,  and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
         "importsAndExports-question": "Do you take into account imports and exports of electricity?",
-        "importsAndExports-answer": "Yes, we do. Imports and exports can be see on the map as small arrows between different areas [link to question about arrows]. Detailed information can be seen in the charts shown when you click on an area.",
+        "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
         "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
         "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
         "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
