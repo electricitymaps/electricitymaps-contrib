@@ -51,6 +51,7 @@ thermal_plants = {
                  u'ESTRELLA DEL MAR 2 CGN': 'gas',
                  u'ESTRELLA DEL MAR 2 SFO': 'oil',
                  u'ESTRELLA DEL MAR 2 SGN': 'gas',
+                 u'GENERACI\xD3N DE EMERGENCIA AES ANDR\xC9S': 'gas',
                  u'HAINA TG': 'oil',
                  u'INCA KM22': 'oil',
                  u'ITABO 1': 'coal',
@@ -332,7 +333,7 @@ def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=l
               'hydro': hour.get('hydro', 0.0),
               'nuclear': 0.0,
               'oil': hour.get('oil', 0.0),
-              'solar': None,
+              'solar': hour.get('solar', 0.0),
               'wind': hour.get('wind', 0.0),
               'geothermal': 0.0,
               'unknown': hour.get('unknown', 0.0)
