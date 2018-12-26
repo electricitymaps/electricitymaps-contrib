@@ -3,7 +3,7 @@
 import itertools
 import re
 import string
-
+import logging
 import arrow
 import requests
 from bs4 import BeautifulSoup
@@ -36,6 +36,7 @@ power_plant_type = {
     'ACAJTG05': 'gas',
     'ACAJTG06': 'gas',
     'ACAJTV07': 'gas',
+    'ACHIEO': 'wind',
     'ADTOHI': 'hydro',
     'AESPTG01': 'gas',
     'AESPTG02': 'gas',
@@ -56,8 +57,10 @@ power_plant_type = {
     'ANCHDI03': 'oil',
     'ANCHDI04': 'oil',
     'APARTV01': 'gas',
-    'ARA2EO': 'hydro',
-    'ARAUEO': 'hydro',
+    'ARA2EO': 'wind',
+    'ARA3EO': 'wind',
+    'ARAUEO': 'wind',
+    'ARC2EO': 'wind',
     'ARGETG01': 'gas',
     'ARISDI01': 'oil',
     'ARMATG01': 'gas',
@@ -111,6 +114,7 @@ power_plant_type = {
     'CAIMDI03': 'oil',
     'CAIMDI04': 'oil',
     'CAIMDI05': 'oil',
+    'CALOFV': 'solar',
     'CARLDI01': 'oil',
     'CARRHI': 'hydro',
     'CASSHI': 'hydro',
@@ -134,8 +138,10 @@ power_plant_type = {
     'CHARDI01': 'oil',
     'CHARDI02': 'oil',
     'CHEPDI01': 'oil',
+    'CHI1FV': 'solar',
     'CHILDI01': 'oil',
     'CHLEDI01': 'oil',
+    'CHNOEO': 'wind',
     'CHOCHI': 'hydro',
     'CIPODI01': 'oil',
     'CIPOHI': 'hydro',
@@ -144,6 +150,7 @@ power_plant_type = {
     'CONDHI': 'hydro',
     'COROHI': 'hydro',
     'CORRDI01': 'gas',
+    'CORTEO': 'wind',
     'COSMDI11': 'oil',
     'COSTTG08': 'gas',
     'COSTTG09': 'gas',
@@ -156,12 +163,15 @@ power_plant_type = {
     'COSTTV10': 'gas',
     'CPIEHI': 'hydro',
     'CSARDI01': 'oil',
+    'CUMBFV': 'solar',
     'CUMODI01': 'gas',
     'CURUTG01': 'gas',
     'CURUTG02': 'gas',
+    'CVIEHI': 'hydro',
     'DFUNDI01': 'oil',
+    'DFUNTG01': 'gas',
     'DFUNTG02': 'gas',
-    'DIADEO': 'hydro',
+    'DIADEO': 'wind',
     'DIQUTG02': 'gas',
     'DIQUTG03': 'gas',
     'DSUDTG07': 'gas',
@@ -176,6 +186,7 @@ power_plant_type = {
     'EMBANUCL': 'nuclear',
     'ESCAHI': 'hydro',
     'ESQDDI01': 'oil',
+    'ETIGHI': 'hydro',
     'EZEITG01': 'gas',
     'EZEITG02': 'gas',
     'EZEITG03': 'gas',
@@ -184,6 +195,7 @@ power_plant_type = {
     'FRIATG01': 'gas',
     'FSIMHI': 'hydro',
     'FUTAHI': 'hydro',
+    'GARAEO': 'wind',
     'GBELTG01': 'gas',
     'GBELTG02': 'gas',
     'GBELTV01': 'gas',
@@ -197,10 +209,13 @@ power_plant_type = {
     'GUEMTV11': 'gas',
     'GUEMTV12': 'gas',
     'GUEMTV13': 'gas',
-    'HON1FV': 'hydro',
+    'HON1FV': 'solar',
+    'HON2FV': 'solar',
     'HRENDI01': 'oil',
     'HUMADI01': 'oil',
     'HUEMDI01': 'gas',
+    'IMACE1UR': 'unknown',
+    'IMACE2UR': 'unknown',
     'INDETG01': 'gas',
     'INDETG02': 'gas',
     'INDETG03': 'gas',
@@ -216,6 +231,7 @@ power_plant_type = {
     'LBLADI01': 'oil',
     'LCA2TG01': 'gas',
     'LCAMTG01': 'gas',
+    'LCASEO': 'wind',
     'LDCUHI': 'hydro',
     'LDCUTG22': 'gas',
     'LDCUTG23': 'gas',
@@ -241,7 +257,8 @@ power_plant_type = {
     'LMADHI': 'hydro',
     'LMO1HI': 'hydro',
     'LMO2HI': 'hydro',
-    'LOM1EO': 'hydro',
+    'LOM1EO': 'wind',
+    'LOM4EO': 'wind',
     'LOBODI01': 'oil',
     'LPALDI01': 'oil',
     'LPAZDI01': 'oil',
@@ -257,9 +274,16 @@ power_plant_type = {
     'LRIPDI01': 'oil',
     'LRISDI01': 'oil',
     'LROBDI01': 'oil',
+    'LUJBTG01': 'gas',
+    'LUJBTG02': 'gas',
     'LVARDI01': 'oil',
     'LVINHI': 'hydro',
     'MAGDDI01': 'oil',
+    'MANAEO': 'wind',
+    'MAT3TG01': 'gas',
+    'MAT3TG02': 'gas',
+    'MAT3TG03': 'gas',
+    'MAT3TG04': 'gas',
     'MATETG01': 'gas',
     'MATETG02': 'gas',
     'MATETG03': 'gas',
@@ -295,7 +319,7 @@ power_plant_type = {
     'MMARTG06': 'gas',
     'MMARTG07': 'gas',
     'MSEVTG01': 'gas',
-    'NECOEO': 'hydro',
+    'NECOEO': 'wind',
     'NECOTV01': 'gas',
     'NECOTV02': 'gas',
     'NECOTV03': 'gas',
@@ -304,6 +328,7 @@ power_plant_type = {
     'NIH1HI': 'hydro',
     'NIH4HI': 'hydro',
     'NOMODI01': 'gas',
+    'NONOFV': 'solar',
     'NPOMDI01': 'gas',
     'NPUETV05': 'gas',
     'NPUETV06': 'gas',
@@ -360,6 +385,7 @@ power_plant_type = {
     'PINATG10': 'gas',
     'PIQIDI01': 'oil',
     'PIRADI01': 'oil',
+    'PMA1EO': 'wind',
     'PMORHI': 'hydro',
     'PNEGHI': 'hydro',
     'PNUETV07': 'gas',
@@ -381,13 +407,16 @@ power_plant_type = {
     'PZUEDI01': 'oil',
     'QULLHI': 'hydro',
     'RAFADI01': 'oil',
-    'RAW1EO': 'hydro',
-    'RAW2EO': 'hydro',
+    'RAW1EO': 'wind',
+    'RAW2EO': 'wind',
+    'RAW3EO': 'wind',
     'RCEPDI01': 'oil',
     'RCUATG02': 'gas',
     'REALDI01': 'oil',
+    'RENOTG01': 'gas',
     'REOLHI': 'hydro',
     'RESCDI01': 'oil',
+    'RESCHI': 'hydro',
     'RGDEHB': 'hydro',
     'RHONHI': 'hydro',
     'RICADI01': 'oil',
@@ -408,6 +437,7 @@ power_plant_type = {
     'SARCTG21': 'gas',
     'SARCTG22': 'gas',
     'SARCTG23': 'gas',
+    'SAUJFV': 'solar',
     'SCHADI01': 'oil',
     'SCTPDI01': 'oil',
     'SERTTG01': 'gas',
@@ -417,10 +447,11 @@ power_plant_type = {
     'SGDEHIAR': 'hydro',
     'SGUIHI': 'hydro',
     'SHELTG01': 'gas',
-    'SJUAFV': 'hydro',
+    'SJUAFV': 'solar',
     'SLTODI01': 'oil',
     'SMANDI01': 'oil',
     'SMARDI01': 'oil',
+    'SMARHI': 'hydro',
     'SMIGDI01': 'oil',
     'SMTUTG01': 'gas',
     'SMTUTG02': 'gas',
@@ -451,12 +482,17 @@ power_plant_type = {
     'TIMBTG02': 'gas',
     'TIMBTV01': 'gas',
     'TINODI01': 'oil',
-    'TORDEO': 'hydro',
+    'TORDEO': 'wind',
     'TUCUTG01': 'gas',
     'TUCUTG02': 'gas',
     'TUCUTV01': 'gas',
     'TUNAHI': 'hydro',
+    'UTEIHICO': 'unknown',
+    'UTEIHISG': 'unknown',
+    'ULL3FV': 'solar',
     'ULLUHI': 'hydro',
+    'ULN1FV': 'solar',
+    'ULN2FV': 'solar',
     'VANGDI01': 'oil',
     'VGADDI01': 'oil',
     'VGEPDI01': 'oil',
@@ -465,6 +501,7 @@ power_plant_type = {
     'VGESTG16': 'gas',
     'VGESTG18': 'gas',
     'VIALDI01': 'oil',
+    'VLONEO': 'wind',
     'VMA2TG01': 'gas',
     'VMA2TG02': 'gas',
     'VMA2TG03': 'gas',
@@ -538,7 +575,7 @@ def webparser(req):
     return data_table
 
 
-def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known power price of a given country
     Arguments:
@@ -617,6 +654,17 @@ def dataformat(junk):
     return formatted
 
 
+def generation_finder(data, gen_type):
+    """Finds all genration matching requested type in a list.
+    Sums together and returns a float.
+    """
+
+    find_generation = [i + 2 for i, x in enumerate(data) if x == gen_type]
+    generation_total = sum([data[i] for i in find_generation])
+
+    return generation_total
+
+
 def get_thermal(session, logger):
     """
     Requests thermal generation data then parses and sorts by type.  Nuclear is included.
@@ -657,33 +705,24 @@ def get_thermal(session, logger):
     formatted_data = dataformat(data)
     mapped_data = [power_plant_type.get(x, x) for x in formatted_data]
 
-    for item in mapped_data:
+    for idx, item in enumerate(mapped_data):
         try:
             # avoids including titles and headings
-            if all((item.isupper(), not item.isalpha(), ' ' not in item)):
+            if all((item.isupper(), item.isalnum(), item != 'MERCADO')):
                 logger.warning(
                     '{} is missing from the AR plant mapping!'.format(item),
                     extra={'key': 'AR'})
+                mapped_data[idx] = 'unknown'
         except AttributeError:
             # not a string....
             continue
 
-    find_totals = [i + 1 for i, x in enumerate(mapped_data) if x == 'Totales ']
-    thermal_generation = sum([mapped_data[i] for i in find_totals])
-
-    find_nuclear = [i + 2 for i, x in enumerate(mapped_data) if x == 'nuclear']
-    nuclear_generation = sum([mapped_data[i] for i in find_nuclear])
-    find_oil = [i + 2 for i, x in enumerate(mapped_data) if x == 'oil']
-    oil_generation = sum([mapped_data[i] for i in find_oil])
-    find_coal = [i + 2 for i, x in enumerate(mapped_data) if x == 'coal']
-    coal_generation = sum([mapped_data[i] for i in find_coal])
-    find_biomass = [i + 2 for i, x in enumerate(mapped_data) if x == 'biomass']
-    biomass_generation = sum([mapped_data[i] for i in find_biomass])
-    find_gas = [i + 2 for i, x in enumerate(mapped_data) if x == 'gas']
-    gas_generation = sum([mapped_data[i] for i in find_gas])
-
-    unknown_generation = (thermal_generation - nuclear_generation - gas_generation
-                          - oil_generation - coal_generation - biomass_generation)
+    nuclear_generation = generation_finder(mapped_data, 'nuclear')
+    oil_generation = generation_finder(mapped_data, 'oil')
+    coal_generation = generation_finder(mapped_data, 'coal')
+    biomass_generation = generation_finder(mapped_data, 'biomass')
+    gas_generation = generation_finder(mapped_data, 'gas')
+    unknown_generation = generation_finder(mapped_data, 'unknown')
 
     if unknown_generation < 0.0:
         unknown_generation = 0.0
@@ -693,12 +732,13 @@ def get_thermal(session, logger):
             'coal': coal_generation,
             'unknown': unknown_generation,
             'oil': oil_generation,
-            'biomass': biomass_generation
-            }
+            'biomass': biomass_generation}
 
 
-def get_hydro(session=None):
-    """Requests hydro generation data then parses, returns a dictionary."""
+def get_hydro_and_renewables(session, logger):
+    """Requests hydro generation data then parses into a usable format.
+    There's sometimes solar and wind plants included in the data.
+    Returns a dictionary."""
 
     s = session or requests.Session()
     r = s.get(hurl)
@@ -723,13 +763,32 @@ def get_hydro(session=None):
 
     data = list(itertools.chain.from_iterable(full_table))
     formatted_data = dataformat(data)
-    find_hydro = [i + 1 for i, x in enumerate(formatted_data) if x == 'Totales ']
-    total_hydro_generation = sum([formatted_data[i] for i in find_hydro])
+    mapped_data = [power_plant_type.get(x, x) for x in formatted_data]
 
-    return {'hydro': total_hydro_generation}
+    for idx, item in enumerate(mapped_data):
+        try:
+            # avoids including titles and headings
+            if all((item.isupper(), item.isalnum(), item != 'MERCADO')):
+                logger.warning(
+                    '{} is missing from the AR plant mapping!'.format(item),
+                    extra={'key': 'AR'})
+                mapped_data[idx] = 'unknown'
+        except AttributeError:
+            # not a string....
+            continue
+
+    hydro_generation = generation_finder(mapped_data, 'hydro')
+    solar_generation = generation_finder(mapped_data, 'solar')
+    wind_generation = generation_finder(mapped_data, 'wind')
+    unknown_generation = generation_finder(mapped_data, 'unknown')
+
+    return {'hydro': hydro_generation,
+            'wind': wind_generation,
+            'solar': solar_generation,
+            'unknown': unknown_generation}
 
 
-def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -764,22 +823,16 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=N
 
     gdt = get_datetime(session=None)
     thermal = get_thermal(session, logger)
-    hydro = get_hydro(session=None)
+    hydro = get_hydro_and_renewables(session, logger)
+
+    unknown = thermal.pop('unknown') + hydro.pop('unknown')
+    production = {**hydro, **thermal}
+    production['unknown'] = unknown
+
     production_mix = {
         'zoneKey': zone_key,
         'datetime': gdt['datetime'],
-        'production': {
-            'biomass': thermal.get('biomass', 0.0),
-            'coal': thermal.get('coal', 0.0),
-            'gas': thermal.get('gas', 0.0),
-            'hydro': hydro.get('hydro', 0.0),
-            'nuclear': thermal.get('nuclear', 0.0),
-            'oil': thermal.get('oil', 0.0),
-            'solar': None,
-            'wind': None,
-            'geothermal': 0.0,
-            'unknown': thermal.get('unknown', 0.0)
-        },
+        'production': production,
         'storage': {
             'hydro': None,
         },
