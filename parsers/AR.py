@@ -214,8 +214,8 @@ power_plant_type = {
     'HRENDI01': 'oil',
     'HUMADI01': 'oil',
     'HUEMDI01': 'gas',
-    'IMACE1UR': 'unknown',
-    'IMACE2UR': 'unknown',
+    #'IMACE1UR': 'unknown', likely in Uruguay
+    #'IMACE2UR': 'unknown', likely in Uruguay
     'INDETG01': 'gas',
     'INDETG02': 'gas',
     'INDETG03': 'gas',
@@ -487,8 +487,8 @@ power_plant_type = {
     'TUCUTG02': 'gas',
     'TUCUTV01': 'gas',
     'TUNAHI': 'hydro',
-    'UTEIHICO': 'unknown',
-    'UTEIHISG': 'unknown',
+    #'UTEIHICO': 'unknown', Constitucion Dam in Uruguay
+    #'UTEIHISG': 'unknown', Salto Grande Dam in Uruguay
     'ULL3FV': 'solar',
     'ULLUHI': 'hydro',
     'ULN1FV': 'solar',
