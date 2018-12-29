@@ -2609,8 +2609,10 @@
   "NA": {
     "capacity": {
       "coal": 120,
-      "hydro": 330,
-      "oil": 38
+      "hydro": 347,
+      "oil": 38,
+      "solar": 116,
+      "wind": 5
     },
     "contributors": [
       "https://github.com/systemcatch",
