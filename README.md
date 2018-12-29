@@ -239,7 +239,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova: [FAS](http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf)
 - Montenegro: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
-- Namibia: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
+- Namibia
+  - Coal & Oil: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
+  - Hydro, solar & wind: [African Energy](https://www.africa-energy.com/database)
 - Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Norway
