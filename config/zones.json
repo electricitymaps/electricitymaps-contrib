@@ -3369,9 +3369,11 @@
       ]
     ],
     "capacity": {
+      "biomass": 253,
       "geothermal": 204,
-      "hydro": 472,
-      "unknown": 756
+      "hydro": 575,
+      "oil": 756,
+      "solar": 140
     },
     "contributors": [
       "https://github.com/systemcatch"
