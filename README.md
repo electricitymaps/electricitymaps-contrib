@@ -345,7 +345,7 @@ Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co)
 
 ### Logger
 
-We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/1710fdd0-2460-11e8-a779-9d01de8d7a71) which shows warnings and errors for all parsers.
+We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c) which shows warnings and errors for all parsers.
 
 ### Running locally
 
