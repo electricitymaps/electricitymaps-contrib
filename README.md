@@ -210,6 +210,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Denmark (Bornholm)
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
+- El Salvador:
+  - Thermal: [CNE](http://estadisticas.cne.gob.sv/wp-content/uploads/2016/09/Plan_indicativo_2016_2026-1.pdf) 
+  - Biomass, Geothermal, Hydro & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SLV)
 - Estonia:
   - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=EST)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
