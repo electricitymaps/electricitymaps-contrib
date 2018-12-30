@@ -1185,6 +1185,26 @@
     },
     "rotation": -55
   },
+  "GT->SV": {
+    "lonlat": [
+      -89.731,
+      14.094
+    ],
+    "parsers": {
+      "exchange": "ENTE.fetch_exchange"
+    },
+    "rotation": 125
+  },
+  "GT->HN": {
+    "lonlat": [
+      -89.231,
+      14.860
+    ],
+    "parsers": {
+      "exchange": "ENTE.fetch_exchange"
+    },
+    "rotation": 90
+  },
   "GR->IT-SO": {
     "capacity": [
       -500,
@@ -1219,6 +1239,16 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 90
+  },
+  "HN->SV": {
+    "lonlat": [
+      -88.429,
+      13.859
+    ],
+    "parsers": {
+      "exchange": "ENTE.fetch_exchange"
+    },
+    "rotation": 180
   },
   "KZ->RU-1": {
     "lonlat": [
