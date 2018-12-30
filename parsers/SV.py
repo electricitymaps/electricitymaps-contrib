@@ -173,15 +173,15 @@ def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=N
             'datetime': hour['datetime'],
             'production': {
                 'biomass': hour.get('biomass', 0.0),
-                'coal': hour.get('coal', 0.0),
-                'gas': hour.get('gas', 0.0),
+                'coal': 0.0,
+                'gas': 0.0,
                 'hydro': hour.get('hydro', 0.0),
                 'nuclear': 0.0,
-                'oil': hour.get('oil', 0.0),
+                'oil': hour.get('thermal', 0.0),
                 'solar': hour.get('solar', 0.0),
                 'wind': None,
                 'geothermal': hour.get('geothermal', 0.0),
-                'unknown': hour.get('thermal', 0.0)
+                'unknown': 0.0
             },
             'storage': {
                 'hydro': None,
