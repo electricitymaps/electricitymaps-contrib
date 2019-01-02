@@ -44,6 +44,7 @@ power_plant_type = {
     'ALEMDI01': 'oil',
     'ALICHI': 'hydro',
     'ALOMDI01': 'gas',
+    'ALUATG05': 'gas',
     'ALUATG06': 'gas',
     'ALUATG07': 'gas',
     'ALUATG08': 'gas',
@@ -214,8 +215,6 @@ power_plant_type = {
     'HRENDI01': 'oil',
     'HUMADI01': 'oil',
     'HUEMDI01': 'gas',
-    #'IMACE1UR': 'unknown', likely in Uruguay
-    #'IMACE2UR': 'unknown', likely in Uruguay
     'INDETG01': 'gas',
     'INDETG02': 'gas',
     'INDETG03': 'gas',
@@ -264,7 +263,7 @@ power_plant_type = {
     'LPAZDI01': 'oil',
     'LPLADI01': 'oil',
     'LQUIHI': 'hydro',
-    'LREYHB': 'hydro',
+    'LREYHB': 'hydro_storage',
     'LRIDDI01': 'oil',
     'LRIODI': 'oil',
     'LRIOTG21': 'gas',
@@ -417,7 +416,7 @@ power_plant_type = {
     'REOLHI': 'hydro',
     'RESCDI01': 'oil',
     'RESCHI': 'hydro',
-    'RGDEHB': 'hydro',
+    'RGDEHB': 'hydro_storage',
     'RHONHI': 'hydro',
     'RICADI01': 'oil',
     'ROCATG01': 'gas',
@@ -487,8 +486,6 @@ power_plant_type = {
     'TUCUTG02': 'gas',
     'TUCUTV01': 'gas',
     'TUNAHI': 'hydro',
-    #'UTEIHICO': 'unknown', Constitucion Dam in Uruguay
-    #'UTEIHISG': 'unknown', Salto Grande Dam in Uruguay
     'ULL3FV': 'solar',
     'ULLUHI': 'hydro',
     'ULN1FV': 'solar',
@@ -526,6 +523,11 @@ power_plant_type = {
     'ZARATG03': 'gas',
     'ZARATG04': 'gas'
 }
+
+EXCLUDED_PLANTS = {'IMACE1UR': 'likely in Uruguay',
+                   'IMACE2UR': 'likely in Uruguay',
+                   'UTEIHICO': 'Constitucion Dam in Uruguay',
+                   'UTEIHISG': 'Salto Grande Dam in Uruguay'}
 
 # URL's for thermal and hydro pages and data sources respectively.
 
@@ -662,7 +664,7 @@ def generation_finder(data, gen_type):
     find_generation = [i + 2 for i, x in enumerate(data) if x == gen_type]
     generation_total = sum([data[i] for i in find_generation])
 
-    return generation_total
+    return float(generation_total)
 
 
 def get_thermal(session, logger):
@@ -709,6 +711,8 @@ def get_thermal(session, logger):
         try:
             # avoids including titles and headings
             if all((item.isupper(), item.isalnum(), item != 'MERCADO')):
+                if item in EXCLUDED_PLANTS:
+                    continue
                 logger.warning(
                     '{} is missing from the AR plant mapping!'.format(item),
                     extra={'key': 'AR'})
@@ -769,6 +773,8 @@ def get_hydro_and_renewables(session, logger):
         try:
             # avoids including titles and headings
             if all((item.isupper(), item.isalnum(), item != 'MERCADO')):
+                if item in EXCLUDED_PLANTS:
+                    continue
                 logger.warning(
                     '{} is missing from the AR plant mapping!'.format(item),
                     extra={'key': 'AR'})
@@ -781,11 +787,13 @@ def get_hydro_and_renewables(session, logger):
     solar_generation = generation_finder(mapped_data, 'solar')
     wind_generation = generation_finder(mapped_data, 'wind')
     unknown_generation = generation_finder(mapped_data, 'unknown')
+    hydro_storage_generation = generation_finder(mapped_data, 'hydro_storage')
 
     return {'hydro': hydro_generation,
             'wind': wind_generation,
             'solar': solar_generation,
-            'unknown': unknown_generation}
+            'unknown': unknown_generation,
+            'hydro_storage': hydro_storage_generation}
 
 
 def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
@@ -825,6 +833,13 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=l
     thermal = get_thermal(session, logger)
     hydro = get_hydro_and_renewables(session, logger)
 
+    # discharging is given positive value in data, opposite to EM
+    hydro_storage = hydro.pop('hydro_storage')
+    if hydro_storage == 0.0:
+        em_hydro_storage = hydro_storage
+    else:
+        em_hydro_storage = hydro_storage*-1
+
     unknown = thermal.pop('unknown') + hydro.pop('unknown')
     production = {**hydro, **thermal}
     production['unknown'] = unknown
@@ -834,7 +849,7 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=l
         'datetime': gdt['datetime'],
         'production': production,
         'storage': {
-            'hydro': None,
+            'hydro': em_hydro_storage,
         },
         'source': 'portalweb.cammesa.com'
     }
