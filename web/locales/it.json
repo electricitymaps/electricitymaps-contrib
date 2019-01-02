@@ -33,7 +33,8 @@
         "carbonintensity": "Intensità di carbonio",
         "lowcarbon": "Basse emissioni",
         "renewable": "Rinnovabile",
-        "electricity": "Elettricità",
+        "electricityproduction": "Produzione elettrica",
+        "electricityconsumption": "Consumo elettrico",
         "bysource": "Per fonte",
         "emissions": "Emissioni di carbonio",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Aggiungi o modifica fonte</a>",
@@ -82,6 +83,7 @@
         "hideWindLayer": "Nascondi livello del vento",
         "showSolarLayer": "Mostra livello del sole",
         "hideSolarLayer": "Nascondi livello del sole",
+        "toggleDarkMode": "Alterna modalità scura",
         "noParserInfo": "Nessun dato disponibile",
         "temporaryDataOutage": "Dati temporeanamente non disponibili"
     },
@@ -92,7 +94,8 @@
         "retrynow": "Riprova ora",
         "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
         "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
-        "legend": "Legenda"
+        "legend": "Legenda",
+        "faq": "Domande poste frequentemente"
     },
     "wind": "Eolico",
     "solar": "Fotovoltaico",
@@ -432,6 +435,22 @@
           },
           "ES": {
             "zoneName": "Spagna"
+          },
+          "ES-IB-FO": {
+            "countryName": "Spagna",
+            "zoneName": "Formentera"
+          },
+          "ES-IB-IZ": {
+            "countryName": "Spagna",
+            "zoneName": "Ibiza"
+          },
+          "ES-IB-MA": {
+            "countryName": "Spagna",
+            "zoneName": "Maiorca"
+          },
+          "ES-IB-ME": {
+            "countryName": "Spagna",
+            "zoneName": "Minorca"
           },
           "ES-CN-FVLZ": {
             "countryName": "Spagna",
@@ -884,7 +903,8 @@
             "zoneName": "Isole Marshall"
           },
           "MK": {
-            "zoneName": "Macedonia"
+            "countryName": "Repubblica di Macedonia",
+            "zoneName": "ERIM"
           },
           "ML": {
             "zoneName": "Mali"
@@ -955,11 +975,11 @@
             "zoneName": "Penisola"
           },
           "MY-EM": {
-            "countryName": "Malesia",
+            "countryName": "Malaysia",
             "zoneName": "Borneo"
           },
           "MY-WM": {
-            "zoneName": "Malesia occidentale"
+            "zoneName": "Malaysia occidentale"
           },
           "MZ": {
             "zoneName": "Mozambico"
@@ -1064,7 +1084,7 @@
             "zoneName": "Pitcairn"
           },
           "PR": {
-            "zoneName": "Porto Rico"
+            "zoneName": "Portorico"
           },
           "PS": {
             "zoneName": "Palestina"
@@ -1100,6 +1120,10 @@
           },
           "RU": {
             "zoneName": "Russia"
+          },
+          "RU-1": {
+            "countryName": "Russia",
+            "zoneName": "Russia europea e Monti Urali"
           },
           "RU-EU": {
             "zoneName": "Russia"
