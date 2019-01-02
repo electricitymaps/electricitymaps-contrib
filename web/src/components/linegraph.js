@@ -62,9 +62,9 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
 
     // Create area for fill
     this.area = d3.area()
-        .x(function(d, i) { return x(xAccessor(d, i)); })
-        .y0(function(d, i) { return y.range()[0] })
-        .y1(function(d, i) { return y(yAccessor(d, i)); })
+        .x((d, i) => x(xAccessor(d, i)))
+        .y0((d, i) => y(0))
+        .y1((d, i) => y(yAccessor(d, i)))
         .defined(definedAccessor)
         .curve(d3.curveMonotoneX);
 
