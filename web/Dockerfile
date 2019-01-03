@@ -24,6 +24,7 @@ ADD web /home/web
 RUN yarn run build-release
 
 EXPOSE 8000
+ENV PORT 8000
 CMD node server.js
 
-HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:${PORT}/ || exit 1
