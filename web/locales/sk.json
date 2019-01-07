@@ -99,14 +99,14 @@
         "legend": "Legenda",
         "faq": "Často kladené otázky"
     },
-    "wind": "Veterná energia",
-    "solar": "Solárna energia",
-    "hydro": "Hydroenergia",
-    "hydro storage": "hydroakumulácia",
+    "wind": "veterná en.",
+    "solar": "solárna en.",
+    "hydro": "hydroenergia",
+    "hydro storage": "hydroakumul.",
     "battery storage": "batérie",
     "biomass": "biomasa",
-    "nuclear": "jadrová energia",
-    "geothermal": "geotermálna energia",
+    "nuclear": "jadrová en.",
+    "geothermal": "geoterm. en.",
     "gas": "plyn",
     "coal": "uhlie",
     "oil": "olej",
@@ -129,9 +129,9 @@
         "mapSolarWindButtons-question": "Čo robia “slnko” a “vietok” tlačítka na mape?",
         "mapSolarWindButtons-answer": "Tieto tlačítka prepínajú zobrazenie aktuálnej rýchlosti vetra a intenzity slnečného žiarenia, čo naznačuje potenciál prechodu na solárne a veterné energetické alternatívy v rozličných oblastiach. Berte v úvahu, že ide len o približnú indikáciu, pretože skutočný potenciál v inštalácií veterných turbín a solárnych jednotiek je tiež závislý od mnohých ďalších faktorov.",
         "mapNuclearColors-question": "Prečo sú krajiny s veľkým zastúpením jadrovej energie na mape zobrazené ako zelené?",
-        "mapNuclearColors-answer": "Produkcia jadrovej energie má veľmi nízku intenzitu uhlíku (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >zdroj</a>), a tieto krajiny sú preto zobrazené na mape zelenou farbou. To vsak neznamená, že tu nie sú žiadne iné enviromentálne výzvy spojené s jadrovou energiou(tak ako v prípade iných foriem energetickej produkcie), ale tieto výzvy nie sú spojené s emisiami skleníkovych plynov a sú teda mimo záberu tejto mapy.",
+        "mapNuclearColors-answer": "Produkcia jadrovej energie má veľmi nízku intenzitu uhlíku (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >zdroj</a>), a tieto krajiny sú preto zobrazené na mape zelenou farbou. To však neznamená, že tu nie sú žiadne iné enviromentálne výzvy spojené s jadrovou energiou(tak ako v prípade iných foriem energetickej produkcie), ale tieto výzvy nie sú spojené s emisiami skleníkovych plynov a sú teda mimo záberu tejto mapy.",
         "mapColorBlind-question": "Som farboslepý. Ako môžem čítať vašu mapu?",
-        "mapColorBlind-answer": "Môžete zmeniť farby na mape tým, že zapnete režim pre farboslepých. Toto nastavenie sa nachádza na spodu lavého panelu v prehliadačovom móde a v INFO tabe v mobilnej aplikácii."
+        "mapColorBlind-answer": "Môžete zmeniť farby na mape tým, že zapnete režim pre farboslepých. Toto nastavenie sa nachádza v spodnej časti ľavého panelu v prehliadačovom móde a v INFO tabe v mobilnej aplikácii."
     },
     "mapAreas": {
         "groupName": "Oblasti v mape",
@@ -142,22 +142,22 @@
         "divideExistingArea-question": "Môžete rozdeliť moju oblasť na menšie?",
         "divideExistingArea-answer": "Určite, ak existujú separátne zdroje dát pre každú časť danej oblasti. Môžete <a href=\"#contribute\" class=\"entry-link\">nám pomôcť pridaním nových dátovych zdrojov</a>.",
         "seeHistoricalData-question": "Môžem zobraziť históriu oblasti staršiu ako 24 hodín?",
-        "seeHistoricalData-answer": "Môžete, ak si zakúpit prístup k všetkým historickým dátam prostredníctvom <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databázy</a>"
+        "seeHistoricalData-answer": "Môžete, ak si zakúpite prístup k všetkým historickým dátam prostredníctvom <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databázy</a>"
     },
     "methodology": {
         "groupName": "Naše metódy",
         "carbonIntensity-question": "Čo je \"intenzita uhlíka\"?",
-        "carbonIntensity-answer": "Intenzita uhlíka je a miera emisií skleníkových plynov vo vzťahu s produkciou elektriny, ktorú spotrebúvate(uvádza sa v gCO2eq/kWh - gram ekvivalentov oxidu uhličitého vyprodukovaného na kilowatthodinu spotrebovanej elektriny). <br><br>My meriame emisie spotrebovy elektriny(nie produkcie), to znamená, že všetky skleníkové plyny(tak CO2 ako aj iné skleníkové plyny, napríklad metán), ktoré vošli do produkcie elektriny, ktorá bola spotrebovaná v danej oblasti, berúc v úvahu intenzitu uhlíka elektriny importovanej z iných oblastí. Používame prístup posuzdovania životného cyklu(LCA - life cycle analysis approach), to znamená, že berieme v úvahu emisie vznikajúce v celom životnom cykle elektrárne(stavba, produkcia paliva, operatívne emisie, vyradenie).",
+        "carbonIntensity-answer": "Intenzita uhlíka je miera emisií skleníkových plynov vo vzťahu s produkciou elektriny, ktorú spotrebúvate(uvádza sa v gCO2eq/kWh - gram ekvivalentov oxidu uhličitého vyprodukovaného na kilowatthodinu spotrebovanej elektriny). <br><br>My meriame emisie spotrebovy elektriny(nie produkcie), to znamená, že všetky skleníkové plyny(tak CO2 ako aj iné skleníkové plyny, napríklad metán), ktoré vošli do produkcie elektriny, ktorá bola spotrebovaná v danej oblasti, berúc v úvahu intenzitu uhlíka elektriny importovanej z iných oblastí. Používame prístup posuzdovania životného cyklu(LCA - life cycle analysis approach), to znamená, že berieme v úvahu emisie vznikajúce v celom životnom cykle elektrárne(stavba, produkcia paliva, operatívne emisie, vyradenie).",
         "consumptionFocus-question": "Prečo počítate intenzitu uhlíka spotreby energie a nie pre jej produkciu?",
         "consumptionFocus-answer": "Veríme, že obyvateľstvo by malo byt zodpovedné za elektrinu, ktorú spotrebuje a nie za elektrinu, ktorá je produkovaná v oblasti, v ktorej žije. Taktiež veríme, že oblasti by nemali byť schopné simulovať nízky dopad na klímu jednoducho tým, že premiestnia špinavú produkciu energie to iných oblastí a potom importovať elektrinu práve z nich.",
         "renewableLowCarbonDifference-question": "Aký je rozdieľ medzi “obnoviteľný” and “s nízkymi emisiami”?",
-        "renewableLowCarbonDifference-answer": "Obnovitelná produkcia energie je založená na obnoviteľnych zdrojoch energie ako napríklad vietor, tok vody, slnečné žiarenie, geotermálna energia. Nízkouhlíková produkcia energie znamená, že táto produkcia ovplyvňuje véľmi nízku úroveň emisií skleníkových plynov, ako napríklad produkcia jadrovej energie.",
+        "renewableLowCarbonDifference-answer": "Obnoviteľná produkcia energie je založená na obnoviteľnych zdrojoch energie ako napríklad vietor, tok vody, slnečné žiarenie, geotermálna energia. Nízkouhlíková produkcia energie znamená, že táto produkcia ovplyvňuje veľmi nízku úroveň emisií skleníkových plynov, ako napríklad produkcia jadrovej energie.",
         "importsAndExports-question": "Beriete v úvahu import a export elektriny?",
         "importsAndExports-answer": "Áno, berieme. Import a export je na mape znázornený malou <a href=\"#mapArrows\" class=\"entry-link\"> šipkou medzi rôznymi oblasťami. Bližšie informácie sú uvedené v grafe, ktorý sa zobrazí po kliknutí na oblasť.",
         "emissionsOfStored-question": "A čo emisie z generovania elektrickej energie, ktorá je potom uschovaná v batériach alebo použitá na plnenie nádrží?",
         "emissionsOfStored-answer": "Pretože zatiaľ len malé množstvo elektriny je uschovávané, nepresnosti modelnovaní týchto emisii by nemali mať momentálne veľky dopad na výsledok. Avšak veríme, že zvyšujúca sa dôležitosť kladená na uschovávanie energie povedie k tomu, že v blízkej budúcnosti zapracujeme tento faktor do nášho modelu",
         "guaranteesOfOrigin-question": "Čo sú zelené cerfikáty a ako veľmi ich beriete v úvahu?",
-        "guaranteesOfOrigin-answer": "Keď produkcovia obnoviteľnej energie produkujú elektrinu, môžu vytvoriť Záruku pôvodou(Guarantee of Origin alebo Renewable Energy Cerificates) - dôkaz toho, že obnovitelná elektrina bola vyprodukovaná a distribuovaná to rozvodnej siete. Tieto záruky môzu byť predané/dané produkcovi s neobnoviteľnou energiou ako spôsob \"kompenzácie\" za jeho emisie a právo tvrdiť, že elektrina, ktorú produkuje, je z obnoviteľných zdrojov, napriek jej skutočnému, fyzickému pôvodu. <br><br> Toto znamená, že spotrebiteľom elektrickej energie môže byť povedané, že ich eletrická energia je zelená, aj keď to nie je pravda vo fyzickom zmysle. Táto problematika, tým ako odstraňuje stimuly spotrebiteľov spotrebúvat elektrinu v najlepšom čase(napríklad keď množstvo obnoviteľnej elektriny v sieti je najvyššie). Táto mapa teda vylučuje Záruky pôvodu, namiesto toho ponúka fyzický obraz rozvodnej siete na základe lokácie, aby si mohli spotrebitelia plne uvedomiť svoju zodpovednosť",
+        "guaranteesOfOrigin-answer": "Keď produkcovia obnoviteľnej energie produkujú elektrinu, môžu vytvoriť Záruku pôvodou(Guarantee of Origin alebo Renewable Energy Cerificates) - dôkaz toho, že obnovitelná elektrina bola vyprodukovaná a distribuovaná to rozvodnej siete. Tieto záruky môzu byť predané/dané produkcovi s neobnoviteľnou energiou ako spôsob \"kompenzácie\" za jeho emisie a právo tvrdiť, že elektrina, ktorú produkuje, je z obnoviteľných zdrojov, napriek jej skutočnému, fyzickému pôvodu. <br><br> Toto znamená, že spotrebiteľom elektrickej energie môže byť povedané, že ich eletrická energia je zelená, aj keď to nie je pravda vo fyzickom zmysle. Táto problematika, tým ako odstraňuje stimuly spotrebiteľov spotrebúvať elektrinu v najlepšom čase(napríklad keď množstvo obnoviteľnej elektriny v sieti je najvyššie). Táto mapa teda vylučuje Záruky pôvodu, namiesto toho ponúka fyzický obraz rozvodnej siete na základe lokácie, aby si mohli spotrebitelia plne uvedomiť svoju zodpovednosť.",
         "otherSources-question": "Prečo nezobrazujete iné zdroje emisii okrem produkcie elektriny?",
         "otherSources-answer": "Bolo by to mimo záber tohto projektu. Napriek tomu, v Tomorrow aktívne pracueme na vyvoji <a href=\"#whoAreYou\" class=\"entry-link\">nového riešenia pre kvantifikáciu dopadu na klímu našich každodenných rozhodnutí</a>",
         "homeSolarPanel-question": "Čo ak mám doma nainštalovaný solárny panel?",
@@ -169,23 +169,23 @@
         "groupName": "Naše dáta",
         "dataOrigins-question": "Ako získavate vaše dáta?",
         "dataOrigins-answer": "Všetky naše dáta spracúvame z verejne prístupných zdrojov publikovaných operátormi elektrických rozvodných sietí, oficiálnych agentúr atď. Kliknutím na konkrétnu oblasť sa zobrazia detailnejšie informácie o pôvode dát.",
-        "dataDownload-question": "Môžem si stiahnut vaše dáta?",
-        "dataDownload-answer": "Môžete si zakúpit prístup k všetkým naším dátam v našej <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze</a>.",
-        "dataIntegration-question": "Môžem integrovat vaše dáta do mojej aplikácie alebo zariadenia?",
+        "dataDownload-question": "Môžem si stiahnuť vaše dáta?",
+        "dataDownload-answer": "Môžete si zakúpiť prístup k všetkým naším dátam v našej <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze</a>.",
+        "dataIntegration-question": "Môžem integrovať vaše dáta do mojej aplikácie alebo zariadenia?",
         "dataIntegration-answer": "Áno! Predávame prístup do <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, ktoré zahrňuje budúce predpovede."
     },
     "aboutUs": {
         "groupName": "O nás",
         "whoAreYou-question": "Kto ste?",
-        "whoAreYou-answer": "ElectricityMap je vyvýjaná a udržovaná spoločnosťou <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, malým Dánsko/Francúzskym startupom. Náš cieľ je pomôcť ľudstvu dosiahnuť udržateľný stav kvantifikovaním a konaním široko dostupných rozhodnutí pre dopad na klímu v našom kažodonennom živote ",
+        "whoAreYou-answer": "ElectricityMap je vyvýjaná a udržovaná spoločnosťou <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, malým dánsko-francúzskym startupom. Náš cieľ je pomôcť ľudstvu dosiahnuť udržateľný stav kvantifikovaním a konaním široko dostupných rozhodnutí pre dopad na klímu v našom kažodonennom živote ",
         "feedback-question": "Môžem vám nechať spätnú väzbu?",
         "feedback-answer": "Prosím, urobte tak! Môžete vyplniť <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">náš formulár</a> alebo <a href=\"mailto:hello@tmrow.com\">nám poslať email!</a>",
         "contribute-question": "Možem sa zapojiť do vášho projektu?",
-        "contribute-answer": "Áno! ElectricityMap je open-source projekt, to znamená, že funguje vďaka našim dobrovoľným prispievateĺom. Ak chcete pomôcť pri vývoji mapy - pridávaním dátových zdrojov pre nové oblasti, pridávaním nových funkcionalít alebo opravovaním bugov, pridajte sa na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
-        "workTogether-question": "Môžeme pracovat spoločne?",
+        "contribute-answer": "Áno! ElectricityMap je open-source projekt, to znamená, že funguje vďaka našim dobrovoľným prispievateľom. Ak chcete pomôcť pri vývoji mapy - pridávaním dátových zdrojov pre nové oblasti, pridávaním nových funkcionalít alebo opravovaním bugov, pridajte sa na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+        "workTogether-question": "Môžeme pracovať spoločne?",
         "workTogether-answer": "Aktívne hľadáme nové príležitosti k spolupráci. <a href=\"mailto:hello@tmrow.com\">Pošlite nám email!</a>",
         "disclaimer-question": "Oznámenie",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publikuje dáta a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pre informačné účely. Nezaručuje správnosť ani žiadnu formu záruky a vyhradzuje si právo kedykoĺvek zmeniť obsah alebo odstrániť časti bez toho, že by o tom musel informovať. Tomorrow nepreberá žiadnu zodpovednosť za akékoľvek škody alebo výdavky, ktoré by mohli vzniknúť v dôsledku nepresnosti, neúplnosti, neopatrnosti alebo zastaranosti electricityMap alebo informácií ziskýnych z nej. Nie je dovolené zahrnúť túto webovú stránku alebo jej jednotlivé prvky do inej webovej stránky bez formálneho predchádzajúceho písomného súhlasu.<br><br> Všetky práva duševného vlastníctva patria oprávneným majiteľom a poskytovateľom licencií. Kopírovanie, distribúcia a akýkoľvek iné použitie týchto materiálov, najmä energetických údajov, nie je povolené bez písomného súhlasu Tomorrow, s výnimkou prípadov, ktoré sú ustanovené inak v predpisoch povinného práva (ako je právo citovať), pokiaľ nie je pre konkrétne materiály uvedené inak. <br><br> Toto vylúčenie zodpovednosti môže byť z času na čas aktualizované."
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publikuje dáta a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pre informačné účely. Nezaručuje správnosť ani žiadnu formu záruky a vyhradzuje si právo kedykoľvek zmeniť obsah alebo odstrániť časti bez toho, že by o tom musel informovať. Tomorrow nepreberá žiadnu zodpovednosť za akékoľvek škody alebo výdavky, ktoré by mohli vzniknúť v dôsledku nepresnosti, neúplnosti, neopatrnosti alebo zastaranosti electricityMap alebo informácií ziskýnych z nej. Nie je dovolené zahrnúť túto webovú stránku alebo jej jednotlivé prvky do inej webovej stránky bez formálneho predchádzajúceho písomného súhlasu.<br><br> Všetky práva duševného vlastníctva patria oprávneným majiteľom a poskytovateľom licencií. Kopírovanie, distribúcia a akýkoľvek iné použitie týchto materiálov, najmä energetických údajov, nie je povolené bez písomného súhlasu Tomorrow, s výnimkou prípadov, ktoré sú ustanovené inak v predpisoch povinného práva (ako je právo citovať), pokiaľ nie je pre konkrétne materiály uvedené inak. <br><br> Toto vylúčenie zodpovednosti môže byť z času na čas aktualizované."
     },
     "zoneShortName": {
         "AD": {
@@ -464,11 +464,11 @@
         },
         "DK-DK1": {
             "countryName": "Dánsko",
-            "zoneName": "Západné"
+            "zoneName": "Západné Dánsko"
         },
         "DK-DK2": {
             "countryName": "Dásko",
-            "zoneName": "Vychodné"
+            "zoneName": "Vychodné Dánsko"
         },
         "DK-BHM": {
             "countryName": "Dánsko",
@@ -829,7 +829,7 @@
         },
         "IT-NO": {
             "countryName": "Taliansko",
-            "zoneName": "Severné"
+            "zoneName": "Severné Taliansko"
         },
         "IT-SAR": {
             "countryName": "Taliansko",
@@ -841,7 +841,7 @@
         },
         "IT-SO": {
             "countryName": "Taliansko",
-            "zoneName": "Južné"
+            "zoneName": "Južné Taliansko"
         },
         "JE": {
             "zoneName": "Jersey"
@@ -1029,27 +1029,27 @@
         },
         "MX-CE": {
             "countryName": "Mexiko",
-            "zoneName": "Centrálne"
+            "zoneName": "Centrálne Mexiko"
         },
         "MX-NE": {
             "countryName": "Mexiko",
-            "zoneName": "Severovychodné"
+            "zoneName": "Severovychodné Mexiko"
         },
         "MX-NO": {
             "countryName": "Mexiko",
-            "zoneName": "Severné"
+            "zoneName": "Severné Mexiko"
         },
         "MX-NW": {
             "countryName": "Mexiko",
-            "zoneName": "Severzápadné"
+            "zoneName": "Severzápadné Mexiko"
         },
         "MX-OC": {
             "countryName": "Mexiko",
-            "zoneName": "Západné"
+            "zoneName": "Západné Mexiko"
         },
         "MX-OR": {
             "countryName": "Mexiko",
-            "zoneName": "Orientálne"
+            "zoneName": "Orientálne Mexiko"
         },
         "MX-PN": {
             "countryName": "Mexiko",
@@ -1089,23 +1089,23 @@
         },
         "NO-NO1": {
             "countryName": "Nórsko",
-            "zoneName": "Juhovychodné"
+            "zoneName": "Juhovychodné Nórsko"
         },
         "NO-NO2": {
             "countryName": "Nórsko",
-            "zoneName": "Juhozápadné"
+            "zoneName": "Juhozápadné Nórsko"
         },
         "NO-NO3": {
             "countryName": "Nórsko",
-            "zoneName": "Stredné"
+            "zoneName": "Stredné Nórsko"
         },
         "NO-NO4": {
             "countryName": "Nórsko",
-            "zoneName": "Severné"
+            "zoneName": "Severné Nórsko"
         },
         "NO-NO5": {
             "countryName": "Nórsko",
-            "zoneName": "Západné"
+            "zoneName": "Západné Nórsko"
         },
         "NP": {
             "zoneName": "Nepál"
@@ -1118,11 +1118,11 @@
         },
         "NZ-NZA": {
             "countryName": "Novy Zéland",
-            "zoneName": "Ostrov !!!"
+            "zoneName": "Aucklandove ostrovy"
         },
         "NZ-NZC": {
             "countryName": "Novy Zéland",
-            "zoneName": "Ostrov Chatham"
+            "zoneName": "Chathamské ostrovy"
         },
         "NZ-NZN": {
             "countryName": "Novy Zéland",
@@ -1337,8 +1337,8 @@
             "zoneName": "Ukrajina"
         },
         "UA-CR": {
-            "countryName": "Krym",
-            "zoneName": "Ukrajina"
+            "countryName": "Ukrajina",
+            "zoneName": "Krym"
         },
         "UG": {
             "zoneName": "Uganda"
