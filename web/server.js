@@ -44,7 +44,7 @@ i18n.configure({
 app.use(i18n.init);
 const LOCALE_TO_FB_LOCALE = {
   'ar': 'ar_AR',
-  'cz':'cs_CZ',
+  'cs':'cs_CZ',
   'da': 'da_DK',
   'de': 'de_DE',
   'en': 'en_US',
