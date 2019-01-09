@@ -1,0 +1,1474 @@
+{
+    "panel-initial-text": {
+        "thisproject": "Tento projekt je",
+        "opensource": "Open Source",
+        "see": "viz",
+        "datasources": "zdroje dat",
+        "contribute": "Zapojte se <a href=\"%s\" target=\"_blank\">přidáním své oblasti</a>"
+    },
+    "mobile-main-menu": {
+        "map": "electricityMap",
+        "areas": "Oblasti",
+        "about": "Info"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "Mapování dopadu spotřeby elektřiny na klima"
+        },
+        "view2": {
+            "header": "Sledujte, kolik CO2 je vyprodukovaného vaší spotřebou elektřiny v reálném čase",
+            "text": "Barevně zobrazujeme oblasti po celém světě na základě jejich intenzity uhlíku"
+        },
+        "view3": {
+            "header": "Zjistěte, odkud pochází Vaše elektřina",
+            "text": "Šipky na mapě znázorňují tok elektřiny mezi různými oblastmi. Klikněte na oblast, pro kterou chcete zobrazit více informací o původu její elektřiny."
+        },
+        "view4": {
+            "header": "Větrné a solární podmínky v reálném čase",
+            "text": "Produkce větrné a solární energie je závislá na počasí. Stiskněte tlačítka Slunce a Vítr k zobrazení aktuální síly větru a slunečního záření na celém světě."
+        }
+    },
+    "country-panel": {
+        "source": "Zdroj",
+        "carbonintensity": "Intenzita uhlíku",
+        "lowcarbon": "Nízké emise",
+        "renewable": "Obnovitelné",
+        "electricityproduction": "Produkce elektřiny",
+        "electricityconsumption": "Spotřeba elektřiny",
+        "bysource": "podle zdroje",
+        "emissions": "Uhlíkové emise",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">přidejte nebo upravte zdroj</a>",
+        "helpfrom": "s pomocí od",
+        "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
+        "noLiveData": "Živá data pre tuhle oblast jsou dočasně nedostupná",
+        "noParserInfo": "Zatím nemáme žádné informáce pro tuhle oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href=\"%s\" target=\"_blank\">přidáním dat</a>.",
+        "now": "Teď"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Dopad na klima podle oblasti",
+        "zone-list-header-subtitle": "Hodnocené podle intezity uhlíku spotřebované elektřiny(gCO2eq/kWh)",
+        "search": "Hledej oblasti"
+    },
+    "country-history": {
+        "carbonintensity24h": "Intenzita uhlíku za posledních 24 hodin",
+        "emissionsorigin24h": "Původ emisí za posledních 24 hodin",
+        "emissionsproduction24h": "Emise vyprodukované za posledních 24 hodin",
+        "electricityorigin24h": "Původ elektřiny za posledních 24 hodin",
+        "electricityproduction24h": "Produkce elektřiny za posledních 24 hodin",
+        "electricityprices24h": "Ceny elektřiny za posledních 24 hodin",
+        "Getdata": "Získejte historická data, menšinové a předpoveď API"
+    },
+    "footer": {
+        "likethisvisu": "Líbí sa Vám vizualizace?",
+        "loveyourfeedback": "Těšíme sa na Vaši zpětnou vazbu",
+        "foundbugs": "Našli jste nedostatky, nebo máte nápad? Řekněte nám o nich",
+        "faq-text": "Je vám něco nejasné? Navštivte ",
+        "faq": "Často kladené otázky.",
+        "here": "zde"
+    },
+    "legends": {
+        "windpotential": "Potenciál větrné energie",
+        "solarpotential": "Potenciál solární energie",
+        "colorblindmode": "Mód pro barvoslepé",
+        "carbonintensity": "Intezita uhlíku"
+    },
+    "tooltips": {
+        "carbonintensity": "Intenzita uhlíku",
+        "lowcarbon": "Nízké emise",
+        "renewable": "Obnovitelné",
+        "crossborderexport": "Zahraniční export",
+        "carbonintensityexport": "Uhlíková intenzita exportu",
+        "ofinstalled": "nainstalované kapacity",
+        "utilizing": "využití",
+        "withcarbonintensity": "s intenzitou uhlíku",
+        "showWindLayer": "Zobraz věternou vrstvu",
+        "hideWindLayer": "Skryj větrnou vrstvu",
+        "showSolarLayer": "Zobraz solární vrstvu",
+        "hideSolarLayer": "Skryj solární vrstvu",
+        "toggleDarkMode": "Přepni na tmavý režim",
+        "noParserInfo": "Žádná data",
+        "temporaryDataOutage": "Data momentálně nedostupná"
+    },
+    "misc": {
+        "maintitle": "CO2 emise spotřeby elektřiny v aktuálním čase",
+        "oops": "Achjaj! Máme problém v komunikaci so serverem. Zkusíme to znovu za pár vteřin.",
+        "newversion": "Nová verze je dostupná! Klikněte <a onClick=\"location.reload(true);\">tu</a> pro znovunačtení.",
+        "retrynow": "Zkusit znovu",
+        "database-ad": "Hladáte historická data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Zkontrolujte naši databázi!</a>",
+        "api-ad": "Chcete mít živá data ve své aplikaci nebo na svém zařízení? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Vyzkoušejte naše API!</a>]",
+        "legend": "Legenda",
+        "faq": "Často kladené otázky"
+    },
+    "wind": "větrná en.",
+    "solar": "solární en.",
+    "hydro": "hydroenergie",
+    "hydro storage": "hydroakumul.",
+    "battery storage": "baterie",
+    "biomass": "biomasa",
+    "nuclear": "jaderná en.",
+    "geothermal": "geoterm. en.",
+    "gas": "plyn",
+    "coal": "uhlí",
+    "oil": "olej",
+    "unknown": "neznámé",
+    "electricityComesFrom": "%1$s %% elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
+    "emissionsComeFrom": "%1$s %% emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
+    "electricityStoredUsing": "%1$s %% elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je uchovávaných použitím %3$s",
+    "emissionsStoredUsing": "%1$s %% emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je uchovávaných použitím %3$s",
+    "electricityExportedTo": "%1$s %% elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "%1$s %% elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "ofCO2eqPerMinute": "CO2 za minutu",
+    "theMap": {
+        "groupName": "Mapa",
+        "mapColors-question": "Co znamenají barvy na mapě?",
+        "mapColors-answer": "Barevně vyznačujeme oblasti v mapě podle množství skleníkových plynů vyprodukovaných na jednotku spotřebované elektřiny v dané oblasti(její <a href=\"#carbonIntensity\" class=\"entry-link\">intenzita uhlíku</a>)",
+        "mapArrows-question": "Co znamenají šipky mezi oblastmi na mapě?",
+        "mapArrows-answer": "Šipky medzi oblastmi znázorňují fyzický tok(import a export) elektřiny mezi oblastmi: čím rychlejší je blikaní, tím rychlejší tok je. Tok elektřiny je důležitý, protože když importujete něco z Vaší elektřiny od sousední oblasti, tak importujete i uhlíkové emise související s její produkcí.",
+        "mapSolarWindButtons-question": "Co dělají tlačítka “slunce” a “vítr” na mapě?",
+        "mapSolarWindButtons-answer": "Tato tlačítka přepínají zobrazení aktuální rychlosti větru a intenzity slnečního záření, což naznačuje potenciál přechodu na solární a vetrné energetické alternativy v různých oblastech. Berte v úvahu, že jde jen o približnou indikaci, protože skutečný potenciál v instalaci věterných turbín a solárních jednotek je taky závislý od množství dalších faktorů.",
+        "mapNuclearColors-question": "Proč jsou krajiny s velkým zastoupením jaderné energie na mapě zobrazené jako zelené?",
+        "mapNuclearColors-answer": "Produkce jaderné energie má hodně nízkou intenzitu uhlíku (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >zdroj</a>), a tyto krajiny jsou proto zobrazené na mapě zelenou barvou. To ale neznamená, že tu nejsou žádné jiné enviromentální výzvy spojené s jadernou energií(tak jak v případe jiných forem energetické produkce), ale tyto výzvy nejsou spojené s emisemi skleníkových plynů a jsou teda mimo zaměření této mapy.",
+        "mapColorBlind-question": "Jsem barvoslepý. Jak můžu číst vaši mapu?",
+        "mapColorBlind-answer": "Můžete změnit barvy na mapě tím, že zapnete režim pre barvoslepé. Toto nastavení se nachází ve spodní části levého panelu v módu prohlížeče a v INFO tabu v mobilní aplikaci."
+    },
+    "mapAreas": {
+        "groupName": "Oblasti v mapě",
+        "noData-question": "Proč nejsou data v mé oblasti dostupná?",
+        "noData-answer": "Buď je zdroj dat dočasně nedostupný, nebo protože zatím nemáme žádné zdroje dat pro tuto oblast. Můžete <a href=\"#contribute\" class=\"entry-link\">nám pomoci přidáním nových zdrojů dat</a>.",
+        "whySmallAreas-question": "Proč dělíte svět do malých oblastí a jednoduše nezobrazíte průmery krajin?",
+        "whySmallAreas-answer": "Tyto oblasti jsou nejmenší geografické oblasti, pro která máme data. Díky přístupu k informácím na nejvyšší úrovni jemnosti, spotřebitel energie v různych oblastech můze mít přesnější přehled o původe elektřiny, ktorou spotřebúvá a s tím spojený dopad na klima.",
+        "divideExistingArea-question": "Můžete rozdelit moji oblast na menší?",
+        "divideExistingArea-answer": "Určitě, když existují separátní zdroje dat pro každou čásť dané oblasti. Můžete <a href=\"#contribute\" class=\"entry-link\">nám pomoct přidáním nových datových zdrojů</a>.",
+        "seeHistoricalData-question": "Můžu zobrazit historii oblasti starší jak 24 hodin?",
+        "seeHistoricalData-answer": "Můžete, když si zakoupíte přístup ke všem historickým datům prostředníctvým <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze</a>"
+    },
+    "methodology": {
+        "groupName": "Naše metody",
+        "carbonIntensity-question": "Co je \"intenzita uhlíku\"?",
+        "carbonIntensity-answer": "Intenzita uhlíku je míra emisí skleníkových plynů ve vztahu k produkci elektřiny, ktorou spotřebováváte(uvádí se v gCO2eq/kWh - gram ekvivalentů oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>My měříme emise spotřebované elektřiny - ne produkce. To znamená, že všechny skleníkové plyny(jak CO2, tak i jiné skleníkové plyny, například metan), které vešly do produkce elektřiny, která byla spotřebovaná v dané oblasti, berouc v úvahu intenzitu uhlíku elektřiny importované z jiných oblastí. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach). To znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny(stavba, produkce paliva, operativní emise, vyřazení).",
+        "consumptionFocus-question": "Proč počítáte intenzitu uhlíku spotřeby energie a ne její produkci?",
+        "consumptionFocus-answer": "Veříme, že obyvatelstvo by mělo být zodpovědné za elektřinu, kterou spotřebuje a ne za elektřinu, ktorá je produkovaná v oblasti, ve které žije. Taky veříme, že oblasti by neměly být schopné simulovat nízký dopad na klima jednoduše tím, že přemístí špinavou produkci energie to jiných oblastí a pak importovat elektřinu právě z nich.",
+        "renewableLowCarbonDifference-question": "Jaký je rozdíl mezi “obnovitelný” a “s nízkými emisemi”?",
+        "renewableLowCarbonDifference-answer": "Obnovitelná produkce energie je založená na obnovitelnýh zdrojech energie jako například vítr, vodní proud, sluneční záření, geotermální energie. Nízkouhlíková produkce energie znamená, že tato produkce ovlivňuje hodně nízkou úroveň emisí skleníkových plynů, jako například produkce jaderné energie.",
+        "importsAndExports-question": "Berete v úvahu import a export elektřiny?",
+        "importsAndExports-answer": "Ano, bereme. Import a export je na mapě znázorněný malou <a href=\"#mapArrows\" class=\"entry-link\"> šipkou mezi různymi oblastmi. Bližší informacee jsou uvedeny v grafu, který se zobrazí po kliknutí na oblast.",
+        "emissionsOfStored-question": "A co emise z generování elektrické energie, která je pak uschována v bateriích nebo použita na plnění nádrží?",
+        "emissionsOfStored-answer": "Protože zatím jen malé množství elektřiny je uschovávané, nepřesnosti modelování těchto emisí by neměly mít momentálně velký dopad na výsledek. Ale věříme, že zvyšující se nároky kladené na uschovávání energie povede k tomu, že v blízké budoucnosti zapracujeme tento faktor do našeho modelu",
+        "guaranteesOfOrigin-question": "Co jsou zelené cerfikáty a kolik jich berete v úvahu?",
+        "guaranteesOfOrigin-answer": "Když výrobci obnovitelné energie produkují elektřinu, mohou vytvořit Záruku původou(Guarantee of Origin nebo Renewable Energy Cerificates) - důkaz toho, že obnovitelná elektřina byla vyprodukována a distribuována do rozvodné sítě. Tyto záruky mohou být prodány/dány výrobci s neobnovitelnou energií jako způsob \"kompenzace\" za jeho emise a právo tvrdit, že elektřina kterou produkuje je z obnovitelných zdrojů. <br><br> Toto znamená, že spotřebitelům elektrickej energie může být řečeno, že jejich eletrická energie je zelená, i když to není pravda ve fyzickém smyslu. Tato problematika, tím jak odstraňuje stimuly spotřebitelů spotřebovávat elektřinu v najlepším čase(například když množství obnovitelné elektřiny v síti je nejvyšší). Tato mapa teda vylučuje Záruky původu, namísto toho nabízí fyzický obraz rozvodní síte na základe lokace, aby si mohli spotřebitelé plně uvedomit svoji zodpovědnost.",
+        "otherSources-question": "Proč nezobrazujete jiné zdroje emisí kromě produkce elektřiny?",
+        "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádne v Tomorrow aktivně pracujeme na vývoji <a href=\"#whoAreYou\" class=\"entry-link\">nového řešení pro kvantifikaci dopadu na klima našich každodenních rozhodnutí</a>",
+        "homeSolarPanel-question": "Co když mám doma nainstalovaný solární panel?",
+        "homeSolarPanel-answer": "Měříme intenzitu uhlíku lokální rozvodní síte, takže jakákoliv elektřina, kterou spotřebováváte z vašeho solárního panelu (mimo sítě) není súčástí našich měření. Ale když váš solární panel dodává energii do vaší lokální rozvodní síte, jeho produkcie je zahrnuta v našich statistikách v oblastech, kde odhady produkce lokální solární energie jsou veřejně dostupné(jako například ve Francii nebo Velké Británii).",
+        "emissionsPerCapita-question": "Proč nezobrazujete emise přepočtené na jednoho obyvatele?",
+        "emissionsPerCapita-answer": "Některé části z elektřiny spotřebované v oblasti jsou použity na výrobu zboží nebo produktů, které jsou poté exportovány a kozumovány v jiných oblastech. Tato výroba a taky její spotěeba elektřiny a souvisící emise je způsobená spotřebou zboží v <em>dovážejících zemích</em>, ne v zemích jejich původu. Věříme, že lidé by měli být zodpovední za to, co spotřebují, ne za produkty vyrobené v oblastech, ve kterých žijí, když je sami nekonzumují. V tomhle smyslu zobrazení emisí spotřebované elektřiny na obyvatele by mohlo působit klamavě."
+    },
+    "data": {
+        "groupName": "Naše data",
+        "dataOrigins-question": "Jak získáváte vaše data?",
+        "dataOrigins-answer": "Všechna naše data zpracuváváme z veřejně přístupných zdrojů publikovaných operátory elektrických rozvodních sítí, oficiálních agentur atd. Kliknutím na konkrétní oblast sa zobrazí detailnější informace o původu dat.",
+        "dataDownload-question": "Můžu si stáhnout vaše data?",
+        "dataDownload-answer": "Můžete si zakoupit přístup ke všem našim datům v naší <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databázi</a>.",
+        "dataIntegration-question": "Můžu integrovat vaše data do mé aplikace nebo zařízení?",
+        "dataIntegration-answer": "Ano! Prodávame přístup do <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, které zahrnuje budoucí předpovedi."
+    },
+    "aboutUs": {
+        "groupName": "O nás",
+        "whoAreYou-question": "Kdo ste?",
+        "whoAreYou-answer": "ElectricityMap je vyvýjená a udržována spoločností <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, malým dánsko-francouzskym startupem. Náš cíl je pomoct lidstvu dosáhnout udržatelný stav kvantifikováním a konáním široko dostupných rozhodnutí pre dopad na klima v našem kažodonenním životě.",
+        "feedback-question": "Můžu vám nechat zpětnou vazbu?",
+        "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:hello@tmrow.com\">nám poslat email!</a>",
+        "contribute-question": "Můžu se zapojit do vašeho projektu?",
+        "contribute-answer": "Ano! ElectricityMap je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoct při vývoji mapy - přidávaním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte sa na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+        "workTogether-question": "Můžeme pracovat společně?",
+        "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:hello@tmrow.com\">Pošlete nám email!</a>",
+        "disclaimer-question": "Oznámení",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publikuje data a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit části bez toho, aby o tom musel informovat. Tomorrow nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti electricityMap nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez formálního předchádzejícího písemného souhlasu.<br><br> Všechna práva duševního vlastnictva patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribúce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písomného souhlasu Tomorrow, s výjimkou případů, které jsou ustanoveny jinak v předpisech povinného práva (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení zodpovednosti může být z času na čas aktualizováno."
+    },
+    "zoneShortName": {
+        "AD": {
+            "zoneName": "Andorra"
+        },
+        "AE": {
+            "zoneName": "Spojené Arabské Emiráty"
+        },
+        "AF": {
+            "zoneName": "Afgánistán"
+        },
+        "AG": {
+            "zoneName": "Antigua a Barbuda"
+        },
+        "AI": {
+            "zoneName": "Anguilla"
+        },
+        "AL": {
+            "zoneName": "Albánie"
+        },
+        "AM": {
+            "zoneName": "Arménie"
+        },
+        "AO": {
+            "zoneName": "Angola"
+        },
+        "AQ": {
+            "zoneName": "Antarktida"
+        },
+        "AS": {
+            "zoneName": "Americká Samoa"
+        },
+        "AT": {
+            "zoneName": "Rakousko"
+        },
+        "AR": {
+            "zoneName": "Argentina"
+        },
+        "AUS-NSW": {
+            "countryName": "Austrálie",
+            "zoneName": "Nový Jižní Wales"
+        },
+        "AUS-NT": {
+            "countryName": "Austrálie",
+            "zoneName": "Severní teritorium"
+        },
+        "AUS-QLD": {
+            "countryName": "Austrálie",
+            "zoneName": "Queensland"
+        },
+        "AUS-SA": {
+            "countryName": "Austrálie",
+            "zoneName": "Jižní Austrálie"
+        },
+        "AUS-TAS": {
+            "countryName": "Austrálie",
+            "zoneName": "Tasmánie"
+        },
+        "AUS-VIC": {
+            "countryName": "Austrálie",
+            "zoneName": "Viktória"
+        },
+        "AUS-WA": {
+            "countryName": "Austrálie",
+            "zoneName": "Západní Austrálie"
+        },
+        "AW": {
+            "zoneName": "Aruba"
+        },
+        "AX": {
+            "zoneName": "Ålandy"
+        },
+        "AZ": {
+            "zoneName": "Azerbajdžan"
+        },
+        "BA": {
+            "zoneName": "Bosna a Hercegovina"
+        },
+        "BB": {
+            "zoneName": "Barbados"
+        },
+        "BD": {
+            "zoneName": "Bangladéš"
+        },
+        "BE": {
+            "zoneName": "Belgie"
+        },
+        "BF": {
+            "zoneName": "Burkina Faso"
+        },
+        "BG": {
+            "zoneName": "Bulharsko"
+        },
+        "BH": {
+            "zoneName": "Bahrajn"
+        },
+        "BI": {
+            "zoneName": "Burundi"
+        },
+        "BJ": {
+            "zoneName": "Benin"
+        },
+        "BM": {
+            "zoneName": "Bermudy"
+        },
+        "BN": {
+            "zoneName": "Brunej"
+        },
+        "BO": {
+            "zoneName": "Bolívie"
+        },
+        "BQ": {
+            "zoneName": "Bonaire, Sint Eustatius and Saba"
+        },
+        "BR-CS": {
+            "countryName": "Brazílie",
+            "zoneName": "Centrální Brazílie"
+        },
+        "BR-N": {
+            "countryName": "Brazílie",
+            "zoneName": "Severní Brazílie"
+        },
+        "BR-NE": {
+            "countryName": "Brazílie",
+            "zoneName": "Severovýchodní Brazílie"
+        },
+        "BR-S": {
+            "countryName": "Brazílie",
+            "zoneName": "Jižní Brazílie"
+        },
+        "BS": {
+            "zoneName": "Bahamy"
+        },
+        "BT": {
+            "zoneName": "Bhután"
+        },
+        "BV": {
+            "zoneName": "Bouvetův ostrov"
+        },
+        "BW": {
+            "zoneName": "Botswana"
+        },
+        "BY": {
+            "zoneName": "Bělorusko"
+        },
+        "BZ": {
+            "zoneName": "Belize"
+        },
+        "CA-AB": {
+            "countryName": "Kanada",
+            "zoneName": "Alberta"
+        },
+        "CA-BC": {
+            "countryName": "Kanada",
+            "zoneName": "Britská Kolumbie"
+        },
+        "CA-MB": {
+            "countryName": "Kanada",
+            "zoneName": "Manitoba"
+        },
+        "CA-NL": {
+            "countryName": "Kanada",
+            "zoneName": "Newfoundland a Labrador"
+        },
+        "CA-NB": {
+            "countryName": "Kanada",
+            "zoneName": "New Brunswick"
+        },
+        "CA-NT": {
+            "countryName": "Kanada",
+            "zoneName": "Severozápadní teritoria"
+        },
+        "CA-NS": {
+            "countryName": "Kanada",
+            "zoneName": "Nové Skotsko"
+        },
+        "CA-NU": {
+            "countryName": "Kanada",
+            "zoneName": "Nunavut"
+        },
+        "CA-ON": {
+            "countryName": "Kanada",
+            "zoneName": "Ontário"
+        },
+        "CA-PE": {
+            "countryName": "Kanada",
+            "zoneName": "Ostrov prince Eduarda"
+        },
+        "CA-QC": {
+            "countryName": "Kanada",
+            "zoneName": "Quebec"
+        },
+        "CA-SK": {
+            "countryName": "Kanada",
+            "zoneName": "Saskatchewan"
+        },
+        "CA-YT": {
+            "countryName": "Kanada",
+            "zoneName": "Yukon"
+        },
+        "CC": {
+            "zoneName": "Kokosové ostrovy"
+        },
+        "CD": {
+            "zoneName": "Konžská demokratická republika"
+        },
+        "CF": {
+            "zoneName": "Středoafrická Republika"
+        },
+        "CG": {
+            "zoneName": "Kongo"
+        },
+        "CH": {
+            "zoneName": "Švajčiarsko"
+        },
+        "CI": {
+            "zoneName": "Pobrežie Slonoviny"
+        },
+        "CK": {
+            "zoneName": "Cookove ostrovy"
+        },
+        "CL-SING": {
+            "countryName": "Čile",
+            "zoneName": "SING"
+        },
+        "CL-SIC": {
+            "countryName": "Čile",
+            "zoneName": "SIC"
+        },
+        "CL-SEM": {
+            "countryName": "Čile",
+            "zoneName": "SEM"
+        },
+        "CL-SEA": {
+            "countryName": "Čile",
+            "zoneName": "SEA"
+        },
+        "CM": {
+            "zoneName": "Kamerun"
+        },
+        "CN": {
+            "zoneName": "Čína"
+        },
+        "CO": {
+            "zoneName": "Kolumbia"
+        },
+        "CR": {
+            "zoneName": "Kostarika"
+        },
+        "CU": {
+            "zoneName": "Kuba"
+        },
+        "CV": {
+            "zoneName": "Kapverdy"
+        },
+        "CW": {
+            "zoneName": "Curaçao"
+        },
+        "CX": {
+            "zoneName": "Vianočný ostrov"
+        },
+        "CY": {
+            "zoneName": "Cyprus"
+        },
+        "CZ": {
+            "zoneName": "Česko"
+        },
+        "DE": {
+            "zoneName": "Nemecko"
+        },
+        "DJ": {
+            "zoneName": "Džibutsko"
+        },
+        "DK": {
+            "zoneName": "Dánsko"
+        },
+        "DK-DK1": {
+            "countryName": "Dánsko",
+            "zoneName": "Západné Dánsko"
+        },
+        "DK-DK2": {
+            "countryName": "Dásko",
+            "zoneName": "Vychodné Dánsko"
+        },
+        "DK-BHM": {
+            "countryName": "Dánsko",
+            "zoneName": "Bornholm"
+        },
+        "DM": {
+            "zoneName": "Dominika"
+        },
+        "DO": {
+            "zoneName": "Dominikánska republika"
+        },
+        "DZ": {
+            "zoneName": "Alžírsko"
+        },
+        "EC": {
+            "zoneName": "Ekvádor"
+        },
+        "EE": {
+            "zoneName": "Estónsko"
+        },
+        "EG": {
+            "zoneName": "Egypt"
+        },
+        "EH": {
+            "zoneName": "Západná Sahara"
+        },
+        "ER": {
+            "zoneName": "Eritrea"
+        },
+        "ES": {
+            "zoneName": "Španielsko"
+        },
+        "ES-IB-FO": {
+            "countryName": "Španielsko",
+            "zoneName": "Formentera"
+        },
+        "ES-IB-IZ": {
+            "countryName": "Španielsko",
+            "zoneName": "Ibiza"
+        },
+        "ES-IB-MA": {
+            "countryName": "Španielsko",
+            "zoneName": "Malorka"
+        },
+        "ES-IB-ME": {
+            "countryName": "Španielsko",
+            "zoneName": "Menorca"
+        },
+        "ES-CN-FVLZ": {
+            "countryName": "Španielsko",
+            "zoneName": "Fuerteventura/Lanzarote"
+        },
+        "ES-CN-GC": {
+            "countryName": "Španielsko",
+            "zoneName": "Gran Canaria"
+        },
+        "ES-CN-HI": {
+            "countryName": "Španielsko",
+            "zoneName": "El Hierro"
+        },
+        "ES-CN-IG": {
+            "countryName": "Španielsko",
+            "zoneName": "La Gomera"
+        },
+        "ES-CN-LP": {
+            "countryName": "Španielsko",
+            "zoneName": "La Palma"
+        },
+        "ES-CN-TE": {
+            "countryName": "Španielsko",
+            "zoneName": "Tenerife"
+        },
+        "ET": {
+            "zoneName": "Etiópia"
+        },
+        "FI": {
+            "zoneName": "Fínsko"
+        },
+        "FJ": {
+            "zoneName": "Fidži"
+        },
+        "FK": {
+            "zoneName": "Falklandy"
+        },
+        "FM": {
+            "zoneName": "Mikronézia"
+        },
+        "FO": {
+            "zoneName": "Faerské ostrovy"
+        },
+        "FR": {
+            "zoneName": "Francúzsko"
+        },
+        "FR-COR": {
+            "countryName": "Francúzsko",
+            "zoneName": "Korzika"
+        },
+        "GA": {
+            "zoneName": "Gabon"
+        },
+        "GB": {
+            "zoneName": "Veľká Británia"
+        },
+        "GB-NIR": {
+            "zoneName": "Severné Irsko"
+        },
+        "GB-ORK": {
+            "countryName": "Veľká Británia",
+            "zoneName": "Orkneje"
+        },
+        "GB-SHI": {
+            "countryName": "Veľká Británia",
+            "zoneName": "Shetlandy"
+        },
+        "GB-ZET": {
+            "countryName": "Velká Británia",
+            "zoneName": "Shetlandy"
+        },
+        "GD": {
+            "zoneName": "Grenada"
+        },
+        "GE": {
+            "zoneName": "Gruzínsko"
+        },
+        "GF": {
+            "zoneName": "Francúzska Guyana"
+        },
+        "GG": {
+            "zoneName": "Guernsey"
+        },
+        "GH": {
+            "zoneName": "Ghana"
+        },
+        "GI": {
+            "zoneName": "Gibraltár"
+        },
+        "GL": {
+            "zoneName": "Grónsko"
+        },
+        "GM": {
+            "zoneName": "Gambia"
+        },
+        "GN": {
+            "zoneName": "Guinea"
+        },
+        "GP": {
+            "zoneName": "Guadeloupe"
+        },
+        "GQ": {
+            "zoneName": "Rovníková Guinea"
+        },
+        "GR": {
+            "zoneName": "Grécko"
+        },
+        "GR-IS": {
+            "countryName": "Grécko",
+            "zoneName": "Egejské ostrovy"
+        },
+        "GS": {
+            "zoneName": "Južná Georgia a Sandwichove ostrovy"
+        },
+        "GT": {
+            "zoneName": "Guatemala"
+        },
+        "GU": {
+            "zoneName": "Guam"
+        },
+        "GW": {
+            "zoneName": "Guinea-Bissau"
+        },
+        "GY": {
+            "zoneName": "Guyana"
+        },
+        "HK": {
+            "zoneName": "Hongkong"
+        },
+        "HM": {
+            "zoneName": "Teritórium Heardovho ostrova a Macdonaldových ostrovov"
+        },
+        "HN": {
+            "zoneName": "Honduras"
+        },
+        "HR": {
+            "zoneName": "Chorvátsko"
+        },
+        "HT": {
+            "zoneName": "Haiti"
+        },
+        "HU": {
+            "zoneName": "Maďarsko"
+        },
+        "ID": {
+            "zoneName": "Indonézia"
+        },
+        "IE": {
+            "zoneName": "Írsko"
+        },
+        "IL": {
+            "zoneName": "Izrael"
+        },
+        "IM": {
+            "zoneName": "Ostrov Man"
+        },
+        "IN-AN": {
+            "countryName": "India",
+            "zoneName": "Andmany a Nikobary"
+        },
+        "IN-AP": {
+            "countryName": "India",
+            "zoneName": "Andhrapradáš"
+        },
+        "IN-AR": {
+            "countryName": "India",
+            "zoneName": "Arunáčalpraéš"
+        },
+        "IN-AS": {
+            "countryName": "India",
+            "zoneName": "Ásam"
+        },
+        "IN-BR": {
+            "countryName": "India",
+            "zoneName": "Bihár"
+        },
+        "IN-CT": {
+            "countryName": "India",
+            "zoneName": "Čhattásgarh"
+        },
+        "IN-DL": {
+            "countryName": "India",
+            "zoneName": "Dillí"
+        },
+        "IN-DN": {
+            "countryName": "India",
+            "zoneName": "Dádra a Nagar Havelí"
+        },
+        "IN-GA": {
+            "countryName": "India",
+            "zoneName": "Goa"
+        },
+        "IN-GJ": {
+            "countryName": "India",
+            "zoneName": "Gudžarát"
+        },
+        "IN-HP": {
+            "countryName": "India",
+            "zoneName": "Himáčalpradéš"
+        },
+        "IN-HR": {
+            "countryName": "india",
+            "zoneName": "Harijána"
+        },
+        "IN-JH": {
+            "countryName": "India",
+            "zoneName": "Džhárkhand"
+        },
+        "IN-JK": {
+            "countryName": "India",
+            "zoneName": "Džammú a Kašmír"
+        },
+        "IN-KA": {
+            "countryName": "India",
+            "zoneName": "Karnátaka"
+        },
+        "IN-KL": {
+            "countryName": "India",
+            "zoneName": "Kérala"
+        },
+        "IN-MH": {
+            "countryName": "India",
+            "zoneName": "Maháraštra"
+        },
+        "IN-ML": {
+            "countryName": "India",
+            "zoneName": "Meghálaj"
+        },
+        "IN-MN": {
+            "countryName": "India",
+            "zoneName": "Manípur"
+        },
+        "IN-MP": {
+            "countryName": "India",
+            "zoneName": "Madhjapradéš"
+        },
+        "IN-MZ": {
+            "countryName": "India",
+            "zoneName": "Mizorám"
+        },
+        "IN-NL": {
+            "countryName": "India",
+            "zoneName": "Nágsko"
+        },
+        "IN-OR": {
+            "countryName": "India",
+            "zoneName": "Urísa"
+        },
+        "IN-PB": {
+            "countryName": "India",
+            "zoneName": "Pandžáb"
+        },
+        "IN-PY": {
+            "countryName": "India",
+            "zoneName": "Puttučéri"
+        },
+        "IN-RJ": {
+            "countryName": "India",
+            "zoneName": "Radžastan"
+        },
+        "IN-SK": {
+            "countryName": "India",
+            "zoneName": "Sikkim"
+        },
+        "IN-TN": {
+            "countryName": "India",
+            "zoneName": "Tamilnádu"
+        },
+        "IN-TR": {
+            "countryName": "India",
+            "zoneName": "Tripura"
+        },
+        "IN-UP": {
+            "countryName": "India",
+            "zoneName": "Uttarpradáš"
+        },
+        "IN-UT": {
+            "countryName": "India",
+            "zoneName": "Uttarákhand"
+        },
+        "IN-WB": {
+            "countryName": "India",
+            "zoneName": "Západné Bengálsko"
+        },
+        "IO": {
+            "zoneName": "Britské indickooceánske územie"
+        },
+        "IQ": {
+            "zoneName": "Irak"
+        },
+        "IQ-KUR": {
+            "countryName": "Irak",
+            "zoneName": "Kurdistan"
+        },
+        "IR": {
+            "zoneName": "Irán"
+        },
+        "IS": {
+            "zoneName": "Island"
+        },
+        "IT": {
+            "zoneName": "Taliansko"
+        },
+        "IT-CNO": {
+            "countryName": "Taliansko",
+            "zoneName": "Centrálne Severné"
+        },
+        "IT-CSO": {
+            "countryName": "Taliansko",
+            "zoneName": "Centrálne Južné"
+        },
+        "IT-NO": {
+            "countryName": "Taliansko",
+            "zoneName": "Severné Taliansko"
+        },
+        "IT-SAR": {
+            "countryName": "Taliansko",
+            "zoneName": "Sardínia"
+        },
+        "IT-SIC": {
+            "countryName": "Taliansko",
+            "zoneName": "Sicília"
+        },
+        "IT-SO": {
+            "countryName": "Taliansko",
+            "zoneName": "Južné Taliansko"
+        },
+        "JE": {
+            "zoneName": "Jersey"
+        },
+        "JM": {
+            "zoneName": "Jamajka"
+        },
+        "JO": {
+            "zoneName": "Jordánsko"
+        },
+        "JP-CB": {
+            "countryName": "Japonsko",
+            "zoneName": "Čobú"
+        },
+        "JP-CG": {
+            "countryName": "Japan",
+            "zoneName": "Čugokú"
+        },
+        "JP-HKD": {
+            "countryName": "Japonsko",
+            "zoneName": "Hokkaidó"
+        },
+        "JP-HR": {
+            "countryName": "Japonsko",
+            "zoneName": "Hokuriku"
+        },
+        "JP-KN": {
+            "countryName": "Japonsko",
+            "zoneName": "Kansai"
+        },
+        "JP-KY": {
+            "countryName": "Japonsko",
+            "zoneName": "Kjušú"
+        },
+        "JP-ON": {
+            "countryName": "Japonsko",
+            "zoneName": "Okinawa"
+        },
+        "JP-SK": {
+            "countryName": "Japonsko",
+            "zoneName": "Šikoku"
+        },
+        "JP-TH": {
+            "countryName": "Japonsko",
+            "zoneName": "Tóhoku"
+        },
+        "JP-TK": {
+            "countryName": "Japonsko",
+            "zoneName": "Tokio"
+        },
+        "KE": {
+            "zoneName": "Keňa"
+        },
+        "KG": {
+            "zoneName": "Kirgizsko"
+        },
+        "KH": {
+            "zoneName": "Kambodža"
+        },
+        "KI": {
+            "zoneName": "Kiribati"
+        },
+        "KM": {
+            "zoneName": "Komory"
+        },
+        "KN": {
+            "zoneName": "Svätý Krištof a Nevis"
+        },
+        "KP": {
+            "zoneName": "Kórejská ľudovodemokratická republika"
+        },
+        "KR": {
+            "zoneName": "Kórejská republika"
+        },
+        "KW": {
+            "zoneName": "Kuvajt"
+        },
+        "KY": {
+            "zoneName": "Kajmanie ostrovy"
+        },
+        "KZ": {
+            "zoneName": "Kazachstan"
+        },
+        "LA": {
+            "zoneName": "Laos"
+        },
+        "LB": {
+            "zoneName": "Libanon"
+        },
+        "LC": {
+            "zoneName": "Svätá Lucia"
+        },
+        "LI": {
+            "zoneName": "Lichtenštajnsko"
+        },
+        "LK": {
+            "zoneName": "Srí Lanka"
+        },
+        "LR": {
+            "zoneName": "Libéria"
+        },
+        "LS": {
+            "zoneName": "Lesotho"
+        },
+        "LT": {
+            "zoneName": "Litva"
+        },
+        "LU": {
+            "zoneName": "Luxembursko"
+        },
+        "LV": {
+            "zoneName": "Lotyšsko"
+        },
+        "LY": {
+            "zoneName": "Líbya"
+        },
+        "MA": {
+            "zoneName": "Maroko"
+        },
+        "MC": {
+            "zoneName": "Monako"
+        },
+        "MD": {
+            "zoneName": "Moldavsko"
+        },
+        "ME": {
+            "zoneName": "Čierna Hora"
+        },
+        "MF": {
+            "countryName": "Sväty Martin",
+            "zoneName": "French"
+        },
+        "MG": {
+            "zoneName": "Madagaskar"
+        },
+        "MH": {
+            "zoneName": "Marshallove ostrovy"
+        },
+        "MK": {
+            "countryName": "Macedónsko",
+            "zoneName": "Macedónsko"
+        },
+        "ML": {
+            "zoneName": "Mali"
+        },
+        "MM": {
+            "zoneName": "Mjanmarsko"
+        },
+        "MN": {
+            "zoneName": "Mongolsko"
+        },
+        "MO": {
+            "zoneName": "Macao"
+        },
+        "MP": {
+            "zoneName": "Severné Mariány"
+        },
+        "MQ": {
+            "zoneName": "Martinik"
+        },
+        "MR": {
+            "zoneName": "Mauritánia"
+        },
+        "MS": {
+            "zoneName": "Montserrat"
+        },
+        "MT": {
+            "zoneName": "Malta"
+        },
+        "MU": {
+            "zoneName": "Maurícius"
+        },
+        "MV": {
+            "zoneName": "Maldivy"
+        },
+        "MW": {
+            "zoneName": "Malawi"
+        },
+        "MX": {
+            "zoneName": "Mexiko"
+        },
+        "MX-BC": {
+            "countryName": "Mexiko",
+            "zoneName": "Baja California"
+        },
+        "MX-CE": {
+            "countryName": "Mexiko",
+            "zoneName": "Centrálne Mexiko"
+        },
+        "MX-NE": {
+            "countryName": "Mexiko",
+            "zoneName": "Severovychodné Mexiko"
+        },
+        "MX-NO": {
+            "countryName": "Mexiko",
+            "zoneName": "Severné Mexiko"
+        },
+        "MX-NW": {
+            "countryName": "Mexiko",
+            "zoneName": "Severzápadné Mexiko"
+        },
+        "MX-OC": {
+            "countryName": "Mexiko",
+            "zoneName": "Západné Mexiko"
+        },
+        "MX-OR": {
+            "countryName": "Mexiko",
+            "zoneName": "Orientálne Mexiko"
+        },
+        "MX-PN": {
+            "countryName": "Mexiko",
+            "zoneName": "Poloostrov"
+        },
+        "MY-EM": {
+            "countryName": "Malajzia",
+            "zoneName": "Borneo"
+        },
+        "MY-WM": {
+            "countryName": "Malajyia",
+            "zoneName": "Poloostrov"
+        },
+        "MZ": {
+            "zoneName": "Mozambik"
+        },
+        "NA": {
+            "zoneName": "Namíbia"
+        },
+        "NC": {
+            "zoneName": "Nová Kaledónia"
+        },
+        "NE": {
+            "zoneName": "Niger"
+        },
+        "NF": {
+            "zoneName": "Norfolk"
+        },
+        "NG": {
+            "zoneName": "Nigéria"
+        },
+        "NI": {
+            "zoneName": "Nikaragua"
+        },
+        "NL": {
+            "zoneName": "Holandsko"
+        },
+        "NO-NO1": {
+            "countryName": "Nórsko",
+            "zoneName": "Juhovychodné Nórsko"
+        },
+        "NO-NO2": {
+            "countryName": "Nórsko",
+            "zoneName": "Juhozápadné Nórsko"
+        },
+        "NO-NO3": {
+            "countryName": "Nórsko",
+            "zoneName": "Stredné Nórsko"
+        },
+        "NO-NO4": {
+            "countryName": "Nórsko",
+            "zoneName": "Severné Nórsko"
+        },
+        "NO-NO5": {
+            "countryName": "Nórsko",
+            "zoneName": "Západné Nórsko"
+        },
+        "NP": {
+            "zoneName": "Nepál"
+        },
+        "NR": {
+            "zoneName": "Nauru"
+        },
+        "NU": {
+            "zoneName": "Niue"
+        },
+        "NZ-NZA": {
+            "countryName": "Novy Zéland",
+            "zoneName": "Aucklandove ostrovy"
+        },
+        "NZ-NZC": {
+            "countryName": "Novy Zéland",
+            "zoneName": "Chathamské ostrovy"
+        },
+        "NZ-NZN": {
+            "countryName": "Novy Zéland",
+            "zoneName": "Severný Ostrov"
+        },
+        "NZ-NZS": {
+            "countryName": "Novy Zéland",
+            "zoneName": "Južný Ostrov"
+        },
+        "OM": {
+            "zoneName": "Omán"
+        },
+        "PA": {
+            "zoneName": "Panama"
+        },
+        "PE": {
+            "zoneName": "Peru"
+        },
+        "PF": {
+            "zoneName": "Francúzska Polynézia"
+        },
+        "PG": {
+            "zoneName": "Papua-Nová Guinea"
+        },
+        "PH": {
+            "zoneName": "Filipíny"
+        },
+        "PK": {
+            "zoneName": "Pakistan"
+        },
+        "PL": {
+            "zoneName": "Poľsko"
+        },
+        "PM": {
+            "zoneName": "Saint Pierre a Miquelon"
+        },
+        "PN": {
+            "zoneName": "Pitcairnove ostrovy"
+        },
+        "PR": {
+            "zoneName": "Portoriko"
+        },
+        "PS": {
+            "zoneName": "Palestína"
+        },
+        "PT": {
+            "zoneName": "Portugalsko"
+        },
+        "PT-AC": {
+            "countryName": "Portugalsko",
+            "zoneName": "Azory"
+        },
+        "PT-MA": {
+            "countryName": "Portugalsko",
+            "zoneName": "Madeira"
+        },
+        "PW": {
+            "zoneName": "Palau"
+        },
+        "PY": {
+            "zoneName": "Paraguaj"
+        },
+        "QA": {
+            "zoneName": "Katar"
+        },
+        "RE": {
+            "zoneName": "Réunion"
+        },
+        "RO": {
+            "zoneName": "Rumunsko"
+        },
+        "RS": {
+            "zoneName": "Srbsko"
+        },
+        "RU": {
+            "zoneName": "Rusko"
+        },
+        "RU-1": {
+            "countryName": "Rusko",
+            "zoneName": "Európske Rusko a Ural"
+        },
+        "RU-2": {
+            "countryName": "Rusko",
+            "zoneName": "Sibír"
+        },
+        "RU-EU": {
+            "zoneName": "Rusko"
+        },
+        "RU-AS": {
+            "zoneName": "Rusko"
+        },
+        "RU-KGD": {
+            "countryName": "Rusko",
+            "zoneName": "Kaliningrad"
+        },
+        "RW": {
+            "zoneName": "Rwanda"
+        },
+        "SA": {
+            "zoneName": "Saudská Arábia"
+        },
+        "SB": {
+            "zoneName": "Šalamúnové ostrovy"
+        },
+        "SC": {
+            "zoneName": "Seychely"
+        },
+        "SD": {
+            "zoneName": "Sudán"
+        },
+        "SE": {
+            "zoneName": "Švédsko"
+        },
+        "SG": {
+            "zoneName": "Singapur"
+        },
+        "SH": {
+            "zoneName": "Svätá Helena, Ascension a Tristan da Cunha"
+        },
+        "SI": {
+            "zoneName": "Slovinsko"
+        },
+        "SJ": {
+            "zoneName": "Svalbard a Jan Mayen"
+        },
+        "SK": {
+            "zoneName": "Slovensko"
+        },
+        "SL": {
+            "zoneName": "Sierra Leone"
+        },
+        "SM": {
+            "zoneName": "San Maríno"
+        },
+        "SN": {
+            "zoneName": "Senegal"
+        },
+        "SO": {
+            "zoneName": "Somálsko"
+        },
+        "SR": {
+            "zoneName": "Surinam"
+        },
+        "SS": {
+            "zoneName": "Južný Sudán"
+        },
+        "ST": {
+            "zoneName": "Svätý Tomáš a Princov ostrov"
+        },
+        "SV": {
+            "zoneName": "Salvádor"
+        },
+        "SX": {
+            "countryName": "San Maarten",
+            "zoneName": "Dutch"
+        },
+        "SY": {
+            "zoneName": "Sýria"
+        },
+        "SZ": {
+            "zoneName": "Svazijsko"
+        },
+        "TC": {
+            "zoneName": "Turks a Caicos"
+        },
+        "TD": {
+            "zoneName": "Čad"
+        },
+        "TF": {
+            "zoneName": "Francúzske južné a antarktické teritória"
+        },
+        "TG": {
+            "zoneName": "Togo"
+        },
+        "TH": {
+            "zoneName": "Thajsko"
+        },
+        "TJ": {
+            "zoneName": "Tadžikistan"
+        },
+        "TK": {
+            "zoneName": "Tokelau"
+        },
+        "TL": {
+            "zoneName": "Vychodnź Timor"
+        },
+        "TM": {
+            "zoneName": "Turkménsko"
+        },
+        "TN": {
+            "zoneName": "Tunisko"
+        },
+        "TO": {
+            "zoneName": "Tonga"
+        },
+        "TR": {
+            "zoneName": "Turecko"
+        },
+        "TT": {
+            "zoneName": "Trinidad a Tobago"
+        },
+        "TV": {
+            "zoneName": "Tuvalu"
+        },
+        "TW": {
+            "zoneName": "Taiwan"
+        },
+        "TZ": {
+            "zoneName": "Tanzánia"
+        },
+        "UA": {
+            "zoneName": "Ukrajina"
+        },
+        "UA-CR": {
+            "countryName": "Ukrajina",
+            "zoneName": "Krym"
+        },
+        "UG": {
+            "zoneName": "Uganda"
+        },
+        "UM": {
+            "zoneName": "Menšie ohľahlé ostrovy USA"
+        },
+        "US": {
+            "zoneName": "Spojené štáty Americké"
+        },
+        "US-AL": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Alabama"
+        },
+        "US-BPA": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "BPA"
+        },
+        "US-CA": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Kalifornia"
+        },
+        "US-HI": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Havaj"
+        },
+        "US-IPC": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "IPC"
+        },
+        "US-MISO": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "MISO"
+        },
+        "US-NC": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Severná Karolína"
+        },
+        "US-NEISO": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Nové Anglicko"
+        },
+        "US-NV": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Nevada"
+        },
+        "US-NY": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "New York"
+        },
+        "US-OR": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Oregon"
+        },
+        "US-PJM": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "PJM"
+        },
+        "US-SC": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Južná Karolína"
+        },
+        "US-SPP": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "SPP"
+        },
+        "US-SVERI": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "SVERI"
+        },
+        "US-TN": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Tennessee"
+        },
+        "US-TX": {
+            "countryName": "Spojené štáty Americké",
+            "zoneName": "Texas"
+        },
+        "UY": {
+            "zoneName": "Uruguaj"
+        },
+        "UZ": {
+            "zoneName": "Uzbekistan"
+        },
+        "VA": {
+            "zoneName": "Vatikán"
+        },
+        "VC": {
+            "zoneName": "Svätý Vincent a Grenadíny"
+        },
+        "VE": {
+            "zoneName": "Venezuela"
+        },
+        "VG": {
+            "countryName": "Britské Panenské ostrovy",
+            "zoneName": "Britské Panenské ostrovy"
+        },
+        "VI": {
+            "countryName": "Spojené štáty americké",
+            "zoneName": "Americké Panenské ostrovy"
+        },
+        "VN": {
+            "zoneName": "Vietnam"
+        },
+        "VU": {
+            "zoneName": "Vanuatu"
+        },
+        "WF": {
+            "zoneName": "Wallis a Futuna"
+        },
+        "WS": {
+            "zoneName": "Samoa"
+        },
+        "XX": {
+            "zoneName": "Severocyperská turecká republika"
+        },
+        "YE": {
+            "zoneName": "Jemen"
+        },
+        "YT": {
+            "zoneName": "Mayotte"
+        },
+        "ZA": {
+            "zoneName": "Južná Afrika"
+        },
+        "ZM": {
+            "zoneName": "Zambia"
+        },
+        "ZW": {
+            "zoneName": "Zimbabwe"
+        }
+    }
+}

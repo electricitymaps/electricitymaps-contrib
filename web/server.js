@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // * i18n
-const locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
+const locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
 i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
@@ -44,6 +44,7 @@ i18n.configure({
 app.use(i18n.init);
 const LOCALE_TO_FB_LOCALE = {
   'ar': 'ar_AR',
+  'cs':'cs_CZ',
   'da': 'da_DK',
   'de': 'de_DE',
   'en': 'en_US',
@@ -67,6 +68,7 @@ const LOCALE_TO_FB_LOCALE = {
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 const SUPPORTED_FB_LOCALES = [
   'ar_AR',
+  'cs_CZ',
   'da_DK',
   'de_DE',
   'es_ES',
