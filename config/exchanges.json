@@ -884,7 +884,7 @@
       55.952282
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 70
   },
