@@ -248,7 +248,8 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Norway
-  - Wind: [ieawind.org](http://www.ieawind.org/countries/norway.html)
+  - Hydro: [NVE](https://www.nve.no/energiforsyning-og-konsesjon/vannkraft/vannkraftdatabase/)
+  - Wind: [NVE](https://www.nve.no/energiforsyning-og-konsesjon/vindkraft/utbygde-vindkraftverk/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Northern Ireland: [EIR Grid](http://www.eirgridgroup.com/site-files/library/EirGrid/Generation_Capacity_Statement_20162025_FINAL.pdf)
 - Poland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)

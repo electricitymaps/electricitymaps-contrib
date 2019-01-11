@@ -904,17 +904,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 7400,
-      "coal": 46250,
-      "gas": 29550,
-      "geothermal": 39,
-      "hydro": 5490,
+      "biomass": 7720,
+      "coal": 45380,
+      "gas": 29630,
+      "geothermal": 38,
+      "hydro": 5500,
       "hydro storage": 9440,
       "nuclear": 9516,
-      "oil": 4437,
-      "solar": 44320,
+      "oil": 4300,
+      "solar": 45550,
       "unknown": 3137,
-      "wind": 58190
+      "wind": 59240
     },
     "contributors": [
       "https://github.com/corradio"
@@ -2690,13 +2690,13 @@
   "NO": {
     "capacity": {
       "coal": 0,
-      "gas": 611,
+      "gas": 634,
       "geothermal": 0,
-      "hydro": 28262,
+      "hydro": 32440,
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 856
+      "wind": 1664
     },
     "contributors": [
       "https://github.com/corradio"
@@ -2719,6 +2719,16 @@
     "timezone": "Europe/Oslo"
   },
   "NO-NO1": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 3592,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 112
+    },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2740,6 +2750,16 @@
     ]
   },
   "NO-NO2": {
+    "capacity": {
+      "coal": 0,
+      "gas": 5,
+      "geothermal": 0,
+      "hydro": 11317,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 627
+    },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2761,6 +2781,16 @@
     ]
   },
   "NO-NO3": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 4571,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 612
+    },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2782,6 +2812,16 @@
     ]
   },
   "NO-NO4": {
+    "capacity": {
+      "coal": 0,
+      "gas": 270,
+      "geothermal": 0,
+      "hydro": 5088,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 313
+    },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2803,6 +2843,16 @@
     ]
   },
   "NO-NO5": {
+    "capacity": {
+      "coal": 0,
+      "gas": 359,
+      "geothermal": 0,
+      "hydro": 7873,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
