@@ -51,13 +51,13 @@ ENTSOE_PARAMETER_DESC = {
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
     'biomass': ['B01', 'B17'],
-    'coal': ['B02', 'B05', 'B08'],
+    'coal': ['B02', 'B05', 'B07', 'B08'],
     'gas': ['B03', 'B04'],
     'geothermal': ['B09'],
     'hydro': ['B11', 'B12'],
     'hydro storage': ['B10'],
     'nuclear': ['B14'],
-    'oil': ['B06', 'B07'],
+    'oil': ['B06'],
     'solar': ['B16'],
     'wind': ['B18', 'B19'],
     'other': ['B20', 'B13', 'B15']
