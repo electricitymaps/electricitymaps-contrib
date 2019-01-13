@@ -296,7 +296,7 @@ VALIDATIONS = {
         'expected_range': (20000, 100000),
     },
     'EE': {
-        'required': ['oil'],
+        'required': ['coal'],
     },
     'ES': {
         'required': ['coal', 'nuclear'],
@@ -745,10 +745,13 @@ def get_biomass(values):
 
 
 def get_coal(values):
-    if 'Fossil Brown coal/Lignite' in values or 'Fossil Peat' in values \
-       or 'Fossil Hard coal' in values:
+    if 'Fossil Brown coal/Lignite' in values \
+        or 'Fossil Peat' in values \
+        or 'Fossil Oil shale' in values \
+        or 'Fossil Hard coal' in values:
         return (values.get('Fossil Brown coal/Lignite', 0)
                 + values.get('Fossil Peat', 0)
+                + values.get('Fossil Oil shale', 0)
                 + values.get('Fossil Hard coal', 0))
 
 
@@ -771,8 +774,8 @@ def get_hydro_storage(storage_values):
 
 
 def get_oil(values):
-    if 'Fossil Oil' in values or 'Fossil Oil shale' in values:
-        value = values.get('Fossil Oil', 0) + values.get('Fossil Oil shale', 0)
+    if 'Fossil Oil' in values:
+        value = values.get('Fossil Oil', 0)
         return value if value != -1.0 else None
 
 
