@@ -268,7 +268,7 @@ if __name__ == '__main__':
 
     print('fetch_production(target_datetime=20190110)')
     print(fetch_production(target_datetime='20190110'))
-    print('fetch_production(target_datetime=20190110)')
+    print('fetch_production(target_datetime=20180113)')
     print(fetch_production(target_datetime='20180113'))
     print('fetch_production(target_datetime=20170110)')
     print(fetch_production(target_datetime='20170110'))
