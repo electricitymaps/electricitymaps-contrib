@@ -6,7 +6,6 @@ import arrow
 from datetime import datetime
 import logging
 import pandas as pd
-import requests
 
 
 GENERATION_MAPPING = {'Gas (Public)': 'gas_public',
@@ -52,7 +51,7 @@ def old_format_converter(df):
     return df
 
 
-def new_format_converter(df):
+def new_format_converter(df, logger):
     """Returns a dataframe."""
 
     df = df.rename(columns={'Plant Name':'Hour'})
@@ -113,7 +112,7 @@ def exchange_processer(df, target_datetime, old_format=False):
     return processed_data
 
 
-def excel_handler(shifted_target_datetime):
+def excel_handler(shifted_target_datetime, logger):
     """Decides which url to request based on supplied arrow object.
     Converts returned excel data into dataframe, format of data varies by date.
     Returns a tuple containing (dataframe, bool).
@@ -160,10 +159,10 @@ def excel_handler(shifted_target_datetime):
     else:
         if XLS_END:
             df = pd.read_excel(URL, sheet_name="YesterdayGen", skiprows=[0,1,3,4,5,6,7,8,9,10,11,12])
-            df = new_format_converter(df)
+            df = new_format_converter(df, logger)
         else:
             df = pd.read_excel(URL, sheet_name="YesterdayGen", skiprows=[0,1,3])
-            df = new_format_converter(df)
+            df = new_format_converter(df, logger)
 
     return df, OLD_FORMAT
 
@@ -206,7 +205,7 @@ def fetch_production(zone_key = 'BD', session=None, target_datetime=None, logger
     target_datetime = arrow.get(target_datetime, 'YYYYMMDD')
     shifted_target_datetime = target_datetime.shift(days=+1)
 
-    df, OLD_FORMAT = excel_handler(shifted_target_datetime)
+    df, OLD_FORMAT = excel_handler(shifted_target_datetime, logger)
 
     generation = production_processer(df, target_datetime, old_format=OLD_FORMAT)
 
@@ -249,7 +248,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     target_datetime = arrow.get(target_datetime, 'YYYYMMDD')
     shifted_target_datetime = target_datetime.shift(days=+1)
 
-    df, OLD_FORMAT = excel_handler(shifted_target_datetime)
+    df, OLD_FORMAT = excel_handler(shifted_target_datetime, logger)
     exchange = exchange_processer(df, target_datetime, old_format=OLD_FORMAT)
 
     data = []
