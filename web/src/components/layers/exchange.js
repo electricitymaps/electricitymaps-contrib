@@ -12,7 +12,7 @@ class ExchangeLayer {
       .domain([500, 5000])
       .rangeRound([0, 2])
       .clamp(true);
-
+    this.colorblindMode = false;
     this.rootNode = document.getElementById(selectorId);
     this.root = d3.select(this.rootNode);
 
@@ -164,8 +164,9 @@ class ExchangeLayer {
         if (d.co2intensity == null || Number.isNaN(intensity)) {
           intensity = 'nan';
         }
+        const prefix = this.colorblindMode ? 'colorblind-' : ''
         const duration = +this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0));
-        return `images/arrow-${intensity}-animated-${duration}.gif`;
+        return `images/${prefix}arrow-${intensity}-animated-${duration}.gif`;
       });
 
     return this;
@@ -197,6 +198,12 @@ class ExchangeLayer {
 
   setData(arg) {
     this.data = arg.filter(d => d.lonlat);
+    return this;
+  }
+
+  setColorblindMode(arg) {
+    this.colorblindMode = arg;
+    this.render();
     return this;
   }
 }
