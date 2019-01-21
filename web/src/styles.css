@@ -511,8 +511,14 @@ body {
 
 }
 
+.social-buttons {
+    margin-top: 12px;
+}
+
 .detail-bottom-section .social-buttons{
     padding: 0 1rem;
+    margin-bottom: 12px;
+    margin-top: 0px;
 }
 
 .info-text p{
