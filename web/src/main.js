@@ -1133,9 +1133,13 @@ function renderHistory(state) {
     .render();
 
 
-  zoneDetailsTimeSlider.onChange((selectedZoneTimeIndex) => {
-    if (getState().application.selectedZoneTimeIndex !== selectedZoneTimeIndex) {
-      dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex: selectedZoneTimeIndex}})
+  zoneDetailsTimeSlider.onChange((selectedZoneTimeIndexInput) => {
+    // when slider is on last value, we set the value to null in order to use the current state
+    if (getState().application.selectedZoneTimeIndex !== selectedZoneTimeIndexInput) {
+      const selectedZoneTimeIndex = selectedZoneTimeIndexInput === (history.length - 1)
+        ? null
+        : selectedZoneTimeIndexInput
+      dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex}})
     }
   }).render();
 
