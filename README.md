@@ -81,6 +81,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Australia (distributed solar generation): [Australian PV Institute](http://pv-map.apvi.org.au/live)
 - Australia (South Battery): [Nemwatch](https://ausrealtimefueltype.global-roam.com/expanded)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Bangladesh: [PGCB](https://pgcb.org.bd/PGCB/?a=pages/operational_daily.php)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -211,7 +212,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
 - El Salvador:
-  - Thermal: [CNE](http://estadisticas.cne.gob.sv/wp-content/uploads/2016/09/Plan_indicativo_2016_2026-1.pdf) 
+  - Thermal: [CNE](http://estadisticas.cne.gob.sv/wp-content/uploads/2016/09/Plan_indicativo_2016_2026-1.pdf)
   - Biomass, Geothermal, Hydro & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SLV)
 - Estonia:
   - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=EST)

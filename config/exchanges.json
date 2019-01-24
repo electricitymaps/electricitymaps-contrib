@@ -266,6 +266,16 @@
     },
     "rotation": 90
   },
+  "BD->IN": {
+    "lonlat": [
+      88.736559,
+      23.361290
+    ],
+    "parsers": {
+      "exchange": "BD.fetch_exchange"
+    },
+    "rotation": -90
+  },
   "BE->FR": {
     "lonlat": [
       4.137165,

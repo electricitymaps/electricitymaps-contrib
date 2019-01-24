@@ -276,6 +276,16 @@
     },
     "timezone": "Asia/Bahrain"
   },
+  "BD": {
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "BD.fetch_production"
+    },
+    "timezone": "Asia/Dhaka"
+  },
   "BE": {
     "_comment": "entsoe coal figure outdated",
     "bounding_box": [

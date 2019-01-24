@@ -625,7 +625,16 @@ CountryTable.prototype.electricityMixMode = function(arg) {
 };
 
 CountryTable.prototype.showNoParserMessageIf = function(condition) {
-  const allChildrenSelector = 'p,.country-table-header-inner,.country-show-emissions-wrap,.country-panel-wrap,.country-history';
+  const allChildrenSelector = `
+    p,
+    hr,
+    .country-table-header-inner,
+    .country-show-emissions-wrap,
+    .country-panel-wrap .bysource,
+    .country-table-container,
+    .country-history,
+    .zone-time-slider
+    `;
     d3.selectAll(allChildrenSelector).classed('all-screens-hidden', condition);
     d3.select('.zone-details-no-parser-message').classed('visible', condition);
 }
