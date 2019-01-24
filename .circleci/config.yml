@@ -10,7 +10,7 @@ stages:
         command: pyenv global 3.5.2
       - type: shell
         name: Upgrade pip
-        command: pip install --upgrade pip --progress-bar=off
+        command: pip install --upgrade pip
       - type: shell
         name: Install Docker Compose
         command: pip install docker-compose==1.17.1 --progress-bar=off
