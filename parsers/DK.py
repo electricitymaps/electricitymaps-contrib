@@ -14,10 +14,8 @@ ids = {'real_time':'06380963-b7c6-46b7-aec5-173d15e4648b',
 def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
                      logger: logging.Logger = logging.getLogger(__name__)):
     """
-    Queries energinet 5-minute frequency real-time data
-    Tries to estimate conventional generation by type from
-    energy balance of last 8 hours and retrospectively
-    corrects the estimate when fuel data becomes available (-2hrs)
+    Queries "Electricity balance Non-Validated" from energinet api
+    for Danish bidding zones
     """
     r = session or requests.session()
     
@@ -30,96 +28,39 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     zone = zone_key[-3:]
     
     timestamp = arrow.get(target_datetime).strftime('%Y-%m-%d %H:%M')
-    timestamp2 = timestamp[:-2] + '00'
     
-    # fetch real-time/5-min data
-    sqlstr1 = ''.join(['SELECT "Minutes5UTC" as timestamp, "ProductionGe100MW", "ProductionLt100MW",',
-                      '("OffshoreWindPower"%2B"OnshoreWindPower") as wind, ',
-                      '"SolarPower" as solar from "{}" '.format(ids['real_time']),
-                      'WHERE "PriceArea" = \'{}\' AND '.format(zone),
-                      '"Minutes5UTC" >= (timestamp\'{}\'-INTERVAL \'8 hours\') AND '.format(timestamp2),
-                      '"Minutes5UTC" <= timestamp\'{}\' '.format(timestamp),
-                      'ORDER BY "Minutes5UTC" ASC'])
-
-    url1 = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr1)
+    # fetch hourly energy balance from recent hours
+    sqlstr = 'SELECT "HourUTC" as timestamp, "Biomass", "Waste", \
+                     "OtherRenewable", "FossilGas" as gas, "FossilHardCoal" as coal, \
+                     "FossilOil" as oil, "HydroPower" as hydro, \
+                     ("OffshoreWindPower"%2B"OnshoreWindPower") as wind, \
+                     "SolarPower" as solar from "{0}" \
+                     WHERE "PriceArea" = \'{1}\' AND \
+                     "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'8 hours\') AND \
+                     "HourUTC" <= timestamp\'{2}\' \
+                     ORDER BY "HourUTC" ASC'.format(ids['energy_bal'], zone, timestamp)
+                     
     
-    response = r.get(url1)
+    url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
     
-    assert response.status_code == 200 and response.json() != [], \
+    response = r.get(url)
+    
+    assert response.status_code == 200 and response.json()['result']['records'] != [], \
         'Exception when fetching production for ' \
-        '{}: error when calling url={}'.format(zone_key, url1)
+        '{}: error when calling url={}'.format(zone_key, url2)
         
     df = pd.DataFrame(response.json()['result']['records'])
     # index response dataframe by time
     df = df.set_index('timestamp')
     df.index = pd.DatetimeIndex(df.index)
-    # add timestamps rounded to starting hour for retrospectively
-    # correcting energy balance
-    df['floor_ts'] = df.index.floor("H")
-    df['conventional'] = df['ProductionGe100MW']+df['ProductionLt100MW']
-    
-    # resample to hourly frequency to fit to energy balance data
-    df_rt_1h = df.resample('1h').mean()
-    
-    
-    # fetch hourly energy balance from recent hours
-    sqlstr2 = ''.join(['SELECT "HourUTC" as timestamp, "Biomass", "Waste", ',
-                       '"OtherRenewable", "FossilGas" as Gas, "FossilHardCoal" as Coal, ',
-                       '"FossilOil" as Oil, "HydroPower" as Hydro from "{}" '.format(ids['energy_bal']),
-                       'WHERE "PriceArea" = \'{}\' AND '.format(zone),
-                       '"HourUTC" >= (timestamp\'{}\'-INTERVAL \'8 hours\') AND '.format(timestamp2),
-                       '"HourUTC" <= timestamp\'{}\' '.format(timestamp),
-                       'ORDER BY "HourUTC" ASC'
-                      ])
-    
-    url2 = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr2)
-    
-    response = r.get(url2)
-    
-    assert response.status_code == 200 and response.json() != [], \
-        'Exception when fetching production for ' \
-        '{}: error when calling url={}'.format(zone_key, url2)
-        
-    df2 = pd.DataFrame(response.json()['result']['records'])
-    # index response dataframe by time
-    df2 = df2.set_index('timestamp')
-    df2.index = pd.DatetimeIndex(df2.index)
     # drop empty rows from energy balance
-    df2.dropna(how='all', inplace=True)
+    df.dropna(how='all', inplace=True)
     
-    # merge energy balance with recent real-time data
-    df_1h = df_rt_1h.merge(df2, left_index=True, right_index=True)
-    
-    # replace nan values with 0
-    df_1h.fillna(value=0, inplace=True)
     # Divide waste into 50% renewable and 50% non-renewable parts
-    df_1h['unknown'] = 0.5*df_1h['Waste']
-    df_1h['biomass'] = df_1h.filter(['Biomass', 'unknown', 'OtherRenewable']).sum(axis=1)
-    
+    df['unknown'] = 0.5*df['Waste']
+    df['biomass'] = df.filter(['Biomass', 'unknown', 'OtherRenewable']).sum(axis=1)
     
     fuels = ['biomass', 'coal', 'oil', 'gas', 'unknown', 'hydro']
-    
-    # Fit energy balance against recent real-time data grouped by hour
-    for f in fuels:
-        result = np.linalg.lstsq(df_1h[['ProductionGe100MW', 'ProductionLt100MW']].values, df_1h[f].values)
-          
-        # Apply results to 5-min frequency data, disallow negative values
-        df[f] = df['ProductionGe100MW']*result[0][0]+df['ProductionLt100MW']*result[0][1]
-        df.loc[df[f]<0,f] = 0
-    
-    df['conv_est'] = df.filter(fuels).sum(axis=1)
-    # Scale the fuel estimates back to reported Production>=100MW, Production<100MW values
-    for f in fuels:
-        for dt in df.index:
-            if df.loc[dt, 'conv_est'] > 0:
-                df.loc[dt, f] = df.loc[dt, f]*df.loc[dt,'conventional']/df.loc[dt, 'conv_est']
-        # Scale historical values to energy balance for hours old enough to have fuel data
-        for h in df_1h.index:
-        
-            hr_ind = (df['floor_ts']==h)
-            if df_1h.loc[h,'conventional'] >  0:
-                df.loc[hr_ind, f] = df.loc[hr_ind, 'conventional']*df_1h.loc[h,f]/df_1h.loc[h,'conventional']
-            
     # Format output as a list of dictionaries
     output = []
     for dt in df.index:
@@ -145,14 +86,17 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
         
         data['datetime'] = dt.to_pydatetime()
         for f in ['solar', 'wind']+fuels:
-            data['production'][f] = round(df.loc[dt,f],2)
+            data['production'][f] = df.loc[dt,f]
         output.append(data)
     return output
 
 def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
                    target_datetime=None, logger=logging.getLogger(__name__)):
     
-    
+    """
+    Fetches 5-minute frequency exchange data for Danish bidding zones
+    from api.energidataservice.dk
+    """
     r = session or requests.session()
     sorted_keys = '->'.join(sorted([zone_key1, zone_key2]))
     
@@ -172,14 +116,13 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         'DE->DK-DK1':'"ExchangeGermany"',
         'DE->DK-DK2':'"ExchangeGermany"',
         'DK-DK1->DK-DK2':'"ExchangeGreatBelt"',
-        'DK-DK1->NO':'"ExchangeNorway"',
         'DK-DK1->NO-NO2':'"ExchangeNorway"',
         'DK-DK1->NL':'"ExchangeNetherlands"',
         'DK-DK1->SE':'"ExchangeSweden"',
         'DK-DK1->SE-SE3':'"ExchangeSweden"',
-        'DK-DK2->SE':'"ExchangeSweden"',
-        'DK-DK2->SE-SE4':'"ExchangeSweden"'
-        
+        'DK-DK2->SE-SE':'("ExchangeSweden" - "BornholmSE4")',# Exchange from Bornholm to Sweden is included in "ExchangeSweden"
+        'DK-DK2->SE-SE4':'("ExchangeSweden" - "BornholmSE4")' #but Bornholm island is reported separately from DK-DK2 in eMap
+         
     }
     if sorted_keys not in exch_map:
         raise NotImplementedError(
@@ -191,18 +134,20 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     
     
     # fetch real-time/5-min data
-    sqlstr = ''.join(['SELECT "Minutes5UTC" as timestamp, {} as "netFlow" '.format(exch_map[sorted_keys]),
-                       'from "{}" '.format(ids['real_time']),
-                       'WHERE "PriceArea" = \'{}\' AND '.format(zone),
-                       '"Minutes5UTC" >= (timestamp\'{}\'-INTERVAL \'8 hours\') AND '.format(timestamp),
-                       '"Minutes5UTC" <= timestamp\'{}\' '.format(timestamp),
-                       'ORDER BY "Minutes5UTC" ASC'])
+    sqlstr = 'SELECT "Minutes5UTC" as timestamp, {0} as "netFlow" \
+                     from "{1}" WHERE "PriceArea" = \'{2}\' AND \
+                     "Minutes5UTC" >= (timestamp\'{3}\'-INTERVAL \'8 hours\') AND \
+                     "Minutes5UTC" <= timestamp\'{3}\' \
+                     ORDER BY "Minutes5UTC" ASC'.format(exch_map[sorted_keys],
+                                                        ids['real_time'],
+                                                        zone,
+                                                        timestamp)
 
     url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
     
     response = r.get(url)
     
-    assert response.status_code == 200 and response.json() != [], \
+    assert response.status_code == 200 and response.json()['result']['records'] != [], \
         'Exception when fetching flow for ' \
         '{}: error when calling url={}'.format(sorted_keys, url)
         
