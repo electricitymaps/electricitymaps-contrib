@@ -47,7 +47,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     
     assert response.status_code == 200 and response.json()['result']['records'] != [], \
         'Exception when fetching production for ' \
-        '{}: error when calling url={}'.format(zone_key, url2)
+        '{}: error when calling url={}'.format(zone_key, url)
         
     df = pd.DataFrame(response.json()['result']['records'])
     # index response dataframe by time
