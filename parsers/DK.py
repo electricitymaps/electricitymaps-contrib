@@ -1,6 +1,6 @@
 import logging
 import datetime
-import numpy as np
+
 import pandas as pd
 # The arrow library is used to handle datetimes
 import arrow
