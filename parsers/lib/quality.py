@@ -1,3 +1,5 @@
+# This library contains validation functions applied to all parsers by the feeder
+# This is a higher level validation than validation.py
 import datetime
 import warnings
 
