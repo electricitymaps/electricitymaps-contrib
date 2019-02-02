@@ -56,9 +56,12 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     # drop empty rows from energy balance
     df.dropna(how='all', inplace=True)
     
-    # Divide waste into 50% renewable and 50% non-renewable parts
-    df['unknown'] = 0.5*df['Waste']
-    df['biomass'] = df.filter(['Biomass', 'unknown', 'OtherRenewable']).sum(axis=1)
+    # Divide waste into 55% renewable and 45% non-renewable parts according to
+    # https://ens.dk/sites/ens.dk/files/Statistik/int.reporting_2016.xls (visited Jan 24th, 2019)
+    df['unknown'] = 0.45*df['Waste'] # Report fossil waste as unknown
+    df['renwaste'] = 0.55*df['Waste']
+    # Report biomass, renewable waste and other renewables (biogas etc.) as biomass
+    df['biomass'] = df.filter(['Biomass', 'renwaste', 'OtherRenewable']).sum(axis=1)
     
     fuels = ['biomass', 'coal', 'oil', 'gas', 'unknown', 'hydro']
     # Format output as a list of dictionaries
