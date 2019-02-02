@@ -1026,7 +1026,8 @@
       "wind": 3809
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/tmslaine"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1064,7 +1065,8 @@
       "wind": 1036
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/tmslaine"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
