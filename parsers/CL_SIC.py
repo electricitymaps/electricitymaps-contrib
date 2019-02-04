@@ -249,7 +249,9 @@ def get_xls_data(target_datetime = None, session = None):
         date_no_tz = arrow.get(date_str, "YYMMDD")
         date = date_no_tz.replace(tzinfo='Chile/Continental')
     else:
-        target_datetime = arrow.get(target_datetime)
+        # It's important to set the arrow timezone to the local one
+        # before calling `format` (which will format in local time zone)
+        target_datetime = arrow.get(target_datetime).to('Chile/Continental')
         lookup_date = target_datetime.format('YYMMDD')
         year = target_datetime.format('YY')
         data_url = 'https://sic.coordinador.cl/wp-content/uploads/estadisticas/operdiar/{0}/OP{1}.xls'.format(year, lookup_date)
@@ -504,7 +506,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if not target_datetime:
         raise ValueError('Target datetime is required for Cl-SIC->CL-SING')
 
-    arr_target_dt = arrow.get(target_datetime)
+    # Remember to force the timezone to be the local one
+    # as we will need to query with the local time zone
+    arr_target_dt = arrow.get(target_datetime).to('Chile/Continental')
     lookup_date = arr_target_dt.format('YYYY-MM-DD')
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
