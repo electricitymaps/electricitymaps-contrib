@@ -16,12 +16,12 @@
             "subtitle": "Cartographie de l'impact de l'électricité sur le climat"
         },
         "view2": {
-            "header": "Voir la quantité de CO2 émise pour produire votre électricité, en temps réel.",
+            "header": "Visualisez la quantité de CO2 émise pour produire votre électricité, en temps réel.",
             "text": "Les régions du monde sont colorées en fonction de l'intensité en carbone (incluant tous les gaz à effet de serre) de l’électricité qui y est consommée. Des couleurs plus vertes signifient une électricité plus respectueuse du climat."
         },
         "view3": {
-            "header": "Savoir d'où vient votre électricité",
-            "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones.Cliquez sur une zone pour voir plus d'informations sur les origines de son électricité."
+            "header": "Comprenez d'où vient votre électricité",
+            "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones. Cliquez sur une zone pour voir plus d'informations sur les origines de son électricité."
         },
         "view4": {
             "header": "Conditions de vent et solaires en temps réel",
@@ -40,13 +40,13 @@
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
         "helpfrom": "avec l'aide de",
         "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
-        "noLiveData": "Données en direct temporairement indispobiles pour cette zone",
+        "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
         "noParserInfo": "Nous n'avons pas encore d'information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
         "now": "Maintenant"
     },
     "left-panel": {
         "zone-list-header-title": "Impact sur le climat par zone",
-        "zone-list-header-subtitle": "Classé par intensité de carbone de l'électricité consommée (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Classé par intensité carbone de l'électricité consommée (gCO2eq/kWh)",
         "search": "Rechercher une zone"
     },
     "country-history": {
@@ -94,8 +94,6 @@
         "oops": "Oups! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant",
-        "database-ad": "À la recherche de données passées ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Consultez notre base de données!</a>",
-        "api-ad": "Vous voulez des données en direct pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Essayez notre API!</a>",
         "legend": "Légende",
         "faq": "Foire Aux Questions"
     },
@@ -146,18 +144,18 @@
     },
     "methodology": {
         "groupName": "Nos méthodes",
-        "carbonIntensity-question": "Qu'est-ce que « l'intensité de carbone » ?",
+        "carbonIntensity-question": "Qu'est-ce que « l'intensité carbone » ?",
         "carbonIntensity-answer": "L’intensité carbone est une mesure des émissions de gaz à effet de serre associées à la production de l’électricité que vous consommez (en gCO2eq/kWh - gramme d’équivalent dioxyde de carbone émis par kilowattheure d’électricité consommée). <br><br>Nous mesurons les émissions de consommation d'électricité (et non de production), c'est-à-dire toutes les émissions de gaz à effet de serre (CO2 et autres gaz à effet de serre tels que le méthane) ayant servi à produire de l'électricité consommée dans une région, en tenant compte de l'intensité en carbone de l'électricité importée depuis d'autres régions. Nous utilisons une approche d'analyse du cycle de vie (ACV), ce qui signifie que nous prenons en compte les émissions provenant de l'ensemble du cycle de vie des centrales (construction, production de combustible, émissions opérationnelles et démantèlement).",
         "consumptionFocus-question": "Pourquoi calculez-vous l'intensité en carbone de la consommation d'électricité au lieu de la production ?",
         "consumptionFocus-answer": "Nous pensons que les citoyens devraient être responsables de l’électricité qu’ils consomment, et non de l’électricité produite dans la région dans laquelle ils vivent. De plus, nous pensons que les régions ne devraient pas être en mesure de « simuler » un faible impact sur le climat simplement en se délocalisant les production d’énergie sale dans d’autres régions, puis importer l’électricité depuis ces régions.",
         "renewableLowCarbonDifference-question": "Quelle est la différence entre « renouvelable » et « bas carbone » ?",
-        "renewableLowCarbonDifference-answer": "La production d’énergie renouvelable repose sur des sources d’énergie renouvelables telles que le vent et l’eau, l’ensoleillement et l’énergie géothermique. La production d'énergie à faible émission de carbone signifie que la production implique un très faible niveau d'émissions de gaz à effet de serre, par exemple la production d'énergie nucléaire.",
+        "renewableLowCarbonDifference-answer": "La production d’énergie renouvelable repose sur des sources d’énergie renouvelables telles que le vent et l’eau, l’ensoleillement et l’énergie géothermique. La production d'énergie à faible intensité carbone signifie que la production n'emet qu'un faible niveau d'émissions de gaz à effet de serre, par exemple la production d'énergie nucléaire.",
         "importsAndExports-question": "Prenez-vous en compte les importations et les exportations d’électricité ?",
         "importsAndExports-answer": "Oui. Les importations et les exportations apparaissent sur la carte sous forme de petites <a href=\"#mapArrows\" class=\"entry-link\">flèches entre différentes zones</a>. Des informations détaillées sont visibles dans les graphiques affichés lorsque vous cliquez sur une zone.",
         "emissionsOfStored-question": "Qu'en est-il des émissions générées par la production d'électricité qui est ensuite stockée dans des batteries ou utilisée pour remplir des réservoirs ?",
         "emissionsOfStored-answer": "Comme à l'heure actuelle, seule une petite partie de l'électricité est stockée, les imprécisions dans la modélisation de ces émissions ne devraient pas avoir beaucoup d'incidence sur le total actuel. Cependant, étant donné l’importance croissante du stockage, nous espérons pouvoir le prendre davantage en compte dans notre modèle prochainement.",
         "guaranteesOfOrigin-question": "Que sont les certificats verts et comment sont-ils pris en compte ?",
-        "guaranteesOfOrigin-answer": "Lorsque les producteurs d'énergie renouvelable produisent de l'électricité, ils peuvent créer des garanties d'origine (« Guarantee of origin » en Europe ou « Renewable Energy Certificate » aux États-Unis), preuve que l'électricité renouvelable a été produite et distribuée dans le réseau électrique. Ces garanties peuvent ensuite être vendues, donnant ainsi à d’autres producteurs d’électricité non renouvelable un moyen de « compenser » leurs émissions et le droit de prétendre que l’électricité qu’elles produisent provient de sources renouvelables, quelle que soit leur source réelle et physique. <br><br>Cela signifie que l'on peut dire aux consommateurs d'électricité que leur électricité est verte, alors que ce n'est pas vrai au sens physique. Cette problématique, dans la mesure où elle élimine les incitations des consommateurs à consommer de l'électricité au meilleur moment (par exemple, lorsque la quantité d'électricité renouvelable dans le réseau est la plus élevée). Cette carte exclut donc les garanties d'origine, mais offre plutôt une image physique du réseau électrique en fonction de la localisation, afin de responsabiliser les consommateurs.",
+        "guaranteesOfOrigin-answer": "Lorsque les producteurs d'énergie renouvelable produisent de l'électricité, ils peuvent créer des garanties d'origine (« Guarantee of origin » en Europe ou « Renewable Energy Certificate » aux États-Unis), preuve que l'électricité renouvelable a été produite et distribuée dans le réseau électrique. Ces garanties peuvent ensuite être vendues, donnant ainsi à d’autres revendeurs d’électricité le droit de prétendre que l’électricité qu’elles vendent provient de sources renouvelables, quelle que soit leur source réelle et physique. <br><br>Cela signifie que l'on peut dire aux consommateurs d'électricité que leur électricité est vient de panneau solaire, alors meme qu'il fait nuit. Cette problématique, dans la mesure où elle élimine les incitations des consommateurs à consommer de l'électricité au meilleur moment (par exemple, lorsque la quantité d'électricité renouvelable dans le réseau est la plus élevée). Cette carte exclut donc les garanties d'origine, mais offre plutôt une image physique du réseau électrique en fonction de la localisation, afin de responsabiliser les consommateurs.",
         "otherSources-question": "Pourquoi ne montrez-vous pas d’autres sources d’émission que la production d’électricité ?",
         "otherSources-answer": "Ce serait en dehors de la portée de ce projet. Toutefois, à Tomorrow nous travaillons activement au développement de <a href=\"#whoAreYou\" class=\"entry-link\">nouvelles solutions permettant de quantifier l'impact de vos décisions au quotidien sur le climat</a>.",
         "homeSolarPanel-question": "Et si j'ai un panneau solaire installé chez moi ?",
@@ -185,7 +183,6 @@
         "workTogether-question": "Pouvons-nous travailler ensemble ?",
         "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@tmrow.com\">Envoyez-nous un email</a> !",
         "disclaimer-question": "Avertissement",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie des données et des images sur <a href=\"https://www.electricitymap.org/\"=\"_ blank\">electricityMap</a> à des fins d’information. Il n'assure aucunnement la justesse des informations ni ne fournit aucune forme de garantie, et se réserve le droit de modifier le contenu à tout moment ou d'en supprimer des parties sans vous devoir en informer. Tomorrow n'assume aucune responsabilité pour tout dommage ou dépense que vous pourriez encourir en raison d'une inexactitude, d'une incomplétude, d'un manque de rapidité ou d'une obsolescence de la carte electricityMap, ou des informations qui en découlent. Il est interdit d'inclure cette page Web, ou l'un de ses éléments individuels, dans une autre page Web, sans autorisation écrite préalable formelle. <br><br>Tous les droits de propriété intellectuelle appartiennent aux propriétaires légitimes et à ses concédants de licence. La copie, la distribution et toute autre utilisation de ces éléments, en particulier des données sur l’énergie, ne sont pas autorisées sans l’autorisation écrite de Tomorrow, sauf et seulement dans la mesure où il en est prévu autrement dans les règlements d'application de la loi impérative (comme le droit de citer), sauf si autrement spécifié pour des matériaux spécifiques. <br><br>Cet avertissement peut être mis à jour de temps en temps."
     },
     "zoneShortName": {
         "AD": {
