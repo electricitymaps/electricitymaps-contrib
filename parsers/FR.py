@@ -70,25 +70,44 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
 
     # filter out desired columns and convert values to float
     value_columns = list(MAP_GENERATION.keys()) + MAP_HYDRO
-    df = df[['date_heure'] + value_columns]
-    df[value_columns] = df[value_columns].astype(float)
+    missing_fuels = [v for v in value_columns if v not in df.columns]
+    present_fuels = [v for v in value_columns if v in df.columns]
+    if len(missing_fuels) == len(value_columns):
+        logger.warning('No fuels present in the API response')
+        return list()
+    elif len(missing_fuels) > 0:
+        mf_str = ', '.join(missing_fuels)
+        logger.warning('Fuels [{}] are not present in the API '
+                       'response'.format(mf_str))
+
+    df = df.loc[:, ['date_heure'] + present_fuels]
+    df[present_fuels] = df[present_fuels].astype(float)
 
     datapoints = list()
     for row in df.iterrows():
         production = dict()
         for key, value in MAP_GENERATION.items():
-             # Set small negative values to 0
-            if row[1][key] < 0 and row[1][key] > -50:
+            if key not in present_fuels:
+                continue
+
+            if -50 < row[1][key] < 0:
+                # set small negative values to 0
                 logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
                 production[value] = 0
             else:
                 production[value] = row[1][key]
 
         # Hydro is a special case!
-        production['hydro'] = row[1]['hydraulique_lacs'] + row[1]['hydraulique_fil_eau_eclusee']
-        storage = {
-            'hydro': row[1]['pompage'] * -1 + row[1]['hydraulique_step_turbinage'] * -1
-        }
+        has_hydro_production = all(i in df.columns for i in ['hydraulique_lacs', 'hydraulique_fil_eau_eclusee'])
+        has_hydro_storage = all(i in df.columns for i in ['pompage', 'hydraulique_step_turbinage'])
+        if has_hydro_production:
+            production['hydro'] = row[1]['hydraulique_lacs'] + row[1]['hydraulique_fil_eau_eclusee']
+        if has_hydro_storage:
+            storage = {
+                'hydro': row[1]['pompage'] * -1 + row[1]['hydraulique_step_turbinage'] * -1
+            }
+        else:
+            storage = dict()
 
         # if all production values are null, ignore datapoint
         if not any([is_not_nan_and_truthy(v)
