@@ -9,7 +9,7 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    url = 'http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt'
+    url = 'http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt'
     response = requests.get(url)
     data = response.json()
 
