@@ -182,7 +182,7 @@
         "contribute-answer": "Bien sûr ! Electricity Map est un projet open-source, rendu possible par nos contributeurs bénévoles. Si vous souhaitez contribuer au développement de la carte, en ajoutant des sources de données pour de nouvelles zones, en ajoutant de nouvelles fonctionnalités ou en corrigeant des bugs, n'hésitez pas à nous rejoindre sur notre <a href=\"https://github.com/corradio/electricitymap/\" target=\"_ blank\"> github </a>.",
         "workTogether-question": "Pouvons-nous travailler ensemble ?",
         "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@tmrow.com\">Envoyez-nous un email</a> !",
-        "disclaimer-question": "Avertissement",
+        "disclaimer-question": "Avertissement"
     },
     "zoneShortName": {
         "AD": {
