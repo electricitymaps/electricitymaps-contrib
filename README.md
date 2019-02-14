@@ -51,19 +51,14 @@ The electricitymap doesn't use scheduled generation data or make assumptions abo
 Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
 
 **How can I get access to historical data or the live API?**
-All this and more can be found **[here](https://pro.electricitymap.org/)**.
+All this and more can be found **[here](https://api.electricitymap.org/)**.
 
 ## Data sources
 
 ### Carbon intensity calculation and data source
 The carbon intensity of each country is measured from the perspective of a consumer. It represents the greenhouse gas footprint of 1 kWh consumed inside a given country. The footprint is measured in gCO<sub>2</sub>eq (grams CO<sub>2</sub> equivalent), meaning each greenhouse gas is converted to its CO<sub>2</sub> equivalent in terms of global warming potential over 100 year (for instance, 1 gram of methane emitted has the same global warming impact during 100 years as ~20 grams of CO<sub>2</sub> over the same period).
 
-The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/co2eq_parameters.json). These numbers come from the following scientific peer reviewed literature:
-- IPCC (2014) Fifth Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
-
-Country-specific fuel carbon-intensity factors:
-- Estonia:
-  - Oil Shale: [EASAC (2007) "A study on the EU oil shale industry – viewed in the light of the Estonian experience"](http://www.easac.eu/fileadmin/PDF_s/reports_statements/Study.pdf)
+The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning). Carbon-intensity factors used in the map are detailed in [co2eq_parameters.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/co2eq_parameters.json). These numbers come mostly from the following scientific peer reviewed literature: IPCC (2014) Fifth Assessment Report is used as reference in most instances (see a summary in the [wikipedia entry](https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources))
 
 Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countries. In order to determine the carbon footprint of each country, the set of coupled CO<sub>2</sub> mass flow balance equations of each countries must be solved simultaneously. This is done by solving the linear system of equations defining the network of greenhouse gas exchanges. Take a look at this [notebook](https://github.com/tmrowco/electricitymap-contrib/blob/master/CO2eq%20Model%20Explanation.ipynb) for a deeper explanation. We also published our methodology [here](https://arxiv.org/abs/1812.06679).
 
