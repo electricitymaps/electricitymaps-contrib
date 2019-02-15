@@ -182,6 +182,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
+- Australia [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Australia#Wind_power_by_state)
 - Austria
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
