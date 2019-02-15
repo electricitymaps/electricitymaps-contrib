@@ -722,7 +722,7 @@
       54.9
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "DK.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
@@ -737,7 +737,7 @@
       54.486043
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "DK.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
@@ -830,7 +830,7 @@
       55.407235
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange_by_bidding_zone",
+      "exchange": "DK.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
@@ -846,7 +846,7 @@
     ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast",
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "DK.fetch_exchange"
     },
     "rotation": -25
   },
@@ -874,7 +874,7 @@
       56.857802
     ],
     "parsers": {
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "DK.fetch_exchange"
     },
     "rotation": 70
   },
@@ -894,7 +894,7 @@
       55.952282
     ],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "DK.fetch_exchange"
     },
     "rotation": 70
   },
