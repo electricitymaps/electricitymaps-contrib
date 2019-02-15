@@ -104,6 +104,9 @@
         -34.63950855917267
       ]
     ],
+    "capacity": {
+      "wind": 668
+    },
     "contributors": [
       "https://github.com/jarek",
       "https://github.com/corradio"
@@ -124,6 +127,9 @@
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
+    "capacity": {
+      "wind": 13
+    },
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
@@ -136,6 +142,9 @@
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
+    "capacity": {
+      "wind": 1808
+    },
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
@@ -158,6 +167,9 @@
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
+    "capacity": {
+      "wind": 314
+    },
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
@@ -180,6 +192,9 @@
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
+    "capacity": {
+      "wind": 1521
+    },
     "flag_file_name": "au.png",
     "parsers": {
       "price": "AU.fetch_price",
@@ -193,6 +208,9 @@
       "https://github.com/corradio",
       "https://github.com/MariusKroon"
     ],
+    "capacity": {
+      "wind": 491
+    },
     "flag_file_name": "au.png",
     "parsers": {
       "production": "AU_WA.fetch_production"
