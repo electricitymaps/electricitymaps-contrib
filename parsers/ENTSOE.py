@@ -895,8 +895,8 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
 
 ZONE_KEY_AGGREGATES = {
-    'IT-SIC': ['IT-SIC', 'IT-PR'],
-    'IT-SO': ['IT-FO', 'IT-BR', 'IT-RO', 'IT-SO'],
+    'IT-SIC': ['IT-SIC'],
+    'IT-SO': ['IT-RO', 'IT-SO'],
 }
 
 
