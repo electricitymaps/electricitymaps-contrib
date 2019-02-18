@@ -227,8 +227,12 @@ def datetime_from_date_sp(date, sp):
 def _fetch_wind(target_datetime=None):
     if target_datetime is None:
         target_datetime = dt.datetime.now()
-    start = target_datetime - dt.timedelta(hours=12)
-    end = target_datetime + dt.timedelta(hours=12)
+
+    # line up with B1620 (main production report) search range
+    d = target_datetime.date()
+    offset = 1 if target_datetime.time() <= dt.time(0, 30) else 0
+    start = dt.datetime.combine(d - dt.timedelta(days=offset), dt.time(0))
+    end = dt.datetime.combine(d + dt.timedelta(days=1), dt.time(0))
 
     session = requests.session()
     params = {
