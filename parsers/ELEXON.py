@@ -237,7 +237,7 @@ def _fetch_wind(target_datetime=None):
         'ServiceType': 'csv'
     }
     response = query_ELEXON('FUELINST', session, params)
-    csv_text = response.content
+    csv_text = response.text
 
     report = REPORT_META['FUELINST']
     df = pd.read_csv(StringIO(csv_text), skiprows=report['skiprows'],
