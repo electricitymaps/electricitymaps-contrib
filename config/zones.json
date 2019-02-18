@@ -177,6 +177,10 @@
     },
     "timezone": null
   },
+  "AUS-TAS-KI": {
+    "flag_file_name": "au.png",
+    "timezone": null
+  },
   "AUS-VIC": {
     "bounding_box": [
       [
