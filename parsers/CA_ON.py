@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
-import datetime
 import logging
 import xml.etree.ElementTree as ET
 
@@ -34,7 +32,26 @@ MAP_GENERATION = {
     'WIND': 'wind'
 }
 
+# exchanges and sub-exchanges used by IESO
+MAP_EXCHANGE = {
+    'MANITOBA': 'CA-MB->CA-ON',
+    'MANITOBA SK': 'CA-MB->CA-ON',
+    'MICHIGAN': 'CA-ON->US-MISO',
+    'MINNESOTA': 'CA-ON->US-MISO',
+    'NEW-YORK': 'CA-ON->US-NY',
+    'PQ.AT': 'CA-ON->CA-QC',
+    'PQ.B5D.B31L': 'CA-ON->CA-QC',
+    'PQ.D4Z': 'CA-ON->CA-QC',
+    'PQ.D5A': 'CA-ON->CA-QC',
+    'PQ.H4Z': 'CA-ON->CA-QC',
+    'PQ.H9A': 'CA-ON->CA-QC',
+    'PQ.P33C': 'CA-ON->CA-QC',
+    'PQ.Q4C': 'CA-ON->CA-QC',
+    'PQ.X2Y': 'CA-ON->CA-QC'
+}
+
 PRODUCTION_URL = 'http://reports.ieso.ca/public/GenOutputCapability/PUB_GenOutputCapability_{YYYYMMDD}.xml'
+EXCHANGES_URL = 'http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{YYYYMMDD}.xml'
 
 XML_NS_TEXT = '{http://www.theIMO.com/schema}'
 
@@ -75,16 +92,15 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
     """
 
     dt = arrow.get(target_datetime).to(tz_obj).replace(hour=0, minute=0, second=0, microsecond=0)
-    filename = dt.format('YYYYMMDD')
 
     r = session or requests.session()
-    url = PRODUCTION_URL.format(YYYYMMDD=filename)
+    url = PRODUCTION_URL.format(YYYYMMDD=dt.format('YYYYMMDD'))
     response = r.get(url)
 
     if not response.ok:
         # Data is generally available for past 3 months. Requesting files older than this
         # returns an HTTP 404 error.
-        logger.info('CA-ON: failed getting requested data for datetime {} from IESO server'.format(dt))
+        logger.info('CA-ON: failed getting requested production data for datetime {} from IESO server'.format(dt))
         return []
 
     xml = ET.fromstring(response.text)
@@ -121,6 +137,7 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
 
     df = pd.DataFrame(all_productions)
 
+    # group individual plants using the same fuel together for each time period
     by_fuel = df.groupby(['dt', 'fuel']).sum().unstack()
     # to debug, you can `print(by_fuel)` here, which gives a very pretty table
 
@@ -136,6 +153,10 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
         }
         for time, productions in by_fuel_dict.items()
     ]
+
+    # being constructed from a dict, data is not guaranteed to be in chronological order.
+    # sort it for clean-ness and easier debugging.
+    data = sorted(data, key=lambda dp: dp['datetime'])
 
     return data
 
@@ -195,10 +216,11 @@ def fetch_price(zone_key='CA-ON', session=None, target_datetime=None, logger=Non
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two countries
+    """Requests the last known power exchange (in MW) between two regions
 
     Arguments:
-    zone_key: used in case a parser is able to fetch multiple zones
+    zone_key1: the first region code
+    zone_key2: the second region code; order of the two codes in params doesn't matter
     session: requests session passed in order to re-use an existing session,
     target_datetime: the datetime for which we want production data. If not provided, we should
       default it to now. The provided target_datetime is timezone-aware in UTC.
@@ -214,80 +236,81 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     }]
     """
 
-    exchange_maps = {
-        'MANITOBA': 'CA-MB->CA-ON',
-        'MANITOBA SK': 'CA-MB->CA-ON',
-        'MICHIGAN': 'CA-ON->US-MISO',
-        'MINNESOTA': 'CA-ON->US-MISO',
-        'NEW-YORK': 'CA-ON->US-NY',
-        'PQ.AT': 'CA-ON->CA-QC',
-        'PQ.B5D.B31L': 'CA-ON->CA-QC',
-        'PQ.D4Z': 'CA-ON->CA-QC',
-        'PQ.D5A': 'CA-ON->CA-QC',
-        'PQ.H4Z': 'CA-ON->CA-QC',
-        'PQ.H9A': 'CA-ON->CA-QC',
-        'PQ.P33C': 'CA-ON->CA-QC',
-        'PQ.Q4C': 'CA-ON->CA-QC',
-        'PQ.X2Y': 'CA-ON->CA-QC'
-    }
-
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
-    if sorted_zone_keys not in exchange_maps.values():
+    if sorted_zone_keys not in MAP_EXCHANGE.values():
         raise NotImplementedError('This exchange pair is not implemented')
 
-    dt = arrow.get(target_datetime).to(tz_obj)
-    filename = dt.format('YYYYMMDD')
+    dt = arrow.get(target_datetime).to(tz_obj).replace(hour=0, minute=0, second=0, microsecond=0)
 
     r = session or requests.session()
-    url = 'http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{}.xml'.format(filename)
+    url = EXCHANGES_URL.format(YYYYMMDD=dt.format('YYYYMMDD'))
     response = r.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
 
-    interties = soup.find_all('intertiezone')
+    if not response.ok:
+        # Data is generally available for past 3 months. Requesting files older than this
+        # returns an HTTP 404 error.
+        logger.info('CA-ON: failed getting requested exchange data for datetime {} from IESO server'.format(dt))
+        return []
 
-    sought_intertie_flows = defaultdict(list)
+    xml = ET.fromstring(response.text)
 
-    for intertie in interties:
-        intertie_name = intertie.find('intertiezonename').text
+    intertie_zones = xml\
+        .find(XML_NS_TEXT + 'IMODocBody')\
+        .findall(XML_NS_TEXT + 'IntertieZone')
 
-        if intertie_name not in exchange_maps:
-            logger.warning('CA-ON: unrecognized intertie name {}, please implement it!'.format(intertie_name))
-            continue
+    def flow_dt(flow):
+        # The IESO day starts with Hour 1, Interval 1.
+        # At 11:37, we might have data for up to Hour 11, Interval 12.
+        # This means it is necessary to subtract 1 from the values
+        # (otherwise we would have data for 12:00 already at 11:37).
+        hour = int(flow.find(XML_NS_TEXT + 'Hour').text) - 1
+        minute = (int(flow.find(XML_NS_TEXT + 'Interval').text) - 1) * 5
 
-        mapping = exchange_maps[intertie_name]
+        return dt.replace(hours=+hour, minutes=+minute).datetime
 
-        if not mapping == sorted_zone_keys:
-            # we're not interested in data for this zone, skip it
-            continue
+    # flat iterable of per-intertie values per time from the XML data
+    all_exchanges = (
+        {
+            'name': intertie.find(XML_NS_TEXT + 'IntertieZoneName').text,
+            'dt': flow_dt(flow),
+            'flow': float(flow.find(XML_NS_TEXT + 'Flow').text)
+        }
+        for intertie in intertie_zones
+        for flow in intertie.find(XML_NS_TEXT + 'Actuals').findall(XML_NS_TEXT + 'Actual')
+    )
 
-        # in the XML, flow into Ontario is always negative.
-        # in EM, for 'CA-MB->CA-ON', flow into Ontario is positive.
-        if mapping.startswith('CA-ON->'):
-            direction = 1
-        else:
-            direction = -1
+    df = pd.DataFrame(all_exchanges)
 
-        actuals = intertie.find_all('actual')
+    # verify that there haven't been new exchanges or sub-exchanges added
+    all_exchange_names = set(df['name'].unique())
+    known_exchange_names = set(MAP_EXCHANGE.keys())
+    unknown_exchange_names = all_exchange_names - known_exchange_names
+    if unknown_exchange_names:
+        logger.warning('CA-ON: unrecognized intertie name(s) {}, please implement!'.format(unknown_exchange_names))
 
-        for actual in actuals:
-            hour = int(actual.find('hour').text) - 1
-            minute = (int(actual.find('interval').text) - 1) * 5
-            flow = float(actual.find('flow').text) * direction
+    # filter to only the sought exchanges
+    sought_exchanges = [ieso_name for ieso_name, em_name in MAP_EXCHANGE.items() if sorted_zone_keys == em_name]
+    df = df[df['name'].isin(sought_exchanges)]
 
-            dt_aware = datetime.datetime(dt.year, dt.month, dt.day, hour, minute, tzinfo=tz_obj)
+    # in the XML, flow into Ontario is always negative.
+    # in EM, for 'CA-MB->CA-ON', flow into Ontario is positive.
+    if not sorted_zone_keys.startswith('CA-ON->'):
+        df['flow'] *= -1
 
-            sought_intertie_flows[dt_aware].append(flow)
+    # group flows for sub-interchanges together and sum them
+    grouped = df.groupby(['dt']).sum()
 
-    # add up values for same datetime for exchanges with more than one intertie
+    grouped_dict = grouped['flow'].to_dict()
+
     data = [
         {
             'datetime': flow_dt,
             'sortedZoneKeys': sorted_zone_keys,
-            'netFlow': sum(flow_figures),
-            'source': 'ieso.ca'
+            'netFlow': flow,
+            'source': 'ieso.ca',
         }
-        for flow_dt, flow_figures in sought_intertie_flows.items()
+        for flow_dt, flow in grouped_dict.items()
     ]
 
     # being constructed from a dict, data is not guaranteed to be in chronological order.
@@ -326,6 +349,10 @@ if __name__ == '__main__':
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.datetime)) ->')
     print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.datetime))
 
+    print('test Ontario-to-Manitoba, this must be opposite sign from reported IESO values')
+    print('fetch_exchange("CA-ON", "CA-MB", target_datetime=now.datetime)) ->')
+    print(fetch_exchange("CA-ON", "CA-MB", target_datetime=now.datetime))
+
     print('we expect correct results when time in UTC and Ontario differs')
     print('data should be for {}'.format(now.replace(hour=2).to(tz_obj).format('YYYY-MM-DD')))
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.replace(hour=2)) ->')
@@ -338,3 +365,7 @@ if __name__ == '__main__':
     print('there are likely no results for 2 years ago')
     print('fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(years=-2).datetime)) ->')
     print(fetch_exchange("CA-ON", "CA-QC", target_datetime=now.shift(years=-2).datetime))
+
+    print('requesting an exchange with Nova Scotia should raise exception')
+    print('fetch_exchange("CA-ON", "CA-NS")) ->')
+    print(fetch_exchange("CA-ON", "CA-NS"))
