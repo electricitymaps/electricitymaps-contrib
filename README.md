@@ -193,7 +193,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
     [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
-- Canada (Ontario): [Gridwatch](http://live.gridwatch.ca/total-capacity.html)
+- Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
 - Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
 - Chile (SIC)
