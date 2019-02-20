@@ -6,9 +6,6 @@ import xml.etree.ElementTree as ET
 # The arrow library is used to handle datetimes
 import arrow
 
-# BeautifulSoup processes markup, this could be migrated to use xml library
-from bs4 import BeautifulSoup
-
 # pytz gets tzinfo objects
 import pytz
 
@@ -51,9 +48,28 @@ MAP_EXCHANGE = {
 }
 
 PRODUCTION_URL = 'http://reports.ieso.ca/public/GenOutputCapability/PUB_GenOutputCapability_{YYYYMMDD}.xml'
+PRICE_URL = 'http://reports.ieso.ca/public/DispUnconsHOEP/PUB_DispUnconsHOEP_{YYYYMMDD}.xml'
 EXCHANGES_URL = 'http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_IntertieScheduleFlow_{YYYYMMDD}.xml'
 
 XML_NS_TEXT = '{http://www.theIMO.com/schema}'
+
+
+def _fetch_ieso_xml(target_datetime, session, logger, url_template):
+    dt = arrow.get(target_datetime).to(tz_obj).replace(hour=0, minute=0, second=0, microsecond=0)
+
+    r = session or requests.session()
+    url = url_template.format(YYYYMMDD=dt.format('YYYYMMDD'))
+    response = r.get(url)
+
+    if not response.ok:
+        # Data is generally available for past 3 months. Requesting files older than this
+        # returns an HTTP 404 error.
+        logger.info('CA-ON: failed getting requested data for datetime {} from IESO server - URL {}'.format(dt, url))
+        return dt, None
+
+    xml = ET.fromstring(response.text)
+
+    return dt, xml
 
 
 def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
@@ -91,19 +107,10 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
     }
     """
 
-    dt = arrow.get(target_datetime).to(tz_obj).replace(hour=0, minute=0, second=0, microsecond=0)
+    dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRODUCTION_URL)
 
-    r = session or requests.session()
-    url = PRODUCTION_URL.format(YYYYMMDD=dt.format('YYYYMMDD'))
-    response = r.get(url)
-
-    if not response.ok:
-        # Data is generally available for past 3 months. Requesting files older than this
-        # returns an HTTP 404 error.
-        logger.info('CA-ON: failed getting requested production data for datetime {} from IESO server'.format(dt))
+    if not xml:
         return []
-
-    xml = ET.fromstring(response.text)
 
     generators = xml\
         .find(XML_NS_TEXT + 'IMODocBody')\
@@ -161,12 +168,16 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
     return data
 
 
-def fetch_price(zone_key='CA-ON', session=None, target_datetime=None, logger=None):
-    """Requests the last known power price of a given country
+def fetch_price(zone_key='CA-ON', session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
+    """Requests the last known power price per MWh of a given region
 
     Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
+    zone_key: ignored here, only information for CA-ON is returned
+    session: requests session passed in order to re-use an existing session,
+    target_datetime: the datetime for which we want production data. If not provided, we should
+      default it to now. The provided target_datetime is timezone-aware in UTC.
+    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
 
     Return:
     A dictionary in the form:
@@ -178,38 +189,30 @@ def fetch_price(zone_key='CA-ON', session=None, target_datetime=None, logger=Non
       'source': 'mysource.com'
     }
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    r = session or requests.session()
-    url = 'http://www.ieso.ca/-/media/files/ieso/uploaded/chart/price_multiday.xml?la=en'
-    response = r.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
+    dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRICE_URL)
 
-    data = {}
+    if not xml:
+        return []
 
-    start_datetime = arrow.get(
-        arrow.get(soup.find_all('startdate')[0].contents[0]).datetime, timezone)
+    # "HOEP" is "Hourly Ontario Energy Price"
+    prices = xml\
+        .find(XML_NS_TEXT + 'IMODocBody')\
+        .find(XML_NS_TEXT + 'HOEPs')\
+        .findall(XML_NS_TEXT + 'HOEP')
 
-    # Iterate over all datasets (production types)
-    for item in soup.find_all('dataset'):
-        key = item.attrs['series']
-        if key != 'HOEP':
-            continue
-        for rowIndex, row in enumerate(item.find_all('value')):
-            if not len(row.contents):
-                continue
-            if rowIndex not in data:
-                data[rowIndex] = {
-                    'datetime': start_datetime.replace(hours=+rowIndex).datetime,
-                    'zoneKey': zone_key,
-                    'currency': 'CAD',
-                    'source': 'ieso.ca',
-                }
-            data[rowIndex]['price'] = \
-                float(row.contents[0])
-
-    return [data[k] for k in sorted(data.keys())]
+    data = [
+        {
+            'datetime': dt.replace(hours=+int(
+                price.find(XML_NS_TEXT + 'Hour').text
+            )).datetime,
+            'price': float(price.find(XML_NS_TEXT + 'Price').text),
+            'currency': 'CAD',
+            'source': 'ieso.ca',
+            'zoneKey': zone_key
+        }
+        for price in prices
+    ]
 
     return data
 
@@ -241,19 +244,10 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     if sorted_zone_keys not in MAP_EXCHANGE.values():
         raise NotImplementedError('This exchange pair is not implemented')
 
-    dt = arrow.get(target_datetime).to(tz_obj).replace(hour=0, minute=0, second=0, microsecond=0)
+    dt, xml = _fetch_ieso_xml(target_datetime, session, logger, EXCHANGES_URL)
 
-    r = session or requests.session()
-    url = EXCHANGES_URL.format(YYYYMMDD=dt.format('YYYYMMDD'))
-    response = r.get(url)
-
-    if not response.ok:
-        # Data is generally available for past 3 months. Requesting files older than this
-        # returns an HTTP 404 error.
-        logger.info('CA-ON: failed getting requested exchange data for datetime {} from IESO server'.format(dt))
+    if not xml:
         return []
-
-    xml = ET.fromstring(response.text)
 
     intertie_zones = xml\
         .find(XML_NS_TEXT + 'IMODocBody')\
@@ -343,6 +337,20 @@ if __name__ == '__main__':
 
     print('fetch_price() ->')
     print(fetch_price())
+
+    print('we expect correct results when time in UTC and Ontario differs')
+    print('data should be for {}'.format(now.replace(hour=2).to(tz_obj).format('YYYY-MM-DD')))
+    print('fetch_price(target_datetime=now.replace(hour=2)) ->')
+    print(fetch_price(target_datetime=now.replace(hour=2)))
+
+    print('we expect results for 2 months ago')
+    print('fetch_price(target_datetime=now.shift(months=-2).datetime)) ->')
+    print(fetch_price(target_datetime=now.shift(months=-2).datetime))
+
+    print('there are likely no results for 2 years ago')
+    print('fetch_price(target_datetime=now.shift(years=-2).datetime)) ->')
+    print(fetch_price(target_datetime=now.shift(years=-2).datetime))
+
     print('fetch_exchange("CA-ON", "US-NY") ->')
     print(fetch_exchange("CA-ON", "US-NY"))
 
