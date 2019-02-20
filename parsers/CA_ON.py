@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
+from datetime import timedelta, timezone
 import logging
 import xml.etree.ElementTree as ET
 
 # The arrow library is used to handle datetimes
 import arrow
-
-# pytz gets tzinfo objects
-import pytz
 
 # The request library is used to fetch content through HTTP
 import requests
@@ -15,9 +13,30 @@ import requests
 # pandas processes tabular data
 import pandas as pd
 
+"""
+Some notes about timestamps:
 
-timezone = 'Canada/Eastern'
-tz_obj = pytz.timezone(timezone)
+IESO website says:
+"The IESO uses the "Hour Ending" naming convention for the hours in a day. For example, Hour 1 is from 12 am. to 1 am.,
+Hour 2 is from 1 am. to 2 am. Hours 1-24 are the hours from midnight one day through midnight the next day."
+
+Observations:
+- At 13:53, HOEP report will have data with "Hour" column from 1 to 13.
+  Output and Capability report will have data with "Hour" column from 1 to 13.
+  Intertie Flow report will have data with "Hour" column from 1 to 13 *and* Interval column
+  from 1 to 12 for all of these hours, including the 13th hour.
+- At 14:18, HOEP report will go up to 14, Output report will go up to 14,
+  but update for Intertie report is not yet updated.
+- At 14:31, Intertie report is updated with Hour 14 which has Intervals 1 to 12.
+
+In the script, the Intertie report is shifted 1 hour and 5 minutes back, so that it lines up with
+the production and price data availability.
+"""
+
+# IESO says "Eastern Standard Time is used year round."
+# This would mean daylight savings is not used (that is called "Eastern Daylight Time"),
+# and we need to use UTC-5 rather than 'Canada/Eastern'
+tz_obj = timezone(timedelta(hours=-5), name='UTC-5')
 
 # fuel types used by IESO
 MAP_GENERATION = {
@@ -190,12 +209,15 @@ def fetch_price(zone_key='CA-ON', session=None, target_datetime=None,
     }
     """
 
+    # "HOEP" below is "Hourly Ontario Energy Price".
+    # There also exists a 5-minute price, but its archives only go back roughly 4 days
+    # (see http://www.ieso.ca/power-data "5 Minute Market Clearing Price").
+
     dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRICE_URL)
 
     if not xml:
         return []
 
-    # "HOEP" is "Hourly Ontario Energy Price"
     prices = xml\
         .find(XML_NS_TEXT + 'IMODocBody')\
         .find(XML_NS_TEXT + 'HOEPs')\
