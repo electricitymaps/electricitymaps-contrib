@@ -247,6 +247,10 @@
             "countryName": "Australia",
             "zoneName": "Tasmania"
           },
+          "AUS-TAS-KI": {
+            "countryName": "Tasmania",
+            "zoneName": "Isola di King"
+          },
           "AUS-VIC": {
             "countryName": "Australia",
             "zoneName": "Victoria"
