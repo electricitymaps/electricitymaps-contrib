@@ -85,7 +85,10 @@
         "hideSolarLayer": "Nascondi livello del sole",
         "toggleDarkMode": "Alterna modalità scura",
         "noParserInfo": "Nessun dato disponibile",
-        "temporaryDataOutage": "Dati temporeanamente non disponibili"
+        "temporaryDataOutage": "Dati temporeanamente non disponibili",
+        "production": "Produzione",
+        "consumption": "Consumo",
+        "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora"
     },
     "misc": {
         "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
