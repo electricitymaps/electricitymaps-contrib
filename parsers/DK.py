@@ -6,6 +6,7 @@ import pandas as pd
 import arrow
 # The request library is used to fetch content through HTTP
 import requests
+import pytz
 
 
 ids = {'real_time':'06380963-b7c6-46b7-aec5-173d15e4648b',
@@ -88,6 +89,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
             }
         
         data['datetime'] = dt.to_pydatetime()
+        data['datetime'] = data['datetime'].replace(tzinfo=pytz.utc)
         for f in ['solar', 'wind']+fuels:
             data['production'][f] = df.loc[dt,f]
         output.append(data)
@@ -177,7 +179,8 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         }
         
         data['datetime'] = dt.to_pydatetime()
-        data['netFlow'] = df.loc[dt,'netFlow']
+        data['datetime'] = data['datetime'].replace(tzinfo=pytz.utc)
+        data['netFlow'] = df.loc[dt, 'netFlow']
         output.append(data)
     return output
 
