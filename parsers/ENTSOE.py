@@ -50,17 +50,21 @@ ENTSOE_PARAMETER_DESC = {
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
-    'biomass': ['B01', 'B17'],
-    'coal': ['B02', 'B05', 'B07', 'B08'],
-    'gas': ['B03', 'B04'],
-    'geothermal': ['B09'],
-    'hydro': ['B11', 'B12'],
-    'hydro storage': ['B10'],
-    'nuclear': ['B14'],
-    'oil': ['B06'],
-    'solar': ['B16'],
-    'wind': ['B18', 'B19'],
-    'other': ['B20', 'B13', 'B15']
+    'production': {
+        'biomass': ['B01', 'B17'],
+        'coal': ['B02', 'B05', 'B07', 'B08'],
+        'gas': ['B03', 'B04'],
+        'geothermal': ['B09'],
+        'hydro': ['B11', 'B12'],
+        'nuclear': ['B14'],
+        'oil': ['B06'],
+        'solar': ['B16'],
+        'wind': ['B18', 'B19'],
+        'other': ['B20', 'B13', 'B15']
+    },
+    'storage': {
+        'hydro storage': ['B10']
+    }
 }
 ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
 # Define all ENTSOE zone_key <-> domain mapping
@@ -740,64 +744,9 @@ def validate_production(datapoint, logger):
     return True
 
 
-def get_biomass(values):
-    if 'Biomass' in values or 'Waste' in values:
-        return (values.get('Biomass', 0)
-                + values.get('Waste', 0))
-
-
-def get_coal(values):
-    if 'Fossil Brown coal/Lignite' in values \
-        or 'Fossil Peat' in values \
-        or 'Fossil Oil shale' in values \
-        or 'Fossil Hard coal' in values:
-        return (values.get('Fossil Brown coal/Lignite', 0)
-                + values.get('Fossil Peat', 0)
-                + values.get('Fossil Oil shale', 0)
-                + values.get('Fossil Hard coal', 0))
-
-
-def get_gas(values):
-    if 'Fossil Coal-derived gas' in values or 'Fossil Gas' in values:
-        return values.get('Fossil Coal-derived gas', 0) + \
-               values.get('Fossil Gas', 0)
-
-
-def get_hydro(values):
-    if ('Hydro Run-of-river and poundage' in values or
-        'Hydro Water Reservoir' in values):
-        return values.get('Hydro Run-of-river and poundage', 0) + \
-               values.get('Hydro Water Reservoir', 0)
-
-
-def get_hydro_storage(storage_values):
-    if 'Hydro Pumped Storage' in storage_values:
-        return -1 * storage_values.get('Hydro Pumped Storage', 0)
-
-
-def get_oil(values):
-    if 'Fossil Oil' in values:
-        value = values.get('Fossil Oil', 0)
-        return value if value != -1.0 else None
-
-
 def get_wind(values):
     if 'Wind Onshore' in values or 'Wind Offshore' in values:
         return values.get('Wind Onshore', 0) + values.get('Wind Offshore', 0)
-
-
-def get_geothermal(values):
-    if 'Geothermal' in values:
-        return values.get('Geothermal', 0)
-
-
-def get_unknown(values):
-    if ('Marine' in values or
-        'Other renewable' in values or
-        'Other' in values):
-        return (values.get('Marine', 0) +
-                values.get('Other renewable', 0) +
-                values.get('Other', 0))
 
 
 def fetch_consumption(zone_key, session=None, target_datetime=None,
@@ -860,17 +809,19 @@ def fetch_production(zone_key, session=None, target_datetime=None,
         production_values = {k: v for k, v in productions[i].items()}
         production_date = production_dates[i]
 
-        production = {}
-        for fuel, groups in ENTSOE_PARAMETER_GROUPS.items():
-            value = sum([production_values.get(grp, 0) for grp in groups])
-            production[fuel] = value
+        production_types = {'production': {}, 'storage': {}}
+        for key in ['production', 'storage']:
+            parameter_groups = ENTSOE_PARAMETER_GROUPS[key]
+            for fuel, groups in parameter_groups.items():
+                value = sum([production_values.get(grp, 0) for grp in groups])
+                production_types[key][fuel] = value
 
         data.append({
             'zoneKey': zone_key,
             'datetime': production_date.datetime,
-            'production': production,
+            'production': production_types['production'],
             'storage': {
-                'hydro': get_hydro_storage(production_values),
+                'hydro': production_types['storage'],
             },
             'source': 'entsoe.eu'
         })
