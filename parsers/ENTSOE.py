@@ -857,25 +857,18 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
     data = []
     for i in range(len(production_dates)):
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
-                             productions[i].items()}
+        production_values = {k: v for k, v in productions[i].items()}
         production_date = production_dates[i]
+
+        production = {}
+        for fuel, groups in ENTSOE_PARAMETER_GROUPS.items():
+            value = sum([production_values.get(grp, 0) for grp in groups])
+            production[fuel] = value
 
         data.append({
             'zoneKey': zone_key,
             'datetime': production_date.datetime,
-            'production': {
-                'biomass': get_biomass(production_values),
-                'coal': get_coal(production_values),
-                'gas': get_gas(production_values),
-                'hydro': get_hydro(production_values),
-                'nuclear': production_values.get('Nuclear', None),
-                'oil': get_oil(production_values),
-                'solar': production_values.get('Solar', None),
-                'wind': get_wind(production_values),
-                'geothermal': get_geothermal(production_values),
-                'unknown': get_unknown(production_values)
-            },
+            'production': production,
             'storage': {
                 'hydro': get_hydro_storage(production_values),
             },
