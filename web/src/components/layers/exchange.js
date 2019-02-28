@@ -203,7 +203,6 @@ class ExchangeLayer {
 
   setColorblindMode(arg) {
     this.colorblindMode = arg;
-    this.render();
     return this;
   }
 }

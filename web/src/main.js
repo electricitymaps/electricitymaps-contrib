@@ -1423,7 +1423,9 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
   Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
   updateCo2Scale();
   if (exchangeLayer) {
-    exchangeLayer.setColorblindMode(colorBlindModeEnabled);
+    exchangeLayer
+      .setColorblindMode(colorBlindModeEnabled)
+      .render();
   }
 });
 
