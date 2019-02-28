@@ -337,6 +337,7 @@ try {
         .setData(getState().application.electricityMixMode === 'consumption'
           ? Object.values(getState().data.grid.exchanges)
           : [])
+        .setColorblindMode(getState().application.colorBlindModeEnabled)
         .render();
       LoadingService.stopLoading('#loading');
       LoadingService.stopLoading('#small-loading');
@@ -1421,6 +1422,11 @@ observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
   Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
   updateCo2Scale();
+  if (exchangeLayer) {
+    exchangeLayer
+      .setColorblindMode(colorBlindModeEnabled)
+      .render();
+  }
 });
 
 // Observe for bright mode changes

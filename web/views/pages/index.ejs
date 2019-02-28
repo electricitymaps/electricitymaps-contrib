@@ -446,10 +446,10 @@ co2Sub = function(str) {
                             <div class="production-toggle-active-overlay">
                             </div>                           
                             <div class="production-toggle-item">
-                                production
+                                <%- __('tooltips.production') %>
                             </div>
                             <div class="production-toggle-item">
-                                consumption
+                                <%- __('tooltips.consumption') %>
                             </div>
                         </div>
                         <div class="production-toggle-info">
@@ -457,7 +457,7 @@ co2Sub = function(str) {
                         </div>
                         <div id="production-toggle-tooltip"  class="layer-button-tooltip hidden">
                             <div class="tooltip-container">
-                                <div class="tooltip-text"> <b>consumption</b> takes imports and exports into account, <b>production</b> ignores them</div>
+                                <div class="tooltip-text"> <%- __('tooltips.cpinfo') %></div>
                                 <div class="arrow"></div>
                             </div>
                         </div>
