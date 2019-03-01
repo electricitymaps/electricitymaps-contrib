@@ -812,8 +812,15 @@ def fetch_production(zone_key, session=None, target_datetime=None,
         production_types = {'production': {}, 'storage': {}}
         for key in ['production', 'storage']:
             parameter_groups = ENTSOE_PARAMETER_GROUPS[key]
+            multiplier = -1 if key == 'storage' else 1
+
             for fuel, groups in parameter_groups.items():
                 value = sum([production_values.get(grp, 0) for grp in groups])
+                value *= multiplier
+
+                if fuel == 'oil' and value == -1.0:
+                    value = None
+
                 production_types[key][fuel] = value
 
         data.append({
@@ -821,7 +828,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
             'datetime': production_date.datetime,
             'production': production_types['production'],
             'storage': {
-                'hydro': production_types['storage'],
+                'hydro': production_types['storage']['hydro storage'],
             },
             'source': 'entsoe.eu'
         })
