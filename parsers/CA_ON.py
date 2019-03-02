@@ -171,7 +171,7 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
 
     data = [
         {
-            'datetime': time,
+            'datetime': time.to_pydatetime(),
             'zoneKey': zone_key,
             'production': productions,
             'storage': {},
@@ -321,7 +321,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     data = [
         {
-            'datetime': flow_dt,
+            'datetime': flow_dt.to_pydatetime(),
             'sortedZoneKeys': sorted_zone_keys,
             'netFlow': flow,
             'source': 'ieso.ca',
