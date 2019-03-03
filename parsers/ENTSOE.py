@@ -815,7 +815,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
             multiplier = -1 if key == 'storage' else 1
 
             for fuel, groups in parameter_groups.items():
-                has_value = any([grp in production_values.keys() for grp in groups])
+                has_value = any([production_values.get(grp) is not None for grp in groups])
                 if has_value:
                     value = sum([production_values.get(grp, 0) for grp in groups])
                     value *= multiplier
