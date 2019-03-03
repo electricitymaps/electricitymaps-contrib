@@ -85,7 +85,10 @@
         "hideSolarLayer": "Nascondi livello del sole",
         "toggleDarkMode": "Alterna modalità scura",
         "noParserInfo": "Nessun dato disponibile",
-        "temporaryDataOutage": "Dati temporeanamente non disponibili"
+        "temporaryDataOutage": "Dati temporeanamente non disponibili",
+        "production": "Produzione",
+        "consumption": "Consumo",
+        "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora"
     },
     "misc": {
         "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
@@ -121,6 +124,74 @@
     "emissionsImportedFrom": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "di CO2eq per minuto",
+    
+    "theMap": {
+        "groupName": "La mappa",
+        "mapColors-question": "Cosa significano i colori sulla mappa?",
+        "mapColors-answer": "Coloriamo le aree sulla mappa in base alle quantità di gas serra emessi per ogni unità di elettricità consumata lì (La sua <a href=\"#carbonIntensity\" class=\"entry-link\">intensità di carbonio</a>). Colori più verdi significano un consumo di elettricità più favorevole al clima.",
+        "mapArrows-question": "Cosa indicano le frecce tra le aree della mappa?",
+        "mapArrows-answer": "Le frecce tra le aree indicano il flusso fisico (importazioni ed esportazioni) di elettricità tra le aree: più velocemente lampeggiano, più veloce è il flusso. Il flusso di elettricità è importante, perché quando importi parte della tua elettricità dalle aree limitrofe, stai anche importando le emissioni di carbonio associate alla sua produzione.",
+        "mapSolarWindButtons-question": "Che cosa fanno i pulsanti “Sole” e “Vento” sulla mappa?",
+        "mapSolarWindButtons-answer": "Questi pulsanti consentono di visualizzare la velocità del vento in tempo reale e la forza del sole, dando un'indicazione del potenziale per la transizione alle alternative energetiche basate sul solare e sul vento in diverse aree. Si noti che questa è solo un'indicazione superficiale, in quanto il potenziale effettivo nell'installazione di turbine eoliche e celle solari dipende anche da molti altri fattori.",
+        "mapNuclearColors-question": "Perché le nazioni con energia nucleare sono mostrate verdi sulla mappa?",
+        "mapNuclearColors-answer": "La produzione di energia nucleare ha un intensità di carbonio molto bassa (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >Fonte</a>), e quindi le nazioni con maggiore energia nucleare vengono mostrate più verdi sulla mappa. Ciò non significa che non vi siano altre sfide ambientali associate all'energia nucleare (come nel caso di altre forme di produzione di energia), ma tali sfide non sono correlate alle emissioni di gas a effetto serra e pertanto non rientrano nell'ambito di questa mappa.",
+        "mapColorBlind-question": "Sono daltonico. Come posso leggere la mappa?",
+        "mapColorBlind-answer": "È possibile modificare i colori visualizzati nella mappa attivando l'impostazione “Modalità per daltonici”. Si trova nella parte inferiore del pannello di sinistra sul desktop e nella scheda delle informazioni sull'app mobile."
+    },
+    "mapAreas": {
+        "groupName": "Aree nella mappa",
+        "noData-question": "Perché i dati per la mia area non sono disponibili?",
+        "noData-answer": "Può essere perché le fonti dei dati sono temporeanamente non disponibili, o perché non abbiamo ancora nessuna fonte di dati impostata per l'area. Puoi <a href=\"#contribute\" class=\"entry-link\">aiutarci aggiungendo nuove fonti di dati</a>.",
+        "whySmallAreas-question": "Perché dividete il mondo in piccole aree e non mostrate semplicemente la media delle nazioni?",
+        "whySmallAreas-answer": "Le aree sono le più piccole aree geografiche per cui abbiamo i dati. Avendo accesso alle informazioni al più alto livello di granularità, i consumatori di elettricità in diverse aree possono avere una conoscenza più precisa dell'origine dell'elettricità che stanno consumando e del relativo impatto sul clima.",
+        "divideExistingArea-question": "Potete dividere la mia area in parti più piccole?",
+        "divideExistingArea-answer": "Certamente, se esitono fonti separate per ogni parte di quest'area. Puoi <a href=\"#contribute\" class=\"entry-link\">aiutare aggiungendo nuove fonti di dati</a>",
+        "seeHistoricalData-question": "Posso vedere la cronologia di un area per un periodo più lungo di 24 ore?",
+        "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+    },
+    "methodology": {
+        "groupName": "I nostri metodi",
+        "carbonIntensity-question": "Cos'è l'\"intensità di carbonio\"?",
+        "carbonIntensity-answer": "L'intensità di carbonio è lo strumento per misurare le emissioni di gas serra associati con la produzione di elettricità che consumiamo (in gCO2eq/kWh - grammi di monossido di carbonio equivalenti emessi per kilowatt all'ora di elettricità consumata). <br><br>Misuriamo le emissioni derivate dal consumo elettrico (e non dalla produzione), e ciò vuol dire che tutte le emissioni di gas serra (Sia la CO2 che altri gas serra come il metano) che sono andati a produrre l'elettricità che viene consumata in un'area, tenendo conto delle intensità di carbonio dell'elettricità importata da altre aree. Usiamo un approccio di analisi del ciclo di vita (ACV), nel senso che prendiamo in considerazione le emissioni derivanti dall'intero ciclo di vita delle centrali elettriche (Costruzione, produzione di carburante, emissioni operative e decommissionamento).",
+        "consumptionFocus-question": "Perché calcolate l'intensità di carbonio per il consumo elettrico invece della produzione?",
+        "consumptionFocus-answer": "Riteniamo che i cittadini dovrebbero essere responsabili per l'elettricità che consumano, e non per l'elettricità prodotta nell'area in cui vivono. Inoltre, riteniamo che le aree non debbano essere in grado di 'falsificare' un basso impatto climatico semplicemente spostando produzione di energia sporca in altre aree e quindi importare l'elettricità da quelle aree.",
+        "renewableLowCarbonDifference-question": "Qual è la differenza tra “Rinnovabile” e “Basse emissioni”?",
+        "renewableLowCarbonDifference-answer": "La produzione di energia rinnovabile è basata su fonti di energia rinnovabile come il flusso di vento e acqua, il sole e l'energia geotermica. La produzione di energia a basse emissioni di carbonio significa che la produzione comporta un livello molto basso di emissioni di gas serra, come nella produzione di energia nucleare.",
+        "importsAndExports-question": "Nel conteggio tenete conto delle importazioni ed esportazioni di elettricità?",
+        "importsAndExports-answer": "Sì, lo facciamo. Le importazioni e le esportazioni possono essere viste sulla mappa come piccole <a href=\"#mapArrows\" class=\"entry-link\">frecce tra le diverse aree</a>. Informazioni dettagliate possono essere visualizzate nei grafici visualizzati quando si fa clic su un'area.",
+        "emissionsOfStored-question": "Che dire delle emissioni generate dalla produzione di elettricità che viene immagazzinata nelle batterie o utilizzata per riempire i serbatoi?",
+        "emissionsOfStored-answer": "Poiché attualmente viene immagazzinata solo una piccola parte dell'elettricità, le inesattezze nella modellizzazione di queste emissioni non dovrebbero fare molta differenza rispetto al totale attuale. Tuttavia, vista la crescente importanza dello stoccaggio, speriamo di tenerne conto più a fondo nel nostro modello a breve.",
+        "guaranteesOfOrigin-question": "Che cosa sono i certificati verdi, e come vengono presi in considerazione?",
+        "guaranteesOfOrigin-answer": "Quando i produttori di energia rinnovabile producono elettricità, possono creare Garanzie di Origine (o Certificati di Energia Rinnovabile) - una prova che l'elettricità rinnovabile è stata prodotta e distribuita nella rete elettrica. Queste garanzie possono quindi essere vendute, dando ai rivenditori di energia elettrica un modo per affermare che l'elettricità che rivendono proviene da fonti rinnovabili, indipendentemente dalla sua effettiva fonte fisica.<br><br> Ciò significa che i consumatori di elettricità possono dire che la loro elettricità proviene dal sole e dal vento, anche in una notte senza vento. Questo problema, in quanto rimuove gli incentivi del consumatore a consumare elettricità nel momento migliore (ad esempio quando la quantità di elettricità rinnovabile nella rete è effettivamente al suo massimo). Pertanto, questa mappa esclude le garanzie di origine, offrendo invece un'immagine fisica della rete elettrica basata sulla posizione, al fine di responsabilizzare i consumatori.",
+        "otherSources-question": "Perché non mostrate altre fonti di emissione oltre che della produzione elettrica?",
+        "otherSources-answer": "Questo sarebbe al di fuori dello scopo di questo progetto. Tuttavia, dentro Tomorrow stiamo attivamente lavorando allo sviluppo di <a href=\"#whoAreYou\" class=\"entry-link\">nuove soluzioni per quantificare l'impatto sul clima delle tue decisioni quotidiane</a>.",
+        "homeSolarPanel-question": "Cosa succede se ho un pannello solare installato a casa?",
+        "homeSolarPanel-answer": "Misuriamo l'intensità di carbonio della rete elettrica locale, quindi qualsiasi elettricità che consumi direttamente dal tuo pannello solare (fuori rete) non fa parte delle nostre misurazioni. Tuttavia, se il vostro pannello solare fornisce energia alla vostra rete elettrica locale, la sua produzione è inclusa nelle nostre statistiche nelle aree in cui le stime della produzione locale di energia solare sono rese pubbliche (come in Francia e nel Regno Unito).",
+        "emissionsPerCapita-question": "Perché non mostrate le emissioni pro capite?",
+        "emissionsPerCapita-answer": "Parte dell'energia elettrica consumata in un'area viene utilizzata per la produzione di beni e prodotti fisici che vengono successivamente esportati e consumati in altre aree. Questa produzione, e quindi anche il suo consumo di elettricità e le emissioni associate, è guidata dal consumo di prodotti nelle <em>zone di importazione</ em>, non nell'area in cui si svolge la produzione. Crediamo che le persone dovrebbero essere responsabili solo per ciò che consumano, non per i prodotti fabbricati nell'area in cui vivono, in quanto non li consumano essi stessi. In questo senso, mostrare le emissioni pro capite di consumo di energia elettrica per le aree è fuorviante."
+    },
+    "data": {
+        "groupName": "I nostri dati",
+        "dataOrigins-question": "Dove prendete i dati?",
+        "dataOrigins-answer": "Prendiamo tutti i dati da dati liberamente accessibili, pubblicati dagli operatori di linea, dalle agenzie ufficiali, ed altri. Puoi cliccare su un'area per vedere più specifiche sulle origini dei dati.",
+        "dataDownload-question": "Posso scaricare i vostri dati?",
+        "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataIntegration-question": "Possono integrare i vostri dati in tempo reale nella mia applicazione o nel mio dispositivo?",
+        "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni fiture."
+    },
+    "aboutUs": {
+        "groupName": "Informazioni su di noi",
+        "whoAreYou-question": "Chi siete?",
+        "whoAreYou-answer": "Electricity Map è sviluppata e mantenuta da <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, una piccola start-up francodanese. Il nostro obiettivo è aiutare l'umanità a raggiungere uno stato di esistenza sostenibile quantificando, e rendendo largamente accessibile l'accesso alla visione dell'impatto climatico che hanno le nostre scelte di tutti i giorni.",
+        "feedback-question": "Posso darvi un parere?",
+        "feedback-answer": "Certamente! Riempi il <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">nostro modello</a> o <a href=\"mailto:hello@tmrow.com\">mandaci una email!</a>",
+        "contribute-question": "Posso contribuire al progetto?",
+        "contribute-answer": "Sì! Electricity Map è un progetto open-source, reso possibile dai nostri contributori volontari. Se vuoi aiutarci a sviluppare la mappa, sia aggiungendo fonti per nuove aree, sia aggiungendo nuove funzioni o risolvendo bug, sentiti libero di unirti al nostro <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+        "workTogether-question": "Possiamo lavorare insieme?",
+        "workTogether-answer": "Siamo sempre alla ricerca di nuove opportunità di collaborazione. <a href=\"mailto:hello@tmrow.com\">Mandaci una email!</a>",
+        "disclaimer-question": "Esclusione di responsabilità",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> pubblica dati ed immagini per <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> solo a scopo informativo. Non fa affermazioni di correttezza né fornisce alcuna forma di garanzia, e si riserva il diritto di modificare il contenuto in qualsiasi momento o di rimuovere parti senza previo avviso. Tomorrow non si assume nessuna responsabilità, e non sarà responsabile per alcun danno o spesa che potresti subire a causa dell'inesattezza, intempestività o obsolescenza di electricityMap, o le informazioni derivanti da essa. Non è consentito includere questa pagina web, o uno dei suoi singoli elementi senza un previo consenso formale scritto.<br><br>Tutti i diritti di proprietà intellettuale appartengono ai legittimi proprietari ed ai suoi licenziatari. La copia e qualsiasi altro uso di questi materiali, in particolare i dati sull'energia, non sono consentiti senza il permesso scritto di Tomorrow, ad eccezione solo dei modi previsti dalla legge (come il diritto di citazione), a meno che non sia specificato diversamente per materiali specifici. <br><br>Questa esclusione di responsabilità può essere modificata in qualsiasi momento."
+    },
 
     "zoneShortName": {
         "AD": {
@@ -178,6 +249,10 @@
           "AUS-TAS": {
             "countryName": "Australia",
             "zoneName": "Tasmania"
+          },
+          "AUS-TAS-KI": {
+            "countryName": "Tasmania",
+            "zoneName": "Isola di King"
           },
           "AUS-VIC": {
             "countryName": "Australia",

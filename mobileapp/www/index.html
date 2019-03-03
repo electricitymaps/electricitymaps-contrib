@@ -1,9 +1,8 @@
 <html>
   <script>
       document.addEventListener('deviceready', onDeviceReady, false);
-      document.addEventListener('resume', function() { alert('resume'); }, false);
       // Warning: those locales are duplicated from server.js
-      var locales = ['da', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'sv'];
+      var locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
       function onDeviceReady() {
         navigator.globalization.getLocaleName(
           function(obj) {

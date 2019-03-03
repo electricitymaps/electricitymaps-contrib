@@ -37,6 +37,8 @@ const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-IZ.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-MA.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-ME.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS-KI.geojson')),
   ]);
 
 const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
@@ -135,7 +137,9 @@ const zoneDefinitions = [
   // { zoneName: 'AUS-ACT', countryId: 'AUS', stateId: 'AU.AC', type: 'state' },
   { zoneName: 'AUS-QLD', countryId: 'AUS', stateId: 'AU.QL', type: 'state' },
   { zoneName: 'AUS-SA', countryId: 'AUS', stateId: 'AU.SA', type: 'state' },
-  { zoneName: 'AUS-TAS', countryId: 'AUS', stateId: 'AU.TS', type: 'state' },
+  // { zoneName: 'AUS-TAS', countryId: 'AUS', stateId: 'AU.TS', type: 'state' },
+  { zoneName: 'AUS-TAS', type: 'subZone', id: 'AUS-TAS'},
+  { zoneName: 'AUS-TAS-KI', type: 'subZone', id: 'AUS-TAS-KI'},
   { zoneName: 'AUS-VIC', countryId: 'AUS', stateId: 'AU.VI', type: 'state' },
   { zoneName: 'AUS-WA', countryId: 'AUS', stateId: 'AU.WA', type: 'state' },
   { zoneName: 'AW', type: 'country', id: 'ABW', moreDetails: true},

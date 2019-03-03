@@ -177,6 +177,10 @@
     },
     "timezone": null
   },
+  "AUS-TAS-KI": {
+    "flag_file_name": "au.png",
+    "timezone": null
+  },
   "AUS-VIC": {
     "bounding_box": [
       [
@@ -658,15 +662,17 @@
   },
   "CA-ON": {
     "capacity": {
-      "biomass": 495,
-      "gas": 9943,
-      "hydro": 8451,
-      "nuclear": 12978,
-      "solar": 280,
-      "wind": 3923
+      "biomass": 295,
+      "gas": 10277,
+      "hydro": 8482,
+      "nuclear": 13009,
+      "solar": 380,
+      "wind": 4486,
+      "coal": 0
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/jarek"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -3089,15 +3095,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 95,
-      "coal": 5894,
-      "gas": 4879,
+      "biomass": 115,
+      "coal": 4128,
+      "gas": 3033,
       "geothermal": 0,
-      "hydro": 6703,
+      "hydro": 6143,
       "hydro storage": 0,
-      "nuclear": 1298,
-      "solar": 1152,
-      "wind": 2938
+      "nuclear": 1400,
+      "solar": 1150,
+      "wind": 2968
     },
     "contributors": [
       "https://github.com/corradio"
