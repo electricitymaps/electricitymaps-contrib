@@ -60,7 +60,7 @@ ENTSOE_PARAMETER_GROUPS = {
         'oil': ['B06'],
         'solar': ['B16'],
         'wind': ['B18', 'B19'],
-        'other': ['B20', 'B13', 'B15']
+        'unknown': ['B20', 'B13', 'B15']
     },
     'storage': {
         'hydro storage': ['B10']
