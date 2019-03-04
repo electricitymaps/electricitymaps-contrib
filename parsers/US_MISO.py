@@ -2,6 +2,7 @@
 
 """Parser for the MISO area of the United States."""
 
+import logging
 import requests
 from dateutil import parser, tz
 
@@ -68,12 +69,14 @@ def data_processer(json_data, logger):
     return dt, production
 
 
-def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
     zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
     Return:
     A dictionary in the form:
     {
@@ -97,6 +100,7 @@ def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, log
       'source': 'mysource.com'
     }
     """
+
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -115,7 +119,25 @@ def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, log
 
 
 def fetch_wind_forecast(zone_key='US-MISO', session=None, target_datetime=None, logger=None):
-    req = requests.get(wind_forecast_url)
+    """
+    Requests the day ahead wind forecast (in MW) of a given zone
+    Arguments:
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
+    session (optional)  -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
+    Return:
+    A list of dictionaries in the form:
+    {
+    'source': 'misoenergy.org',
+    'value': 12932.0,
+    'datetime': '2019-01-01T00:00:00Z',
+    'zoneKey': 'US-MISO'
+    }
+    """
+
+    s = session or requests.Session()
+    req = s.get(wind_forecast_url)
     raw_json = req.json()
     raw_data = raw_json['Forecast']
 
@@ -137,4 +159,4 @@ if __name__ == '__main__':
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_wind_forecast() ->')
-    #print(fetch_wind_forecast())
+    print(fetch_wind_forecast())
