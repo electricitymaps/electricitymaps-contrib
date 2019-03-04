@@ -130,11 +130,14 @@ def fetch_wind_forecast(zone_key='US-MISO', session=None, target_datetime=None, 
     A list of dictionaries in the form:
     {
     'source': 'misoenergy.org',
-    'value': 12932.0,
+    'production': {'wind': 12932.0},
     'datetime': '2019-01-01T00:00:00Z',
     'zoneKey': 'US-MISO'
     }
     """
+
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     s = session or requests.Session()
     req = s.get(wind_forecast_url)
@@ -147,7 +150,7 @@ def fetch_wind_forecast(zone_key='US-MISO', session=None, target_datetime=None, 
         value = float(item['Value'])
 
         datapoint = {'datetime': dt,
-                     'value': value,
+                     'production': {'wind': value},
                      'source': 'misoenergy.org',
                      'zoneKey': zone_key}
         data.append(datapoint)
