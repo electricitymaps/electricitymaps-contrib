@@ -3718,7 +3718,8 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "production": "US_MISO.fetch_production"
+      "production": "US_MISO.fetch_production",
+      "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
     },
     "timezone": null
   },
