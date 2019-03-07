@@ -3,6 +3,7 @@ from collections import defaultdict
 
 import arrow
 import requests
+import pytz
 
 SVK_URL = 'http://www.svk.se/ControlRoom/GetProductionHistory/' \
           '?productionDate={date}&countryCode={zoneKey}'
@@ -66,7 +67,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
         prod = productions[dt]
         to_return.append({
             'production': dict(prod),
-            'datetime': dt.replace(minute=0),
+            'datetime': dt.replace(minute=0).replace(tzinfo=pytz.utc),
             'zoneKey': 'SE',
             'storage': {},
             'source': 'svk.se'
