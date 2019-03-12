@@ -6,23 +6,15 @@ from bs4 import BeautifulSoup
 import re
 import dateutil
 import requests
-import tablib
+import json
 
 # RU-1: European and Uralian Market Zone (Zone 1)
 # RU-2: Siberian Market Zone (Zone 2)
 # RU-AS: Russian Far East
 
 
-MAP_GENERATION_1 = {
+MAP_GENERATION = {
     'P_AES': 'nuclear',
-    'P_GES': 'hydro',
-    'P_GRES': 'unknown',
-    'P_TES': 'unknown',
-    'P_BS': 'unknown',
-    'P_REN': 'solar'
-}
-
-MAP_GENERATION_2 = {
     'P_GES': 'hydro',
     'P_GRES': 'unknown',
     'P_TES': 'unknown',
@@ -85,61 +77,48 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
-    today = arrow.now(tz=tz).format('DD.MM.YYYY')
-    
-        
-        
+    today = arrow.now(tz=tz).format('YYYY.MM.DD')
+
     if zone_key == 'RU':
-        url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=-1:&notCheckedColumnsNames='.format(
+        url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]=-1&startDate={date}&endDate={date}'.format(
             date=today)
     elif zone_key == 'RU-1':
-        url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=1:&notCheckedColumnsNames='.format(
+        url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]=1&startDate={date}&endDate={date}'.format(
             date=today)
     elif zone_key == 'RU-2':
-        url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=2:&notCheckedColumnsNames='.format(
+        url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]=2&startDate={date}&endDate={date}'.format(
             date=today)
-    
     else:
         raise NotImplementedError('This parser is not able to parse given zone')
-    response = r.get(url)
-    content = response.text
 
-    # Prepare content and load as csv into Dataset
-    dataset = tablib.Dataset()
-    dataset.csv = content.replace('\xce\xdd\xd1', ' ').replace(',', '.').replace(';', ',')
+    response = r.get(url)
+    json_content = json.loads(response.text)
+    dataset = json_content[0]['m_Item2']
 
     data = []
-    for datapoint in dataset.dict:
+    for datapoint in dataset:
         row = {
             'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'so-ups.ru'
             }
-        if zone_key=='RU' or zone_key=='RU-1':
-        # Production
-            for k, production_type in MAP_GENERATION_1.items():
-                if k in datapoint:
-                    gen_value = float(datapoint[k])
-                    row['production'][production_type] = row['production'].get(production_type,
-                                                                               0.0) + gen_value
-                else:
-                    row['production']['unknown'] = row['production'].get('unknown',0.0) + gen_value
-        elif zone_key == 'RU-2':
-            for k, production_type in MAP_GENERATION_2.items():
-                if k in datapoint:
-                    gen_value = float(datapoint[k])
-                    row['production'][production_type] = row['production'].get(production_type,
-                                                                                0.0) + gen_value
-                else:
-                    row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value                                        
-        
+
+        for k, production_type in MAP_GENERATION.items():
+            if k in datapoint:
+                gen_value = float(datapoint[k]) if datapoint[k] else 0.0
+                row['production'][production_type] = row['production'].get(production_type,
+                                                                        0.0) + gen_value
+            else:
+                row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
+
         # Date
         hour = '%02d' % int(datapoint['INTERVAL'])
-        date = arrow.get('%s %s' % (today, hour), 'DD.MM.YYYY HH')
+        date = arrow.get('%s %s' % (today, hour), 'YYYY.MM.DD HH')
+
         row['datetime'] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
 
-        current_dt = arrow.now('Europe/Moscow').datetime
+        current_dt = arrow.now(tz).datetime
 
         # Drop datapoints in the future
         if row['datetime'] > current_dt:
