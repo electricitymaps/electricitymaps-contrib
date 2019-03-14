@@ -2,7 +2,7 @@
 
 """Parser for the Southwest Power Pool area of the United States."""
 
-from dateutil import parser
+from dateutil import parser, tz
 from io import StringIO
 from logging import getLogger
 import pandas as pd
@@ -23,6 +23,10 @@ MAPPING = {'Wind': 'wind',
             }
 
 TIE_MAPPING = {'US-MISO->US-SPP': ['AMRN', 'DPC', 'GRE', 'MDU', 'MEC', 'NSP', 'OTP']}
+
+FORECAST_URL = 'https://marketplace.spp.org/file-api/download/midterm-resource-forecast?path=%2F2019%2F02%2F25%2FOP-MTRF-201902251200.csv'
+
+LOAD_FORECAST_URL = 'https://marketplace.spp.org/file-api/download/mtlf-vs-actual?path=%2F2019%2F02%2F25%2FOP-MTLF-201902251200.csv'
 
 # NOTE
 # Data sources return timestamps in GMT.
@@ -187,8 +191,131 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return exchange_data
 
 
+def depickler(obj):
+    df = pd.read_pickle(obj)
+    return df
+
+
+def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)):
+    """
+    Requests the load forecast (in MW) of a given zone
+    Arguments:
+    zone_key (optional) -- used in case a parser is able to fetch multiple zones
+    session (optional) -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
+    Return:
+    A list of dictionaries in the form:
+    {
+      'zoneKey': 'US-SPP',
+      'datetime': '2017-01-01T00:00:00Z',
+      'value': 28576.0,
+      'source': 'mysource.com'
+    }
+    """
+
+    if not target_datetime:
+        raise NotImplementedError("This parser requires a target datetime in format YYYYMMDD.")
+    # NOTE %2F == / encoding
+    # LOAD_FORECAST_URL = 'https://marketplace.spp.org/file-api/download/mtlf-vs-actual?path=%2F2019%2F02%2F25%2FOP-MTLF-201902251200.csv'
+    # NOTE YYYYMMDDHHmm do we need time? 0000
+    dt = parser.parse(target_datetime)
+    URL = 'https://marketplace.spp.org/file-api/download/mtlf-vs-actual?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTLF-{0}{1:02d}{2:02d}0000.csv'.format(dt.year, dt.month, dt.day)
+    #print(URL)
+    raw_data = depickler('load_forecast.pkl')
+    #raw_data = get_data(LOAD_FORECAST_URL)
+    #raw_data.to_pickle('load_forecast.pkl')
+
+    data = []
+    for index, row in raw_data.iterrows():
+        forecast = row.to_dict()
+
+        dt = parser.parse(forecast['GMTIntervalEnd']).replace(tzinfo=tz.gettz('Etc/GMT'))
+        load = float(forecast['MTLF'])
+
+        datapoint = {
+                     'datetime': dt,
+                     'value': load,
+                     'zoneKey': zone_key,
+                     'source': 'spp.org'
+                     }
+
+        data.append(datapoint)
+
+    return data
+
+
+#03/04/2019 12:00:00
+#MM/DD/YYYY HH:mm:ss
+# handle timezone with dateutil
+# .replace(tzinfo=tz.gettz('Etc/GMT'))
+
+def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)):
+    """
+    Requests the load forecast (in MW) of a given zone
+    Arguments:
+    zone_key (optional) -- used in case a parser is able to fetch multiple zones
+    session (optional) -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
+    Return:
+    A list of dictionaries in the form:
+    {
+      'zoneKey': 'US-SPP',
+      'datetime': '2017-01-01T00:00:00Z',
+      'value': 28576.0,
+      'source': 'mysource.com'
+    }
+    """
+
+    if not target_datetime:
+        raise NotImplementedError("This parser requires a target datetime in format YYYYMMDD.")
+
+    dt = parser.parse(target_datetime)
+    # FORECAST_URL = 'https://marketplace.spp.org/file-api/download/midterm-resource-forecast?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}.csv'.format(dt.year, dt.month, dt.day)
+    raw_data = depickler('sw_forecast.pkl')
+    #raw_data = get_data(FORECAST_URL)
+    #raw_data.to_pickle('sw_forecast.pkl')
+    #return raw_data
+    #print(raw_data.columns)
+
+    # sometimes there is a leading whitespace in column names
+    raw_data.columns = raw_data.columns.str.lstrip()
+
+    data = []
+    for index, row in raw_data.iterrows():
+        forecast = row.to_dict()
+
+        dt = parser.parse(forecast['GMTIntervalEnd']).replace(tzinfo=tz.gettz('Etc/GMT'))
+
+        try:
+            solar = float(forecast['Wind Forecast MW'])
+            wind = float(forecast['Solar Forecast MW'])
+        except ValueError:
+            # can be NaN
+            continue
+
+        datapoint = {
+                     'datetime': dt,
+                     'production': {
+                        'solar': solar,
+                        'wind': wind,
+                     },
+                     'zoneKey': zone_key,
+                     'source': 'spp.org'
+                     }
+
+        data.append(datapoint)
+
+    return data
+
+
 if __name__ == '__main__':
     print('fetch_production() -> ')
-    print(fetch_production())
+    #print(fetch_production())
     # print('fetch_exchange() -> ')
     # print(fetch_exchange('US-MISO', 'US-SPP'))
+    print('fetch_load_forecast() -> ')
+    print(fetch_load_forecast(target_datetime='20190225'))
+    print('fetch_wind_solar_forecasts() -> ')
+    print(fetch_wind_solar_forecasts(target_datetime='20190225'))
