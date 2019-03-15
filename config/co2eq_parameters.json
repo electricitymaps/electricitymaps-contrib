@@ -642,6 +642,14 @@
           "value": 448.61411758480546
         }
       },
+      "US-TX": {
+        "unknown": {
+          "_comment": "52.4% gas, 23.4% wind, 15.9% coal, 5.4% nuclear, 2.1% solar, 0.9% other (hydro, storage, and biomass)",
+          "_url": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf",
+          "source": "assumes: 70.2% gas, 21.3% coal, 7.2% nuclear, 1.2% other",
+          "value": 521.724
+        }
+      },
       "UY": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
