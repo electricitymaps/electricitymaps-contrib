@@ -3644,8 +3644,18 @@
         36.265205
       ]
     ],
+    "capacity": {
+      "unknown": 42279
+    },
+    "contributors": [
+      "https://github.com/typicalTYLER"
+    ],
     "flag_file_name": "us.png",
-    "timezone": null
+    "parsers": {
+      "production": "US_TX.fetch_production",
+      "consumption": "US_TX.fetch_consumption"
+    },
+    "timezone": "US/Central"
   },
   "US-GA": {
     "bounding_box": [
