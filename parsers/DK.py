@@ -1,16 +1,15 @@
 import logging
-import datetime
-
 import pandas as pd
-# The arrow library is used to handle datetimes
-import arrow
-# The request library is used to fetch content through HTTP
-import requests
+import arrow  # the arrow library is used to handle datetimes
+import requests  # the request library is used to fetch content through HTTP
 import pytz
 
 
-ids = {'real_time':'06380963-b7c6-46b7-aec5-173d15e4648b',
-       'energy_bal':'02356e88-7c4e-4ee9-b896-275d217cc1b9'}
+ids = {
+    'real_time': '06380963-b7c6-46b7-aec5-173d15e4648b',
+    'energy_bal': '02356e88-7c4e-4ee9-b896-275d217cc1b9'
+}
+
 
 def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
                      logger: logging.Logger = logging.getLogger(__name__)):
@@ -19,8 +18,6 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     for Danish bidding zones
     """
     r = session or requests.session()
-    
-    
     
     if zone_key not in ['DK-DK1', 'DK-DK2']:
         raise NotImplementedError(
@@ -43,13 +40,18 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
                      
     
     url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
-    
     response = r.get(url)
-    
-    assert response.status_code == 200 and response.json()['result']['records'] != [], \
-        'Exception when fetching production for ' \
-        '{}: error when calling url={}'.format(zone_key, url)
-        
+
+    if response.status_code != 200:
+        error = response.json()['error']['__type']
+        text = response.json()['error']['info']['orig']
+        logger.warning('"{}" fetching production data for {}: {}'.format(
+            error, zone_key, text))
+        return
+    if response.json()['result']['records']:
+        logger.info('API returned no data for {} production'.format(zone_key))
+        return
+
     df = pd.DataFrame(response.json()['result']['records'])
     # index response dataframe by time
     df = df.set_index('timestamp')
@@ -59,8 +61,8 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     
     # Divide waste into 55% renewable and 45% non-renewable parts according to
     # https://ens.dk/sites/ens.dk/files/Statistik/int.reporting_2016.xls (visited Jan 24th, 2019)
-    df['unknown'] = 0.45*df['Waste'] # Report fossil waste as unknown
-    df['renwaste'] = 0.55*df['Waste']
+    df['unknown'] = 0.45 * df['Waste'] # Report fossil waste as unknown
+    df['renwaste'] = 0.55 * df['Waste']
     # Report biomass, renewable waste and other renewables (biogas etc.) as biomass
     df['biomass'] = df.filter(['Biomass', 'renwaste', 'OtherRenewable']).sum(axis=1)
     
@@ -90,14 +92,13 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
         
         data['datetime'] = dt.to_pydatetime()
         data['datetime'] = data['datetime'].replace(tzinfo=pytz.utc)
-        for f in ['solar', 'wind']+fuels:
-            data['production'][f] = df.loc[dt,f]
+        for f in ['solar', 'wind'] + fuels:
+            data['production'][f] = df.loc[dt, f]
         output.append(data)
     return output
 
 def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
                    target_datetime=None, logger=logging.getLogger(__name__)):
-    
     """
     Fetches 5-minute frequency exchange data for Danish bidding zones
     from api.energidataservice.dk
@@ -115,18 +116,17 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     else:
         raise NotImplementedError(
             'Only able to fetch exchanges for Danish bidding zones')
-    
-   
+
     exch_map = {
-        'DE->DK-DK1':'"ExchangeGermany"',
-        'DE->DK-DK2':'"ExchangeGermany"',
-        'DK-DK1->DK-DK2':'"ExchangeGreatBelt"',
-        'DK-DK1->NO-NO2':'"ExchangeNorway"',
-        'DK-DK1->NL':'"ExchangeNetherlands"',
-        'DK-DK1->SE':'"ExchangeSweden"',
-        'DK-DK1->SE-SE3':'"ExchangeSweden"',
-        'DK-DK2->SE':'("ExchangeSweden" - "BornholmSE4")',# Exchange from Bornholm to Sweden is included in "ExchangeSweden"
-        'DK-DK2->SE-SE4':'("ExchangeSweden" - "BornholmSE4")' #but Bornholm island is reported separately from DK-DK2 in eMap
+        'DE->DK-DK1': '"ExchangeGermany"',
+        'DE->DK-DK2': '"ExchangeGermany"',
+        'DK-DK1->DK-DK2': '"ExchangeGreatBelt"',
+        'DK-DK1->NO-NO2': '"ExchangeNorway"',
+        'DK-DK1->NL': '"ExchangeNetherlands"',
+        'DK-DK1->SE': '"ExchangeSweden"',
+        'DK-DK1->SE-SE3': '"ExchangeSweden"',
+        'DK-DK2->SE': '("ExchangeSweden" - "BornholmSE4")',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
+        'DK-DK2->SE-SE4': '("ExchangeSweden" - "BornholmSE4")'  # but Bornholm island is reported separately from DK-DK2 in eMap
          
     }
     if sorted_keys not in exch_map:
@@ -134,10 +134,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
             'Exchange {} not implemented'.format(sorted_keys))
     
     timestamp = arrow.get(target_datetime).strftime('%Y-%m-%d %H:%M')
-    
-    
-    
-    
+
     # fetch real-time/5-min data
     sqlstr = 'SELECT "Minutes5UTC" as timestamp, {0} as "netFlow" \
                      from "{1}" WHERE "PriceArea" = \'{2}\' AND \
@@ -149,13 +146,18 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
                                                         timestamp)
 
     url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
-    
     response = r.get(url)
-    
-    assert response.status_code == 200 and response.json()['result']['records'] != [], \
-        'Exception when fetching flow for ' \
-        '{}: error when calling url={}'.format(sorted_keys, url)
-        
+
+    if response.status_code != 200:
+        error = response.json()['error']['__type']
+        text = response.json()['error']['info']['orig']
+        logger.warning('"{}" fetching exchange data for {}: {}'.format(
+            error, sorted_keys, text))
+        return
+    if response.json()['result']['records']:
+        logger.info('API returned no data for exchange {}'.format(sorted_keys))
+        return
+
     df = pd.DataFrame(response.json()['result']['records'])
     df = df.set_index('timestamp')
     df.index = pd.DatetimeIndex(df.index)
@@ -166,27 +168,26 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     # where as eMap expects net export from
     # the first zone in alphabetical order
     if 'DE' not in sorted_keys:
-        df['netFlow'] = -1*df['netFlow']
+        df['netFlow'] = -1 * df['netFlow']
     # Format output
     output = []
     for dt in df.index:
-        
         data = {
             'sortedZoneKeys': sorted_keys,
             'datetime': None,
             'netFlow': None,
             'source': 'api.energidataservice.dk'
         }
-        
+
         data['datetime'] = dt.to_pydatetime()
         data['datetime'] = data['datetime'].replace(tzinfo=pytz.utc)
         data['netFlow'] = df.loc[dt, 'netFlow']
         output.append(data)
     return output
 
+
 if __name__ == '__main__':
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_exchange(DK-DK2, SE-SE4) ->')
     print(fetch_exchange('DK-DK2', 'SE-SE4'))
-      
