@@ -152,10 +152,14 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    exchanges_url = 'http://br.so-ups.ru/Public/MainPage.aspx'
-    s = session or requests.Session()
-    req = s.get(exchanges_url)
-    soup = BeautifulSoup(req.content, 'html.parser')
+    today = arrow.now(tz=tz)
+    date = today.format('YYYY-MM-DD')
+    hour = today.format('HH')
+    exchanges_url = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?Date={}&Hour={}'.format(date, hour)
+
+    r = session or requests.session()
+    response = r.get(exchanges_url)
+    json_content = json.loads(response.text)
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
@@ -163,61 +167,17 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
         raise NotImplementedError('This exchange pair is not implemented.')
 
     current_dt = arrow.now('Europe/Moscow').datetime
+    exchange_id = int(exchange_ids[sortedcodes])
 
-    data_id = exchange_ids[sortedcodes]
-    find_id = soup.find("div", {"data-id": data_id})
-
-    # Due to the html formatting being different for Belarus & Ukraine this check is required.
-    if sortedcodes in ['BY->RU', 'BY->RU-1', 'RU->UA', 'RU-1->UA']:
-        flow_val = find_id.find("div", {"class": "flow-value"})
-        flow_dir = find_id.find_next("div")
-    # RU1->RU2, KZ->RU-1 and KZ->RU-2 are also special cases
-    elif sortedcodes == 'RU-1->RU-2':
-        flow_val = find_id.find("td", {"class": "flow-value"})
-        flow_dir = find_id.find("div", {"class": "horizontal-flow-value-box ural-siberia-flow-value-box "}).find_next("div")
-    elif sortedcodes == 'KZ->RU-1':
-        flow_val = find_id.find("span", {"class": "flow-value"})
-        flow_dir = re.findall('(?<=div class=").*(?= " data)',str(find_id))[0]
-    elif sortedcodes == 'KZ->RU-2':
-        flow_val = find_id.find("div", {"class": "flow-value"})
-        flow_dir = find_id.find("div", {"class": "flow-value"}).find_next("div")
-    else:
-        flow_val = find_id.find("td", {"class": "flow-value"})
-        flow_dir = find_id.find("div", {"class": "relative-box"}).find_next("div")
-
-    parsed_val = flow_val.get_text().strip()
-    flow = float(parsed_val.split(' ')[0])
-
-    # To determine the flow direction we use the class attribute of the following style of div tag that is nearby.
-    # <div class="c-flow-arrow west-flow-arrow arrow-forward">
-    # No need to determine the direction if flow is zero
-    if abs(flow) > 0:
-        if sortedcodes == 'KZ->RU-1':
-            check_flow = flow_dir.split(' ')
-        else:
-            check_flow = flow_dir["class"]
-    
-        if sortedcodes in ['RU->UA','RU-1->UA', 'KZ->RU-2']:
-            # Order of zones requires reversal for Ukraine exchange.
-            if check_flow[-1] == "arrow-backward":
-                flow = flow * -1
-            elif check_flow[-1] == "arrow-forward":
-                pass
-            else:
-                raise ValueError(
-                    'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
-        elif check_flow[-1] == "arrow-forward":
-            flow = flow * -1
-        elif check_flow[-1] == "arrow-backward":
-            pass
-        else:
-            raise ValueError(
-                'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
+    try:
+        exchange = [item for item in json_content['Flows'] if item['Id'] == exchange_id][0]
+    except:
+        raise NotImplementedError('The exchange {} is not implemented'.format(sortedcodes))
 
     exchange = {
         'sortedZoneKeys': sortedcodes,
         'datetime': current_dt,
-        'netFlow': flow,
+        'netFlow': exchange.get('NumValue'),
         'source': 'so-ups.ru'
     }
 
