@@ -3,6 +3,7 @@ import pandas as pd
 import arrow  # the arrow library is used to handle datetimes
 import requests  # the request library is used to fetch content through HTTP
 import pytz
+from .lib.exceptions import ParserException
 
 
 ids = {
@@ -42,15 +43,16 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
     response = r.get(url)
 
+    # raise errors for responses with an error or no data
     if response.status_code != 200:
         error = response.json()['error']['__type']
         text = response.json()['error']['info']['orig']
-        logger.warning('"{}" fetching production data for {}: {}'.format(
-            error, zone_key, text))
-        return
+        msg = '"{}" fetching production data for {}: {}'.format(
+            error, zone_key, text)
+        raise requests.exceptions.HTTPError(msg)
     if response.json()['result']['records']:
-        logger.info('API returned no data for {} production'.format(zone_key))
-        return
+        raise ParserException(
+            "DK.py", 'API returned no data', zone_key=zone_key)
 
     df = pd.DataFrame(response.json()['result']['records'])
     # index response dataframe by time
@@ -96,6 +98,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
             data['production'][f] = df.loc[dt, f]
         output.append(data)
     return output
+
 
 def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
                    target_datetime=None, logger=logging.getLogger(__name__)):
@@ -148,22 +151,23 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
     response = r.get(url)
 
+    # raise errors for responses with an error or no data
     if response.status_code != 200:
         error = response.json()['error']['__type']
         text = response.json()['error']['info']['orig']
-        logger.warning('"{}" fetching exchange data for {}: {}'.format(
-            error, sorted_keys, text))
-        return
+        msg = '"{}" fetching exchange data for {}: {}'.format(
+            error, sorted_keys, text)
+        raise requests.exceptions.HTTPError(msg)
     if response.json()['result']['records']:
-        logger.info('API returned no data for exchange {}'.format(sorted_keys))
-        return
+        raise ParserException(
+            "DK.py", 'API returned no data', zone_key=sorted_keys)
 
     df = pd.DataFrame(response.json()['result']['records'])
     df = df.set_index('timestamp')
     df.index = pd.DatetimeIndex(df.index)
     # drop empty rows
     df.dropna(how='all', inplace=True)
-    
+
     # all exchanges are reported as net import,
     # where as eMap expects net export from
     # the first zone in alphabetical order
