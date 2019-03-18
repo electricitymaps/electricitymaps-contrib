@@ -5,6 +5,7 @@
 from dateutil import parser, tz
 from io import StringIO
 from logging import getLogger
+import datetime
 import pandas as pd
 import requests
 
@@ -208,7 +209,10 @@ def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, l
     if not target_datetime:
         raise NotImplementedError("This parser requires a target datetime in format YYYYMMDD.")
 
-    dt = parser.parse(target_datetime)
+    if isinstance(target_datetime, datetime.datetime):
+        dt = target_datetime
+    else:
+        dt = parser.parse(target_datetime)
     LOAD_URL = 'https://marketplace.spp.org/file-api/download/mtlf-vs-actual?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTLF-{0}{1:02d}{2:02d}0000.csv'.format(dt.year, dt.month, dt.day)
 
     raw_data = get_data(LOAD_URL)
@@ -253,7 +257,10 @@ def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=
     if not target_datetime:
         raise NotImplementedError("This parser requires a target datetime in format YYYYMMDD.")
 
-    dt = parser.parse(target_datetime)
+    if isinstance(target_datetime, datetime.datetime):
+        dt = target_datetime
+    else:
+        dt = parser.parse(target_datetime)
     FORECAST_URL = 'https://marketplace.spp.org/file-api/download/midterm-resource-forecast?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv'.format(dt.year, dt.month, dt.day)
 
     raw_data = get_data(FORECAST_URL)

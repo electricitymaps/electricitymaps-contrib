@@ -22,7 +22,7 @@ PARSER_KEY_TO_DICT = {
     'price': PRICE_PARSERS,
     'consumptionForecast': CONSUMPTION_FORECAST_PARSERS,
     'generationForecast': GENERATION_FORECAST_PARSERS,
-    'exchangeForecast': EXCHANGE_FORECAST_PARSERS
+    'exchangeForecast': EXCHANGE_FORECAST_PARSERS,
 }
 
 # Read all zones
