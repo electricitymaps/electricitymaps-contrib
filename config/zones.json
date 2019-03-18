@@ -3906,6 +3906,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
       "production": "US_SPP.fetch_production"
     },
     "timezone": null,
