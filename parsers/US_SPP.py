@@ -207,7 +207,7 @@ def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, l
     """
 
     if not target_datetime:
-        raise NotImplementedError("This parser requires a target datetime in format YYYYMMDD.")
+        target_datetime = datetime.datetime.now()
 
     if isinstance(target_datetime, datetime.datetime):
         dt = target_datetime
@@ -255,7 +255,7 @@ def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=
     """
 
     if not target_datetime:
-        raise NotImplementedError("This parser requires a target datetime in format YYYYMMDD.")
+        target_datetime = datetime.datetime.now()
 
     if isinstance(target_datetime, datetime.datetime):
         dt = target_datetime
