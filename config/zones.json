@@ -3634,6 +3634,7 @@
     "timezone": null
   },
   "US-TX": {
+    "_comment": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf lists wind capacity and utility scale solar and percentages, unknown capacity calculated from those figures",
     "bounding_box": [
       [
         -106.963657,
@@ -3644,8 +3645,20 @@
         36.265205
       ]
     ],
+    "capacity": {
+      "wind": 21751,
+      "solar": 1719,
+      "unknown": 69483
+    },
+    "contributors": [
+      "https://github.com/typicalTYLER"
+    ],
     "flag_file_name": "us.png",
-    "timezone": null
+    "parsers": {
+      "production": "US_TX.fetch_production",
+      "consumption": "US_TX.fetch_consumption"
+    },
+    "timezone": "US/Central"
   },
   "US-GA": {
     "bounding_box": [
