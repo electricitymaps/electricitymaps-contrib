@@ -11,7 +11,7 @@ import arrow
 import requests
 from lxml import html
 
-from parsers.lib.exceptions import ParserException
+from .lib.exceptions import ParserException
 
 # This xpath gets the second cell in a row which has a cell that contains parameterized text
 REAL_TIME_DATA_XPATH = "//tr[td[contains(text(),'{}')]]/td[2]/text()"
