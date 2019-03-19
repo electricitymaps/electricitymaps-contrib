@@ -50,7 +50,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
         msg = '"{}" fetching production data for {}: {}'.format(
             error, zone_key, text)
         raise requests.exceptions.HTTPError(msg)
-    if response.json()['result']['records']:
+    if not response.json()['result']['records']:
         raise ParserException(
             "DK.py", 'API returned no data', zone_key=zone_key)
 
@@ -158,7 +158,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         msg = '"{}" fetching exchange data for {}: {}'.format(
             error, sorted_keys, text)
         raise requests.exceptions.HTTPError(msg)
-    if response.json()['result']['records']:
+    if not response.json()['result']['records']:
         raise ParserException(
             "DK.py", 'API returned no data', zone_key=sorted_keys)
 
