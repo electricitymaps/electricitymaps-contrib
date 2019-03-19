@@ -35,7 +35,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
                      ("OffshoreWindPower"%2B"OnshoreWindPower") as wind, \
                      "SolarPower" as solar from "{0}" \
                      WHERE "PriceArea" = \'{1}\' AND \
-                     "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'8 hours\') AND \
+                     "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'24 hours\') AND \
                      "HourUTC" <= timestamp\'{2}\' \
                      ORDER BY "HourUTC" ASC'.format(ids['energy_bal'], zone, timestamp)
                      
@@ -141,7 +141,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     # fetch real-time/5-min data
     sqlstr = 'SELECT "Minutes5UTC" as timestamp, {0} as "netFlow" \
                      from "{1}" WHERE "PriceArea" = \'{2}\' AND \
-                     "Minutes5UTC" >= (timestamp\'{3}\'-INTERVAL \'8 hours\') AND \
+                     "Minutes5UTC" >= (timestamp\'{3}\'-INTERVAL \'24 hours\') AND \
                      "Minutes5UTC" <= timestamp\'{3}\' \
                      ORDER BY "Minutes5UTC" ASC'.format(exch_map[sorted_keys],
                                                         ids['real_time'],
