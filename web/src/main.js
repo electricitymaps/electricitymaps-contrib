@@ -190,22 +190,27 @@ const app = {
   onDeviceReady() {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
+      // TODO(olc): What about Xr and Xs?
+      const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
+        ? 30
+        : 20;
       d3.select('#header')
-        .style('padding-top', '20px');
+        .style('padding-top', `${extraPadding}px`);
       d3.select('#mobile-header')
-        .style('padding-top', '20px');
+        .style('padding-top', `${extraPadding}px`);
+
+      d3.select('.prodcons-toggle-container')
+        .style('margin-top', `${extraPadding}px`);
+
+      d3.select('.flash-message .inner')
+        .style('padding-top', `${extraPadding}px`);
+
+      d3.select('.mapboxgl-ctrl-top-right')
+        .style('transform', `translate(0,${extraPadding}px)`);
+      d3.select('.layer-buttons-container')
+        .style('transform', `translate(0,${extraPadding}px)`);
       if (typeof zoneMap !== 'undefined') {
         zoneMap.map.resize();
-      }
-      // iphone X nodge
-      if (device.model === 'iPhone10,3' || device.model === 'iPhone10,6') {
-        d3.select('#header')
-          .style('padding-top', '30px');
-        d3.select('#mobile-header')
-          .style('padding-top', '30px');
-        if (typeof zoneMap !== 'undefined') {
-          zoneMap.map.resize();
-        }
       }
     }
 

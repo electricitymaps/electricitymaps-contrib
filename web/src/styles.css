@@ -50,7 +50,7 @@ line, path {
     transition: all 0.5s ease;
     width: 100%;
     top: -100px; /* hidden state */
-    z-index: 2;
+    z-index: 99;
 }
 .flash-message .inner {
     display: block;
