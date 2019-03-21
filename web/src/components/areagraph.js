@@ -399,7 +399,7 @@ AreaGraph.prototype.selectedIndex = function(arg) {
                 .attr('x2', this.x(this._data[this._selectedIndex].datetime))
                 .style('display', 'block');
         }
-        if (this._selectedLayerIndex != null && this._selectedIndex != null) {
+        if (this._selectedLayerIndex != null && this._selectedIndex != null && this._data[this._selectedIndex]) {
             var selectedData = this.stack[this._selectedLayerIndex][this._selectedIndex];
             this.markerElement
                 .attr('cx', this.x(this._data[this._selectedIndex].datetime))

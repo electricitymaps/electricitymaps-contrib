@@ -885,6 +885,7 @@ zoneList.setClickHandler((selectedCountry) => {
 
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {
+  if (e.key == null) { return; }
   const currentPage = getState().application.showPageState;
   if (currentPage === 'map') {
     if (e.key === 'Enter') {

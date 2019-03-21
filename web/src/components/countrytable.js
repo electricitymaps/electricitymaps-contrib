@@ -97,11 +97,11 @@ function CountryTable(selector, modeColor, modeOrder) {
 CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
-    if (this.root.node().getBoundingClientRect.width === 0){
+    if (this.root.node().getBoundingClientRect.width === 0) {
         return;
     }
 
-    if (!this._data) {
+    if (!this._data || !this._data.countryCode) {
         return;
     }
  
