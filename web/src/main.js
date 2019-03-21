@@ -1005,7 +1005,9 @@ function renderCountryTable(state) {
     countryTable.showNoParserMessageIf(zoneIsMissingParser);
     const zoneHasNotProductionDataAtTimestamp = (!d.production || !Object.keys(d.production).length) && zonesThatCanHaveZeroProduction.indexOf(state.application.selectedZoneName) === -1;
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
-    countryTable.showNoDataMessageIf(zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
+    countryTable.showNoDataMessageIf(
+      zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser,
+      dataIsMostRecentDatapoint);
   }
 }
 

@@ -26,7 +26,7 @@ function CountryTable(selector, modeColor, modeOrder) {
 
     this.root = d3.select(selector);
 
-    this.wrapperNoDataOverlay = new NoDataOverlay('.country-panel-wrap');
+    this.wrapperNoDataOverlay = new NoDataOverlay('.country-table-container');
     this.container = this.root.append('svg').attr('class', 'country-table');
     
     // Create containers
