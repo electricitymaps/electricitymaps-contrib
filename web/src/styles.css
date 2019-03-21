@@ -1112,8 +1112,8 @@ label[for="checkbox-colorblind"] {
     display: inline-block;
     background-image: url(../images/built-by-tomorrow-white.svg);
     background-size: cover;
-    width: 150px;
-    height: 16px;
+    width: 280px;
+    height: 42px;
 }
 
 #watermark.brightmode #built-by-tomorrow{
@@ -1719,7 +1719,7 @@ div.highscore-button:hover {
 }
 
 .mobile-watermark img {
-    width: 220px;
+    width: 280px;
 }
 
 .zone-time-slider {
