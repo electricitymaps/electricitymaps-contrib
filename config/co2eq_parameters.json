@@ -12,24 +12,24 @@
         "value": 301.13684338512996
       },
       "biomass": {
-        "source": "IPCC 2014",
-        "value": 230
+        "source": "IPCC 2018",
+        "value": 18
       },
       "coal": {
-        "source": "IPCC 2014",
-        "value": 820
+        "source": "IPCC 2018",
+        "value": 1001
       },
       "gas": {
-        "source": "IPCC 2014",
-        "value": 490
+        "source": "IPCC 2018",
+        "value": 469
       },
       "geothermal": {
-        "source": "IPCC 2014",
-        "value": 38
+        "source": "IPCC 2018",
+        "value": 45
       },
       "hydro": {
-        "source": "IPCC 2014",
-        "value": 24
+        "source": "IPCC 2018",
+        "value": 4
       },
       "hydro charge": {
         "_comment": "Emissions are counted at discharge",
@@ -42,17 +42,16 @@
         "value": 301.13684338512996
       },
       "nuclear": {
-        "source": "IPCC 2014",
-        "value": 12
+        "source": "IPCC 2018",
+        "value": 16
       },
       "oil": {
-        "_comment": "UK Parliamentary Office of Science and Technology (2006) 'Carbon footprint of electricity generation'",
-        "source": "UK POST 2014",
-        "value": 650
+        "source": "IPCC 2018",
+        "value": 840
       },
       "solar": {
-        "source": "IPCC 2014",
-        "value": 45
+        "source": "IPCC 2018",
+        "value": 46
       },
       "unknown": {
         "_comment": "assume conventional",
@@ -60,8 +59,8 @@
         "value": 700
       },
       "wind": {
-        "source": "IPCC 2014",
-        "value": 11
+        "source": "IPCC 2018",
+        "value": 12
       }
     },
     "zoneOverrides": {
