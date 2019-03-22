@@ -14,7 +14,7 @@ import requests
 # Renewable energy (PURPA) is likely bought with credits from outside the Utility
 # area and not supplied to customers. For that reason those types are commented out.
 
-PRODUCTION_URL = 'https://api.idahopower.com/Energy/Api/V1/GenerationAndDemand/Subset'
+PRODUCTION_URL = 'https://api.idahopower.com/IdaStream/Api/V1/GenerationAndDemand/Subset'
 
 GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
                       'Hydro': 'hydro',
