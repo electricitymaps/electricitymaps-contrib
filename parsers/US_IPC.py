@@ -23,7 +23,7 @@ GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
                       'PURPA/Non-Utility Wind': 'wind',
                       'Natural Gas': 'gas',
                       'PURPA/Non-Utility Solar': 'solar'
-                      #'PURPA Other': 'biomass'
+                      'PURPA Other': 'biomass'
                       }
 
 TIMEZONE = tz.gettz("America/Boise")
