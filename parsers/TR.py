@@ -11,7 +11,7 @@ from .lib import zonekey
 
 SEARCH_DATA = re.compile(r'var gunlukUretimEgrisiData = (?P<data>.*);')
 TIMEZONE = 'Europe/Istanbul'
-URL = 'https://ytbs.teias.gov.tr/ytbs/frm_login.jsf'
+URL = 'https://ytbsbilgi.teias.gov.tr/ytbsbilgi/frm_istatistikler.jsf'
 EMPTY_DAY = -1
 
 PRICE_URL = 'https://seffaflik.epias.com.tr/transparency/piyasalar/' \
