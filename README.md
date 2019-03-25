@@ -284,7 +284,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
-  - CAISO: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
+  - CAISO
+    - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
+    - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
