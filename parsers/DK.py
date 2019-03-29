@@ -3,6 +3,7 @@ import pandas as pd
 import arrow  # the arrow library is used to handle datetimes
 import requests  # the request library is used to fetch content through HTTP
 import pytz
+import time
 from .lib.exceptions import ParserException
 
 
@@ -44,6 +45,13 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     response = r.get(url)
 
     # raise errors for responses with an error or no data
+    if response.status_code == 429:
+        # Wait and retry
+        logger.warn('429: Retrying..')
+        time.sleep(10)
+        response = r.get(url)
+    if response.status_code == 429:
+        raise Exception('429 status code obtained after retrying..')
     if response.status_code != 200:
         error = response.json()['error']['__type']
         text = response.json()['error']['info']['orig']
