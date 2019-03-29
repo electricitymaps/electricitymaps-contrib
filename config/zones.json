@@ -3523,16 +3523,18 @@
   },
   "UA": {
     "capacity": {
-      "hydro": 5380.8,
+      "biomass": 98,
+      "hydro": 6174,
       "hydro storage": 1,
       "nuclear": 13835,
-      "solar": 345,
-      "wind": 420
+      "solar": 1509,
+      "wind": 533
     },
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/corradio",
-      "https://github.com/MariusKroon"
+      "https://github.com/MariusKroon",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
