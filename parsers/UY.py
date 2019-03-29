@@ -47,7 +47,7 @@ def get_salto_grande(session):
 
 def parse_page(session):
     r = session or requests.session()
-    url = 'http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx'
+    url = 'https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
