@@ -53,10 +53,15 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     if response.status_code == 429:
         raise Exception('429 status code obtained after retrying..')
     if response.status_code != 200:
-        error = response.json()['error']['__type']
-        text = response.json()['error']['info']['orig']
-        msg = '"{}" fetching production data for {}: {}'.format(
-            error, zone_key, text)
+        j = response.json()
+        if 'error' in j and 'info' in j['error']:
+            error = j['error']['__type']
+            text = j['error']['info']['orig']
+            msg = '"{}" fetching production data for {}: {}'.format(
+                error, zone_key, text)
+        else:
+            msg = 'error while fetching production data for {}: {}'.format(
+                zone_key, json.dumps(j))
         raise requests.exceptions.HTTPError(msg)
     if not response.json()['result']['records']:
         raise ParserException(
