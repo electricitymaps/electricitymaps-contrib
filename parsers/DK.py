@@ -179,10 +179,10 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
             error = j['error']['__type']
             text = j['error']['info']['orig']
             msg = '"{}" fetching exchange data for {}: {}'.format(
-                error, zone_key, text)
+                error, sorted_keys, text)
         else:
             msg = 'error while fetching exchange data for {}: {}'.format(
-                zone_key, json.dumps(j))
+                sorted_keys, json.dumps(j))
         raise requests.exceptions.HTTPError(msg)
     if not response.json()['result']['records']:
         raise ParserException(
