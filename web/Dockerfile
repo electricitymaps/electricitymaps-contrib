@@ -1,4 +1,4 @@
-FROM node:10.9.0
+FROM node:10.15.3
 WORKDIR /home/web
 
 # Install dependencies
