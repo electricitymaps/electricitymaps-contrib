@@ -46,18 +46,15 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     response = r.get(url)
 
     # raise errors for responses with an error or no data
-    if response.status_code == 429:
+    retry_count = 0
+    while response.status_code in [429, 403]:
+        retry_count += 1
+        if retry_count > 5:
+            raise Exception('Retried too many times..')
         # Wait and retry
-        logger.warn('429: Retrying..')
-        time.sleep(20)
+        logger.warn('Retrying..')
+        time.sleep(5 ** retry_count)
         response = r.get(url)
-    if response.status_code == 403:
-        # Wait and retry (when out of quota)
-        logger.warn('403: Retrying..')
-        time.sleep(120)
-        response = r.get(url)
-    if response.status_code == 429:
-        raise Exception('429 status code obtained after retrying..')
     if response.status_code != 200:
         j = response.json()
         if 'error' in j and 'info' in j['error']:
@@ -171,18 +168,15 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     response = r.get(url)
 
     # raise errors for responses with an error or no data
-    if response.status_code == 429:
+    retry_count = 0
+    while response.status_code in [429, 403]:
+        retry_count += 1
+        if retry_count > 5:
+            raise Exception('Retried too many times..')
         # Wait and retry
-        logger.warn('429: Retrying..')
-        time.sleep(20)
+        logger.warn('Retrying..')
+        time.sleep(5 ** retry_count)
         response = r.get(url)
-    if response.status_code == 403:
-        # Wait and retry (when out of quota)
-        logger.warn('403: Retrying..')
-        time.sleep(120)
-        response = r.get(url)
-    if response.status_code == 429:
-        raise Exception('429 status code obtained after retrying..')
     if response.status_code != 200:
         j = response.json()
         if 'error' in j and 'info' in j['error']:
