@@ -610,6 +610,12 @@
         "hydro discharge": {
           "source": "2018 average by Tomorrow",
           "value": 291.5736740216201
+        },
+        "unknown": {
+          "_comment": "estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in 2018",
+          "_url": "https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine",
+          "source": "renewable mix; assumes 50% solar, 50% wind",
+          "value": 28
         }
       },
       "US-CA": {
