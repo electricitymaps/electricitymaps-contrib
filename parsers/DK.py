@@ -49,7 +49,12 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     if response.status_code == 429:
         # Wait and retry
         logger.warn('429: Retrying..')
-        time.sleep(10)
+        time.sleep(20)
+        response = r.get(url)
+    if response.status_code == 403:
+        # Wait and retry (when out of quota)
+        logger.warn('403: Retrying..')
+        time.sleep(120)
         response = r.get(url)
     if response.status_code == 429:
         raise Exception('429 status code obtained after retrying..')
@@ -169,7 +174,12 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     if response.status_code == 429:
         # Wait and retry
         logger.warn('429: Retrying..')
-        time.sleep(10)
+        time.sleep(20)
+        response = r.get(url)
+    if response.status_code == 403:
+        # Wait and retry (when out of quota)
+        logger.warn('403: Retrying..')
+        time.sleep(120)
         response = r.get(url)
     if response.status_code == 429:
         raise Exception('429 status code obtained after retrying..')
