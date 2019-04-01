@@ -47,7 +47,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
 
     # raise errors for responses with an error or no data
     retry_count = 0
-    while response.status_code in [429, 403]:
+    while response.status_code in [429, 403, 500]:
         retry_count += 1
         if retry_count > 5:
             raise Exception('Retried too many times..')
@@ -169,7 +169,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
 
     # raise errors for responses with an error or no data
     retry_count = 0
-    while response.status_code in [429, 403]:
+    while response.status_code in [429, 403, 500]:
         retry_count += 1
         if retry_count > 5:
             raise Exception('Retried too many times..')
