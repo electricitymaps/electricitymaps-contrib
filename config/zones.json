@@ -1060,7 +1060,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "DK.fetch_production",
+      "production": "ENTSOE.fetch_production",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Copenhagen"
@@ -1099,7 +1099,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "DK.fetch_production",
+      "production": "ENTSOE.fetch_production",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Copenhagen"

@@ -820,7 +820,7 @@
       55.363057
     ],
     "parsers": {
-      "exchange": "DK_BHM.fetch_exchange"
+      "exchange": "DK.fetch_exchange"
     },
     "rotation": -45
   },

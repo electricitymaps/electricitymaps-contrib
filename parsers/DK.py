@@ -19,6 +19,9 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     """
     Queries "Electricity balance Non-Validated" from energinet api
     for Danish bidding zones
+
+    NOTE: Missing historical wind/solar data @ 2017-08-01
+
     """
     r = session or requests.session()
     
@@ -132,6 +135,8 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         zone = 'DK1'
     elif 'DK2' in sorted_keys:
         zone = 'DK2'
+    elif 'DK-BHM' in sorted_keys:
+        zone = 'DK2'
     else:
         raise NotImplementedError(
             'Only able to fetch exchanges for Danish bidding zones')
@@ -145,7 +150,8 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         'DK-DK1->SE': '"ExchangeSweden"',
         'DK-DK1->SE-SE3': '"ExchangeSweden"',
         'DK-DK2->SE': '("ExchangeSweden" - "BornholmSE4")',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
-        'DK-DK2->SE-SE4': '("ExchangeSweden" - "BornholmSE4")'  # but Bornholm island is reported separately from DK-DK2 in eMap
+        'DK-DK2->SE-SE4': '("ExchangeSweden" - "BornholmSE4")',  # but Bornholm island is reported separately from DK-DK2 in eMap
+        'DK-BHM->SE': '"BornholmSE4"',
          
     }
     if sorted_keys not in exch_map:
@@ -201,7 +207,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     # all exchanges are reported as net import,
     # where as eMap expects net export from
     # the first zone in alphabetical order
-    if 'DE' not in sorted_keys:
+    if 'DE' not in sorted_keys and 'DK-BHM' not in sorted_keys:
         df['netFlow'] = -1 * df['netFlow']
     # Format output
     output = []
