@@ -406,6 +406,14 @@
           "value": 413.76308999360253
         }
       },
+      "KR": {
+        "unknown": {
+          "_comment": "Source: Derived from 2016 IEA data",
+          "_url": "https://www.iea.org/statistics/?country=KOREA&year=2016&category=Key%20indicators&indicator=ElecGenByFuel&mode=chart&dataTable=ELECTRICITYANDHEAT",
+          "source": "assumes 41.8% coal, 3.1% oil, 22.5% gas, 1.1% biofuels, 0.9% solar, 0.3% wind",
+          "value": 680
+        }
+      },
       "LT": {
         "hydro discharge": {
           "source": "2018 average by Tomorrow",
