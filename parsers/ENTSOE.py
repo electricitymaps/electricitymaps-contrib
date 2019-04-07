@@ -676,6 +676,10 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
+        if timeseries.find_all('contract_marketagreement.type')[0].contents[0] != 'A05':
+            continue
+
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             if not is_import:
