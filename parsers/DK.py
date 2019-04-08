@@ -207,7 +207,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     # all exchanges are reported as net import,
     # where as eMap expects net export from
     # the first zone in alphabetical order
-    if 'DE' not in sorted_keys and 'DK-BHM' not in sorted_keys:
+    if 'DE' not in sorted_keys:
         df['netFlow'] = -1 * df['netFlow']
     # Format output
     output = []
