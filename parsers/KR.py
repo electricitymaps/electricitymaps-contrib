@@ -17,6 +17,20 @@ NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020
                 'http://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
                 'http://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312']
 
+HYDRO_CAPACITIES = {'Hwacheon': 108,
+                    'Chuncheon': 63,
+                    'Anheung': 0.6,
+                    'Uiam': 47,
+                    'Cheongpyeong': 140,
+                    'Paldang': 120,
+                    'Goesan': 3,
+                    'Chilbo': 35,
+                    'Boseonggang': 4.5
+                    }
+
+# Gangneung hydro plant used only for peak load and backup, capacity info not available.
+# Euiam hydro plant, no info available.
+
 
 def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     if timestamps.count(timestamps[0]) == len(timestamps):
@@ -41,8 +55,22 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     return unified_timestamp
 
 
-#TODO capacity check
-def fetch_hydro(session):
+def check_hydro_capacity(plant_name, value, logger):
+    try:
+        max_value = HYDRO_CAPACITIES[plant_name]
+    except KeyError:
+        if value != 0.0:
+            logger.warning('New hydro plant seen - {} - {}MW'.format(plant_name, value), extra={'key': 'KR'})
+        return True
+
+    if value > max_value:
+        logger.warning('{} reports {}MW generation with capacity of {}MW - discarding'.format(plant_name, value, max_value), extra={'key': 'KR'})
+        raise ValueError
+    else:
+        return True
+
+
+def fetch_hydro(session, logger):
     req = session.get(HYDRO_URL)
     soup = BeautifulSoup(req.content, 'html.parser')
     table = soup.find("div", {"class": "dep02Sec"})
@@ -57,12 +85,21 @@ def fetch_hydro(session):
             # column headers
             continue
 
+        plant_name = row.find("th").text
+
         generation = sub_row.find("div", {"class": "tdCont alC"})
+        value = float(generation.text)
+
         tag_dt = generation.findNext("td")
         dt_naive = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm:ss")
-        plant_dts.append(dt_naive)
 
-        total += float(generation.text)
+        try:
+            check_hydro_capacity(plant_name, value, logger)
+        except ValueError:
+            continue
+
+        plant_dts.append(dt_naive)
+        total += value
 
     dt = timestamp_processor(plant_dts)
 
@@ -152,7 +189,7 @@ def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger
 
     s=session or requests.Session()
 
-    hydro, hydro_dt = fetch_hydro(s)
+    hydro, hydro_dt = fetch_hydro(s, logger)
     nuclear, nuclear_dt = fetch_nuclear(s)
     load, load_dt = fetch_load(s)
 
