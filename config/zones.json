@@ -2444,6 +2444,33 @@
       ]
     ]
   },
+  "KR": {
+    "bounding_box": [
+      [
+        126.11,
+        34.39
+      ],
+      [
+        129.46,
+        38.61
+      ]
+    ],
+    "capacity": {
+      "nuclear": 22529,
+      "coal": 36709,
+      "oil": 4155,
+      "gas": 37838,
+      "hydro": 1789
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "KR.fetch_production"
+    },
+    "timezone": "Asia/Seoul"
+  },
   "LT": {
     "bounding_box": [
       [
