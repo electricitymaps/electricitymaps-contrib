@@ -168,10 +168,13 @@ def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger
                     'hydro': hydro,
                     'unknown': unknown
                   },
-                  'source': 'khnp.co.kr, kpx.or.kr',
-                  'zoneKey': zone_key,
-                  'datetime': dt_aware.datetime,
-                  'storage': {}
+                   'source': 'khnp.co.kr, kpx.or.kr',
+                   'zoneKey': zone_key,
+                   'datetime': dt_aware.datetime,
+                   'storage': {
+                     'hydro': None,
+                     'battery': None
+                  }
                   }
 
     return production
