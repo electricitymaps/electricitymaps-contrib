@@ -33,6 +33,10 @@ HYDRO_CAPACITIES = {'Hwacheon': 108,
 
 
 def timestamp_processor(timestamps, with_tz=False, check_delta=False):
+    """Compares naive arrow objects, returning the average.
+    Optionally can determine if timestamps are too disparate to be used.
+    Returns an arrow object, with optional timezone.
+    """
     if timestamps.count(timestamps[0]) == len(timestamps):
         unified_timestamp = timestamps[0]
     else:
@@ -56,6 +60,9 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
 
 
 def check_hydro_capacity(plant_name, value, logger):
+    """Makes sure that generation for each hydro plant isn't above listed capacity.
+    Returns True or raises ValueError.
+    """
     try:
         max_value = HYDRO_CAPACITIES[plant_name]
     except KeyError:
@@ -71,6 +78,7 @@ def check_hydro_capacity(plant_name, value, logger):
 
 
 def fetch_hydro(session, logger):
+    """Returns 2 element tuple in form (float, arrow object)."""
     req = session.get(HYDRO_URL)
     soup = BeautifulSoup(req.content, 'html.parser')
     table = soup.find("div", {"class": "dep02Sec"})
@@ -107,6 +115,7 @@ def fetch_hydro(session, logger):
 
 
 def fetch_nuclear(session):
+    """Returns 2 element tuple in form (float, arrow object)."""
     plant_dts = []
     total = 0.0
     for url in NUCLEAR_URLS:
@@ -140,6 +149,7 @@ def fetch_nuclear(session):
 
 
 def fetch_load(session):
+    """Returns 2 element tuple in form (float, arrow object)."""
     req = session.get(LOAD_URL)
     soup = BeautifulSoup(req.content, 'html.parser')
 
