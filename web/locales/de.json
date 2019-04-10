@@ -88,7 +88,10 @@
         "hideSolarLayer": "Solarlayer verbergen",
         "toggleDarkMode": "Tag-/Nachtmodus umschalten",
         "noParserInfo": "Keine Daten verfügbar",
-        "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar"
+        "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar",
+        "production": "Produktion",
+        "consumption": "Verbrauch",
+        "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie"
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
@@ -1482,6 +1485,10 @@
         "US-TX": {
             "countryName": "Vereinigte Staaten von Amerika",
             "zoneName": "Texas"
+        },
+        "AUS-TAS-KI": {
+            "countryName": "Tasmanien",
+            "zoneName": "King Island"
         }
     },
     "mobile-info-tab": {
