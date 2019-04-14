@@ -1470,13 +1470,14 @@
       ]
     ],
     "capacity": {
+      "biomass": 2026,
       "coal": 2997,
-      "gas": 11850,
+      "gas": 12151,
       "hydro": 25510,
       "nuclear": 63130,
-      "oil": 4098,
-      "solar": 7660,
-      "wind": 13550
+      "oil": 3440,
+      "solar": 8527,
+      "wind": 15108
     },
     "contributors": [
       "https://github.com/corradio",
