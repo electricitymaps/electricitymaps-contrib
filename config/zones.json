@@ -309,7 +309,6 @@
     "timezone": "Asia/Dhaka"
   },
   "BE": {
-    "_comment": "entsoe coal figure outdated",
     "bounding_box": [
       [
         2.51357303225,
@@ -321,16 +320,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 1076,
+      "biomass": 1113,
       "coal": 0,
-      "gas": 5811,
+      "gas": 6974,
       "geothermal": 0,
-      "hydro": 178,
+      "hydro": 181,
       "hydro storage": 1308,
       "nuclear": 5919,
-      "oil": 260,
-      "solar": 2953,
-      "wind": 2622
+      "oil": 334,
+      "solar": 3581,
+      "wind": 3247
     },
     "contributors": [
       "https://github.com/corradio"
