@@ -128,7 +128,8 @@ def production_processor(df):
     datapoints = []
     for index, row in df.iterrows():
         snapshot = {}
-        snapshot['datetime'] = row['TimeStamp']
+        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
+                                                           dayfirst=True))
         snapshot['gas'] = row['Gas_MW']
         snapshot['coal'] = row['Coal_MW']
         snapshot['oil'] = row['Distillate_MW'] + row['Diesel_MW']
