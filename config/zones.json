@@ -1553,7 +1553,9 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/brunolajoie",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
