@@ -152,7 +152,7 @@ def moyle_processor(df):
         snapshot = {}
         snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
                                                            dayfirst=True))
-        snapshot['netFlow'] = -1 * row['Total_Moyle_Load_MW']
+        snapshot['netFlow'] = row['Total_Moyle_Load_MW']
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedZoneKeys'] = 'GB->GB-NIR'
         datapoints.append(snapshot)
