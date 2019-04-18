@@ -1933,8 +1933,9 @@
       12.254138,
       61.008235
     ],
+    "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
@@ -1999,8 +2000,9 @@
       15.462856,
       66.273628
     ],
+    "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 130
   },
