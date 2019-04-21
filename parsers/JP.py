@@ -259,8 +259,13 @@ def parse_dt(row):
     """
     Parses timestamps from date and time
     """
-    return arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
+    if 'AM' in row['Time'] or 'PM' in row['Time']:
+        timestamp= arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
+                     'YYYY-M-D H:mm A').replace(tzinfo='Asia/Tokyo').datetime
+    else:
+        timestamp= arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
                      'YYYY-M-D H:mm').replace(tzinfo='Asia/Tokyo').datetime
+    return timestamp
 
 
 if __name__ == '__main__':
