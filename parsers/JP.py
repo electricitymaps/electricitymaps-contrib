@@ -38,12 +38,45 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
     Calculates production from consumption and imports for a given area
     All production is mapped to unknown
     """
+    df = fetch_production_df(zone_key, session, target_datetime)
+    # add a row to production for each entry in the dictionary:
+    
+    datalist = []
+    
+    for i in df.index:
+        data = {
+            'zoneKey': zone_key,
+            'datetime': df.loc[i, 'datetime'].to_pydatetime(),
+            'production': {
+                'biomass': None,
+                'coal': None,
+                'gas': None,
+                'hydro': None,
+                'nuclear': None,
+                'oil': None,
+                'solar': df.loc[i, 'solar'] if 'solar' in df.columns else None,
+                'wind': None,
+                'geothermal': None,
+                'unknown': df.loc[i, 'unknown']
+            },
+            'storage': {},
+            'source': ['occtonet.or.jp', sources[zone_key]]
+            }
+        datalist.append(data)
+    return datalist
+
+def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
+                      logger=logging.getLogger(__name__)):
+    """
+    Calculates production from consumption and imports for a given area
+    All production is mapped to unknown
+    """
     if target_datetime:
         raise NotImplementedError(
             'This parser is not yet able to parse past dates')
     exch_map = {
         'JP-HKD':['JP-TH'],
-        'JP-TH':['JP-TK'],
+        'JP-TH':['JP-TK', 'JP-HKD'],
         'JP-TK':['JP-TH', 'JP-CB'],
         'JP-CB':['JP-TK', 'JP-HR', 'JP-KN'],
         'JP-HR':['JP-CB', 'JP-KN'],
@@ -64,38 +97,19 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
             df['imports'] = df['imports']+df[exchname]
         else:
             df['imports'] = df['imports']-df[exchname]
-    df['prod'] = df['cons']-df['imports']
-    # add a row to production for each entry in the dictionary:
-    
-    datalist = []
-    #for i in range(df.shape[0]):
-    for i in df.index:
-        data = {
-            'zoneKey': zone_key,
-            'datetime': df.loc[i, 'datetime'].to_pydatetime(),
-            'production': {
-                'biomass': None,
-                'coal': None,
-                'gas': None,
-                'hydro': None,
-                'nuclear': None,
-                'oil': None,
-                'solar': None,
-                'wind': None,
-                'geothermal': None,
-                'unknown': df.loc[i, 'prod']
-            },
-            'storage': {},
-            'source': ['occtonet.or.jp', sources[zone_key]]
-            }
-        datalist.append(data)
-    return datalist
-
+    # By default all production is mapped to unknown
+    df['unknown'] = df['cons']-df['imports']
+    # When there is solar, remove it from other production
+    if 'solar' in df.columns:
+        df['unknown'] = df['unknown']-df['solar']
+        
+    return df
 
 def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
                       logger=logging.getLogger(__name__)):
     """
     Returns the consumption for an area as a pandas DataFrame
+    For JP-CB the consumption file includes solar production
     """
     datestamp = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y%m%d')
     consumption_url = {
@@ -110,20 +124,34 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
         'JP-KY': 'http://www.kyuden.co.jp/power_usages/csv/juyo-hourly-{}.csv'.format(datestamp),
         'JP-ON': 'https://www.okiden.co.jp/denki/juyo_10_{}.csv'.format(datestamp)
         }
+    
+    
     # First roughly 40 rows of the consumption files have hourly data,
     # the parser skips to the rows with 5-min actual values 
     if zone_key == 'JP-KN':
         startrow = 44
+    elif zone_key == 'JP-CB':
+        startrow = 54
     else:
         startrow = 42
     df = pd.read_csv(consumption_url[zone_key], skiprows=startrow,
                      encoding='shift-jis')
-    df.columns = ['Date', 'Time', 'cons']
+    
+    if zone_key == 'JP-CB':
+        df.columns = ['Date', 'Time', 'cons', 'solar']
+    else:
+        df.columns = ['Date', 'Time', 'cons']
     # Convert 万kW to MW
     df['cons'] = 10*df['cons']
+    if 'solar' in df.columns:
+        df['solar'] = 10*df['solar']
+    
     df = df.dropna()
     df['datetime'] = df.apply(parse_dt, axis=1)
-    df = df[['datetime', 'cons']]
+    if 'solar' in df.columns:
+        df = df[['datetime', 'cons','solar']]
+    else:
+        df = df[['datetime', 'cons']]
     return df
 
 def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=None,
