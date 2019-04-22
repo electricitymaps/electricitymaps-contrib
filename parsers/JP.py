@@ -59,8 +59,8 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
                 'geothermal': None,
                 'unknown': df.loc[i, 'unknown']
             },
-            'storage': {},
-            'source': ['occtonet.or.jp', sources[zone_key]]
+            'storage': None,
+            'source': 'occtonet.or.jp', sources[zone_key],
             }
         datalist.append(data)
     return datalist
@@ -115,7 +115,7 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
     consumption_url = {
         'JP-HKD': 'http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv'.format(datestamp),
         'JP-TH': 'http://setsuden.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv'.format(datestamp),
-        'JP-TK': 'http://www.tepco.co.jp/forecast/html/images/juyo-j.csv',
+        'JP-TK': 'http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv',
         'JP-HR': 'http://www.rikuden.co.jp/denki-yoho/csv/juyo_05_{}.csv'.format(datestamp),
         'JP-CB': 'http://denki-yoho.chuden.jp/denki_yoho_content_data/juyo_cepco003.csv',
         'JP-KN': 'http://www.kepco.co.jp/yamasou/juyo1_kansai.csv',
@@ -130,14 +130,14 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
     # the parser skips to the rows with 5-min actual values 
     if zone_key == 'JP-KN':
         startrow = 44
-    elif zone_key == 'JP-CB':
+    elif zone_key in ['JP-CB', 'JP-TK']:
         startrow = 54
     else:
         startrow = 42
     df = pd.read_csv(consumption_url[zone_key], skiprows=startrow,
                      encoding='shift-jis')
     
-    if zone_key == 'JP-CB':
+    if zone_key in ['JP-CB', 'JP-TK']:
         df.columns = ['Date', 'Time', 'cons', 'solar']
     else:
         df.columns = ['Date', 'Time', 'cons']
