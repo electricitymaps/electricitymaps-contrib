@@ -3012,6 +3012,22 @@
     },
     "timezone": "America/Lima"
   },
+  "PH": {
+    "bounding_box": [
+      [
+        117.17,
+        5.58
+      ],
+      [
+        126.53,
+        18.50
+      ]
+    ],
+    "parsers": {
+      "production": "PE.fetch_production"
+    },
+    "timezone": "Asia/Manila"
+  },
   "PL": {
     "bounding_box": [
       [
