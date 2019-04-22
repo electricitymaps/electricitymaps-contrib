@@ -8,12 +8,15 @@ from dateutil import parser as dparser
 from dateutil import tz
 from bs4 import BeautifulSoup
 
+#URL of the power system summary: http://epso.am/poweren.htm
+#URL of the detailled SCADA-page: http://epso.am/scada.htm
+
 power_plant_mapping = {
     'var atom': 'nuclear', # atom = 'atomnaya elektro stantsiya'
     'var tes': 'gas',      # tes = 'termalnaya elektro stantsiya' - only gas in AM
     'var ges': 'hydro',    # ges = 'gidro elektro stantsiya'
-    'var altern': 'gas'    # alternative station = 'Այլընտրանքային կայանների' on the Armenian version of the website
-    }                      # "alternative" could translate to "renewable", but it's more likely that it's for a new gas unit (CCGT)
+    'var altern': 'hydro'  # altern = two hydro power plants according to SCADA data (middle row, right box)
+    }
 
 tie_line_mapping = {
     'var Lalvar': 'GE',
@@ -65,11 +68,11 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
     data_split = data_string.split('\r\n')
 
     gas_tes = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[10])
-    gas_altern = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[8])
-    gas_total = float(gas_tes[0]) + float(gas_altern[0])
+    gas_total = float(gas_tes[0])
 
     hydro_ges = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[11])
-    hydro_total = float(hydro_ges[0])
+    hydro_altern = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[8])
+    hydro_total = float(hydro_ges[0])+float(hydro_altern[0])
 
     nuclear_atom = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[9])
     nuclear_total = float(nuclear_atom[0])
