@@ -39,6 +39,26 @@
     },
     "rotation": 0
   },
+  "AM->AZ":{
+    "lonlat": [
+      46.0,
+      39.75
+     ],
+    "parsers": {
+      "exchange": "AM.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "AM->IR":{
+    "lonlat": [
+      46.3,
+      38.9
+      ],
+    "parsers": {
+      "exchange": "AM.fetch_exchange"
+    },
+    "rotation": 180
+  },
   "AR->BR-S": {
     "lonlat": [
       -56.407453,
