@@ -68,7 +68,7 @@ def data_processor(df, logger):
         production = row.to_dict()
 
         dt = production.pop('Date/Time')
-        dt = dt.to_datetime()
+        dt = dt.to_pydatetime()
         mapped_production = {GENERATION_MAPPING[k]:v for k,v in production.items()
                              if k not in keys_to_remove}
 
