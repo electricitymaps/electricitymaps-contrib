@@ -88,9 +88,12 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
             'gas': gas_total,
             'hydro': hydro_total,
             'nuclear': nuclear_total,
+            'biomass': None,
             'coal': 0,
             'geothermal': 0,
-            'oil': 0
+            'oil': 0,
+            'solar': None,
+            'wind': None
             },
         'storage': {
             'hydro': 0,
