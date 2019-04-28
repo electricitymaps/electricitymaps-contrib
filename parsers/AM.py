@@ -4,8 +4,8 @@
 import arrow
 import re
 import requests
-from dateutil import parser as dparser
-from dateutil import tz
+from datetime import datetime
+from dateutil import parser as dparser, tz
 from bs4 import BeautifulSoup
 
 #URL of the power system summary: http://epso.am/poweren.htm
@@ -77,8 +77,8 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
     nuclear_atom = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[9])
     nuclear_total = float(nuclear_atom[0])
 
-    time_string = dparser.parse(data_split[14].split()[3],fuzzy=True)
-    date_time = time_string.replace(tzinfo=tz.gettz('Asia/Yerevan'))
+    yerevan = tz.gettz('Asia/Yerevan')
+    date_time = dparser.parse(data_split[14].split()[3], default=datetime.now(yerevan), fuzzy=True)
 
     #Operating solar, wind and biomass plants exist in small numbers, but are not reported yet
     data = {
@@ -93,8 +93,8 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
             'oil': 0
             },
         'storage': {
-            'hydro storage': 0,
-            'battery storage': 0
+            'hydro': 0,
+            'battery': 0
             },
         'source': 'http://epso.am/poweren.htm'
     }
@@ -116,6 +116,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
       'source': 'mysource.com'
     }
     """
+    sorted_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     r = session or requests.session()
     url = 'http://epso.am/poweren.htm'
@@ -137,35 +138,26 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     AM_GE = float(GE_1[0])+float(GE_2[0])+float(GE_3[0])
     AM_IR = float(IR_1[0])
 
-    time_string = dparser.parse(data_split[14].split()[3],fuzzy=True)
-    date_time = time_string.replace(tzinfo=tz.gettz('Asia/Yerevan'))
- 
-    if '->'.join(sorted([zone_key1, zone_key2])) == 'AM->AZ':
-        AM_AZ_exchange = {
-            'datetime': date_time,
-            'netFlow': -1* AM_AZ,
-            'source': 'http://epso.am/poweren.htm',
-            'sortedZoneKeys': 'AM->AZ'
-            }
-        return AM_AZ_exchange
-    elif '->'.join(sorted([zone_key1, zone_key2])) == 'AM->GE':
-        AM_GE_exchange = {
-            'datetime': date_time,
-            'netFlow': -1 * AM_GE,
-            'source': 'http://epso.am/poweren.htm',
-            'sortedZoneKeys': 'AM-GE'
-            }
-        return AM_GE_exchange
-    elif '->'.join(sorted([zone_key1, zone_key2])) == 'AM->IR':
-        AM_IR_exchange = {
-            'datetime': date_time,
-            'netFlow': -1 * AM_IR,
-            'source': 'http://epso.am/poweren.htm',
-            'sortedZoneKeys': 'AM->IR'
-            }
-        return AM_IR_exchange
+    yerevan = tz.gettz('Asia/Yerevan')
+    date_time = dparser.parse(data_split[14].split()[3], default=datetime.now(yerevan), fuzzy=True)
+
+
+    if sorted_keys == 'AM->AZ':
+        netflow = -1 * AM_AZ
+    elif sorted_keys == 'AM->GE':
+        netflow = -1 * AM_GE
+    elif sorted_keys == 'AM->IR':
+        netflow = -1 * AM_IR
     else:
         raise NotImplementedError('This exchange pair is not implemented')
+
+    exchange = {
+        'sortedZoneKeys': sorted_keys,
+        'datetime': date_time,
+        'netFlow': netflow,
+        'source': 'http://epso.am/poweren.htm'
+    }
+    return exchange
 
 if __name__ == '__main__':
     print('fetch_production->')
