@@ -36,6 +36,35 @@
     },
     "timezone": null
   },
+  "AM": {
+     "bounding_box": [
+      [
+        43.0,
+        38.6
+      ],
+      [
+        46.3,
+        41.6
+      ]
+    ],
+    "capacity": {
+      "biomass": 1.3,
+      "gas": 1832,
+      "hydro": 1326.8,
+      "nuclear": 440,
+      "solar": 2.4,
+      "wind": 2.9
+      },
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "AM.fetch_production"
+    },
+    "timezone": "Asia/Yerevan"
+  },      
   "AR": {
     "capacity": {
       "gas": 18930,
