@@ -40,3 +40,5 @@ exports.getFullZoneName = function getFullZoneName(zoneCode) {
   } 
   return `${zoneName} (${countryName})`;
 };
+
+exports.locales = Object.keys(locales);

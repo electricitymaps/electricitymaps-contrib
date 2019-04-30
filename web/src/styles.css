@@ -793,6 +793,10 @@ body {
     background-color: #FFFFFF;
 }
 
+.language-select-button{
+    background-image: url(../images/language_select.svg);
+}
+
 .prodcons-toggle-container {
     position: absolute;
     top: 70px;
@@ -960,6 +964,39 @@ body {
 
 #production-toggle-tooltip .tooltip-text {
     text-align: center;
+}
+
+#language-select-container {
+    background-color:#FAFAFA;
+    color: black;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    position: absolute;
+    left: -184px;
+    width: 150px;
+    top: 4px;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0px);
+    transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+}
+
+#language-select-container.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+#language-select-container li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#language-select-container li:hover {
+    cursor: pointer;
 }
 
 

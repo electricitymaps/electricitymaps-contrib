@@ -90,7 +90,8 @@
         "temporaryDataOutage": "Data temporarily unavailable",
         "production": "production",
         "consumption": "consumption",
-        "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them"
+        "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+        "selectLanguage": "Select language"
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
@@ -1480,5 +1481,25 @@
           "ZW": {
             "zoneName": "Zimbabwe"
           }
+    },
+    "localeNames": {
+        "AR": "Arabic",
+        "CS": "Czech",
+        "DA": "Danish",
+        "DE": "German",
+        "EN": "English",
+        "ES": "Spanish",
+        "FR": "French",
+        "IT": "Italian",
+        "JA": "Japanese",
+        "NL": "Dutch",
+        "PL": "Polish",
+        "PT-BR": "Brazilian Portuguese",
+        "RU": "Russian",
+        "SK": "Slovak",
+        "SV": "Swedish",
+        "ZH-CN": "Mainland China Chinese",
+        "ZH-HK": "Taiwan Chinese",
+        "ZH-TW": "Hong Kong Chinese"
     }
 }
