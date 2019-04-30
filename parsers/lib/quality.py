@@ -67,7 +67,7 @@ def validate_production(obj, zone_key):
         raise ValidationError(
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key)
-    if 'storage' in obj:
+    if obj.get('storage'):
         if not isinstance(obj['storage'], dict):
             raise ValidationError('storage value must be a dict, was '
                                   '{}'.format(obj['storage']))
