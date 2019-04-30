@@ -91,7 +91,8 @@
         "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar",
         "production": "Produktion",
         "consumption": "Verbrauch",
-        "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie"
+        "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
+        "selectLanguage": "Sprache auswählen"
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
@@ -1495,5 +1496,25 @@
         "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO2-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
         "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
         "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
+    },
+    "localeNames": {
+        "AR": "Arabisch",
+        "CS": "Tschechisch",
+        "DA": "Dänisch",
+        "DE": "Deutsch",
+        "EN": "Englisch",
+        "ES": "Spanisch",
+        "FR": "Französisch",
+        "IT": "Italienisch",
+        "JA": "Janpanisch",
+        "NL": "Niederlöändisch",
+        "PL": "Polnisch",
+        "PT-BR": "Brazilianisches Portugiesisch",
+        "RU": "Russisch",
+        "SK": "Slowenisch",
+        "SV": "Schwedisch",
+        "ZH-CN": "Mainland China Chinesisch",
+        "ZH-HK": "Taiwan Chinesisch",
+        "ZH-TW": "Hong Kong Chinesisch"
     }
 }
