@@ -1506,15 +1506,15 @@
         "ES": "Spanisch",
         "FR": "Französisch",
         "IT": "Italienisch",
-        "JA": "Janpanisch",
-        "NL": "Niederlöändisch",
+        "JA": "Japanisch",
+        "NL": "Niederländisch",
         "PL": "Polnisch",
         "PT-BR": "Brazilianisches Portugiesisch",
         "RU": "Russisch",
-        "SK": "Slowenisch",
+        "SK": "Slowakisch",
         "SV": "Schwedisch",
-        "ZH-CN": "Mainland China Chinesisch",
-        "ZH-HK": "Taiwan Chinesisch",
-        "ZH-TW": "Hong Kong Chinesisch"
+        "ZH-CN": "Chinesisch (Festlandchina)",
+        "ZH-HK": "Chinesisch (Taiwan)",
+        "ZH-TW": "Chinesisch (Hong Kong)"
     }
 }
