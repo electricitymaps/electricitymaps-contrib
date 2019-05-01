@@ -1498,8 +1498,8 @@
         "RU": "Russian",
         "SK": "Slovak",
         "SV": "Swedish",
-        "ZH-CN": "Mainland China Chinese",
-        "ZH-HK": "Taiwan Chinese",
-        "ZH-TW": "Hong Kong Chinese"
+        "ZH-CN": "Chinese (Mainland China)",
+        "ZH-HK": "Chinese (Taiwan)",
+        "ZH-TW": "Chinese (Hong Kong)"
     }
 }
