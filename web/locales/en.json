@@ -1481,25 +1481,5 @@
           "ZW": {
             "zoneName": "Zimbabwe"
           }
-    },
-    "localeNames": {
-        "AR": "Arabic",
-        "CS": "Czech",
-        "DA": "Danish",
-        "DE": "German",
-        "EN": "English",
-        "ES": "Spanish",
-        "FR": "French",
-        "IT": "Italian",
-        "JA": "Japanese",
-        "NL": "Dutch",
-        "PL": "Polish",
-        "PT-BR": "Brazilian Portuguese",
-        "RU": "Russian",
-        "SK": "Slovak",
-        "SV": "Swedish",
-        "ZH-CN": "Chinese (Mainland China)",
-        "ZH-HK": "Chinese (Taiwan)",
-        "ZH-TW": "Chinese (Hong Kong)"
     }
 }

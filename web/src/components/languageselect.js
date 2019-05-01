@@ -23,7 +23,7 @@ export default class LanguageSelect {
   _createListItems() {
     this.selector = d3.select(this.selectorId)
       .selectAll('li')
-      .data(translation.locales);
+      .data(translation.languageNames);
 
     const itemLinks = this.selector.enter().append('li');
 
@@ -32,10 +32,10 @@ export default class LanguageSelect {
   }
 
   _setItemNames() {
-    this.selector.text(locale => translation.translateWithLocale(locale, `localeNames.${locale.toUpperCase()}`));
+    this.selector.text(language => language.name);
   }
 
   _setItemClickHandlers() {
-    this.selector.on('click', locale => window.location.href = `${window.location.href}&lang=${locale}`);
+    this.selector.on('click', language => window.location.href = `${window.location.href}&lang=${language.shortName}`);
   }
 }
