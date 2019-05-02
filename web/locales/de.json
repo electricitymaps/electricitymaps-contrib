@@ -91,7 +91,8 @@
         "temporaryDataOutage": "Live-Daten sind momentan leider nicht verfügbar",
         "production": "Produktion",
         "consumption": "Verbrauch",
-        "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie"
+        "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
+        "selectLanguage": "Sprache auswählen"
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",

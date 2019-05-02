@@ -446,7 +446,7 @@ co2Sub = function(str) {
                     <div class="prodcons-toggle-container">
                         <div class="production-toggle">
                             <div class="production-toggle-active-overlay">
-                            </div>                           
+                            </div>
                             <div class="production-toggle-item">
                                 <%- __('tooltips.production') %>
                             </div>
@@ -466,6 +466,17 @@ co2Sub = function(str) {
 
                     </div>
                     <div class="layer-buttons-container">
+                        <div>
+                            <button class="layer-button language-select-button"></button>
+                            <div id="language-select-button-tooltip"  class="layer-button-tooltip hidden">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-text"><%- __('tooltips.selectLanguage') %></div>
+                                    <div class="arrow"></div>
+                                </div>
+                            </div>
+                            <div id="language-select-container" class="hidden">
+                            </div>
+                        </div>
                         <div>
                                 <button class="layer-button wind-button"></button>
                                 <div id="wind-layer-button-tooltip"  class="layer-button-tooltip hidden">
@@ -493,7 +504,6 @@ co2Sub = function(str) {
                                         </div>
                                 </div>
                         </div>
-
                     </div>
 
 

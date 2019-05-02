@@ -90,7 +90,8 @@
         "temporaryDataOutage": "Data temporarily unavailable",
         "production": "production",
         "consumption": "consumption",
-        "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them"
+        "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+        "selectLanguage": "Select language"
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
