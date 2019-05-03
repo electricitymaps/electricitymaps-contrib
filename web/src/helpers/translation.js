@@ -50,7 +50,7 @@ exports.languageNames = [
   { shortName: 'en', name: 'English' },
   { shortName: 'es', name: 'español' },
   { shortName: 'fr', name: 'français' },
-  { shortName: 'it', name: 'italiano' },
+  { shortName: 'it', name: 'Italiano' },
   { shortName: 'ja', name: '日本語' },
   { shortName: 'nl', name: 'Nederlands' },
   { shortName: 'pl', name: 'polski' },
