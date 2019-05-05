@@ -59,7 +59,10 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
                 'geothermal': None,
                 'unknown': df.loc[i, 'unknown']
             },
-            'storage': None,
+            'storage': {
+                'hydro': None,
+                'battery': None
+            },
             'source': 'occtonet.or.jp, {}'.format(sources[zone_key]),
             }
         datalist.append(data)
