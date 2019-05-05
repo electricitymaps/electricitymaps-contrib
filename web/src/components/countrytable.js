@@ -74,7 +74,8 @@ function CountryTable(selector, modeColor, modeOrder) {
     gNewRow.append('text')
         .text(function(d) { return translation.translate(d.mode) || d.mode })
         .style('text-anchor', 'end') // right align
-        .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')');
+        .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')')
+        .attr('class', 'name');
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
@@ -179,7 +180,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
             })
             .on('end', function () { d3.select(this).style('display', 'block'); });
     // Add event handlers
-    selection.selectAll('rect.capacity,rect.production')
+    selection.selectAll('text.name,rect.capacity,rect.production')
         .on('mouseover', function (d) {
             if (that.productionMouseOverHandler)
                 that.productionMouseOverHandler.call(this, d.mode, that._data, that._displayByEmissions);
@@ -354,7 +355,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         })
 
     // Add event handlers
-    gNewRow.merge(selection).selectAll('rect.capacity,rect.exchange')
+    gNewRow.merge(selection).selectAll('text.name,rect.capacity,rect.exchange')
         .on('mouseover', function (d) {
             if (that.exchangeMouseOverHandler)
                 that.exchangeMouseOverHandler.call(this, d.key, that._data, that._displayByEmissions);
