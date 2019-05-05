@@ -840,7 +840,7 @@ body {
 }
 
 .production-toggle-item:last-child{
-    padding: 0 12px;
+    padding: 0 10px;
     border-radius: 4px 14px 14px 4px;
 }
 
