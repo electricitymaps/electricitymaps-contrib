@@ -11,6 +11,7 @@ import pandas as pd
 tz_gt = 'America/Guatemala'
 
 MAP_GENERATION = {
+    'biomass': u'Biogas',
     'coal': 'Turbina de Vapor',
     'gas': 'Turbina de Gas',
     'hydro': u'Hidroeléctrica',
@@ -34,10 +35,7 @@ def fetch_hourly_production(zone_key, obj, hour, date):
     # Fill datetime variable
     data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime
 
-    # First add 'Biomasa' and 'Biogas' together to make 'biomass' variable (and avoid negative
-    # values)
-    data['production']['biomass'] = max(obj[obj['tipo'] == 'Biomasa'].potencia.iloc[0], 0) + max(obj[obj['tipo'] == 'Biogas'].potencia.iloc[0], 0)
-    # Then fill the other sources directly with the MAP_GENERATION frame
+    # Fill the sources with the MAP_GENERATION frame
     for i_type in MAP_GENERATION.keys():
         val = obj[obj['tipo'] == MAP_GENERATION[i_type]].potencia.iloc[0]
         if i_type == 'oil' and val > -1:
