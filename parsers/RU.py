@@ -13,6 +13,8 @@ import json
 # RU-AS: Russian Far East
 
 
+BASE_EXCHANGE_URL = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?'
+
 MAP_GENERATION = {
     'P_AES': 'nuclear',
     'P_GES': 'hydro',
@@ -22,21 +24,21 @@ MAP_GENERATION = {
     'P_REN': 'solar'
 }
 
-exchange_ids = {'CN->RU-AS': "764",
-                'MN->RU': "276",
-                'MN->RU-2': "276",
-                'KZ->RU': "785",
-                'KZ->RU-1': "2394",
-                'KZ->RU-2': "344",
-                'RU-1->RU-2': "139",
-                'GE->RU': "752",
-                'GE->RU-1': "752",
-                'AZ->RU': "598",
-                'AZ->RU-1': "598",
-                'BY->RU': "321",
-                'BY->RU-1': "321",
-                'RU->UA': "880",
-                'RU-1->UA':"880"}
+exchange_ids = {'CN->RU-AS': 764,
+                'MN->RU': 276,
+                'MN->RU-2': 276,
+                'KZ->RU': 785,
+                'KZ->RU-1': 2394,
+                'KZ->RU-2': 344,
+                'RU-1->RU-2': 139,
+                'GE->RU': 752,
+                'GE->RU-1': 752,
+                'AZ->RU': 598,
+                'AZ->RU-1': 598,
+                'BY->RU': 321,
+                'BY->RU-1': 321,
+                'RU->UA': 880,
+                'RU-1->UA':880}
 
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
 
@@ -133,12 +135,33 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
     return data
 
 
+def response_checker(json_content):
+    """Returns False if input is empty list or all zero values, else True."""
+    flow_values = json_content['Flows']
+
+    if not flow_values:
+        return False
+
+    non_zero = False
+    for item in flow_values:
+        if item['Id'] in list(exchange_ids.values()):
+            if item['NumValue'] == 0.0:
+                continue
+            else:
+                non_zero = True
+                break
+
+    return non_zero
+
+
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     zone_key1           -- the first country code
     zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day, str in format YYYYMMDD
+    logger (optional) -- handles logging when parser is run as main
     Return:
     A list of dictionaries in the form:
     {
@@ -150,38 +173,58 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     where net flow is from DK into NO
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        today = arrow.get(target_datetime, 'YYYYMMDD')
+    else:
+        today = arrow.now(tz=tz)
 
-    today = arrow.now(tz=tz)
     date = today.format('YYYY-MM-DD')
-    hour = today.format('HH')
-    exchanges_url = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?Date={}&Hour={}'.format(date, hour)
-
     r = session or requests.session()
-    response = r.get(exchanges_url)
-    json_content = json.loads(response.text)
+    DATE = 'Date={}'.format(date)
+
+    exchange_urls = []
+    for hour in range(0,24):
+        url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+        exchange_urls.append((url,hour))
+
+    datapoints = []
+    for url, hour in exchange_urls:
+        response = r.get(url)
+        json_content = json.loads(response.text)
+
+        if response_checker(json_content):
+            datapoints.append((json_content['Flows'], hour))
+        else:
+            # data not yet available for this hour
+            continue
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
     if sortedcodes not in exchange_ids.keys():
         raise NotImplementedError('This exchange pair is not implemented.')
 
-    current_dt = arrow.now('Europe/Moscow').datetime
-    exchange_id = int(exchange_ids[sortedcodes])
+    exchange_id = exchange_ids[sortedcodes]
 
-    try:
-        exchange = [item for item in json_content['Flows'] if item['Id'] == exchange_id][0]
-    except:
-        raise NotImplementedError('The exchange {} is not implemented'.format(sortedcodes))
+    data = []
+    for datapoint, hour in datapoints:
+        try:
+            exchange = [item for item in datapoint if item['Id'] == exchange_id][0]
+            flow = exchange.get('NumValue')
+        except KeyError:
+            # flow is unknown or not available
+            flow = None
 
-    exchange = {
-        'sortedZoneKeys': sortedcodes,
-        'datetime': current_dt,
-        'netFlow': exchange.get('NumValue'),
-        'source': 'so-ups.ru'
-    }
+        dt = today.replace(hour=hour).floor('hour').datetime
 
-    return exchange
+        exchange = {
+            'sortedZoneKeys': sortedcodes,
+            'datetime': dt,
+            'netFlow': flow,
+            'source': 'so-ups.ru'
+        }
+
+        data.append(exchange)
+
+    return data
 
 
 if __name__ == '__main__':
