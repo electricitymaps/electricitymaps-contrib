@@ -355,7 +355,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         fuelsource = row['Fuel Source - Descriptor']
 
         if station not in AMEO_LOCATION_DICTIONARY:
-            logger.warning('WARNING: station %s does not belong to any state' % station)
+            logger.warning('WARNING: station %s does not belong to any state' % station, extra={'key': zone_key})
             continue
 
         if AMEO_LOCATION_DICTIONARY[station] != zone_key:
@@ -380,7 +380,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
             # Unrecognized source, ignore
             if value:
                 # If it had production, show warning
-                logger.warning('WARNING: key {} is not supported, row {}'.format(fuelsource, row))
+                logger.warning('WARNING: key {} is not supported, row {}'.format(fuelsource, row), extra={'key': zone_key})
             continue
 
         # Skip HVDC links
@@ -389,7 +389,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
 
         # Disregard substantially negative values, but let slightly negative values through
         if value < -1:
-            logger.warning('Skipping %s because production can\'t be negative (%s)' % (station, value))
+            logger.warning('Skipping %s because production can\'t be negative (%s)' % (station, value), extra={'key': zone_key})
             continue
 
         # Parse the datetime and check it matches the most recent one.
