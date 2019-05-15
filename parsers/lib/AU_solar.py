@@ -8,7 +8,7 @@ import arrow
 # The request library is used to fetch content through HTTP
 import requests
 
-SOLAR_URL = 'http://pv-map.apvi.org.au/data/{date}'
+SOLAR_URL = 'http://pv-map.apvi.org.au/data'
 
 """
 This script fetches distributed / small-scale / rooftop photovoltaic solar
@@ -51,8 +51,8 @@ def _get_australian_date(days_in_past=0):
 
 
 def fetch_solar_all(session, hours_in_the_past=2):
-    data_url = SOLAR_URL.format(date=_get_australian_date())
-    r = session.get(data_url)
+    data_url = SOLAR_URL
+    r = session.post(data_url, {'day': _get_australian_date()})
     data = r.json()
 
     if data and 'output' in data and data['output']:
