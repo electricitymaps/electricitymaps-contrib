@@ -35,6 +35,8 @@
         "selectLanguage": "Odaberi jezik"
     },
 
+    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s proizvodnja čini %1$s %% električne energije",
+
     "zoneShortName": {
         "AE": {
             "zoneName": "Ujedinjeni Arapski Emirati"
