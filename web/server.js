@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // * i18n
-const locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
+const locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
 i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
@@ -50,6 +50,7 @@ const LOCALE_TO_FB_LOCALE = {
   'en': 'en_US',
   'es': 'es_ES',
   'fr': 'fr_FR',
+  'hr': 'hr_HR',
   'it': 'it_IT',
   'ja': 'ja_JP',
   'nl': 'nl_NL',
@@ -80,6 +81,7 @@ const SUPPORTED_FB_LOCALES = [
   'en_US',
   'fr_CA',
   'fr_FR',
+  'hr_HR',
   'it_IT',
   'ja_JP',
   'nl_BE',

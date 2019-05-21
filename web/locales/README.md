@@ -16,7 +16,7 @@ node translation-helper.js
 You will be asked to select a language to translate.  
 Running the tool looks like this:
 ```
-Languages you can translate: ar, da, de, es, fr, it, ja, nl, pl, pt-br, ru, sv, zh-cn, zh-hk, zh-tw
+Languages you can translate: ar, da, de, es, fr, hr, it, ja, nl, pl, pt-br, ru, sv, zh-cn, zh-hk, zh-tw
 Which language do you want to translate: de
 
 country-panel.electricity [Electricity]: Elektrizität
