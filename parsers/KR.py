@@ -6,8 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from logging import getLogger
 
-
-LOAD_URL = 'http://power.kpx.or.kr/powerinfo_en.php'
+LOAD_URL = 'http://kpx.or.kr/eng/index.do'
 
 HYDRO_URL = 'http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
@@ -153,12 +152,21 @@ def fetch_load(session):
     req = session.get(LOAD_URL)
     soup = BeautifulSoup(req.content, 'html.parser')
 
-    current_load = soup.find("th", text = re.compile('Current Load'))
-    load_tag = current_load.findNext("td")
-    load = float(load_tag.text.replace(",", ""))
+    load_tag = soup.find("div", {"class": "actual"})
+    present_load = load_tag.find("dt", text=re.compile(r'Present Load'))
+    value = present_load.find_next("dd").text.strip()
 
-    tag_dt = soup.find("div", {"class": "date"})
-    dt = arrow.get(tag_dt.text, "(YYYY.MM.DD. HH:mm)")
+    # remove MW units
+    num = value.split(" ")[0]
+
+    load = float(num.replace(",", ""))
+
+    date_tag = load_tag.find("p", {"class": "date"})
+    despaced = re.sub(r'\s+', '', date_tag.text)
+
+    # remove (day_of_week) part
+    dejunked = re.sub(r'\(.*?\)', ' ', despaced)
+    dt = arrow.get(dejunked, "YYYY.MM.DD HH:mm")
 
     return load, dt
 
