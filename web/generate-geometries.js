@@ -17,6 +17,7 @@ const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
 const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     require('./third_party_maps/DK-DK2-without-BHM.json'),
+    require('./third_party_maps/NKR.json'),
     require('./third_party_maps/NO-NO1.json'),
     require('./third_party_maps/NO-NO2.json'),
     require('./third_party_maps/NO-NO3.json'),
