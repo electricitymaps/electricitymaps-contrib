@@ -6,12 +6,57 @@
         "datasources": "izvore podataka",
         "contribute": "Daj svoj doprinos <a href=\"%s\" target=\"_blank\">dodavanjem vlastitog područja</a>"
     },
+    "mobile-main-menu": {
+        "map": "Mapa",
+        "areas": "Područja",
+        "about": "O nama"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "Prikaz utjecaja struje na klimu"
+        },
+        "view2": {
+            "header": "Pogledaj koliko CO2 se emitira za proizvodnju tvoje struje, u realnom vremenu",
+            "text": "Područja u svijetu su pobojana prema faktoru emisije (uključujući sve staklenične plinove) svoje upotrijebljene struje. Zelena boja označava manje ekološkije izvore struje."
+        },
+        "view3": {
+            "header": "Saznaj otkud dolazi tvoja struja",
+            "text": "Strelice na mapi označavaju razmijenu struje među raznim područjima. Klikni na područje za više informacija o porijeklu njegove struje."
+        },
+        "view4": {
+            "header": "Vremenski uvjeti u realnom vremenu",
+            "text": "Proizvodnja struje solarnom energijom ili energijom vjetra ovisi o vremenskim prigodama. Klikni na ikonu sunca/vjetra za prikaz snage vjetra i sunca na mapi."
+        }
+    },
     "country-panel": {
-        "source": "izvor"
+        "source": "izvor",
+        "carbonintensity": "Faktor emisije",
+        "lowcarbon": "Niske emisije",
+        "renewable": "Obnovljivi",
+        "electricityproduction": "Proizvodnja struje",
+        "electricityconsumption": "Upotreba struje",
+        "bysource": "prema izvoru",
+        "emissions": "Emisije",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj ili promijeni izvor</a>",
+        "helpfrom": "with help from",
+        "noDataAtTimestamp": "Podaci su trenutno nedostupni za odabrano vrijeme",
+        "noLiveData": "Podaci uživo su trenutno nedostupni za odabrano područje",
+        "noParserInfo": "Još nemamo nikakve informacije za ovo područje.<br/> Želih nam ih pomoći dodati? Možeš dati svoj doprinos <a href=\"%s\" target=\"_blank\">dodavanjem podataka za područje</a>.",
+        "now": "Sada"
     },
     "left-panel": {
         "zone-list-header-title": "Utjecaj na klimu po području",
+        "zone-list-header-subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO2eq/kWh)",
         "search": "Traži"
+    },
+    "country-history": {
+        "carbonintensity24h": "Faktor emisije u zadnja 24 sata",
+        "emissionsorigin24h": "Izvor emisija u zadnja 24 sata",
+        "emissionsproduction24h": "Emisije proizvedene u zadnja 24 sata",
+        "electricityorigin24h": "Izvor struje u zadnja 24 sata",
+        "electricityproduction24h": "Proizvodnja struje u zadnja 24 sata",
+        "electricityprices24h": "Cijene struje u zadnja 24 sata",
+        "Getdata": "Nađi povijesne podatke i API s prognozom"
     },
     "footer": {
       "likethisvisu": "Sviđa ti se vizualizacija?",
@@ -24,19 +69,77 @@
     "legends": {
         "windpotential": "Potencijal energije vjetra",
         "solarpotential": "Potencijal solarne energije",
+        "colorblindmode": "prikaz za daltoniste",
         "carbonintensity": "Faktor emisije"
     },
     "tooltips": {
         "carbonintensity": "Faktor emisije",
+        "lowcarbon": "Izvori niske emisije",
+        "renewable": "Obnovljivi izvori",
+        "crossborderexport": "Međugranični izvoz",
+        "carbonintensityexport": "Faktor emisije izvoza",
+        "ofinstalled": "instaliranog kapaciteta",
+        "utilizing": "koristeći",
+        "withcarbonintensity": "faktora emisije",
         "showWindLayer": "Prikaži vjetrove",
         "hideWindLayer": "Sakrij vjetrove",
+        "showSolarLayer": "Prikaži osunčanost",
+        "hideSolarLayer": "Sakrij osunčanost",
+        "toggleDarkMode": "Promijeni tamni prikaz",
+        "production": "proizvodnja",
+        "consumption": "upotreba",
+        "cpinfo": "<b>upotreba</b> uračunava izvor i uvoz, <b>proizvodnja</b> ih zanemaruje",
         "noParserInfo": "Nema podataka",
         "temporaryDataOutage": "Podaci su trenutno nedostupni",
         "selectLanguage": "Odaberi jezik"
     },
+    "misc": {
+        "maintitle": "Emisije CO2 upotrijebljene struje uživo",
+        "oops": "Ups! Došlo je do problema kod kontaktiranja servera. Pokušat ćemo opet za nekoliko sekundi.",
+        "newversion": "Nova verzija je dostupna! Klikni <a onClick=\"location.reload(true);\">ovdje</a> za ponovno učitavanje.",
+        "retrynow": "Pokušaj opet",
+        "database-ad": "Tražiš povijesne podatke? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Pogledaj u našu bazu podataka!</a>",
+        "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
+        "legend": "Legenda",
+        "faq": "Često postavljana pitanja"
+    },
+    "wind": "vjetar",
+    "solar": "solarna",
+    "hydro": "hidro",
+    "hydro storage": "hidroakumulatori",
+    "battery storage": "baterije",
+    "biomass": "biomasa",
+    "nuclear": "nuklearna",
+    "geothermal": "geotermalna",
+    "gas": "plinska",
+    "coal": "ugljen",
+    "oil": "naftna",
+    "unknown": "nepoznata",
 
     "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s proizvodnja čini %1$s %% električne energije",
 
+    "data": {
+      "groupName": "Naši podaci",
+      "dataOrigins-question": "Otkud dobivate podatke?",
+      "dataOrigins-answer": "Svi izračuni su dobiveni iz javno dostpnih podaka, objavljenih od rukovodioca elektičnih mreža, službenih agencija i drugih. Možeš kliknuti na pojedina područja za više informacija o izvoru pojedinih podataka.",
+      "dataDownload-question": "Mogu li skinuti vaše podatke?",
+      "dataDownload-answer": "Možeš nabaviti pristup svim podacima u našoj <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">bazi podataka</a>.",
+      "dataIntegration-question": "Mogu li integrirati vaše podake uživo u svoju aplikaciju ili uređaj?",
+      "dataIntegration-answer": "Da! Prodajemo pristup <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">našem API-u</a>, koji uključuje i predviđanja za budućnost."
+    },
+    "aboutUs": {
+      "groupName": "O nama",
+      "whoAreYou-question": "Tko ste vi?",
+      "whoAreYou-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, mali dansko-francuski start-up razvija i održava ovaj projekt. Naš cilj je pomoći čovječanstvu u dostizanju održivog postojanja kvantificirajući učinak naših dnevnih odluka na klimu i čineći podatke široko dostupnima.",
+      "feedback-question": "Mogu li vam dati povratne informacije?",
+      "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:hello@tmrow.com\">pošalji email!</a>",
+      "contribute-question": "Mogu li doprinijeti projektu?",
+      "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Githubu</a>.",
+      "workTogether-question": "Možemo li surađivati?",
+      "workTogether-answer": "Aktivno tražimo nove mogućnosti surađivanja. <a href=\"mailto:hello@tmrow.com\">Pošalji nam email!</a>",
+      "disclaimer-question": "Izjava o odricanju odgovornosti",
+      "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> objavljuje podatke i slike na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> u svrhu informiranja. Ne daje nikakve tvrdnje o ispravnosti podataka, niti daje ikakav oblik garancije i uzima za pravo promijeniti sadržaj u bilo kojem trenutku ili ukloniti dijelove bez prethodnog informiranja. Tomorrow ne preuzima odgovornost za nikakvu štetu ili troškove uzrokovane nepouzdanošću, nepotpunošću ili zastarjelosti podaka na mapi ili informaciji izvedenoj iz tih podataka. Nije dopušteno uključiti ovu web stranicu ili bilo koje njene pojedine dijelove u drugu web stranicu bez prijašnjeg formalnog pismenog dopuštenja.<br><br> Sva intelektualna vlasnička prava pripadaju pravim vlasnicima i davateljima licence. Kopiranje, distribucija i bilo kakvo korištenje ovih sadržaja (posebno energetskih podataka) nije dozvoljeno bez pismene dozvole Tomorrow-a, osim u slučajima pokrivenim propisima obveznog prava (npr. prava o citiranju), osim iznimnih odredbi za specifične sadržaje.<br><br> Ova odredba je ažurirana s vremena na vrijeme."
+    },
     "zoneShortName": {
         "AE": {
             "zoneName": "Ujedinjeni Arapski Emirati"
