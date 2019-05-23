@@ -2748,6 +2748,19 @@
     },
     "timezone": "America/Managua"
   },
+  "NKR": {
+    "bounding_box": [
+        45.2,
+        38.6
+      ],
+      [
+        47.6,
+        40.7
+      ]
+    ],
+    "flag_file_name": "_Nagorno-Karabakh.png",
+    "timezone": null
+  },
   "NL": {
     "bounding_box": [
       [

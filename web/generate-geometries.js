@@ -419,6 +419,7 @@ const zoneDefinitions = [
   { zoneName: 'NF', type: 'country', id: 'NFK'},
   { zoneName: 'NG', type: 'country', id: 'NGA'},
   { zoneName: 'NI', type: 'country', id: 'NIC'},
+  { zoneName: 'NKR', type: 'country', id: 'NKR'},
   { zoneName: 'NL', type: 'country', id: 'NLD'},
   // { zoneName: 'NO', type: 'country', id: 'NOR'},
   { zoneName: 'NO-NO1', type: 'subZone', id: 'NO-NO1' },

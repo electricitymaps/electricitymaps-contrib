@@ -22,8 +22,8 @@ tie_line_mapping = {
     'var Lalvar': 'GE',
     'var ninoc': 'GE',
     'var alaver': 'GE',
-    'var shin': 'AZ(AM)',
-    'var arcakh': 'AZ(AM)',
+    'var shin': 'NKR',
+    'var arcakh': 'NKR',
     'var ahar': 'IR'
     }
 
@@ -40,8 +40,8 @@ soup_content_variables_mapping = {
     '[1]' : 'Lalvar (GE)',
     '[2]' : 'ninoc (GE)',
     '[3]' : 'alaver (GE)',
-    '[4]' : 'shin (AZ)',
-    '[5]' : 'arcakh (AZ)',
+    '[4]' : 'shin (NKR)',
+    '[5]' : 'arcakh (NKR)',
     '[6]' : 'ahar (IR)',
     '[7]' : 'cons [total production]',
     '[8]' : ' altern',
@@ -133,11 +133,11 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     GE_1 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[1])
     GE_2 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[2])
     GE_3 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[3])
-    AZ_1 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[4])
-    AZ_2 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[5])
+    NKR_1 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[4])
+    NKR_2 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[5])
     IR_1 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[6])
 
-    AM_AZ = float(AZ_1[0])+float(AZ_2[0])
+    AM_NKR = float(NKR_1[0])+float(NKR_2[0])
     AM_GE = float(GE_1[0])+float(GE_2[0])+float(GE_3[0])
     AM_IR = float(IR_1[0])
 
@@ -145,8 +145,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     date_time = dparser.parse(data_split[14].split()[3], default=datetime.now(yerevan), fuzzy=True)
 
 
-    if sorted_keys == 'AM->AZ':
-        netflow = -1 * AM_AZ
+    if sorted_keys == 'AM->NKR':
+        netflow = -1 * AM_NKR
     elif sorted_keys == 'AM->GE':
         netflow = -1 * AM_GE
     elif sorted_keys == 'AM->IR':
@@ -165,8 +165,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 if __name__ == '__main__':
     print('fetch_production->')
     print(fetch_production())
-    print('fetch_exchange(AM, AZ) ->')
-    print(fetch_exchange('AM', 'AZ'))
+    print('fetch_exchange(AM, NKR) ->')
+    print(fetch_exchange('AM', 'NKR'))
     print('fetch_exchange(AM, GE) ->')
     print(fetch_exchange('AM', 'GE'))
     print('fetch_exchange(AM, IR) ->')
