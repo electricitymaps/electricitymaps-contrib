@@ -17,7 +17,6 @@ const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
 const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     require('./third_party_maps/DK-DK2-without-BHM.json'),
-    require('./third_party_maps/NKR.json'),
     require('./third_party_maps/NO-NO1.json'),
     require('./third_party_maps/NO-NO2.json'),
     require('./third_party_maps/NO-NO3.json'),
@@ -145,7 +144,7 @@ const zoneDefinitions = [
   { zoneName: 'AUS-WA', countryId: 'AUS', stateId: 'AU.WA', type: 'state' },
   { zoneName: 'AW', type: 'country', id: 'ABW', moreDetails: true},
   { zoneName: 'AX', type: 'country', id: 'ALA'},
-  { zoneName: 'AZ', type: 'country', id: 'AZE'},
+  { zoneName: 'AZ', type: 'administrations', administrations: ['AZE-1676', 'AZE-1687', 'AZE-1678', 'AZE-1677', 'AZE-1682', 'AZE-1735', 'AZE-1740', 'AZE-2419', 'AZE-2415', 'AZE-5567', 'AZE-2420', 'AZE-2421', 'AZE-2418', 'AZE-1723', 'AZE-1731', 'AZE-1729', 'AZE-1725', 'AZE-1727', 'AZE-1726', 'AZE-1724', 'AZE-1686', 'AZE-1704', 'AZE-1698', 'AZE-1700', 'AZE-1720', 'AZE-1709', 'AZE-1699', 'AZE-1697', 'AZE-1695', 'AZE-1701', 'AZE-1712', 'AZE-1719', 'AZE-1689', 'AZE-1715', 'AZE-1710', 'AZE-1707', 'AZE-1708', 'AZE-5562', 'AZE-2422', 'AZE-1737', 'AZE-5565', 'AZE-1691', 'AZE-1681', 'AZE-1694', 'AZE-1706', 'AZE-1721', 'AZE-1714', 'AZE-5563', 'AZE-1713', 'AZE-1696', 'AZE-1685', 'AZE-1693', 'AZE-1716', 'AZE-1728', 'AZE-1718', 'AZE-1705', 'AZE-1688', 'AZE-1679', 'AZE-1683', 'AZE-1703', 'AZE-1692', 'AZE-1722', 'AZE-4838', 'AZE-5566', 'AZE-5561', 'AZE-5564']},
   //{ zoneName: 'BA', type: 'country', id: 'BIH'},
   { zoneName: 'BA', type: 'administrations', administrations: [
       'BIH-4801', 'BIH-4802', 'BIH-2225', 'BIH-2224', 'BIH-2226', 'BIH-2227', 'BIH-2228', 'BIH-4807',
@@ -420,7 +419,7 @@ const zoneDefinitions = [
   { zoneName: 'NF', type: 'country', id: 'NFK'},
   { zoneName: 'NG', type: 'country', id: 'NGA'},
   { zoneName: 'NI', type: 'country', id: 'NIC'},
-  { zoneName: 'NKR', type: 'country', id: 'NKR'},
+  { zoneName: 'NKR', type: 'administrations', administrations: ['AZE-1684', 'AZE-1730', 'AZE-1702', 'AZE-1736', 'AZE-1711', 'AZE-1680', 'AZE-1717', 'AZE-1690', 'AZE-1738', 'AZE-1739', 'AZE-1734', 'AZE-2423']},
   { zoneName: 'NL', type: 'country', id: 'NLD'},
   // { zoneName: 'NO', type: 'country', id: 'NOR'},
   { zoneName: 'NO-NO1', type: 'subZone', id: 'NO-NO1' },
