@@ -356,6 +356,14 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 589.9391089569107
+        },
+        "unknown": {
+          "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
+          "source": "calculated 20% nuclear, 80% thermal (coal)",
+          "value": 658.4
         }
       },
       "IN-PB": {
