@@ -10,6 +10,7 @@ const auth = require('basic-auth');
 
 // Custom module
 const translation = require(__dirname + '/src/helpers/translation');
+const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/locales/translation-status');
 
 const app = express();
 const server = http.Server(app);
@@ -41,6 +42,7 @@ i18n.configure({
   objectNotation: true,
   updateFiles: false, // whether to write new locale information to disk
 });
+
 app.use(i18n.init);
 const LOCALE_TO_FB_LOCALE = {
   'ar': 'ar_AR',
@@ -122,6 +124,14 @@ function handleError(err) {
 
 app.get('/health', (req, res) => res.json({status: 'ok'}));
 app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
+
+// Translation status API
+app.get('/translationStatus/badges.svg', (req, res) => {
+  res.set('Content-Type', 'image/svg+xml;charset=utf-8');
+  res.end(getTranslationStatusSVG());
+});
+app.get('/translationStatus', (req, res) => res.json(getTranslationStatusJSON()));
+app.get('/translationStatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
   // On electricitymap.tmrow.co,
