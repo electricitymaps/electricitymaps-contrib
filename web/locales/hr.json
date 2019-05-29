@@ -118,6 +118,17 @@
 
     "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s proizvodnja čini %1$s %% električne energije",
 
+    "mapAreas": {
+      "groupName": "Područja na mapi",
+      "noData-question": "Zašto su podaci za moje područje nedostupni?",
+      "noData-answer": "Bilo zbog trenutne nedostupnosti izvora podataka ili jer izvori podataka još nisu podešeni za to područje. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
+      "whySmallAreas-question": "Zašto dijelite svijet na manja područja umjesto da jednostavno pokažete podatke po državi?",
+      "whySmallAreas-answer": "Prikazujemo najmanja zemljopisna područja za koja imamo podatke. Pristup informacijama veće granularnosti omogućuje potrošaćima struje u raznim područjima donošenje informiranijih odluka o izvorima struje koju koriste i njihovim utjecajima na klimu.",
+      "divideExistingArea-question": "Možete li podijeliti moje područje na manje dijelove?",
+      "divideExistingArea-answer": "Naravno, ako postoje nezavisni izvori podataka za svaki dio područja. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
+      "seeHistoricalData-question": "Mogu li vidjeti povijest za područje više od 24 sata unazad?",
+      "seeHistoricalData-answer": "Možeš nabaviti pristup svim našim povijesnim podacima preko naše <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">baze podataka</a>."
+  },
     "data": {
       "groupName": "Naši podaci",
       "dataOrigins-question": "Otkud dobivate podatke?",
