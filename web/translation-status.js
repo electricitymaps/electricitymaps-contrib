@@ -1,5 +1,5 @@
 const { reverse, flatMap, difference, size, sortBy } = require('lodash');
-const { LOCALES_LIST } = require('../src/helpers/translation');
+const { LOCALES_LIST } = require('./src/helpers/translation');
 
 // Gets all deepest level keys from a JSON (they stand for concrete translated terms)
 function getDeepKeysFromJSON(data, prefix = '') {
@@ -8,7 +8,7 @@ function getDeepKeysFromJSON(data, prefix = '') {
 }
 
 function getTermsForLanguage(language) {
-  return getDeepKeysFromJSON(require(`${__dirname}/${language}.json`));
+  return getDeepKeysFromJSON(require(`${__dirname}/locales/${language}.json`));
 }
 
 function getTranslationProgressColor(translated) {

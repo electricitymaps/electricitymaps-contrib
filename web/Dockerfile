@@ -11,7 +11,7 @@ RUN yarn
 RUN mkdir -p public/dist/
 ADD web/build /home/web/build
 ADD web/third_party_maps /home/web/third_party_maps
-ADD web/generate-geometries.js web/topogen.sh /home/web/
+ADD web/generate-geometries.js web/topogen.sh web/translation-status.js /home/web/
 ADD web/src/world.json /home/web/src/world.json
 RUN bash topogen.sh
 

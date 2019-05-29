@@ -10,7 +10,7 @@ const auth = require('basic-auth');
 
 // Custom module
 const translation = require(__dirname + '/src/helpers/translation');
-const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/locales/translation-status');
+const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/translation-status');
 
 const app = express();
 const server = http.Server(app);
@@ -126,12 +126,12 @@ app.get('/health', (req, res) => res.json({status: 'ok'}));
 app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
 
 // Translation status API
-app.get('/translationStatus/badges.svg', (req, res) => {
+app.get('/translation-status/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
   res.end(getTranslationStatusSVG());
 });
-app.get('/translationStatus', (req, res) => res.json(getTranslationStatusJSON()));
-app.get('/translationStatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
+app.get('/translation-status', (req, res) => res.json(getTranslationStatusJSON()));
+app.get('/translation-status/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
   // On electricitymap.tmrow.co,
