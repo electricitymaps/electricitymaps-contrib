@@ -941,14 +941,76 @@
             "countryName": "Makedonija",
             "zoneName": "FYROM"
           },
+          "ML": {
+            "zoneName": "Mali"
+          },
+          "MM": {
+            "zoneName": "Mjanmar"
+          },
+          "MN": {
+            "zoneName": "Mongolija"
+          },
+          "MO": {
+            "zoneName": "Makao"
+          },
+          "MP": {
+            "zoneName": "Sjevernomarijanski otoci"
+          },
+          "MQ": {
+            "zoneName": "Martinik"
+          },
           "MR": {
             "zoneName": "Mauretanija"
+          },
+          "MS": {
+            "zoneName": "Montserrat"
           },
           "MT": {
             "zoneName": "Malta"
           },
+          "MU": {
+            "zoneName": "Mauricijus"
+          },
+          "MV": {
+            "zoneName": "Maldivi"
+          },
+          "MW": {
+            "zoneName": "Malavi"
+          },
           "MX": {
             "zoneName": "Meksiko"
+          },
+          "MX-BC": {
+            "countryName": "Meksiko",
+            "zoneName": "Baja California"
+          },
+          "MX-CE": {
+            "countryName": "Meksiko",
+            "zoneName": "Središnji"
+          },
+          "MX-NE": {
+            "countryName": "Meksiko",
+            "zoneName": "Sjeveroistočni"
+          },
+          "MX-NO": {
+            "countryName": "Meksiko",
+            "zoneName": "Sjeverni"
+          },
+          "MX-NW": {
+            "countryName": "Meksiko",
+            "zoneName": "Sjeverozapadni"
+          },
+          "MX-OC": {
+            "countryName": "Meksiko",
+            "zoneName": "Zapadni"
+          },
+          "MX-OR": {
+            "countryName": "Meksiko",
+            "zoneName": "Istočni"
+          },
+          "MX-PN": {
+            "countryName": "Meksiko",
+            "zoneName": "Poluotok"
           },
           "MY-EM": {
             "countryName": "Malezija",
@@ -961,6 +1023,21 @@
           "MZ": {
             "zoneName": "Mozambik"
           },
+          "NA": {
+            "zoneName": "Namibija"
+          },
+          "NC": {
+            "zoneName": "Nova Kaledonija"
+          },
+          "NE": {
+            "zoneName": "Niger"
+          },
+          "NF": {
+            "zoneName": "Otok Norfolk"
+          },
+          "NG": {
+            "zoneName": "Nigerija"
+          },
           "NI": {
             "zoneName": "Nikaragva"
           },
@@ -971,25 +1048,52 @@
             "zoneName": "Norveška"
           },
           "NO-NO1": {
-            "countryName": "Norveška"
+            "countryName": "Norveška",
+            "zoneName": "Jugoistočna Norveška"
           },
           "NO-NO2": {
-            "countryName": "Norveška"
+            "countryName": "Norveška",
+            "zoneName": "Jugozapadna Norveška"
           },
           "NO-NO3": {
-            "countryName": "Norveška"
+            "countryName": "Norveška",
+            "zoneName": "Središnja Norveška"
           },
           "NO-NO4": {
-            "countryName": "Norveška"
+            "countryName": "Norveška",
+            "zoneName": "Sjeverna Norveška"
           },
           "NO-NO5": {
-            "countryName": "Norveška"
+            "countryName": "Norveška",
+            "zoneName": "Zapadna Norveška"
+          },
+          "NP": {
+            "zoneName": "Nepal"
+          },
+          "NR": {
+            "zoneName": "Nauru"
+          },
+          "NU": {
+            "zoneName": "Niue"
+          },
+          "NZ-NZA": {
+            "countryName": "Novi Zeland",
+            "zoneName": "Aucklandsko Otočje"
+          },
+          "NZ-NZC": {
+            "countryName": "Novi Zeland",
+            "zoneName": "Otočje Chatham"
           },
           "NZ-NZN": {
-            "countryName": "Novi Zeland"
+            "countryName": "Novi Zeland",
+            "zoneName": "Sjeverni Otok"
           },
           "NZ-NZS": {
-            "countryName": "Novi Zeland"
+            "countryName": "Novi Zeland",
+            "zoneName": "Južni Otok"
+          },
+          "OM": {
+            "zoneName": "Oman"
           },
           "PA": {
             "zoneName": "Panama"
@@ -997,14 +1101,29 @@
           "PE": {
             "zoneName": "Peru"
           },
+          "PF": {
+            "zoneName": "Francuska Polinezija"
+          },
           "PG": {
             "zoneName": "Papua-Nova Gvineja"
           },
           "PH": {
             "zoneName": "Filipini"
           },
+          "PK": {
+            "zoneName": "Pakistan"
+          },
           "PL": {
             "zoneName": "Poljska"
+          },
+          "PM": {
+            "zoneName": "Sveti Petar i Mikelon"
+          },
+          "PN": {
+            "zoneName": "Pitcairnovo Otočje"
+          },
+          "PR": {
+            "zoneName": "Puerto Rico"
           },
           "PS": {
             "zoneName": "Palestina"
@@ -1013,17 +1132,24 @@
             "zoneName": "Portugal"
           },
           "PT-AC": {
-            "countryName": "Portugal"
+            "countryName": "Portugal",
+            "zoneName": "Azori"
           },
           "PT-MA": {
             "countryName": "Portugal",
             "zoneName": "Madera"
+          },
+          "PW": {
+            "zoneName": "Palau"
           },
           "PY": {
             "zoneName": "Paragvaj"
           },
           "QA": {
             "zoneName": "Katar"
+          },
+          "RE": {
+            "zoneName": "Réunion"
           },
           "RO": {
             "zoneName": "Rumunjska"
@@ -1034,25 +1160,38 @@
           "RU": {
             "zoneName": "Rusija"
           },
+          "RU-1": {
+            "countryName": "Rusija",
+            "zoneName": "Europska Rusija i Ural"
+          },
+          "RU-2": {
+            "countryName": "Rusija",
+            "zoneName": "Sibir"
+          },
           "RU-EU": {
             "zoneName": "Rusija"
           },
           "RU-AS": {
             "zoneName": "Rusija"
           },
-          "RU-1": {
-            "countryName": "Rusija"
-          },
-          "RU-2": {
-            "countryName": "Rusija",
-            "zoneName": "Sibir"
-          },
           "RU-KGD": {
             "countryName": "Rusija",
             "zoneName": "Kaliningrad"
           },
+          "RW": {
+            "zoneName": "Ruanda"
+          },
           "SA": {
             "zoneName": "Saudijska Arabija"
+          },
+          "SB": {
+            "zoneName": "Solomonsko Otočje"
+          },
+          "SC": {
+            "zoneName": "Sejšeli"
+          },
+          "SD": {
+            "zoneName": "Sudan"
           },
           "SE": {
             "zoneName": "Švedska"
@@ -1060,32 +1199,84 @@
           "SG": {
             "zoneName": "Singapur"
           },
+          "SH": {
+            "zoneName": "Sveta Helena"
+          },
           "SI": {
             "zoneName": "Slovenija"
+          },
+          "SJ": {
+            "zoneName": "Svalbard i Jan Mayen"
           },
           "SK": {
             "zoneName": "Slovačka"
           },
+          "SL": {
+            "zoneName": "Sierra Leone"
+          },
+          "SM": {
+            "zoneName": "San Marino"
+          },
+          "SN": {
+            "zoneName": "Senegal"
+          },
+          "SO": {
+            "zoneName": "Somalija"
+          },
+          "SR": {
+            "zoneName": "Surinam"
+          },
           "SS": {
             "zoneName": "Južni Sudan"
+          },
+          "ST": {
+            "zoneName": "Sveti Toma i Princip"
           },
           "SV": {
             "zoneName": "Salvador"
           },
+          "SX": {
+            "countryName": "Sveti Martin",
+            "zoneName": "Nizozemska"
+          },
+          "SY": {
+            "zoneName": "Sirija"
+          },
+          "SZ": {
+            "zoneName": "Esvatini"
+          },
+          "TC": {
+            "zoneName": "Otoci Turks i Caicos"
+          },
           "TD": {
             "zoneName": "Čad"
           },
-          "TJ": {
-            "zoneName": "Tadžikistan"
+          "TF": {
+            "zoneName": "Francuski južni teritoriji"
           },
-          "TL": {
-            "zoneName": "Istočni Timor"
+          "TG": {
+            "zoneName": "Togo"
           },
           "TH": {
             "zoneName": "Tajland"
           },
+          "TJ": {
+            "zoneName": "Tadžikistan"
+          },
+          "TK": {
+            "zoneName": "Tokelau"
+          },
+          "TL": {
+            "zoneName": "Istočni Timor"
+          },
+          "TM": {
+            "zoneName": "Turkmenistan"
+          },
           "TN": {
             "zoneName": "Tunis"
+          },
+          "TO": {
+            "zoneName": "Tonga"
           },
           "TR": {
             "zoneName": "Turska"
@@ -1093,60 +1284,142 @@
           "TT": {
             "zoneName": "Trinidad i Tobago"
           },
+          "TV": {
+            "zoneName": "Tuvalu"
+          },
           "TW": {
             "zoneName": "Tajvan"
+          },
+          "TZ": {
+            "zoneName": "Tanzanija"
           },
           "UA": {
             "zoneName": "Ukrajina"
           },
-          "US": {
-            "zoneName": "USA"
+          "UA-CR": {
+            "countryName": "Krimea",
+            "zoneName": "Ukrajina"
           },
-          "US-AK": {
-            "countryName": "USA",
-            "zoneName": "Aljaska"
+          "UG": {
+            "zoneName": "Uganda"
+          },
+          "UM": {
+            "zoneName": "Mali udaljeni otoci SAD-a"
+          },
+          "US": {
+            "zoneName": "Sjedinjene Američke Države"
+          },
+          "US-AL": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Alabama"
           },
           "US-BPA": {
-            "countryName": "USA"
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "BPA"
           },
           "US-CA": {
-            "countryName": "USA",
+            "countryName": "Sjedinjene Američke Države",
             "zoneName": "Kalifornija"
           },
+          "US-HI": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Havaji"
+          },
           "US-IPC": {
-            "countryName": "USA"
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "IPC"
           },
           "US-MISO": {
-            "countryName": "USA"
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "MISO"
+          },
+          "US-NC": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Sjeverna Karolina"
           },
           "US-NEISO": {
-            "countryName": "USA"
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Nova Engleska"
+          },
+          "US-NV": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Nevada"
           },
           "US-NY": {
-            "countryName": "USA",
+            "countryName": "Sjedinjene Američke Države",
             "zoneName": "New York"
           },
+          "US-OR": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Oregon"
+          },
           "US-PJM": {
-            "countryName": "USA"
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "PJM"
+          },
+          "US-SC": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Južna Karolina"
           },
           "US-SPP": {
-            "countryName": "USA"
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "SPP"
           },
-          "US-HI": {
-            "countryName": "USA",
-            "zoneName": "Havaji"
+          "US-SVERI":{
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "SVERI"
+          },
+          "US-TN": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Tennessee"
+          },
+          "US-TX": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "ERCOT"
           },
           "UY": {
             "zoneName": "Urugvaj"
           },
+          "UZ": {
+            "zoneName": "Uzbekistan"
+          },
+          "VA": {
+            "zoneName": "Vatikan"
+          },
+          "VC": {
+            "zoneName": "Sveti Vincent i Grenadini"
+          },
           "VE": {
             "zoneName": "Venezuela"
+          },
+          "VG": {
+            "countryName": "Djevičanski otoci",
+            "zoneName": "Djevičanski otoci"
+          },
+          "VI": {
+            "countryName": "Sjedinjene Američke Države",
+            "zoneName": "Djevičanski otoci"
           },
           "VN": {
             "zoneName": "Vijetnam"
           },
+          "VU": {
+            "zoneName": "Vanuatu"
+          },
+          "WF": {
+            "zoneName": "Wallis i Futuna"
+          },
+          "WS": {
+            "zoneName": "Samoa"
+          },
+          "XX": {
+            "zoneName": "Sjeverni Cipar"
+          },
           "YE": {
             "zoneName": "Jemen"
+          },
+          "YT": {
+            "zoneName": "Mayotte"
           },
           "ZA": {
             "zoneName": "Južna Afrika"
