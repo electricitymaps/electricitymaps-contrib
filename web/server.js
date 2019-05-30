@@ -126,12 +126,12 @@ app.get('/health', (req, res) => res.json({status: 'ok'}));
 app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
 
 // Translation status API
-app.get('/translation-status/badges.svg', (req, res) => {
+app.get('/translationstatus/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
   res.end(getTranslationStatusSVG());
 });
-app.get('/translation-status', (req, res) => res.json(getTranslationStatusJSON()));
-app.get('/translation-status/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
+app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON()));
+app.get('/translationstatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
   // On electricitymap.tmrow.co,
