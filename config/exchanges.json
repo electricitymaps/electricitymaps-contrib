@@ -35,7 +35,7 @@
       41.205
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "AM.fetch_exchange"
     },
     "rotation": 0
   },
