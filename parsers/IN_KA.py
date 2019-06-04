@@ -116,12 +116,15 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
 
     # Check ncep date is similar than state gen date
     if abs(india_date_time.timestamp - ncep_date_time.timestamp) > 600:
-        raise ParserException('IN-KA', 'NCEP or State datetime is not valid')
+        raise ParserException('IN-KA', 'NCEP or State datetime is not valid') 
 
-    biomass_value = IN.read_value_from_span_id(ncep_html, 'lbl_tb')
-
-    # TODO: Cogeneration value production type?
+    # cogen type is sugarcane bagasee. Proof in Issue #1867
     cogen_value = IN.read_value_from_span_id(ncep_html, 'lbl_tc')
+    
+    biomass_value = IN.read_value_from_span_id(ncep_html, 'lbl_tb')
+    
+    #cogen_value is generated from sugarcane bagasse
+    biomass_value += cogen_value
 
     mini_hydro_value = IN.read_value_from_span_id(ncep_html, 'lbl_tm')
 
@@ -136,7 +139,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
                   + bhadra_value + ghataprabha_value + almatti_value + mini_hydro_value
 
     # Unknown production
-    unknown_value = cgs_value + cogen_value
+    unknown_value = cgs_value
 
     data = {
         'zoneKey': zone_key,

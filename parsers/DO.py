@@ -10,22 +10,12 @@ from operator import itemgetter
 import pandas as pd
 import requests
 
-try:
-    unicode         # Python 2
-except NameError:
-    unicode = str   # Python 3
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
-
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
 # Solar generation now has some data available but multiple projects are planned/under construction.
 
-url = 'http://184.168.74.190:81/ReportesGraficos/ReportePostdespacho.aspx'
+url = 'http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx'
 
 total_mapping = {
                 u'Total T\xe9rmico': 'Thermal',
@@ -90,7 +80,7 @@ thermal_plants = {
 def get_data(session=None):
     """
     Makes a request to source url.
-    Finds main table and creates a list of all table elements in unicode string format.
+    Finds main table and creates a list of all table elements in string format.
     Returns a list.
     """
 
@@ -104,7 +94,7 @@ def get_data(session=None):
 
     for row in rows:
         num = row.getText().strip()
-        data.append(unicode(num))
+        data.append(str(num))
 
     return data
 
@@ -127,7 +117,7 @@ def chunker(big_lst):
     Returns a dictionary.
     """
 
-    chunks = [big_lst[x:x + 27] for x in xrange(0, len(big_lst), 27)]
+    chunks = [big_lst[x:x + 27] for x in range(0, len(big_lst), 27)]
 
     # Remove the list if it contains no data.
     for chunk in chunks:

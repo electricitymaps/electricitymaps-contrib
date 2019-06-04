@@ -1,8 +1,10 @@
 var exports = module.exports = {};
 
+const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+
 // Import all locales
 var locales = {};
-['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'].forEach(function(d) {
+LOCALES_LIST.forEach(function(d) {
     locales[d] = require('../../locales/' + d + '.json');
 })
 var vsprintf = require('sprintf-js').vsprintf;
@@ -63,3 +65,5 @@ exports.languageNames = [
   { shortName: 'zh-hk', name: '中文 (Hong Kong)' },
   { shortName: 'zh-tw', name: '中文 (Taiwan)' },
 ];
+
+exports.LOCALES_LIST = LOCALES_LIST;
