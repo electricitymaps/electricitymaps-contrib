@@ -26,7 +26,7 @@ exports.fossilFuelAccessor = (zoneKey, k, v) => {
           k == 'other') ? 1 : 0;
 }
 exports.renewableAccessor = (zoneKey, k, v) => {
-  return (fossilFuelAccessor(zoneKey, k, v) ||
+  return (exports.fossilFuelAccessor(zoneKey, k, v) ||
           k === 'nuclear') ? 0 : 1;
   // TODO(bl): remove storage from renewable list?
 }
