@@ -1224,7 +1224,7 @@
       "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
       "carbonIntensity": 24,
       "fossilFuelRatio": 0.0,
-      "renewableRatio": 0.00
+      "renewableRatio": 1.00
     },
     "NL": {
       "_source": "Tomorrow",
