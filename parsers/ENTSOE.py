@@ -161,6 +161,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'GR->IT-SO': ['10YGR-HTSO-----Y', ENTSOE_DOMAIN_MAPPINGS['IT-BR']],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
+    'NO-NO4->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO4'],
+                   ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
@@ -403,7 +405,6 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
-    print('[%s] querying ENTSOE' % arrow.now().isoformat())
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
@@ -677,6 +678,11 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
+        if timeseries.find_all('contract_marketagreement.type') and \
+            timeseries.find_all('contract_marketagreement.type')[0].contents[0] != 'A05':
+            continue
+
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             if not is_import:

@@ -35,9 +35,29 @@
       41.205
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "AM.fetch_exchange"
     },
     "rotation": 0
+  },
+  "AM->AZ":{
+    "lonlat": [
+      46.0,
+      39.75
+     ],
+    "parsers": {
+      "exchange": "AM.fetch_exchange"
+    },
+    "rotation": 90
+  },
+  "AM->IR":{
+    "lonlat": [
+      46.3,
+      38.9
+      ],
+    "parsers": {
+      "exchange": "AM.fetch_exchange"
+    },
+    "rotation": 180
   },
   "AR->BR-S": {
     "lonlat": [
@@ -288,6 +308,10 @@
     "rotation": -135
   },
   "BE->GB": {
+    "capacity": [
+      -1000,
+      1000
+    ],
     "lonlat": [
       2.052937,
       51.659015
@@ -816,7 +840,7 @@
       55.363057
     ],
     "parsers": {
-      "exchange": "DK_BHM.fetch_exchange"
+      "exchange": "DK.fetch_exchange"
     },
     "rotation": -45
   },
@@ -1892,6 +1916,10 @@
     "rotation": 0
   },
   "NO-NO1->NO-NO2": {
+    "capacity": [
+      -2200,
+      3500
+    ],
     "lonlat": [
       9.3,
       59.844429
@@ -1903,6 +1931,10 @@
     "rotation": -110
   },
   "NO-NO1->NO-NO3": {
+    "capacity": [
+      -500,
+      500
+    ],
     "lonlat": [
       9.533218,
       61.731596
@@ -1914,6 +1946,10 @@
     "rotation": -45
   },
   "NO-NO1->NO-NO5": {
+    "capacity": [
+      -600,
+      3900
+    ],
     "lonlat": [
       8.3,
       61.132896
@@ -1929,18 +1965,27 @@
       12.254138,
       61.008235
     ],
+    "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
   },
   "NO-NO1->SE-SE3": {
+    "capacity": [
+      -2100,
+      2150
+    ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
   "NO-NO2->NO-NO5": {
+    "capacity": [
+      -500,
+      600
+    ],
     "lonlat": [
       7.461,
       60.0
@@ -1952,6 +1997,10 @@
     "rotation": -10
   },
   "NO-NO3->NO-NO4": {
+    "capacity": [
+      -1200,
+      400
+    ],
     "lonlat": [
       12.465132,
       64.745638
@@ -1963,6 +2012,10 @@
     "rotation": 30
   },
   "NO-NO3->NO-NO5": {
+    "capacity": [
+      -500,
+      500
+    ],
     "lonlat": [
       7.1,
       61.194118
@@ -1986,6 +2039,10 @@
     "rotation": 90
   },
   "NO-NO3->SE-SE2": {
+    "capacity": [
+      -1000,
+      600
+    ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
@@ -1995,17 +2052,26 @@
       15.462856,
       66.273628
     ],
+    "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
-      "exchange": "statnett.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 130
   },
   "NO-NO4->SE-SE2": {
+    "capacity": [
+      -300,
+      250
+    ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
   "NO-NO4->SE-SE1": {
+    "capacity": [
+      -600,
+      700
+    ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }

@@ -16,14 +16,14 @@ const modeColor = {
 };
 const modeOrder = [
   'nuclear',
-  'coal',
   'geothermal',
+  'biomass',
+  'coal',
   'wind',
   'solar',
   'hydro',
   'hydro storage',
   'battery storage',
-  'biomass',
   'gas',
   'oil',
   'unknown',

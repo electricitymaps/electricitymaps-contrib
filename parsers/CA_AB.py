@@ -64,8 +64,8 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
     dt = convert_time_str(time_string)
 
     df_generations = pd.read_html(response.text, match='GENERATION', skiprows=1, index_col=0, header=0)
-    total_net_generation = df_generations[1]['TNG']
-    maximum_capability = df_generations[1]['MC']
+    total_net_generation = df_generations[2]['TNG']
+    maximum_capability = df_generations[2]['MC']
 
     return {
         'datetime': dt,

@@ -1,8 +1,10 @@
 var exports = module.exports = {};
 
+const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+
 // Import all locales
 var locales = {};
-['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'].forEach(function(d) {
+LOCALES_LIST.forEach(function(d) {
     locales[d] = require('../../locales/' + d + '.json');
 })
 var vsprintf = require('sprintf-js').vsprintf;
@@ -40,3 +42,28 @@ exports.getFullZoneName = function getFullZoneName(zoneCode) {
   } 
   return `${zoneName} (${countryName})`;
 };
+
+
+exports.languageNames = [
+  { shortName: 'ar', name: 'اللغة العربية الفصحى' },
+  { shortName: 'cs', name: 'čeština' },
+  { shortName: 'da', name: 'dansk' },
+  { shortName: 'de', name: 'Deutsch' },
+  { shortName: 'en', name: 'English' },
+  { shortName: 'es', name: 'español' },
+  { shortName: 'fr', name: 'français' },
+  { shortName: 'hr', name: 'hrvatski' },
+  { shortName: 'it', name: 'Italiano' },
+  { shortName: 'ja', name: '日本語' },
+  { shortName: 'nl', name: 'Nederlands' },
+  { shortName: 'pl', name: 'polski' },
+  { shortName: 'pt-br', name: 'português (Brazilian)' },
+  { shortName: 'ru', name: 'Русский язык' },
+  { shortName: 'sk', name: 'slovenčina' },
+  { shortName: 'sv', name: 'svenska' },
+  { shortName: 'zh-cn', name: '中文 (Mainland China)' },
+  { shortName: 'zh-hk', name: '中文 (Hong Kong)' },
+  { shortName: 'zh-tw', name: '中文 (Taiwan)' },
+];
+
+exports.LOCALES_LIST = LOCALES_LIST;

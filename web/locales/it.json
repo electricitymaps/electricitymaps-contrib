@@ -52,7 +52,9 @@
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
         "emissionsorigin24h": "Origine delle emissioni nelle ultime 24 ore",
+        "emissionsproduction24h": "Emissioni prodotte nelle ultime 24 ore",
         "electricityorigin24h": "Origine dell'elettricità nelle ultime 24 ore",
+        "electricityproduction24h": "Produzione elettrica nelle ultime 24 ore",
         "electricityprices24h": "Prezzi dell'elettricità nelle ultime 24 ore",
         "Getdata": "Ottieni API di dati storici e previsioni"
     },
@@ -88,7 +90,8 @@
         "temporaryDataOutage": "Dati temporeanamente non disponibili",
         "production": "Produzione",
         "consumption": "Consumo",
-        "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora"
+        "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora",
+        "selectLanguage": "Seleziona la lingua"
     },
     "misc": {
         "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
@@ -124,7 +127,6 @@
     "emissionsImportedFrom": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "di CO2eq per minuto",
-    
     "theMap": {
         "groupName": "La mappa",
         "mapColors-question": "Cosa significano i colori sulla mappa?",

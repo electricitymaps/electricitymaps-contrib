@@ -117,8 +117,8 @@ co2Sub = function(str) {
                         <span class="maintitle small-screen-hidden">
 
                             <span class="live" style="font-weight: bold">Live</span>
-                           
                              · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
+                             · <a href="https://medium.com/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
                         </span>
                     </div>
                 </div>
@@ -204,7 +204,9 @@ co2Sub = function(str) {
 
                     <div class="mobile-info-tab large-screen-hidden">
                         <div class="mobile-watermark" class="brightmode">
-                            <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank"><img src="images/built-by-tomorrow.svg"/></a>
+                            <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+                              <img src="images/built-by-tomorrow.svg"/>
+                            </a>
                             <div class="socialicons">
                                 <div class="fb-like"
                                     data-href="https://www.facebook.com/tmrowco"
@@ -418,7 +420,7 @@ co2Sub = function(str) {
                     <canvas id="wind" class="map-layer"></canvas>
                     <canvas id="solar" class="map-layer"></canvas>
                     <div id="watermark" class="watermark small-screen-hidden brightmode">
-                        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+                        <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                             <div id="built-by-tomorrow"></div>
                         </a>
                     </div>
@@ -444,7 +446,7 @@ co2Sub = function(str) {
                     <div class="prodcons-toggle-container">
                         <div class="production-toggle">
                             <div class="production-toggle-active-overlay">
-                            </div>                           
+                            </div>
                             <div class="production-toggle-item">
                                 <%- __('tooltips.production') %>
                             </div>
@@ -464,6 +466,17 @@ co2Sub = function(str) {
 
                     </div>
                     <div class="layer-buttons-container">
+                        <div>
+                            <button class="layer-button language-select-button"></button>
+                            <div id="language-select-button-tooltip"  class="layer-button-tooltip hidden">
+                                <div class="tooltip-container">
+                                    <div class="tooltip-text"><%- __('tooltips.selectLanguage') %></div>
+                                    <div class="arrow"></div>
+                                </div>
+                            </div>
+                            <div id="language-select-container" class="hidden">
+                            </div>
+                        </div>
                         <div>
                                 <button class="layer-button wind-button"></button>
                                 <div id="wind-layer-button-tooltip"  class="layer-button-tooltip hidden">
@@ -491,7 +504,6 @@ co2Sub = function(str) {
                                         </div>
                                 </div>
                         </div>
-
                     </div>
 
 

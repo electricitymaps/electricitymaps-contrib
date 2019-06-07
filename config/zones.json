@@ -36,6 +36,35 @@
     },
     "timezone": null
   },
+  "AM": {
+     "bounding_box": [
+      [
+        43.0,
+        38.6
+      ],
+      [
+        46.3,
+        41.6
+      ]
+    ],
+    "capacity": {
+      "biomass": 1.3,
+      "gas": 1832,
+      "hydro": 1326.8,
+      "nuclear": 440,
+      "solar": 2.4,
+      "wind": 2.9
+      },
+    "contributors": [
+      "https://github.com/tmslaine",
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "AM.fetch_production"
+    },
+    "timezone": "Asia/Yerevan"
+  },      
   "AR": {
     "capacity": {
       "gas": 18930,
@@ -309,7 +338,6 @@
     "timezone": "Asia/Dhaka"
   },
   "BE": {
-    "_comment": "entsoe coal figure outdated",
     "bounding_box": [
       [
         2.51357303225,
@@ -321,16 +349,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 1076,
+      "biomass": 1113,
       "coal": 0,
-      "gas": 5811,
+      "gas": 6974,
       "geothermal": 0,
-      "hydro": 178,
+      "hydro": 181,
       "hydro storage": 1308,
       "nuclear": 5919,
-      "oil": 260,
-      "solar": 2953,
-      "wind": 2622
+      "oil": 334,
+      "solar": 3581,
+      "wind": 3247
     },
     "contributors": [
       "https://github.com/corradio"
@@ -939,17 +967,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 7720,
-      "coal": 45380,
-      "gas": 29630,
+      "biomass": 7740,
+      "coal": 44910,
+      "gas": 29390,
       "geothermal": 38,
-      "hydro": 5500,
-      "hydro storage": 9440,
+      "hydro": 4800,
+      "hydro storage": 9600,
       "nuclear": 9516,
       "oil": 4300,
-      "solar": 45550,
+      "solar": 47200,
       "unknown": 3137,
-      "wind": 59240
+      "wind": 59830
     },
     "contributors": [
       "https://github.com/corradio"
@@ -1060,7 +1088,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "DK.fetch_production",
+      "production": "ENTSOE.fetch_production",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Copenhagen"
@@ -1099,7 +1127,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "DK.fetch_production",
+      "production": "ENTSOE.fetch_production",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": "Europe/Copenhagen"
@@ -1470,13 +1498,14 @@
       ]
     ],
     "capacity": {
+      "biomass": 2026,
       "coal": 2997,
-      "gas": 11850,
+      "gas": 12151,
       "hydro": 25510,
       "nuclear": 63130,
-      "oil": 4098,
-      "solar": 7660,
-      "wind": 13550
+      "oil": 3440,
+      "solar": 8527,
+      "wind": 15108
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1552,7 +1581,9 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/brunolajoie",
+      "https://github.com/alixunderplatz"
     ],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
@@ -2444,6 +2475,33 @@
       ]
     ]
   },
+  "KR": {
+    "bounding_box": [
+      [
+        126.11,
+        34.39
+      ],
+      [
+        129.46,
+        38.61
+      ]
+    ],
+    "capacity": {
+      "nuclear": 22529,
+      "coal": 36709,
+      "oil": 4155,
+      "gas": 37838,
+      "hydro": 1789
+    },
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "KR.fetch_production"
+    },
+    "timezone": "Asia/Seoul"
+  },
   "LT": {
     "bounding_box": [
       [
@@ -2733,7 +2791,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1664
+      "wind": 1749
     },
     "contributors": [
       "https://github.com/corradio"
@@ -2764,7 +2822,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 112
+      "wind": 166
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2826,7 +2884,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 612
+      "wind": 643
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3523,16 +3581,18 @@
   },
   "UA": {
     "capacity": {
-      "hydro": 5380.8,
+      "biomass": 98,
+      "hydro": 6174,
       "hydro storage": 1,
       "nuclear": 13835,
-      "solar": 345,
-      "wind": 420
+      "solar": 1509,
+      "wind": 533
     },
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/corradio",
-      "https://github.com/MariusKroon"
+      "https://github.com/MariusKroon",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3616,10 +3676,11 @@
     ],
     "capacity": {
       "battery storage": 136,
-      "biomass": 997,
-      "geothermal": 1799,
-      "solar": 11172,
-      "wind": 6269
+      "biomass": 955,
+      "geothermal": 1785,
+      "nuclear": 2256,
+      "solar": 11799,
+      "wind": 6505
     },
     "contributors": [
       "https://github.com/7hibault",
@@ -3634,6 +3695,7 @@
     "timezone": null
   },
   "US-TX": {
+    "_comment": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf lists wind capacity and utility scale solar and percentages, unknown capacity calculated from those figures",
     "bounding_box": [
       [
         -106.963657,
@@ -3644,8 +3706,20 @@
         36.265205
       ]
     ],
+    "capacity": {
+      "wind": 21751,
+      "solar": 1719,
+      "unknown": 69483
+    },
+    "contributors": [
+      "https://github.com/typicalTYLER"
+    ],
     "flag_file_name": "us.png",
-    "timezone": null
+    "parsers": {
+      "production": "US_TX.fetch_production",
+      "consumption": "US_TX.fetch_consumption"
+    },
+    "timezone": "US/Central"
   },
   "US-GA": {
     "bounding_box": [
@@ -3893,6 +3967,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
       "production": "US_SPP.fetch_production"
     },
     "timezone": null,

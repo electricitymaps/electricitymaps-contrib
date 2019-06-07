@@ -11,6 +11,8 @@ import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
+import LanguageSelect from './components/languageselect';
+
 
 // Libraries
 const d3 = Object.assign(
@@ -164,6 +166,9 @@ const faq = new FAQ('.faq');
 const mobileFaq = new FAQ('.mobile-faq');
 const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
+const languageSelect = new LanguageSelect('#language-select-container');
+
+
 // Initialise mobile app (cordova)
 const app = {
   // Application Constructor
@@ -190,22 +195,27 @@ const app = {
   onDeviceReady() {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
+      // TODO(olc): What about Xr and Xs?
+      const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
+        ? 30
+        : 20;
       d3.select('#header')
-        .style('padding-top', '20px');
+        .style('padding-top', `${extraPadding}px`);
       d3.select('#mobile-header')
-        .style('padding-top', '20px');
+        .style('padding-top', `${extraPadding}px`);
+
+      d3.select('.prodcons-toggle-container')
+        .style('margin-top', `${extraPadding}px`);
+
+      d3.select('.flash-message .inner')
+        .style('padding-top', `${extraPadding}px`);
+
+      d3.select('.mapboxgl-ctrl-top-right')
+        .style('transform', `translate(0,${extraPadding}px)`);
+      d3.select('.layer-buttons-container')
+        .style('transform', `translate(0,${extraPadding}px)`);
       if (typeof zoneMap !== 'undefined') {
         zoneMap.map.resize();
-      }
-      // iphone X nodge
-      if (device.model === 'iPhone10,3' || device.model === 'iPhone10,6') {
-        d3.select('#header')
-          .style('padding-top', '30px');
-        d3.select('#mobile-header')
-          .style('padding-top', '30px');
-        if (typeof zoneMap !== 'undefined') {
-          zoneMap.map.resize();
-        }
       }
     }
 
@@ -820,6 +830,25 @@ d3.select('.production-toggle-info').on('click', () => {
   prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
 });
 
+function selectLanguage() {
+  getState().application.selectLanguageShown = !getState().application.selectLanguageShown;
+  d3.select('#language-select-container').classed('hidden', !getState().application.selectLanguageShown);
+}
+
+d3.select('.language-select-button').on('click', selectLanguage);
+const selectLanguageButtonTooltip = d3.select('#language-select-button-tooltip');
+if (!getState().application.isMobile) {
+  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
+  d3.select('.language-select-button').on('mouseover', () => {
+    selectLanguageButtonTooltip.classed('hidden', false);
+  });
+  d3.select('.language-select-button').on('mouseout', () => {
+    selectLanguageButtonTooltip.classed('hidden', true);
+  });
+}
+
+languageSelect.render();
+
 // Legend
 function toggleLegend() {
   dispatchApplication('legendVisible', !getState().application.legendVisible);
@@ -880,6 +909,7 @@ zoneList.setClickHandler((selectedCountry) => {
 
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {
+  if (e.key == null) { return; }
   const currentPage = getState().application.showPageState;
   if (currentPage === 'map') {
     if (e.key === 'Enter') {
@@ -999,7 +1029,9 @@ function renderCountryTable(state) {
     countryTable.showNoParserMessageIf(zoneIsMissingParser);
     const zoneHasNotProductionDataAtTimestamp = (!d.production || !Object.keys(d.production).length) && zonesThatCanHaveZeroProduction.indexOf(state.application.selectedZoneName) === -1;
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
-    countryTable.showNoDataMessageIf(zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser, dataIsMostRecentDatapoint);
+    countryTable.showNoDataMessageIf(
+      zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser,
+      dataIsMostRecentDatapoint);
   }
 }
 

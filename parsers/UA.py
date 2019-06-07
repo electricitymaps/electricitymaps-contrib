@@ -9,18 +9,18 @@ tec - same as `tes` but also working as central heater,
       main fuel is gas, in critical situations - black oil
 gesgaes - hydro run of river and poundage
 consumptiongaespump - hydro pumped storage
-vde - wind + solar, mostly wind
+vde - renewable sources - mostly wind at nighttimes and solar peaks during the day
 
-no data for biomass, solar and oil
 """
 MAP_GENERATION = {
     'aes': 'nuclear',
     'tec': 'gas',
     'tes': 'coal',
-    'vde': 'wind',
+    'vde': 'unknown',
     'biomass': 'biomass',
     'gesgaes': 'hydro',
     'solar': 'solar',
+    'wind': 'wind',
     'oil': 'oil',
     'geothermal': 'geothermal',
 }
