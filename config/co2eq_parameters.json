@@ -1220,6 +1220,12 @@
       "fossilFuelRatio": 0.35349837676303403,
       "renewableRatio": 0.646501623236966
     },
+    "NKR": {
+      "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
+      "carbonIntensity": 24,
+      "fossilFuelRatio": 0.0,
+      "renewableRatio": 1.00
+    },
     "NL": {
       "_source": "Tomorrow",
       "carbonIntensity": 464.30818315890474,
