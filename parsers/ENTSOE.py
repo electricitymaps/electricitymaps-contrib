@@ -885,7 +885,7 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
         to_return = to_return[['production', 'storage']]
 
     return [{
-        'datetime': dt.to_datetime(),
+        'datetime': dt.to_pydatetime(),
         'production': row.production,
         'storage': row.storage,
         'source': merge_source,
