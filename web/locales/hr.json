@@ -116,8 +116,30 @@
     "oil": "naftna",
     "unknown": "nepoznata",
 
-    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s proizvodnja čini %1$s %% električne energije",
+    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% dostupne električne energije",
+    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% emisija električne energije",
+    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% pohranjene električne energije",
+    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% emisija pohranjene električne energije",
 
+    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% emisija električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% emisija električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+
+    "ofCO2eqPerMinute": "CO2eq po minuti",
+    "theMap": {
+        "groupName": "Karta",
+        "mapColors-question": "Što znače boje na karti?",
+        "mapColors-answer": "Područja na karti su obojana prema količini stakleničnih plinova emitiranih po svakoj jedinici iskorištene električne energije (njihovom <a href=\"#carbonIntensity\" class=\"entry-link\">faktoru emisije</a>). Zelena boja označava ekološku potrošnju uz minimalno zagađenje.",
+        "mapArrows-question": "Što označavaju strelice između područja na karti",
+        "mapArrows-answer": "Strelice označavaju fizički tok (uvoz i izvoz) struje između područja: što brže bljeskaju, to je brži tok. Tok struje je bitan jer uvoženje struje iz susjednih područja također znači i uvoz emisija koje su direktna posljedica proizvodnje te električne energije.",
+        "mapSolarWindButtons-question": "Čemu služe gumbi za “sunce” i “vjetar”?",
+        "mapSolarWindButtons-answer": "Ti gumbi mijenjaju prikaz brzine vjetra i jačine sunca u realnom vremenu, dajući time uvid u potencijal prelaska na solarnu energiju i energiju vjetra u pojedinim područjima. Znajte da je to samo površan uvid, s obzirom da pravi potencijal postavljanja vjetrenih turbina i solarnih ćelija ovisi o mnogim drugim faktorima.",
+        "mapNuclearColors-question": "Zašto su zemlje s nuklearnom proizvodnjom energije zelene na karti?",
+        "mapNuclearColors-answer": "Proizvodnja nuklearne energija ima jako nizak faktor emisije (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >izvor</a>) i zemlje s nuklearnom proizvodnjom energije stoga ispadaju zelene na karti. To ne znači da ne postoje drugi ekološki izazovi vezani uz nuklearnu energiju (kao što je također i slučaj s drugim oblicima proizvodnje energije), ali ti izazovi se ne odnose na emisije stakleničnih plinova i kao takvi stoje van okvira prikaza na ovoj karti.",
+        "mapColorBlind-question": "Kako mogu proučavati vašu kartu ako sam daltonist?",
+        "mapColorBlind-answer": "Možeš promijeniti boje na karti označavanjem prikaza za daltoniste koji se nalazi na dnu lijevog panela u desktop modu odnosno na panelu s informacijama u mobilnoj aplikaciji."
+    },
     "mapAreas": {
       "groupName": "Područja na mapi",
       "noData-question": "Zašto su podaci za moje područje nedostupni?",
