@@ -23,10 +23,7 @@ var STYLES_HASH = getHash('styles', 'css');
 var VENDOR_HASH = getHash('vendor', 'js');
 var VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
-// TODO:
-// Currently, those variables are duplicated from server.js
-// We should instead have a central configuration file in the `config` folder
-var locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
+var locales = require('../web/locales/locales-list');
 var LOCALE_TO_FB_LOCALE = {
     'ar': 'ar_AR',
     'cs':'cs_CZ',

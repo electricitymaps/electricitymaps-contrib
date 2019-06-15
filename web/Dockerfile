@@ -7,6 +7,11 @@ ADD web/package.json /home/web/package.json
 ADD web/yarn.lock /home/web/yarn.lock
 RUN yarn
 
+# Generate locales list
+ADD web/locales /home/web/locales
+ADD web/generate-locales-list.js /home/web/
+RUN node generate-locales-list.js
+
 # Generate map
 RUN mkdir -p public/dist/
 ADD web/build /home/web/build
