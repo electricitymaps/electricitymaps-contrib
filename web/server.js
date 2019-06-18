@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // * i18n
-const locales = require('./locales/locales-list');
+const locales = require('./src/helpers/locales-list');
 
 i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory

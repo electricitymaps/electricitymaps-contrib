@@ -23,7 +23,7 @@ var STYLES_HASH = getHash('styles', 'css');
 var VENDOR_HASH = getHash('vendor', 'js');
 var VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
-var locales = require('../web/locales/locales-list');
+var locales = require('../web/src/helpers/locales-list');
 var LOCALE_TO_FB_LOCALE = {
     'ar': 'ar_AR',
     'cs':'cs_CZ',

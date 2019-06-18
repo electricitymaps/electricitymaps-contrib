@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-const LOCALES_LIST = require('../../locales/locales-list');
+const LOCALES_LIST = require('./locales-list.js');
 
 // Import all locales
 var locales = {};
