@@ -17,7 +17,7 @@ def update_zone(zone, data, zonesfile):
 		zones = json.load(zf)
 
 	if zone not in zones:
-		raise ValueError(f"Zone {zone} does not exist in the zonesfile")
+		raise ValueError("Zone {} does not exist in the zonesfile".format(zone))
 
 	zones[zone]["capacity"].update(data)
 
@@ -62,17 +62,19 @@ def main():
 	data_file = args.data_file
 
 	if not os.path.exists(zonesfile):
-		print(f"ERROR: Zonesfile {zonesfile} does not exist.", file=sys.stderr)
+		print("ERROR: Zonesfile {} does not exist.".format(zonesfile),
+			  file=sys.stderr)
 		sys.exit(1)
 	if not os.path.exists(data_file):
-		print(f"ERROR: Data file {data_file} does not exist.", file=sys.stderr)
+		print("ERROR: Data file {} does not exist.".format(data_file),
+			  file=sys.stderr)
 		sys.exit(1)
 	
 	data = pd.read_csv(data_file).set_index("Production Type").to_dict()
 	aggregated_data = aggregate_data(data)
 
-	print(f"Aggregated capacities: {json.dumps(aggregated_data)}")
-	print(f"Updating zone {zone}")
+	print("Aggregated capacities: {}".format(json.dumps(aggregated_data)))
+	print("Updating zone {}".format(zone))
 
 	update_zone(zone, aggregated_data, zonesfile)
 
