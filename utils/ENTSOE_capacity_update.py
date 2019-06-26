@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+import sys
 import argparse
 import pandas as pd
 import json
@@ -14,6 +16,9 @@ def update_zone(zone, data, zonesfile):
 	with open(zonesfile) as zf:
 		zones = json.load(zf)
 
+	if zone not in zones:
+		raise ValueError(f"Zone {zone} does not exist in the zonesfile")
+
 	zones[zone]["capacity"].update(data)
 
 	with open(zonesfile, "w") as zf:
@@ -24,12 +29,11 @@ def update_zone(zone, data, zonesfile):
 def aggregate_data(data):
 	"""Aggregates data the way it is stated in
 	   parsers.ENTSOE.ENTSOE_PARAMETER_GROUPS"""
-	if len(data) > 1:
-		# assume keys start with YYYY
-		sorted_keys = list(sorted(data.keys()))
-		data = data[sorted_keys[-1]]
-	else:
-		data = next(iter(data.values()))
+	
+	# choose the column with the most current data
+	# assume keys start with YYYY
+	sorted_keys = list(sorted(data.keys()))
+	data = data[sorted_keys[-1]]
 
 	categories = dict(ENTSOE_PARAMETER_GROUPS["production"])
 	categories.update(ENTSOE_PARAMETER_GROUPS["storage"])
@@ -44,9 +48,9 @@ def aggregate_data(data):
 
 def parse_args():
 	parser = argparse.ArgumentParser()
+	parser.add_argument("--zonesfile", default=ZONESFILE)
 	parser.add_argument("zone", help="The zone abbreviation (e.g. AT)")
 	parser.add_argument("data_file", help="The csv file from ENTSOE containing the installed capacities")
-	parser.add_argument("--zonesfile", default=ZONESFILE)
 	return parser.parse_args()
 
 
@@ -56,10 +60,19 @@ def main():
 	zone = args.zone
 	zonesfile = args.zonesfile
 	data_file = args.data_file
-	data = pd.read_csv(data_file).set_index("Production Type").to_dict()
 
+	if not os.path.exists(zonesfile):
+		print(f"ERROR: Zonesfile {zonesfile} does not exist.", file=sys.stderr)
+		sys.exit(1)
+	if not os.path.exists(data_file):
+		print(f"ERROR: Data file {data_file} does not exist.", file=sys.stderr)
+		sys.exit(1)
+	
+	data = pd.read_csv(data_file).set_index("Production Type").to_dict()
 	aggregated_data = aggregate_data(data)
-	print(json.dumps(aggregated_data))
+
+	print(f"Aggregated capacities: {json.dumps(aggregated_data)}")
+	print(f"Updating zone {zone}")
 
 	update_zone(zone, aggregated_data, zonesfile)
 
