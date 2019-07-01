@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-const LOCALES_LIST = require('./locales-list.js');
+const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 
 // Import all locales
 var locales = {};
@@ -39,7 +39,7 @@ exports.getFullZoneName = function getFullZoneName(zoneCode) {
   const countryName = exports.translate(`zoneShortName.${zoneCode}.countryName`);
   if (!countryName) {
     return zoneName;
-  }
+  } 
   return `${zoneName} (${countryName})`;
 };
 
