@@ -2,6 +2,7 @@ const d3 = Object.assign(
   {},
   require('d3-selection'),
 );
+const { getState } = require('../store');
 const thirdPartyServices = require('../services/thirdparty');
 
 const matchingZones = ['DK-DK1', 'DK-DK2', 'DK-BHM'];
@@ -43,12 +44,15 @@ export default class Referral {
       const refferalContent = selector.append('a')
         .attr('class', 'referral barry')
         .attr('target', '_blank')
-        .attr('href', 'https://www.getbarry.co/?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=Electricitymap')
+        .attr('href', getState().application.isMobile
+          ? 'https://getbarry.page.link/tomorrow'
+          : 'https://www.getbarry.co/?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=Electricitymap'
+        )
         .on('click', () => {
           thirdPartyServices.trackWithCurrentApplicationState('referralClicked');
         });
       refferalContent.append('p')
-        .text('Se hvordan Barry, fremtidens el-leverandør, vil bruge vores data')
+        .text('Se hvordan Barry, app\'en til din strøm, bruger vores data')
         .attr('class', 'referral-text');
       refferalContent.append('img')
         .attr('src', 'images/barry.png')
