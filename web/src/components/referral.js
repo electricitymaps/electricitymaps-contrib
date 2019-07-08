@@ -44,10 +44,7 @@ export default class Referral {
       const refferalContent = selector.append('a')
         .attr('class', 'referral barry')
         .attr('target', '_blank')
-        .attr('href', getState().application.isMobile
-          ? 'https://getbarry.page.link/tomorrow'
-          : 'https://www.getbarry.co/?utm_source=tomorrow&utm_medium=affiliate&utm_campaign=Electricitymap'
-        )
+        .attr('href', 'https://getbarry.page.link/tomorrow')
         .on('click', () => {
           thirdPartyServices.trackWithCurrentApplicationState('referralClicked');
         });
