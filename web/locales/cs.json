@@ -183,7 +183,7 @@
         "whoAreYou-question": "Kdo jste?",
         "whoAreYou-answer": "ElectricityMap je vyvíjená a udržována společností <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
         "feedback-question": "Můžu vám nechat zpětnou vazbu?",
-        "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:hello@tmrow.com\">nám poslat email!</a>",
+        "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:electricitymap@tmrow.com\">nám poslat email!</a>",
         "contribute-question": "Můžu se zapojit do vašeho projektu?",
         "contribute-answer": "Ano! ElectricityMap je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
         "workTogether-question": "Můžeme pracovat společně?",

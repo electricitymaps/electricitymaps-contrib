@@ -15,17 +15,14 @@ ZONE_BOUNDING_BOXES = {}
 # Read parser import list from config jsons
 ZONES_CONFIG = json.load(open(relative_path(
     __file__, '../config/zones.json')))
+EXCHANGES_CONFIG = json.load(open(relative_path(
+    __file__, '../config/exchanges.json')))
 
 # Read all zones
 for zone_id, zone_config in ZONES_CONFIG.items():
     if 'bounding_box' in zone_config:
         ZONE_BOUNDING_BOXES[zone_id] = zone_config['bounding_box']
 
-# Read parser import list from config jsons
-ZONES_CONFIG = json.load(open(relative_path(
-    __file__, '../config/zones.json')))
-EXCHANGES_CONFIG = json.load(open(relative_path(
-    __file__, '../config/exchanges.json')))
 ZONE_NEIGHBOURS = {}
 for k, v in EXCHANGES_CONFIG.items():
     zone_names = k.split('->')

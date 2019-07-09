@@ -14,13 +14,13 @@ mkdir -p build
 
 if [ ! -e "build/${COUNTRIES_FILENAME}.zip" ]; then
   echo "Downloading ${COUNTRIES_FILENAME}.zip"
-  curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip http://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${COUNTRIES_FILENAME}.zip
+  curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip https://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${COUNTRIES_FILENAME}.zip
 fi
 unzip -od build build/${COUNTRIES_FILENAME}.zip
 
 if [ ! -e "build/${STATES_FILENAME}.zip" ]; then
   echo "Downloading ${STATES_FILENAME}.zip"
-  curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip http://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${STATES_FILENAME}.zip
+  curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip https://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${STATES_FILENAME}.zip
 fi
 unzip -od build build/${STATES_FILENAME}.zip
 

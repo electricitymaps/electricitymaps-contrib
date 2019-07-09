@@ -21,7 +21,7 @@
     "cordova-support-android-plugin": "^0.3.7",
     "cordova-support-google-services": "^1.1.0",
     "cordova-universal-links-plugin": "^1.2.1",
-    "ejs": "^2.6.1",
+    "ejs": "^2.6.2",
     "i18n": "^0.8.3"
   },
   "repository": {
