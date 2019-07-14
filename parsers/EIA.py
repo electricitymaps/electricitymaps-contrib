@@ -19,6 +19,10 @@ DAY_AHEAD = {
     'US-IPC': 'EBA.IPCO-ALL.DF.H'
 }
 
+PRODUCTION = {
+    'US-SEC': 'EBA.SEC-ALL.NG.H'
+}
+
 EXCHANGES = {
     'MX-BC->US-CA': 'EBA.CISO-CFE.ID.H',
     'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
@@ -32,16 +36,28 @@ EXCHANGES = {
 
 def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
                                logger=None):
+    return _fetch_production_or_consumption(
+        zone_key, DAY_AHEAD[zone_key], session=session,
+        target_datetime=target_datetime, logger=logger)
 
-    series_id = DAY_AHEAD[zone_key]
+
+def fetch_production(zone_key, session=None, target_datetime=None,
+                     logger=None):
+    return _fetch_production_or_consumption(
+        zone_key, PRODUCTION[zone_key], session=session,
+        target_datetime=target_datetime, logger=logger)
+
+
+def _fetch_production_or_consumption(zone_key, series_id, session=None,
+                                     target_datetime=None, logger=None):
     s = session or requests.Session()
-    forecast_series = Series(series_id=series_id, session=s)
+    series = Series(series_id=series_id, session=s)
 
     if target_datetime:
-        raw_data = forecast_series.last_from(24, end=target_datetime)
+        raw_data = series.last_from(24, end=target_datetime)
     else:
         # Get the last 24 hours available.
-        raw_data = forecast_series.last(24)
+        raw_data = series.last(24)
 
     # UTC timestamp with no offset returned.
 
@@ -102,4 +118,5 @@ if __name__ == '__main__':
     "Main method, never used by the Electricity Map backend, but handy for testing."
 
     print(fetch_consumption_forecast('US-NY'))
+    print(fetch_production('US-SEC'))
     print(fetch_exchange('MX-BC', 'US-CA'))
