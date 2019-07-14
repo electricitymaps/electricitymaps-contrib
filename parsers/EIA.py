@@ -41,7 +41,7 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
         raw_data = forecast_series.last_from(24, end=target_datetime)
     else:
         # Get the last 24 hours available.
-        raw_data = forecast_series.last(24)['series'][0]['data']
+        raw_data = forecast_series.last(24)
 
     # UTC timestamp with no offset returned.
 
@@ -50,7 +50,7 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
         'datetime': parser.parse(datapoint[0]),
         'value': datapoint[1],
         'source': 'eia.org',
-    } for datapoint in raw_data]
+    } for datapoint in raw_data['series'][0]['data']]
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
