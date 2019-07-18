@@ -101,67 +101,6 @@ def fetch_production(zone_key='US-HI', session=None,
 
     return data
 
-
-# def fetch_price(zone_key='US-HI', session=None, target_datetime=None,
-#                 logger=logging.getLogger(__name__)):
-#     """Requests the last known power price of a given country
-
-#     Arguments:
-#     ----------
-#     zone_key: used in case a parser is able to fetch multiple countries
-#     session: request session passed in order to re-use an existing session
-#     target_datetime: the datetime for which we want production data. If not
-#       provided, we should default it to now. If past data is not available,
-#       raise a NotImplementedError. Beware that the provided target_datetime is
-#       UTC. To convert to local timezone, you can use
-#       `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
-#       Note that `arrow.get(None)` returns UTC now.
-#     logger: an instance of a `logging.Logger` that will be passed by the
-#       backend. Information logged will be publicly available so that correct
-#       execution of the logger can be checked. All Exceptions will automatically
-#       be logged, so when something's wrong, simply raise an Exception (with an
-#       explicit text). Use `logger.warning` or `logger.info` for information
-#       that can useful to check if the parser is working correctly. A default
-#       logger is used so that logger output can be seen when coding / debugging.
-
-#     Returns:
-#     --------
-#     If no data can be fetched, any falsy value (None, [], False) will be
-#       ignored by the backend. If there is no data because the source may have
-#       changed or is not available, raise an Exception.
-
-#     A dictionary in the form:
-#     {
-#       'zoneKey': 'FR',
-#       'currency': EUR,
-#       'datetime': '2017-01-01T00:00:00Z',
-#       'price': 0.0,
-#       'source': 'mysource.com'
-#     }
-#     """
-#     if target_datetime:
-#         raise NotImplementedError(
-#             'This parser is not yet able to parse past dates')
-
-#     r = session or requests.session()
-#     assert r.status_code == 200
-#     url = 'https://api.someservice.com/v1/price/latest'
-
-#     response = r.get(url)
-#     obj = response.json()
-
-#     data = {
-#         'zoneKey': zone_key,
-#         'currency': 'EUR',
-#         'price': obj['price'],
-#         'source': 'someservice.com',
-#     }
-
-#     # Parse the datetime and return a python datetime object
-#     data['datetime'] = arrow.get(obj['datetime']).datetime
-
-#     return data
-
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy
     for testing."""
