@@ -3735,6 +3735,31 @@
     },
     "timezone": null
   },
+  "US-SEC": {
+    "_comment": "https://www.seminole-electric.com/facilities/generation/ lists two 650MW coal-fired plants, one 810MW gas plant, and a small 2.2MW solar farm. Hwoever, EIA combines coal and gas generation data, so we report those together as unknown",
+    "bounding_box": [
+      [
+        -87.63333333,
+        24.45
+      ],
+      [
+        -80.03333333,
+        31.0
+      ]
+    ],
+    "capacity": {
+      "unknown": 2110,
+      "solar": 2
+    },
+    "contributors": [
+      "https://github.com/snarfed"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SEC.fetch_production"
+    },
+    "timezone": "US/Eastern"
+  },
   "US-TX": {
     "_comment": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf lists wind capacity and utility scale solar and percentages, unknown capacity calculated from those figures",
     "bounding_box": [
