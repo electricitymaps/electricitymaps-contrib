@@ -3750,23 +3750,23 @@
     "timezone": null
   },
   "US-HI": {
-	"_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
-	"capacity": {
-		"biomass": 256.5,
-		"coal": 0,
-		"gas": 0,
-		"geothermal": 0,
-		"hydro": 0,
-		"oil": 0,
-		"solar": 781,
-		"wind": 171,
-		"unknown": 0
-	},
-	"contributors": [
-	"https://github.com/kepiej"
-	],
+	  "_comment": "biomass includes 68.5 MW of waste-to-energy and 188 MW of biodiesel. Source: https://www.hawaiianelectric.com/clean-energy-hawaii/clean-energy-facts/about-our-fuel-mix",
+	  "capacity": {
+		  "biomass": 256.5,
+		  "coal": 0,
+		  "gas": 0,
+		  "geothermal": 0,
+		  "hydro": 0,
+		  "oil": 0,
+		  "solar": 781,
+		  "wind": 171,
+		  "unknown": 0
+	  },
+	  "contributors": [
+	    "https://github.com/kepiej"
+	  ],
     "flag_file_name": "us.png",
-	"parsers": {
+	  "parsers": {
       "production": "US_HI.fetch_production"
     },
     "timezone": "Pacific/Honolulu"
