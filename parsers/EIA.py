@@ -50,6 +50,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
 def _fetch_production_or_consumption(zone_key, series_id, session=None,
                                      target_datetime=None, logger=None):
+    """Fetches production or consumption forecast, determined by series_id."""
     s = session or requests.Session()
     series = Series(series_id=series_id, session=s)
 

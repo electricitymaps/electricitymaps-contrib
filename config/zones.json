@@ -3736,7 +3736,6 @@
     "timezone": null
   },
   "US-SEC": {
-    "_comment": "https://www.seminole-electric.com/facilities/generation/ lists two 650MW coal-fired plants, one 810MW gas plant, and a small 2.2MW solar farm. Hwoever, EIA combines coal and gas generation data, so we report those together as unknown",
     "bounding_box": [
       [
         -87.63333333,
