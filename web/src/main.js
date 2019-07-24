@@ -26,11 +26,13 @@ const d3 = Object.assign(
   require('d3-scale-chromatic'),
   require('d3-interpolate'),
 );
-const Cookies = require('js-cookie');
 const moment = require('moment');
 
 // State management
 const { dispatch, dispatchApplication, getState, observe } = require('./store');
+
+//Persistent storage
+const { saveKey } = require('./storage');
 
 // Components
 const AreaGraph = require('./components/areagraph');
@@ -536,7 +538,7 @@ function renderMap(state) {
   if (getState().application.windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable wind if the drawing goes wrong
-    Cookies.set('windEnabled', false);
+    saveKey('windEnabled', false);
     windLayer.draw(
       getState().application.customDate ?
         moment(getState().application.customDate) : moment(new Date()),
@@ -550,7 +552,7 @@ function renderMap(state) {
       windLayer.hide();
     }
     // Restore setting
-    Cookies.set('windEnabled', getState().application.windEnabled);
+    saveKey('windEnabled', getState().application.windEnabled);
     LoadingService.stopLoading('#loading');
   } else if (typeof windLayer !== 'undefined') {
     windLayer.hide();
@@ -560,7 +562,7 @@ function renderMap(state) {
   if (getState().application.solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
     // Make sure to disable solar if the drawing goes wrong
-    Cookies.set('solarEnabled', false);
+    saveKey('solarEnabled', false);
     solarLayer.draw(
       getState().application.customDate ?
         moment(getState().application.customDate) : moment(new Date()),
@@ -574,7 +576,7 @@ function renderMap(state) {
           solarLayer.hide();
         }
         // Restore setting
-        Cookies.set('solarEnabled', getState().application.solarEnabled);
+        saveKey('solarEnabled', getState().application.solarEnabled);
         LoadingService.stopLoading('#loading');
       },
     );
@@ -952,7 +954,7 @@ d3.selectAll('.highscore-button')
 // Onboarding modal
 if (onboardingModal) {
   onboardingModal.onDismiss(() => {
-    Cookies.set('onboardingSeen', true, { expires: 365 });
+    saveKey('onboardingSeen', true);
     dispatchApplication('onboardingSeen', true);
   });
 }
@@ -1452,7 +1454,7 @@ observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
 });
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
-  Cookies.set('colorBlindModeEnabled', colorBlindModeEnabled);
+  saveKey('colorBlindModeEnabled', colorBlindModeEnabled);
   updateCo2Scale();
   if (exchangeLayer) {
     exchangeLayer
@@ -1464,7 +1466,7 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
   d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
-  Cookies.set('brightModeEnabled', brightModeEnabled);
+  saveKey('brightModeEnabled', brightModeEnabled);
   // update Theme
   if (getState().application.brightModeEnabled) {
     theme = themes.bright;
@@ -1478,7 +1480,7 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);
   d3.select('.solar-potential-legend').classed('visible', solarEnabled);
-  Cookies.set('solarEnabled', solarEnabled);
+  saveKey('solarEnabled', solarEnabled);
 
   solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
 
@@ -1502,7 +1504,7 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
 
   windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
-  Cookies.set('windEnabled', windEnabled);
+  saveKey('windEnabled', windEnabled);
 
   const now = state.customDate ?
     moment(state.customDate) : (new Date()).getTime();
