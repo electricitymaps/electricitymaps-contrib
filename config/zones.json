@@ -64,7 +64,7 @@
       "production": "AM.fetch_production"
     },
     "timezone": "Asia/Yerevan"
-  },      
+  },
   "AR": {
     "capacity": {
       "gas": 18930,
@@ -3155,6 +3155,33 @@
     ],
     "flag_file_name": "pt.png",
     "timezone": null
+  },
+  "RE": {
+    "bounding_box": [
+      [
+        54.374008,
+        -22.069087
+      ],
+      [
+        56.334630,
+        -20.421464
+      ]
+    ],
+    "capacity": {
+      "biomass": 215,
+      "coal": 211,
+      "oil": 502,
+      "hydro": 138,
+      "solar": 189,
+      "wind": 15
+    },
+    "contributors": [
+      "https://github.com/PETILLON-Sebastien"
+    ],
+    "parsers": {
+      "production": "RE.fetch_production"
+    },
+    "timezone": "Indian/Reunion"
   },
   "RO": {
     "bounding_box": [
