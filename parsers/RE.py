@@ -31,12 +31,12 @@ MAP_GENERATION_BAGASSE_COAL = {
     4: {'coal': 1, 'biomass': 0},
     5: {'coal': 1, 'biomass': 0},
     6: {'coal': 1, 'biomass': 0},
-    7: {'coal': 0.61, 'biomass': 0.23},
-    8: {'coal': 0.61, 'biomass': 0.4},
-    9: {'coal': 0.61, 'biomass': 0.4},
-    10: {'coal': 0.61, 'biomass': 0.4},
-    11: {'coal': 0.61, 'biomass': 0.4},
-    12: {'coal': 1, 'biomass': 0.23},
+    7: {'coal': 0.77, 'biomass': 0.23},
+    8: {'coal': 0.6, 'biomass': 0.4},
+    9: {'coal': 0.6, 'biomass': 0.4},
+    10: {'coal': 0.6, 'biomass': 0.4},
+    11: {'coal': 0.6, 'biomass': 0.4},
+    12: {'coal': 0.77, 'biomass': 0.23},
 }
 
 
