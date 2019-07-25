@@ -3167,7 +3167,6 @@
         -20.421464
       ]
     ],
-    "_comment": "2 power plants are using bagasse (biomass) or coal -> 211MW, used at 15-18% with bagasse only in the year from July to November",
     "capacity": {
       "biomass": 215,
       "coal": 211,

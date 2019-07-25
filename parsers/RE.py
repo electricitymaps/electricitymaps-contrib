@@ -45,18 +45,13 @@ def fetch_production(zone_key='RE', session=None, target_datetime=None,
 
     if target_datetime:
         raise NotImplementedError('There is no historical data')
-        #to = arrow.get(target_datetime, 'Indian/Reunion')
     else:
         to = arrow.now(tz='Indian/Reunion')
 
     r = session or requests.session()
-    #formatted_from = to.shift(days=-1).format('YYYY-MM-DDTHH:mm')
-    #formatted_to = to.format('YYYY-MM-DDTHH:mm')
 
     params = {
         'dataset': 'prod-electricite-temps-reel',
-        #'q': 'date_heure >= {} AND date_heure <= {}'.format(
-        #    formatted_from, formatted_to),
         'timezone': 'Indian/Reunion',
         'sort': 'date',
         'rows': 288
