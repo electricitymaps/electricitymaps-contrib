@@ -182,9 +182,16 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     DATE = 'Date={}'.format(date)
 
     exchange_urls = []
-    for hour in range(0,24):
-        url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
-        exchange_urls.append((url,hour))
+    if target_datetime:
+        for hour in range(0,24):
+            url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+            exchange_urls.append((url,hour))
+    else:
+        # Only fetch last 2 hours when not fetching historical data.
+        for shift in range(0, 2):
+            hour = today.shift(hours=-shift).format('HH')
+            url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+            exchange_urls.append((url, hour))
 
     datapoints = []
     for url, hour in exchange_urls:
@@ -213,7 +220,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             # flow is unknown or not available
             flow = None
 
-        dt = today.replace(hour=hour).floor('hour').datetime
+        dt = today.replace(hour=int(hour)).floor('hour').datetime
 
         exchange = {
             'sortedZoneKeys': sortedcodes,
