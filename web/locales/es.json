@@ -20,7 +20,7 @@
         "helpfrom": "Ayuda de",
         "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
         "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta área",
-        "noParserInfo": "No tenemos aún información sobre esta area.<br/> ¿Quieres ayudarnos a arreglar esto? Puedes contribuir <a href=\"%s\" target=\"_blank\">añadiendo información de un area</a>."
+        "noParserInfo": "No tenemos aún información sobre esta área.<br/> ¿Quieres ayudarnos a arreglar esto? Puedes contribuir <a href=\"%s\" target=\"_blank\">añadiendo información de un área</a>."
     },
     "left-panel": {
         "zone-list-header-title": "Impacto Climático por Área",
@@ -32,11 +32,11 @@
         "electricityorigin24h": "Origen de electricidad en las últimas 24 horas",
         "electricityproduction24h": "Producción de electricidad en las últimas 24 horas",
         "electricityprices24h": "Precios de electricidad en las últimas 24 horas",
-        "Getdata": "Obtener datos histórico, marginal y and pronóstico API"
+        "Getdata": "Obtener datos histórico, marginal y pronóstico API"
     },
     "footer": {
         "likethisvisu": "¿Te gusta la visualización?",
-        "loveyourfeedback": "Nos encantaría que nos comentaras",
+        "loveyourfeedback": "Nos encantaría que nos dejaras un comentario",
         "foundbugs": "¿Encontraste algún error o tienes una sugerencia? Dínoslo",
         "faq-text": "¿Alguna duda? Mira nuestras",
         "faq": "preguntas frecuentes",
@@ -81,16 +81,16 @@
     "unknown": "desconocido",
 
     "electricityComesFrom": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
-    "emissionsComeFrom": "%1$s %% de las emissiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
+    "emissionsComeFrom": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
     "electricityStoredUsing": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
-    "emissionsStoredUsing": "%1$s %% de las emissiones en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
+    "emissionsStoredUsing": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
 
     "electricityExportedTo": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% de las emissiones en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% de las emissiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "of CO2eq por minuto",
 
     "zoneShortName": {
         "AD": {
@@ -215,7 +215,7 @@
         },
         "BR-NE": {
             "countryName": "Brasil",
-            "zoneName": "Noreste de Brazil"
+            "zoneName": "Noreste de Brasil"
         },
         "BR-S": {
             "countryName": "Brasil",
@@ -958,7 +958,7 @@
         },
         "MY-WM": {
             "countryName": "Malasia",
-            "zoneName": "Peninsula"
+            "zoneName": "Península"
         },
         "MZ": {
             "zoneName": "Mozambique"
@@ -1092,7 +1092,7 @@
             "zoneName": "Catar"
         },
         "RE": {
-            "zoneName": "Réunion"
+            "zoneName": "Reunión"
         },
         "RO": {
             "zoneName": "Rumanía"
