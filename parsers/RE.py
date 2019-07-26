@@ -5,7 +5,6 @@ import arrow
 import json
 import logging
 import requests
-import datetime
 
 API_ENDPOINT = 'https://opendata-reunion.edf.fr/api/records/1.0/search/'
 
@@ -102,7 +101,7 @@ def fetch_production(zone_key='RE', session=None, target_datetime=None,
             else:
                 hydro = record['fields'][MAP_GENERATION['hydro']]
 
-        date_time = datetime.datetime.strptime(record['fields']['date'], "%Y-%m-%dT%H:%M:%S%z")
+        date_time = arrow.get(record['fields']['date']).datetime
 
         datapoints.append({
             'zoneKey': 'RE',
