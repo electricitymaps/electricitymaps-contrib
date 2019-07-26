@@ -175,7 +175,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if target_datetime:
         today = arrow.get(target_datetime, 'YYYYMMDD')
     else:
-        today = arrow.now(tz=tz)
+        today = arrow.utcnow()
 
     date = today.format('YYYY-MM-DD')
     r = session or requests.session()
@@ -191,7 +191,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
         for shift in range(0, 2):
             hour = today.shift(hours=-shift).format('HH')
             url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
-            exchange_urls.append((url, hour))
+            exchange_urls.append((url, int(hour)))
 
     datapoints = []
     for url, hour in exchange_urls:
@@ -220,7 +220,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             # flow is unknown or not available
             flow = None
 
-        dt = today.replace(hour=int(hour)).floor('hour').datetime
+        dt = today.replace(hour=hour).floor('hour').datetime
 
         exchange = {
             'sortedZoneKeys': sortedcodes,
