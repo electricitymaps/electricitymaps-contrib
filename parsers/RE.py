@@ -116,7 +116,7 @@ def fetch_production(zone_key='RE', session=None, target_datetime=None,
                 'wind': wind,
             },
             'storage': {
-                'solar': solar_storage,
+                'battery': solar_storage,
                 'hydro': hydro_storage,
             },
             'source': 'opendata-reunion.edf.fr'
