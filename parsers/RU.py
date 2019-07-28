@@ -175,16 +175,23 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if target_datetime:
         today = arrow.get(target_datetime, 'YYYYMMDD')
     else:
-        today = arrow.now(tz=tz)
+        today = arrow.utcnow()
 
     date = today.format('YYYY-MM-DD')
     r = session or requests.session()
     DATE = 'Date={}'.format(date)
 
     exchange_urls = []
-    for hour in range(0,24):
-        url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
-        exchange_urls.append((url,hour))
+    if target_datetime:
+        for hour in range(0,24):
+            url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+            exchange_urls.append((url,hour))
+    else:
+        # Only fetch last 2 hours when not fetching historical data.
+        for shift in range(0, 2):
+            hour = today.shift(hours=-shift).format('HH')
+            url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+            exchange_urls.append((url, int(hour)))
 
     datapoints = []
     for url, hour in exchange_urls:
