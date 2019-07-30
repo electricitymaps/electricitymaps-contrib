@@ -3776,9 +3776,37 @@
     "flag_file_name": "us.png",
     "timezone": null
   },
-  "US-HI": {
+  "US-HI-HA": {
     "flag_file_name": "us.png",
-    "timezone": null
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-KA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-KH": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-LA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-MA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-MO": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-NI": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-OA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
   },
   "US-IPC": {
     "capacity": {
