@@ -36,6 +36,10 @@ export default class LanguageSelect {
   }
 
   _setItemClickHandlers() {
-    this.selector.on('click', language => window.location.href = `${window.location.href}&lang=${language.shortName}`);
+    if(window.isCordova){
+      this.selector.on('click', language => window.location.href = `index_${language.shortName}.html`);
+    }else{
+      this.selector.on('click', language => window.location.href = `${window.location.href}&lang=${language.shortName}`);
+    }
   }
 }
