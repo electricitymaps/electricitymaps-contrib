@@ -79,7 +79,7 @@ def fetch_production(zone_key='US-HI-OA', session=None,
     res = r.get(url)
 
     obj = res.json()
-	raw_data = obj[0]
+    raw_data = obj[0]
 
     data = {
         'zoneKey': zone_key,
