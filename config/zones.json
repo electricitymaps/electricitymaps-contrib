@@ -3816,7 +3816,7 @@
 		  "solar": 781,
 		  "wind": 171,
 		  "unknown": 0
-	},
+	  },
 	  "contributors": [
 	    "https://github.com/kepiej",
 	    "https://github.com/systemcatch"
