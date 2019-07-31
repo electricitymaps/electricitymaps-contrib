@@ -3806,23 +3806,23 @@
   },
   "US-HI-OA": {
     "_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
-	"capacity": {
-		"biomass": 256.5,
-		"coal": 0,
-		"gas": 0,
-		"geothermal": 0,
-		"hydro": 0,
-		"oil": 0,
-		"solar": 781,
-		"wind": 171,
-		"unknown": 0
+	  "capacity": {
+		  "biomass": 256.5,
+		  "coal": 0,
+		  "gas": 0,
+		  "geothermal": 0,
+		  "hydro": 0,
+		  "oil": 0,
+		  "solar": 781,
+		  "wind": 171,
+		  "unknown": 0
 	},
-	"contributors": [
-	"https://github.com/kepiej",
-	"https://github.com/systemcatch",
-	],
+	  "contributors": [
+	    "https://github.com/kepiej",
+	    "https://github.com/systemcatch",
+	  ],
     "flag_file_name": "us.png",
-	"parsers": {
+	  "parsers": {
       "production": "US_HI.fetch_production"
     },
     "timezone": "Pacific/Honolulu"
