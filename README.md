@@ -171,6 +171,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - United States of America
   - Bonneville Power Authority: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.txt)
   - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
+  - Hawaii (Oahu Island): [Islandpulse](https://www.islandpulse.org/)
   - Idaho Power Company: [IPC](https://www.idahopower.com/energy/delivering-power/generation-and-demand/)
   - MISO: [MISO](https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json)
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
