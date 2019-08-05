@@ -7,7 +7,7 @@
         "contribute": "Bidra genom att <a href=\"%s\" target=\"_blank\">lägga till din region</a>"
     },
     "mobile-main-menu": {
-        "map": "Karta",
+        "map": "Elkarta",
         "areas": "Regioner",
         "about": "Om"
     },
@@ -17,7 +17,7 @@
         },
         "view2": {
             "header": "Se hur mycket CO2 som släpps ut när din el produceras, i realtid.",
-            "text": "Vi färglägger regioner runt om i världen baserat på dess utsläpp av koldioxid (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
+            "text": "Vi färglägger regioner runt om i världen baserat på dess kolintensitet (inklusive alla växthusgaser) från elproduktion. Grönare färg innebär mer klimatvänlig el."
         },
         "view3": {
             "header": "Vet var din el kommer från",
@@ -30,10 +30,11 @@
     },
     "country-panel": {
         "source": "källa",
-        "carbonintensity": "Utsläpp av koldioxid",
+        "carbonintensity": "Kolintensitet",
         "lowcarbon": "Fossilfritt",
         "renewable": "Förnybart",
-        "electricity": "Elproduktion",
+        "electricityproduction": "Elproduktion",
+        "electricityconsumption": "Elkonsumtion",
         "bysource": "per källa",
         "emissions": "Koldioxidutsläpp",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">lägg till eller redigera källa</a>",
@@ -45,15 +46,17 @@
     },
     "left-panel": {
         "zone-list-header-title": "Klimatpåverkan per region",
-        "zone-list-header-subtitle": "Rankad efter utsläpp av koldioxid från elproduktion (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Rankad efter kolintensitet från elproduktion (gCO2eq/kWh)",
         "search": "Sök efter region"
     },
     "country-history": {
-        "carbonintensity24h": "Utsläpp av koldioxid under de senaste 24 timmarna",
+        "carbonintensity24h": "Kolintensitet under de senaste 24 timmarna",
         "emissionsorigin24h": "Källa för utsläpp de senaste 24 timmarna",
+        "emissionsproduction24h": "Utsläpp producerad de senaste 24 timmarna",
         "electricityorigin24h": "Källa för el under de senaste 24 timmarna",
+        "electricityproduction24h": "El producerad de senaste 24 timmarna",
         "electricityprices24h": "Elpriser under de senaste 24 timmarna",
-        "Getdata": "API för att hämta historisk data och prognos"
+        "Getdata": "API för att hämta historisk data, marginal och prognos"
     },
     "footer": {
         "likethisvisu": "Gillar du visualiseringen?",
@@ -67,24 +70,28 @@
         "windpotential": "Potential för vindkraft",
         "solarpotential": "Potential för solkraft",
         "colorblindmode": "anpassning för färgblinda",
-        "carbonintensity": "Utsläpp av koldioxid"
+        "carbonintensity": "Kolintensitet"
     },
     "tooltips": {
-        "carbonintensity": "Utsläpp av koldioxid",
+        "carbonintensity": "Kolintensitet",
         "lowcarbon": "Fossilfritt",
         "renewable": "Förnybart",
         "crossborderexport": "Gränsöverskridande export",
-        "carbonintensityexport": "Utsläpp av koldioxid för export",
+        "carbonintensityexport": "Kolintensitet för export",
         "ofinstalled": "av installerad kapacitet",
         "utilizing": "utnyttjar",
-        "withcarbonintensity": "med ett utsläpp av koldioxid på",
+        "withcarbonintensity": "med en kolintensitet på",
         "showWindLayer": "Visa vind-lager",
         "hideWindLayer": "Dölj vind-lager",
         "showSolarLayer": "Visa sol-lager",
         "hideSolarLayer": "Dölj sol-lager",
         "toggleDarkMode": "Växla mörkt läge",
         "noParserInfo": "Ingen data tillgänglig",
-        "temporaryDataOutage": "Data tillfälligt otillgänglig"
+        "temporaryDataOutage": "Data tillfälligt otillgänglig",
+        "production": "produktion",
+        "consumption": "konsumtion",
+        "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorera det",
+        "selectLanguage": "Välj språk"
     },
     "misc": {
         "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
@@ -178,6 +185,10 @@
             "countryName": "Australien",
             "zoneName": "Tasmanien"
         },
+        "AUS-TAS-KI": {
+            "countryName": "Tasmanien",
+            "zoneName": "King Island"
+        },
         "AUS-VIC": {
             "countryName": "Australien",
             "zoneName": "Victoria"
@@ -236,19 +247,19 @@
         },
         "BR-CS": {
             "countryName": "Brasilien",
-            "zoneName": "Centrala"
+            "zoneName": "Centrala Brasilien"
         },
         "BR-N": {
             "countryName": "Brasilien",
-            "zoneName": "Norra"
+            "zoneName": "Norra Brasilien"
         },
         "BR-NE": {
             "countryName": "Brasilien",
-            "zoneName": "Nordöstra"
+            "zoneName": "Nordöstra Brasilien"
         },
         "BR-S": {
             "countryName": "Brasilien",
-            "zoneName": "Södra"
+            "zoneName": "Södra Brasilien"
         },
         "BS": {
             "zoneName": "Bahamas"
@@ -324,15 +335,13 @@
             "zoneName": "Kokosöarna"
         },
         "CD": {
-            "countryName": "Demokratiska republiken Kongo",
-            "zoneName": "Kongo-Kinshasa"
+            "zoneName": "Demokratiska republiken Kongo"
         },
         "CF": {
             "zoneName": "Centralafrikanska republiken"
         },
         "CG": {
-            "countryName": "Republiken Kongo",
-            "zoneName": "Kongo-Brazzaville"
+            "zoneName": "Kongo"
         },
         "CH": {
             "zoneName": "Schweiz"
@@ -400,11 +409,11 @@
         },
         "DK-DK1": {
             "countryName": "Danmark",
-            "zoneName": "Väst"
+            "zoneName": "Västra Danmark"
         },
         "DK-DK2": {
             "countryName": "Danmark",
-            "zoneName": "Öst"
+            "zoneName": "Östra Danmark"
         },
         "DK-BHM": {
             "countryName": "Danmark",
@@ -437,9 +446,21 @@
         "ES": {
             "zoneName": "Spanien"
         },
-        "ES-IB": {
+        "ES-IB-FO": {
             "countryName": "Spanien",
-            "zoneName": "Balearerna"
+            "zoneName": "Formentera"
+        },
+        "ES-IB-IZ": {
+            "countryName": "Spanien",
+            "zoneName": "Ibiza"
+        },
+        "ES-IB-MA": {
+            "countryName": "Spanien",
+            "zoneName": "Mallorca "
+        },
+        "ES-IB-ME": {
+            "countryName": "Spanien",
+            "zoneName": "Menorca"
         },
         "ES-CN-FVLZ": {
             "countryName": "Spanien",
@@ -498,6 +519,18 @@
         },
         "GB-NIR": {
             "zoneName": "Nordirland"
+        },
+        "GB-ORK": {
+            "countryName": "Storbritannien",
+            "zoneName": "Orkneyöarna"
+        },
+        "GB-SHI": {
+            "countryName": "Storbritannien",
+            "zoneName": "Shetlandsöarna"
+        },
+        "GB-ZET": {
+            "countryName": "Storbritannien",
+            "zoneName": "Shetlandsöarna"
         },
         "GD": {
             "zoneName": "Grenada"
@@ -692,7 +725,7 @@
             "countryName": "Indien",
             "zoneName": "Sikkim"
         },
-        "IN-TL": {
+        "IN-TN": {
             "countryName": "Indien",
             "zoneName": "Tamil Nadu"
         },
@@ -730,6 +763,30 @@
         },
         "IT": {
             "zoneName": "Italien"
+        },
+        "IT-CNO": {
+            "countryName": "Italien",
+            "zoneName": "Centrala norra"
+        },
+        "IT-CSO": {
+            "countryName": "Italien",
+            "zoneName": "Centrala södra"
+        },
+        "IT-NO": {
+            "countryName": "Italien",
+            "zoneName": "Norra"
+        },
+        "IT-SAR": {
+            "countryName": "Italien",
+            "zoneName": "Sardinien"
+        },
+        "IT-SIC": {
+            "countryName": "Italien",
+            "zoneName": "Sicilien"
+        },
+        "IT-SO": {
+            "countryName": "Italien",
+            "zoneName": "Södra"
         },
         "JE": {
             "zoneName": "Jersey"
@@ -860,7 +917,7 @@
         },
         "MF": {
             "countryName": "Saint-Martin",
-            "zoneName": "Frankrike"
+            "zoneName": "Franska"
         },
         "MG": {
             "zoneName": "Madagaskar"
@@ -971,6 +1028,9 @@
         },
         "NI": {
             "zoneName": "Nicaragua"
+        },
+        "NKR": {
+            "zoneName": "Nagorno-Karabach"
         },
         "NL": {
             "zoneName": "Nederländerna"
@@ -1237,6 +1297,10 @@
         "US": {
             "zoneName": "USA"
         },
+        "US-AL": {
+            "countryName": "USA",
+            "zoneName": "Alabama"
+        },
         "US-BPA": {
             "countryName": "USA",
             "zoneName": "BPA"
@@ -1244,6 +1308,38 @@
         "US-CA": {
             "countryName": "USA",
             "zoneName": "Kalifornien"
+        },
+        "US-HI-HA": {
+            "countryName": "USA",
+            "zoneName": "Hawaii"
+        },
+        "US-HI-KA": {
+            "countryName": "USA",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "USA",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "USA",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "USA",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "USA",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "USA",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "USA",
+            "zoneName": "Oahu"
         },
         "US-IPC": {
             "countryName": "USA",
@@ -1253,17 +1349,33 @@
             "countryName": "USA",
             "zoneName": "MISO"
         },
+        "US-NC": {
+            "countryName": "USA",
+            "zoneName": "North Carolina"
+        },
         "US-NEISO": {
             "countryName": "USA",
             "zoneName": "New England"
+        },
+        "US-NV": {
+            "countryName": "USA",
+            "zoneName": "Nevada"
         },
         "US-NY": {
             "countryName": "USA",
             "zoneName": "New York"
         },
+        "US-OR": {
+            "countryName": "USA",
+            "zoneName": "Oregon"
+        },
         "US-PJM": {
             "countryName": "USA",
             "zoneName": "PJM"
+        },
+        "US-SC": {
+            "countryName": "USA",
+            "zoneName": "South Carolina"
         },
         "US-SPP": {
             "countryName": "USA",
@@ -1273,8 +1385,13 @@
             "countryName": "USA",
             "zoneName": "SVERI"
         },
-        "US-HI": {
-            "zoneName": "Hawaii"
+        "US-TN": {
+            "countryName": "USA",
+            "zoneName": "Tennessee"
+        },
+        "US-TX": {
+            "countryName": "USA",
+            "zoneName": "ERCOT"
         },
         "UY": {
             "zoneName": "Uruguay"
