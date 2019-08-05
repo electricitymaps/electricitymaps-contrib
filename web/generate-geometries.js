@@ -48,7 +48,7 @@ const thirdpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-NI.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-OA.geojson')),
   ]).concat(
-    JSON.parse(fs.readFileSync('./build/US-FL.geojson')).features,
+    JSON.parse(fs.readFileSync('./third_party_maps/US-FL.geojson')).features,
   );
 
 const allGeos = countryGeos.concat(stateGeos, thirdpartyGeos);

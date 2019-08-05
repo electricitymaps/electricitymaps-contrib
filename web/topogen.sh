@@ -41,13 +41,6 @@ echo "Extract metadata"
   | "$NODE_MODULES_PATH/ndjson-map" 'd.properties' \
 )> build/third_party_props.json
 
-# Download US-FL counties for US-SEC. Details:
-# https://geodata.myflorida.com/datasets/swfwmd::florida-counties
-if [ ! -e "build/US-FL.geojson" ]; then
-  echo "Downloading US-FL.geojson"
-  curl -z build/US-FL.geojson -o build/US-FL.geojson https://opendata.arcgis.com/datasets/4abd0a3669204df2bc3a57066d217959_4.geojson
-fi
-
 # We could use a country filter here to remove unneeded natural earth shapes.
 # Parse countries
 echo 'Parsing countries..'
