@@ -127,7 +127,75 @@
     "emissionsImportedFrom": "%1$s %% av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "av CO2eq per minut",
-
+    "theMap": {
+        "groupName": "Kartan",
+        "mapColors-question": "carbonIntensity-answer\"Vad betyder färgerna på kartan?\"",
+        "mapColors-answer": "Vi färglägger regionerna på kartan efter hur mycket växthusgaser som släpps ut för varje elanvändare där (dess <a href=\"#carbonIntensity\" class=\"entry-link\">kolintensitet</a>). Grönare färg betyder mer klimatvänlig elkonsumtion.",
+        "mapArrows-question": "Vad innebär pilarna mellan regionerna på kartan?",
+        "mapArrows-answer": "Pilar mellan regioner indikerar det fysiska flödet (import och export) av el mellan regioner: ju snabbare de blinkar, desto snabbare flöde. Flödet av el är viktigt då du vid import av el från grannregioner, även importerar det associerade utsläppet av koldioxid från dess produktion.",
+        "mapSolarWindButtons-question": "Vad gör knapparna “sol” och “vind” på kartan?",
+        "mapSolarWindButtons-answer": "Dessa knappar visar eller döljer realtidsvisning a vindhastighet och solstyrka för att ge en indikation på potentialen av sol- eller vind-baserad elproduktion för olika regioner. Notera att detta bara är en ytlig indikation då den faktiska potentialen för installerad vind- och solkraft också är beroende av många andra faktorer.",
+        "mapNuclearColors-question": "Varför visas kärnkraftsdrivna länder med grön färg på kartan?",
+        "mapNuclearColors-answer": "Energiproduktion med kärnkraft har en mycket låg kolintensitet (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >källa</a>), och kärnkraftsländer visas därför med grönt på kartan. Detta innebär inte att det inte finns andra miljöutmaningar associerade med kärnkraft (precis som för all annan form av energiproduktion), men dessa utmaningarna är orelaterade till utsläppet av växthusgaser och är därför utanför skopet för denna kartan.",
+        "mapColorBlind-question": "Jag är färgblind. Hur kan jag läsa din karta?",
+        "mapColorBlind-answer": "\"Du kan ändra de visade färgerna på kartan genom att aktivera inställningen “anpassning för färgblinda“. Den finns längst ned i vänsterpanelen på skrivbordsdatorer och i informationsfliken i mobilappen."
+    },
+    "mapAreas": {
+        "groupName": "Regioner på kartan",
+        "noData-question": "Varför är inte data för min region tillgänglig?",
+        "noData-answer": "Antingen för att regionens datakälla är tillfälligt otillgänglig, eller på grund av att vi ännu inte har någon datakälla uppsatt för regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss att lägga till en ny datakälla</a>.",
+        "whySmallAreas-question": "Varför delar ni upp världen i mindre regioner istället för att visa genomsnittet i varje land?",
+        "whySmallAreas-answer": "Regionerna är de minsta geografiska områdena vi har data för. Genom att ha tillgång till information på högsta möjliga detaljnivå kan elkonsumenter i olika regioner få mer precis kunskap om källan för den el de konsumerar och dess associerade klimatpåverkan.",
+        "divideExistingArea-question": "Kan ni dela in min region i mindre delar?",
+        "divideExistingArea-answer": "Självklart, om det finns separata datakällor för varje del av regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss genom att lägga till datakällor</a>",
+        "seeHistoricalData-question": "Kan jag se historik för ett område längre tillbaka än 24 timmar?",
+        "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>."
+    },
+    "methodology": {
+        "groupName": "Våra metoder",
+        "carbonIntensity-question": "Vad innebär \"kolintensitet\"?",
+        "carbonIntensity-answer": "Kolintensitet är ett mått på utsläpp av växthusgaser associerad med produktion av den el du konsumerar (i gCO2eq/kWh - gram av CO2-ekvivalenter utsläppt per kilowattimme av el konsumerad). <br><br>Vi mäter utsläppen från elkonsumtion (inte produktion), vilket betyder att allt utsläpp av växthusgaser (både CO2 och andra växthusgaser så som metan) som har skapats för att producera elen som konsumeras i en region, med hänsyn tagen till kolintensitet för el importerad från andra regioner. Vi använder en livscykelanalys (LCA), vilket innebär att vi räkna med utsläpp skapade under hela livscykeln för kraftverk (konstruktion, bränsleproduktion, produktionsutsläpp och rivning).",
+        "consumptionFocus-question": "Varför beräknar ni kolintensitet för elkonsumtion och istället för produktion?",
+        "consumptionFocus-answer": "Vi anser att alla medborgare bör vara ansvariga för den el de konsumerar, och inte för den el som produceras i den region de råkar bo i. Dessutom anser vi att regioner inte bör 'fejka' låg kolintensitet genom att helt enkelt flytta smutsig energiproduktion till andra regioner och sedan importera el från dessa regioner.",
+        "renewableLowCarbonDifference-question": "Vad är skillnaden mellan “förnybart” och “fosilfritt”?",
+        "renewableLowCarbonDifference-answer": "Förnybar energiproduktion är baserad på förnybara energikällor så som vind- och vattenflöden, solsken och geotermisk energi. Fosilfri energiproduktion betyder att produktionen innebär väldigt lågt utsläpp av växthusgaser, så som kärnkraftsproduktion.",
+        "importsAndExports-question": "Tar ni hänsyn till import och export av el?",
+        "importsAndExports-answer": "Ja, det gör vi. Man kan se import och export på kartan som små <a href=\"#mapArrows\" class=\"entry-link\">pilar mellan olika regioner</a>. Du kan se detaljerad information i diagramform när du klickar på en region.",
+        "emissionsOfStored-question": "Hur är det med utsläpp från genererad el som sedan lagras i batterier eller som används för att fylla reservoarer?",
+        "emissionsOfStored-answer": "Då för närvarande bara en liten andel av elen lagras, bör felaktigheter i modelleringen av dessa utsläpp för närvarande inte göra någon stor skillnad i slutänden. Men med tanke på den ökande mängden lagring hoppas vi att vi inom kort ska kunna ta hänsyn till detta fullt ut i vår modell.",
+        "guaranteesOfOrigin-question": "Vad är elcertifikat, och vilken hänsyn tas till dem?",
+        "contribute-answer": null,
+        "guaranteesOfOrigin-answer": "När producenter av förnyelsebar energi producerar el, kan de skapa ett elcertifikat - ett bevis på att förnyelsebar el har producerats och distribuerats till elnätet. Dessa certifikat kan sedan säljas, vilket ger elleverantörer ett sätt att hävda att elen de säljer kommer från förnybara källor, oavsett den faktiska fysiska källan.<br><br>Detta innebär att elkonsumenterna kan få höra att deras el kommer från sol och vind, även en vindlös natt. Detta är problematiskt då detta tar bort incitamentet för konsumenten att konsumera el vid bästa tidpunkt (t.ex. när mängden förnybar el i nätet faktiskt är som högst). Denna karta utesluter därför ursprungsgarantier, istället erbjuder vi en platsbaserad, fysisk bild av elnätet för att stärka konsumentmakten.",
+        "otherSources-question": "Varför visar ni inte andra källor för utsläpp förutom elproduktion?",
+        "otherSources-answer": "Det skulle vara utanför syftet med detta projekt. Men, på Tomorrow arbetar vi aktivt med att utveckla en <a href=\"#whoAreYou\" class=\"entry-link\">ny lösning för att kvantifiera klimatpåverkan av dina vardagliga beslut</a>.",
+        "homeSolarPanel-question": "Hur blir det om jag har en solpanel installerat på mitt hus?",
+        "homeSolarPanel-answer": "Vi mäter kolintensitet på ditt lokala elnät, så ingen el du konsumerar direkt från dina solpaneler (frikopplat från nätet) är med i våra mätvärden. Å andra sidan, om din solpanel tillhandahåller kraft till ditt lokala elnät, är dess produktion  inkluderad i vår statistik i regioner där uppskattningar av lokal solenergiproduktion är publikt tillgänglig (så som Frankrike och Storbritannien).",
+        "emissionsPerCapita-question": "Varför visar ni inte utsläpp per capita?",
+        "emissionsPerCapita-answer": "En del av elkonsumtionen i en region används för tillverkning av fysiska varor och produkter som sedan exporteras och används i andra regioner. Denna tillverkning, och därför dess elkonsumtion och associerade utsläpp, drivs av konsumtion av produkterna i <em>importerande regioner</em>, inte i regionen där produktionen sker. Vi anser att människor enbart ska vara ansvariga för vad de konsumerar, inte för produkter tillverkade i regionen de bor i som de inte konsumerar själva. Med detta sagt menar vi att det skulle bli missvisande att visa utsläpp per capita för elförbrukningen i en region "
+    },
+    "data": {
+        "groupName": "Vår data",
+        "dataOrigins-question": "Hur får ni er data?",
+        "dataOrigins-answer": "Vi beräknar all vi data från publik tillgänglig data publicerad av elnätsoperatörer, officiella myndigheter eller andra. Du kan klicka på en region för att se mer detaljer om källorna dess data.",
+        "dataDownload-question": "Kan jag ladda ned er data?",
+        "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>.",
+        "dataIntegration-question": "Kan jag integrera er live-data i min applikation eller utrustning?",
+        "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">realtids-API</a>, som inkluderar framtida prognoser."
+    },
+    "aboutUs": {
+        "groupName": "Om oss",
+        "whoAreYou-question": "Vilka är ni?",
+        "whoAreYou-answer": "Electricity Map är utvecklad och förvaltad av <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, ett litet Dansk/Franskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
+        "feedback-question": "Kan jag ge er någon återkoppling?",
+        "NI": null,
+        "feedback-answer": "Gärna! Fyll i <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:hello@electricity.com\">skicka oss ett e-brev!</a>",
+        "contribute-question": "Kan jag bidra till ert projekt?",
+        "contribute-answer": " Ja! The Electricity Map är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+        "workTogether-question": "Kan vi arbeta tillsammans?",
+        "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:hello@tmrow.com\">Skicka oss ett e-brev</a>!",
+        "disclaimer-question": "Ansvarsfriskrivning",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publicerar data och bilder på The <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. Tomorrow påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på electricityMap, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från Tomorrow, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
+    },
     "zoneShortName": {
         "AD": {
             "zoneName": "Andorra"
