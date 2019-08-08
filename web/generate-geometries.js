@@ -767,9 +767,17 @@ zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 // Write unsimplified list of geojson, without state merges
 fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
 
-// Simplify all countries
+// Convert to TopoJSON
 const topojson = require('topojson');
 let topo = topojson.topology(zones);
+
+// merge contiguous Florida counties in US-SEC so that we only see the outer
+// region boundary line(s), not the interior county boundary lines.
+// Example: https://bl.ocks.org/mbostock/5416405
+// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
+topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
+
+// Simplify all countries
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
 
