@@ -14,8 +14,8 @@ from datetime import timezone
 
 import pandas as pd
 
-from parsers import EIA
-from parsers.ENTSOE import merge_production_outputs
+from . import EIA
+from .ENTSOE import merge_production_outputs
 
 
 def fetch_production(zone_key='US-SEC', session=None, target_datetime=None,
