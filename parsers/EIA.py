@@ -20,7 +20,9 @@ DAY_AHEAD = {
 }
 
 PRODUCTION = {
-    'US-SEC': 'EBA.SEC-ALL.NG.H'
+    'US-SC': 'EBA.SC-ALL.NG.H',
+    'US-SCEG': 'EBA.SCEG-ALL.NG.H',
+    'US-SEC': 'EBA.SEC-ALL.NG.H',
 }
 
 EXCHANGES = {

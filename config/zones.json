@@ -4050,6 +4050,14 @@
     "timezone": null
   },
   "US-SC": {
+    "_comment": "Production comes from two sources. 1) South Carolina Electric & Gas Co, a division of SCANA (https://www.scana.com/), acquired by Dominion 2) Santee Cooper (http://www.santeecooper.com/) aka South Carolina Public Service Authority. Capacity from http://www.energy.sc.gov/files/view/Santee%20Cooper_IRP_2018_FINAL.pdf averaged between summer and winter reported capacities.",
+    "capacity": {
+      "hydro": 962,
+      "coal": 5240,
+      "gas": 3416.5,
+      "nuclear": 966,
+      "oil": 143.5
+    },
     "bounding_box": [
       [
         -83.110764,
@@ -4060,8 +4068,14 @@
         35.068720
       ]
     ],
+    "parsers": {
+      "production": "US_SC.fetch_production"
+    },
     "flag_file_name": "us.png",
-    "timezone": null
+    "timezone": "US/Eastern",
+    "contributors": [
+      "https://github.com/snarfed"
+    ]
   },
   "US-SPP": {
     "capacity": {
