@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-"""Parser for the SVERI area of the USA."""
+"""Parser for the SVERI area of the USA.
+NOTE - SVERI has lost funding and no longer returns data.
+"""
 
 from datetime import datetime, timedelta
 from io import StringIO

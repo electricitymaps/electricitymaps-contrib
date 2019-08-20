@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# Parser for the Chile-SING region.
+"""Parser for the Chile-SING region.
+NOTE - Non functional due to changes to Chilean grid.
+"""
 # There are plans to unify the Chilean grid.
 # https://www.engerati.com/article/chile%E2%80%99s-grid-be-unified-new-transmission-highway
 

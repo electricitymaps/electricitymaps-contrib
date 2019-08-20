@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-"""Parser for the SIC grid region of Chile."""
+"""Parser for the SIC grid region of Chile.
+NOTE - Deprecated due to data source no longer being updated.
+"""
 
 import arrow
 from bs4 import BeautifulSoup
