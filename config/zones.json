@@ -1970,6 +1970,37 @@
     },
     "timezone": null
   },
+  "IN-KL": {
+    "bounding_box": [
+      [
+        74.8671,
+        8.2930
+      ],
+      [
+        77.4094,
+        12.8018
+      ]
+    ],
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "hydro": 2160.76,
+      "nuclear": 0,
+      "oil": 234.6,
+      "solar": 80.95,
+      "wind": 2
+    },
+    "contributors": [
+      "https://github.com/vigeesh"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "consumption": "IN_KL.fetch_consumption",
+      "production": "IN_KL.fetch_production"
+    },
+    "timezone": null
+  },
   "IN-PB": {
     "bounding_box": [
       [
