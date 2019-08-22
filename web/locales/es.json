@@ -320,13 +320,9 @@
             "countryName": "Chile",
             "zoneName": "SEM"
         },
-        "CL-SIC": {
+        "CL-SING-SIC": {
             "countryName": "Chile",
-            "zoneName": "SIC"
-        },
-        "CL-SING": {
-            "countryName": "Chile",
-            "zoneName": "SING"
+            "zoneName": "SING/SIC"
         },
         "CM": {
             "zoneName": "Camerún"

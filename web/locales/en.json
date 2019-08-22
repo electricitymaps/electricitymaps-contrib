@@ -418,13 +418,9 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
-          "CL-SING": {
+          "CL-SING-SIC": {
             "countryName": "Chile",
-            "zoneName": "SING"
-          },
-          "CL-SIC": {
-            "countryName": "Chile",
-            "zoneName": "SIC"
+            "zoneName": "SING/SIC"
           },
           "CL-SEM": {
             "countryName": "Chile",

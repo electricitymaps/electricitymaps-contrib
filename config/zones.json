@@ -802,70 +802,38 @@
     },
     "timezone": null
   },
-  "CL-SIC": {
+  "CL-SING-SIC": {
     "bounding_box": [
       [
-        -74.625132,
-        -43.246595
+        -74.71,
+        -17.39
       ],
       [
-        -67.249115,
-        -22.382339
+        -66.88,
+        -44.02
       ]
     ],
     "capacity": {
       "battery storage": 0,
       "biomass": 466,
-      "coal": 2348,
-      "gas": 2482,
-      "geothermal": 55,
-      "hydro": 7222,
+      "coal": 4796,
+      "gas": 4411,
+      "geothermal": 79,
+      "hydro": 5105,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 2645,
-      "solar": 2142,
-      "wind": 1420
+      "oil": 2920,
+      "solar": 2793,
+      "wind": 1622
     },
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
     "parsers": {
-      "production": "CL_SIC.fetch_production"
+      "production": "CL.fetch_production"
     },
-    "timezone": null
-  },
-  "CL-SING": {
-    "bounding_box": [
-      [
-        -71.23998509499998,
-        -26.528631180029834
-      ],
-      [
-        -66.5139668379999,
-        -20.427688032788268
-      ]
-    ],
-    "capacity": {
-      "battery storage": 0,
-      "biomass": 0,
-      "coal": 2448,
-      "gas": 1929,
-      "geothermal": 24,
-      "hydro": 17,
-      "hydro storage": 0,
-      "nuclear": 0,
-      "oil": 275,
-      "solar": 651,
-      "wind": 202
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "parsers": {
-      "production": "CL_SING.fetch_production"
-    },
-    "timezone": null
+    "timezone": "Chile/Continental"
   },
   "CR": {
     "bounding_box": [
