@@ -18,7 +18,11 @@ TYPE_MAPPING = {'hidraulica': 'hydro',
 
 
 def timestamp_creator(date, hour):
+    """Takes a string and int and returns a datetime object"""
+
     arr_date = arrow.get(date, "YYYY-MM-DD")
+
+    # NOTE in the data source each day starts on hour 1 and ends on 24!
 
     if hour == 24:
         arr_dt = arr_date.shift(days=+1)
@@ -31,7 +35,9 @@ def timestamp_creator(date, hour):
 
 
 def data_processor(raw_data):
-    # NOTE each day starts on hour 1 and ends on 24!
+    """Takes raw json data and groups by datetime while mapping generation to type.
+    Returns a list of dictionaries.
+    """
 
     clean_datapoints = []
     for datapoint in raw_data:
@@ -56,9 +62,8 @@ def data_processor(raw_data):
     return ordered_data
 
 
-def fetch_production(zone_key = 'CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """
-    Requests the last known production mix (in MW) of a given zone
+def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+    """Requests the last known production mix (in MW) of a given zone
     Arguments:
     zone_key (optional) -- used in case a parser is able to fetch multiple zones
     session (optional) -- request session passed in order to re-use an existing session
