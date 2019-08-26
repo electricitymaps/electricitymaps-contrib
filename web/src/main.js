@@ -1369,7 +1369,14 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderGauges(state);
   renderHistory(state);
   d3.select('.production-toggle-active-overlay')
-    .classed('prod', electricityMixMode === 'production');
+    .classed('prod', electricityMixMode === 'production')
+    .style('left', electricityMixMode === 'production'
+      ? '0px'
+      : `${d3.select('.production-toggle-item.production').node().getBoundingClientRect().width + 4}px`)
+    .style('width', electricityMixMode === 'production'
+      ? `${d3.select('.production-toggle-item.production').node().getBoundingClientRect().width}px`
+      : `${d3.select('.production-toggle-item.consumption').node().getBoundingClientRect().width}px`
+    );
   d3.select('a#production')
     .text(translation.translate(`country-panel.electricity${electricityMixMode}`));
   document.getElementById('country-history-electricity-carbonintensity')
