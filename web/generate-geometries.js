@@ -641,7 +641,7 @@ const zoneDefinitions = [
 ];
 
 const getDataForZone = (zone, mergeStates) => {
-  /* for a specifi zone, defined by an Object having at least `zoneName` and
+  /* for a specific zone, defined by an Object having at least `zoneName` and
    * `type` as properties, call the corresponding function to get the data */
   if (zone.type === 'country'){
     return getCountry(zone.id)
@@ -735,6 +735,15 @@ zoneDefinitions.forEach(zone => {
   }
 });
 
+// merge contiguous Florida counties in US-SEC so that we only see the outer
+// region boundary line(s), not the interior county boundary lines.
+// Example: https://bl.ocks.org/mbostock/5416405
+// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
+const topojson = require('topojson');
+const sec = topojson.topology({'US-SEC': zones['US-SEC']})
+const secMerged = topojson.mergeArcs(sec, [sec.objects['US-SEC']]);
+zones['US-SEC'] = topojson.feature(sec, secMerged)
+
 // create zonesMoreDetails by getting zone having moreDetails===true
 let zonesMoreDetails = {};
 zoneDefinitions.forEach(zone => {
@@ -768,14 +777,7 @@ zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
 
 // Convert to TopoJSON
-const topojson = require('topojson');
 let topo = topojson.topology(zones);
-
-// merge contiguous Florida counties in US-SEC so that we only see the outer
-// region boundary line(s), not the interior county boundary lines.
-// Example: https://bl.ocks.org/mbostock/5416405
-// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
-topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
 
 // Simplify all countries
 topo = topojson.presimplify(topo);
