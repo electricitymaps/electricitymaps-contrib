@@ -5017,13 +5017,6 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
-polygon-clipping@^0.14.2:
-  version "0.14.2"
-  resolved "https://registry.yarnpkg.com/polygon-clipping/-/polygon-clipping-0.14.2.tgz#5c1b2f61fcf465172750fcdeaed977b0dd7f83f3"
-  integrity sha512-X0gxP42HkzxxF+MRA3BPoY9A0N9Y2rho9SGJQrLaKGAco6yLTDj/mHRwo45raD8exLvzDXjNKHKZ6bD7MC8hSA==
-  dependencies:
-    splaytree "^3.0.0"
-
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -6141,11 +6134,6 @@ spdx-expression-parse@^3.0.0:
 spdx-license-ids@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.0.tgz#7a7cd28470cc6d3a1cfe6d66886f6bc430d3ac87"
-
-splaytree@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/splaytree/-/splaytree-3.0.0.tgz#959301153652d2d6fac15a38843e8149ece326a1"
-  integrity sha512-/FXCGITlLdmudFnMGSql9FO4P8Xfq3FgxUqiFlJtoQ7/nXqTqKn79xfhGuN+Yt/1kEFmcRUvv9yVjHAOOmqKWA==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"

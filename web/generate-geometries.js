@@ -744,18 +744,6 @@ const sec = topojson.topology({'US-SEC': zones['US-SEC']})
 const secMerged = topojson.mergeArcs(sec, [sec.objects['US-SEC']]);
 zones['US-SEC'] = topojson.feature(sec, secMerged)
 
-// Subtract US-SEC from Florida (US-FL)
-const clipping = require('polygon-clipping');
-zones['US-FL'] = {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "MultiPolygon",
-    "coordinates": clipping.difference(zones['US-FL'].geometry.coordinates,
-                                       zones['US-SEC'].geometry.coordinates)
-  }
-}
-
 // create zonesMoreDetails by getting zone having moreDetails===true
 let zonesMoreDetails = {};
 zoneDefinitions.forEach(zone => {
