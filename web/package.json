@@ -48,7 +48,6 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "ndjson-cli": "^0.3.1",
     "nodemon": "^1.17.1",
-    "polygon-clipping": "^0.14.2",
     "readline-sync": "^1.4.9",
     "shapefile": "^0.6.2",
     "style-loader": "^0.20.2",
