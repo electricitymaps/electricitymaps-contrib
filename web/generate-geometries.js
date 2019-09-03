@@ -560,7 +560,6 @@ const zoneDefinitions = [
   // { zoneName: 'US-CT', countryId: 'USA', stateId: 'US.CT', type: 'state' },
   { zoneName: 'US-DC', countryId: 'USA', stateId: 'US.DC', type: 'state' },
   // { zoneName: 'US-DE', countryId: 'USA', stateId: 'US.DE', type: 'state' },
-  { zoneName: 'US-FL', countryId: 'USA', stateId: 'US.FL', type: 'state' },
   { zoneName: 'US-GA', countryId: 'USA', stateId: 'US.GA', type: 'state' },
   // { zoneName: 'US-HI', countryId: 'USA', stateId: 'US.HI', type: 'state' },
   { zoneName: 'US-HI-HA', type: 'subZone', id: 'US-HI-HA'},
@@ -609,6 +608,8 @@ const zoneDefinitions = [
   { zoneName: 'US-SC', countryId: 'USA', stateId: 'US.SC', type: 'state' },
   // { zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state' },
   { zoneName: 'US-SEC', type: 'county', counties: ['ALACHUA', 'BAKER', 'BRADFORD', 'CITRUS', 'CLAY', 'COLUMBIA', 'DESOTO', 'DIXIE', 'GADSDEN', 'GILCHRIST', 'GLADES', 'HAMILTON', 'HARDEE', 'HENDRY', 'HERNANDO', 'HIGHLANDS', 'JEFFERSON', 'LAFAYETTE', 'LAKE', 'LEON', 'LEVY', 'LIBERTY', 'MADISON', 'MANATEE', 'OKEECHOBEE', 'OSCEOLA', 'PASCO', 'PUTNAM', 'SARASOTA', 'SUMTER', 'SUWANNEE', 'TAYLOR', 'UNION', 'WAKULLA']},
+  // US-FL (the state Florida) is the remaining counties that *aren't* in US-SEC
+  { zoneName: 'US-FL', type: 'county', counties: ['BAY', 'BREVARD', 'BROWARD', 'CALHOUN', 'CHARLOTTE', 'COLLIER', 'DADE', 'DUVAL', 'ESCAMBIA', 'FLAGLER', 'FRANKLIN', 'GULF', 'HILLSBOROUGH', 'HOLMES', 'INDIAN RIVER', 'JACKSON', 'LEE', 'MARION', 'MARTIN', 'MONROE', 'NASSAU', 'OKALOOSA', 'ORANGE', 'PALM BEACH', 'PINELLAS', 'POLK', 'SANTA ROSA', 'SEMINOLE', 'ST. JOHNS', 'ST. LUCIE', 'VOLUSIA', 'WALTON', 'WASHINGTON']},
   { zoneName: 'US-SPP', type: 'states', countryId: 'USA', states: [
     'US.KS', 'US.NE','US.OK', 'US.ND', 'US.SD']},
   { zoneName: 'US-SVERI', type: 'states', countryId: 'USA', states: ['US.AZ', 'US.NM']},
@@ -771,10 +772,11 @@ fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.string
 const topojson = require('topojson');
 let topo = topojson.topology(zones);
 
-// merge contiguous Florida counties in US-SEC so that we only see the outer
-// region boundary line(s), not the interior county boundary lines.
+// merge contiguous Florida counties in US-FL and US-SEC so that we only see the
+// outer region boundary line(s), not the interior county boundary lines.
 // Example: https://bl.ocks.org/mbostock/5416405
 // Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
+topo.objects['US-FL'] = topojson.mergeArcs(topo, [topo.objects['US-FL']]);
 topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
 
 // Simplify all countries
