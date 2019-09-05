@@ -667,16 +667,6 @@
     },
     "rotation": 180
   },
-  "CL-SIC->CL-SING": {
-    "lonlat": [
-      -69.500,
-      -25.958
-    ],
-    "parsers": {
-      "exchange": "CL_SIC.fetch_exchange"
-    },
-    "rotation": 0
-  },
   "CN->RU-AS":{
     "lonlat": [
       123.275128,
@@ -858,6 +848,21 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
+  },
+  "DK-DK1->NL": {
+    "capacity": [
+      -700,
+      700
+    ],
+    "lonlat": [
+      8.3,
+      55.2
+    ],
+    "parsers": {
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast",
+      "exchange": "DK.fetch_exchange"
+    },
+    "rotation": -160
   },
   "DK-DK1->NO-NO2": {
     "capacity": [
