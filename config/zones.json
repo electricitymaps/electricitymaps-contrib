@@ -37,7 +37,7 @@
     "timezone": null
   },
   "AM": {
-     "bounding_box": [
+    "bounding_box": [
       [
         43.0,
         38.6
@@ -54,7 +54,7 @@
       "nuclear": 440,
       "solar": 2.4,
       "wind": 2.9
-      },
+    },
     "contributors": [
       "https://github.com/tmslaine",
       "https://github.com/systemcatch",
@@ -64,7 +64,7 @@
       "production": "AM.fetch_production"
     },
     "timezone": "Asia/Yerevan"
-  },      
+  },
   "AR": {
     "capacity": {
       "gas": 18930,
@@ -95,15 +95,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 474,
-      "coal": 598,
-      "gas": 4466,
-      "hydro": 8590,
-      "hydro storage": 3401,
+      "biomass": 650,
+      "coal": 225,
+      "gas": 4463,
+      "hydro": 7998,
+      "hydro storage": 3120,
       "nuclear": 0,
       "oil": 178,
-      "solar": 723,
-      "wind": 2696
+      "solar": 1193,
+      "wind": 3035,
+      "geothermal": 1,
+      "unknown": 65
     },
     "contributors": [
       "https://github.com/corradio"
@@ -800,70 +802,38 @@
     },
     "timezone": null
   },
-  "CL-SIC": {
+  "CL-SING-SIC": {
     "bounding_box": [
       [
-        -74.625132,
-        -43.246595
+        -74.71,
+        -44.02
       ],
       [
-        -67.249115,
-        -22.382339
+        -66.88,
+        -17.39
       ]
     ],
     "capacity": {
       "battery storage": 0,
       "biomass": 466,
-      "coal": 2348,
-      "gas": 2482,
-      "geothermal": 55,
-      "hydro": 7222,
+      "coal": 4796,
+      "gas": 4411,
+      "geothermal": 79,
+      "hydro": 5105,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 2645,
-      "solar": 2142,
-      "wind": 1420
+      "oil": 2920,
+      "solar": 2793,
+      "wind": 1622
     },
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
     "parsers": {
-      "production": "CL_SIC.fetch_production"
+      "production": "CL.fetch_production"
     },
-    "timezone": null
-  },
-  "CL-SING": {
-    "bounding_box": [
-      [
-        -71.23998509499998,
-        -26.528631180029834
-      ],
-      [
-        -66.5139668379999,
-        -20.427688032788268
-      ]
-    ],
-    "capacity": {
-      "battery storage": 0,
-      "biomass": 0,
-      "coal": 2448,
-      "gas": 1929,
-      "geothermal": 24,
-      "hydro": 17,
-      "hydro storage": 0,
-      "nuclear": 0,
-      "oil": 275,
-      "solar": 651,
-      "wind": 202
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "parsers": {
-      "production": "CL_SING.fetch_production"
-    },
-    "timezone": null
+    "timezone": "Chile/Continental"
   },
   "CR": {
     "bounding_box": [
@@ -2750,8 +2720,8 @@
   },
   "NKR": {
     "bounding_box": [
-	  [
-	    45.2,
+      [
+        45.2,
         38.6
       ],
       [
@@ -2774,14 +2744,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 1164,
-      "coal": 4608,
-      "gas": 19297,
+      "biomass": 1243,
+      "coal": 4631,
+      "gas": 15570,
       "hydro": 38,
       "hydro storage": 0,
       "nuclear": 486,
-      "solar": 2039,
-      "wind": 4117
+      "solar": 3937,
+      "wind": 4626
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3074,7 +3044,7 @@
       "hydro storage": 1780,
       "nuclear": 0,
       "oil": 415,
-      "solar": 424,
+      "solar": 882,
       "wind": 5825
     },
     "contributors": [
@@ -3155,6 +3125,33 @@
     ],
     "flag_file_name": "pt.png",
     "timezone": null
+  },
+  "RE": {
+    "bounding_box": [
+      [
+        54.374008,
+        -22.069087
+      ],
+      [
+        56.334630,
+        -20.421464
+      ]
+    ],
+    "capacity": {
+      "biomass": 215,
+      "coal": 211,
+      "oil": 502,
+      "hydro": 138,
+      "solar": 189,
+      "wind": 15
+    },
+    "contributors": [
+      "https://github.com/PETILLON-Sebastien"
+    ],
+    "parsers": {
+      "production": "RE.fetch_production"
+    },
+    "timezone": "Indian/Reunion"
   },
   "RO": {
     "bounding_box": [
@@ -3638,7 +3635,7 @@
   "US-AL": {
     "bounding_box": [
       [
-        -88.191130,
+        -88.19113,
         30.166662
       ],
       [
@@ -3708,6 +3705,30 @@
     },
     "timezone": null
   },
+  "US-SEC": {
+    "bounding_box": [
+      [
+        -87.63333333,
+        24.45
+      ],
+      [
+        -80.03333333,
+        31.0
+      ]
+    ],
+    "capacity": {
+      "unknown": 2110,
+      "solar": 2
+    },
+    "contributors": [
+      "https://github.com/snarfed"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_SEC.fetch_production"
+    },
+    "timezone": "US/Eastern"
+  },
   "US-TX": {
     "_comment": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf lists wind capacity and utility scale solar and percentages, unknown capacity calculated from those figures",
     "bounding_box": [
@@ -3742,16 +3763,63 @@
         30.503252
       ],
       [
-        -80.763430,
+        -80.76343,
         34.975541
       ]
     ],
     "flag_file_name": "us.png",
     "timezone": null
   },
-  "US-HI": {
+  "US-HI-HA": {
     "flag_file_name": "us.png",
-    "timezone": null
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-KA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-KH": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-LA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-MA": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-MO": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-NI": {
+    "flag_file_name": "us.png",
+    "timezone": "Pacific/Honolulu"
+  },
+  "US-HI-OA": {
+    "_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
+	  "capacity": {
+		  "biomass": 256.5,
+		  "coal": 0,
+		  "gas": 0,
+		  "geothermal": 0,
+		  "hydro": 0,
+		  "oil": 0,
+		  "solar": 781,
+		  "wind": 171,
+		  "unknown": 0
+	  },
+	  "contributors": [
+	    "https://github.com/kepiej",
+	    "https://github.com/systemcatch"
+	  ],
+    "flag_file_name": "us.png",
+	  "parsers": {
+      "production": "US_HI.fetch_production"
+    },
+    "timezone": "Pacific/Honolulu"
   },
   "US-IPC": {
     "capacity": {
@@ -3816,7 +3884,7 @@
     "bounding_box": [
       [
         -84.232364,
-        33.654000
+        33.654
       ],
       [
         -75.644807,
@@ -3958,8 +4026,8 @@
         31.964076
       ],
       [
-        -78.581890,
-        35.068720
+        -78.58189,
+        35.06872
       ]
     ],
     "flag_file_name": "us.png",

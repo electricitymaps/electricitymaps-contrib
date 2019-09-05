@@ -5,8 +5,7 @@ import pandas
 import requests
 from bs4 import BeautifulSoup
 from collections import defaultdict
-
-MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
+MX_EXCHANGE_URL = 'https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
 EXCHANGES = {"MX-NO->MX-NW": "IntercambioNTE-NOR",
              "MX-NE->MX-NO": "IntercambioNES-NTE",
@@ -30,7 +29,7 @@ def fetch_MX_exchange(sorted_zone_keys, s):
     Returns a float.
     """
 
-    req = s.get(MX_EXCHANGE_URL, verify=False)
+    req = s.get(MX_EXCHANGE_URL)
     soup = BeautifulSoup(req.text, 'html.parser')
     exchange_div = soup.find("div", attrs={'id': EXCHANGES[sorted_zone_keys]})
     val = exchange_div.text

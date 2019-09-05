@@ -1,6 +1,6 @@
 <%
 co2Sub = function(str) {
-    return (str || '').replace("CO2", "CO<span class='sub'>2</span>");
+    return (str || '').replace(/CO2/gi, "CO<span class='sub'>2</span>");
 }
 %>
 <!DOCTYPE html>

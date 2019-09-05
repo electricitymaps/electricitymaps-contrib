@@ -15,7 +15,7 @@ function readNDJSON(path) {
 
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
-const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
+const thirdpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     require('./third_party_maps/DK-DK2-without-BHM.json'),
     require('./third_party_maps/NO-NO1.json'),
     require('./third_party_maps/NO-NO2.json'),
@@ -39,9 +39,19 @@ const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-ME.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS-KI.geojson')),
-  ]);
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-HA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-MA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-KA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-KH.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-LA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-MO.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-NI.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-OA.geojson')),
+  ]).concat(
+    JSON.parse(fs.readFileSync('./third_party_maps/US-FL.geojson')).features,
+  );
 
-const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
+const allGeos = countryGeos.concat(stateGeos, thirdpartyGeos);
 
 function geomerge() {
   // Convert both into multipolygon
@@ -74,28 +84,36 @@ function hascMatch(properties, hasc) {
   );
 }
 
+function equals(obj, prop, val) {
+  return obj && prop in obj && obj[prop] === val;
+}
+
 function getCountry(countryId) {
-  return geomerge(...allGeos.filter(d => d.id === countryId));
+  return geomerge(...allGeos.filter(d => equals(d, 'id', countryId)));
 }
 function getByPropertiesId(zoneId) {
-  return geomerge(...allGeos.filter(d => d.properties.id === zoneId));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'id', zoneId)));
 }
 function getSubUnit(subid) {
-  return geomerge(...allGeos.filter(d => d.properties.subid === subid));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'subid', subid)));
 }
 function getState(countryId, code_hasc, use_maybe=false) {
   return geomerge(...allGeos.filter(d =>
-    d.id === countryId && (use_maybe && hascMatch(d.properties, code_hasc) || d.properties.code_hasc === code_hasc)));
+    equals(d, 'id', countryId) && 'code_hasc' in d.properties &&
+    (use_maybe && hascMatch(d.properties, code_hasc) || d.properties.code_hasc === code_hasc)));
 }
 function getStateByFips(countryId, fips) {
   return geomerge(...allGeos.filter(d =>
-    d.id === countryId && d.properties.fips === fips));
+    equals(d, 'id', countryId) && equals(d.properties, 'fips', fips)));
 }
 function getStateByAdm1(adm1_code) {
-  return geomerge(...allGeos.filter(d => d.properties.adm1_code === adm1_code));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'adm1_code', adm1_code)));
 }
 function getByRegionCod(region_cod) {
-  return geomerge(...allGeos.filter(d => d.properties.region_cod === region_cod));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'region_cod', region_cod)));
+}
+function getCounty(county_name) {
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'COUNTYNAME', county_name)));
 }
 function getStates(countryId, code_hascs, use_maybe) {
   return geomerge(...code_hascs.map(d => getState(countryId, d, use_maybe)));
@@ -108,6 +126,9 @@ function getCountries(countryIds) {
 }
 function getSubUnits(ids) {
   return geomerge(...ids.map(getSubUnit));
+}
+function getCounties(names) {
+  return geomerge(...names.map(getCounty));
 }
 
 const zoneDefinitions = [
@@ -193,9 +214,9 @@ const zoneDefinitions = [
   { zoneName: 'CG', type: 'country', id: 'COG'},
   { zoneName: 'CH', type: 'country', id: 'CHE'},
   { zoneName: 'CI', type: 'country', id: 'CIV'},
-  { zoneName: 'CL-SING', type: 'states', countryId: 'CHL', states: ['CL.AP', 'CL.TA', 'CL.AN']},
+  //{ zoneName: 'CL-SING', type: 'states', countryId: 'CHL', states: ['CL.AP', 'CL.TA', 'CL.AN']},
   //{ zoneName: 'CL', type: 'country', id: 'CHL'},
-  { zoneName: 'CL-SIC', type: 'administrations', administrations: ['CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
+  { zoneName: 'CL-SING-SIC', type: 'administrations', administrations: ['CHL-2693', 'CHL-2694', 'CHL-2695', 'CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
   { zoneName: 'CL-SEM', countryId: 'CHL', stateId: 'CL.MA', type: 'state' },
   { zoneName: 'CL-SEA', countryId: 'CHL', stateId: 'CL.AI', type: 'state' },
   { zoneName: 'CM', type: 'country', id: 'CMR'},
@@ -539,9 +560,16 @@ const zoneDefinitions = [
   // { zoneName: 'US-CT', countryId: 'USA', stateId: 'US.CT', type: 'state' },
   { zoneName: 'US-DC', countryId: 'USA', stateId: 'US.DC', type: 'state' },
   // { zoneName: 'US-DE', countryId: 'USA', stateId: 'US.DE', type: 'state' },
-  { zoneName: 'US-FL', countryId: 'USA', stateId: 'US.FL', type: 'state' },
   { zoneName: 'US-GA', countryId: 'USA', stateId: 'US.GA', type: 'state' },
-  { zoneName: 'US-HI', countryId: 'USA', stateId: 'US.HI', type: 'state' },
+  // { zoneName: 'US-HI', countryId: 'USA', stateId: 'US.HI', type: 'state' },
+  { zoneName: 'US-HI-HA', type: 'subZone', id: 'US-HI-HA'},
+  { zoneName: 'US-HI-KA', type: 'subZone', id: 'US-HI-KA'},
+  { zoneName: 'US-HI-KH', type: 'subZone', id: 'US-HI-KH', moreDetails: true},
+  { zoneName: 'US-HI-LA', type: 'subZone', id: 'US-HI-LA'},
+  { zoneName: 'US-HI-MA', type: 'subZone', id: 'US-HI-MA'},
+  { zoneName: 'US-HI-MO', type: 'subZone', id: 'US-HI-MO'},
+  { zoneName: 'US-HI-NI', type: 'subZone', id: 'US-HI-NI'},
+  { zoneName: 'US-HI-OA', type: 'subZone', id: 'US-HI-OA'},
   // { zoneName: 'US-IA', countryId: 'USA', stateId: 'US.IA', type: 'state' },
   // { zoneName: 'US-ID', countryId: 'USA', stateId: 'US.ID', type: 'state' },
   { zoneName: 'US-IPC', type: 'states', countryId: 'USA', states: ['US.ID']},
@@ -579,6 +607,9 @@ const zoneDefinitions = [
   // { zoneName: 'US-RI', countryId: 'USA', stateId: 'US.RI', type: 'state' },
   { zoneName: 'US-SC', countryId: 'USA', stateId: 'US.SC', type: 'state' },
   // { zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state' },
+  { zoneName: 'US-SEC', type: 'county', counties: ['ALACHUA', 'BAKER', 'BRADFORD', 'CITRUS', 'CLAY', 'COLUMBIA', 'DESOTO', 'DIXIE', 'GADSDEN', 'GILCHRIST', 'GLADES', 'HAMILTON', 'HARDEE', 'HENDRY', 'HERNANDO', 'HIGHLANDS', 'JEFFERSON', 'LAFAYETTE', 'LAKE', 'LEON', 'LEVY', 'LIBERTY', 'MADISON', 'MANATEE', 'OKEECHOBEE', 'OSCEOLA', 'PASCO', 'PUTNAM', 'SARASOTA', 'SUMTER', 'SUWANNEE', 'TAYLOR', 'UNION', 'WAKULLA']},
+  // US-FL (the state Florida) is the remaining counties that *aren't* in US-SEC
+  { zoneName: 'US-FL', type: 'county', counties: ['BAY', 'BREVARD', 'BROWARD', 'CALHOUN', 'CHARLOTTE', 'COLLIER', 'DADE', 'DUVAL', 'ESCAMBIA', 'FLAGLER', 'FRANKLIN', 'GULF', 'HILLSBOROUGH', 'HOLMES', 'INDIAN RIVER', 'JACKSON', 'LEE', 'MARION', 'MARTIN', 'MONROE', 'NASSAU', 'OKALOOSA', 'ORANGE', 'PALM BEACH', 'PINELLAS', 'POLK', 'SANTA ROSA', 'SEMINOLE', 'ST. JOHNS', 'ST. LUCIE', 'VOLUSIA', 'WALTON', 'WASHINGTON']},
   { zoneName: 'US-SPP', type: 'states', countryId: 'USA', states: [
     'US.KS', 'US.NE','US.OK', 'US.ND', 'US.SD']},
   { zoneName: 'US-SVERI', type: 'states', countryId: 'USA', states: ['US.AZ', 'US.NM']},
@@ -649,6 +680,9 @@ const getDataForZone = (zone, mergeStates) => {
     } else {
       return getByRegionCod(zone.region_cod);
     }
+  }
+  else if (zone.type === 'county') {
+    return getCounties(zone.counties);
   }
   else{
     console.warn(`unknown type "${zone.type}" for zone`, zone.zoneName);
@@ -734,9 +768,18 @@ zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 // Write unsimplified list of geojson, without state merges
 fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
 
-// Simplify all countries
+// Convert to TopoJSON
 const topojson = require('topojson');
 let topo = topojson.topology(zones);
+
+// merge contiguous Florida counties in US-FL and US-SEC so that we only see the
+// outer region boundary line(s), not the interior county boundary lines.
+// Example: https://bl.ocks.org/mbostock/5416405
+// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
+topo.objects['US-FL'] = topojson.mergeArcs(topo, [topo.objects['US-FL']]);
+topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
+
+// Simplify all countries
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
 
