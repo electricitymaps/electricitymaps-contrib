@@ -855,14 +855,14 @@
       700
     ],
     "lonlat": [
-      8.3,
-      55.2
+      7.4,
+      54.5
     ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast",
       "exchange": "DK.fetch_exchange"
     },
-    "rotation": -160
+    "rotation": -150
   },
   "DK-DK1->NO-NO2": {
     "capacity": [
