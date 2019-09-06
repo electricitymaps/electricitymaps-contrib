@@ -4,6 +4,7 @@ import arrow
 
 from . import statnett
 from . import ENTSOE
+from . import DK
 import logging
 import pandas as pd
 import requests
@@ -29,7 +30,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     df_consumptions = pd.DataFrame.from_dict(consumptions).set_index(
         'datetime')
 
-    # NL has exchanges with BE, DE, NO, GB
+    # NL has exchanges with BE, DE, NO, GB, DK-DK1
     exchanges = []
     for exchange_key in ['BE', 'DE', 'GB']:
         zone_1, zone_2 = sorted([exchange_key, zone_key])
@@ -43,8 +44,11 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         exchanges.extend(exchange or [])
 
     # add NO data, fetch once for every hour
+    # This introduces an error, because it doesn't use the average power flow
+    # during the hour, but rather only the value during the first minute of the
+    # hour!
     zone_1, zone_2 = sorted(['NO', zone_key])
-    exchange = [statnett.fetch_exchange(zone_key1=zone_1, zone_key2= zone_2,
+    exchange_NO = [statnett.fetch_exchange(zone_key1=zone_1, zone_key2=zone_2,
                                         session=r, target_datetime=dt.datetime,
                                         logger=logger)
                 for dt in arrow.Arrow.range(
@@ -53,10 +57,30 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                                 for e in exchanges])).replace(minute=0),
             arrow.get(max([e['datetime']
                            for e in exchanges])).replace(minute=0))]
-    exchanges.extend(exchange)
+    exchanges.extend(exchange_NO)
 
+    # add DK1 data
+    zone_1, zone_2 = sorted(['DK-DK1', zone_key])
+    df_dk = pd.DataFrame(DK.fetch_exchange(zone_key1=zone_1, zone_key2=zone_2,
+                                        session=r, target_datetime=now,
+                                        logger=logger))
+
+    # Because other exchanges and consumption data is only available per hour
+    # we floor the timpstamp to hour and group by hour with averaging of netFlow
+    df_dk['datetime'] = df_dk['datetime'].dt.floor('H')
+    exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean', 
+        'sortedZoneKeys': 'max', 'source' : 'max'}).reset_index()
+
+    # because averaging with high precision numbers leads to rounding errors
+    exchange_DK = exchange_DK.round({'netFlow': 3})
+
+    exchanges.extend(exchange_DK.to_dict(orient='records'))
+
+    # We want to know the net-imports into NL, so if NL is in zone_1 we need
+    # to flip the direction of the flow. E.g. 100MW for NL->DE means 100MW
+    # export to DE and needs to become -100MW for import to NL.
     for e in exchanges:
-        e['NL_import'] = e['netFlow'] if zone_2 == 'NL' else -1 * e['netFlow']
+        e['NL_import'] = e['netFlow'] if zone_1 == 'NL' else -1 * e['netFlow']
         del e['source']
 
     df_exchanges = pd.DataFrame.from_dict(exchanges).set_index('datetime')
