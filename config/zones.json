@@ -3462,9 +3462,12 @@
       "gas": 491,
       "hydro": 1233,
       "nuclear": 696,
+      "hydro storage": 180,
       "oil": 0,
       "solar": 263,
-      "wind": 3
+      "wind": 3,
+      "battery storage": 0,
+      "geothermal": 0,
     },
     "contributors": [
       "https://github.com/corradio"
