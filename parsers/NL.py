@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import arrow
+import pprint
+import math
 
 from . import statnett
 from . import ENTSOE
@@ -11,17 +13,15 @@ import requests
 
 
 def fetch_production(zone_key='NL', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
-    if target_datetime:
-        now = arrow.get(target_datetime, 'Europe/Paris')
-    else:
-        now = arrow.now(tz='Europe/Paris')
+                     logger=logging.getLogger(__name__), energieopwek_nl=True):
+    if target_datetime is None:
+        target_datetime = arrow.utcnow()
 
     r = session or requests.session()
 
     consumptions = ENTSOE.fetch_consumption(zone_key=zone_key,
                                             session=r,
-                                            target_datetime=now,
+                                            target_datetime=target_datetime,
                                             logger=logger)
     if not consumptions:
         return
@@ -37,7 +37,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         exchange = ENTSOE.fetch_exchange(zone_key1=zone_1,
                                          zone_key2=zone_2,
                                          session=r,
-                                         target_datetime=now,
+                                         target_datetime=target_datetime,
                                          logger=logger)
         if not exchange:
             return
@@ -62,7 +62,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     # add DK1 data
     zone_1, zone_2 = sorted(['DK-DK1', zone_key])
     df_dk = pd.DataFrame(DK.fetch_exchange(zone_key1=zone_1, zone_key2=zone_2,
-                                        session=r, target_datetime=now,
+                                        session=r, target_datetime=target_datetime,
                                         logger=logger))
 
     # Because other exchanges and consumption data is only available per hour
@@ -97,8 +97,16 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                             - df_consumptions_with_exchanges['NL_import'])
 
     # Fetch all production
-    productions = ENTSOE.fetch_production(zone_key=zone_key, session=r,
-                                          target_datetime=now, logger=logger)
+    # The energieopwek_nl parser is backwards compatible with ENTSOE parser.
+    # Because of data quality issues we switch to using energieopwek, but if
+    # data quality of ENTSOE improves we can switch back to using a single
+    # source.
+    if energieopwek_nl:
+        productions = fetch_production_energieopwek_nl(session=r,
+                            target_datetime=target_datetime, logger=logger)
+    else:
+        productions = ENTSOE.fetch_production(zone_key=zone_key, session=r,
+                            target_datetime=target_datetime, logger=logger)
     if not productions:
         return
 
@@ -107,19 +115,66 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # We here assume 0 storage
         p['production']['coal'] = None
         p['production']['gas'] = None
-        p['production']['nuclear'] = None
         p['production']['biomass'] = None
 
         p['production']['unknown'] = 0
         Z = sum([x or 0 for x in p['production'].values()])
         # Only calculate the difference if the datetime exists
         if p['datetime'] in df_total_generations:
-            p['production']['unknown'] = (df_total_generations[p['datetime']]
-                                          - Z)
+            p['production']['unknown'] = round((df_total_generations[p['datetime']]
+                                          - Z), 3)
 
     # Filter invalid
     return [p for p in productions if p['production']['unknown'] > 0]
 
+
+def fetch_production_energieopwek_nl(session=None, target_datetime=None,
+                                     logger=logging.getLogger(__name__)):
+    if target_datetime is None:
+        target_datetime = arrow.utcnow()
+
+    r = session or requests.session()
+
+    # The API returns values per day from local time midnight until the last
+    # round 10 minutes if the requested date is today or for the entire day if
+    # it's in the past. 'sid' can be anything.
+    date = target_datetime.format('YYYY-MM-DD')
+    url = 'http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=&Day=%s' % date
+    response = r.get(url)
+    obj = response.json()
+    production_input = obj['TenMin']['Country']
+
+    # extract the power values in kW from the different production types
+    # we only need column 0; 1 and 3 contain energy sum values
+    df_solar =    pd.DataFrame(production_input['Solar'])       .drop(['1','3'], axis=1).astype(int).rename(columns={"0" : "Solar"})
+    df_offshore = pd.DataFrame(production_input['WindOffshore']).drop(['1','3'], axis=1).astype(int)
+    df_onshore =  pd.DataFrame(production_input['Wind'])        .drop(['1','3'], axis=1).astype(int)
+
+    # We don't differentiate between onshore and offshore wind so we sum them toghether an build a
+    # single data frame with named columns
+    df_wind = df_onshore.add(df_offshore).rename(columns={"0" : "Wind"})
+    df = pd.concat([df_solar, df_wind], axis=1)
+
+    # resample from 10min resolution to 15min resolution
+    # we duplicate every row and then group them per 3 and take the mean
+    df = pd.concat([df]*2).sort_index(axis=0).reset_index(drop=True).groupby(by=lambda x : round(x/3)).mean()
+
+    # Convert kW to MW with kW resolution
+    df = df.apply(lambda x: round(x / 1000, 3))
+
+    output = []
+    base_time = arrow.get(target_datetime.date(), 'Europe/Paris').to('utc')
+
+    for i, prod in enumerate(df.to_dict(orient='records')):
+        output.append(
+            {
+                'zoneKey':'NL',
+                'datetime': base_time.shift(minutes=i*15).datetime,
+                'production': prod,
+                'source':'energieopwek.nl, entsoe.eu'
+            }
+        )
+    return output
 
 if __name__ == '__main__':
     print(fetch_production())
