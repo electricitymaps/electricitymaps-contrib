@@ -97,6 +97,10 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                             - df_consumptions_with_exchanges['NL_import'])
 
     # Fetch all production
+    # The energieopwek_nl parser is backwards compatible with ENTSOE parser.
+    # Because of data quality issues we switch to using energieopwek, but if
+    # data quality of ENTSOE improves we can switch back to using a single
+    # source.
     if energieopwek_nl:
         productions = fetch_production_energieopwek_nl(session=r,
                             target_datetime=target_datetime, logger=logger)
@@ -111,7 +115,6 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # We here assume 0 storage
         p['production']['coal'] = None
         p['production']['gas'] = None
-        p['production']['nuclear'] = None
         p['production']['biomass'] = None
 
         p['production']['unknown'] = 0
@@ -132,11 +135,11 @@ def fetch_production_energieopwek_nl(session=None, target_datetime=None,
 
     r = session or requests.session()
 
-    # the API returns values per day from local time midnight until the last 
-    # round 10 minutes if the requested timestamp is today or for the entire
-    # day if it's in the past. 'sid' can be anything.
-    timestamp = (target_datetime.timestamp if target_datetime else arrow.now().timestamp) * 1000
-    url = 'http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=&timestamp=%d' % timestamp
+    # The API returns values per day from local time midnight until the last
+    # round 10 minutes if the requested date is today or for the entire day if
+    # it's in the past. 'sid' can be anything.
+    date = target_datetime.format('YYYY-MM-DD')
+    url = 'http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=&Day=%s' % date
     response = r.get(url)
     obj = response.json()
     production_input = obj['TenMin']['Country']
