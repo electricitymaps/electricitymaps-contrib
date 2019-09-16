@@ -152,7 +152,7 @@ def fetch_production_energieopwek_nl(session=None, target_datetime=None,
 
     # We don't differentiate between onshore and offshore wind so we sum them toghether an build a
     # single data frame with named columns
-    df_wind = df_onshore.add(df_offshore).rename(columns={"0" : "Wind"})
+    df_wind = df_onshore.add(df_offshore).rename(columns={"0": "wind"})
     df = pd.concat([df_solar, df_wind], axis=1)
 
     # resample from 10min resolution to 15min resolution
@@ -162,16 +162,19 @@ def fetch_production_energieopwek_nl(session=None, target_datetime=None,
     # Convert kW to MW with kW resolution
     df = df.apply(lambda x: round(x / 1000, 3))
 
+    # Rename columns
+    df = df.rename(columns={"Solar": "solar"})
+
     output = []
     base_time = arrow.get(target_datetime.date(), 'Europe/Paris').to('utc')
 
     for i, prod in enumerate(df.to_dict(orient='records')):
         output.append(
             {
-                'zoneKey':'NL',
+                'zoneKey': 'NL',
                 'datetime': base_time.shift(minutes=i*15).datetime,
                 'production': prod,
-                'source':'energieopwek.nl, entsoe.eu'
+                'source': 'energieopwek.nl, entsoe.eu'
             }
         )
     return output
