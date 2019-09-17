@@ -1698,6 +1698,25 @@
         46.5037509222
       ]
     ],
+    "capacity": {
+      "biomass": 70,
+      "coal": 332,
+      "gas": 743,
+      "hydro": 1857,
+      "hydro storage": 283,
+      "oil": 937,
+      "solar": 53,
+      "wind": 630,
+      "unknown": 67
+    },
+    "contributors": [
+      "https://github.com/PaulCornelissen"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "production": "HOPS.fetch_production"
+    },
     "timezone": "Europe/Belgrade"
   },
   "HU": {
@@ -2754,7 +2773,8 @@
       "wind": 4626
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/PaulCornelissen"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
