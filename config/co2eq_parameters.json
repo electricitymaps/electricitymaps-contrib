@@ -1202,6 +1202,13 @@
       "fossilFuelRatio": 0.6247406307644796,
       "renewableRatio": 0.2849832243300992
     },
+    "MX-BC": {
+      "source": "Tomorrow & Dra. Gabriela Muñoz Meléndez",
+      "comment": "Only for exports from Baja California to California, assumes 92.3% gas, 7.7% wind, see issue 1497",
+      "carbonIntensity": 453.0,
+      "fossilFuelRatio": 0.923,
+      "renewableRatio": 0.077
+    },
     "MY-WM": {
       "_source": "Tomorrow",
       "carbonIntensity": 658.8157075461157,
