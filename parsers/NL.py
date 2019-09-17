@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import arrow
-import pprint
 import math
 
 from . import statnett
@@ -101,12 +100,25 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     # Because of data quality issues we switch to using energieopwek, but if
     # data quality of ENTSOE improves we can switch back to using a single
     # source.
+    productions_ENTSOE = ENTSOE.fetch_production(zone_key=zone_key, session=r,
+                            target_datetime=target_datetime, logger=logger)
     if energieopwek_nl:
-        productions = fetch_production_energieopwek_nl(session=r,
+        productions_eopwek = fetch_production_energieopwek_nl(session=r,
                             target_datetime=target_datetime, logger=logger)
+        # For every production value we look up the corresponding ENTSOE
+        # values and copy the nuclear production. We also copy the gas data,
+        # don't actually use it, because that sometimes results in negative
+        # values for unknown production.
+        productions = []
+        for p in productions_eopwek:
+            entsoe_value = next((pe for pe in productions_ENTSOE
+                if pe["datetime"] == p["datetime"]), None)
+            if entsoe_value:
+                p["production"]["nuclear"] = entsoe_value["production"]["nuclear"]
+                p["production"]["gas"] = entsoe_value["production"]["gas"]
+            productions.append(p)
     else:
-        productions = ENTSOE.fetch_production(zone_key=zone_key, session=r,
-                            target_datetime=target_datetime, logger=logger)
+        productions = productions_ENTSOE
     if not productions:
         return
 
@@ -121,10 +133,11 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         Z = sum([x or 0 for x in p['production'].values()])
         # Only calculate the difference if the datetime exists
         if p['datetime'] in df_total_generations:
-            p['production']['unknown'] = round((df_total_generations[p['datetime']]
-                                          - Z), 3)
+            p['production']['unknown'] = round((
+                                df_total_generations[p['datetime']] - Z), 3)
 
     # Filter invalid
+    # We should probably add logging to this
     return [p for p in productions if p['production']['unknown'] > 0]
 
 
@@ -133,40 +146,17 @@ def fetch_production_energieopwek_nl(session=None, target_datetime=None,
     if target_datetime is None:
         target_datetime = arrow.utcnow()
 
-    r = session or requests.session()
+    # Get production values for target and target-1 day
+    df_current = get_production_data_energieopwek(
+                            target_datetime, session=session)
+    df_previous = get_production_data_energieopwek(
+                            target_datetime.shift(days=-1), session=session)
 
-    # The API returns values per day from local time midnight until the last
-    # round 10 minutes if the requested date is today or for the entire day if
-    # it's in the past. 'sid' can be anything.
-    date = target_datetime.format('YYYY-MM-DD')
-    url = 'http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=&Day=%s' % date
-    response = r.get(url)
-    obj = response.json()
-    production_input = obj['TenMin']['Country']
-
-    # extract the power values in kW from the different production types
-    # we only need column 0; 1 and 3 contain energy sum values
-    df_solar =    pd.DataFrame(production_input['Solar'])       .drop(['1','3'], axis=1).astype(int).rename(columns={"0" : "Solar"})
-    df_offshore = pd.DataFrame(production_input['WindOffshore']).drop(['1','3'], axis=1).astype(int)
-    df_onshore =  pd.DataFrame(production_input['Wind'])        .drop(['1','3'], axis=1).astype(int)
-
-    # We don't differentiate between onshore and offshore wind so we sum them toghether an build a
-    # single data frame with named columns
-    df_wind = df_onshore.add(df_offshore).rename(columns={"0": "wind"})
-    df = pd.concat([df_solar, df_wind], axis=1)
-
-    # resample from 10min resolution to 15min resolution
-    # we duplicate every row and then group them per 3 and take the mean
-    df = pd.concat([df]*2).sort_index(axis=0).reset_index(drop=True).groupby(by=lambda x : round(x/3)).mean()
-
-    # Convert kW to MW with kW resolution
-    df = df.apply(lambda x: round(x / 1000, 3))
-
-    # Rename columns
-    df = df.rename(columns={"Solar": "solar"})
+    # Concat them, oldest first to keep chronological order intact
+    df = pd.concat([df_previous, df_current])
 
     output = []
-    base_time = arrow.get(target_datetime.date(), 'Europe/Paris').to('utc')
+    base_time = arrow.get(target_datetime.date(), 'Europe/Paris').shift(days=-1).to('utc')
 
     for i, prod in enumerate(df.to_dict(orient='records')):
         output.append(
@@ -178,6 +168,37 @@ def fetch_production_energieopwek_nl(session=None, target_datetime=None,
             }
         )
     return output
+
+def get_production_data_energieopwek(date, session=None):
+    r = session or requests.session()
+
+    # The API returns values per day from local time midnight until the last
+    # round 10 minutes if the requested date is today or for the entire day if
+    # it's in the past. 'sid' can be anything.
+    url = 'http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=&Day=%s' % date.format('YYYY-MM-DD')
+    response = r.get(url)
+    obj = response.json()
+    production_input = obj['TenMin']['Country']
+
+    # extract the power values in kW from the different production types
+    # we only need column 0; 1 and 3 contain energy sum values
+    df_solar =    pd.DataFrame(production_input['Solar'])       .drop(['1','3'], axis=1).astype(int).rename(columns={"0" : "solar"})
+    df_offshore = pd.DataFrame(production_input['WindOffshore']).drop(['1','3'], axis=1).astype(int)
+    df_onshore =  pd.DataFrame(production_input['Wind'])        .drop(['1','3'], axis=1).astype(int)
+
+    # We don't differentiate between onshore and offshore wind so we sum them toghether an build a
+    # single data frame with named columns
+    df_wind = df_onshore.add(df_offshore).rename(columns={"0": "wind"})
+    df = pd.concat([df_solar, df_wind], axis=1)
+
+    # resample from 10min resolution to 15min resolution
+    # we duplicate every row and then group them per 3 and take the mean
+    df = pd.concat([df]*2).sort_index(axis=0).reset_index(drop=True).groupby(by=lambda x : math.floor(x/3)).mean()
+
+    # Convert kW to MW with kW resolution
+    df = df.apply(lambda x: round(x / 1000, 3))
+
+    return df
 
 if __name__ == '__main__':
     print(fetch_production())
