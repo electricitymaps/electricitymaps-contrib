@@ -262,7 +262,7 @@
       45.205
     ],
     "parsers": {
-      "exchange": "HOPS.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 0
   },
@@ -1345,7 +1345,7 @@
       45.583
     ],
     "parsers": {
-      "exchange": "HOPS.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": -90
   },
