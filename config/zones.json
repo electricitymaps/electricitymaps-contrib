@@ -1715,7 +1715,8 @@
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "production": "HOPS.fetch_production"
+      "production": "HOPS.fetch_production",
+      "price": "ENTSOE.fetch_price"
     },
     "timezone": "Europe/Belgrade"
   },

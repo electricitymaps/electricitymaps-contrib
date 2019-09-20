@@ -79,8 +79,12 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     # to flip the direction of the flow. E.g. 100MW for NL->DE means 100MW
     # export to DE and needs to become -100MW for import to NL.
     for e in exchanges:
-        e['NL_import'] = e['netFlow'] if zone_1 == 'NL' else -1 * e['netFlow']
+        if(e['sortedZoneKeys'].startswith('NL->')):
+            e['NL_import'] = -1 * e['netFlow']
+        else:
+            e['NL_import'] = e['netFlow']
         del e['source']
+        del e['netFlow']
 
     df_exchanges = pd.DataFrame.from_dict(exchanges).set_index('datetime')
     # Sum all exchanges to NL imports
