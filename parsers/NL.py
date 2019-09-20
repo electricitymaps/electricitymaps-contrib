@@ -81,7 +81,6 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     for e in exchanges:
         if(e['sortedZoneKeys'].startswith('NL->')):
             e['NL_import'] = -1 * e['netFlow']
-            print ("Flip! %i in %s becomes %i" %(e['netFlow'], e['sortedZoneKeys'], e['NL_import']))
         else:
             e['NL_import'] = e['netFlow']
         del e['source']
