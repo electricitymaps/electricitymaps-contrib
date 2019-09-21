@@ -316,6 +316,12 @@
           "value": 178.67099686684926
         }
       },
+      "HR": {
+        "unknown": {
+          "source": "2018 average estimated from https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf",
+          "value": 240
+        }
+      },
       "HU": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
