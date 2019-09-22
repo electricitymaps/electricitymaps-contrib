@@ -28,7 +28,7 @@
     "moment": "^2.23.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "topojson": "^3.0.2"
+    "topojson-client": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

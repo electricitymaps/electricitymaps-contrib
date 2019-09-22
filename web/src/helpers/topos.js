@@ -1,5 +1,5 @@
 const topo = require('../world.json');
-const topojson = require('topojson');
+const topojson = require('topojson-client');
 
 const constructTopos = () => {
   const zones = {};
