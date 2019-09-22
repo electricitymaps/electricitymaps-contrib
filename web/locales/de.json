@@ -1493,6 +1493,42 @@
         "AUS-TAS-KI": {
             "countryName": "Tasmanien",
             "zoneName": "King Island"
+        },
+        "CL-SING-SIC": {
+            "countryName": "Chile",
+            "zoneName": "SING/SIC"
+        },
+        "US-HI-HA": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Hawaii"
+        },
+        "US-HI-KA": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Oahu"
         }
     },
     "mobile-info-tab": {
