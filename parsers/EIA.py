@@ -98,7 +98,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
             })
         mixes.append(mix)
 
-    return merge_production_outputs(mixes, zone_key)
+    return merge_production_outputs(mixes, zone_key, merge_source='eia.gov')
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
@@ -147,7 +147,7 @@ def main():
     from pprint import pprint
     pprint(fetch_consumption_forecast('US-NY'))
     pprint(fetch_production('US-SEC'))
-    pprint(fetch_production_mix('US-CAR'))
+    pprint(fetch_production_mix('US-TN'))
     pprint(fetch_consumption('US-CAR'))
     pprint(fetch_exchange('MX-BC', 'US-CA'))
 
