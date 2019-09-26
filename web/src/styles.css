@@ -1,3 +1,4 @@
+
 * {
     /* Remove tap feedback on mobile */
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -997,6 +998,10 @@ body {
 
 #language-select-container li:hover {
     cursor: pointer;
+}
+
+#language-header {
+    display: none;
 }
 
 
@@ -2165,7 +2170,21 @@ div.highscore-button:hover {
     .left-panel {
         padding-bottom: 0;
     } 
-
+    #language-select-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: calc(100% - 5rem);
+        height: calc(100% - 8rem);
+        top: 4rem;
+        font-size: 2rem;
+        scroll-behavior: auto;
+        overflow: scroll;
+    }
+    #language-header {
+        display: block;
+        border-bottom: 1px solid lightgray;
+    }
 }
 
 /* custom scrollbars in chrome*/
@@ -2182,4 +2201,3 @@ div::-webkit-scrollbar-thumb {
     background: lightgray;
     border-radius: 3px;
 }
-
