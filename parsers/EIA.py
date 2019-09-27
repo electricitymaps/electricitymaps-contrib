@@ -119,6 +119,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
                   logger=None):
     """Fetches and converts a data series."""
+    key = os.environ['EIA_KEY']
+    assert key and key != 'eia_key', key
+
     s = session or requests.Session()
     series = Series(series_id=series_id, session=s)
 
