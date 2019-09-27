@@ -107,6 +107,7 @@ def fetch_production(zone_key='RE', session=None, target_datetime=None,
             'zoneKey': 'RE',
             'datetime': date_time,
             'production': {
+                'nuclear': null,
                 'biomass': biomass,
                 'coal': coal,
                 'gas': gas,
@@ -114,6 +115,8 @@ def fetch_production(zone_key='RE', session=None, target_datetime=None,
                 'oil': oil,
                 'solar': solar,
                 'wind': wind,
+                'geothermal': 0.0,
+                'unknown': 0.0
             },
             'storage': {
                 'battery': solar_storage,
