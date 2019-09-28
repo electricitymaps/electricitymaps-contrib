@@ -1,4 +1,4 @@
-# electricitymap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/tmrowco/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
+# electricityMap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/tmrowco/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
 A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/), maintained by [Tomorrow](https://www.tmrow.com). Try it out at [http://www.electricitymap.org](http://www.electricitymap.org), or download the app:
 
 [![Get it on Google Play](https://cloud.githubusercontent.com/assets/1655848/25219122/99b446e6-25ad-11e7-934f-9491d2eb6c9b.png)](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) [![Get it on the Apple Store](https://cloud.githubusercontent.com/assets/1655848/25218927/e0ec8bdc-25ac-11e7-8df8-7ab62787303e.png)](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)
@@ -7,7 +7,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 ![image](https://www.electricitymap.org/images/electricitymap_social_image.jpg)
 
 You can [contribute](#contribute) by
-- **[adding a new country on the map](#adding-a-new-country)**
+- **[helping us to add a new region on the map](#adding-a-new-region)**
 - correcting [data sources](#data-sources) and [capacities](#updating-country-capacities)
 - [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
 - fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
@@ -45,7 +45,7 @@ The carbon intensity of each type of power plant takes into account emissions ar
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can be used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
 **Can scheduled/assumed generation data be used?**
-The electricitymap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
+The electricityMap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
 
 **Can areas other than countries be shown?**
 Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
@@ -388,13 +388,19 @@ If you have issues building the map locally check out the [Troubleshooting](#tro
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
-### Updating country capacities
-If you want to update or add production capacities for a country then head over to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make any changes needed to the `capacity` map. Values are in MW.
+### Updating region capacities
+If you want to update or add production capacities for a region then head over to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make any changes needed to the `capacity` map. Values are in MW.
 The zones use ISO 3166-1 codes as identifiers, a list of which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes).
 
-### Adding a new country
-It is very simple to add a new country. The Electricity Map backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap-contrib/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
+### Adding a new region
 
+As a first step, do a search for the region on our GitHub, as contributors may have explored things before.
+It is very simple to add a new country. The electricityMap backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap-contrib/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
+
+**I have not found a new data source**
+You can help us by opening a new issue for the relevant region and add the relevant individual or organization to contact (ideally with their contact details on email, Twitter and phone). Doing so will ensure that we and other visitors interested can contact them to make them aware of the electricityMap. Usually, energy agencies, governments, transmission system operators are good potential sources. If you can't code, this is an amazing way to help us!
+
+**I have found a data source and I could help build a parser**
 A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
 
 ```python
