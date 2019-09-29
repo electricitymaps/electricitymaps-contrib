@@ -24,7 +24,7 @@ stages:
       - type: shell
         name: Lint
         command: |
-          set -euox pipefail
+          set -eux -o pipefail
           python --version
           pip --version
           pip install -q flake8 pylint==2.3.1 --progress-bar=off
