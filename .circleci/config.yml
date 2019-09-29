@@ -13,7 +13,7 @@ stages:
         command: pip install -q --upgrade pip
       - type: shell
         name: Install Docker Compose
-        command: pip install docker-compose==1.17.1 --progress-bar=off
+        command: pip install docker-compose==1.24.1 --progress-bar=off
       - type: shell
         name: Show versions
         command: |
