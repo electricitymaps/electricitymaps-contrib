@@ -213,6 +213,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
+- Croatia: [HOPS](https://www.hrote.hr/planning-electricity-production-for-the-eco-balance-group)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (DK1 and DK2): [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (Bornholm)
