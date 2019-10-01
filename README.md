@@ -1,3 +1,28 @@
+Table of Contents
+=================
+
+   * [electricityMap <a href="http://slack.tmrow.co" rel="nofollow"><img src="https://camo.githubusercontent.com/8a4b547727fed49571f88a0fa0737dcc2039bfe0/687474703a2f2f736c61636b2e746d726f772e636f2f62616467652e737667" alt="Slack Status" data-canonical-src="http://slack.tmrow.co/badge.svg" style="max-width:100\x;"></a> <a href="https://circleci.com/gh/tmrowco/electricitymap-contrib" rel="nofollow"><img src="https://camo.githubusercontent.com/2afc413f1db98e743844b8cf8c92e58f62283bca/68747470733a2f2f636972636c6563692e636f6d2f67682f746d726f77636f2f656c6563747269636974796d61702d636f6e747269622e7376673f7374796c653d736869656c64" alt="CircleCI" data-canonical-src="https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield" style="max-width:100\x;"></a> <a href="https://twitter.com/electricitymap" rel="nofollow"><img src="https://camo.githubusercontent.com/1c31187b644ce49f8ea27dc26d38c7cd50b4e68e/68747470733a2f2f696d672e736869656c64732e696f2f747769747465722f666f6c6c6f772f656c6563747269636974796d61702e7376673f7374796c653d736f6369616c266c6162656c3d466f6c6c6f77" alt="Twitter Follow" data-canonical-src="https://img.shields.io/twitter/follow/electricitymap.svg?style=social&amp;label=Follow" style="max-width:100\x;"></a>](#electricitymap---)
+      * [Frequently asked questions](#frequently-asked-questions)
+      * [Data sources](#data-sources)
+         * [Carbon intensity calculation and data source](#carbon-intensity-calculation-and-data-source)
+         * [Real-time electricity data sources](#real-time-electricity-data-sources)
+         * [Production capacity data sources](#production-capacity-data-sources)
+         * [Cross-border transmission capacity data sources](#cross-border-transmission-capacity-data-sources)
+         * [Electricity prices (day-ahead) data sources](#electricity-prices-day-ahead-data-sources)
+         * [Real-time weather data sources](#real-time-weather-data-sources)
+         * [Topology data](#topology-data)
+      * [Contribute](#contribute)
+         * [Logger](#logger)
+         * [Running locally](#running-locally)
+         * [Updating region capacities](#updating-region-capacities)
+         * [Adding a new region](#adding-a-new-region)
+         * [Generating a new map](#generating-a-new-map)
+         * [Testing parsers locally](#testing-parsers-locally)
+            * [testing a parser](#testing-a-parser)
+            * [update the map](#update-the-map)
+         * [Troubleshooting](#troubleshooting)
+
+
 # electricityMap [![Slack Status](http://slack.tmrow.co/badge.svg)](http://slack.tmrow.co) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/tmrowco/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
 A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/), maintained by [Tomorrow](https://www.tmrow.com). Try it out at [http://www.electricitymap.org](http://www.electricitymap.org), or download the app:
 
