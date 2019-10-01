@@ -444,6 +444,13 @@ body {
     fill: gray;
     font-size: 0.6rem;
 }
+.left-panel .axis .label {
+    font-size: 0.6rem;
+    text-anchor: middle;
+    font-weight: regular;
+    fill: grey;
+}
+
 .left-panel .axis path.domain {
     fill: none;
     shape-rendering: auto;

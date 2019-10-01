@@ -13,7 +13,7 @@ const d3 = Object.assign(
 import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
 
-function AreaGraph(selector, modeColor, modeOrder) {
+function AreaGraph(selector, modeColor, modeOrder, yLabelText) {
     var that = this;
 
     this.rootElement = d3.select(selector);
@@ -42,6 +42,10 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .attr('r', 6)
         .style('stroke', 'black')
         .style('stroke-width', 1.5);
+
+    this.yLabelElement = this.yAxisElement.append("text")
+        .attr('class', 'unit')
+        .text(yLabelText)
 
     // Create scales
     this.x = d3.scaleTime();
@@ -82,7 +86,8 @@ AreaGraph.prototype.data = function (arg) {
             var value = isStorage ?
                 -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')]) :
                 (d.production || {})[k]
-            obj[k] = value;
+            // in MW
+            obj[k] = value / 1e3;
             if (isFinite(value) && that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
                 if (isStorage && obj[k] >= 0) {
@@ -96,7 +101,8 @@ AreaGraph.prototype.data = function (arg) {
           // Add exchange
           d3.entries(d.exchange).forEach(function(o) {
               exchangeKeysSet.add(o.key);
-              obj[o.key] = Math.max(0, o.value);
+              // in MW
+              obj[o.key] = Math.max(0, o.value / 1e3);
               if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
                   // in tCO2eq/min
                   obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
@@ -126,9 +132,9 @@ AreaGraph.prototype.data = function (arg) {
     }
     this.y.domain([
         0,
-        1.1 * d3.max(arg, function(d) {
+        d3.max(arg, function(d) {
             if (!that._displayByEmissions) {
-                return d.totalProduction + d.totalImport + d.totalDischarge;
+                return (d.totalProduction + d.totalImport + d.totalDischarge) / 1e3;
             } else {
                 // in tCO2eq/min
                 return (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0;
@@ -322,7 +328,10 @@ AreaGraph.prototype.render = function() {
         .ticks(5);
     this.yAxisElement
         .attr('transform', `translate(${width - Y_AXIS_WIDTH - 1} -1)`)
-        .call(yAxis);
+        .call(yAxis);    
+
+    // y axis label
+    this.yLabelElement.attr('transform', `translate(33, `+ height/2 + `) rotate(-90)`)
 
     return this;
 }

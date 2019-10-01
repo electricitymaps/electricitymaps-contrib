@@ -129,6 +129,7 @@ const countryHistoryCarbonGraph = new LineGraph(
   d => (getState().application.electricityMixMode === 'consumption'
     ? (d || {}).co2intensity
     : (d || {}).co2intensityProduction),
+  d => 'g'
 );
 const countryHistoryPricesGraph = new LineGraph(
   '#country-history-prices',
@@ -136,7 +137,7 @@ const countryHistoryPricesGraph = new LineGraph(
   d => (d.price || {}).value,
   d => d.price && d.price.value != null,
 ).gradient(false);
-const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
+const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder, 'GW')
   .electricityMixMode(getState().application.electricityMixMode);
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
@@ -1177,6 +1178,9 @@ function renderHistory(state) {
       dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex}})
     }
   }).render();
+
+  const currencySymbol = getSymbolFromCurrency((history[0].price || {}).currency);  
+  countryHistoryPricesGraph.setYLabel((currencySymbol || '?') + '/MWh');
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {
