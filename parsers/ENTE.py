@@ -1,55 +1,46 @@
 #!/usr/bin/env python3
 
+import arrow
+import requests
+
+
 # This parser gets all real time interconnection flows from the
 # Central American Electrical Interconnection System (SIEPAC).
 
-import arrow
-import pandas as pd
-
 # map for reference
-# http://www.enteoperador.org/newsite/flash/SER.html
-DATA_URL = 'http://www.enteoperador.org/newsite/flash/data.csv'
+# https://www.enteoperador.org/flujos-regionales-en-tiempo-real/
 
-CSV_MAPPING = {'GT->MX': ('MXGU', 'MXGUN'),
-               'GT->SV': ('GUES', 'GUESN'),
-               'GT->HN': ('GUHO', 'GUHON'),
-               'HN->SV': ('ESHO', 'ESHON'),
-               # 'HN->NI': ('HONI', 'HONIN'), NOTE bug in direction
-               'CR->NI': ('NICR', 'NICRN'),
-               'CR->PA': ('CRPA', 'CRPAN')}
+DATA_URL = 'https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic'
+
+JSON_MAPPING = {"GT->MX": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
+                "GT->SV": "3SISTEMA.LT230.INTER_NET_GT.CMW.MW",
+                "GT->HN": "4LEC.LT230.2FR4-4LEC-01B.-.MW",
+                "HN->SV": "3SISTEMA.LT230.INTER_NET_HO.CMW.MW",
+                "HN->NI": "5SISTEMA.LT230.INTER_NET_HN.CMW.MW",
+                "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
+                "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW"}
 
 
-def extract_exchange(df, exchange):
+def extract_exchange(raw_data, exchange):
     """
     Extracts flow value and direction for a given exchange.
-    Returns a float.
+    Returns a float or None.
     """
-    search_values = CSV_MAPPING[exchange]
-    interconnection = df.iloc[0][search_values[0]], df.iloc[0][search_values[1]]
-    direction = direction_finder(exchange, interconnection[1])
+    search_value = JSON_MAPPING[exchange]
 
-    flow = interconnection[0]*direction
+    interconnection = None
+    for datapoint in raw_data:
+        if datapoint['nombre'] == search_value:
+            interconnection = float(datapoint['value'])
 
-    return flow
+    if interconnection is None:
+        return None
 
+    # positive and negative flow directions do not always correspond to EM ordering of exchanges
+    if exchange in ['GT->SV', 'GT->HN', 'HN->SV', 'CR->NI', 'HN->NI']:
+        interconnection *= -1
 
-def direction_finder(exchange, logic):
-    """Direction of electricity flow on ENTE map is shown by arrows.
-    These arrows are controlled by booleans in the returned data.
-    Due to differences in how ENTE and EM order exchanges (e.g. ESHO vs HN->SV)
-    sometimes multiplying by -1 is needed.
-    Returns an integer.
-    """
-    if exchange in ['GT->SV', 'GT->HN', 'HN->SV', 'CR->NI']:
-        if logic == 0:
-            return -1
-        else:
-            return 1
-    else:
-        if logic == 1:
-            return -1
-        else:
-            return 1
+    return interconnection
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
@@ -69,10 +60,12 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     sorted_zones = '->'.join(sorted([zone_key1, zone_key2]))
 
-    if sorted_zones not in CSV_MAPPING.keys():
+    if sorted_zones not in JSON_MAPPING.keys():
         raise NotImplementedError('This exchange is not implemented.')
 
-    raw_data = pd.read_csv(DATA_URL, index_col=False)
+    s = session or requests.Session()
+
+    raw_data = s.get(DATA_URL).json()
     flow = extract_exchange(raw_data, sorted_zones)
     dt = arrow.now('UTC-6').floor('minute')
 
@@ -88,15 +81,15 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print('fetch_exchange(CR, PA) ->')
     print(fetch_exchange('CR', 'PA'))
-    print('fetch_exchange(CR, NI) ->')
+    print('fetch_exchange(CR, NI) ->') #wrong way
     print(fetch_exchange('CR', 'NI'))
-    # print('fetch_exchange(HN, NI) ->')
-    # print(fetch_exchange('HN', 'NI'))
+    print('fetch_exchange(HN, NI) ->')
+    print(fetch_exchange('HN', 'NI'))
     print('fetch_exchange(GT, MX) ->')
     print(fetch_exchange('GT', 'MX'))
-    print('fetch_exchange(GT, SV) ->')
+    print('fetch_exchange(GT, SV) ->') #wrong way
     print(fetch_exchange('GT', 'SV'))
-    print('fetch_exchange(GT, HN) ->')
+    print('fetch_exchange(GT, HN) ->') #wrong way
     print(fetch_exchange('GT', 'HN'))
-    print('fetch_exchange(HN, SV) ->')
+    print('fetch_exchange(HN, SV) ->') #wrong way
     print(fetch_exchange('HN', 'SV'))
