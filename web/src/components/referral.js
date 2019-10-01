@@ -44,7 +44,7 @@ export default class Referral {
       const refferalContent = selector.append('a')
         .attr('class', 'referral barry')
         .attr('target', '_blank')
-        .attr('href', 'https://getbarry.page.link/tomorrow')
+        .attr('href', 'https://getbarry.app.link/Snhrg3wqmZ')
         .on('click', () => {
           thirdPartyServices.trackWithCurrentApplicationState('referralClicked');
         });

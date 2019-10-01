@@ -149,6 +149,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         'DK-DK1->NL': '"ExchangeNetherlands"',
         'DK-DK1->SE': '"ExchangeSweden"',
         'DK-DK1->SE-SE3': '"ExchangeSweden"',
+        'DK-DK1->NL': '"ExchangeNetherlands"',
         'DK-DK2->SE': '("ExchangeSweden" - "BornholmSE4")',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
         'DK-DK2->SE-SE4': '("ExchangeSweden" - "BornholmSE4")',  # but Bornholm island is reported separately from DK-DK2 in eMap
         'DK-BHM->SE': '"BornholmSE4"',
