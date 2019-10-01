@@ -1521,6 +1521,34 @@
     },
     "timezone": "Europe/Paris"
   },
+  "FR-COR": {
+    "bounding_box": [
+      [
+        8.361347,
+        43.036009
+      ],
+      [
+        9.904660,
+        41.325729
+      ]
+    ],
+    "capacity": {
+      "biomass": 2.295,
+      "hydro": 223.266,
+      "solar": 145.123,
+	  "wind": 18,
+	  "geothermal": 0,
+	  "oil": 224,
+	  "gas": 125
+    },
+    "contributors": [
+      "https://github.com/PETILLON-Sebastien"
+    ],
+    "parsers": {
+      "production": "FR_O.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
   "GB": {
     "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
     "bounding_box": [
@@ -1645,6 +1673,61 @@
       "production": "GE.fetch_production"
     },
     "timezone": "Asia/Tbilisi"
+  },
+  "GF": {
+    "bounding_box": [
+      [
+        -54.708003,
+        2.102120
+      ],
+      [
+        -51.595232,
+        5.786010
+      ]
+    ],
+    "capacity": {
+      "biomass": 1.976,
+      "hydro": 119.13,
+      "oil": 108,
+	  "gas": 80,
+      "solar": 44.879
+    },
+    "contributors": [
+      "https://github.com/PETILLON-Sebastien"
+    ],
+    "parsers": {
+      "production": "FR_O.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "GP": {
+    "bounding_box": [
+      [
+        -61.859314,
+        15.831168
+      ],
+      [
+        -60.992374,
+        16.567590
+      ]
+    ],
+    "capacity": {
+      "biomass": 5.162,
+      "hydro": 10.57,
+      "solar": 60.447,
+	  "wind": 26.26,
+	  "geothermal": 14.5,
+	  "oil": 329.7,
+	  "gas": 100
+
+    },
+    "contributors": [
+      "https://github.com/PETILLON-Sebastien"
+    ],
+    "parsers": {
+      "production": "FR_O.fetch_production"
+    },
+    "timezone": "Europe/Paris"
   },
   "GR": {
     "bounding_box": [
@@ -2664,6 +2747,34 @@
     },
     "timezone": "Europe/Skopje"
   },
+  "MQ": {
+    "bounding_box": [
+      [
+        -61.252194,
+        14.364404
+      ],
+      [
+        -60.732382,
+        14.888562
+      ]
+    ],
+    "capacity": {
+      "biomass": 15.082,
+      "hydro": 0,
+      "solar": 53.97,
+	  "wind": 1.1,
+	  "geothermal": 0,
+	  "oil": 292,
+	  "gas": 129
+    },
+    "contributors": [
+      "https://github.com/PETILLON-Sebastien"
+    ],
+    "parsers": {
+      "production": "FR_O.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
   "MT": {
     "bounding_box": [
       [
@@ -3170,7 +3281,8 @@
     "capacity": {
       "biomass": 215,
       "coal": 211,
-      "oil": 502,
+      "oil": 221,
+      "gas": 80,
       "hydro": 138,
       "solar": 189,
       "wind": 15
