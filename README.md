@@ -439,7 +439,7 @@ The parser can also return an array of objects if multiple time values can be fe
 
 Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
 
-Run all of the parser tests with the following command from the root directory.
+Run all of the parser tests with the following command from the root directory:
 ```
 python3 -m unittest discover parsers/test/
 ```
@@ -447,7 +447,7 @@ python3 -m unittest discover parsers/test/
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
 
 ### Generating a new map
-If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the root directory then run the following command.
+If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the root directory then run the following command:
 ```
 docker-compose run --rm web ./topogen.sh
 ```
@@ -472,7 +472,7 @@ python test_parser.py DE --target_datetime 2018-01-01T08:00
 #### update the map
 We've added a testing server locally.
 
-To add a new country to the map, run
+To add a new country to the map, run:
 ```
 PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
 ```
@@ -483,6 +483,6 @@ It should appear on the map as you refresh your local browser.
 
 ### Troubleshooting
 
-- `ERROR: for X  Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
+- `ERROR: for X Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
