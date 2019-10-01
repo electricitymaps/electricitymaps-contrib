@@ -1,6 +1,6 @@
 <%
 co2Sub = function(str) {
-    return (str || '').replace("CO2", "CO<span class='sub'>2</span>");
+    return (str || '').replace(/CO2/gi, "CO<span class='sub'>2</span>");
 }
 %>
 <!DOCTYPE html>
@@ -107,6 +107,23 @@ co2Sub = function(str) {
 
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
+
+        <!-- Climate Strike -->
+        <script type="text/javascript">
+            var DIGITAL_CLIMATE_STRIKE_OPTIONS = {
+                cookieExpirationDays: 1, 
+                language: null, 
+                iframeHost: 'https://assets.digitalclimatestrike.net', 
+                disableGoogleAnalytics: true,
+                alwaysShowWidget: true,
+                forceFullPageWidget: false,
+                showCloseButtonOnFullPageWidget: true,
+                footerDisplayStartDate: new Date(),
+                fullPageDisplayStartDate: new Date(2019, 8, 20), 
+            };
+        </script>
+        <script src="https://assets.digitalclimatestrike.net/widget.js" async></script>
+
     </head>
     <body lang="<%= locale %>">
         <div id="main">
@@ -447,10 +464,10 @@ co2Sub = function(str) {
                         <div class="production-toggle">
                             <div class="production-toggle-active-overlay">
                             </div>
-                            <div class="production-toggle-item">
+                            <div class="production-toggle-item production">
                                 <%- __('tooltips.production') %>
                             </div>
-                            <div class="production-toggle-item">
+                            <div class="production-toggle-item consumption">
                                 <%- __('tooltips.consumption') %>
                             </div>
                         </div>

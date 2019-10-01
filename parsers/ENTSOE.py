@@ -857,6 +857,8 @@ ZONE_KEY_AGGREGATES = {
 }
 
 
+# TODO: generalize and move to lib.utils so other parsers can reuse it. (it's
+# currently used by US_SEC.)
 def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     """
     Given multiple parser outputs, sum the production and storage

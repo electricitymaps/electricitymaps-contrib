@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
+"""Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
 
+Aggregates and standardizes data from most of the US ISOs,
+and exposes them via a unified API.
+
+Requires an API key, set in the EIA_KEY environment variable. Get one here:
+https://www.eia.gov/opendata/register.php
+"""
+import datetime
 import os
 
 import arrow
@@ -8,16 +16,7 @@ os.environ.setdefault('EIA_KEY', 'eia_key')
 from eiapy import Series
 import requests
 
-DAY_AHEAD = {
-    'US-SPP': 'EBA.SWPP-ALL.DF.H',
-    'US-MISO': 'EBA.MISO-ALL.DF.H',
-    'US-CA': 'EBA.CAL-ALL.DF.H',
-    'US-NEISO': 'EBA.ISNE-ALL.DF.H',
-    'US-NY': 'EBA.NYIS-ALL.DF.H',
-    'US-PJM': 'EBA.PJM-ALL.DF.H',
-    'US-BPA': 'EBA.BPAT-ALL.DF.H',
-    'US-IPC': 'EBA.IPCO-ALL.DF.H'
-}
+from .ENTSOE import merge_production_outputs
 
 EXCHANGES = {
     'MX-BC->US-CA': 'EBA.CISO-CFE.ID.H',
@@ -28,78 +27,133 @@ EXCHANGES = {
     'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
     'US-NY->US-PJM': 'EBA.NYIS-PJM.ID.H'
 }
+# based on https://www.eia.gov/beta/electricity/gridmonitor/dashboard/electric_overview/US48/US48
+REGIONS = {
+    'US-CA': 'CAL',
+    'US-CAR': 'CAR',
+    'US-SPP': 'CENT',
+    'US-FL': 'FLA',
+    'US-PJM': 'MIDA',
+    'US-MISO': 'MIDW',
+    'US-NEISO': 'NE',
+    'US-NY': 'NY',
+    'US-NW': 'NW',
+    'US-SE': 'SE',
+    'US-SEC': 'SEC',
+    'US-SVERI': 'SW',
+    'US-TN': 'TEN',
+    'US-TX': 'TEX',
+}
+TYPES = {
+    # 'biomass': 'BM',  # not currently supported
+    'coal': 'COL',
+    'gas': 'NG',
+    'hydro': 'WAT',
+    'nuclear': 'NUC',
+    'oil': 'OIL',
+    'unknown': 'OTH',
+    'solar': 'SUN',
+    'wind': 'WND',
+}
+PRODUCTION_SERIES = 'EBA.%s-ALL.NG.H'
+PRODUCTION_MIX_SERIES = 'EBA.%s-ALL.NG.%s.H'
+DEMAND_SERIES = 'EBA.%s-ALL.D.H'
+FORECAST_SERIES = 'EBA.%s-ALL.DF.H'
 
 
-def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
-                               logger=None):
+def fetch_consumption_forecast(zone_key, session=None, target_datetime=None, logger=None):
+    return _fetch_series(zone_key, FORECAST_SERIES % REGIONS[zone_key],
+                         session=session, target_datetime=target_datetime,
+                         logger=logger)
 
-    series_id = DAY_AHEAD[zone_key]
+
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+    return _fetch_series(zone_key, PRODUCTION_SERIES % REGIONS[zone_key],
+                         session=session, target_datetime=target_datetime,
+                         logger=logger)
+
+
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+    consumption = _fetch_series(zone_key, DEMAND_SERIES % REGIONS[zone_key],
+                                session=session, target_datetime=target_datetime,
+                                logger=logger)
+    for point in consumption:
+        point['consumption'] = point.pop('value')
+
+    return consumption
+
+
+def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=None):
+    mixes = []
+    for type, code in TYPES.items():
+        series = PRODUCTION_MIX_SERIES % (REGIONS[zone_key], code)
+        mix = _fetch_series(zone_key, series, session=session,
+                            target_datetime=target_datetime, logger=logger)
+        if not mix:
+            continue
+        for point in mix:
+            point.update({
+                'production': {type: point.pop('value')},
+                'storage': {},  # required by merge_production_outputs()
+            })
+        mixes.append(mix)
+
+    return merge_production_outputs(mixes, zone_key, merge_source='eia.gov')
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+    exchange = _fetch_series(sortedcodes, EXCHANGES[sortedcodes], session=session,
+                             target_datetime=target_datetime, logger=logger)
+    for point in exchange:
+        point.update({
+            'sortedZoneKeys': point.pop('zoneKey'),
+            'netFlow': point.pop('value'),
+        })
+        if sortedcodes == 'MX-BC->US-CA':
+            point['netFlow'] = -point['netFlow']
+
+    return exchange
+
+
+def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
+                  logger=None):
+    """Fetches and converts a data series."""
+    key = os.environ['EIA_KEY']
+    assert key and key != 'eia_key', key
+
     s = session or requests.Session()
-    forecast_series = Series(series_id=series_id, session=s)
+    series = Series(series_id=series_id, session=s)
 
     if target_datetime:
-        raw_data = forecast_series.last_from(24, end=target_datetime)
+        raw_data = series.last_from(24, end=target_datetime)
     else:
         # Get the last 24 hours available.
-        raw_data = forecast_series.last(24)['series'][0]['data']
+        raw_data = series.last(24)
 
     # UTC timestamp with no offset returned.
+    if not raw_data.get('series'):
+        # Series doesn't exist. Probably requesting a fuel from a region that
+        # doesn't have any capacity for that fuel type.
+        return []
 
     return [{
         'zoneKey': zone_key,
         'datetime': parser.parse(datapoint[0]),
         'value': datapoint[1],
-        'source': 'eia.org',
-    } for datapoint in raw_data]
+        'source': 'eia.gov',
+    } for datapoint in raw_data['series'][0]['data']]
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    target_datetime (optional)      -- string in form YYYYMMDDTHHZ
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
-
-    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
-
-    series_id = EXCHANGES[sortedcodes]
-    s = session or requests.Session()
-    exchange_series = Series(series_id=series_id, session=s)
-
-    if target_datetime:
-        raw_data = exchange_series.last_from(24, end=target_datetime)
-    else:
-        # Get the last 24 hours available.
-        raw_data = exchange_series.last(24)['series'][0]['data']
-
-    data = []
-    for datapoint in raw_data:
-        if sortedcodes == 'MX-BC->US-CA':
-            datapoint[1] = -1*datapoint[1]
-
-        exchange = {'sortedZoneKeys': sortedcodes,
-                    'datetime': parser.parse(datapoint[0]),
-                    'netFlow': datapoint[1],
-                    'source': 'mysource.com'}
-
-        data.append(exchange)
-
-    return data
+def main():
+    "Main method, never used by the Electricity Map backend, but handy for testing."
+    from pprint import pprint
+    pprint(fetch_consumption_forecast('US-NY'))
+    pprint(fetch_production('US-SEC'))
+    pprint(fetch_production_mix('US-TN'))
+    pprint(fetch_consumption('US-CAR'))
+    pprint(fetch_exchange('MX-BC', 'US-CA'))
 
 
 if __name__ == '__main__':
-    "Main method, never used by the Electricity Map backend, but handy for testing."
-
-    print(fetch_consumption_forecast('US-NY'))
-    print(fetch_exchange('MX-BC', 'US-CA'))
+    main()

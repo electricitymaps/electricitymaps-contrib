@@ -418,13 +418,9 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
-          "CL-SING": {
+          "CL-SING-SIC": {
             "countryName": "Chile",
-            "zoneName": "SING"
-          },
-          "CL-SIC": {
-            "countryName": "Chile",
-            "zoneName": "SIC"
+            "zoneName": "SING/SIC"
           },
           "CL-SEM": {
             "countryName": "Chile",
@@ -1375,9 +1371,37 @@
             "countryName": "United States of America",
             "zoneName": "California"
           },
-          "US-HI": {
+          "US-HI-HA": {
             "countryName": "United States of America",
             "zoneName": "Hawaii"
+          },
+          "US-HI-KA": {
+            "countryName": "United States of America",
+            "zoneName": "Kauai"
+          },
+          "US-HI-KH": {
+            "countryName": "United States of America",
+            "zoneName": "Kahoolawe"
+          },
+          "US-HI-LA": {
+            "countryName": "United States of America",
+            "zoneName": "Lanai"
+          },
+          "US-HI-MA": {
+            "countryName": "United States of America",
+            "zoneName": "Maui"
+          },
+          "US-HI-MO": {
+            "countryName": "United States of America",
+            "zoneName": "Molokai"
+          },
+          "US-HI-NI": {
+            "countryName": "United States of America",
+            "zoneName": "Niihau"
+          },
+          "US-HI-OA": {
+            "countryName": "United States of America",
+            "zoneName": "Oahu"
           },
           "US-IPC": {
             "countryName": "United States of America",
