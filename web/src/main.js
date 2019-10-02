@@ -129,7 +129,7 @@ const countryHistoryCarbonGraph = new LineGraph(
   d => (getState().application.electricityMixMode === 'consumption'
     ? (d || {}).co2intensity
     : (d || {}).co2intensityProduction),
-  d => 'g'
+  d => 'g/kWh'
 );
 const countryHistoryPricesGraph = new LineGraph(
   '#country-history-prices',

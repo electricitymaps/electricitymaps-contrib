@@ -44,7 +44,7 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yLabelText) 
         .style('stroke-width', 1.5);
 
     this.yLabelElement = this.yAxisElement.append("text")
-        .attr('class', 'unit')
+        .attr('class', 'label')
         .text(yLabelText)
 
     this.xAccessor = xAccessor;
@@ -175,7 +175,7 @@ LineGraph.prototype.render = function () {
     }
 
     // y axis label
-    this.yLabelElement.attr('transform', `translate(33, `+ height/2 + `) rotate(-90)`)
+    this.yLabelElement.attr('transform', `translate(35, `+ height/2 + `) rotate(-90)`)
 
     if (this._gradient) {
         // Create gradient

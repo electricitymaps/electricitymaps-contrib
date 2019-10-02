@@ -44,7 +44,7 @@ function AreaGraph(selector, modeColor, modeOrder, yLabelText) {
         .style('stroke-width', 1.5);
 
     this.yLabelElement = this.yAxisElement.append("text")
-        .attr('class', 'unit')
+        .attr('class', 'label')
         .text(yLabelText)
 
     // Create scales
