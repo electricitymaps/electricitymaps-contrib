@@ -9,25 +9,26 @@ Generation Data Visualization: https://www.ceps.cz/en/all-data#Generation
 '''
 
 GENERATION_CODES = {
-''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
-    'TPP'   : 'geothermal',
-    'CCGT'  : 'gas',
-    'NPP'   : 'nuclear',
-    'HPP'   : 'hydro',
-    'AltPP' : 'unknown',
-    'PvPP'  : 'solar',
-    'WPP'   : 'wind',
+    ''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
+    'TPP': 'geothermal',
+    'CCGT': 'gas',
+    'NPP': 'nuclear',
+    'HPP': 'hydro',
+    'AltPP': 'unknown',
+    'PvPP': 'solar',
+    'WPP': 'wind',
 }
 
 STORAGE_CODES = {
-''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
-    'PsPP'  : 'hydro',
+    ''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
+    'PsPP': 'hydro',
 }
 
 CEPS_URL = 'https://www.ceps.cz/_layouts/CepsData.asmx'
 
-HEADERS = { 'Host'         : 'www.ceps.cz',
-            'Content-Type' : 'application/soap+xml; charset=utf-8',
+HEADERS = {
+        'Host': 'www.ceps.cz',
+        'Content-Type': 'application/soap+xml; charset=utf-8',
 }
 
 SOAP_TEMPLATE = '''<?xml version="1.0" encoding="utf-8"?>
@@ -45,6 +46,7 @@ xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
     </Generation>
   </soap12:Body>
 </soap12:Envelope>'''
+
 
 def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
@@ -80,11 +82,11 @@ def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=N
         target_datetime = arrow.utcnow()
     url_date = arrow.get(target_datetime).to(
             "Europe/Berlin")
-    formatted_date ='{}'.format(url_date)
+    formatted_date = '{}'.format(url_date)
     unformatted_data = get_data(formatted_date)
     formatted_data = {
-        'zoneKey'   : zone_key,
-        'datetime'  : formatted_date,
+        'zoneKey': zone_key,
+        'datetime': formatted_date,
         'production': {
             'biomass': 0.0,
             'coal': 0.0,
@@ -100,7 +102,7 @@ def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=N
         'storage': {
             'hydro': 0.0,
         },
-        'source' : 'www.ceps.cz'
+        'source': 'www.ceps.cz'
     }
     for tag in unformatted_data:
         code = unformatted_data[tag]['name']
@@ -114,9 +116,12 @@ def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=N
                 formatted_data['storage'][storage_label] = value
             elif logger:
                 logger.warning('Uncategorized label for code %s', code)
-    return [ formatted_data ]
+    return [formatted_data]
+
 
 def get_data(target_datetime):
+    """ Get generation data using ceps api """
+
     formatted_soap = SOAP_TEMPLATE.format(
                                     target_datetime, target_datetime, 'all')
     response = requests.post(CEPS_URL, data=formatted_soap, headers=HEADERS)
@@ -136,11 +141,10 @@ def get_data(target_datetime):
                     data[key]['value']=float(sub_data_child.get(key))
     return data
 
+
 def main():
 
-    print(fetch_production(target_datetime=datetime.datetime(2019,10,1)))
-
-
+    print(fetch_production(target_datetime=datetime.datetime(2019, 10, 1)))
 
 
 if __name__ == '__main__':
