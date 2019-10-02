@@ -373,12 +373,14 @@ try {
         .setColorblindMode(getState().application.colorBlindModeEnabled)
         .render();
       
+    // map loading is finished, lower the overlay shield
       finishLoading();
 
       if (thirdPartyServices._ga) {
         thirdPartyServices._ga.timingMark('map_loaded');
       }
     });
+    
   windLayer = new WindLayer('wind', zoneMap);
   solarLayer = new SolarLayer('solar', zoneMap);
   dispatchApplication('webglsupported', true);
@@ -389,8 +391,8 @@ try {
     dispatchApplication('showPageState', 'highscore');
     document.getElementById('tab').className = 'nomap';
 
-    // Loading is finished
-    stopLoading();
+    // map loading is finished, lower the overlay shield
+    finishLoading();
   } else {
     throw e;
   }
