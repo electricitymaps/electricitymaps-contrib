@@ -786,11 +786,12 @@
       "hydro storage": 6169,
       "nuclear": 3375,
       "oil": 0,
-      "solar": 1644,
+      "solar": 1906,
       "wind": 76
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/postronium"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
