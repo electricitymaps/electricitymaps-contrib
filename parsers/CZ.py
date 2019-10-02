@@ -1,14 +1,15 @@
+import arrow
 import datetime
 import requests
 from xml.etree import ElementTree
 
 '''
 API Docs: https://www.ceps.cz/en/web-services
-Data visualization: https://www.ceps.cz/en/all-data#Generation
+Generation Data Visualization: https://www.ceps.cz/en/all-data#Generation
 '''
 
 GENERATION_CODES = {
-    ''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
+''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
     'TPP'   : 'geothermal',
     'CCGT'  : 'gas',
     'NPP'   : 'nuclear',
@@ -19,7 +20,7 @@ GENERATION_CODES = {
 }
 
 STORAGE_CODES = {
-    ''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
+''' Mapping of codes defined by CepsData API to electrictymap-contrib labels'''
     'PsPP'  : 'hydro',
 }
 
@@ -30,7 +31,9 @@ HEADERS = { 'Host'         : 'www.ceps.cz',
 }
 
 SOAP_TEMPLATE = '''<?xml version="1.0" encoding="utf-8"?>
-<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
   <soap12:Body>
     <Generation xmlns="http://www.ceps.cz/CepsData/">
       <dateFrom>{}</dateFrom>
@@ -73,10 +76,15 @@ def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=N
       'source': 'mysource.com'
     }]
     """
-    unformatted_data = get_data(target_datetime)
+    if not target_datetime:
+        target_datetime = arrow.utcnow()
+    url_date = arrow.get(target_datetime).to(
+            "Europe/Berlin")
+    formatted_date ='{}'.format(url_date)
+    unformatted_data = get_data(formatted_date)
     formatted_data = {
         'zoneKey'   : zone_key,
-        'datetime'  : target_datetime,
+        'datetime'  : formatted_date,
         'production': {
             'biomass': 0.0,
             'coal': 0.0,
@@ -95,7 +103,8 @@ def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=N
         'source' : 'www.ceps.cz'
     }
     for tag in unformatted_data:
-        code, value = unformatted_data[tag]['name'], unformatted_data[tag]['value']
+        code = unformatted_data[tag]['name']
+        value = unformatted_data[tag]['value']
         production_label = GENERATION_CODES.get(code)
         if production_label:
             formatted_data['production'][production_label] = value
@@ -108,24 +117,28 @@ def fetch_production(zone_key='CZ', session=None, target_datetime=None, logger=N
     return [ formatted_data ]
 
 def get_data(target_datetime):
-    formatted_soap = SOAP_TEMPLATE.format(target_datetime, target_datetime, 'all')
+    formatted_soap = SOAP_TEMPLATE.format(
+                                    target_datetime, target_datetime, 'all')
     response = requests.post(CEPS_URL, data=formatted_soap, headers=HEADERS)
     dom = ElementTree.fromstring(response.content)
-    series_result = dom.findall( '*//{http://www.ceps.cz/CepsData/StructuredData/1.0}serie')
+    series_result = dom.findall(
+        '*//{http://www.ceps.cz/CepsData/StructuredData/1.0}serie')
     data = {}
     for series_child in series_result:
-        data[series_child.get('id')] = {'name' : series_child.get('name').split(' ')[0]}
-    data_result = dom.findall( '*//{http://www.ceps.cz/CepsData/StructuredData/1.0}data')
+        data[series_child.get('id')] = {'name' :
+                                    series_child.get('name').split(' ')[0]}
+    data_result = dom.findall(
+        '*//{http://www.ceps.cz/CepsData/StructuredData/1.0}data')
     for data_child in data_result:
         for sub_data_child in list(data_child):
             for key in sub_data_child.keys():
                 if key in data:
-                    data[key]['value']=float(sub_data_child.get(key))                
+                    data[key]['value']=float(sub_data_child.get(key))
     return data
 
 def main():
 
-    print fetch_production(target_datetime='2019-01-02' )
+    print(fetch_production(target_datetime=datetime.datetime(2019,10,1)))
 
 
 
