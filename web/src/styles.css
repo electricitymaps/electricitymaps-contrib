@@ -855,6 +855,7 @@ body {
     border-radius: 14px;
     transition: all 0.4s;
 }
+
 .production-toggle-active-overlay.prod {
     left:0;
     width: 100px;
