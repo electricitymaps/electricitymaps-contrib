@@ -81,15 +81,15 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print('fetch_exchange(CR, PA) ->')
     print(fetch_exchange('CR', 'PA'))
-    print('fetch_exchange(CR, NI) ->') #wrong way
+    print('fetch_exchange(CR, NI) ->')
     print(fetch_exchange('CR', 'NI'))
     print('fetch_exchange(HN, NI) ->')
     print(fetch_exchange('HN', 'NI'))
     print('fetch_exchange(GT, MX) ->')
     print(fetch_exchange('GT', 'MX'))
-    print('fetch_exchange(GT, SV) ->') #wrong way
+    print('fetch_exchange(GT, SV) ->')
     print(fetch_exchange('GT', 'SV'))
-    print('fetch_exchange(GT, HN) ->') #wrong way
+    print('fetch_exchange(GT, HN) ->')
     print(fetch_exchange('GT', 'HN'))
-    print('fetch_exchange(HN, SV) ->') #wrong way
+    print('fetch_exchange(HN, SV) ->')
     print(fetch_exchange('HN', 'SV'))
