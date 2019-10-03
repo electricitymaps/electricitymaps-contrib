@@ -786,11 +786,12 @@
       "hydro storage": 6169,
       "nuclear": 3375,
       "oil": 0,
-      "solar": 1644,
+      "solar": 1906,
       "wind": 76
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/postronium"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3725,6 +3726,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "consumption": "EIA.fetch_consumption",
       "production": "US_CA.fetch_production"
     },
     "timezone": null
@@ -3944,6 +3946,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "consumption": "EIA.fetch_consumption",
       "production": "US_NEISO.fetch_production"
     },
     "timezone": null
@@ -3988,6 +3991,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "consumption": "EIA.fetch_consumption",
       "production": "US_NY.fetch_production"
     },
     "timezone": null
@@ -4038,6 +4042,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "consumption": "EIA.fetch_consumption",
       "price": "US_PJM.fetch_price",
       "production": "US_PJM.fetch_production"
     },
@@ -4073,6 +4078,7 @@
     "flag_file_name": "us.png",
     "parsers": {
       "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "consumption": "EIA.fetch_consumption",
       "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
       "production": "US_SPP.fetch_production"
     },
@@ -4106,6 +4112,7 @@
     "timezone": null
   },
   "US-TN": {
+    "comment": "Tennessee",
     "bounding_box": [
       [
         -90.323361,
@@ -4115,6 +4122,14 @@
         -81.934704,
         36.674417
       ]
+    ],
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "contributors": [
+      "https://github.com/snarfed"
     ],
     "flag_file_name": "us.png",
     "timezone": null

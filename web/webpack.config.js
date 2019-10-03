@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const fs = require('fs');
 const glob = require('glob');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -16,10 +16,10 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /^node_modules$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{ loader: 'css-loader', options: { url: false } }]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { url: false } }
+        ]
       },
       {
         test: [/\.js$/],
@@ -33,7 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('[name].' + (isProduction ? '[hash]' : 'dev') + '.css'),
+    new MiniCssExtractPlugin('[name].' + (isProduction ? '[hash]' : 'dev') + '.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     function() {
       this.plugin('done', function(stats) {

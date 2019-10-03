@@ -1,7 +1,8 @@
 {
   "name": "electricitymap-web",
   "version": "0.0.1",
-  "description": "",
+  "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "basic-auth": "^2.0.0",
     "compression": "^1.7.2",
@@ -45,12 +46,11 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "ndjson-cli": "^0.3.1",
     "nodemon": "^1.17.1",
     "readline-sync": "^1.4.9",
     "shapefile": "^0.6.2",
-    "style-loader": "^0.20.2",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10"
   },
