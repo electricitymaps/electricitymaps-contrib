@@ -1506,7 +1506,7 @@
       "biomass": 2.295,
       "hydro": 223.266,
       "solar": 145.123,
-	  "wind": 18,
+      "wind": 18,
 	  "geothermal": 0,
 	  "oil": 224,
 	  "gas": 125
@@ -1685,7 +1685,7 @@
       "biomass": 5.162,
       "hydro": 10.57,
       "solar": 60.447,
-	  "wind": 26.26,
+      "wind": 26.26,
 	  "geothermal": 14.5,
 	  "oil": 329.7,
 	  "gas": 100
@@ -2752,7 +2752,7 @@
       "biomass": 15.082,
       "hydro": 0,
       "solar": 53.97,
-	  "wind": 1.1,
+      "wind": 1.1,
 	  "geothermal": 0,
 	  "oil": 292,
 	  "gas": 129
@@ -3282,7 +3282,7 @@
       "https://github.com/PETILLON-Sebastien"
     ],
     "parsers": {
-      "production": "RE.fetch_production"
+      "production": "FR_O.fetch_production"
     },
     "timezone": "Indian/Reunion"
   },

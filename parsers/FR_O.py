@@ -68,6 +68,13 @@ def get_source(zone_key: None, target_datetime: None):
         return HISTORICAL_SOURCE
 
 
+def get_date_name(zone_key: None, target_datetime: None):
+    if(target_datetime is None):
+        return 'date'
+    else:
+        return 'date_heure'
+
+
 # -------------- Bagasse / Coal Repartitions -------------- #
 
 # Depending on the month, this correspond more or less to bagasse or coal.
@@ -193,10 +200,8 @@ thermal_mapping = {
     ],
 }
 
-# Non-thermal sources
-sources = ['biomass', 'hydro', 'solar', 'wind', 'geothermal']
 # Non-thermal sources names in api
-source_mapping = {
+sources_mapping = {
     'biomass': ['bioenergies_mwh', 'bioenergies'],
     'hydro': ['hydraulique_mwh', 'hydraulique'],
     'solar': ['photovoltaique_mwh', 'photovoltaique', 'photovoltaique_avec_stockage'],
@@ -215,6 +220,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
     r = session or requests.session()
     params = get_param(zone_key, target_datetime)
     api = get_api(zone_key, target_datetime)
+    date_name = get_date_name(zone_key, target_datetime)
 
     # Date build
     if target_datetime is None:
@@ -230,7 +236,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
     # Response build
     if(len(data['records']) > 0 and ('fields' in data['records'][0])):
         fields = data['records'][0]['fields']
-        datetime_result = arrow.get(fields['date_heure']).datetime
+        datetime_result = arrow.get(fields[date_name]).datetime
         result = {
             'zoneKey': zone_key,
             'datetime': datetime_result,
@@ -249,14 +255,14 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
             }
         }
         # Non-thermal sources
-        for i in range(0, len(sources)):
-            current_sources = source_mapping[sources[i]]
-            for j in range(0, len(current_sources)):
-                current_source = current_sources[j]
-                if(current_source in fields):
+        for source_mapping_key in sources_mapping:
+            current_sources = sources_mapping[source_mapping_key]
+            for current_source in current_sources:
+                if current_source in fields:
                     value = fields[current_source]
                     if value > 0:
-                        result['production'][sources[i]] += value
+                        result['production'][source_mapping_key] += value
+
         # Thermal sources
         for k in range(0, len(thermal_mapping[zone_key])):
             current_thermal = thermal_mapping[zone_key][k]
@@ -275,3 +281,8 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
         datapoints.append(result)
 
     return datapoints
+
+
+def fetch_price(zone_key=None, session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
+    raise NotImplementedError('This parser is not yet able to retrieve prices')
