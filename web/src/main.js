@@ -946,8 +946,6 @@ document.addEventListener('keyup', (e) => {
       zoneSearchBar.clearInputAndFocus();
     } else if (e.key.match(/^[A-z]$/)) {
       zoneSearchBar.focusWithInput(e.key);
-    } else {
-      zoneSearchBar.focusWithInput('');
     }
   } else if (currentPage === 'country') {
     if (e.key === 'Backspace') {
