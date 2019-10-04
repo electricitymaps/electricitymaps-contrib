@@ -1515,7 +1515,8 @@
       "https://github.com/PETILLON-Sebastien"
     ],
     "parsers": {
-      "production": "FR_O.fetch_production"
+      "production": "FR_O.fetch_production",
+      "price": "FR_O.fetch_price"
     },
     "timezone": "Europe/Paris"
   },
@@ -1666,7 +1667,8 @@
       "https://github.com/PETILLON-Sebastien"
     ],
     "parsers": {
-      "production": "FR_O.fetch_production"
+      "production": "FR_O.fetch_production",
+      "price": "FR_O.fetch_price"
     },
     "timezone": "Europe/Paris"
   },
@@ -1695,7 +1697,8 @@
       "https://github.com/PETILLON-Sebastien"
     ],
     "parsers": {
-      "production": "FR_O.fetch_production"
+      "production": "FR_O.fetch_production",
+      "price": "FR_O.fetch_price"
     },
     "timezone": "Europe/Paris"
   },
@@ -2761,7 +2764,8 @@
       "https://github.com/PETILLON-Sebastien"
     ],
     "parsers": {
-      "production": "FR_O.fetch_production"
+      "production": "FR_O.fetch_production",
+      "price": "FR_O.fetch_price"
     },
     "timezone": "Europe/Paris"
   },
@@ -3282,7 +3286,8 @@
       "https://github.com/PETILLON-Sebastien"
     ],
     "parsers": {
-      "production": "FR_O.fetch_production"
+      "production": "FR_O.fetch_production",
+      "price": "FR_O.fetch_price"
     },
     "timezone": "Indian/Reunion"
   },

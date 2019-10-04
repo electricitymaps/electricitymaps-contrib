@@ -35,20 +35,21 @@ def get_param(zone_key: None, target_datetime: None):
                 'dataset': 'prod-electricite-temps-reel',
                 'timezone': 'Indian/Reunion',
                 'sort': 'date',
-                'rows': 1
+                'rows': 288
             }
         }
         return params[zone_key]
     else:
-        datetime = arrow.get(target_datetime, 'Europe/Paris')
-        formatted = datetime.format('YYYY-MM-DDTHH:mm')
+        datetime = arrow.get(target_datetime, tz='Europe/Paris')
+        formatted_from = datetime.shift(days=-1).format('DD/MM/YYYY')
+        formatted_to = datetime.format('DD/MM/YYYY')
         return {
             'dataset': 'courbe-de-charge-de-la-production-delectricite-par-filiere',
             'timezone': 'Europe/Paris',
             'q': 'date_heure >= {} AND date_heure <= {}'.format(
-                formatted, formatted),
+                formatted_from, formatted_to),
             'sort': 'date_heure',
-            'rows': 1,
+            'rows': 24,
             'facet': 'territoire',
             'refine.territoire': zone_key_mapping[zone_key]
         }
@@ -235,54 +236,83 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
 
     # Response build
     if(len(data['records']) > 0 and ('fields' in data['records'][0])):
-        fields = data['records'][0]['fields']
-        datetime_result = arrow.get(fields[date_name]).datetime
-        result = {
-            'zoneKey': zone_key,
-            'datetime': datetime_result,
-            'source': get_source(zone_key, target_datetime),
-            'production': {
-                'nuclear': 0,
-                'biomass': 0,
-                'coal': 0,
-                'gas': 0,
-                'hydro': 0,
-                'oil': 0,
-                'solar': 0,
-                'wind': 0,
-                'geothermal': 0,
-                'unknown': 0
+        for i in range(0, len(data['records'])):
+            fields = data['records'][i]['fields']
+            datetime_result = arrow.get(fields[date_name]).datetime
+            result = {
+                'zoneKey': zone_key,
+                'datetime': datetime_result,
+                'source': get_source(zone_key, target_datetime),
+                'production': {
+                    'nuclear': 0,
+                    'biomass': 0,
+                    'coal': 0,
+                    'gas': 0,
+                    'hydro': 0,
+                    'oil': 0,
+                    'solar': 0,
+                    'wind': 0,
+                    'geothermal': 0,
+                    'unknown': 0
+                }
             }
-        }
-        # Non-thermal sources
-        for source_mapping_key in sources_mapping:
-            current_sources = sources_mapping[source_mapping_key]
-            for current_source in current_sources:
-                if current_source in fields:
-                    value = fields[current_source]
-                    if value > 0:
-                        result['production'][source_mapping_key] += value
+            # Non-thermal sources
+            for source_mapping_key in sources_mapping:
+                current_sources = sources_mapping[source_mapping_key]
+                for current_source in current_sources:
+                    if current_source in fields:
+                        value = fields[current_source]
+                        if value > 0:
+                            result['production'][source_mapping_key] += value
 
-        # Thermal sources
-        for k in range(0, len(thermal_mapping[zone_key])):
-            current_thermal = thermal_mapping[zone_key][k]
-            current_type = current_thermal['type']
-            current_source = None
-            if current_thermal['monthly_variation']:
-                current_source = current_type[datetime.month]
-            else:
-                current_source = current_type
-            for type_name in current_source:
-                if current_thermal['name'] in fields:
-                    value = fields[current_thermal['name']]
-                    multiple = current_source[type_name]
-                    result['production'][type_name] += value * multiple
+            # Thermal sources
+            for k in range(0, len(thermal_mapping[zone_key])):
+                current_thermal = thermal_mapping[zone_key][k]
+                current_type = current_thermal['type']
+                current_source = None
+                if current_thermal['monthly_variation']:
+                    current_source = current_type[datetime.month]
+                else:
+                    current_source = current_type
+                for type_name in current_source:
+                    if current_thermal['name'] in fields:
+                        value = fields[current_thermal['name']]
+                        multiple = current_source[type_name]
+                        result['production'][type_name] += value * multiple
 
-        datapoints.append(result)
+            datapoints.append(result)
 
     return datapoints
 
 
 def fetch_price(zone_key=None, session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)):
-    raise NotImplementedError('This parser is not yet able to retrieve prices')
+    if(target_datetime is None):
+        raise NotImplementedError('There is no real time data')
+
+    r = session or requests.session()
+    params = get_param(zone_key, target_datetime)
+    api = get_api(zone_key, target_datetime)
+    date_name = get_date_name(zone_key, target_datetime)
+
+    r = session or requests.session()
+
+    # Data retrievement
+    response = r.get(api, params=params)
+    data = json.loads(response.content)
+    datapoints = []
+
+    if(len(data['records']) > 0 and ('fields' in data['records'][0])):
+        for i in range(0, len(data['records'])):
+            fields = data['records'][i]['fields']
+            if 'cout_moyen_de_production_eu_mwh' in fields:
+                datetime_result = arrow.get(fields[date_name]).datetime
+                datapoints.append({
+                    'zoneKey': zone_key,
+                    'currency': 'EUR',
+                    'datetime': datetime_result,
+                    'source': get_source(zone_key, target_datetime),
+                    'price': float(fields['cout_moyen_de_production_eu_mwh'])
+                })
+
+    return datapoints
