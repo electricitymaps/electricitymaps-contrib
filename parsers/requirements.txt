@@ -6,7 +6,7 @@ eiapy==0.1.4
 html5lib==0.999999999
 lxml==4.4.1
 mock==2.0.0
-pandas==0.25.1
+pandas==0.24.2
 Pillow==4.0.0
 pytesseract==0.2.0
 ree==2.2.1
