@@ -73,14 +73,16 @@ module.exports.showProduction = function showProduction(
   const domainName = translation.translate(mode);
   const isNull = !isFinite(absValue) || absValue == undefined;
 
-  const productionProportion = !isNull ? Math.round(absValue / domain * 100) : '?';
+  let productionProportion = !isNull ? Math.round(absValue / domain * 100) : '?';
   tooltip.select('#production-proportion-detail').html(`${!isNull ? format(absValue) : '?'} ` +
     ` / ${
       !isNull ? format(domain) : '?'}`);
 
-  const langString = isStorage ?
+  let langString = isStorage ?
     displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing' :
     displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom';
+  if(productionProportion === '?') langString = 'electricityExportedToNotAvailable';
+  if(isNaN(productionProportion)) productionProportion = 0;
   tooltip.select('#line1')
     .html(formatting.co2Sub(translation.translate(
       langString,
@@ -127,9 +129,10 @@ module.exports.showExchange = function showExchange(tooltipInstance, key, countr
   tooltip.select('#domain-name').text(domainName);
 
   // Exchange
-  const langString = isExport ?
-    displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo' :
-    displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom';
+  // const langString = isExport ?
+  //   displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo' :
+  //   displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom';
+  const langString = 'electricityExportedToNotAvailable'
 
   tooltip.select('#line1')
     .html(formatting.co2Sub(translation.translate(

@@ -121,6 +121,7 @@
     "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
     "emissionsStoredUsing": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
 
+    "electricityExportedToNotAvailable": "%3$s consumption data is not available for <img id=\"country-flag\"></img> <b>%2$s</b>.",
     "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
