@@ -1,24 +1,28 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const glob = require('glob');
+const autoprefixer = require('autoprefixer');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
-  entry: { bundle: ['babel-polyfill', './src/main.js'], styles: './src/styles.css' },
+  entry: { bundle: ['babel-polyfill', './src/main.js'], styles: './src/scss/styles.scss' },
   module: {
     noParse: /(mapbox-gl)\.js$/,
     rules: [
       // Extract css files
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         exclude: /^node_modules$/,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { url: false } }
+          { loader: 'css-loader', options: { url: false } },
+          { loader: 'postcss-loader', options: { plugins: [ autoprefixer() ] } },
+          { loader: 'sass-loader', options: { sourceMap: true} },
         ]
       },
       {
@@ -33,6 +37,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin('[name].' + (isProduction ? '[hash]' : 'dev') + '.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     function() {
