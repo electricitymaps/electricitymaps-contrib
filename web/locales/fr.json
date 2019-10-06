@@ -87,7 +87,11 @@
         "hideSolarLayer": "Cacher le calque d'ensoleillement",
         "toggleDarkMode": "Basculer le thème sombre",
         "noParserInfo": "Pas de données disponible",
-        "temporaryDataOutage": "Données temporairement indisponibles"
+        "temporaryDataOutage": "Données temporairement indisponibles",
+        "production": "production",
+        "consumption": "consommation",
+        "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
+        "selectLanguage": "Choisissez une langue"
     },
     "misc": {
         "maintitle": "Emissions CO2 de la consommation électrique en temps réel",
@@ -95,7 +99,9 @@
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant",
         "legend": "Légende",
-        "faq": "Foire Aux Questions"
+        "faq": "Foire Aux Questions",
+        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un oeil à notre base de données.</a>",
+        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>"
     },
     "wind": "éolien",
     "solar": "solaire",
@@ -182,7 +188,8 @@
         "contribute-answer": "Bien sûr ! Electricity Map est un projet open-source, rendu possible par nos contributeurs bénévoles. Si vous souhaitez contribuer au développement de la carte, en ajoutant des sources de données pour de nouvelles zones, en ajoutant de nouvelles fonctionnalités ou en corrigeant des bugs, n'hésitez pas à nous rejoindre sur notre <a href=\"https://github.com/corradio/electricitymap/\" target=\"_ blank\"> github </a>.",
         "workTogether-question": "Pouvons-nous travailler ensemble ?",
         "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@tmrow.com\">Envoyez-nous un email</a> !",
-        "disclaimer-question": "Avertissement"
+        "disclaimer-question": "Avertissement",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie à titre informatif des données et des images sur son site <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>.Tomorrow ne répond pas de l'exactitude de ces informations, ne fournit aucune garantie sur ce point et se réserve le droit de changer le contenu de ce site à tout moment, ainsi que d'en retirer, sans avoir à informer son auditoire. Tomorrow décline toute responsabilité et ne pourrait être tenu responsable de dommages ou dépenses qui résulteraient de l'inexactitude d'electricityMap, qu'elle soit due à une erreur, un manque de données, la présence d'information obsolète ou dépassée. Cela s'applique à electricityMap ainsi qu'à tout produit dérivé. Il est interdit d'inclure cette page web et n'importe lequel de ces éléments dans une autre page web, sans le consentement écrit préalable de Tomorrow.<br><br> Tous les droits de propriété intellectuelle appartiennent aux propriétaires légitimes et légaux de ce site, ainsi qu'à tous les concédants. La copie, la distribution ou tout autre usage de ces documents, en particulier les données énergétiques, sont interdits sans le consentement écrit de Tomorrow, sauf contre-indication légale (telle que le droit de mention), à moins que cela ne soit explicitement spécifié par ces documents.<br><br>Cette notice légale pourra être ponctuellement mise à jour."
     },
     "zoneShortName": {
         "AD": {
@@ -1469,6 +1476,46 @@
         },
         "ZW": {
             "zoneName": "Zimbabwe"
+        },
+        "AUS-TAS-KI": {
+            "countryName": "Tasmanie",
+            "zoneName": "Île King"
+        },
+        "CL-SING-SIC": {
+            "countryName": "Chili",
+            "zoneName": "Chili"
+        },
+        "US-HI-HA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Hawaï"
+        },
+        "US-HI-KA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Oahu"
         }
     }
 }
