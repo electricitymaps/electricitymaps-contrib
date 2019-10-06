@@ -1476,6 +1476,46 @@
         },
         "ZW": {
             "zoneName": "Zimbabwe"
+        },
+        "AUS-TAS-KI": {
+            "countryName": "Tasmanie",
+            "zoneName": "�Île King"
+        },
+        "CL-SING-SIC": {
+            "countryName": "Chili",
+            "zoneName": "Chili"
+        },
+        "US-HI-HA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Hawaï"
+        },
+        "US-HI-KA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "États Unis d'Amérique",
+            "zoneName": "Oahu"
         }
     }
 }
