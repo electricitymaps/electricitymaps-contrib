@@ -189,7 +189,7 @@
         "workTogether-question": "Pouvons-nous travailler ensemble ?",
         "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@tmrow.com\">Envoyez-nous un email</a> !",
         "disclaimer-question": "Avertissement",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie à titre informatif des données et des images sur son site <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>.Tomorrow ne répond pas de l'exactitude de ces informations, ne fournit aucune garantie sur ce point et se réserve le droit de changer le contenu de ce site à tout moment, ainsi que d'en retirer, sans avoir à informer son auditoire. Tomorrow décline toute responsabilité et ne pourrait être tenu responsable de dommages ou dépenses qui résulterait de l'inexactitude d'electricityMap, qu'elle soit due à une erreur, un manque de données, la présence d'information obsolète ou dépassée. Cela s'applique à electricityMap ainsi qu'à tout produit dérivé. Il est interdit d'inclure cette page web et n'importe lequel de ces éléments dans une autre page web, sans le consentement écrit préalable de Tomorrow.<br><br> Tous les droit de propriété intellectuelle appartiennent aux propriétaires légitimes et légaux de ce site, ainsi qu'à tous les concédants. La copie, la distribution ou tout autre usage de ces documents, en particulier les données énergétiques, sont interdites sans le consentement écrit de Tomorrow, sauf contre-indication légale (telle que le droit de mention), à moins que cela ne soit explicitement spécifié par ces documents.<br><br>Cette notice légale pourra être ponctuellement mise à jour"
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie à titre informatif des données et des images sur son site <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>.Tomorrow ne répond pas de l'exactitude de ces informations, ne fournit aucune garantie sur ce point et se réserve le droit de changer le contenu de ce site à tout moment, ainsi que d'en retirer, sans avoir à informer son auditoire. Tomorrow décline toute responsabilité et ne pourrait être tenu responsable de dommages ou dépenses qui résulteraient de l'inexactitude d'electricityMap, qu'elle soit due à une erreur, un manque de données, la présence d'information obsolète ou dépassée. Cela s'applique à electricityMap ainsi qu'à tout produit dérivé. Il est interdit d'inclure cette page web et n'importe lequel de ces éléments dans une autre page web, sans le consentement écrit préalable de Tomorrow.<br><br> Tous les droits de propriété intellectuelle appartiennent aux propriétaires légitimes et légaux de ce site, ainsi qu'à tous les concédants. La copie, la distribution ou tout autre usage de ces documents, en particulier les données énergétiques, sont interdits sans le consentement écrit de Tomorrow, sauf contre-indication légale (telle que le droit de mention), à moins que cela ne soit explicitement spécifié par ces documents.<br><br>Cette notice légale pourra être ponctuellement mise à jour."
     },
     "zoneShortName": {
         "AD": {
@@ -1479,7 +1479,7 @@
         },
         "AUS-TAS-KI": {
             "countryName": "Tasmanie",
-            "zoneName": "�Île King"
+            "zoneName": "Île King"
         },
         "CL-SING-SIC": {
             "countryName": "Chili",
