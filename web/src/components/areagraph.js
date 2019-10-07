@@ -74,6 +74,28 @@ AreaGraph.prototype.data = function (arg) {
 
     var that = this;
 
+    // Max total value
+    var maxTotalValue = d3.max(arg, function(d) {
+        if (!that._displayByEmissions) {
+            // in MW
+            return (d.totalProduction + d.totalImport + d.totalDischarge);
+        } else {
+            // in tCO2eq/min
+            return (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0;
+        }
+    })
+
+    var formattingFactor = 1;
+    if (!that._displayByEmissions) {
+        // Display in GW or MW
+        formattingFactor = maxTotalValue > 1e3 ? 1e3 : 1;
+        this.yLabelElement.text(formattingFactor > 1 ? 'GW' : 'MW');
+    } else {
+        this.yLabelElement.text("tCO2eq/min");
+    }
+
+    maxTotalValue = maxTotalValue / formattingFactor;
+
     // Parse data
     var exchangeKeysSet = this.exchangeKeysSet = d3.set();
     this._data = arg.map(function(d) {
@@ -86,8 +108,8 @@ AreaGraph.prototype.data = function (arg) {
             var value = isStorage ?
                 -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')]) :
                 (d.production || {})[k]
-            // in MW
-            obj[k] = value / 1e3;
+            // in GW or MW
+            obj[k] = value / formattingFactor;
             if (isFinite(value) && that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
                 if (isStorage && obj[k] >= 0) {
@@ -101,8 +123,8 @@ AreaGraph.prototype.data = function (arg) {
           // Add exchange
           d3.entries(d.exchange).forEach(function(o) {
               exchangeKeysSet.add(o.key);
-              // in MW
-              obj[o.key] = Math.max(0, o.value / 1e3);
+              // in GW or MW
+              obj[o.key] = Math.max(0, o.value / formattingFactor);
               if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
                   // in tCO2eq/min
                   obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
@@ -132,14 +154,7 @@ AreaGraph.prototype.data = function (arg) {
     }
     this.y.domain([
         0,
-        d3.max(arg, function(d) {
-            if (!that._displayByEmissions) {
-                return (d.totalProduction + d.totalImport + d.totalDischarge) / 1e3;
-            } else {
-                // in tCO2eq/min
-                return (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0;
-            }
-        })
+        maxTotalValue
     ]);
     this.z
         .domain(this.stackKeys)
@@ -331,7 +346,7 @@ AreaGraph.prototype.render = function() {
         .call(yAxis);    
 
     // y axis label
-    this.yLabelElement.attr('transform', `translate(33, `+ height/2 + `) rotate(-90)`)
+    this.yLabelElement.attr('transform', `translate(35, `+ height/2 + `) rotate(-90)`)
 
     return this;
 }

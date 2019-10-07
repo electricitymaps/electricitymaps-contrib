@@ -137,7 +137,7 @@ const countryHistoryPricesGraph = new LineGraph(
   d => (d.price || {}).value,
   d => d.price && d.price.value != null,
 ).gradient(false);
-const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder, 'GW')
+const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, modeOrder)
   .electricityMixMode(getState().application.electricityMixMode);
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
