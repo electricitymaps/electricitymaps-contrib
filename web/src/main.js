@@ -1,7 +1,4 @@
-console.log('test');
-
-// import scss file
-// import './scss/styles.scss';
+'use strict';
 
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
@@ -15,8 +12,6 @@ import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
 import LanguageSelect from './components/languageselect';
-
-'use strict';
 
 // Libraries
 const d3 = Object.assign(
