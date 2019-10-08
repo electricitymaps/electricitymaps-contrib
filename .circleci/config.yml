@@ -9,6 +9,7 @@ stages:
         name: Set Python version
         command: |
           set -eux -o pipefail
+          pyenv install --list
           pyenv install 3.6.8
           pyenv global 3.6.8
       - type: shell
