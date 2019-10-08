@@ -26,7 +26,8 @@ stages:
         command: |
           set -eux -o pipefail
           python --version
-          pip3 --version
+          pip3 -v --version
+          pyenv versions
           pip3 install -q flake8 pylint==2.3.1 --progress-bar=off
           sudo apt-get install libxml2-dev
           pip3 install -q -r parsers/requirements.txt --progress-bar=off
