@@ -10,8 +10,8 @@ stages:
         command: |
           set -eux -o pipefail
           pyenv install --list
-          pyenv install 3.6.8
-          pyenv global 3.6.8
+          pyenv install 3.6.3
+          pyenv global 3.6.3
       - type: shell
         name: Upgrade pip
         command: pip install -q --upgrade pip
