@@ -7,7 +7,10 @@ stages:
       - type: checkout
       - type: shell
         name: Set Python version
-        command: pyenv global 3.5.2
+        command: |
+          set -eux -o pipefail
+          pyenv install 3.6
+          pyenv global 3.6
       - type: shell
         name: Upgrade pip
         command: pip install -q --upgrade pip
@@ -26,11 +29,11 @@ stages:
         command: |
           set -eux -o pipefail
           python --version
-          pip3 -v --version
+          pip -v --version
           pyenv versions
-          pip3 install -q flake8 pylint==2.3.1 --progress-bar=off
+          pip install -q flake8 pylint==2.3.1 --progress-bar=off
           sudo apt-get install libxml2-dev
-          pip3 install -q -r parsers/requirements.txt --progress-bar=off
+          pip install -q -r parsers/requirements.txt --progress-bar=off
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
           # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
