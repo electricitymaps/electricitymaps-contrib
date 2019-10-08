@@ -9,6 +9,9 @@ const d3 = Object.assign(
   require('d3-scale'),
   require('d3-shape'),
 );
+
+const formatting = require('../helpers/formatting');
+
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
@@ -85,11 +88,11 @@ AreaGraph.prototype.data = function (arg) {
         }
     })
 
-    var formattingFactor = 1;
+    const format = formatting.scalePower(maxTotalValue);
+    var formattingFactor = !that._displayByEmissions ? format.formattingFactor : 1;
+
     if (!that._displayByEmissions) {
-        // Display in GW or MW
-        formattingFactor = maxTotalValue > 1e3 ? 1e3 : 1;
-        this.yLabelElement.text(formattingFactor > 1 ? 'GW' : 'MW');
+        this.yLabelElement.text(format.unit);
     } else {
         this.yLabelElement.text("tCO2eq/min");
     }
