@@ -9,6 +9,7 @@ a {
     text-decoration: none;
     color: #4178AC;
 }
+
 a:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -52,6 +53,7 @@ line, path {
     top: -100px; /* hidden state */
     z-index: 99;
 }
+
 .flash-message .inner {
     display: block;
     margin: 0 auto;
@@ -64,6 +66,7 @@ line, path {
     width: 100%;
     box-sizing: border-box;
 }
+
 .flash-message.active {
     top: 0px;
 }
@@ -71,6 +74,7 @@ line, path {
 #connection-warning .inner {
     background-color: darkred;
 }
+
 #new-version .inner {
     background-color: #3F51B5;
 }
@@ -118,18 +122,22 @@ line, path {
     margin: 0;
     flex: 1 1 0px;
 }
+
 .country-panel-wrap {
     overflow-y: scroll;
     padding: 0 1.5rem;
 }
+
 .country-panel-wrap .bysource {
     font-size: smaller;
     position: relative;
     top: 0.8rem;
 }
+
 .country-history .loading {
     background-size: 1.7rem;
 }
+
 .country-history .material-icons {
     font-size: 1rem;
 }
@@ -139,7 +147,6 @@ line, path {
     vertical-align: middle;
     align-items: center;
 }
-
 
 .referral-link {
     color: inherit;
@@ -200,6 +207,7 @@ line, path {
 body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
+
 #main {
     position: fixed; /* This is done in order to ensure that dragging will not affect the body */
     width: 100vw;
@@ -208,6 +216,7 @@ body {
     flex-direction: column; /* children will be stacked vertically */
     align-items: stretch; /* force children to take 100% width */
 }
+
 #map-container {
     position: relative;
     flex-grow: 1; /* This takes up available horizontal space */
@@ -219,10 +228,12 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
 #map-container *:focus {
     /* Disable orange border on Android Chrome when :focus; */
     outline-width: 0px;
 }
+
 #zones {
     width: 100%;
     height: 100%;
@@ -261,17 +272,21 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
 #header #header-content a {
     color: white;
     transition: color 0.4s;
 }
+
 #header #header-content.brightmode a {
     color: black;
 }
+
 #header #header-content a:hover {
     color: #4178AC;
     text-decoration: none;
 }
+
 #header-content .logo {
     display: inline;
     font-family: "Open Sans", sans-serif;
@@ -298,6 +313,7 @@ body {
 #header-content .logo .image {
     vertical-align: text-top;
 }
+
 #header-content .logo .image, #mobile-header .logo .image {
     display: inline-block;
     height: 21px;
@@ -321,11 +337,11 @@ body {
     text-align: right;
     font-size: 0.6em;
 }
+
 #header-content > div,
 #header-content > span {
     vertical-align: middle;
 } 
-
 
 /* end HEADER */
 
@@ -342,16 +358,19 @@ body {
     top: 0;
     left: 0;
 }
+
 #wind {
     pointer-events: none;
     opacity: 0;
     display: none;
 }
+
 #solar {
     pointer-events: none;
     opacity: 0;
     display: none;
 }
+
 .panel {
     background-color: #F3F3F3;
     color: black;
@@ -379,6 +398,7 @@ body {
     transition: transform 0.4s;
     z-index: 2; /* in order to be above left-panel */
 }
+
 #left-panel-collapse-button:hover {
     cursor: pointer;
 }
@@ -394,7 +414,6 @@ body {
 #left-panel-collapse-button.collapsed i{
     transform: rotate(-90deg);
 }
-
 
 /* Left-panel */
 .left-panel {
@@ -432,28 +451,34 @@ body {
 .left-panel > svg {
     display: block;
 }
+
 .left-panel, left-panel.text {
     color: black;
 }
+
 .left-panel .axis .tick line {
     shape-rendering: auto;
     stroke: lightgray;
     stroke-width: 1;
 }
+
 .left-panel .axis .tick text {
     fill: gray;
     font-size: 0.6rem;
 }
+
 .left-panel .axis path.domain {
     fill: none;
     shape-rendering: auto;
     stroke: lightgray;
 }
+
 .left-panel-toolbar,
 .left-panel-zone-details-toolbar {
     position: relative;
     padding: 1rem 1.25rem 1rem 1.25rem;
 }
+
 .left-panel-toolbar .left-panel-toolbar-back,
 #left-panel-highscore-back {
     line-height: 1;
@@ -464,21 +489,25 @@ body {
     top: 0px;
     position: absolute;
 }
+
 .left-panel-back-button {
     cursor: pointer;
     font-size: 1.3rem;
     position: absolute;
     left: 1.25rem;
 }
+
 .left-panel-toolbar .left-panel-toolbar-back:hover,
 .left-panel-back-button:hover, #left-panel-highscore-back:hover {
     color: white;
 }
+
 .left-panel .left-panel-toolbar-title,
 .left-panel-zone-details .country-name {
     font-size: 1.2rem;
     line-height: 1.5rem;
 }
+
 .left-panel-toolbar-right-placeholder {
     width: 2.875rem;
 }
@@ -530,14 +559,17 @@ body {
     font-size: smaller;
     margin-left: 25px;
 }
+
 .country-name-time-table {
     display: table;
     margin-left: 1.2rem;
 }
+
 .country-name-time .flag {
   vertical-align: bottom;
   padding-right: 0.8rem;
 }
+
 .country-time {
   white-space: nowrap;
 }
@@ -545,6 +577,7 @@ body {
 .country-table {
     width: 100%;    
 }
+
 .country-table-container {
     width: 100%;
     position: relative;
@@ -556,6 +589,7 @@ body {
     z-index: 4;
     border-bottom: 1px solid lightgray;
 }
+
 .country-table-header-inner {
     display: flex;
     flex-basis: 33.3%;
@@ -567,54 +601,67 @@ body {
     position: relative;
     margin-top: 1em;
 }
+
 .country-history svg:not(:last-child) {
     margin-bottom: 1.2em;
 }
+
 .country-history svg {
     width: 100%;
 }
+
 .country-history path {
     /*shape-rendering: crispEdges;*/
 }
+
 .country-history .vertical-line {
     stroke: lightgray;
     stroke-width: 1;
     opacity: 0.3;
 }
+
 .country-history .horizontal-line {
     stroke: lightgray;
     stroke-width: 1;
     stroke-dasharray: 5;
     opacity: 0.7;
 }
+
 .country-history-title {
     font-size: 1.1em;
 }
+
 #country-history-carbon {
     height: 7rem;
 }
+
 #country-history-carbon .horizontal-line {
     display: none;
 }
+
 #country-history-prices {
     height: 5rem;
 }
+
 #country-history-prices .line {
     stroke: darkgray;
 }
+
 #country-history-prices .area {
     fill: #616161;
 }
+
 #country-history-mix {
     height: 10rem;
 }
+
 #country-history-mix .layer path:hover {
     opacity: 0.8
 }
+
 #country-history-mix .layer path {
     opacity: 1.0
 }
-
 
 .country-emission-intensity,
 .country-spot-price,
@@ -623,6 +670,7 @@ body {
 #exchange-tooltip .flow {
     font-weight: bold;
 }
+
 .emission-rect-overview {
     width: 4rem;
     height: 4rem;
@@ -633,12 +681,12 @@ body {
     flex-direction: column;
     justify-content: center;
 }
+
 .emission-rect {
     display: inline-block;
     width: 8px;
     height: 8px;
 }
-
 
 .circular-gauge .background{
     fill: #F3F3F3;
@@ -675,14 +723,17 @@ body {
     text-align: center;
     width: 33.3%;
 }
+
 .country-col .country-col-headline + div {
     margin-top: 0.375rem;
 }
+
 .country-col .country-col-subtext {
     margin-top: 0.375rem;
     font-size: 0.5rem;
     line-height: 0rem;
 }
+
 .country-col .country-col-box {
     margin: 0 auto;
     font-size: 1rem;
@@ -694,26 +745,31 @@ body {
     color: #fff;
     border-radius: 1rem;
 }
+
 .country-col.country-lowcarbon-wrap .country-col-box,
 .country-col.country-renewable-wrap .country-col-box {
     border:1px solid white;
 }
+
 .country-toggle-emissions {
     text-align: center;
     margin: 1rem 0 1rem;
     display: flex;
     justify-content: space-around;
 }
+
 .country-toggle-emissions a {
     padding: 0.75rem 1.25rem;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
     text-transform: capitalize;
 }
+
 .country-toggle-emissions a:hover {
     text-decoration: none;
     background: rgba(0, 0, 0, 0.2);
 }
+
 .country-show-emissions-wrap {
     margin: 1.2rem 0 0 0;
     font-size: 1.1em;
@@ -723,9 +779,11 @@ body {
     font-size: smaller;
     text-align: center;
 }
+
 .country-show-emissions-wrap .menu a {
     font-size: smaller;
 }
+
 .country-show-emissions-wrap .menu a.selected {
     pointer-events: none;
     font-weight: bold;
@@ -814,6 +872,7 @@ body {
     background-color: #FAFAFA;
     border-radius: 18px;
 }
+
 .prodcons-toggle-container:hover {
     box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
 }
@@ -1005,12 +1064,12 @@ body {
 .layer-toggle {
     font-size: 0.7rem;
 }
+
 .colorbar {
     height: 30px;
     /* This will make sure childs are relative to 1em */
     font-size: 1rem;
 }
-
 
 .floating-legend-container {
     position: absolute;
@@ -1024,14 +1083,17 @@ body {
     margin: 16px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.10)
 }
+
 .floating-legend-container div {
     color: black;
     padding: 2px 6px 5px 6px;
     font-size: 0.8rem;
 }
+
 .floating-legend-container .tick text {
     fill: black;
 }
+
 .floating-legend-container .tick line,
 .floating-legend-container rect.border {
     stroke: none;
@@ -1060,7 +1122,6 @@ body {
     padding-top: 7px;
 }
 
-
 .floating-legend .colorbar{
     width: 100%;
 }
@@ -1072,8 +1133,6 @@ body {
 .wind-potential-legend.visible, .solar-potential-legend.visible{
     display: block;
 }
-
-
 
 @keyframes appear-from-top {
   0% {
@@ -1096,6 +1155,7 @@ div.fb-like span, div.fb-like span iframe {
   width: 51px !important; /* should be large enough for all locales. en: 51px */
   height: 20px !important;
 }
+
 div.fb-share-button span, div.fb-share-button span iframe {
   width: 83px !important; /* should be large enough for all locales. en: 83px */
   height: 20px !important;
@@ -1124,6 +1184,7 @@ label[for="checkbox-colorblind"] {
 #country-tooltip .zone-name-header{
     margin-bottom: 5px;
 }
+
 #country-tooltip .zone-details > div{
     margin-bottom: 5px;
 }
@@ -1172,6 +1233,7 @@ div.highscore-button {
     cursor: pointer;
     color: #fff;
 }
+
 div.highscore-button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
@@ -1189,11 +1251,10 @@ div.highscore-button:hover {
     padding: 1rem 1rem 0 1rem;
 }
 
-
-
 .zone-search-bar {
     padding: 0.75rem 0.5rem 1rem 1rem;
 }
+
 .zone-search-bar input {
     height:32px;
     background-color: #FFFFFF;
@@ -1227,12 +1288,14 @@ div.highscore-button:hover {
     flex: 1;
     -webkit-overflow-scrolling: touch;
 }
+
 .zone-list p {
     margin: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 .zone-list a {
     display: flex;
     font-size: 1rem;
@@ -1248,10 +1311,12 @@ div.highscore-button:hover {
     padding: 0.3rem 0 0.3rem 0.5rem;
     line-height: 1rem;
 }
+
 .zone-list a:hover {
     text-decoration: none;
     background: rgba(255,255,255,1)
 }
+
 .zone-list a.selected {
     background-color: rgba(255,255,255,1);
 }
@@ -1291,13 +1356,11 @@ div.highscore-button:hover {
     width: 17px;
 }
 
-
-
-
 .slack-button {
     display: inline-block;
     height: 20px;
 }
+
 .slack-btn {
     background-color: #eee;
     background-image: linear-gradient(#fcfcfc, #eee);
@@ -1314,6 +1377,7 @@ div.highscore-button:hover {
     float: left;
     line-height: 14px;
 }
+
 .slack-ico {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE4IiBoZWlnaHQ9IjExOCIgdmlld0JveD0iMCAwIDExOCAxMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkdyb3VwPC90aXRsZT48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMC4yNTggNjIuODZjLTQuMzk1LjAzMi04LjExOC0yLjU4Ny05LjQ5LTYuNjc0LS4wNTMtLjE2LS4xLS4zMTQtLjE0My0uNDY2Qy0uODcgNTAuNDg0IDIuMDMgNDUuMDA4IDcuMjMgNDMuMjU1TDkwLjYxMyAxNS4zMmExMS4zMSAxMS4zMSAwIDAgMSAzLjA0Ni0uNDQ2YzQuNTEtLjAzNiA4LjMzIDIuNjQgOS43NCA2LjgxNmwuMTIuNDAzYzEuNTYgNS40NTItMi4zMiAxMC4zMi02Ljk2IDExLjg4bC04Mi45MiAyOC4zMWExMC44OCAxMC44OCAwIDAgMS0zLjM5LjU3NiIgZmlsbD0iIzcwQ0FEQiIvPjxwYXRoIGQ9Ik0yNC4xNTcgMTAzLjg2N2MtNC40MjguMDMyLTguMTY1LTIuNTUtOS41Mi02LjU3OC0uMDUtLjE2LS4xLS4zMS0uMTQzLS40N2ExMC4yOCAxMC4yOCAwIDAgMSA2LjU5Ni0xMi41OWw4My4zODgtMjguMTlhMTAuNzEgMTAuNzEgMCAwIDEgMy4zMDctLjU2YzQuNDQyLS4wMzYgOC4zNDQgMi42OCA5LjcyIDYuNzUybC4xMy40MjZjLjgwMyAyLjgxMy4zMjggNS45OC0xLjI3MiA4LjQ3Ny0xLjE5NSAxLjg2LTQuOTYgMy40OTQtNC45NiAzLjQ5NEwyNy43IDEwMy4yNjRjLTEuMTY1LjM5LTIuMzU1LjU5My0zLjU0LjYwNCIgZmlsbD0iI0UwMTc2NSIvPjxwYXRoIGQ9Ik05My41NzIgMTA0LjA0M2ExMC4yMzMgMTAuMjMzIDAgMCAxLTkuODAyLTYuOTc2TDU1Ljk0IDE0LjQwMmwtLjE0LS40NjVjLTEuNTA2LTUuMjcgMS4zOTItMTAuNzcgNi41OS0xMi41MjJhMTAuMjcgMTAuMjcgMCAwIDEgMy4yLS41NDJjMS42MDgtLjAxMiAzLjE2NC4zNSA0LjYzIDEuMDc0YTEwLjIxNCAxMC4yMTQgMCAwIDEgNS4xNTcgNS45MTNsMjcuODI4IDgyLjY1OC4wOC4yNjVjMS41NjMgNS40NzMtMS4zMyAxMC45NzYtNi41MjcgMTIuNzI2LTEuMDMuMzQtMi4xMDMuNTItMy4xODQuNTMiIGZpbGw9IiNFOEE3MjMiLz48cGF0aCBkPSJNNTIuMjA1IDExNy45N2ExMC4yNDIgMTAuMjQyIDAgMCAxLTkuODA3LTYuOTg0TDE0LjU3NSAyOC4zMjNhMTkuMSAxOS4xIDAgMCAxLS4xNC0uNDYgMTAuMjM1IDEwLjIzNSAwIDAgMSA2LjU4My0xMi41MjMgMTAuMzMzIDEwLjMzMyAwIDAgMSAzLjE4Ny0uNTM1IDEwLjI0IDEwLjI0IDAgMCAxIDkuODA1IDYuOThsMjcuODI0IDgyLjY2NGMuMDUyLjE0LjEuMy4xNC40NWExMC4yMzUgMTAuMjM1IDAgMCAxLTYuNTg4IDEyLjUzIDEwLjI5NCAxMC4yOTQgMCAwIDEtMy4xOC41MyIgZmlsbD0iIzNFQjg5MCIvPjxwYXRoIGQ9Ik03OS44NTIgODUuNDNsMTkuNDA1LTYuNjM2LTYuMzQzLTE4Ljg0LTE5LjQyOCA2LjU2OCA2LjM2NiAxOC45MDciIGZpbGw9IiNDQzFGMjciLz48cGF0aCBkPSJNMzguNTUgOTkuNTVsMTkuNDAyLTYuNjMzLTYuMzktMTguOTgyLTE5LjQyNCA2LjU2NyA2LjQxIDE5LjA1IiBmaWxsPSIjMzYxMjM4Ii8+PHBhdGggZD0iTTY2LjAzNyA0NC4zOTZsMTkuNDA3LTYuNjI1LTYuMjY4LTE4LjYyLTE5LjQ0NCA2LjUyIDYuMzA1IDE4LjczIiBmaWxsPSIjNjU4NjNBIi8+PHBhdGggZD0iTTI0LjczIDU4LjQ5OGwxOS40MDctNi42MjUtNi4zNDYtMTguODU2LTE5LjQ0IDYuNTEzIDYuMzkgMTguOTY4IiBmaWxsPSIjMUE5MzdEIi8+PC9nPjwvc3ZnPg==);
     width: 14px;
@@ -1336,6 +1400,7 @@ div.highscore-button:hover {
     top: -41px;
     overflow: hidden;
 }
+
 #arrows-layer .exchange-arrow:hover {
     cursor: pointer;
 }
@@ -1354,6 +1419,7 @@ div.highscore-button:hover {
     display: flex;
     height: 56px;
 }
+
 #tab #tab-content .list-item {
     display: flex;
 
@@ -1369,9 +1435,11 @@ div.highscore-button:hover {
     font-family: "Open Sans", sans-serif;
     transition: padding-top 0.4s;
 }
+
 #tab.nomap #tab-content .list-item.map-button {
     display: none;
 }
+
 #tab #tab-content .list-item.active {
     color: black;
     font-size: 14px;
@@ -1397,6 +1465,7 @@ div.highscore-button:hover {
 #tab #tab-content a {
     color: rgba(0,0,0,0.5);
 }
+
 #tab #tab-content a .tab-label {
     font-size: 12px;
 }
@@ -1410,10 +1479,10 @@ div.highscore-button:hover {
     color: black;
     text-decoration: none;
 }
+
 #tab #tab-content i {
     font-size: 24px;
 }
-
 
 .sub {
     position: relative;
@@ -1622,6 +1691,7 @@ div.highscore-button:hover {
     text-align: center;
     margin-top: 1rem;
 }
+
 .mobile-watermark > div {
     padding: 0.5rem 0 1rem 0;
 }
@@ -1656,6 +1726,7 @@ div.highscore-button:hover {
     text-align: center;
     z-index: 3;
 }
+
 .no-data-overlay-message.visible, .zone-details-no-parser-message.visible{
     display: block;
 }
@@ -1801,7 +1872,6 @@ div.highscore-button:hover {
     outline: none;  
   }
 
-
 /* Sliders needs to be styled independently for different browsers:
   https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
 */
@@ -1820,6 +1890,7 @@ div.highscore-button:hover {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
     border: 1px solid lightgray;
   }
+
   .time-slider-input:hover::-webkit-slider-thumb{
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
   }
@@ -1839,7 +1910,6 @@ div.highscore-button:hover {
     background: white;
   } */
 
-
   /* IE */
 
   .time-slider-input::-ms-track {
@@ -1851,6 +1921,7 @@ div.highscore-button:hover {
     border-color: transparent;
     color: transparent;
   }
+
   .time-slider-input::-ms-fill-lower {
     border: 2px solid lightgray;
     border-radius: 2.6px;
@@ -1897,23 +1968,26 @@ div.highscore-button:hover {
     margin-right: 10px;
   }
 
-
 /* Medium and large devices (tablets, desktops, etc.) */
 @media (min-width: 768px) {
     .large-screen-hidden {
         display: none;
     }
+
     #tab {
         display: none;
     }
+
     .flash-message {
         padding-left: 24rem; /* keep in sync with left-panel width */
         box-sizing: border-box;
     }
+
     .floating-legend-container{
         pointer-events: none;
         right: 0;
     }
+
     .floating-legend-mobile-header{
         display: none;
     }
@@ -1941,6 +2015,7 @@ div.highscore-button:hover {
         top: 0;
         z-index: 2;
     }
+    
     #mobile-header{
         min-height: 50px;
         -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
@@ -1948,6 +2023,7 @@ div.highscore-button:hover {
         box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
         z-index: 999; /* required for the box-shadow to overlay everything */
     }
+
     #mobile-header .header-content{
         display: flex;
         justify-content: space-between;
@@ -1963,18 +2039,22 @@ div.highscore-button:hover {
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
     }
+
     #mobile-header .header-content .logo {
         display:flex;
     }
+
     #mobile-header .header-content .right-header {
         font-size: 0.6em;
     }
+
     #header-content .logo {
         margin-right: auto;
     }
     .prodcons-toggle-container{
         top: 16px;
     }
+
     .layer-buttons-container{
         top: 148px;   
     }
@@ -1986,22 +2066,28 @@ div.highscore-button:hover {
     .small-screen-hidden {
         display: none;
     }
+
     .left-panel {
         position: relative;
     }
+
     .left-panel, #map-container {
         width: 100%;
     }
+
     .left-panel-welcome {
         display: none;
     }
+
     .left-panel-zone-details .detail-bottom-section{
         padding: 0;
     }
+
     .left-panel-zone-details-toolbar {
         position: relative;
         padding: 1rem 1.25rem 0.5rem 1.25rem;
     }
+
     .country-panel {
         margin: 0;
         display: block;
@@ -2010,9 +2096,11 @@ div.highscore-button:hover {
        -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
         margin-bottom: 60px; /* height of .zone-time-slider plus padding*/
     }
+
     .country-table-header {
         position: relative;
     }
+
     .country-panel-wrap {
         position: relative;
         padding-top: 0;
@@ -2029,18 +2117,23 @@ div.highscore-button:hover {
         padding-top: 4px;
         background-color: #FAFAFA;
     }
+
     #country-tooltip.country-tooltip-visible {
         display: none;
     }
+
     div.highscore-button {
         display: none;
     }
+
     #footer {
         display: table-cell;
     }
+
     .floating-legend.mobile-collapsed{
         display:none;
     }
+
     .floating-legend-container.mobile-collapsed{
         right: 0;
         width: 90px;
@@ -2079,6 +2172,7 @@ div.highscore-button:hover {
         bottom: 0;
         height: 36px;
     }
+
     .modal .modal-footer .modal-footer-circle {
         width: 6px;
         height: 6px;
@@ -2117,6 +2211,7 @@ div.highscore-button:hover {
         box-shadow: 0 -10px 30px 0 rgba(0,0,0,0.15);
 
     }
+
     .modal .modal-left-button-container {
         position: absolute;
         bottom: 32px;
@@ -2174,6 +2269,7 @@ div::-webkit-scrollbar {
     position: relative;
     width: 6px;
 }
+
 div::-webkit-scrollbar-track-piece {
     background: #F3f3f3;
     border-radius: 3px; 
@@ -2184,3 +2280,76 @@ div::-webkit-scrollbar-thumb {
     border-radius: 3px;
 }
 
+/* 
+    custom "color blind mode" checkbox and others
+    adopted with tweeks from source: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp 
+*/
+
+/* The container */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 21px;
+  width: 21px;
+  border-radius: 6px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #074ddb;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+  left: 7px;
+  top: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
