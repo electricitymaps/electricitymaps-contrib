@@ -1,9 +1,11 @@
 import json
+import arrow
 import os
 import pandas as pd
 import requests
 import threading
 import datetime 
+import sched, time
 
 from io import StringIO
 
@@ -64,8 +66,11 @@ def fetch_exchange_data(date=None):
     return csv_data
 
 
-def check_delay():
-    threading.Timer(60.0, check_delay).start() # called every minute
+def check_delay(sc):
+    # run at every full minute
+    now = arrow.utcnow()
+    next_time = now.ceil('minute')
+    sc.enter((next_time - now).seconds + 1, 1, check_delay, (sc,))
 
     exchange_data = fetch_exchange_data()
 
@@ -93,7 +98,16 @@ def main():
         with open(STORAGE_FILE) as f:
             STORAGE = json.load(f) 
 
-    check_delay()
+    s = sched.scheduler(time.time, time.sleep)
+
+    # start at the next full minute
+    first_time = arrow.utcnow().ceil('minute')
+    now = arrow.utcnow()
+    first_time = now.ceil('minute')
+    s.enter((first_time - now).seconds + 1, 1, check_delay, (s,))
+
+    # run the scheduler
+    s.run()
 
 
 if __name__ == "__main__":
