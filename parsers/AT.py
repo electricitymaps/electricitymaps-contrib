@@ -3,9 +3,8 @@ import arrow
 import os
 import pandas as pd
 import requests
-import threading
 import datetime 
-import sched, time
+import time
 
 from io import StringIO
 
@@ -66,27 +65,32 @@ def fetch_exchange_data(date=None):
     return csv_data
 
 
-def check_delay(sc):
-    # run at every full minute
-    now = arrow.utcnow()
-    next_time = now.ceil('minute')
-    sc.enter((next_time - now).seconds + 1, 1, check_delay, (sc,))
+def check_delay():
+    while True:
+        # run at every full minute
+        now = arrow.utcnow()
+        sleep_time = (now.ceil('minute') - now).seconds + 1
+        if sleep_time > 0:
+            time.sleep(sleep_time)
 
-    exchange_data = fetch_exchange_data()
+        try:
+            exchange_data = fetch_exchange_data()
 
-    last_row = exchange_data.dropna().iloc[-1]
-    end_date = last_row[COL_TO]
+            last_row = exchange_data.dropna().iloc[-1]
+            end_date = last_row[COL_TO]
 
-    if end_date.isoformat() not in STORAGE:
-        delta = datetime.datetime.now() - end_date
-        last_row["Delay [Minutes]"] = delta.seconds / 60
-        STORAGE[end_date.isoformat()] = last_row.astype(str).to_dict()
-        print("Encountered new exchange data with delay {}".format(delta))
-    else:
-       print("No new data is available")
+            if end_date.isoformat() not in STORAGE:
+                delta = datetime.datetime.now() - end_date
+                last_row["Delay [Minutes]"] = delta.seconds / 60
+                STORAGE[end_date.isoformat()] = last_row.astype(str).to_dict()
+                print("Encountered new exchange data with delay {}".format(delta))
+            else:
+               print("No new data is available")
 
-    with open(STORAGE_FILE, "w") as f:
-        json.dump(STORAGE, f)
+            with open(STORAGE_FILE, "w") as f:
+                json.dump(STORAGE, f)
+        except Exception as e:
+            print("An error occurred while checking the delay: {}".format(e))
 
 
 STORAGE = {}
@@ -98,16 +102,7 @@ def main():
         with open(STORAGE_FILE) as f:
             STORAGE = json.load(f) 
 
-    s = sched.scheduler(time.time, time.sleep)
-
-    # start at the next full minute
-    first_time = arrow.utcnow().ceil('minute')
-    now = arrow.utcnow()
-    first_time = now.ceil('minute')
-    s.enter((first_time - now).seconds + 1, 1, check_delay, (s,))
-
-    # run the scheduler
-    s.run()
+    check_delay()
 
 
 if __name__ == "__main__":
