@@ -394,14 +394,15 @@
       "geothermal": 0,
       "hydro": 3204,
       "nuclear": 2000,
-      "oil": 0,
+      "oil": 0.3,
       "solar": 1043,
       "wind": 701
     },
     "contributors": [
       "https://github.com/yurukov",
       "https://github.com/ultibo",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/bogomil"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
