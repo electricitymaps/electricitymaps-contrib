@@ -157,7 +157,7 @@ AreaGraph.prototype.data = function (arg) {
     }
     this.y.domain([
         0,
-        maxTotalValue
+        maxTotalValue*1.1
     ]);
     this.z
         .domain(this.stackKeys)
