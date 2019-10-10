@@ -415,13 +415,9 @@
         "CK": {
             "zoneName": "Isole Cook"
         },
-        "CL-SING": {
+        "CL-SING-SIC": {
             "countryName": "Cile",
-            "zoneName": "SING"
-        },
-        "CL-SIC": {
-            "countryName": "Cile",
-            "zoneName": "SIC"
+            "zoneName": "SING/SIC"
         },
         "CL-SEM": {
             "countryName": "Cile",
@@ -549,10 +545,6 @@
             "countryName": "Spagna",
             "zoneName": "Tenerife"
         },
-        "ES-IB": {
-            "countryName": "Spagna",
-            "zoneName": "Isole Baleari"
-        },
         "ET": {
             "zoneName": "Etiopia"
         },
@@ -587,6 +579,18 @@
         "GB-NIR": {
             "zoneName": "Irlanda del Nord"
         },
+		"GB-ORK": {
+			"countryName": "Gran Bretagna",
+            "zoneName": "Isole Orcadi"
+		},
+          "GB-SHI": {
+			"countryName": "Gran Bretagna",
+			"zoneName": "Isole Shetland"
+		},
+          "GB-ZET": {
+			"countryName": "Gran Bretagna",
+            "zoneName": "Isole Shetland"
+		},
         "GD": {
             "zoneName": "Grenada"
         },
@@ -699,6 +703,10 @@
         "IN-DL": {
             "countryName": "India",
             "zoneName": "Delhi"
+        },
+		"IN-DN": {
+            "countryName": "India",
+            "zoneName": "Dadra e Nagar Haveli"
         },
         "IN-GA": {
             "countryName": "India",
@@ -967,8 +975,8 @@
             "zoneName": "Montenegro"
         },
         "MF": {
-            "zoneName": "Saint-Martin",
-            "countryName": "Saint Martin"
+            "countryName": "Saint Martin",
+            "zoneName": "Francese"
         },
         "MG": {
             "zoneName": "Madagascar"
@@ -977,7 +985,7 @@
             "zoneName": "Isole Marshall"
         },
         "MK": {
-            "countryName": "Repubblica di Macedonia",
+            "countryName": "Repubblica di Macedonia del Nord",
             "zoneName": "ERIM"
         },
         "ML": {
@@ -1000,6 +1008,9 @@
         },
         "MR": {
             "zoneName": "Mauritania"
+        },
+		"MS": {
+            "zoneName": "Montserrat"
         },
         "MT": {
             "zoneName": "Malta"
@@ -1049,12 +1060,12 @@
             "zoneName": "Penisola"
         },
         "MY-EM": {
-            "countryName": "Malaysia",
+            "countryName": "Malesia",
             "zoneName": "Borneo"
         },
         "MY-WM": {
-            "zoneName": "Malaysia occidentale",
-            "countryName": "Malesia"
+            "countryName": "Malesia",
+            "zoneName": "Penisola"
         },
         "MZ": {
             "zoneName": "Mozambico"
@@ -1076,6 +1087,9 @@
         },
         "NI": {
             "zoneName": "Nicaragua"
+        },
+		"NKR": {
+            "zoneName": "Nagorno Karabakh"
         },
         "NL": {
             "zoneName": "Paesi Bassi"
@@ -1162,7 +1176,7 @@
             "zoneName": "Portorico"
         },
         "PS": {
-            "zoneName": "Palestina"
+            "zoneName": "Stato di Palestina"
         },
         "PT": {
             "zoneName": "Portogallo"
@@ -1199,6 +1213,10 @@
         "RU-1": {
             "countryName": "Russia",
             "zoneName": "Russia europea e Monti Urali"
+        },
+		"RU-2": {
+            "countryName": "Russia",
+            "zoneName": "Siberia"
         },
         "RU-EU": {
             "zoneName": "Russia"
@@ -1269,7 +1287,7 @@
         },
         "SX": {
             "countryName": "Sint Maarten",
-            "zoneName": "Olanda"
+            "zoneName": "Olandese"
         },
         "SY": {
             "zoneName": "Siria"
@@ -1278,7 +1296,7 @@
             "zoneName": "Swaziland"
         },
         "TC": {
-            "zoneName": "Turks e Caicos"
+            "zoneName": "Isole Turks e Caicos"
         },
         "TD": {
             "zoneName": "Ciad"
@@ -1329,8 +1347,8 @@
             "zoneName": "Ucraina"
         },
         "UA-CR": {
-            "countryName": "Ucraina",
-            "zoneName": "Crimea"
+            "zoneName": "Crimea",
+            "countryName": "Ucraina"
         },
         "UG": {
             "zoneName": "Uganda"
@@ -1345,14 +1363,6 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "Alabama"
         },
-        "US-AK": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Alaska"
-        },
-        "US-AZ": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Arizona"
-        },
         "US-BPA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "BPA"
@@ -1361,25 +1371,37 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "California"
         },
-        "US-CO": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Colorado"
-        },
-        "US-FL": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Florida"
-        },
-        "US-GA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Georgia"
-        },
-        "US-HI": {
+        "US-HI-HA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Hawaii"
         },
-        "US-ID": {
+		"US-HI-KA": {
             "countryName": "Stati Uniti d'America",
-            "zoneName": "Ideaho"
+            "zoneName": "Kauai"
+        },
+		"US-HI-KH": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Kahoolawe"
+        },
+		"US-HI-LA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Lanai"
+        },
+		"US-HI-MA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Maui"
+        },
+		"US-HI-MO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Molokai"
+        },
+		"US-HI-NI": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Niihau"
+        },
+		"US-HI-OA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Oahu"
         },
         "US-IPC": {
             "countryName": "Stati Uniti d'America",
@@ -1389,14 +1411,6 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "MISO"
         },
-        "US-MS": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Mississippi"
-        },
-        "US-MT": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Montana"
-        },
         "US-NC": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Carolina del Nord"
@@ -1404,10 +1418,6 @@
         "US-NEISO": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Nuova Inghilterra"
-        },
-        "US-NM": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Nuovo Messico"
         },
         "US-NV": {
             "countryName": "Stati Uniti d'America",
@@ -1437,25 +1447,13 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "SVERI"
         },
-        "US-TX": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Texas"
-        },
         "US-TN": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Tennessee"
         },
-        "US-UT": {
+        "US-TX": {
             "countryName": "Stati Uniti d'America",
-            "zoneName": "Utah"
-        },
-        "US-WA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Washington"
-        },
-        "US-WY": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Wyoming"
+            "zoneName": "ERCOT"
         },
         "UY": {
             "zoneName": "Uruguay"
@@ -1509,68 +1507,6 @@
         },
         "ZW": {
             "zoneName": "Zimbabwe"
-        },
-        "CL-SING-SIC": {
-            "countryName": "Cile",
-            "zoneName": "SING/SIC"
-        },
-        "GB-ORK": {
-            "countryName": "Gran Bretagna",
-            "zoneName": "Isole Orkney"
-        },
-        "GB-SHI": {
-            "countryName": "Gran Bretagna",
-            "zoneName": "Isole Shetland"
-        },
-        "GB-ZET": {
-            "countryName": "Gran Bretagna",
-            "zoneName": "Isole Shetland"
-        },
-        "IN-DN": {
-            "countryName": "India",
-            "zoneName": "Dadra e Nagar Haveli"
-        },
-        "MS": {
-            "zoneName": "Montserrat"
-        },
-        "NKR": {
-            "zoneName": "Nagorno Karabakh"
-        },
-        "RU-2": {
-            "countryName": "Federazione Russa",
-            "zoneName": "Siberia"
-        },
-        "US-HI-HA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Hawaii"
-        },
-        "US-HI-KA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Kauai"
-        },
-        "US-HI-KH": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Kahoolawe"
-        },
-        "US-HI-LA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Lanai"
-        },
-        "US-HI-MA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Maui"
-        },
-        "US-HI-MO": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Molokai"
-        },
-        "US-HI-NI": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Niihau"
-        },
-        "US-HI-OA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Oahu"
         }
     }
 }
