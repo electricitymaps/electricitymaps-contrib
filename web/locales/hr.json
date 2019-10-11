@@ -412,14 +412,6 @@
           "CK": {
             "zoneName": "Cookovo Otočje"
           },
-          "CL-SING": {
-            "countryName": "Čile",
-            "zoneName": "SING"
-          },
-          "CL-SIC": {
-            "countryName": "Čile",
-            "zoneName": "SIC"
-          },
           "CL-SEM": {
             "countryName": "Čile",
             "zoneName": "SEM"
@@ -785,10 +777,6 @@
             "countryName": "Indija",
             "zoneName": "Sikkim"
           },
-          "IN-TL": {
-            "countryName": "Indija",
-            "zoneName": "Tamil Nadu"
-          },
           "IN-TR": {
             "countryName": "Indija",
             "zoneName": "Tripura"
@@ -1092,9 +1080,6 @@
           "NL": {
             "zoneName": "Nizozemska"
           },
-          "NO": {
-            "zoneName": "Norveška"
-          },
           "NO-NO1": {
             "countryName": "Norveška",
             "zoneName": "Jugoistočna Norveška"
@@ -1368,10 +1353,6 @@
           "US-CA": {
             "countryName": "Sjedinjene Američke Države",
             "zoneName": "Kalifornija"
-          },
-          "US-HI": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Havaji"
           },
           "US-IPC": {
             "countryName": "Sjedinjene Američke Države",
