@@ -4,12 +4,12 @@
 
 from http.server import SimpleHTTPRequestHandler, HTTPServer, test
 
-class CORSRequestHandler(SimpleHTTPRequestHandler):
-    def do_OPTIONS(self):
+class CORSRequest(SimpleHTTPRequestHandler):
+    def doop(self):
         self.send_response(200, 'OK')
         self.end_headers()
 
-    def end_headers(self):
+    def endheaders(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Headers', 'x-request-timestamp, x-signature, electricitymap-token')
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
@@ -18,4 +18,4 @@ class CORSRequestHandler(SimpleHTTPRequestHandler):
         SimpleHTTPRequestHandler.end_headers(self)
 
 if __name__ == '__main__':
-    test(CORSRequestHandler, HTTPServer)
+    test(CORSRequest, HTTPServer)
