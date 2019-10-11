@@ -151,6 +151,21 @@
       "seeHistoricalData-question": "Mogu li vidjeti povijest za područje više od 24 sata unazad?",
       "seeHistoricalData-answer": "Možeš nabaviti pristup svim našim povijesnim podacima preko naše <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">baze podataka</a>."
   },
+  "methodology": {
+      "groupName": "Naše metode",
+      "carbonIntensity-question": "Što je \"faktor emisije\"?",
+      "carbonIntensity-answer": "Faktor emisije je mjera emisije stakleničnih plinova vezana uz proizvodnju potrošene struje (u gCO2eq/kWh - grami ekvivalenta ugljikovog dioksida emitiranih po kilovat-satu iskorištene struje). <br><br>Mjerimo emisije iskorištene struje (ne proizvedene), dakle emisije svih stakleničnih plinova (CO2 kao i drugih, poput metana) koji su ušli u proizvodnju struje potrošene na nekom području, uzimajući u obzir i faktor emisije struje uvezene iz drugih područja. Koristimo life cycle analysis (LCA) pristup, što znači da uzimamo u obzir emisije nastale tokom cijelog ciklusa proizvodnje u pogonima (izgradnja, proizvodnja goriva, operativne emisije i zatvaranje pogona).",
+      "consumptionFocus-question": "Zašto računate faktor emisije potrošene struje umjesto proizvedene?",
+      "consumptionFocus-answer": "Vjerujemo u odgovornost svakog građanina prema struji koju koriste, a ne za struju koja je proizvedena na području u kojem ispadne da žive. Štoviše, vjerujemo da područja ne bi smijela biti u mogućnosti lažirati niski utjecaj na klimu jednostavnim premještanjem štetne proizvodnje u druga područja i naknadnim uvoženjem struje iz istih.",
+      "renewableLowCarbonDifference-question": "U čemu je razlika između “obnovljive” i “nisko-emisijske” energije?",
+      "renewableLowCarbonDifference-answer": "Proizvodnja obnovljive energije se bazira na izvorima obnovljive energije poput vode, vjetra, sunca, kao i geotermalne energije. Proizvodnja energije niskih emisija znači da proizvodnja uključuje vrlo niske emisije stakleničnih plinova, poput na primjer proizvodnje nuklearne energije.",
+      "importsAndExports-question": "Uzimate li u obzir i uvoze i izvoze struje?",
+      "importsAndExports-answer": "Da. Uvozi i izvozi su prikazani na karti malim <a href=\"#mapArrows\" class=\"entry-link\">strelicama između susjednih područja</a>. Za prikaz detaljnih informacija, klikni na željeno područje.",
+      "emissionsOfStored-question": "Što je sa emisijama uzrokovanim proizvodnjom struje koja se pohranjuje u baterije ili služi za punjenje rezervoara?",
+      "emissionsOfStored-answer": "Pošto se trenutno samo mali dio struje pohranjuje, nepreciznost u modeliranju tih emisija ne bi trebala imati veliki utjecaj an ukupni rezultat. Ipak, kako važnost pohranjene struje raste, nadamo se da ćemo je uskoro moći potpuno uključiti u naš model.",
+      "emissionsPerCapita-question": "Zašto ne prikazujete emisije po stanovniku?",
+      "emissionsPerCapita-answer": "Dio struje iskorištene na nekom području se koristi za proizvodnju materijalnih dobara i proizvoda koji se kasnije izvoze i koriste na drugim područjima. Ta proizvodnja (te stoga i njena potrošena struja kao i emisije vezane uz potrošnju) je motivirana potrošnjom proizvoda u <em>uvoznim područjima</em>, a ne na izvornom području proizvodnje. Vjerujemo da bi građani trebali biti odgovorni samo za ono što koriste, ne i za proizvode proizvedene na području na kojem žive a koje sami ne koriste. U tom smislu, prikaz emisija potrošene struje po stanovniku je varljiv."
+    },
     "data": {
       "groupName": "Naši podaci",
       "dataOrigins-question": "Otkud dobivate podatke?",
