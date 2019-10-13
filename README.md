@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 You can [contribute](#contribute) by
 - **[helping us to add a new region on the map](#adding-a-new-region)**
-- correcting [data sources](#data-sources) and [capacities](#updating-country-capacities)
+- correcting [data sources](#data-sources) and [capacities](#updating-region-capacities)
 - [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
 - fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
 - submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
@@ -64,7 +64,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 
 ### Real-time electricity data sources
-Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers)
+Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
