@@ -93,7 +93,7 @@
         "consumption": "Verbrauch",
         "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
         "selectLanguage": "Sprache auswählen",
-        "lowCarbDescription": "Beinhaltet regenerative Energie, Biomasse and Atomkraft"
+        "lowCarbDescription": "Beinhaltet regenerative Energie and Atomkraft"
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
