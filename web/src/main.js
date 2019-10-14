@@ -144,11 +144,19 @@ const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, 
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
+const lowcarbInfoTooltip = new Tooltip('#lowcarb-info-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
 
 const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
+countryLowCarbonGauge.onMouseOver(() => {
+  tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip);
+}).onMouseMove(() => {
+  lowcarbInfoTooltip.update(currentEvent.clientX, currentEvent.clientY)
+}).onMouseOut(() => {
+  lowcarbInfoTooltip.hide();
+});
 const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
 const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
 const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
@@ -316,9 +324,9 @@ d3.select('#checkbox-colorblind').on('change', () => {
 // or a first-time-ever loading of the webpage.
 function finishLoading() {
   // if we're done with loading the map for the first ever render, toggle the state and wrapping up
-  // with cleanup actions. 
+  // with cleanup actions.
   if (initLoading) {
-    // the production / consumption toggle button could be out of the 
+    // the production / consumption toggle button could be out of the
     toggleProdConsBtn(getState().application.electricityMixMode);
 
     // toggle the initial loading state. since this is a one-time on/off state, there's no need to manage it
@@ -373,7 +381,7 @@ try {
           : [])
         .setColorblindMode(getState().application.colorBlindModeEnabled)
         .render();
-      
+
     // map loading is finished, lower the overlay shield
       finishLoading();
 
@@ -381,7 +389,7 @@ try {
         thirdPartyServices._ga.timingMark('map_loaded');
       }
     });
-    
+
   windLayer = new WindLayer('wind', zoneMap);
   solarLayer = new SolarLayer('solar', zoneMap);
   dispatchApplication('webglsupported', true);
@@ -1179,7 +1187,7 @@ function renderHistory(state) {
   countryHistoryMixGraph
     .electricityMixMode(electricityMixMode)
     .data(history);
-  
+
   zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
@@ -1198,7 +1206,7 @@ function renderHistory(state) {
     }
   }).render();
 
-  const currencySymbol = getSymbolFromCurrency((history[0].price || {}).currency);  
+  const currencySymbol = getSymbolFromCurrency((history[0].price || {}).currency);
   countryHistoryPricesGraph.setYLabel((currencySymbol || '?') + '/MWh');
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
@@ -1280,7 +1288,7 @@ function routeToPage(pageName, state) {
   d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
 
   d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
-  
+
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly
@@ -1354,7 +1362,7 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   if (zoomLevel) {
     // Remember to set center and zoom in case the map wasn't loaded yet
     zoneMap.setZoom(zoomLevel);
-    // If the panel is open the zoom doesn't appear perfectly centered because 
+    // If the panel is open the zoom doesn't appear perfectly centered because
     // it centers on the whole window and not just the visible map part.
     // something one could fix in the future. It's tricky because one has to project, unproject
     // and project again taking both starting and ending zoomlevel into account
@@ -1416,7 +1424,7 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   // only update the toggle button outside the initial loading period, since during the initial loading,
   // the button state will be managed in the `finishLoading()` code.
   if (!initLoading) {
-    toggleProdConsBtn(electricityMixMode);    
+    toggleProdConsBtn(electricityMixMode);
   }
 
   d3.select('a#production')

@@ -158,7 +158,7 @@ co2Sub = function(str) {
                         </div>
 
                         <div class="info-text small-screen-hidden">
-                            <p>                                
+                            <p>
                                 <label class="checkbox-container"><%- __('legends.colorblindmode') %>
                                     <input type="checkbox" id="checkbox-colorblind" >
                                     <span class="checkmark"></span>
@@ -610,6 +610,10 @@ co2Sub = function(str) {
                 <%- co2Sub(__('tooltips.withcarbonintensity')) %><br />
                 <img class="country-exchange-source-flag flag"></img> <span class="country-exchange-source-name"></span>: <div class="emission-rect"></div> <span class="emission-intensity"></span> gCO<span class="sub">2</span>eq/kWh<br />
             </span>
+        </div>
+        <div id="lowcarb-info-tooltip" class="tooltip panel">
+            <span id="line1"></span><br />
+            <small><span id="lowcarb-info-text"></span></small><br />
         </div>
     </body>
 
