@@ -91,7 +91,8 @@
         "production": "production",
         "consumption": "consommation",
         "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
-        "selectLanguage": "Choisissez une langue"
+        "selectLanguage": "Choisissez une langue",
+        "lowCarbDescription": "Inclue les énergies renouvelables, biomasse et nucléaire"
     },
     "misc": {
         "maintitle": "Emissions CO2 de la consommation électrique en temps réel",
