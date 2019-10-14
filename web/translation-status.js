@@ -23,7 +23,7 @@ function translationStatusFor(language) {
   const totalWords = getTermsForLanguage('en'); // the default language in locale settings
   const translatedWords = getTermsForLanguage(language);
   const untranslatedWords = difference(totalWords, translatedWords);
-  const legacyTerms = size(difference(translatedWords, totalWords));
+  const legacyTerms = difference(translatedWords, totalWords);
   const translated = 1 - (size(untranslatedWords) / size(totalWords));
   const color = getTranslationProgressColor(translated);
   return { language, translated, legacyTerms, color };
