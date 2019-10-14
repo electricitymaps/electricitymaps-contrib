@@ -31,11 +31,6 @@ exports.translate = function() {
     return exports.translateWithLocale.apply(null, args);
 }
 
-exports.getLowCarbDescription = function getLowCarbDescription() {
-  const description = exports.translate(`tooltip.lowCarbDescription`);
-  return description;
-}
-
 exports.getFullZoneName = function getFullZoneName(zoneCode) {
   const zoneName = exports.translate(`zoneShortName.${zoneCode}.zoneName`);
   if (!zoneName) {
