@@ -83,5 +83,3 @@ if __name__ == '__main__':
     session = Session()
     print(fetch_production('IN-AP', session))
     print(fetch_consumption('IN-AP', session))
-
-lblPowerStatusDate
