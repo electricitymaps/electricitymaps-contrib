@@ -64,18 +64,12 @@ def fetch_consumption(zone_key='IN-AP', session=None, target_datetime=None, logg
     html = web.get_response_soup(zone_key,
                                  'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
     india_date = IN.read_datetime_from_span_id(
-<< << << < HEAD
         html, 'MainContent_lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
-
-== == == =
-        html, 'lblPowerStatusDate', 'HH:mm DD-MM-YYYY')
->> >>>> > ea71daa4d01200302d25ccaa6ad8a1807de51ee3
-
-    demand_value=IN.read_value_from_span_id(
+    demand_value = IN.read_value_from_span_id(
         html, 'MainContent_lblGridDemand')
 
-    data={
+    data = {
         'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'consumption': demand_value,
