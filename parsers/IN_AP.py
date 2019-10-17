@@ -3,16 +3,19 @@
 from requests import Session
 from .lib import zonekey, IN, web
 
+
 def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh  production"""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
 
     zonekey.assert_zone_key(zone_key, 'IN-AP')
 
     html = web.get_response_soup(zone_key,
                                  'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
-    india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
+    india_date = IN.read_datetime_from_span_id(
+        html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
     hydro_value = IN.read_value_from_span_id(html, 'lblHydel')
     gas_value = IN.read_value_from_span_id(html, 'lblGas')
@@ -53,13 +56,15 @@ def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logge
 def fetch_consumption(zone_key='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh consumption"""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
 
     zonekey.assert_zone_key(zone_key, 'IN-AP')
 
     html = web.get_response_soup(zone_key,
                                  'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
-    india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
+    india_date = IN.read_datetime_from_span_id(
+        html, 'lblPowerStatusDate', 'HH:mm DD-MM-YYYY')
 
     demand_value = IN.read_value_from_span_id(html, 'lblGridDemand')
 
