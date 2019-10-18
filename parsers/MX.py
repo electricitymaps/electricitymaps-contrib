@@ -50,7 +50,7 @@ DATA_CACHE = {}
 
 
 def parse_date(date, hour):
-    tzoffset = tz.tzoffset("CDT", -3600 * 6)
+    tzoffset = tz.tzoffset("CST", -3600 * 6)
     dt = datetime.datetime.strptime(date, "%d/%m/%Y")
     dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
     return dt
@@ -123,7 +123,7 @@ def fetch_production(zone_key, session=None, target_datetime=None):
         raise ValueError("Parser only supports fetching historical production data, please specify a terget_datetime in the past")
     
     # retrieve data for the month either from the cache or fetch it
-    cache_key = target_datetime.strftime("%Y-%d")
+    cache_key = target_datetime.strftime("%Y-%m")
     if cache_key in DATA_CACHE:
         df = DATA_CACHE[cache_key]
     else:
