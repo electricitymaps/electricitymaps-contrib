@@ -9,9 +9,9 @@ import datetime
 import pandas as pd
 import requests
 
-GENERATION_URL = 'https://marketplace.spp.org/public-data-api/gen-mix/asFile'
+GENERATION_URL = 'https://marketplace.spp.org/chart-api/gen-mix/asFile'
 
-EXCHANGE_URL = 'https://marketplace.spp.org/public-data-api/interchange-trend/asFile'
+EXCHANGE_URL = 'https://marketplace.spp.org/chart-api/interchange-trend/asFile'
 
 MAPPING = {'Wind': 'wind',
            'Nuclear': 'nuclear',
@@ -261,7 +261,7 @@ def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
-    FORECAST_URL = 'https://marketplace.spp.org/file-api/download/midterm-resource-forecast?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv'.format(dt.year, dt.month, dt.day)
+    FORECAST_URL = 'https://marketplace.spp.org/file-browser-api/download/midterm-resource-forecast?path=%2F{0}%2F{1:02d}%2F{2:02d}%2FOP-MTRF-{0}{1:02d}{2:02d}0000.csv'.format(dt.year, dt.month, dt.day)
 
     raw_data = get_data(FORECAST_URL)
 

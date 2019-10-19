@@ -2785,7 +2785,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "NL.fetch_production"
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": null
   },
