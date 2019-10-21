@@ -75,7 +75,7 @@ e3 = {
       'source': 'mysource.com'
       }
 
-future = datetime.datetime.now() + datetime.timedelta(seconds=5*60)
+future = datetime.datetime.utcnow() + datetime.timedelta(seconds=5*60)
 
 e4 = {
       'sortedZoneKeys': 'DK->NO',

@@ -129,6 +129,7 @@ const countryHistoryCarbonGraph = new LineGraph(
   d => (getState().application.electricityMixMode === 'consumption'
     ? (d || {}).co2intensity
     : (d || {}).co2intensityProduction),
+  d => 'g/kWh'
 );
 
 const countryHistoryPricesGraph = new LineGraph(
@@ -946,8 +947,6 @@ document.addEventListener('keyup', (e) => {
       zoneSearchBar.clearInputAndFocus();
     } else if (e.key.match(/^[A-z]$/)) {
       zoneSearchBar.focusWithInput(e.key);
-    } else {
-      zoneSearchBar.focusWithInput('');
     }
   } else if (currentPage === 'country') {
     if (e.key === 'Backspace') {
@@ -967,9 +966,9 @@ d3.selectAll('.faq-link')
   });
 
 // Mobile toolbar buttons
-d3.selectAll('.map-button').on('click', () => dispatchApplication('showPageState', 'map'));
-d3.selectAll('.info-button').on('click', () => dispatchApplication('showPageState', 'info'));
-d3.selectAll('.highscore-button')
+d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('showPageState', 'map'));
+d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('showPageState', 'info'));
+d3.selectAll('.highscore-button touchend')
   .on('click', () => dispatchApplication('showPageState', 'highscore'));
 
 // Onboarding modal
@@ -1196,6 +1195,9 @@ function renderHistory(state) {
       dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex}})
     }
   }).render();
+
+  const currencySymbol = getSymbolFromCurrency((history[0].price || {}).currency);  
+  countryHistoryPricesGraph.setYLabel((currencySymbol || '?') + '/MWh');
 
   const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
   [countryHistoryCarbonGraph, countryHistoryPricesGraph, countryHistoryMixGraph].forEach((g) => {

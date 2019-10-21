@@ -149,7 +149,9 @@ export default class Map {
       this._setupMapColor();
       // For some reason the mapboxgl-canvas element sometimes has
       // the wrong size, so we resize it here just in case.
-      this.map.resize();
+      setTimeout(() => {
+        this.map.resize();
+      }, 500)
     });
 
     // Set a timer to detect when the map has finished loading
