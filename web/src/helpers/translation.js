@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 
 // Import all locales
 var locales = {};
@@ -55,6 +55,7 @@ exports.languageNames = [
   { shortName: 'hr', name: 'hrvatski' },
   { shortName: 'it', name: 'Italiano' },
   { shortName: 'ja', name: '日本語' },
+  { shortName: 'kr', name: '한국어' },
   { shortName: 'nl', name: 'Nederlands' },
   { shortName: 'pl', name: 'polski' },
   { shortName: 'pt-br', name: 'português (Brazilian)' },
