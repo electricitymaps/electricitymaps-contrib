@@ -1,51 +1,196 @@
-  	
-	"theMap": {
-	       "groupName": “지도”,
-	       "mapColors-question": “지도에서 색을 어떤 의미 입니까?”,
-	       "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>)우리는 지도상의 영역들을 각각의 전기 소비 단위에 대해 배출되는 온실가스의 양에 따라 색칠한다. Greener colours means more climate friendly electricity consumption.”,녹색은 더 많은 기후 친화적인 전기 소비를 의미한다.
-	       "mapArrows-question": "What do the arrows between areas on the map indicate?”,지도에서 지역들 간에 화살표는 무엇을 나타내는가?
-	       "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas영역 간 화살표는 영역 간 전기의 물리적 흐름(수출 및 수출)을 나타낸다: the faster they blink, the faster the flow.더 빠르게 깜빡일수록, 더 빠르게 흐른다. The flow of electricity is important전기의 흐름은 중요하다, because when you import some of your electricity from neighboring areas너가 너의 전기의 일부를 이웃지역(가까운 곳에서)으로 부터 수입할 때, you are also importing the carbon emissions associated with its production.”,너는 또한 그것의 생산과 관련된 탄소 방출도 수입하고 있는 것이다.
-	       "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?”,지도상에서 해 와 바람 버튼은 무엇을 하는가?
-	       "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunsine strength이 버튼들은 실시간 풍속과 햇빛의 강도를 표시한다. giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas다양한 지역에서 태양열 및 풍력 기반 에너지 대안으로 전환될 수 있는 가능성을 제시하는. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells also is dependent on many other factors.”,풍력 터빈과 태양전지 설치의 실제 잠재력은 다른 많은 요인에 따라 달라지기 때문에 이것은 표면적인 표시에 불과하다는 점에 유의해라.
-	       "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?”, 왜 원자력 발전을 이용하는 나라들은 지도상에서 녹색으로 나타나는가?
-	       "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity 원자력 에너지 생산은 매우 낮은 탄소 강도를 가지고 있다. (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map따라서 원자력 발전을 이용하는 나라들은 지도상에서 녹색으로 표시된다. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production)이것은 원자력 에너지와 관련된 다른 환경적 문제들이 없다는 것을 의미하지 않는다, but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.”,그러나 이러한 문제들은 온실가스 방출에 관련이 없다 따라서 이 지도의 영역 밖에 있다.
-	       "mapColorBlind-question": "I am color blind. How can I read your map?”, 나는 색맹이다. 어떻게 지도를 읽을 수 있나?
-	       "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting 너는 지도의 설정을 색맹모드로 전환해서 지도상에서 보여지는 색을 변경할 수 있다. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app.”이 모드 설정은 데스크탑의 왼쪽 바닥에 위치해 있고 모바일 어플리케이션의 정보탭에 있다.
+{
+    "panel-initial-text": {
+        "thisproject": "이 프로젝트는",
+        "opensource": "오픈된 정보",
+        "see": "보시오",
+        "datasources": "데이터 정보",
+        "contribute": "공헌으로<a href=\"%s\" target=\"_blank\">자기 지역을 추가해주세요</a>"
+    },
+    "mobile-main-menu": {
+        "map": "전력 지도",
+        "areas": "지역",
+        "about": "에 관하여"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "전력생산에 미치는 기후의 영향"
+        },
+        "view2": {
+            "header": "전력 생산으로 인해 얼마나 많은 이산화탄소가 실시간으로 배출되는지 보십시오",
+            "text": "우리는 전력소비로 인한 탄소강도(온실가스를 포함)를 전세계에 색깔로 표시했습니다. 녹색에 가까운 색일수록 친환경 전력생산을 의미합니다."
+        },
+        "view3": {
+            "header": "전력이 어느 곳에서 생산되는지 보십시오",
+            "text": "지도에 표시되어 있는 화살표들은 지역간 전기의 흐름을 나타냅니다. 전력생산의 근원지에 관한 정보를 보려면 특정 지역을 누르세요."
+        },
+        "view4": {
+            "header": "실시간 풍력과 태양열 조건",
+            "text": "풍력과 태양열 에너지 생산은 기후에 의존합니다. 전 세계의 풍력과 태양열의 강도를 실시간으로 보기 위해 태양과 바람 버튼을 누르세요."
+        }
+    },
+    "country-panel": {
+        "source": "발생원",
+        "carbonintensity": "탄소 강도",
+        "lowcarbon": "낮은 탄소",
+        "renewable": "재생 가능한",
+        "electricityproduction": "전력 생산",
+        "electricityconsumption": "전력 소비",
+        "bysource": "발생원에 따라",
+        "emissions": "탄소 배출",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">정보를 제공하거나 수정해 주십시오</a>",
+        "helpfrom": "의 도움으로",
+        "noDataAtTimestamp": "지정된 시간 동안 데이터를 일시적으로 사용할 수 없습니다.",
+        "noLiveData": "이 지역에서 실시간 정보를 일시적으로 사용할 수 없습니다.",
+        "noParserInfo": "현재 이 지역에 대한 정보를 찾을 수 없습니다. <br/> 더 나은 서비스를 위해 <a href=\"%s\" target=\"_blank\">정보를 제공해 주십시오.</a>.",
+        "now": "현재"
+    },
+    "left-panel": {
+        "zone-list-header-title": "지역에 따른 기후 영향",
+        "zone-list-header-subtitle": "전력소비에 따른 탄소 강도 순위(gCO2eq/kWh)",
+        "search": "지역 찾기"
+    },
+    "country-history": {
+        "carbonintensity24h": "24시간 내 탄소강도",
+        "emissionsorigin24h": "24시간 내 배출 원인지역",
+        "emissionsproduction24h": "24시간 내 생산된 배출량",
+        "electricityorigin24h": "24시간 내 전력 원천",
+        "electricityproduction24h": "24시간 동안 전력생산",
+        "electricityprices24h": "24시간 동안 전력 사용 요금",
+        "Getdata": "역사적 자료, marginal 그리고 예상된 API."
+    },
+        "footer": {
+               "likethisvisu": "구상화 좋아합니까?",
+               "loveyourfeedback": "피드백 주시면 감사하겠습니다",
+               "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",
+               "faq-text": "명확하지 않은 점이 있나요? 이 곳을 확인해주세요",
+               "faq": "자주 묻는 질문",
+               "here": "이 곳"
+        },    
+        "legends": {
+               "windpotential": "풍력 포텐셜",
+               "solarpotential": "태양광 포텐셜",
+               "colorblindmode": "색맹 모드",
+               "carbonintensity": "탄소집약도"
+        },
+        "tooltips": {
+               "carbonintensity": "탄소집약도",
+               "lowcarbon": "저탄소",
+               "renewable": "재생가능한",
+               "crossborderexport": "국경을 넘는 수출",
+               "carbonintensityexport": "수출 탄소집약도",
+               "ofinstalled": "설비 용량의",
+               "utilizing": "활용하는",
+               "withcarbonintensity": "의 탄소 집약도",
+               "showWindLayer": "기류층 보이기",
+               "hideWindLayer": "기류층 숨기기",
+               "showSolarLayer": "태양광층 보이기",
+               "hideSolarLayer": "태양광층 숨기기",
+               "toggleDarkMode": "다크 모드 전환",
+               "noParserInfo": "해당 데이터 없음",
+               "temporaryDataOutage": "데이터가 일시적으로 존재하지 않습니다",
+               "production": "생산",
+               "consumption": "사용",
+               "cpinfo": "<b>consumption</b> 수입도 수출도 고려한다, <b>production</b> 무시한다",
+               "selectLanguage": "언어를 선택하세요"
+        },
+        "misc": {
+               "maintitle": "전력 소비로 인한 실시간 CO2 배출",
+               "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
+               "newversion": "새 버전이 출시되었습니다! 누르세요 <a onClick=\"location.reload(true);\">here</a> to reload.",
+               "retrynow": "지금 다시 눌러보세요",
+               "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
+               "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
+               "legend": "범주",
+               "faq": "자주 묻는 질문"
+        },
+        "wind": "바람",
+        "solar": "태양",
+        "hydro": "전기",
+        "hydro storage": "전기 저장",
+        "battery storage": "배터리 용량",
+        "biomass": "바이오매스",
+        "nuclear": "원자력",
+        "geothermal": "지열의",
+        "gas": "가스",
+        "coal": "석탄",
+        "oil": "오일",
+        "unknown": "알 수 없음",
+        "electricityComesFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
+        "emissionsComeFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
+        "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
+        "emissionsStoredUsing": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+        "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+        "emissionsExportedTo": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+        "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+        "emissionsImportedFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+        "ofCO2eqPerMinute": "of CO2eq per minute",
+
+        "theMap": {
+	       "groupName": "지도",
+	       "mapColors-question": "지도에서 색을 어떤 의미 입니까?",
+	       "mapColors-answer": "(<a href=\"#carbonIntensity\" class=\"entry-link\">탄소 강도</a>)우리는 지도상의 영역들을 각각의 전기 소비 단위에 대해 배출되는 온실가스의 양에 따라 색칠한다. 녹색은 더 많은 기후 친화적인 전기 소비를 의미한다.",
+	       "mapArrows-question": "지도에서 지역들 간에 화살표는 무엇을 나타내는가?",
+	       "mapArrows-answer": "영역 간 화살표는 영역 간 전기의 물리적 흐름(수출 및 수출)을 나타낸다: 더 빠르게 깜빡일수록, 더 빠르게 흐른다. 전기의 흐름은 중요하다, 너가 너의 전기의 일부를 이웃지역(가까운 곳에서)으로 부터 수입할 때, 너는 또한 그것의 생산과 관련된 탄소 방출도 수입하고 있는 것이다.",
+	       "mapSolarWindButtons-question": "지도상에서 해 와 바람 버튼은 무엇을 하는가?",
+	       "mapSolarWindButtons-answer": "이 버튼들은 실시간 풍속과 햇빛의 강도를 표시한다. 풍력 터빈과 태양전지 설치의 실제 잠재력은 다른 많은 요인에 따라 달라지기 때문에 이것은 표면적인 표시에 불과하다는 점에 유의해라.",
+	       "mapNuclearColors-question": "왜 원자력 발전을 이용하는 나라들은 지도상에서 녹색으로 나타나는가?"
+	       "mapNuclearColors-answer": "원자력 에너지 생산은 매우 낮은 탄소 강도를 가지고 있다. (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >source</a>) 따라서 원자력 발전을 이용하는 나라들은 지도상에서 녹색으로 표시된다. 이것은 원자력 에너지와 관련된 다른 환경적 문제들이 없다는 것을 의미하지 않는다. 그러나 이러한 문제들은 온실가스 방출에 관련이 없다 따라서 이 지도의 영역 밖에 있다.",
+	       "mapColorBlind-question": "나는 색맹이다. 어떻게 지도를 읽을 수 있나?",
+	       "mapColorBlind-answer": "너는 지도의 설정을 색맹모드로 전환해서 지도상에서 보여지는 색을 변경할 수 있다. 이 모드 설정은 데스크탑의 왼쪽 바닥에 위치해 있고 모바일 어플리케이션의 정보탭에 있다."
 	   },
 	   "mapAreas": {
-	       "groupName": "Areas in the map",
-	       "noData-question": "왜 내 지역의 데이타는 이용기 불가능 한가?"
-	       "noData-answer": "Either because the area's data sources are temporarily unavailable, 그 지역의 데이터가 일시적으로 사용이 불가능 하거나  or because we do not yet have any data sources setup for the area 또는 우리가 아직 그 지역의 데이터를 갖지 못했지 때문이다. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.”,너는 우리에게 자료(데이터)를 더하는 것을 도와줄 수 있다.
-	       "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?”, 왜 너는 세계를 더 작은 영역으로 나누었는가? 그리고 왜 단순히 국가의 평균을 보여주지 않았나?
-	"       "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for그 지역은 우리가 가지고 있는 가장 작은 지리적 지역이다.
- By having access to information at the highest level of granularity최고 수준의 세분화 수준에서 정보에 접근함으로써,
- electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact."다른 지역의 전기 소비자는 그들이 소비하는 전기의 기원과 그것의 관련 기후 영향에 대해 더 정확한 지식을 가질 수 있다."
-	       "divideExistingArea-question": "Can you divide my area into smaller parts?”, 나의 지역도 더 작은 부분으로 나눌 수 있나?
-	       "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area  물론이다, 해당 영역의 각 부분에 대해 별도의 데이터 소스가 있는 경우. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>”, 너는 새로운 데이터를 주는 것으로 우리를 도울 수 있다.
-	       "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?”,  지역의 더 많은 역사를 24시간 안에 받아 볼 수 있는가?
-	       "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\”_blank\">database</a>." 너는 우리의 데이터베이스를 통해 모든 우리의 역사적 데이터를 구매할 수 있다.
+	       "groupName": "지도의 지역",
+	       "noData-question": "왜 내 지역의 데이타는 이용기 불가능 한가?",
+	       "noData-answer": "그 지역의 데이터가 일시적으로 사용이 불가능 하거나 또는 우리가 아직 그 지역의 데이터를 갖지 못했지 때문이다. 너는 우리에게 <a href=\"#contribute\" class=\"entry-link\">자료(데이터)를 더하는 것을 도와줄 수 있다</a>.”,
+	       "whySmallAreas-question": "왜 너는 세계를 더 작은 영역으로 나누었는가? 그리고 왜 단순히 국가의 평균을 보여주지 않았나?",
+           "whySmallAreas-answer": "그 지역은 우리가 가지고 있는 가장 작은 지리적 지역이다. 최고 수준의 세분화 수준에서 정보에 접근함으로써, 다른 지역의 전기 소비자는 그들이 소비하는 전기의 기원과 그것의 관련 기후 영향에 대해 더 정확한 지식을 가질 수 있다.",
+	       "divideExistingArea-question": "나의 지역도 더 작은 부분으로 나눌 수 있나?",
+	       "divideExistingArea-answer": "물론이다, 해당 영역의 각 부분에 대해 별도의 데이터 소스가 있는 경우. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>”, 너는 새로운 데이터를 주는 것으로 우리를 도울 수 있다."
+	       "seeHistoricalData-question": "지역의 더 많은 역사를 24시간 안에 받아 볼 수 있는가?",
+	       "seeHistoricalData-answer": "너는 우리의 <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\”_blank\">데이터베이스를</a> 통해 모든 우리의 역사적 데이터를 구매할 수 있다."
 	   },
+    "methodology": {
+       "groupName": "접근 방법/연구 방법"
+       "carbonIntensity-question": "탄소집약도란?",
+       "carbonIntensity-answer": "탄소집약도란 우리가 소비하는 전력의 생산과 관련하여 온실가스 배출량을 측정한 수치를 말한다(gCO2eq/kWh; 소비전력 킬로와트시당 방출되는 이산화탄소 그램 양). <br><br>다만, 우리는 생산된 전력의 온실가스 방출량이 아니라 소비 전력의 온실가스 방출량을 측정한다. 즉, 한 지역에서 소비되는 전력을 생산하는 과정에서 배출되는 모든 온실가스(이산화탄소뿐만 아니라 메탄과 같은 다른 온실가스도 포함)의 방출량을 측정하는 것이다. 이때 다른 지역에서 수입된 전력의 탄소집약도까지 고려하게 된다. 우리는 라이프사이클 분석(LCA) 기법을 적용하여, 연료 생산 및 발전소 운영에 따른 방출량을 포함해 발전소 건설 단계에서부터 폐기 단계까지 발전소의 전체 라이프사이클에서 발생되는 배출량을 고려한다.",
+       "consumptionFocus-question": "생산 전력 대신 소비 전력의 탄소집약도를 측정하는 이유는?",
+       "consumptionFocus-answer": "우리는 사람들이 살고 있는 지역에서 생산된 전력이 아니라 그들이 소비한 전력에 대해 책임이 있다고 생각한다. 또한 각 지자체는 오염된 에너지를 그저 다른 지역으로 이전시키고 그곳에서 다시 전력을 수입하는 방식을 통해 해당 지역이 환경에 미치는 영향이 적다고 ‘거짓' 홍보를 해서는 안 된다.",
+       "renewableLowCarbonDifference-question": "재생 에너지와 저탄소 에너지의 차이점은?",
+       "renewableLowCarbonDifference-answer": "재생 에너지는 풍력, 수력, 태양열, 지열과 같이 재생가능한 자원을 바탕으로 생산된다. 저탄소 에너지는 원자력처럼 에너지 생산 시 매우 적은 양의 온실가스가 배출되는 에너지를 말한다.",
+       "importsAndExports-question": "전력의 수입 및 수출도 고려 대상인가?",
+       "importsAndExports-answer": "그렇다. 전기의 수입 및 수출 양상은 지도에서 지역 간에 표시된 작은 <a href=\"#mapArrows\" class=\"entry-link\">화살표</a>에서 확인할 수 있다. 더 자세한 내용은 특정 지역을 클릭하면 나타나는 표를 참고하면 된다.",
+       "emissionsOfStored-question": "배터리에 저장되거나, 저장소를 채우기 위해 사용되는 전력을 생산하는 과정에서 발생된 배출량도 고려하는가?",
+       "emissionsOfStored-answer": "현재까지는 매우 적은 양의 전기만 저장되고 있기 때문에 그로 인해 배출되는 온실가스 양을 감안하지 않는 데서 오는 부정확함은 전체 양에 비교했을 때 미미하다. 그러나 저장소의 중요성이 점점 증가하고 있어, 곧 우리 측정 모델에서 해당 배출량을 온전히 감안할 수 있기를 바라고 있다.",
+       "guaranteesOfOrigin-question": "환경 인증이란 무엇이며 어떻게 간주되는가?",
+       "guaranteesOfOrigin-answer": "재생에너지 생산업체는 원산지 보증서(또는 재생에너지 공급인증서)를 발급해 재생에너지가 생산되어 전력망에 분배되었다는 것을 증명할 수 있다. 이 보증서는 판매 가능하기 때문에 전기를 유통하는 판매사업체에서는 이 보증서를 활용해 자신들이 유통하는 전기가 실제 물리적인 원산지와 관계 없이 재생 가능한 자원을 활용했다는 것을 인증할 수 있다.<br><br> 이에 따라 전력 소비자는 자신이 소비하는 전력이 태양열, 풍력 등 재생에너지에서 생산되었다는 것을 인지할 수 있게 되는 것이다. 그러나 원산지 보증서만으로는 부족한 부분이 있다. 재생에너지로 생산된 전력량이 그리드상에 가장 많이 축적되어있는 경우와 같이 최적의 시점에 전기를 소비할 수 있는 소비자 인센티브를 없애기 때문이다. 따라서 이 지도에서는 소비자가 전력 소비와 관련해 더욱 적합한 결정을 내릴 수 있도록 돕기 위해 원산지 보증서 대신 전력망의 위치를 그림으로 표시하고 있다.",
+       "otherSources-question": "전력 생산 외에 다른 배출원을 측정하지 않는 이유는 무엇인가?",
+       "otherSources-answer": "다른 배출원의 측정은 프로젝트의 범위를 벗어난다. 그러나 Tomorrow에서는 <a href=\"#whoAreYou\" class=\"entry-link\">매일의 결정과 선택이 기후에 어떤 영향을 미치는지 수량화할 수 있는 솔루션</a> 개발에 힘을 쏟고 있다.",
+       "homeSolarPanel-question": "개인 가정에 태양 전지판이 설치되어있는 경우에는 어떻게 되는가?",
+       "homeSolarPanel-answer": "우리는 지역 전력망의 탄소집약도를 측정하므로 자택에 설치된 태양 전지판을 통해 독립적으로 발전된 전기를 소비하는 경우는 측정 대상에 포함하지 않는다. 그러나 태양 전지판을 통해 생산된 전력이 해당 지역의 전력망에 공급되는 경우에는 프랑스나 영국 같이 태양에너지 생산량을 공개적으로 추정할 수 있는 지역에 한해 해당 생산량을 통계치에 포함한다.",
+       "emissionsPerCapita-question": "1인당 배출량을 표시하지 않는 이유는?",
+       "emissionsPerCapita-answer": "한 지역에서 소비되는 전력 중 일부는 추후 다른 지역으로 수출되어 소비되는 물리적 재화를 생산하는 데 사용된다. 따라서 이 제조 과정에 수반되는 전력 소비와 온실가스 배출량은 생산 지역이 아닌 <em>수입 지역</em> 내에서의 제품 소비에 의해 좌우된다. 우리는 소비자들이 거주 지역에서 생산된 제품 중 그들이 소비하는 부분에 대해서만 책임을 져야 한다고 생각한다. 따라서 지역 내 전력 소비에 따른 1인당 배출량을 표기하는 것은 오해의 소지를 줄 수 있다."
+    },
      "data": {
-        "groupName": "Our data",
-        "dataOrigins-question": "How do you get your data?",
-        "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-        "dataDownload-question": "Can I download your data?",
-        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
-        "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+        "groupName": "데이터",
+        "dataOrigins-question": "어떻게 데이터를 얻나요?",
+        "dataOrigins-answer": "저희는 전력망이나, 공식 에이전시 등을 통해 공개적으로 접근 가능한 모든 데이터를 다룹니다. 각 섹션을 클릭하시면 데이터의 출처를 더 자세히 알 수 있습니다.",
+        "dataDownload-question": "데이터를 다운로드 받을 수 있나요?",
+        "dataDownload-answer": "<a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스</a>에서 구입하시면 모든 데이터에 접근 가능합니다.",
+        "dataIntegration-question": "여기 데이터를 실시간으로 내 어플리케이션이나 장치에 실시간으로 업데이트 할 수 있나요?",
+        "dataIntegration-answer": "네!! 구입하시면 <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">실시간 API</a>, 에 접근할 수 있습니다. 향후 예측도 포함되어 있습니다."
     },
     "aboutUs": {
         "groupName": "About us",
         "whoAreYou-question": "Who are you?",
-        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
-        "feedback-question": "Can I give you some feedback?",
-        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricity.com\">send us an email!</a>",
-        "contribute-question": "Can I contribute to your project?",
-        "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
-        "workTogether-question": "Can we work together?",
-        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@tmrow.com\">Send us an email!</a>",
-        "disclaimer-question": "Disclaimer",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+        "whoAreYou-answer": "The Electricity Map은 덴마크/프랑스 스타트업 기업인 <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>이 개발한 어플리케이션입니다. 우리 목표는 일상 습관이 기후에 미치는 영향을 수치화하고 쉽게 접근할 수 있도록 하여 인류의 지속가능성에 기여하는 것입니다.",
+        "feedback-question": "어떻게 피드백을 줄 수 있나요?",
+        "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:hello@electricity.com\">에서 작성하신 후 이메일을 보내주세요!</a>",
+        "contribute-question": "저도 프로젝트에 기여할 수 있을까요?",
+        "contribute-answer": "네! The Electricity Map 은 자원자 분들의 도움으로 만들어진 오픈 소스 프로젝트입니다. 새로운 분야의 데이터 소스를 추가하거나, 버그 수정, 새 기능 추가 등 지도 개발을 돕고 싶으신 경우, <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>에서 참여하세요.",
+        "workTogether-question": "함께 일할 수 있나요?",
+        "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:hello@tmrow.com\">이메일을 보내주세요!</a>",
+        "disclaimer-question": "고지 사항",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>는 <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용한다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않는다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보한다. Tomorrow는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않는다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않는다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 Tomorrow의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둔다. <br><br>본 고지 내용은 추후에 변경될 수 있다."
     },
   "zoneShortName": {
         "AD": {
