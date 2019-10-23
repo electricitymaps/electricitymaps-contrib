@@ -976,8 +976,8 @@ d3.selectAll('.faq-link')
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('showPageState', 'info'));
-d3.selectAll('.highscore-button touchend')
-  .on('click', () => dispatchApplication('showPageState', 'highscore'));
+d3.selectAll('.highscore-button')
+  .on('click touchend', () => dispatchApplication('showPageState', 'highscore'));
 
 // Onboarding modal
 if (onboardingModal) {
