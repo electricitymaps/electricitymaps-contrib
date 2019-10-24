@@ -231,7 +231,7 @@
           },
           "AUS-NSW": {
             "countryName": "호주",
-            "zoneName": "뉴사우스웨일스주"
+            "zoneName": "뉴사우스웨일스 주"
           },
           "AUS-NT": {
             "countryName": "호주",
@@ -239,27 +239,27 @@
           },
           "AUS-QLD": {
             "countryName": "호주",
-            "zoneName": "퀸즐랜드주"
+            "zoneName": "퀸즐랜드 주"
           },
           "AUS-SA": {
             "countryName": "호주",
-            "zoneName": "사우스오스트레일리아주"
+            "zoneName": "사우스오스트레일리아 주"
           },
           "AUS-TAS": {
             "countryName": "호주",
-            "zoneName": "태즈메이니아주"
+            "zoneName": "태즈메이니아 주"
           },
           "AUS-TAS-KI": {
-            "countryName": "태즈메이니아주",
+            "countryName": "태즈메이니아 주",
             "zoneName": "킹섬"
           },
           "AUS-VIC": {
             "countryName": "호주",
-            "zoneName": "빅토리아주"
+            "zoneName": "빅토리아 주"
           },
           "AUS-WA": {
             "countryName": "호주",
-            "zoneName": "웨스턴오스트레일리아주"
+            "zoneName": "웨스턴오스트레일리아 주"
           },
           "AW": {
             "zoneName": "아루바"
@@ -268,7 +268,7 @@
             "zoneName": "올란드 제도"
           },
           "AZ": {
-            "zoneName": "Azerbaijan"
+            "zoneName": "아제르바이잔"
           },
           "BA": {
             "zoneName": "보스니아 헤르체코비나"
@@ -311,19 +311,19 @@
           },
           "BR-CS": {
             "countryName": "브라질",
-            "zoneName": "중부 지방"
+            "zoneName": "중부 브라질"
           },
           "BR-N": {
             "countryName": "브라질",
-            "zoneName": "북부 지방"
+            "zoneName": "북부 브라질"
           },
           "BR-NE": {
             "countryName": "브라질",
-            "zoneName": "북동부 지방"
+            "zoneName": "북동부 브라질"
           },
           "BR-S": {
             "countryName": "브라질",
-            "zoneName": "남부 지방"
+            "zoneName": "남부 브라질"
           },
           "BS": {
             "zoneName": "바하마"
@@ -345,23 +345,23 @@
           },
           "CA-AB": {
             "countryName": "캐나다",
-            "zoneName": "앨버타주"
+            "zoneName": "앨버타 주"
           },
           "CA-BC": {
             "countryName": "캐나다",
-            "zoneName": "브리티시컬럼비아주"
+            "zoneName": "브리티시컬럼비아 주"
           },
           "CA-MB": {
             "countryName": "캐나다",
-            "zoneName": "매니토바주"
+            "zoneName": "매니토바 주"
           },
           "CA-NL": {
             "countryName": "캐나다",
-            "zoneName": "뉴펀들랜드 래브라도주"
+            "zoneName": "뉴펀들랜드 래브라도 주"
           },
           "CA-NB": {
             "countryName": "캐나다",
-            "zoneName": "뉴브런즈윅주"
+            "zoneName": "뉴브런즈윅 주"
           },
           "CA-NT": {
             "countryName": "캐나다",
@@ -369,7 +369,7 @@
           },
           "CA-NS": {
             "countryName": "캐나다",
-            "zoneName": "노바스코샤주"
+            "zoneName": "노바스코샤 주"
           },
           "CA-NU": {
             "countryName": "캐나다",
@@ -377,19 +377,19 @@
           },
           "CA-ON": {
             "countryName": "캐나다",
-            "zoneName": "온타리오주"
+            "zoneName": "온타리오 주"
           },
           "CA-PE": {
             "countryName": "캐나다",
-            "zoneName": "프린스에드워드아일랜드주"
+            "zoneName": "프린스에드워드아일랜드 주"
           },
           "CA-QC": {
             "countryName": "캐나다",
-            "zoneName": "퀘벡주"
+            "zoneName": "퀘벡 주"
           },
           "CA-SK": {
             "countryName": "캐나다",
-            "zoneName": "서스캐처원주"
+            "zoneName": "서스캐처원 주"
           },
           "CA-YT": {
             "countryName": "캐나다",
@@ -450,7 +450,7 @@
             "zoneName": "퀴라소"
           },
           "CX": {
-            "zoneName": "크리스마스 섬."
+            "zoneName": "크리스마스섬"
           },
           "CY": {
             "zoneName": "키프로스"
@@ -477,7 +477,7 @@
           },
           "DK-BHM": {
             "countryName": "덴마크",
-            "zoneName": "보른홀름 섬"
+            "zoneName": "보른홀름섬"
           },
           "DM": {
             "zoneName": "도미니카"
@@ -498,7 +498,7 @@
             "zoneName": "이집트"
           },
           "EH": {
-            "zoneName": "서사하라"
+            "zoneName": "서 사하라"
           },
           "ER": {
             "zoneName": "에리트레아"
@@ -562,7 +562,7 @@
             "zoneName": "미크로네시아"
           },
           "FO": {
-            "zoneName": "패로제도"
+            "zoneName": "패로 제도"
           },
           "FR": {
             "zoneName": "프랑스"
@@ -578,7 +578,7 @@
             "zoneName": "영국"
           },
           "GB-NIR": {
-            "zoneName": "북아일랜드"
+            "zoneName": "북 아일랜드"
           },
           "GB-ORK": {
             "countryName": "영국",
@@ -620,7 +620,7 @@
             "zoneName": "기니"
           },
           "GP": {
-            "zoneName": "과들루프 섬"
+            "zoneName": "과들루프섬"
           },
           "GQ": {
             "zoneName": "적도 기니"
@@ -663,7 +663,7 @@
             "zoneName": "아이티"
           },
           "HU": {
-            "zoneName": "Hungary"
+            "zoneName": "헝가리"
           },
           "ID": {
             "zoneName": "인도네시아"
@@ -683,23 +683,23 @@
           },
           "IN-AP": {
             "countryName": "인도",
-            "zoneName": "안드라프라데시주"
+            "zoneName": "안드라프라데시 주"
           },
           "IN-AR": {
             "countryName": "인도",
-            "zoneName": "아루나찰프라데시주"
+            "zoneName": "아루나찰프라데시 주"
           },
           "IN-AS": {
             "countryName": "인도",
-            "zoneName": "아삼주"
+            "zoneName": "아삼 주"
           },
           "IN-BR": {
             "countryName": "인도",
-            "zoneName": "비하르주"
+            "zoneName": "비하르 주"
           },
           "IN-CT": {
             "countryName": "인도",
-            "zoneName": "차티스가르주"
+            "zoneName": "차티스가르 주"
           },
           "IN-DL": {
             "countryName": "인도",
@@ -715,63 +715,63 @@
           },
           "IN-GJ": {
             "countryName": "인도",
-            "zoneName": "구자라트주"
+            "zoneName": "구자라트 주"
           },
           "IN-HP": {
             "countryName": "인도",
-            "zoneName": "히마찰프라데시주"
+            "zoneName": "히마찰프라데시 주"
           },
           "IN-HR": {
             "countryName": "인도",
-            "zoneName": "하리아나주"
+            "zoneName": "하리아나 주"
           },
           "IN-JH": {
             "countryName": "인도",
-            "zoneName": "자르칸드주"
+            "zoneName": "자르칸드 주"
           },
           "IN-JK": {
             "countryName": "인도",
-            "zoneName": "Jammu and Kashmir"
+            "zoneName": "잠무카슈미르 주"
           },
           "IN-KA": {
             "countryName": "인도",
-            "zoneName": "카르나타카주"
+            "zoneName": "카르나타카 주"
           },
           "IN-KL": {
             "countryName": "인도",
-            "zoneName": "케랄라주"
+            "zoneName": "케랄라 주"
           },
           "IN-MH": {
             "countryName": "인도",
-            "zoneName": "마하라슈트라주"
+            "zoneName": "마하라슈트라 주"
           },
           "IN-ML": {
             "countryName": "인도",
-            "zoneName": "메갈라야주"
+            "zoneName": "메갈라야 주"
           },
           "IN-MN": {
             "countryName": "인도",
-            "zoneName": "마니푸르주"
+            "zoneName": "마니푸르 주"
           },
           "IN-MP": {
             "countryName": "인도",
-            "zoneName": "마디아프라데시주"
+            "zoneName": "마디아프라데시 주"
           },
           "IN-MZ": {
             "countryName": "인도",
-            "zoneName": "미조람주"
+            "zoneName": "미조람 주"
           },
           "IN-NL": {
             "countryName": "인도",
-            "zoneName": "나갈랜드주"
+            "zoneName": "나갈랜드 주"
           },
           "IN-OR": {
             "countryName": "인도",
-            "zoneName": "오디샤주"
+            "zoneName": "오디샤 주"
           },
           "IN-PB": {
             "countryName": "인도",
-            "zoneName": "펀자브주"
+            "zoneName": "펀자브 주"
           },
           "IN-PY": {
             "countryName": "인도",
@@ -779,19 +779,19 @@
           },
           "IN-RJ": {
             "countryName": "인도",
-            "zoneName": "라자스탄주"
+            "zoneName": "라자스탄 주"
           },
           "IN-SK": {
             "countryName": "인도",
-            "zoneName": "시킴주"
+            "zoneName": "시킴 주"
           },
           "IN-TN": {
             "countryName": "인도",
-            "zoneName": "타밀나두주"
+            "zoneName": "타밀나두 주"
           },
           "IN-TR": {
             "countryName": "인도",
-            "zoneName": "트리푸라주"
+            "zoneName": "트리푸라 주"
           },
           "IN-UP": {
             "countryName": "인도",
@@ -799,11 +799,11 @@
           },
           "IN-UT": {
             "countryName": "인도",
-            "zoneName": "우타라칸드 주("
+            "zoneName": "우타라칸드 주"
           },
           "IN-WB": {
             "countryName": "인도",
-            "zoneName": "서벵골주"
+            "zoneName": "서벵골 주"
           },
           "IO": {
             "zoneName": "영국령 인도양 지역"
@@ -813,7 +813,7 @@
           },
           "IQ-KUR": {
             "countryName": "이라크",
-            "zoneName": "쿠르드 자치구"
+            "zoneName": "쿠르디스탄"
           },
           "IR": {
             "zoneName": "이란"
@@ -838,11 +838,11 @@
           },
           "IT-SAR": {
             "countryName": "이탈리아",
-            "zoneName": "사르데냐주"
+            "zoneName": "사르데냐 주"
           },
           "IT-SIC": {
             "countryName": "이탈리아",
-            "zoneName": "시칠리아주"
+            "zoneName": "시칠리아 주"
           },
           "IT-SO": {
             "countryName": "이탈리아",
@@ -916,7 +916,7 @@
             "zoneName": "세인트키츠 네비스"
           },
           "KP": {
-            "zoneName": "조선민주주의인민공화국"
+            "zoneName": "북한"
           },
           "KR": {
             "zoneName": "대한민국"
@@ -987,7 +987,7 @@
           },
           "MK": {
             "countryName": "북마케도니아 공화국",
-            "zoneName": "구유고슬라비아 마케도니아 공화국"
+            "zoneName": "구 유고슬라브 마케도니아 공화국"
           },
           "ML": {
             "zoneName": "말리"
@@ -1002,7 +1002,7 @@
             "zoneName": "마카오"
           },
           "MP": {
-            "zoneName": "북마리아나 제도("
+            "zoneName": "북마리아나 제도"
           },
           "MQ": {
             "zoneName": "마르티니크"
@@ -1030,7 +1030,7 @@
           },
           "MX-BC": {
             "countryName": "멕시코",
-            "zoneName": "바하칼리포르니아반도"
+            "zoneName": "바하칼리포르니아 주"
           },
           "MX-CE": {
             "countryName": "멕시코",
@@ -1097,23 +1097,23 @@
           },
           "NO-NO1": {
             "countryName": "노르웨이",
-            "zoneName": "동남부"
+            "zoneName": "동남부 노르웨이"
           },
           "NO-NO2": {
             "countryName": "노르웨이",
-            "zoneName": "서남부"
+            "zoneName": "서남부 노르웨이"
           },
           "NO-NO3": {
             "countryName": "노르웨이",
-            "zoneName": "중앙부"
+            "zoneName": "중앙부 노르웨이"
           },
           "NO-NO4": {
             "countryName": "노르웨이",
-            "zoneName": "북부"
+            "zoneName": "북부 노르웨이"
           },
           "NO-NO5": {
             "countryName": "노르웨이",
-            "zoneName": "서부"
+            "zoneName": "서부 노르웨이"
           },
           "NP": {
             "zoneName": "네팔"
@@ -1174,7 +1174,7 @@
             "zoneName": "푸에르토리코"
           },
           "PS": {
-            "zoneName": "팔레스타인국"
+            "zoneName": "팔레스타인"
           },
           "PT": {
             "zoneName": "포르투갈"
