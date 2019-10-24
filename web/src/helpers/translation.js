@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
 
 // Import all locales
 var locales = {};
@@ -39,7 +39,7 @@ exports.getFullZoneName = function getFullZoneName(zoneCode) {
   const countryName = exports.translate(`zoneShortName.${zoneCode}.countryName`);
   if (!countryName) {
     return zoneName;
-  } 
+  }
   return `${zoneName} (${countryName})`;
 };
 
@@ -55,6 +55,7 @@ exports.languageNames = [
   { shortName: 'hr', name: 'Hrvatski' },
   { shortName: 'it', name: 'Italiano' },
   { shortName: 'ja', name: '日本語' },
+  { shortName: 'kr', name: '한국어' },
   { shortName: 'nl', name: 'Nederlands' },
   { shortName: 'pl', name: 'Polski' },
   { shortName: 'pt-br', name: 'Português (Brazilian)' },
