@@ -56,8 +56,12 @@ def parse_date(date, hour):
     return dt
 
 
-# fetches the whole month as a DataFrame or throws an exception if it's not available
 def fetch_csv_for_date(dt, session=None):
+    """
+    Fetches the whole month of the give datetime
+    returns the data as a DataFrame
+    throws an exception data is not available
+    """
     if not session:
         session = requests.session()
         
@@ -134,7 +138,7 @@ def fetch_production(zone_key, session=None, target_datetime=None):
     for idx, series in df.iterrows():
         data.append({
             'zoneKey': zone_key,
-            'datetime': series["instante"],
+            'datetime': series["instante"].to_pydatetime(),
             'production': convert_production(series),
             'source': 'cenace.gob.mx'
         })
