@@ -6,22 +6,64 @@
         "datasources": "fontes de dados",
         "contribute": "Contribua <a href=\"%s\" target=\"_blank\">adicionando seu país ou território</a>"
     },
+    "mobile-main-menu": {
+        "map": "electricityMap",
+        "areas": "Áreas",
+        "about": "Sobre"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "Mapeando o impacto climático da eletricidade"
+        },
+        "view2": {
+            "header": "Veja o quanto de CO2 é emitido para produzir sua eletricidade em tempo real.",
+            "text": "As áreas através do mundo são coloridas pela sua Intencidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
+        },
+        "view3": {
+            "header": "Saiba de onde sua eletricidade vem",
+            "text": "As setas no mapa indicam fluxos de eletricidade entre áreas diferentes. Clique em uma área para ver mais informações sobre as origens de sua eletricidade."
+        },
+        "view4": {
+            "header": "Condições eólicas e solares em tempo real",
+            "text": " A produção de energias eólicas e solares dependem do tempo. Para ver dados em tempo real em todo mundo sobre luminosidade e força do vento, pressione o botão do Sol para ver dados sobre a luz do Sol e pressione o botão do Vento para ver dados sobre a força do vento."
+        }
+    },
     "country-panel": {
         "source": "Fonte",
         "carbonintensity": "Intensidade de emissão de carbono",
+        "lowcarbon": "Baixo carbono",
+        "renewable": "Renovável",
         "electricityproduction": "Produção de eletricidade",
+        "electricityconsumption": "Consumo de eletricidade",
         "bysource": "por fonte",
-        "emissions": "Emissões",
+        "emissions": "Emissões de carbono",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">adicionar ou editar fonte de dados</a>",
-        "helpfrom": "com ajuda de"
+        "helpfrom": "com ajuda de",
+        "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
+        "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
+        "noParserInfo": "Nós não temps nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
+        "now": "Agora"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Impacto climático",
+        "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO2eq/kWh)",
+        "search": "Pesquise por país ou área"
     },
     "country-history": {
-        "carbonintensity24h": "Intensidade da emissão de carbono nas últimas 24 horas"
+        "carbonintensity24h": "Intensidade da emissão de carbono nas últimas 24 horas",
+        "emissionsorigin24h": "Origem da emissão de carbono nas últimas 24 horas",
+        "emissionsproduction24h": "Emissão de carbono produzida nas últimas 24 horas",
+        "electricityorigin24h": "Origem da eletriciade nas últimas 24 horas",
+        "electricityproduction24h": "Produção de eletrecidade nas últimas 24 horas",
+        "electricityprices24h": "Preço da eletricidade nas últimas 24 horas",
+        "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
     },
     "footer": {
         "likethisvisu": "Gostou desta visualização?",
         "loveyourfeedback": "Nós adoraríamos receber o seu feedback",
         "foundbugs": "Encontrou erros ou tem alguma sugestão? Contacte-nos",
+        "faq-text": "Algo não está claro? Olhe nossa",
+        "faq": "questões frequentes.",
         "here": "aqui"
     },
     "legends": {
@@ -32,22 +74,41 @@
     },
     "tooltips": {
         "carbonintensity": "Intensidade de emissões de CO2",
+        "lowcarbon": "Baixo carbono",
+        "renewable": "Renovável",
         "crossborderexport": "Exportação transfronteiriça",
         "carbonintensityexport": "Intensidade de emissões de CO2 na exportação",
         "ofinstalled": "da capacidade instalada",
         "utilizing": "utilizando",
-        "withcarbonintensity": "com uma intensidade de emissão de CO2 de"
+        "withcarbonintensity": "com uma intensidade de emissão de CO2 de",
+        "showWindLayer": "Mostrar a camada de vento",
+        "hideWindLayer": "Esconder a camada de vento",
+        "showSolarLayer": "Mostrar a camada solar",
+        "hideSolarLayer": "Esconder a camada solae",
+        "toggleDarkMode": "Alternar modo escuro",
+        "noParserInfo": "Nenhum dado disponível",
+        "temporaryDataOutage": "Dados temporariamente indisponíveis",
+        "production": "produção",
+        "consumption": "consumo",
+        "cpinfo": "<b>consumo</b> leva em consideração importações e exportações, <b>produção</b> as ignora",
+        "selectLanguage": "Selecione a linguagem",
+        "lowCarbDescription": "Inclui renováveis e nucleares"
     },
     "misc": {
         "maintitle": "Emissões de CO2 do consumo elétrico em tempo real",
         "oops": "Epa! Estamos tendo problemas com o servidor. Tentaremos novamente em alguns segundos.",
         "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
-        "retrynow": "Tentar novamente"
+        "retrynow": "Tentar novamente",
+        "database-ad": "Procurando por dados históricos? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
+        "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
+        "legend": "Legenda",
+        "faq": "Questões frequentes"
     },
     "wind": "eólica",
     "solar": "solar",
     "hydro": "hidroelétrica",
-    "hydro storage": "armaz. hidroelétrico",
+    "hydro storage": "armazenamento hidroelétrico",
+    "battery storage": "armazenamento de bateria",
     "biomass": "biomassa",
     "nuclear": "nuclear",
     "geothermal": "geotérmica",
@@ -55,19 +116,85 @@
     "coal": "carvão",
     "oil": "petróleo",
     "unknown": "desconhecida",
- 
+
     "electricityComesFrom": "%1$s %% da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> provém de energia %3$s",
     "emissionsComeFrom": "%1$s %% das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> provêm de energia %3$s",
     "electricityStoredUsing": "%1$s %% da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é armazenada utilizando %3$s",
     "emissionsStoredUsing": "%1$s %% das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são armazenadas utilizando %3$s",
- 
+
     "electricityExportedTo": "%1$s %% da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é exportada para <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "%1$s %% das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são exportadas para <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é importada de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "%1$s %% das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são importadas de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
- 
+
     "ofCO2eqPerMinute": "de CO2eq por minuto",
- 
+    "theMap": {
+      "groupName": "O mapa",
+      "mapColors-question": "O que significam as cores no mapa?",
+      "mapColors-answer": "Colorimos as áreas no mapa pelas quantidades de gases de efeito estufa emitidas para cada unidade de eletricidade consumida no local (sua <a href=\"#carbonIntensity\" class=\"entry-link\"> intensidade de carbono </a> ) Quanto mais verde a cor, mais favorável ao clima é o consumo de eletricidade.",
+      "mapArrows-question": "O que indicam as setas entre as áreas do mapa?",
+      "mapArrows-answer": "As setas entre as áreas indicam o fluxo físico (importações e exportações) de eletricidade entre as áreas: quanto mais rápido elas piscam, mais rápido o fluxo. O fluxo de eletricidade é importante, porque quando você importa parte de sua eletricidade de áreas vizinhas, também está importando as emissões de carbono associadas à sua produção.",
+      "mapSolarWindButtons-question": "O que os botões \"sol\" e \"vento\" fazem no mapa?",
+      "mapSolarWindButtons-answer": "Esses botões alternam a exibição das velocidades do vento em tempo real e da força do sol, fornecendo uma indicação do potencial de transição para alternativas de energia solar e eólica em diferentes áreas. Observe que isso é apenas uma indicação superficial, pois o potencial real na instalação de turbinas eólicas e células solares também depende de muitos outros fatores.",
+      "mapNuclearColors-question": "Por que os países movidos a energia nuclear são mostrados em verde no mapa?",
+      "mapNuclearColors-answer": "A produção de energia nuclear possui uma intensidade muito baixa de carbono (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), e os países movidos a energia nuclear são mostrados em verde no mapa. Isso não significa que não haja outros desafios ambientais associados à energia nuclear (como também ocorre com outras formas de produção de energia), mas esses desafios não estão relacionados às emissões de gases de efeito estufa e, portanto, estão fora do escopo deste mapa.",
+      "mapColorBlind-question": "Eu sou daltônico. Como posso ler seu mapa?",
+      "mapColorBlind-answer": "Você pode alterar as cores exibidas no mapa ativando a configuração \"modo daltônico\". Ele está localizado na parte inferior do painel esquerdo da área de trabalho e na guia informações no aplicativo móvel"
+    },
+    "mapAreas": {
+        "groupName": "Áreas no mapa",
+        "noData-question": "Por que os dados da minha área não estão disponíveis?",
+        "noData-answer": "Ou porque as fontes de dados da área estão temporariamente indisponíveis ou porque ainda não temos nenhuma fonte de dados configurada para a área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar com a adição de novas fontes de dados </a>.",
+        "whySmallAreas-question": "Por que você divide o mundo em áreas menores e não mostra simplesmente as médias dos países?",
+        "whySmallAreas-answer": "As áreas são as menores áreas geográficas para as quais temos dados. Ao ter acesso a informações no mais alto nível de granularidade, os consumidores de eletricidade em diferentes áreas podem ter um conhecimento mais preciso sobre a origem da eletricidade que estão consumindo e o clima associado. impacto.",
+        "divideExistingArea-question": "Você pode dividir minha área em partes menores?",
+        "divideExistingArea-answer": "Claro, se houver fontes de dados separadas para cada parte da área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar a adicionar novas fontes de dados </a>",
+        "seeHistoricalData-question": "Posso ver o histórico de uma área mais atrasada do que 24 horas?",
+        "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
+    },
+    "methodology": {
+        "groupName": "Nossos métodos",
+        "carbonIntensity-question": "O que é \"intensidade de carbono\"?",
+        "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO2eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO2 e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
+        "consumerFocus-question": "Por que você calcula a intensidade de carbono do consumo de eletricidade em vez da produção?",
+        "consumerFocus-answer": "Acreditamos que os cidadãos devem ser responsáveis ​​pela eletricidade que consomem, e não pela eletricidade produzida na área em que vivem. Além disso, acreditamos que as áreas não devem ser capazes de \"falsificar\" um baixo impacto climático simplesmente transferindo a produção de energia suja para outras áreas e importando a eletricidade dessas áreas.",
+        "renewableLowCarbonDifference-question": "Qual é a diferença entre \"renovável \"e \"baixo carbono\"?",
+        "renewableLowCarbonDifference-answer": "A produção de energia renovável se baseia em fontes de energia renováveis, como fluxo de vento e água, sol e energia geotérmica. Produção de energia com baixo teor de carbono significa que a produção envolve um nível muito baixo de emissões de gases de efeito estufa, como na produção de energia nuclear.",
+        "importsAndExports-question": "Você considera importações e exportações de eletricidade?",
+        "importsAndExports-answer": "Sim. Sim. Importações e exportações podem ser vistas no mapa como pequenas <a href=\"#mapArrows\" class=\"entry-link\"> setas entre áreas diferentes </ a >. Informações detalhadas podem ser vistas nas tabelas mostradas quando você clica em uma área.",
+        "emissionsOfStored-question": "E as emissões provenientes da geração de eletricidade, que são armazenadas nas baterias ou usadas para encher reservatórios?",
+        "emissionsOfStored-answer": "Como atualmente apenas uma pequena proporção de eletricidade é armazenada, imprecisões na modelagem dessas emissões não devem fazer muita diferença para o total no momento. No entanto, dada a crescente importância do armazenamento, esperamos levá-lo em consideração. em mais detalhes em nosso modelo em breve.",
+        "guaranteOfOrigin-question": "O que são certificados verdes e como são levados em consideração?",
+        "guaranteesOfOrigin-answer": "Quando os produtores de energia renovável produzem eletricidade, eles podem criar Garantias de Origem (ou Certificados de Energia Renovável) - uma prova de que a eletricidade renovável foi produzida e distribuída na rede elétrica. Essas garantias podem ser vendidas, dando aos varejistas de eletricidade uma maneira de afirmar que a eletricidade que eles revendem vem de fontes renováveis, independentemente de sua fonte física real. <br> <br> Isso significa que os consumidores de eletricidade podem ser informados de que sua eletricidade vem da energia solar e eólica, mesmo em uma noite sem vento, o que é problemático, pois remove os incentivos dos consumidores para consumir eletricidade no melhor momento (por exemplo, quando a quantidade de eletricidade renovável na rede é realmente a mais alta). Portanto, este mapa exclui as garantias de origem, oferecendo quadro físico baseado na localização da rede elétrica, a fim de capacitar os consumidores. ",
+        "otherSources-question": "Por que você não mostra outras fontes de emissão além da produção de eletricidade?",
+        "otherSources-answer": "Isso estaria fora do escopo deste projeto. No entanto, amanhã, estamos trabalhando ativamente no desenvolvimento de <a href=\"#whoAreYou\" class=\"entry-link\"> novas soluções para quantificar o impacto climático de suas decisões diárias </a>.",
+        "homeSolarPanel-question": "E se eu tiver um painel solar instalado em minha casa?",
+        "homeSolarPanel-answer": "Medimos a intensidade de carbono da rede elétrica local, portanto, qualquer eletricidade que você consome diretamente do seu painel solar (fora da rede) não faz parte de nossas medições. No entanto, se o seu painel solar estiver fornecendo energia na sua rede de energia local, sua produção está incluída em nossas estatísticas em áreas nas quais as estimativas da produção local de energia solar são disponibilizadas publicamente (como na França e no Reino Unido).",
+        "emissionsPerCapita-question": "Por que você não mostra emissões per capita?",
+        "emissionsPerCapita-answer": "Parte da eletricidade consumida em uma área é usada na fabricação de bens e produtos físicos que são posteriormente exportados e consumidos em outras áreas. Essa fabricação, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção está ocorrendo.Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem. não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso."
+    },
+    "data": {
+        "groupName": "Nossos dados",
+        "dataOrigins-question": "Como você obtém seus dados?",
+        "dataOrigins-answer": "Computamos todos os nossos dados a partir de dados publicamente disponíveis, publicados por operadores de rede elétrica, agências oficiais e outros. Você pode clicar em uma área para ver mais detalhes sobre a origem de seus dados.",
+        "dataDownload-question": "Posso baixar seus dados?",
+        "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
+        "dataIntegration-question": "Posso integrar seus dados em tempo real ao meu aplicativo ou dispositivo?",
+        "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
+    },
+    "aboutUs": {
+        "groupName": "Sobre nós",
+        "whoAreYou-question": "Quem são vocês?",
+        "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
+        "feedback-question": "Posso dar algum feedback?",
+        "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:hello@electricity.com\"> envie-nos um email!</a>",
+        "contribut-question": "Posso contribuir para o seu projeto?",
+        "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs , fique à vontade para se juntar a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
+        "workTogether-question": "Podemos trabalhar juntos?",
+        "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:hello@tmrow.com\">Envie-nos um email!</a>",
+        "disclaimer-question": "Aviso legal",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">electricityMap</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Tomorrow não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da electricityMap, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Tomorrow, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente."
+    },
     "zoneShortName": {
         "AD": {
             "zoneName": "Andorra"
