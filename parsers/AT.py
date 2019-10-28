@@ -42,34 +42,29 @@ def format_date(date):
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    if target_datetime is None:
-        date = datetime.date.today()
-    else:
-        date = target_datetime.date
-
-    # TODO do we really need to fetch the document for each and every interconnector separately?
-    exchange_data_of_day = fetch_exchanges_for_date(date, session=session)
-
-    if target_datetime is None:
-        # last row which is not NaN
-        best_row = exchange_data_of_day.dropna().iloc[-1]
-    else:
-        # TODO also here: can we cache the results somehow?
-        raise NotImplementedError("Selecting a specific time in the past is not yet implemented")
-
     exchange = '->'.join(sorted([zone_key1, zone_key2]))
     if exchange not in EXCHANGES:
         raise ValueError("The requested exchange {} is not supported by the AT parser".format(exchange))
 
+    if target_datetime is None:
+        date = datetime.date.today()
+    else:
+        date = target_datetime.date()
 
-    flow = EXCHANGES[exchange](best_row)        
-    end_time = arrow.get(best_row[COL_TO], tz.gettz('Europe/Vienna'))
-    exchange = {'sortedZoneKeys': exchange,
-                'datetime': end_time.datetime,
-                'netFlow': flow,
-                'source': 'transparency.apg.at'}
+    # TODO do we really need to fetch the document for each and every interconnector separately?
+    exchange_data_of_day = fetch_exchanges_for_date(date, session=session).dropna()
 
-    return exchange
+    data = []
+    for label, row in exchange_data_of_day.iterrows():
+        flow = EXCHANGES[exchange](row)
+        end_time = arrow.get(row[COL_TO], tz.gettz('Europe/Vienna'))
+        row_data = {'sortedZoneKeys': exchange,
+                    'datetime': end_time.datetime,
+                    'netFlow': flow,
+                    'source': 'transparency.apg.at'}
+        data.append(row_data)
+
+    return data
 
 
 def fetch_exchanges_for_date(date, session=None):
@@ -151,5 +146,5 @@ STORAGE_FILE = "delay_storage.json"
 if __name__ == "__main__":
     print("Fetching exchange AT->DE")
     print(fetch_exchange("AT", "DE"))
-    print("Fetching exchange AT->CH")
-    print(fetch_exchange("AT", "CH"))
+    print("Fetching exchange AT->DE for 2013-01-01")
+    print(fetch_exchange("AT", "DE", target_datetime=datetime.datetime(year=2013, month=1, day=1)))
