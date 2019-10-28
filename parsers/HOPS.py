@@ -32,7 +32,8 @@ def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__n
     obj = response.json()
 
     df = pd.DataFrame.from_dict(obj['FullPower']).set_index('Timestamp')
-    solar_production_dt = datetime.strftime(dt, '%Y-%m-%d %H:00:00')
+    df.index = pd.to_datetime(df.index) # cast strings to datetimes
+    solar_production_dt = pd.Timestamp(feed_date, tz='Europe/Zagreb').floor('1h')
     try:
         solar = df['Value'].loc[solar_production_dt]
         # Value is in string format and needs to be converted to float
