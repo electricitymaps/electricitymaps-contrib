@@ -2171,19 +2171,20 @@ div.highscore-button:hover {
         padding-bottom: 0;
     } 
     #language-select-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: calc(100% - 5rem);
-        height: calc(100% - 8rem);
-        top: 4rem;
-        font-size: 2rem;
+        font-size: 1rem;
         scroll-behavior: auto;
         overflow: scroll;
+        height: 65vh;
     }
     #language-header {
         display: block;
         border-bottom: 1px solid lightgray;
+        font-size: 1rem;
+        padding-bottom: 0.5em;
+    }
+    #language-select-container li {
+        padding: 0.5em 0;
+        border-bottom: 1px lightgray solid;
     }
 }
 
