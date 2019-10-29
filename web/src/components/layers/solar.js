@@ -81,7 +81,7 @@ class SolarLayer {
       moment(t_after).fromNow(),
       'made', moment(this.grib2.header.refTime).fromNow());
     if (moment(now) > moment(t_after)) {
-      return console.error('Error while interpolating solar because current time is out of bounds');
+      return callback(new Error('Error while interpolating solar because current time is out of bounds'));
     }
 
     this.k = (now - t_before) / (t_after - t_before);
