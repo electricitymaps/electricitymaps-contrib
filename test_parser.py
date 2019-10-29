@@ -15,7 +15,7 @@ def test_parser(zone, data_type, target_datetime):
 
     Parameters
     ----------
-    zone: a two letter zone from the map
+    zone: a two letter zone from the map.
     data_type: in ['production', 'exchangeForecast', 'production', 'exchange',
       'price', 'consumption', 'generationForecast', 'consumptionForecast']
     target_datetime: string parseable by arrow, such as 2018-05-30 15:00
