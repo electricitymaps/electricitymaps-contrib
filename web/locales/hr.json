@@ -116,15 +116,15 @@
     "oil": "naftna",
     "unknown": "nepoznata",
 
-    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% dostupne električne energije",
-    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% emisija električne energije",
-    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% pohranjene električne energije",
-    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini %1$s %% emisija pohranjene električne energije",
+    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> dostupne električne energije",
+    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija električne energije",
+    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> pohranjene električne energije",
+    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija pohranjene električne energije",
 
-    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% emisija električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$s %% emisija električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "CO2eq po minuti",
     "theMap": {
