@@ -601,14 +601,18 @@ function renderMap(state) {
       solar.forecasts[0],
       solar.forecasts[1],
       scales.solarColor,
-      () => {
-        if (getState().application.solarEnabled) {
-          solarLayer.show();
+      (err) => {
+        if (err) {
+          console.error(err.message);
         } else {
-          solarLayer.hide();
+          if (getState().application.solarEnabled) {
+            solarLayer.show();
+          } else {
+            solarLayer.hide();
+          }
+          // Restore setting
+          saveKey('solarEnabled', getState().application.solarEnabled);
         }
-        // Restore setting
-        saveKey('solarEnabled', getState().application.solarEnabled);
         LoadingService.stopLoading('#loading');
       },
     );
