@@ -2975,6 +2975,33 @@
       ]
     ]
   },
+  "NP" : {
+    "bounding_box": [
+      [
+        26.331961741272391,
+        83.316093816726375
+      ],
+      [
+        29.238986927231098,
+        84.178103446299317
+      ]
+    ],
+    "capacity":{
+      "biomass":0 ,
+      "coal": 0 ,
+      "gas":0 ,
+      "hydro": 1016,
+      "nuclear": 0,
+      "oil":0 ,
+      "solar": 0.7804,
+      "wind":0 
+    },
+    "contributors":[
+      "https://github.com/Subarna578"
+    ],
+    "flag_file_name": "np.png",
+    "timezone": null
+  },
   "NZ-NZN": {
     "bounding_box": [
       [
