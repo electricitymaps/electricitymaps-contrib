@@ -2,7 +2,7 @@ root = True
 
 [*]
 indent_style = space
-insert_final_newline = true
+insert_final_newline = True
 charset = utf-8
 
 [*.{js,json}]
