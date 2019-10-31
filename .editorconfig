@@ -1,4 +1,4 @@
-root = true
+root = True
 
 [*]
 indent_style = space
