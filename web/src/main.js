@@ -1485,7 +1485,7 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   renderGauges(state);
   renderContributors(state);
   renderHistory(state);
-  // renderReferral(state);
+  renderReferral(state);
   zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
