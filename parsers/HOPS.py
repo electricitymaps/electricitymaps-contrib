@@ -49,6 +49,8 @@ def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__n
 
 def fetch_production(zone_key='HR', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     response = r.get(URL)
