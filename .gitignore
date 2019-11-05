@@ -12,6 +12,7 @@ web/node_modules
 *.publishproj
 .DS_Store
 /.vs
+/.venv
 Thumbs.db
 mobileapp/*.zip
 
