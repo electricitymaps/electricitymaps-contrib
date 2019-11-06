@@ -56,15 +56,15 @@
     "oil": "نفط",
     "unknown": "غير معروف",
 
-    "electricityComesFrom": "%1$s %% من الكهرباء <img id=\"country-flag\"></img> <b>%2$s</b> مصدره  %3$s",
-    "emissionsComeFrom": "%1$s %% من الانبعاثات<img id=\"country-flag\"></img> <b>%2$s</b> مصدره %3$s",
-    "electricityStoredUsing": "%1$s %% من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b>مخزنة باستخدام  %3$s",
-    "emissionsStoredUsing": "%1$s %% من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> مخزنة باستخدام %3$s",
+    "electricityComesFrom": "<b>%1$s %%</b> من الكهرباء <img id=\"country-flag\"></img> <b>%2$s</b> مصدره  %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> من الانبعاثات<img id=\"country-flag\"></img> <b>%2$s</b> مصدره %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b>مخزنة باستخدام  %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> مخزنة باستخدام %3$s",
 
-    "electricityExportedTo": "%1$s %% من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "of CO2eq per minute",
 

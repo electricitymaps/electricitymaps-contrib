@@ -59,7 +59,7 @@ module.exports.showProduction = function showProduction(
   const capacity = (country.capacity || {})[mode];
   const hasCapacity = capacity !== undefined && capacity >= (country.production[mode] || 0);
   const capacityFactor = (hasCapacity && absValue != null) ?
-    Math.round(absValue / capacity * 100) : '?';
+    Math.round(absValue / capacity * 10000) / 100 : '?';
   tooltip.select('#capacity-factor').text(`${capacityFactor} %`);
   tooltip.select('#capacity-factor-detail').html(`${format(absValue) || '?'} ` +
     ` / ${
@@ -73,7 +73,7 @@ module.exports.showProduction = function showProduction(
   const domainName = translation.translate(mode);
   const isNull = !isFinite(absValue) || absValue == undefined;
 
-  const productionProportion = !isNull ? Math.round(absValue / domain * 100) : '?';
+  const productionProportion = !isNull ? Math.round(absValue / domain * 10000) / 100 : '?';
   tooltip.select('#production-proportion-detail').html(`${!isNull ? format(absValue) : '?'} ` +
     ` / ${
       !isNull ? format(domain) : '?'}`);
