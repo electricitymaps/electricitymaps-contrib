@@ -480,7 +480,7 @@
             "zoneName": "보른홀름섬"
           },
           "DM": {
-            "zoneName": "도미니카"
+            "zoneName": "도미니카 연방"
           },
           "DO": {
             "zoneName": "도미니카 공화국"
@@ -1134,11 +1134,11 @@
           },
           "NZ-NZN": {
             "countryName": "뉴질랜드",
-            "zoneName": "북도"
+            "zoneName": "북섬"
           },
           "NZ-NZS": {
             "countryName": "뉴질랜드",
-            "zoneName": "남도"
+            "zoneName": "남섬"
           },
           "OM": {
             "zoneName": "오만"
@@ -1294,13 +1294,13 @@
             "zoneName": "스와질란드"
           },
           "TC": {
-            "zoneName": "터크스 케이커스 제도"
+            "zoneName": "터크스케이커스 제도"
           },
           "TD": {
             "zoneName": "차드"
           },
           "TF": {
-            "zoneName": "프랑스령 남방 및 남극"
+            "zoneName": "프랑스령 남부 및 남극"
           },
           "TG": {
             "zoneName": "토고"
@@ -1345,7 +1345,7 @@
             "zoneName": "우크라이나"
           },
           "UA-CR": {
-            "countryName": "크림반도",
+            "countryName": "크림 반도",
             "zoneName": "우크라이나"
           },
           "UG": {
@@ -1359,15 +1359,15 @@
           },
           "US-AL": {
             "countryName": "미국",
-            "zoneName": "앨라배마주"
+            "zoneName": "앨라배마 주"
           },
           "US-BPA": {
             "countryName": "미국",
-            "zoneName": "BPA"
+            "zoneName": "워싱턴 주"
           },
           "US-CA": {
-            "countryName": "U미국",
-            "zoneName": "캘리포니아주"
+            "countryName": "미국",
+            "zoneName": "캘리포니아 주"
           },
           "US-HI-HA": {
             "countryName": "미국",
@@ -1403,7 +1403,7 @@
           },
           "US-IPC": {
             "countryName": "미국",
-            "zoneName": "IPC"
+            "zoneName": "아이다호 주"
           },
           "US-MISO": {
             "countryName": "미국",
@@ -1411,7 +1411,7 @@
           },
           "US-NC": {
             "countryName": "미국",
-            "zoneName": "노스캐롤라이나주"
+            "zoneName": "노스캐롤라이나 주"
           },
           "US-NEISO": {
             "countryName": "미국",
@@ -1419,15 +1419,15 @@
           },
           "US-NV": {
             "countryName": "미국",
-            "zoneName": "네바다주"
+            "zoneName": "네바다 주"
           },
           "US-NY": {
             "countryName": "미국",
-            "zoneName": "뉴욕주"
+            "zoneName": "뉴욕 주"
           },
           "US-OR": {
             "countryName": "미국",
-            "zoneName": "오리건주"
+            "zoneName": "오레곤 주"
           },
           "US-PJM": {
             "countryName": "미국",
@@ -1435,7 +1435,7 @@
           },
           "US-SC": {
             "countryName": "미국",
-            "zoneName": "사우스캐롤라이나주"
+            "zoneName": "사우스캐롤라이나 주"
           },
           "US-SPP": {
             "countryName": "미국",
@@ -1443,15 +1443,15 @@
           },
           "US-SVERI":{
             "countryName": "미국",
-            "zoneName": "SVERI"
+            "zoneName": "마리조나 / 뉴멕시코"
           },
           "US-TN": {
             "countryName": "미국",
-            "zoneName": "테네시주"
+            "zoneName": "테네시 주"
           },
           "US-TX": {
             "countryName": "미국",
-            "zoneName": "ERCOT"
+            "zoneName": "텍사스"
           },
           "UY": {
             "zoneName": "우루과이"
@@ -1483,13 +1483,13 @@
             "zoneName": "바누아투"
           },
           "WF": {
-            "zoneName": "왈리스 퓌튀나"
+            "zoneName": "월리스푸투나제도"
           },
           "WS": {
             "zoneName": "사모아"
           },
           "XX": {
-            "zoneName": "북키프로스"
+            "zoneName": "북부 키프로스"
           },
           "YE": {
             "zoneName": "예멘"
@@ -1498,7 +1498,7 @@
             "zoneName": "마요트"
           },
           "ZA": {
-            "zoneName": "남아공"
+            "zoneName": "남아프리카공화국"
           },
           "ZM": {
             "zoneName": "잠비아"
