@@ -2053,10 +2053,6 @@
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "iq.png",
-    "parsers": {
-      "consumption": "IQ.fetch_consumption",
-      "production": "IQ.fetch_production"
-    },
     "timezone": "Asia/Baghdad"
   },
   "IS": {
@@ -2706,9 +2702,6 @@
       "https://github.com/jarek",
       "https://github.com/alixunderplatz"
     ],
-    "parsers": {
-      "production": "NA.fetch_production"
-    },
     "timezone": null
   },
   "NI": {
