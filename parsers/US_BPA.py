@@ -2,11 +2,11 @@
 
 """Parser for the Bonneville Power Administration area of the USA."""
 
-from datetime import datetime, timedelta
+
 from io import StringIO
+import arrow
 import logging
 import pandas as pd
-import pytz
 import requests
 
 
@@ -20,19 +20,18 @@ GENERATION_MAPPING = {'Wind': 'wind',
 
 def get_data(url, session=None):
     """Returns a pandas dataframe."""
-    s=session or requests.Session()
+    s = session or requests.Session()
     req = s.get(url)
-    df = pd.read_table(StringIO(req.text), skiprows=5)
+    df = pd.read_table(StringIO(req.text), skiprows=11)
 
     return df
 
 
 def timestamp_converter(timestamp):
-    """Turns string representation of time into an aware datetime object."""
+    """Turns a timestamp str into an aware datetime object."""
 
-    dt_naive = datetime.strptime(timestamp, '%m/%d/%Y %H:%M')
-    western = pytz.timezone('America/Los_Angeles')
-    dt_aware = western.localize(dt_naive)
+    arr_dt_naive = arrow.get(timestamp, 'MM/DD/YYYY HH:mm')
+    dt_aware = arr_dt_naive.replace(tzinfo='America/Los_Angeles').datetime
 
     return dt_aware
 
@@ -45,7 +44,7 @@ def data_processor(df, logger):
     Returns a list of tuples in the form (datetime, production).
     """
 
-    df= df.dropna(thresh=2)
+    df = df.dropna(thresh=2)
     df.columns = df.columns.str.strip()
 
     # 5min data for the last 24 hours.
@@ -59,7 +58,7 @@ def data_processor(df, logger):
 
     for k in unknown_keys:
         logger.warning('New data {} seen in US-BPA data source'.format(k),
-                        extra={'key': 'US-BPA'})
+                       extra={'key': 'US-BPA'})
 
     keys_to_remove = unknown_keys | {'Load'}
 
@@ -69,7 +68,7 @@ def data_processor(df, logger):
 
         dt = production.pop('Date/Time')
         dt = dt.to_pydatetime()
-        mapped_production = {GENERATION_MAPPING[k]:v for k,v in production.items()
+        mapped_production = {GENERATION_MAPPING[k]: v for k, v in production.items()
                              if k not in keys_to_remove}
 
         processed_data.append((dt, mapped_production))
