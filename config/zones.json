@@ -2079,8 +2079,13 @@
       "wind": 3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/SNPerkin"
     ],
+    "parsers": {
+      "production": "IS.fetch_production"
+    },
+    "flag_file_name": "is.png",
     "timezone": null
   },
   "IT": {
@@ -2987,7 +2992,7 @@
       "nuclear": 0,
       "oil":0 ,
       "solar": 0.7804,
-      "wind":0 
+      "wind":0
     },
     "contributors":[
       "https://github.com/Subarna578"
