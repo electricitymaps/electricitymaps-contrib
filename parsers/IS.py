@@ -84,7 +84,7 @@ def fetch_production(
         "zoneKey": zone_key,
         "production": {},
         "storage": {},
-        "source": "https://amper.landsnet.is/generation/api/Values",
+        "source": "amper.landsnet.is",
     }
 
     # Parse the individual generation resources
