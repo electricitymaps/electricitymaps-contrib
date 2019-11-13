@@ -1059,9 +1059,9 @@ function renderCountryTable(state) {
 
     const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
 
-    const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
-    countryTable.showNoParserMessageIf(zoneIsMissingParser);
     const zoneHasNotProductionDataAtTimestamp = (!d.production || !Object.keys(d.production).length) && zonesThatCanHaveZeroProduction.indexOf(state.application.selectedZoneName) === -1;
+    const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
+    countryTable.showNoParserMessageIf(zoneHasNotProductionDataAtTimestamp && zoneIsMissingParser);
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
     countryTable.showNoDataMessageIf(
       zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser,
