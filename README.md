@@ -20,6 +20,11 @@ You can also see a list of missing data displayed as warnings in the developer c
 Check the [contributing](#contribute) section for more details.
 Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
 
+## Tomorrow is hiring!
+The company behind the electricityMap builds tech to empower organisations and individuals to understand and reduce their carbon footprint.
+
+We're hiring great people to join our team in Copenhagen. Head over to [our jobs page](https://www.tmrow.com/jobs) if you want to help out!
+
 ## Frequently asked questions
 
 **How do you define real-time data?**
