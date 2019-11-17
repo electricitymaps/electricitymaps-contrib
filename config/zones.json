@@ -976,15 +976,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 197,
-      "coal": 4847,
-      "gas": 2941,
+      "biomass": 1722,
+      "coal": 3656,
+      "gas": 1814,
       "geothermal": 0,
-      "hydro": 0,
+      "hydro": 7,
       "hydro storage": 0,
       "nuclear": 0,
-      "solar": 601,
-      "wind": 4845
+      "oil": 1007,
+      "solar": 1014,
+      "wind": 6126
     },
     "contributors": [
       "https://github.com/corradio"
@@ -1038,17 +1039,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 326,
-      "coal": 2775,
-      "gas": 1700,
+      "biomass": 693,
+      "coal": 1915,
+      "gas": 1151,
       "nuclear": 0,
-      "hydro": 0,
+      "hydro": 7,
       "hydro storage": 0,
       "battery storage": 0,
       "geothermal": 0,
-      "oil": 292,
-      "solar": 421,
-      "wind": 3809
+      "oil": 208,
+      "solar": 672,
+      "wind": 4946
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1077,17 +1078,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 234,
-      "coal": 2072,
-      "gas": 1241,
+      "biomass": 1029,
+      "coal": 1741,
+      "gas": 663,
       "nuclear": 0,
       "hydro": 0,
       "hydro storage": 0,
       "battery storage": 0,
       "geothermal": 0,
-      "oil": 759,
-      "solar": 180,
-      "wind": 1036
+      "oil": 799,
+      "solar": 342,
+      "wind": 1180
     },
     "contributors": [
       "https://github.com/corradio",
