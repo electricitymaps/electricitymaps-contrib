@@ -976,7 +976,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 1722,
+      "biomass": 2241,
       "coal": 3656,
       "gas": 1814,
       "geothermal": 0,
@@ -1039,7 +1039,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 693,
+      "biomass": 1015,
       "coal": 1915,
       "gas": 1151,
       "nuclear": 0,
@@ -1078,7 +1078,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 1029,
+      "biomass": 1226,
       "coal": 1741,
       "gas": 663,
       "nuclear": 0,
