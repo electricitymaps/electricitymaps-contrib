@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import json
+import logging, json
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -290,7 +290,7 @@ AMEO_STATION_DICTIONARY = {
 }
 
 
-def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -323,7 +323,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    url = 'http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all'
+    url = 'https://services.aremi.data61.io/aemo/v6/csv/all'
     df = pd.read_csv(url)
     data = {
         'zoneKey': zone_key,
@@ -355,7 +355,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
         fuelsource = row['Fuel Source - Descriptor']
 
         if station not in AMEO_LOCATION_DICTIONARY:
-            logger.warning('WARNING: station %s does not belong to any state' % station)
+            logger.warning('WARNING: station %s does not belong to any state' % station, extra={'key': zone_key})
             continue
 
         if AMEO_LOCATION_DICTIONARY[station] != zone_key:
@@ -380,7 +380,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
             # Unrecognized source, ignore
             if value:
                 # If it had production, show warning
-                logger.warning('WARNING: key {} is not supported, row {}'.format(fuelsource, row))
+                logger.warning('WARNING: key {} is not supported, row {}'.format(fuelsource, row), extra={'key': zone_key})
             continue
 
         # Skip HVDC links
@@ -389,7 +389,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
 
         # Disregard substantially negative values, but let slightly negative values through
         if value < -1:
-            logger.warning('Skipping %s because production can\'t be negative (%s)' % (station, value))
+            logger.warning('Skipping %s because production can\'t be negative (%s)' % (station, value), extra={'key': zone_key})
             continue
 
         # Parse the datetime and check it matches the most recent one.
@@ -460,7 +460,7 @@ EXCHANGE_MAPPING_DICTIONARY = {
 
 
 def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime=None,
-                   logger=None):
+                   logger=logging.getLogger(__name__)):
     """Requests the last known power exchange (in MW) between two countries
 
     Arguments:
@@ -523,7 +523,7 @@ PRICE_MAPPING_DICTIONARY = {
 }
 
 
-def fetch_price(zone_key=None, session=None, target_datetime=None, logger=None):
+def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """Requests the last known power price of a given country
 
     Arguments:

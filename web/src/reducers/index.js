@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-const Cookies = require('js-cookie');
 const dataReducer = require('./dataReducer');
+const { getKey } = require('../storage');
 
 const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
   window.location.href.indexOf('192.') !== -1;
 
 const cookieGetBool = (key, defaultValue) => {
-  const val = Cookies.get(key);
+  const val = getKey(key);
   if (val == null) {
     return defaultValue;
   }
@@ -22,6 +22,7 @@ const initialApplicationState = {
   clientType: window.isCordova ? 'mobileapp' : 'web',
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
+  selectLanguageShown: false,
   customDate: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,

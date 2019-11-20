@@ -10,6 +10,7 @@ const auth = require('basic-auth');
 
 // Custom module
 const translation = require(__dirname + '/src/helpers/translation');
+const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/translation-status');
 
 const app = express();
 const server = http.Server(app);
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // * i18n
-const locales = ['ar', 'da', 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+const locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
 i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
@@ -41,20 +42,25 @@ i18n.configure({
   objectNotation: true,
   updateFiles: false, // whether to write new locale information to disk
 });
+
 app.use(i18n.init);
 const LOCALE_TO_FB_LOCALE = {
   'ar': 'ar_AR',
+  'cs':'cs_CZ',
   'da': 'da_DK',
   'de': 'de_DE',
   'en': 'en_US',
   'es': 'es_ES',
   'fr': 'fr_FR',
+  'hr': 'hr_HR',
   'it': 'it_IT',
   'ja': 'ja_JP',
+  'kr': 'kr_KR',
   'nl': 'nl_NL',
   'pt-br': 'pt_BR',
   'pl': 'pl_PL',
   'ru': 'ru_RU',
+  'sk': 'sk_SK',
   'sv': 'sv_SE',
   'zh-cn': 'zh_CN',
   'zh-hk': 'zh_HK',
@@ -66,6 +72,7 @@ const LOCALE_TO_FB_LOCALE = {
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 const SUPPORTED_FB_LOCALES = [
   'ar_AR',
+  'cs_CZ',
   'da_DK',
   'de_DE',
   'es_ES',
@@ -77,13 +84,16 @@ const SUPPORTED_FB_LOCALES = [
   'en_US',
   'fr_CA',
   'fr_FR',
+  'hr_HR',
   'it_IT',
   'ja_JP',
+  'kr_KR',
   'nl_BE',
   'nl_NL',
   'pl_PL',
   'pt_BR',
   'ru_RU',
+  'sk_SK',
   'sv_SE',
   'zh_CN',
   'zh_HK',
@@ -116,6 +126,14 @@ function handleError(err) {
 
 app.get('/health', (req, res) => res.json({status: 'ok'}));
 app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
+
+// Translation status API
+app.get('/translationstatus/badges.svg', (req, res) => {
+  res.set('Content-Type', 'image/svg+xml;charset=utf-8');
+  res.end(getTranslationStatusSVG());
+});
+app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON()));
+app.get('/translationstatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
   // On electricitymap.tmrow.co,
