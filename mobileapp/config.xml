@@ -24,6 +24,7 @@
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashScreenDelay" value="0" />
         <preference name="StatusBarStyle" value="default" />
+        <preference name="android-targetSdkVersion" value="28" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
