@@ -21,8 +21,9 @@
     "cordova-support-android-plugin": "^0.3.7",
     "cordova-support-google-services": "^1.1.0",
     "cordova-universal-links-plugin": "^1.2.1",
-    "ejs": "^2.7.1",
-    "i18n": "^0.8.3"
+    "ejs": "^2.7.4",
+    "i18n": "^0.8.3",
+    "sentry-cordova": "^0.16.2"
   },
   "repository": {
     "type": "git",
@@ -48,7 +49,8 @@
       "cordova-plugin-firebase-analytics": {
         "FIREBASE_VERSION": "11.6.+"
       },
-      "cordova-plugin-code-push": {}
+      "cordova-plugin-code-push": {},
+      "sentry-cordova": {}
     },
     "platforms": [
       "ios",
