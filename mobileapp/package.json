@@ -58,6 +58,6 @@
     ]
   },
   "devDependencies": {
-    "app-icon": "^0.6.3"
+    "app-icon": "^0.13.1"
   }
 }
