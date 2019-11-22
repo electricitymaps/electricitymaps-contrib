@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 
-const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'zh-cn', 'zh-hk', 'zh-tw'];
+const LOCALES_LIST = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
 
 // Import all locales
 var locales = {};
