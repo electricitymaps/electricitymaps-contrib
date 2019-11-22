@@ -19,5 +19,5 @@ yarn add ejs
 node generate-index.js
 
 # Generate icons
-app-icon generate -i icon_ios.png --platforms=ios
-app-icon generate -i icon_android.png --platforms=android
+yarn run app-icon generate -i icon_ios.png --platforms=ios
+yarn run app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons

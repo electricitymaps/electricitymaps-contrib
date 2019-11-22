@@ -54,6 +54,19 @@ export default class CircularGauge {
       .style('font-size', this.fontSize)
       .text(this.percentage != null ? `${Math.round(this.percentage)}%` : '?');
 
+    const that = this;
+
+    d3.select(`#${selectorId}`)
+      .on('mouseover', function (d) {
+          if (that.onGaugeMouseOver) that.onGaugeMouseOver(this);
+      })
+      .on('mouseout', function (d) {
+          if (that.onGaugeMouseOut) that.onGaugeMouseOut(this);
+      })
+      .on('mousemove', function (d) {
+          if (that.onGaugeMouseMove) that.onGaugeMouseMove(this);
+      });
+
     this.draw();
   }
 
@@ -70,6 +83,21 @@ export default class CircularGauge {
         'd',
         () => t => arc.endAngle(i(t))(),
       );
+  }
+
+  onMouseOver(tooltip) {
+    this.onGaugeMouseOver = tooltip;
+    return this;
+  }
+
+  onMouseMove(tooltip) {
+    this.onGaugeMouseMove = tooltip;
+    return this;
+  }
+
+  onMouseOut(tooltip) {
+    this.onGaugeMouseOut = tooltip;
+    return this;
   }
 
   setPercentage(percentage) {

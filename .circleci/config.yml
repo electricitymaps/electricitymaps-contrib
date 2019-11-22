@@ -7,7 +7,11 @@ stages:
       - type: checkout
       - type: shell
         name: Set Python version
-        command: pyenv global 3.5.2
+        command: |
+          set -eux -o pipefail
+          pyenv install --list
+          pyenv install 3.6.3
+          pyenv global 3.6.3
       - type: shell
         name: Upgrade pip
         command: pip install -q --upgrade pip
@@ -26,7 +30,8 @@ stages:
         command: |
           set -eux -o pipefail
           python --version
-          pip --version
+          pip -v --version
+          pyenv versions
           pip install -q flake8 pylint==2.3.1 --progress-bar=off
           sudo apt-get install libxml2-dev
           pip install -q -r parsers/requirements.txt --progress-bar=off
@@ -37,7 +42,7 @@ stages:
           pylint -E parsers/*.py -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence
           python -m unittest discover parsers/test
           npm install -g jsonlint
-          jsonlint -q config/*.json
+          jsonlint -q config/*.json web/locales/*.json
       - save_cache:
           key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
           paths:

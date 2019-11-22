@@ -6,6 +6,10 @@
         "datasources": "źródła danych",
         "contribute": "Pomóż nam <a href=\"%s\" target=\"_blank\">dodając więcej regionów</a>"
     },
+    "mobile-main-menu": {
+        "map": "electricityMap",
+        "areas": "Obszary"
+    },
     "onboarding-modal": {
         "view1": {
             "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
@@ -71,8 +75,12 @@
         "hideWindLayer": "Schowaj wiatr",
         "showSolarLayer": "Pokaż nasłonecznienie",
         "hideSolarLayer": "Schowaj nasłonecznienie",
+        "toggleDarkMode": "Włącz tryb nocny",
         "noParserInfo": "Brak danych",
-        "temporaryDataOutage": "Tymczasowy brak danych"
+        "temporaryDataOutage": "Tymczasowy brak danych",
+        "production": "produkcja",
+        "consumption": "konsumpcja",
+        "selectLanguage": "Wybierz język"
     },
     "misc": {
         "maintitle": "Emisja CO2 konsumpcji energii elektrycznej w czasie rzeczywistym",
@@ -80,7 +88,9 @@
         "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
         "retrynow": "Spróbuj teraz",
         "database-ad": "Szukasz danych historycznych? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
-        "api-ad": "Chcesz mieć aktualne dane w twoich aplikacjach lub urządzeniach? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>"
+        "api-ad": "Chcesz mieć aktualne dane w twoich aplikacjach lub urządzeniach? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
+        "legend": "Legenda",
+        "faq": "Najczęściej Zadawane Pytania"
     },
     "wind": "wiatrowa",
     "solar": "słoneczna",
@@ -95,15 +105,15 @@
     "oil": "olejowa",
     "unknown": "nieznana",
 
-    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy %1$s %% energii elektrycznej",
-    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy %1$s %% emisji",
-    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują %1$s %% energii elektrycznej",
-    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują %1$s %% emisji",
+    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
+    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
+    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
+    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
 
-    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "CO2eq na minutę",
 
