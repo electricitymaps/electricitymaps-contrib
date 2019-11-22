@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
-  entry: { bundle: ['babel-polyfill', './src/main.js'], styles: './src/styles.css' },
+  entry: { bundle: ['@babel/polyfill', './src/main.js'], styles: './src/styles.css' },
   module: {
     noParse: /(mapbox-gl)\.js$/,
     rules: [
@@ -26,8 +26,7 @@ module.exports = {
         exclude: [/node_modules/],
         loader: 'babel-loader',
         query: {
-        plugins: ['transform-runtime'],
-          presets: ['es2015'] // that's ES6
+          presets: ['@babel/preset-env', '@babel/preset-react']
         }
       }
     ]

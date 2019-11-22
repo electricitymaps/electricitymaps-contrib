@@ -2,6 +2,11 @@
 
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider, connect } from 'react-redux';
+
+// Components
 import CircularGauge from './components/circulargauge';
 import ContributorList from './components/contributorlist';
 import Referral from './components/referral';
@@ -12,6 +17,24 @@ import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
 import LanguageSelect from './components/languageselect';
+import CountryTable from './components/countrytable';
+import AreaGraph from './components/areagraph';
+import LineGraph from './components/linegraph';
+import HorizontalColorbar from './components/horizontalcolorbar';
+import Tooltip from './components/tooltip';
+
+// Layer Components
+import ExchangeLayer from './components/layers/exchange';
+import SolarLayer from './components/layers/solar';
+import WindLayer from './components/layers/wind';
+
+// Services
+import * as DataService from './services/dataservice';
+import * as LoadingService from './services/loadingservice';
+import thirdPartyServices from './services/thirdparty';
+
+// Utils
+import { getCurrentZoneData } from './helpers/redux';
 
 // Libraries
 const d3 = Object.assign(
@@ -29,27 +52,16 @@ const d3 = Object.assign(
 const moment = require('moment');
 
 // State management
-const { dispatch, dispatchApplication, getState, observe } = require('./store');
+const {
+  dispatch,
+  dispatchApplication,
+  getState,
+  observe,
+  store,
+} = require('./store');
 
 //Persistent storage
 const { saveKey } = require('./storage');
-
-// Components
-const AreaGraph = require('./components/areagraph');
-const LineGraph = require('./components/linegraph');
-const CountryTable = require('./components/countrytable');
-const HorizontalColorbar = require('./components/horizontalcolorbar');
-const Tooltip = require('./components/tooltip');
-
-// Layer Components
-const ExchangeLayer = require('./components/layers/exchange');
-const SolarLayer = require('./components/layers/solar');
-const WindLayer = require('./components/layers/wind');
-
-// Services
-const DataService = require('./services/dataservice');
-const LoadingService = require('./services/loadingservice');
-const thirdPartyServices = require('./services/thirdparty');
 
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
@@ -149,17 +161,62 @@ const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
 
-const countryLowCarbonGauge = new CircularGauge('country-lowcarbon-gauge');
-countryLowCarbonGauge.onMouseOver(() => {
-  tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip);
-}).onMouseMove(() => {
-  lowcarbInfoTooltip.update(currentEvent.clientX, currentEvent.clientY)
-}).onMouseOut(() => {
-  lowcarbInfoTooltip.hide();
-});
-const countryRenewableGauge = new CircularGauge('country-renewable-gauge');
-const tooltipLowCarbonGauge = new CircularGauge('tooltip-country-lowcarbon-gauge');
-const tooltipRenewableGauge = new CircularGauge('tooltip-country-renewable-gauge');
+/*
+  For now, components are directly connected to redux.
+  We need a main component to start linking components together
+*/
+const CountryLowCarbonGauge = connect((state) => {
+  const d = getCurrentZoneData(state);
+  if (!d) {
+    return { percentage: null };
+  }
+  const fossilFuelRatio = state.application.electricityMixMode === 'consumption'
+    ? d.fossilFuelRatio
+    : d.fossilFuelRatioProduction;
+  const countryLowCarbonPercentage = fossilFuelRatio != null
+    ? 100 - (fossilFuelRatio * 100)
+    : null;
+  return {
+    percentage: countryLowCarbonPercentage,
+  };
+})(CircularGauge);
+const CountryRenewableGauge = connect((state) => {
+  const d = getCurrentZoneData(state);
+  if (!d) {
+    return { percentage: null };
+  }
+  const renewableRatio = state.application.electricityMixMode === 'consumption'
+    ? d.renewableRatio
+    : d.renewableRatioProduction;
+  const countryRenewablePercentage = renewableRatio != null
+    ? renewableRatio * 100 : null;
+  return {
+    percentage: countryRenewablePercentage,
+  };
+})(CircularGauge);
+const TooltipLowCarbonGauge = connect((state) => ({
+  percentage: state.application.tooltipLowCarbonGaugePercentage,
+}))(CircularGauge);
+const TooltipRenewableGauge = connect((state) => ({
+  percentage: state.application.tooltipRenewableGaugePercentage,
+}))(CircularGauge);
+
+ReactDOM.render(
+  <Provider store={store}><CountryLowCarbonGauge /></Provider>,
+  document.querySelector('#country-lowcarbon-gauge'),
+);
+ReactDOM.render(
+  <Provider store={store}><CountryRenewableGauge /></Provider>,
+  document.querySelector('#country-renewable-gauge'),
+);
+ReactDOM.render(
+  <Provider store={store}><TooltipLowCarbonGauge /></Provider>,
+  document.querySelector('#tooltip-country-lowcarbon-gauge'),
+);
+ReactDOM.render(
+  <Provider store={store}><TooltipRenewableGauge /></Provider>,
+  document.querySelector('#tooltip-country-renewable-gauge'),
+);
 const contributorList = new ContributorList('.contributors');
 const referral = new Referral('.referral-link');
 
@@ -665,7 +722,6 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
       .onCountryMouseOver((d) => {
         tooltipHelper.showMapCountry(
           countryTooltip, d, co2color, co2Colorbars,
-          tooltipLowCarbonGauge, tooltipRenewableGauge,
           getState().application.electricityMixMode,
         );
       })
@@ -673,7 +729,6 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         // TODO: Check that i changed before calling showMapCountry
         tooltipHelper.showMapCountry(
           countryTooltip, d, co2color, co2Colorbars,
-          tooltipLowCarbonGauge, tooltipRenewableGauge,
           getState().application.electricityMixMode,
         );
         const rect = node.getBoundingClientRect();
@@ -994,41 +1049,6 @@ if (onboardingModal) {
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
-
-function getCurrentZoneData(state) {
-  const { grid } = state.data;
-  const zoneName = state.application.selectedZoneName;
-  const i = state.application.selectedZoneTimeIndex;
-  if (!grid || !zoneName) {
-    return null;
-  }
-  if (i == null) {
-    return grid.zones[zoneName];
-  }
-  return (state.data.histories[zoneName] || {})[i];
-}
-
-function renderGauges(state) {
-  const d = getCurrentZoneData(state);
-  if (!d) {
-    countryLowCarbonGauge.setPercentage(null);
-    countryRenewableGauge.setPercentage(null);
-  } else {
-    const fossilFuelRatio = state.application.electricityMixMode === 'consumption'
-      ? d.fossilFuelRatio
-      : d.fossilFuelRatioProduction;
-    const countryLowCarbonPercentage = fossilFuelRatio != null ?
-      100 - (fossilFuelRatio * 100) : null;
-    countryLowCarbonGauge.setPercentage(countryLowCarbonPercentage);
-
-    const renewableRatio = state.application.electricityMixMode === 'consumption'
-      ? d.renewableRatio
-      : d.renewableRatioProduction;
-    const countryRenewablePercentage = renewableRatio != null ?
-      renewableRatio * 100 : null;
-    countryRenewableGauge.setPercentage(countryRenewablePercentage);
-  }
-}
 
 function renderReferral(state) {
   const { selectedZoneName, callerZone } = state.application;
@@ -1420,7 +1440,6 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderZones(state);
   renderMap(state);
   renderCountryTable(state);
-  renderGauges(state);
   renderHistory(state);
 
   // only update the toggle button outside the initial loading period, since during the initial loading,
@@ -1453,7 +1472,6 @@ observe(state => state.data.grid.exchanges, (exchanges, state) => {
 // Observe for grid change
 observe(state => state.data.grid, (grid, state) => {
   renderCountryTable(state);
-  renderGauges(state);
   renderMap(state);
 });
 
@@ -1482,7 +1500,6 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   if (!selectedZoneName) { return; }
   // Render
   renderCountryTable(state);
-  renderGauges(state);
   renderContributors(state);
   renderHistory(state);
   // renderReferral(state);
@@ -1513,7 +1530,6 @@ observe(state => state.data.histories, (histories, state) => {
 
 // Observe for index change (for example by history graph)
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
-  renderGauges(state);
   renderCountryTable(state);
   renderOpenTooltips(state);
   [countryHistoryCarbonGraph, countryHistoryMixGraph, countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {

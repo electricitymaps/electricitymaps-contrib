@@ -54,4 +54,4 @@ class ConnectionsService {
   }
 }
 
-module.exports = new ConnectionsService(); // singleton
+export default new ConnectionsService(); // singleton

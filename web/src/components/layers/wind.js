@@ -170,4 +170,4 @@ class WindLayer {
   }
 }
 
-module.exports = WindLayer;
+export default WindLayer;
