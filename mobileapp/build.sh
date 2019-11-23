@@ -16,9 +16,9 @@ docker rm $CONTAINER_ID
 
 # Run node in order to build index.html
 echo 'Generating index pages..'
-yarn add ejs
+npm install
 node generate-index.js
 
 # Generate icons
-yarn run app-icon generate -i icon_ios.png --platforms=ios
-yarn run app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
+node_modules/.bin/app-icon generate -i icon_ios.png --platforms=ios
+node_modules/.bin/app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
