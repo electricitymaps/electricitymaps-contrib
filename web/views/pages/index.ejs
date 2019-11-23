@@ -102,8 +102,8 @@ co2Sub = function(str) {
         <% if (typeof isCordova != 'undefined' && isCordova) { %>
         <script src="../cordova.js"></script>
         <% } %>
-        <script defer src="dist/vendor.<%= vendorHash %>.js"></script>
-        <script defer src="dist/bundle.<%= bundleHash %>.js"></script>
+        <script defer src="dist/<%= locale %>/vendor.<%= vendorHash %>.js"></script>
+        <script defer src="dist/<%= locale %>/bundle.<%= bundleHash %>.js"></script>
 
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>

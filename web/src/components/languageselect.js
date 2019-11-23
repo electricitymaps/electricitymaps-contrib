@@ -1,11 +1,11 @@
-const translation = require('../helpers/translation');
-
 const d3 = Object.assign(
   {},
   require('d3-array'),
   require('d3-collection'),
   require('d3-selection'),
 );
+
+const { languageNames } = require('../../locales-config.json');
 
 export default class LanguageSelect {
   constructor(selectorId) {
@@ -23,7 +23,7 @@ export default class LanguageSelect {
   _createListItems() {
     this.selector = d3.select(this.selectorId)
       .selectAll('li')
-      .data(translation.languageNames);
+      .data(Object.entries(languageNames));
 
     const itemLinks = this.selector.enter().append('li');
 
@@ -32,14 +32,14 @@ export default class LanguageSelect {
   }
 
   _setItemNames() {
-    this.selector.text(language => language.name);
+    this.selector.text(([key, language]) => language);
   }
 
   _setItemClickHandlers() {
-    if(window.isCordova){
-      this.selector.on('click', language => window.location.href = `index_${language.shortName}.html`);
-    }else{
-      this.selector.on('click', language => window.location.href = `${window.location.href}&lang=${language.shortName}`);
+    if (window.isCordova) {
+      this.selector.on('click', ([key, language]) => { window.location.href = `index_${key}.html`; });
+    } else {
+      this.selector.on('click', ([key, language]) => { window.location.href = `${window.location.href}&lang=${key}`; });
     }
   }
 }

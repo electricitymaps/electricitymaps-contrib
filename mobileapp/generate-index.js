@@ -2,8 +2,33 @@ var ejs = require('ejs');
 var fs = require('fs');
 var i18n = require('i18n');
 
-// Custom module
-var translation = require(__dirname + '/src/helpers/translation');
+const {
+  localeToFacebookLocale,
+  supportedFacebookLocales,
+  languageNames,
+} = require('./locales-config.json');
+
+/*
+Note: Translation function should be removed and
+let the client deal with all translations / formatting of ejs
+*/
+const localeConfigs = {};
+locales.forEach((d) => {
+  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+});
+function translateWithLocale(locale, keyStr) {
+  const keys = keyStr.split('.');
+  let result = localeConfigs[locale];
+  for (let i = 0; i < keys.length; i += 1) {
+    if (result == null) { break; }
+    result = result[keys[i]];
+  }
+  if (locale !== 'en' && !result) {
+    return exports.translateWithLocale('en', keyStr);
+  }
+  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
+  return result && vsprintf(result, formatArgs);
+}
 
 // duplicated from server.js
 function getHash(key, ext) {
@@ -23,65 +48,8 @@ var STYLES_HASH = getHash('styles', 'css');
 var VENDOR_HASH = getHash('vendor', 'js');
 var VENDOR_STYLES_HASH = getHash('vendor', 'css');
 
-// TODO:
-// Currently, those variables are duplicated from server.js
-// We should instead have a central configuration file in the `config` folder
-var locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
-var LOCALE_TO_FB_LOCALE = {
-    'ar': 'ar_AR',
-    'cs':'cs_CZ',
-    'da': 'da_DK',
-    'de': 'de_DE',
-    'en': 'en_US',
-    'es': 'es_ES',
-    'fr': 'fr_FR',
-    'hr': 'hr_HR',
-    'it': 'it_IT',
-    'ja': 'ja_JP',
-    'kr': 'kr_KR',
-    'nl': 'nl_NL',
-    'pt-br': 'pt_BR',
-    'pl': 'pl_PL',
-    'ru': 'ru_RU',
-    'sk': 'sk_SK',
-    'sv': 'sv_SE',
-    'vn': 'vi_VN',
-    'zh-cn': 'zh_CN',
-    'zh-hk': 'zh_HK',
-    'zh-tw': 'zh_TW',
-};
-var SUPPORTED_FB_LOCALES = [
-    'ar_AR',
-    'cs_CZ',
-    'da_DK',
-    'de_DE',
-    'es_ES',
-    'es_LA',
-    'es_MX',
-    'en_GB',
-    'en_PI',
-    'en_UD',
-    'en_US',
-    'fr_CA',
-    'fr_FR',
-    'hr_HR',
-    'it_IT',
-    'ja_JP',
-    'kr_KR',
-    'nl_BE',
-    'nl_NL',
-    'pl_PL',
-    'pt_BR',
-    'ru_RU',
-    'sk_SK',
-    'sv_SE',
-    'vi_VN',
-    'zh_CN',
-    'zh_HK',
-    'zh_TW',
-];
-
 // * i18n
+const locales = Object.keys(languageNames);
 i18n.configure({
     // where to store json files - defaults to './locales' relative to modules directory
     locales: locales,
@@ -103,14 +71,14 @@ locales.forEach(function(locale) {
         vendorStylesHash: VENDOR_STYLES_HASH,
         isCordova: true,
         locale: locale,
-        FBLocale: LOCALE_TO_FB_LOCALE[locale],
+        FBLocale: localeToFacebookLocale[locale],
         supportedLocales: locales,
-        supportedFBLocales: SUPPORTED_FB_LOCALES,
+        supportedFBLocales: supportedFacebookLocales,
         '__': function() {
             var argsArray = Array.prototype.slice.call(arguments);
             // Prepend the first argument which is the locale
             argsArray.unshift(locale);
-            return translation.translateWithLocale.apply(null, argsArray);
+            return translateWithLocale.apply(null, argsArray);
         }
     });
 

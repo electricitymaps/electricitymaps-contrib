@@ -7,10 +7,15 @@ const fs = require('fs');
 const http = require('http');
 const i18n = require('i18n');
 const auth = require('basic-auth');
+const { vsprintf } = require('sprintf-js');
 
 // Custom module
-const translation = require(__dirname + '/src/helpers/translation');
 const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/translation-status');
+const {
+  localeToFacebookLocale,
+  supportedFacebookLocales,
+  languageNames,
+} = require('./locales-config.json');
 
 const app = express();
 const server = http.Server(app);
@@ -31,7 +36,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // * i18n
-const locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
+const locales = Object.keys(languageNames);
 i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
@@ -44,63 +49,33 @@ i18n.configure({
 });
 
 app.use(i18n.init);
-const LOCALE_TO_FB_LOCALE = {
-  'ar': 'ar_AR',
-  'cs':'cs_CZ',
-  'da': 'da_DK',
-  'de': 'de_DE',
-  'en': 'en_US',
-  'es': 'es_ES',
-  'fr': 'fr_FR',
-  'hr': 'hr_HR',
-  'it': 'it_IT',
-  'ja': 'ja_JP',
-  'kr': 'kr_KR',
-  'nl': 'nl_NL',
-  'pt-br': 'pt_BR',
-  'pl': 'pl_PL',
-  'ru': 'ru_RU',
-  'sk': 'sk_SK',
-  'sv': 'sv_SE',
-  'vn': 'vi_VN',
-  'zh-cn': 'zh_CN',
-  'zh-hk': 'zh_HK',
-  'zh-tw': 'zh_TW',
-};
+// For supportedFacebookLocales:
 // Populate using
 // https://developers.facebook.com/docs/messenger-platform/messenger-profile/supported-locales/
 // and re-crawl using
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
-const SUPPORTED_FB_LOCALES = [
-  'ar_AR',
-  'cs_CZ',
-  'da_DK',
-  'de_DE',
-  'es_ES',
-  'es_LA',
-  'es_MX',
-  'en_GB',
-  'en_PI',
-  'en_UD',
-  'en_US',
-  'fr_CA',
-  'fr_FR',
-  'hr_HR',
-  'it_IT',
-  'ja_JP',
-  'kr_KR',
-  'nl_BE',
-  'nl_NL',
-  'pl_PL',
-  'pt_BR',
-  'ru_RU',
-  'sk_SK',
-  'sv_SE',
-  'vi_VN',
-  'zh_CN',
-  'zh_HK',
-  'zh_TW',
-];
+
+/*
+Note: Translation function should be removed and
+let the client deal with all translations / formatting of ejs
+*/
+const localeConfigs = {};
+locales.forEach((d) => {
+  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+});
+function translateWithLocale(locale, keyStr) {
+  const keys = keyStr.split('.');
+  let result = localeConfigs[locale];
+  for (let i = 0; i < keys.length; i += 1) {
+    if (result == null) { break; }
+    result = result[keys[i]];
+  }
+  if (locale !== 'en' && !result) {
+    return exports.translateWithLocale('en', keyStr);
+  }
+  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
+  return result && vsprintf(result, formatArgs);
+}
 
 // * Long-term caching
 function getHash(key, ext) {
@@ -126,7 +101,7 @@ function handleError(err) {
   console.error(err);
 }
 
-app.get('/health', (req, res) => res.json({status: 'ok'}));
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
 
 // Translation status API
@@ -134,7 +109,7 @@ app.get('/translationstatus/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
   res.end(getTranslationStatusSVG());
 });
-app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON()));
+app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(locales)));
 app.get('/translationstatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
@@ -206,13 +181,13 @@ app.get('/', (req, res) => {
       fullUrl,
       locale,
       supportedLocales: locales,
-      FBLocale: LOCALE_TO_FB_LOCALE[locale],
-      supportedFBLocales: SUPPORTED_FB_LOCALES,
+      FBLocale: localeToFacebookLocale[locale],
+      supportedFBLocales: supportedFacebookLocales,
       '__': function() {
         const argsArray = Array.prototype.slice.call(arguments);
         // Prepend the first argument which is the locale
         argsArray.unshift(locale);
-        return translation.translateWithLocale.apply(null, argsArray);
+        return translateWithLocale.apply(null, argsArray);
       },
     });
   }
