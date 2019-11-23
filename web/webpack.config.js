@@ -8,6 +8,10 @@ const { languageNames } = require('./locales-config.json');
 
 const { version } = require('./package.json');
 
+/*
+  Note exporting a config per language makes the build slower.
+  Sequential builds are faster (using jq and `--config-name`)
+*/
 module.exports = Object.keys(languageNames).map(locale => ({
   name: locale,
   devtool: isProduction ? 'sourcemap' : 'eval',
