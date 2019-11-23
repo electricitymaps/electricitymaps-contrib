@@ -30,5 +30,3 @@ services:
       - './web/topogen.sh:/home/web/topogen.sh'
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
-      
-

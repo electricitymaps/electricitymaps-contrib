@@ -47,6 +47,9 @@ const initialApplicationState = {
   // TODO(olc): refactor this state
   showPageState: 'map',
   pageToGoBackTo: null,
+  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
+  tooltipLowCarbonGaugePercentage: null,
+  tooltipRenewableGaugePercentage: null,
 };
 
 const applicationReducer = (state = initialApplicationState, action) => {
@@ -108,7 +111,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
   }
 };
 
-module.exports = combineReducers({
+export default combineReducers({
   application: applicationReducer,
   data: dataReducer,
 });

@@ -337,4 +337,4 @@ LineGraph.prototype.selectedIndex = function(arg) {
     return this;
 }
 
-module.exports = LineGraph;
+export default LineGraph;

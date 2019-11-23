@@ -45,9 +45,10 @@ const dispatchApplication = (key, value) => {
   });
 };
 
-module.exports = {
+export {
   dispatch,
   dispatchApplication,
   getState,
   observe,
+  store,
 };

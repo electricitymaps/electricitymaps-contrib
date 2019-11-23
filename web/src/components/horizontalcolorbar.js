@@ -214,4 +214,4 @@ HorizontalColorbar.prototype._setDomainAndRange = function _setDomainAndRange(d,
     .domain(this._domain);
 };
 
-module.exports = HorizontalColorbar;
+export default HorizontalColorbar;

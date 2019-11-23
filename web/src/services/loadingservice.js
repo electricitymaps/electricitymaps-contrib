@@ -1,5 +1,3 @@
-const exports = module.exports = {};
-
 const d3 = Object.assign(
   {},
   require('d3-selection'),
@@ -8,7 +6,7 @@ const d3 = Object.assign(
 
 const stack = {};
 
-exports.startLoading = (selector) => {
+const startLoading = (selector) => {
   stack[selector] = stack[selector] || [];
   if (!stack[selector].length) {
     d3.selectAll(selector)
@@ -19,7 +17,7 @@ exports.startLoading = (selector) => {
   stack[selector].push(undefined);
 };
 
-exports.stopLoading = (selector) => {
+const stopLoading = (selector) => {
   stack[selector].pop();
   if (!stack[selector].length) {
     d3.selectAll(selector)
@@ -30,3 +28,8 @@ exports.stopLoading = (selector) => {
       });
   }
 };
+
+export {
+  startLoading,
+  stopLoading,
+}

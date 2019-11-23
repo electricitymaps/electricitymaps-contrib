@@ -462,4 +462,4 @@ AreaGraph.prototype.electricityMixMode = function(arg) {
   return this;
 };
 
-module.exports = AreaGraph;
+export default AreaGraph;

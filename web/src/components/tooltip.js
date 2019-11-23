@@ -77,4 +77,4 @@ Tooltip.prototype.hide = function() {
     return this;
 }
 
-module.exports = Tooltip
+export default Tooltip

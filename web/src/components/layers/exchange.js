@@ -207,4 +207,4 @@ class ExchangeLayer {
   }
 }
 
-module.exports = ExchangeLayer;
+export default ExchangeLayer;
