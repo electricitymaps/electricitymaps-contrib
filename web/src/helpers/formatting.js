@@ -4,7 +4,7 @@ var d3 = require('d3-format');
 var translation = require('./translation');
 
 var co2Sub = module.exports.co2Sub = function (str) {
-  return str.replace('CO2', 'CO<span class="sub">2</span>');
+  return str.replace(/CO2/gi, 'CO<span class="sub">2</span>');
 };
 module.exports.formatPower = function (d, numDigits) {
   // Assume MW input
@@ -23,3 +23,21 @@ module.exports.formatCo2 = function (d, numDigits) {
   else
     return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + co2Sub(translation.translate('ofCO2eqPerMinute'));
 };
+module.exports.scalePower = function (maxPower) {
+  // Assume MW input
+  if (maxPower < 1) 
+    return {
+      unit: "kW",
+      formattingFactor: 1e-3
+    }
+  if (maxPower < 1e3) 
+    return {
+      unit: "MW",
+      formattingFactor: 1
+    }
+  else return {
+      unit: "GW",
+      formattingFactor: 1e3
+    }
+};
+

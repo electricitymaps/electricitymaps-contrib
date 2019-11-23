@@ -10,7 +10,7 @@ import requests
 TIMEZONE = 'America/Managua'
 
 MAP_URL = 'http://www.cndc.org.ni/graficos/MapaSIN/index.php'
-SUMMARY_URL = 'http://www.cndc.org.ni/graficos/graficaGeneracion_Tipo_TReal.php'
+SUMMARY_URL = 'http://www.cndc.org.ni/graficos/graficaGeneracion_Tipo_TReal0000.php'
 PRICE_URL = 'http://www.cndc.org.ni/consultas/infoRelevanteSIN/consultaCostoMarginal.php'
 
 # This is a list in same order as values for "generacion" variable in MAP_URL

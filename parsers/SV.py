@@ -10,7 +10,10 @@ from operator import itemgetter
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # El Salvador does have wind generation but there is no data available.
-# Fossil fuel generation is grouped under 'thermal' with no further breakdown given.
+# The 'Termico' category only consists of generation from oil/diesel according to historical data.
+# See: https://www.iea.org/statistics/?country=ELSALVADOR&year=2016&category=Key%20indicators&indicator=ElecGenByFuel
+# A new Liquid Natural Gas power plant may come online in 2020/2021.
+# See: https://gastechinsights.com/article/what-energa-del-pacficos-lng-to-power-project-means-for-el-salvador
 
 # Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
@@ -173,15 +176,15 @@ def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=N
             'datetime': hour['datetime'],
             'production': {
                 'biomass': hour.get('biomass', 0.0),
-                'coal': hour.get('coal', 0.0),
-                'gas': hour.get('gas', 0.0),
+                'coal': 0.0,
+                'gas': 0.0,
                 'hydro': hour.get('hydro', 0.0),
                 'nuclear': 0.0,
-                'oil': hour.get('oil', 0.0),
+                'oil': hour.get('thermal', 0.0),
                 'solar': hour.get('solar', 0.0),
                 'wind': None,
                 'geothermal': hour.get('geothermal', 0.0),
-                'unknown': hour.get('thermal', 0.0)
+                'unknown': 0.0
             },
             'storage': {
                 'hydro': None,

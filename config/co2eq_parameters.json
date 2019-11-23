@@ -1,0 +1,1475 @@
+{
+  "emissionFactors": {
+    "defaults": {
+      "battery charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "Tomorrow",
+        "value": 0
+      },
+      "battery discharge": {
+        "_comment": "As a default fallback, we use here the annual mean carbon intensity of all electricityMap zones",
+        "source": "World average intensity by Tomorrow",
+        "value": 301.13684338512996
+      },
+      "biomass": {
+        "source": "IPCC 2014",
+        "value": 230
+      },
+      "coal": {
+        "source": "IPCC 2014",
+        "value": 820
+      },
+      "gas": {
+        "source": "IPCC 2014",
+        "value": 490
+      },
+      "geothermal": {
+        "source": "IPCC 2014",
+        "value": 38
+      },
+      "hydro": {
+        "source": "IPCC 2014",
+        "value": 24
+      },
+      "hydro charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "Tomorrow",
+        "value": 0
+      },
+      "hydro discharge": {
+        "_comment": "As a default fallback, we use here the annual mean carbon intensity of all electricityMap zones",
+        "source": "World average intensity by Tomorrow",
+        "value": 301.13684338512996
+      },
+      "nuclear": {
+        "source": "IPCC 2014",
+        "value": 12
+      },
+      "oil": {
+        "_comment": "UK Parliamentary Office of Science and Technology (2006) 'Carbon footprint of electricity generation'",
+        "source": "UK POST 2014",
+        "value": 650
+      },
+      "solar": {
+        "source": "IPCC 2014",
+        "value": 45
+      },
+      "unknown": {
+        "_comment": "assume conventional",
+        "source": "assumes thermal (coal, gas, oil or biomass)",
+        "value": 700
+      },
+      "wind": {
+        "source": "IPCC 2014",
+        "value": 11
+      }
+    },
+    "zoneOverrides": {
+      "AR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 297.18891097799343
+        }
+      },
+      "AT": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 207.7115013861941
+        }
+      },
+      "AUS-NSW": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 726.0064734066499
+        }
+      },
+      "AUS-QLD": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 766.6875812088138
+        }
+      },
+      "AUS-SA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 336.55253056678424
+        }
+      },
+      "AUS-TAS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 128.59069995581274
+        }
+      },
+      "AUS-VIC": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 682.6761763130781
+        }
+      },
+      "AUS-WA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 611.2821372774696
+        }
+      },
+      "BA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 717.9419102176483
+        }
+      },
+      "BE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 221.2633924759543
+        }
+      },
+      "BG": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 418.2092755632947
+        }
+      },
+      "BO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 558.083871451602
+        }
+      },
+      "BR-CS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 143.78721239840618
+        }
+      },
+      "BR-N": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 310.87795272553205
+        }
+      },
+      "BR-NE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 240.54214408759694
+        }
+      },
+      "BR-S": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 123.14921411453244
+        }
+      },
+      "CA-AB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 597.2654373454017
+        }
+      },
+      "CA-NS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 557.5937668126903
+        }
+      },
+      "CA-ON": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 34.64876799001495
+        }
+      },
+      "CA-PE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 61.455304595109254
+        }
+      },
+      "CA-YT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 40.98482440401805
+        }
+      },
+      "CL-SING": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 614.2555591940885
+        }
+      },
+      "CR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 52.16941300335089
+        }
+      },
+      "CY": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 603.5400311246383
+        }
+      },
+      "CZ": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 452.44434476152367
+        }
+      },
+      "DE": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 345.3584668984193
+        }
+      },
+      "DK-DK1": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 228.86202884669197
+        }
+      },
+      "DK-DK2": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 282.74731819331896
+        }
+      },
+      "DO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 501.6151583506052
+        }
+      },
+      "EE": {
+        "coal": {
+          "source": "EASAC 2007",
+          "value": 1515
+        },
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 1124.6394396486162
+        }
+      },
+      "ES": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 172.80281549205574
+        }
+      },
+      "ES-CN-HI": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 85.03883175918934
+        }
+      },
+      "ES-IB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 610.5081243078652
+        }
+      },
+      "FI": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 159.44929538773565
+        }
+      },
+      "FO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 366.7153663910574
+        }
+      },
+      "FR": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 47.609819428772006
+        }
+      },
+      "GB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 297.6489439788152
+        }
+      },
+      "GB-NIR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 429.1422388841488
+        }
+      },
+      "GB-ORK": {
+        "unknown": {
+          "_comment": "Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf",
+          "source": "assumes 95% wind, 5% solar",
+          "value": 13
+        }
+      },
+      "GR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 501.15075317431626
+        }
+      },
+      "GT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 178.67099686684926
+        }
+      },
+      "HR": {
+        "unknown": {
+          "source": "2018 average estimated from https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf",
+          "value": 240
+        }
+      },
+      "HU": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 284.044315979312
+        }
+      },
+      "IE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 381.21842143892457
+        }
+      },
+      "IN": {
+        "unknown": {
+          "source": "assumes 43% solar PV and 57% wind",
+          "value": 26
+        }
+      },
+      "IN-AP": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 615.9045832043543
+        }
+      },
+      "IN-CT": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 817.7789768570119
+        }
+      },
+      "IN-DL": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 516.3746020945765
+        }
+      },
+      "IN-KA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 589.9391089569107
+        },
+        "unknown": {
+          "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
+          "source": "calculated 20% nuclear, 80% thermal (coal)",
+          "value": 658.4
+        }
+      },
+      "IN-PB": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 683.2474466710828
+        }
+      },
+      "IT": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 0.0
+        }
+      },
+      "IT-CNO": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 291.51281006259126
+        }
+      },
+      "IT-CSO": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 413.2039346675014
+        }
+      },
+      "IT-NO": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 384.7522874777953
+        }
+      },
+      "IT-SAR": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 560.8529275022686
+        }
+      },
+      "IT-SIC": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 229.58104974230267
+        }
+      },
+      "IT-SO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 413.76308999360253
+        }
+      },
+      "JP-CB": {
+        "unknown": {
+          "_comment": "Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018 Chubu Electric report",
+          "_url": [
+            "https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html",
+            "http://denki-yoho.chuden.jp/denki_yoho_content_data/areabalance_current_term.csv"
+          ],
+          "source": "assumes 26.3% coal, 2.2% oil, 62.5% gas, 9% hydro and wind",
+          "value": 538
+        }
+      },
+      "KR": {
+        "unknown": {
+          "_comment": "Source: Derived from 2016 annual average by IEA",
+          "_url": "https://www.iea.org/statistics/?country=KOREA&year=2016&category=Key%20indicators&indicator=ElecGenByFuel&mode=chart&dataTable=ELECTRICITYANDHEAT",
+          "source": "assumes 41.8% coal, 3.1% oil, 22.5% gas, 1.1% biofuels, 0.9% solar, 0.3% wind",
+          "value": 680
+        }
+      },
+      "LT": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 407.14470739259156
+        }
+      },
+      "LV": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 439.92440182955363
+        }
+      },
+      "MD": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 561.0445799682287
+        }
+      },
+      "ME": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 653.1426279273578
+        }
+      },
+      "MK": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 592.2185925876988
+        }
+      },
+      "MY-WM": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 628.4027273315369
+        }
+      },
+      "NI": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 310.27206722101863
+        }
+      },
+      "NL": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 462.73049119238584
+        }
+      },
+      "NO-NO1": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 34.68921708986348
+        }
+      },
+      "NO-NO2": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 38.029382343634545
+        }
+      },
+      "NO-NO3": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 34.770101548310805
+        }
+      },
+      "NO-NO4": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 52.84871316612463
+        }
+      },
+      "NO-NO5": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 39.54793629854753
+        }
+      },
+      "NZ-NZN": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 185.19400206781782
+        }
+      },
+      "NZ-NZS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 38.164465763002966
+        }
+      },
+      "PA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 102.19192466757119
+        }
+      },
+      "PE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 230.4833489303414
+        }
+      },
+      "PL": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 674.7698898846445
+        }
+      },
+      "PT": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 247.842699948549
+        }
+      },
+      "RO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 322.2371072531047
+        }
+      },
+      "RS": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 565.0389007015892
+        }
+      },
+      "RU": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  = 567 g/kWh; 2015 production",
+          "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat",
+          "source": "assumes 76% gas, 23% coal, 1% oil",
+          "value": 567
+        }
+      },
+      "RU-1": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 7.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 88.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 524 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural",
+          "source": "assumes 88% gas, 8% coal, <1% oil, 4% other",
+          "value": 524
+        }
+      },
+      "RU-2": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 86.7% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 8.3% * 490 g/kWh (gas) + 4.6% * 700 g/kWh (other)= 786 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone",
+          "source": "assumes 87% coal, 8% gas, <1% oil, 5% other",
+          "value": 786
+        }
+      },
+      "SE": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 46.02408724838775
+        },
+        "unknown": {
+          "source": "assumes 72% biomass, 28% conventional thermal",
+          "value": 362
+        }
+      },
+      "SG": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 494.8124797719261
+        }
+      },
+      "SI": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 246.34741810042195
+        }
+      },
+      "SK": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 297.06863698831893
+        }
+      },
+      "SV": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 191.73780595765206
+        }
+      },
+      "TR": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 466.47377297431035
+        }
+      },
+      "TW": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 569.0446419280086
+        }
+      },
+      "UA": {
+        "hydro discharge": {
+          "source": "2018 average by Tomorrow",
+          "value": 296.1811431388015
+        },
+        "unknown": {
+          "_comment": "estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in 2018",
+          "_url": "https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine",
+          "source": "renewable mix; assumes 50% solar, 50% wind",
+          "value": 28
+        }
+      },
+      "US-CA": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 238.49244489880175
+        }
+      },
+      "US-NEISO": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 273.7550391054897
+        }
+      },
+      "US-NY": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 200.76883108658194
+        }
+      },
+      "US-PJM": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 399.77646355214347
+        }
+      },
+      "US-SPP": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 448.61411758480546
+        }
+      },
+      "US-TX": {
+        "unknown": {
+          "_comment": "52.4% gas, 23.4% wind, 15.9% coal, 5.4% nuclear, 2.1% solar, 0.9% other (hydro, storage, and biomass)",
+          "_url": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf",
+          "source": "assumes: 70.2% gas, 21.3% coal, 7.2% nuclear, 1.2% other",
+          "value": 521.724
+        }
+      },
+      "UY": {
+        "hydro discharge": {
+          "source": "2017 average by Tomorrow",
+          "value": 53.102596044553806
+        }
+      }
+    }
+  },
+  "fallbackZoneMixes": {
+    "AR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 328.9797392163902,
+      "fossilFuelRatio": 0.6398060533820761,
+      "renewableRatio": 0.31018600111051287
+    },
+    "AT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 214.20843430228442,
+      "fossilFuelRatio": 0.2594436220805179,
+      "renewableRatio": 0.6680966840115881
+    },
+    "AUS-NSW": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 717.1680079230526,
+      "fossilFuelRatio": 0.8801142910103725,
+      "renewableRatio": 0.11988570898962742
+    },
+    "AUS-QLD": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 754.8224449758145,
+      "fossilFuelRatio": 0.9555842398557496,
+      "renewableRatio": 0.04441576014425043
+    },
+    "AUS-SA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 307.6679502518432,
+      "fossilFuelRatio": 0.5583884347634666,
+      "renewableRatio": 0.4416115652365334
+    },
+    "AUS-TAS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 86.41596082859343,
+      "fossilFuelRatio": 0.09830277545150018,
+      "renewableRatio": 0.9016972245484998
+    },
+    "AUS-VIC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 674.8153960720874,
+      "fossilFuelRatio": 0.8392905138688094,
+      "renewableRatio": 0.16070948613119054
+    },
+    "AUS-WA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 602.6766549802446,
+      "fossilFuelRatio": 0.9051407335275641,
+      "renewableRatio": 0.09485926647243594
+    },
+    "AW": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 541.547766949968,
+      "fossilFuelRatio": 0.8297579317287628,
+      "renewableRatio": 0.17024206827123714
+    },
+    "AX": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 57.17556004252282,
+      "fossilFuelRatio": 0.08221765085560113,
+      "renewableRatio": 0.5872501990075594
+    },
+    "AZ": {
+      "_source": "IEA yearly data for 2015",
+      "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015",
+      "carbonIntensity": 470,
+      "fossilFuelRatio": 0.92,
+      "renewableRatio": 0.07
+    },
+    "BA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 609.7497546218746,
+      "fossilFuelRatio": 0.7357755589144561,
+      "renewableRatio": 0.262322271950046
+    },
+    "BE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 232.5284647530045,
+      "fossilFuelRatio": 0.3853502564640507,
+      "renewableRatio": 0.21291844590226863
+    },
+    "BG": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 370.8044982293758,
+      "fossilFuelRatio": 0.47212493964936547,
+      "renewableRatio": 0.18509445391061924
+    },
+    "BO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 497.59958519299215,
+      "fossilFuelRatio": 0.7009498770391803,
+      "renewableRatio": 0.29905012296081956
+    },
+    "BR-CS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 106.1028494272087,
+      "fossilFuelRatio": 0.12232608100615364,
+      "renewableRatio": 0.8297643993198774
+    },
+    "BR-N": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 177.16088336777872,
+      "fossilFuelRatio": 0.2271478955517019,
+      "renewableRatio": 0.7718797991898486
+    },
+    "BR-NE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 174.50180738953955,
+      "fossilFuelRatio": 0.23027775212451598,
+      "renewableRatio": 0.7682900160337606
+    },
+    "BR-S": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 106.36304764009189,
+      "fossilFuelRatio": 0.12365123269151371,
+      "renewableRatio": 0.8664999599394116
+    },
+    "BY": {
+      "_source": "IEA yearly data for 2016",
+      "_url": "https://www.iea.org/statistics/?country=BELARUS&year=2016&category=Electricity&indicator=ElecGenByFuel",
+      "carbonIntensity": 488,
+      "fossilFuelRatio": 0.99,
+      "renewableRatio": 0.01
+    },
+    "CA-AB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 563.2814555481099,
+      "fossilFuelRatio": 0.9038695852487365,
+      "renewableRatio": 0.09613041475126333
+    },
+    "CA-BC": {
+      "_comment": "Average carbon intensity using 2016 mean production per fuel source (88% hydro, 9% biomass, 1% wind, 1% gas) and IPCC 2014 default lifecycle emission factor",
+      "_source": "List of Generating Stations in BC (Wikipedia) / IPCC 2014 Emissions Factors By Source",
+      "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
+      "carbonIntensity": 47,
+      "fossilFuelRatio": 0.03,
+      "renewableRatio": 0.97
+    },
+    "CA-NB": {
+      "_source": "Canada NEB yearly data for 2016",
+      "_url": "https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html",
+      "carbonIntensity": 300,
+      "fossilFuelRatio": 0.4,
+      "renewableRatio": 0.27
+    },
+    "CA-NS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 531.4750940946568,
+      "fossilFuelRatio": 0.7036774322347756,
+      "renewableRatio": 0.2782092759882649
+    },
+    "CA-ON": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 45.21034939608702,
+      "fossilFuelRatio": 0.06218982738518038,
+      "renewableRatio": 0.32982581430396574
+    },
+    "CA-PE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 177.81851400247436,
+      "fossilFuelRatio": 0.23127161412634234,
+      "renewableRatio": 0.5743149656622953
+    },
+    "CA-QC": {
+      "_comment": "see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7. not using NEB data here since the NEB resolution is 1% which makes a difference at these scales",
+      "_source": "StatCan CANSIM Table 127-0002 for 2011-2015",
+      "carbonIntensity": 30,
+      "fossilFuelRatio": 0.02,
+      "renewableRatio": 0.98
+    },
+    "CA-YT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 72.62686666327355,
+      "fossilFuelRatio": 0.07193323470898455,
+      "renewableRatio": 0.9280667652910155
+    },
+    "CL-SIC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 394.01636569017154,
+      "fossilFuelRatio": 0.5310868969852867,
+      "renewableRatio": 0.4689130859794539
+    },
+    "CL-SING": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 620.3386653823063,
+      "fossilFuelRatio": 0.8799360987239259,
+      "renewableRatio": 0.12006390127607419
+    },
+    "CR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 60.81389637479634,
+      "fossilFuelRatio": 0.054208487612862025,
+      "renewableRatio": 0.9457915123871378
+    },
+    "CY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 596.5133365399062,
+      "fossilFuelRatio": 0.9142686027822075,
+      "renewableRatio": 0.08573139721779267
+    },
+    "CZ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 451.2531526048611,
+      "fossilFuelRatio": 0.5575618054581803,
+      "renewableRatio": 0.11951235444570535
+    },
+    "DE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 380.3042859345496,
+      "fossilFuelRatio": 0.4501312578624131,
+      "renewableRatio": 0.3994712020316192
+    },
+    "DK-BHM": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 58.045301856463226,
+      "fossilFuelRatio": 0.041677335334373476,
+      "renewableRatio": 0.7588953743379281
+    },
+    "DK-DK1": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 217.5316826884701,
+      "fossilFuelRatio": 0.2593367081649686,
+      "renewableRatio": 0.6913355409664925
+    },
+    "DK-DK2": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 257.4311138921053,
+      "fossilFuelRatio": 0.2875142250461577,
+      "renewableRatio": 0.614784631379979
+    },
+    "DO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 508.94117517194655,
+      "fossilFuelRatio": 0.8553246273605778,
+      "renewableRatio": 0.1446753726394221
+    },
+    "EE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 1043.6920157267039,
+      "fossilFuelRatio": 0.7509478911132554,
+      "renewableRatio": 0.17830940551200644
+    },
+    "ES": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 234.32194336764283,
+      "fossilFuelRatio": 0.3479820504744457,
+      "renewableRatio": 0.4056082284207545
+    },
+    "ES-CN-FVLZ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 598.8928475716067,
+      "fossilFuelRatio": 0.9348085145688165,
+      "renewableRatio": 0.06519148543118343
+    },
+    "ES-CN-GC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 498.84794303262044,
+      "fossilFuelRatio": 0.8755444586475999,
+      "renewableRatio": 0.12445554135240018
+    },
+    "ES-CN-HI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 277.61730021707984,
+      "fossilFuelRatio": 0.41245433299125317,
+      "renewableRatio": 0.5875456670087469
+    },
+    "ES-CN-IG": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 650.0,
+      "fossilFuelRatio": 1.0,
+      "renewableRatio": 0.0
+    },
+    "ES-CN-LP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 578.5968004948504,
+      "fossilFuelRatio": 0.8874203248606065,
+      "renewableRatio": 0.11257967513939328
+    },
+    "ES-CN-TE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 514.2054323237697,
+      "fossilFuelRatio": 0.908386439175162,
+      "renewableRatio": 0.09161356082483797
+    },
+    "ES-IB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 596.4540580062777,
+      "fossilFuelRatio": 0.8474958496315581,
+      "renewableRatio": 0.1056416203936768
+    },
+    "ES-IB-FO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 492.1626307954872,
+      "fossilFuelRatio": 0.7566837538976846,
+      "renewableRatio": 0.15275330189980552
+    },
+    "ES-IB-IZ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 573.9729471441588,
+      "fossilFuelRatio": 0.8811029736509941,
+      "renewableRatio": 0.08855427855292357
+    },
+    "ES-IB-MA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 567.5070588763322,
+      "fossilFuelRatio": 0.7589942714859143,
+      "renewableRatio": 0.1833106654203436
+    },
+    "ES-IB-ME": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 581.8030758892916,
+      "fossilFuelRatio": 0.9724804624933556,
+      "renewableRatio": 0.027519537506644456
+    },
+    "FI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 211.54840693737913,
+      "fossilFuelRatio": 0.27129198170465396,
+      "renewableRatio": 0.3830056811314102
+    },
+    "FO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 347.03351967668914,
+      "fossilFuelRatio": 0.5197331196013838,
+      "renewableRatio": 0.4802668803986162
+    },
+    "FR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 55.99820113119911,
+      "fossilFuelRatio": 0.07059446081351785,
+      "renewableRatio": 0.20600689998013855
+    },
+    "GB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 269.7082764745711,
+      "fossilFuelRatio": 0.46625956896907966,
+      "renewableRatio": 0.2787833428020717
+    },
+    "GB-NIR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 394.7277103807488,
+      "fossilFuelRatio": 0.6765137323785518,
+      "renewableRatio": 0.2939729263229492
+    },
+    "GB-ORK": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 72.7861448532713,
+      "fossilFuelRatio": 0.10756969205616461,
+      "renewableRatio": 0.8479628863165546
+    },
+    "GE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 126.626639564712,
+      "fossilFuelRatio": 0.21516307365673942,
+      "renewableRatio": 0.7794204400037019
+    },
+    "GR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 467.47781096700345,
+      "fossilFuelRatio": 0.6821949809896755,
+      "renewableRatio": 0.29838199743886273
+    },
+    "GT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 307.9327733183142,
+      "fossilFuelRatio": 0.3029593355631178,
+      "renewableRatio": 0.6970406644368823
+    },
+    "HU": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 285.2180379725435,
+      "fossilFuelRatio": 0.3965714446434856,
+      "renewableRatio": 0.14372741447476173
+    },
+    "IE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 395.81760304466565,
+      "fossilFuelRatio": 0.6445222833334456,
+      "renewableRatio": 0.34787314103274364
+    },
+    "IN": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 686.6076040835995,
+      "fossilFuelRatio": 0.8944913341676258,
+      "renewableRatio": 0.07753650078281135
+    },
+    "IN-AP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 569.0398379421335,
+      "fossilFuelRatio": 0.7467555324617531,
+      "renewableRatio": 0.2532444675382469
+    },
+    "IN-CT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 812.3623876142727,
+      "fossilFuelRatio": 0.9904050095656691,
+      "renewableRatio": 0.009594990434330736
+    },
+    "IN-DL": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 525.2697786941588,
+      "fossilFuelRatio": 0.9470117209193013,
+      "renewableRatio": 0.052988279080698614
+    },
+    "IN-GJ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 612.1706534439026,
+      "fossilFuelRatio": 0.814555251671704,
+      "renewableRatio": 0.17941251270089506
+    },
+    "IN-KA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 486.4734250013323,
+      "fossilFuelRatio": 0.6325193600783726,
+      "renewableRatio": 0.36748063992162733
+    },
+    "IN-PB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 689.1312250543531,
+      "fossilFuelRatio": 0.8338651287566249,
+      "renewableRatio": 0.16613487124337512
+    },
+    "IN-UP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 666.3987348864503,
+      "fossilFuelRatio": 0.9501371896252349,
+      "renewableRatio": 0.049862810374765074
+    },
+    "IN-UT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 340.19599615538266,
+      "fossilFuelRatio": 0.469487052005119,
+      "renewableRatio": 0.530512947994881
+    },
+    "IQ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 531.9080595941796,
+      "fossilFuelRatio": 0.9814972648507905,
+      "renewableRatio": 0.01850273514920954
+    },
+    "IT-CNO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 300.90034666135455,
+      "fossilFuelRatio": 0.47269027651868994,
+      "renewableRatio": 0.5090518259716961
+    },
+    "IT-CSO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 411.5442289658405,
+      "fossilFuelRatio": 0.609981100848625,
+      "renewableRatio": 0.3881292872013588
+    },
+    "IT-NO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 380.53946569620507,
+      "fossilFuelRatio": 0.5727199182760702,
+      "renewableRatio": 0.34598764078648087
+    },
+    "IT-SAR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 587.9856129232622,
+      "fossilFuelRatio": 0.7608619522036791,
+      "renewableRatio": 0.23909668747437768
+    },
+    "IT-SIC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 340.53730402036354,
+      "fossilFuelRatio": 0.6209229198545693,
+      "renewableRatio": 0.37886443268540654
+    },
+    "IT-SO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 293.17560362472017,
+      "fossilFuelRatio": 0.4918660366672224,
+      "renewableRatio": 0.507360480294978
+    },
+    "JP-KY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 399.64675654757554,
+      "fossilFuelRatio": 0.5595814903184134,
+      "renewableRatio": 0.08044518813657552
+    },
+    "LT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 355.55541485513334,
+      "fossilFuelRatio": 0.5345338265104215,
+      "renewableRatio": 0.37890925618130483
+    },
+    "LV": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 539.1635319185683,
+      "fossilFuelRatio": 0.612534998878833,
+      "renewableRatio": 0.331750644679727
+    },
+    "MD": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 577.2256050051128,
+      "fossilFuelRatio": 0.8563023456504815,
+      "renewableRatio": 0.06150336997096011
+    },
+    "ME": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 487.3537481750162,
+      "fossilFuelRatio": 0.5823038971922041,
+      "renewableRatio": 0.411845633487917
+    },
+    "MK": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 512.190282185515,
+      "fossilFuelRatio": 0.6247406307644796,
+      "renewableRatio": 0.2849832243300992
+    },
+    "MX-BC": {
+      "source": "Tomorrow & Dra. Gabriela Muñoz Meléndez",
+      "comment": "Only for exports from Baja California to California, assumes 92.3% gas, 7.7% wind, see issue 1497",
+      "carbonIntensity": 453.0,
+      "fossilFuelRatio": 0.923,
+      "renewableRatio": 0.077
+    },
+    "MY-WM": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 658.8157075461157,
+      "fossilFuelRatio": 0.9628283643971478,
+      "renewableRatio": 0.037171635602851985
+    },
+    "NA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 465.68398999409914,
+      "fossilFuelRatio": 0.5587758228999277,
+      "renewableRatio": 0.4112678648978527
+    },
+    "NI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 269.63385667962143,
+      "fossilFuelRatio": 0.35349837676303403,
+      "renewableRatio": 0.646501623236966
+    },
+    "NKR": {
+      "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
+      "carbonIntensity": 24,
+      "fossilFuelRatio": 0.0,
+      "renewableRatio": 1.00
+    },
+    "NL": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 464.30818315890474,
+      "fossilFuelRatio": 0.7898541720372456,
+      "renewableRatio": 0.18535640418906163
+    },
+    "NO-NO1": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 38.75900081239583,
+      "fossilFuelRatio": 0.028252062928160734,
+      "renewableRatio": 0.9415760219786548
+    },
+    "NO-NO2": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 44.96227918984699,
+      "fossilFuelRatio": 0.031829960549943165,
+      "renewableRatio": 0.9640587690679285
+    },
+    "NO-NO3": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 46.9061030268397,
+      "fossilFuelRatio": 0.04557838939507633,
+      "renewableRatio": 0.9192724501541549
+    },
+    "NO-NO4": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 59.46592986018674,
+      "fossilFuelRatio": 0.07558234273582179,
+      "renewableRatio": 0.9140714277835847
+    },
+    "NO-NO5": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 41.22834152395145,
+      "fossilFuelRatio": 0.035534400990212905,
+      "renewableRatio": 0.9639096903675853
+    },
+    "NZ-NZN": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 167.49348950209566,
+      "fossilFuelRatio": 0.24770340329541743,
+      "renewableRatio": 0.7522965967045827
+    },
+    "NZ-NZS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 26.607660584923504,
+      "fossilFuelRatio": 0.004700130508725035,
+      "renewableRatio": 0.995299869491275
+    },
+    "PA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 169.6695055994893,
+      "fossilFuelRatio": 0.2164853807580489,
+      "renewableRatio": 0.7835146192419512
+    },
+    "PE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 172.9319140281393,
+      "fossilFuelRatio": 0.3170679530498887,
+      "renewableRatio": 0.6829320469501114
+    },
+    "PL": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 681.0285953565947,
+      "fossilFuelRatio": 0.8486483065445515,
+      "renewableRatio": 0.1319078032487511
+    },
+    "PT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 329.91534399123776,
+      "fossilFuelRatio": 0.47002657083101324,
+      "renewableRatio": 0.5134254580246812
+    },
+    "RO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 299.3661722489199,
+      "fossilFuelRatio": 0.41619768540663427,
+      "renewableRatio": 0.3946721034717733
+    },
+    "RS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 541.9988595391912,
+      "fossilFuelRatio": 0.6465749507589891,
+      "renewableRatio": 0.3185032395442018
+    },
+    "RU": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 361.8644472214582,
+      "fossilFuelRatio": 0.6267036945239409,
+      "renewableRatio": 0.17029418572164814
+    },
+    "RU-1": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 359.16063516393007,
+      "fossilFuelRatio": 0.6747390420546141,
+      "renewableRatio": 0.07030179928290431
+    },
+    "RU-2": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 355.894055166206,
+      "fossilFuelRatio": 0.43578137755325036,
+      "renewableRatio": 0.5639286239080853
+    },
+    "RU-KGD": {
+      "_comment": "see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants. About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.",
+      "_source": "Energy security in Kaliningrad and geopolitics (2/2014)",
+      "carbonIntensity": 480,
+      "fossilFuelRatio": 0.98,
+      "renewableRatio": 0.02
+    },
+    "SE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 51.68076265735904,
+      "fossilFuelRatio": 0.08586140400358186,
+      "renewableRatio": 0.5112225272034376
+    },
+    "SG": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 494.1040672198255,
+      "fossilFuelRatio": 0.9985344407757164,
+      "renewableRatio": 0.001465559224283607
+    },
+    "SI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 245.31399103723933,
+      "fossilFuelRatio": 0.287545638005491,
+      "renewableRatio": 0.40815017354692956
+    },
+    "SK": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 300.2005528963091,
+      "fossilFuelRatio": 0.3835513251532343,
+      "renewableRatio": 0.15762935830554856
+    },
+    "SV": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 214.86372596236575,
+      "fossilFuelRatio": 0.24168005931506817,
+      "renewableRatio": 0.7583199406849317
+    },
+    "TR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 478.2741948183784,
+      "fossilFuelRatio": 0.6947662696486513,
+      "renewableRatio": 0.30140784839452456
+    },
+    "TW": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 560.9428172291457,
+      "fossilFuelRatio": 0.837155047842259,
+      "renewableRatio": 0.04736263670334542
+    },
+    "UA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 303.0392307748414,
+      "fossilFuelRatio": 0.3814163310732858,
+      "renewableRatio": 0.0876421326839146
+    },
+    "US": {
+      "_comment": "Only for imports to California! Renewable ratio assumed as average 25% hydro with some wind/solar; low-carbon assumed as with average 20% nuclear; from information in Github issue we assume it is either mostly from source with hydro or from source with nuclear but not bot",
+      "_source": "https://github.com/tmrowco/electricitymap/issues/1497",
+      "carbonIntensity": 325,
+      "fossilFuelRatio": 0.7,
+      "renewableRatio": 0.3
+    },
+    "US-BPA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 95.3656636612737,
+      "fossilFuelRatio": 0.10854054641844801,
+      "renewableRatio": 0.789467343743674
+    },
+    "US-CA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 250.73337617853463,
+      "fossilFuelRatio": 0.4888871173733636,
+      "renewableRatio": 0.4283732563775541
+    },
+    "US-IPC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 255.14603834761132,
+      "fossilFuelRatio": 0.33529049955385903,
+      "renewableRatio": 0.6641852839952217
+    },
+    "US-MISO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 535.6922410674405,
+      "fossilFuelRatio": 0.74455872630903,
+      "renewableRatio": 0.08468579493519039
+    },
+    "US-NEISO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 240.00486210378685,
+      "fossilFuelRatio": 0.4287833719978936,
+      "renewableRatio": 0.27108235631973027
+    },
+    "US-NY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 212.54789978382524,
+      "fossilFuelRatio": 0.39086705879858774,
+      "renewableRatio": 0.29010121100799435
+    },
+    "US-PJM": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 396.93403342452757,
+      "fossilFuelRatio": 0.6022174497011229,
+      "renewableRatio": 0.050661533046279475
+    },
+    "US-SPP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 452.6045858184705,
+      "fossilFuelRatio": 0.6388404549466622,
+      "renewableRatio": 0.3055032413098589
+    },
+    "US-SVERI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 462.006385109754,
+      "fossilFuelRatio": 0.6849134296193662,
+      "renewableRatio": 0.05817284928886304
+    },
+    "UY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 62.403881755952106,
+      "fossilFuelRatio": 0.04560866602212158,
+      "renewableRatio": 0.9531887978782986
+    },
+    "ZA": {
+      "_source": "IEA yearly data for 2015",
+      "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=SOUTHAFRIC&product=electricityandheat&year=2015",
+      "carbonIntensity": 750,
+      "fossilFuelRatio": 0.92,
+      "renewableRatio": 0.03
+    },
+    "ZM": {
+      "_source": "IEA yearly data for 2015",
+      "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=ZAMBIA&product=electricityandheat&year=2015",
+      "carbonIntensity": 50,
+      "fossilFuelRatio": 0.03,
+      "renewableRatio": 0.97
+    }
+  }
+}

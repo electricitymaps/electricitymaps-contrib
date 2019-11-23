@@ -3,28 +3,19 @@
 import arrow
 from bs4 import BeautifulSoup
 from collections import defaultdict
+import logging
 from math import isnan
 import numpy as np
 from operator import itemgetter
 import pandas as pd
 import requests
 
-try:
-    unicode         # Python 2
-except NameError:
-    unicode = str   # Python 3
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
-
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
-# Solar generation has no data available currently but multiple projects are planned/under construction.
+# Solar generation now has some data available but multiple projects are planned/under construction.
 
-url = 'http://184.168.74.190:81/ReportesGraficos/ReportePostdespacho.aspx'
+url = 'http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx'
 
 total_mapping = {
                 u'Total T\xe9rmico': 'Thermal',
@@ -50,6 +41,7 @@ thermal_plants = {
                  u'ESTRELLA DEL MAR 2 CGN': 'gas',
                  u'ESTRELLA DEL MAR 2 SFO': 'oil',
                  u'ESTRELLA DEL MAR 2 SGN': 'gas',
+                 u'GENERACI\xD3N DE EMERGENCIA AES ANDR\xC9S': 'gas',
                  u'HAINA TG': 'oil',
                  u'INCA KM22': 'oil',
                  u'ITABO 1': 'coal',
@@ -67,11 +59,13 @@ thermal_plants = {
                  u'PALENQUE': 'oil',
                  u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
                  u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
+                 u'PARQUE FOTOVOLTAICO MONTECRISTI SOLAR1': 'solar',
                  u'PIMENTEL 1': 'oil',
                  u'PIMENTEL 2': 'oil',
                  u'PIMENTEL 3': 'oil',
                  u'QUISQUEYA 1': 'gas',
                  u'QUISQUEYA 2': 'gas',
+                 u'QUISQUEYA 1 SAN PEDRO': 'oil',
                  u'RIO SAN JUAN': 'oil',
                  u'SAN FELIPE': 'oil',
                  u'SAN FELIPE CC': 'gas',
@@ -86,7 +80,7 @@ thermal_plants = {
 def get_data(session=None):
     """
     Makes a request to source url.
-    Finds main table and creates a list of all table elements in unicode string format.
+    Finds main table and creates a list of all table elements in string format.
     Returns a list.
     """
 
@@ -100,7 +94,7 @@ def get_data(session=None):
 
     for row in rows:
         num = row.getText().strip()
-        data.append(unicode(num))
+        data.append(str(num))
 
     return data
 
@@ -123,7 +117,7 @@ def chunker(big_lst):
     Returns a dictionary.
     """
 
-    chunks = [big_lst[x:x + 27] for x in xrange(0, len(big_lst), 27)]
+    chunks = [big_lst[x:x + 27] for x in range(0, len(big_lst), 27)]
 
     # Remove the list if it contains no data.
     for chunk in chunks:
@@ -279,7 +273,7 @@ def merge_production(thermal, total):
     return final
 
 
-def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
@@ -329,7 +323,7 @@ def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=N
               'hydro': hour.get('hydro', 0.0),
               'nuclear': 0.0,
               'oil': hour.get('oil', 0.0),
-              'solar': None,
+              'solar': hour.get('solar', 0.0),
               'wind': hour.get('wind', 0.0),
               'geothermal': 0.0,
               'unknown': hour.get('unknown', 0.0)

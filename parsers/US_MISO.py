@@ -2,6 +2,7 @@
 
 """Parser for the MISO area of the United States."""
 
+import logging
 import requests
 from dateutil import parser, tz
 
@@ -14,6 +15,7 @@ mapping = {'Coal': 'coal',
            'Wind': 'wind',
            'Other': 'unknown'}
 
+wind_forecast_url = 'https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json'
 
 # To quote the MISO data source;
 # "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
@@ -30,15 +32,6 @@ def get_json_data(logger, session=None):
     json_data = s.get(mix_url).json()
 
     return json_data
-
-
-def add_default_tz(timestamp):
-    """Adds EST timezone to datetime object if tz = None."""
-
-    EST = tz.gettz('America/New_York')
-    modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or EST)
-
-    return modified_timestamp
 
 
 def data_processer(json_data, logger):
@@ -70,18 +63,20 @@ def data_processer(json_data, logger):
         raise ValueError('Timezone reported for US-MISO has changed.')
 
     time_data = " ".join(useful_time_parts)
-    dt_naive = parser.parse(time_data)
-    dt = add_default_tz(dt_naive)
+    tzinfos = {"EST": tz.gettz('America/New_York')}
+    dt = parser.parse(time_data, tzinfos=tzinfos)
 
     return dt, production
 
 
-def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
     zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional)      -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
     Return:
     A dictionary in the form:
     {
@@ -105,6 +100,7 @@ def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, log
       'source': 'mysource.com'
     }
     """
+
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -122,6 +118,48 @@ def fetch_production(zone_key='US-MISO', session=None, target_datetime=None, log
     return data
 
 
+def fetch_wind_forecast(zone_key='US-MISO', session=None, target_datetime=None, logger=None):
+    """
+    Requests the day ahead wind forecast (in MW) of a given zone
+    Arguments:
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
+    session (optional)  -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
+    Return:
+    A list of dictionaries in the form:
+    {
+    'source': 'misoenergy.org',
+    'production': {'wind': 12932.0},
+    'datetime': '2019-01-01T00:00:00Z',
+    'zoneKey': 'US-MISO'
+    }
+    """
+
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    s = session or requests.Session()
+    req = s.get(wind_forecast_url)
+    raw_json = req.json()
+    raw_data = raw_json['Forecast']
+
+    data = []
+    for item in raw_data:
+        dt = parser.parse(item['DateTimeEST']).replace(tzinfo=tz.gettz('America/New_York'))
+        value = float(item['Value'])
+
+        datapoint = {'datetime': dt,
+                     'production': {'wind': value},
+                     'source': 'misoenergy.org',
+                     'zoneKey': zone_key}
+        data.append(datapoint)
+
+    return data
+
+
 if __name__ == '__main__':
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_wind_forecast() ->')
+    print(fetch_wind_forecast())

@@ -21,12 +21,12 @@ var translation = require('../helpers/translation');
 // This means drawing them once at `.data()` or at construction, and not
 // during `render()`
 
-function CountryTable(selector, modeColor, modeOrder) {
+export default function CountryTable(selector, modeColor, modeOrder) {
     var that = this;
 
     this.root = d3.select(selector);
 
-    this.wrapperNoDataOverlay = new NoDataOverlay('.country-panel-wrap');
+    this.wrapperNoDataOverlay = new NoDataOverlay('.country-table-container');
     this.container = this.root.append('svg').attr('class', 'country-table');
     
     // Create containers
@@ -74,7 +74,8 @@ function CountryTable(selector, modeColor, modeOrder) {
     gNewRow.append('text')
         .text(function(d) { return translation.translate(d.mode) || d.mode })
         .style('text-anchor', 'end') // right align
-        .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')');
+        .attr('transform', 'translate(' + (this.LABEL_MAX_WIDTH - 1.5 * this.PADDING_Y) + ', ' + this.TEXT_ADJUST_Y + ')')
+        .attr('class', 'name');
     gNewRow.append('rect')
         .attr('class', 'capacity')
         .attr('height', this.ROW_HEIGHT)
@@ -92,17 +93,16 @@ function CountryTable(selector, modeColor, modeOrder) {
         .style('fill', 'darkgray')
         .attr('transform', 'translate(1, ' + this.TEXT_ADJUST_Y + ')')
         .style('display', 'none');
-    
 }
 
 CountryTable.prototype.render = function(ignoreTransitions) {
     var that = this;
 
-    if (this.root.node().getBoundingClientRect.width === 0){
+    if (this.root.node().getBoundingClientRect.width === 0) {
         return;
     }
 
-    if (!this._data) {
+    if (!this._data || !this._data.countryCode) {
         return;
     }
  
@@ -121,9 +121,12 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     }
 
     const width = this.root.node().getBoundingClientRect().width;
+
+    if (width <= 0) {
+      return;
+    }
     
     if (!this._exchangeData) { return; }
-
     
     // Update scale
     this.barMaxWidth = width - this.LABEL_MAX_WIDTH - this.PADDING_X;
@@ -177,7 +180,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
             })
             .on('end', function () { d3.select(this).style('display', 'block'); });
     // Add event handlers
-    selection.selectAll('rect.capacity,rect.production')
+    selection.selectAll('text.name,rect.capacity,rect.production')
         .on('mouseover', function (d) {
             if (that.productionMouseOverHandler)
                 that.productionMouseOverHandler.call(this, d.mode, that._data, that._displayByEmissions);
@@ -234,9 +237,15 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     // Construct exchanges
     function getExchangeCo2eq(d) {
-        return d.value > 0 ? 
-            (that._data.exchangeCo2Intensities !== undefined && that._data.exchangeCo2Intensities[d.key] !== undefined) ? that._data.exchangeCo2Intensities[d.key] : undefined
-            : (that._data.co2intensity !== undefined) ? that._data.co2intensity : undefined;
+      const co2intensity = that._electricityMixMode === 'consumption'
+        ? that._data.co2intensity
+        : that._data.co2intensityProduction;
+      const exchangeCo2Intensities = that._data.exchangeCo2Intensities
+        return d.value > 0
+            ? (exchangeCo2Intensities !== undefined && exchangeCo2Intensities[d.key] !== undefined)
+              ? exchangeCo2Intensities[d.key]
+              : undefined
+            : (co2intensity !== undefined) ? co2intensity : undefined;
     }
     var selection = this.exchangeRoot.selectAll('.row')
         .data(this._exchangeData);
@@ -346,7 +355,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         })
 
     // Add event handlers
-    gNewRow.merge(selection).selectAll('rect.capacity,rect.exchange')
+    gNewRow.merge(selection).selectAll('text.name,rect.capacity,rect.exchange')
         .on('mouseover', function (d) {
             if (that.exchangeMouseOverHandler)
                 that.exchangeMouseOverHandler.call(this, d.key, that._data, that._displayByEmissions);
@@ -362,17 +371,11 @@ CountryTable.prototype.render = function(ignoreTransitions) {
 
     gNewRow.merge(selection).select('text')
         .text(function(d) { return d.key; });
+    const co2intensity = this._electricityMixMode === 'consumption'
+      ? this._data.co2intensity
+      : this._data.co2intensityProduction;
     d3.select('.country-emission-intensity')
-        .text(Math.round(this._data.co2intensity) || '?');
-    var hasFossilFuelData = this._data.fossilFuelRatio != null;
-    var fossilFuelPercent = this._data.fossilFuelRatio * 100;
-    d3.selectAll('.left-panel-zone-details .lowcarbon-percentage')
-        .text(hasFossilFuelData ? Math.round(100 - fossilFuelPercent) : '?');
-
-    var hasRenewableData = this._data.renewableRatio != null;
-    var renewablePercent = this._data.renewableRatio * 100;
-    d3.selectAll('.left-panel-zone-details .renewable-percentage')
-        .text(hasRenewableData ? Math.round(renewablePercent) : '?');
+        .text(Math.round(co2intensity) || '?');
 
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
@@ -385,8 +388,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
         .style('background-color',
-            this._data.co2intensity ?
-                that.co2color()(this._data.co2intensity) : 'gray');
+            co2intensity ?
+                that.co2color()(co2intensity) : 'gray');
     d3.select('.country-data-source')
         .text(this._data.source || '?');
 
@@ -443,19 +446,21 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
 }
 
 CountryTable.prototype.resize = function() {
-    this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
-    this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
+  this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
+  this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
 
-    this.yProduction = this.X_AXIS_HEIGHT + this.PADDING_Y;
-    this.productionRoot
-        .attr('transform', 'translate(0,' + this.yProduction + ')');
-    this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;
-    this.exchangeRoot
-        .attr('transform', 'translate(0,' + this.yExchange + ')');
+  this.yProduction = this.X_AXIS_HEIGHT + this.PADDING_Y;
+  this.productionRoot
+    .attr('transform', 'translate(0,' + this.yProduction + ')');
+  this.yExchange = this.yProduction + this.productionHeight + this.ROW_HEIGHT + this.PADDING_Y;
+  this.exchangeRoot
+    .attr('transform', 'translate(0,' + this.yExchange + ')');
 
-    this.container
-        .attr('height', this.yExchange + this.exchangeHeight);
-}
+  this.container
+    .attr('height', this.yExchange + this.exchangeHeight);
+
+  return this;
+};
 
 CountryTable.prototype.data = function(arg) {
     var that = this;
@@ -463,24 +468,28 @@ CountryTable.prototype.data = function(arg) {
 
     this._data = arg;
 
-    if (!this._data) { return this }
+    if (!this._data) { return this; }
 
     this.hasProductionData = this._data.production !== undefined && Object.keys(this._data.production).length > 0;
     this.isMissingParser = this._data.hasParser === undefined || !this._data.hasParser;
-    
-    if (this._exchangeKeys) {
-        this._exchangeData = this._exchangeKeys
-            .map(function(k) {
-                return { key: k, value: (that._data.exchange || {})[k] }
-            })
-            .sort(function(x, y) {
-                return d3.ascending(x.key, y.key);
-            });
+
+    if (this._electricityMixMode === 'consumption') {
+      if (this._exchangeKeys) {
+          this._exchangeData = this._exchangeKeys
+              .map(function(k) {
+                  return { key: k, value: (that._data.exchange || {})[k] }
+              })
+              .sort(function(x, y) {
+                  return d3.ascending(x.key, y.key);
+              });
+      } else {
+          this._exchangeData = d3.entries(this._data.exchange)
+              .sort(function(x, y) {
+                  return d3.ascending(x.key, y.key);
+              });
+      }
     } else {
-        this._exchangeData = d3.entries(this._data.exchange)
-            .sort(function(x, y) {
-                return d3.ascending(x.key, y.key);
-            });
+      this._exchangeData = [];
     }
     if (!this.hasProductionData){
         // Remove exchange data values if no production is present, as table is greyed out
@@ -536,12 +545,16 @@ CountryTable.prototype.data = function(arg) {
                 this._data.maxImportCapacity || 0)
         ]);
     // co2 scale in tCO2eq/min
-    var maxCO2eqExport = d3.max(this._exchangeData, function (d) {
-        return d.value >= 0 ? 0 : (that._data.co2intensity / 1e3 * -d.value / 60.0 || 0);
+    const maxCO2eqExport = d3.max(this._exchangeData, (d) => {
+      const co2intensity = this._electricityMixMode === 'consumption'
+        ? this.co2intensity
+        : this.co2intensityProduction;
+      return d.value >= 0 ? 0 : (co2intensity / 1e3 * -d.value / 60.0 || 0);
     });
-    var maxCO2eqImport = d3.max(this._exchangeData, function (d) {
-        if (!that._data.exchangeCo2Intensities) return 0;
-        return d.value <= 0 ? 0 : that._data.exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
+    const maxCO2eqImport = d3.max(this._exchangeData, (d) => {
+      const exchangeCo2Intensities = this.exchangeCo2Intensities;
+      if (!exchangeCo2Intensities) return 0;
+      return d.value <= 0 ? 0 : exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
     });
     this.co2Scale // in tCO2eq/min
         .domain(this._co2ScaleDomain || [
@@ -606,8 +619,23 @@ CountryTable.prototype.exchangeKeys = function(arg) {
     return this;
 };
 
+CountryTable.prototype.electricityMixMode = function(arg) {
+  if (!arguments.length) return this._electricityMixMode;
+  else this._electricityMixMode = arg;
+  return this;
+};
+
 CountryTable.prototype.showNoParserMessageIf = function(condition) {
-  const allChildrenSelector = 'p,.country-table-header-inner,.country-show-emissions-wrap,.country-panel-wrap,.country-history';
+  const allChildrenSelector = `
+    p,
+    hr,
+    .country-table-header-inner,
+    .country-show-emissions-wrap,
+    .country-panel-wrap .bysource,
+    .country-table-container,
+    .country-history,
+    .zone-time-slider
+    `;
     d3.selectAll(allChildrenSelector).classed('all-screens-hidden', condition);
     d3.select('.zone-details-no-parser-message').classed('visible', condition);
 }
@@ -616,5 +644,3 @@ CountryTable.prototype.showNoDataMessageIf = function(condition, isRealtimeData)
     this.wrapperNoDataOverlay.showIfElseHide(condition);
     this.wrapperNoDataOverlay.text(translation.translate(isRealtimeData? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp'));
 }
-
-module.exports = CountryTable;

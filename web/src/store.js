@@ -1,19 +1,16 @@
-const redux = require('redux');
-const reduxLogger = require('redux-logger').logger;
-const reducer = require('./reducers');
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './reducers';
 
-const isProduction = window.location.href.indexOf('electricitymap') !== -1;
-
-const store = isProduction ?
-  redux.createStore(
+const store = process.env.NODE_ENV === 'production' ?
+  createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
   :
-  redux.createStore(
+  createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    redux.applyMiddleware(reduxLogger),
+    applyMiddleware(require('redux-logger').logger),
   );
 
 // Utility to react to store changes
@@ -48,9 +45,10 @@ const dispatchApplication = (key, value) => {
   });
 };
 
-module.exports = {
+export {
   dispatch,
   dispatchApplication,
   getState,
   observe,
+  store,
 };

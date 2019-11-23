@@ -1,3 +1,5 @@
+# This library contains validation functions applied to all parsers by the feeder
+# This is a higher level validation than validation.py
 import datetime
 import warnings
 
@@ -65,7 +67,7 @@ def validate_production(obj, zone_key):
         raise ValidationError(
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key)
-    if 'storage' in obj:
+    if obj.get('storage'):
         if not isinstance(obj['storage'], dict):
             raise ValidationError('storage value must be a dict, was '
                                   '{}'.format(obj['storage']))

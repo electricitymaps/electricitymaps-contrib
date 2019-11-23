@@ -36,6 +36,10 @@ export default class ZoneList {
     this.clickHandler = clickHandler;
   }
 
+  setElectricityMixMode(arg) {
+    this.electricityMixMode = arg;
+  }
+
   filterZonesByQuery(query) {
     this._deHighlightSelectedItem();
     d3.select(this.selectorId).selectAll('a').each((zone, i, nodes) => {
@@ -50,6 +54,10 @@ export default class ZoneList {
   }
 
   clickSelectedItem() {
+    // Nothing to do if no item is selected
+    if (!this.visibleListItems[this.selectedItemIndex]) {
+      return;
+    }
     this.visibleListItems[this.selectedItemIndex].click();
   }
 
@@ -130,9 +138,16 @@ export default class ZoneList {
         .indexOf(query.toLowerCase()) !== -1);
   }
 
+  _getCo2IntensityAccessor() {
+    return d => (this.electricityMixMode === 'consumption'
+      ? d.co2intensity
+      : d.co2intensityProduction);
+  }
+
   _sortAndValidateZones(zones) {
+    const accessor = this._getCo2IntensityAccessor();
     return zones
-      .filter(d => d.co2intensity)
+      .filter(accessor)
       .sort((x, y) => {
         if (!x.co2intensity && !x.countryCode) {
           return d3.ascending(
@@ -141,8 +156,8 @@ export default class ZoneList {
           );
         }
         return d3.ascending(
-          x.co2intensity || Infinity,
-          y.co2intensity || Infinity,
+          accessor(x) || Infinity,
+          accessor(y) || Infinity,
         );
       });
   }
@@ -202,8 +217,9 @@ export default class ZoneList {
   }
 
   _setItemCO2IntensityTag() {
+    const accessor = this._getCo2IntensityAccessor();
     this.selector.select('.co2-intensity-tag')
-      .style('background-color', zone => (zone.co2intensity && this.co2ColorScale ? this.co2ColorScale(zone.co2intensity) : 'gray'));
+      .style('background-color', zone => (accessor(zone) && this.co2ColorScale ? this.co2ColorScale(accessor(zone)) : 'gray'));
   }
 
   _setItemClickHandlers() {

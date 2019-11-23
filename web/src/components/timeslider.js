@@ -31,7 +31,9 @@ export default class TimeSlider {
 
     const onChangeAndInput = () => {
       const selectedIndex = parseInt(this.slider.property('value'), 10);
-      this._onChange(selectedIndex);
+      if (this._onChange) {
+        this._onChange(selectedIndex);
+      }
     };
     this.slider.on('input', onChangeAndInput);
     this.slider.on('change', onChangeAndInput);

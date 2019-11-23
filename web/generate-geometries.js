@@ -15,8 +15,7 @@ function readNDJSON(path) {
 
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
-const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
-  .concat([
+const thirdpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     require('./third_party_maps/DK-DK2-without-BHM.json'),
     require('./third_party_maps/NO-NO1.json'),
     require('./third_party_maps/NO-NO2.json'),
@@ -27,15 +26,32 @@ const thirpartyGeos = readNDJSON('./build/tmp_thirdparty.json')
     require('./third_party_maps/SE-SE2.json'),
     require('./third_party_maps/SE-SE3.json'),
     require('./third_party_maps/SE-SE4.json'),
+    require('./third_party_maps/sct-no-islands.json'),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-CB.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-HR.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-KN.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-KY.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-ON.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/JP-TK.geojson')),
-  ]);
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-FO.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-IZ.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-MA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/ES-IB-ME.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS-KI.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-HA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-MA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-KA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-KH.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-LA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-MO.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-NI.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/US-HI-OA.geojson')),
+  ]).concat(
+    JSON.parse(fs.readFileSync('./third_party_maps/US-FL.geojson')).features,
+  );
 
-const allGeos = countryGeos.concat(stateGeos, thirpartyGeos);
+const allGeos = countryGeos.concat(stateGeos, thirdpartyGeos);
 
 function geomerge() {
   // Convert both into multipolygon
@@ -68,28 +84,36 @@ function hascMatch(properties, hasc) {
   );
 }
 
+function equals(obj, prop, val) {
+  return obj && prop in obj && obj[prop] === val;
+}
+
 function getCountry(countryId) {
-  return geomerge(...allGeos.filter(d => d.id === countryId));
+  return geomerge(...allGeos.filter(d => equals(d, 'id', countryId)));
 }
 function getByPropertiesId(zoneId) {
-  return geomerge(...allGeos.filter(d => d.properties.id === zoneId));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'id', zoneId)));
 }
 function getSubUnit(subid) {
-  return geomerge(...allGeos.filter(d => d.properties.subid === subid));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'subid', subid)));
 }
 function getState(countryId, code_hasc, use_maybe=false) {
   return geomerge(...allGeos.filter(d =>
-    d.id === countryId && (use_maybe && hascMatch(d.properties, code_hasc) || d.properties.code_hasc === code_hasc)));
+    equals(d, 'id', countryId) && 'code_hasc' in d.properties &&
+    (use_maybe && hascMatch(d.properties, code_hasc) || d.properties.code_hasc === code_hasc)));
 }
 function getStateByFips(countryId, fips) {
   return geomerge(...allGeos.filter(d =>
-    d.id === countryId && d.properties.fips === fips));
+    equals(d, 'id', countryId) && equals(d.properties, 'fips', fips)));
 }
 function getStateByAdm1(adm1_code) {
-  return geomerge(...allGeos.filter(d => d.properties.adm1_code === adm1_code));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'adm1_code', adm1_code)));
 }
 function getByRegionCod(region_cod) {
-  return geomerge(...allGeos.filter(d => d.properties.region_cod === region_cod));
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'region_cod', region_cod)));
+}
+function getCounty(county_name) {
+  return geomerge(...allGeos.filter(d => equals(d.properties, 'COUNTYNAME', county_name)));
 }
 function getStates(countryId, code_hascs, use_maybe) {
   return geomerge(...code_hascs.map(d => getState(countryId, d, use_maybe)));
@@ -102,6 +126,9 @@ function getCountries(countryIds) {
 }
 function getSubUnits(ids) {
   return geomerge(...ids.map(getSubUnit));
+}
+function getCounties(names) {
+  return geomerge(...names.map(getCounty));
 }
 
 const zoneDefinitions = [
@@ -131,12 +158,14 @@ const zoneDefinitions = [
   // { zoneName: 'AUS-ACT', countryId: 'AUS', stateId: 'AU.AC', type: 'state' },
   { zoneName: 'AUS-QLD', countryId: 'AUS', stateId: 'AU.QL', type: 'state' },
   { zoneName: 'AUS-SA', countryId: 'AUS', stateId: 'AU.SA', type: 'state' },
-  { zoneName: 'AUS-TAS', countryId: 'AUS', stateId: 'AU.TS', type: 'state' },
+  // { zoneName: 'AUS-TAS', countryId: 'AUS', stateId: 'AU.TS', type: 'state' },
+  { zoneName: 'AUS-TAS', type: 'subZone', id: 'AUS-TAS'},
+  { zoneName: 'AUS-TAS-KI', type: 'subZone', id: 'AUS-TAS-KI'},
   { zoneName: 'AUS-VIC', countryId: 'AUS', stateId: 'AU.VI', type: 'state' },
   { zoneName: 'AUS-WA', countryId: 'AUS', stateId: 'AU.WA', type: 'state' },
   { zoneName: 'AW', type: 'country', id: 'ABW', moreDetails: true},
   { zoneName: 'AX', type: 'country', id: 'ALA'},
-  { zoneName: 'AZ', type: 'country', id: 'AZE'},
+  { zoneName: 'AZ', type: 'administrations', administrations: ['AZE-1684', 'AZE-1676', 'AZE-1687', 'AZE-1678', 'AZE-1677', 'AZE-2419', 'AZE-2415', 'AZE-5567', 'AZE-2420', 'AZE-2423', 'AZE-2421', 'AZE-2418', 'AZE-1723', 'AZE-1731', 'AZE-1730', 'AZE-1729', 'AZE-1725', 'AZE-1727', 'AZE-1726', 'AZE-1724', 'AZE-1686', 'AZE-1704', 'AZE-1698', 'AZE-1700', 'AZE-1720', 'AZE-1709', 'AZE-1702', 'AZE-1697', 'AZE-1695', 'AZE-1701', 'AZE-1712', 'AZE-1719', 'AZE-1717', 'AZE-1689', 'AZE-1715', 'AZE-1710', 'AZE-1707', 'AZE-1708', 'AZE-5562', 'AZE-2422', 'AZE-1681', 'AZE-1694', 'AZE-1690', 'AZE-1680', 'AZE-1706', 'AZE-1721', 'AZE-1714', 'AZE-5563', 'AZE-1713', 'AZE-1696', 'AZE-1685', 'AZE-1693', 'AZE-1716', 'AZE-1728', 'AZE-1718', 'AZE-1711', 'AZE-1705', 'AZE-1688', 'AZE-1679', 'AZE-1683', 'AZE-1703', 'AZE-1692', 'AZE-1722', 'AZE-5566', 'AZE-5561', 'AZE-5564']},
   //{ zoneName: 'BA', type: 'country', id: 'BIH'},
   { zoneName: 'BA', type: 'administrations', administrations: [
       'BIH-4801', 'BIH-4802', 'BIH-2225', 'BIH-2224', 'BIH-2226', 'BIH-2227', 'BIH-2228', 'BIH-4807',
@@ -185,9 +214,9 @@ const zoneDefinitions = [
   { zoneName: 'CG', type: 'country', id: 'COG'},
   { zoneName: 'CH', type: 'country', id: 'CHE'},
   { zoneName: 'CI', type: 'country', id: 'CIV'},
-  { zoneName: 'CL-SING', type: 'states', countryId: 'CHL', states: ['CL.AP', 'CL.TA', 'CL.AN']},
+  //{ zoneName: 'CL-SING', type: 'states', countryId: 'CHL', states: ['CL.AP', 'CL.TA', 'CL.AN']},
   //{ zoneName: 'CL', type: 'country', id: 'CHL'},
-  { zoneName: 'CL-SIC', type: 'administrations', administrations: ['CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
+  { zoneName: 'CL-SING-SIC', type: 'administrations', administrations: ['CHL-2693', 'CHL-2694', 'CHL-2695', 'CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
   { zoneName: 'CL-SEM', countryId: 'CHL', stateId: 'CL.MA', type: 'state' },
   { zoneName: 'CL-SEA', countryId: 'CHL', stateId: 'CL.AI', type: 'state' },
   { zoneName: 'CM', type: 'country', id: 'CMR'},
@@ -223,7 +252,11 @@ const zoneDefinitions = [
   { zoneName: 'ES-CN-TE', type: 'country', id: 'Tenerife'},
   { zoneName: 'ES-CN-GC', type: 'country', id: 'Gran Canaria'},
   { zoneName: 'ES-CN-FVLZ', type: 'countries', countries: ['Fuerteventura', 'Lanzarote']},
-  { zoneName: 'ES-IB', type: 'subunits', subunits: ['ESI']}, //Spain Balearic islands
+  // { zoneName: 'ES-IB', type: 'subunits', subunits: ['ESI']}, //Spain Balearic islands
+  { zoneName: 'ES-IB-FO', type: 'subZone', id: 'ES-IB-FO', moreDetails: true},
+  { zoneName: 'ES-IB-IZ', type: 'subZone', id: 'ES-IB-IZ'},
+  { zoneName: 'ES-IB-MA', type: 'subZone', id: 'ES-IB-MA'},
+  { zoneName: 'ES-IB-ME', type: 'subZone', id: 'ES-IB-ME'},
   { zoneName: 'ET', type: 'country', id: 'ETH'},
   { zoneName: 'FI', type: 'country', id: 'FIN'},
   { zoneName: 'FJ', type: 'country', id: 'FJI'},
@@ -234,8 +267,11 @@ const zoneDefinitions = [
   { zoneName: 'FR', type: 'subunits', subunits: ['FXX']},
   { zoneName: 'FR-COR', type: 'subunits', subunits: ['FXC']},
   { zoneName: 'GA', type: 'country', id: 'GAB'},
-  { zoneName: 'GB', type: 'subunits', subunits: ['ENG', 'SCT', 'WLS']},
+  // see https://github.com/tmrowco/electricitymap-contrib/pull/1615 for how SCT-no-islands is generated
+  { zoneName: 'GB', type: 'subunits', subunits: ['SCT-no-islands', 'ENG', 'WLS']},
   { zoneName: 'GB-NIR', type: 'subunits', subunits: ['NIR']},
+  { zoneName: 'GB-ORK', type: 'administrations', administrations: ['GBR-2744']},
+  { zoneName: 'GB-SHI', type: 'administrations', administrations: ['GBR-2747']},
   { zoneName: 'GD', type: 'country', id: 'GRD'},
   { zoneName: 'GE', type: 'country', id: 'GEO'},
   { zoneName: 'GF', type: 'country', id: 'GUF'},
@@ -404,6 +440,7 @@ const zoneDefinitions = [
   { zoneName: 'NF', type: 'country', id: 'NFK'},
   { zoneName: 'NG', type: 'country', id: 'NGA'},
   { zoneName: 'NI', type: 'country', id: 'NIC'},
+  { zoneName: 'NKR', type: 'administrations', administrations: ['AZE-1691', 'AZE-1699', 'AZE-1682', 'AZE-1735', 'AZE-1736', 'AZE-1737', 'AZE-5565', 'AZE-1738', 'AZE-4838', 'AZE-1739', 'AZE-1734', 'AZE-1740']},
   { zoneName: 'NL', type: 'country', id: 'NLD'},
   // { zoneName: 'NO', type: 'country', id: 'NOR'},
   { zoneName: 'NO-NO1', type: 'subZone', id: 'NO-NO1' },
@@ -523,9 +560,16 @@ const zoneDefinitions = [
   // { zoneName: 'US-CT', countryId: 'USA', stateId: 'US.CT', type: 'state' },
   { zoneName: 'US-DC', countryId: 'USA', stateId: 'US.DC', type: 'state' },
   // { zoneName: 'US-DE', countryId: 'USA', stateId: 'US.DE', type: 'state' },
-  { zoneName: 'US-FL', countryId: 'USA', stateId: 'US.FL', type: 'state' },
   { zoneName: 'US-GA', countryId: 'USA', stateId: 'US.GA', type: 'state' },
-  { zoneName: 'US-HI', countryId: 'USA', stateId: 'US.HI', type: 'state' },
+  // { zoneName: 'US-HI', countryId: 'USA', stateId: 'US.HI', type: 'state' },
+  { zoneName: 'US-HI-HA', type: 'subZone', id: 'US-HI-HA'},
+  { zoneName: 'US-HI-KA', type: 'subZone', id: 'US-HI-KA'},
+  { zoneName: 'US-HI-KH', type: 'subZone', id: 'US-HI-KH', moreDetails: true},
+  { zoneName: 'US-HI-LA', type: 'subZone', id: 'US-HI-LA'},
+  { zoneName: 'US-HI-MA', type: 'subZone', id: 'US-HI-MA'},
+  { zoneName: 'US-HI-MO', type: 'subZone', id: 'US-HI-MO'},
+  { zoneName: 'US-HI-NI', type: 'subZone', id: 'US-HI-NI'},
+  { zoneName: 'US-HI-OA', type: 'subZone', id: 'US-HI-OA'},
   // { zoneName: 'US-IA', countryId: 'USA', stateId: 'US.IA', type: 'state' },
   // { zoneName: 'US-ID', countryId: 'USA', stateId: 'US.ID', type: 'state' },
   { zoneName: 'US-IPC', type: 'states', countryId: 'USA', states: ['US.ID']},
@@ -563,6 +607,9 @@ const zoneDefinitions = [
   // { zoneName: 'US-RI', countryId: 'USA', stateId: 'US.RI', type: 'state' },
   { zoneName: 'US-SC', countryId: 'USA', stateId: 'US.SC', type: 'state' },
   // { zoneName: 'US-SD', countryId: 'USA', stateId: 'US.SD', type: 'state' },
+  { zoneName: 'US-SEC', type: 'county', counties: ['ALACHUA', 'BAKER', 'BRADFORD', 'CITRUS', 'CLAY', 'COLUMBIA', 'DESOTO', 'DIXIE', 'GADSDEN', 'GILCHRIST', 'GLADES', 'HAMILTON', 'HARDEE', 'HENDRY', 'HERNANDO', 'HIGHLANDS', 'JEFFERSON', 'LAFAYETTE', 'LAKE', 'LEON', 'LEVY', 'LIBERTY', 'MADISON', 'MANATEE', 'OKEECHOBEE', 'OSCEOLA', 'PASCO', 'PUTNAM', 'SARASOTA', 'SUMTER', 'SUWANNEE', 'TAYLOR', 'UNION', 'WAKULLA']},
+  // US-FL (the state Florida) is the remaining counties that *aren't* in US-SEC
+  { zoneName: 'US-FL', type: 'county', counties: ['BAY', 'BREVARD', 'BROWARD', 'CALHOUN', 'CHARLOTTE', 'COLLIER', 'DADE', 'DUVAL', 'ESCAMBIA', 'FLAGLER', 'FRANKLIN', 'GULF', 'HILLSBOROUGH', 'HOLMES', 'INDIAN RIVER', 'JACKSON', 'LEE', 'MARION', 'MARTIN', 'MONROE', 'NASSAU', 'OKALOOSA', 'ORANGE', 'PALM BEACH', 'PINELLAS', 'POLK', 'SANTA ROSA', 'SEMINOLE', 'ST. JOHNS', 'ST. LUCIE', 'VOLUSIA', 'WALTON', 'WASHINGTON']},
   { zoneName: 'US-SPP', type: 'states', countryId: 'USA', states: [
     'US.KS', 'US.NE','US.OK', 'US.ND', 'US.SD']},
   { zoneName: 'US-SVERI', type: 'states', countryId: 'USA', states: ['US.AZ', 'US.NM']},
@@ -634,6 +681,9 @@ const getDataForZone = (zone, mergeStates) => {
       return getByRegionCod(zone.region_cod);
     }
   }
+  else if (zone.type === 'county') {
+    return getCounties(zone.counties);
+  }
   else{
     console.warn(`unknown type "${zone.type}" for zone`, zone.zoneName);
   }
@@ -682,7 +732,7 @@ zoneDefinitions.forEach(zone => {
       'only once in zoneDefinitions');
   // Avoid zone with moreDetails
   if ( !('moreDetails' in zone) || !zone.moreDetails) {
-  	zones[zone.zoneName] = getDataForZone(zone, true);
+    zones[zone.zoneName] = getDataForZone(zone, true);
   }
 });
 
@@ -691,7 +741,7 @@ let zonesMoreDetails = {};
 zoneDefinitions.forEach(zone => {
   // Take only zones having modeDetails
   if (('moreDetails' in zone) && zone.moreDetails) {
-	if (zone.zoneName in zonesMoreDetails || zone.zoneName in zones)
+  if (zone.zoneName in zonesMoreDetails || zone.zoneName in zones)
       throw ('Warning: ' + zone.zoneName + ' has duplicated entries. Each zoneName must be present ' +
         'only once in zoneDefinitions');
   zonesMoreDetails[zone.zoneName] = getDataForZone(zone, true);
@@ -716,11 +766,20 @@ zoneFeatures.forEach((data) => {
 zoneFeatures = toListOfFeatures(zoneFeaturesInline);
 
 // Write unsimplified list of geojson, without state merges
-fs.writeFileSync('build/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
+fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
 
-// Simplify all countries
+// Convert to TopoJSON
 const topojson = require('topojson');
 let topo = topojson.topology(zones);
+
+// merge contiguous Florida counties in US-FL and US-SEC so that we only see the
+// outer region boundary line(s), not the interior county boundary lines.
+// Example: https://bl.ocks.org/mbostock/5416405
+// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
+topo.objects['US-FL'] = topojson.mergeArcs(topo, [topo.objects['US-FL']]);
+topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
+
+// Simplify all countries
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
 
@@ -731,6 +790,6 @@ topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
 // Merge topoMoreDetails into topo
 mergeTopoJsonSingleZone(topo, topoMoreDetails);
 
-topo = topojson.filter(topo, topojson.filterWeight(topo, 0.01));
+topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 topo = topojson.quantize(topo, 1e5);
 fs.writeFileSync('src/world.json', JSON.stringify(topo));

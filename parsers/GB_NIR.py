@@ -13,11 +13,16 @@ from dateutil import parser, tz
 
 from .lib.validation import validate
 
-thermal_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
-wind_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
-exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx'
-# Positive values represent imports to Northern Ireland.
-# Negative value represent exports from Northern Ireland.
+production_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'
+exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
+# Positive values in the .csv represent imports to Northern Ireland from GB / IR.
+# Negative values in the .csv represent exports from Northern Ireland to GB / IR.
+
+## exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/MoyleTie.aspx' ## see comment below
+## Old exchange_url was used for exchanges, but it provided incomplete data.
+## "Total_Moyle_Load_MW" was showing "0" when exporting to GB. Tie-line data was missing for the two 110kV Lines "Enniskillen(NIR)-Corraclassy(IR)" and "Strabane(NIR)-Letterkenny(IR)"
+## Exchanges are now based on data with better quality provided in "SystemOutput.csv" under the new exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
+
 
 
 def get_data(url, target_datetime, session=None):
@@ -90,30 +95,17 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def create_thermal_df(text_data):
+def create_production_df(text_data):
     """
     Turns thermal csv data into a usable dataframe.
     """
 
     cols_to_use = [0, 1, 2, 3, 4, 5]
-    df_thermal = pd.read_csv(StringIO(text_data),
+    df_production = pd.read_csv(StringIO(text_data),
                              usecols=cols_to_use)
-    df_thermal.fillna(0.0, inplace=True)
+    df_production.fillna(0.0, inplace=True)
 
-    return df_thermal
-
-
-def create_wind_df(text_data):
-    """
-    Turns wind csv data into a usable dataframe.
-    """
-
-    cols_to_use = [0, 1]
-    df_wind = pd.read_csv(StringIO(text_data),
-                          usecols=cols_to_use)
-    df_wind.fillna(0.0, inplace=True)
-
-    return df_wind
+    return df_production
 
 
 def create_exchange_df(text_data):
@@ -127,7 +119,7 @@ def create_exchange_df(text_data):
     return df_exchange
 
 
-def thermal_processor(df):
+def production_processor(df):
     """
     Creates quarter hour datapoints for thermal production.
     Returns a list.
@@ -136,26 +128,12 @@ def thermal_processor(df):
     datapoints = []
     for index, row in df.iterrows():
         snapshot = {}
-        snapshot['datetime'] = row['TimeStamp']
+        snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
+                                                           dayfirst=True))
         snapshot['gas'] = row['Gas_MW']
         snapshot['coal'] = row['Coal_MW']
         snapshot['oil'] = row['Distillate_MW'] + row['Diesel_MW']
-        datapoints.append(snapshot)
-
-    return datapoints
-
-
-def wind_processor(df):
-    """
-    Creates quarter hour datapoints for wind production.
-    Returns a list.
-    """
-
-    datapoints = []
-    for index, row in df.iterrows():
-        snapshot = {}
-        snapshot['datetime'] = row['TimeStamp']
-        snapshot['wind'] = row['Total_Wind_Generated_MW']
+        snapshot['wind'] = row['Wind_MW']
         if snapshot['wind'] > -20:
             snapshot['wind'] = max(snapshot['wind'], 0)
         datapoints.append(snapshot)
@@ -193,36 +171,13 @@ def IE_processor(df):
         snapshot = {}
         snapshot['datetime'] = add_default_tz(parser.parse(row['TimeStamp'],
                                                            dayfirst=True))
-        netFlow = (row['Total_Str_Let_Load_MW'] +
-                   row['Total_Enn_Cor_Load_MW'] +
-                   row['Total_Tan_Lou_Load_MW'])
-        snapshot['netFlow'] = -1 * (netFlow)
+        netFlow = -1* row['Tie_Lines_MW']
+        snapshot['netFlow'] = netFlow
         snapshot['source'] = 'soni.ltd.uk'
         snapshot['sortedZoneKeys'] = 'GB-NIR->IE'
         datapoints.append(snapshot)
 
     return datapoints
-
-
-def merge_production(thermal_data, wind_data):
-    """
-    Joins thermal and wind production data on shared datetime key.
-    Returns a list.
-    """
-
-    total_production = thermal_data + wind_data
-
-    # Join thermal and wind dicts on 'datetime' key.
-    d = defaultdict(dict)
-    for elem in total_production:
-        d[elem['datetime']].update(elem)
-
-    joined_data = sorted(d.values(), key=itemgetter("datetime"))
-
-    for datapoint in joined_data:
-        datapoint['datetime'] = add_default_tz(parser.parse(datapoint['datetime'], dayfirst=True))
-
-    return joined_data
 
 
 def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
@@ -256,17 +211,13 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
         }
     """
 
-    thermal_data = get_data(thermal_url, target_datetime)
-    wind_data = get_data(wind_url, target_datetime)
-    thermal_df = create_thermal_df(thermal_data)
-    wind_df = create_wind_df(wind_data)
-    thermal = thermal_processor(thermal_df)
-    wind = wind_processor(wind_df)
-    merge = merge_production(thermal, wind)
+    production_data = get_data(production_url, target_datetime)
+    production_df = create_production_df(production_data)
+    production = production_processor(production_df)
 
     production_mix_by_quarter_hour = []
 
-    for datapoint in merge:
+    for datapoint in production:
         production_mix = {
             'zoneKey': zone_key,
             'datetime': datapoint.get('datetime', 0.0),
@@ -314,7 +265,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_exchange(GB-NIR, GB) ->')

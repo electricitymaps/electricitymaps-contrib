@@ -3,12 +3,18 @@
 """Centralised validation function for all parsers."""
 
 from logging import getLogger
+import math, logging
+
+import numpy as np
+import pandas as pd
+from .utils import nan_to_zero
 
 
 def has_value_for_key(datapoint, key, logger):
     """checks that the key exists in datapoint and that the corresponding value
     is not None"""
-    if datapoint['production'].get(key, None) is None:
+    v = datapoint['production'].get(key, None)
+    if v is None or math.isnan(v):
         logger.warning("Required generation type {} is missing from {}".format(
             key, datapoint['zoneKey']), extra={'key': datapoint['zoneKey']})
         return None
@@ -27,7 +33,62 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
     return True
 
 
-def validate(datapoint, logger=getLogger(__name__), **kwargs):
+def validate_production_diffs(
+        datapoints: list, max_diff: dict, logger: logging.Logger):
+    """
+
+    Parameters
+    ----------
+    datapoints: a list of datapoints having a 'production' field
+    max_diff: dict representing the max allowed diff (in MW) per energy type
+    logger
+
+    Returns
+    -------
+    the same list of datapoints, with the ones having a too big diff removed
+    """
+
+    if len(datapoints) < 2:
+        return datapoints
+
+    # ignore points that are None
+    # TODO(olc): do diffs on each chunks of consecutive non-None points
+    # intead of simply remove None
+    datapoints = [x for x in datapoints if x]
+
+    # sort datapoins by datetime
+    datapoints = sorted(datapoints, key=lambda x: x['datetime'])
+
+    ok_diff = pd.Series(np.ones_like(datapoints, dtype=bool))
+    for energy, max_diff in max_diff.items():
+        if 'energy' == 'total':
+            series = pd.Series(
+                [np.nansum([v for v in datapoint['production'].values()])
+                 for datapoint in datapoints])
+        else:
+            series = pd.Series(
+                [datapoint['production'].get(energy, np.nan)
+                 for datapoint in datapoints])
+        # nan is always allowed (can be disallowed using `validate` function)
+        new_diffs = (np.abs(series.diff()) < max_diff) | series.isna()
+        if not new_diffs[1:].all():
+            wrongs_ixs = new_diffs[~new_diffs].index
+            wrongs_ixs_and_previous = sorted(
+                {ix - 1 for ix in wrongs_ixs} | set(wrongs_ixs))
+            to_display = [
+                (datapoints[i]['datetime'], datapoints[i]['production'][energy])
+                for i in wrongs_ixs_and_previous if i > 0]
+            logger.warning(
+                'some datapoints have a too high production value difference '
+                'for {}: {}'.format(energy, to_display))
+        ok_diff &= new_diffs
+    # first datapoint is always OK
+    ok_diff.iloc[0] = True
+
+    return [datapoints[i] for i in ok_diff[ok_diff].index]
+
+
+def validate(datapoint, logger, **kwargs):
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -84,14 +145,16 @@ def validate(datapoint, logger=getLogger(__name__), **kwargs):
     >>>       'source': 'mysource.com'
     >>> }
 
-    >>> validate(datapoint, required=['gas'], expected_range=(100, 2000))
+    >>> validate(datapoint, None, required=['gas'], expected_range=(100, 2000))
     datapoint
-    >>> validate(datapoint, required=['not_a_production_type'])
+    >>> validate(datapoint, None, required=['not_a_production_type'])
     None
-    >>> validate(datapoint, required=['gas'],
+    >>> validate(datapoint, None, required=['gas'],
     >>>          expected_range={'solar': (0, 1000), 'wind': (100, 2000)})
     datapoint
     """
+    if logger is None:
+        logger = getLogger(__name__)
 
     remove_negative = kwargs.pop('remove_negative', False)
     required = kwargs.pop('required', [])
@@ -166,5 +229,5 @@ test_datapoint = {
 }
 
 if __name__ == '__main__':
-    print(validate(test_datapoint, required=['gas'],
+    print(validate(test_datapoint, None, required=['gas'],
                    expected_range=(100, 2000), remove_negative=True))

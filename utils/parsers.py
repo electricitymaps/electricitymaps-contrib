@@ -5,6 +5,7 @@ from utils.config import ZONES_CONFIG, EXCHANGES_CONFIG
 # Prepare all parsers
 CONSUMPTION_PARSERS = {}
 PRODUCTION_PARSERS = {}
+PRODUCTION_PER_MODE_FORECAST_PARSERS = {}
 PRODUCTION_PER_UNIT_PARSERS = {}
 EXCHANGE_PARSERS = {}
 PRICE_PARSERS = {}
@@ -16,11 +17,12 @@ PARSER_KEY_TO_DICT = {
     'consumption': CONSUMPTION_PARSERS,
     'production': PRODUCTION_PARSERS,
     'productionPerUnit': PRODUCTION_PER_UNIT_PARSERS,
+    'productionPerModeForecast': PRODUCTION_PER_MODE_FORECAST_PARSERS,
     'exchange': EXCHANGE_PARSERS,
     'price': PRICE_PARSERS,
     'consumptionForecast': CONSUMPTION_FORECAST_PARSERS,
     'generationForecast': GENERATION_FORECAST_PARSERS,
-    'exchangeForecast': EXCHANGE_FORECAST_PARSERS
+    'exchangeForecast': EXCHANGE_FORECAST_PARSERS,
 }
 
 # Read all zones

@@ -1,5 +1,7 @@
 const store = require('../store');
 
+const { Sentry } = window;
+
 class ConnectionsService {
   constructor() {
     this.connections = [];
@@ -8,7 +10,6 @@ class ConnectionsService {
       this.addConnection(require('./thirdparty/facebook'));
       this._ga = this.addConnection(require('./thirdparty/ga'));
       this.addConnection(require('./thirdparty/mixpanel'));
-      this._stackdriver = this.addConnection(require('./thirdparty/stackdriver'));
     }
   }
 
@@ -42,15 +43,15 @@ class ConnectionsService {
   }
 
   // track errors
-  reportError() {
-    if (this._stackdriver !== undefined) {
+  reportError(e) {
+    if (Sentry !== undefined) {
       try {
-        this._stackdriver.report(...arguments);
-      } catch(err) {
+        Sentry.captureException(e);
+      } catch (err) {
         console.error('Error while reporting error: ' + err);
       }
     }
   }
 }
 
-module.exports = new ConnectionsService(); // singleton
+export default new ConnectionsService(); // singleton

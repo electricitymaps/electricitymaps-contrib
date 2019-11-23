@@ -22,6 +22,7 @@ services:
       - './config:/home/config'
       - './web/generate-geometries.js:/home/web/generate-geometries.js'
       - './web/locales:/home/web/locales'
+      - './web/locales-config.json:/home/web/locales-config.json'
       - './web/package.json:/home/web/package.json'
       - './web/public:/home/web/public'
       - './web/server.js:/home/web/server.js'
@@ -30,5 +31,3 @@ services:
       - './web/topogen.sh:/home/web/topogen.sh'
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
-      
-

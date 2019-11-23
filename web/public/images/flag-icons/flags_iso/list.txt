@@ -18,6 +18,7 @@ _Kosovo.png
 _NATO.png
 _Northern-Cyprus.png
 _Northern-Ireland.png
+_Nagorno-Karabakh.png
 _OAS.png
 _OECD.png
 _Olimpic-Movement.png

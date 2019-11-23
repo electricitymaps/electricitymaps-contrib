@@ -1,185 +1,46 @@
 #!/usr/bin/env python3
 
+import arrow
+import requests
+
+
 # This parser gets all real time interconnection flows from the
 # Central American Electrical Interconnection System (SIEPAC).
 
-import arrow
-import pandas as pd
+# map for reference
+# https://www.enteoperador.org/flujos-regionales-en-tiempo-real/
 
-url = 'http://www.enteoperador.org/newsite/flash/data.csv'
+DATA_URL = 'https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic'
+
+JSON_MAPPING = {"GT->MX": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
+                "GT->SV": "3SISTEMA.LT230.INTER_NET_GT.CMW.MW",
+                "GT->HN": "4LEC.LT230.2FR4-4LEC-01B.-.MW",
+                "HN->SV": "3SISTEMA.LT230.INTER_NET_HO.CMW.MW",
+                "HN->NI": "5SISTEMA.LT230.INTER_NET_HN.CMW.MW",
+                "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
+                "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW"}
 
 
-def read_data():
+def extract_exchange(raw_data, exchange):
     """
-    Reads csv data from the url.
-    Returns a pandas dataframe.
+    Extracts flow value and direction for a given exchange.
+    Returns a float or None.
     """
+    search_value = JSON_MAPPING[exchange]
 
-    df = pd.read_csv(url, index_col=False)
+    interconnection = None
+    for datapoint in raw_data:
+        if datapoint['nombre'] == search_value:
+            interconnection = float(datapoint['value'])
 
-    return df
+    if interconnection is None:
+        return None
 
+    # positive and negative flow directions do not always correspond to EM ordering of exchanges
+    if exchange in ['GT->SV', 'GT->HN', 'HN->SV', 'CR->NI', 'HN->NI']:
+        interconnection *= -1
 
-def connections(df):
-    """
-    Gets values for each interconnection.
-    Returns a dictionary.
-    """
-
-    interconnections = {'GT->MX': df.iloc[0]['MXGU'],
-                        'GT->SV': df.iloc[0]['GUES'],
-                        'GT->HN': df.iloc[0]['GUHO'],
-                        'HN->SV': df.iloc[0]['ESHO'],
-                        'HN->NI': df.iloc[0]['HONI'],
-                        'CR->NI': df.iloc[0]['NICR'],
-                        'CR->PA': df.iloc[0]['CRPA']}
-
-    return interconnections
-
-
-def net(df):
-    """
-    Gets net production values for each country.  Uses system totals for Mexico.
-    Returns a dictionary.
-    """
-
-    net_production = {}
-    net_production['GT'] = df.iloc[0]['GENGUA'] - df.iloc[0]['DEMGUA']
-    net_production['SV'] = df.iloc[0]['GENSAL'] - df.iloc[0]['DEMSAL']
-    net_production['HN'] = df.iloc[0]['GENHON'] - df.iloc[0]['DEMHON']
-    net_production['NI'] = df.iloc[0]['GENNIC'] - df.iloc[0]['DEMNIC']
-    net_production['CR'] = df.iloc[0]['GENCRI'] - df.iloc[0]['DEMCRI']
-    net_production['PA'] = df.iloc[0]['GENPAN'] - df.iloc[0]['DEMPAN']
-    net_production['MX'] = df.iloc[0]['TOTALGEN'] - df.iloc[0]['TOTALDEM']
-
-    return net_production
-
-
-def flow_logic(net_production, interconnections):
-    """
-    Calculates flow direction for each interconnection using network flow and
-    simultaneous equations.
-    Returns a dictionary.
-    """
-
-    # Each country is modeled as a node with flows going either in or out of it.
-    # Importing is given a negative flow while exporting is positive.
-
-    PA = {'CR': 0}
-    CR = {'PA': 0, 'NI': 0}
-    NI = {'CR': 0, 'HN': 0}
-    HN = {'GT': 0, 'SV': 0, 'NI': 0}
-    SV = {'GT': 0, 'HN': 0}  # TODO: SV is assigned to but never used
-    GT = {'MX': 0, 'HN': 0, 'SV': 0}
-
-    def plusminus(value):
-        """
-        Takes a number and check its sign.
-        Returns 1 if positive, -1 if negative and zero if zero.
-        """
-
-        if value > 0:
-            newvalue = 1
-        elif value < 0:
-            newvalue = -1
-        else:
-            newvalue = 0
-
-        return newvalue
-
-    def flipsign(value):
-        """
-        Changes the sign of any number given apart from zero.
-        1 -> -1
-        -1 -> 1
-        """
-
-        newvalue = (-1) * value
-
-        return newvalue
-
-    flows = {'HN->NI': 0.0,
-             'CR->NI': 0.0,
-             'CR->PA': 0.0,
-             'GT->HN': 0.0,
-             'GT->MX': 0.0,
-             'GT->SV': 0.0,
-             'HN->SV': 0.0}
-
-    # First we determine whether Mexico is importing or exporting using totals for the SIEPAC system.
-
-    if net_production['MX'] < 0:
-        # exporting
-        GT['MX'] = -1
-    else:
-        GT['MX'] = 1
-
-    # We then find the direction of the PA by exploiting the fact that it only has one interconnection.
-
-    if net_production['PA'] > 0:
-        # PA can only export to CR
-        PA['CR'] = 1
-        CR['PA'] = -1
-    else:
-        # PA importing from CR
-        PA['CR'] = -1
-        CR['PA'] = 1
-
-    # Next we can find CR and NI flows using their net productions and process of elimination.
-
-    PAN = interconnections['CR->PA'] * CR['PA']
-
-    CR['NI'] = plusminus((net_production['CR'] - PAN) / interconnections['CR->NI'])
-    NI['CR'] = flipsign(CR['NI'])
-    NIC = interconnections['CR->NI'] * NI['CR']
-
-    NI['HN'] = plusminus((net_production['NI'] - NIC) / interconnections['HN->NI'])
-    HN['NI'] = flipsign(NI['HN'])
-
-    # Now we use 3 simultaneous equations to find the remaining flows.  We can use the fact that
-    # several flows are already known to our advantage.
-
-    # a = interconnections['GT->SV']
-    # b = interconnections['HN->SV']
-    # c = interconnections['GT->HN']
-    # MX = interconnections['GT->MX']*GT['MX']
-    # HON = interconnections['HN->NI']*HN['NI']
-    #
-    # eqs = np.array([[a, b, 0], [a, 0, c], [0, b, c]])
-    # res = np.array([net_production['SV'], net_production['GT']-MX, net_production['HN']-HON])
-    #
-    # solution = np.linalg.solve(eqs, res)
-    #
-    # #Factor to account for transmission losses.
-    # GT['SV'] = plusminus(solution[0]+0.5)
-    #
-    # SV['GT'] = flipsign(GT['SV'])
-    # SV['HN'] = plusminus(solution[1])
-    # HN['SV'] = flipsign(SV['HN'])
-    # GT['HN'] = plusminus(solution[2])
-    # HN['GT'] = flipsign(GT['HN'])
-
-    # Flows commented out are disabled until the maths behind determining their direction can be proved satisfactorily.
-    flows['HN->NI'] = HN['NI']
-    flows['CR->NI'] = CR['NI']
-    flows['CR->PA'] = CR['PA']
-    # flows['GT->HN'] = GT['HN']
-    flows['GT->MX'] = GT['MX']
-    # flows['GT->SV'] = GT['SV']
-    # flows['HN->SV'] = SV['HN']
-
-    return flows
-
-
-def net_flow(interconnections, flows):
-    """
-    Combines interconnection values with flow directions.
-    Returns a dictionary.
-    """
-
-    netflow = {k: interconnections[k] * flows[k] for k in interconnections}
-
-    return netflow
+    return interconnection
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
@@ -197,31 +58,27 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    getdata = read_data()
-    connect = connections(getdata)
-    nt = net(getdata)
-    fl = flow_logic(nt, connect)
-    netflow = net_flow(connect, fl)
+    sorted_zones = '->'.join(sorted([zone_key1, zone_key2]))
 
-    exchange = {}
-    dt = arrow.now('UTC-6').floor('minute')
-    zones = '->'.join(sorted([zone_key1, zone_key2]))
-
-    if zones in netflow:
-        exchange['netFlow'] = netflow[zones]
-    else:
+    if sorted_zones not in JSON_MAPPING.keys():
         raise NotImplementedError('This exchange is not implemented.')
 
-    exchange.update(sortedZoneKeys=zones,
-                    datetime=dt.datetime,
-                    source='enteoperador.org')
+    s = session or requests.Session()
+
+    raw_data = s.get(DATA_URL).json()
+    flow = extract_exchange(raw_data, sorted_zones)
+    dt = arrow.now('UTC-6').floor('minute')
+
+    exchange = {'sortedZoneKeys': sorted_zones,
+                'datetime': dt.datetime,
+                'netFlow': flow,
+                'source': 'enteoperador.org'}
 
     return exchange
 
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-
     print('fetch_exchange(CR, PA) ->')
     print(fetch_exchange('CR', 'PA'))
     print('fetch_exchange(CR, NI) ->')
@@ -230,3 +87,9 @@ if __name__ == '__main__':
     print(fetch_exchange('HN', 'NI'))
     print('fetch_exchange(GT, MX) ->')
     print(fetch_exchange('GT', 'MX'))
+    print('fetch_exchange(GT, SV) ->')
+    print(fetch_exchange('GT', 'SV'))
+    print('fetch_exchange(GT, HN) ->')
+    print(fetch_exchange('GT', 'HN'))
+    print('fetch_exchange(HN, SV) ->')
+    print(fetch_exchange('HN', 'SV'))

@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-const Cookies = require('js-cookie');
 const dataReducer = require('./dataReducer');
+const { getKey } = require('../storage');
 
 const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
   window.location.href.indexOf('192.') !== -1;
 
 const cookieGetBool = (key, defaultValue) => {
-  const val = Cookies.get(key);
+  const val = getKey(key);
   if (val == null) {
     return defaultValue;
   }
@@ -17,11 +17,15 @@ const cookieGetBool = (key, defaultValue) => {
 const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
   bundleHash: window.bundleHash,
+  version: VERSION,
   callerLocation: null,
+  callerZone: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
+  selectLanguageShown: false,
   customDate: null,
+  electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
@@ -44,6 +48,9 @@ const initialApplicationState = {
   // TODO(olc): refactor this state
   showPageState: 'map',
   pageToGoBackTo: null,
+  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
+  tooltipLowCarbonGaugePercentage: null,
+  tooltipRenewableGaugePercentage: null,
 };
 
 const applicationReducer = (state = initialApplicationState, action) => {
@@ -60,6 +67,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
       if (key === 'showPageState' &&
           state.showPageState !== 'country') {
         newState.pageToGoBackTo = state.showPageState;
+      }
+
+      if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
+        throw Error(`Unknown electricityMixMode "${value}"`);
       }
 
       return newState;
@@ -101,7 +112,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
   }
 };
 
-module.exports = combineReducers({
+export default combineReducers({
   application: applicationReducer,
   data: dataReducer,
 });

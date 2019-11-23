@@ -1,13 +1,14 @@
-FROM node:10.9.0
+FROM node:12.13.1
 WORKDIR /home/web
 
 # Install dependencies
-RUN apt-get update && apt-get install -y unzip
+RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json /home/web/package.json
 ADD web/yarn.lock /home/web/yarn.lock
 RUN yarn
 
 # Generate map
+RUN mkdir -p public/dist/
 ADD web/build /home/web/build
 ADD web/third_party_maps /home/web/third_party_maps
 ADD web/generate-geometries.js web/topogen.sh /home/web/
@@ -23,6 +24,7 @@ ADD web /home/web
 RUN yarn run build-release
 
 EXPOSE 8000
+ENV PORT 8000
 CMD node server.js
 
-HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:${PORT}/ || exit 1

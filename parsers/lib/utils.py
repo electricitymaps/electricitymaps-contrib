@@ -1,3 +1,6 @@
+import math
+
+
 def sum_production_dicts(prod1: dict, prod2: dict()):
     """
     Sum two productions dictionnaries. For a production mode key, if both
@@ -10,3 +13,9 @@ def sum_production_dicts(prod1: dict, prod2: dict()):
             continue
         to_return[prod_name] = (value1 or 0) + (value2 or 0)
     return to_return
+
+
+def nan_to_zero(v):
+    if math.isnan(v):
+        return 0
+    return v
