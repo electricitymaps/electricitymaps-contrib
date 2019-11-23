@@ -202,7 +202,7 @@ app.get('/v1/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.all('/dist/*.map', (req, res, next) => {
+app.all('/dist/*/*.map', (req, res, next) => {
   // Allow bugsnag (2 first) + sentry
   if ([
     '104.196.245.109',

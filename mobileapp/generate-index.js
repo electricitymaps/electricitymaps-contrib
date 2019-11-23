@@ -3,6 +3,8 @@ var fs = require('fs');
 var i18n = require('i18n');
 const { vsprintf } = require('sprintf-js');
 
+const STATIC_PATH = 'www/electricitymap/';
+
 const {
   localeToFacebookLocale,
   supportedFacebookLocales,
