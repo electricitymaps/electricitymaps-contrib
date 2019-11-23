@@ -59,7 +59,7 @@ export default class extends React.PureComponent {
       <div
         onMouseOver={() => onMouseOver && onMouseOver()}
         onMouseOut={() => onMouseOut && onMouseOut()}
-        onMouseMove={() => onMouseMove && onMouseMove()}
+        onMouseMove={e => onMouseMove && onMouseMove(e.clientX, e.clientY)}
       >
         <svg width={radius * 2} height={radius * 2}>
           <g transform={`translate(${radius},${radius})`}>

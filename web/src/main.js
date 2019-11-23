@@ -205,7 +205,7 @@ ReactDOM.render(
   <Provider store={store}>
     <CountryLowCarbonGauge
       onMouseOver={() => tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip)}
-      onMouseMove={() => lowcarbInfoTooltip.update(currentEvent.clientX, currentEvent.clientY)}
+      onMouseMove={(clientX, clientY) => lowcarbInfoTooltip.update(clientX, clientY)}
       onMouseOut={() => lowcarbInfoTooltip.hide()}
     />
   </Provider>,
