@@ -202,7 +202,13 @@ const TooltipRenewableGauge = connect((state) => ({
 }))(CircularGauge);
 
 ReactDOM.render(
-  <Provider store={store}><CountryLowCarbonGauge /></Provider>,
+  <Provider store={store}>
+    <CountryLowCarbonGauge
+      onMouseOver={() => tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip)}
+      onMouseMove={() => lowcarbInfoTooltip.update(currentEvent.clientX, currentEvent.clientY)}
+      onMouseOut={() => lowcarbInfoTooltip.hide()}
+    />
+  </Provider>,
   document.querySelector('#country-lowcarbon-gauge'),
 );
 ReactDOM.render(
@@ -1250,7 +1256,6 @@ function renderHistory(state) {
         if (g === countryHistoryCarbonGraph) {
           tooltipHelper.showMapCountry(
             countryTooltip, d, co2color, co2Colorbars,
-            tooltipLowCarbonGauge, tooltipRenewableGauge,
             state.application.electricityMixMode,
           );
           countryTooltip.update(

@@ -33,12 +33,17 @@ export default class extends React.PureComponent {
       .outerRadius(radius);
   }
 
-  componentDidUpdate() {
+  render() {
+    const fontSize = this.props.fontSize || '1rem';
+    const radius = this.props.radius || DEFAULT_RADIUS;
     const percentage = Number.isNaN(this.props.percentage)
       ? 0
       : (this.props.percentage || 0);
-    const i = d3.interpolate(this.state.prevPercentage * 2 * Math.PI, 2 * Math.PI * percentage);
 
+    const i = d3.interpolate(
+      (this.state.prevPercentage / 100) * 2 * Math.PI,
+      (percentage / 100) * 2 * Math.PI
+    );
     d3.select(this.foregroundRef.current)
       .transition()
       .duration(500)
@@ -47,72 +52,35 @@ export default class extends React.PureComponent {
         () => t => this.arc.endAngle(i(t))(),
       )
       .on('end', () => this.setState({ prevPercentage: percentage }));
-  }
 
-  render() {
-    if (false) {
-    d3.select(`#${selectorId}`)
-      .on('mouseover', function (d) {
-          if (that.onGaugeMouseOver) that.onGaugeMouseOver(this);
-      })
-      .on('mouseout', function (d) {
-          if (that.onGaugeMouseOut) that.onGaugeMouseOut(this);
-      })
-      .on('mousemove', function (d) {
-          if (that.onGaugeMouseMove) that.onGaugeMouseMove(this);
-      });
-    }
-
-    const fontSize = this.props.fontSize || '1rem';
-    const radius = this.props.radius || DEFAULT_RADIUS;
-    const percentage = Number.isNaN(this.props.percentage)
-      ? 0
-      : (this.props.percentage || 0);
+    const { onMouseMove, onMouseOut, onMouseOver } = this.props;
 
     return (
-      <svg width={radius * 2} height={radius * 2}>
-        <g transform={`translate(${radius},${radius})`}>
-          <g className="circular-gauge">
-            <path className="background" d={this.arc.endAngle(2 * Math.PI)()} />
-            <path className="foreground" d={this.arc.endAngle(percentage / 100 * 2 * Math.PI)()} ref={this.foregroundRef} />
-            <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
-              {
-                this.props.percentage != null && !Number.isNaN(this.props.percentage)
-                  ? `${Math.round(percentage)}%`
-                  : '?'
-              }
-            </text>
+      <div
+        onMouseOver={() => onMouseOver && onMouseOver()}
+        onMouseOut={() => onMouseOut && onMouseOut()}
+        onMouseMove={() => onMouseMove && onMouseMove()}
+      >
+        <svg width={radius * 2} height={radius * 2}>
+          <g transform={`translate(${radius},${radius})`}>
+            <g className="circular-gauge">
+              <path className="background" d={this.arc.endAngle(2 * Math.PI)()} />
+              <path
+                className="foreground"
+                d={this.arc.endAngle((this.state.prevPercentage / 100) * 2 * Math.PI)()}
+                ref={this.foregroundRef}
+              />
+              <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
+                {
+                  this.props.percentage != null && !Number.isNaN(this.props.percentage)
+                    ? `${Math.round(percentage)}%`
+                    : '?'
+                }
+              </text>
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     );
-  }
-
-  onMouseOver(tooltip) {
-    this.onGaugeMouseOver = tooltip;
-    return this;
-  }
-
-  onMouseMove(tooltip) {
-    this.onGaugeMouseMove = tooltip;
-    return this;
-  }
-
-  onMouseOut(tooltip) {
-    this.onGaugeMouseOut = tooltip;
-    return this;
-  }
-
-  setPercentage(percentage) {
-    if (this.percentage === percentage) {
-      return;
-    }
-    if (Number.isNaN(percentage)) {
-      return;
-    }
-    this.prevPercentage = this.percentage;
-    this.percentage = percentage;
-    this.percentageText.text(this.percentage != null ? `${Math.round(this.percentage)}%` : '?');
-    this.draw();
   }
 }

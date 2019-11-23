@@ -24,7 +24,7 @@
     "no-trailing-spaces": "warn",
     "no-underscore-dangle": "warn",
     "no-unused-vars": "warn",
-    "prefer-destructuring": "warn",
+    "react/destructuring-assignment": "warn",
     "quote-props": "warn",
     "react/jsx-one-expression-per-line": "warn",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
