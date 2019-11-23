@@ -9,6 +9,7 @@ docker cp $CONTAINER_ID:/home/web/public/ www/electricitymap
 
 rm -rf locales || true
 docker cp $CONTAINER_ID:/home/web/locales/ .
+docker cp $CONTAINER_ID:/home/web/locales-config.json ./locales-config.json
 docker cp $CONTAINER_ID:/home/web/src .
 
 docker rm $CONTAINER_ID

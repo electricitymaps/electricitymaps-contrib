@@ -1,85 +1,63 @@
 var ejs = require('ejs');
 var fs = require('fs');
 var i18n = require('i18n');
+const { vsprintf } = require('sprintf-js');
 
-// Custom module
-var translation = require(__dirname + '/src/helpers/translation');
+const STATIC_PATH = 'www/electricitymap';
+
+const {
+  localeToFacebookLocale,
+  supportedFacebookLocales,
+  languageNames,
+} = require('./locales-config.json');
+
+const locales = Object.keys(languageNames);
+
+/*
+Note: Translation function should be removed and
+let the client deal with all translations / formatting of ejs
+*/
+const localeConfigs = {};
+locales.forEach((d) => {
+  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+});
+function translateWithLocale(locale, keyStr) {
+  const keys = keyStr.split('.');
+  let result = localeConfigs[locale];
+  for (let i = 0; i < keys.length; i += 1) {
+    if (result == null) { break; }
+    result = result[keys[i]];
+  }
+  if (locale !== 'en' && !result) {
+    return translateWithLocale('en', keyStr);
+  }
+  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
+  return result && vsprintf(result, formatArgs);
+}
 
 // duplicated from server.js
-function getHash(key, ext) {
-    var filename;
-    if (typeof obj.assetsByChunkName[key] == 'string') {
-        filename = obj.assetsByChunkName[key];
-    } else {
-        // assume list
-        filename = obj.assetsByChunkName[key]
-            .filter((d) => d.match(new RegExp('\.' + ext + '$')))[0]
-    }
-    return filename.replace('.' + ext, '').replace(key + '.', '');
+// * Long-term caching
+function getHash(key, ext, obj) {
+  let filename;
+  if (typeof obj.assetsByChunkName[key] == 'string') {
+    filename = obj.assetsByChunkName[key];
+  } else {
+    // assume list
+    filename = obj.assetsByChunkName[key]
+      .filter((d) => d.match(new RegExp('\.' + ext + '$')))[0]
+  }
+  return filename.replace('.' + ext, '').replace(key + '.', '');
 }
-var obj = JSON.parse(fs.readFileSync('www/electricitymap/dist/manifest.json'));
-var BUNDLE_HASH = getHash('bundle', 'js');
-var STYLES_HASH = getHash('styles', 'css');
-var VENDOR_HASH = getHash('vendor', 'js');
-var VENDOR_STYLES_HASH = getHash('vendor', 'css');
-
-// TODO:
-// Currently, those variables are duplicated from server.js
-// We should instead have a central configuration file in the `config` folder
-var locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
-var LOCALE_TO_FB_LOCALE = {
-    'ar': 'ar_AR',
-    'cs':'cs_CZ',
-    'da': 'da_DK',
-    'de': 'de_DE',
-    'en': 'en_US',
-    'es': 'es_ES',
-    'fr': 'fr_FR',
-    'hr': 'hr_HR',
-    'it': 'it_IT',
-    'ja': 'ja_JP',
-    'kr': 'kr_KR',
-    'nl': 'nl_NL',
-    'pt-br': 'pt_BR',
-    'pl': 'pl_PL',
-    'ru': 'ru_RU',
-    'sk': 'sk_SK',
-    'sv': 'sv_SE',
-    'vn': 'vi_VN',
-    'zh-cn': 'zh_CN',
-    'zh-hk': 'zh_HK',
-    'zh-tw': 'zh_TW',
-};
-var SUPPORTED_FB_LOCALES = [
-    'ar_AR',
-    'cs_CZ',
-    'da_DK',
-    'de_DE',
-    'es_ES',
-    'es_LA',
-    'es_MX',
-    'en_GB',
-    'en_PI',
-    'en_UD',
-    'en_US',
-    'fr_CA',
-    'fr_FR',
-    'hr_HR',
-    'it_IT',
-    'ja_JP',
-    'kr_KR',
-    'nl_BE',
-    'nl_NL',
-    'pl_PL',
-    'pt_BR',
-    'ru_RU',
-    'sk_SK',
-    'sv_SE',
-    'vi_VN',
-    'zh_CN',
-    'zh_HK',
-    'zh_TW',
-];
+const srcHashes = Object.fromEntries(locales.map((k) => {
+  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
+  const BUNDLE_HASH = getHash('bundle', 'js', obj);
+  const STYLES_HASH = getHash('styles', 'css', obj);
+  const VENDOR_HASH = getHash('vendor', 'js', obj);
+  const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
+  return [k, {
+    BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
+  }];
+}));
 
 // * i18n
 i18n.configure({
@@ -97,20 +75,20 @@ locales.forEach(function(locale) {
     var template = ejs.compile(fs.readFileSync('../web/views/pages/index.ejs', 'utf8'));
     var html = template({
         alternateUrls: [],
-        bundleHash: BUNDLE_HASH,
-        vendorHash: VENDOR_HASH,
-        stylesHash: STYLES_HASH,
-        vendorStylesHash: VENDOR_STYLES_HASH,
+        bundleHash: srcHashes[locale].BUNDLE_HASH,
+        vendorHash: srcHashes[locale].VENDOR_HASH,
+        stylesHash: srcHashes[locale].STYLES_HASH,
+        vendorStylesHash: srcHashes[locale].VENDOR_STYLES_HASH,
         isCordova: true,
         locale: locale,
-        FBLocale: LOCALE_TO_FB_LOCALE[locale],
+        FBLocale: localeToFacebookLocale[locale],
         supportedLocales: locales,
-        supportedFBLocales: SUPPORTED_FB_LOCALES,
+        supportedFBLocales: supportedFacebookLocales,
         '__': function() {
             var argsArray = Array.prototype.slice.call(arguments);
             // Prepend the first argument which is the locale
             argsArray.unshift(locale);
-            return translation.translateWithLocale.apply(null, argsArray);
+            return translateWithLocale.apply(null, argsArray);
         }
     });
 
