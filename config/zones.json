@@ -2496,6 +2496,31 @@
     },
     "timezone": "Asia/Seoul"
   },
+  "KW": {
+    "bounding_box": [
+      [
+        46.1550,
+        28.3985
+      ],
+      [
+        48.7948,
+        30.4747 
+      ]
+    ],
+    "capacity": {
+      "gas": 6525,
+      "oil": 8550,
+      "solar": 30.5,
+      "wind": 10
+    },
+    "contributors": [
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "KW.fetch_production"
+    },
+    "timezone": "Asia/Kuwait"
+  },
   "LT": {
     "bounding_box": [
       [
