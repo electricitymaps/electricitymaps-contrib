@@ -717,7 +717,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
   // Is there a new version?
   d3.select('#new-version')
     .classed('active', (
-      clientVersion !== getState().application.bundleHash &&
+      clientVersion !== getState().application.version &&
       !getState().application.isLocalhost && !getState().application.isCordova
     ));
 

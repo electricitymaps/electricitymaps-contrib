@@ -1,8 +1,8 @@
-FROM node:10.15.3
+FROM node:12.13.1
 WORKDIR /home/web
 
 # Install dependencies
-RUN apt-get update && apt-get install -y unzip
+RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json /home/web/package.json
 ADD web/yarn.lock /home/web/yarn.lock
 RUN yarn

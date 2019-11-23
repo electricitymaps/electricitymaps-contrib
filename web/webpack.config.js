@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 const { languageNames } = require('./locales-config.json');
 
+const { version } = require('./package.json');
+
 module.exports = Object.keys(languageNames).map(locale => ({
   name: locale,
   devtool: isProduction ? 'sourcemap' : 'eval',
@@ -28,6 +30,7 @@ module.exports = Object.keys(languageNames).map(locale => ({
         loader: 'babel-loader',
         query: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
+          cacheDirectory: true, // cache results for subsequent builds
         },
       },
     ],
@@ -41,13 +44,14 @@ module.exports = Object.keys(languageNames).map(locale => ({
     function () {
       this.plugin('done', (stats) => {
         fs.writeFileSync(
-          `${__dirname}/public/dist/manifest.json`,
+          `${__dirname}/public/dist/${locale}/manifest.json`,
           JSON.stringify(stats.toJson())
         );
       });
     },
     new webpack.DefinePlugin({
       ELECTRICITYMAP_PUBLIC_TOKEN: `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`,
+      VERSION: JSON.stringify(version),
       'process.env': {
         NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development'),
       },
@@ -67,6 +71,7 @@ module.exports = Object.keys(languageNames).map(locale => ({
   output: {
     filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.js',
     path: `${__dirname}/public/dist/${locale}`,
+    pathinfo: false,
   },
   // The following is required because of https://github.com/webpack-contrib/css-loader/issues/447
   node: {

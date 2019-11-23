@@ -8,6 +8,7 @@ const http = require('http');
 const i18n = require('i18n');
 const auth = require('basic-auth');
 const { vsprintf } = require('sprintf-js');
+const { version } = require('./package.json');
 
 // Custom module
 const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/translation-status');
@@ -71,14 +72,14 @@ function translateWithLocale(locale, keyStr) {
     result = result[keys[i]];
   }
   if (locale !== 'en' && !result) {
-    return exports.translateWithLocale('en', keyStr);
+    return translateWithLocale('en', keyStr);
   }
   const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
   return result && vsprintf(result, formatArgs);
 }
 
 // * Long-term caching
-function getHash(key, ext) {
+function getHash(key, ext, obj) {
   let filename;
   if (typeof obj.assetsByChunkName[key] == 'string') {
     filename = obj.assetsByChunkName[key];
@@ -89,11 +90,16 @@ function getHash(key, ext) {
   }
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
-const obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
-const BUNDLE_HASH = getHash('bundle', 'js');
-const STYLES_HASH = getHash('styles', 'css');
-const VENDOR_HASH = getHash('vendor', 'js');
-const VENDOR_STYLES_HASH = getHash('vendor', 'css');
+const srcHashes = Object.fromEntries(locales.map((k) => {
+  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/${k}/manifest.json`));
+  const BUNDLE_HASH = getHash('bundle', 'js', obj);
+  const STYLES_HASH = getHash('styles', 'css', obj);
+  const VENDOR_HASH = getHash('vendor', 'js', obj);
+  const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
+  return [k, {
+    BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
+  }];
+}));
 
 // * Error handling
 function handleError(err) {
@@ -102,7 +108,7 @@ function handleError(err) {
 }
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
+app.get('/clientVersion', (req, res) => res.send(version));
 
 // Translation status API
 app.get('/translationstatus/badges.svg', (req, res) => {
@@ -174,10 +180,10 @@ app.get('/', (req, res) => {
           }
         }
       }),
-      bundleHash: BUNDLE_HASH,
-      vendorHash: VENDOR_HASH,
-      stylesHash: STYLES_HASH,
-      vendorStylesHash: VENDOR_STYLES_HASH,
+      bundleHash: srcHashes[locale].BUNDLE_HASH,
+      vendorHash: srcHashes[locale].VENDOR_HASH,
+      stylesHash: srcHashes[locale].STYLES_HASH,
+      vendorStylesHash: srcHashes[locale].VENDOR_STYLES_HASH,
       fullUrl,
       locale,
       supportedLocales: locales,

@@ -63,7 +63,7 @@
   },
   "scripts": {
     "build-debug": "webpack --bail --progress --mode development",
-    "build-release": "NODE_ENV=production webpack --mode production --bail",
+    "build-release": "export NODE_ENV=production && cat locales-config.json| jq '.languageNames | keys[]' | xargs -L1 -I {} node_modules/.bin/webpack --mode production --bail --progress --config-name {}",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "eslint": "eslint src",
     "server-dev": "nodemon server.js",

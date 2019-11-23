@@ -17,6 +17,7 @@ const cookieGetBool = (key, defaultValue) => {
 const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
   bundleHash: window.bundleHash,
+  version: VERSION,
   callerLocation: null,
   callerZone: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
