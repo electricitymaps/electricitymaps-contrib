@@ -39,12 +39,15 @@ module.exports = Object.keys(languageNames).map(locale => ({
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(`/${locale}/`)),
     // Only include current locale + en
     new webpack.ContextReplacementPlugin(/locales/, new RegExp(`/${locale}|en/`)),
-    new MiniCssExtractPlugin('[name].' + (isProduction ? '[hash]' : 'dev') + '.css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
+      chunkFilename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     function () {
       this.plugin('done', (stats) => {
         fs.writeFileSync(
-          `${__dirname}/public/dist/${locale}/manifest.json`,
+          `${__dirname}/public/dist/manifest_${locale}.json`,
           JSON.stringify(stats.toJson())
         );
       });
@@ -69,8 +72,13 @@ module.exports = Object.keys(languageNames).map(locale => ({
     },
   },
   output: {
-    filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.js',
-    path: `${__dirname}/public/dist/${locale}`,
+    // filename affects styles.js and bundle.js
+    filename: chunkData => (['styles'].includes(chunkData.chunk.name)
+      ? `[name].${isProduction ? '[chunkhash]' : 'dev'}.js`
+      : `[name].${isProduction ? '[chunkhash]' : 'dev'}.${locale}.js`),
+    // chunkFilename affects `vendor.js`
+    chunkFilename: `[name].${isProduction ? '[chunkhash]' : 'dev'}.js`,
+    path: `${__dirname}/public/dist`,
     pathinfo: false,
   },
   // The following is required because of https://github.com/webpack-contrib/css-loader/issues/447

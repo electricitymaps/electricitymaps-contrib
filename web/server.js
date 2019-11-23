@@ -91,7 +91,7 @@ function getHash(key, ext, obj) {
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
 const srcHashes = Object.fromEntries(locales.map((k) => {
-  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/${k}/manifest.json`));
+  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
   const BUNDLE_HASH = getHash('bundle', 'js', obj);
   const STYLES_HASH = getHash('styles', 'css', obj);
   const VENDOR_HASH = getHash('vendor', 'js', obj);
@@ -202,11 +202,9 @@ app.get('/v1/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.all('/dist/*/*.map', (req, res, next) => {
-  // Allow bugsnag (2 first) + sentry
+app.all('/dist/*.map', (req, res, next) => {
+  // Allow sentry
   if ([
-    '104.196.245.109',
-    '104.196.254.247',
     '35.184.238.160',
     '104.155.159.182',
     '104.155.149.19',

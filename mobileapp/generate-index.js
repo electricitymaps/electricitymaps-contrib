@@ -3,7 +3,7 @@ var fs = require('fs');
 var i18n = require('i18n');
 const { vsprintf } = require('sprintf-js');
 
-const STATIC_PATH = 'www/electricitymap/';
+const STATIC_PATH = 'www/electricitymap';
 
 const {
   localeToFacebookLocale,
@@ -49,7 +49,7 @@ function getHash(key, ext, obj) {
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
 const srcHashes = Object.fromEntries(locales.map((k) => {
-  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/${k}/manifest.json`));
+  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
   const BUNDLE_HASH = getHash('bundle', 'js', obj);
   const STYLES_HASH = getHash('styles', 'css', obj);
   const VENDOR_HASH = getHash('vendor', 'js', obj);
