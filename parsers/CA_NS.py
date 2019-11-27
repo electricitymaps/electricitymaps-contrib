@@ -38,10 +38,10 @@ def _get_ns_info(requests_obj, logger):
     # As of November 2018, NSPower redirects their web traffic to HTTPS. However we've been
     # getting SSL errors in Python, even though loading these URLs in Firefox 63 gives no errors.
     # This isn't confidential or security-sensitive data, so ignore the SSL errors.
-    mix_url = 'https://www.nspower.ca/system_report/today/currentmix.json'
+    mix_url = 'https://www.nspower.ca/library/CurrentLoad/CurrentMix.json'
     mix_data = requests_obj.get(mix_url, verify=False).json()
 
-    load_url = 'https://www.nspower.ca/system_report/today/currentload.json'
+    load_url = 'https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json'
     load_data = requests_obj.get(load_url, verify=False).json()
 
     production = []
