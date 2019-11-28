@@ -703,7 +703,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/scriptator"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
