@@ -90,7 +90,9 @@ const LOCAL_ENDPOINT = 'http://localhost:9000';
   ****************************************************************
   TODO:
   - turn all files in components/ into React components
-  - remove all observers and turn into react/redux
+  - move style from styles.css to individual components
+  - instantiate components properly in the DOM in layout/ files
+  - remove all observers and turn into react/redux flows
 */
 
 // Timing

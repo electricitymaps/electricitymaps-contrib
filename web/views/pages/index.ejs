@@ -74,7 +74,7 @@
         <!-- Add crash reporting early on so we catch all errors -->
         <script src="https://browser.sentry-cdn.com/4.0.6/bundle.min.js" crossorigin="anonymous"></script>
         <script>
-            if (bundleHash.indexOf('dev') !== -1 && !isCordova) {
+            if (bundleHash.indexOf('dev') === -1 && !isCordova) {
                 Sentry.init({
                     dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
                     release: '<%= bundleHash %>',
