@@ -1,3 +1,7 @@
+/* eslint-disable camelcase */
+/* eslint-disable prefer-template */
+// TODO(olc): Remove after refactor
+
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
@@ -48,8 +52,8 @@ const d3 = Object.assign(
   require('d3-scale-chromatic'),
   require('d3-interpolate'),
 );
-
 const moment = require('moment');
+const getSymbolFromCurrency = require('currency-symbol-map');
 
 // State management
 const {
@@ -69,7 +73,6 @@ const { saveKey } = require('./helpers/storage');
 const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
 const { themes } = require('./helpers/themes');
-const getSymbolFromCurrency = require('currency-symbol-map');
 
 // Configs
 const zonesConfig = require('../../config/zones.json');
@@ -78,6 +81,14 @@ const zonesConfig = require('../../config/zones.json');
 // TODO(olc): should this be moved to constants.js?
 const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
 const LOCAL_ENDPOINT = 'http://localhost:9000';
+
+/*
+  ****************************************************************
+  This file is quite horrible. We are in the progress of migrating
+  all logic of this file into React components.
+  Help is appreciated ;-)
+  ****************************************************************
+*/
 
 // Timing
 if (thirdPartyServices._ga) {
@@ -92,8 +103,8 @@ HistoryState.parseInitial(window.location.search);
 
 const applicationState = HistoryState.getStateFromHistory();
 Object.keys(applicationState).forEach((k) => {
-  if (k === 'selectedZoneName' &&
-    Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
+  if (k === 'selectedZoneName'
+    && Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
     // The selectedZoneName doesn't exist, so don't update it
     return;
   }
@@ -101,8 +112,8 @@ Object.keys(applicationState).forEach((k) => {
 });
 
 // TODO(olc): should be stored in redux?
-const ENDPOINT = getState().application.useRemoteEndpoint ?
-  REMOTE_ENDPOINT : LOCAL_ENDPOINT;
+const ENDPOINT = getState().application.useRemoteEndpoint
+  ? REMOTE_ENDPOINT : LOCAL_ENDPOINT;
 
 // TODO(olc) move those to redux state
 // or to component state
@@ -395,7 +406,7 @@ try {
         .setColorblindMode(getState().application.colorBlindModeEnabled)
         .render();
 
-    // map loading is finished, lower the overlay shield
+      // map loading is finished, lower the overlay shield
       finishLoading();
 
       if (thirdPartyServices._ga) {
@@ -462,38 +473,37 @@ countryHistoryMixGraph
   .co2color(co2color)
   .onLayerMouseOver((mode, countryData, i) => {
     const isExchange = modeOrder.indexOf(mode) === -1;
-    const fun = isExchange ?
-      tooltipHelper.showExchange : tooltipHelper.showProduction;
-    const ttp = isExchange ?
-      countryTableExchangeTooltip : countryTableProductionTooltip;
+    const fun = isExchange
+      ? tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange
+      ? countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
-      co2color, co2Colorbars,
-    );
+      co2color, co2Colorbars);
     dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseMove((mode, countryData, i) => {
     const isExchange = modeOrder.indexOf(mode) === -1;
-    const fun = isExchange ?
-      tooltipHelper.showExchange : tooltipHelper.showProduction;
-    const ttp = isExchange ?
-      countryTableExchangeTooltip : countryTableProductionTooltip;
+    const fun = isExchange
+      ? tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange
+      ? countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.update(
       currentEvent.clientX - 7,
-      countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top - 7);
+      countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top - 7
+    );
     fun(ttp,
       mode, countryData, tableDisplayEmissions,
-      co2color, co2Colorbars,
-    );
+      co2color, co2Colorbars);
     dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
   })
   .onLayerMouseOut((mode, countryData, i) => {
     if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
     const isExchange = modeOrder.indexOf(mode) === -1;
-    const ttp = isExchange ?
-      countryTableExchangeTooltip : countryTableProductionTooltip;
+    const ttp = isExchange
+      ? countryTableExchangeTooltip : countryTableProductionTooltip;
     ttp.hide();
     dispatchApplication('tooltipDisplayMode', null);
   });
@@ -509,6 +519,7 @@ d3.select('.country-show-emissions-wrap a#production')
 window.toggleSource = (state) => {
   /* changing whether we display electricity production or carbon emission graphs */
   if (state === undefined) {
+    // eslint-disable-next-line no-param-reassign
     state = !tableDisplayEmissions;
   }
   tableDisplayEmissions = state;
@@ -529,31 +540,33 @@ window.toggleSource = (state) => {
     ? 'origin' : 'production';
   document.getElementById('country-history-electricity-carbonintensity')
     .textContent = translation.translate(
-      tableDisplayEmissions ?
-        `country-history.emissions${mixModeKey}24h` : `country-history.electricity${mixModeKey}24h`);
+      tableDisplayEmissions
+        ? `country-history.emissions${mixModeKey}24h`
+        : `country-history.electricity${mixModeKey}24h`
+    );
 };
 
 function mapMouseOver(lonlat) {
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
-    const now = getState().application.customDate ?
-      moment(getState().application.customDate) : (new Date()).getTime();
+    const now = getState().application.customDate
+      ? moment(getState().application.customDate) : (new Date()).getTime();
     if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       const u = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-        windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+      windColorbar.currentMarker(Math.sqrt(u * u + v * v));
     }
   } else {
     windColorbar.currentMarker(undefined);
   }
   if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
-    const now = getState().application.customDate ?
-      moment(getState().application.customDate) : (new Date()).getTime();
+    const now = getState().application.customDate
+      ? moment(getState().application.customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       const val = grib.getInterpolatedValueAtLonLat(lonlat,
         now, solar.forecasts[0], solar.forecasts[1]);
-        solarColorbar.currentMarker(val);
+      solarColorbar.currentMarker(val);
     }
   } else {
     solarColorbar.currentMarker(undefined);
@@ -585,8 +598,8 @@ function renderMap(state) {
     // Make sure to disable wind if the drawing goes wrong
     saveKey('windEnabled', false);
     windLayer.draw(
-      getState().application.customDate ?
-        moment(getState().application.customDate) : moment(new Date()),
+      getState().application.customDate
+        ? moment(getState().application.customDate) : moment(new Date()),
       wind.forecasts[0],
       wind.forecasts[1],
       scales.windColor,
@@ -609,8 +622,8 @@ function renderMap(state) {
     // Make sure to disable solar if the drawing goes wrong
     saveKey('solarEnabled', false);
     solarLayer.draw(
-      getState().application.customDate ?
-        moment(getState().application.customDate) : moment(new Date()),
+      getState().application.customDate
+        ? moment(getState().application.customDate) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
       scales.solarColor,
@@ -640,9 +653,9 @@ function renderMap(state) {
 
 // Inform the user the last time the map was updated.
 function setLastUpdated() {
-  currentMoment = getState().application.customDate ?
-    moment(getState().application.customDate) :
-    moment((getState().data.grid || {}).datetime);
+  currentMoment = getState().application.customDate
+    ? moment(getState().application.customDate)
+    : moment((getState().data.grid || {}).datetime);
   d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
   d3.selectAll('.current-datetime-from-now')
     .text(currentMoment.fromNow())
@@ -667,8 +680,8 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
   // Is there a new version?
   d3.select('#new-version')
     .classed('active', (
-      clientVersion !== getState().application.version &&
-      !getState().application.isLocalhost && !getState().application.isCordova
+      clientVersion !== getState().application.version
+      && !getState().application.isLocalhost && !getState().application.isCordova
     ));
 
   const node = document.getElementById('map-container');
@@ -725,10 +738,11 @@ function handleConnectionReturnCode(err) {
       // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
       if (err.target.status) {
         catchError(new Error(
-          'HTTPError ' +
-          err.target.status + ' ' + err.target.statusText + ' at ' +
-          err.target.responseURL + ': ' +
-          err.target.responseText));
+          'HTTPError '
+          + err.target.status + ' ' + err.target.statusText + ' at '
+          + err.target.responseURL + ': '
+          + err.target.responseText
+        ));
       }
     } else {
       catchError(err);
@@ -805,7 +819,6 @@ window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
   fetch(false);
 };
-
 
 
 // *** DISPATCHERS ***
@@ -915,7 +928,10 @@ if (typeof zoneMap !== 'undefined') {
     .onSeaClick(() => {
       dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== null) {
-        dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: null}});
+        dispatch({
+          type: 'UPDATE_SELECTED_ZONE',
+          payload: { selectedZoneName: null },
+        });
       }
     })
     .onCountryClick((d) => {
@@ -923,7 +939,10 @@ if (typeof zoneMap !== 'undefined') {
       dispatchApplication('isLeftPanelCollapsed', false);
       dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== d.countryCode) {
-        dispatch({type: 'UPDATE_SELECTED_ZONE', payload: {selectedZoneName: d.countryCode}});
+        dispatch({
+          type: 'UPDATE_SELECTED_ZONE',
+          payload: { selectedZoneName: d.countryCode },
+        });
       }
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
@@ -1041,7 +1060,8 @@ function renderCountryTable(state) {
     const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
     countryTable.showNoDataMessageIf(
       zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser,
-      dataIsMostRecentDatapoint);
+      dataIsMostRecentDatapoint
+    );
   }
 }
 
@@ -1050,14 +1070,13 @@ function renderOpenTooltips(state) {
   const tooltipMode = state.application.tooltipDisplayMode;
   if (tooltipMode) {
     const isExchange = modeOrder.indexOf(tooltipMode) === -1;
-    const fun = isExchange ?
-      tooltipHelper.showExchange : tooltipHelper.showProduction;
-    const ttp = isExchange ?
-      countryTableExchangeTooltip : countryTableProductionTooltip;
+    const fun = isExchange
+      ? tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange
+      ? countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
       tooltipMode, zoneData, tableDisplayEmissions,
-      co2color, co2Colorbars,
-    );
+      co2color, co2Colorbars);
   }
 
   if (countryTooltip.isVisible) {
@@ -1071,8 +1090,8 @@ function renderOpenTooltips(state) {
     const tooltip = d3.select(priceTooltip._selector);
     const priceIsDefined = zoneData.price != null && zoneData.price.value != null;
     tooltip.select('.value').html(priceIsDefined ? zoneData.price.value : '?');
-    tooltip.select('.currency').html(priceIsDefined ?
-      getSymbolFromCurrency(zoneData.price.currency) : '?');
+    tooltip.select('.currency').html(priceIsDefined
+      ? getSymbolFromCurrency(zoneData.price.currency) : '?');
     priceTooltip.show();
   }
 }
@@ -1106,8 +1125,8 @@ function renderHistory(state) {
       -d.maxStorageCapacity || -maxStorageCapacity || 0,
       -d.maxStorage || 0,
       -d.maxExport || 0,
-      -d.maxExportCapacity || 0),
-  );
+      -d.maxExportCapacity || 0
+    ));
   const hi = d3.max(history, d =>
     Math.max(
       d.maxCapacity || 0,
@@ -1115,31 +1134,26 @@ function renderHistory(state) {
       d.maxImport || 0,
       d.maxImportCapacity || 0,
       d.maxDischarge || 0,
-      d.maxStorageCapacity || maxStorageCapacity || 0),
-  );
+      d.maxStorageCapacity || maxStorageCapacity || 0
+    ));
   // TODO(olc): do those aggregates server-side
   const lo_emission = d3.min(history, d =>
     Math.min(
       // Max export
       d3.min(d3.entries(d.exchange), o =>
-        Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-      ) || 0
+        Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0) || 0
       // Max storage
       // ?
-    )
-  );
+    ));
   const hi_emission = d3.max(history, d =>
     Math.max(
       // Max import
       d3.max(d3.entries(d.exchange), o =>
-        Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
-      ) || 0,
+        Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0) || 0,
       // Max production
       d3.max(d3.entries(d.production), o =>
-        Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0
-      ) || 0
-    )
-  );
+        Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0) || 0
+    ));
 
   // Figure out the highest CO2 emissions
   const hi_co2 = d3.max(
@@ -1179,8 +1193,11 @@ function renderHistory(state) {
     if (getState().application.selectedZoneTimeIndex !== selectedZoneTimeIndexInput) {
       const selectedZoneTimeIndex = selectedZoneTimeIndexInput === (history.length - 1)
         ? null
-        : selectedZoneTimeIndexInput
-      dispatch({type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME', payload: {selectedZoneTimeIndex}})
+        : selectedZoneTimeIndexInput;
+      dispatch({
+        type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
+        payload: { selectedZoneTimeIndex },
+      });
     }
   }).render();
 
@@ -1210,7 +1227,8 @@ function renderHistory(state) {
           );
           countryTooltip.update(
             currentEvent.clientX - 7,
-            g.rootElement.node().getBoundingClientRect().top - 7);
+            g.rootElement.node().getBoundingClientRect().top - 7
+          );
         } else if (g === countryHistoryPricesGraph) {
           const tooltip = d3.select(priceTooltip._selector);
           tooltip.select('.value').html((d.price || {}).value || '?');
@@ -1375,8 +1393,8 @@ function renderZones(state) {
 
 // toggle the `Production / Consumption` button to the proper UI with updates of the toggle button state.
 function toggleProdConsBtn(mode) {
-  let itemProd = d3.select('.production-toggle-item.production').node().getBoundingClientRect().width;
-  let itemCons = d3.select('.production-toggle-item.consumption').node().getBoundingClientRect().width;
+  const itemProd = d3.select('.production-toggle-item.production').node().getBoundingClientRect().width;
+  const itemCons = d3.select('.production-toggle-item.consumption').node().getBoundingClientRect().width;
 
   d3.select('.production-toggle-active-overlay')
     .classed('prod', mode === 'production')
@@ -1385,8 +1403,7 @@ function toggleProdConsBtn(mode) {
       : `${itemProd + 4}px`)
     .style('width', mode === 'production'
       ? `${itemProd}px`
-      : `${itemCons}px`
-    );
+      : `${itemCons}px`);
 }
 
 // Observe for electricityMixMode change
@@ -1524,8 +1541,8 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 
   solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
 
-  const now = state.customDate ?
-    moment(state.customDate) : (new Date()).getTime();
+  const now = state.customDate
+    ? moment(state.customDate) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
     solarColorbar.render();
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
@@ -1547,8 +1564,8 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
 
   saveKey('windEnabled', windEnabled);
 
-  const now = state.customDate ?
-    moment(state.customDate) : (new Date()).getTime();
+  const now = state.customDate
+    ? moment(state.customDate) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
     windColorbar.render();
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
