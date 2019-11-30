@@ -2,6 +2,11 @@
   "globals": {
     "VERSION": "readonly",
     "locale": "readonly",
+    "codePush": "readonly",
+    "device": "readonly",
+    "cordova": "readonly",
+    "universalLinks": "readonly",
+    "InstallMode": "readonly",
   },
   "extends": "airbnb",
   "env": {

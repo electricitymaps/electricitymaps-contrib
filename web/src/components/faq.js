@@ -75,7 +75,10 @@ const orderings = [
 ];
 
 orderings.forEach((e) => {
-  faq[e.groupKey] = {groupName: translation.translate(e.groupKey + '.groupName'), entries: {}};
+  faq[e.groupKey] = {
+    groupName: translation.translate(`${e.groupKey}.groupName`),
+    entries: {},
+  };
   e.entryOrder.forEach((f) => {
     faq[e.groupKey].entries[f] = {
       question: translation.translate(`${e.groupKey}.${f}-question`),

@@ -1,11 +1,12 @@
-/* eslint-disable */
-// TODO: remove once refactored
-
-const exports = module.exports = {};
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
+/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-spread */
+// TODO: re-enable rules
 
 // Import locales required
 const locales = {
-  'en': require('../../locales/en.json'),
+  en: require('../../locales/en.json'),
   [locale]: require(`../../locales/${locale}.json`),
 };
 const { vsprintf } = require('sprintf-js');
@@ -24,26 +25,24 @@ function translateWithLocale(locale, keyStr) {
   return result && vsprintf(result, formatArgs);
 }
 
-exports.translate = function translate() {
+export function translate() {
   // Will use the `locale` global variable
   const args = Array.prototype.slice.call(arguments);
   // Prepend locale
   args.unshift(locale);
   return translateWithLocale.apply(null, args);
-};
+}
 
-// exports.translate = function(arg) { return __(`abc${arg}`) };
-
-exports.getFullZoneName = function getFullZoneName(zoneCode) {
-  const zoneName = exports.translate(`zoneShortName.${zoneCode}.zoneName`);
+export function getFullZoneName(zoneCode) {
+  const zoneName = translate(`zoneShortName.${zoneCode}.zoneName`);
   if (!zoneName) {
     return zoneCode;
   }
-  const countryName = exports.translate(`zoneShortName.${zoneCode}.countryName`);
+  const countryName = translate(`zoneShortName.${zoneCode}.countryName`);
   if (!countryName) {
     return zoneName;
   }
   return `${zoneName} (${countryName})`;
-};
+}
 
-exports.__ = exports.translate;
+export const __ = translate;

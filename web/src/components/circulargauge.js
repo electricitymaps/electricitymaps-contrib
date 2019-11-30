@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+// TODO: re-enable rule
+
 import React from 'react';
 
 import * as d3Selection from 'd3-selection';

@@ -88,6 +88,9 @@ const LOCAL_ENDPOINT = 'http://localhost:9000';
   all logic of this file into React components.
   Help is appreciated ;-)
   ****************************************************************
+  TODO:
+  - turn all files in components/ into React components
+  - remove all observers and turn into react/redux
 */
 
 // Timing
@@ -179,7 +182,6 @@ const countryHistoryMixGraph = new AreaGraph('#country-history-mix', modeColor, 
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
-const lowcarbInfoTooltip = new Tooltip('#lowcarb-info-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
@@ -198,8 +200,12 @@ const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorb
 const zoneList = new ZoneList('.zone-list');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
+// TODO: Those two lines are required in order to init the component
+// The initiatlisation should be done automatically when
+// refactoring those components to React components
 const faq = new FAQ('.faq');
 const mobileFaq = new FAQ('.mobile-faq');
+
 const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
 const languageSelect = new LanguageSelect('#language-select-container');
@@ -259,6 +265,7 @@ const app = {
       HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
       // In principle we should only do the rest of the app loading
       // after this point, instead of dispating a new event
+      // eslint-disable-next-line no-shadow
       const applicationState = HistoryState.getStateFromHistory();
       Object.keys(applicationState).forEach((k) => {
         dispatchApplication(k, applicationState[k]);
@@ -351,6 +358,7 @@ function finishLoading() {
   // with cleanup actions.
   if (initLoading) {
     // the production / consumption toggle button could be out of the
+    // eslint-disable-next-line no-use-before-define
     toggleProdConsBtn(getState().application.electricityMixMode);
 
     // toggle the initial loading state. since this is a one-time on/off state, there's no need to manage it
@@ -581,6 +589,7 @@ function renderMap(state) {
     const { selectedZoneName, callerLocation } = state.application;
     if (selectedZoneName) {
       console.log(`Centering on selectedZoneName ${selectedZoneName}`);
+      // eslint-disable-next-line no-use-before-define
       centerOnZoneName(state, selectedZoneName, 4);
       hasCenteredMap = true;
     } else if (callerLocation) {
@@ -792,6 +801,7 @@ function fetch(showLoading, callback) {
   } else {
     Q.defer(cb => cb(null, wind));
   }
+  // eslint-disable-next-line no-shadow
   Q.await((err, clientVersion, state, solar, wind) => {
     handleConnectionReturnCode(err);
     if (!err) {
@@ -970,6 +980,7 @@ zoneList.setClickHandler((selectedCountry) => {
   dispatchApplication('showPageState', 'country');
   dispatchApplication('selectedZoneName', selectedCountry.countryCode);
   if (zoneMap !== 'undefined') {
+    // eslint-disable-next-line no-use-before-define
     centerOnZoneName(getState(), selectedCountry.countryCode, 4);
   }
 });
