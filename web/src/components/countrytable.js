@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 import NoDataOverlay from '../components/nodataoverlay'
 
 const d3 = Object.assign(

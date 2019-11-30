@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 import { sha256 } from 'js-sha256';
 
 var Cookies = require('js-cookie');

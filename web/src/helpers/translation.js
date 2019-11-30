@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const exports = module.exports = {};
 
 // Import locales required
@@ -42,3 +45,5 @@ exports.getFullZoneName = function getFullZoneName(zoneCode) {
   }
   return `${zoneName} (${countryName})`;
 };
+
+exports.__ = exports.translate;

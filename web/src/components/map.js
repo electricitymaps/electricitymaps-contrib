@@ -124,6 +124,7 @@ export default class Map {
     this.zoom = config.zoom;
 
     if (!mapboxgl.supported()) {
+      // eslint-disable-next-line no-throw-literal
       throw 'WebGL not supported';
     }
 
@@ -151,7 +152,7 @@ export default class Map {
       // the wrong size, so we resize it here just in case.
       setTimeout(() => {
         this.map.resize();
-      }, 500)
+      }, 500);
     });
 
     // Set a timer to detect when the map has finished loading
@@ -353,37 +354,37 @@ export default class Map {
 
   onSeaClick(arg) {
     if (!arg) return this.seaClickHandler;
-    else this.seaClickHandler = arg;
+    this.seaClickHandler = arg;
     return this;
   }
 
   onCountryClick(arg) {
     if (!arg) return this.countryClickHandler;
-    else this.countryClickHandler = arg;
+    this.countryClickHandler = arg;
     return this;
   }
 
   onCountryMouseOver(arg) {
     if (!arg) return this.countryMouseOverHandler;
-    else this.countryMouseOverHandler = arg;
+    this.countryMouseOverHandler = arg;
     return this;
   }
 
   onZoneMouseOut(arg) {
     if (!arg) return this.zoneMouseOutHandler;
-    else this.zoneMouseOutHandler = arg;
+    this.zoneMouseOutHandler = arg;
     return this;
   }
 
   onZoneMouseMove(arg) {
     if (!arg) return this.zoneMouseMoveHandler;
-    else this.zoneMouseMoveHandler = arg;
+    this.zoneMouseMoveHandler = arg;
     return this;
   }
 
   onMouseMove(arg) {
     if (!arg) return this.mouseMoveHandler;
-    else this.mouseMoveHandler = arg;
+    this.mouseMoveHandler = arg;
     return this;
   }
 

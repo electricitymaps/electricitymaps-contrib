@@ -20,6 +20,7 @@ services:
     ports: ['8000:8000']
     volumes:
       - './config:/home/config'
+      - './web/.eslintrc:/home/web/.eslintrc'
       - './web/generate-geometries.js:/home/web/generate-geometries.js'
       - './web/locales:/home/web/locales'
       - './web/locales-config.json:/home/web/locales-config.json'

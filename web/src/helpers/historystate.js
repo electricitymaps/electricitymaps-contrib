@@ -18,7 +18,7 @@ Object.keys(querystringMappings).forEach((k) => {
 });
 
 function appendQueryString(url, key, value) {
-  return (url === '?' ? url : url + '&') + key + '=' + value;
+  return `${url}${url === '?' ? '' : '&'}${key}=${value}`;
 }
 
 function getURL() {
@@ -60,7 +60,7 @@ function getStateFromHistory() {
 
 // Parse initial history state
 function parseInitial(arg) {
-  const querystrings = arg.replace('\?', '').split('&');
+  const querystrings = arg.replace('?', '').split('&');
   const validKeys = Object.keys(querystringMappings);
   querystrings.forEach((d) => {
     const pair = d.split('=');

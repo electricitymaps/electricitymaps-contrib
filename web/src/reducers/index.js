@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
 const dataReducer = require('./dataReducer');
-const { getKey } = require('../storage');
+const { getKey } = require('../helpers/storage');
 
-const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
-  window.location.href.indexOf('192.') !== -1;
+const isLocalhost = window.location.href.indexOf('electricitymap') !== -1
+  || window.location.href.indexOf('192.') !== -1;
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -64,8 +64,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
       // if (key === 'selectedZoneName') {
       //   newState.showPageState = value ? 'country' : 'map';
       // }
-      if (key === 'showPageState' &&
-          state.showPageState !== 'country') {
+      if (key === 'showPageState'
+          && state.showPageState !== 'country') {
         newState.pageToGoBackTo = state.showPageState;
       }
 
@@ -77,8 +77,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
     }
 
     case 'GRID_DATA': {
-      const selectedZoneNameExists =
-        Object.keys(action.payload.countries).indexOf(state.selectedZoneName) !== -1;
+      const selectedZoneNameExists = Object.keys(action.payload.countries)
+        .indexOf(state.selectedZoneName) !== -1;
       if (state.selectedZoneName != null && !selectedZoneNameExists) {
         // The selectedZoneName doesn't exist anymore, we need to reset it
         // TODO(olc): the page state should be inferred from selectedZoneName

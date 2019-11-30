@@ -65,9 +65,10 @@
     "build-debug": "webpack --bail --progress --mode development",
     "build-release": "export NODE_ENV=production && cat locales-config.json| jq '.languageNames | keys[]' | xargs -L1 -I {} node_modules/.bin/webpack --mode production --bail --config-name {}",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
-    "eslint": "eslint src",
+    "lint": "eslint --quiet src",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
+    "watch-en": "webpack --watch --progress --mode development --config-name en",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development"
   }
 }

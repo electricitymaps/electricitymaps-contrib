@@ -52,7 +52,6 @@ stages:
         command: |
           set -euo pipefail
           docker-compose build
-          docker-compose run web npm run build-release
         no_output_timeout: 30m
       - type: shell
         name: Start environment

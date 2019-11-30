@@ -1,13 +1,10 @@
-'use strict';
-
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 
 // Components
-import CircularGauge from './components/circulargauge';
 import ContributorList from './components/contributorlist';
 import Referral from './components/referral';
 import OnboardingModal from './components/onboardingmodal';
@@ -36,6 +33,9 @@ import thirdPartyServices from './services/thirdparty';
 // Utils
 import { getCurrentZoneData } from './helpers/redux';
 
+// Layout
+import Main from './layout/main';
+
 // Libraries
 const d3 = Object.assign(
   {},
@@ -60,17 +60,15 @@ const {
   store,
 } = require('./store');
 
-//Persistent storage
-const { saveKey } = require('./storage');
-
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
 const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
+const { saveKey } = require('./helpers/storage');
 const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
-const themes = require('./helpers/themes').themes;
+const { themes } = require('./helpers/themes');
 const getSymbolFromCurrency = require('currency-symbol-map');
 
 // Configs
@@ -125,6 +123,20 @@ let windLayer;
 let solarLayer;
 let onboardingModal;
 
+// Render DOM
+ReactDOM.render(
+  <Provider store={store}>
+    <Main />
+  </Provider>,
+  document.querySelector('#app'),
+  () => {
+    // Called when rendering is done
+    if (typeof zoneMap !== 'undefined') {
+      zoneMap.map.resize();
+    }
+  }
+);
+
 // Set standard theme
 let theme = themes.bright;
 
@@ -161,68 +173,6 @@ const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
 
-/*
-  For now, components are directly connected to redux.
-  We need a main component to start linking components together
-*/
-const CountryLowCarbonGauge = connect((state) => {
-  const d = getCurrentZoneData(state);
-  if (!d) {
-    return { percentage: null };
-  }
-  const fossilFuelRatio = state.application.electricityMixMode === 'consumption'
-    ? d.fossilFuelRatio
-    : d.fossilFuelRatioProduction;
-  const countryLowCarbonPercentage = fossilFuelRatio != null
-    ? 100 - (fossilFuelRatio * 100)
-    : null;
-  return {
-    percentage: countryLowCarbonPercentage,
-  };
-})(CircularGauge);
-const CountryRenewableGauge = connect((state) => {
-  const d = getCurrentZoneData(state);
-  if (!d) {
-    return { percentage: null };
-  }
-  const renewableRatio = state.application.electricityMixMode === 'consumption'
-    ? d.renewableRatio
-    : d.renewableRatioProduction;
-  const countryRenewablePercentage = renewableRatio != null
-    ? renewableRatio * 100 : null;
-  return {
-    percentage: countryRenewablePercentage,
-  };
-})(CircularGauge);
-const TooltipLowCarbonGauge = connect((state) => ({
-  percentage: state.application.tooltipLowCarbonGaugePercentage,
-}))(CircularGauge);
-const TooltipRenewableGauge = connect((state) => ({
-  percentage: state.application.tooltipRenewableGaugePercentage,
-}))(CircularGauge);
-
-ReactDOM.render(
-  <Provider store={store}>
-    <CountryLowCarbonGauge
-      onMouseOver={() => tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip)}
-      onMouseMove={(clientX, clientY) => lowcarbInfoTooltip.update(clientX, clientY)}
-      onMouseOut={() => lowcarbInfoTooltip.hide()}
-    />
-  </Provider>,
-  document.querySelector('#country-lowcarbon-gauge'),
-);
-ReactDOM.render(
-  <Provider store={store}><CountryRenewableGauge /></Provider>,
-  document.querySelector('#country-renewable-gauge'),
-);
-ReactDOM.render(
-  <Provider store={store}><TooltipLowCarbonGauge /></Provider>,
-  document.querySelector('#tooltip-country-lowcarbon-gauge'),
-);
-ReactDOM.render(
-  <Provider store={store}><TooltipRenewableGauge /></Provider>,
-  document.querySelector('#tooltip-country-renewable-gauge'),
-);
 const contributorList = new ContributorList('.contributors');
 const referral = new Referral('.referral-link');
 

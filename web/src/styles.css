@@ -208,15 +208,6 @@ body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
 
-#main {
-    position: fixed; /* This is done in order to ensure that dragging will not affect the body */
-    width: 100vw;
-    height: inherit;
-    display: flex;
-    flex-direction: column; /* children will be stacked vertically */
-    align-items: stretch; /* force children to take 100% width */
-}
-
 #map-container {
     position: relative;
     flex-grow: 1; /* This takes up available horizontal space */

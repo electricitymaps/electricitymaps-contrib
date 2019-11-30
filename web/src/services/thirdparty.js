@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const store = require('../store');
 
 const { Sentry } = window;

@@ -1,12 +1,12 @@
-const translation = require('../helpers/translation');
-const flags = require('../helpers/flags');
-
 const d3 = Object.assign(
   {},
   require('d3-array'),
   require('d3-collection'),
   require('d3-selection'),
 );
+
+const translation = require('../helpers/translation');
+const flags = require('../helpers/flags');
 
 export default class ZoneList {
   constructor(selectorId, argConfig) {

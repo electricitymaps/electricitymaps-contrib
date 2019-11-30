@@ -386,7 +386,12 @@ The frontend will need compiling. In order to do this, open a terminal in the ro
 ```
 docker-compose run --rm web npm run watch
 ```
-This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed. For the next steps you will need to open a new terminal while this command keeps running.
+This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed.
+If you only want to build for the English language (which will be faster as not all languages need to be built), you can run
+```
+docker-compose run --rm web npm run watch-en
+```
+For the next steps you will need to open a new terminal while this command keeps running.
 
 If you encounter any errors in the build process try the following command first:
 ```

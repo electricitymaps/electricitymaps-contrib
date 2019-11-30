@@ -21,7 +21,7 @@ ARG ELECTRICITYMAP_PUBLIC_TOKEN
 # (note: this will override the world.json that was previously created)
 ADD config /home/config
 ADD web /home/web
-RUN yarn run build-release
+RUN yarn lint && yarn build-release
 
 EXPOSE 8000
 ENV PORT 8000

@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const d3 = require('d3-selection');
 
 const flags = require('../helpers/flags');

@@ -1,13 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 
-const store = process.env.NODE_ENV === 'production' ?
-  createStore(
+const store = process.env.NODE_ENV === 'production'
+  ? createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
-  :
-  createStore(
+  : createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(require('redux-logger').logger),

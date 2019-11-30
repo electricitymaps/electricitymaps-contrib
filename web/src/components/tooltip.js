@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 import { event as d3Event } from 'd3-selection';
 
 const d3 = Object.assign(
