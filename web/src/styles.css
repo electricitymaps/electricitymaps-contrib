@@ -148,39 +148,6 @@ line, path {
     align-items: center;
 }
 
-.referral-link {
-    color: inherit;
-}
-
-.referral {
-    margin: 24px 0;
-}
-
-.referral.barry {
-    display: block;
-    position: relative;
-    border-radius: 8px;
-    padding: 8px;
-    color: white;
-    background-image: linear-gradient(to bottom right, #FF4B9B, #EF7B40);
-    text-decoration: none !important;
-    margin: 0;
-}
-
-.referral .barry-logo {
-    position: absolute;
-    width: 60px;
-    bottom: 8px;
-    right: 8px;
-}
-
-.referral .external-link-icon {
-    position: absolute;
-    width: 14px;
-    top: 4px;
-    right: 4px;
-}
-
 .sponsored-message-text{
     color: black;
     font-size: 7px;

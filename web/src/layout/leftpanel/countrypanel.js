@@ -135,7 +135,6 @@ class Component extends React.PureComponent {
           </div>
         </div>
         <div className="country-panel-wrap">
-          <div className="referral-link" />
           <div className="bysource">
             {__('country-panel.bysource')}
           </div>

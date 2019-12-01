@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 
 // Components
 import ContributorList from './components/contributorlist';
-import Referral from './components/referral';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneList from './components/zonelist';
@@ -188,7 +187,6 @@ const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
 
 const contributorList = new ContributorList('.contributors');
-const referral = new Referral('.referral-link');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -306,9 +304,6 @@ if (!getState().application.onboardingSeen && !getState().application.isEmbedded
   onboardingModal = new OnboardingModal('#main');
   thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
-
-// Display embedded warning
-// d3.select('#embedded-error').style('display', isEmbedded ? 'block' : 'none');
 
 // Display randomly alternating header campaign message
 const randomBoolean = Math.random() >= 0.5;
@@ -989,16 +984,6 @@ if (onboardingModal) {
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
 
-function renderReferral(state) {
-  const { selectedZoneName, callerZone } = state.application;
-  referral.setCallerZone(callerZone);
-  referral.setSelectedZone(selectedZoneName);
-  referral.render();
-  if (referral.isVisible()) {
-    thirdPartyServices.trackWithCurrentApplicationState('referralShown');
-  }
-}
-
 function renderContributors(state) {
   const { selectedZoneName } = state.application;
   contributorList.setContributors((zonesConfig[selectedZoneName] || {}).contributors || []);
@@ -1396,17 +1381,10 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   renderCountryTable(state);
   renderContributors(state);
   renderHistory(state);
-  // renderReferral(state);
   zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
   tryFetchHistory(state);
-});
-
-// Observe for caller zone changed
-observe(state => state.application.callerZone, (callerZone, state) => {
-  // Render
-  renderReferral(state);
 });
 
 // Observe for history change

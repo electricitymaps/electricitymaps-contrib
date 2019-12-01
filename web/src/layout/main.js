@@ -40,14 +40,7 @@ export default connect(mapStateToProps)(props => (
       <Header />
       <div id="inner">
         <div id="loading" className="loading overlay" />
-
-        <div id="embedded-error" className="overlay" style={{ backgroundColor: 'grey', display: 'none' }}>
-          Embedding of the ElectricityMap has been deactivated. You can still access it at <a href="http://www.electricitymap.org" target="_blank">https://www.electricitymap.org</a>.<br />
-          Please contact us at <a href="mailto:hello@tmrow.com">hello@tmrow.com</a> for more information.
-        </div>
-
         <LeftPanel />
-
         <div id="map-container">
           <div id="zones" className="map-layer" />
           <canvas id="wind" className="map-layer" />
