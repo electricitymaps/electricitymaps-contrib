@@ -13,6 +13,8 @@ services:
       cache_from:
         - eu.gcr.io/tmrow-152415/electricitymap_web:production
         - eu.gcr.io/tmrow-152415/electricitymap_web:staging
+        - eu.gcr.io/tmrow-152415/electricitymap_web:latest
+    image: eu.gcr.io/tmrow-152415/electricitymap_web:latest
     command: npm run server-dev
     depends_on: ['mockserver']
     environment:
