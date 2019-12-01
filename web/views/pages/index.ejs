@@ -72,7 +72,10 @@
         </script>
 
         <!-- Add crash reporting early on so we catch all errors -->
-        <script src="https://browser.sentry-cdn.com/4.0.6/bundle.min.js" crossorigin="anonymous"></script>
+        <script
+          src="https://browser.sentry-cdn.com/5.9.1/bundle.min.js"
+          integrity="sha384-/x1aHz0nKRd6zVUazsV6CbQvjJvr6zQL2CHbQZf3yoLkezyEtZUpqUNnOLW9Nt3v"
+          crossorigin="anonymous"></script>
         <script>
             if (bundleHash.indexOf('dev') === -1 && !isCordova) {
                 Sentry.init({

@@ -33,7 +33,7 @@ const initialApplicationState = {
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
   isProduction: window.location.href.indexOf('electricitymap') !== -1,
   isLocalhost,
-  legendVisible: false,
+  legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
@@ -51,6 +51,8 @@ const initialApplicationState = {
   // TODO(olc): those properties could be deduced from a `hoveredZoneName`
   tooltipLowCarbonGaugePercentage: null,
   tooltipRenewableGaugePercentage: null,
+  // TODO(olc): move this to countryPanel once all React components have been made
+  tableDisplayEmissions: false,
 };
 
 const applicationReducer = (state = initialApplicationState, action) => {

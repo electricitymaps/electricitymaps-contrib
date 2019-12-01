@@ -126,7 +126,6 @@ let currentMoment;
 let mapDraggedSinceStart = false;
 let wind;
 let solar;
-let tableDisplayEmissions = false;
 let hasCenteredMap = false;
 
 // Set up objects
@@ -359,10 +358,6 @@ function finishLoading() {
   // if we're done with loading the map for the first ever render, toggle the state and wrapping up
   // with cleanup actions.
   if (initLoading) {
-    // the production / consumption toggle button could be out of the
-    // eslint-disable-next-line no-use-before-define
-    toggleProdConsBtn(getState().application.electricityMixMode);
-
     // toggle the initial loading state. since this is a one-time on/off state, there's no need to manage it
     // with the redux state store.
     initLoading = false;
@@ -443,7 +438,7 @@ try {
 
 countryTable
   .co2color(co2color)
-  .displayByEmissions(tableDisplayEmissions)
+  .displayByEmissions(getState().application.tableDisplayEmissions)
   .onExchangeMouseMove(() => {
     countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
   })
@@ -488,7 +483,7 @@ countryHistoryMixGraph
     const ttp = isExchange
       ? countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
-      mode, countryData, tableDisplayEmissions,
+      mode, countryData, getState().application.tableDisplayEmissions,
       co2color, co2Colorbars);
     dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
@@ -504,7 +499,7 @@ countryHistoryMixGraph
       countryHistoryMixGraph.rootElement.node().getBoundingClientRect().top - 7
     );
     fun(ttp,
-      mode, countryData, tableDisplayEmissions,
+      mode, countryData, getState().application.tableDisplayEmissions,
       co2color, co2Colorbars);
     dispatchApplication('tooltipDisplayMode', mode);
     dispatchApplication('selectedZoneTimeIndex', i);
@@ -519,42 +514,11 @@ countryHistoryMixGraph
   });
 
 countryHistoryMixGraph
-  .displayByEmissions(tableDisplayEmissions);
+  .displayByEmissions(getState().application.tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#emissions')
-  .classed('selected', tableDisplayEmissions);
+  .classed('selected', getState().application.tableDisplayEmissions);
 d3.select('.country-show-emissions-wrap a#production')
-  .classed('selected', !tableDisplayEmissions);
-
-// TODO(olc): Move to redux
-window.toggleSource = (state) => {
-  /* changing whether we display electricity production or carbon emission graphs */
-  if (state === undefined) {
-    // eslint-disable-next-line no-param-reassign
-    state = !tableDisplayEmissions;
-  }
-  tableDisplayEmissions = state;
-  thirdPartyServices.track(
-    tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-    { countryCode: countryTable.data().countryCode },
-  );
-  countryTable
-    .displayByEmissions(tableDisplayEmissions);
-  countryHistoryMixGraph
-    .displayByEmissions(tableDisplayEmissions);
-  d3.select('.country-show-emissions-wrap a#emissions')
-    .classed('selected', tableDisplayEmissions);
-  d3.select('.country-show-emissions-wrap a#production')
-    .classed('selected', !tableDisplayEmissions);
-  // update wording, see #893
-  const mixModeKey = getState().application.electricityMixMode === 'consumption'
-    ? 'origin' : 'production';
-  document.getElementById('country-history-electricity-carbonintensity')
-    .textContent = translation.translate(
-      tableDisplayEmissions
-        ? `country-history.emissions${mixModeKey}24h`
-        : `country-history.electricity${mixModeKey}24h`
-    );
-};
+  .classed('selected', !getState().application.tableDisplayEmissions);
 
 function mapMouseOver(lonlat) {
   if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
@@ -923,12 +887,6 @@ if (!getState().application.isMobile) {
 
 languageSelect.render();
 
-// Legend
-function toggleLegend() {
-  dispatchApplication('legendVisible', !getState().application.legendVisible);
-}
-d3.selectAll('.toggle-legend-button').on('click', toggleLegend);
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -1013,13 +971,6 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-// FAQ link
-d3.selectAll('.faq-link')
-  .on('click', () => {
-    dispatchApplication('selectedZoneName', undefined);
-    dispatchApplication('showPageState', 'faq');
-  });
-
 // Mobile toolbar buttons
 d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('showPageState', 'info'));
@@ -1088,7 +1039,7 @@ function renderOpenTooltips(state) {
     const ttp = isExchange
       ? countryTableExchangeTooltip : countryTableProductionTooltip;
     fun(ttp,
-      tooltipMode, zoneData, tableDisplayEmissions,
+      tooltipMode, zoneData, state.application.tableDisplayEmissions,
       co2color, co2Colorbars);
   }
 
@@ -1275,17 +1226,6 @@ function renderHistory(state) {
   });
 }
 
-function renderLeftPanelCollapseButton(state) {
-  const { isLeftPanelCollapsed } = state.application;
-  d3.select('.left-panel')
-    .classed('collapsed', isLeftPanelCollapsed);
-  d3.select('#left-panel-collapse-button')
-    .classed('collapsed', isLeftPanelCollapsed);
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.map.resize();
-  }
-}
-
 function routeToPage(pageName, state) {
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
 
@@ -1404,21 +1344,6 @@ function renderZones(state) {
   zoneList.render();
 }
 
-// toggle the `Production / Consumption` button to the proper UI with updates of the toggle button state.
-function toggleProdConsBtn(mode) {
-  const itemProd = d3.select('.production-toggle-item.production').node().getBoundingClientRect().width;
-  const itemCons = d3.select('.production-toggle-item.consumption').node().getBoundingClientRect().width;
-
-  d3.select('.production-toggle-active-overlay')
-    .classed('prod', mode === 'production')
-    .style('left', mode === 'production'
-      ? '0px'
-      : `${itemProd + 4}px`)
-    .style('width', mode === 'production'
-      ? `${itemProd}px`
-      : `${itemCons}px`);
-}
-
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
   renderExchanges(state);
@@ -1426,22 +1351,6 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderMap(state);
   renderCountryTable(state);
   renderHistory(state);
-
-  // only update the toggle button outside the initial loading period, since during the initial loading,
-  // the button state will be managed in the `finishLoading()` code.
-  if (!initLoading) {
-    toggleProdConsBtn(electricityMixMode);
-  }
-
-  d3.select('a#production')
-    .text(translation.translate(`country-panel.electricity${electricityMixMode}`));
-
-  document.getElementById('country-history-electricity-carbonintensity')
-    .innerHTML = translation.translate(
-      tableDisplayEmissions
-        ? `country-history.emissions${electricityMixMode === 'production' ? 'production' : 'origin'}24h`
-        : `country-history.electricity${electricityMixMode === 'production' ? 'production' : 'origin'}24h`
-    );
 });
 
 // Observe for grid zones change
@@ -1605,29 +1514,28 @@ observe(state => state.data.grid, (grid) => {
   }
 });
 
-// Observe for legend visibility change
-observe(state => state.application.legendVisible, (legendVisible) => {
-  d3.selectAll('.floating-legend').classed('mobile-collapsed', !legendVisible);
-  d3.select('.floating-legend-container').classed('mobile-collapsed', !legendVisible);
-  d3.select('.toggle-legend-button.up').classed('visible', !legendVisible);
-  d3.select('.toggle-legend-button.down').classed('visible', legendVisible);
-});
-
 // Observe for left panel collapse
-observe(state => state.application.isLeftPanelCollapsed, (_, state) =>
-  renderLeftPanelCollapseButton(state));
+observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.map.resize();
+  }
+});
 
 // Observe for search query change
 observe(state => state.application.searchQuery, (searchQuery, state) => {
   zoneList.filterZonesByQuery(searchQuery);
 });
 
-// Observe for brightmode change
-observe(state => state.application.brightModeEnabled, (brightModeEnabled, _) => {
-  const electricityMapHeader = d3.select('#header-content');
-  const tmrowWatermark = d3.select('#watermark');
-  electricityMapHeader.classed('brightmode', brightModeEnabled);
-  tmrowWatermark.classed('brightmode', brightModeEnabled);
+// Observe
+observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {
+  thirdPartyServices.track(
+    tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
+    { countryCode: countryTable.data().countryCode },
+  );
+  countryTable
+    .displayByEmissions(tableDisplayEmissions);
+  countryHistoryMixGraph
+    .displayByEmissions(tableDisplayEmissions);
 });
 
 

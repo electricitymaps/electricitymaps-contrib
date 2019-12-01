@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable react/jsx-no-target-blank */
@@ -6,11 +7,18 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 // Modules
 import { __ } from '../../helpers/translation';
+import { updateApplication } from '../../actioncreators';
 
-export default () => (
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({
+  dispatchApplication: (k, v) => dispatch(updateApplication(k, v)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplication }) => (
   <div className="info-text small-screen-hidden">
     <p>
       <label className="checkbox-container">
@@ -49,7 +57,19 @@ export default () => (
       {__('footer.likethisvisu')} <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">{__('footer.loveyourfeedback')}</a>!
     </p>
     <p>
-      {__('footer.faq-text')} <a className="faq-link" role="link" tabIndex="0">{__('footer.faq')}</a>
+      {__('footer.faq-text')}
+      {' '}
+      <a
+        className="faq-link"
+        role="link"
+        tabIndex="0"
+        onClick={() => {
+          dispatchApplication('selectedZoneName', undefined);
+          dispatchApplication('showPageState', 'faq');
+        }}
+      >
+        {__('footer.faq')}
+      </a>
     </p>
     <div className="social-buttons">
       <div>
@@ -76,4 +96,4 @@ export default () => (
       </div>
     </div>
   </div>
-);
+));

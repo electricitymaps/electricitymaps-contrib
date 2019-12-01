@@ -4,6 +4,7 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 // Layout
 import CountryPanel from './countrypanel';
@@ -16,8 +17,14 @@ import { __ } from '../../helpers/translation';
 
 const { co2Sub } = require('../../helpers/formatting');
 
-export default () => (
-  <div className="panel left-panel">
+// TODO: Move all styles from styles.css to here
+
+const mapStateToProps = state => ({
+  isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+});
+
+export default connect(mapStateToProps)(props => (
+  <div className={`panel left-panel ${props.isLeftPanelCollapsed ? 'collapsed' : ''}`}>
 
     <div id="mobile-header" className="large-screen-hidden brightmode">
       <div className="header-content">
@@ -88,4 +95,4 @@ export default () => (
     </div>
     <Faq />
   </div>
-);
+));

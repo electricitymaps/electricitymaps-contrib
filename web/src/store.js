@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+import { updateApplication } from './actioncreators';
 import reducer from './reducers';
 
 const store = process.env.NODE_ENV === 'production'
@@ -32,16 +33,15 @@ const observe = (select, onChange) => {
 
 const { dispatch, getState } = store;
 
+// TODO: Deprecate and use actioncreators instead
 const dispatchApplication = (key, value) => {
   // Do not dispatch unnecessary events
+  // TODO: warn: getState() might be out of sync
+  // by the time the event gets dispatched.
   if (getState().application[key] === value) {
     return;
   }
-  dispatch({
-    key,
-    value,
-    type: 'APPLICATION_STATE_UPDATE',
-  });
+  dispatch(updateApplication(key, value));
 };
 
 export {

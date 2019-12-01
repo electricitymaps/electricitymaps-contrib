@@ -3,6 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 // Layout
 import Header from './header';
@@ -16,7 +17,15 @@ import Tooltips from './tooltips';
 // Modules
 import { __ } from '../helpers/translation';
 
-export default () => (
+// TODO: Move all styles from styles.css to here
+// TODO: Remove all unecessary id and class tags
+
+const mapStateToProps = state => ({
+  brightModeEnabled: state.application.brightModeEnabled,
+  isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+});
+
+export default connect(mapStateToProps)(props => (
   <React.Fragment>
     <div
       style={{
@@ -43,7 +52,7 @@ export default () => (
           <div id="zones" className="map-layer" />
           <canvas id="wind" className="map-layer" />
           <canvas id="solar" className="map-layer" />
-          <div id="watermark" className="watermark small-screen-hidden brightmode">
+          <div id="watermark" className={`watermark small-screen-hidden ${props.brightModeEnabled ? 'brightmode' : ''}`}>
             <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
               <div id="built-by-tomorrow" />
             </a>
@@ -73,7 +82,12 @@ export default () => (
           <div className="inner">{__('misc.newversion')}</div>
         </div>
 
-        <div id="left-panel-collapse-button" className="small-screen-hidden" role="button" tabIndex="0">
+        <div
+          id="left-panel-collapse-button"
+          className={`small-screen-hidden ${props.isLeftPanelCollapsed ? 'collapsed' : ''}`}
+          role="button"
+          tabIndex="0"
+        >
           <i className="material-icons">arrow_drop_down</i>
         </div>
 
@@ -83,4 +97,4 @@ export default () => (
     </div>
     <Tooltips />
   </React.Fragment>
-);
+));

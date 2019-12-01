@@ -9,6 +9,7 @@
     "InstallMode": "readonly",
   },
   "extends": "airbnb",
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
   },
