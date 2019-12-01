@@ -204,9 +204,9 @@ HorizontalColorbar.prototype._setDomainAndRange = function _setDomainAndRange(d,
 
   this._domain = d;
   this.colors = r || d3.range(10).map((i) => {
-    let e = d3.extent(that._domain);
-    let inter = d3.interpolate(e[0], e[1]);
-    let value = inter(i / (10 - 1));
+    const e = d3.extent(that._domain);
+    const inter = d3.interpolate(e[0], e[1]);
+    const value = inter(i / (10 - 1));
     return that.originalColorScale(value);
   });
   this.scale = d3.scaleLinear()

@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 var exports = module.exports = {};
 
 const d3 = require('d3-interpolate');

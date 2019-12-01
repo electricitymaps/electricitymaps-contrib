@@ -384,18 +384,16 @@ To get started, [clone](https://help.github.com/articles/cloning-a-repository/) 
 
 The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
-docker-compose run --rm web npm run watch
-```
-This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed. For the next steps you will need to open a new terminal while this command keeps running.
-
-If you encounter any errors in the build process try the following command first:
-```
 docker-compose build
 ```
-Now that the frontend is compiled, you can run the application by running the following command in a new terminal:
+One you are done, you can start the application by running
 ```
-docker-compose up --build
+docker-compose up
 ```
+
+This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed.
+Note this only builds for the English language (which will be faster as not all languages need to be built).
+If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
 

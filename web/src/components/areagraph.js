@@ -1,4 +1,5 @@
-'use strict'
+/* eslint-disable */
+// TODO: remove once refactored
 
 const d3 = Object.assign(
   {},

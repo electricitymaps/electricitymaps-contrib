@@ -52,7 +52,9 @@ stages:
         command: |
           set -euo pipefail
           docker-compose build
-          docker-compose run web npm run build-release
+          # Make sure files are available outside of container
+          CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
+          docker cp $CONTAINER_ID:/home/web/public/dist web/public/dist
         no_output_timeout: 30m
       - type: shell
         name: Start environment

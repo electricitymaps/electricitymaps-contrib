@@ -23,7 +23,7 @@ const stopLoading = (selector) => {
     d3.selectAll(selector)
       .transition()
       .style('opacity', 0)
-      .on('end', function() {
+      .on('end', function () {
         d3.select(this).style('display', 'none');
       });
   }
@@ -32,4 +32,4 @@ const stopLoading = (selector) => {
 export {
   startLoading,
   stopLoading,
-}
+};

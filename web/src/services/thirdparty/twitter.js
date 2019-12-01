@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 class TwitterThirdParty {
     constructor() {
         window.twttr = (function (d, s, id) {

@@ -1,5 +1,15 @@
 {
+  "globals": {
+    "VERSION": "readonly",
+    "locale": "readonly",
+    "codePush": "readonly",
+    "device": "readonly",
+    "cordova": "readonly",
+    "universalLinks": "readonly",
+    "InstallMode": "readonly",
+  },
   "extends": "airbnb",
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
   },
@@ -16,6 +26,7 @@
     "dot-notation": "warn",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
+    "jsx-a11y/alt-text": "warn",
     "max-len": "warn",
     "no-await-in-loop": "warn",
     "no-continue": "warn",
@@ -26,6 +37,7 @@
     "no-unused-vars": "warn",
     "react/destructuring-assignment": "warn",
     "quote-props": "warn",
+    "react/jsx-curly-brace-presence": "warn",
     "react/jsx-one-expression-per-line": "warn",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/prop-types": "warn",
