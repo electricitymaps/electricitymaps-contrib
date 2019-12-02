@@ -1506,10 +1506,12 @@ observe(state => state.application.searchQuery, (searchQuery, state) => {
 
 // Observe
 observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {
-  thirdPartyServices.track(
-    tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-    { countryCode: countryTable.data().countryCode },
-  );
+  if (countryTable.data()) {
+    thirdPartyServices.track(
+      tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
+      { countryCode: countryTable.data().countryCode },
+    );
+  }
   countryTable
     .displayByEmissions(tableDisplayEmissions);
   countryHistoryMixGraph
