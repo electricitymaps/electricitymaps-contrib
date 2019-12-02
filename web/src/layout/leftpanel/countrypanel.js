@@ -137,14 +137,14 @@ class Component extends React.PureComponent {
                 id="production"
                 onClick={this.toggleSource}
                 className={!tableDisplayEmissions ? 'selected' : null}
-                dangerouslySetInnerHTML={{ _html: __(`country-panel.electricity${electricityMixMode}`) }}
+                dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
               />
               |
               <a
                 id="emissions"
                 onClick={this.toggleSource}
                 className={tableDisplayEmissions ? 'selected' : null}
-                dangerouslySetInnerHTML={{ _html: co2Sub(__('country-panel.emissions')) }}
+                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
               />
             </div>
           </div>
