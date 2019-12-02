@@ -91,15 +91,23 @@ function getHash(key, ext, obj) {
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
 const srcHashes = Object.fromEntries(locales.map((k) => {
-  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
-  const BUNDLE_HASH = getHash('bundle', 'js', obj);
-  const STYLES_HASH = getHash('styles', 'css', obj);
-  const VENDOR_HASH = getHash('vendor', 'js', obj);
-  const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
-  return [k, {
-    BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
-  }];
-}));
+  try {
+    const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
+    const BUNDLE_HASH = getHash('bundle', 'js', obj);
+    const STYLES_HASH = getHash('styles', 'css', obj);
+    const VENDOR_HASH = getHash('vendor', 'js', obj);
+    const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
+    return [k, {
+      BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
+    }];
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.warn(`Warning: couldn't load manifest for locale ${k}`);
+      return null; // Ignore
+    }
+    throw err;
+  }
+}).filter(d => d));
 
 // * Error handling
 function handleError(err) {

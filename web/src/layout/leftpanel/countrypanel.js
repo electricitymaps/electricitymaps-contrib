@@ -101,7 +101,10 @@ class Component extends React.PureComponent {
                   g
                 </div>
               </div>
-              <div className="country-col-headline">{co2Sub(__('country-panel.carbonintensity'))}</div>
+              <div
+                className="country-col-headline"
+                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
+              />
               <div className="country-col-subtext">(gCO<span className="sub">2</span>eq/kWh)</div>
             </div>
             <div className="country-col country-lowcarbon-wrap">
@@ -112,25 +115,37 @@ class Component extends React.PureComponent {
                   onMouseOut={() => lowcarbInfoTooltip.hide()}
                 />
               </div>
-              <div className="country-col-headline">{co2Sub(__('country-panel.lowcarbon'))}</div>
+              <div
+                className="country-col-headline"
+                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
+              />
               <div className="country-col-subtext" />
             </div>
             <div className="country-col country-renewable-wrap">
               <div id="country-renewable-gauge" className="country-gauge-wrap">
                 <CountryRenewableGauge />
               </div>
-              <div className="country-col-headline">{__('country-panel.renewable')}</div>
+              <div
+                className="country-col-headline"
+                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.renewable')) }}
+              />
             </div>
           </div>
           <div className="country-show-emissions-wrap">
             <div className="menu">
-              <a id="production" onClick={this.toggleSource} className={!tableDisplayEmissions ? 'selected' : null}>
-                {__(`country-panel.electricity${electricityMixMode}`)}
-              </a>
+              <a
+                id="production"
+                onClick={this.toggleSource}
+                className={!tableDisplayEmissions ? 'selected' : null}
+                dangerouslySetInnerHTML={{ _html: __(`country-panel.electricity${electricityMixMode}`) }}
+              />
               |
-              <a id="emissions" onClick={this.toggleSource} className={tableDisplayEmissions ? 'selected' : null}>
-                {co2Sub(__('country-panel.emissions'))}
-              </a>
+              <a
+                id="emissions"
+                onClick={this.toggleSource}
+                className={tableDisplayEmissions ? 'selected' : null}
+                dangerouslySetInnerHTML={{ _html: co2Sub(__('country-panel.emissions')) }}
+              />
             </div>
           </div>
         </div>
