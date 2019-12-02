@@ -57,7 +57,7 @@ class Component extends React.PureComponent {
         </div>
         <div className={`co2-legend floating-legend ${mobileCollapsedClass}`}>
           <div className="legend-header">
-            {co2Sub(__('legends.carbonintensity'))}
+            <span dangerouslySetInnerHTML={{ __html: co2Sub(__('legends.carbonintensity')) }} />
             {' '}
             <small>
               (gCO

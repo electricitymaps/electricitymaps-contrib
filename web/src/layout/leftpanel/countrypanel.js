@@ -161,9 +161,10 @@ class Component extends React.PureComponent {
           <hr />
           <div className="country-history">
             <div className="loading overlay" />
-            <span className="country-history-title">
-              {co2Sub(__('country-history.carbonintensity24h'))}
-            </span>
+            <span
+              className="country-history-title"
+              dangerouslySetInnerHTML={{ __html: co2Sub(__('country-history.carbonintensity24h')) }}
+            />
             <br />
             <small className="small-screen-hidden">
               <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>

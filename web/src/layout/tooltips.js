@@ -31,13 +31,19 @@ export default () => (
                 g
               </div>
             </div>
-            <div className="country-col-headline">{co2Sub(__('country-panel.carbonintensity'))}</div>
+            <div
+              className="country-col-headline"
+              dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
+            />
           </div>
           <div className="country-col country-lowcarbon-wrap">
             <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
               <TooltipLowCarbonGauge />
             </div>
-            <div className="country-col-headline">{co2Sub(__('country-panel.lowcarbon'))}</div>
+            <div
+              className="country-col-headline"
+              dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
+            />
             <div className="country-col-subtext" />
           </div>
           <div className="country-col country-renewable-wrap">
@@ -71,7 +77,7 @@ export default () => (
       MW
       <br />
       <br />
-      {co2Sub(__('tooltips.carbonintensityexport'))}
+      <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.carbonintensityexport')) }} />
       :
       <br />
       <div className="emission-rect" />
@@ -111,7 +117,7 @@ export default () => (
         </small>
         <br />
         <br />
-        {co2Sub(__('tooltips.withcarbonintensity'))}
+        <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
         <br />
         <div className="emission-rect" />
         {' '}
@@ -152,7 +158,7 @@ export default () => (
         </small>
         <br />
         <br />
-        {co2Sub(__('tooltips.withcarbonintensity'))}
+        <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
         <br />
         <img className="country-exchange-source-flag flag" alt="" />
         {' '}
