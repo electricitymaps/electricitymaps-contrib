@@ -439,6 +439,13 @@
           "value": 680
         }
       },
+      "KW": {
+        "unknown": {
+          "_url": "https://www.iea.org/statistics/?country=KUWAIT&year=2017&category=Key%20indicators&indicator=ElecGenByFuel&mode=chart&dataTable=ELECTRICITYANDHEAT",
+          "source": "IEA 2017; assumes 34.4% gas, 65.6% oil",
+          "value": 595
+        }
+      },
       "LT": {
         "hydro discharge": {
           "source": "2018 average by Tomorrow",
