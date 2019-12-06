@@ -17,7 +17,7 @@ const { version } = require('./package.json');
 module.exports = Object.keys(languageNames).map(locale => ({
   name: locale,
   devtool: isProduction ? 'sourcemap' : 'eval',
-  entry: { bundle: ['@babel-polyfill', './src/main.js'], styles: './src/scss/styles.scss' },
+  entry: { bundle: ['@babel/polyfill', './src/main.js'], styles: './src/scss/styles.scss' },
   module: {
     noParse: /(mapbox-gl)\.js$/,
     rules: [

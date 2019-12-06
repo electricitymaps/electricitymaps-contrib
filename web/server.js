@@ -101,11 +101,8 @@ const srcHashes = Object.fromEntries(locales.map((k) => {
       BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
     }];
   } catch (err) {
-    if (err.code === 'ENOENT') {
-      console.warn(`Warning: couldn't load manifest for locale ${k}`);
-      return null; // Ignore
-    }
-    throw err;
+    console.warn(`Warning: couldn't load manifest for locale ${k}: ${err}`);
+    return null; // Ignore
   }
 }).filter(d => d));
 
