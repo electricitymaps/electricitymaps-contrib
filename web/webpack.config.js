@@ -47,8 +47,11 @@ module.exports = Object.keys(languageNames).map(locale => ({
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(`/${locale}/`)),
     // Only include current locale + en
     new webpack.ContextReplacementPlugin(/locales/, new RegExp(`/${locale}|en/`)),
-    new MiniCssExtractPlugin(`[name].${isProduction ? '[hash]' : 'dev'}.css`),
     new OptimizeCssAssetsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
+      chunkFilename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     function () {
       this.plugin('done', (stats) => {
