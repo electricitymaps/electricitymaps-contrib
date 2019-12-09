@@ -6,12 +6,8 @@
     padding: 12px;
     vertical-align: bottom;
     text-align: right;
-
-    .socialicons {
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-evenly;
-	}
+    display: flex;
+    align-items: center;
 
 	a:hover{
 	    text-decoration: none;
@@ -36,11 +32,23 @@
 }
 
 #built-by-tomorrow{
-    display: inline-block;
     background-image: url(../images/built-by-tomorrow-white.svg);
     background-size: cover;
-    width: 280px;
-    height: 42px;
+    width: 180px;
+    height: 28px;
+}
+
+#hiring-flag{
+    background-color: #F20050;
+    border-radius: 6px;
+    padding: 3px 6px;
+    margin-left: 14px;
+    p {
+        font-weight: bold;
+        color: $white;
+        font-size: 0.7em;
+        margin: 0;
+    }
 }
 
 div.highscore-button {
