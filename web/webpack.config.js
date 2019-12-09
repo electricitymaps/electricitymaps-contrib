@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const fs = require('fs');
+const autoprefixer = require('autoprefixer');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const { languageNames } = require('./locales-config.json');
@@ -15,17 +17,19 @@ const { version } = require('./package.json');
 module.exports = Object.keys(languageNames).map(locale => ({
   name: locale,
   devtool: isProduction ? 'sourcemap' : 'eval',
-  entry: { bundle: ['@babel/polyfill', './src/main.js'], styles: './src/styles.css' },
+  entry: { bundle: ['@babel/polyfill', './src/main.js'], styles: './src/scss/styles.scss' },
   module: {
     noParse: /(mapbox-gl)\.js$/,
     rules: [
       // Extract css files
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         exclude: /^node_modules$/,
         use: [
           MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { url: false } },
+          { loader: 'postcss-loader', options: { plugins: [autoprefixer()] } },
+          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
       {
@@ -43,6 +47,7 @@ module.exports = Object.keys(languageNames).map(locale => ({
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(`/${locale}/`)),
     // Only include current locale + en
     new webpack.ContextReplacementPlugin(/locales/, new RegExp(`/${locale}|en/`)),
+    new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
       chunkFilename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
