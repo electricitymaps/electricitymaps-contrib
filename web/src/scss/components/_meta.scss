@@ -34,19 +34,19 @@
 #built-by-tomorrow{
     background-image: url(../images/built-by-tomorrow-white.svg);
     background-size: cover;
-    width: 180px;
-    height: 28px;
+    width: 154px;
+    height: 24px;
 }
 
 #hiring-flag{
     background-color: #F20050;
-    border-radius: 6px;
-    padding: 3px 6px;
-    margin-left: 14px;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin-left: 10px;
     p {
         font-weight: bold;
         color: $white;
-        font-size: 0.7em;
+        font-size: 0.5em;
         margin: 0;
     }
 }
