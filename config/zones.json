@@ -3882,11 +3882,15 @@
     ],
     "capacity": {
       "battery storage": 136,
-      "biomass": 955,
-      "geothermal": 1785,
-      "nuclear": 2256,
-      "solar": 11799,
-      "wind": 6505
+      "biomass": 1274,
+      "gas":41491,
+      "geothermal": 2730,
+      "hydro":14010,
+      "nuclear": 2393,
+      "oil":352,
+      "solar": 11907,
+      "wind": 6004
+      
     },
     "contributors": [
       "https://github.com/7hibault",
