@@ -52,7 +52,7 @@ def data_processor(df, logger):
     # Remove leading whitespace in column headers.
     df.columns = df.columns.str.strip()
 
-    keys_to_remove = {'GMT MKT Interval', 'Average Actual Load', 'Other', 'Waste Heat'}
+    keys_to_remove = {'GMT MKT Interval', 'Average Actual Load', 'Load', 'Other', 'Waste Heat'}
 
     # Check for new generation columns.
     known_keys = MAPPING.keys() | keys_to_remove
