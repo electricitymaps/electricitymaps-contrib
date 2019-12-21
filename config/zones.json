@@ -1882,6 +1882,32 @@
     },
     "timezone": "Europe/Dublin"
   },
+  "IL": {
+    "bounding_box": [
+      [
+        32.8841,
+        29.0121
+      ],
+      [
+        37.4557,
+        34.2585 
+      ]
+    ],
+    "capacity": {
+      "coal": 4840,
+      "gas": 9213,
+      "solar": 378,
+      "wind": 42
+    },
+    "contributors": [
+      "https://github.com/alixunderplatz",
+      "https://github.com/jarek"
+    ],
+    "parsers": {
+      "production": "IL.fetch_production"
+    },
+    "timezone": "Asia/Jerusalem"
+  },
   "IN": {
     "capacity": {
       "solar": 26000,
