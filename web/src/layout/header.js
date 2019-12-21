@@ -15,7 +15,7 @@ export default connect(mapStateToProps)(props => (
         <span className="maintitle small-screen-hidden">
           <span className="live" style={{ fontWeight: 'bold' }}>Live</span>
           · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
-          · <a href="https://medium.com/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
+          · <a href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
         </span>
       </div>
     </div>
