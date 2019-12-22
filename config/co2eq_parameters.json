@@ -334,6 +334,13 @@
           "value": 381.21842143892457
         }
       },
+      "IL": {
+        "unknown": {
+          "_url": "https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source",
+          "source": "IEA 2018, assumes 30.4% coal, 65.9% gas, 0.5% oil, 2.5% solar, 0.3% wind, 0.4% other",
+          "value": 580
+        }
+      },
       "IN": {
         "unknown": {
           "source": "assumes 43% solar PV and 57% wind",
