@@ -1,12 +1,12 @@
-const translation = require('../helpers/translation');
-const flags = require('../helpers/flags');
-
 const d3 = Object.assign(
   {},
   require('d3-array'),
   require('d3-collection'),
   require('d3-selection'),
 );
+
+const translation = require('../helpers/translation');
+const flags = require('../helpers/flags');
 
 export default class ZoneList {
   constructor(selectorId, argConfig) {
@@ -113,7 +113,7 @@ export default class ZoneList {
   _scrollToItemIfNeeded(item) {
     const parent = item.parentNode;
     const parentComputedStyle = window.getComputedStyle(parent, null);
-    const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'));
+    const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'), 10);
     const overTop = item.offsetTop - parent.offsetTop < parent.scrollTop;
     const overBottom = (item.offsetTop - parent.offsetTop + item.clientHeight - parentBorderTopWidth) > (parent.scrollTop + parent.clientHeight);
     const alignWithTop = overTop && !overBottom;

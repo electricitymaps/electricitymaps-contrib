@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
 const dataReducer = require('./dataReducer');
-const { getKey } = require('../storage');
+const { getKey } = require('../helpers/storage');
 
-const isLocalhost = window.location.href.indexOf('electricitymap') !== -1 ||
-  window.location.href.indexOf('192.') !== -1;
+const isLocalhost = window.location.href.indexOf('electricitymap') !== -1
+  || window.location.href.indexOf('192.') !== -1;
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -17,6 +17,7 @@ const cookieGetBool = (key, defaultValue) => {
 const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
   bundleHash: window.bundleHash,
+  version: VERSION,
   callerLocation: null,
   callerZone: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
@@ -32,7 +33,7 @@ const initialApplicationState = {
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
   isProduction: window.location.href.indexOf('electricitymap') !== -1,
   isLocalhost,
-  legendVisible: false,
+  legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
@@ -47,6 +48,11 @@ const initialApplicationState = {
   // TODO(olc): refactor this state
   showPageState: 'map',
   pageToGoBackTo: null,
+  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
+  tooltipLowCarbonGaugePercentage: null,
+  tooltipRenewableGaugePercentage: null,
+  // TODO(olc): move this to countryPanel once all React components have been made
+  tableDisplayEmissions: false,
 };
 
 const applicationReducer = (state = initialApplicationState, action) => {
@@ -60,8 +66,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
       // if (key === 'selectedZoneName') {
       //   newState.showPageState = value ? 'country' : 'map';
       // }
-      if (key === 'showPageState' &&
-          state.showPageState !== 'country') {
+      if (key === 'showPageState'
+          && state.showPageState !== 'country') {
         newState.pageToGoBackTo = state.showPageState;
       }
 
@@ -73,8 +79,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
     }
 
     case 'GRID_DATA': {
-      const selectedZoneNameExists =
-        Object.keys(action.payload.countries).indexOf(state.selectedZoneName) !== -1;
+      const selectedZoneNameExists = Object.keys(action.payload.countries)
+        .indexOf(state.selectedZoneName) !== -1;
       if (state.selectedZoneName != null && !selectedZoneNameExists) {
         // The selectedZoneName doesn't exist anymore, we need to reset it
         // TODO(olc): the page state should be inferred from selectedZoneName
@@ -108,7 +114,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
   }
 };
 
-module.exports = combineReducers({
+export default combineReducers({
   application: applicationReducer,
   data: dataReducer,
 });

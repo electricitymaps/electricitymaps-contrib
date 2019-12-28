@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 import NoDataOverlay from '../components/nodataoverlay'
 
 const d3 = Object.assign(
@@ -21,7 +24,7 @@ var translation = require('../helpers/translation');
 // This means drawing them once at `.data()` or at construction, and not
 // during `render()`
 
-function CountryTable(selector, modeColor, modeOrder) {
+export default function CountryTable(selector, modeColor, modeOrder) {
     var that = this;
 
     this.root = d3.select(selector);
@@ -644,5 +647,3 @@ CountryTable.prototype.showNoDataMessageIf = function(condition, isRealtimeData)
     this.wrapperNoDataOverlay.showIfElseHide(condition);
     this.wrapperNoDataOverlay.text(translation.translate(isRealtimeData? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp'));
 }
-
-module.exports = CountryTable;

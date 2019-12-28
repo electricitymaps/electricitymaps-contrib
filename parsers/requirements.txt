@@ -1,4 +1,4 @@
-arrow==0.14.2
+arrow==0.15.4
 beautifulsoup4==4.6.0
 click==6.7
 demjson==2.2.4
@@ -7,7 +7,7 @@ html5lib==0.999999999
 lxml==4.4.1
 mock==2.0.0
 pandas==0.25.1
-Pillow==4.0.0
+Pillow==6.2.0
 pytesseract==0.2.0
 ree==2.2.1
 requests==2.20.1

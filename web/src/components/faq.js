@@ -1,10 +1,10 @@
-const translation = require('../helpers/translation');
-const formatting = require('../helpers/formatting');
-
 const d3 = Object.assign(
   {},
   require('d3-selection'),
 );
+
+const translation = require('../helpers/translation');
+const formatting = require('../helpers/formatting');
 
 const faq = {};
 
@@ -34,7 +34,7 @@ const orderings = [
     entryLinks: {
       noData: 'contribute',
       divideExistingArea: 'contribute',
-    }
+    },
   },
   {
     groupKey: 'methodology',
@@ -50,7 +50,7 @@ const orderings = [
     ],
     entryLinks: {
       otherSources: 'whoAreYou',
-    }
+    },
   },
   {
     groupKey: 'data',
@@ -74,13 +74,16 @@ const orderings = [
   },
 ];
 
-orderings.forEach(e => {
-  faq[e.groupKey] = {groupName: translation.translate(e.groupKey + '.groupName'), entries: {}};
-  e.entryOrder.forEach(f => {
+orderings.forEach((e) => {
+  faq[e.groupKey] = {
+    groupName: translation.translate(`${e.groupKey}.groupName`),
+    entries: {},
+  };
+  e.entryOrder.forEach((f) => {
     faq[e.groupKey].entries[f] = {
-      question: translation.translate(e.groupKey + '.' + f + '-question'),
-      answer: translation.translate(e.groupKey + '.' + f + '-answer')
-    }
+      question: translation.translate(`${e.groupKey}.${f}-question`),
+      answer: translation.translate(`${e.groupKey}.${f}-answer`),
+    };
   });
 });
 

@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const d3 = Object.assign(
   {},
   require('d3-interpolate'),
@@ -170,4 +173,4 @@ class WindLayer {
   }
 }
 
-module.exports = WindLayer;
+export default WindLayer;

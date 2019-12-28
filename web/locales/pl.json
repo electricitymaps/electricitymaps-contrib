@@ -105,15 +105,15 @@
     "oil": "olejowa",
     "unknown": "nieznana",
 
-    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy %1$s %% energii elektrycznej",
-    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy %1$s %% emisji",
-    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują %1$s %% energii elektrycznej",
-    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują %1$s %% emisji",
+    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
+    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
+    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
+    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
 
-    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %1$d %% emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "CO2eq na minutę",
 

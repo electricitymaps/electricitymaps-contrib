@@ -334,6 +334,13 @@
           "value": 381.21842143892457
         }
       },
+      "IL": {
+        "unknown": {
+          "_url": "https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source",
+          "source": "IEA 2018, assumes 30.4% coal, 65.9% gas, 0.5% oil, 2.5% solar, 0.3% wind, 0.4% other",
+          "value": 580
+        }
+      },
       "IN": {
         "unknown": {
           "source": "assumes 43% solar PV and 57% wind",
@@ -439,6 +446,13 @@
           "value": 680
         }
       },
+      "KW": {
+        "unknown": {
+          "_url": "https://www.iea.org/statistics/?country=KUWAIT&year=2017&category=Key%20indicators&indicator=ElecGenByFuel&mode=chart&dataTable=ELECTRICITYANDHEAT",
+          "source": "IEA 2017; assumes 34.4% gas, 65.6% oil",
+          "value": 595
+        }
+      },
       "LT": {
         "hydro discharge": {
           "source": "2018 average by Tomorrow",
@@ -485,12 +499,6 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 462.73049119238584
-        },
-        "unknown": {
-          "_comment": "Source: Derived from 2017 annual average: coal  30.0%, co-generation(gas)  19.0%, gas 28.0%, coke-oven-gas 5.0%, nuclear 4.0%, Wind  7.7%, biomass (waste) 4.90%, solar 1.40%.",
-          "_url": "http://en-tran-ce.org/newsletter-renewable-energy-in-the-netherlands/",
-          "source": "assumes 57% gas, 33% coal, 5% biomass, 4% nuclear",
-          "value": 563
         }
       },
       "NO-NO1": {

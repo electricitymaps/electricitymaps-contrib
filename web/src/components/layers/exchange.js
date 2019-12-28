@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const d3 = Object.assign(
   {},
   require('d3-selection'),
@@ -207,4 +210,4 @@ class ExchangeLayer {
   }
 }
 
-module.exports = ExchangeLayer;
+export default ExchangeLayer;

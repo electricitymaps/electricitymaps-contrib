@@ -1,10 +1,53 @@
 {
-    "extends": "airbnb",
-    "env": {
-        "browser": true,
-    },
-    "rules": {
-        "no-underscore-dangle": "off",
-        "class-methods-use-this": "off"
+  "globals": {
+    "VERSION": "readonly",
+    "locale": "readonly",
+    "codePush": "readonly",
+    "device": "readonly",
+    "cordova": "readonly",
+    "universalLinks": "readonly",
+    "InstallMode": "readonly",
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+  },
+  "rules": {
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore"
+    }],
+    "brace-style": "warn",
+    "class-methods-use-this": "warn",
+    "dot-notation": "warn",
+    "implicit-arrow-linebreak": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/alt-text": "warn",
+    "max-len": "warn",
+    "no-await-in-loop": "warn",
+    "no-continue": "warn",
+    "no-nested-ternary": "warn",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-trailing-spaces": "warn",
+    "no-underscore-dangle": "warn",
+    "no-unused-vars": "warn",
+    "react/destructuring-assignment": "warn",
+    "quote-props": "warn",
+    "react/jsx-curly-brace-presence": "warn",
+    "react/jsx-one-expression-per-line": "warn",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "warn",
+    "react/sort-comp": "warn"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".json"]
+      }
     }
+  }
 }

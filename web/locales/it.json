@@ -91,7 +91,8 @@
         "production": "Produzione",
         "consumption": "Consumo",
         "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora",
-        "selectLanguage": "Seleziona la lingua"
+        "selectLanguage": "Seleziona la lingua",
+        "lowCarbDescription": "Include rinnovabili e nucleare"
     },
     "misc": {
         "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
@@ -115,14 +116,14 @@
     "coal": "Carbone",
     "oil": "Petrolio",
     "unknown": "Sconosciuto",
-    "electricityComesFrom": "Il %1$s %% dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
-    "emissionsComeFrom": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
-    "electricityStoredUsing": "Il %1$s %% dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-    "emissionsStoredUsing": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-    "electricityExportedTo": "Il %1$s %% dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "Il %1$s %% dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "Il %1$s %% delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
+    "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
+    "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
+    "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
+    "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "ofCO2eqPerMinute": "di CO2eq per minuto",
     "theMap": {
         "groupName": "La mappa",
@@ -1093,9 +1094,6 @@
         },
         "NL": {
             "zoneName": "Paesi Bassi"
-        },
-        "NO": {
-            "zoneName": "Norvegia"
         },
         "NO-NO1": {
             "countryName": "Norvegia",

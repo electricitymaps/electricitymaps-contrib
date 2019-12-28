@@ -1,4 +1,5 @@
-'use strict';
+/* eslint-disable */
+// TODO: remove once refactored
 
 var d3 = require('d3-format');
 var translation = require('./translation');
