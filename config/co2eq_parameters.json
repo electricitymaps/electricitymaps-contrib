@@ -316,6 +316,13 @@
           "value": 178.67099686684926
         }
       },
+      "HN": {
+        "unknown": {
+          "_url": "https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source",
+          "source": "IEA 2017, assumes 36.5% oil, 33.4% hydro, 10.0% solar, 8.1% biomass, 6.2% wind, 5.8& oil",
+          "value": 316
+        }
+      },
       "HR": {
         "unknown": {
           "source": "2018 average estimated from https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf",
