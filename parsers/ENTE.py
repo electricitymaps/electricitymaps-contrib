@@ -20,6 +20,25 @@ JSON_MAPPING = {"GT->MX": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
                 "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
                 "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW"}
 
+def fetch_production(zone_key='HN', session=None, target_datetime=None, logger=None):
+    # Total production data for HN from the ENTE-data is the 57th element in the JSON ('4SISTEMA.GTOT.OSYMGENTOTR.-.MW')
+    
+    r = session or requests.session()
+    response = r.get(DATA_URL).json()
+    production = round(response[56]['value'], 1)
+     
+    dt = arrow.now('UTC-6').floor('minute')
+
+    data = {
+        'zoneKey': zone_key,
+        'datetime': dt.datetime,
+        'production': {
+            'unknown':production
+        },
+        'source': 'enteoperador.org'
+    }
+
+    return data
 
 def extract_exchange(raw_data, exchange):
     """
@@ -66,7 +85,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     s = session or requests.Session()
 
     raw_data = s.get(DATA_URL).json()
-    flow = extract_exchange(raw_data, sorted_zones)
+    flow = round(extract_exchange(raw_data, sorted_zones), 1)
     dt = arrow.now('UTC-6').floor('minute')
 
     exchange = {'sortedZoneKeys': sorted_zones,
@@ -79,6 +98,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
+    print('fetch_production(HN) ->')
+    print(fetch_production())
     print('fetch_exchange(CR, PA) ->')
     print(fetch_exchange('CR', 'PA'))
     print('fetch_exchange(CR, NI) ->')
