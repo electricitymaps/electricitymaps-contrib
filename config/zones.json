@@ -1778,6 +1778,25 @@
     },
     "timezone": null
   },
+  "HN": {
+    "capacity": {
+      "biomass": 210,
+      "coal": 135,
+      "geothermal": 35,
+      "hydro": 706,
+      "nuclear": 0,
+      "oil": 875,
+      "solar": 451,
+      "wind": 225
+    },
+    "contributors": [
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "production": "ENTE.fetch_production"
+    },
+    "timezone": "America/Tegucigalpa"
+  },
   "HR": {
     "bounding_box": [
       [
