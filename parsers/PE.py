@@ -32,7 +32,7 @@ def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=N
     r = session or requests.session()
     url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
     response = r.post(url, data={
-        'fechaInicial': arrow.now(tz=tz).replace(days=-1).format('DD/MM/YYYY'),
+        'fechaInicial': arrow.now(tz=tz).shift(days=-1).format('DD/MM/YYYY'),
         'fechaFinal': arrow.now(tz=tz).format('DD/MM/YYYY'),
         'indicador': 0
     })
