@@ -22,7 +22,7 @@ MAP_GENERATION = {
 
 
 def parse_date(item):
-    return arrow.get(item['Nombre'], 'M/D/YYYY h:mm:ss A').replace(tzinfo=dateutil.tz.gettz(tz))
+    return arrow.get(item['Nombre'], 'YYYY/MM/DD hh:mm:ss').replace(tzinfo=dateutil.tz.gettz(tz))
 
 
 def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=None):
@@ -32,8 +32,8 @@ def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=N
     r = session or requests.session()
     url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
     response = r.post(url, data={
-        'fechaInicial': arrow.now(tz=tz).format('DD/MM/YYYY'),
-        'fechaFinal': arrow.now(tz=tz).replace(days=+1).format('DD/MM/YYYY'),
+        'fechaInicial': arrow.now(tz=tz).replace(days=-1).format('DD/MM/YYYY'),
+        'fechaFinal': arrow.now(tz=tz).format('DD/MM/YYYY'),
         'indicador': 0
     })
     obj = response.json()['GraficoTipoCombustible']['Series']
@@ -64,7 +64,7 @@ def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=N
                 })
 
             data[i]['production'][MAP_GENERATION[k]] = \
-                data[i]['production'].get(MAP_GENERATION[k], 0) + v['Valor'] / interval_hours
+                data[i]['production'].get(MAP_GENERATION[k], 0) + v['Valor'] / interval_hours / 2
 
     return list(filter(lambda x: validate(x, logger, required=['gas'], floor=0.0, ) is not None, data))
 
