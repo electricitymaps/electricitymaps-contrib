@@ -1779,6 +1779,16 @@
     "timezone": null
   },
   "HN": {
+    "bounding_box": [
+      [
+        -90.5131,
+        13.0290
+      ],
+      [
+        -82.4981,
+        46.50375
+      ]
+    ],
     "capacity": {
       "biomass": 210,
       "coal": 135,
