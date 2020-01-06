@@ -32,7 +32,7 @@ total_mapping = {
 thermal_plants = {
                  u'AES ANDRES': 'gas',
                  u'BARAHONA CARBON': 'coal',
-                 u'BERSAL': 'unknown',
+                 u'BERSAL': 'oil',
                  u'CEPP 1': 'oil',
                  u'CEPP 2': 'oil',
                  u'CESPM 1': 'oil',
