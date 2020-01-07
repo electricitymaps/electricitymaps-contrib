@@ -5,9 +5,12 @@
 from dateutil import parser, tz
 from io import StringIO
 from logging import getLogger
+from pandas.tseries.offsets import DateOffset
 import datetime
 import pandas as pd
 import requests
+
+HISTORIC_GENERATION_BASE_URL = 'https://marketplace.spp.org/file-browser-api/download/generation-mix-historical?path=%2F'
 
 GENERATION_URL = 'https://marketplace.spp.org/chart-api/gen-mix/asFile'
 
@@ -43,7 +46,7 @@ def get_data(url, session=None):
 def data_processor(df, logger):
     """
     Takes a dataframe and logging instance as input.
-    Checks for new generation types and logs awarning if any are found.
+    Checks for new generation types and logs a warning if any are found.
     Parses the dataframe row by row removing unneeded keys.
     Returns a list of 2 element tuples, each containing a datetime object
     and production dictionary.
@@ -52,7 +55,22 @@ def data_processor(df, logger):
     # Remove leading whitespace in column headers.
     df.columns = df.columns.str.strip()
 
-    keys_to_remove = {'GMT MKT Interval', 'Average Actual Load', 'Load', 'Other', 'Waste Heat'}
+    #Some historical csvs split the production into 'Market' and 'Self',
+    #So first we need to combine those.
+    for col in df.columns:
+        if 'Market' in col:
+            combined_col = col.replace('Market','').strip()
+            self_col = col.replace('Market','Self')
+            if self_col in df.columns:
+                df[combined_col] = df[col] + df[self_col]
+                df.drop(self_col, inplace=True, axis=1)
+            else:
+                logger.warning(f'Corresponding column "{self_col}" to "{col}" not found in file', extra={'key':'US-SPP'})
+                df[combined_col] = df[col]
+                
+            df.drop(col, inplace=True, axis=1)
+
+    keys_to_remove = {'GMT MKT Interval', 'Average Actual Load', 'Load'}
 
     # Check for new generation columns.
     known_keys = MAPPING.keys() | keys_to_remove
@@ -66,14 +84,14 @@ def data_processor(df, logger):
 
     keys_to_remove = keys_to_remove | unknown_keys
 
+
     processed_data = []
     for index, row in df.iterrows():
         production = row.to_dict()
 
-        extra_unknowns = sum([production[k] for k in unknown_keys])
-        production['unknown'] = production['Other'] + production['Waste Heat'] + extra_unknowns
+        production['unknown'] = sum([production[k] for k in unknown_keys])
 
-        dt_aware = parser.parse(production['GMT MKT Interval'])
+        dt_aware = production['GMT MKT Interval']
 
         for k in keys_to_remove:
             production.pop(k, None)
@@ -116,9 +134,32 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
     """
 
     if target_datetime is not None:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        current_year = datetime.datetime.now().year
+        target_year = target_datetime.year
 
-    raw_data = get_data(GENERATION_URL, session=session)
+        #Check if datetime is too far in the past
+        if target_year < 2011:
+            raise NotImplementedError('Data before 2011 not available from this source')
+
+        #Check if datetime in current year, or past year
+        if current_year == target_year:
+            filename = 'GenMixYTD.csv'
+        else:
+            filename = f'GenMix_{target_year}.csv'
+
+        historic_generation_url = HISTORIC_GENERATION_BASE_URL + filename
+        raw_data = get_data(historic_generation_url, session=session)
+        #In some cases the timeseries column is named differently, so we standardize it
+        raw_data.rename(columns={'GMTTime':'GMT MKT Interval'},inplace=True)
+
+        raw_data['GMT MKT Interval'] = pd.to_datetime(raw_data['GMT MKT Interval'])
+        end = pd.Timestamp(str(target_datetime))
+        start = target_datetime - DateOffset(days=1)
+        start = max(start, raw_data['GMT MKT Interval'].min())
+        raw_data = raw_data[(raw_data['GMT MKT Interval'] >= start)&(raw_data['GMT MKT Interval']<= end)]
+    else:
+        raw_data = get_data(GENERATION_URL, session=session)
+
     processed_data = data_processor(raw_data, logger)
 
     data = []
