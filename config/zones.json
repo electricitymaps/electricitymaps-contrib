@@ -3843,12 +3843,12 @@
   },
   "UA": {
     "capacity": {
-      "biomass": 98,
-      "hydro": 6174,
-      "hydro storage": 1,
+      "biomass": 123,
+      "hydro": 4819,
+      "hydro storage": 1474,
       "nuclear": 13835,
-      "solar": 1509,
-      "wind": 533
+      "solar": 3145,
+      "wind": 1013
     },
     "contributors": [
       "https://github.com/denplis",
