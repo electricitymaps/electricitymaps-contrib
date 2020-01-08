@@ -35,6 +35,7 @@ export default class ZoneList {
     this.co2ColorScale = colorScale;
   }
 
+  // OK
   setClickHandler(clickHandler) {
     this.clickHandler = clickHandler;
   }
@@ -57,6 +58,7 @@ export default class ZoneList {
     this._resetToDefaultSelectedItem();
   }
 
+  // OK
   clickSelectedItem() {
     // Nothing to do if no item is selected
     if (!this.visibleListItems[this.selectedItemIndex]) {
@@ -90,6 +92,7 @@ export default class ZoneList {
     }
   }
 
+  // OK
   render() {
     this._createListItems();
     this._setItemAttributes();
@@ -117,6 +120,7 @@ export default class ZoneList {
     }
   }
 
+  // OK
   _scrollToItemIfNeeded(item) {
     const parent = item.parentNode;
     const parentComputedStyle = window.getComputedStyle(parent, null);
@@ -239,6 +243,7 @@ export default class ZoneList {
       .style('background-color', zone => (accessor(zone) && this.co2ColorScale ? this.co2ColorScale(accessor(zone)) : 'gray'));
   }
 
+  // OK
   _setItemClickHandlers() {
     this.selector.on('click', this.clickHandler);
   }

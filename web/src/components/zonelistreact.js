@@ -9,9 +9,10 @@ const d3 = Object.assign(
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-const { themes } = require('../helpers/themes');
-const { __ } = require('../helpers/translation');
-const { flagUri } = require('../helpers/flags');
+import { dispatchApplication } from '../store';
+import { themes } from '../helpers/themes';
+import { __ } from '../helpers/translation';
+import { flagUri } from '../helpers/flags';
 
 function getCo2Scale(colorBlindModeEnabled) {
   if (colorBlindModeEnabled) {
@@ -79,6 +80,12 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
 
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
+  // Click action
+  const handleClick = countryCode => () => {
+    dispatchApplication('showPageState', 'country');
+    dispatchApplication('selectedZoneName', countryCode);
+  }
+
   // Keyboard navigation
   useEffect(() => {
     const scrollToItemIfNeeded = ind => {
@@ -96,7 +103,9 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
     }
     const keyHandler = e => {
       if (e.key && currentPage === 'map') {
-        if (e.key === 'ArrowUp') {
+        if (e.key === 'Enter' && selectedItemIndex) {
+          handleClick(zones[selectedItemIndex].countryCode);
+        } else if (e.key === 'ArrowUp') {
           const prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
           scrollToItemIfNeeded(prevItemIndex);
           setSelectedItemIndex(prevItemIndex);
@@ -116,7 +125,11 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
   return (
     <div className="zone-list-react" ref={ref}>
       {zones.map((zone, ind) => (
-        <a key={zone.shortname} className={selectedItemIndex === ind ? 'selected' : ''}>
+        <a
+          key={zone.shortname}
+          className={selectedItemIndex === ind ? 'selected' : ''}
+          onClick={handleClick(zone.countryCode)}
+        >
           <div className="ranking">{zone.ranking}</div>
           <img className="flag" src={flagUri(zone.countryCode, 32)} />
           <div className="name">
