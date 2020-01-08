@@ -1,5 +1,7 @@
 // TODO: Merge themes and scales
 
+import { themes } from './themes';
+
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -7,8 +9,6 @@ const d3 = Object.assign(
   require('d3-scale'),
   require('d3-scale-chromatic'),
 );
-
-import { themes } from './themes';
 
 // ** Wind
 const maxWind = 15;
@@ -50,7 +50,7 @@ export const solarColor = d3.scaleLinear()
 // ** CO2
 export const maxCo2 = 800;
 
-export const getCo2Scale = colorBlindModeEnabled => {
+export const getCo2Scale = (colorBlindModeEnabled) => {
   if (colorBlindModeEnabled) {
     return d3.scaleLinear()
       .domain(themes.colorblindScale.steps)

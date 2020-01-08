@@ -1,11 +1,3 @@
-const d3 = Object.assign(
-  {},
-  require('d3-array'),
-  require('d3-collection'),
-  require('d3-scale'),
-  require('d3-selection'),
-);
-
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
@@ -14,6 +6,14 @@ import { themes } from '../helpers/themes';
 import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
+
+const d3 = Object.assign(
+  {},
+  require('d3-array'),
+  require('d3-collection'),
+  require('d3-scale'),
+  require('d3-selection'),
+);
 
 function withZoneRankings(zones) {
   return zones.map((zone) => {
@@ -69,7 +69,13 @@ const mapStateToProps = state => ({
   searchQuery: state.application.searchQuery,
 });
 
-const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, gridZones, searchQuery }) => {
+const ZoneList = ({
+  colorBlindModeEnabled,
+  currentPage,
+  electricityMixMode,
+  gridZones,
+  searchQuery,
+}) => {
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(gridZones, co2IntensityAccessor)
@@ -79,15 +85,15 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   // Click action
-  const handleClick = countryCode => {
+  const handleClick = (countryCode) => {
     dispatchApplication('showPageState', 'country');
     dispatchApplication('selectedZoneName', countryCode);
-  }
+  };
 
   // Keyboard navigation
   useEffect(() => {
-    const scrollToItemIfNeeded = ind => {
-      const item = ref.current.children[ind];
+    const scrollToItemIfNeeded = (index) => {
+      const item = ref.current.children[index];
       if (!item) return;
 
       const parent = item.parentNode;
@@ -100,8 +106,8 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
       if (overTop || overBottom) {
         item.scrollIntoView(alignWithTop);
       }
-    }
-    const keyHandler = e => {
+    };
+    const keyHandler = (e) => {
       if (e.key && currentPage === 'map') {
         if (e.key === 'Enter' && zones[selectedItemIndex]) {
           handleClick(zones[selectedItemIndex].countryCode);
@@ -123,7 +129,7 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
     document.addEventListener('keyup', keyHandler);
     return () => {
       document.removeEventListener('keyup', keyHandler);
-    }
+    };
   });
 
   return (
@@ -145,13 +151,13 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
             style={{
               backgroundColor: co2IntensityAccessor(zone) && co2ColorScale
                 ? co2ColorScale(co2IntensityAccessor(zone))
-                : 'gray'
+                : 'gray',
             }}
           />
         </a>
       ))}
     </div>
   );
-}
+};
 
 export default connect(mapStateToProps)(ZoneList);
