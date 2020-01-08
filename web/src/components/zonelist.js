@@ -65,6 +65,7 @@ export default class ZoneList {
     this.visibleListItems[this.selectedItemIndex].click();
   }
 
+  // OK
   selectNextItem() {
     if (this.selectedItemIndex === null) {
       this.selectedItemIndex = 0;
@@ -76,6 +77,7 @@ export default class ZoneList {
     }
   }
 
+  // OK
   selectPreviousItem() {
     if (this.selectedItemIndex === null) {
       this.selectedItemIndex = 0;
@@ -106,6 +108,7 @@ export default class ZoneList {
     }
   }
 
+  // OK
   _highlightSelectedItem() {
     const item = this.visibleListItems[this.selectedItemIndex];
     if (item) {
@@ -127,6 +130,7 @@ export default class ZoneList {
     }
   }
 
+  // OK
   _deHighlightSelectedItem() {
     const item = this.visibleListItems[this.selectedItemIndex];
     if (item) {

@@ -6,12 +6,12 @@ const d3 = Object.assign(
   require('d3-selection'),
 );
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 const { themes } = require('../helpers/themes');
-const translation = require('../helpers/translation');
-const flags = require('../helpers/flags');
+const { __ } = require('../helpers/translation');
+const { flagUri } = require('../helpers/flags');
 
 function getCo2Scale(colorBlindModeEnabled) {
   if (colorBlindModeEnabled) {
@@ -66,24 +66,62 @@ function processZones(zonesData, accessor) {
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
+  currentPage: state.application.showPageState,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
 });
 
-const ZoneList = ({ colorBlindModeEnabled, electricityMixMode, gridZones }) => {
+const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, gridZones }) => {
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(gridZones, co2IntensityAccessor);
+  const ref = React.createRef();
+
+  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const scrollToItemIfNeeded = ind => {
+      const item = ref.current.children[ind];
+      const parent = item.parentNode;
+      const parentComputedStyle = window.getComputedStyle(parent, null);
+      const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'), 10);
+      const overTop = item.offsetTop - parent.offsetTop < parent.scrollTop;
+      const overBottom = (item.offsetTop - parent.offsetTop + item.clientHeight - parentBorderTopWidth) > (parent.scrollTop + parent.clientHeight);
+      const alignWithTop = overTop && !overBottom;
+
+      if (overTop || overBottom) {
+        item.scrollIntoView(alignWithTop);
+      }
+    }
+    const keyHandler = e => {
+      if (e.key && currentPage === 'map') {
+        if (e.key === 'ArrowUp') {
+          const prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
+          scrollToItemIfNeeded(prevItemIndex);
+          setSelectedItemIndex(prevItemIndex);
+        } else if (e.key === 'ArrowDown') {
+          const nextItemIndex = selectedItemIndex === null ? 0 : Math.min(zones.length - 1, selectedItemIndex + 1);
+          scrollToItemIfNeeded(nextItemIndex);
+          setSelectedItemIndex(nextItemIndex);
+        }
+      }
+    };
+    document.addEventListener('keyup', keyHandler);
+    return () => {
+      document.removeEventListener('keyup', keyHandler);
+    }
+  });
 
   return (
-    <div className="zone-list-react">
-      {zones.map(zone => (
-        <a key={zone.shortname}>
+    <div className="zone-list-react" ref={ref}>
+      {zones.map((zone, ind) => (
+        <a key={zone.shortname} className={selectedItemIndex === ind ? 'selected' : ''}>
           <div className="ranking">{zone.ranking}</div>
-          <img className="flag" src={flags.flagUri(zone.countryCode, 32)} />
+          <img className="flag" src={flagUri(zone.countryCode, 32)} />
           <div className="name">
-            <div className="zone-name">{translation.translate(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
-            <div className="country-name">{translation.translate(`zoneShortName.${zone.countryCode}.countryName`)}</div>
+            <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
+            <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
           </div>
           <div
             className="co2-intensity-tag"
