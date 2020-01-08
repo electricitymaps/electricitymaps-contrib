@@ -11,7 +11,7 @@ import CountryPanel from './countrypanel';
 import Faq from './faq';
 import InfoText from './infotext';
 import MobileInfoTab from './mobileinfotab';
-import ZoneList from '../../components/zonelistreact';
+import ZoneList from '../../components/zonelist';
 
 // Modules
 import { __ } from '../../helpers/translation';

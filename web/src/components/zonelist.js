@@ -140,7 +140,7 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
   });
 
   return (
-    <div className="zone-list-react" ref={ref}>
+    <div className="zone-list" ref={ref}>
       {zones.map((zone, ind) => (
         <a
           key={zone.shortname}
