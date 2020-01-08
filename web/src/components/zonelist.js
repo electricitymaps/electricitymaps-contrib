@@ -9,6 +9,7 @@ const translation = require('../helpers/translation');
 const flags = require('../helpers/flags');
 
 export default class ZoneList {
+  // NOTE: argConfig param seems unused
   constructor(selectorId, argConfig) {
     this.selectorId = selectorId;
 
@@ -22,12 +23,14 @@ export default class ZoneList {
     }
   }
 
+  // OK
   setZones(zonesData) {
     const zones = d3.values(zonesData);
     const validatedAndSortedZones = this._sortAndValidateZones(zones);
     this.zones = this._saveZoneRankings(validatedAndSortedZones);
   }
 
+  // OK
   setCo2ColorScale(colorScale) {
     this.co2ColorScale = colorScale;
   }
@@ -36,6 +39,7 @@ export default class ZoneList {
     this.clickHandler = clickHandler;
   }
 
+  // OK
   setElectricityMixMode(arg) {
     this.electricityMixMode = arg;
   }
@@ -138,12 +142,14 @@ export default class ZoneList {
         .indexOf(query.toLowerCase()) !== -1);
   }
 
+  // OK
   _getCo2IntensityAccessor() {
     return d => (this.electricityMixMode === 'consumption'
       ? d.co2intensity
       : d.co2intensityProduction);
   }
 
+  // OK
   _sortAndValidateZones(zones) {
     const accessor = this._getCo2IntensityAccessor();
     return zones
@@ -162,6 +168,7 @@ export default class ZoneList {
       });
   }
 
+  // OK
   _saveZoneRankings(zones) {
     return zones.map((zone) => {
       const ret = Object.assign({}, zone);
@@ -170,6 +177,7 @@ export default class ZoneList {
     });
   }
 
+  // OK
   _createListItems() {
     this.selector = d3.select(this.selectorId)
       .selectAll('a')
@@ -191,6 +199,7 @@ export default class ZoneList {
     this.selector = itemLinks.merge(this.selector);
   }
 
+  // OK
   _setItemAttributes() {
     this._setItemRanks();
     this._setItemFlags();
@@ -198,6 +207,7 @@ export default class ZoneList {
     this._setItemCO2IntensityTag();
   }
 
+  // OK
   _setItemNames() {
     this.selector.select('.zone-name')
       .text(zone => translation.translate(`zoneShortName.${zone.countryCode}.zoneName`));
@@ -206,16 +216,19 @@ export default class ZoneList {
       .text(zone => translation.translate(`zoneShortName.${zone.countryCode}.countryName`));
   }
 
+  // OK
   _setItemRanks() {
     this.selector.select('div.ranking')
       .text(zone => zone.ranking);
   }
 
+  // OK
   _setItemFlags() {
     this.selector.select('.flag')
       .attr('src', zone => flags.flagUri(zone.countryCode, 32));
   }
 
+  // OK
   _setItemCO2IntensityTag() {
     const accessor = this._getCo2IntensityAccessor();
     this.selector.select('.co2-intensity-tag')

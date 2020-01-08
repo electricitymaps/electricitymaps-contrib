@@ -11,6 +11,7 @@ import CountryPanel from './countrypanel';
 import Faq from './faq';
 import InfoText from './infotext';
 import MobileInfoTab from './mobileinfotab';
+import ZoneList from '../../components/zonelistreact';
 
 // Modules
 import { __ } from '../../helpers/translation';
@@ -57,6 +58,7 @@ export default connect(mapStateToProps)(props => (
         <input placeholder={__('left-panel.search')} />
       </div>
 
+      <ZoneList />
       <div className="zone-list" />
 
       <InfoText />
