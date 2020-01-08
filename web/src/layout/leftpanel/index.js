@@ -59,7 +59,6 @@ export default connect(mapStateToProps)(props => (
       </div>
 
       <ZoneList />
-      <div className="zone-list" />
 
       <InfoText />
     </div>

@@ -92,7 +92,7 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   // Click action
-  const handleClick = countryCode => () => {
+  const handleClick = countryCode => {
     dispatchApplication('showPageState', 'country');
     dispatchApplication('selectedZoneName', countryCode);
   }
@@ -116,7 +116,7 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
     }
     const keyHandler = e => {
       if (e.key && currentPage === 'map') {
-        if (e.key === 'Enter' && selectedItemIndex) {
+        if (e.key === 'Enter' && zones[selectedItemIndex]) {
           handleClick(zones[selectedItemIndex].countryCode);
         } else if (e.key === 'ArrowUp') {
           const prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
@@ -126,6 +126,10 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
           const nextItemIndex = selectedItemIndex === null ? 0 : Math.min(zones.length - 1, selectedItemIndex + 1);
           scrollToItemIfNeeded(nextItemIndex);
           setSelectedItemIndex(nextItemIndex);
+        } else if (e.key.match(/^[A-z]$/)) {
+          // Focus on the first item if modified the search query
+          scrollToItemIfNeeded(0);
+          setSelectedItemIndex(0);
         }
       }
     };
@@ -141,7 +145,7 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
         <a
           key={zone.shortname}
           className={selectedItemIndex === ind ? 'selected' : ''}
-          onClick={handleClick(zone.countryCode)}
+          onClick={() => handleClick(zone.countryCode)}
         >
           <div className="ranking">{zone.ranking}</div>
           <img className="flag" src={flagUri(zone.countryCode, 32)} />

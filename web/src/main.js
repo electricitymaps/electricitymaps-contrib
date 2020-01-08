@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import ContributorList from './components/contributorlist';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
-import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
@@ -196,7 +195,6 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-const zoneList = new ZoneList('.zone-list');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 // TODO: Those two lines are required in order to init the component
@@ -337,9 +335,6 @@ function updateCo2Scale() {
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-
-  zoneList.setCo2ColorScale(co2color);
-  zoneList.render();
 }
 
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -917,7 +912,6 @@ if (typeof zoneMap !== 'undefined') {
 
 // Search bar
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
-zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Back button
 function goBackToZoneListFromZoneDetails() {
@@ -930,24 +924,12 @@ d3.selectAll('.left-panel-back-button')
     goBackToZoneListFromZoneDetails();
   });
 
-// Zone list
-zoneList.setClickHandler((selectedCountry) => {
-  dispatchApplication('showPageState', 'country');
-  dispatchApplication('selectedZoneName', selectedCountry.countryCode);
-});
-
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {
   if (e.key == null) { return; }
   const currentPage = getState().application.showPageState;
   if (currentPage === 'map') {
-    if (e.key === 'Enter') {
-      zoneList.clickSelectedItem();
-    } else if (e.key === 'ArrowUp') {
-      zoneList.selectPreviousItem();
-    } else if (e.key === 'ArrowDown') {
-      zoneList.selectNextItem();
-    } else if (e.key === '/') {
+    if (e.key === '/') {
       zoneSearchBar.clearInputAndFocus();
     } else if (e.key.match(/^[A-z]$/)) {
       zoneSearchBar.focusWithInput(e.key);
@@ -1320,9 +1302,6 @@ function renderZones(state) {
       : Object.values(zones)
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
   }
-  zoneList.setElectricityMixMode(electricityMixMode);
-  zoneList.setZones(zones);
-  zoneList.render();
 }
 
 // Observe for electricityMixMode change
@@ -1499,11 +1478,6 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
-});
-
-// Observe for search query change
-observe(state => state.application.searchQuery, (searchQuery, state) => {
-  zoneList.filterZonesByQuery(searchQuery);
 });
 
 // Observe
