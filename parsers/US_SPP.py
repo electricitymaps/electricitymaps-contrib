@@ -79,15 +79,15 @@ def data_processor(df, logger):
     unknown_keys = column_headers - known_keys
 
     for heading in unknown_keys:
-        logger.warning('New column \'{}\' present in US-SPP data source.'.format(
-            heading), extra={'key': 'US-SPP'})
+        if heading not in ['Other','Waste Heat']:
+            logger.warning('New column \'{}\' present in US-SPP data source.'.format(
+                heading), extra={'key': 'US-SPP'})
 
     keys_to_remove = keys_to_remove | unknown_keys
 
     processed_data = []
     for index, row in df.iterrows():
         production = row.to_dict()
-
         production['unknown'] = sum([production[k] for k in unknown_keys])
 
         dt_aware = production['GMT MKT Interval'].to_pydatetime()
