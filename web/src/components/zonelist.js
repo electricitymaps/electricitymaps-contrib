@@ -45,6 +45,7 @@ export default class ZoneList {
     this.electricityMixMode = arg;
   }
 
+  // OK
   filterZonesByQuery(query) {
     this._deHighlightSelectedItem();
     d3.select(this.selectorId).selectAll('a').each((zone, i, nodes) => {
@@ -142,6 +143,7 @@ export default class ZoneList {
     }
   }
 
+  // OK
   _zoneMatchesQuery(zone, queryString) {
     const queries = queryString.split(' ');
     return queries.every(query =>

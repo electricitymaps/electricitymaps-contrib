@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
 import { themes } from '../helpers/themes';
-import { __ } from '../helpers/translation';
+import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
 function getCo2Scale(colorBlindModeEnabled) {
@@ -65,19 +65,30 @@ function processZones(zonesData, accessor) {
   return withZoneRankings(validatedAndSortedZones);
 }
 
+function zoneMatchesQuery(zone, queryString) {
+  if (!queryString) return true;
+  const queries = queryString.split(' ');
+  return queries.every(query =>
+    getFullZoneName(zone.countryCode)
+      .toLowerCase()
+      .indexOf(query.toLowerCase()) !== -1);
+}
+
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   currentPage: state.application.showPageState,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
+  searchQuery: state.application.searchQuery,
 });
 
-const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, gridZones }) => {
+const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, gridZones, searchQuery }) => {
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
-  const zones = processZones(gridZones, co2IntensityAccessor);
-  const ref = React.createRef();
+  const zones = processZones(gridZones, co2IntensityAccessor)
+    .filter(z => zoneMatchesQuery(z, searchQuery));
 
+  const ref = React.createRef();
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   // Click action
@@ -90,6 +101,8 @@ const ZoneList = ({ colorBlindModeEnabled, currentPage, electricityMixMode, grid
   useEffect(() => {
     const scrollToItemIfNeeded = ind => {
       const item = ref.current.children[ind];
+      if (!item) return;
+
       const parent = item.parentNode;
       const parentComputedStyle = window.getComputedStyle(parent, null);
       const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'), 10);
