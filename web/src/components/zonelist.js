@@ -11,22 +11,9 @@ import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
 import { themes } from '../helpers/themes';
+import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
-
-function getCo2Scale(colorBlindModeEnabled) {
-  if (colorBlindModeEnabled) {
-    return d3.scaleLinear()
-      .domain(themes.colorblindScale.steps)
-      .range(themes.colorblindScale.colors)
-      .clamp(true);
-  }
-
-  return d3.scaleLinear()
-    .domain(themes.co2Scale.steps)
-    .range(themes.co2Scale.colors)
-    .clamp(true);
-}
 
 function withZoneRankings(zones) {
   return zones.map((zone) => {

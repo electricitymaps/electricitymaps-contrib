@@ -8,10 +8,11 @@ const d3 = Object.assign(
   require('d3-scale-chromatic'),
 );
 
+import { themes } from './themes';
 
 // ** Wind
 const maxWind = 15;
-const windColor = d3.scaleLinear()
+export const windColor = d3.scaleLinear()
   .domain(d3.range(10).map(i => d3.interpolate(0, maxWind)(i / (10 - 1))))
   .range([
     'rgba(0,   255, 255, 1.0)',
@@ -29,7 +30,7 @@ const windColor = d3.scaleLinear()
 
 
 // ** Solar
-const maxSolarDSWRF = 1000;
+export const maxSolarDSWRF = 1000;
 const minDayDSWRF = 0;
 // const nightOpacity = 0.8;
 const minSolarDayOpacity = 0.6;
@@ -41,17 +42,24 @@ const solarRange = d3.range(10).map((i) => {
   return `rgba(${c}, ${c}, ${c}, ${a})`;
 });
 
-const solarColor = d3.scaleLinear()
+export const solarColor = d3.scaleLinear()
   .domain(solarDomain)
   .range(solarRange)
   .clamp(true);
 
 // ** CO2
-const maxCo2 = 800;
+export const maxCo2 = 800;
 
-module.exports = {
-  maxCo2,
-  maxSolarDSWRF,
-  solarColor,
-  windColor,
+export const getCo2Scale = colorBlindModeEnabled => {
+  if (colorBlindModeEnabled) {
+    return d3.scaleLinear()
+      .domain(themes.colorblindScale.steps)
+      .range(themes.colorblindScale.colors)
+      .clamp(true);
+  }
+
+  return d3.scaleLinear()
+    .domain(themes.co2Scale.steps)
+    .range(themes.co2Scale.colors)
+    .clamp(true);
 };

@@ -34,6 +34,7 @@ import thirdPartyServices from './services/thirdparty';
 
 // Utils
 import { getCurrentZoneData } from './helpers/redux';
+import { getCo2Scale } from './helpers/scales';
 
 // Layout
 import Main from './layout/main';
@@ -313,18 +314,7 @@ d3.select('.database-ad').classed('visible', !randomBoolean);
 let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
-  if (getState().application.colorBlindModeEnabled) {
-    co2color = d3.scaleLinear()
-      .domain(themes.colorblindScale.steps)
-      .range(themes.colorblindScale.colors)
-      .clamp(true);
-  } else {
-    co2color = d3.scaleLinear()
-      .domain(themes.co2Scale.steps)
-      .range(themes.co2Scale.colors)
-      .clamp(true);
-  }
-
+  co2color = getCo2Scale(getState().application.colorBlindModeEnabled);
   co2color.clamp(true);
   co2Colorbars = co2Colorbars || [];
   co2Colorbars.push(new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
