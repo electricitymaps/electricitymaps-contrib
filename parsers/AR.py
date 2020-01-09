@@ -531,11 +531,10 @@ EXCLUDED_PLANTS = {'IMACE1UR': 'likely in Uruguay',
 
 # URL's for thermal and hydro pages and data sources respectively.
 
-url = ('http://portalweb.cammesa.com/MEMNet1/Pages/Informes%20por'
-       '%20Categor%C3%ADa/Operativos/VisorReporteSinComDesp_minimal.aspx'
-       '?hora=0&titulo=Despacho%20Generacion%20Termica&reportPath='
-       'http://lauzet:5000/MemNet1/ReportingServices/DespachoGeneracion'
-       'Termica.rdl--0--Despacho+Generaci%c3%b3n+T%c3%a9rmica')
+url = 'https://portalweb.cammesa.com/MEMNet1/Pages/Informes%20por%20Categor%C' \
+      '3%ADa/Operativos/VisorReporteSinComDesp_minimal.aspx?hora=0&titulo=Des' \
+      'pacho%20Generacion%20Termica&reportPath=http://lauzet:5000/MemNet1/Report' \
+      'ingServices/DespachoGeneracionTermicaLP.rdl--0--Despacho+Generaci%c3%b3n+T%c3%a9rmica'
 
 turl = ('http://portalweb.cammesa.com/Reserved.ReportViewerWebControl.'
         'axd?Culture=3082&UICulture=3082&ReportStack=1'
