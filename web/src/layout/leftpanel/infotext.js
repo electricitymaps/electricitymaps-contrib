@@ -44,7 +44,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplicati
         dangerouslySetInnerHTML={{
           __html: __(
             'panel-initial-text.contribute',
-            'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-country'
+            'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region'
           ),
         }}
       />

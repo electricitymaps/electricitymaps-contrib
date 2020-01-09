@@ -155,7 +155,7 @@ class Component extends React.PureComponent {
           </div>
           <div className="country-table-container" />
           <div className="zone-details-no-parser-message">
-            {__('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-country')}
+            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
           </div>
 
           <hr />
