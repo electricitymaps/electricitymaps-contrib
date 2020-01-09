@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import ContributorList from './components/contributorlist';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
-import ZoneList from './components/zonelist';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
@@ -35,6 +34,7 @@ import thirdPartyServices from './services/thirdparty';
 
 // Utils
 import { getCurrentZoneData } from './helpers/redux';
+import { getCo2Scale } from './helpers/scales';
 
 // Layout
 import Main from './layout/main';
@@ -196,7 +196,6 @@ const solarColorbarColor = d3.scaleLinear()
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
 
-const zoneList = new ZoneList('.zone-list');
 const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 // TODO: Those two lines are required in order to init the component
@@ -315,18 +314,7 @@ d3.select('.database-ad').classed('visible', !randomBoolean);
 let co2color;
 let co2Colorbars;
 function updateCo2Scale() {
-  if (getState().application.colorBlindModeEnabled) {
-    co2color = d3.scaleLinear()
-      .domain(themes.colorblindScale.steps)
-      .range(themes.colorblindScale.colors)
-      .clamp(true);
-  } else {
-    co2color = d3.scaleLinear()
-      .domain(themes.co2Scale.steps)
-      .range(themes.co2Scale.colors)
-      .clamp(true);
-  }
-
+  co2color = getCo2Scale(getState().application.colorBlindModeEnabled);
   co2color.clamp(true);
   co2Colorbars = co2Colorbars || [];
   co2Colorbars.push(new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
@@ -337,9 +325,6 @@ function updateCo2Scale() {
   if (countryTable) countryTable.co2color(co2color).render();
   if (countryHistoryCarbonGraph) countryHistoryCarbonGraph.yColorScale(co2color);
   if (countryHistoryMixGraph) countryHistoryMixGraph.co2color(co2color);
-
-  zoneList.setCo2ColorScale(co2color);
-  zoneList.render();
 }
 
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -917,7 +902,6 @@ if (typeof zoneMap !== 'undefined') {
 
 // Search bar
 zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
-zoneSearchBar.onEnterKeypress(() => zoneList.clickSelectedItem());
 
 // Back button
 function goBackToZoneListFromZoneDetails() {
@@ -930,28 +914,12 @@ d3.selectAll('.left-panel-back-button')
     goBackToZoneListFromZoneDetails();
   });
 
-// Zone list
-zoneList.setClickHandler((selectedCountry) => {
-  dispatchApplication('showPageState', 'country');
-  dispatchApplication('selectedZoneName', selectedCountry.countryCode);
-  if (zoneMap !== 'undefined') {
-    // eslint-disable-next-line no-use-before-define
-    centerOnZoneName(getState(), selectedCountry.countryCode, 4);
-  }
-});
-
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {
   if (e.key == null) { return; }
   const currentPage = getState().application.showPageState;
   if (currentPage === 'map') {
-    if (e.key === 'Enter') {
-      zoneList.clickSelectedItem();
-    } else if (e.key === 'ArrowUp') {
-      zoneList.selectPreviousItem();
-    } else if (e.key === 'ArrowDown') {
-      zoneList.selectNextItem();
-    } else if (e.key === '/') {
+    if (e.key === '/') {
       zoneSearchBar.clearInputAndFocus();
     } else if (e.key.match(/^[A-z]$/)) {
       zoneSearchBar.focusWithInput(e.key);
@@ -1324,9 +1292,6 @@ function renderZones(state) {
       : Object.values(zones)
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
   }
-  zoneList.setElectricityMixMode(electricityMixMode);
-  zoneList.setZones(zones);
-  zoneList.render();
 }
 
 // Observe for electricityMixMode change
@@ -1478,6 +1443,12 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
   }
 });
 
+observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
+  if (selectedZoneName) {
+    centerOnZoneName(state, selectedZoneName, 4);
+  }
+});
+
 // Observe for changes requiring an update of history
 Object.values(HistoryState.querystringMappings).forEach((k) => {
   observe(state => state.application[k], (_, state) => {
@@ -1497,11 +1468,6 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
-});
-
-// Observe for search query change
-observe(state => state.application.searchQuery, (searchQuery, state) => {
-  zoneList.filterZonesByQuery(searchQuery);
 });
 
 // Observe
