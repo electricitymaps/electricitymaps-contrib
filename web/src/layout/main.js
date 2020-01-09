@@ -75,7 +75,9 @@ export default connect(mapStateToProps)(props => (
           </div>
         </div>
         <div id="new-version" className="flash-message">
-          <div className="inner">{__('misc.newversion')}</div>
+          <div className="inner">
+            <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
+          </div>
         </div>
 
         <div

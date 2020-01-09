@@ -58,7 +58,7 @@ export default () => (
         {__('tooltips.temporaryDataOutage')}
       </div>
       <div className="no-parser-text">
-        {__('tooltips.noParserInfo')}
+        <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
       </div>
     </div>
     <div id="exchange-tooltip" className="tooltip panel">
