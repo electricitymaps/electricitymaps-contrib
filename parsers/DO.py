@@ -21,7 +21,8 @@ total_mapping = {
                 u'Total T\xe9rmico': 'Thermal',
                 u'Total E\xf3lico': 'Wind',
                 u'Total Hidroel\xe9ctrica': 'Hydro',
-                'Total Generado': 'Generated'
+                u'Total Solar': 'Solar',
+                u'Total Generado': 'Generated'
                 }
 
 # Power plant types
@@ -31,7 +32,7 @@ total_mapping = {
 thermal_plants = {
                  u'AES ANDRES': 'gas',
                  u'BARAHONA CARBON': 'coal',
-                 u'BERSAL': 'unknown',
+                 u'BERSAL': 'oil',
                  u'CEPP 1': 'oil',
                  u'CEPP 2': 'oil',
                  u'CESPM 1': 'oil',
@@ -53,16 +54,16 @@ thermal_plants = {
                  u'LOS OR\xcdGENES POWER PLANT FUEL OIL': 'oil',
                  u'LOS OR\xcdGENES POWER PLANT GAS NATURAL': 'gas',
                  u'METALDOM': 'oil',
-                 u'MONTE PLATA SOLAR': 'solar',
                  u'MONTE RIO': 'oil',
                  u'PALAMARA': 'oil',
                  u'PALENQUE': 'oil',
                  u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
                  u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
-                 u'PARQUE FOTOVOLTAICO MONTECRISTI SOLAR1': 'solar',
                  u'PIMENTEL 1': 'oil',
                  u'PIMENTEL 2': 'oil',
                  u'PIMENTEL 3': 'oil',
+                 u'PUNTA CATALINA 1': 'coal',
+                 u'PUNTA CATALINA 2': 'coal',
                  u'QUISQUEYA 1': 'gas',
                  u'QUISQUEYA 2': 'gas',
                  u'QUISQUEYA 1 SAN PEDRO': 'oil',
@@ -231,6 +232,7 @@ def total_production(df):
         current = df.loc[[hour]]
         hydro = current.iloc[0]['Hydro']
         wind = current.iloc[0]['Wind']
+        solar = current.iloc[0]['Solar']
         if wind > -10:
             wind = max(wind, 0)
 
@@ -241,7 +243,7 @@ def total_production(df):
         if isnan(hydro):
             hydro = None
 
-        prod = {'wind': wind, 'hydro': hydro, 'datetime': dt}
+        prod = {'wind': wind, 'hydro': hydro, 'solar': solar, 'datetime': dt}
         vals.append(prod)
 
     return vals
