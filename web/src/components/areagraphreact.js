@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
@@ -144,6 +144,7 @@ const mapStateToProps = (state, props) => ({
   data: props.dataSelector(state),
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
+  selectedIndex: state.application.selectedZoneTimeIndex,
 });
 
 const AreaGraph = ({
@@ -152,7 +153,10 @@ const AreaGraph = ({
   displayByEmissions,
   electricityMixMode,
   id,
+  selectedIndex,
 }) => {
+  const [selectedLayerIndex, setSelectedLayerIndex] = useState(3);
+
   if (!data) return null;
 
   let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
@@ -214,12 +218,42 @@ const AreaGraph = ({
       <g>
         {stackedData.map((layer, ind) => (
           <path
-            d={area(layer)}
             key={stackKeys[ind]}
+            className={`area layer ${stackKeys[ind]}`}
             fill={fillColor(stackKeys[ind], displayByEmissions)}
+            d={area(layer)}
           />
         ))}
       </g>
+      {selectedIndex !== null && selectedIndex !== undefined && (
+        <React.Fragment>
+          <line
+            className="vertical-line"
+            style={{
+              display: 'block',
+              pointerEvents: 'none',
+              shapeRendering: 'crispEdges',
+            }}
+            x1={timeScale(graphData[selectedIndex].datetime)}
+            x2={timeScale(graphData[selectedIndex].datetime)}
+            y1={valuesScale.range()[0]}
+            y2={valuesScale.range()[1]}
+          />
+          <circle
+            r="6"
+            style={{
+              display: 'block',
+              pointerEvents: 'none',
+              shapeRendering: 'crispEdges',
+              stroke: 'black',
+              strokeWidth: 1.5,
+              fill: fillColor(stackKeys[selectedLayerIndex], displayByEmissions),
+            }}
+            cx={timeScale(graphData[selectedIndex].datetime)}
+            cy={valuesScale(stackedData[selectedLayerIndex][selectedIndex][1])}
+          />
+        </React.Fragment>
+      )}
     </svg>
   );
 };

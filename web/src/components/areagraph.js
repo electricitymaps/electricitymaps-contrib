@@ -17,6 +17,7 @@ const formatting = require('../helpers/formatting');
 import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
 
+// OK
 function AreaGraph(selector, modeColor, modeOrder, yLabelText) {
     var that = this;
 
