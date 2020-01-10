@@ -139,6 +139,19 @@ const prepareGraphData = (data, displayByEmissions, electricityMixMode, formatti
 const fillColor = (key, displayByEmissions) =>
   modeColor[key] || (displayByEmissions ? 'darkgray' : `url(#areagraph-exchange-${key})`);
 
+const detectPosition = (ev, datetimes, timeScale, svgRef) => {
+  if (!datetimes.length) return null;
+  const dx = ev.pageX
+    ? (ev.pageX - svgRef.current.getBoundingClientRect().left)
+    : (d3.touches(this)[0][0]);
+  const datetime = timeScale.invert(dx);
+  // Find data point closest to
+  let i = d3.bisectLeft(datetimes, datetime);
+  if (i > 0 && datetime - datetimes[i - 1] < datetimes[i] - datetime) i -= 1;
+  if (i > datetimes.length - 1) i = datetimes.length - 1;
+  return i;
+};
+
 const mapStateToProps = (state, props) => ({
   currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
   data: props.dataSelector(state),
@@ -154,7 +167,11 @@ const AreaGraph = ({
   electricityMixMode,
   id,
   selectedIndex,
+  // TODO
+  layerMouseMoveHandler,
+  mouseMoveHandler,
 }) => {
+  const svgRef = React.createRef();
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(3);
 
   if (!data) return null;
@@ -205,7 +222,7 @@ const AreaGraph = ({
     .defined(d => Number.isFinite(d[1]));
 
   return (
-    <svg id={id}>
+    <svg id={id} ref={svgRef}>
       <TimeAxis
         scale={timeScale}
         height={height}
@@ -222,6 +239,15 @@ const AreaGraph = ({
             className={`area layer ${stackKeys[ind]}`}
             fill={fillColor(stackKeys[ind], displayByEmissions)}
             d={area(layer)}
+            onMouseMove={(ev) => {
+              const i = detectPosition(ev, datetimes, timeScale, svgRef);
+              if (layerMouseMoveHandler) {
+                layerMouseMoveHandler(stackKeys[ind], layer[i].data._countryData);
+              }
+              if (mouseMoveHandler) {
+                mouseMoveHandler(layer[i].data._countryData, i);
+              }
+            }}
           />
         ))}
       </g>
