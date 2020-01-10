@@ -28,6 +28,7 @@
     "mapbox-gl": "^0.49.0",
     "moment": "^2.23.0",
     "react": "^16.12.0",
+    "react-d3-axis": "^0.1.2",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "redux": "^3.7.2",

@@ -10,6 +10,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
+import AreaGraph from '../../components/areagraphreact';
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import Tooltip from '../../components/tooltip';
@@ -24,6 +25,9 @@ const tooltipHelper = require('../../helpers/tooltip');
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
+
+const historyDataSelector = state =>
+  state.data.histories[state.application.selectedZoneName];
 
 const CountryLowCarbonGauge = connect((state) => {
   const d = getCurrentZoneData(state);
@@ -188,6 +192,10 @@ class Component extends React.PureComponent {
               <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
               <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
             </small>
+            <AreaGraph
+              id="country-history-mix-react"
+              dataSelector={historyDataSelector}
+            />
             <svg id="country-history-mix" />
 
             <div className="loading overlay" />
