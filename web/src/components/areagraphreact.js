@@ -15,7 +15,6 @@ const d3 = Object.assign(
 );
 
 const X_AXIS_HEIGHT = 20;
-const X_AXIS_PADDING = 4;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
 
@@ -26,15 +25,14 @@ const getMaxTotalValue = (data, displayByEmissions) =>
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
 
-const XAxis = ({ x, height }) => {
+const XAxis = ({ scale, height }) => {
   const tickSizeOuter = 6;
   const strokeWidth = 1;
   const halfWidth = strokeWidth / 2;
-  const range = x.range();
+  const range = scale.range();
   const range0 = range[0] + halfWidth;
   const range1 = range[range.length - 1] + halfWidth;
-  const k = 1;
-  const values = x.ticks(5);
+  const values = scale.ticks(5);
 
   const formatTick = d => moment(d).format('LT');
 
@@ -48,16 +46,49 @@ const XAxis = ({ x, height }) => {
       textAnchor="middle"
       style={{ pointerEvents: 'none' }}
     >
-      <path className="domain" stroke="currentColor" d={`M${range0},${k * tickSizeOuter}V${halfWidth}H${range1}V${k * tickSizeOuter}`} />
+      <path className="domain" stroke="currentColor" d={`M${range0},${tickSizeOuter}V${halfWidth}H${range1}V${tickSizeOuter}`} />
       {values.map(v => (
-        <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${x(v)},0)`}>
+        <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${scale(v)},0)`}>
           <line stroke="currentColor" y2="6" />
           <text fill="currentColor" y="9" dy="0.71em">{formatTick(v)}</text>
         </g>
       ))}
     </g>
-  )
-}
+  );
+};
+
+const YAxis = ({ label, scale, width }) => {
+  const tickSizeOuter = 6;
+  const strokeWidth = 1;
+  const halfWidth = strokeWidth / 2;
+  const range = scale.range();
+  const range0 = range[0] + halfWidth;
+  const range1 = range[range.length - 1] + halfWidth;
+  const values = scale.ticks(5);
+
+  const formatTick = d => d;
+
+  return (
+    <g
+      className="y axis"
+      transform={`translate(${width - Y_AXIS_WIDTH - 1} -1)`}
+      fill="none"
+      fontSize="10"
+      fontFamily="sans-serif"
+      textAnchor="start"
+      style={{ pointerEvents: 'none' }}
+    >
+      <text className="label" transform="translate(35, 80) rotate(-90)">{label}</text>
+      <path className="domain" stroke="currentColor" d={`M${tickSizeOuter},${range0}H${halfWidth}V${range1}H${tickSizeOuter}`} />
+      {values.map(v => (
+        <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
+          <line stroke="currentColor" x2="6" />
+          <text fill="currentColor" x="9" y="3" dx="0.32em">{formatTick(v)}</text>
+        </g>
+      ))}
+    </g>
+  );
+};
 
 const mapStateToProps = (state, props) => ({
   currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
@@ -84,17 +115,13 @@ const AreaGraph = ({
   let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
 
   const format = formatting.scalePower(maxTotalValue);
-  const formattingFactor = displayByEmissions ? format.formattingFactor : 1;
+  const formattingFactor = !displayByEmissions ? format.formattingFactor : 1;
   maxTotalValue /= formattingFactor;
 
   const firstDatetime = data[0] && moment(data[0].stateDatetime).toDate();
   const lastDatetime = currentMoment.toDate();
 
-  // if (!that._displayByEmissions) {
-  //     this.yLabelElement.text(format.unit);
-  // } else {
-  //     this.yLabelElement.text("tCO2eq/min");
-  // }
+  const yLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
 
   const exchangeKeysSet = d3.set();
   const ddata = data.map((d) => {
@@ -152,17 +179,20 @@ const AreaGraph = ({
   const width = 330;
   const height = 160;
 
-  // Set domains
+  // Set domains and ranges
   if (firstDatetime && lastDatetime) {
     x.domain([firstDatetime, lastDatetime]);
   } else {
     x.domain(d3.extent(ddata, d => d.datetime));
   }
   x.range([0, width - Y_AXIS_WIDTH]);
+  y.domain([0, maxTotalValue * 1.1]);
+  y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
 
   return (
     <svg id={id}>
-      <XAxis x={x} height={height} />
+      <XAxis scale={x} height={height} />
+      <YAxis scale={y} width={width} label={yLabel} />
     </svg>
   );
 };
