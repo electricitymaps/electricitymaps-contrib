@@ -25,11 +25,14 @@ const getMaxTotalValue = (data, displayByEmissions) =>
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
 
-const XAxis = ({ scale, height }) => {
+const TimeAxis = ({ domain, range, height }) => {
+  const scale = d3.scaleTime();
+  scale.domain(domain);
+  scale.range(range);
+
   const tickSizeOuter = 6;
   const strokeWidth = 1;
   const halfWidth = strokeWidth / 2;
-  const range = scale.range();
   const range0 = range[0] + halfWidth;
   const range1 = range[range.length - 1] + halfWidth;
   const values = scale.ticks(5);
@@ -57,16 +60,22 @@ const XAxis = ({ scale, height }) => {
   );
 };
 
-const YAxis = ({ label, scale, width }) => {
+const ValuesAxis = ({
+  domain,
+  range,
+  label,
+  width,
+}) => {
+  const scale = d3.scaleLinear();
+  scale.domain(domain);
+  scale.range(range);
+
   const tickSizeOuter = 6;
   const strokeWidth = 1;
   const halfWidth = strokeWidth / 2;
-  const range = scale.range();
   const range0 = range[0] + halfWidth;
   const range1 = range[range.length - 1] + halfWidth;
   const values = scale.ticks(5);
-
-  const formatTick = d => d;
 
   return (
     <g
@@ -83,48 +92,17 @@ const YAxis = ({ label, scale, width }) => {
       {values.map(v => (
         <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
           <line stroke="currentColor" x2="6" />
-          <text fill="currentColor" x="9" y="3" dx="0.32em">{formatTick(v)}</text>
+          <text fill="currentColor" x="9" y="3" dx="0.32em">{v}</text>
         </g>
       ))}
     </g>
   );
 };
 
-const mapStateToProps = (state, props) => ({
-  currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
-  data: props.dataSelector(state),
-  displayByEmissions: state.application.tableDisplayEmissions,
-  electricityMixMode: state.application.electricityMixMode,
-});
-
-const AreaGraph = ({
-  currentMoment,
-  data,
-  displayByEmissions,
-  electricityMixMode,
-  id,
-}) => {
-  console.log('blu', data);
-  if (!data) return null;
-
-  // Create scales
-  const x = d3.scaleTime();
-  const y = d3.scaleLinear();
-  const z = d3.scaleOrdinal();
-
-  let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
-
-  const format = formatting.scalePower(maxTotalValue);
-  const formattingFactor = !displayByEmissions ? format.formattingFactor : 1;
-  maxTotalValue /= formattingFactor;
-
-  const firstDatetime = data[0] && moment(data[0].stateDatetime).toDate();
-  const lastDatetime = currentMoment.toDate();
-
-  const yLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
-
+// TODO: Refactor this function to make it more readable
+const prepareGraphData = (data, displayByEmissions, electricityMixMode, formattingFactor) => {
   const exchangeKeysSet = d3.set();
-  const ddata = data.map((d) => {
+  const graphData = data.map((d) => {
     const obj = {
       datetime: moment(d.stateDatetime).toDate(),
     };
@@ -161,6 +139,42 @@ const AreaGraph = ({
     obj._countryData = d;
     return obj;
   });
+  return { exchangeKeysSet, graphData };
+};
+
+const mapStateToProps = (state, props) => ({
+  currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
+  data: props.dataSelector(state),
+  displayByEmissions: state.application.tableDisplayEmissions,
+  electricityMixMode: state.application.electricityMixMode,
+});
+
+const AreaGraph = ({
+  currentMoment,
+  data,
+  displayByEmissions,
+  electricityMixMode,
+  id,
+}) => {
+  if (!data) return null;
+
+  // Create scales
+  const z = d3.scaleOrdinal();
+
+  let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
+
+  const format = formatting.scalePower(maxTotalValue);
+  const formattingFactor = !displayByEmissions ? format.formattingFactor : 1;
+  maxTotalValue /= formattingFactor;
+
+  const firstDatetime = data[0] && moment(data[0].stateDatetime).toDate();
+  const lastDatetime = currentMoment.toDate();
+
+  const { exchangeKeysSet, graphData } = prepareGraphData(data, displayByEmissions, electricityMixMode, formattingFactor);
+
+  // TODO: update these dynamically
+  const width = 330;
+  const height = 160;
 
   // Prepare stack
   // Order is defined here, from bottom to top
@@ -170,29 +184,33 @@ const AreaGraph = ({
   }
   const stack = d3.stack()
     .offset(d3.stackOffsetDiverging)
-    .keys(stackKeys)(ddata);
+    .keys(stackKeys)(graphData);
 
   // Cache datetimes
-  const datetimes = ddata.map(d => d.datetime);
+  const datetimes = graphData.map(d => d.datetime);
 
-  // TODO: change
-  const width = 330;
-  const height = 160;
+  const valuesLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
+  const valuesScaleRange = [height - X_AXIS_HEIGHT, Y_AXIS_PADDING];
+  const valuesScaleDomain = [0, maxTotalValue * 1.1];
 
-  // Set domains and ranges
-  if (firstDatetime && lastDatetime) {
-    x.domain([firstDatetime, lastDatetime]);
-  } else {
-    x.domain(d3.extent(ddata, d => d.datetime));
-  }
-  x.range([0, width - Y_AXIS_WIDTH]);
-  y.domain([0, maxTotalValue * 1.1]);
-  y.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
+  const timeScaleRange = [0, width - Y_AXIS_WIDTH];
+  const timeScaleDomain = firstDatetime && lastDatetime
+    ? [firstDatetime, lastDatetime]
+    : d3.extent(graphData, d => d.datetime);
 
   return (
     <svg id={id}>
-      <XAxis scale={x} height={height} />
-      <YAxis scale={y} width={width} label={yLabel} />
+      <TimeAxis
+        domain={timeScaleDomain}
+        range={timeScaleRange}
+        height={height}
+      />
+      <ValuesAxis
+        domain={valuesScaleDomain}
+        range={valuesScaleRange}
+        label={valuesLabel}
+        width={width}
+      />
     </svg>
   );
 };
