@@ -25,14 +25,11 @@ const getMaxTotalValue = (data, displayByEmissions) =>
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
 
-const TimeAxis = ({ domain, range, height }) => {
-  const scale = d3.scaleTime();
-  scale.domain(domain);
-  scale.range(range);
-
+const TimeAxis = ({ scale, height }) => {
   const tickSizeOuter = 6;
   const strokeWidth = 1;
   const halfWidth = strokeWidth / 2;
+  const range = scale.range();
   const range0 = range[0] + halfWidth;
   const range1 = range[range.length - 1] + halfWidth;
   const values = scale.ticks(5);
@@ -61,18 +58,14 @@ const TimeAxis = ({ domain, range, height }) => {
 };
 
 const ValuesAxis = ({
-  domain,
-  range,
+  scale,
   label,
   width,
 }) => {
-  const scale = d3.scaleLinear();
-  scale.domain(domain);
-  scale.range(range);
-
   const tickSizeOuter = 6;
   const strokeWidth = 1;
   const halfWidth = strokeWidth / 2;
+  const range = scale.range();
   const range0 = range[0] + halfWidth;
   const range1 = range[range.length - 1] + halfWidth;
   const values = scale.ticks(5);
@@ -142,6 +135,10 @@ const prepareGraphData = (data, displayByEmissions, electricityMixMode, formatti
   return { exchangeKeysSet, graphData };
 };
 
+// Regular production mode or exchange fill as a fallback
+const fillColor = (key, displayByEmissions) =>
+  modeColor[key] || (displayByEmissions ? 'darkgray' : `url(#areagraph-exchange-${key})`);
+
 const mapStateToProps = (state, props) => ({
   currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
   data: props.dataSelector(state),
@@ -157,9 +154,6 @@ const AreaGraph = ({
   id,
 }) => {
   if (!data) return null;
-
-  // Create scales
-  const z = d3.scaleOrdinal();
 
   let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
 
@@ -182,35 +176,50 @@ const AreaGraph = ({
   if (electricityMixMode === 'consumption') {
     stackKeys = stackKeys.concat(exchangeKeysSet.values());
   }
-  const stack = d3.stack()
+  const stackedData = d3.stack()
     .offset(d3.stackOffsetDiverging)
     .keys(stackKeys)(graphData);
 
   // Cache datetimes
   const datetimes = graphData.map(d => d.datetime);
 
-  const valuesLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
-  const valuesScaleRange = [height - X_AXIS_HEIGHT, Y_AXIS_PADDING];
-  const valuesScaleDomain = [0, maxTotalValue * 1.1];
-
-  const timeScaleRange = [0, width - Y_AXIS_WIDTH];
-  const timeScaleDomain = firstDatetime && lastDatetime
+  const timeScale = d3.scaleTime();
+  timeScale.domain(firstDatetime && lastDatetime
     ? [firstDatetime, lastDatetime]
-    : d3.extent(graphData, d => d.datetime);
+    : d3.extent(graphData, d => d.datetime));
+  timeScale.range([0, width - Y_AXIS_WIDTH]);
+
+  const valuesLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
+  const valuesScale = d3.scaleLinear();
+  valuesScale.domain([0, maxTotalValue * 1.1]);
+  valuesScale.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
+
+  const area = d3.area()
+    .x(d => timeScale(d.data.datetime))
+    .y0(d => valuesScale(d[0]))
+    .y1(d => valuesScale(d[1]))
+    .defined(d => Number.isFinite(d[1]));
 
   return (
     <svg id={id}>
       <TimeAxis
-        domain={timeScaleDomain}
-        range={timeScaleRange}
+        scale={timeScale}
         height={height}
       />
       <ValuesAxis
-        domain={valuesScaleDomain}
-        range={valuesScaleRange}
         label={valuesLabel}
+        scale={valuesScale}
         width={width}
       />
+      <g>
+        {stackedData.map((layer, ind) => (
+          <path
+            d={area(layer)}
+            key={stackKeys[ind]}
+            fill={fillColor(stackKeys[ind], displayByEmissions)}
+          />
+        ))}
+      </g>
     </svg>
   );
 };

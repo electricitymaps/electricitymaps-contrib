@@ -67,6 +67,7 @@ function AreaGraph(selector, modeColor, modeOrder, yLabelText) {
     this.modeOrder = modeOrder;
 }
 
+// OK
 AreaGraph.prototype.data = function (arg) {
     if (!arguments.length) return this._originalData;
     if (!arg) {
@@ -356,6 +357,7 @@ AreaGraph.prototype.render = function() {
 }
 
 // ** PRIVATE **
+// OK
 function fillColor(d) {
     if (this.modeOrder.indexOf(d.key) != -1) {
         // Regular production mode
@@ -444,6 +446,8 @@ AreaGraph.prototype.selectedIndex = function(arg) {
     }
     return this;
 }
+
+// OK
 AreaGraph.prototype.displayByEmissions = function(arg) {
     if (arg === undefined) return this._displayByEmissions;
     else {
@@ -457,6 +461,7 @@ AreaGraph.prototype.displayByEmissions = function(arg) {
     return this;
 }
 
+// OK
 AreaGraph.prototype.electricityMixMode = function(arg) {
   if (!arguments.length) return this._electricityMixMode;
   else this._electricityMixMode = arg;
