@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import formatting from '../helpers/formatting';
 import { modeOrder, modeColor } from '../helpers/constants';
+import { getCo2Scale } from '../helpers/scales';
 
 const d3 = Object.assign(
   {},
@@ -153,6 +154,7 @@ const detectPosition = (ev, datetimes, timeScale, svgRef) => {
 };
 
 const mapStateToProps = (state, props) => ({
+  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
   data: props.dataSelector(state),
   displayByEmissions: state.application.tableDisplayEmissions,
@@ -161,6 +163,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const AreaGraph = ({
+  colorBlindModeEnabled,
   currentMoment,
   data,
   displayByEmissions,
@@ -175,6 +178,8 @@ const AreaGraph = ({
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(3);
 
   if (!data) return null;
+
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
 
@@ -221,6 +226,7 @@ const AreaGraph = ({
     .y1(d => valuesScale(d[1]))
     .defined(d => Number.isFinite(d[1]));
 
+  console.log(graphData);
   return (
     <svg id={id} ref={svgRef}>
       <TimeAxis
@@ -280,6 +286,25 @@ const AreaGraph = ({
           />
         </React.Fragment>
       )}
+      <React.Fragment>
+        {exchangeKeysSet.values().map(key => (
+          <linearGradient
+            key={key}
+            gradientUnits="userSpaceOnUse"
+            id={`areagraph-exchange-${key}`}
+            x1={timeScale.range()[0]}
+            x2={timeScale.range()[1]}
+          >
+            {graphData.map(d => (
+              <stop
+                key={d.datetime}
+                offset={`${(timeScale(d.datetime) - timeScale.range()[0]) / (timeScale.range()[1] - timeScale.range()[0]) * 100.0}%`}
+                stopColor={d._countryData.exchangeCo2Intensities ? co2ColorScale(d._countryData.exchangeCo2Intensities[key]) : 'darkgray'}
+              />
+            ))}
+          </linearGradient>
+        ))}
+      </React.Fragment>
     </svg>
   );
 };

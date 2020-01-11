@@ -410,11 +410,13 @@ AreaGraph.prototype.co2color = function(arg) {
     else this._co2color = arg;
     return this;
 }
+// OK
 AreaGraph.prototype.xDomain = function(arg) {
     if (!arguments.length) return this._xDomain;
     else this._xDomain = arg;
     return this;
 }
+// OK
 AreaGraph.prototype.selectedIndex = function(arg) {
     if (!arguments.length) return this._selectedIndex;
     else {
