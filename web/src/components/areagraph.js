@@ -380,6 +380,7 @@ AreaGraph.prototype.onMouseOver = function(arg) {
     else this.mouseOverHandler = arg;
     return this;
 }
+// OK
 AreaGraph.prototype.onMouseOut = function(arg) {
     if (!arguments.length) return this.mouseOutHandler;
     else this.mouseOutHandler = arg;
@@ -405,6 +406,7 @@ AreaGraph.prototype.onLayerMouseMove = function(arg) {
     else this.layerMouseMoveHandler = arg;
     return this;
 }
+// OK
 AreaGraph.prototype.co2color = function(arg) {
     if (!arguments.length) return this._co2color;
     else this._co2color = arg;

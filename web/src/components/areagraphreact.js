@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
@@ -172,10 +172,31 @@ const AreaGraph = ({
   selectedIndex,
   // TODO
   layerMouseMoveHandler,
+  layerMouseOutHandler,
   mouseMoveHandler,
+  mouseOutHandler,
 }) => {
   const svgRef = React.createRef();
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(3);
+  const [container, setContainer] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (svgRef && svgRef.current) {
+        const { width, height } = svgRef.current.getBoundingClientRect();
+        setContainer({ width, height });
+      }
+    };
+    // Initialize dimensions if they are not set yet
+    if (!container.width || !container.height) {
+      updateDimensions();
+    }
+    // Update container dimensions on every resize
+    window.addEventListener('resize', updateDimensions);
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  });
 
   if (!data) return null;
 
@@ -191,10 +212,6 @@ const AreaGraph = ({
   const lastDatetime = currentMoment.toDate();
 
   const { exchangeKeysSet, graphData } = prepareGraphData(data, displayByEmissions, electricityMixMode, formattingFactor);
-
-  // TODO: update these dynamically
-  const width = 330;
-  const height = 160;
 
   // Prepare stack
   // Order is defined here, from bottom to top
@@ -213,12 +230,12 @@ const AreaGraph = ({
   timeScale.domain(firstDatetime && lastDatetime
     ? [firstDatetime, lastDatetime]
     : d3.extent(graphData, d => d.datetime));
-  timeScale.range([0, width - Y_AXIS_WIDTH]);
+  timeScale.range([0, container.width - Y_AXIS_WIDTH]);
 
   const valuesLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
   const valuesScale = d3.scaleLinear();
   valuesScale.domain([0, maxTotalValue * 1.1]);
-  valuesScale.range([height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
+  valuesScale.range([container.height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
 
   const area = d3.area()
     .x(d => timeScale(d.data.datetime))
@@ -226,17 +243,39 @@ const AreaGraph = ({
     .y1(d => valuesScale(d[1]))
     .defined(d => Number.isFinite(d[1]));
 
-  console.log(graphData);
+  const handleLayerMouseMove = (ev, layer, ind) => {
+    setSelectedLayerIndex(ind);
+    const i = detectPosition(ev, datetimes, timeScale, svgRef);
+    if (layerMouseMoveHandler) {
+      layerMouseMoveHandler(stackKeys[ind], layer[i].data._countryData);
+    }
+    if (mouseMoveHandler) {
+      mouseMoveHandler(layer[i].data._countryData, i);
+    }
+  };
+
+  const handleLayerMouseOut = () => {
+    setSelectedLayerIndex(undefined);
+    if (layerMouseOutHandler) {
+      layerMouseOutHandler();
+    }
+    const mouseOutTimeout = setTimeout(() => {
+      if (mouseOutHandler) {
+        mouseOutHandler();
+      }
+    }, 50);
+  };
+
   return (
     <svg id={id} ref={svgRef}>
       <TimeAxis
         scale={timeScale}
-        height={height}
+        height={container.height}
       />
       <ValuesAxis
         label={valuesLabel}
         scale={valuesScale}
-        width={width}
+        width={container.width}
       />
       <g>
         {stackedData.map((layer, ind) => (
@@ -245,19 +284,15 @@ const AreaGraph = ({
             className={`area layer ${stackKeys[ind]}`}
             fill={fillColor(stackKeys[ind], displayByEmissions)}
             d={area(layer)}
-            onMouseMove={(ev) => {
-              const i = detectPosition(ev, datetimes, timeScale, svgRef);
-              if (layerMouseMoveHandler) {
-                layerMouseMoveHandler(stackKeys[ind], layer[i].data._countryData);
-              }
-              if (mouseMoveHandler) {
-                mouseMoveHandler(layer[i].data._countryData, i);
-              }
-            }}
+            onFocus={ev => handleLayerMouseMove(ev, layer, ind)}
+            onMouseOver={ev => handleLayerMouseMove(ev, layer, ind)}
+            onMouseMove={ev => handleLayerMouseMove(ev, layer, ind)}
+            onMouseOut={handleLayerMouseOut}
+            onBlur={handleLayerMouseOut}
           />
         ))}
       </g>
-      {selectedIndex !== null && selectedIndex !== undefined && (
+      {selectedIndex !== null && selectedIndex !== undefined && stackedData[selectedLayerIndex] && (
         <React.Fragment>
           <line
             className="vertical-line"

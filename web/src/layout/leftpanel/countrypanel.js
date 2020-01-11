@@ -9,6 +9,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { dispatchApplication } from '../../store';
+
 // Components
 import AreaGraph from '../../components/areagraphreact';
 import CircularGauge from '../../components/circulargauge';
@@ -28,6 +30,22 @@ const tooltipHelper = require('../../helpers/tooltip');
 
 const historyDataSelector = state =>
   state.data.histories[state.application.selectedZoneName];
+
+const handleCountryHistoryMixMouseMove = (countryData, index) => {
+  console.log(index);
+  dispatchApplication('selectedZoneTimeIndex', index);
+};
+const handleCountryHistoryMixMouseOut = () => {
+  dispatchApplication('selectedZoneTimeIndex', null);
+};
+const handleCountryHistoryMixLayerMouseMove = (mode, countryData, index) => {
+  console.log(mode, countryData, index);
+  dispatchApplication('tooltipDisplayMode', mode);
+  dispatchApplication('selectedZoneTimeIndex', index);
+};
+const handleCountryHistoryMixLayerMouseOut = () => {
+  dispatchApplication('tooltipDisplayMode', null);
+};
 
 const CountryLowCarbonGauge = connect((state) => {
   const d = getCurrentZoneData(state);
@@ -195,6 +213,10 @@ class Component extends React.PureComponent {
             <AreaGraph
               id="country-history-mix-react"
               dataSelector={historyDataSelector}
+              layerMouseMoveHandler={handleCountryHistoryMixLayerMouseMove}
+              layerMouseOutHandler={handleCountryHistoryMixLayerMouseOut}
+              mouseMoveHandler={handleCountryHistoryMixMouseMove}
+              mouseOutHandler={handleCountryHistoryMixMouseOut}
             />
             <svg id="country-history-mix" />
 
