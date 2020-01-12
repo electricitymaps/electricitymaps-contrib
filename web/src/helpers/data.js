@@ -48,5 +48,6 @@ export const prepareGraphData = (data, displayByEmissions, electricityMixMode, f
     return obj;
   });
   const datetimes = graphData.map(d => d.datetime);
-  return { datetimes, exchangeKeysSet, graphData };
+  const exchangeKeys = exchangeKeysSet.values();
+  return { datetimes, exchangeKeys, graphData };
 };

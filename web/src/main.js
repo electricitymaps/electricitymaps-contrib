@@ -1008,7 +1008,7 @@ function renderHistory(state) {
     1
   );
   countryTable
-    .exchangeKeys(countryHistoryMixGraph.exchangeKeysSet.values())
+    .exchangeKeys(countryHistoryMixGraph.exchangeKeys)
     .render();
 
 
