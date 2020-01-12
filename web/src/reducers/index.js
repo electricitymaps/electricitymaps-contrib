@@ -37,6 +37,8 @@ const initialApplicationState = {
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
+  tooltipPosition: null,
+  tooltipCountryData: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,

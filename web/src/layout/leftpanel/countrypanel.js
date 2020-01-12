@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { dispatchApplication } from '../../store';
 
 // Components
-import AreaGraph from '../../components/areagraphreact';
+import AreaGraph from '../../components/areagraph';
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import Tooltip from '../../components/tooltip';
@@ -211,7 +211,7 @@ class Component extends React.PureComponent {
               <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
             </small>
             <AreaGraph
-              id="country-history-mix-react"
+              id="country-history-mix"
               dataSelector={historyDataSelector}
               layerMouseMoveHandler={handleCountryHistoryMixLayerMouseMove}
               layerMouseOutHandler={handleCountryHistoryMixLayerMouseOut}
