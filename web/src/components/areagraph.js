@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { first, last } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { modeOrder, modeColor } from '../helpers/constants';
@@ -20,79 +21,105 @@ const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
 
+const Axis = ({
+  className,
+  label,
+  scale,
+  renderLine,
+  renderTick,
+  textAnchor,
+  transform,
+}) => (
+  <g
+    className={className}
+    transform={transform}
+    fill="none"
+    fontSize="10"
+    fontFamily="sans-serif"
+    textAnchor={textAnchor}
+    style={{ pointerEvents: 'none' }}
+  >
+    {label && <text className="label" transform="translate(35, 80) rotate(-90)">{label}</text>}
+    <path className="domain" stroke="currentColor" d={renderLine(scale.range())} />
+    {scale.ticks(5).map(renderTick)}
+  </g>
+);
+
+const TimeAxis = ({ scale, height }) => {
+  const renderLine = range => `M${range[0] + 0.5},6V0.5H${range[1] + 0.5}V6`;
+  const renderTick = v => (
+    <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${scale(v)},0)`}>
+      <line stroke="currentColor" y2="6" />
+      <text fill="currentColor" y="9" dy="0.71em">{moment(v).format('LT')}</text>
+    </g>
+  );
+
+  return (
+    <Axis
+      className="x axis"
+      scale={scale}
+      renderLine={renderLine}
+      renderTick={renderTick}
+      textAnchor="middle"
+      transform={`translate(-1 ${height - X_AXIS_HEIGHT - 1})`}
+    />
+  );
+};
+
+const ValuesAxis = ({ scale, label, width }) => {
+  const renderLine = range => `M6,${range[0] + 0.5}H0.5V${range[1] + 0.5}H6`;
+  const renderTick = v => (
+    <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
+      <line stroke="currentColor" x2="6" />
+      <text fill="currentColor" x="9" y="3" dx="0.32em">{v}</text>
+    </g>
+  );
+
+  return (
+    <Axis
+      className="y axis"
+      label={label}
+      scale={scale}
+      renderLine={renderLine}
+      renderTick={renderTick}
+      textAnchor="start"
+      transform={`translate(${width - Y_AXIS_WIDTH - 1} -1)`}
+    />
+  );
+};
+
+const ExchangeLinearGradient = ({
+  colorBlindModeEnabled,
+  graphData,
+  id,
+  timeScale,
+}) => {
+  const x1 = timeScale.range()[0];
+  const x2 = timeScale.range()[1];
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const stopOffset = datetime => `${(timeScale(datetime) - x1) / (x2 - x1) * 100.0}%`;
+  const stopColor = countryData => (countryData.exchangeCo2Intensities
+    ? co2ColorScale(countryData.exchangeCo2Intensities[id]) : 'darkgray');
+
+  return (
+    <linearGradient gradientUnits="userSpaceOnUse" id={`areagraph-exchange-${id}`} x1={x1} x2={x2}>
+      {graphData.map(d => (
+        <stop
+          key={d.datetime}
+          offset={stopOffset(d.datetime)}
+          stopColor={stopColor(d._countryData)}
+        />
+      ))}
+    </linearGradient>
+  );
+};
+
 const getMaxTotalValue = (data, displayByEmissions) =>
   d3.max(data, d => (
     displayByEmissions
       ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO2eq/min
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
-
-const TimeAxis = ({ scale, height }) => {
-  const tickSizeOuter = 6;
-  const strokeWidth = 1;
-  const halfWidth = strokeWidth / 2;
-  const range = scale.range();
-  const range0 = range[0] + halfWidth;
-  const range1 = range[range.length - 1] + halfWidth;
-  const values = scale.ticks(5);
-
-  const formatTick = d => moment(d).format('LT');
-
-  return (
-    <g
-      className="x axis"
-      transform={`translate(-1 ${height - X_AXIS_HEIGHT - 1})`}
-      fill="none"
-      fontSize="10"
-      fontFamily="sans-serif"
-      textAnchor="middle"
-      style={{ pointerEvents: 'none' }}
-    >
-      <path className="domain" stroke="currentColor" d={`M${range0},${tickSizeOuter}V${halfWidth}H${range1}V${tickSizeOuter}`} />
-      {values.map(v => (
-        <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${scale(v)},0)`}>
-          <line stroke="currentColor" y2="6" />
-          <text fill="currentColor" y="9" dy="0.71em">{formatTick(v)}</text>
-        </g>
-      ))}
-    </g>
-  );
-};
-
-const ValuesAxis = ({
-  scale,
-  label,
-  width,
-}) => {
-  const tickSizeOuter = 6;
-  const strokeWidth = 1;
-  const halfWidth = strokeWidth / 2;
-  const range = scale.range();
-  const range0 = range[0] + halfWidth;
-  const range1 = range[range.length - 1] + halfWidth;
-  const values = scale.ticks(5);
-
-  return (
-    <g
-      className="y axis"
-      transform={`translate(${width - Y_AXIS_WIDTH - 1} -1)`}
-      fill="none"
-      fontSize="10"
-      fontFamily="sans-serif"
-      textAnchor="start"
-      style={{ pointerEvents: 'none' }}
-    >
-      <text className="label" transform="translate(35, 80) rotate(-90)">{label}</text>
-      <path className="domain" stroke="currentColor" d={`M${tickSizeOuter},${range0}H${halfWidth}V${range1}H${tickSizeOuter}`} />
-      {values.map(v => (
-        <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
-          <line stroke="currentColor" x2="6" />
-          <text fill="currentColor" x="9" y="3" dx="0.32em">{v}</text>
-        </g>
-      ))}
-    </g>
-  );
-};
 
 // Regular production mode or exchange fill as a fallback
 const fillColor = (key, displayByEmissions) =>
@@ -111,9 +138,13 @@ const detectPosition = (ev, datetimes, timeScale, svgRef) => {
   return i;
 };
 
+const getCurrentTime = state =>
+  state.application.customDate || (state.data.grid || {}).datetime;
+
 const mapStateToProps = (state, props) => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  currentMoment: moment(state.application.customDate || (state.data.grid || {}).datetime),
+  // TODO: Check this gets updated regularly
+  currentTime: getCurrentTime(state),
   data: props.dataSelector(state),
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
@@ -122,13 +153,12 @@ const mapStateToProps = (state, props) => ({
 
 const AreaGraph = ({
   colorBlindModeEnabled,
-  currentMoment,
+  currentTime,
   data,
   displayByEmissions,
   electricityMixMode,
   id,
   selectedIndex,
-  // TODO
   layerMouseMoveHandler,
   layerMouseOutHandler,
   mouseMoveHandler,
@@ -156,23 +186,21 @@ const AreaGraph = ({
     };
   });
 
-  if (!data) return null;
-
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  if (!data || !data[0]) return null;
 
   let maxTotalValue = getMaxTotalValue(data, displayByEmissions);
-
   const format = formatting.scalePower(maxTotalValue);
   const formattingFactor = !displayByEmissions ? format.formattingFactor : 1;
   maxTotalValue /= formattingFactor;
 
-  const firstDatetime = data[0] && moment(data[0].stateDatetime).toDate();
-  const lastDatetime = currentMoment.toDate();
+  // Prepare graph data
+  const {
+    datetimes,
+    exchangeKeysSet,
+    graphData,
+  } = prepareGraphData(data, displayByEmissions, electricityMixMode, formattingFactor);
 
-  const { exchangeKeysSet, graphData } = prepareGraphData(data, displayByEmissions, electricityMixMode, formattingFactor);
-
-  // Prepare stack
-  // Order is defined here, from bottom to top
+  // Prepare stack - order is defined here, from bottom to top
   let stackKeys = modeOrder;
   if (electricityMixMode === 'consumption') {
     stackKeys = stackKeys.concat(exchangeKeysSet.values());
@@ -181,26 +209,20 @@ const AreaGraph = ({
     .offset(d3.stackOffsetDiverging)
     .keys(stackKeys)(graphData);
 
-  // Cache datetimes
-  const datetimes = graphData.map(d => d.datetime);
-
-  const timeScale = d3.scaleTime();
-  timeScale.domain(firstDatetime && lastDatetime
-    ? [firstDatetime, lastDatetime]
-    : d3.extent(graphData, d => d.datetime));
-  timeScale.range([0, container.width - Y_AXIS_WIDTH]);
-
-  const valuesLabel = !displayByEmissions ? format.unit : 'tCO2eq/min';
-  const valuesScale = d3.scaleLinear();
-  valuesScale.domain([0, maxTotalValue * 1.1]);
-  valuesScale.range([container.height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
-
+  // Prepare axes and graph scales
+  const timeScale = d3.scaleTime()
+    .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
+    .range([0, container.width - Y_AXIS_WIDTH]);
+  const valuesScale = d3.scaleLinear()
+    .domain([0, maxTotalValue * 1.1])
+    .range([container.height - X_AXIS_HEIGHT, Y_AXIS_PADDING]);
   const area = d3.area()
     .x(d => timeScale(d.data.datetime))
     .y0(d => valuesScale(d[0]))
     .y1(d => valuesScale(d[1]))
     .defined(d => Number.isFinite(d[1]));
 
+  // Mouse hover events
   let mouseOutTimeout;
   const handleLayerMouseMove = (ev, layer, ind) => {
     if (mouseOutTimeout) {
@@ -217,7 +239,6 @@ const AreaGraph = ({
       mouseMoveHandler(layer[i].data._countryData, i);
     }
   };
-
   const handleLayerMouseOut = () => {
     mouseOutTimeout = setTimeout(() => {
       setSelectedLayerIndex(undefined);
@@ -237,7 +258,7 @@ const AreaGraph = ({
         height={container.height}
       />
       <ValuesAxis
-        label={valuesLabel}
+        label={displayByEmissions ? 'tCO2eq/min' : format.unit}
         scale={valuesScale}
         width={container.width}
       />
@@ -256,7 +277,7 @@ const AreaGraph = ({
           />
         ))}
       </g>
-      {selectedIndex !== null && selectedIndex !== undefined && (
+      {Number.isInteger(selectedIndex) && (
         <line
           className="vertical-line"
           style={{
@@ -270,7 +291,7 @@ const AreaGraph = ({
           y2={valuesScale.range()[1]}
         />
       )}
-      {selectedIndex !== null && selectedIndex !== undefined && stackedData[selectedLayerIndex] && (
+      {Number.isInteger(selectedIndex) && stackedData[selectedLayerIndex] && (
         <circle
           r="6"
           style={{
@@ -285,25 +306,15 @@ const AreaGraph = ({
           cy={valuesScale(stackedData[selectedLayerIndex][selectedIndex][1])}
         />
       )}
-      <React.Fragment>
-        {exchangeKeysSet.values().map(key => (
-          <linearGradient
-            key={key}
-            gradientUnits="userSpaceOnUse"
-            id={`areagraph-exchange-${key}`}
-            x1={timeScale.range()[0]}
-            x2={timeScale.range()[1]}
-          >
-            {graphData.map(d => (
-              <stop
-                key={d.datetime}
-                offset={`${(timeScale(d.datetime) - timeScale.range()[0]) / (timeScale.range()[1] - timeScale.range()[0]) * 100.0}%`}
-                stopColor={d._countryData.exchangeCo2Intensities ? co2ColorScale(d._countryData.exchangeCo2Intensities[key]) : 'darkgray'}
-              />
-            ))}
-          </linearGradient>
-        ))}
-      </React.Fragment>
+      {exchangeKeysSet.values().map(key => (
+        <ExchangeLinearGradient
+          id={key}
+          key={key}
+          graphData={graphData}
+          timeScale={timeScale}
+          colorBlindModeEnabled={colorBlindModeEnabled}
+        />
+      ))}
     </svg>
   );
 };
