@@ -218,7 +218,6 @@ class Component extends React.PureComponent {
               mouseMoveHandler={handleCountryHistoryMixMouseMove}
               mouseOutHandler={handleCountryHistoryMixMouseOut}
             />
-            <svg id="country-history-mix" />
 
             <div className="loading overlay" />
             <span className="country-history-title">
