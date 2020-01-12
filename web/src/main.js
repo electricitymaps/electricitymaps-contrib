@@ -1244,6 +1244,32 @@ function renderZones(state) {
   }
 }
 
+observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
+  if (!tooltipDisplayMode) {
+    countryTableProductionTooltip.hide();
+    countryTableExchangeTooltip.hide();
+  }
+});
+
+observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex, state) => {
+  if (state.application.tooltipDisplayMode) {
+    const isExchange = modeOrder.indexOf(state.application.tooltipDisplayMode) === -1;
+    const fun = isExchange
+      ? tooltipHelper.showExchange : tooltipHelper.showProduction;
+    const ttp = isExchange
+      ? countryTableExchangeTooltip : countryTableProductionTooltip;
+    const ttpOther = isExchange
+      ? countryTableProductionTooltip : countryTableExchangeTooltip;
+    ttpOther.hide();
+    ttp.update(state.application.tooltipPosition.x, state.application.tooltipPosition.y);
+    fun(ttp,
+      state.application.tooltipDisplayMode,
+      state.application.tooltipCountryData,
+      state.application.tableDisplayEmissions,
+      co2color, co2Colorbars);
+  }
+});
+
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
   renderExchanges(state);

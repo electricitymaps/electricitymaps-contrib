@@ -243,11 +243,17 @@ const AreaGraph = ({
     .y1(d => valuesScale(d[1]))
     .defined(d => Number.isFinite(d[1]));
 
+  let mouseOutTimeout;
   const handleLayerMouseMove = (ev, layer, ind) => {
+    if (mouseOutTimeout) {
+      clearTimeout(mouseOutTimeout);
+      mouseOutTimeout = undefined;
+    }
     setSelectedLayerIndex(ind);
     const i = detectPosition(ev, datetimes, timeScale, svgRef);
     if (layerMouseMoveHandler) {
-      layerMouseMoveHandler(stackKeys[ind], layer[i].data._countryData);
+      const position = { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 };
+      layerMouseMoveHandler(stackKeys[ind], position, layer[i].data._countryData);
     }
     if (mouseMoveHandler) {
       mouseMoveHandler(layer[i].data._countryData, i);
@@ -255,13 +261,13 @@ const AreaGraph = ({
   };
 
   const handleLayerMouseOut = () => {
-    setSelectedLayerIndex(undefined);
-    if (layerMouseOutHandler) {
-      layerMouseOutHandler();
-    }
-    const mouseOutTimeout = setTimeout(() => {
+    mouseOutTimeout = setTimeout(() => {
+      setSelectedLayerIndex(undefined);
       if (mouseOutHandler) {
         mouseOutHandler();
+      }
+      if (layerMouseOutHandler) {
+        layerMouseOutHandler();
       }
     }, 50);
   };
@@ -292,34 +298,34 @@ const AreaGraph = ({
           />
         ))}
       </g>
+      {selectedIndex !== null && selectedIndex !== undefined && (
+        <line
+          className="vertical-line"
+          style={{
+            display: 'block',
+            pointerEvents: 'none',
+            shapeRendering: 'crispEdges',
+          }}
+          x1={timeScale(graphData[selectedIndex].datetime)}
+          x2={timeScale(graphData[selectedIndex].datetime)}
+          y1={valuesScale.range()[0]}
+          y2={valuesScale.range()[1]}
+        />
+      )}
       {selectedIndex !== null && selectedIndex !== undefined && stackedData[selectedLayerIndex] && (
-        <React.Fragment>
-          <line
-            className="vertical-line"
-            style={{
-              display: 'block',
-              pointerEvents: 'none',
-              shapeRendering: 'crispEdges',
-            }}
-            x1={timeScale(graphData[selectedIndex].datetime)}
-            x2={timeScale(graphData[selectedIndex].datetime)}
-            y1={valuesScale.range()[0]}
-            y2={valuesScale.range()[1]}
-          />
-          <circle
-            r="6"
-            style={{
-              display: 'block',
-              pointerEvents: 'none',
-              shapeRendering: 'crispEdges',
-              stroke: 'black',
-              strokeWidth: 1.5,
-              fill: fillColor(stackKeys[selectedLayerIndex], displayByEmissions),
-            }}
-            cx={timeScale(graphData[selectedIndex].datetime)}
-            cy={valuesScale(stackedData[selectedLayerIndex][selectedIndex][1])}
-          />
-        </React.Fragment>
+        <circle
+          r="6"
+          style={{
+            display: 'block',
+            pointerEvents: 'none',
+            shapeRendering: 'crispEdges',
+            stroke: 'black',
+            strokeWidth: 1.5,
+            fill: fillColor(stackKeys[selectedLayerIndex], displayByEmissions),
+          }}
+          cx={timeScale(graphData[selectedIndex].datetime)}
+          cy={valuesScale(stackedData[selectedLayerIndex][selectedIndex][1])}
+        />
       )}
       <React.Fragment>
         {exchangeKeysSet.values().map(key => (

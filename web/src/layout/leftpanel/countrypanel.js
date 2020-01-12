@@ -32,15 +32,15 @@ const historyDataSelector = state =>
   state.data.histories[state.application.selectedZoneName];
 
 const handleCountryHistoryMixMouseMove = (countryData, index) => {
-  console.log(index);
   dispatchApplication('selectedZoneTimeIndex', index);
 };
 const handleCountryHistoryMixMouseOut = () => {
   dispatchApplication('selectedZoneTimeIndex', null);
 };
-const handleCountryHistoryMixLayerMouseMove = (mode, countryData, index) => {
-  console.log(mode, countryData, index);
+const handleCountryHistoryMixLayerMouseMove = (mode, position, countryData, index) => {
   dispatchApplication('tooltipDisplayMode', mode);
+  dispatchApplication('tooltipPosition', position);
+  dispatchApplication('tooltipCountryData', countryData);
   dispatchApplication('selectedZoneTimeIndex', index);
 };
 const handleCountryHistoryMixLayerMouseOut = () => {
