@@ -23,7 +23,6 @@ const initialApplicationState = {
   clientType: window.isCordova ? 'mobileapp' : 'web',
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  selectLanguageShown: false,
   customDate: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
