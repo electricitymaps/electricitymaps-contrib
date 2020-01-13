@@ -38,7 +38,7 @@ const initialApplicationState = {
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
   tooltipPosition: null,
-  tooltipCountryData: null,
+  tooltipZoneData: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,

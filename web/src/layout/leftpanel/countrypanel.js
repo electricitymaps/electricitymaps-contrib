@@ -37,10 +37,10 @@ const handleCountryHistoryMixMouseMove = (countryData, index) => {
 const handleCountryHistoryMixMouseOut = () => {
   dispatchApplication('selectedZoneTimeIndex', null);
 };
-const handleCountryHistoryMixLayerMouseMove = (mode, position, countryData, index) => {
+const handleCountryHistoryMixLayerMouseMove = (mode, position, zoneData, index) => {
   dispatchApplication('tooltipDisplayMode', mode);
   dispatchApplication('tooltipPosition', position);
-  dispatchApplication('tooltipCountryData', countryData);
+  dispatchApplication('tooltipZoneData', zoneData);
   dispatchApplication('selectedZoneTimeIndex', index);
 };
 const handleCountryHistoryMixLayerMouseOut = () => {

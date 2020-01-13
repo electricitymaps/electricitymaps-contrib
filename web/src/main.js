@@ -1218,7 +1218,7 @@ observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex
     ttp.update(state.application.tooltipPosition.x, state.application.tooltipPosition.y);
     fun(ttp,
       state.application.tooltipDisplayMode,
-      state.application.tooltipCountryData,
+      state.application.tooltipZoneData,
       state.application.tableDisplayEmissions,
       co2color, co2Colorbars);
   }
