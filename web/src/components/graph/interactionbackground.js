@@ -10,8 +10,9 @@ const InteractionBackground = ({
   mouseOutHandler,
   svgRef,
 }) => {
-  const [x0, x1] = timeScale.range();
-  const [y1, y0] = valueScale.range();
+  const [x1, x2] = timeScale.range();
+  const [y2, y1] = valueScale.range();
+  if (x1 >= x2 || y1 >= y2) return null;
 
   let mouseOutRectTimeout;
   const handleRectMouseMove = (ev) => {
@@ -33,10 +34,10 @@ const InteractionBackground = ({
 
   return (
     <rect
-      x={x0}
-      y={y0}
-      width={x1 - x0}
-      height={y1 - y0}
+      x={x1}
+      y={y1}
+      width={x2 - x1}
+      height={y2 - y1}
       style={{ cursor: 'pointer', opacity: 0 }}
       onFocus={handleRectMouseMove}
       onMouseOver={handleRectMouseMove}

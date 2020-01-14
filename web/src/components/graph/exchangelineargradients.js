@@ -8,8 +8,9 @@ const ExchangeLinearGradients = React.memo(({
   graphData,
   timeScale,
 }) => {
-  const x1 = timeScale.range()[0];
-  const x2 = timeScale.range()[1];
+  const [x1, x2] = timeScale.range();
+  if (x1 >= x2) return null;
+
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const stopOffset = datetime => `${(timeScale(datetime) - x1) / (x2 - x1) * 100.0}%`;
   const stopColor = (countryData, key) => (countryData.exchangeCo2Intensities
