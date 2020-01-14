@@ -1,4 +1,5 @@
-'use strict';
+/* eslint-disable */
+// TODO: remove once refactored
 
 const d3 = Object.assign(
   {},
@@ -337,4 +338,4 @@ LineGraph.prototype.selectedIndex = function(arg) {
     return this;
 }
 
-module.exports = LineGraph;
+export default LineGraph;

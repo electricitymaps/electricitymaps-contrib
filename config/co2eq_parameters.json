@@ -316,6 +316,13 @@
           "value": 178.67099686684926
         }
       },
+      "HN": {
+        "unknown": {
+          "_url": "https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source",
+          "source": "IEA 2017, assumes 36.5% oil, 33.4% hydro, 10.0% solar, 8.1% biomass, 6.2% wind, 5.8& oil",
+          "value": 316
+        }
+      },
       "HR": {
         "unknown": {
           "source": "2018 average estimated from https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf",
@@ -332,6 +339,13 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 381.21842143892457
+        }
+      },
+      "IL": {
+        "unknown": {
+          "_url": "https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source",
+          "source": "IEA 2018, assumes 30.4% coal, 65.9% gas, 0.5% oil, 2.5% solar, 0.3% wind, 0.4% other",
+          "value": 580
         }
       },
       "IN": {
@@ -437,6 +451,13 @@
           "_url": "https://www.iea.org/statistics/?country=KOREA&year=2016&category=Key%20indicators&indicator=ElecGenByFuel&mode=chart&dataTable=ELECTRICITYANDHEAT",
           "source": "assumes 41.8% coal, 3.1% oil, 22.5% gas, 1.1% biofuels, 0.9% solar, 0.3% wind",
           "value": 680
+        }
+      },
+      "KW": {
+        "unknown": {
+          "_url": "https://www.iea.org/statistics/?country=KUWAIT&year=2017&category=Key%20indicators&indicator=ElecGenByFuel&mode=chart&dataTable=ELECTRICITYANDHEAT",
+          "source": "IEA 2017; assumes 34.4% gas, 65.6% oil",
+          "value": 595
         }
       },
       "LT": {

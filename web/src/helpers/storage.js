@@ -11,9 +11,8 @@ const saveKey = (key, val) => {
 const getKey = (key) => {
   if (window.isCordova) {
     return window.localStorage.getItem(key);
-  } else {
-    return Cookies.get(key);
   }
+  return Cookies.get(key);
 };
 
 module.exports = {

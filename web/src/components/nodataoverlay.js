@@ -1,9 +1,9 @@
-const translation = require('../helpers/translation');
-
 const d3 = Object.assign(
   {},
   require('d3-selection'),
 );
+
+const translation = require('../helpers/translation');
 
 export default class NoDataOverlay {
   constructor(selectorId, argConfig) {
@@ -24,5 +24,4 @@ export default class NoDataOverlay {
   showIfElseHide(condition) {
     this.rootContainer.classed('visible', condition);
   }
-
 }

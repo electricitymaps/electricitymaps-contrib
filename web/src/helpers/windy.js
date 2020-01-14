@@ -1,5 +1,7 @@
 // This file was taken from https://github.com/esri/wind-js, and modified
 // TODO: Rewrite completely
+/* eslint-disable */
+// TODO: remove once refactored
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
 

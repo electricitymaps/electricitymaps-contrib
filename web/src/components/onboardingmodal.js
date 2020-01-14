@@ -1,9 +1,10 @@
-const translation = require('../helpers/translation');
-const formatting = require('../helpers/formatting');
 const d3 = Object.assign(
   {},
   require('d3-selection'),
 );
+
+const translation = require('../helpers/translation');
+const formatting = require('../helpers/formatting');
 
 const SPACE_KEY_CODE = 32;
 
@@ -29,7 +30,6 @@ const defaultViews = [{
       <div>${translation.translate('onboarding-modal.view4.text')}</div>`,
 },
 ];
-
 
 export default class OnboardingModal {
   constructor(selectorId, argConfig) {
@@ -155,6 +155,7 @@ export default class OnboardingModal {
     }
     this.modalFooterCircles[0].classed('highlight', true);
   }
+
   _updateBody() {
     this.modalBody.html(null);
 

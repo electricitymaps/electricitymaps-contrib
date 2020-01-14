@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const store = require('../store');
 
 const { Sentry } = window;
@@ -54,4 +57,4 @@ class ConnectionsService {
   }
 }
 
-module.exports = new ConnectionsService(); // singleton
+export default new ConnectionsService(); // singleton

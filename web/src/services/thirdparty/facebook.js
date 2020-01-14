@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 class FacebookThirdParty {
     constructor() {
         this.events = [];

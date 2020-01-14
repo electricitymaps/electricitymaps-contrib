@@ -1,0 +1,137 @@
+.zone-time-slider {
+    bottom: 0;
+    height: 62px;
+    padding-top: 0.25rem;
+    background: transparent;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    text-align: center;
+    overflow-y: visible;
+
+    .time-slider-axis-container{
+	    width: 85%;    
+	    height: 20px;
+	    overflow: visible;
+	}
+
+	.domain {
+	    display: none;
+	}
+
+    @include respond-to('small') {
+        padding-top: 4px;
+        background-color: $lighter-gray;
+    }
+}
+
+.time-slider-axis .tick {
+    font-size: 12px;
+    fill:black;
+}
+
+.time-slider-input {
+    -webkit-appearance: none;
+    width: 95%;
+    margin-top: 5px;
+    height: 26px;
+    background: transparent; 
+    padding: 0;
+    overflow: visible;
+    border: none;
+
+    &:focus {
+    	outline: none;  
+  	}
+}
+
+/* Sliders needs to be styled independently for different browsers:
+  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+*/
+  
+/* WebKit/Blink */
+
+.time-slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 26px;
+    width: 26px;
+    border-radius: 17px;    
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -8px;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid lightgray;
+}
+
+.time-slider-input:hover::-webkit-slider-thumb{
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.time-slider-input::-webkit-slider-runnable-track {
+    width: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: $light-gray;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+}
+
+  /* IE */
+
+.time-slider-input::-ms-track {
+    width: 100%;
+    height: 0px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.time-slider-input::-ms-fill-lower {
+    border: 2px solid lightgray;
+    border-radius: 2.6px;
+}
+
+.time-slider-input::-ms-fill-upper {
+    border: 2px solid lightgray;
+    border-radius: 2.6px;
+}
+
+.time-slider-input::-ms-thumb {
+    border: 1px solid gray;
+    height: 25px;
+    width: 25px;
+    border-radius: 17px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+  /* Firefox */
+
+.time-slider-input::-moz-range-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 17px;
+    border: none;
+    background: #ffffff;
+    cursor: pointer;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.time-slider-input:hover::-moz-range-thumb{
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+  
+.time-slider-input::-moz-range-track {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    background: $light-gray;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

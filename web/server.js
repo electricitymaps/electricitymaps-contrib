@@ -7,10 +7,16 @@ const fs = require('fs');
 const http = require('http');
 const i18n = require('i18n');
 const auth = require('basic-auth');
+const { vsprintf } = require('sprintf-js');
+const { version } = require('./package.json');
 
 // Custom module
-const translation = require(__dirname + '/src/helpers/translation');
 const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/translation-status');
+const {
+  localeToFacebookLocale,
+  supportedFacebookLocales,
+  languageNames,
+} = require('./locales-config.json');
 
 const app = express();
 const server = http.Server(app);
@@ -31,7 +37,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // * i18n
-const locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'kr', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
+const locales = Object.keys(languageNames);
 i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
@@ -44,64 +50,36 @@ i18n.configure({
 });
 
 app.use(i18n.init);
-const LOCALE_TO_FB_LOCALE = {
-  'ar': 'ar_AR',
-  'cs':'cs_CZ',
-  'da': 'da_DK',
-  'de': 'de_DE',
-  'en': 'en_US',
-  'es': 'es_ES',
-  'fr': 'fr_FR',
-  'hr': 'hr_HR',
-  'it': 'it_IT',
-  'ja': 'ja_JP',
-  'kr': 'kr_KR',
-  'nl': 'nl_NL',
-  'pt-br': 'pt_BR',
-  'pl': 'pl_PL',
-  'ru': 'ru_RU',
-  'sk': 'sk_SK',
-  'sv': 'sv_SE',
-  'zh-cn': 'zh_CN',
-  'zh-hk': 'zh_HK',
-  'zh-tw': 'zh_TW',
-};
+// For supportedFacebookLocales:
 // Populate using
-// https://www.facebook.com/translations/FacebookLocales.xml |grep 'en_'
+// https://developers.facebook.com/docs/messenger-platform/messenger-profile/supported-locales/
 // and re-crawl using
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
-const SUPPORTED_FB_LOCALES = [
-  'ar_AR',
-  'cs_CZ',
-  'da_DK',
-  'de_DE',
-  'es_ES',
-  'es_LA',
-  'es_MX',
-  'en_GB',
-  'en_PI',
-  'en_UD',
-  'en_US',
-  'fr_CA',
-  'fr_FR',
-  'hr_HR',
-  'it_IT',
-  'ja_JP',
-  'kr_KR',
-  'nl_BE',
-  'nl_NL',
-  'pl_PL',
-  'pt_BR',
-  'ru_RU',
-  'sk_SK',
-  'sv_SE',
-  'zh_CN',
-  'zh_HK',
-  'zh_TW',
-];
+
+/*
+Note: Translation function should be removed and
+let the client deal with all translations / formatting of ejs
+*/
+const localeConfigs = {};
+locales.forEach((d) => {
+  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+});
+function translateWithLocale(locale, keyStr) {
+  const keys = keyStr.split('.');
+  let result = localeConfigs[locale];
+  for (let i = 0; i < keys.length; i += 1) {
+    if (result == null) { break; }
+    result = result[keys[i]];
+  }
+  if (locale !== 'en' && !result) {
+    return translateWithLocale('en', keyStr);
+  }
+  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
+  return result && vsprintf(result, formatArgs);
+}
 
 // * Long-term caching
-function getHash(key, ext) {
+function getHash(key, ext, obj) {
   let filename;
   if (typeof obj.assetsByChunkName[key] == 'string') {
     filename = obj.assetsByChunkName[key];
@@ -112,11 +90,21 @@ function getHash(key, ext) {
   }
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
-const obj = JSON.parse(fs.readFileSync(STATIC_PATH + '/dist/manifest.json'));
-const BUNDLE_HASH = getHash('bundle', 'js');
-const STYLES_HASH = getHash('styles', 'css');
-const VENDOR_HASH = getHash('vendor', 'js');
-const VENDOR_STYLES_HASH = getHash('vendor', 'css');
+const srcHashes = Object.fromEntries(locales.map((k) => {
+  try {
+    const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
+    const BUNDLE_HASH = getHash('bundle', 'js', obj);
+    const STYLES_HASH = getHash('styles', 'css', obj);
+    const VENDOR_HASH = getHash('vendor', 'js', obj);
+    const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
+    return [k, {
+      BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
+    }];
+  } catch (err) {
+    console.warn(`Warning: couldn't load manifest for locale ${k}: ${err}`);
+    return null; // Ignore
+  }
+}).filter(d => d));
 
 // * Error handling
 function handleError(err) {
@@ -124,15 +112,15 @@ function handleError(err) {
   console.error(err);
 }
 
-app.get('/health', (req, res) => res.json({status: 'ok'}));
-app.get('/clientVersion', (req, res) => res.send(BUNDLE_HASH));
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/clientVersion', (req, res) => res.send(version));
 
 // Translation status API
 app.get('/translationstatus/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
   res.end(getTranslationStatusSVG());
 });
-app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON()));
+app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(locales)));
 app.get('/translationstatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
@@ -197,20 +185,20 @@ app.get('/', (req, res) => {
           }
         }
       }),
-      bundleHash: BUNDLE_HASH,
-      vendorHash: VENDOR_HASH,
-      stylesHash: STYLES_HASH,
-      vendorStylesHash: VENDOR_STYLES_HASH,
+      bundleHash: srcHashes[locale].BUNDLE_HASH,
+      vendorHash: srcHashes[locale].VENDOR_HASH,
+      stylesHash: srcHashes[locale].STYLES_HASH,
+      vendorStylesHash: srcHashes[locale].VENDOR_STYLES_HASH,
       fullUrl,
       locale,
       supportedLocales: locales,
-      FBLocale: LOCALE_TO_FB_LOCALE[locale],
-      supportedFBLocales: SUPPORTED_FB_LOCALES,
+      FBLocale: localeToFacebookLocale[locale],
+      supportedFBLocales: supportedFacebookLocales,
       '__': function() {
         const argsArray = Array.prototype.slice.call(arguments);
         // Prepend the first argument which is the locale
         argsArray.unshift(locale);
-        return translation.translateWithLocale.apply(null, argsArray);
+        return translateWithLocale.apply(null, argsArray);
       },
     });
   }
@@ -220,10 +208,8 @@ app.get('/v1/*', (req, res) =>
 app.get('/v2/*', (req, res) =>
   res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 app.all('/dist/*.map', (req, res, next) => {
-  // Allow bugsnag (2 first) + sentry
+  // Allow sentry
   if ([
-    '104.196.245.109',
-    '104.196.254.247',
     '35.184.238.160',
     '104.155.159.182',
     '104.155.149.19',

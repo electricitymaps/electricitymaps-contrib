@@ -1,9 +1,13 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const d3 = require('d3-selection');
 
 const flags = require('../helpers/flags');
 const translation = require('../helpers/translation');
 
 const formatting = require('./formatting');
+const { dispatchApplication } = require('../store');
 
 // Production
 const FLAG_SIZE = 16;
@@ -172,7 +176,7 @@ module.exports.showExchange = function showExchange(tooltipInstance, key, countr
   tooltipInstance.show();
 };
 
-module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, lowCarbonGauge, renewableGauge, electricityMixMode) {
+module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, electricityMixMode) {
   if (!countryData) {
     tooltipInstance.hide();
     return;
@@ -192,7 +196,7 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     .text(translation.getFullZoneName(countryData.countryCode))
     .style('font-weight', 'bold');
 
-  if (countryData.hasParser && lowCarbonGauge && renewableGauge) {
+  if (countryData.hasParser) {
     tooltip.select('.emission-rect')
       .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
     tooltip.select('.country-emission-intensity')
@@ -204,7 +208,7 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     const hasFossilFuelData = fossilFuelRatio != null;
     if (hasFossilFuelData) {
       const fossilFuelPercent = fossilFuelRatio * 100;
-      lowCarbonGauge.setPercentage(Math.round(100 - fossilFuelPercent));
+      dispatchApplication('tooltipLowCarbonGaugePercentage', Math.round(100 - fossilFuelPercent));
       tooltip.select('.lowcarbon-percentage').text(Math.round(100 - fossilFuelPercent));
     } else {
       tooltip.select('.lowcarbon-percentage').text('?');
@@ -216,7 +220,7 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     const hasRenewableData = renewableRatio != null;
     if (hasRenewableData) {
       const renewablePercent = renewableRatio * 100;
-      renewableGauge.setPercentage(Math.round(renewablePercent));
+      dispatchApplication('tooltipRenewableGaugePercentage', Math.round(renewablePercent));
       tooltip.select('.renewable-percentage').text(Math.round(renewablePercent));
     } else {
       tooltip.select('.renewable-percentage').text('?');

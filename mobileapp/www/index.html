@@ -1,9 +1,12 @@
 <html>
   <script>
       document.addEventListener('deviceready', onDeviceReady, false);
-      // Warning: those locales are duplicated from server.js
-      var locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sv', 'sk', 'zh-cn', 'zh-hk', 'zh-tw'];
+      // Warning: those locales are duplicated from locales-config.json
+      var locales = ['ar', 'cs', 'da', 'de', 'en', 'es', 'fr', 'hr', ,'id', 'it', 'ja', 'nl', 'pl', 'pt-br', 'ru', 'sk', 'sv', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
       function onDeviceReady() {
+        var Sentry = cordova.require("sentry-cordova.Sentry");
+        Sentry.init({ dsn: 'https://c6e9e4041eb74d22803b3f2bfb0c794d@sentry.io/1829181' });
+
         navigator.globalization.getLocaleName(
           function(obj) {
             var locale = obj.value.substr(0, 2);
