@@ -9,6 +9,7 @@ import { detectHoveredDatapointIndex } from '../helpers/graph';
 import { prepareGraphData } from '../helpers/data';
 
 import ExchangeLinearGradients from './graph/exchangelineargradients';
+import InteractionBackground from './graph/interactionbackground';
 import HoverLine from './graph/hoverline';
 import ValueAxis from './graph/valueaxis';
 import TimeAxis from './graph/timeaxis';
@@ -62,13 +63,13 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
   const timeScale = d3.scaleTime()
     .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
     .range([0, width]);
-  const valuesScale = d3.scaleLinear()
+  const valueScale = d3.scaleLinear()
     .domain([0, maxTotalValue * 1.1])
     .range([height, Y_AXIS_PADDING]);
   const area = d3.area()
     .x(d => timeScale(d.data.datetime))
-    .y0(d => valuesScale(d[0]))
-    .y1(d => valuesScale(d[1]))
+    .y0(d => valueScale(d[0]))
+    .y1(d => valueScale(d[1]))
     .defined(d => Number.isFinite(d[1]));
 
   return {
@@ -78,7 +79,7 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
     format,
     graphData,
     timeScale,
-    valuesScale,
+    valueScale,
     stackKeys,
     stackedData,
   };
@@ -92,6 +93,7 @@ const Layers = React.memo(({
   stackKeys,
   stackedData,
   timeScale,
+  valueScale,
   setSelectedLayerIndex,
   mouseMoveHandler,
   mouseOutHandler,
@@ -135,6 +137,7 @@ const Layers = React.memo(({
           key={stackKeys[ind]}
           className={`area layer ${stackKeys[ind]}`}
           fill={fillColor(stackKeys[ind], displayByEmissions)}
+          style={{ cursor: 'pointer' }}
           d={area(layer)}
           onFocus={ev => handleLayerMouseMove(ev, layer, ind)}
           onMouseOver={ev => handleLayerMouseMove(ev, layer, ind)}
@@ -156,7 +159,6 @@ const fillColor = (key, displayByEmissions) =>
 
 const mapStateToProps = (state, props) => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  // TODO: Check this gets updated regularly
   currentTime: getCurrentTime(state),
   data: props.dataSelector(state),
   displayByEmissions: state.application.tableDisplayEmissions,
@@ -180,7 +182,7 @@ const AreaGraph = ({
   // Hack to create a reference via non-mutable state so that it's created
   // only once at the initialization (like in a class constructor).
   const [ref] = useState(React.createRef());
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(3);
+  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const [container, setContainer] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -210,7 +212,7 @@ const AreaGraph = ({
     format,
     graphData,
     timeScale,
-    valuesScale,
+    valueScale,
     stackKeys,
     stackedData,
   } = useMemo(
@@ -228,8 +230,16 @@ const AreaGraph = ({
       />
       <ValueAxis
         label={displayByEmissions ? 'tCO2eq/min' : format.unit}
-        scale={valuesScale}
+        scale={valueScale}
         width={container.width}
+      />
+      <InteractionBackground
+        timeScale={timeScale}
+        valueScale={valueScale}
+        datetimes={datetimes}
+        mouseMoveHandler={mouseMoveHandler}
+        mouseOutHandler={mouseOutHandler}
+        svgRef={ref}
       />
       <Layers
         area={area}
@@ -239,6 +249,7 @@ const AreaGraph = ({
         stackKeys={stackKeys}
         stackedData={stackedData}
         timeScale={timeScale}
+        valueScale={valueScale}
         setSelectedLayerIndex={setSelectedLayerIndex}
         mouseMoveHandler={mouseMoveHandler}
         mouseOutHandler={mouseOutHandler}
@@ -251,7 +262,7 @@ const AreaGraph = ({
         layerData={stackedData[selectedLayerIndex]}
         fill={fillColor(stackKeys[selectedLayerIndex], displayByEmissions)}
         selectedIndex={selectedIndex}
-        valuesScale={valuesScale}
+        valueScale={valueScale}
         timeScale={timeScale}
       />
       <ExchangeLinearGradients

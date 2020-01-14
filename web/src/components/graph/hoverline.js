@@ -4,7 +4,7 @@ const HoverLine = ({
   graphData,
   layerData,
   timeScale,
-  valuesScale,
+  valueScale,
   selectedIndex,
   fill,
 }) => (
@@ -19,8 +19,8 @@ const HoverLine = ({
         }}
         x1={timeScale(graphData[selectedIndex].datetime)}
         x2={timeScale(graphData[selectedIndex].datetime)}
-        y1={valuesScale.range()[0]}
-        y2={valuesScale.range()[1]}
+        y1={valueScale.range()[0]}
+        y2={valueScale.range()[1]}
       />
     )}
     {Number.isInteger(selectedIndex) && layerData && (
@@ -35,7 +35,7 @@ const HoverLine = ({
           fill,
         }}
         cx={timeScale(graphData[selectedIndex].datetime)}
-        cy={valuesScale(layerData[selectedIndex][1])}
+        cy={valueScale(layerData[selectedIndex][1])}
       />
     )}
   </React.Fragment>

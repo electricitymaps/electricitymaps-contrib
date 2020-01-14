@@ -7,7 +7,7 @@ const ValueAxis = React.memo(({ scale, label, width }) => {
   const renderTick = v => (
     <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
       <line stroke="currentColor" x2="6" />
-      <text fill="currentColor" x="9" y="3" dx="0.32em">{v}</text>
+      <text fill="currentColor" x="6" y="3" dx="0.32em">{v}</text>
     </g>
   );
 
