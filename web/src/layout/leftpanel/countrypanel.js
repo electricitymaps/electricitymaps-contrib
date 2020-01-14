@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 // Components
 import CircularGauge from '../../components/circulargauge';
+import ContributorList from '../../components/contributorlist';
 import Tooltip from '../../components/tooltip';
 
 // Modules
@@ -216,7 +217,7 @@ class Component extends React.PureComponent {
             </small>
             {' '}
             {__('country-panel.helpfrom')}
-            <div className="contributors" />
+            <ContributorList />
           </div>
           <div className="social-buttons large-screen-hidden">
             <div>

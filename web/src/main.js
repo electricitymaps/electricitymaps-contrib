@@ -9,7 +9,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 // Components
-import ContributorList from './components/contributorlist';
 import OnboardingModal from './components/onboardingmodal';
 import SearchBar from './components/searchbar';
 import ZoneMap from './components/map';
@@ -185,8 +184,6 @@ const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tool
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
 const priceTooltip = new Tooltip('#price-tooltip');
-
-const contributorList = new ContributorList('.contributors');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -952,12 +949,6 @@ if (onboardingModal) {
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
 
-function renderContributors(state) {
-  const { selectedZoneName } = state.application;
-  contributorList.setContributors((zonesConfig[selectedZoneName] || {}).contributors || []);
-  contributorList.render();
-}
-
 function renderCountryTable(state) {
   const d = getCurrentZoneData(state);
   if (!d) {
@@ -1344,7 +1335,6 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   if (!selectedZoneName) { return; }
   // Render
   renderCountryTable(state);
-  renderContributors(state);
   renderHistory(state);
   zoneDetailsTimeSlider.selectedIndex(null, null);
 

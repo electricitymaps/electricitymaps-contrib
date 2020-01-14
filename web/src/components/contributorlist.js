@@ -1,27 +1,20 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
+import React from 'react';
+import { connect } from 'react-redux';
+
+import zonesConfig from '../../../config/zones.json';
+
+const mapStateToProps = state => ({
+  contributors: (zonesConfig[state.application.selectedZoneName] || {}).contributors || [],
+});
+
+const ContributorList = ({ contributors }) => (
+  <div className="contributors">
+    {contributors.map(contributor => (
+      <a href={contributor} rel="noopener noreferrer" target="_blank">
+        <img src={`${contributor}.png`} alt={contributor} />
+      </a>
+    ))}
+  </div>
 );
 
-export default class ContributorList {
-  constructor(selectorId) {
-    this.selectorId = selectorId;
-    this.contributors = [];
-  }
-
-  setContributors(contributors) {
-    this.contributors = contributors || [];
-  }
-
-  render() {
-    const selector = d3.selectAll(this.selectorId).selectAll('a').data(this.contributors);
-    const enterA = selector.enter().append('a')
-      .attr('target', '_blank');
-    const enterImg = enterA.append('img');
-    enterA.merge(selector)
-      .attr('href', d => d);
-    enterImg.merge(selector.select('img'))
-      .attr('src', d => `${d}.png`);
-    selector.exit().remove();
-  }
-}
+export default connect(mapStateToProps)(ContributorList);
