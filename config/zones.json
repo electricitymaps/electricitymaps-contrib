@@ -2994,7 +2994,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 2203
+      "wind": 2445
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3056,7 +3056,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 651
+      "wind": 800
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3087,7 +3087,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 998
+      "wind": 1057
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3118,7 +3118,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 389
+      "wind": 442
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
