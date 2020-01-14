@@ -14,7 +14,6 @@ import SearchBar from './components/searchbar';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
-import LanguageSelect from './components/languageselect';
 import CountryTable from './components/countrytable';
 import AreaGraph from './components/areagraph';
 import LineGraph from './components/linegraph';
@@ -202,8 +201,6 @@ const faq = new FAQ('.faq');
 const mobileFaq = new FAQ('.mobile-faq');
 
 const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
-
-const languageSelect = new LanguageSelect('#language-select-container');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -844,25 +841,6 @@ const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
 d3.select('.production-toggle-info').on('click', () => {
   prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
 });
-
-function selectLanguage() {
-  getState().application.selectLanguageShown = !getState().application.selectLanguageShown;
-  d3.select('#language-select-container').classed('hidden', !getState().application.selectLanguageShown);
-}
-
-d3.select('.language-select-button').on('click', selectLanguage);
-const selectLanguageButtonTooltip = d3.select('#language-select-button-tooltip');
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.language-select-button').on('mouseover', () => {
-    selectLanguageButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.language-select-button').on('mouseout', () => {
-    selectLanguageButtonTooltip.classed('hidden', true);
-  });
-}
-
-languageSelect.render();
 
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
