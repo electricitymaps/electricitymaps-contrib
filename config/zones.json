@@ -3290,11 +3290,7 @@
       "hydro storage": 1780,
       "nuclear": 0,
       "oil": 415,
-<<<<<<< HEAD
-      "solar": 424,
-=======
-      "solar": 1186,
->>>>>>> 9bdf0b9008925d7aec249518bf8d68eb1b4d5149
+      "solar": 1300,
       "wind": 5825
     },
     "contributors": [
