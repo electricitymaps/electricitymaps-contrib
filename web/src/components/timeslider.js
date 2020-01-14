@@ -101,7 +101,7 @@ export default class TimeSlider {
   _sampleTickValues() {
     this.tickValues = [];
     if (this._data.length >= NUMBER_OF_TICKS) {
-      for (let i = 0; i < NUMBER_OF_TICKS; i++) {
+      for (let i = 0; i < NUMBER_OF_TICKS; i += 1) {
         const sampleIndex = Math.floor(((this._data.length - 1) / (NUMBER_OF_TICKS - 1)) * (i));
         const sampledTimeStamp = this._data[sampleIndex];
         this.tickValues.push(moment(sampledTimeStamp).toDate());

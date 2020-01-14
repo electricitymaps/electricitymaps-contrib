@@ -1,4 +1,5 @@
-'use strict'
+/* eslint-disable */
+// TODO: remove once refactored
 
 const d3 = Object.assign(
   {},
@@ -9,11 +10,14 @@ const d3 = Object.assign(
   require('d3-scale'),
   require('d3-shape'),
 );
+
+const formatting = require('../helpers/formatting');
+
 // see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
 import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
 
-function AreaGraph(selector, modeColor, modeOrder) {
+function AreaGraph(selector, modeColor, modeOrder, yLabelText) {
     var that = this;
 
     this.rootElement = d3.select(selector);
@@ -43,6 +47,10 @@ function AreaGraph(selector, modeColor, modeOrder) {
         .style('stroke', 'black')
         .style('stroke-width', 1.5);
 
+    this.yLabelElement = this.yAxisElement.append("text")
+        .attr('class', 'label')
+        .text(yLabelText)
+
     // Create scales
     this.x = d3.scaleTime();
     this.y = d3.scaleLinear();
@@ -70,6 +78,28 @@ AreaGraph.prototype.data = function (arg) {
 
     var that = this;
 
+    // Max total value
+    var maxTotalValue = d3.max(arg, function(d) {
+        if (!that._displayByEmissions) {
+            // in MW
+            return (d.totalProduction + d.totalImport + d.totalDischarge);
+        } else {
+            // in tCO2eq/min
+            return (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0;
+        }
+    })
+
+    const format = formatting.scalePower(maxTotalValue);
+    var formattingFactor = !that._displayByEmissions ? format.formattingFactor : 1;
+
+    if (!that._displayByEmissions) {
+        this.yLabelElement.text(format.unit);
+    } else {
+        this.yLabelElement.text("tCO2eq/min");
+    }
+
+    maxTotalValue = maxTotalValue / formattingFactor;
+
     // Parse data
     var exchangeKeysSet = this.exchangeKeysSet = d3.set();
     this._data = arg.map(function(d) {
@@ -82,7 +112,8 @@ AreaGraph.prototype.data = function (arg) {
             var value = isStorage ?
                 -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')]) :
                 (d.production || {})[k]
-            obj[k] = value;
+            // in GW or MW
+            obj[k] = value / formattingFactor;
             if (isFinite(value) && that._displayByEmissions && obj[k] != null) {
                 // in tCO2eq/min
                 if (isStorage && obj[k] >= 0) {
@@ -96,7 +127,8 @@ AreaGraph.prototype.data = function (arg) {
           // Add exchange
           d3.entries(d.exchange).forEach(function(o) {
               exchangeKeysSet.add(o.key);
-              obj[o.key] = Math.max(0, o.value);
+              // in GW or MW
+              obj[o.key] = Math.max(0, o.value / formattingFactor);
               if (isFinite(o.value) && that._displayByEmissions && obj[o.key] != null) {
                   // in tCO2eq/min
                   obj[o.key] *= d.exchangeCo2Intensities[o.key] / 1e3 / 60.0
@@ -126,14 +158,7 @@ AreaGraph.prototype.data = function (arg) {
     }
     this.y.domain([
         0,
-        1.1 * d3.max(arg, function(d) {
-            if (!that._displayByEmissions) {
-                return d.totalProduction + d.totalImport + d.totalDischarge;
-            } else {
-                // in tCO2eq/min
-                return (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0;
-            }
-        })
+        maxTotalValue*1.1
     ]);
     this.z
         .domain(this.stackKeys)
@@ -322,7 +347,10 @@ AreaGraph.prototype.render = function() {
         .ticks(5);
     this.yAxisElement
         .attr('transform', `translate(${width - Y_AXIS_WIDTH - 1} -1)`)
-        .call(yAxis);
+        .call(yAxis);    
+
+    // y axis label
+    this.yLabelElement.attr('transform', `translate(35, `+ height/2 + `) rotate(-90)`)
 
     return this;
 }
@@ -399,7 +427,7 @@ AreaGraph.prototype.selectedIndex = function(arg) {
                 .attr('x2', this.x(this._data[this._selectedIndex].datetime))
                 .style('display', 'block');
         }
-        if (this._selectedLayerIndex != null && this._selectedIndex != null) {
+        if (this._selectedLayerIndex != null && this._selectedIndex != null && this._data[this._selectedIndex]) {
             var selectedData = this.stack[this._selectedLayerIndex][this._selectedIndex];
             this.markerElement
                 .attr('cx', this.x(this._data[this._selectedIndex].datetime))
@@ -435,4 +463,4 @@ AreaGraph.prototype.electricityMixMode = function(arg) {
   return this;
 };
 
-module.exports = AreaGraph;
+export default AreaGraph;

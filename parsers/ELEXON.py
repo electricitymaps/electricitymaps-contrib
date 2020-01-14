@@ -29,6 +29,10 @@ REPORT_META = {
         'expected_fields': 13,
         'skiprows': 5
     },
+    'FUELINST': {
+        'expected_fields': 19,
+        'skiprows': 1
+    },
     'INTERFUELHH': {
         'expected_fields': 8,
         'skiprows': 0
@@ -58,6 +62,8 @@ EXCHANGES = {
     'GB->IE': 6,
     'BE->GB': 7
 }
+
+FETCH_WIND_FROM_FUELINST = True
 
 
 def query_ELEXON(report, session, params):
@@ -218,6 +224,51 @@ def datetime_from_date_sp(date, sp):
     return datetime.replace(tzinfo='Europe/London').datetime
 
 
+def _fetch_wind(target_datetime=None):
+    if target_datetime is None:
+        target_datetime = dt.datetime.now()
+
+    # line up with B1620 (main production report) search range
+    d = target_datetime.date()
+    start = d - dt.timedelta(hours=24)
+    end = dt.datetime.combine(d + dt.timedelta(days=1), dt.time(0))
+
+    session = requests.session()
+    params = {
+        'FromDateTime': start.strftime('%Y-%m-%d %H:%M:%S'),
+        'ToDateTime': end.strftime('%Y-%m-%d %H:%M:%S'),
+        'ServiceType': 'csv'
+    }
+    response = query_ELEXON('FUELINST', session, params)
+    csv_text = response.text
+
+    report = REPORT_META['FUELINST']
+    df = pd.read_csv(StringIO(csv_text), skiprows=report['skiprows'],
+                     skipfooter=1, header=None)
+
+    field_count = len(df.columns)
+    if field_count != report['expected_fields']:
+        raise ValueError(
+            'Expected {} fields in FUELINST report, got {}'.format(
+                report['expected_fields'], len(df.columns)))
+
+    df = df.iloc[:, [1, 2, 3, 8]]
+    df.columns = ['Settlement Date', 'Settlement Period', 'published', 'Wind']
+    df['Settlement Date'] = df['Settlement Date'].apply(
+        lambda x: dt.datetime.strptime(str(x), '%Y%m%d'))
+    df['Settlement Period'] = df['Settlement Period'].astype(int)
+    df['datetime'] = df.apply(lambda x: datetime_from_date_sp(
+        x['Settlement Date'], x['Settlement Period']), axis=1)
+
+    df['published'] = df['published'].apply(
+        lambda x: dt.datetime.strptime(str(x), '%Y%m%d%H%M%S'))
+    # get the most recently published value for each datetime
+    idx = df.groupby('datetime')['published'].transform(max) == df['published']
+    df = df[idx]
+
+    return df[['datetime', 'Wind']]
+
+
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
     session = session or requests.session()
@@ -232,6 +283,17 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
     session = session or requests.session()
     response = query_production(session, target_datetime)
     data = parse_production(response, target_datetime, logger)
+
+    # At times B1620 has had poor quality data for wind so fetch from FUELINST
+    if FETCH_WIND_FROM_FUELINST:
+        wind = _fetch_wind(target_datetime)
+        for entry in data:
+            datetime = entry['datetime']
+            wind_row = wind[wind['datetime'] == datetime]
+            if len(wind_row):
+                entry['production']['wind'] = wind_row.iloc[0]['Wind']
+            else:
+                entry['production']['wind'] = None
 
     required = ['coal', 'gas', 'nuclear']
     expected_range = {

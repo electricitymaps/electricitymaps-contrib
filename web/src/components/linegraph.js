@@ -1,4 +1,5 @@
-'use strict';
+/* eslint-disable */
+// TODO: remove once refactored
 
 const d3 = Object.assign(
   {},
@@ -12,7 +13,7 @@ const d3 = Object.assign(
 import {event as currentEvent} from 'd3-selection';
 var moment = require('moment');
 
-function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
+function LineGraph(selector, xAccessor, yAccessor, definedAccessor, yLabelText) {
     this.rootElement = d3.select(selector);
 
     // Create axis
@@ -42,6 +43,10 @@ function LineGraph(selector, xAccessor, yAccessor, definedAccessor) {
         .attr('r', 6)
         .style('stroke', 'black')
         .style('stroke-width', 1.5);
+
+    this.yLabelElement = this.yAxisElement.append("text")
+        .attr('class', 'label')
+        .text(yLabelText)
 
     this.xAccessor = xAccessor;
     this.yAccessor = yAccessor;
@@ -170,6 +175,9 @@ LineGraph.prototype.render = function () {
             .attr('y2', y(0))
     }
 
+    // y axis label
+    this.yLabelElement.attr('transform', `translate(35, `+ height/2 + `) rotate(-90)`)
+
     if (this._gradient) {
         // Create gradient
         if (!this.gradientEl) {
@@ -264,6 +272,11 @@ LineGraph.prototype.render = function () {
     return this;
 }
 
+LineGraph.prototype.setYLabel = function(arg) {
+    this.yLabelElement.text(arg);
+    return this;
+};
+
 LineGraph.prototype.yColorScale = function(arg) {
     if (!arguments.length) return this._yColorScale;
     else this._yColorScale = arg;
@@ -325,4 +338,4 @@ LineGraph.prototype.selectedIndex = function(arg) {
     return this;
 }
 
-module.exports = LineGraph;
+export default LineGraph;

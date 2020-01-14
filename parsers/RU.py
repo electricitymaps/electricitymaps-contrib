@@ -6,14 +6,16 @@ from bs4 import BeautifulSoup
 import re
 import dateutil
 import requests
-import tablib
+import json
 
 # RU-1: European and Uralian Market Zone (Zone 1)
 # RU-2: Siberian Market Zone (Zone 2)
 # RU-AS: Russian Far East
 
 
-MAP_GENERATION_1 = {
+BASE_EXCHANGE_URL = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?'
+
+MAP_GENERATION = {
     'P_AES': 'nuclear',
     'P_GES': 'hydro',
     'P_GRES': 'unknown',
@@ -22,29 +24,21 @@ MAP_GENERATION_1 = {
     'P_REN': 'solar'
 }
 
-MAP_GENERATION_2 = {
-    'P_GES': 'hydro',
-    'P_GRES': 'unknown',
-    'P_TES': 'unknown',
-    'P_BS': 'unknown',
-    'P_REN': 'solar'
-}
-
-exchange_ids = {'CN->RU-AS': "764",
-                'MN->RU': "276",
-                'MN->RU-2': "276",
-                'KZ->RU': "785",
-                'KZ->RU-1': "2394",
-                'KZ->RU-2': "344",
-                'RU-1->RU-2': "139",
-                'GE->RU': "752",
-                'GE->RU-1': "752",
-                'AZ->RU': "598",
-                'AZ->RU-1': "598",
-                'BY->RU': "321",
-                'BY->RU-1': "321",
-                'RU->UA': "880",
-                'RU-1->UA':"880"}
+exchange_ids = {'CN->RU-AS': 764,
+                'MN->RU': 276,
+                'MN->RU-2': 276,
+                'KZ->RU': 785,
+                'KZ->RU-1': 2394,
+                'KZ->RU-2': 344,
+                'RU-1->RU-2': 139,
+                'GE->RU': 752,
+                'GE->RU-1': 752,
+                'AZ->RU': 598,
+                'AZ->RU-1': 598,
+                'BY->RU': 321,
+                'BY->RU-1': 321,
+                'RU->UA': 880,
+                'RU-1->UA':880}
 
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
 
@@ -85,61 +79,48 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
-    today = arrow.now(tz=tz).format('DD.MM.YYYY')
-    
-        
-        
+    today = arrow.now(tz=tz).format('YYYY.MM.DD')
+
     if zone_key == 'RU':
-        url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=-1:&notCheckedColumnsNames='.format(
+        url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]=-1&startDate={date}&endDate={date}'.format(
             date=today)
     elif zone_key == 'RU-1':
-        url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=1:&notCheckedColumnsNames='.format(
+        url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]=1&startDate={date}&endDate={date}'.format(
             date=today)
     elif zone_key == 'RU-2':
-        url = 'http://br.so-ups.ru/Public/Export/Csv/PowerGen.aspx?&startDate={date}&endDate={date}&territoriesIds=2:&notCheckedColumnsNames='.format(
+        url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]=2&startDate={date}&endDate={date}'.format(
             date=today)
-    
     else:
         raise NotImplementedError('This parser is not able to parse given zone')
-    response = r.get(url)
-    content = response.text
 
-    # Prepare content and load as csv into Dataset
-    dataset = tablib.Dataset()
-    dataset.csv = content.replace('\xce\xdd\xd1', ' ').replace(',', '.').replace(';', ',')
+    response = r.get(url)
+    json_content = json.loads(response.text)
+    dataset = json_content[0]['m_Item2']
 
     data = []
-    for datapoint in dataset.dict:
+    for datapoint in dataset:
         row = {
             'zoneKey': zone_key,
             'production': {},
             'storage': {},
             'source': 'so-ups.ru'
             }
-        if zone_key=='RU' or zone_key=='RU-1':
-        # Production
-            for k, production_type in MAP_GENERATION_1.items():
-                if k in datapoint:
-                    gen_value = float(datapoint[k])
-                    row['production'][production_type] = row['production'].get(production_type,
-                                                                               0.0) + gen_value
-                else:
-                    row['production']['unknown'] = row['production'].get('unknown',0.0) + gen_value
-        elif zone_key == 'RU-2':
-            for k, production_type in MAP_GENERATION_2.items():
-                if k in datapoint:
-                    gen_value = float(datapoint[k])
-                    row['production'][production_type] = row['production'].get(production_type,
-                                                                                0.0) + gen_value
-                else:
-                    row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value                                        
-        
+
+        for k, production_type in MAP_GENERATION.items():
+            if k in datapoint:
+                gen_value = float(datapoint[k]) if datapoint[k] else 0.0
+                row['production'][production_type] = row['production'].get(production_type,
+                                                                        0.0) + gen_value
+            else:
+                row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
+
         # Date
         hour = '%02d' % int(datapoint['INTERVAL'])
-        date = arrow.get('%s %s' % (today, hour), 'DD.MM.YYYY HH')
+        date = arrow.get('%s %s' % (today, hour), 'YYYY.MM.DD HH')
+
         row['datetime'] = date.replace(tzinfo=dateutil.tz.gettz(tz)).datetime
 
-        current_dt = arrow.now('Europe/Moscow').datetime
+        current_dt = arrow.now(tz).datetime
 
         # Drop datapoints in the future
         if row['datetime'] > current_dt:
@@ -154,12 +135,33 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
     return data
 
 
+def response_checker(json_content):
+    """Returns False if input is empty list or all zero values, else True."""
+    flow_values = json_content['Flows']
+
+    if not flow_values:
+        return False
+
+    non_zero = False
+    for item in flow_values:
+        if item['Id'] in list(exchange_ids.values()):
+            if item['NumValue'] == 0.0:
+                continue
+            else:
+                non_zero = True
+                break
+
+    return non_zero
+
+
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two zones
     Arguments:
     zone_key1           -- the first country code
     zone_key2           -- the second country code; order of the two codes in params doesn't matter
     session (optional)      -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day, str in format YYYYMMDD
+    logger (optional) -- handles logging when parser is run as main
     Return:
     A list of dictionaries in the form:
     {
@@ -171,78 +173,65 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     where net flow is from DK into NO
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        today = arrow.get(target_datetime, 'YYYYMMDD')
+    else:
+        today = arrow.utcnow()
 
-    exchanges_url = 'http://br.so-ups.ru/Public/MainPage.aspx'
-    s = session or requests.Session()
-    req = s.get(exchanges_url)
-    soup = BeautifulSoup(req.content, 'html.parser')
+    date = today.format('YYYY-MM-DD')
+    r = session or requests.session()
+    DATE = 'Date={}'.format(date)
+
+    exchange_urls = []
+    if target_datetime:
+        for hour in range(0,24):
+            url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+            exchange_urls.append((url,hour))
+    else:
+        # Only fetch last 2 hours when not fetching historical data.
+        for shift in range(0, 2):
+            hour = today.shift(hours=-shift).format('HH')
+            url = BASE_EXCHANGE_URL + DATE + '&Hour={}'.format(hour)
+            exchange_urls.append((url, int(hour)))
+
+    datapoints = []
+    for url, hour in exchange_urls:
+        response = r.get(url)
+        json_content = json.loads(response.text)
+
+        if response_checker(json_content):
+            datapoints.append((json_content['Flows'], hour))
+        else:
+            # data not yet available for this hour
+            continue
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
     if sortedcodes not in exchange_ids.keys():
         raise NotImplementedError('This exchange pair is not implemented.')
 
-    current_dt = arrow.now('Europe/Moscow').datetime
+    exchange_id = exchange_ids[sortedcodes]
 
-    data_id = exchange_ids[sortedcodes]
-    find_id = soup.find("div", {"data-id": data_id})
+    data = []
+    for datapoint, hour in datapoints:
+        try:
+            exchange = [item for item in datapoint if item['Id'] == exchange_id][0]
+            flow = exchange.get('NumValue')
+        except KeyError:
+            # flow is unknown or not available
+            flow = None
 
-    # Due to the html formatting being different for Belarus & Ukraine this check is required.
-    if sortedcodes in ['BY->RU', 'BY->RU-1', 'RU->UA', 'RU-1->UA']:
-        flow_val = find_id.find("div", {"class": "flow-value"})
-        flow_dir = find_id.find_next("div")
-    # RU1->RU2, KZ->RU-1 and KZ->RU-2 are also special cases
-    elif sortedcodes == 'RU-1->RU-2':
-        flow_val = find_id.find("td", {"class": "flow-value"})
-        flow_dir = find_id.find("div", {"class": "horizontal-flow-value-box ural-siberia-flow-value-box "}).find_next("div")
-    elif sortedcodes == 'KZ->RU-1':
-        flow_val = find_id.find("span", {"class": "flow-value"})
-        flow_dir = re.findall('(?<=div class=").*(?= " data)',str(find_id))[0]
-    elif sortedcodes == 'KZ->RU-2':
-        flow_val = find_id.find("div", {"class": "flow-value"})
-        flow_dir = find_id.find("div", {"class": "flow-value"}).find_next("div")
-    else:
-        flow_val = find_id.find("td", {"class": "flow-value"})
-        flow_dir = find_id.find("div", {"class": "relative-box"}).find_next("div")
+        dt = today.replace(hour=hour).floor('hour').datetime
 
-    parsed_val = flow_val.get_text().strip()
-    flow = float(parsed_val.split(' ')[0])
+        exchange = {
+            'sortedZoneKeys': sortedcodes,
+            'datetime': dt,
+            'netFlow': flow,
+            'source': 'so-ups.ru'
+        }
 
-    # To determine the flow direction we use the class attribute of the following style of div tag that is nearby.
-    # <div class="c-flow-arrow west-flow-arrow arrow-forward">
-    # No need to determine the direction if flow is zero
-    if abs(flow) > 0:
-        if sortedcodes == 'KZ->RU-1':
-            check_flow = flow_dir.split(' ')
-        else:
-            check_flow = flow_dir["class"]
-    
-        if sortedcodes in ['RU->UA','RU-1->UA', 'KZ->RU-2']:
-            # Order of zones requires reversal for Ukraine exchange.
-            if check_flow[-1] == "arrow-backward":
-                flow = flow * -1
-            elif check_flow[-1] == "arrow-forward":
-                pass
-            else:
-                raise ValueError(
-                    'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
-        elif check_flow[-1] == "arrow-forward":
-            flow = flow * -1
-        elif check_flow[-1] == "arrow-backward":
-            pass
-        else:
-            raise ValueError(
-                'The direction of the {} exchange cannot be determined.'.format(sortedcodes))
+        data.append(exchange)
 
-    exchange = {
-        'sortedZoneKeys': sortedcodes,
-        'datetime': current_dt,
-        'netFlow': flow,
-        'source': 'so-ups.ru'
-    }
-
-    return exchange
+    return data
 
 
 if __name__ == '__main__':

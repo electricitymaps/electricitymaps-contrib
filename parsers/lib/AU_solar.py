@@ -8,7 +8,7 @@ import arrow
 # The request library is used to fetch content through HTTP
 import requests
 
-SOLAR_URL = 'http://pv-map.apvi.org.au/data/{date}'
+SOLAR_URL = 'http://pv-map.apvi.org.au/data'
 
 """
 This script fetches distributed / small-scale / rooftop photovoltaic solar
@@ -51,8 +51,8 @@ def _get_australian_date(days_in_past=0):
 
 
 def fetch_solar_all(session, hours_in_the_past=2):
-    data_url = SOLAR_URL.format(date=_get_australian_date())
-    r = session.get(data_url)
+    data_url = SOLAR_URL
+    r = session.post(data_url, {'day': _get_australian_date()})
     data = r.json()
 
     if data and 'output' in data and data['output']:
@@ -69,8 +69,8 @@ def fetch_solar_all(session, hours_in_the_past=2):
     # Requesting yesterday's data in the browser sometimes gives an HTTP 406 Unacceptable error,
     # but it's always worked in the script so far. Could double check and adjust
     # how many hours are fetched if it causes a problem in the future.
-    data_url = SOLAR_URL.format(date=_get_australian_date(days_in_past=1))
-    r = session.get(data_url)
+    data_url = SOLAR_URL
+    r = session.post(data_url, {'day': _get_australian_date(days_in_past=1)})
     data = r.json()
 
     full_production_data = data['output'] + production_data

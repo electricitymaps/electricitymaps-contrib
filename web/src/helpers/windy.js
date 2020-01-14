@@ -1,5 +1,7 @@
 // This file was taken from https://github.com/esri/wind-js, and modified
 // TODO: Rewrite completely
+/* eslint-disable */
+// TODO: remove once refactored
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
 
@@ -25,9 +27,6 @@ var Windy = function( params ){
 
   var NULL_WIND_VECTOR = [NaN, NaN, null];  // singleton for no wind in the form: [u, v, magnitude]
   var TRANSPARENT_BLACK = [255, 0, 0, 0];
-
-  var τ = 2 * Math.PI;
-  var H = Math.pow(10, -5.2);
 
   // interpolation for vectors like wind (u,v,m)
   var bilinearInterpolateVector = function(x, y, g00, g10, g01, g11) {
@@ -228,9 +227,8 @@ var Windy = function( params ){
       var lowerRight = bounds[1];
       var x = Math.round(upperLeft[0]); //Math.max(Math.floor(upperLeft[0], 0), 0);
       var y = Math.max(Math.floor(upperLeft[1], 0), 0);
-      var xMax = Math.min(Math.ceil(lowerRight[0], width), width - 1);
       var yMax = Math.min(Math.ceil(lowerRight[1], height), height - 1);
-      return {x: x, y: y, xMax: width, yMax: yMax, width: width, height: height};
+      return {x: x, y: y, yMax: yMax, width: width, height: height};
   };
 
   var deg2rad = function( deg ){
@@ -518,7 +516,7 @@ window.cancelAnimationFrame = (function(){
           window.oCancelAnimationFrame ||
           window.msCancelAnimationFrame ||
           function( callback ){
-            clearTimeout
+            window.clearTimeout(callback)
           };
 })();
 

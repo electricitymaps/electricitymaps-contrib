@@ -10,28 +10,19 @@ from operator import itemgetter
 import pandas as pd
 import requests
 
-try:
-    unicode         # Python 2
-except NameError:
-    unicode = str   # Python 3
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
-
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
 # Solar generation now has some data available but multiple projects are planned/under construction.
 
-url = 'http://184.168.74.190:81/ReportesGraficos/ReportePostdespacho.aspx'
+url = 'http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx'
 
 total_mapping = {
                 u'Total T\xe9rmico': 'Thermal',
                 u'Total E\xf3lico': 'Wind',
                 u'Total Hidroel\xe9ctrica': 'Hydro',
-                'Total Generado': 'Generated'
+                u'Total Solar': 'Solar',
+                u'Total Generado': 'Generated'
                 }
 
 # Power plant types
@@ -41,7 +32,7 @@ total_mapping = {
 thermal_plants = {
                  u'AES ANDRES': 'gas',
                  u'BARAHONA CARBON': 'coal',
-                 u'BERSAL': 'unknown',
+                 u'BERSAL': 'oil',
                  u'CEPP 1': 'oil',
                  u'CEPP 2': 'oil',
                  u'CESPM 1': 'oil',
@@ -63,16 +54,16 @@ thermal_plants = {
                  u'LOS OR\xcdGENES POWER PLANT FUEL OIL': 'oil',
                  u'LOS OR\xcdGENES POWER PLANT GAS NATURAL': 'gas',
                  u'METALDOM': 'oil',
-                 u'MONTE PLATA SOLAR': 'solar',
                  u'MONTE RIO': 'oil',
                  u'PALAMARA': 'oil',
                  u'PALENQUE': 'oil',
                  u'PARQUE ENERGETICO LOS MINA CC PARCIAL': 'gas',
                  u'PARQUE ENERGETICO LOS MINA CC TOTAL': 'gas',
-                 u'PARQUE FOTOVOLTAICO MONTECRISTI SOLAR1': 'solar',
                  u'PIMENTEL 1': 'oil',
                  u'PIMENTEL 2': 'oil',
                  u'PIMENTEL 3': 'oil',
+                 u'PUNTA CATALINA 1': 'coal',
+                 u'PUNTA CATALINA 2': 'coal',
                  u'QUISQUEYA 1': 'gas',
                  u'QUISQUEYA 2': 'gas',
                  u'QUISQUEYA 1 SAN PEDRO': 'oil',
@@ -90,7 +81,7 @@ thermal_plants = {
 def get_data(session=None):
     """
     Makes a request to source url.
-    Finds main table and creates a list of all table elements in unicode string format.
+    Finds main table and creates a list of all table elements in string format.
     Returns a list.
     """
 
@@ -104,7 +95,7 @@ def get_data(session=None):
 
     for row in rows:
         num = row.getText().strip()
-        data.append(unicode(num))
+        data.append(str(num))
 
     return data
 
@@ -127,7 +118,7 @@ def chunker(big_lst):
     Returns a dictionary.
     """
 
-    chunks = [big_lst[x:x + 27] for x in xrange(0, len(big_lst), 27)]
+    chunks = [big_lst[x:x + 27] for x in range(0, len(big_lst), 27)]
 
     # Remove the list if it contains no data.
     for chunk in chunks:
@@ -241,6 +232,7 @@ def total_production(df):
         current = df.loc[[hour]]
         hydro = current.iloc[0]['Hydro']
         wind = current.iloc[0]['Wind']
+        solar = current.iloc[0]['Solar']
         if wind > -10:
             wind = max(wind, 0)
 
@@ -251,7 +243,7 @@ def total_production(df):
         if isnan(hydro):
             hydro = None
 
-        prod = {'wind': wind, 'hydro': hydro, 'datetime': dt}
+        prod = {'wind': wind, 'hydro': hydro, 'solar': solar, 'datetime': dt}
         vals.append(prod)
 
     return vals

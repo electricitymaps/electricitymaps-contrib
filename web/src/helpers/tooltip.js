@@ -1,9 +1,13 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const d3 = require('d3-selection');
 
 const flags = require('../helpers/flags');
 const translation = require('../helpers/translation');
 
 const formatting = require('./formatting');
+const { dispatchApplication } = require('../store');
 
 // Production
 const FLAG_SIZE = 16;
@@ -59,7 +63,7 @@ module.exports.showProduction = function showProduction(
   const capacity = (country.capacity || {})[mode];
   const hasCapacity = capacity !== undefined && capacity >= (country.production[mode] || 0);
   const capacityFactor = (hasCapacity && absValue != null) ?
-    Math.round(absValue / capacity * 100) : '?';
+    Math.round(absValue / capacity * 10000) / 100 : '?';
   tooltip.select('#capacity-factor').text(`${capacityFactor} %`);
   tooltip.select('#capacity-factor-detail').html(`${format(absValue) || '?'} ` +
     ` / ${
@@ -73,7 +77,7 @@ module.exports.showProduction = function showProduction(
   const domainName = translation.translate(mode);
   const isNull = !isFinite(absValue) || absValue == undefined;
 
-  const productionProportion = !isNull ? Math.round(absValue / domain * 100) : '?';
+  const productionProportion = !isNull ? Math.round(absValue / domain * 10000) / 100 : '?';
   tooltip.select('#production-proportion-detail').html(`${!isNull ? format(absValue) : '?'} ` +
     ` / ${
       !isNull ? format(domain) : '?'}`);
@@ -172,7 +176,7 @@ module.exports.showExchange = function showExchange(tooltipInstance, key, countr
   tooltipInstance.show();
 };
 
-module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, lowCarbonGauge, renewableGauge, electricityMixMode) {
+module.exports.showMapCountry = function showMapCountry(tooltipInstance, countryData, co2color, co2Colorbars, electricityMixMode) {
   if (!countryData) {
     tooltipInstance.hide();
     return;
@@ -192,7 +196,7 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     .text(translation.getFullZoneName(countryData.countryCode))
     .style('font-weight', 'bold');
 
-  if (countryData.hasParser && lowCarbonGauge && renewableGauge) {
+  if (countryData.hasParser) {
     tooltip.select('.emission-rect')
       .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
     tooltip.select('.country-emission-intensity')
@@ -204,7 +208,7 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     const hasFossilFuelData = fossilFuelRatio != null;
     if (hasFossilFuelData) {
       const fossilFuelPercent = fossilFuelRatio * 100;
-      lowCarbonGauge.setPercentage(Math.round(100 - fossilFuelPercent));
+      dispatchApplication('tooltipLowCarbonGaugePercentage', Math.round(100 - fossilFuelPercent));
       tooltip.select('.lowcarbon-percentage').text(Math.round(100 - fossilFuelPercent));
     } else {
       tooltip.select('.lowcarbon-percentage').text('?');
@@ -216,7 +220,7 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     const hasRenewableData = renewableRatio != null;
     if (hasRenewableData) {
       const renewablePercent = renewableRatio * 100;
-      renewableGauge.setPercentage(Math.round(renewablePercent));
+      dispatchApplication('tooltipRenewableGaugePercentage', Math.round(renewablePercent));
       tooltip.select('.renewable-percentage').text(Math.round(renewablePercent));
     } else {
       tooltip.select('.renewable-percentage').text('?');
@@ -254,3 +258,15 @@ module.exports.showMapExchange = function showMapExchange(tooltipInstance, excha
 
   tooltipInstance.show();
 };
+
+module.exports.showLowCarbonDescription = function showInfoLowCarbon(tooltipInstance) {
+  const tooltip = d3.select(tooltipInstance._selector);
+  const tooltipTitle = translation.translate(`tooltips.lowcarbon`);
+  const tooltipText = translation.translate(`tooltips.lowCarbDescription`);
+  tooltip.select("#lowcarb-info-text")
+    .html(tooltipText);
+  tooltip.select('#lowcarb-info-title')
+    .text(tooltipTitle)
+    .style('font-weight', 'bold');
+  tooltipInstance.show();
+}

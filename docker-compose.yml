@@ -13,6 +13,8 @@ services:
       cache_from:
         - eu.gcr.io/tmrow-152415/electricitymap_web:production
         - eu.gcr.io/tmrow-152415/electricitymap_web:staging
+        - eu.gcr.io/tmrow-152415/electricitymap_web:latest
+    image: eu.gcr.io/tmrow-152415/electricitymap_web:latest
     command: npm run server-dev
     depends_on: ['mockserver']
     environment:
@@ -20,8 +22,10 @@ services:
     ports: ['8000:8000']
     volumes:
       - './config:/home/config'
+      - './web/.eslintrc:/home/web/.eslintrc'
       - './web/generate-geometries.js:/home/web/generate-geometries.js'
       - './web/locales:/home/web/locales'
+      - './web/locales-config.json:/home/web/locales-config.json'
       - './web/package.json:/home/web/package.json'
       - './web/public:/home/web/public'
       - './web/server.js:/home/web/server.js'
@@ -30,5 +34,29 @@ services:
       - './web/topogen.sh:/home/web/topogen.sh'
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
-      
-
+  web-watch-en:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+      cache_from:
+        - eu.gcr.io/tmrow-152415/electricitymap_web:production
+        - eu.gcr.io/tmrow-152415/electricitymap_web:staging
+        - eu.gcr.io/tmrow-152415/electricitymap_web:latest
+    image: eu.gcr.io/tmrow-152415/electricitymap_web:latest
+    command: npm run watch-en
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - './config:/home/config'
+      - './web/.eslintrc:/home/web/.eslintrc'
+      - './web/generate-geometries.js:/home/web/generate-geometries.js'
+      - './web/locales:/home/web/locales'
+      - './web/locales-config.json:/home/web/locales-config.json'
+      - './web/package.json:/home/web/package.json'
+      - './web/public:/home/web/public'
+      - './web/server.js:/home/web/server.js'
+      - './web/src:/home/web/src'
+      - './web/third_party_maps:/home/web/third_party_maps'
+      - './web/topogen.sh:/home/web/topogen.sh'
+      - './web/views:/home/web/views'
+      - './web/webpack.config.js:/home/web/webpack.config.js'

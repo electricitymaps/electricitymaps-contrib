@@ -1,8 +1,8 @@
-FROM node:10.9.0
+FROM node:12.13.1
 WORKDIR /home/web
 
 # Install dependencies
-RUN apt-get update && apt-get install -y unzip
+RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json /home/web/package.json
 ADD web/yarn.lock /home/web/yarn.lock
 RUN yarn
@@ -21,7 +21,7 @@ ARG ELECTRICITYMAP_PUBLIC_TOKEN
 # (note: this will override the world.json that was previously created)
 ADD config /home/config
 ADD web /home/web
-RUN yarn run build-release
+RUN yarn lint && yarn build-release
 
 EXPOSE 8000
 ENV PORT 8000

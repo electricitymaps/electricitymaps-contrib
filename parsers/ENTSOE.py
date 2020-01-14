@@ -50,17 +50,21 @@ ENTSOE_PARAMETER_DESC = {
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
-    'biomass': ['B01', 'B17'],
-    'coal': ['B02', 'B05', 'B07', 'B08'],
-    'gas': ['B03', 'B04'],
-    'geothermal': ['B09'],
-    'hydro': ['B11', 'B12'],
-    'hydro storage': ['B10'],
-    'nuclear': ['B14'],
-    'oil': ['B06'],
-    'solar': ['B16'],
-    'wind': ['B18', 'B19'],
-    'other': ['B20', 'B13', 'B15']
+    'production': {
+        'biomass': ['B01', 'B17'],
+        'coal': ['B02', 'B05', 'B07', 'B08'],
+        'gas': ['B03', 'B04'],
+        'geothermal': ['B09'],
+        'hydro': ['B11', 'B12'],
+        'nuclear': ['B14'],
+        'oil': ['B06'],
+        'solar': ['B16'],
+        'wind': ['B18', 'B19'],
+        'unknown': ['B20', 'B13', 'B15']
+    },
+    'storage': {
+        'hydro storage': ['B10']
+    }
 }
 ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
 # Define all ENTSOE zone_key <-> domain mapping
@@ -156,6 +160,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
     'GR->IT-SO': ['10YGR-HTSO-----Y', ENTSOE_DOMAIN_MAPPINGS['IT-BR']],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
+                   ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
+    'NO-NO4->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO4'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
@@ -399,7 +405,6 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
     params['securityToken'] = os.environ['ENTSOE_TOKEN']
-    print('[%s] querying ENTSOE' % arrow.now().isoformat())
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
@@ -673,6 +678,11 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     for timeseries in soup.find_all('timeseries'):
         resolution = timeseries.find_all('resolution')[0].contents[0]
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+        # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
+        if timeseries.find_all('contract_marketagreement.type') and \
+            timeseries.find_all('contract_marketagreement.type')[0].contents[0] != 'A05':
+            continue
+
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             if not is_import:
@@ -740,64 +750,9 @@ def validate_production(datapoint, logger):
     return True
 
 
-def get_biomass(values):
-    if 'Biomass' in values or 'Waste' in values:
-        return (values.get('Biomass', 0)
-                + values.get('Waste', 0))
-
-
-def get_coal(values):
-    if 'Fossil Brown coal/Lignite' in values \
-        or 'Fossil Peat' in values \
-        or 'Fossil Oil shale' in values \
-        or 'Fossil Hard coal' in values:
-        return (values.get('Fossil Brown coal/Lignite', 0)
-                + values.get('Fossil Peat', 0)
-                + values.get('Fossil Oil shale', 0)
-                + values.get('Fossil Hard coal', 0))
-
-
-def get_gas(values):
-    if 'Fossil Coal-derived gas' in values or 'Fossil Gas' in values:
-        return values.get('Fossil Coal-derived gas', 0) + \
-               values.get('Fossil Gas', 0)
-
-
-def get_hydro(values):
-    if ('Hydro Run-of-river and poundage' in values or
-        'Hydro Water Reservoir' in values):
-        return values.get('Hydro Run-of-river and poundage', 0) + \
-               values.get('Hydro Water Reservoir', 0)
-
-
-def get_hydro_storage(storage_values):
-    if 'Hydro Pumped Storage' in storage_values:
-        return -1 * storage_values.get('Hydro Pumped Storage', 0)
-
-
-def get_oil(values):
-    if 'Fossil Oil' in values:
-        value = values.get('Fossil Oil', 0)
-        return value if value != -1.0 else None
-
-
 def get_wind(values):
     if 'Wind Onshore' in values or 'Wind Offshore' in values:
         return values.get('Wind Onshore', 0) + values.get('Wind Offshore', 0)
-
-
-def get_geothermal(values):
-    if 'Geothermal' in values:
-        return values.get('Geothermal', 0)
-
-
-def get_unknown(values):
-    if ('Marine' in values or
-        'Other renewable' in values or
-        'Other' in values):
-        return (values.get('Marine', 0) +
-                values.get('Other renewable', 0) +
-                values.get('Other', 0))
 
 
 def fetch_consumption(zone_key, session=None, target_datetime=None,
@@ -857,27 +812,30 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
     data = []
     for i in range(len(production_dates)):
-        production_values = {ENTSOE_PARAMETER_DESC[k]: v for k, v in
-                             productions[i].items()}
+        production_values = {k: v for k, v in productions[i].items()}
         production_date = production_dates[i]
+
+        production_types = {'production': {}, 'storage': {}}
+        for key in ['production', 'storage']:
+            parameter_groups = ENTSOE_PARAMETER_GROUPS[key]
+            multiplier = -1 if key == 'storage' else 1
+
+            for fuel, groups in parameter_groups.items():
+                has_value = any([production_values.get(grp) is not None for grp in groups])
+                if has_value:
+                    value = sum([production_values.get(grp, 0) for grp in groups])
+                    value *= multiplier
+                else:
+                    value = None
+
+                production_types[key][fuel] = value
 
         data.append({
             'zoneKey': zone_key,
             'datetime': production_date.datetime,
-            'production': {
-                'biomass': get_biomass(production_values),
-                'coal': get_coal(production_values),
-                'gas': get_gas(production_values),
-                'hydro': get_hydro(production_values),
-                'nuclear': production_values.get('Nuclear', None),
-                'oil': get_oil(production_values),
-                'solar': production_values.get('Solar', None),
-                'wind': get_wind(production_values),
-                'geothermal': get_geothermal(production_values),
-                'unknown': get_unknown(production_values)
-            },
+            'production': production_types['production'],
             'storage': {
-                'hydro': get_hydro_storage(production_values),
+                'hydro': production_types['storage']['hydro storage'],
             },
             'source': 'entsoe.eu'
         })
@@ -895,11 +853,12 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
 
 ZONE_KEY_AGGREGATES = {
-    'IT-SIC': ['IT-SIC', 'IT-PR'],
-    'IT-SO': ['IT-FO', 'IT-BR', 'IT-RO', 'IT-SO'],
+    'IT-SO': ['IT-RO', 'IT-SO'],
 }
 
 
+# TODO: generalize and move to lib.utils so other parsers can reuse it. (it's
+# currently used by US_SEC.)
 def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     """
     Given multiple parser outputs, sum the production and storage
@@ -928,7 +887,7 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
         to_return = to_return[['production', 'storage']]
 
     return [{
-        'datetime': dt.to_datetime(),
+        'datetime': dt.to_pydatetime(),
         'production': row.production,
         'storage': row.storage,
         'source': merge_source,
