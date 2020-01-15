@@ -348,6 +348,7 @@ try {
     .setCo2color(co2color)
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
+      dispatchApplication('centeredZoneName', null);
       // Somehow there is a drag event sent before the map data is loaded.
       // We want to ignore it.
       if (!mapDraggedSinceStart && getState().data.grid.datetime) {
@@ -530,7 +531,7 @@ function renderMap(state) {
     if (selectedZoneName) {
       console.log(`Centering on selectedZoneName ${selectedZoneName}`);
       // eslint-disable-next-line no-use-before-define
-      centerOnZoneName(state, selectedZoneName, 4);
+      dispatchApplication('centeredZoneName', selectedZoneName);
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
@@ -1411,9 +1412,9 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
   }
 });
 
-observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
-  if (selectedZoneName) {
-    centerOnZoneName(state, selectedZoneName, 4);
+observe(state => state.application.centeredZoneName, (centeredZoneName, state) => {
+  if (centeredZoneName) {
+    centerOnZoneName(state, centeredZoneName, 4);
   }
 });
 
