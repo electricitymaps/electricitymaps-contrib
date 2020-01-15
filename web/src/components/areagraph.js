@@ -13,7 +13,7 @@ import { modeOrder, modeColor } from '../helpers/constants';
 import { detectHoveredDatapointIndex } from '../helpers/graph';
 import { prepareGraphData } from '../helpers/data';
 
-import ExchangeLinearGradients from './graph/exchangelineargradients';
+import ExchangeSeriesGradients from './graph/exchangeseriesgradients';
 import InteractionBackground from './graph/interactionbackground';
 import HoverLine from './graph/hoverline';
 import ValueAxis from './graph/valueaxis';
@@ -268,7 +268,7 @@ const AreaGraph = ({
         valueScale={valueScale}
         timeScale={timeScale}
       />
-      <ExchangeLinearGradients
+      <ExchangeSeriesGradients
         graphData={graphData}
         timeScale={timeScale}
         exchangeKeys={exchangeKeys}

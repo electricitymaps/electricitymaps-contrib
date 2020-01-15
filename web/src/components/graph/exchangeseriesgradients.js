@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getCo2Scale } from '../../helpers/scales';
 
-const ExchangeLinearGradients = React.memo(({
+const ExchangeSeriesGradients = React.memo(({
   colorBlindModeEnabled,
   exchangeKeys,
   graphData,
@@ -33,4 +33,4 @@ const ExchangeLinearGradients = React.memo(({
   );
 });
 
-export default ExchangeLinearGradients;
+export default ExchangeSeriesGradients;
