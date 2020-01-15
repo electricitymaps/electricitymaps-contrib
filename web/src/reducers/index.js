@@ -20,6 +20,7 @@ const initialApplicationState = {
   version: VERSION,
   callerLocation: null,
   callerZone: null,
+  centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
