@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { first, last } from 'lodash';
@@ -179,9 +184,7 @@ const AreaGraph = ({
   mouseMoveHandler,
   mouseOutHandler,
 }) => {
-  // Hack to create a reference via non-mutable state so that it's created
-  // only once at the initialization (like in a class constructor).
-  const [ref] = useState(React.createRef());
+  const ref = useRef(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const [container, setContainer] = useState({ width: 0, height: 0 });
 
