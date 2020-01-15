@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { __ } from '../helpers/translation';
 import { co2Sub } from '../helpers/formatting';
-
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-);
 
 const orderings = [
   {
@@ -16,12 +11,8 @@ const orderings = [
       'mapArrows',
       'mapSolarWindButtons',
       'mapNuclearColors',
-      'mapColorBlind'],
-    entryLinks: {
-      // Links from one entry to another;
-      // onClick link events are mapped to all links with the "entry-link" class
-      mapColors: 'carbonIntensity',
-    },
+      'mapColorBlind',
+    ],
   },
   {
     groupKey: 'mapAreas',
@@ -31,10 +22,6 @@ const orderings = [
       'divideExistingArea',
       'seeHistoricalData',
     ],
-    entryLinks: {
-      noData: 'contribute',
-      divideExistingArea: 'contribute',
-    },
   },
   {
     groupKey: 'methodology',
@@ -48,9 +35,6 @@ const orderings = [
       'homeSolarPanel',
       'emissionsPerCapita',
     ],
-    entryLinks: {
-      otherSources: 'whoAreYou',
-    },
   },
   {
     groupKey: 'data',
@@ -59,7 +43,6 @@ const orderings = [
       'dataDownload',
       'dataIntegration',
     ],
-    entryLinks: {},
   },
   {
     groupKey: 'aboutUs',
@@ -70,65 +53,77 @@ const orderings = [
       'workTogether',
       'disclaimer',
     ],
-    entryLinks: {},
   },
 ];
 
+const QuestionAnswer = ({
+  answerVisible,
+  setAnswerVisible,
+  groupKey,
+  entryKey,
+}) => (
+  <div className="question-answer-container">
+    <div
+      className="question"
+      onClick={() => setAnswerVisible(entryKey, !answerVisible)}
+    >
+      <i className="material-icons">
+        {answerVisible ? 'expand_less' : 'expand_more'}
+      </i>
+      <span>{__(`${groupKey}.${entryKey}-question`)}</span>
+    </div>
+    {answerVisible && (
+      <div
+        className="answer"
+        dangerouslySetInnerHTML={{
+          __html: co2Sub(__(`${groupKey}.${entryKey}-answer`)),
+        }}
+      />
+    )}
+  </div>
+);
+
 const FAQ = ({ className }) => {
   const [answersVisible, setAnswersVisible] = useState({});
-
-  const toggleQuestion = (entryKey, linkToEntryKey) => {
-    setAnswersVisible(Object.assign({}, answersVisible, {
-      [entryKey]: !answersVisible[entryKey],
-    }));
-    if (linkToEntryKey) {
-      setTimeout(() => {
-        d3.selectAll(`#${entryKey}`).selectAll('.entry-link').on('click', () => {
-          setTimeout(() => {
-            setAnswersVisible(Object.assign({}, answersVisible, {
-              [entryKey]: true,
-              [linkToEntryKey]: true,
-            }));
-          }, 50);
-        });
-      }, 50);
-    }
+  const setAnswerVisible = (entryKey, value) => {
+    setAnswersVisible(Object.assign({}, answersVisible, { [entryKey]: value }));
   };
 
+  // 50ms after every render go through all the links in the answers
+  // and make sure the ones which reference different FAQ sections
+  // also update the answersVisible state.
+  // TODO: Update answersVisible state idiomatically from the URL
+  // once React Router integration is in place.
+  // See https://github.com/tmrowco/electricitymap-contrib/issues/2161.
+  const ref = useRef(null);
+  setTimeout(() => {
+    if (ref && ref.current) {
+      ref.current.querySelectorAll('.entry-link').forEach((link) => {
+        const entryKey = link.href.split('#')[1];
+        if (entryKey) {
+          link.onclick = () => { setAnswerVisible(entryKey, true); };
+        }
+      });
+    }
+  }, 50);
 
   return (
-    <div className={className}>
+    <div className={className} ref={ref}>
       <div className="faq-container">
-        {orderings.map(({ groupKey, entryOrder, entryLinks }) => (
+        {orderings.map(({ groupKey, entryOrder }) => (
           <div className="question-group-container" key={groupKey}>
             <div className="question-group-header title">
               {__(`${groupKey}.groupName`)}
             </div>
-            {entryOrder.map((entryKey) => {
-              const answerVisible = answersVisible[entryKey];
-              const linkToEntryKey = entryLinks[entryKey];
-              return (
-                <div className="question-answer-container" id={entryKey} key={entryKey}>
-                  <div
-                    className="question"
-                    onClick={() => toggleQuestion(entryKey, linkToEntryKey)}
-                  >
-                    <i className="material-icons">
-                      {answerVisible ? 'expand_less' : 'expand_more'}
-                    </i>
-                    <span>{__(`${groupKey}.${entryKey}-question`)}</span>
-                  </div>
-                  {answerVisible && (
-                    <div
-                      className="answer"
-                      dangerouslySetInnerHTML={{
-                        __html: co2Sub(__(`${groupKey}.${entryKey}-answer`))
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            {entryOrder.map(entryKey => (
+              <QuestionAnswer
+                key={entryKey}
+                groupKey={groupKey}
+                entryKey={entryKey}
+                setAnswerVisible={setAnswerVisible}
+                answerVisible={answersVisible[entryKey]}
+              />
+            ))}
           </div>
         ))}
       </div>
