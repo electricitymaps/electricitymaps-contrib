@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { first, last } from 'lodash';
+import { first, last, noop } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { modeOrder, modeColor } from '../helpers/constants';
@@ -104,6 +104,7 @@ const Layers = React.memo(({
   mouseOutHandler,
   layerMouseMoveHandler,
   layerMouseOutHandler,
+  isMobile,
   svgRef,
 }) => {
   // Mouse hover events
@@ -116,7 +117,11 @@ const Layers = React.memo(({
     setSelectedLayerIndex(ind);
     const i = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (layerMouseMoveHandler) {
-      const position = { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 };
+      // If in mobile mode, put the tooltip to the top of the screen for
+      // readability, otherwise float it depending on the cursor position.
+      const position = !isMobile
+        ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
+        : { x: 0, y: 0 };
       layerMouseMoveHandler(stackKeys[ind], position, layer[i].data._countryData);
     }
     if (mouseMoveHandler) {
@@ -144,9 +149,11 @@ const Layers = React.memo(({
           fill={fillColor(stackKeys[ind], displayByEmissions)}
           style={{ cursor: 'pointer' }}
           d={area(layer)}
-          onFocus={ev => handleLayerMouseMove(ev, layer, ind)}
-          onMouseOver={ev => handleLayerMouseMove(ev, layer, ind)}
-          onMouseMove={ev => handleLayerMouseMove(ev, layer, ind)}
+          /* Support only click events in mobile mode, otherwise react to mouse hovers */
+          onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+          onFocus={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+          onMouseOver={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+          onMouseMove={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
           onMouseOut={handleLayerMouseOut}
           onBlur={handleLayerMouseOut}
         />
@@ -168,6 +175,7 @@ const mapStateToProps = (state, props) => ({
   data: props.dataSelector(state),
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
+  isMobile: state.application.isMobile,
   selectedIndex: state.application.selectedZoneTimeIndex,
 });
 
@@ -178,6 +186,7 @@ const AreaGraph = ({
   displayByEmissions,
   electricityMixMode,
   id,
+  isMobile,
   selectedIndex,
   layerMouseMoveHandler,
   layerMouseOutHandler,
@@ -258,6 +267,7 @@ const AreaGraph = ({
         mouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={layerMouseMoveHandler}
         layerMouseOutHandler={layerMouseOutHandler}
+        isMobile={isMobile}
         svgRef={ref}
       />
       <HoverLine
