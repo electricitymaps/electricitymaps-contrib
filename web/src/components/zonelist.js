@@ -88,6 +88,7 @@ const ZoneList = ({
   const handleClick = (countryCode) => {
     dispatchApplication('showPageState', 'country');
     dispatchApplication('selectedZoneName', countryCode);
+    dispatchApplication('centeredZoneName', countryCode);
   };
 
   // Keyboard navigation
