@@ -62,7 +62,7 @@ const QuestionAnswer = ({
   groupKey,
   entryKey,
 }) => (
-  <div className="question-answer-container">
+  <div className="question-answer-container" id={entryKey}>
     <div
       className="question"
       onClick={() => setAnswerVisible(entryKey, !answerVisible)}
