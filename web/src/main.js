@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 
 // Components
 import OnboardingModal from './components/onboardingmodal';
-import SearchBar from './components/searchbar';
 import ZoneMap from './components/map';
 import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
@@ -191,8 +190,6 @@ const solarColorbarColor = d3.scaleLinear()
   .range(['black', 'white', 'gold']);
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
-
-const zoneSearchBar = new SearchBar('.zone-search-bar input');
 
 // TODO: Those two lines are required in order to init the component
 // The initiatlisation should be done automatically when
@@ -876,9 +873,6 @@ if (typeof zoneMap !== 'undefined') {
 
 // * Left panel *
 
-// Search bar
-zoneSearchBar.onSearch(query => dispatchApplication('searchQuery', query));
-
 // Back button
 function goBackToZoneListFromZoneDetails() {
   dispatchApplication('selectedZoneName', undefined);
@@ -894,18 +888,11 @@ d3.selectAll('.left-panel-back-button')
 document.addEventListener('keyup', (e) => {
   if (e.key == null) { return; }
   const currentPage = getState().application.showPageState;
-  if (currentPage === 'map') {
-    if (e.key === '/') {
-      zoneSearchBar.clearInputAndFocus();
-    } else if (e.key.match(/^[A-z]$/)) {
-      zoneSearchBar.focusWithInput(e.key);
-    }
-  } else if (currentPage === 'country') {
+  if (currentPage === 'country') {
     if (e.key === 'Backspace') {
       goBackToZoneListFromZoneDetails();
     } else if (e.key === '/') {
       goBackToZoneListFromZoneDetails();
-      zoneSearchBar.clearInputAndFocus();
     }
   }
 });

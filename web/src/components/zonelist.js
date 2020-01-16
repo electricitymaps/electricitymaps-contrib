@@ -94,7 +94,7 @@ const ZoneList = ({
   // Keyboard navigation
   useEffect(() => {
     const scrollToItemIfNeeded = (index) => {
-      const item = ref.current.children[index];
+      const item = ref.current && ref.current.children[index];
       if (!item) return;
 
       const parent = item.parentNode;
