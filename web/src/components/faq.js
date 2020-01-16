@@ -98,7 +98,10 @@ const FAQ = ({ className }) => {
   const ref = useRef(null);
   setTimeout(() => {
     if (ref && ref.current) {
-      ref.current.querySelectorAll('.entry-link').forEach((link) => {
+      const links = ref.current.querySelectorAll('.entry-link');
+      // This seems to be the most browser-compatible way to iterate through a list of nodes.
+      // See: https://developer.mozilla.org/en-US/docs/Web/API/NodeList#Example.
+      Array.prototype.forEach.call(links, (link) => {
         const entryKey = link.href.split('#')[1];
         if (entryKey) {
           link.onclick = () => { setAnswerVisible(entryKey, true); };
