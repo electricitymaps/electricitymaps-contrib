@@ -10,7 +10,7 @@ import { dispatchApplication } from '../../store';
 
 // Layout
 import CountryPanel from './countrypanel';
-import Faq from './faq';
+import FAQLayout from './faq';
 import InfoText from './infotext';
 import MobileInfoTab from './mobileinfotab';
 import ZoneList from '../../components/zonelist';
@@ -116,6 +116,6 @@ export default connect(mapStateToProps)(props => (
         </div>
       </div>
     </div>
-    <Faq />
+    <FAQLayout />
   </div>
 ));

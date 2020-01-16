@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 // Components
 import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
-import FAQ from './components/faq';
 import TimeSlider from './components/timeslider';
 import CountryTable from './components/countrytable';
 import AreaGraph from './components/areagraph';
@@ -190,12 +189,6 @@ const solarColorbarColor = d3.scaleLinear()
   .range(['black', 'white', 'gold']);
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
-
-// TODO: Those two lines are required in order to init the component
-// The initiatlisation should be done automatically when
-// refactoring those components to React components
-const faq = new FAQ('.faq');
-const mobileFaq = new FAQ('.mobile-faq');
 
 const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
