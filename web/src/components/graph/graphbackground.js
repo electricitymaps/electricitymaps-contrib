@@ -2,7 +2,7 @@ import React from 'react';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
-const InteractionBackground = ({
+const GraphBackground = ({
   timeScale,
   valueScale,
   datetimes,
@@ -48,4 +48,4 @@ const InteractionBackground = ({
   );
 };
 
-export default InteractionBackground;
+export default GraphBackground;

@@ -4,8 +4,8 @@ import { first, last } from 'lodash';
 import moment from 'moment';
 
 import AreaGraphLayers from './areagraphlayers';
-import InteractionBackground from './interactionbackground';
-import HoverLine from './hoverline';
+import GraphBackground from './graphbackground';
+import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 
@@ -72,7 +72,7 @@ const AreaGraph = React.memo(({
         label={valueAxisLabel}
         width={container.width}
       />
-      <InteractionBackground
+      <GraphBackground
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
@@ -92,7 +92,7 @@ const AreaGraph = React.memo(({
         isMobile={isMobile}
         svgRef={ref}
       />
-      <HoverLine
+      <GraphHoverLine
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}

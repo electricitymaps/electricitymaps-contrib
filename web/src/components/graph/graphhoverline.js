@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HoverLine = ({
+const GraphHoverLine = ({
   fill,
   data,
   datetimes,
@@ -23,7 +23,7 @@ const HoverLine = ({
         y2={valueScale.range()[1]}
       />
     )}
-    {Number.isInteger(selectedTimeIndex) && data && (
+    {Number.isInteger(selectedTimeIndex) && data && Number.isFinite(valueScale(data[selectedTimeIndex][1])) && (
       <circle
         r="6"
         style={{
@@ -41,4 +41,4 @@ const HoverLine = ({
   </React.Fragment>
 );
 
-export default HoverLine;
+export default GraphHoverLine;
