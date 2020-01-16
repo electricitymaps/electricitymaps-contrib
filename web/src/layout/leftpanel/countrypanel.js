@@ -9,7 +9,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { dispatchApplication } from '../../store';
+
 // Components
+import AreaGraph from '../../components/areagraph';
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import Tooltip from '../../components/tooltip';
@@ -24,6 +27,25 @@ const tooltipHelper = require('../../helpers/tooltip');
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
+
+const historyDataSelector = state =>
+  state.data.histories[state.application.selectedZoneName];
+
+const handleCountryHistoryMixMouseMove = (countryData, index) => {
+  dispatchApplication('selectedZoneTimeIndex', index);
+};
+const handleCountryHistoryMixMouseOut = () => {
+  dispatchApplication('selectedZoneTimeIndex', null);
+};
+const handleCountryHistoryMixLayerMouseMove = (mode, position, zoneData, index) => {
+  dispatchApplication('tooltipDisplayMode', mode);
+  dispatchApplication('tooltipPosition', position);
+  dispatchApplication('tooltipZoneData', zoneData);
+  dispatchApplication('selectedZoneTimeIndex', index);
+};
+const handleCountryHistoryMixLayerMouseOut = () => {
+  dispatchApplication('tooltipDisplayMode', null);
+};
 
 const CountryLowCarbonGauge = connect((state) => {
   const d = getCurrentZoneData(state);
@@ -188,7 +210,14 @@ class Component extends React.PureComponent {
               <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
               <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
             </small>
-            <svg id="country-history-mix" />
+            <AreaGraph
+              id="country-history-mix"
+              dataSelector={historyDataSelector}
+              layerMouseMoveHandler={handleCountryHistoryMixLayerMouseMove}
+              layerMouseOutHandler={handleCountryHistoryMixLayerMouseOut}
+              mouseMoveHandler={handleCountryHistoryMixMouseMove}
+              mouseOutHandler={handleCountryHistoryMixMouseOut}
+            />
 
             <div className="loading overlay" />
             <span className="country-history-title">
