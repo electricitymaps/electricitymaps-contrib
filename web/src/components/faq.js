@@ -1,12 +1,7 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-);
+import React, { useState, useRef } from 'react';
 
-const translation = require('../helpers/translation');
-const formatting = require('../helpers/formatting');
-
-const faq = {};
+import { __ } from '../helpers/translation';
+import { co2Sub } from '../helpers/formatting';
 
 const orderings = [
   {
@@ -16,12 +11,8 @@ const orderings = [
       'mapArrows',
       'mapSolarWindButtons',
       'mapNuclearColors',
-      'mapColorBlind'],
-    entryLinks: {
-      // Links from one entry to another;
-      // onClick link events are mapped to all links with the "entry-link" class
-      mapColors: 'carbonIntensity',
-    },
+      'mapColorBlind',
+    ],
   },
   {
     groupKey: 'mapAreas',
@@ -31,10 +22,6 @@ const orderings = [
       'divideExistingArea',
       'seeHistoricalData',
     ],
-    entryLinks: {
-      noData: 'contribute',
-      divideExistingArea: 'contribute',
-    },
   },
   {
     groupKey: 'methodology',
@@ -48,9 +35,6 @@ const orderings = [
       'homeSolarPanel',
       'emissionsPerCapita',
     ],
-    entryLinks: {
-      otherSources: 'whoAreYou',
-    },
   },
   {
     groupKey: 'data',
@@ -59,7 +43,6 @@ const orderings = [
       'dataDownload',
       'dataIntegration',
     ],
-    entryLinks: {},
   },
   {
     groupKey: 'aboutUs',
@@ -70,70 +53,82 @@ const orderings = [
       'workTogether',
       'disclaimer',
     ],
-    entryLinks: {},
   },
 ];
 
-orderings.forEach((e) => {
-  faq[e.groupKey] = {
-    groupName: translation.translate(`${e.groupKey}.groupName`),
-    entries: {},
+const QuestionAnswer = ({
+  answerVisible,
+  setAnswerVisible,
+  groupKey,
+  entryKey,
+}) => (
+  <div className="question-answer-container" id={entryKey}>
+    <div
+      className="question"
+      onClick={() => setAnswerVisible(entryKey, !answerVisible)}
+    >
+      <i className="material-icons">
+        {answerVisible ? 'expand_less' : 'expand_more'}
+      </i>
+      <span>{__(`${groupKey}.${entryKey}-question`)}</span>
+    </div>
+    {answerVisible && (
+      <div
+        className="answer"
+        dangerouslySetInnerHTML={{
+          __html: co2Sub(__(`${groupKey}.${entryKey}-answer`)),
+        }}
+      />
+    )}
+  </div>
+);
+
+const FAQ = ({ className }) => {
+  const [answersVisible, setAnswersVisible] = useState({});
+  const setAnswerVisible = (entryKey, value) => {
+    setAnswersVisible(Object.assign({}, answersVisible, { [entryKey]: value }));
   };
-  e.entryOrder.forEach((f) => {
-    faq[e.groupKey].entries[f] = {
-      question: translation.translate(`${e.groupKey}.${f}-question`),
-      answer: translation.translate(`${e.groupKey}.${f}-answer`),
-    };
-  });
-});
 
-export default class FAQ {
-  constructor(selectorId) {
-    this.selector = d3.select(selectorId);
-    this._setup();
-  }
-
-  _setup() {
-    this.container = this.selector.append('div').attr('class', 'faq-container');
-    this.domElements = [];
-    orderings.forEach((questionGroup) => {
-      this._createQuestionGroup(questionGroup.groupKey, questionGroup.entryOrder, questionGroup.entryLinks);
-    });
-  }
-
-  _createQuestionGroup(groupKey, groupEntryOrder, groupEntryLinks) {
-    const groupContainer = this.container.append('div').attr('class', 'question-group-container');
-    const groupHeader = groupContainer.append('div').attr('class', 'question-group-header title');
-    groupHeader.text(faq[groupKey].groupName);
-
-    groupEntryOrder.forEach((entryKey) => {
-      const questionEntryTexts = faq[groupKey].entries[entryKey];
-      const answerLinkTargetEntryId = groupEntryLinks && groupEntryLinks[entryKey];
-      this._createQuestionAndAnswer(groupContainer, questionEntryTexts, entryKey, answerLinkTargetEntryId);
-    });
-  }
-
-  _createQuestionAndAnswer(groupContainer, questionEntryTexts, entryKey, answerLinkTargetEntryId) {
-    const entryContainer = groupContainer.append('div').attr('class', 'question-answer-container').attr('id', entryKey);
-    const questionContainer = entryContainer.append('div').attr('class', 'question');
-    questionContainer.append('i').attr('class', 'material-icons').text('expand_more');
-    questionContainer.append('span').text(questionEntryTexts.question);
-    const answer = entryContainer.append('div').attr('class', 'answer').html(formatting.co2Sub(questionEntryTexts.answer));
-    if (answerLinkTargetEntryId) {
-      answer.selectAll('.entry-link').on('click', () => {
-        this._toggleAnswer(answerLinkTargetEntryId);
+  // 50ms after every render go through all the links in the answers
+  // and make sure the ones which reference different FAQ sections
+  // also update the answersVisible state.
+  // TODO: Update answersVisible state idiomatically from the URL
+  // once React Router integration is in place.
+  // See https://github.com/tmrowco/electricitymap-contrib/issues/2161.
+  const ref = useRef(null);
+  setTimeout(() => {
+    if (ref && ref.current) {
+      ref.current.querySelectorAll('.entry-link').forEach((link) => {
+        const entryKey = link.href.split('#')[1];
+        if (entryKey) {
+          link.onclick = () => { setAnswerVisible(entryKey, true); };
+        }
       });
     }
-    questionContainer.on('click', () => this._toggleAnswer(entryKey));
-  }
+  }, 50);
 
-  _toggleAnswer(id) {
-    const entry = d3.selectAll(`#${id}`);
-    if (entry.nodes().length) {
-      const answer = entry.selectAll('.answer');
-      const answerVisible = !answer.classed('visible');
-      answer.classed('visible', answerVisible);
-      entry.selectAll('.material-icons').text(answerVisible ? 'expand_less' : 'expand_more');
-    }
-  }
-}
+  return (
+    <div className={className} ref={ref}>
+      <div className="faq-container">
+        {orderings.map(({ groupKey, entryOrder }) => (
+          <div className="question-group-container" key={groupKey}>
+            <div className="question-group-header title">
+              {__(`${groupKey}.groupName`)}
+            </div>
+            {entryOrder.map(entryKey => (
+              <QuestionAnswer
+                key={entryKey}
+                groupKey={groupKey}
+                entryKey={entryKey}
+                setAnswerVisible={setAnswerVisible}
+                answerVisible={answersVisible[entryKey]}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FAQ;

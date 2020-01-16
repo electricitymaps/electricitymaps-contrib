@@ -1,56 +1,43 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-);
+import React, { useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
+import { noop } from 'lodash';
 
-const ENTER_KEY_CODE = 13;
+const mapStateToProps = state => ({
+  currentPage: state.application.showPageState,
+});
 
-export default class SearchBar {
-  constructor(selectorId, argConfig) {
-    this.selector = d3.select(selectorId);
-    const config = argConfig || {};
-    this.searchHandler = config.searchHandler;
-    this.enterKeypressHandler = config.enterKeypressHandler;
-    this._setupEventHandlers();
-    this.inputNode = this.selector.node();
-  }
+const SearchBar = ({
+  className,
+  currentPage,
+  documentKeyUpHandler,
+  placeholder,
+  searchHandler,
+}) => {
+  const ref = useRef(null);
 
-  onSearch(searchHandler) {
-    this.searchHandler = searchHandler;
-  }
+  // Set up global key up handlers that apply to this search bar
+  useEffect(() => {
+    const keyUpHandler = documentKeyUpHandler
+      ? ev => documentKeyUpHandler(ev.key, currentPage, ref)
+      : noop;
+    document.addEventListener('keyup', keyUpHandler);
+    return () => {
+      document.removeEventListener('keyup', keyUpHandler);
+    };
+  });
 
-  onEnterKeypress(enterKeypressHandler) {
-    this.enterKeypressHandler = enterKeypressHandler;
-  }
-
-  clearInputAndFocus() {
-    this.inputNode.value = '';
-    this.inputNode.focus();
-  }
-
-  focusWithInput(input) {
-    if (!this.hasFocus()) {
-      this.inputNode.value = this.inputNode.value + input;
-      this.inputNode.focus();
+  // Apply the search query after every key press
+  const handleKeyUp = (ev) => {
+    if (searchHandler) {
+      searchHandler(ev.target.value.toLowerCase());
     }
-  }
+  };
 
-  hasFocus() {
-    return document.activeElement === this.inputNode;
-  }
+  return (
+    <div className={className}>
+      <input ref={ref} placeholder={placeholder} onKeyUp={handleKeyUp} />
+    </div>
+  );
+};
 
-  _setupEventHandlers() {
-    this.selector.on('keyup', (obj, i, nodes) => {
-      if (this.searchHandler != null) {
-        const query = nodes[i].value.toLowerCase();
-        this.searchHandler(query);
-      }
-    });
-
-    this.selector.node().addEventListener('keypress', (e) => {
-      if (this.enterKeypressHandler != null && e.keyCode === ENTER_KEY_CODE) {
-        this.enterKeypressHandler();
-      }
-    });
-  }
-}
+export default connect(mapStateToProps)(SearchBar);

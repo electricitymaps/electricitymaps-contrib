@@ -7,6 +7,7 @@
 import React from 'react';
 
 import { __ } from '../../helpers/translation';
+import FAQ from '../../components/faq';
 
 export default () => (
   <div className="mobile-info-tab large-screen-hidden">
@@ -78,6 +79,6 @@ export default () => (
     <div className="mobile-faq-header">
       {__('misc.faq')}
     </div>
-    <div className="mobile-faq" />
+    <FAQ className="mobile-faq" />
   </div>
 );
