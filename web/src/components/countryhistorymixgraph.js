@@ -6,14 +6,15 @@ import React, {
 } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { first, last, noop } from 'lodash';
+import { first, last } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { detectHoveredDatapointIndex } from '../helpers/graph';
 import { prepareGraphData } from '../helpers/data';
+import { dispatchApplication } from '../store';
 
 import CountryHistoryExchangeGradients from './countryhistoryexchangegradients';
+import CountryHistoryMixLayers from './countryhistorymixlayers';
 import InteractionBackground from './graph/interactionbackground';
 import HoverLine from './graph/hoverline';
 import ValueAxis from './graph/valueaxis';
@@ -31,6 +32,25 @@ const d3 = Object.assign(
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
+
+const dataSelector = state =>
+  state.data.histories[state.application.selectedZoneName];
+
+const mouseMoveHandler = (countryData, index) => {
+  dispatchApplication('selectedZoneTimeIndex', index);
+};
+const mouseOutHandler = () => {
+  dispatchApplication('selectedZoneTimeIndex', null);
+};
+const layerMouseMoveHandler = (mode, position, zoneData, index) => {
+  dispatchApplication('tooltipDisplayMode', mode);
+  dispatchApplication('tooltipPosition', position);
+  dispatchApplication('tooltipZoneData', zoneData);
+  dispatchApplication('selectedZoneTimeIndex', index);
+};
+const layerMouseOutHandler = () => {
+  dispatchApplication('tooltipDisplayMode', null);
+};
 
 // TODO: Consider merging this method with prepareGraphData.
 // This method is consumed by the AreaGraph component in such a way that it only gets called
@@ -71,14 +91,8 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
   const valueScale = d3.scaleLinear()
     .domain([0, maxTotalValue * 1.1])
     .range([height, Y_AXIS_PADDING]);
-  const area = d3.area()
-    .x(d => timeScale(d.data.datetime))
-    .y0(d => valueScale(d[0]))
-    .y1(d => valueScale(d[1]))
-    .defined(d => Number.isFinite(d[1]));
 
   return {
-    area,
     datetimes,
     exchangeKeys,
     format,
@@ -90,78 +104,6 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
   };
 };
 
-const Layers = React.memo(({
-  area,
-  datetimes,
-  displayByEmissions,
-  fillColor,
-  stackKeys,
-  stackedData,
-  timeScale,
-  valueScale,
-  setSelectedLayerIndex,
-  mouseMoveHandler,
-  mouseOutHandler,
-  layerMouseMoveHandler,
-  layerMouseOutHandler,
-  isMobile,
-  svgRef,
-}) => {
-  // Mouse hover events
-  let mouseOutTimeout;
-  const handleLayerMouseMove = (ev, layer, ind) => {
-    if (mouseOutTimeout) {
-      clearTimeout(mouseOutTimeout);
-      mouseOutTimeout = undefined;
-    }
-    setSelectedLayerIndex(ind);
-    const i = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
-    if (layerMouseMoveHandler) {
-      // If in mobile mode, put the tooltip to the top of the screen for
-      // readability, otherwise float it depending on the cursor position.
-      const position = !isMobile
-        ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
-        : { x: 0, y: 0 };
-      layerMouseMoveHandler(stackKeys[ind], position, layer[i].data._countryData);
-    }
-    if (mouseMoveHandler) {
-      mouseMoveHandler(layer[i].data._countryData, i);
-    }
-  };
-  const handleLayerMouseOut = () => {
-    mouseOutTimeout = setTimeout(() => {
-      setSelectedLayerIndex(undefined);
-      if (mouseOutHandler) {
-        mouseOutHandler();
-      }
-      if (layerMouseOutHandler) {
-        layerMouseOutHandler();
-      }
-    }, 50);
-  };
-
-  return (
-    <g>
-      {stackedData.map((layer, ind) => (
-        <path
-          key={stackKeys[ind]}
-          className={`area layer ${stackKeys[ind]}`}
-          fill={fillColor(stackKeys[ind], displayByEmissions)}
-          style={{ cursor: 'pointer' }}
-          d={area(layer)}
-          /* Support only click events in mobile mode, otherwise react to mouse hovers */
-          onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onFocus={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onMouseOver={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onMouseMove={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onMouseOut={handleLayerMouseOut}
-          onBlur={handleLayerMouseOut}
-        />
-      ))}
-    </g>
-  );
-});
-
 const getCurrentTime = state =>
   state.application.customDate || (state.data.grid || {}).datetime;
 
@@ -169,29 +111,24 @@ const getCurrentTime = state =>
 const fillColor = (key, displayByEmissions) =>
   modeColor[key] || (displayByEmissions ? 'darkgray' : `url(#areagraph-exchange-${key})`);
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   currentTime: getCurrentTime(state),
-  data: props.dataSelector(state),
+  data: dataSelector(state),
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedIndex: state.application.selectedZoneTimeIndex,
 });
 
-const AreaGraph = ({
+const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   currentTime,
   data,
   displayByEmissions,
   electricityMixMode,
-  id,
   isMobile,
   selectedIndex,
-  layerMouseMoveHandler,
-  layerMouseOutHandler,
-  mouseMoveHandler,
-  mouseOutHandler,
 }) => {
   const ref = useRef(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
@@ -218,7 +155,6 @@ const AreaGraph = ({
   });
 
   const {
-    area,
     datetimes,
     exchangeKeys,
     format,
@@ -235,7 +171,7 @@ const AreaGraph = ({
   if (!data || !data[0]) return null;
 
   return (
-    <svg id={id} ref={ref}>
+    <svg id="country-history-mix" ref={ref}>
       <TimeAxis
         scale={timeScale}
         height={container.height}
@@ -253,10 +189,7 @@ const AreaGraph = ({
         mouseOutHandler={mouseOutHandler}
         svgRef={ref}
       />
-      <Layers
-        area={area}
-        datetimes={datetimes}
-        displayByEmissions={displayByEmissions}
+      <CountryHistoryMixLayers
         fillColor={fillColor}
         stackKeys={stackKeys}
         stackedData={stackedData}
@@ -267,7 +200,6 @@ const AreaGraph = ({
         mouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={layerMouseMoveHandler}
         layerMouseOutHandler={layerMouseOutHandler}
-        isMobile={isMobile}
         svgRef={ref}
       />
       <HoverLine
@@ -287,4 +219,4 @@ const AreaGraph = ({
   );
 };
 
-export default connect(mapStateToProps)(AreaGraph);
+export default connect(mapStateToProps)(CountryHistoryMixGraph);
