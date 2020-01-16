@@ -47,7 +47,6 @@ export const prepareGraphData = (data, displayByEmissions, electricityMixMode, f
     obj._countryData = d;
     return obj;
   });
-  const datetimes = graphData.map(d => d.datetime);
   const exchangeKeys = exchangeKeysSet.values();
-  return { datetimes, exchangeKeys, graphData };
+  return { exchangeKeys, graphData };
 };
