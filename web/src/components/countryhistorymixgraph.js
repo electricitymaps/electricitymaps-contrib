@@ -14,7 +14,7 @@ import { prepareGraphData } from '../helpers/data';
 import { dispatchApplication } from '../store';
 
 import CountryHistoryExchangeGradients from './countryhistoryexchangegradients';
-import CountryHistoryMixLayers from './countryhistorymixlayers';
+import AreaGraphLayers from './graph/areagraphlayers';
 import InteractionBackground from './graph/interactionbackground';
 import HoverLine from './graph/hoverline';
 import ValueAxis from './graph/valueaxis';
@@ -35,22 +35,6 @@ const Y_AXIS_PADDING = 4;
 
 const dataSelector = state =>
   state.data.histories[state.application.selectedZoneName];
-
-const mouseMoveHandler = (countryData, index) => {
-  dispatchApplication('selectedZoneTimeIndex', index);
-};
-const mouseOutHandler = () => {
-  dispatchApplication('selectedZoneTimeIndex', null);
-};
-const layerMouseMoveHandler = (mode, position, zoneData, index) => {
-  dispatchApplication('tooltipDisplayMode', mode);
-  dispatchApplication('tooltipPosition', position);
-  dispatchApplication('tooltipZoneData', zoneData);
-  dispatchApplication('selectedZoneTimeIndex', index);
-};
-const layerMouseOutHandler = () => {
-  dispatchApplication('tooltipDisplayMode', null);
-};
 
 // TODO: Consider merging this method with prepareGraphData.
 // This method is consumed by the AreaGraph component in such a way that it only gets called
@@ -83,6 +67,7 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
   const stackedData = d3.stack()
     .offset(d3.stackOffsetDiverging)
     .keys(stackKeys)(graphData);
+  const layers = stackKeys.map((key, ind) => ({ key, data: stackedData[ind] }));
 
   // Prepare axes and graph scales
   const timeScale = d3.scaleTime()
@@ -99,17 +84,12 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
     graphData,
     timeScale,
     valueScale,
-    stackKeys,
-    stackedData,
+    layers,
   };
 };
 
 const getCurrentTime = state =>
   state.application.customDate || (state.data.grid || {}).datetime;
-
-// Regular production mode or exchange fill as a fallback
-const fillColor = (key, displayByEmissions) =>
-  modeColor[key] || (displayByEmissions ? 'darkgray' : `url(#areagraph-exchange-${key})`);
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -154,6 +134,29 @@ const CountryHistoryMixGraph = ({
     };
   });
 
+  const mouseMoveHandler = (timeIndex) => {
+    dispatchApplication('selectedZoneTimeIndex', timeIndex);
+  };
+  const mouseOutHandler = () => {
+    dispatchApplication('selectedZoneTimeIndex', null);
+  };
+  const layerMouseMoveHandler = (timeIndex, layerIndex, layer, ev) => {
+    // If in mobile mode, put the tooltip to the top of the screen for
+    // readability, otherwise float it depending on the cursor position.
+    const tooltipPosition = !isMobile
+      ? { x: ev.clientX - 7, y: ref.current.getBoundingClientRect().top - 7 }
+      : { x: 0, y: 0 };
+    setSelectedLayerIndex(layerIndex);
+    dispatchApplication('selectedZoneTimeIndex', timeIndex);
+    dispatchApplication('tooltipDisplayMode', layer.key);
+    dispatchApplication('tooltipPosition', tooltipPosition);
+    dispatchApplication('tooltipZoneData', layer.data[timeIndex].data._countryData);
+  };
+  const layerMouseOutHandler = () => {
+    setSelectedLayerIndex(null);
+    dispatchApplication('tooltipDisplayMode', null);
+  };
+
   const {
     datetimes,
     exchangeKeys,
@@ -161,12 +164,15 @@ const CountryHistoryMixGraph = ({
     graphData,
     timeScale,
     valueScale,
-    stackKeys,
-    stackedData,
+    layers,
   } = useMemo(
     () => getGraphState(currentTime, data, displayByEmissions, electricityMixMode, container.width, container.height),
     [currentTime, data, displayByEmissions, electricityMixMode, container.width, container.height]
   );
+
+  // Regular production mode or exchange fill as a fallback
+  const fillSelector = layerIndex => modeColor[layers[layerIndex].key]
+    || (displayByEmissions ? 'darkgray' : `url(#areagraph-exchange-${layers[layerIndex].key})`);
 
   if (!data || !data[0]) return null;
 
@@ -189,24 +195,25 @@ const CountryHistoryMixGraph = ({
         mouseOutHandler={mouseOutHandler}
         svgRef={ref}
       />
-      <CountryHistoryMixLayers
-        fillColor={fillColor}
-        stackKeys={stackKeys}
-        stackedData={stackedData}
+      <AreaGraphLayers
+        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
+        fillSelector={fillSelector}
         setSelectedLayerIndex={setSelectedLayerIndex}
         mouseMoveHandler={mouseMoveHandler}
         mouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={layerMouseMoveHandler}
         layerMouseOutHandler={layerMouseOutHandler}
+        isMobile={isMobile}
         svgRef={ref}
       />
       <HoverLine
+        layers={layers}
         graphData={graphData}
-        layerData={stackedData[selectedLayerIndex]}
-        fill={fillColor(stackKeys[selectedLayerIndex], displayByEmissions)}
-        selectedIndex={selectedIndex}
+        fillSelector={fillSelector}
+        selectedTimeIndex={selectedIndex}
+        selectedLayerIndex={selectedLayerIndex}
         valueScale={valueScale}
         timeScale={timeScale}
       />

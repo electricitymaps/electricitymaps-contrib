@@ -1,19 +1,14 @@
 import React from 'react';
 import { noop } from 'lodash';
+import { area } from 'd3-shape';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
-const d3 = Object.assign(
-  {},
-  require('d3-shape'),
-);
-
 const AreaGraphLayers = React.memo(({
   layers,
-  fillColor,
+  fillSelector,
   timeScale,
   valueScale,
-  setSelectedLayerIndex,
   mouseMoveHandler,
   mouseOutHandler,
   layerMouseMoveHandler,
@@ -24,7 +19,7 @@ const AreaGraphLayers = React.memo(({
   if (!layers || !layers[0]) return null;
 
   const datetimes = layers[0].data.map(d => d.data.datetime);
-  const layerArea = d3.area()
+  const layerArea = area()
     .x(d => timeScale(d.data.datetime))
     .y0(d => valueScale(d[0]))
     .y1(d => valueScale(d[1]))
@@ -37,23 +32,16 @@ const AreaGraphLayers = React.memo(({
       clearTimeout(mouseOutTimeout);
       mouseOutTimeout = undefined;
     }
-    setSelectedLayerIndex(layerIndex);
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (layerMouseMoveHandler) {
-      // If in mobile mode, put the tooltip to the top of the screen for
-      // readability, otherwise float it depending on the cursor position.
-      const position = !isMobile
-        ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
-        : { x: 0, y: 0 };
-      layerMouseMoveHandler(layer.key, position, layer.data[timeIndex].data._countryData);
+      layerMouseMoveHandler(timeIndex, layerIndex, layer, ev);
     }
     if (mouseMoveHandler) {
-      mouseMoveHandler(layer.data[timeIndex].data._countryData, timeIndex);
+      mouseMoveHandler(timeIndex);
     }
   };
   const handleLayerMouseOut = () => {
     mouseOutTimeout = setTimeout(() => {
-      setSelectedLayerIndex(undefined);
       if (mouseOutHandler) {
         mouseOutHandler();
       }
@@ -70,7 +58,7 @@ const AreaGraphLayers = React.memo(({
           key={layer.key}
           className={`area layer ${layer.key}`}
           style={{ cursor: 'pointer' }}
-          fill={fillColor(ind)}
+          fill={fillSelector(ind)}
           d={layerArea(layer.data)}
           /* Support only click events in mobile mode, otherwise react to mouse hovers */
           onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
