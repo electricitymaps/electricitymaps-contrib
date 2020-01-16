@@ -13,7 +13,7 @@ import { modeOrder, modeColor } from '../helpers/constants';
 import { detectHoveredDatapointIndex } from '../helpers/graph';
 import { prepareGraphData } from '../helpers/data';
 
-import ExchangeSeriesGradients from './graph/exchangeseriesgradients';
+import CountryHistoryExchangeGradients from './countryhistoryexchangegradients';
 import InteractionBackground from './graph/interactionbackground';
 import HoverLine from './graph/hoverline';
 import ValueAxis from './graph/valueaxis';
@@ -278,11 +278,10 @@ const AreaGraph = ({
         valueScale={valueScale}
         timeScale={timeScale}
       />
-      <ExchangeSeriesGradients
+      <CountryHistoryExchangeGradients
         graphData={graphData}
         timeScale={timeScale}
         exchangeKeys={exchangeKeys}
-        colorBlindModeEnabled={colorBlindModeEnabled}
       />
     </svg>
   );
