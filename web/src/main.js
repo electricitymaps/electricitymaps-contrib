@@ -156,21 +156,21 @@ const countryTable = new CountryTable('.country-table-container', modeColor, mod
 
 const countryHistoryCarbonGraph = new LineGraph(
   '#country-history-carbon',
-  d => moment(d.stateDatetime).toDate(),
+  d => d && d.stateDatetime && moment(d.stateDatetime).toDate(),
   d => (getState().application.electricityMixMode === 'consumption'
-    ? (d || {}).co2intensity
-    : (d || {}).co2intensityProduction),
+    ? d && d.co2intensity
+    : d && d.co2intensityProduction),
   d => (getState().application.electricityMixMode === 'consumption'
-    ? (d || {}).co2intensity
-    : (d || {}).co2intensityProduction),
+    ? d && d.co2intensity
+    : d && d.co2intensityProduction),
   d => 'g/kWh'
 );
 
 const countryHistoryPricesGraph = new LineGraph(
   '#country-history-prices',
-  d => moment(d.stateDatetime).toDate(),
-  d => (d.price || {}).value,
-  d => d.price && d.price.value != null,
+  d => d && d.stateDatetime && moment(d.stateDatetime).toDate(),
+  d => d && d.price && d.price.value,
+  d => d && d.price && d.price.value != null,
 ).gradient(false);
 
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
