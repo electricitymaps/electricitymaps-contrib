@@ -1,13 +1,12 @@
 import React from 'react';
 
 const HoverLine = ({
-  layers,
-  graphData,
+  fill,
+  data,
+  datetimes,
   timeScale,
   valueScale,
   selectedTimeIndex,
-  selectedLayerIndex,
-  fillSelector,
 }) => (
   <React.Fragment>
     {Number.isInteger(selectedTimeIndex) && (
@@ -18,13 +17,13 @@ const HoverLine = ({
           pointerEvents: 'none',
           shapeRendering: 'crispEdges',
         }}
-        x1={timeScale(graphData[selectedTimeIndex].datetime)}
-        x2={timeScale(graphData[selectedTimeIndex].datetime)}
+        x1={timeScale(datetimes[selectedTimeIndex])}
+        x2={timeScale(datetimes[selectedTimeIndex])}
         y1={valueScale.range()[0]}
         y2={valueScale.range()[1]}
       />
     )}
-    {Number.isInteger(selectedTimeIndex) && Number.isInteger(selectedLayerIndex) && (
+    {Number.isInteger(selectedTimeIndex) && data && (
       <circle
         r="6"
         style={{
@@ -33,10 +32,10 @@ const HoverLine = ({
           shapeRendering: 'crispEdges',
           stroke: 'black',
           strokeWidth: 1.5,
-          fill: fillSelector(selectedLayerIndex),
+          fill,
         }}
-        cx={timeScale(graphData[selectedTimeIndex].datetime)}
-        cy={valueScale(layers[selectedLayerIndex].data[selectedTimeIndex][1])}
+        cx={timeScale(datetimes[selectedTimeIndex])}
+        cy={valueScale(data[selectedTimeIndex][1])}
       />
     )}
   </React.Fragment>

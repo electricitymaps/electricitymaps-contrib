@@ -2,8 +2,7 @@ import React from 'react';
 
 const AreaGraphGradients = React.memo(({
   id,
-  gradientKeys,
-  graphData,
+  layers,
   timeScale,
   stopColor,
 }) => {
@@ -14,13 +13,13 @@ const AreaGraphGradients = React.memo(({
 
   return (
     <React.Fragment>
-      {gradientKeys.map(key => (
-        <linearGradient gradientUnits="userSpaceOnUse" id={`${id}-${key}`} key={key} x1={x1} x2={x2}>
-          {graphData.map(datapoint => (
+      {layers.map(layer => (
+        <linearGradient gradientUnits="userSpaceOnUse" id={`${id}-${layer.key}`} key={layer.key} x1={x1} x2={x2}>
+          {layer.data.map(({ data }) => (
             <stop
-              key={datapoint.datetime}
-              offset={stopOffset(datapoint.datetime)}
-              stopColor={stopColor(datapoint, key)}
+              key={data.datetime}
+              offset={stopOffset(data.datetime)}
+              stopColor={stopColor(data, layer.key)}
             />
           ))}
         </linearGradient>

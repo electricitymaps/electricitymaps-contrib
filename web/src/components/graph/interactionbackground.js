@@ -21,7 +21,7 @@ const InteractionBackground = ({
       mouseOutRectTimeout = undefined;
     }
     if (mouseMoveHandler) {
-      mouseMoveHandler(undefined, detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef));
+      mouseMoveHandler(detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef));
     }
   };
   const handleRectMouseOut = () => {

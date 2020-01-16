@@ -9,11 +9,12 @@ import { connect } from 'react-redux';
 import { first, last } from 'lodash';
 
 import formatting from '../helpers/formatting';
+import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
 import { prepareGraphData } from '../helpers/data';
 import { dispatchApplication } from '../store';
 
-import CountryHistoryExchangeGradients from './countryhistoryexchangegradients';
+import AreaGraphGradients from './graph/areagraphgradients';
 import AreaGraphLayers from './graph/areagraphlayers';
 import InteractionBackground from './graph/interactionbackground';
 import HoverLine from './graph/hoverline';
@@ -68,6 +69,7 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
     .offset(d3.stackOffsetDiverging)
     .keys(stackKeys)(graphData);
   const layers = stackKeys.map((key, ind) => ({ key, data: stackedData[ind] }));
+  const exchangeLayers = layers.filter(layer => exchangeKeys.includes(layer.key));
 
   // Prepare axes and graph scales
   const timeScale = d3.scaleTime()
@@ -85,6 +87,7 @@ const getGraphState = (currentTime, data, displayByEmissions, electricityMixMode
     timeScale,
     valueScale,
     layers,
+    exchangeLayers,
   };
 };
 
@@ -98,7 +101,7 @@ const mapStateToProps = state => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
-  selectedIndex: state.application.selectedZoneTimeIndex,
+  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryMixGraph = ({
@@ -108,7 +111,7 @@ const CountryHistoryMixGraph = ({
   displayByEmissions,
   electricityMixMode,
   isMobile,
-  selectedIndex,
+  selectedTimeIndex,
 }) => {
   const ref = useRef(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
@@ -159,12 +162,11 @@ const CountryHistoryMixGraph = ({
 
   const {
     datetimes,
-    exchangeKeys,
     format,
-    graphData,
     timeScale,
     valueScale,
     layers,
+    exchangeLayers,
   } = useMemo(
     () => getGraphState(currentTime, data, displayByEmissions, electricityMixMode, container.width, container.height),
     [currentTime, data, displayByEmissions, electricityMixMode, container.width, container.height]
@@ -176,6 +178,12 @@ const CountryHistoryMixGraph = ({
 
   if (!data || !data[0]) return null;
 
+  const valueAxisLabel = displayByEmissions ? 'tCO2eq/min' : format.unit;
+
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const gradientStopColor = (d, key) => (d._countryData.exchangeCo2Intensities
+    ? co2ColorScale(d._countryData.exchangeCo2Intensities[key]) : 'darkgray');
+
   return (
     <svg id="country-history-mix" ref={ref}>
       <TimeAxis
@@ -183,8 +191,8 @@ const CountryHistoryMixGraph = ({
         height={container.height}
       />
       <ValueAxis
-        label={displayByEmissions ? 'tCO2eq/min' : format.unit}
         scale={valueScale}
+        label={valueAxisLabel}
         width={container.width}
       />
       <InteractionBackground
@@ -200,7 +208,6 @@ const CountryHistoryMixGraph = ({
         timeScale={timeScale}
         valueScale={valueScale}
         fillSelector={fillSelector}
-        setSelectedLayerIndex={setSelectedLayerIndex}
         mouseMoveHandler={mouseMoveHandler}
         mouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={layerMouseMoveHandler}
@@ -209,18 +216,18 @@ const CountryHistoryMixGraph = ({
         svgRef={ref}
       />
       <HoverLine
-        layers={layers}
-        graphData={graphData}
-        fillSelector={fillSelector}
-        selectedTimeIndex={selectedIndex}
-        selectedLayerIndex={selectedLayerIndex}
+        timeScale={timeScale}
         valueScale={valueScale}
-        timeScale={timeScale}
+        datetimes={datetimes}
+        fill={selectedLayerIndex && fillSelector(selectedLayerIndex)}
+        data={selectedLayerIndex && layers[selectedLayerIndex].data}
+        selectedTimeIndex={selectedTimeIndex}
       />
-      <CountryHistoryExchangeGradients
-        graphData={graphData}
+      <AreaGraphGradients
+        id="areagraph-exchange"
         timeScale={timeScale}
-        exchangeKeys={exchangeKeys}
+        stopColor={gradientStopColor}
+        layers={exchangeLayers}
       />
     </svg>
   );
