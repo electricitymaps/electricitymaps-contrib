@@ -656,7 +656,7 @@ def dataformat(junk):
 
 
 def generation_finder(data, gen_type):
-    """Finds all genration matching requested type in a list.
+    """Finds all generation matching requested type in a list.
     Sums together and returns a float.
     """
 
