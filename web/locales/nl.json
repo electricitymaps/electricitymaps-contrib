@@ -3,19 +3,42 @@
         "thisproject": "Dit project is",
         "opensource": "Open Source",
         "see": "zie",
-        "datasources": "data sources",
+        "datasources": "data bronnen",
         "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
+    },
+    "mobile-main-menu": {
+        "map": "electricityMap",
+        "areas": "Gebieden",
+        "about": "Over"
     },
     "country-panel": {
         "source": "bron",
+        "lowcarbon": "Lage-uitstoot",
+        "renewable": "Hernieuwbaar",
         "carbonintensity": "Koolstofintensiteit",
         "electricityproduction": "Elektriciteitsproductie",
         "bysource": "per bron",
         "emissions": "CO2 uitstoot",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>"
+        "helpfrom": "met hulp van",
+        "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
+        "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
+        "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+        "now": "Now"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Invloed op klimaat per Gebied",
+        "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO2eq/kWh)",
+        "search": "Zoek gebieden"
     },
     "country-history": {
-        "carbonintensity24h": "Koolstofintensiteit van de laatste 24 uren"
+        "carbonintensity24h": "Koolstofintensiteit laatste 24 uur",
+        "emissionsorigin24h": "Bron van uitstoot laatste 24 uur",
+        "emissionsproduction24h": "Uitstoot laatste 24 uur",
+        "electricityorigin24h": "Bron van elektriciteit laatste 24 uur",
+        "electricityproduction24h": "Elektriciteitsproductie laatste 24 uur",
+        "electricityprices24h": "Elektriciteitsprijs laatste 24 uur",
+        "Getdata": "Get historical data, marginal and forecast API"
     },
     "footer": {
         "likethisvisu": "Vind je de visualisatie super?",
@@ -35,18 +58,37 @@
         "carbonintensityexport": "Koolstofintensiteit van uitvoer",
 
         "ofinstalled": "van de geïnstalleerde capaciteit",
-        "utilizing": "werkt aan",
-        "withcarbonintensity": "met een koolstofintensiteit van"
+        "utilizing": "gebruikt",
+        "withcarbonintensity": "met een koolstofintensiteit van",
+        
+        "showWindLayer": "Show wind layer",
+        "hideWindLayer": "Hide wind layer",
+        "showSolarLayer": "Show solar layer",
+        "hideSolarLayer": "Hide solar layer",
+        "toggleDarkMode": "Toggle dark-mode",
+        "noParserInfo": "Geen data beschikbaar",
+        "temporaryDataOutage": "Data tijdelijk niet beschikbaar",
+        "production": "productie",
+        "consumption": "consumptie",
+        "cpinfo": "<b>consumptie</b> houd rekening met in- en uitvoer, <b>productie</b> doet dat niet",
+        "selectLanguage": "Selecteer taal",
+        "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
     },
     "misc": {
         "maintitle": "Live CO2 uitstoot van het elektriciteitsverbruik",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
-        "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden."
+        "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden.",
+        "retrynow": "Probeer opnieuw",
+        "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
+        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+        "legend": "Legenda",
+        "faq": "Veelgestelde vragen"
     },
     "wind": "wind",
     "solar": "zon",
     "hydro": "water",
     "hydro storage": "pompcentrale",
+    "battery storage": "batterij",
     "biomass": "biomassa",
     "nuclear": "nucleair",
     "geothermal": "geothermie",
@@ -55,17 +97,17 @@
     "oil": "olie",
     "unknown": "onbekend",
 
-    "electricityComesFrom": "<b>%1$s %%</b> van de elektriciteitin <img id=\"country-flag\"></img> <b>%2$s</b> is afkomstig van %3$s",
-    "emissionsComeFrom": "<b>%1$s %%</b> van de emissions in <img id=\"country-flag\"></img> <b>%2$s</b> is afkomstig van %3$s",
-    "electricityStoredUsing": "<b>%1$s %%</b> van de elektriciteitin <img id=\"country-flag\"></img> <b>%2$s</b> wordt opgeslagen dmv %3$s",
-    "emissionsStoredUsing": "<b>%1$s %%</b> van de emissions in <img id=\"country-flag\"></img> <b>%2$s</b> wordt opgeslagen dmv %3$s",
+    "electricityComesFrom": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> is afkomstig van %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> is afkomstig van %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt opgeslagen dmv %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt opgeslagen dmv %3$s",
 
-    "electricityExportedTo": "<b>%1$s %%</b> van de elektriciteitin <img id=\"country-flag\"></img> <b>%2$s</b> uitvoer naar <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<b>%1$s %%</b> van de emissions in <img id=\"country-flag\"></img> <b>%2$s</b> uitvoer naar <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<b>%1$s %%</b> van de elektriciteitin <img id=\"country-flag\"></img> <b>%2$s</b> invoer van <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "<b>%1$s %%</b> van de emissions in <img id=\"country-flag\"></img> <b>%2$s</b> invoer van <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt uitgevoerd naar <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt uitgevoerd naar <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "CO2eq per minuut",
 
     "zoneShortName": {
         "AL": {
