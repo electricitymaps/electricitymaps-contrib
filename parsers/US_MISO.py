@@ -13,6 +13,7 @@ mapping = {'Coal': 'coal',
            'Natural Gas': 'gas',
            'Nuclear': 'nuclear',
            'Wind': 'wind',
+           'Solar': 'solar',
            'Other': 'unknown'}
 
 wind_forecast_url = 'https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json'

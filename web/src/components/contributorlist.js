@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 const ContributorList = ({ contributors }) => (
   <div className="contributors">
     {contributors.map(contributor => (
-      <a href={contributor} rel="noopener noreferrer" target="_blank">
+      <a key={contributor} href={contributor} rel="noopener noreferrer" target="_blank">
         <img src={`${contributor}.png`} alt={contributor} />
       </a>
     ))}
