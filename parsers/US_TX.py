@@ -113,6 +113,13 @@ def fetch_production(zone_key='US-TX', session=None, target_datetime=None, logge
             solar_datetime, solar = get_zipped_csv_data(logger, SOLAR_REAL_TIME_DIRECTORY_URL, session=session)
         else:  # if wind came earlier poll it again
             wind_datetime, wind = get_zipped_csv_data(logger, WIND_REAL_TIME_DIRECTORY_URL, session=session)
+    
+    if solar < 0:
+        logger.warn('Solar production for US_TX was reported as less than 0 and was clamped')
+        solar = 0.0
+    if wind < 0:
+        logger.warn('Wind production for US_TX was reported as less than 0 and was clamped')
+        wind = 0.0
 
     realtime_datetime, demand, ties = get_realtime_data(logger, session=session)
 
