@@ -151,6 +151,7 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
         raw_data.rename(columns={'GMTTime':'GMT MKT Interval'},inplace=True)
 
         raw_data['GMT MKT Interval'] = pd.to_datetime(raw_data['GMT MKT Interval'], utc=True)
+        end = target_datetime
         start = target_datetime - datetime.timedelta(days=1)
         start = max(start, raw_data['GMT MKT Interval'].min())
         raw_data = raw_data[(raw_data['GMT MKT Interval'] >= start)&(raw_data['GMT MKT Interval']<= end)]
