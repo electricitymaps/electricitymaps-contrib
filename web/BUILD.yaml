@@ -1,0 +1,31 @@
+name: electricitymap_contrib
+steps:
+
+  prepare:
+    image: node:10.15.3
+    inputs:
+      # packages
+      - package.json
+      - yarn.lock
+    commands:
+      - yarn
+
+  # This script is used to generate zonegeometries.json
+  build:
+    inputs:
+      # geometries
+      - generate-geometries.js
+      - topogen.sh
+      # source code
+      - ../config/{exchanges,zones}.json
+      # - locales
+      # - public/{css,fonts,images}
+      # - src
+      # - views
+      # - ./{.eslintrc,server.js,webpack.config.js}
+    commands:
+      - mkdir -p public/dist
+      - bash topogen.sh
+      - yarn build-release
+    outputs:
+      - public/dist/zonegeometries.json
