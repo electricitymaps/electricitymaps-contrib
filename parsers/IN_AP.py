@@ -3,6 +3,7 @@
 from requests import Session
 from .lib import zonekey, IN, web
 
+
 def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh  production"""
     if target_datetime:
@@ -12,19 +13,19 @@ def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logge
 
     html = web.get_response_soup(zone_key,
                                  'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
-    india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
+    india_date = IN.read_datetime_from_span_id(html, 'MainContent_lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
-    hydro_value = IN.read_value_from_span_id(html, 'lblHydel')
-    gas_value = IN.read_value_from_span_id(html, 'lblGas')
-    wind_value = IN.read_value_from_span_id(html, 'lblWind')
-    solar_value = IN.read_value_from_span_id(html, 'lblSolar')
+    hydro_value = IN.read_value_from_span_id(html, 'MainContent_lblHydel')
+    gas_value = IN.read_value_from_span_id(html, 'MainContent_lblGas')
+    wind_value = IN.read_value_from_span_id(html, 'MainContent_lblWind')
+    solar_value = IN.read_value_from_span_id(html, 'MainContent_lblSolar')
 
     # All thermal centrals are considered coal based production
     # https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh
-    thermal_value = IN.read_value_from_span_id(html, 'lblThermal')
+    thermal_value = IN.read_value_from_span_id(html, 'MainContent_lblThermal')
 
-    cgs_value = IN.read_value_from_span_id(html, 'lblCGS')
-    ipp_value = IN.read_value_from_span_id(html, 'lblIPPS')
+    cgs_value = IN.read_value_from_span_id(html, 'MainContent_lblCGS')
+    ipp_value = IN.read_value_from_span_id(html, 'MainContent_lblIPPS')
 
     data = {
         'zoneKey': zone_key,
@@ -59,9 +60,9 @@ def fetch_consumption(zone_key='IN-AP', session=None, target_datetime=None, logg
 
     html = web.get_response_soup(zone_key,
                                  'https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx', session)
-    india_date = IN.read_datetime_from_span_id(html, 'lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
+    india_date = IN.read_datetime_from_span_id(html, 'MainContent_lblPowerStatusDate', 'DD-MM-YYYY HH:mm')
 
-    demand_value = IN.read_value_from_span_id(html, 'lblGridDemand')
+    demand_value = IN.read_value_from_span_id(html, 'MainContent_lblGridDemand')
 
     data = {
         'zoneKey': zone_key,

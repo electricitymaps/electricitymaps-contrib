@@ -20,10 +20,10 @@ const initialApplicationState = {
   version: VERSION,
   callerLocation: null,
   callerZone: null,
+  centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  selectLanguageShown: false,
   customDate: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
@@ -37,6 +37,8 @@ const initialApplicationState = {
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
+  tooltipPosition: null,
+  tooltipZoneData: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
@@ -84,7 +86,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
       if (state.selectedZoneName != null && !selectedZoneNameExists) {
         // The selectedZoneName doesn't exist anymore, we need to reset it
         // TODO(olc): the page state should be inferred from selectedZoneName
-        return Object.assign(state, {
+        return Object.assign({}, state, {
           selectedZoneName: undefined,
           showPageState: state.pageToGoBackTo || 'map',
         });
@@ -94,7 +96,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'UPDATE_SELECTED_ZONE': {
       const { selectedZoneName } = action.payload;
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         selectedZoneName,
         selectedZoneTimeIndex: null,
         previousSelectedZoneTimeIndex: null,
@@ -103,7 +105,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
       const { selectedZoneTimeIndex } = action.payload;
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         selectedZoneTimeIndex,
         previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
       });

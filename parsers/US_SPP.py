@@ -54,7 +54,8 @@ def data_processor(df, logger):
 
     # Remove leading whitespace in column headers.
     df.columns = df.columns.str.strip()
-
+    df = df.rename(columns={'Gas Self': 'Natural Gas Self'}) #Fix naming error which otherwise misclassifies Gas Self as Unknown
+    print(df.columns)
     #Some historical csvs split the production into 'Market' and 'Self',
     #So first we need to combine those.
     for col in df.columns:
@@ -149,7 +150,7 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
         #In some cases the timeseries column is named differently, so we standardize it
         raw_data.rename(columns={'GMTTime':'GMT MKT Interval'},inplace=True)
 
-        raw_data['GMT MKT Interval'] = pd.to_datetime(raw_data['GMT MKT Interval'])
+        raw_data['GMT MKT Interval'] = pd.to_datetime(raw_data['GMT MKT Interval'], utc=True)
         end = target_datetime
         start = target_datetime - datetime.timedelta(days=1)
         start = max(start, raw_data['GMT MKT Interval'].min())
