@@ -779,7 +779,7 @@
         47.808380127
       ]
     ],
-    "_comment": "Nuclear powerplant Muhleberg shuts down -373MW, update Hydro and hydro storage from entsoe.eu, solar : www.irena.org", 
+    "_comment": "Nuclear powerplant Muhleberg shuts down -373MW, update Hydro and hydro storage from entsoe.eu, solar : www.irena.org",
     "capacity": {
       "biomass": 240,
       "coal": 0,
@@ -1194,7 +1194,7 @@
       "wind": 25223
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
       "https://github.com/JosepRey"
     ],
     "flag_file_name": "es.png",
@@ -1921,7 +1921,7 @@
       ],
       [
         37.4557,
-        34.2585 
+        34.2585
       ]
     ],
     "capacity": {
@@ -2648,7 +2648,7 @@
       ],
       [
         48.7948,
-        30.4747 
+        30.4747
       ]
     ],
     "capacity": {
@@ -3947,7 +3947,7 @@
       "oil":352,
       "solar": 11907,
       "wind": 6004
-      
+
     },
     "contributors": [
       "https://github.com/7hibault",
