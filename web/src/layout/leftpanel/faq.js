@@ -2,6 +2,7 @@ import React from 'react';
 
 // Modules
 import { __ } from '../../helpers/translation';
+import FAQ from '../../components/faq';
 
 export default () => (
   <div className="faq-panel">
@@ -11,6 +12,6 @@ export default () => (
       </span>
       <span className="title">{__('misc.faq')}</span>
     </div>
-    <div className="faq" />
+    <FAQ className="faq" />
   </div>
 );

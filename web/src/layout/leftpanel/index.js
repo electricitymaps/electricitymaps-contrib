@@ -6,17 +6,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { dispatchApplication } from '../../store';
+
 // Layout
 import CountryPanel from './countrypanel';
-import Faq from './faq';
+import FAQLayout from './faq';
 import InfoText from './infotext';
 import MobileInfoTab from './mobileinfotab';
 import ZoneList from '../../components/zonelist';
 
 // Modules
 import { __ } from '../../helpers/translation';
+import SearchBar from '../../components/searchbar';
 
 const { co2Sub } = require('../../helpers/formatting');
+
+const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
+  if (key === '/' && (currentPage === 'map' || currentPage === 'country')) {
+    // Reset input and focus
+    if (searchRef.current) {
+      searchRef.current.value = '';
+      searchRef.current.focus();
+    }
+  } else if (key && key.match(/^[A-z]$/) && currentPage === 'map') {
+    // If input is not focused, focus it and append the pressed key
+    if (searchRef.current && searchRef.current !== document.activeElement) {
+      searchRef.current.value += key;
+      searchRef.current.focus();
+    }
+  }
+};
 
 // TODO: Move all styles from styles.css to here
 
@@ -54,9 +73,12 @@ export default connect(mapStateToProps)(props => (
         />
       </div>
 
-      <div className="zone-search-bar">
-        <input placeholder={__('left-panel.search')} />
-      </div>
+      <SearchBar
+        className="zone-search-bar"
+        placeholder={__('left-panel.search')}
+        documentKeyUpHandler={documentSearchKeyUpHandler}
+        searchHandler={query => dispatchApplication('searchQuery', query)}
+      />
 
       <ZoneList />
 
@@ -94,6 +116,6 @@ export default connect(mapStateToProps)(props => (
         </div>
       </div>
     </div>
-    <Faq />
+    <FAQLayout />
   </div>
 ));
