@@ -16,16 +16,12 @@ steps:
       # geometries
       - generate-geometries.js
       - topogen.sh
+      - third_party_maps
       # source code
       - ../config/{exchanges,zones}.json
-      # - locales
-      # - public/{css,fonts,images}
-      # - src
-      # - views
-      # - ./{.eslintrc,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
+      - mkdir -p src
       - bash topogen.sh
-      - yarn build-release
     outputs:
       - public/dist/zonegeometries.json
