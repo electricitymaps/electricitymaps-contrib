@@ -11,7 +11,7 @@ import datetime
 import os
 
 import arrow
-from dateutil import parser
+from dateutil import parser, tz
 os.environ.setdefault('EIA_KEY', 'eia_key')
 from eiapy import Series
 import requests
@@ -126,7 +126,10 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
     series = Series(series_id=series_id, session=s)
 
     if target_datetime:
-        raw_data = series.last_from(24, end=target_datetime)
+        utc = tz.gettz('UTC')
+        #eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
+        dt = target_datetime.astimezone(utc).strftime('%Y%m%dT%HZ')
+        raw_data = series.last_from(24, end=dt)
     else:
         # Get the last 24 hours available.
         raw_data = series.last(24)
