@@ -92,6 +92,9 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
+            if type == 'solar' and point['value'] < 0:
+                point['value'] = 0
+
             point.update({
                 'production': {type: point.pop('value')},
                 'storage': {},  # required by merge_production_outputs()
