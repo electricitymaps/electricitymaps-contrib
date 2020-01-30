@@ -26,13 +26,13 @@ def parse_date(item):
     return arrow.get(item['Nombre'], 'YYYY/MM/DD hh:mm:ss').replace(tzinfo=dateutil.tz.gettz(tz))
 
 
-def fetch_production(zone_key='PE', session=None, target_dt=None, logger=getLogger(__name__)):
+def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
     Arguments:
     zone_key (optional) -- used in case a parser is able to fetch multiple countries
     session (optional) -- request session passed in order to re-use an existing session
-    target_dt (optional) -- used if parser can fetch data for a specific day
+    target_datetime (optional) -- used if parser can fetch data for a specific day
     logger (optional) -- handles logging when parser is run as main
     Return:
     A list of dictionaries in the form:
@@ -57,7 +57,7 @@ def fetch_production(zone_key='PE', session=None, target_dt=None, logger=getLogg
       'source': 'mysource.com'
     }
     """
-    if target_dt:
+    if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     r = session or requests.session()
