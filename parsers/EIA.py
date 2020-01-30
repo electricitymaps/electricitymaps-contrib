@@ -16,6 +16,7 @@ os.environ.setdefault('EIA_KEY', 'eia_key')
 from eiapy import Series
 import requests
 
+from .lib.validation import validate
 from .ENTSOE import merge_production_outputs
 
 EXCHANGES = {
@@ -92,13 +93,13 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
-            if type == 'solar' and point['value'] < 0:
-                point['value'] = 0
-
             point.update({
                 'production': {type: point.pop('value')},
                 'storage': {},  # required by merge_production_outputs()
             })
+
+            #replace small negative solar values (>-5) with 0s
+            point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
 
     return merge_production_outputs(mixes, zone_key, merge_source='eia.gov')
