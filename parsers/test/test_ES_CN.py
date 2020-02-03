@@ -119,22 +119,22 @@ class TestESIB(unittest.TestCase):
                             or production['datetime'] == self.afternoon
                             or production['datetime'] == self.evening)
             if self.morning == production['datetime']:
-                self.assertEqual(production['production']['gas'], 54.5)
-                self.assertEqual(production['production']['oil'], 4.0)
+                self.assertEqual(production['production']['gas'], 0.0)
+                self.assertEqual(production['production']['oil'], 58.5)
                 self.assertEqual(production['production']['hydro'], 5.0)
                 self.assertEqual(production['production']['solar'], 0.4)
                 self.assertEqual(production['production']['wind'], 0.5)
                 self.assertEqual(production['storage']['hydro'], 0.0)
             elif self.afternoon == production['datetime']:
-                self.assertEqual(production['production']['gas'], 12.2)
-                self.assertEqual(production['production']['oil'], 182.0)
+                self.assertEqual(production['production']['gas'], 0.0)
+                self.assertEqual(production['production']['oil'], 194.2)
                 self.assertEqual(production['production']['hydro'], 0.0)
                 self.assertEqual(production['production']['solar'], 5.3)
                 self.assertEqual(production['production']['wind'], 3.1)
                 self.assertEqual(production['storage']['hydro'], 0.0)
             elif self.evening == production['datetime']:
-                self.assertEqual(production['production']['gas'], 44.5)
-                self.assertEqual(production['production']['oil'], 4.0)
+                self.assertEqual(production['production']['gas'], 0.0)
+                self.assertEqual(production['production']['oil'], 48.5)
                 self.assertEqual(production['production']['hydro'], 5.0)
                 self.assertEqual(production['production']['solar'], 0.4)
                 self.assertEqual(production['production']['wind'], 0.5)
@@ -173,8 +173,8 @@ class TestESIB(unittest.TestCase):
                             or production['datetime'] == self.afternoon
                             or production['datetime'] == self.evening)
             if self.morning == production['datetime']:
-                self.assertEqual(production['production']['gas'], 4.5)
-                self.assertEqual(production['production']['oil'], 4.0)
+                self.assertEqual(production['production']['gas'], 0.0)
+                self.assertEqual(production['production']['oil'], 8.5)
                 self.assertEqual(production['production']['hydro'], 0.0)
                 self.assertEqual(production['production']['solar'], 0.4)
                 self.assertEqual(production['production']['wind'], 0.5)
@@ -187,8 +187,8 @@ class TestESIB(unittest.TestCase):
                 self.assertEqual(production['production']['wind'], 1.6)
                 self.assertEqual(production['storage']['hydro'], -2.4)
             elif self.evening == production['datetime']:
-                self.assertEqual(production['production']['gas'], 4.5)
-                self.assertEqual(production['production']['oil'], 0.0)
+                self.assertEqual(production['production']['gas'], 0.0)
+                self.assertEqual(production['production']['oil'], 4.5)
                 self.assertEqual(production['production']['hydro'], 0.0)
                 self.assertEqual(production['production']['solar'], 0.0)
                 self.assertEqual(production['production']['wind'], 0.5)
