@@ -93,12 +93,18 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
-            point.update({
-                'production': {type: point.pop('value')},
-                'storage': {},  # required by merge_production_outputs()
-            })
+            if type == 'hydro' and point['value'] < 0:
+                point.update({
+                    'production': {},# required by merge_production_outputs()
+                    'storage': {type: point.pop('value')},
+                })
+            else:
+                point.update({
+                    'production': {type: point.pop('value')},
+                    'storage': {},  # required by merge_production_outputs()
+                })
 
-            #replace small negative solar values (>-5) with 0s
+            #replace small negative values (>-5) with 0s This is necessary for solar
             point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
 
