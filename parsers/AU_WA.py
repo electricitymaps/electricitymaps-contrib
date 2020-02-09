@@ -66,16 +66,19 @@ def fetch_production(zone_key='AUS-WA', session=None, target_datetime=None, logg
             continue
 
         tempdf = dfCombined.loc[dfCombined['PERIOD'] == timestamp]
-        production = pd.DataFrame(tempdf.groupby('PRIMARY_FUEL').sum())
+        production = pd.DataFrame(
+            data=tempdf.groupby('PRIMARY_FUEL').sum(),
+            columns=['ACTUAL_MW', 'POTENTIAL_MWH']
+            )
         production.columns = ['production', 'capacity']
 
         # capacity is specified to be "MWh" and the data points are very 30 minutes
         # so multiply by 2 to get MW value
         production['capacity'] *= 2
 
-        production.ix['oil'] = production.ix['Distillate']
+        production.loc['oil'] = production.loc['Distillate']
         production.drop('Distillate', inplace=True)
-        production.ix['unknown'] = production.ix['Landfill Gas']
+        production.loc['unknown'] = production.loc['Landfill Gas']
         production.drop('Landfill Gas', inplace=True)
         production.index = production.index.str.lower()
 
