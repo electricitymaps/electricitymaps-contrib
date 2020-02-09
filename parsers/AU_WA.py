@@ -76,9 +76,9 @@ def fetch_production(zone_key='AUS-WA', session=None, target_datetime=None, logg
         # so multiply by 2 to get MW value
         production['capacity'] *= 2
 
-        production.ix['oil'] = production.ix['Distillate']
+        production.loc['oil'] = production.loc['Distillate']
         production.drop('Distillate', inplace=True)
-        production.ix['unknown'] = production.ix['Landfill Gas']
+        production.loc['unknown'] = production.loc['Landfill Gas']
         production.drop('Landfill Gas', inplace=True)
         production.index = production.index.str.lower()
 
