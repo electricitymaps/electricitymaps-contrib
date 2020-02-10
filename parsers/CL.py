@@ -97,7 +97,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
         raise NotImplementedError('This parser is not yet able to parse real-time data, please specify a historical '
                                   'date in YYYYMMDD format.')
 
-    arr_target_datetime = arrow.get(target_datetime, "YYYYMMDD")
+    arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
 
@@ -134,4 +134,8 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print('fetch_production() ->')
-    print(fetch_production(target_datetime="20190810"))
+    print(
+        fetch_production(
+            target_datetime=arrow.get("20190810", "YYYYMMDD")
+        )
+    )
