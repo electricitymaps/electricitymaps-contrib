@@ -30,6 +30,7 @@ EXCHANGES = {
 }
 # based on https://www.eia.gov/beta/electricity/gridmonitor/dashboard/electric_overview/US48/US48
 REGIONS = {
+    'US-BPA': 'BPAT',
     'US-CA': 'CAL',
     'US-CAR': 'CAR',
     'US-SPP': 'CENT',

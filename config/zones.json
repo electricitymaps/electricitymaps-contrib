@@ -3912,7 +3912,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_BPA.fetch_production"
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption"
     },
     "timezone": null,
     "bounding_box": [
@@ -4008,8 +4009,8 @@
     ],
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "US_TX.fetch_production",
-      "consumption": "US_TX.fetch_consumption"
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption"
     },
     "timezone": "US/Central"
   },
