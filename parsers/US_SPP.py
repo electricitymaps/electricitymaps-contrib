@@ -148,7 +148,7 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
         historic_generation_url = HISTORIC_GENERATION_BASE_URL + filename
         raw_data = get_data(historic_generation_url, session=session)
         #In some cases the timeseries column is named differently, so we standardize it
-        raw_data.rename(columns={'GMTTime':'GMT MKT Interval'},inplace=True)
+        raw_data.rename(columns={'GMTTime': 'GMT MKT Interval'},inplace=True)
 
         raw_data['GMT MKT Interval'] = pd.to_datetime(raw_data['GMT MKT Interval'], utc=True)
         end = target_datetime
@@ -163,9 +163,10 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
 
     data = []
     for item in processed_data:
+        datetime = item[0].replace(tzinfo=tz.gettz('Etc/GMT'))
         datapoint = {
           'zoneKey': zone_key,
-          'datetime': item[0],
+          'datetime': datetime,
           'production': item[1],
           'storage': {},
           'source': 'spp.org'
