@@ -163,10 +163,10 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
 
     data = []
     for item in processed_data:
-        datetime = item[0].replace(tzinfo=tz.gettz('Etc/GMT'))
+        dt = item[0].replace(tzinfo=tz.gettz('Etc/GMT'))
         datapoint = {
           'zoneKey': zone_key,
-          'datetime': datetime,
+          'datetime': dt,
           'production': item[1],
           'storage': {},
           'source': 'spp.org'
