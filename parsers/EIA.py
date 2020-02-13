@@ -29,19 +29,26 @@ EXCHANGES = {
     'US-NY->US-PJM': 'EBA.NYIS-PJM.ID.H'
 }
 # based on https://www.eia.gov/beta/electricity/gridmonitor/dashboard/electric_overview/US48/US48
+# or https://www.eia.gov/opendata/qb.php?category=3390101
+# List includes regions and Balancing Authorities. 
 REGIONS = {
     'US-BPA': 'BPAT',
     'US-CA': 'CAL',
     'US-CAR': 'CAR',
+    'US-DUK': 'DUK', #Duke Energy Carolinas
     'US-SPP': 'CENT',
     'US-FL': 'FLA',
     'US-PJM': 'MIDA',
     'US-MISO': 'MIDW',
     'US-NEISO': 'NE',
+    'US-NEVP': 'NEVP', #Nevada Power Company
     'US-NY': 'NY',
     'US-NW': 'NW',
+    'US-SC': 'SC', #South Carolina Public Service Authority
     'US-SE': 'SE',
     'US-SEC': 'SEC',
+    'US-SOCO': 'SOCO', #Southern Company Services Inc - Trans
+    'US-SWPP': 'SWPP', #Southwest Power Pool
     'US-SVERI': 'SW',
     'US-TN': 'TEN',
     'US-TX': 'TEX',

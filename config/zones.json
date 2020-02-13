@@ -3963,6 +3963,29 @@
     },
     "timezone": null
   },
+  "US-DUK": {
+    "comment": "Duke Energy Carolinas",
+    "bounding_box": [
+      [
+        -83.2518,
+        34.2505
+      ],
+      [
+        -79.1045,
+        36.2525
+      ]
+    ],
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "timezone": "US/Eastern"
+  },
   "US-SEC": {
     "bounding_box": [
       [
@@ -4183,6 +4206,29 @@
     },
     "timezone": null
   },
+  "US-NEVP": {
+    "comment": "Nevada Power Company",
+    "bounding_box": [
+      [
+        -118.7481,
+        35.8322
+      ],
+      [
+        -112.9336,
+        41.9947
+      ]
+    ],
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "timezone": null
+  },
   "US-NV": {
     "bounding_box": [
       [
@@ -4281,15 +4327,47 @@
     "timezone": null
   },
   "US-SC": {
+    "comment": "South Carolina Public Service Authority",
     "bounding_box": [
       [
-        -83.110764,
-        31.964076
+        -81.6726,
+        32.7536
       ],
       [
-        -78.58189,
-        35.06872
+        -78.9549,
+        34.4838
       ]
+    ],
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "timezone": "US/Eastern"
+  },
+  "US-SOCO": {
+    "comment": "Southern Company Services, Inc",
+    "bounding_box": [
+      [
+        -88.9689,
+        30.3916
+      ],
+      [
+        -81.915,
+        34.5297
+      ]
+    ],
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "contributors": [
+      "https://github.com/systemcatch"
     ],
     "flag_file_name": "us.png",
     "timezone": null
@@ -4317,12 +4395,12 @@
     "timezone": null,
     "bounding_box": [
       [
-        -104.55665897762971,
-        42.01833904950752
+        -103.9005,
+        33.5302
       ],
       [
-        -95.95355839210612,
-        46.44202068870379
+        -95.6571,
+        48.2931
       ]
     ]
   },
