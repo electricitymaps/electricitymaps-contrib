@@ -1553,7 +1553,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1577,18 +1578,20 @@
       ]
     ],
     "capacity": {
-      "biomass": 35,
-      "coal": 764,
-      "gas": 1004,
-      "oil": 415,
-      "solar": 77,
-      "wind": 863
+      "biomass": 119,
+      "coal": 559,
+      "gas": 1569‬,
+      "hydro": 11,
+      "oil": 312,
+      "solar": 323,
+      "wind": 1404
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/systemcatch",
       "https://github.com/brunolajoie",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
