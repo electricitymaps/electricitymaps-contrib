@@ -957,7 +957,7 @@
       "battery storage": 0
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
       "https://github.com/nessie2013"
     ],
     "parsers": {
@@ -1186,15 +1186,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 981,
-      "coal": 9683,
-      "gas": 26284,
-      "hydro": 17087,
+      "biomass": 1098,
+      "coal": 9214,
+      "gas": 30012,
+      "hydro": 20294,
       "nuclear": 7117,
-      "oil": 715,
-      "solar": 10122,
-      "unknown": 360,
-      "wind": 25223,
+      "oil": 707,
+      "solar": 8466,
+      "unknown": 392,
+      "wind": 24447,
       "geothermal": 0,
       "battery storage": 0
     },
