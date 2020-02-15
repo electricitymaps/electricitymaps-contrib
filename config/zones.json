@@ -3610,7 +3610,11 @@
       "nuclear": 9100,
       "oil": 2251,
       "solar": 532,
-      "wind": 7112
+      "wind": 7112,
+      "geothermal": 0,
+      "coal": 0,
+      "hydro storage": 0,
+      "battery storage": 0
     },
     "contributors": [
       "https://github.com/corradio",
