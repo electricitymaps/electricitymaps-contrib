@@ -3604,16 +3604,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 4800,
+      "biomass": 4820,
       "gas": 698,
-      "hydro": 15945,
+      "hydro": 16407,
       "nuclear": 9100,
       "oil": 2251,
-      "solar": 140,
-      "wind": 6120
+      "solar": 532,
+      "wind": 7112
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
