@@ -3941,15 +3941,20 @@
   },
   "US-BPA": {
     "capacity": {
-      "biomass": 447,
-      "coal": 60,
-      "gas": 1817,
-      "hydro": 22191,
+      "biomass": 388,
+      "coal": 0,
+      "gas": 1135,
+      "hydro": 22183,
       "nuclear": 1191,
-      "wind": 4051
+      "solar": 0,
+      "geothermal": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "wind": 2770
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -4188,11 +4193,12 @@
       "coal": 60828,	
       "gas": 71255,	
       "nuclear": 13903,	
-      "solar": 312,	
-      "wind": 17224	
+      "solar": 314,	
+      "wind": 21089	
     },	
     "contributors": [	
-      "https://github.com/systemcatch"	
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],	
     "flag_file_name": "us.png",	
     "parsers": {	
@@ -4341,22 +4347,26 @@
       ]	
     ],	
     "capacity": {	
-      "biomass": 716,	
-      "coal": 65205,	
-      "gas": 63025,	
-      "hydro": 8675,	
-      "nuclear": 33164,	
-      "oil": 9148,	
-      "solar": 392,	
+      "biomass": 1620,	
+      "coal": 57587,	
+      "gas": 75150,	
+      "hydro": 9283,	
+      "nuclear": 33001,	
+      "oil": 8305,	
+      "solar": 702,	
       "unknown": 214,	
-      "wind": 1114	
+      "geothermal": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "wind": 1192	
     },	
-    "comment": "gas includes landfill, oil includes black liquor",	
+    "comment": "biomass includes landfill gas, and black liquor",	
     "contributors": [	
       "https://github.com/systemcatch",	
       "https://github.com/jacobbaratta",	
       "https://github.com/hanshyde",	
-      "https://github.com/lorrieq"	
+      "https://github.com/lorrieq",
+      "https://github.com/nessie2013"
     ],	
     "flag_file_name": "us.png",	
     "parsers": {	
@@ -4415,16 +4425,22 @@
   },	
   "US-SPP": {	
     "capacity": {	
-      "coal": 26060,	
-      "gas": 34260,	
+      "coal": 25739,	
+      "gas": 36269,	
       "hydro": 3420,	
-      "nuclear": 2110,	
-      "oil": 1690,	
-      "wind": 16130	
+      "nuclear": 2069,	
+      "oil": 1619,
+      "solar": 179,
+      "unknown": 90,
+      "geothermal": 0,
+      "hydro storage": 0,
+      "battery storage": 0,
+      "wind": 20609	
     },	
     "contributors": [	
       "https://github.com/systemcatch",	
-      "https://github.com/Hyric89"	
+      "https://github.com/Hyric89",
+      "https://github.com/nessie2013"
     ],	
     "flag_file_name": "us.png",	
     "parsers": {	
