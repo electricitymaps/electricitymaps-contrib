@@ -954,9 +954,11 @@
       "solar": 48570,
       "unknown": 3137,
       "wind": 60710
+      "battery storage": 0,
     },
     "contributors": [
       "https://github.com/corradio"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1556,6 +1558,7 @@
       "unknown": 6155,
       "wind": 23200,
       "battery storage": 0,
+      "oil": 0,
       "geothermal": 0
     },
     "contributors": [
@@ -2241,17 +2244,20 @@
       "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 665,
-      "hydro": 1986,
+      "geothermal": 779,
+      "hydro": 2060,
       "nuclear": 0,
-      "oil": 117,
+      "oil": 73,
       "solar": 0,
       "unknown": 0,
-      "wind": 3
+      "hydro storage": 0,
+      "battery storage": 0,
+      "wind": 2
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/SNPerkin"
+      "https://github.com/SNPerkin",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "IS.fetch_production"
