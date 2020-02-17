@@ -261,7 +261,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
   - Solar & wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=KWT)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?name=&defaultValue=true&viewType=TABLE&areaType=BZN)
+- Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova: [FAS](http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf)
 - Montenegro: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
