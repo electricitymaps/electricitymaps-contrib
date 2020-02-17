@@ -98,6 +98,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         series = PRODUCTION_MIX_SERIES % (REGIONS[zone_key], code)
         mix = _fetch_series(zone_key, series, session=session,
                             target_datetime=target_datetime, logger=logger)
+
         if not mix:
             continue
         for point in mix:
@@ -146,8 +147,9 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
     if target_datetime:
         utc = tz.gettz('UTC')
         #eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
-        dt = target_datetime.astimezone(utc).strftime('%Y%m%dT%HZ')
-        raw_data = series.last_from(24, end=dt)
+        end = target_datetime.astimezone(utc).strftime('%Y%m%dT%HZ')
+        start = (target_datetime.astimezone(utc) - datetime.timedelta(days=1)).strftime('%Y%m%dT%HZ')
+        raw_data = series.get_data(start=start, end=end)
     else:
         # Get the last 24 hours available.
         raw_data = series.last(24)
