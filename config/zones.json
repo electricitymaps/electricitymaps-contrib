@@ -4455,9 +4455,17 @@
         -30.1096863746
       ]
     ],
+    "capacity": {
+      "biomass": 413,
+      "hydro": 1538,
+      "solar": 242,
+      "unknown": 1170,
+      "wind": 1511
+    },
     "contributors": [
       "https://github.com/jarek",
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "UY.fetch_production"
