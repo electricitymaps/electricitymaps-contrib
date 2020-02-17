@@ -81,7 +81,11 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
         # map items from names in CAISO CSV to names used in Electricity Map
         for ca_gen_type, mapped_gen_type in production_map.items():
             production = float(csv[ca_gen_type][i])
-
+            
+            if mapped_gen_type == 'solar' and production < 0:
+                logger.warn('Solar production for US_CA was reported as less than 0 and was clamped')
+                production = 0.0
+            
             # if another mean of production created a value, sum them up
             data['production'][mapped_gen_type] += production
 

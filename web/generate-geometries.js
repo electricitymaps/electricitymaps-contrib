@@ -216,7 +216,7 @@ const zoneDefinitions = [
   { zoneName: 'CI', type: 'country', id: 'CIV'},
   //{ zoneName: 'CL-SING', type: 'states', countryId: 'CHL', states: ['CL.AP', 'CL.TA', 'CL.AN']},
   //{ zoneName: 'CL', type: 'country', id: 'CHL'},
-  { zoneName: 'CL-SING-SIC', type: 'administrations', administrations: ['CHL-2693', 'CHL-2694', 'CHL-2695', 'CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
+  { zoneName: 'CL-SEN', type: 'administrations', administrations: ['CHL-2693', 'CHL-2694', 'CHL-2695', 'CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
   { zoneName: 'CL-SEM', countryId: 'CHL', stateId: 'CL.MA', type: 'state' },
   { zoneName: 'CL-SEA', countryId: 'CHL', stateId: 'CL.AI', type: 'state' },
   { zoneName: 'CM', type: 'country', id: 'CMR'},

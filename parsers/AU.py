@@ -484,7 +484,9 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
 
     r = session or requests.session()
     url = 'https://www.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY'
-    response = r.get(url)
+    # A User-Agent is required or the server gives us a 403 
+    headers = { 'User-Agent': 'electricitymap.org' }
+    response = r.get(url, headers = headers)
     obj = list(filter(lambda o: o['REGIONID'] == mapping['region_id'],
                       response.json()['ELEC_NEM_SUMMARY']))[0]
 
@@ -545,7 +547,9 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
 
     r = session or requests.session()
     url = 'https://www.aemo.com.au/aemo/apps/api/report/ELEC_NEM_SUMMARY'
-    response = r.get(url)
+    # A User-Agent is required or the server gives us a 403 
+    headers = { 'User-Agent': 'electricitymap.org' }
+    response = r.get(url, headers = headers)
     obj = list(filter(lambda o:
                       o['REGIONID'] == PRICE_MAPPING_DICTIONARY[zone_key],
                       response.json()['ELEC_NEM_SUMMARY']))[0]

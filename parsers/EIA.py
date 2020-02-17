@@ -11,11 +11,12 @@ import datetime
 import os
 
 import arrow
-from dateutil import parser
+from dateutil import parser, tz
 os.environ.setdefault('EIA_KEY', 'eia_key')
 from eiapy import Series
 import requests
 
+from .lib.validation import validate
 from .ENTSOE import merge_production_outputs
 
 EXCHANGES = {
@@ -28,18 +29,26 @@ EXCHANGES = {
     'US-NY->US-PJM': 'EBA.NYIS-PJM.ID.H'
 }
 # based on https://www.eia.gov/beta/electricity/gridmonitor/dashboard/electric_overview/US48/US48
+# or https://www.eia.gov/opendata/qb.php?category=3390101
+# List includes regions and Balancing Authorities. 
 REGIONS = {
+    'US-BPA': 'BPAT',
     'US-CA': 'CAL',
     'US-CAR': 'CAR',
+    'US-DUK': 'DUK', #Duke Energy Carolinas
     'US-SPP': 'CENT',
     'US-FL': 'FLA',
     'US-PJM': 'MIDA',
     'US-MISO': 'MIDW',
     'US-NEISO': 'NE',
+    'US-NEVP': 'NEVP', #Nevada Power Company
     'US-NY': 'NY',
     'US-NW': 'NW',
+    'US-SC': 'SC', #South Carolina Public Service Authority
     'US-SE': 'SE',
     'US-SEC': 'SEC',
+    'US-SOCO': 'SOCO', #Southern Company Services Inc - Trans
+    'US-SWPP': 'SWPP', #Southwest Power Pool
     'US-SVERI': 'SW',
     'US-TN': 'TEN',
     'US-TX': 'TEX',
@@ -89,13 +98,23 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         series = PRODUCTION_MIX_SERIES % (REGIONS[zone_key], code)
         mix = _fetch_series(zone_key, series, session=session,
                             target_datetime=target_datetime, logger=logger)
+
         if not mix:
             continue
         for point in mix:
-            point.update({
-                'production': {type: point.pop('value')},
-                'storage': {},  # required by merge_production_outputs()
-            })
+            if type == 'hydro' and point['value'] < 0:
+                point.update({
+                    'production': {},# required by merge_production_outputs()
+                    'storage': {type: point.pop('value')},
+                })
+            else:
+                point.update({
+                    'production': {type: point.pop('value')},
+                    'storage': {},  # required by merge_production_outputs()
+                })
+
+            #replace small negative values (>-5) with 0s This is necessary for solar
+            point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
 
     return merge_production_outputs(mixes, zone_key, merge_source='eia.gov')
@@ -126,7 +145,11 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
     series = Series(series_id=series_id, session=s)
 
     if target_datetime:
-        raw_data = series.last_from(24, end=target_datetime)
+        utc = tz.gettz('UTC')
+        #eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
+        end = target_datetime.astimezone(utc).strftime('%Y%m%dT%HZ')
+        start = (target_datetime.astimezone(utc) - datetime.timedelta(days=1)).strftime('%Y%m%dT%HZ')
+        raw_data = series.get_data(start=start, end=end)
     else:
         # Get the last 24 hours available.
         raw_data = series.last(24)

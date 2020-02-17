@@ -86,7 +86,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Brazil: [ONS](http://www.ons.org.br/pt/paginas/energia-agora/carga-e-geracao)
+- Brazil: [ONS](http://www.ons.org.br/paginas/energia-agora/carga-e-geracao)
 - Bulgaria: [TSO](http://tso.bg/default.aspx/page-707/bg)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet)
 - Canada (New Brunswick): [NB Power](https://tso.nbpower.com/Public/en/op/market/data.aspx)
@@ -188,7 +188,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - Southwest Variable Energy Resource Initiative: [SVERI](https://sveri.energy.arizona.edu/#generation-by-fuel-type)
   - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)
   - Seminole Electric Cooperative (Florida): [EIA](https://www.eia.gov/opendata/qb.php?category=2122629&sdid=EBA.SEC-ALL.NG.H), [SEC](https://www.seminole-electric.com/facilities/generation/)
-- Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
+- Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 &nbsp;</details>
 
 ### Production capacity data sources
@@ -296,7 +296,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - South Korea: [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
-- Spain:
+- Spain:[REE](https://www.ree.es/es/datos/publicaciones/series-estadisticas-nacionales)
   - Hydro: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ESP)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?name=&defaultValue=false&viewType=TABLE&areaType=BZN&atch=false&dateTime.dateTime=01.01.2017+00:00|UTC|YEAR&dateTime.endDateTime=01.01.2017+00:00|UTC|YEAR&area.values=CTY|10YES-REE------0!BZN|10YES-REE------0&productionType.values=B01&productionType.values=B02&productionType.values=B03&productionType.values=B04&productionType.values=B05&productionType.values=B06&productionType.values=B07&productionType.values=B08&productionType.values=B09&productionType.values=B10&productionType.values=B11&productionType.values=B12&productionType.values=B13&productionType.values=B14&productionType.values=B20&productionType.values=B15&productionType.values=B16&productionType.values=B17&productionType.values=B18&productionType.values=B19)
 - Spain (Canary Islands)
@@ -351,9 +351,10 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
 - Lithuania ⇄ Sweden: ["NordBalt": 700 MW](https://en.wikipedia.org/wiki/NordBalt)
 - Lithuania ⇄ Poland: ["LitPol Link": 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
+- Malta ⇄ Italy Sicily: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
+- Montenegro ⇄ Italy Central South: ["MONITA": 600MW](https://tyndp.entsoe.eu/tyndp2018/projects/projects/28)
 - Norway ⇄ Netherlands: ["NorNed": 700 MW](https://en.wikipedia.org/wiki/NorNed)
 - New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
-- Malta ⇄ Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
 - Russia ⇉ Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
 - Sweden ⇄ Poland: ["SwePol": 600 MW](https://en.wikipedia.org/wiki/SwePol)
