@@ -104,13 +104,12 @@ const getLayerMouseMoveHandler = (setSelectedLayerIndex, isMobile) => (timeIndex
     ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
     : { x: 0, y: 0 };
   setSelectedLayerIndex(layerIndex);
-  console.log('update zone layer', layer);
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-  dispatchApplication('tooltipDisplayMode', layer.key);
   dispatchApplication('tooltipPosition', tooltipPosition);
   dispatchApplication('tooltipZoneData', layer.data[timeIndex].data._countryData);
+  dispatchApplication('tooltipDisplayMode', layer.key);
+  dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
-const getLayerMouseOutHandler = (setSelectedLayerIndex) => () => {
+const getLayerMouseOutHandler = setSelectedLayerIndex => () => {
   setSelectedLayerIndex(null);
   dispatchApplication('tooltipDisplayMode', null);
 };
@@ -119,7 +118,7 @@ const getLayerMouseOutHandler = (setSelectedLayerIndex) => () => {
 const getFillSelector = (layers, displayByEmissions) => layerIndex => modeColor[layers[layerIndex].key]
   || (displayByEmissions ? 'darkgray' : `url(#country-history-mix-exchanges-${layers[layerIndex].key})`);
 
-const getGradientStopColorSelector = (co2ColorScale) => (d, key) => (d._countryData.exchangeCo2Intensities
+const getGradientStopColorSelector = co2ColorScale => (d, key) => (d._countryData.exchangeCo2Intensities
   ? co2ColorScale(d._countryData.exchangeCo2Intensities[key]) : 'darkgray');
 
 const getCurrentTime = state =>

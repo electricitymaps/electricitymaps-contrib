@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+} from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { first, last } from 'lodash';
 import moment from 'moment';
