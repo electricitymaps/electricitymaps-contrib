@@ -14,6 +14,7 @@ const GraphBackground = ({
   const [y2, y1] = valueScale.range();
   if (x1 >= x2 || y1 >= y2) return null;
 
+  // Mouse hover events
   let mouseOutRectTimeout;
   const handleRectMouseMove = (ev) => {
     if (mouseOutRectTimeout) {

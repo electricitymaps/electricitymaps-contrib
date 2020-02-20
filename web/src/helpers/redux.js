@@ -1,3 +1,9 @@
+import { keys, sortBy, uniq, flatMap } from 'lodash';
+
+export function getExchangeKeys(zoneHistory) {
+  return sortBy(uniq(flatMap(zoneHistory, d => keys(d.exchange))));
+}
+
 export function getCurrentZoneData(state) {
   const { grid } = state.data;
   const zoneName = state.application.selectedZoneName;

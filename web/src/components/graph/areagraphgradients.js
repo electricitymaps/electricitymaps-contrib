@@ -4,7 +4,7 @@ const AreaGraphGradients = React.memo(({
   id,
   layers,
   timeScale,
-  stopColor,
+  stopColorSelector,
 }) => {
   const [x1, x2] = timeScale.range();
   if (x1 >= x2) return null;
@@ -19,7 +19,7 @@ const AreaGraphGradients = React.memo(({
             <stop
               key={data.datetime}
               offset={stopOffset(data.datetime)}
-              stopColor={stopColor(data, layer.key)}
+              stopColor={stopColorSelector(data, layer.key)}
             />
           ))}
         </linearGradient>

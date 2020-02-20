@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { first, last } from 'lodash';
 import moment from 'moment';
 
+import AreaGraphGradients from './areagraphgradients';
 import AreaGraphLayers from './areagraphlayers';
 import GraphBackground from './graphbackground';
 import GraphHoverLine from './graphhoverline';
@@ -12,6 +13,14 @@ import TimeAxis from './timeaxis';
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
+
+const getTimeScale = (containerWidth, datetimes, currentTime) => scaleTime()
+  .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
+  .range([0, containerWidth]);
+
+const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
+  .domain([0, maxTotalValue * 1.1])
+  .range([containerHeight, Y_AXIS_PADDING]);
 
 const AreaGraph = React.memo(({
   id,
@@ -27,12 +36,15 @@ const AreaGraph = React.memo(({
   layerMouseOutHandler,
   selectedTimeIndex,
   selectedLayerIndex,
-  renderGradients,
+  gradientIdPrefix,
+  gradientLayers,
+  gradientStopColorSelector,
   isMobile,
 }) => {
   const ref = useRef(null);
   const [container, setContainer] = useState({ width: 0, height: 0 });
 
+  // Container resize hook
   useEffect(() => {
     const updateDimensions = () => {
       if (ref.current) {
@@ -53,13 +65,15 @@ const AreaGraph = React.memo(({
     };
   });
 
-  // Prepare axes and graph scales
-  const timeScale = scaleTime()
-    .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
-    .range([0, container.width]);
-  const valueScale = scaleLinear()
-    .domain([0, maxTotalValue * 1.1])
-    .range([container.height, Y_AXIS_PADDING]);
+  // Generate graph scales
+  const timeScale = useMemo(
+    () => getTimeScale(container.width, datetimes, currentTime),
+    [container.width, datetimes, currentTime]
+  );
+  const valueScale = useMemo(
+    () => getValueScale(container.height, maxTotalValue),
+    [container.height, maxTotalValue]
+  );
 
   return (
     <svg id={id} ref={ref}>
@@ -100,7 +114,12 @@ const AreaGraph = React.memo(({
         data={selectedLayerIndex && layers[selectedLayerIndex].data}
         selectedTimeIndex={selectedTimeIndex}
       />
-      {renderGradients && renderGradients(timeScale)}
+      <AreaGraphGradients
+        id={gradientIdPrefix}
+        timeScale={timeScale}
+        stopColorSelector={gradientStopColorSelector}
+        layers={gradientLayers}
+      />
     </svg>
   );
 });

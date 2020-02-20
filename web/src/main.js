@@ -28,8 +28,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { prepareGraphData } from './helpers/data';
-import { getCurrentZoneData } from './helpers/redux';
+import { getExchangeKeys, getCurrentZoneData } from './helpers/redux';
 import { getCo2Scale } from './helpers/scales';
 
 // Layout
@@ -1001,16 +1000,9 @@ function renderHistory(state) {
   zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
-  const countryHistoryMixGraph = prepareGraphData(
-    history,
-    getState().application.tableDisplayEmissions,
-    getState().application.electricityMixMode,
-    1
-  );
   countryTable
-    .exchangeKeys(countryHistoryMixGraph.exchangeKeys)
+    .exchangeKeys(getState().application.electricityMixMode === 'consumption' ? getExchangeKeys(history) : [])
     .render();
-
 
   zoneDetailsTimeSlider.onChange((selectedZoneTimeIndexInput) => {
     // when slider is on last value, we set the value to null in order to use the current state
@@ -1205,7 +1197,7 @@ observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
   }
 });
 
-observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex, state) => {
+function updateTooltip(state) {
   if (state.application.tooltipDisplayMode) {
     const isExchange = modeOrder.indexOf(state.application.tooltipDisplayMode) === -1;
     const fun = isExchange
@@ -1222,6 +1214,14 @@ observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex
       state.application.tableDisplayEmissions,
       co2color, co2Colorbars);
   }
+}
+
+observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex, state) => {
+  updateTooltip(state);
+});
+
+observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode, state) => {
+  updateTooltip(state);
 });
 
 // Observe for electricityMixMode change
