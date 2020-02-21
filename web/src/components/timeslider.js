@@ -1,122 +1,123 @@
+import React, { useRef, useState, useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { first, last } from 'lodash';
+import moment from 'moment';
+
+import { __ } from '../helpers/translation';
+
 const d3 = Object.assign(
   {},
-  require('d3-selection'),
   require('d3-scale'),
-  require('d3-axis'),
 );
-const moment = require('moment');
-const translation = require('../helpers/translation');
 
-
-const TIME_FORMAT = 'LT'; // Localized time, e.g. "8:30 PM"
 const NUMBER_OF_TICKS = 5;
 const AXIS_MARGIN_LEFT = 5;
 
-export default class TimeSlider {
-  constructor(selector, dateAccessor) {
-    this.rootElement = d3.select(selector);
-    this.dateAccessor = dateAccessor;
-    this._setup();
+const sampledTickValues = (data) => {
+  const tickValues = [];
+  if (data.length >= NUMBER_OF_TICKS) {
+    for (let i = 0; i < NUMBER_OF_TICKS; i += 1) {
+      const sampleIndex = Math.floor(((data.length - 1) / (NUMBER_OF_TICKS - 1)) * (i));
+      tickValues.push(data[sampleIndex]);
+    }
   }
+  return tickValues;
+};
 
-  _setup() {
-    this.slider = this.rootElement.append('input')
-      .attr('type', 'range')
-      .attr('class', 'time-slider-input');
-    this.axisContainer = this.rootElement.append('svg')
-      .attr('class', 'time-slider-axis-container');
-    this.axis = this.axisContainer.append('g')
-      .attr('class', 'time-slider-axis')
-      .attr('transform', `translate(${AXIS_MARGIN_LEFT}, 0)`);
+const renderTick = (v, ind) =>
+  (ind === NUMBER_OF_TICKS - 1 ? __('country-panel.now') : moment(v).format('LT')); // Localized time, e.g. "8:30 PM"
 
-    const onChangeAndInput = () => {
-      const selectedIndex = parseInt(this.slider.property('value'), 10);
-      if (this._onChange) {
-        this._onChange(selectedIndex);
+const getSelectedZoneHistory = state =>
+  state.data.histories[state.application.selectedZoneName] || [];
+
+const mapStateToProps = state => ({
+  selectedIndex: state.application.selectedZoneTimeIndex,
+  timestamps: getSelectedZoneHistory(state).map(d => moment(d.stateDatetime).toDate()),
+});
+
+const TimeSlider = ({ className, timestamps, selectedIndex }) => {
+  const ref = useRef(null);
+  const dispatch = useDispatch();
+  const [width, setWidth] = useState(0);
+  const [anchoredIndex, setAnchoredIndex] = useState(null);
+
+  // Container resize hook
+  useEffect(() => {
+    const updateWidth = () => {
+      if (ref.current) {
+        setWidth(ref.current.getBoundingClientRect().width - AXIS_MARGIN_LEFT);
       }
     };
-    this.slider.on('input', onChangeAndInput);
-    this.slider.on('change', onChangeAndInput);
-  }
-
-  render() {
-    if (this._data && this._data.length) {
-      const width = this.axisContainer.node().getBoundingClientRect().width - AXIS_MARGIN_LEFT;
-      this.timeScale.range([0, width]);
-      this._renderXAxis();
-      this._updateSliderValue();
+    // Initialize width if it's not set yet
+    if (!width) {
+      updateWidth();
     }
-    return this;
-  }
+    // Update container width on every resize
+    window.addEventListener('resize', updateWidth);
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+    };
+  });
 
-  _renderXAxis() {
-    const xAxis = d3.axisBottom(this.timeScale)
-      .ticks(NUMBER_OF_TICKS)
-      .tickSize(0)
-      .tickValues(this.tickValues)
-      .tickFormat((d, i) => {
-        if (i === NUMBER_OF_TICKS - 1) {
-          return translation.translate('country-panel.now');
-        }
-        return moment(d).format(TIME_FORMAT);
+  if (!timestamps || timestamps.length === 0) return null;
+
+  const handleChange = (newSelectedIndex) => {
+    // when slider is on last value, we set the value to null in order to use the current state
+    if (selectedIndex !== newSelectedIndex) {
+      const selectedZoneTimeIndex = newSelectedIndex === (timestamps.length - 1) ? null : newSelectedIndex;
+      dispatch({
+        type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
+        payload: { selectedZoneTimeIndex },
       });
-    this.axis.call(xAxis);
-    this.axis.selectAll('.tick text').attr('fill', '#000000');
-  }
-
-  _updateSliderValue() {
-    if (this._selectedIndex) {
-      this.slider.property('value', this._selectedIndex);
-    } else {
-      this.slider.property('value', this._data && this._data.length ? this._data.length : 0);
     }
-  }
+  };
 
-  data(data) {
-    if (!arguments.length) return this._data;
-    this._data = data.map(this.dateAccessor);
-    this._setupSliderRange();
-    this._setupSliderTimeScale();
-    this._sampleTickValues();
-
-    return this;
-  }
-
-  _setupSliderRange() {
-    if (this._data && this.data.length) {
-      this.slider.attr('min', 0);
-      this.slider.attr('max', this._data.length - 1);
+  const onChangeAndInput = (ev) => {
+    const index = parseInt(ev.target.value, 10);
+    setAnchoredIndex(index);
+    if (handleChange) {
+      handleChange(index);
     }
-  }
+  };
 
-  _setupSliderTimeScale() {
-    if (this._data && this.data.length) {
-      this.timeScale = d3.scaleTime();
-      const firstDate = moment(this._data[0]).toDate();
-      const lastDate = moment(this._data[this._data.length - 1]).toDate();
-      this.timeScale.domain([firstDate, lastDate]);
-    }
-  }
+  const timeScale = d3.scaleTime()
+    .domain([first(timestamps), last(timestamps)])
+    .range([0, width]);
+  
+  const [x1, x2] = timeScale.range();
 
-  _sampleTickValues() {
-    this.tickValues = [];
-    if (this._data.length >= NUMBER_OF_TICKS) {
-      for (let i = 0; i < NUMBER_OF_TICKS; i += 1) {
-        const sampleIndex = Math.floor(((this._data.length - 1) / (NUMBER_OF_TICKS - 1)) * (i));
-        const sampledTimeStamp = this._data[sampleIndex];
-        this.tickValues.push(moment(sampledTimeStamp).toDate());
-      }
-    }
-  }
+  return (
+    <div className={className}>
+      <input
+        type="range"
+        className="time-slider-input"
+        onChange={onChangeAndInput}
+        onInput={onChangeAndInput}
+        value={selectedIndex || anchoredIndex || timestamps.length - 1}
+        max={timestamps.length - 1}
+        min={0}
+      />
+      <svg className="time-slider-axis-container" ref={ref}>
+        <g
+          className="time-slider-axis"
+          transform={`translate(${AXIS_MARGIN_LEFT}, 0)`}
+          fill="none"
+          fontSize="10"
+          fontFamily="sans-serif"
+          textAnchor="middle"
+          style={{ pointerEvents: 'none' }}
+        >
+          <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
+          {sampledTickValues(timestamps).map((v, ind) => (
+            <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${timeScale(v)},0)`}>
+              <line stroke="currentColor" y2="0" />
+              <text fill="currentColor" y="3" dy="0.71em">{renderTick(v, ind)}</text>
+            </g>
+          ))}
+        </g>
+      </svg>
+    </div>
+  );
+};
 
-  selectedIndex(index, previousIndex) {
-    this._selectedIndex = index || previousIndex;
-    this.render();
-    return this;
-  }
-
-  onChange(onChangeHandler) {
-    this._onChange = onChangeHandler;
-    return this;
-  }
-}
+export default connect(mapStateToProps)(TimeSlider);

@@ -18,6 +18,7 @@ import ZoneList from '../../components/zonelist';
 // Modules
 import { __ } from '../../helpers/translation';
 import SearchBar from '../../components/searchbar';
+import TimeSlider from '../../components/timeslider';
 
 const { co2Sub } = require('../../helpers/formatting');
 
@@ -89,7 +90,9 @@ export default connect(mapStateToProps)(props => (
     <div className="left-panel-zone-details">
       <CountryPanel />
       <div className="detail-bottom-section">
-        <div className="zone-time-slider" />
+        <TimeSlider
+          className="zone-time-slider"
+        />
         <div className="social-buttons small-screen-hidden">
           <div>
             { /* Facebook share */}
