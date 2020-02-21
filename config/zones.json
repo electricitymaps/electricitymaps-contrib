@@ -4308,22 +4308,23 @@
       ]
     ],
     "capacity": {
-      "biomass": 716,
-      "coal": 65205,
-      "gas": 63025,
-      "hydro": 8675,
-      "nuclear": 33164,
-      "oil": 9148,
-      "solar": 392,
+      "biomass": 630,
+      "coal": 57588,
+      "gas": 77101,
+      "hydro": 9283,
+      "nuclear": 33001,
+      "oil": 8306,
+      "solar": 702,
       "unknown": 214,
-      "wind": 1114
+      "wind": 1192
     },
     "comment": "gas includes landfill, oil includes black liquor",
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/jacobbaratta",
       "https://github.com/hanshyde",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "us.png",
     "parsers": {
