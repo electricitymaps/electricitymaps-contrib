@@ -3573,13 +3573,13 @@
     "capacity": {
       "biomass": 4820,
       "hydro": 16301,
-      "nuclear": 8586,
+      "nuclear": 6723,
       "solar": 532,
-      "wind": 7712,
+      "wind": 8984,
       "unknown": 3087
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
       "https://github.com/nessie2013"
     ],
     "parsers": {
