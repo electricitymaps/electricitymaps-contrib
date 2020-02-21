@@ -3948,20 +3948,22 @@
     ],
     "capacity": {
       "battery storage": 136,
-      "biomass": 1274,
+      "biomass": 861,
+      "coal": 55,
       "gas":41491,
-      "geothermal": 2730,
+      "geothermal": 1785,
       "hydro":14010,
       "nuclear": 2393,
       "oil":352,
-      "solar": 11907,
-      "wind": 6004
+      "solar": 12697,
+      "wind": 6927
 
     },
     "contributors": [
       "https://github.com/7hibault",
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "us.png",
     "parsers": {
