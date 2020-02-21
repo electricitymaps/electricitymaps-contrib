@@ -4382,16 +4382,19 @@
   },
   "US-SPP": {
     "capacity": {
-      "coal": 26060,
-      "gas": 34260,
+      "coal": 25740,
+      "gas": 36270,
       "hydro": 3420,
-      "nuclear": 2110,
-      "oil": 1690,
-      "wind": 16130
+      "nuclear": 2070,
+      "oil": 1620,
+      "solar": 180,
+      "wind": 20609,
+      "unknown": 90
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/Hyric89"
+      "https://github.com/Hyric89",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "us.png",
     "parsers": {
