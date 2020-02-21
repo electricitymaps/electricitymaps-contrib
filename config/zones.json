@@ -3908,12 +3908,13 @@
   },
   "US-BPA": {
     "capacity": {
-      "biomass": 447,
-      "coal": 60,
-      "gas": 1817,
-      "hydro": 22191,
+      "biomass": 378,
+      "coal": 0,
+      "gas": 1135,
+      "hydro": 22184,
       "nuclear": 1191,
-      "wind": 4051
+      "solar": 28,
+      "wind": 2770
     },
     "contributors": [
       "https://github.com/systemcatch"
