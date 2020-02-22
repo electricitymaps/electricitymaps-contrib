@@ -130,8 +130,8 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
         data.append(datapoint)
 
-    return data[:-3]
-    """The last 3 datapoints should be omitted because they usually are incomplete and shouldn't appear on the map."""
+    return data[:-9]
+    """The last 9 datapoints should be omitted because they usually are incomplete and shouldn't appear on the map."""
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
