@@ -142,18 +142,6 @@
         fill: #616161;
     }
 }
-    
-#country-history-mix {
-    height: 10rem;
-
-    .layer path {
-        opacity: 1.0
-
-        &:hover {
-            opacity: 0.8;
-        }
-    }
-}
 
 .country-col-headlines {
     padding-bottom: 0.5em;

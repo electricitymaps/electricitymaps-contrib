@@ -28,7 +28,6 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .range([containerHeight, Y_AXIS_PADDING]);
 
 const AreaGraph = React.memo(({
-  id,
   layers,
   currentTime,
   maxTotalValue,
@@ -81,7 +80,7 @@ const AreaGraph = React.memo(({
   );
 
   return (
-    <svg id={id} ref={ref}>
+    <svg height="150px" ref={ref}>
       <TimeAxis
         scale={timeScale}
         height={container.height}

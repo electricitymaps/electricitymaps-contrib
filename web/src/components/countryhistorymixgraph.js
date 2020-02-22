@@ -191,7 +191,6 @@ const CountryHistoryMixGraph = ({
 
   return (
     <AreaGraph
-      id="country-history-mix"
       layers={layers}
       gradientIdPrefix="country-history-mix-exchanges"
       gradientLayers={exchangeLayers}
