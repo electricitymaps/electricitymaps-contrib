@@ -6,6 +6,7 @@ import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const AreaGraphLayers = React.memo(({
   layers,
+  datetimes,
   timeScale,
   valueScale,
   mouseMoveHandler,
@@ -15,9 +16,10 @@ const AreaGraphLayers = React.memo(({
   isMobile,
   svgRef,
 }) => {
-  if (!layers || !layers[0]) return null;
+  const [x1, x2] = timeScale.range();
+  if (x1 >= x2) return null;
 
-  const datetimes = layers[0].data.map(d => d.data.datetime);
+  // Generate layer paths
   const layerArea = area()
     .x(d => timeScale(d.data.datetime))
     .y0(d => valueScale(d[0]))
@@ -53,20 +55,38 @@ const AreaGraphLayers = React.memo(({
   return (
     <g>
       {layers.map((layer, ind) => (
-        <path
-          key={layer.key}
-          className={`area layer ${layer.key}`}
-          style={{ cursor: 'pointer' }}
-          fill={layer.fill}
-          d={layerArea(layer.data)}
-          /* Support only click events in mobile mode, otherwise react to mouse hovers */
-          onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onFocus={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onMouseOver={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onMouseMove={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-          onMouseOut={handleLayerMouseOut}
-          onBlur={handleLayerMouseOut}
-        />
+        <React.Fragment>
+          <path
+            key={layer.key}
+            className={`area layer ${layer.key}`}
+            style={{ cursor: 'pointer' }}
+            fill={layer.fill}
+            d={layerArea(layer.datapoints)}
+            /* Support only click events in mobile mode, otherwise react to mouse hovers */
+            onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+            onFocus={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+            onMouseOver={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+            onMouseMove={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+            onMouseOut={handleLayerMouseOut}
+            onBlur={handleLayerMouseOut}
+          />
+          {layer.gradient && (
+            <linearGradient
+              key={layer.gradient.key}
+              id={layer.gradient.key}
+              gradientUnits="userSpaceOnUse"
+              x1={x1} x2={x2}
+            >
+              {layer.datapoints.map(d => (
+                <stop
+                  key={d.data.datetime}
+                  offset={`${(timeScale(d.data.datetime) - x1) / (x2 - x1) * 100.0}%`}
+                  stopColor={layer.gradient.datapointFill(d)}
+                />
+              ))}
+            </linearGradient>
+          )}
+        </React.Fragment>
       ))}
     </g>
   );

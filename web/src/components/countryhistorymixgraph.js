@@ -21,18 +21,20 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   ));
   const format = formatting.scalePower(maxTotalValue);
 
-  const valueUnit = format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO2eq/min' : format.unit;
   const valueFactor = format.formattingFactor;
-  return { valueUnit, valueFactor };
+  return { valueAxisLabel, valueFactor };
 };
 
-const getGraphState = (currentTime, historyData, displayByEmissions, electricityMixMode) => {
+const getGraphState = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
 
-  // Prepare graph data
-  const { valueUnit, valueFactor } = getValuesInfo(historyData, displayByEmissions);
+  const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+
+  // Format history data received by the API
+  // TODO: Simplify this function and make it more readable
   const graphData = historyData.map((d) => {
-    // TODO: Simplify this function and make it more readable
     const obj = {
       datetime: moment(d.stateDatetime).toDate(),
     };
@@ -76,23 +78,26 @@ const getGraphState = (currentTime, historyData, displayByEmissions, electricity
     .offset(stackOffsetDiverging)
     .keys(stackKeys)(graphData);
 
-  // Regular production mode fill or exchange fill as a fallback
-  const getFillColor = key => modeColor[key]
-    || (displayByEmissions ? 'darkgray' : `url(#country-history-mix-exchanges-${key})`);
+  // Build layers to be consumed by AreaGraph component
+  const layers = stackKeys.map((key, ind) => {
+    const datapoints = stackedData[ind];
 
-  const layers = stackKeys.map((key, ind) => ({
-    key,
-    fill: getFillColor(key),
-    data: stackedData[ind],
-  }));
+    let gradient = null;
+    let fill = modeColor[key];
 
-  const exchangeLayers = layers.filter(layer => exchangeKeys.includes(layer.key));
+    // If exchange layer, set the gradient and override regular production fill.
+    if (exchangeKeys.includes(key)) {
+      const gradientKey = `country-history-mix-exchanges-${key}`;
+      const datapointFill = d => (d.data._countryData.exchangeCo2Intensities
+        ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
+      gradient = { key: gradientKey, datapointFill };
+      fill = displayByEmissions ? 'darkgray' : `url(#${gradientKey})`;
+    }
 
-  return {
-    valueUnit,
-    layers,
-    exchangeLayers,
-  };
+    return { key, datapoints, fill, gradient };
+  });
+
+  return { valueAxisLabel, layers };
 };
 
 const getMouseMoveHandler = () => (timeIndex) => {
@@ -109,7 +114,7 @@ const getLayerMouseMoveHandler = (setSelectedLayerIndex, isMobile) => (timeIndex
     : { x: 0, y: 0 };
   setSelectedLayerIndex(layerIndex);
   dispatchApplication('tooltipPosition', tooltipPosition);
-  dispatchApplication('tooltipZoneData', layer.data[timeIndex].data._countryData);
+  dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
   dispatchApplication('tooltipDisplayMode', layer.key);
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
@@ -117,9 +122,6 @@ const getLayerMouseOutHandler = setSelectedLayerIndex => () => {
   setSelectedLayerIndex(null);
   dispatchApplication('tooltipDisplayMode', null);
 };
-
-const getGradientStopColorSelector = co2ColorScale => (d, key) => (d._countryData.exchangeCo2Intensities
-  ? co2ColorScale(d._countryData.exchangeCo2Intensities[key]) : 'darkgray');
 
 const getCurrentTime = state =>
   state.application.customDate || (state.data.grid || {}).datetime;
@@ -149,13 +151,9 @@ const CountryHistoryMixGraph = ({
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Graph state pre-processing (recalculated only when the graph data gets updated)
-  const {
-    valueUnit,
-    layers,
-    exchangeLayers,
-  } = useMemo(
-    () => getGraphState(currentTime, historyData, displayByEmissions, electricityMixMode),
-    [currentTime, historyData, displayByEmissions, electricityMixMode]
+  const { valueAxisLabel, layers } = useMemo(
+    () => getGraphState(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
+    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]
   );
 
   // Mouse action handlers
@@ -170,25 +168,9 @@ const CountryHistoryMixGraph = ({
     [setSelectedLayerIndex]
   );
 
-  // Labels and colors
-  const valueAxisLabel = displayByEmissions ? 'tCO2eq/min' : valueUnit;
-  const co2ColorScale = useMemo(
-    () => getCo2Scale(colorBlindModeEnabled),
-    [colorBlindModeEnabled]
-  );
-  const gradientStopColorSelector = useMemo(
-    () => getGradientStopColorSelector(co2ColorScale),
-    [co2ColorScale]
-  );
-
-  if (!layers || layers.length === 0) return null;
-
   return (
     <AreaGraph
       layers={layers}
-      gradientIdPrefix="country-history-mix-exchanges"
-      gradientLayers={exchangeLayers}
-      gradientStopColorSelector={gradientStopColorSelector}
       currentTime={currentTime}
       valueAxisLabel={valueAxisLabel}
       mouseMoveHandler={mouseMoveHandler}

@@ -8,7 +8,6 @@ import { scaleTime, scaleLinear } from 'd3-scale';
 import { first, last, max, isNumber } from 'lodash';
 import moment from 'moment';
 
-import AreaGraphGradients from './areagraphgradients';
 import AreaGraphLayers from './areagraphlayers';
 import GraphBackground from './graphbackground';
 import GraphHoverLine from './graphhoverline';
@@ -19,13 +18,13 @@ const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
 
-const getDatetimes = (layers) => last(layers).data.map(d => d.data.datetime);
+const getDatetimes = (layers) => last(layers) ? last(layers).datapoints.map(d => d.data.datetime) : [];
 
 const getTimeScale = (containerWidth, datetimes, currentTime) => scaleTime()
   .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
   .range([0, containerWidth]);
 
-const getMaxTotalValue = (layers) => max(last(layers).data.map(d => d[1]));
+const getMaxTotalValue = (layers) => last(layers) ? max(last(layers).datapoints.map(d => d[1])) : 0;
 
 const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
@@ -41,9 +40,6 @@ const AreaGraph = React.memo(({
   layerMouseOutHandler,
   selectedTimeIndex,
   selectedLayerIndex,
-  gradientIdPrefix,
-  gradientLayers,
-  gradientStopColorSelector,
   isMobile,
 }) => {
   const ref = useRef(null);
@@ -82,8 +78,11 @@ const AreaGraph = React.memo(({
     [container.width, datetimes, currentTime]
   );
 
+  // Don't render the graph at all if no layers are present
+  if (!layers || !layers[0]) return null;
+
   return (
-    <svg height="150px" ref={ref}>
+    <svg height="10em" ref={ref}>
       <TimeAxis
         scale={timeScale}
         height={container.height}
@@ -103,6 +102,7 @@ const AreaGraph = React.memo(({
       />
       <AreaGraphLayers
         layers={layers}
+        datetimes={datetimes}
         timeScale={timeScale}
         valueScale={valueScale}
         mouseMoveHandler={mouseMoveHandler}
@@ -117,14 +117,8 @@ const AreaGraph = React.memo(({
         valueScale={valueScale}
         datetimes={datetimes}
         fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].fill}
-        data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].data}
+        data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].datapoints}
         selectedTimeIndex={selectedTimeIndex}
-      />
-      <AreaGraphGradients
-        id={gradientIdPrefix}
-        timeScale={timeScale}
-        stopColorSelector={gradientStopColorSelector}
-        layers={gradientLayers}
       />
     </svg>
   );
