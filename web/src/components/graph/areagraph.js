@@ -4,8 +4,13 @@ import React, {
   useRef,
   useMemo,
 } from 'react';
+import {
+  first,
+  last,
+  max,
+  isNumber,
+} from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
-import { first, last, max, isNumber } from 'lodash';
 import moment from 'moment';
 
 import AreaGraphLayers from './areagraphlayers';
@@ -18,13 +23,13 @@ const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
 
-const getDatetimes = (layers) => last(layers) ? last(layers).datapoints.map(d => d.data.datetime) : [];
+const getDatetimes = layers => (last(layers) ? last(layers).datapoints.map(d => d.data.datetime) : []);
 
 const getTimeScale = (containerWidth, datetimes, currentTime) => scaleTime()
   .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
   .range([0, containerWidth]);
 
-const getMaxTotalValue = (layers) => last(layers) ? max(last(layers).datapoints.map(d => d[1])) : 0;
+const getMaxTotalValue = layers => (last(layers) ? max(last(layers).datapoints.map(d => d[1])) : 0);
 
 const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])

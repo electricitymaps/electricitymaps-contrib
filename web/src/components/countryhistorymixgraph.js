@@ -8,7 +8,7 @@ import { forEach } from 'lodash';
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { getExchangeKeys } from '../helpers/redux';
+import { getExchangeKeys } from '../helpers/zones';
 import { dispatchApplication } from '../store';
 
 import AreaGraph from './graph/areagraph';
@@ -94,7 +94,12 @@ const getGraphState = (historyData, colorBlindModeEnabled, displayByEmissions, e
       fill = displayByEmissions ? 'darkgray' : `url(#${gradientKey})`;
     }
 
-    return { key, datapoints, fill, gradient };
+    return {
+      key,
+      datapoints,
+      fill,
+      gradient,
+    };
   });
 
   return { valueAxisLabel, layers };

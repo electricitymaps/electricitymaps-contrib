@@ -28,7 +28,8 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getExchangeKeys, getCurrentZoneData } from './helpers/redux';
+import { getExchangeKeys } from './helpers/zones';
+import { getCurrentZoneData } from './helpers/redux';
 import { getCo2Scale } from './helpers/scales';
 
 // Layout

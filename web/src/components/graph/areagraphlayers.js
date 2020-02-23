@@ -75,7 +75,8 @@ const AreaGraphLayers = React.memo(({
               key={layer.gradient.key}
               id={layer.gradient.key}
               gradientUnits="userSpaceOnUse"
-              x1={x1} x2={x2}
+              x1={x1}
+              x2={x2}
             >
               {layer.datapoints.map(d => (
                 <stop
