@@ -5,7 +5,7 @@ import React, {
   useMemo,
 } from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
-import { first, last, max } from 'lodash';
+import { first, last, max, isNumber } from 'lodash';
 import moment from 'moment';
 
 import AreaGraphGradients from './areagraphgradients';
@@ -70,8 +70,6 @@ const AreaGraph = React.memo(({
     };
   });
 
-  console.log('blublu', layers);
-
   // Generate graph scales
   const maxTotalValue = useMemo(() => getMaxTotalValue(layers), [layers]);
   const valueScale = useMemo(
@@ -118,8 +116,8 @@ const AreaGraph = React.memo(({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={selectedLayerIndex && layers[selectedLayerIndex].fill}
-        data={selectedLayerIndex && layers[selectedLayerIndex].data}
+        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].fill}
+        data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].data}
         selectedTimeIndex={selectedTimeIndex}
       />
       <AreaGraphGradients
