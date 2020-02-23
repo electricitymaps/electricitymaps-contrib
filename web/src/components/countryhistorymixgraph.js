@@ -78,8 +78,17 @@ const getGraphState = (currentTime, historyData, displayByEmissions, electricity
     .offset(stackOffsetDiverging)
     .keys(stackKeys)(graphData);
 
+  // Regular production mode fill or exchange fill as a fallback
+  const getFillColor = key => modeColor[key]
+    || (displayByEmissions ? 'darkgray' : `url(#country-history-mix-exchanges-${key})`);
+
   const datetimes = graphData.map(d => d.datetime);
-  const layers = stackKeys.map((key, ind) => ({ key, data: stackedData[ind] }));
+  const layers = stackKeys.map((key, ind) => ({
+    key,
+    fill: getFillColor(key),
+    data: stackedData[ind],
+  }));
+
   const exchangeLayers = layers.filter(layer => exchangeKeys.includes(layer.key));
 
   return {
@@ -113,10 +122,6 @@ const getLayerMouseOutHandler = setSelectedLayerIndex => () => {
   setSelectedLayerIndex(null);
   dispatchApplication('tooltipDisplayMode', null);
 };
-
-// Regular production mode fill or exchange fill as a fallback
-const getFillSelector = (layers, displayByEmissions) => layerIndex => modeColor[layers[layerIndex].key]
-  || (displayByEmissions ? 'darkgray' : `url(#country-history-mix-exchanges-${layers[layerIndex].key})`);
 
 const getGradientStopColorSelector = co2ColorScale => (d, key) => (d._countryData.exchangeCo2Intensities
   ? co2ColorScale(d._countryData.exchangeCo2Intensities[key]) : 'darkgray');
@@ -178,10 +183,6 @@ const CountryHistoryMixGraph = ({
     () => getCo2Scale(colorBlindModeEnabled),
     [colorBlindModeEnabled]
   );
-  const fillSelector = useMemo(
-    () => getFillSelector(layers, displayByEmissions),
-    [layers, displayByEmissions]
-  );
   const gradientStopColorSelector = useMemo(
     () => getGradientStopColorSelector(co2ColorScale),
     [co2ColorScale]
@@ -199,7 +200,6 @@ const CountryHistoryMixGraph = ({
       maxTotalValue={maxTotalValue}
       valueAxisLabel={valueAxisLabel}
       datetimes={datetimes}
-      fillSelector={fillSelector}
       mouseMoveHandler={mouseMoveHandler}
       mouseOutHandler={mouseOutHandler}
       layerMouseMoveHandler={layerMouseMoveHandler}

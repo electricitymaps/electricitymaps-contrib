@@ -6,7 +6,6 @@ import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const AreaGraphLayers = React.memo(({
   layers,
-  fillSelector,
   timeScale,
   valueScale,
   mouseMoveHandler,
@@ -58,7 +57,7 @@ const AreaGraphLayers = React.memo(({
           key={layer.key}
           className={`area layer ${layer.key}`}
           style={{ cursor: 'pointer' }}
-          fill={fillSelector(ind)}
+          fill={layer.fill}
           d={layerArea(layer.data)}
           /* Support only click events in mobile mode, otherwise react to mouse hovers */
           onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}

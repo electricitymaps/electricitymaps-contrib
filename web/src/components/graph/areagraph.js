@@ -33,7 +33,6 @@ const AreaGraph = React.memo(({
   maxTotalValue,
   valueAxisLabel,
   datetimes,
-  fillSelector,
   mouseMoveHandler,
   mouseOutHandler,
   layerMouseMoveHandler,
@@ -102,7 +101,6 @@ const AreaGraph = React.memo(({
         layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
-        fillSelector={fillSelector}
         mouseMoveHandler={mouseMoveHandler}
         mouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={layerMouseMoveHandler}
@@ -114,7 +112,7 @@ const AreaGraph = React.memo(({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={selectedLayerIndex && fillSelector(selectedLayerIndex)}
+        fill={selectedLayerIndex && layers[selectedLayerIndex].fill}
         data={selectedLayerIndex && layers[selectedLayerIndex].data}
         selectedTimeIndex={selectedTimeIndex}
       />
