@@ -5,7 +5,7 @@ import React, {
   useMemo,
 } from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
-import { first, last } from 'lodash';
+import { first, last, max } from 'lodash';
 import moment from 'moment';
 
 import AreaGraphGradients from './areagraphgradients';
@@ -30,7 +30,6 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
 const AreaGraph = React.memo(({
   layers,
   currentTime,
-  maxTotalValue,
   valueAxisLabel,
   datetimes,
   mouseMoveHandler,
@@ -69,13 +68,17 @@ const AreaGraph = React.memo(({
   });
 
   // Generate graph scales
-  const timeScale = useMemo(
-    () => getTimeScale(container.width, datetimes, currentTime),
-    [container.width, datetimes, currentTime]
+  const maxTotalValue = useMemo(
+    () => max(last(layers).data.map(d => d[1])),
+    [layers]
   );
   const valueScale = useMemo(
     () => getValueScale(container.height, maxTotalValue),
     [container.height, maxTotalValue]
+  );
+  const timeScale = useMemo(
+    () => getTimeScale(container.width, datetimes, currentTime),
+    [container.width, datetimes, currentTime]
   );
 
   return (

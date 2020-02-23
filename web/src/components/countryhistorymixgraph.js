@@ -14,25 +14,23 @@ import { dispatchApplication } from '../store';
 import AreaGraph from './graph/areagraph';
 
 const getValuesInfo = (historyData, displayByEmissions) => {
-  let maxTotalValue = d3Max(historyData, d => (
+  const maxTotalValue = d3Max(historyData, d => (
     displayByEmissions
       ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO2eq/min
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
   const format = formatting.scalePower(maxTotalValue);
-  const formattingFactor = !displayByEmissions ? format.formattingFactor : 1;
-  maxTotalValue /= formattingFactor;
 
   const valueUnit = format.unit;
   const valueFactor = format.formattingFactor;
-  return { maxTotalValue, valueUnit, valueFactor };
+  return { valueUnit, valueFactor };
 };
 
 const getGraphState = (currentTime, historyData, displayByEmissions, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
 
   // Prepare graph data
-  const { maxTotalValue, valueUnit, valueFactor } = getValuesInfo(historyData, displayByEmissions);
+  const { valueUnit, valueFactor } = getValuesInfo(historyData, displayByEmissions);
   const graphData = historyData.map((d) => {
     // TODO: Simplify this function and make it more readable
     const obj = {
@@ -96,7 +94,6 @@ const getGraphState = (currentTime, historyData, displayByEmissions, electricity
     valueUnit,
     layers,
     exchangeLayers,
-    maxTotalValue,
   };
 };
 
@@ -159,7 +156,6 @@ const CountryHistoryMixGraph = ({
     valueUnit,
     layers,
     exchangeLayers,
-    maxTotalValue,
   } = useMemo(
     () => getGraphState(currentTime, historyData, displayByEmissions, electricityMixMode),
     [currentTime, historyData, displayByEmissions, electricityMixMode]
@@ -188,7 +184,7 @@ const CountryHistoryMixGraph = ({
     [co2ColorScale]
   );
 
-  if (!layers) return null;
+  if (!layers || layers.length === 0) return null;
 
   return (
     <AreaGraph
@@ -197,7 +193,6 @@ const CountryHistoryMixGraph = ({
       gradientLayers={exchangeLayers}
       gradientStopColorSelector={gradientStopColorSelector}
       currentTime={currentTime}
-      maxTotalValue={maxTotalValue}
       valueAxisLabel={valueAxisLabel}
       datetimes={datetimes}
       mouseMoveHandler={mouseMoveHandler}
