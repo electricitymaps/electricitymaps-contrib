@@ -19,9 +19,13 @@ const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
 
+const getDatetimes = (layers) => last(layers).data.map(d => d.data.datetime);
+
 const getTimeScale = (containerWidth, datetimes, currentTime) => scaleTime()
   .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
   .range([0, containerWidth]);
+
+const getMaxTotalValue = (layers) => max(last(layers).data.map(d => d[1]));
 
 const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
@@ -31,7 +35,6 @@ const AreaGraph = React.memo(({
   layers,
   currentTime,
   valueAxisLabel,
-  datetimes,
   mouseMoveHandler,
   mouseOutHandler,
   layerMouseMoveHandler,
@@ -67,15 +70,15 @@ const AreaGraph = React.memo(({
     };
   });
 
+  console.log('blublu', layers);
+
   // Generate graph scales
-  const maxTotalValue = useMemo(
-    () => max(last(layers).data.map(d => d[1])),
-    [layers]
-  );
+  const maxTotalValue = useMemo(() => getMaxTotalValue(layers), [layers]);
   const valueScale = useMemo(
     () => getValueScale(container.height, maxTotalValue),
     [container.height, maxTotalValue]
   );
+  const datetimes = useMemo(() => getDatetimes(layers), [layers]);
   const timeScale = useMemo(
     () => getTimeScale(container.width, datetimes, currentTime),
     [container.width, datetimes, currentTime]

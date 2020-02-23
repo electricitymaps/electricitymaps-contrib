@@ -80,7 +80,6 @@ const getGraphState = (currentTime, historyData, displayByEmissions, electricity
   const getFillColor = key => modeColor[key]
     || (displayByEmissions ? 'darkgray' : `url(#country-history-mix-exchanges-${key})`);
 
-  const datetimes = graphData.map(d => d.datetime);
   const layers = stackKeys.map((key, ind) => ({
     key,
     fill: getFillColor(key),
@@ -90,7 +89,6 @@ const getGraphState = (currentTime, historyData, displayByEmissions, electricity
   const exchangeLayers = layers.filter(layer => exchangeKeys.includes(layer.key));
 
   return {
-    datetimes,
     valueUnit,
     layers,
     exchangeLayers,
@@ -152,7 +150,6 @@ const CountryHistoryMixGraph = ({
 
   // Graph state pre-processing (recalculated only when the graph data gets updated)
   const {
-    datetimes,
     valueUnit,
     layers,
     exchangeLayers,
@@ -194,7 +191,6 @@ const CountryHistoryMixGraph = ({
       gradientStopColorSelector={gradientStopColorSelector}
       currentTime={currentTime}
       valueAxisLabel={valueAxisLabel}
-      datetimes={datetimes}
       mouseMoveHandler={mouseMoveHandler}
       mouseOutHandler={mouseOutHandler}
       layerMouseMoveHandler={layerMouseMoveHandler}
