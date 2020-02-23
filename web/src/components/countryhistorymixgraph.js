@@ -155,7 +155,7 @@ const CountryHistoryMixGraph = ({
 }) => {
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
-  // Graph state pre-processing (recalculated only when the graph data gets updated)
+  // Build the layers only when the history data gets changed
   const { valueAxisLabel, layers } = useMemo(
     () => getGraphState(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
     [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]

@@ -36,6 +36,15 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .range([containerHeight, Y_AXIS_PADDING]);
 
 const AreaGraph = React.memo(({
+  /*
+    `layers` should be an array of objects containing the following fields:
+      * `key` - unique ID of the layer
+      * `fill` - fill color of the layer
+      * `datapoints` - represents the graph datapoints + metadata for the layer in D3 stack() format
+      * `gradient`? - optional object that defines layer's stepwise linear gradient; should contain these fields:
+          * `key` - unique ID of the gradient
+          * `datapointFill` a function assigning fill color to each datapoint
+  */
   layers,
   currentTime,
   valueAxisLabel,
