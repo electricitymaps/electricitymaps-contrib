@@ -3271,11 +3271,21 @@
         9.61161001224
       ]
     ],
+    "capacity": {
+      "biomass": 0,
+      "gas": 113,
+      "hydro": 1704,
+      "nuclear": 0,
+      "solar": 75,
+      "unknown": 962,
+      "wind": 270
+    },
     "contributors": [
       "https://github.com/paulotaviodr",
       "https://github.com/jarek",
       "https://github.com/systemcatch",
-      "https://github.com/7hibault"
+      "https://github.com/7hibault",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "PA.fetch_production"
