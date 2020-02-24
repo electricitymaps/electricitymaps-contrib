@@ -442,16 +442,17 @@
       ]
     ],
     "capacity": {
-      "hydro": 62095,
+      "hydro": 63797,
       "nuclear": 1990,
-      "solar": 3,
-      "thermal": 18962,
-      "wind": 28
+      "solar": 910,
+      "wind": 28,
+      "unknown": 19365
     },
     "contributors": [
       "https://github.com/alexanmtz",
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -471,13 +472,16 @@
       ]
     ],
     "capacity": {
-      "hydro": 14281,
-      "thermal": 3426
+      "hydro": 22251,
+      "solar": 5,
+      "wind": 426,
+      "unknown": 3654
     },
     "contributors": [
       "https://github.com/alexanmtz",
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -497,15 +501,16 @@
       ]
     ],
     "capacity": {
-      "hydro": 11008,
-      "solar": 132,
-      "thermal": 7214,
-      "wind": 8763
+      "hydro": 11023,
+      "solar": 1525,
+      "wind": 12801,
+      "unknown": 7227
     },
     "contributors": [
       "https://github.com/alexanmtz",
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -525,15 +530,16 @@
       ]
     ],
     "capacity": {
-      "hydro": 16491,
+      "hydro": 17045,
       "solar": 4,
-      "thermal": 4348,
-      "wind": 1938
+      "wind": 2018,
+      "unknown": 4220
     },
     "contributors": [
       "https://github.com/alexanmtz",
       "https://github.com/corradio",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
