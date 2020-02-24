@@ -4163,14 +4163,16 @@
       ]
     ],
     "capacity": {
-      "coal": 60828,
-      "gas": 71255,
-      "nuclear": 13903,
-      "solar": 312,
-      "wind": 17224
+      "coal": 53328,
+      "gas": 76437,
+      "nuclear": 14221,
+      "solar": 314,
+      "wind": 21089,
+      "unknown": 3555
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "us.png",
     "parsers": {
