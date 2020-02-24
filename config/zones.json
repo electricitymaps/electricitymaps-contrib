@@ -1588,17 +1588,18 @@
     ],
     "capacity": {
       "biomass": 35,
-      "coal": 764,
-      "gas": 1004,
-      "oil": 415,
-      "solar": 77,
-      "wind": 863
+      "coal": 514,
+      "gas": 1549,
+      "oil": 316,
+      "solar": 92,
+      "wind": 995
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/systemcatch",
       "https://github.com/brunolajoie",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
