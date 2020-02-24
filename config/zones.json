@@ -67,16 +67,18 @@
   },
   "AR": {
     "capacity": {
-      "gas": 18930,
-      "hydro": 11170,
+      "biomass": 48,
+      "gas": 22892,
+      "hydro": 11310,
       "nuclear": 1755,
-      "oil": 1293,
-      "solar": 8,
-      "wind": 187
+      "oil": 1654,
+      "solar": 449,
+      "wind": 1724
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "AR.fetch_production"
