@@ -55,9 +55,8 @@ const AreaGraphLayers = React.memo(({
   return (
     <g>
       {layers.map((layer, ind) => (
-        <React.Fragment>
+        <React.Fragment key={layer.key}>
           <path
-            key={layer.key}
             className={`area layer ${layer.key}`}
             style={{ cursor: 'pointer' }}
             fill={layer.fill}
@@ -72,8 +71,7 @@ const AreaGraphLayers = React.memo(({
           />
           {layer.gradient && (
             <linearGradient
-              key={layer.gradient.key}
-              id={layer.gradient.key}
+              id={layer.gradient.id}
               gradientUnits="userSpaceOnUse"
               x1={x1}
               x2={x2}

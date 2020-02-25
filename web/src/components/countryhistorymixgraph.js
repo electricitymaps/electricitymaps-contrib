@@ -87,11 +87,11 @@ const getGraphState = (historyData, colorBlindModeEnabled, displayByEmissions, e
 
     // If exchange layer, set the gradient and override regular production fill.
     if (exchangeKeys.includes(key)) {
-      const gradientKey = `country-history-mix-exchanges-${key}`;
+      const id = `country-history-mix-exchanges-${key}`;
       const datapointFill = d => (d.data._countryData.exchangeCo2Intensities
         ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
-      gradient = { key: gradientKey, datapointFill };
-      fill = displayByEmissions ? 'darkgray' : `url(#${gradientKey})`;
+      gradient = { id, datapointFill };
+      fill = displayByEmissions ? 'darkgray' : `url(#${id})`;
     }
 
     return {
