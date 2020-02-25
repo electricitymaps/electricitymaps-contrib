@@ -136,9 +136,17 @@ const getSelectedZoneHistory = state =>
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  currentTime: getCurrentTime(state),
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
+  // Pass current time as the end time of the graph time scale explicitly
+  // as we want to make sure we account for the missing data at the end of
+  // the graph (when not inferable from historyData timestamps).
+  // TODO: Likewise, we should be passing an explicit startTime set to 24h
+  // in the past to make sure we show data is missing at the beginning of
+  // the graph, but that would create UI inconsistency with the other
+  // neighbouring graphs showing data over a bit longer time scale
+  // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
+  endTime: moment(getCurrentTime(state)).format(),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
@@ -146,9 +154,9 @@ const mapStateToProps = state => ({
 
 const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
-  currentTime,
   displayByEmissions,
   electricityMixMode,
+  endTime,
   historyData,
   isMobile,
   selectedTimeIndex,
@@ -176,7 +184,7 @@ const CountryHistoryMixGraph = ({
   return (
     <AreaGraph
       layers={layers}
-      currentTime={currentTime}
+      endTime={endTime}
       valueAxisLabel={valueAxisLabel}
       mouseMoveHandler={mouseMoveHandler}
       mouseOutHandler={mouseOutHandler}

@@ -25,8 +25,11 @@ const Y_AXIS_PADDING = 4;
 
 const getDatetimes = layers => (last(layers) ? last(layers).datapoints.map(d => d.data.datetime) : []);
 
-const getTimeScale = (containerWidth, datetimes, currentTime) => scaleTime()
-  .domain([first(datetimes), currentTime ? moment(currentTime).toDate() : last(datetimes)])
+const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
+  .domain([
+    startTime ? moment(startTime).toDate() : first(datetimes),
+    endTime ? moment(endTime).toDate() : last(datetimes),
+  ])
   .range([0, containerWidth]);
 
 const getMaxTotalValue = layers => (last(layers) ? max(last(layers).datapoints.map(d => d[1])) : 0);
@@ -46,7 +49,8 @@ const AreaGraph = React.memo(({
           * `datapointFill` a function assigning fill color to each datapoint
   */
   layers,
-  currentTime,
+  startTime,
+  endTime,
   valueAxisLabel,
   mouseMoveHandler,
   mouseOutHandler,
@@ -88,8 +92,8 @@ const AreaGraph = React.memo(({
   );
   const datetimes = useMemo(() => getDatetimes(layers), [layers]);
   const timeScale = useMemo(
-    () => getTimeScale(container.width, datetimes, currentTime),
-    [container.width, datetimes, currentTime]
+    () => getTimeScale(container.width, datetimes, startTime, endTime),
+    [container.width, datetimes, startTime, endTime]
   );
 
   // Don't render the graph at all if no layers are present
