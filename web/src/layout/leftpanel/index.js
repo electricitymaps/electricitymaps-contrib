@@ -5,8 +5,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
-import { dispatchApplication } from '../../store';
+import { dispatch, dispatchApplication } from '../../store';
 
 // Layout
 import CountryPanel from './countrypanel';
@@ -38,10 +39,25 @@ const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
   }
 };
 
+const handleZoneTimeIndexChange = (newSelectedZoneTimeIndex, timestamps) => {
+  dispatch({
+    type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
+    payload: {
+      // When slider is on last value, we set the value to null in order to use the current state.
+      selectedZoneTimeIndex: newSelectedZoneTimeIndex === (timestamps.length - 1) ? null : newSelectedZoneTimeIndex,
+    },
+  });
+};
+
 // TODO: Move all styles from styles.css to here
+
+const getSelectedZoneHistory = state =>
+  state.data.histories[state.application.selectedZoneName] || [];
 
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
+  zoneHistoryTimestamps: getSelectedZoneHistory(state).map(d => moment(d.stateDatetime).toDate()),
 });
 
 export default connect(mapStateToProps)(props => (
@@ -92,6 +108,9 @@ export default connect(mapStateToProps)(props => (
       <div className="detail-bottom-section">
         <TimeSlider
           className="zone-time-slider"
+          onChange={handleZoneTimeIndexChange}
+          selectedTimeIndex={props.selectedZoneTimeIndex}
+          timestamps={props.zoneHistoryTimestamps}
         />
         <div className="social-buttons small-screen-hidden">
           <div>

@@ -1,17 +1,24 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { first, last } from 'lodash';
+import React, {
+  useRef,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react';
+import { first, last, sortedIndex } from 'lodash';
+import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
 import { __ } from '../helpers/translation';
 
-const d3 = Object.assign(
-  {},
-  require('d3-scale'),
-);
-
 const NUMBER_OF_TICKS = 5;
 const AXIS_MARGIN_LEFT = 5;
+
+const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
+  .domain([
+    startTime ? moment(startTime).toDate() : first(datetimes),
+    endTime ? moment(endTime).toDate() : last(datetimes),
+  ])
+  .range([0, containerWidth]);
 
 const sampledTickValues = (data) => {
   const tickValues = [];
@@ -27,63 +34,52 @@ const sampledTickValues = (data) => {
 const renderTick = (v, ind) =>
   (ind === NUMBER_OF_TICKS - 1 ? __('country-panel.now') : moment(v).format('LT')); // Localized time, e.g. "8:30 PM"
 
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName] || [];
-
-const mapStateToProps = state => ({
-  selectedIndex: state.application.selectedZoneTimeIndex,
-  timestamps: getSelectedZoneHistory(state).map(d => moment(d.stateDatetime).toDate()),
-});
-
-const TimeSlider = ({ className, timestamps, selectedIndex }) => {
+const TimeSlider = ({
+  className,
+  onChange,
+  selectedTimeIndex,
+  timestamps,
+  startTime,
+  endTime,
+}) => {
   const ref = useRef(null);
-  const dispatch = useDispatch();
-  const [width, setWidth] = useState(0);
-  const [anchoredIndex, setAnchoredIndex] = useState(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
 
   // Container resize hook
   useEffect(() => {
-    const updateWidth = () => {
+    const updateContainerWidth = () => {
       if (ref.current) {
-        setWidth(ref.current.getBoundingClientRect().width - AXIS_MARGIN_LEFT);
+        setContainerWidth(ref.current.getBoundingClientRect().width - AXIS_MARGIN_LEFT);
       }
     };
     // Initialize width if it's not set yet
-    if (!width) {
-      updateWidth();
+    if (!containerWidth) {
+      updateContainerWidth();
     }
     // Update container width on every resize
-    window.addEventListener('resize', updateWidth);
+    window.addEventListener('resize', updateContainerWidth);
     return () => {
-      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('resize', updateContainerWidth);
     };
   });
 
+  const timeScale = useMemo(
+    () => getTimeScale(containerWidth, timestamps, startTime, endTime),
+    [containerWidth, timestamps, startTime, endTime]
+  );
+
   if (!timestamps || timestamps.length === 0) return null;
 
-  const handleChange = (newSelectedIndex) => {
-    // when slider is on last value, we set the value to null in order to use the current state
-    if (selectedIndex !== newSelectedIndex) {
-      const selectedZoneTimeIndex = newSelectedIndex === (timestamps.length - 1) ? null : newSelectedIndex;
-      dispatch({
-        type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
-        payload: { selectedZoneTimeIndex },
-      });
+  const handleChangeAndInput = (ev) => {
+    const value = parseInt(ev.target.value, 10);
+    const index = sortedIndex(timestamps.map(t => t.valueOf()), value);
+    setAnchoredTimeIndex(index);
+    if (onChange) {
+      onChange(index, timestamps);
     }
   };
 
-  const onChangeAndInput = (ev) => {
-    const index = parseInt(ev.target.value, 10);
-    setAnchoredIndex(index);
-    if (handleChange) {
-      handleChange(index);
-    }
-  };
-
-  const timeScale = d3.scaleTime()
-    .domain([first(timestamps), last(timestamps)])
-    .range([0, width]);
-  
   const [x1, x2] = timeScale.range();
 
   return (
@@ -91,11 +87,11 @@ const TimeSlider = ({ className, timestamps, selectedIndex }) => {
       <input
         type="range"
         className="time-slider-input"
-        onChange={onChangeAndInput}
-        onInput={onChangeAndInput}
-        value={selectedIndex || anchoredIndex || timestamps.length - 1}
-        max={timestamps.length - 1}
-        min={0}
+        onChange={handleChangeAndInput}
+        onInput={handleChangeAndInput}
+        value={timestamps[selectedTimeIndex || anchoredTimeIndex || timestamps.length - 1].valueOf()}
+        min={timeScale.domain()[0].valueOf()}
+        max={timeScale.domain()[1].valueOf()}
       />
       <svg className="time-slider-axis-container" ref={ref}>
         <g
@@ -120,4 +116,4 @@ const TimeSlider = ({ className, timestamps, selectedIndex }) => {
   );
 };
 
-export default connect(mapStateToProps)(TimeSlider);
+export default TimeSlider;
