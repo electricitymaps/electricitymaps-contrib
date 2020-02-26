@@ -41,7 +41,6 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .range([containerHeight, Y_AXIS_PADDING]);
 
 const getLayers = (data, layerKeys, layerFill) => {
-  console.log('blublu');
   if (!data || !data[0]) return [];
   const stackedData = stack()
     .offset(stackOffsetDiverging)

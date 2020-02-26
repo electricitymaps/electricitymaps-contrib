@@ -76,7 +76,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
     layerKeys = layerKeys.concat(getExchangeKeys(historyData));
   }
 
-  const layerFill = key => {
+  const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (getExchangeKeys(historyData).includes(key)) {
       return d => (d.data._countryData.exchangeCo2Intensities
@@ -84,9 +84,14 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
     }
     // Otherwise use regular production fill.
     return modeColor[key];
-  }
+  };
 
-  return { data, layerKeys, layerFill, valueAxisLabel };
+  return {
+    data,
+    layerKeys,
+    layerFill,
+    valueAxisLabel,
+  };
 };
 
 const getMouseMoveHandler = () => (timeIndex) => {
@@ -148,7 +153,12 @@ const CountryHistoryMixGraph = ({
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
-  const { data, layerKeys, layerFill, valueAxisLabel } = useMemo(
+  const {
+    data,
+    layerKeys,
+    layerFill,
+    valueAxisLabel,
+  } = useMemo(
     () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
     [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]
   );
