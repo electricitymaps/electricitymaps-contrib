@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFunction } from 'lodash';
 
 const GraphHoverLine = ({
   fill,
@@ -32,7 +33,7 @@ const GraphHoverLine = ({
           shapeRendering: 'crispEdges',
           stroke: 'black',
           strokeWidth: 1.5,
-          fill,
+          fill: isFunction(fill) ? fill(data[selectedTimeIndex]) : fill,
         }}
         cx={timeScale(datetimes[selectedTimeIndex])}
         cy={valueScale(data[selectedTimeIndex][1])}

@@ -1,6 +1,5 @@
 import moment from 'moment';
 import React, { useState, useMemo, useCallback } from 'react';
-import { stack, stackOffsetDiverging } from 'd3-shape';
 import { max as d3Max } from 'd3-array';
 import { connect } from 'react-redux';
 import { forEach } from 'lodash';
@@ -26,7 +25,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   return { valueAxisLabel, valueFactor };
 };
 
-const getGraphState = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode) => {
+const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
@@ -34,7 +33,7 @@ const getGraphState = (historyData, colorBlindModeEnabled, displayByEmissions, e
 
   // Format history data received by the API
   // TODO: Simplify this function and make it more readable
-  const graphData = historyData.map((d) => {
+  const data = historyData.map((d) => {
     const obj = {
       datetime: moment(d.stateDatetime).toDate(),
     };
@@ -71,38 +70,23 @@ const getGraphState = (historyData, colorBlindModeEnabled, displayByEmissions, e
     return obj;
   });
 
-  // Prepare stack - order is defined here, from bottom to top
-  const exchangeKeys = electricityMixMode === 'consumption' ? getExchangeKeys(historyData) : [];
-  const stackKeys = modeOrder.concat(exchangeKeys);
-  const stackedData = stack()
-    .offset(stackOffsetDiverging)
-    .keys(stackKeys)(graphData);
+  // If in consumption mode, show the exchange layers on top of the standard sources.
+  let layerKeys = modeOrder;
+  if (electricityMixMode === 'consumption') {
+    layerKeys = layerKeys.concat(getExchangeKeys(historyData));
+  }
 
-  // Build layers to be consumed by AreaGraph component
-  const layers = stackKeys.map((key, ind) => {
-    const datapoints = stackedData[ind];
-
-    let gradient = null;
-    let fill = modeColor[key];
-
-    // If exchange layer, set the gradient and override regular production fill.
-    if (exchangeKeys.includes(key)) {
-      const id = `country-history-mix-exchanges-${key}`;
-      const datapointFill = d => (d.data._countryData.exchangeCo2Intensities
+  const layerFill = key => {
+    // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
+    if (getExchangeKeys(historyData).includes(key)) {
+      return d => (d.data._countryData.exchangeCo2Intensities
         ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
-      gradient = { id, datapointFill };
-      fill = displayByEmissions ? 'darkgray' : `url(#${id})`;
     }
+    // Otherwise use regular production fill.
+    return modeColor[key];
+  }
 
-    return {
-      key,
-      datapoints,
-      fill,
-      gradient,
-    };
-  });
-
-  return { valueAxisLabel, layers };
+  return { data, layerKeys, layerFill, valueAxisLabel };
 };
 
 const getMouseMoveHandler = () => (timeIndex) => {
@@ -163,9 +147,9 @@ const CountryHistoryMixGraph = ({
 }) => {
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
-  // Build the layers only when the history data gets changed
-  const { valueAxisLabel, layers } = useMemo(
-    () => getGraphState(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
+  // Recalculate graph data only when the history data is changed
+  const { data, layerKeys, layerFill, valueAxisLabel } = useMemo(
+    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
     [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]
   );
 
@@ -183,7 +167,9 @@ const CountryHistoryMixGraph = ({
 
   return (
     <AreaGraph
-      layers={layers}
+      data={data}
+      layerKeys={layerKeys}
+      layerFill={layerFill}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
       mouseMoveHandler={mouseMoveHandler}

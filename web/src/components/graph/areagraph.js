@@ -9,8 +9,10 @@ import {
   last,
   max,
   isNumber,
+  isEmpty,
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
+import { stack, stackOffsetDiverging } from 'd3-shape';
 import moment from 'moment';
 
 import AreaGraphLayers from './areagraphlayers';
@@ -23,7 +25,7 @@ const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 35;
 const Y_AXIS_PADDING = 4;
 
-const getDatetimes = layers => (last(layers) ? last(layers).datapoints.map(d => d.data.datetime) : []);
+const getDatetimes = data => (data || []).map(d => d.datetime);
 
 const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
   .domain([
@@ -38,26 +40,64 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
   .range([containerHeight, Y_AXIS_PADDING]);
 
+const getLayers = (data, layerKeys, layerFill) => {
+  console.log('blublu');
+  if (!data || !data[0]) return [];
+  const stackedData = stack()
+    .offset(stackOffsetDiverging)
+    .keys(layerKeys)(data);
+  return layerKeys.map((key, ind) => ({
+    key,
+    fill: layerFill(key),
+    datapoints: stackedData[ind],
+  }));
+};
+
 const AreaGraph = React.memo(({
   /*
-    `layers` should be an array of objects containing the following fields:
-      * `key` - unique ID of the layer
-      * `fill` - fill color of the layer
-      * `datapoints` - represents the graph datapoints + metadata for the layer in D3 stack() format
-      * `gradient`? - optional object that defines layer's stepwise linear gradient; should contain these fields:
-          * `id` - unique ID of the gradient
-          * `datapointFill` a function assigning fill color to each datapoint
+    `data` should be an array of objects, each containing:
+      * a numerical value for every key appearing in `layerKeys`
+      * `datetime` timestamp
   */
-  layers,
+  data,
+  /*
+    `layerKey` should be an array of strings denoting the graph layers (in bottom-to-top order).
+  */
+  layerKeys,
+  /*
+    `layerFill` should be a function that maps each layer key into one of the following:
+      * a string value representing the layer's fill color if it's homogenous
+      * a function mapping each layer's data point to a string color value, rendering a horizontal gradient
+  */
+  layerFill,
+  /*
+    `startTime` and `endTime` are timestamps denoting the time interval of the rendered part of the graph.
+    If not provided, they'll be inferred from timestamps of the first/last datapoints.
+  */
   startTime,
   endTime,
+  /*
+    `valueAxisLabel` is a string label for the values (Y-axis) scale.
+  */
   valueAxisLabel,
+  /*
+    Mouse event callbacks for the whole graph and individual layers respectively.
+  */
   mouseMoveHandler,
   mouseOutHandler,
   layerMouseMoveHandler,
   layerMouseOutHandler,
+  /*
+    `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
+  */
   selectedTimeIndex,
+  /*
+    `selectedLayerIndex` is an integer value representing the layer index of the datapoint in focus.
+  */
   selectedLayerIndex,
+  /*
+    If `isMobile` is true, the mouse hover events are triggered by clicks only.
+  */
   isMobile,
 }) => {
   const ref = useRef(null);
@@ -84,20 +124,26 @@ const AreaGraph = React.memo(({
     };
   });
 
+  // Build layers
+  const layers = useMemo(
+    () => getLayers(data, layerKeys, layerFill),
+    [data, layerKeys, layerFill]
+  );
+
   // Generate graph scales
   const maxTotalValue = useMemo(() => getMaxTotalValue(layers), [layers]);
   const valueScale = useMemo(
     () => getValueScale(container.height, maxTotalValue),
     [container.height, maxTotalValue]
   );
-  const datetimes = useMemo(() => getDatetimes(layers), [layers]);
+  const datetimes = useMemo(() => getDatetimes(data), [data]);
   const timeScale = useMemo(
     () => getTimeScale(container.width, datetimes, startTime, endTime),
     [container.width, datetimes, startTime, endTime]
   );
 
   // Don't render the graph at all if no layers are present
-  if (!layers || !layers[0]) return null;
+  if (isEmpty(layers)) return null;
 
   return (
     <svg height="10em" ref={ref}>
