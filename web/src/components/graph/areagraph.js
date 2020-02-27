@@ -40,14 +40,16 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
   .range([containerHeight, Y_AXIS_PADDING]);
 
-const getLayers = (data, layerKeys, layerFill) => {
+const getLayers = (data, layerKeys, layerStroke, layerFill, focusFill) => {
   if (!data || !data[0]) return [];
   const stackedData = stack()
     .offset(stackOffsetDiverging)
     .keys(layerKeys)(data);
   return layerKeys.map((key, ind) => ({
     key,
+    stroke: layerStroke ? layerStroke(key) : 'none',
     fill: layerFill(key),
+    focusFill: focusFill ? focusFill(key) : layerFill(key),
     datapoints: stackedData[ind],
   }));
 };
@@ -68,7 +70,9 @@ const AreaGraph = React.memo(({
       * a string value representing the layer's fill color if it's homogenous
       * a function mapping each layer's data point to a string color value, rendering a horizontal gradient
   */
+  layerStroke,
   layerFill,
+  focusFill,
   /*
     `startTime` and `endTime` are timestamps denoting the time interval of the rendered part of the graph.
     If not provided, they'll be inferred from timestamps of the first/last datapoints.
@@ -125,8 +129,8 @@ const AreaGraph = React.memo(({
 
   // Build layers
   const layers = useMemo(
-    () => getLayers(data, layerKeys, layerFill),
-    [data, layerKeys, layerFill]
+    () => getLayers(data, layerKeys, layerStroke, layerFill, focusFill),
+    [data, layerKeys, layerStroke, layerFill, focusFill]
   );
 
   // Generate graph scales
@@ -179,7 +183,7 @@ const AreaGraph = React.memo(({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].fill}
+        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].focusFill}
         data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].datapoints}
         selectedTimeIndex={selectedTimeIndex}
       />

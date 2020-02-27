@@ -154,13 +154,6 @@ let theme = themes.bright;
 const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder)
   .electricityMixMode(getState().application.electricityMixMode);
 
-const countryHistoryPricesGraph = new LineGraph(
-  '#country-history-prices',
-  d => d && d.stateDatetime && moment(d.stateDatetime).toDate(),
-  d => d && d.price && d.price.value,
-  d => d && d.price && d.price.value != null,
-).gradient(false);
-
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
@@ -688,7 +681,6 @@ function fetch(showLoading, callback) {
 window.addEventListener('resize', () => {
   if (getState().application.selectedZoneName) {
     countryTable.render();
-    countryHistoryPricesGraph.render();
   }
   co2Colorbars.forEach((d) => { d.render(); });
 });
@@ -891,12 +883,7 @@ function renderOpenTooltips(state) {
   }
 
   if (priceTooltip.isVisible) {
-    const tooltip = d3.select(priceTooltip._selector);
-    const priceIsDefined = zoneData.price != null && zoneData.price.value != null;
-    tooltip.select('.value').html(priceIsDefined ? zoneData.price.value : '?');
-    tooltip.select('.currency').html(priceIsDefined
-      ? getSymbolFromCurrency(zoneData.price.currency) : '?');
-    priceTooltip.show();
+    tooltipHelper.showPrice(priceTooltip, zoneData);
   }
 }
 
@@ -905,7 +892,6 @@ function renderHistory(state) {
   const history = state.data.histories[selectedZoneName];
 
   if (!history) {
-    countryHistoryPricesGraph.data([]).render();
     zoneDetailsTimeSlider.data([]).render();
     return;
   }
@@ -957,24 +943,6 @@ function renderHistory(state) {
         Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0) || 0
     ));
 
-  // Figure out the highest CO2 emissions
-  const hi_co2 = d3.max(
-    history,
-    d => (getState().application.electricityMixMode === 'consumption'
-      ? d.co2intensity
-      : d.co2intensityProduction)
-  );
-
-  // Create price color scale
-  const priceExtent = d3.extent(history, d => (d.price || {}).value);
-
-  countryHistoryPricesGraph.y.domain([Math.min(0, priceExtent[0]), 1.1 * priceExtent[1]]);
-  countryHistoryPricesGraph
-    .yColorScale(d3.scaleLinear()
-      .domain(countryHistoryPricesGraph.y.domain())
-      .range(['yellow', 'red']))
-    .data(history);
-
   zoneDetailsTimeSlider.data(history);
 
   // Update country table with all possible exchanges
@@ -994,52 +962,6 @@ function renderHistory(state) {
       });
     }
   }).render();
-
-  const currencySymbol = getSymbolFromCurrency((history[0].price || {}).currency);
-  countryHistoryPricesGraph.setYLabel((currencySymbol || '?') + '/MWh');
-
-  const firstDatetime = history[0] && moment(history[0].stateDatetime).toDate();
-  [countryHistoryPricesGraph].forEach((g) => {
-    if (currentMoment && firstDatetime) {
-      g.xDomain([firstDatetime, currentMoment.toDate()]);
-    }
-    g
-      .onMouseMove((d, i) => {
-        if (!d) return;
-        // In case of missing data
-        if (!d.countryCode) {
-          d.countryCode = selectedZoneName;
-        }
-        countryTable
-          .powerScaleDomain([lo, hi])
-          .co2ScaleDomain([lo_emission, hi_emission]);
-
-        if (g === countryHistoryPricesGraph) {
-          const tooltip = d3.select(priceTooltip._selector);
-          tooltip.select('.value').html((d.price || {}).value || '?');
-          tooltip.select('.currency').html(getSymbolFromCurrency((d.price || {}).currency) || '?');
-          priceTooltip.show();
-          priceTooltip.update(
-            currentEvent.clientX - 7,
-            g.rootElement.node().getBoundingClientRect().top - 7,
-          );
-        }
-
-        dispatchApplication('selectedZoneTimeIndex', i);
-      })
-      .onMouseOut((d, i) => {
-        countryTable
-          .powerScaleDomain(null)
-          .co2ScaleDomain(null);
-
-        if (g === countryHistoryPricesGraph) {
-          priceTooltip.hide();
-        }
-
-        dispatchApplication('selectedZoneTimeIndex', null);
-      })
-      .render();
-  });
 }
 
 function routeToPage(pageName, state) {
@@ -1169,9 +1091,11 @@ function updateTooltip(state) {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
+    priceTooltip.hide();
   } else if (state.application.tooltipDisplayMode === 'carbon') {
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
+    priceTooltip.hide();
     countryTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y,
@@ -1182,9 +1106,22 @@ function updateTooltip(state) {
       co2color, co2Colorbars,
       state.application.electricityMixMode,
     );
+  } else if (state.application.tooltipDisplayMode === 'price') {
+    countryTooltip.hide();
+    countryTableProductionTooltip.hide();
+    countryTableExchangeTooltip.hide();
+    priceTooltip.update(
+      state.application.tooltipPosition.x,
+      state.application.tooltipPosition.y,
+    );
+    tooltipHelper.showPrice(
+      priceTooltip,
+      state.application.tooltipZoneData,
+    );
   } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
     countryTooltip.hide();
     countryTableExchangeTooltip.hide();
+    priceTooltip.hide();
     countryTableProductionTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y
@@ -1199,6 +1136,7 @@ function updateTooltip(state) {
   } else {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
+    priceTooltip.hide();
     countryTableExchangeTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y
@@ -1295,7 +1233,7 @@ observe(state => state.data.histories, (histories, state) => {
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderCountryTable(state);
   renderOpenTooltips(state);
-  [countryHistoryPricesGraph, zoneDetailsTimeSlider].forEach((g) => {
+  [zoneDetailsTimeSlider].forEach((g) => {
     g.selectedIndex(i, state.application.previousSelectedZoneTimeIndex);
   });
 });

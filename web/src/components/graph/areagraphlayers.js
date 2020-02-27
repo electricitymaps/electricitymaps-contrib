@@ -62,6 +62,7 @@ const AreaGraphLayers = React.memo(({
             <path
               className={`area layer ${layer.key}`}
               style={{ cursor: 'pointer' }}
+              stroke={layer.stroke}
               fill={isGradient ? `url(#${gradientId})` : layer.fill}
               d={layerArea(layer.datapoints)}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */

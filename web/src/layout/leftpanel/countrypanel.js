@@ -14,6 +14,7 @@ import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
+import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import Tooltip from '../../components/tooltip';
 
 // Modules
@@ -198,7 +199,8 @@ class Component extends React.PureComponent {
             <span className="country-history-title">
               {__('country-history.electricityprices24h')}
             </span>
-            <svg id="country-history-prices" />
+
+            <CountryHistoryPricesGraph />
           </div>
           <hr />
           <div>
