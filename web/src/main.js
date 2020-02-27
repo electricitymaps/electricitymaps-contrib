@@ -13,7 +13,6 @@ import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
 import TimeSlider from './components/timeslider';
 import CountryTable from './components/countrytable';
-import LineGraph from './components/linegraph';
 import HorizontalColorbar from './components/horizontalcolorbar';
 import Tooltip from './components/tooltip';
 
