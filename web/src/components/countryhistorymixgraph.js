@@ -20,7 +20,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   ));
   const format = formatting.scalePower(maxTotalValue);
 
-  const valueAxisLabel = displayByEmissions ? 'tCO2eq/min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO2eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 };

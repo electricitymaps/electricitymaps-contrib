@@ -22,7 +22,7 @@ import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 
 const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 35;
+const Y_AXIS_WIDTH = 40;
 const Y_AXIS_PADDING = 4;
 
 const getDatetimes = data => (data || []).map(d => d.datetime);
@@ -158,6 +158,7 @@ const AreaGraph = React.memo(({
         scale={valueScale}
         label={valueAxisLabel}
         width={container.width}
+        height={container.height}
       />
       <GraphBackground
         timeScale={timeScale}

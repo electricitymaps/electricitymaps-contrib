@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ValueAxis = React.memo(({ scale, label, width }) => {
+const ValueAxis = React.memo(({ scale, label, width, height }) => {
   const [y1, y2] = scale.range();
   return (
     <g
@@ -12,7 +12,11 @@ const ValueAxis = React.memo(({ scale, label, width }) => {
       textAnchor="start"
       style={{ pointerEvents: 'none' }}
     >
-      {label && <text className="label" transform="translate(35, 80) rotate(-90)">{label}</text>}
+      {label && (
+        <text className="label" textAnchor="middle" transform={`translate(37, ${height / 2}) rotate(-90)`}>
+          {label}
+        </text>
+      )}
       <path className="domain" stroke="currentColor" d={`M6,${y1 + 0.5}H0.5V${y2 + 0.5}H6`} />
       {scale.ticks(5).map(v => (
         <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
