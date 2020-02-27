@@ -2,7 +2,7 @@ import React from 'react';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
-const InteractionBackground = ({
+const GraphBackground = ({
   timeScale,
   valueScale,
   datetimes,
@@ -14,6 +14,7 @@ const InteractionBackground = ({
   const [y2, y1] = valueScale.range();
   if (x1 >= x2 || y1 >= y2) return null;
 
+  // Mouse hover events
   let mouseOutRectTimeout;
   const handleRectMouseMove = (ev) => {
     if (mouseOutRectTimeout) {
@@ -21,7 +22,7 @@ const InteractionBackground = ({
       mouseOutRectTimeout = undefined;
     }
     if (mouseMoveHandler) {
-      mouseMoveHandler(undefined, detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef));
+      mouseMoveHandler(detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef));
     }
   };
   const handleRectMouseOut = () => {
@@ -48,4 +49,4 @@ const InteractionBackground = ({
   );
 };
 
-export default InteractionBackground;
+export default GraphBackground;

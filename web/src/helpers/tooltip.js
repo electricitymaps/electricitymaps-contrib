@@ -16,7 +16,7 @@ module.exports.showProduction = function showProduction(
 {
   const selector = tooltipInstance._selector;
 
-  if (!country.productionCo2Intensities) { return; }
+  if (!country || !country.productionCo2Intensities) { return; }
   const tooltip = d3.select(selector);
   tooltip.selectAll('#mode').text(translation.translate(mode) || mode);
 
