@@ -4,11 +4,16 @@ import { max as d3Max } from 'd3-array';
 import { connect } from 'react-redux';
 import { forEach } from 'lodash';
 
+import { dispatchApplication } from '../store';
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { getExchangeKeys } from '../helpers/zones';
-import { dispatchApplication } from '../store';
+import {
+  createGraphMouseMoveHandler,
+  createGraphMouseOutHandler,
+  createGraphLayerMouseMoveHandler,
+  createGraphLayerMouseOutHandler,
+} from '../helpers/history';
 
 import AreaGraph from './graph/areagraph';
 
@@ -27,27 +32,6 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
   const layerKeys = ['carbon'];
   const layerFill = () => d => co2ColorScale(d.data.carbon);
   return { data, layerKeys, layerFill };
-};
-
-const getMouseMoveHandler = () => (timeIndex) => {
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-const getMouseOutHandler = () => () => {
-  dispatchApplication('selectedZoneTimeIndex', null);
-};
-const getLayerMouseMoveHandler = isMobile => (timeIndex, layerIndex, layer, ev, svgRef) => {
-  // If in mobile mode, put the tooltip to the top of the screen for
-  // readability, otherwise float it depending on the cursor position.
-  const tooltipPosition = !isMobile
-    ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
-    : { x: 0, y: 0 };
-  dispatchApplication('tooltipPosition', tooltipPosition);
-  dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
-  dispatchApplication('tooltipDisplayMode', layer.key);
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-const getLayerMouseOutHandler = () => () => {
-  dispatchApplication('tooltipDisplayMode', null);
 };
 
 const getCurrentTime = state =>
@@ -88,10 +72,10 @@ const CountryHistoryCarbonGraph = ({
   );
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(getMouseMoveHandler, []);
-  const mouseOutHandler = useMemo(getMouseOutHandler, []);
-  const layerMouseMoveHandler = useMemo(() => getLayerMouseMoveHandler(isMobile), [isMobile]);
-  const layerMouseOutHandler = useMemo(getLayerMouseOutHandler, []);
+  const mouseMoveHandler = useMemo(createGraphMouseMoveHandler, []);
+  const mouseOutHandler = useMemo(createGraphMouseOutHandler, []);
+  const layerMouseMoveHandler = useMemo(() => createGraphLayerMouseMoveHandler(isMobile), [isMobile]);
+  const layerMouseOutHandler = useMemo(createGraphLayerMouseOutHandler, []);
 
   return (
     <AreaGraph
