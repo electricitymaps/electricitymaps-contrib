@@ -31,6 +31,11 @@ import { getExchangeKeys } from './helpers/history';
 import { getCurrentZoneData } from './helpers/redux';
 import { getCo2Scale } from './helpers/scales';
 
+import {
+  CARBON_GRAPH_LAYER_KEY,
+  PRICES_GRAPH_LAYER_KEY,
+} from './helpers/constants';
+
 // Layout
 import Main from './layout/main';
 
@@ -1065,7 +1070,7 @@ function updateTooltip(state) {
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
     priceTooltip.hide();
-  } else if (state.application.tooltipDisplayMode === 'carbon') {
+  } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
     priceTooltip.hide();
@@ -1079,7 +1084,7 @@ function updateTooltip(state) {
       co2color, co2Colorbars,
       state.application.electricityMixMode,
     );
-  } else if (state.application.tooltipDisplayMode === 'price') {
+  } else if (state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY) {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();

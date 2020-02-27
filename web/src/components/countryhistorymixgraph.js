@@ -1,15 +1,17 @@
 import moment from 'moment';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { max as d3Max } from 'd3-array';
 import { connect } from 'react-redux';
 import { forEach } from 'lodash';
 
-import { dispatchApplication } from '../store';
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
   getExchangeKeys,
+  getSelectedZoneHistory,
+  getZoneHistoryGraphStartTime,
+  getZoneHistoryGraphEndTime,
   createGraphMouseMoveHandler,
   createGraphMouseOutHandler,
   createGraphLayerMouseMoveHandler,
@@ -100,25 +102,12 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
   };
 };
 
-const getCurrentTime = state =>
-  state.application.customDate || (state.data.grid || {}).datetime;
-
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName];
-
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
-  // Pass current time as the end time of the graph time scale explicitly
-  // as we want to make sure we account for the missing data at the end of
-  // the graph (when not inferable from historyData timestamps).
-  // TODO: Likewise, we should be passing an explicit startTime set to 24h
-  // in the past to make sure we show data is missing at the beginning of
-  // the graph, but that would create UI inconsistency with the other
-  // neighbouring graphs showing data over a bit longer time scale
-  // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-  endTime: moment(getCurrentTime(state)).format(),
+  startTime: getZoneHistoryGraphStartTime(state),
+  endTime: getZoneHistoryGraphEndTime(state),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
@@ -128,6 +117,7 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
+  startTime,
   endTime,
   historyData,
   isMobile,
@@ -163,6 +153,7 @@ const CountryHistoryMixGraph = ({
       data={data}
       layerKeys={layerKeys}
       layerFill={layerFill}
+      startTime={startTime}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
       mouseMoveHandler={mouseMoveHandler}

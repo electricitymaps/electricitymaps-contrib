@@ -1,14 +1,13 @@
 import moment from 'moment';
-import React, { useState, useMemo, useCallback } from 'react';
-import { max as d3Max } from 'd3-array';
+import React, { useMemo } from 'react';
 import { connect } from 'react-redux';
-import { forEach } from 'lodash';
 
-import { dispatchApplication } from '../store';
-import formatting from '../helpers/formatting';
+import { CARBON_GRAPH_LAYER_KEY } from '../helpers/constants';
 import { getCo2Scale } from '../helpers/scales';
-import { modeOrder, modeColor } from '../helpers/constants';
 import {
+  getSelectedZoneHistory,
+  getZoneHistoryGraphStartTime,
+  getZoneHistoryGraphEndTime,
   createGraphMouseMoveHandler,
   createGraphMouseOutHandler,
   createGraphLayerMouseMoveHandler,
@@ -22,36 +21,23 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const data = historyData.map(d => ({
-    carbon: electricityMixMode === 'consumption'
+    [CARBON_GRAPH_LAYER_KEY]: electricityMixMode === 'consumption'
       ? d.co2intensity
       : d.co2intensityProduction,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
     _countryData: d,
   }));
-  const layerKeys = ['carbon'];
-  const layerFill = () => d => co2ColorScale(d.data.carbon);
+  const layerKeys = [CARBON_GRAPH_LAYER_KEY];
+  const layerFill = key => d => co2ColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
-
-const getCurrentTime = state =>
-  state.application.customDate || (state.data.grid || {}).datetime;
-
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName];
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  // Pass current time as the end time of the graph time scale explicitly
-  // as we want to make sure we account for the missing data at the end of
-  // the graph (when not inferable from historyData timestamps).
-  // TODO: Likewise, we should be passing an explicit startTime set to 24h
-  // in the past to make sure we show data is missing at the beginning of
-  // the graph, but that would create UI inconsistency with the other
-  // neighbouring graphs showing data over a bit longer time scale
-  // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-  endTime: moment(getCurrentTime(state)).format(),
+  startTime: getZoneHistoryGraphStartTime(state),
+  endTime: getZoneHistoryGraphEndTime(state),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
@@ -60,6 +46,7 @@ const mapStateToProps = state => ({
 const CountryHistoryCarbonGraph = ({
   colorBlindModeEnabled,
   electricityMixMode,
+  startTime,
   endTime,
   historyData,
   isMobile,
@@ -82,6 +69,7 @@ const CountryHistoryCarbonGraph = ({
       data={data}
       layerKeys={layerKeys}
       layerFill={layerFill}
+      startTime={startTime}
       endTime={endTime}
       valueAxisLabel="g / kWh"
       mouseMoveHandler={mouseMoveHandler}

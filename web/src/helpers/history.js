@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   flatMap,
   keys,
@@ -9,6 +10,26 @@ import { dispatchApplication } from '../store';
 
 export function getExchangeKeys(zoneHistory) {
   return sortBy(uniq(flatMap(zoneHistory, d => keys(d.exchange))));
+}
+
+export function getSelectedZoneHistory(state) {
+  return state.data.histories[state.application.selectedZoneName];
+}
+
+// Use current time as the end time of the graph time scale explicitly
+// as we want to make sure we account for the missing data at the end of
+// the graph (when not inferable from historyData timestamps).
+export function getZoneHistoryGraphEndTime(state) {
+  return moment(state.application.customDate || (state.data.grid || {}).datetime).format();
+}
+
+// TODO: Likewise, we should be passing an explicit startTime set to 24h
+// in the past to make sure we show data is missing at the beginning of
+// the graph, but right now that would create UI inconsistency with the
+// other neighbouring graphs showing data over a bit longer time scale
+// (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
+export function getZoneHistoryGraphStartTime(state) {
+  return null;
 }
 
 export function createGraphMouseMoveHandler() {

@@ -1,14 +1,16 @@
 import moment from 'moment';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { connect } from 'react-redux';
-import { forEach, first } from 'lodash';
+import { first } from 'lodash';
 
-import { dispatchApplication } from '../store';
-import formatting from '../helpers/formatting';
+import { PRICES_GRAPH_LAYER_KEY } from '../helpers/constants';
 import {
+  getSelectedZoneHistory,
+  getZoneHistoryGraphStartTime,
+  getZoneHistoryGraphEndTime,
   createGraphMouseMoveHandler,
   createGraphMouseOutHandler,
   createGraphLayerMouseMoveHandler,
@@ -23,19 +25,23 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
   const currencySymbol = getSymbolFromCurrency(((first(historyData) || {}).price || {}).currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
+  const priceMaxValue = d3Max(historyData.map(d => (d.price || {}).value));
   const priceColorScale = scaleLinear()
-    .domain([0, d3Max(historyData.map(d => (d.price || {}).value))])
+    .domain([0, priceMaxValue])
     .range(['yellow', 'red']);
+
   const data = historyData.map(d => ({
-    price: d.price && d.price.value,
+    [PRICES_GRAPH_LAYER_KEY]: d.price && d.price.value,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
     _countryData: d,
   }));
-  const layerKeys = ['price'];
+
+  const layerKeys = [PRICES_GRAPH_LAYER_KEY];
   const layerStroke = () => 'darkgray';
   const layerFill = () => '#616161';
-  const focusFill = () => d => priceColorScale(d.data.price);
+  const focusFill = key => d => priceColorScale(d.data[key]);
+
   return {
     data,
     layerKeys,
@@ -46,24 +52,11 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
   };
 };
 
-const getCurrentTime = state =>
-  state.application.customDate || (state.data.grid || {}).datetime;
-
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName];
-
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  // Pass current time as the end time of the graph time scale explicitly
-  // as we want to make sure we account for the missing data at the end of
-  // the graph (when not inferable from historyData timestamps).
-  // TODO: Likewise, we should be passing an explicit startTime set to 24h
-  // in the past to make sure we show data is missing at the beginning of
-  // the graph, but that would create UI inconsistency with the other
-  // neighbouring graphs showing data over a bit longer time scale
-  // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-  endTime: moment(getCurrentTime(state)).format(),
+  startTime: getZoneHistoryGraphStartTime(state),
+  endTime: getZoneHistoryGraphEndTime(state),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
@@ -72,6 +65,7 @@ const mapStateToProps = state => ({
 const CountryHistoryPricesGraph = ({
   colorBlindModeEnabled,
   electricityMixMode,
+  startTime,
   endTime,
   historyData,
   isMobile,
@@ -103,6 +97,7 @@ const CountryHistoryPricesGraph = ({
       layerStroke={layerStroke}
       layerFill={layerFill}
       focusFill={focusFill}
+      startTime={startTime}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
       mouseMoveHandler={mouseMoveHandler}

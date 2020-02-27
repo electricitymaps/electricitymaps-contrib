@@ -31,9 +31,14 @@ const modeOrder = [
 const PRODUCTION_MODES = modeOrder.filter(d => d.indexOf('storage') === -1);
 const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d => d.replace(' storage', ''));
 
+const CARBON_GRAPH_LAYER_KEY = 'carbon';
+const PRICES_GRAPH_LAYER_KEY = 'price';
+
 module.exports = {
   modeColor,
   modeOrder,
   PRODUCTION_MODES,
   STORAGE_MODES,
+  CARBON_GRAPH_LAYER_KEY,
+  PRICES_GRAPH_LAYER_KEY,
 };
