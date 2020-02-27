@@ -860,32 +860,6 @@ function renderCountryTable(state) {
   }
 }
 
-function renderOpenTooltips(state) {
-  const zoneData = getCurrentZoneData(state);
-  const tooltipMode = state.application.tooltipDisplayMode;
-  // if (tooltipMode) {
-  //   const isExchange = modeOrder.indexOf(tooltipMode) === -1;
-  //   const fun = isExchange
-  //     ? tooltipHelper.showExchange : tooltipHelper.showProduction;
-  //   const ttp = isExchange
-  //     ? countryTableExchangeTooltip : countryTableProductionTooltip;
-  //   fun(ttp,
-  //     tooltipMode, zoneData, state.application.tableDisplayEmissions,
-  //     co2color, co2Colorbars);
-  // }
-
-  if (countryTooltip.isVisible) {
-    tooltipHelper.showMapCountry(
-      countryTooltip, zoneData, co2color, co2Colorbars,
-      state.application.electricityMixMode,
-    );
-  }
-
-  if (priceTooltip.isVisible) {
-    tooltipHelper.showPrice(priceTooltip, zoneData);
-  }
-}
-
 function renderHistory(state) {
   const { selectedZoneName, electricityMixMode } = state.application;
   const history = state.data.histories[selectedZoneName];
@@ -1231,7 +1205,6 @@ observe(state => state.data.histories, (histories, state) => {
 // Observe for index change (for example by history graph)
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderCountryTable(state);
-  renderOpenTooltips(state);
   [zoneDetailsTimeSlider].forEach((g) => {
     g.selectedIndex(i, state.application.previousSelectedZoneTimeIndex);
   });
