@@ -1,6 +1,11 @@
 import React from 'react';
 
-const ValueAxis = React.memo(({ scale, label, width, height }) => {
+const ValueAxis = React.memo(({
+  scale,
+  label,
+  width,
+  height,
+}) => {
   const [y1, y2] = scale.range();
   return (
     <g

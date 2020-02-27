@@ -127,6 +127,7 @@ const CountryHistoryPricesGraph = ({
       selectedTimeIndex={selectedTimeIndex}
       selectedLayerIndex={0}
       isMobile={isMobile}
+      height="6em"
     />
   );
 };

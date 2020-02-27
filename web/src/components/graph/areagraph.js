@@ -102,6 +102,7 @@ const AreaGraph = React.memo(({
     If `isMobile` is true, the mouse hover events are triggered by clicks only.
   */
   isMobile,
+  height = '10em',
 }) => {
   const ref = useRef(null);
   const [container, setContainer] = useState({ width: 0, height: 0 });
@@ -149,7 +150,7 @@ const AreaGraph = React.memo(({
   if (isEmpty(layers)) return null;
 
   return (
-    <svg height="10em" ref={ref}>
+    <svg height={height} ref={ref}>
       <TimeAxis
         scale={timeScale}
         height={container.height}

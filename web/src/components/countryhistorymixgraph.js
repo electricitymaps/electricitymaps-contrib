@@ -189,6 +189,7 @@ const CountryHistoryMixGraph = ({
       selectedTimeIndex={selectedTimeIndex}
       selectedLayerIndex={selectedLayerIndex}
       isMobile={isMobile}
+      height="10em"
     />
   );
 };

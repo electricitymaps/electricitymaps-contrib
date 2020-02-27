@@ -107,6 +107,7 @@ const CountryHistoryCarbonGraph = ({
       selectedTimeIndex={selectedTimeIndex}
       selectedLayerIndex={0}
       isMobile={isMobile}
+      height="8em"
     />
   );
 };
