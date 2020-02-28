@@ -168,6 +168,7 @@ const AreaGraph = React.memo(({
         datetimes={datetimes}
         mouseMoveHandler={backgroundMouseMoveHandler}
         mouseOutHandler={backgroundMouseOutHandler}
+        isMobile={isMobile}
         svgRef={ref}
       />
       <AreaGraphLayers

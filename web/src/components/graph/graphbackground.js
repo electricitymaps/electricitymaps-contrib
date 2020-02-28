@@ -1,4 +1,5 @@
 import React from 'react';
+import { noop } from 'lodash';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
@@ -9,6 +10,7 @@ const GraphBackground = React.memo(({
   datetimes,
   mouseMoveHandler,
   mouseOutHandler,
+  isMobile,
   svgRef,
 }) => {
   const [x1, x2] = timeScale.range();
@@ -28,11 +30,9 @@ const GraphBackground = React.memo(({
     }
   };
   const handleRectMouseOut = () => {
-    mouseOutRectTimeout = setTimeout(() => {
-      if (mouseOutHandler) {
-        mouseOutHandler();
-      }
-    }, 50);
+    if (mouseOutHandler) {
+      mouseOutHandler();
+    }
   };
 
   return (
@@ -42,9 +42,11 @@ const GraphBackground = React.memo(({
       width={x2 - x1}
       height={y2 - y1}
       style={{ cursor: 'pointer', opacity: 0 }}
-      onFocus={handleRectMouseMove}
-      onMouseOver={handleRectMouseMove}
-      onMouseMove={handleRectMouseMove}
+      /* Support only click events in mobile mode, otherwise react to mouse hovers */
+      onClick={isMobile ? handleRectMouseMove : noop}
+      onFocus={!isMobile ? handleRectMouseMove : noop}
+      onMouseOver={!isMobile ? handleRectMouseMove : noop}
+      onMouseMove={!isMobile ? handleRectMouseMove : noop}
       onMouseOut={handleRectMouseOut}
       onBlur={handleRectMouseOut}
     />

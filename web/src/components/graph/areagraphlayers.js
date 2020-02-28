@@ -15,7 +15,8 @@ const AreaGraphLayers = React.memo(({
   svgRef,
 }) => {
   const [x1, x2] = timeScale.range();
-  if (x1 >= x2) return null;
+  const [y2, y1] = valueScale.range();
+  if (x1 >= x2 || y1 >= y2) return null;
 
   // Generate layer paths
   const layerArea = area()
@@ -37,11 +38,9 @@ const AreaGraphLayers = React.memo(({
     }
   };
   const handleLayerMouseOut = () => {
-    mouseOutTimeout = setTimeout(() => {
-      if (mouseOutHandler) {
-        mouseOutHandler();
-      }
-    }, 50);
+    if (mouseOutHandler) {
+      mouseOutHandler();
+    }
   };
 
   return (

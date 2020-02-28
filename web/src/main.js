@@ -1064,6 +1064,7 @@ observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
   }
 });
 
+// TODO: Simplify this when moving the Tooltip component to React.
 function updateTooltip(state) {
   if (!state.application.tooltipDisplayMode) {
     countryTooltip.hide();
