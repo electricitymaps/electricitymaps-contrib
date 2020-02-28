@@ -32,13 +32,13 @@ export function getZoneHistoryGraphStartTime(state) {
   return null;
 }
 
-export function createGraphMouseMoveHandler() {
+export function createGraphBackgroundMouseMoveHandler() {
   return (timeIndex) => {
     dispatchApplication('selectedZoneTimeIndex', timeIndex);
   };
 }
 
-export function createGraphMouseOutHandler() {
+export function createGraphBackgroundMouseOutHandler() {
   return () => {
     dispatchApplication('selectedZoneTimeIndex', null);
   };
@@ -54,9 +54,11 @@ export function createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex
     if (setSelectedLayerIndex) {
       setSelectedLayerIndex(layerIndex);
     }
-    dispatchApplication('tooltipPosition', tooltipPosition);
-    dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
-    dispatchApplication('tooltipDisplayMode', layer.key);
+    if (layer.datapoints[timeIndex]) {
+      dispatchApplication('tooltipPosition', tooltipPosition);
+      dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
+      dispatchApplication('tooltipDisplayMode', layer.key);
+    }
     dispatchApplication('selectedZoneTimeIndex', timeIndex);
   };
 }
@@ -67,5 +69,6 @@ export function createGraphLayerMouseOutHandler(setSelectedLayerIndex) {
       setSelectedLayerIndex(null);
     }
     dispatchApplication('tooltipDisplayMode', null);
+    dispatchApplication('selectedZoneTimeIndex', null);
   };
 }

@@ -84,10 +84,10 @@ const AreaGraph = React.memo(({
   */
   valueAxisLabel,
   /*
-    Mouse event callbacks for the whole graph and individual layers respectively.
+    Mouse event callbacks for the graph background and individual layers respectively.
   */
-  mouseMoveHandler,
-  mouseOutHandler,
+  backgroundMouseMoveHandler,
+  backgroundMouseOutHandler,
   layerMouseMoveHandler,
   layerMouseOutHandler,
   /*
@@ -165,8 +165,8 @@ const AreaGraph = React.memo(({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
+        mouseMoveHandler={backgroundMouseMoveHandler}
+        mouseOutHandler={backgroundMouseOutHandler}
         svgRef={ref}
       />
       <AreaGraphLayers
@@ -174,10 +174,8 @@ const AreaGraph = React.memo(({
         datetimes={datetimes}
         timeScale={timeScale}
         valueScale={valueScale}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={layerMouseMoveHandler}
-        layerMouseOutHandler={layerMouseOutHandler}
+        mouseMoveHandler={layerMouseMoveHandler}
+        mouseOutHandler={layerMouseOutHandler}
         isMobile={isMobile}
         svgRef={ref}
       />

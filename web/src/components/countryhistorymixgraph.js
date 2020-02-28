@@ -12,8 +12,8 @@ import {
   getSelectedZoneHistory,
   getZoneHistoryGraphStartTime,
   getZoneHistoryGraphEndTime,
-  createGraphMouseMoveHandler,
-  createGraphMouseOutHandler,
+  createGraphBackgroundMouseMoveHandler,
+  createGraphBackgroundMouseOutHandler,
   createGraphLayerMouseMoveHandler,
   createGraphLayerMouseOutHandler,
 } from '../helpers/history';
@@ -137,8 +137,8 @@ const CountryHistoryMixGraph = ({
   );
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(createGraphMouseMoveHandler, []);
-  const mouseOutHandler = useMemo(createGraphMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
+  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
   const layerMouseMoveHandler = useMemo(
     () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
     [isMobile, setSelectedLayerIndex]
@@ -156,8 +156,8 @@ const CountryHistoryMixGraph = ({
       startTime={startTime}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
-      mouseMoveHandler={mouseMoveHandler}
-      mouseOutHandler={mouseOutHandler}
+      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+      backgroundMouseOutHandler={backgroundMouseOutHandler}
       layerMouseMoveHandler={layerMouseMoveHandler}
       layerMouseOutHandler={layerMouseOutHandler}
       selectedTimeIndex={selectedTimeIndex}

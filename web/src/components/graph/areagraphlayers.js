@@ -11,8 +11,6 @@ const AreaGraphLayers = React.memo(({
   valueScale,
   mouseMoveHandler,
   mouseOutHandler,
-  layerMouseMoveHandler,
-  layerMouseOutHandler,
   isMobile,
   svgRef,
 }) => {
@@ -34,20 +32,14 @@ const AreaGraphLayers = React.memo(({
       mouseOutTimeout = undefined;
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
-    if (layerMouseMoveHandler) {
-      layerMouseMoveHandler(timeIndex, layerIndex, layer, ev, svgRef);
-    }
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex);
+      mouseMoveHandler(timeIndex, layerIndex, layer, ev, svgRef);
     }
   };
   const handleLayerMouseOut = () => {
     mouseOutTimeout = setTimeout(() => {
       if (mouseOutHandler) {
         mouseOutHandler();
-      }
-      if (layerMouseOutHandler) {
-        layerMouseOutHandler();
       }
     }, 50);
   };

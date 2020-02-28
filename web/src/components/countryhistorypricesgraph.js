@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
@@ -11,8 +11,8 @@ import {
   getSelectedZoneHistory,
   getZoneHistoryGraphStartTime,
   getZoneHistoryGraphEndTime,
-  createGraphMouseMoveHandler,
-  createGraphMouseOutHandler,
+  createGraphBackgroundMouseMoveHandler,
+  createGraphBackgroundMouseOutHandler,
   createGraphLayerMouseMoveHandler,
   createGraphLayerMouseOutHandler,
 } from '../helpers/history';
@@ -71,6 +71,8 @@ const CountryHistoryPricesGraph = ({
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
   // Recalculate graph data only when the history data is changed
   const {
     data,
@@ -85,10 +87,16 @@ const CountryHistoryPricesGraph = ({
   );
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(createGraphMouseMoveHandler, []);
-  const mouseOutHandler = useMemo(createGraphMouseOutHandler, []);
-  const layerMouseMoveHandler = useMemo(() => createGraphLayerMouseMoveHandler(isMobile), [isMobile]);
-  const layerMouseOutHandler = useMemo(createGraphLayerMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
+  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
+  const layerMouseMoveHandler = useMemo(
+    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
+    [isMobile, setSelectedLayerIndex]
+  );
+  const layerMouseOutHandler = useMemo(
+    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
+    [setSelectedLayerIndex]
+  );
 
   return (
     <AreaGraph
@@ -100,12 +108,12 @@ const CountryHistoryPricesGraph = ({
       startTime={startTime}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
-      mouseMoveHandler={mouseMoveHandler}
-      mouseOutHandler={mouseOutHandler}
+      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+      backgroundMouseOutHandler={backgroundMouseOutHandler}
       layerMouseMoveHandler={layerMouseMoveHandler}
       layerMouseOutHandler={layerMouseOutHandler}
       selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={0}
+      selectedLayerIndex={selectedLayerIndex}
       isMobile={isMobile}
       height="6em"
     />

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { CARBON_GRAPH_LAYER_KEY } from '../helpers/constants';
@@ -8,8 +8,8 @@ import {
   getSelectedZoneHistory,
   getZoneHistoryGraphStartTime,
   getZoneHistoryGraphEndTime,
-  createGraphMouseMoveHandler,
-  createGraphMouseOutHandler,
+  createGraphBackgroundMouseMoveHandler,
+  createGraphBackgroundMouseOutHandler,
   createGraphLayerMouseMoveHandler,
   createGraphLayerMouseOutHandler,
 } from '../helpers/history';
@@ -52,6 +52,8 @@ const CountryHistoryCarbonGraph = ({
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
     () => prepareGraphData(historyData, colorBlindModeEnabled, electricityMixMode),
@@ -59,10 +61,16 @@ const CountryHistoryCarbonGraph = ({
   );
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(createGraphMouseMoveHandler, []);
-  const mouseOutHandler = useMemo(createGraphMouseOutHandler, []);
-  const layerMouseMoveHandler = useMemo(() => createGraphLayerMouseMoveHandler(isMobile), [isMobile]);
-  const layerMouseOutHandler = useMemo(createGraphLayerMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
+  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
+  const layerMouseMoveHandler = useMemo(
+    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
+    [isMobile, setSelectedLayerIndex]
+  );
+  const layerMouseOutHandler = useMemo(
+    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
+    [setSelectedLayerIndex]
+  );
 
   return (
     <AreaGraph
@@ -72,12 +80,12 @@ const CountryHistoryCarbonGraph = ({
       startTime={startTime}
       endTime={endTime}
       valueAxisLabel="g / kWh"
-      mouseMoveHandler={mouseMoveHandler}
-      mouseOutHandler={mouseOutHandler}
+      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+      backgroundMouseOutHandler={backgroundMouseOutHandler}
       layerMouseMoveHandler={layerMouseMoveHandler}
       layerMouseOutHandler={layerMouseOutHandler}
       selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={0}
+      selectedLayerIndex={selectedLayerIndex}
       isMobile={isMobile}
       height="8em"
     />
