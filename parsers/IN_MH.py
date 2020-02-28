@@ -174,7 +174,7 @@ CS = ['SSP',
 	 'GANDHAR',
 	 'CS GEN. TTL.']
 
-#converts image into a black and white image
+#converts image into a black and white
 def RGBtoBW(pil_image):
 	image = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2GRAY)
 	image = cv2.threshold(image, 0, 255,
