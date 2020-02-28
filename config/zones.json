@@ -3913,7 +3913,6 @@
       "gas": 1135,
       "hydro": 22184,
       "nuclear": 1191,
-      "solar": 28,
       "wind": 2770
     },
     "contributors": [
