@@ -2,7 +2,8 @@ import React from 'react';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
-const GraphBackground = ({
+const GraphBackground = React.memo(({
+  layers,
   timeScale,
   valueScale,
   datetimes,
@@ -21,8 +22,9 @@ const GraphBackground = ({
       clearTimeout(mouseOutRectTimeout);
       mouseOutRectTimeout = undefined;
     }
+    const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (mouseMoveHandler) {
-      mouseMoveHandler(detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef));
+      mouseMoveHandler(timeIndex, layers, ev, svgRef);
     }
   };
   const handleRectMouseOut = () => {
@@ -47,6 +49,6 @@ const GraphBackground = ({
       onBlur={handleRectMouseOut}
     />
   );
-};
+});
 
 export default GraphBackground;

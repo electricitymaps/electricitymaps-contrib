@@ -11,8 +11,8 @@ import {
   getSelectedZoneHistory,
   getZoneHistoryGraphStartTime,
   getZoneHistoryGraphEndTime,
-  createGraphBackgroundMouseMoveHandler,
-  createGraphBackgroundMouseOutHandler,
+  createSingleLayerGraphBackgroundMouseMoveHandler,
+  createSingleLayerGraphBackgroundMouseOutHandler,
   createGraphLayerMouseMoveHandler,
   createGraphLayerMouseOutHandler,
 } from '../helpers/history';
@@ -87,8 +87,14 @@ const CountryHistoryPricesGraph = ({
   );
 
   // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
-  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(
+    () => createSingleLayerGraphBackgroundMouseMoveHandler(isMobile, setSelectedLayerIndex),
+    [isMobile, setSelectedLayerIndex]
+  );
+  const backgroundMouseOutHandler = useMemo(
+    () => createSingleLayerGraphBackgroundMouseOutHandler(setSelectedLayerIndex),
+    [setSelectedLayerIndex]
+  );
   const layerMouseMoveHandler = useMemo(
     () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
     [isMobile, setSelectedLayerIndex]

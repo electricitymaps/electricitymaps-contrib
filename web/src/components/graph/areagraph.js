@@ -162,6 +162,7 @@ const AreaGraph = React.memo(({
         height={container.height}
       />
       <GraphBackground
+        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
