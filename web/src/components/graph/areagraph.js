@@ -66,12 +66,18 @@ const AreaGraph = React.memo(({
   */
   layerKeys,
   /*
+    `layerStroke` should be a function mapping each layer key into a string value representing the layer's stroke color.
+  */
+  layerStroke,
+  /*
     `layerFill` should be a function that maps each layer key into one of the following:
       * a string value representing the layer's fill color if it's homogenous
       * a function mapping each layer's data point to a string color value, rendering a horizontal gradient
   */
-  layerStroke,
   layerFill,
+  /*
+    `focusFill` is an optional prop of that same format that overrides `layerFill` for the graph focal point fill.
+  */
   focusFill,
   /*
     `startTime` and `endTime` are timestamps denoting the time interval of the rendered part of the graph.
@@ -102,6 +108,9 @@ const AreaGraph = React.memo(({
     If `isMobile` is true, the mouse hover events are triggered by clicks only.
   */
   isMobile,
+  /*
+    Height of the area graph canvas.
+  */
   height = '10em',
 }) => {
   const ref = useRef(null);
