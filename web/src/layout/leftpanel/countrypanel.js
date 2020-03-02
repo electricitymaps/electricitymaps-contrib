@@ -12,7 +12,9 @@ import { connect } from 'react-redux';
 // Components
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
+import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
+import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import Tooltip from '../../components/tooltip';
 
 // Modules
@@ -172,7 +174,8 @@ class Component extends React.PureComponent {
               <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
               <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
             </small>
-            <svg id="country-history-carbon" />
+
+            <CountryHistoryCarbonGraph />
 
             <div className="loading overlay" />
             <span
@@ -196,7 +199,8 @@ class Component extends React.PureComponent {
             <span className="country-history-title">
               {__('country-history.electricityprices24h')}
             </span>
-            <svg id="country-history-prices" />
+
+            <CountryHistoryPricesGraph />
           </div>
           <hr />
           <div>

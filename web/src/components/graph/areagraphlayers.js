@@ -11,13 +11,12 @@ const AreaGraphLayers = React.memo(({
   valueScale,
   mouseMoveHandler,
   mouseOutHandler,
-  layerMouseMoveHandler,
-  layerMouseOutHandler,
   isMobile,
   svgRef,
 }) => {
   const [x1, x2] = timeScale.range();
-  if (x1 >= x2) return null;
+  const [y2, y1] = valueScale.range();
+  if (x1 >= x2 || y1 >= y2) return null;
 
   // Generate layer paths
   const layerArea = area()
@@ -34,22 +33,14 @@ const AreaGraphLayers = React.memo(({
       mouseOutTimeout = undefined;
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
-    if (layerMouseMoveHandler) {
-      layerMouseMoveHandler(timeIndex, layerIndex, layer, ev, svgRef);
-    }
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex);
+      mouseMoveHandler(timeIndex, layerIndex, layer, ev, svgRef);
     }
   };
   const handleLayerMouseOut = () => {
-    mouseOutTimeout = setTimeout(() => {
-      if (mouseOutHandler) {
-        mouseOutHandler();
-      }
-      if (layerMouseOutHandler) {
-        layerMouseOutHandler();
-      }
-    }, 50);
+    if (mouseOutHandler) {
+      mouseOutHandler();
+    }
   };
 
   return (
@@ -62,6 +53,7 @@ const AreaGraphLayers = React.memo(({
             <path
               className={`area layer ${layer.key}`}
               style={{ cursor: 'pointer' }}
+              stroke={layer.stroke}
               fill={isGradient ? `url(#${gradientId})` : layer.fill}
               d={layerArea(layer.datapoints)}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */
