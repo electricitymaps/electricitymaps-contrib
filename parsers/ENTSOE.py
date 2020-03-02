@@ -407,13 +407,11 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
+        
+    # Due to rate limiting, we need to spread our requests across different tokens
     tokens = os.environ['ENTSOE_TOKEN'].split(',')
-
-    # Due to rate limiting, we need to spread our requests across two different tokens
-    if 'ENTSOE_TOKEN_2' in os.environ:
-        tokens += [os.environ['ENTSOE_TOKEN_2']]
-    params['securityToken'] = np.random.choice(tokens)
     
+    params['securityToken'] = np.random.choice(tokens)
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
