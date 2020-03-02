@@ -40,14 +40,14 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
   const layerKeys = [PRICES_GRAPH_LAYER_KEY];
   const layerStroke = () => 'darkgray';
   const layerFill = () => '#616161';
-  const focusFill = key => d => priceColorScale(d.data[key]);
+  const markerFill = key => d => priceColorScale(d.data[key]);
 
   return {
     data,
     layerKeys,
     layerStroke,
     layerFill,
-    focusFill,
+    markerFill,
     valueAxisLabel,
   };
 };
@@ -79,7 +79,7 @@ const CountryHistoryPricesGraph = ({
     layerKeys,
     layerStroke,
     layerFill,
-    focusFill,
+    markerFill,
     valueAxisLabel,
   } = useMemo(
     () => prepareGraphData(historyData, colorBlindModeEnabled, electricityMixMode),
@@ -110,7 +110,7 @@ const CountryHistoryPricesGraph = ({
       layerKeys={layerKeys}
       layerStroke={layerStroke}
       layerFill={layerFill}
-      focusFill={focusFill}
+      markerFill={markerFill}
       startTime={startTime}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
