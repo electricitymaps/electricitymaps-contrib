@@ -105,10 +105,14 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
       const { selectedZoneTimeIndex } = action.payload;
-      return Object.assign({}, state, {
-        selectedZoneTimeIndex,
-        previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
-      });
+      // Update the selection only if it has changed
+      if (selectedZoneTimeIndex !== state.selectedZoneTimeIndex) {
+        return Object.assign({}, state, {
+          selectedZoneTimeIndex,
+          previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
+        });
+      }
+      return state;
     }
 
     default:

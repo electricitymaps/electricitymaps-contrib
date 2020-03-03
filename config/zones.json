@@ -1155,17 +1155,21 @@
       ]
     ],
     "capacity": {
-      "biomass": 217,
-      "coal": 1976,
+      "biomass": 302,
+      "coal": 1489,
       "gas": 204,
-      "hydro": 8,
+      "geothermal": 0,
+      "hydro": 7,
+      "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
       "solar": 11,
-      "wind": 487
+      "wind": 481,
+      "unknown": 12
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3947,12 +3951,12 @@
   },
   "US-BPA": {
     "capacity": {
-      "biomass": 447,
-      "coal": 60,
-      "gas": 1817,
-      "hydro": 22191,
+      "biomass": 378,
+      "coal": 0,
+      "gas": 1135,
+      "hydro": 22184,
       "nuclear": 1191,
-      "wind": 4051
+      "wind": 2770
     },
     "contributors": [
       "https://github.com/systemcatch"

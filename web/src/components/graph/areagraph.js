@@ -22,7 +22,7 @@ import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 
 const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 35;
+const Y_AXIS_WIDTH = 40;
 const Y_AXIS_PADDING = 4;
 
 const getDatetimes = data => (data || []).map(d => d.datetime);
@@ -40,14 +40,16 @@ const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
   .range([containerHeight, Y_AXIS_PADDING]);
 
-const getLayers = (data, layerKeys, layerFill) => {
+const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   if (!data || !data[0]) return [];
   const stackedData = stack()
     .offset(stackOffsetDiverging)
     .keys(layerKeys)(data);
   return layerKeys.map((key, ind) => ({
     key,
+    stroke: layerStroke ? layerStroke(key) : 'none',
     fill: layerFill(key),
+    markerFill: markerFill ? markerFill(key) : layerFill(key),
     datapoints: stackedData[ind],
   }));
 };
@@ -64,11 +66,19 @@ const AreaGraph = React.memo(({
   */
   layerKeys,
   /*
+    `layerStroke` should be a function mapping each layer key into a string value representing the layer's stroke color.
+  */
+  layerStroke,
+  /*
     `layerFill` should be a function that maps each layer key into one of the following:
       * a string value representing the layer's fill color if it's homogenous
       * a function mapping each layer's data point to a string color value, rendering a horizontal gradient
   */
   layerFill,
+  /*
+    `markerFill` is an optional prop of that same format that overrides `layerFill` for the graph focal point fill.
+  */
+  markerFill,
   /*
     `startTime` and `endTime` are timestamps denoting the time interval of the rendered part of the graph.
     If not provided, they'll be inferred from timestamps of the first/last datapoints.
@@ -80,10 +90,10 @@ const AreaGraph = React.memo(({
   */
   valueAxisLabel,
   /*
-    Mouse event callbacks for the whole graph and individual layers respectively.
+    Mouse event callbacks for the graph background and individual layers respectively.
   */
-  mouseMoveHandler,
-  mouseOutHandler,
+  backgroundMouseMoveHandler,
+  backgroundMouseOutHandler,
   layerMouseMoveHandler,
   layerMouseOutHandler,
   /*
@@ -98,6 +108,10 @@ const AreaGraph = React.memo(({
     If `isMobile` is true, the mouse hover events are triggered by clicks only.
   */
   isMobile,
+  /*
+    Height of the area graph canvas.
+  */
+  height = '10em',
 }) => {
   const ref = useRef(null);
   const [container, setContainer] = useState({ width: 0, height: 0 });
@@ -125,8 +139,8 @@ const AreaGraph = React.memo(({
 
   // Build layers
   const layers = useMemo(
-    () => getLayers(data, layerKeys, layerFill),
-    [data, layerKeys, layerFill]
+    () => getLayers(data, layerKeys, layerStroke, layerFill, markerFill),
+    [data, layerKeys, layerStroke, layerFill, markerFill]
   );
 
   // Generate graph scales
@@ -145,22 +159,26 @@ const AreaGraph = React.memo(({
   if (isEmpty(layers)) return null;
 
   return (
-    <svg height="10em" ref={ref}>
+    <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
       <TimeAxis
         scale={timeScale}
-        height={container.height}
+        transform={`translate(-1 ${container.height - 1})`}
+        className="x axis"
       />
       <ValueAxis
         scale={valueScale}
         label={valueAxisLabel}
         width={container.width}
+        height={container.height}
       />
       <GraphBackground
+        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
+        mouseMoveHandler={backgroundMouseMoveHandler}
+        mouseOutHandler={backgroundMouseOutHandler}
+        isMobile={isMobile}
         svgRef={ref}
       />
       <AreaGraphLayers
@@ -168,10 +186,8 @@ const AreaGraph = React.memo(({
         datetimes={datetimes}
         timeScale={timeScale}
         valueScale={valueScale}
-        mouseMoveHandler={mouseMoveHandler}
-        mouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={layerMouseMoveHandler}
-        layerMouseOutHandler={layerMouseOutHandler}
+        mouseMoveHandler={layerMouseMoveHandler}
+        mouseOutHandler={layerMouseOutHandler}
         isMobile={isMobile}
         svgRef={ref}
       />
@@ -179,7 +195,7 @@ const AreaGraph = React.memo(({
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].fill}
+        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].markerFill}
         data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].datapoints}
         selectedTimeIndex={selectedTimeIndex}
       />
