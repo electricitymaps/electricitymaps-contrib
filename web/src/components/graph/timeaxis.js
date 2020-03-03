@@ -4,10 +4,10 @@ import { range } from 'lodash';
 
 import { __ } from '../../helpers/translation';
 
-// If the tick represents a timestamp not more than 10 minutes in the past,
+// If the tick represents a timestamp not more than 15 minutes in the past,
 // render it as "Now", otherwise render as localized time, i.e. "8:30 PM".
 const renderTickValue = v => (
-  moment().diff(moment(v), 'minutes') <= 10
+  moment().diff(moment(v), 'minutes') <= 15
     ? __('country-panel.now')
     : moment(v).format('LT')
 );

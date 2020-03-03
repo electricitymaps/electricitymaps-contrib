@@ -43,13 +43,10 @@ const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
   }
 };
 
-const handleZoneTimeIndexChange = (newSelectedZoneTimeIndex, timestamps) => {
+const handleZoneTimeIndexChange = (selectedZoneTimeIndex) => {
   dispatch({
     type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
-    payload: {
-      // When slider is on last value, we set the value to null in order to use the current state.
-      selectedZoneTimeIndex: newSelectedZoneTimeIndex === (timestamps.length - 1) ? null : newSelectedZoneTimeIndex,
-    },
+    payload: { selectedZoneTimeIndex },
   });
 };
 

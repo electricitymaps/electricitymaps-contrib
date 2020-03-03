@@ -28,11 +28,14 @@ const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTim
 
 const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex) => (ev) => {
   const value = parseInt(ev.target.value, 10);
-  const datetimeIndex = sortedIndex(datetimes.map(t => t.valueOf()), value);
-  const index = datetimeIndex >= datetimes.length ? null : datetimeIndex;
+  let index = sortedIndex(datetimes.map(t => t.valueOf()), value);
+  // If the slider is past the last datetime, we set index to null in order to use the scale end time.
+  if (index >= datetimes.length) {
+    index = null;
+  }
   setAnchoredTimeIndex(index);
   if (onChange) {
-    onChange(index, datetimes);
+    onChange(index);
   }
 };
 
@@ -78,7 +81,6 @@ const TimeSlider = ({
 
   if (!datetimes || datetimes.length === 0) return null;
 
-  console.log(selectedTimeIndex);
   const selectedTimeValue = isNumber(selectedTimeIndex) ? datetimes[selectedTimeIndex].valueOf() : null;
   const anchoredTimeValue = isNumber(anchoredTimeIndex) ? datetimes[anchoredTimeIndex].valueOf() : null;
   const startTimeValue = timeScale.domain()[0].valueOf();
