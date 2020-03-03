@@ -17,7 +17,7 @@ import moment from 'moment';
 import { __ } from '../helpers/translation';
 import TimeAxis from './graph/timeaxis';
 
-const AXIS_MARGIN_LEFT = 2;
+const AXIS_HORIZONTAL_MARGINS = 12;
 
 const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
   .domain([
@@ -52,7 +52,7 @@ const TimeSlider = ({
   useEffect(() => {
     const updateContainerWidth = () => {
       if (ref.current) {
-        setContainerWidth(ref.current.getBoundingClientRect().width - AXIS_MARGIN_LEFT);
+        setContainerWidth(ref.current.getBoundingClientRect().width - 2 * AXIS_HORIZONTAL_MARGINS);
       }
     };
     // Initialize width if it's not set yet
@@ -98,7 +98,7 @@ const TimeSlider = ({
       <svg className="time-slider-axis-container" ref={ref}>
         <TimeAxis
           scale={timeScale}
-          transform={`translate(${AXIS_MARGIN_LEFT}, 0)`}
+          transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
           className="time-slider-axis"
         />
       </svg>
