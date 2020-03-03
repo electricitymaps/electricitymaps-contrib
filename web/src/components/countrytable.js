@@ -66,6 +66,7 @@ export default function CountryTable(selector, modeColor, modeOrder) {
 
     // Initial objects
     // ** Production labels and rects **
+    // DONE
     var gNewRow = this.productionRoot.selectAll('.row')
         .data(this.MODES)
         .enter()
@@ -401,6 +402,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     return this;
 }
 
+// DONE
 CountryTable.prototype.displayByEmissions = function(arg) {
     if (arg === undefined) return this._displayByEmissions;
     else {
@@ -595,23 +597,27 @@ CountryTable.prototype.data = function(arg) {
 };
 
 // Hack to fix the scale at a minimum value
+// DONE
 CountryTable.prototype.powerScaleDomain = function(arg) {
     if (!arguments.length) return this._powerScaleDomain;
     this._powerScaleDomain = arg;
     return this;
 }
+// DONE
 CountryTable.prototype.co2ScaleDomain = function(arg) {
     if (!arguments.length) return this._co2ScaleDomain;
     this._co2ScaleDomain = arg;
     return this;
 }
 
+// DONE
 CountryTable.prototype.co2color = function(arg) {
     if (!arguments.length) return this._co2color;
     else this._co2color = arg;
     return this;
 };
 
+// DONE
 CountryTable.prototype.exchangeKeys = function(arg) {
     if (!arguments.length) return this._exchangeKeys;
     else {
@@ -622,6 +628,7 @@ CountryTable.prototype.exchangeKeys = function(arg) {
     return this;
 };
 
+// DONE
 CountryTable.prototype.electricityMixMode = function(arg) {
   if (!arguments.length) return this._electricityMixMode;
   else this._electricityMixMode = arg;

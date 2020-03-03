@@ -8,8 +8,8 @@ import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
-  getExchangeKeys,
   getSelectedZoneHistory,
+  getSelectedZoneExchangeKeys,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
   createGraphBackgroundMouseMoveHandler,
@@ -33,7 +33,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   return { valueAxisLabel, valueFactor };
 };
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode) => {
+const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys) => {
   if (!historyData || !historyData[0]) return {};
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
@@ -78,15 +78,12 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
     return obj;
   });
 
-  // If in consumption mode, show the exchange layers on top of the standard sources.
-  let layerKeys = modeOrder;
-  if (electricityMixMode === 'consumption') {
-    layerKeys = layerKeys.concat(getExchangeKeys(historyData));
-  }
+  // Show the exchange layers (if they exist) on top of the standard sources.
+  const layerKeys = modeOrder.concat(exchangeKeys);
 
   const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
-    if (getExchangeKeys(historyData).includes(key)) {
+    if (exchangeKeys.includes(key)) {
       return d => (d.data._countryData.exchangeCo2Intensities
         ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
     }
@@ -106,6 +103,7 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
+  exchangeKeys: getSelectedZoneExchangeKeys(state),
   startTime: getZoneHistoryStartTime(state),
   endTime: getZoneHistoryEndTime(state),
   historyData: getSelectedZoneHistory(state),
@@ -117,6 +115,7 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
+  exchangeKeys,
   startTime,
   endTime,
   historyData,
@@ -132,8 +131,8 @@ const CountryHistoryMixGraph = ({
     layerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
-    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]
+    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys),
+    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
   // Mouse action handlers

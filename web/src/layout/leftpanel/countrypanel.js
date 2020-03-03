@@ -15,6 +15,7 @@ import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
+import CountryTable from '../../components/countrytablereact';
 import Tooltip from '../../components/tooltip';
 
 // Modules
@@ -157,7 +158,10 @@ class Component extends React.PureComponent {
           <div className="bysource">
             {__('country-panel.bysource')}
           </div>
+
+          <CountryTable />
           <div className="country-table-container" />
+
           <div className="zone-details-no-parser-message">
             <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
           </div>

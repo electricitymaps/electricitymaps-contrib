@@ -26,7 +26,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getExchangeKeys } from './helpers/history';
+import { getSelectedZoneExchangeKeys } from './helpers/history';
 import { getCurrentZoneData } from './helpers/redux';
 import { getCo2Scale } from './helpers/scales';
 
@@ -919,7 +919,7 @@ function renderHistory(state) {
 
   // Update country table with all possible exchanges
   countryTable
-    .exchangeKeys(getState().application.electricityMixMode === 'consumption' ? getExchangeKeys(history) : [])
+    .exchangeKeys(getSelectedZoneExchangeKeys(getState()))
     .render();
 }
 

@@ -8,12 +8,14 @@ import {
 
 import { dispatchApplication } from '../store';
 
-export function getExchangeKeys(zoneHistory) {
-  return sortBy(uniq(flatMap(zoneHistory, d => keys(d.exchange))));
-}
-
 export function getSelectedZoneHistory(state) {
   return state.data.histories[state.application.selectedZoneName] || [];
+}
+
+export function getSelectedZoneExchangeKeys(state) {
+  return state.application.electricityMixMode === 'consumption'
+    ? sortBy(uniq(flatMap(getSelectedZoneHistory(state), d => keys(d.exchange))))
+    : [];
 }
 
 export function getSelectedZoneHistoryDatetimes(state) {
