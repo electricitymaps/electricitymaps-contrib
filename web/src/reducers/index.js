@@ -37,7 +37,7 @@ const initialApplicationState = {
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipDisplayMode: null,
-  tooltipPosition: null,
+  tooltipPosition: { x: 0, y: 0 },
   tooltipZoneData: null,
   searchQuery: null,
   selectedZoneName: null,

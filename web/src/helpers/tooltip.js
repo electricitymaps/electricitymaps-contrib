@@ -2,6 +2,7 @@
 // TODO: remove once refactored
 
 const d3 = require('d3-selection');
+const getSymbolFromCurrency = require('currency-symbol-map');
 
 const flags = require('../helpers/flags');
 const translation = require('../helpers/translation');
@@ -16,7 +17,7 @@ module.exports.showProduction = function showProduction(
 {
   const selector = tooltipInstance._selector;
 
-  if (!country.productionCo2Intensities) { return; }
+  if (!country || !country.productionCo2Intensities) { return; }
   const tooltip = d3.select(selector);
   tooltip.selectAll('#mode').text(translation.translate(mode) || mode);
 
@@ -270,3 +271,17 @@ module.exports.showLowCarbonDescription = function showInfoLowCarbon(tooltipInst
     .style('font-weight', 'bold');
   tooltipInstance.show();
 }
+
+module.exports.showPrice = function showPrice(tooltipInstance, zoneData) {
+  if (!zoneData) {
+    tooltipInstance.hide();
+    return;
+  }
+  const tooltip = d3.select(tooltipInstance._selector);
+  const priceIsDefined = zoneData.price != null && zoneData.price.value != null;
+  tooltip.select('.value').html(priceIsDefined ? zoneData.price.value : '?');
+  tooltip.select('.currency').html(priceIsDefined
+    ? getSymbolFromCurrency(zoneData.price.currency) : '?');
+
+  tooltipInstance.show();
+};

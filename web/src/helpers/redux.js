@@ -1,3 +1,4 @@
+
 export function getCurrentZoneData(state) {
   const { grid } = state.data;
   const zoneName = state.application.selectedZoneName;

@@ -1,26 +1,35 @@
 import React from 'react';
 
-import Axis from './axis';
-
-const ValueAxis = React.memo(({ scale, label, width }) => {
-  const renderLine = range => `M6,${range[0] + 0.5}H0.5V${range[1] + 0.5}H6`;
-  const renderTick = v => (
-    <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
-      <line stroke="currentColor" x2="6" />
-      <text fill="currentColor" x="6" y="3" dx="0.32em">{v}</text>
-    </g>
-  );
-
+const ValueAxis = React.memo(({
+  scale,
+  label,
+  width,
+  height,
+}) => {
+  const [y1, y2] = scale.range();
   return (
-    <Axis
+    <g
       className="y axis"
-      label={label}
-      scale={scale}
-      renderLine={renderLine}
-      renderTick={renderTick}
-      textAnchor="start"
       transform={`translate(${width - 1} -1)`}
-    />
+      fill="none"
+      fontSize="10"
+      fontFamily="sans-serif"
+      textAnchor="start"
+      style={{ pointerEvents: 'none' }}
+    >
+      {label && (
+        <text className="label" textAnchor="middle" transform={`translate(37, ${height / 2}) rotate(-90)`}>
+          {label}
+        </text>
+      )}
+      <path className="domain" stroke="currentColor" d={`M6,${y1 + 0.5}H0.5V${y2 + 0.5}H6`} />
+      {scale.ticks(5).map(v => (
+        <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
+          <line stroke="currentColor" x2="6" />
+          <text fill="currentColor" x="6" y="3" dx="0.32em">{v}</text>
+        </g>
+      ))}
+    </g>
   );
 });
 
