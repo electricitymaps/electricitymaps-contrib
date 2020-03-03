@@ -196,6 +196,7 @@ def areEqual(str1,str2):
         '}': ')',
         'T': 'L',
         'I': 'L',
+        'P': 'E',
         ' ': ''
     }
     for key, value in chars.items():
@@ -204,19 +205,19 @@ def areEqual(str1,str2):
     return str1.lower() == str2.lower()
 
 
-def fetch_consumption(zone_key='GE', session=None, target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = None):
+def fetch_consumption(zone_key='IN-MH', session=None, target_datetime = None,
+                     logger=logging.getLogger(__name__)):
 
 
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
+    dt = arrow.now('Asia/Kolkata').floor('minute').datetime
 
-    time = arrow.now('Asia/Kolkata').floor('minute').datetime
     data = {
         'zoneKey': 'IN-MH',
-        'datetime': time,
-        'production': {
+        'datetime': dt,
+        'consumption': {
             'biomass': 0.0,
             'coal': 0.0,
             'gas': 0.0,
@@ -251,136 +252,22 @@ def fetch_consumption(zone_key='GE', session=None, target_datetime: datetime.dat
 
     for type, plants in generation_map.items():
         for plant in plants['add']:
-            fac = share if plant in CS else 1 # add only a fraction of central state plant production
-            data['production'][type] += fac * values[plant]
+            fac = share if plant in CS else 1 # add only a fraction of central state plant consumption
+            data['consumption'][type] += fac * values[plant]
         for plant in plants['subtract']:
             fac = share if plant in CS else 1
-            data['production'][type] -= fac * values[plant]
+            data['consumption'][type] -= fac * values[plant]
 
     #Sum over all production types is expected to equal the total demand
-    demand_diff = sum( data['production'].values() ) - values['DEMAND']
+    demand_diff = sum( data['consumption'].values() ) - values['DEMAND']
     assert (abs( demand_diff) < 5), \
         'Production types do not add up to total demand. Difference: {}'.format(demand_diff)
 
     return data
 
 
-
 if __name__ == '__main__':
     
-    import matplotlib.pyplot as plt
+    consumption = fetch_consumption()
+    print(consumption)
 
-    #data =fetch_consumption(zone_key=None, session=None, target_datetime = None, logger = None)
-
-    #FOR DEBUGGING
-    #logs results in a logfile, saves an image of all ocr tasks and saves the dashboard image in case of failure
-
-    file = open('log.txt', 'a')
-
-
-    # write column names
-    for key in locations.keys():
-        file.write(key.replace(' ', '_') + ' ')
-    for key in generation_map.keys():
-        file.write(key + ' ')
-
-    file.write('localtime' + ' ')
-    file.write('rec_time' + '\n')
-
-
-    #read image and save to a logfile
-    while (True):
-    #for dir in dirs:
-
-        results = {
-            'biomass': 0.0,
-            'coal': 0.0,
-            'gas': 0.0,
-            'hydro': 0.0,
-            'nuclear': 0.0,
-            'solar': 0.0,
-            'wind': 0.0,
-            'unknown': 0.0}
-
-        image = imread(url)
-        image = Image.fromarray(image)  # create PIL image
-        #image = Image.open('error.png')
-
-        line = ''
-        labels = {}
-        values = {}
-
-        localtime = arrow.utcnow().shift(hours=5, minutes=30)
-        localtime = localtime.format('YYYY-MM-DDTHH:mm')
-        filename_time = localtime.replace(':', ' ')
-
-        plt_num = 1
-        fig = plt.figure(figsize=(3,23))
-        plt.subplots_adjust(top=0.8, wspace=0.2, hspace=0.3)
-        rows = len(locations)
-        cols = 2
-
-        #recognize label and value for all items in locations-dict
-        for type, locs in locations.items():
-            label, l_img = recognize(locs['label'], image, 'eng')
-            value, v_img = recognize(locs['value'], image, 'digits_comma')
-            labels[type] = label
-            values[type] = float(value)
-
-            axes = fig.add_subplot(rows, cols, plt_num)
-            axes.get_xaxis().set_visible(False)
-            axes.get_yaxis().set_visible(False)
-            plt.imshow(l_img)
-            plt.title(label)
-            plt_num = plt_num + 1
-
-            axes = fig.add_subplot(rows, cols, plt_num)
-            axes.get_xaxis().set_visible(False)
-            axes.get_yaxis().set_visible(False)
-            plt.imshow(v_img)
-            plt.title(value)
-            plt_num = plt_num + 1
-
-        share = values['CS EXCH'] / values['CS GEN. TTL.']
-        for type, plants in generation_map.items():
-            for plant in plants['add']:
-                fac = share if plant in CS else 1  # add only a fraction of central state plant production
-                results[type] += fac * values[plant]
-            for plant in plants['subtract']:
-                fac = share if plant in CS else 1
-                results[type] -= fac * values[plant]
-
-        #create line for log.txt
-        #compare recognized label with name in locations dict to detect errors
-        for key in locations.keys():
-            line = line+str(values[key])+ ' '
-            if not areEqual( labels[key], key ):
-                image.save('error_'+filename_time+'.png')
-                print('Error: ' + labels[key] + ', ' +key)
-
-        demand_diff = sum(results.values()) - values['DEMAND']
-        if (abs(demand_diff) > 5):
-            image.save('error_' + filename_time + '.png')
-            print('Error: Demand Difference = {}'.format(demand_diff))
-
-
-
-        for value in results.values():
-            line = line + str(value) + ' '
-
-        #read daytime from image
-        rec_time, img = recognize( (355,110,524,150), image, 'eng')
-        rec_time = rec_time.replace(' ', 'T')
-
-
-        line = line + localtime +' '
-        line = line + rec_time
-        file.write(line+'\n')
-        print(line)
-        #print(results)
-        plt.savefig('figures/' + filename_time + '.png')
-        #plt.show()
-        time.sleep(60*10)
-        plt.close()
-
-    file.close()
