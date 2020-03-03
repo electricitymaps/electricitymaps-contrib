@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { max as d3Max } from 'd3-array';
 import { connect } from 'react-redux';
 import { forEach } from 'lodash';
@@ -7,8 +7,16 @@ import { forEach } from 'lodash';
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { getExchangeKeys } from '../helpers/zones';
-import { dispatchApplication } from '../store';
+import {
+  getExchangeKeys,
+  getSelectedZoneHistory,
+  getZoneHistoryStartTime,
+  getZoneHistoryEndTime,
+  createGraphBackgroundMouseMoveHandler,
+  createGraphBackgroundMouseOutHandler,
+  createGraphLayerMouseMoveHandler,
+  createGraphLayerMouseOutHandler,
+} from '../helpers/history';
 
 import AreaGraph from './graph/areagraph';
 
@@ -20,7 +28,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   ));
   const format = formatting.scalePower(maxTotalValue);
 
-  const valueAxisLabel = displayByEmissions ? 'tCO2eq/min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO2eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 };
@@ -94,48 +102,12 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
   };
 };
 
-const getMouseMoveHandler = () => (timeIndex) => {
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-const getMouseOutHandler = () => () => {
-  dispatchApplication('selectedZoneTimeIndex', null);
-};
-const getLayerMouseMoveHandler = (setSelectedLayerIndex, isMobile) => (timeIndex, layerIndex, layer, ev, svgRef) => {
-  // If in mobile mode, put the tooltip to the top of the screen for
-  // readability, otherwise float it depending on the cursor position.
-  const tooltipPosition = !isMobile
-    ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
-    : { x: 0, y: 0 };
-  setSelectedLayerIndex(layerIndex);
-  dispatchApplication('tooltipPosition', tooltipPosition);
-  dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
-  dispatchApplication('tooltipDisplayMode', layer.key);
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-const getLayerMouseOutHandler = setSelectedLayerIndex => () => {
-  setSelectedLayerIndex(null);
-  dispatchApplication('tooltipDisplayMode', null);
-};
-
-const getCurrentTime = state =>
-  state.application.customDate || (state.data.grid || {}).datetime;
-
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName];
-
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
-  // Pass current time as the end time of the graph time scale explicitly
-  // as we want to make sure we account for the missing data at the end of
-  // the graph (when not inferable from historyData timestamps).
-  // TODO: Likewise, we should be passing an explicit startTime set to 24h
-  // in the past to make sure we show data is missing at the beginning of
-  // the graph, but that would create UI inconsistency with the other
-  // neighbouring graphs showing data over a bit longer time scale
-  // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-  endTime: moment(getCurrentTime(state)).format(),
+  startTime: getZoneHistoryStartTime(state),
+  endTime: getZoneHistoryEndTime(state),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
@@ -145,6 +117,7 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
+  startTime,
   endTime,
   historyData,
   isMobile,
@@ -164,14 +137,14 @@ const CountryHistoryMixGraph = ({
   );
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(getMouseMoveHandler, []);
-  const mouseOutHandler = useMemo(getMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
+  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
   const layerMouseMoveHandler = useMemo(
-    () => getLayerMouseMoveHandler(setSelectedLayerIndex, isMobile),
-    [setSelectedLayerIndex, isMobile]
+    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
+    [isMobile, setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
-    () => getLayerMouseOutHandler(setSelectedLayerIndex),
+    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
     [setSelectedLayerIndex]
   );
 
@@ -180,15 +153,17 @@ const CountryHistoryMixGraph = ({
       data={data}
       layerKeys={layerKeys}
       layerFill={layerFill}
+      startTime={startTime}
       endTime={endTime}
       valueAxisLabel={valueAxisLabel}
-      mouseMoveHandler={mouseMoveHandler}
-      mouseOutHandler={mouseOutHandler}
+      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+      backgroundMouseOutHandler={backgroundMouseOutHandler}
       layerMouseMoveHandler={layerMouseMoveHandler}
       layerMouseOutHandler={layerMouseOutHandler}
       selectedTimeIndex={selectedTimeIndex}
       selectedLayerIndex={selectedLayerIndex}
       isMobile={isMobile}
+      height="10em"
     />
   );
 };

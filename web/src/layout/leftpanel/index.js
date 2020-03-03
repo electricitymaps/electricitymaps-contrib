@@ -5,8 +5,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
-import { dispatchApplication } from '../../store';
+import { dispatch, dispatchApplication } from '../../store';
 
 // Layout
 import CountryPanel from './countrypanel';
@@ -17,9 +18,14 @@ import ZoneList from '../../components/zonelist';
 
 // Modules
 import { __ } from '../../helpers/translation';
+import { co2Sub } from '../../helpers/formatting';
+import {
+  getSelectedZoneHistoryDatetimes,
+  getZoneHistoryStartTime,
+  getZoneHistoryEndTime,
+} from '../../helpers/history';
 import SearchBar from '../../components/searchbar';
-
-const { co2Sub } = require('../../helpers/formatting');
+import TimeSlider from '../../components/timeslider';
 
 const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
   if (key === '/' && (currentPage === 'map' || currentPage === 'country')) {
@@ -37,10 +43,21 @@ const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
   }
 };
 
+const handleZoneTimeIndexChange = (selectedZoneTimeIndex) => {
+  dispatch({
+    type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
+    payload: { selectedZoneTimeIndex },
+  });
+};
+
 // TODO: Move all styles from styles.css to here
 
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
+  zoneHistoryDatetimes: getSelectedZoneHistoryDatetimes(state),
+  zoneHistoryStartTime: getZoneHistoryStartTime(state),
+  zoneHistoryEndTime: getZoneHistoryEndTime(state),
 });
 
 export default connect(mapStateToProps)(props => (
@@ -89,7 +106,14 @@ export default connect(mapStateToProps)(props => (
     <div className="left-panel-zone-details">
       <CountryPanel />
       <div className="detail-bottom-section">
-        <div className="zone-time-slider" />
+        <TimeSlider
+          className="zone-time-slider"
+          onChange={handleZoneTimeIndexChange}
+          selectedTimeIndex={props.selectedZoneTimeIndex}
+          datetimes={props.zoneHistoryDatetimes}
+          startTime={props.zoneHistoryStartTime}
+          endTime={props.zoneHistoryEndTime}
+        />
         <div className="social-buttons small-screen-hidden">
           <div>
             { /* Facebook share */}
