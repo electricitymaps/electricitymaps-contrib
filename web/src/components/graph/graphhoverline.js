@@ -1,15 +1,16 @@
 import React from 'react';
+import { isFunction } from 'lodash';
 
-const HoverLine = ({
-  graphData,
-  layerData,
+const GraphHoverLine = ({
+  fill,
+  data,
+  datetimes,
   timeScale,
   valueScale,
-  selectedIndex,
-  fill,
+  selectedTimeIndex,
 }) => (
   <React.Fragment>
-    {Number.isInteger(selectedIndex) && (
+    {Number.isInteger(selectedTimeIndex) && (
       <line
         className="vertical-line"
         style={{
@@ -17,13 +18,13 @@ const HoverLine = ({
           pointerEvents: 'none',
           shapeRendering: 'crispEdges',
         }}
-        x1={timeScale(graphData[selectedIndex].datetime)}
-        x2={timeScale(graphData[selectedIndex].datetime)}
+        x1={timeScale(datetimes[selectedTimeIndex])}
+        x2={timeScale(datetimes[selectedTimeIndex])}
         y1={valueScale.range()[0]}
         y2={valueScale.range()[1]}
       />
     )}
-    {Number.isInteger(selectedIndex) && layerData && (
+    {Number.isInteger(selectedTimeIndex) && data && Number.isFinite(valueScale(data[selectedTimeIndex][1])) && (
       <circle
         r="6"
         style={{
@@ -32,13 +33,13 @@ const HoverLine = ({
           shapeRendering: 'crispEdges',
           stroke: 'black',
           strokeWidth: 1.5,
-          fill,
+          fill: isFunction(fill) ? fill(data[selectedTimeIndex]) : fill,
         }}
-        cx={timeScale(graphData[selectedIndex].datetime)}
-        cy={valueScale(layerData[selectedIndex][1])}
+        cx={timeScale(datetimes[selectedTimeIndex])}
+        cy={valueScale(data[selectedTimeIndex][1])}
       />
     )}
   </React.Fragment>
 );
 
-export default HoverLine;
+export default GraphHoverLine;
