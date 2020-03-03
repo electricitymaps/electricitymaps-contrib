@@ -18,10 +18,14 @@ import ZoneList from '../../components/zonelist';
 
 // Modules
 import { __ } from '../../helpers/translation';
+import { co2Sub } from '../../helpers/formatting';
+import {
+  getSelectedZoneHistoryDatetimes,
+  getZoneHistoryStartTime,
+  getZoneHistoryEndTime,
+} from '../../helpers/history';
 import SearchBar from '../../components/searchbar';
 import TimeSlider from '../../components/timeslider';
-
-const { co2Sub } = require('../../helpers/formatting');
 
 const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
   if (key === '/' && (currentPage === 'map' || currentPage === 'country')) {
@@ -51,13 +55,12 @@ const handleZoneTimeIndexChange = (newSelectedZoneTimeIndex, timestamps) => {
 
 // TODO: Move all styles from styles.css to here
 
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName] || [];
-
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
-  zoneHistoryTimestamps: getSelectedZoneHistory(state).map(d => moment(d.stateDatetime).toDate()),
+  zoneHistoryDatetimes: getSelectedZoneHistoryDatetimes(state),
+  zoneHistoryStartTime: getZoneHistoryStartTime(state),
+  zoneHistoryEndTime: getZoneHistoryEndTime(state),
 });
 
 export default connect(mapStateToProps)(props => (
@@ -110,7 +113,9 @@ export default connect(mapStateToProps)(props => (
           className="zone-time-slider"
           onChange={handleZoneTimeIndexChange}
           selectedTimeIndex={props.selectedZoneTimeIndex}
-          timestamps={props.zoneHistoryTimestamps}
+          datetimes={props.zoneHistoryDatetimes}
+          startTime={props.zoneHistoryStartTime}
+          endTime={props.zoneHistoryEndTime}
         />
         <div className="social-buttons small-screen-hidden">
           <div>

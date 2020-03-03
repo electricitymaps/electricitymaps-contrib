@@ -17,7 +17,6 @@ import moment from 'moment';
 import { __ } from '../helpers/translation';
 import TimeAxis from './graph/timeaxis';
 
-const NUMBER_OF_TICKS = 5;
 const AXIS_MARGIN_LEFT = 2;
 
 const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
@@ -27,11 +26,21 @@ const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTim
   ])
   .range([0, containerWidth]);
 
+const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex) => (ev) => {
+  const value = parseInt(ev.target.value, 10);
+  const datetimeIndex = sortedIndex(datetimes.map(t => t.valueOf()), value);
+  const index = datetimeIndex >= datetimes.length ? null : datetimeIndex;
+  setAnchoredTimeIndex(index);
+  if (onChange) {
+    onChange(index, datetimes);
+  }
+};
+
 const TimeSlider = ({
   className,
   onChange,
   selectedTimeIndex,
-  timestamps,
+  datetimes,
   startTime,
   endTime,
 }) => {
@@ -58,23 +67,21 @@ const TimeSlider = ({
   });
 
   const timeScale = useMemo(
-    () => getTimeScale(containerWidth, timestamps, startTime, endTime),
-    [containerWidth, timestamps, startTime, endTime]
+    () => getTimeScale(containerWidth, datetimes, startTime, endTime),
+    [containerWidth, datetimes, startTime, endTime]
   );
 
-  if (!timestamps || timestamps.length === 0) return null;
+  const handleChangeAndInput = useMemo(
+    () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
+    [datetimes, onChange, setAnchoredTimeIndex]
+  );
 
-  const handleChangeAndInput = (ev) => {
-    const value = parseInt(ev.target.value, 10);
-    const index = sortedIndex(timestamps.map(t => t.valueOf()), value);
-    setAnchoredTimeIndex(index);
-    if (onChange) {
-      onChange(index, timestamps);
-    }
-  };
+  if (!datetimes || datetimes.length === 0) return null;
 
-  const selectedTimeValue = isNumber(selectedTimeIndex) ? timestamps[selectedTimeIndex].valueOf() : null;
-  const anchoredTimeValue = isNumber(anchoredTimeIndex) ? timestamps[anchoredTimeIndex].valueOf() : null;
+  console.log(selectedTimeIndex);
+  const selectedTimeValue = isNumber(selectedTimeIndex) ? datetimes[selectedTimeIndex].valueOf() : null;
+  const anchoredTimeValue = isNumber(anchoredTimeIndex) ? datetimes[anchoredTimeIndex].valueOf() : null;
+  const startTimeValue = timeScale.domain()[0].valueOf();
   const endTimeValue = timeScale.domain()[1].valueOf();
 
   return (
@@ -85,8 +92,8 @@ const TimeSlider = ({
         onChange={handleChangeAndInput}
         onInput={handleChangeAndInput}
         value={selectedTimeValue || anchoredTimeValue || endTimeValue}
-        min={timeScale.domain()[0].valueOf()}
-        max={timeScale.domain()[1].valueOf()}
+        min={startTimeValue}
+        max={endTimeValue}
       />
       <svg className="time-slider-axis-container" ref={ref}>
         <TimeAxis

@@ -6,8 +6,8 @@ import { CARBON_GRAPH_LAYER_KEY } from '../helpers/constants';
 import { getCo2Scale } from '../helpers/scales';
 import {
   getSelectedZoneHistory,
-  getZoneHistoryGraphStartTime,
-  getZoneHistoryGraphEndTime,
+  getZoneHistoryStartTime,
+  getZoneHistoryEndTime,
   createSingleLayerGraphBackgroundMouseMoveHandler,
   createSingleLayerGraphBackgroundMouseOutHandler,
   createGraphLayerMouseMoveHandler,
@@ -36,8 +36,8 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  startTime: getZoneHistoryGraphStartTime(state),
-  endTime: getZoneHistoryGraphEndTime(state),
+  startTime: getZoneHistoryStartTime(state),
+  endTime: getZoneHistoryEndTime(state),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
