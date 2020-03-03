@@ -13,13 +13,17 @@ export function getExchangeKeys(zoneHistory) {
 }
 
 export function getSelectedZoneHistory(state) {
-  return state.data.histories[state.application.selectedZoneName];
+  return state.data.histories[state.application.selectedZoneName] || [];
+}
+
+export function getSelectedZoneHistoryDatetimes(state) {
+  return getSelectedZoneHistory(state).map(d => moment(d.stateDatetime).toDate());
 }
 
 // Use current time as the end time of the graph time scale explicitly
 // as we want to make sure we account for the missing data at the end of
 // the graph (when not inferable from historyData timestamps).
-export function getZoneHistoryGraphEndTime(state) {
+export function getZoneHistoryEndTime(state) {
   return moment(state.application.customDate || (state.data.grid || {}).datetime).format();
 }
 
@@ -28,7 +32,7 @@ export function getZoneHistoryGraphEndTime(state) {
 // the graph, but right now that would create UI inconsistency with the
 // other neighbouring graphs showing data over a bit longer time scale
 // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-export function getZoneHistoryGraphStartTime(state) {
+export function getZoneHistoryStartTime(state) {
   return null;
 }
 

@@ -1,122 +1,111 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-  require('d3-scale'),
-  require('d3-axis'),
-);
-const moment = require('moment');
-const translation = require('../helpers/translation');
+import React, {
+  useRef,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react';
+import {
+  first,
+  last,
+  sortedIndex,
+  range,
+  isNumber,
+} from 'lodash';
+import { scaleTime } from 'd3-scale';
+import moment from 'moment';
 
+import { __ } from '../helpers/translation';
+import TimeAxis from './graph/timeaxis';
 
-const TIME_FORMAT = 'LT'; // Localized time, e.g. "8:30 PM"
-const NUMBER_OF_TICKS = 5;
-const AXIS_MARGIN_LEFT = 5;
+const AXIS_HORIZONTAL_MARGINS = 12;
 
-export default class TimeSlider {
-  constructor(selector, dateAccessor) {
-    this.rootElement = d3.select(selector);
-    this.dateAccessor = dateAccessor;
-    this._setup();
+const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
+  .domain([
+    startTime ? moment(startTime).toDate() : first(datetimes),
+    endTime ? moment(endTime).toDate() : last(datetimes),
+  ])
+  .range([0, containerWidth]);
+
+const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex) => (ev) => {
+  const value = parseInt(ev.target.value, 10);
+  let index = sortedIndex(datetimes.map(t => t.valueOf()), value);
+  // If the slider is past the last datetime, we set index to null in order to use the scale end time.
+  if (index >= datetimes.length) {
+    index = null;
   }
+  setAnchoredTimeIndex(index);
+  if (onChange) {
+    onChange(index);
+  }
+};
 
-  _setup() {
-    this.slider = this.rootElement.append('input')
-      .attr('type', 'range')
-      .attr('class', 'time-slider-input');
-    this.axisContainer = this.rootElement.append('svg')
-      .attr('class', 'time-slider-axis-container');
-    this.axis = this.axisContainer.append('g')
-      .attr('class', 'time-slider-axis')
-      .attr('transform', `translate(${AXIS_MARGIN_LEFT}, 0)`);
+const TimeSlider = ({
+  className,
+  onChange,
+  selectedTimeIndex,
+  datetimes,
+  startTime,
+  endTime,
+}) => {
+  const ref = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
 
-    const onChangeAndInput = () => {
-      const selectedIndex = parseInt(this.slider.property('value'), 10);
-      if (this._onChange) {
-        this._onChange(selectedIndex);
+  // Container resize hook
+  useEffect(() => {
+    const updateContainerWidth = () => {
+      if (ref.current) {
+        setContainerWidth(ref.current.getBoundingClientRect().width - 2 * AXIS_HORIZONTAL_MARGINS);
       }
     };
-    this.slider.on('input', onChangeAndInput);
-    this.slider.on('change', onChangeAndInput);
-  }
-
-  render() {
-    if (this._data && this._data.length) {
-      const width = this.axisContainer.node().getBoundingClientRect().width - AXIS_MARGIN_LEFT;
-      this.timeScale.range([0, width]);
-      this._renderXAxis();
-      this._updateSliderValue();
+    // Initialize width if it's not set yet
+    if (!containerWidth) {
+      updateContainerWidth();
     }
-    return this;
-  }
+    // Update container width on every resize
+    window.addEventListener('resize', updateContainerWidth);
+    return () => {
+      window.removeEventListener('resize', updateContainerWidth);
+    };
+  });
 
-  _renderXAxis() {
-    const xAxis = d3.axisBottom(this.timeScale)
-      .ticks(NUMBER_OF_TICKS)
-      .tickSize(0)
-      .tickValues(this.tickValues)
-      .tickFormat((d, i) => {
-        if (i === NUMBER_OF_TICKS - 1) {
-          return translation.translate('country-panel.now');
-        }
-        return moment(d).format(TIME_FORMAT);
-      });
-    this.axis.call(xAxis);
-    this.axis.selectAll('.tick text').attr('fill', '#000000');
-  }
+  const timeScale = useMemo(
+    () => getTimeScale(containerWidth, datetimes, startTime, endTime),
+    [containerWidth, datetimes, startTime, endTime]
+  );
 
-  _updateSliderValue() {
-    if (this._selectedIndex) {
-      this.slider.property('value', this._selectedIndex);
-    } else {
-      this.slider.property('value', this._data && this._data.length ? this._data.length : 0);
-    }
-  }
+  const handleChangeAndInput = useMemo(
+    () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
+    [datetimes, onChange, setAnchoredTimeIndex]
+  );
 
-  data(data) {
-    if (!arguments.length) return this._data;
-    this._data = data.map(this.dateAccessor);
-    this._setupSliderRange();
-    this._setupSliderTimeScale();
-    this._sampleTickValues();
+  if (!datetimes || datetimes.length === 0) return null;
 
-    return this;
-  }
+  const selectedTimeValue = isNumber(selectedTimeIndex) ? datetimes[selectedTimeIndex].valueOf() : null;
+  const anchoredTimeValue = isNumber(anchoredTimeIndex) ? datetimes[anchoredTimeIndex].valueOf() : null;
+  const startTimeValue = timeScale.domain()[0].valueOf();
+  const endTimeValue = timeScale.domain()[1].valueOf();
 
-  _setupSliderRange() {
-    if (this._data && this.data.length) {
-      this.slider.attr('min', 0);
-      this.slider.attr('max', this._data.length - 1);
-    }
-  }
+  return (
+    <div className={className}>
+      <input
+        type="range"
+        className="time-slider-input"
+        onChange={handleChangeAndInput}
+        onInput={handleChangeAndInput}
+        value={selectedTimeValue || anchoredTimeValue || endTimeValue}
+        min={startTimeValue}
+        max={endTimeValue}
+      />
+      <svg className="time-slider-axis-container" ref={ref}>
+        <TimeAxis
+          scale={timeScale}
+          transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
+          className="time-slider-axis"
+        />
+      </svg>
+    </div>
+  );
+};
 
-  _setupSliderTimeScale() {
-    if (this._data && this.data.length) {
-      this.timeScale = d3.scaleTime();
-      const firstDate = moment(this._data[0]).toDate();
-      const lastDate = moment(this._data[this._data.length - 1]).toDate();
-      this.timeScale.domain([firstDate, lastDate]);
-    }
-  }
-
-  _sampleTickValues() {
-    this.tickValues = [];
-    if (this._data.length >= NUMBER_OF_TICKS) {
-      for (let i = 0; i < NUMBER_OF_TICKS; i += 1) {
-        const sampleIndex = Math.floor(((this._data.length - 1) / (NUMBER_OF_TICKS - 1)) * (i));
-        const sampledTimeStamp = this._data[sampleIndex];
-        this.tickValues.push(moment(sampledTimeStamp).toDate());
-      }
-    }
-  }
-
-  selectedIndex(index, previousIndex) {
-    this._selectedIndex = index || previousIndex;
-    this.render();
-    return this;
-  }
-
-  onChange(onChangeHandler) {
-    this._onChange = onChangeHandler;
-    return this;
-  }
-}
+export default TimeSlider;

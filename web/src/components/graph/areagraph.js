@@ -159,10 +159,11 @@ const AreaGraph = React.memo(({
   if (isEmpty(layers)) return null;
 
   return (
-    <svg height={height} ref={ref}>
+    <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
       <TimeAxis
         scale={timeScale}
-        height={container.height}
+        transform={`translate(-1 ${container.height - 1})`}
+        className="x axis"
       />
       <ValueAxis
         scale={valueScale}
