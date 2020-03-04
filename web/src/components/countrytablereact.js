@@ -8,6 +8,7 @@ import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
 import { getSelectedZoneExchangeKeys } from '../helpers/history';
 import { getCurrentZoneData } from '../helpers/redux';
+import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
 const LABEL_MAX_WIDTH = 102;
@@ -15,6 +16,8 @@ const TEXT_ADJUST_Y = 11;
 const ROW_HEIGHT = 13;
 const PADDING_Y = 7;
 const PADDING_X = 5;
+const FLAG_SIZE = 16;
+const RECT_OPACITY = 0.8;
 
 const getSortedProductionData = data => modeOrder
   .map(k => ({ 'mode': k, 'isStorage': k.indexOf('storage') !== -1 }))
@@ -84,7 +87,9 @@ const CountryTable = ({
     };
   });
 
-  const exchangeData = [];
+  const isMissingParser = !data.hasParser;
+  const hasProductionData = data.production && Object.keys(data.production).length > 0;
+  const exchangeData = exchangeKeys.map(key => ({ key, value: hasProductionData ? (data.exchange || {})[key] : undefined }));
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const sortedProductionData = getSortedProductionData(data);
@@ -145,9 +150,9 @@ const CountryTable = ({
 
   return (
     <div className="country-table-container">
-      <svg className="country-table" height="382" ref={ref}>
+      <svg className="country-table" height="482" ref={ref}>
         <g />
-        <g transform="translate(0,22)">
+        <g transform="translate(0, 22)">
           {sortedProductionData.map((d, ind) => {
             // const showUnknown = displayByEmissions && getExchangeCo2eq(d) === undefined;
             const showUnknown = (d.capacity === undefined || d.capacity > 0)
@@ -156,7 +161,6 @@ const CountryTable = ({
             const productionXValue = (!d.isStorage) ? d.production : -1 * d.storage;
             const productionWidthValue = d.production !== undefined ? d.production : -1 * d.storage;
             const capacityXValue = ((data.exchangeCapacities || {})[d.key] || [])[0];
-            const capacityWidthValue = (data.exchangeCapacities || {})[d.key];
             return (
               <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
                 <text
@@ -174,7 +178,6 @@ const CountryTable = ({
                     opacity="0.3"
                     shapeRendering="crispEdges"
                     x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? powerScale(0) : powerScale(Math.min(0, capacityXValue)))}
-                    // width={capacityWidthValue ? (powerScale(capacityWidthValue[1] - capacityWidthValue[0]) - powerScale(0)) : 0}
                     width={
                       d.capacity !== undefined && d.capacity >= (d.production || 0)
                         ? (powerScale(d.isStorage ? (d.capacity * 2) : d.capacity) - powerScale(0))
@@ -185,7 +188,7 @@ const CountryTable = ({
                 <rect
                   className="production"
                   height={ROW_HEIGHT}
-                  opacity="0.8"
+                  opacity={RECT_OPACITY}
                   shapeRendering="crispEdges"
                   fill={modeColor[d.mode]}
                   x={
@@ -209,6 +212,59 @@ const CountryTable = ({
                     ?
                   </text>
                 )}
+              </g>
+            );
+          })}
+        </g>
+        <g transform="translate(0, 282)">
+          {exchangeData.map((d, ind) => {
+            const labelLength = d3Max(exchangeData, ed => ed.key.length) * 8;
+            const capacityXValue = ((data.exchangeCapacities || {})[d.key] || [])[0];
+            const capacityWidthValue = (data.exchangeCapacities || {})[d.key];
+            const co2intensity = getExchangeCo2eq(d);
+            return (
+              <g key={d.key} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
+                <image
+                  width={FLAG_SIZE}
+                  height={FLAG_SIZE}
+                  x={LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - labelLength}
+                  xlinkHref={flagUri(d.key, FLAG_SIZE)}
+                />
+                <text
+                  className="name"
+                  style={{ textAnchor: 'end' }}
+                  transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+                >
+                  {d.key}
+                </text>
+                {!displayByEmissions && (
+                  <rect
+                    className="capacity"
+                    height={ROW_HEIGHT}
+                    fillOpacity="0.4"
+                    opacity="0.3"
+                    shapeRendering="crispEdges"
+                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? powerScale(0) : powerScale(Math.min(0, capacityXValue)))}
+                    width={capacityWidthValue ? (powerScale(capacityWidthValue[1] - capacityWidthValue[0]) - powerScale(0)) : 0}
+                  />
+                )}
+                <rect
+                  className="exchange"
+                  height={ROW_HEIGHT}
+                  opacity={RECT_OPACITY}
+                  transformorigin="left"
+                  fill={displayByEmissions ? 'gray' : (co2intensity ? co2ColorScale(co2intensity) : 'gray')}
+                  x={
+                    displayByEmissions
+                      ? LABEL_MAX_WIDTH + ((co2intensity === undefined) ? 0 : co2Scale(Math.min((d.value || 0) / 1e3 / 60.0 * co2intensity, 0)))
+                      : LABEL_MAX_WIDTH + powerScale(Math.min(d.value || 0, 0))
+                  }
+                  width={
+                    displayByEmissions
+                      ? ((co2intensity === undefined) ? 0 : (Math.abs(co2Scale((d.value || 0) / 1e3 / 60.0 * co2intensity) - co2Scale(0))))
+                      : Math.abs(powerScale(d.value || 0) - powerScale(0))
+                  }
+                />
               </g>
             );
           })}
