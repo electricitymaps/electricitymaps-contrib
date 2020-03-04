@@ -22,9 +22,10 @@ def timestamp_creator(date, hour):
 
     arr_date = arrow.get(date, "YYYY-MM-DD")
 
-    hour -= 1 # NOTE: hora 1 refers to 00:00 to 01:00
-
-    dt = arr_dt.replace(tzinfo='Chile/Continental').datetime
+    hour -= 1
+    dt = pd.to_datetime(date, format='%Y-%m-%d').tz_localize('Chile/Continental')
+    dt = dt + pd.DateOffset(hours=hour)
+    dt = dt.tz_convert('UTC')
 
     return dt
 
