@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
-import { max as d3Max } from 'd3-array';
+import { max as d3Max, min as d3Min } from 'd3-array';
+import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isFinite } from 'lodash';
 
 import { getCo2Scale } from '../helpers/scales';
@@ -18,6 +19,8 @@ const PADDING_Y = 7;
 const PADDING_X = 5;
 const FLAG_SIZE = 16;
 const RECT_OPACITY = 0.8;
+const X_AXIS_HEIGHT = 15;
+const SCALE_TICKS = 4;
 
 const getSortedProductionData = data => modeOrder
   .map(k => ({ 'mode': k, 'isStorage': k.indexOf('storage') !== -1 }))
@@ -147,11 +150,50 @@ const CountryTable = ({
       ),
     ])
     .range([0, barMaxWidth]);
+  
+  const valueScale = displayByEmissions ? co2Scale : powerScale;
+
+  const formatTick = (t) => {
+    const factor = displayByEmissions ? 1 : 1e6;
+    const domain = valueScale.domain();
+
+    const maxValue = d3Max(domain) * factor;
+    const precision = precisionPrefix((d3Max(domain) - d3Min(domain)) / (SCALE_TICKS - 1) * factor, maxValue);
+    
+    const format = formatPrefix(`.${precision}`, maxValue);
+    const formattedValue = format(t * factor);
+
+    return displayByEmissions
+      ? (maxValue <= 1 ? `${t * 1000} kg / min` : `${formattedValue} t / min`)
+      : `${formattedValue}W`;
+  };
+
+  const ticks = valueScale.ticks(SCALE_TICKS);
 
   return (
     <div className="country-table-container">
-      <svg className="country-table" height="482" ref={ref}>
-        <g />
+      <svg className="country-table" height="482" style={{ overflow: 'visible' }} ref={ref}>
+        <g
+          className="x axis"
+          fill="none"
+          fontSize="10"
+          fontFamily="sans-serif"
+          textAnchor="middle"
+          transform={`translate(${valueScale.range()[0] + LABEL_MAX_WIDTH}, ${X_AXIS_HEIGHT})`}
+        >
+          <path className="domain" stroke="currentColor" d="M0.5,0.5H223.5" />
+          {ticks.map(t => (
+            <g
+              key={t}
+              className="tick"
+              opacity="1"
+              transform={`translate(${valueScale(t)}, 0)`}
+            >
+              <line stroke="currentColor" y2="367" />
+              <text fill="currentColor" y="-3" dy="0">{formatTick(t)}</text>
+            </g>
+          ))}
+        </g>
         <g transform="translate(0, 22)">
           {sortedProductionData.map((d, ind) => {
             // const showUnknown = displayByEmissions && getExchangeCo2eq(d) === undefined;
@@ -177,10 +219,10 @@ const CountryTable = ({
                     fillOpacity="0.4"
                     opacity="0.3"
                     shapeRendering="crispEdges"
-                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? powerScale(0) : powerScale(Math.min(0, capacityXValue)))}
+                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? valueScale(0) : valueScale(Math.min(0, capacityXValue)))}
                     width={
                       d.capacity !== undefined && d.capacity >= (d.production || 0)
-                        ? (powerScale(d.isStorage ? (d.capacity * 2) : d.capacity) - powerScale(0))
+                        ? (valueScale(d.isStorage ? (d.capacity * 2) : d.capacity) - valueScale(0))
                         : 0
                     }
                   />
@@ -193,13 +235,13 @@ const CountryTable = ({
                   fill={modeColor[d.mode]}
                   x={
                     displayByEmissions
-                      ? LABEL_MAX_WIDTH + co2Scale(0)
-                      : LABEL_MAX_WIDTH + ((productionXValue === undefined || !isFinite(productionXValue)) ? powerScale(0) : powerScale(Math.min(0, productionXValue)))
+                      ? LABEL_MAX_WIDTH + valueScale(0)
+                      : LABEL_MAX_WIDTH + ((productionXValue === undefined || !isFinite(productionXValue)) ? valueScale(0) : valueScale(Math.min(0, productionXValue)))
                   }
                   width={
                     displayByEmissions
-                      ? (!isFinite(d.gCo2eqPerH) ? 0 : (co2Scale(d.gCo2eqPerH / 1e6 / 60.0) - co2Scale(0)))
-                      : (productionWidthValue === undefined || !isFinite(productionWidthValue)) ? 0 : Math.abs(powerScale(productionWidthValue) - powerScale(0))
+                      ? (!isFinite(d.gCo2eqPerH) ? 0 : (valueScale(d.gCo2eqPerH / 1e6 / 60.0) - valueScale(0)))
+                      : (productionWidthValue === undefined || !isFinite(productionWidthValue)) ? 0 : Math.abs(valueScale(productionWidthValue) - valueScale(0))
                   }
                 />
                 {showUnknown && (
@@ -207,7 +249,7 @@ const CountryTable = ({
                     className="unknown"
                     transform={`translate(1, ${TEXT_ADJUST_Y})`}
                     style={{ fill: 'darkgray' }}
-                    x={LABEL_MAX_WIDTH + (displayByEmissions ? co2Scale(0) : powerScale(0))}
+                    x={LABEL_MAX_WIDTH + valueScale(0)}
                   >
                     ?
                   </text>
@@ -244,8 +286,8 @@ const CountryTable = ({
                     fillOpacity="0.4"
                     opacity="0.3"
                     shapeRendering="crispEdges"
-                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? powerScale(0) : powerScale(Math.min(0, capacityXValue)))}
-                    width={capacityWidthValue ? (powerScale(capacityWidthValue[1] - capacityWidthValue[0]) - powerScale(0)) : 0}
+                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? valueScale(0) : valueScale(Math.min(0, capacityXValue)))}
+                    width={capacityWidthValue ? (valueScale(capacityWidthValue[1] - capacityWidthValue[0]) - valueScale(0)) : 0}
                   />
                 )}
                 <rect
@@ -256,13 +298,13 @@ const CountryTable = ({
                   fill={displayByEmissions ? 'gray' : (co2intensity ? co2ColorScale(co2intensity) : 'gray')}
                   x={
                     displayByEmissions
-                      ? LABEL_MAX_WIDTH + ((co2intensity === undefined) ? 0 : co2Scale(Math.min((d.value || 0) / 1e3 / 60.0 * co2intensity, 0)))
-                      : LABEL_MAX_WIDTH + powerScale(Math.min(d.value || 0, 0))
+                      ? LABEL_MAX_WIDTH + ((co2intensity === undefined) ? 0 : valueScale(Math.min((d.value || 0) / 1e3 / 60.0 * co2intensity, 0)))
+                      : LABEL_MAX_WIDTH + valueScale(Math.min(d.value || 0, 0))
                   }
                   width={
                     displayByEmissions
-                      ? ((co2intensity === undefined) ? 0 : (Math.abs(co2Scale((d.value || 0) / 1e3 / 60.0 * co2intensity) - co2Scale(0))))
-                      : Math.abs(powerScale(d.value || 0) - powerScale(0))
+                      ? ((co2intensity === undefined) ? 0 : (Math.abs(valueScale((d.value || 0) / 1e3 / 60.0 * co2intensity) - valueScale(0))))
+                      : Math.abs(valueScale(d.value || 0) - valueScale(0))
                   }
                 />
               </g>
