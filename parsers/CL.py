@@ -3,6 +3,7 @@
 """Parser for the electricity grid of Chile"""
 
 import arrow
+import pandas as pd
 import logging
 import requests
 from collections import defaultdict
