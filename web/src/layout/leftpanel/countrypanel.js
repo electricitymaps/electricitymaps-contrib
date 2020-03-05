@@ -7,6 +7,7 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
 
 // Components
@@ -15,17 +16,17 @@ import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
-import CountryTable from '../../components/countrytablereact';
+import CountryTable from '../../components/countrytable';
 import Tooltip from '../../components/tooltip';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
 import { getCurrentZoneData } from '../../helpers/redux';
 import { getCo2Scale } from '../../helpers/scales';
-import { __ } from '../../helpers/translation';
-
-const { co2Sub } = require('../../helpers/formatting');
-const tooltipHelper = require('../../helpers/tooltip');
+import { flagUri } from '../../helpers/flags';
+import { getFullZoneName, __ } from '../../helpers/translation';
+import { co2Sub } from '../../helpers/formatting';
+import tooltipHelper from '../../helpers/tooltip';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -86,6 +87,7 @@ class Component extends React.PureComponent {
       tableDisplayEmissions,
     } = this.props;
 
+    const datetime = data.stateDatetime || data.datetime;
     const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
     const co2Intensity = electricityMixMode === 'consumption'
       ? data.co2intensity
@@ -101,12 +103,16 @@ class Component extends React.PureComponent {
             <div className="country-name-time">
               <div className="country-name-time-table">
                 <div style={{ display: 'table-cell' }}>
-                  <img id="country-flag" className="flag" alt="" />
+                  <img id="country-flag" className="flag" alt="" src={flagUri(data.countryCode, 24)} />
                 </div>
 
                 <div style={{ display: 'table-cell' }}>
-                  <div className="country-name" />
-                  <div className="country-time">?</div>
+                  <div className="country-name">
+                    {getFullZoneName(data.countryCode)}
+                  </div>
+                  <div className="country-time">
+                    {datetime ? moment(datetime).format('LL LT') : ''}
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,7 +185,6 @@ class Component extends React.PureComponent {
           </div>
 
           <CountryTable />
-          <div className="country-table-container" />
 
           <div className="zone-details-no-parser-message">
             <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
