@@ -373,6 +373,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 that.exchangeMouseMoveHandler.call(this, d.key, that._data, that._displayByEmissions);
         });
 
+    // TODO
     gNewRow.merge(selection).select('text')
         .text(function(d) { return d.key; });
     const co2intensity = this._electricityMixMode === 'consumption'
@@ -381,6 +382,7 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     d3.select('.country-emission-intensity')
         .text(Math.round(co2intensity) || '?');
 
+    // TODO
     var priceData = this._data.price || {};
     var hasPrice = priceData.value != null;
     d3.select('.country-spot-price')
@@ -467,6 +469,7 @@ CountryTable.prototype.resize = function() {
   return this;
 };
 
+// DONE
 CountryTable.prototype.data = function(arg) {
     var that = this;
     if (!arguments.length) return this._data;

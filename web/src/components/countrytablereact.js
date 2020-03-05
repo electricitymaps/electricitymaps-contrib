@@ -5,6 +5,7 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isFinite } from 'lodash';
 
+import { dispatchApplication } from '../store';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
 import { getSelectedZoneExchangeKeys } from '../helpers/history';
@@ -21,6 +22,21 @@ const FLAG_SIZE = 16;
 const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
+
+function handleRowMouseMove(isMobile, mode, data, ev) {
+  // If in mobile mode, put the tooltip to the top of the screen for
+  // readability, otherwise float it depending on the cursor position.
+  const tooltipPosition = !isMobile
+    ? { x: ev.clientX - 7, y: ev.clientY - 7 }
+    : { x: 0, y: 0 };
+  dispatchApplication('tooltipPosition', tooltipPosition);
+  dispatchApplication('tooltipZoneData', data);
+  dispatchApplication('tooltipDisplayMode', mode);
+}
+
+function handleRowMouseOut() {
+  dispatchApplication('tooltipDisplayMode', null);
+}
 
 const getSortedProductionData = data => modeOrder
   .map(k => ({ 'mode': k, 'isStorage': k.indexOf('storage') !== -1 }))
@@ -60,6 +76,7 @@ const mapStateToProps = state => ({
   data: getCurrentZoneData(state),
   electricityMixMode: state.application.electricityMixMode,
   exchangeKeys: getSelectedZoneExchangeKeys(state),
+  isMobile: state.application.isMobile,
 });
 
 const CountryTable = ({
@@ -68,6 +85,7 @@ const CountryTable = ({
   displayByEmissions,
   electricityMixMode,
   exchangeKeys,
+  isMobile,
 }) => {
   const ref = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -205,9 +223,20 @@ const CountryTable = ({
             const capacityXValue = ((data.exchangeCapacities || {})[d.key] || [])[0];
             return (
               <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
+                <rect
+                  y="-1"
+                  fill="transparent"
+                  width={containerWidth}
+                  height={ROW_HEIGHT + PADDING_Y}
+                  onFocus={ev => handleRowMouseMove(isMobile, d.mode, data, ev)}
+                  onMouseOver={ev => handleRowMouseMove(isMobile, d.mode, data, ev)}
+                  onMouseMove={ev => handleRowMouseMove(isMobile, d.mode, data, ev)}
+                  onMouseOut={handleRowMouseOut}
+                  onBlur={handleRowMouseOut}
+                />
                 <text
                   className="name"
-                  style={{ textAnchor: 'end' }}
+                  style={{ pointerEvents: 'none', textAnchor: 'end' }}
                   transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
                 >
                   {__(d.mode) || d.mode}
@@ -219,6 +248,7 @@ const CountryTable = ({
                     fillOpacity="0.4"
                     opacity="0.3"
                     shapeRendering="crispEdges"
+                    style={{ pointerEvents: 'none' }}
                     x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? valueScale(0) : valueScale(Math.min(0, capacityXValue)))}
                     width={
                       d.capacity !== undefined && d.capacity >= (d.production || 0)
@@ -233,6 +263,7 @@ const CountryTable = ({
                   opacity={RECT_OPACITY}
                   shapeRendering="crispEdges"
                   fill={modeColor[d.mode]}
+                  style={{ pointerEvents: 'none' }}
                   x={
                     displayByEmissions
                       ? LABEL_MAX_WIDTH + valueScale(0)
@@ -248,7 +279,7 @@ const CountryTable = ({
                   <text
                     className="unknown"
                     transform={`translate(1, ${TEXT_ADJUST_Y})`}
-                    style={{ fill: 'darkgray' }}
+                    style={{ pointerEvents: 'none', fill: 'darkgray' }}
                     x={LABEL_MAX_WIDTH + valueScale(0)}
                   >
                     ?
@@ -266,15 +297,27 @@ const CountryTable = ({
             const co2intensity = getExchangeCo2eq(d);
             return (
               <g key={d.key} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
+                <rect
+                  y="-1"
+                  fill="transparent"
+                  width={containerWidth}
+                  height={ROW_HEIGHT + PADDING_Y}
+                  onFocus={ev => handleRowMouseMove(isMobile, d.key, data, ev)}
+                  onMouseOver={ev => handleRowMouseMove(isMobile, d.key, data, ev)}
+                  onMouseMove={ev => handleRowMouseMove(isMobile, d.key, data, ev)}
+                  onMouseOut={handleRowMouseOut}
+                  onBlur={handleRowMouseOut}
+                />
                 <image
                   width={FLAG_SIZE}
                   height={FLAG_SIZE}
+                  style={{ pointerEvents: 'none' }}
                   x={LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - labelLength}
                   xlinkHref={flagUri(d.key, FLAG_SIZE)}
                 />
                 <text
                   className="name"
-                  style={{ textAnchor: 'end' }}
+                  style={{ pointerEvents: 'none', textAnchor: 'end' }}
                   transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
                 >
                   {d.key}
@@ -286,6 +329,7 @@ const CountryTable = ({
                     fillOpacity="0.4"
                     opacity="0.3"
                     shapeRendering="crispEdges"
+                    style={{ pointerEvents: 'none' }}
                     x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? valueScale(0) : valueScale(Math.min(0, capacityXValue)))}
                     width={capacityWidthValue ? (valueScale(capacityWidthValue[1] - capacityWidthValue[0]) - valueScale(0)) : 0}
                   />
@@ -295,6 +339,7 @@ const CountryTable = ({
                   height={ROW_HEIGHT}
                   opacity={RECT_OPACITY}
                   transformorigin="left"
+                  style={{ pointerEvents: 'none' }}
                   fill={displayByEmissions ? 'gray' : (co2intensity ? co2ColorScale(co2intensity) : 'gray')}
                   x={
                     displayByEmissions
