@@ -370,16 +370,16 @@ CountryTable.prototype.render = function(ignoreTransitions) {
                 that.exchangeMouseMoveHandler.call(this, d.key, that._data, that._displayByEmissions);
         });
 
-    // TODO
+    // DONE
     // gNewRow.merge(selection).select('text')
     //     .text(function(d) { return d.key; });
-    const co2intensity = this._electricityMixMode === 'consumption'
-      ? this._data.co2intensity
-      : this._data.co2intensityProduction;
-    d3.select('.country-emission-intensity')
-        .text(Math.round(co2intensity) || '?');
+    // const co2intensity = this._electricityMixMode === 'consumption'
+    //   ? this._data.co2intensity
+    //   : this._data.co2intensityProduction;
+    // d3.select('.country-emission-intensity')
+    //     .text(Math.round(co2intensity) || '?');
 
-    // TODO
+    // DONE
     // var priceData = this._data.price || {};
     // var hasPrice = priceData.value != null;
     // d3.select('.country-spot-price')
@@ -387,14 +387,14 @@ CountryTable.prototype.render = function(ignoreTransitions) {
     //     .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
     // d3.select('.country-spot-price-currency')
     //     .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
-    d3.select('#country-emission-rect, .left-panel-zone-details .emission-rect')
-        .transition()
-        .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
-        .style('background-color',
-            co2intensity ?
-                that.co2color()(co2intensity) : 'gray');
-    d3.select('.country-data-source')
-        .text(this._data.source || '?');
+    // d3.select('#country-emission-rect, .left-panel-zone-details .emission-rect')
+    //     .transition()
+    //     .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
+    //     .style('background-color',
+    //         co2intensity ?
+    //             that.co2color()(co2intensity) : 'gray');
+    // d3.select('.country-data-source')
+    //     .text(this._data.source || '?');
 
     this.resize();
 

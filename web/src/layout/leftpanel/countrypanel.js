@@ -21,6 +21,7 @@ import Tooltip from '../../components/tooltip';
 // Modules
 import { updateApplication } from '../../actioncreators';
 import { getCurrentZoneData } from '../../helpers/redux';
+import { getCo2Scale } from '../../helpers/scales';
 import { __ } from '../../helpers/translation';
 
 const { co2Sub } = require('../../helpers/formatting');
@@ -63,6 +64,8 @@ const CountryRenewableGauge = connect((state) => {
 const lowcarbInfoTooltip = new Tooltip('#lowcarb-info-tooltip');
 
 const mapStateToProps = state => ({
+  data: getCurrentZoneData(state),
+  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
 });
@@ -76,7 +79,17 @@ class Component extends React.PureComponent {
   }
 
   render() {
-    const { electricityMixMode, tableDisplayEmissions } = this.props;
+    const {
+      data,
+      colorBlindModeEnabled,
+      electricityMixMode,
+      tableDisplayEmissions,
+    } = this.props;
+
+    const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+    const co2Intensity = electricityMixMode === 'consumption'
+      ? data.co2intensity
+      : data.co2intensityProduction;
 
     return (
       <div className="country-panel">
@@ -100,9 +113,15 @@ class Component extends React.PureComponent {
           </div>
           <div className="country-table-header-inner">
             <div className="country-col country-emission-intensity-wrap">
-              <div id="country-emission-rect" className="country-col-box emission-rect emission-rect-overview">
+              <div
+                id="country-emission-rect"
+                className="country-col-box emission-rect emission-rect-overview"
+                style={{ backgroundColor: co2Intensity ? co2ColorScale(co2Intensity) : 'gray' }}
+              >
                 <div>
-                  <span className="country-emission-intensity" />
+                  <span className="country-emission-intensity">
+                    {Math.round(co2Intensity) || '?'}
+                  </span>
                   g
                 </div>
               </div>
@@ -211,7 +230,7 @@ class Component extends React.PureComponent {
             {__('country-panel.source')}
             {': '}
             <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank">
-              <span className="country-data-source" />
+              <span className="country-data-source">{data.source || '?'}</span>
             </a>
             <small>
               {' ('}
