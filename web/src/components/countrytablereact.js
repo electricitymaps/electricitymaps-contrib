@@ -188,9 +188,17 @@ const CountryTable = ({
 
   const ticks = valueScale.ticks(SCALE_TICKS);
 
+  const productionHeight = sortedProductionData.length * (ROW_HEIGHT + PADDING_Y);
+  const exchangesHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
+
+  const productionY = X_AXIS_HEIGHT + PADDING_Y;
+  const exchangesY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  
+  const containerHeight = exchangesY + exchangesHeight;
+
   return (
     <div className="country-table-container">
-      <svg className="country-table" height="482" style={{ overflow: 'visible' }} ref={ref}>
+      <svg className="country-table" height={containerHeight} style={{ overflow: 'visible' }} ref={ref}>
         <g
           className="x axis"
           fill="none"
@@ -199,7 +207,7 @@ const CountryTable = ({
           textAnchor="middle"
           transform={`translate(${valueScale.range()[0] + LABEL_MAX_WIDTH}, ${X_AXIS_HEIGHT})`}
         >
-          <path className="domain" stroke="currentColor" d="M0.5,0.5H223.5" />
+          <path className="domain" stroke="currentColor" d={`M${valueScale.range()[0] + 0.5},0.5H${valueScale.range()[1] + 0.5}`} />
           {ticks.map(t => (
             <g
               key={t}
@@ -207,12 +215,12 @@ const CountryTable = ({
               opacity="1"
               transform={`translate(${valueScale(t)}, 0)`}
             >
-              <line stroke="currentColor" y2="367" />
+              <line stroke="currentColor" y2={containerHeight - X_AXIS_HEIGHT} />
               <text fill="currentColor" y="-3" dy="0">{formatTick(t)}</text>
             </g>
           ))}
         </g>
-        <g transform="translate(0, 22)">
+        <g transform={`translate(0, ${productionY})`}>
           {sortedProductionData.map((d, ind) => {
             // const showUnknown = displayByEmissions && getExchangeCo2eq(d) === undefined;
             const showUnknown = (d.capacity === undefined || d.capacity > 0)
@@ -289,7 +297,7 @@ const CountryTable = ({
             );
           })}
         </g>
-        <g transform="translate(0, 282)">
+        <g transform={`translate(0, ${exchangesY})`}>
           {exchangeData.map((d, ind) => {
             const labelLength = d3Max(exchangeData, ed => ed.key.length) * 8;
             const capacityXValue = ((data.exchangeCapacities || {})[d.key] || [])[0];

@@ -374,8 +374,8 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         });
 
     // TODO
-    gNewRow.merge(selection).select('text')
-        .text(function(d) { return d.key; });
+    // gNewRow.merge(selection).select('text')
+    //     .text(function(d) { return d.key; });
     const co2intensity = this._electricityMixMode === 'consumption'
       ? this._data.co2intensity
       : this._data.co2intensityProduction;
@@ -383,13 +383,13 @@ CountryTable.prototype.render = function(ignoreTransitions) {
         .text(Math.round(co2intensity) || '?');
 
     // TODO
-    var priceData = this._data.price || {};
-    var hasPrice = priceData.value != null;
-    d3.select('.country-spot-price')
-        .text(hasPrice ? Math.round(priceData.value) : '?')
-        .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
-    d3.select('.country-spot-price-currency')
-        .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
+    // var priceData = this._data.price || {};
+    // var hasPrice = priceData.value != null;
+    // d3.select('.country-spot-price')
+    //     .text(hasPrice ? Math.round(priceData.value) : '?')
+    //     .style('color', (priceData.value || 0) < 0 ? 'red' : undefined);
+    // d3.select('.country-spot-price-currency')
+    //     .text(getSymbolFromCurrency(priceData.currency) || priceData.currency || '?')
     d3.select('#country-emission-rect, .left-panel-zone-details .emission-rect')
         .transition()
         .duration(ignoreTransitions ? 0 : this.TRANSITION_DURATION)
@@ -452,6 +452,7 @@ CountryTable.prototype.onProductionMouseMove = function(arg) {
     return this;
 }
 
+// DONE
 CountryTable.prototype.resize = function() {
   this.productionHeight = this.MODES.length * (this.ROW_HEIGHT + this.PADDING_Y);
   this.exchangeHeight = (!this._data) ? 0 : d3.entries(this._exchangeData).length * (this.ROW_HEIGHT + this.PADDING_Y);
