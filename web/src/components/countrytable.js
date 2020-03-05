@@ -1,8 +1,6 @@
 /* eslint-disable */
 // TODO: remove once refactored
 
-import NoDataOverlay from '../components/nodataoverlay'
-
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -29,7 +27,6 @@ export default function CountryTable(selector, modeColor, modeOrder) {
 
     this.root = d3.select(selector);
 
-    this.wrapperNoDataOverlay = new NoDataOverlay('.country-table-container');
     this.container = this.root.append('svg').attr('class', 'country-table');
     
     // Create containers
@@ -655,6 +652,4 @@ CountryTable.prototype.showNoParserMessageIf = function(condition) {
 }
 
 CountryTable.prototype.showNoDataMessageIf = function(condition, isRealtimeData) {
-    this.wrapperNoDataOverlay.showIfElseHide(condition);
-    this.wrapperNoDataOverlay.text(translation.translate(isRealtimeData? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp'));
 }

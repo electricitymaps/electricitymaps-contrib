@@ -1,27 +1,32 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-);
+import React from 'react';
+import { connect } from 'react-redux';
 
-const translation = require('../helpers/translation');
+import { __ } from '../helpers/translation';
+import { getCurrentZoneData } from '../helpers/redux';
 
-export default class NoDataOverlay {
-  constructor(selectorId, argConfig) {
-    this.selectorId = selectorId;
-    this._setup();
-  }
+const mapStateToProps = state => ({
+  zoneData: getCurrentZoneData(state),
+  zoneName: state.application.selectedZoneName,
+  zoneTimeIndex: state.application.selectedZoneTimeIndex,
+});
 
-  _setup() {
-    this.rootContainer = d3.select(this.selectorId).append('div').attr('class', 'no-data-overlay');
-    this.overlayBackground = this.rootContainer.append('div').attr('class', 'overlay no-data-overlay-background');
-    this.overlayTextBox = this.rootContainer.append('div').attr('class', 'no-data-overlay-message');
-  }
+const NoDataOverlay = ({ zoneData, zoneName, zoneTimeIndex }) => {
+  const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
+  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && zonesThatCanHaveZeroProduction.indexOf(zoneName) === -1;
+  const zoneIsMissingParser = !zoneData.hasParser;
+  const zoneHasData = zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser;
+  const isRealtimeData = zoneTimeIndex === null;
 
-  text(text) {
-    this.overlayTextBox.text(text);
-  }
+  if (!zoneHasData) return null;
 
-  showIfElseHide(condition) {
-    this.rootContainer.classed('visible', condition);
-  }
-}
+  return (
+    <div className="no-data-overlay visible">
+      <div className="overlay no-data-overlay-background" />
+      <div className="no-data-overlay-message">
+        {__(isRealtimeData ? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp')}
+      </div>
+    </div>
+  );
+};
+
+export default connect(mapStateToProps)(NoDataOverlay);

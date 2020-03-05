@@ -13,6 +13,8 @@ import { getCurrentZoneData } from '../helpers/redux';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
+import NoDataOverlay from './nodataoverlay';
+
 const LABEL_MAX_WIDTH = 102;
 const TEXT_ADJUST_Y = 11;
 const ROW_HEIGHT = 13;
@@ -365,6 +367,7 @@ const CountryTable = ({
           })}
         </g>
       </svg>
+      <NoDataOverlay />
     </div>
   );
 };
