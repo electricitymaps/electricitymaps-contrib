@@ -72,6 +72,47 @@ const getSortedProductionData = data => modeOrder
     };
   });
 
+const RowBackground = ({ width, height, isMobile, data, mode }) => (
+  <rect
+    y="-1"
+    fill="transparent"
+    width={width}
+    height={height}
+    onFocus={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+    onMouseOver={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+    onMouseMove={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+    onMouseOut={handleRowMouseOut}
+    onBlur={handleRowMouseOut}
+  />
+);
+
+const RowLabel = ({ label }) => (
+  <text
+    className="name"
+    style={{ pointerEvents: 'none', textAnchor: 'end' }}
+    transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+  >
+    {label}
+  </text>
+);
+
+const RowCapacity = ({ range, scale }) => {
+  if (range.length !== 2) return null;
+
+  return (
+    <rect
+      className="capacity"
+      height={ROW_HEIGHT}
+      fillOpacity="0.4"
+      opacity="0.3"
+      shapeRendering="crispEdges"
+      style={{ pointerEvents: 'none' }}
+      x={LABEL_MAX_WIDTH + scale(range[0])}
+      width={scale(range[1]) - scale(range[0])}
+    />
+  );
+};
+
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
@@ -112,7 +153,10 @@ const CountryTable = ({
 
   const isMissingParser = !data.hasParser;
   const hasProductionData = data.production && Object.keys(data.production).length > 0;
-  const exchangeData = exchangeKeys.map(key => ({ key, value: hasProductionData ? (data.exchange || {})[key] : undefined }));
+  const exchangeData = exchangeKeys.map(key => ({
+    mode: key,
+    value: hasProductionData ? (data.exchange || {})[key] : undefined,
+  }));
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const sortedProductionData = getSortedProductionData(data);
@@ -124,8 +168,8 @@ const CountryTable = ({
       : data.co2intensityProduction;
     const { exchangeCo2Intensities } = data;
     return d.value > 0
-      ? ((exchangeCo2Intensities !== undefined && exchangeCo2Intensities[d.key] !== undefined)
-        ? exchangeCo2Intensities[d.key]
+      ? ((exchangeCo2Intensities !== undefined && exchangeCo2Intensities[d.mode] !== undefined)
+        ? exchangeCo2Intensities[d.mode]
         : undefined)
       : ((co2intensity !== undefined) ? co2intensity : undefined);
   };
@@ -158,7 +202,7 @@ const CountryTable = ({
   const maxCO2eqImport = d3Max(exchangeData, (d) => {
     const { exchangeCo2Intensities } = data;
     if (!exchangeCo2Intensities) return 0;
-    return d.value <= 0 ? 0 : exchangeCo2Intensities[d.key] / 1e3 * d.value / 60.0;
+    return d.value <= 0 ? 0 : exchangeCo2Intensities[d.mode] / 1e3 * d.value / 60.0;
   });
   
   const co2Scale = scaleLinear() // in tCO2eq/min
@@ -230,41 +274,21 @@ const CountryTable = ({
               && (d.isStorage ? d.storage === undefined : d.production === undefined);
             const productionXValue = (!d.isStorage) ? d.production : -1 * d.storage;
             const productionWidthValue = d.production !== undefined ? d.production : -1 * d.storage;
-            const capacityXValue = ((data.exchangeCapacities || {})[d.key] || [])[0];
+            const capacityRange = d.capacity > 0 ? [d.isStorage ? -d.capacity : 0, d.capacity] : [];
             return (
               <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
-                <rect
-                  y="-1"
-                  fill="transparent"
+                <RowBackground
                   width={containerWidth}
                   height={ROW_HEIGHT + PADDING_Y}
-                  onFocus={ev => handleRowMouseMove(isMobile, d.mode, data, ev)}
-                  onMouseOver={ev => handleRowMouseMove(isMobile, d.mode, data, ev)}
-                  onMouseMove={ev => handleRowMouseMove(isMobile, d.mode, data, ev)}
-                  onMouseOut={handleRowMouseOut}
-                  onBlur={handleRowMouseOut}
+                  isMobile={isMobile}
+                  mode={d.mode}
+                  data={data}
                 />
-                <text
-                  className="name"
-                  style={{ pointerEvents: 'none', textAnchor: 'end' }}
-                  transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
-                >
-                  {__(d.mode) || d.mode}
-                </text>
+                <RowLabel label={__(d.mode)} />
                 {!displayByEmissions && (
-                  <rect
-                    className="capacity"
-                    height={ROW_HEIGHT}
-                    fillOpacity="0.4"
-                    opacity="0.3"
-                    shapeRendering="crispEdges"
-                    style={{ pointerEvents: 'none' }}
-                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? valueScale(0) : valueScale(Math.min(0, capacityXValue)))}
-                    width={
-                      d.capacity !== undefined && d.capacity >= (d.production || 0)
-                        ? (valueScale(d.isStorage ? (d.capacity * 2) : d.capacity) - valueScale(0))
-                        : 0
-                    }
+                  <RowCapacity
+                    range={capacityRange}
+                    scale={valueScale}
                   />
                 )}
                 <rect
@@ -301,47 +325,30 @@ const CountryTable = ({
         </g>
         <g transform={`translate(0, ${exchangesY})`}>
           {exchangeData.map((d, ind) => {
-            const labelLength = d3Max(exchangeData, ed => ed.key.length) * 8;
-            const capacityXValue = ((data.exchangeCapacities || {})[d.key] || [])[0];
-            const capacityWidthValue = (data.exchangeCapacities || {})[d.key];
+            const labelLength = d3Max(exchangeData, ed => ed.mode.length) * 8;
+            const capacityRange = (data.exchangeCapacities || {})[d.mode] || [];
             const co2intensity = getExchangeCo2eq(d);
             return (
-              <g key={d.key} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
-                <rect
-                  y="-1"
-                  fill="transparent"
+              <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
+                <RowBackground
                   width={containerWidth}
                   height={ROW_HEIGHT + PADDING_Y}
-                  onFocus={ev => handleRowMouseMove(isMobile, d.key, data, ev)}
-                  onMouseOver={ev => handleRowMouseMove(isMobile, d.key, data, ev)}
-                  onMouseMove={ev => handleRowMouseMove(isMobile, d.key, data, ev)}
-                  onMouseOut={handleRowMouseOut}
-                  onBlur={handleRowMouseOut}
+                  isMobile={isMobile}
+                  mode={d.mode}
+                  data={data}
                 />
                 <image
                   width={FLAG_SIZE}
                   height={FLAG_SIZE}
                   style={{ pointerEvents: 'none' }}
                   x={LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - labelLength}
-                  xlinkHref={flagUri(d.key, FLAG_SIZE)}
+                  xlinkHref={flagUri(d.mode, FLAG_SIZE)}
                 />
-                <text
-                  className="name"
-                  style={{ pointerEvents: 'none', textAnchor: 'end' }}
-                  transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
-                >
-                  {d.key}
-                </text>
+                <RowLabel label={d.mode} />
                 {!displayByEmissions && (
-                  <rect
-                    className="capacity"
-                    height={ROW_HEIGHT}
-                    fillOpacity="0.4"
-                    opacity="0.3"
-                    shapeRendering="crispEdges"
-                    style={{ pointerEvents: 'none' }}
-                    x={LABEL_MAX_WIDTH + ((capacityXValue === undefined || !isFinite(capacityXValue)) ? valueScale(0) : valueScale(Math.min(0, capacityXValue)))}
-                    width={capacityWidthValue ? (valueScale(capacityWidthValue[1] - capacityWidthValue[0]) - valueScale(0)) : 0}
+                  <RowCapacity
+                    range={capacityRange}
+                    scale={valueScale}
                   />
                 )}
                 <rect
