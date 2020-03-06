@@ -3715,13 +3715,14 @@
     "capacity": {
       "biomass": 257,
       "gas": 10344,
-      "solar": 183.4
+      "solar": 231.26
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/jarek",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/q--"
     ],
     "parsers": {
       "price": "SG.fetch_price",
