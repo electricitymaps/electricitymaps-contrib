@@ -1,6 +1,6 @@
 from PIL import Image, ImageOps
 import pytesseract
-import cv2  # pylint: disable=no-member
+import cv2 # pylint: disable=no-member
 from imageio import imread
 import numpy as np
 import arrow
