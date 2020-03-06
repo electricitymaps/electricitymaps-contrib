@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplication }) => (
   <div className="info-text small-screen-hidden">
     <p>
-      <label className="checkbox-container" for="checkbox-colorblind">
+      <label className="checkbox-container" htmlFor="checkbox-colorblind">
         {__('legends.colorblindmode')}
         <input type="checkbox" id="checkbox-colorblind" />
         <span className="checkmark" />
