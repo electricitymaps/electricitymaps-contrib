@@ -97,7 +97,7 @@ const RowLabel = ({ label }) => (
 );
 
 const RowCapacity = ({ range, scale }) => {
-  if (range.length !== 2) return null;
+  if (!range) return null;
 
   return (
     <rect
@@ -107,6 +107,24 @@ const RowCapacity = ({ range, scale }) => {
       opacity="0.3"
       shapeRendering="crispEdges"
       style={{ pointerEvents: 'none' }}
+      x={LABEL_MAX_WIDTH + scale(range[0])}
+      width={scale(range[1]) - scale(range[0])}
+    />
+  );
+};
+
+
+const RowProduction = ({ fill, range, scale }) => {
+  if (!range) return null;
+
+  return (
+    <rect
+      className="production"
+      height={ROW_HEIGHT}
+      opacity={RECT_OPACITY}
+      shapeRendering="crispEdges"
+      style={{ pointerEvents: 'none' }}
+      fill={fill}
       x={LABEL_MAX_WIDTH + scale(range[0])}
       width={scale(range[1]) - scale(range[0])}
     />
@@ -272,9 +290,6 @@ const CountryTable = ({
             const showUnknown = (d.capacity === undefined || d.capacity > 0)
               && d.mode !== 'unknown'
               && (d.isStorage ? d.storage === undefined : d.production === undefined);
-            const productionXValue = (!d.isStorage) ? d.production : -1 * d.storage;
-            const productionWidthValue = d.production !== undefined ? d.production : -1 * d.storage;
-            const capacityRange = d.capacity > 0 ? [d.isStorage ? -d.capacity : 0, d.capacity] : [];
             return (
               <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
                 <RowBackground
@@ -287,28 +302,23 @@ const CountryTable = ({
                 <RowLabel label={__(d.mode)} />
                 {!displayByEmissions && (
                   <RowCapacity
-                    range={capacityRange}
+                    range={isFinite(d.capacity) ? [d.isStorage ? -d.capacity : 0, d.capacity] : undefined}
                     scale={valueScale}
                   />
                 )}
-                <rect
-                  className="production"
-                  height={ROW_HEIGHT}
-                  opacity={RECT_OPACITY}
-                  shapeRendering="crispEdges"
-                  fill={modeColor[d.mode]}
-                  style={{ pointerEvents: 'none' }}
-                  x={
-                    displayByEmissions
-                      ? LABEL_MAX_WIDTH + valueScale(0)
-                      : LABEL_MAX_WIDTH + ((productionXValue === undefined || !isFinite(productionXValue)) ? valueScale(0) : valueScale(Math.min(0, productionXValue)))
-                  }
-                  width={
-                    displayByEmissions
-                      ? (!isFinite(d.gCo2eqPerH) ? 0 : (valueScale(d.gCo2eqPerH / 1e6 / 60.0) - valueScale(0)))
-                      : (productionWidthValue === undefined || !isFinite(productionWidthValue)) ? 0 : Math.abs(valueScale(productionWidthValue) - valueScale(0))
-                  }
-                />
+                {displayByEmissions ? (
+                  <RowProduction
+                    fill={modeColor[d.mode]}
+                    range={isFinite(d.gCo2eqPerH) ? [0, d.gCo2eqPerH / 1e6 / 60.0] : undefined}
+                    scale={valueScale}
+                  />
+                ) : (
+                  <RowProduction
+                    fill={modeColor[d.mode]}
+                    range={isFinite(d.production) ? [d.isStorage ? -d.storage : 0, d.production] : undefined}
+                    scale={valueScale}
+                  />
+                )}
                 {showUnknown && (
                   <text
                     className="unknown"
@@ -326,7 +336,6 @@ const CountryTable = ({
         <g transform={`translate(0, ${exchangesY})`}>
           {exchangeData.map((d, ind) => {
             const labelLength = d3Max(exchangeData, ed => ed.mode.length) * 8;
-            const capacityRange = (data.exchangeCapacities || {})[d.mode] || [];
             const co2intensity = getExchangeCo2eq(d);
             return (
               <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
@@ -347,7 +356,7 @@ const CountryTable = ({
                 <RowLabel label={d.mode} />
                 {!displayByEmissions && (
                   <RowCapacity
-                    range={capacityRange}
+                    range={(data.exchangeCapacities || {})[d.mode]}
                     scale={valueScale}
                   />
                 )}
