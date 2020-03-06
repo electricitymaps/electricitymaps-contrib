@@ -1,6 +1,6 @@
 from PIL import Image, ImageOps
 import pytesseract
-import cv2 # pylint: disable=no-member
+import cv2
 from imageio import imread
 import numpy as np
 import arrow
@@ -175,6 +175,7 @@ CS = ['SSP',
 
 #converts image into a black and white
 def RGBtoBW(pil_image):
+    # pylint: disable=no-member
     image = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2GRAY)
     image = cv2.threshold(image, 0, 255,
                          cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
