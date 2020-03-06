@@ -1,6 +1,6 @@
 from PIL import Image, ImageOps
 import pytesseract
-import cv2
+import cv2  # pylint: disable=no-member
 from imageio import imread
 import numpy as np
 import arrow
@@ -264,6 +264,12 @@ def fetch_consumption(zone_key='IN-MH', session=None, target_datetime = None,
         'Production types do not add up to total demand. Difference: {}'.format(demand_diff)
 
     return data
+
+def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
+                     logger=logging.getLogger(__name__)):
+
+    return fetch_consumption(zone_key, session, target_datetime, logger)
+
 
 
 if __name__ == '__main__':

@@ -2137,7 +2137,7 @@
     ],
     "flag_file_name": "in.png",
     "parsers": {
-      "consumption": "IN_MH.fetch_consumption"
+      "production": "IN_MH.fetch_production"
     },
     "timezone": "Asia/Kolkata"
   },
