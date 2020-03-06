@@ -113,7 +113,6 @@ const RowCapacity = ({ range, scale }) => {
   );
 };
 
-
 const RowProduction = ({ fill, range, scale }) => {
   if (!range) return null;
 
@@ -123,6 +122,23 @@ const RowProduction = ({ fill, range, scale }) => {
       height={ROW_HEIGHT}
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
+      style={{ pointerEvents: 'none' }}
+      fill={fill}
+      x={LABEL_MAX_WIDTH + scale(range[0])}
+      width={scale(range[1]) - scale(range[0])}
+    />
+  );
+};
+
+const RowExchange = ({ fill, range, scale }) => {
+  if (!range) return null;
+
+  return (
+    <rect
+      className="exchange"
+      height={ROW_HEIGHT}
+      opacity={RECT_OPACITY}
+      transformorigin="left"
       style={{ pointerEvents: 'none' }}
       fill={fill}
       x={LABEL_MAX_WIDTH + scale(range[0])}
@@ -360,24 +376,21 @@ const CountryTable = ({
                     scale={valueScale}
                   />
                 )}
-                <rect
-                  className="exchange"
-                  height={ROW_HEIGHT}
-                  opacity={RECT_OPACITY}
-                  transformorigin="left"
-                  style={{ pointerEvents: 'none' }}
-                  fill={displayByEmissions ? 'gray' : (co2intensity ? co2ColorScale(co2intensity) : 'gray')}
-                  x={
-                    displayByEmissions
-                      ? LABEL_MAX_WIDTH + ((co2intensity === undefined) ? 0 : valueScale(Math.min((d.value || 0) / 1e3 / 60.0 * co2intensity, 0)))
-                      : LABEL_MAX_WIDTH + valueScale(Math.min(d.value || 0, 0))
-                  }
-                  width={
-                    displayByEmissions
-                      ? ((co2intensity === undefined) ? 0 : (Math.abs(valueScale((d.value || 0) / 1e3 / 60.0 * co2intensity) - valueScale(0))))
-                      : Math.abs(valueScale(d.value || 0) - valueScale(0))
-                  }
-                />
+                {displayByEmissions ? (
+                  <RowExchange
+                    fill="gray"
+                    range={isFinite(d.value) && isFinite(co2intensity)
+                      ? (d.value < 0 ? [d.value / 1e3 / 60.0 * co2intensity, 0] : [0, d.value / 1e3 / 60.0 * co2intensity])
+                      : undefined}
+                    scale={valueScale}
+                  />
+                ) : (
+                  <RowExchange
+                    fill={co2intensity ? co2ColorScale(co2intensity) : 'gray'}
+                    range={isFinite(d.value) ? (d.value < 0 ? [d.value, 0] : [0, d.value]) : undefined}
+                    scale={valueScale}
+                  />
+                )}
               </g>
             );
           })}
