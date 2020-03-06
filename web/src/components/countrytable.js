@@ -96,29 +96,13 @@ const RowLabel = ({ label }) => (
   </text>
 );
 
-const RowCapacity = ({ range, scale }) => {
+const HorizontalBar = ({ className, fill, range, scale }) => {
   if (!range) return null;
 
   return (
     <rect
-      className="capacity"
+      className={className}
       height={ROW_HEIGHT}
-      fillOpacity="0.4"
-      opacity="0.3"
-      shapeRendering="crispEdges"
-      style={{ pointerEvents: 'none' }}
-      x={LABEL_MAX_WIDTH + scale(range[0])}
-      width={scale(range[1]) - scale(range[0])}
-    />
-  );
-};
-
-const RowProduction = ({ fill, range, scale }) => {
-  if (!range) return null;
-
-  return (
-    <rect
-      className="production"
       height={ROW_HEIGHT}
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
@@ -130,22 +114,25 @@ const RowProduction = ({ fill, range, scale }) => {
   );
 };
 
-const RowExchange = ({ fill, range, scale }) => {
-  if (!range) return null;
+const UnknownValue = ({ datapoint, scale }) => {
+  // const visible = displayByEmissions && getExchangeCo2eq(datapoint) === undefined;
+  const visible = (datapoint.capacity === undefined || datapoint.capacity > 0)
+    && datapoint.mode !== 'unknown'
+    && (datapoint.isStorage ? datapoint.storage === undefined : datapoint.production === undefined);
+
+  if (!visible) return null;
 
   return (
-    <rect
-      className="exchange"
-      height={ROW_HEIGHT}
-      opacity={RECT_OPACITY}
-      transformorigin="left"
-      style={{ pointerEvents: 'none' }}
-      fill={fill}
-      x={LABEL_MAX_WIDTH + scale(range[0])}
-      width={scale(range[1]) - scale(range[0])}
-    />
+    <text
+      className="unknown"
+      transform={`translate(1, ${TEXT_ADJUST_Y})`}
+      style={{ pointerEvents: 'none', fill: 'darkgray' }}
+      x={LABEL_MAX_WIDTH + scale(0)}
+    >
+      ?
+    </text>
   );
-};
+}
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -301,53 +288,48 @@ const CountryTable = ({
           ))}
         </g>
         <g transform={`translate(0, ${productionY})`}>
-          {sortedProductionData.map((d, ind) => {
-            // const showUnknown = displayByEmissions && getExchangeCo2eq(d) === undefined;
-            const showUnknown = (d.capacity === undefined || d.capacity > 0)
-              && d.mode !== 'unknown'
-              && (d.isStorage ? d.storage === undefined : d.production === undefined);
-            return (
-              <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
-                <RowBackground
-                  width={containerWidth}
-                  height={ROW_HEIGHT + PADDING_Y}
-                  isMobile={isMobile}
-                  mode={d.mode}
-                  data={data}
+          {sortedProductionData.map((d, ind) => (
+            <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
+              <RowBackground
+                width={containerWidth}
+                height={ROW_HEIGHT + PADDING_Y}
+                isMobile={isMobile}
+                mode={d.mode}
+                data={data}
+              />
+
+              <RowLabel label={__(d.mode)} />
+
+              {displayByEmissions ? (
+                <HorizontalBar
+                  className="production"
+                  fill={modeColor[d.mode]}
+                  range={isFinite(d.gCo2eqPerH) ? [0, d.gCo2eqPerH / 1e6 / 60.0] : undefined}
+                  scale={valueScale}
                 />
-                <RowLabel label={__(d.mode)} />
-                {!displayByEmissions && (
-                  <RowCapacity
+              ) : (
+                <React.Fragment>
+                  <HorizontalBar
+                    className="capacity"
+                    fill="rgba(0, 0, 0, 0.15)"
                     range={isFinite(d.capacity) ? [d.isStorage ? -d.capacity : 0, d.capacity] : undefined}
                     scale={valueScale}
                   />
-                )}
-                {displayByEmissions ? (
-                  <RowProduction
-                    fill={modeColor[d.mode]}
-                    range={isFinite(d.gCo2eqPerH) ? [0, d.gCo2eqPerH / 1e6 / 60.0] : undefined}
-                    scale={valueScale}
-                  />
-                ) : (
-                  <RowProduction
+                  <HorizontalBar
+                    className="production"
                     fill={modeColor[d.mode]}
                     range={isFinite(d.production) ? [d.isStorage ? -d.storage : 0, d.production] : undefined}
                     scale={valueScale}
                   />
-                )}
-                {showUnknown && (
-                  <text
-                    className="unknown"
-                    transform={`translate(1, ${TEXT_ADJUST_Y})`}
-                    style={{ pointerEvents: 'none', fill: 'darkgray' }}
-                    x={LABEL_MAX_WIDTH + valueScale(0)}
-                  >
-                    ?
-                  </text>
-                )}
-              </g>
-            );
-          })}
+                </React.Fragment>
+              )}
+
+              <UnknownValue
+                datapoint={d}
+                scale={valueScale}
+              />
+            </g>
+          ))}
         </g>
         <g transform={`translate(0, ${exchangesY})`}>
           {exchangeData.map((d, ind) => {
@@ -362,6 +344,7 @@ const CountryTable = ({
                   mode={d.mode}
                   data={data}
                 />
+
                 <image
                   width={FLAG_SIZE}
                   height={FLAG_SIZE}
@@ -370,14 +353,10 @@ const CountryTable = ({
                   xlinkHref={flagUri(d.mode, FLAG_SIZE)}
                 />
                 <RowLabel label={d.mode} />
-                {!displayByEmissions && (
-                  <RowCapacity
-                    range={(data.exchangeCapacities || {})[d.mode]}
-                    scale={valueScale}
-                  />
-                )}
+
                 {displayByEmissions ? (
-                  <RowExchange
+                  <HorizontalBar
+                    className="exchange"
                     fill="gray"
                     range={isFinite(d.value) && isFinite(co2intensity)
                       ? (d.value < 0 ? [d.value / 1e3 / 60.0 * co2intensity, 0] : [0, d.value / 1e3 / 60.0 * co2intensity])
@@ -385,11 +364,20 @@ const CountryTable = ({
                     scale={valueScale}
                   />
                 ) : (
-                  <RowExchange
-                    fill={co2intensity ? co2ColorScale(co2intensity) : 'gray'}
-                    range={isFinite(d.value) ? (d.value < 0 ? [d.value, 0] : [0, d.value]) : undefined}
-                    scale={valueScale}
-                  />
+                  <React.Fragment>
+                    <HorizontalBar
+                      className="capacity"
+                      fill="rgba(0, 0, 0, 0.15)"
+                      range={(data.exchangeCapacities || {})[d.mode]}
+                      scale={valueScale}
+                    />
+                    <HorizontalBar
+                      className="exchange"
+                      fill={co2intensity ? co2ColorScale(co2intensity) : 'gray'}
+                      range={isFinite(d.value) ? (d.value < 0 ? [d.value, 0] : [0, d.value]) : undefined}
+                      scale={valueScale}
+                    />
+                  </React.Fragment>
                 )}
               </g>
             );
