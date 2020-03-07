@@ -269,7 +269,10 @@ def fetch_consumption(zone_key='IN-MH', session=None, target_datetime = None,
 def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
                      logger=logging.getLogger(__name__)):
 
-    return fetch_consumption(zone_key, session, target_datetime, logger)
+    data =  fetch_consumption(zone_key, session, target_datetime, logger)
+    data['production'] = data.pop('consumption')
+
+    return data
 
 
 
