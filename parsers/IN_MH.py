@@ -206,7 +206,8 @@ def areEqual(str1,str2):
     return str1.lower() == str2.lower()
 
 
-def fetch_consumption(zone_key='IN-MH', session=None, target_datetime = None,
+# TODO: this function actually fetches consumption data
+def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
                      logger=logging.getLogger(__name__)):
 
 
@@ -218,7 +219,7 @@ def fetch_consumption(zone_key='IN-MH', session=None, target_datetime = None,
     data = {
         'zoneKey': 'IN-MH',
         'datetime': dt,
-        'consumption': {
+        'production': {
             'biomass': 0.0,
             'coal': 0.0,
             'gas': 0.0,
@@ -254,30 +255,21 @@ def fetch_consumption(zone_key='IN-MH', session=None, target_datetime = None,
     for type, plants in generation_map.items():
         for plant in plants['add']:
             fac = share if plant in CS else 1 # add only a fraction of central state plant consumption
-            data['consumption'][type] += fac * values[plant]
+            data['production'][type] += fac * values[plant]
         for plant in plants['subtract']:
             fac = share if plant in CS else 1
-            data['consumption'][type] -= fac * values[plant]
+            data['production'][type] -= fac * values[plant]
 
     #Sum over all production types is expected to equal the total demand
-    demand_diff = sum( data['consumption'].values() ) - values['DEMAND']
-    assert (abs( demand_diff) < 5), \
+    demand_diff = sum( data['production'].values() ) - values['DEMAND']
+    assert (abs( demand_diff) < 30), \
         'Production types do not add up to total demand. Difference: {}'.format(demand_diff)
 
     return data
 
-def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
-                     logger=logging.getLogger(__name__)):
-
-    data =  fetch_consumption(zone_key, session, target_datetime, logger)
-    data['production'] = data.pop('consumption')
-
-    return data
-
-
 
 if __name__ == '__main__':
     
-    consumption = fetch_consumption()
-    print(consumption)
+    print( fetch_production() )
+    
 
