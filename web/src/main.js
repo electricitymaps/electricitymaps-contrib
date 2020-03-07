@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 // Components
 import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
-import TimeSlider from './components/timeslider';
 import CountryTable from './components/countrytable';
 import HorizontalColorbar from './components/horizontalcolorbar';
 import Tooltip from './components/tooltip';
@@ -171,8 +170,6 @@ const solarColorbarColor = d3.scaleLinear()
   .range(['black', 'white', 'gold']);
 const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
   .markerColor('red');
-
-const zoneDetailsTimeSlider = new TimeSlider('.zone-time-slider', dataEntry => dataEntry.stateDatetime);
 
 // Initialise mobile app (cordova)
 const app = {
@@ -870,7 +867,6 @@ function renderHistory(state) {
   const history = state.data.histories[selectedZoneName];
 
   if (!history) {
-    zoneDetailsTimeSlider.data([]).render();
     return;
   }
 
@@ -921,25 +917,10 @@ function renderHistory(state) {
         Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0) || 0
     ));
 
-  zoneDetailsTimeSlider.data(history);
-
   // Update country table with all possible exchanges
   countryTable
     .exchangeKeys(getState().application.electricityMixMode === 'consumption' ? getExchangeKeys(history) : [])
     .render();
-
-  zoneDetailsTimeSlider.onChange((selectedZoneTimeIndexInput) => {
-    // when slider is on last value, we set the value to null in order to use the current state
-    if (getState().application.selectedZoneTimeIndex !== selectedZoneTimeIndexInput) {
-      const selectedZoneTimeIndex = selectedZoneTimeIndexInput === (history.length - 1)
-        ? null
-        : selectedZoneTimeIndexInput;
-      dispatch({
-        type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
-        payload: { selectedZoneTimeIndex },
-      });
-    }
-  }).render();
 }
 
 function routeToPage(pageName, state) {
@@ -1189,7 +1170,6 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
   // Render
   renderCountryTable(state);
   renderHistory(state);
-  zoneDetailsTimeSlider.selectedIndex(null, null);
 
   // Fetch history if needed
   tryFetchHistory(state);
@@ -1211,9 +1191,6 @@ observe(state => state.data.histories, (histories, state) => {
 // Observe for index change (for example by history graph)
 observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
   renderCountryTable(state);
-  [zoneDetailsTimeSlider].forEach((g) => {
-    g.selectedIndex(i, state.application.previousSelectedZoneTimeIndex);
-  });
 });
 
 // Observe for color blind mode changes

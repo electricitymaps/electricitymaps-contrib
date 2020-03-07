@@ -3,6 +3,7 @@
 """Parser for the electricity grid of Chile"""
 
 import arrow
+import pandas as pd
 import logging
 import requests
 from collections import defaultdict
@@ -22,14 +23,10 @@ def timestamp_creator(date, hour):
 
     arr_date = arrow.get(date, "YYYY-MM-DD")
 
-    # NOTE in the data source each day starts on hour 1 and ends on 24!
-
-    if hour == 24:
-        arr_dt = arr_date.shift(days=+1)
-    else:
-        arr_dt = arr_date.replace(hour=hour)
-
-    dt = arr_dt.replace(tzinfo='Chile/Continental').datetime
+    hour -= 1
+    dt = pd.to_datetime(date, format='%Y-%m-%d').tz_localize('Chile/Continental')
+    dt = dt + pd.DateOffset(hours=hour)
+    dt = dt.tz_convert('UTC')
 
     return dt
 
