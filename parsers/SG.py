@@ -105,7 +105,9 @@ def get_solar(session, logger):
             logger.warning(msg, extra={'key': 'SG'})
             return None
     else:
-        if solar > 200.0:
+        if solar > 400.0:
+            # 2020-03-06 https://www.ema.gov.sg/solarmap.aspx specifies installed PV capacity as 231 MWac
+            # give it some buffer for future growth but cap in case we greatly mis-read the data
             msg = "Solar generation is way over capacity - got {}".format(val)
             logger.warning(msg, extra={'key': 'SG'})
             return None
