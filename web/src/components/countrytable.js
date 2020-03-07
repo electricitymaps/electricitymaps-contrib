@@ -83,14 +83,13 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys
   const exchangeCapacityRange = (data.exchangeCapacities || {})[key];
 
   // Exchange CO2 intensity
-  const gCo2eqPerkWh =
-    exchange > 0 ? (
-      (data.exchangeCo2Intensities || {})[key]
-    ) : (
-      electricityMixMode === 'consumption'
-        ? data.co2intensity
-        : data.co2intensityProduction
-    );
+  const gCo2eqPerkWh = exchange > 0 ? (
+    (data.exchangeCo2Intensities || {})[key]
+  ) : (
+    electricityMixMode === 'consumption'
+      ? data.co2intensity
+      : data.co2intensityProduction
+  );
 
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
@@ -128,38 +127,55 @@ const Axis = ({ formatTick, height, scale }) => (
   </g>
 );
 
-const RowBackground = ({ width, height, isMobile, data, mode }) => (
-  <rect
-    y="-1"
-    fill="transparent"
-    width={width}
-    height={height}
-    onFocus={ev => handleRowMouseMove(isMobile, mode, data, ev)}
-    onMouseOver={ev => handleRowMouseMove(isMobile, mode, data, ev)}
-    onMouseMove={ev => handleRowMouseMove(isMobile, mode, data, ev)}
-    onMouseOut={handleRowMouseOut}
-    onBlur={handleRowMouseOut}
-  />
+const Row = ({
+  children,
+  data,
+  index,
+  isMobile,
+  label,
+  mode,
+  width,
+}) => (
+  <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
+    {/* Row background */}
+    <rect
+      y="-1"
+      fill="transparent"
+      width={width}
+      height={ROW_HEIGHT + PADDING_Y}
+      onFocus={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+      onMouseOver={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+      onMouseMove={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+      onMouseOut={handleRowMouseOut}
+      onBlur={handleRowMouseOut}
+    />
+
+    {/* Row label */}
+    <text
+      className="name"
+      style={{ pointerEvents: 'none', textAnchor: 'end' }}
+      transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+    >
+      {label}
+    </text>
+
+    {/* Row content */}
+    {children}
+  </g>
 );
 
-const RowLabel = ({ label }) => (
-  <text
-    className="name"
-    style={{ pointerEvents: 'none', textAnchor: 'end' }}
-    transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
-  >
-    {label}
-  </text>
-);
-
-const HorizontalBar = ({ className, fill, range, scale }) => {
+const HorizontalBar = ({
+  className,
+  fill,
+  range,
+  scale,
+}) => {
   // Don't render if the range is not valid
   if (!isArray(range) || !isFinite(range[0]) || !isFinite(range[1])) return null;
 
   return (
     <rect
       className={className}
-      height={ROW_HEIGHT}
       height={ROW_HEIGHT}
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
@@ -189,7 +205,217 @@ const UnknownValue = ({ datapoint, scale }) => {
       ?
     </text>
   );
-}
+};
+
+const CountryCarbonEmissionsTable = ({
+  colorBlindModeEnabled,
+  data,
+  exchangeData,
+  exchangeFlagX,
+  exchangeY,
+  height,
+  isMobile,
+  productionData,
+  productionY,
+  width,
+}) => {
+  const maxCO2eqExport = d3Max(exchangeData, d => Math.max(0, -d.tCo2eqPerMin));
+  const maxCO2eqImport = d3Max(exchangeData, d => Math.max(0, d.tCo2eqPerMin));
+  const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
+
+  // in tCO2eq/min
+  const co2Scale = scaleLinear()
+    .domain([
+      -maxCO2eqExport || 0,
+      Math.max(
+        maxCO2eqProduction || 0,
+        maxCO2eqImport || 0
+      ),
+    ])
+    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+
+  const formatTick = (t) => {
+    const [x1, x2] = co2Scale.domain();
+    if (x2 - x1 <= 1) return `${t * 1e3} kg / min`;
+    return `${t} t / min`;
+  };
+
+  return (
+    <React.Fragment>
+      <Axis
+        formatTick={formatTick}
+        height={height}
+        scale={co2Scale}
+      />
+      <g transform={`translate(0, ${productionY})`}>
+        {productionData.map((d, index) => (
+          <Row
+            key={d.mode}
+            mode={d.mode}
+            index={index}
+            label={__(d.mode)}
+            width={width}
+            isMobile={isMobile}
+            data={data}
+          >
+            <HorizontalBar
+              className="production"
+              fill={modeColor[d.mode]}
+              range={rangeZeroTo(Math.abs(d.tCo2eqPerMin))}
+              scale={co2Scale}
+            />
+            <UnknownValue
+              datapoint={d}
+              scale={co2Scale}
+            />
+          </Row>
+        ))}
+      </g>
+      <g transform={`translate(0, ${exchangeY})`}>
+        {exchangeData.map((d, index) => (
+          <Row
+            key={d.mode}
+            mode={d.mode}
+            index={index}
+            label={d.mode}
+            width={width}
+            isMobile={isMobile}
+            data={data}
+          >
+            <image
+              width={FLAG_SIZE}
+              height={FLAG_SIZE}
+              style={{ pointerEvents: 'none' }}
+              x={exchangeFlagX}
+              xlinkHref={flagUri(d.mode, FLAG_SIZE)}
+            />
+            <HorizontalBar
+              className="exchange"
+              fill="gray"
+              range={rangeZeroTo(d.tCo2eqPerMin)}
+              scale={co2Scale}
+            />
+          </Row>
+        ))}
+      </g>
+    </React.Fragment>
+  );
+};
+
+const CountryElectricityProductionTable = ({
+  colorBlindModeEnabled,
+  data,
+  exchangeData,
+  exchangeFlagX,
+  exchangeY,
+  height,
+  isMobile,
+  productionData,
+  productionY,
+  width,
+}) => {
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+
+  // Power in MW
+  const powerScale = scaleLinear()
+    .domain([
+      Math.min(
+        -data.maxStorageCapacity || 0,
+        -data.maxStorage || 0,
+        -data.maxExport || 0,
+        -data.maxExportCapacity || 0
+      ),
+      Math.max(
+        data.maxCapacity || 0,
+        data.maxProduction || 0,
+        data.maxDischarge || 0,
+        data.maxStorageCapacity || 0,
+        data.maxImport || 0,
+        data.maxImportCapacity || 0
+      ),
+    ])
+    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+
+  const formatTick = (t) => {
+    const [x1, x2] = powerScale.domain();
+    if (x2 - x1 <= 1) return `${t * 1e3} kW`;
+    if (x2 - x1 <= 1e3) return `${t} MW`;
+    return `${t * 1e-3} GW`;
+  };
+
+  return (
+    <React.Fragment>
+      <Axis
+        formatTick={formatTick}
+        height={height}
+        scale={powerScale}
+      />
+      <g transform={`translate(0, ${productionY})`}>
+        {productionData.map((d, index) => (
+          <Row
+            key={d.mode}
+            mode={d.mode}
+            index={index}
+            label={__(d.mode)}
+            width={width}
+            isMobile={isMobile}
+            data={data}
+          >
+            <HorizontalBar
+              className="capacity"
+              fill="rgba(0, 0, 0, 0.15)"
+              range={d.isStorage ? [-d.capacity, d.capacity] : rangeZeroTo(d.capacity)}
+              scale={powerScale}
+            />
+            <HorizontalBar
+              className="production"
+              fill={modeColor[d.mode]}
+              range={d.isStorage ? [-d.storage, d.production] : rangeZeroTo(d.production)}
+              scale={powerScale}
+            />
+            <UnknownValue
+              datapoint={d}
+              scale={powerScale}
+            />
+          </Row>
+        ))}
+      </g>
+      <g transform={`translate(0, ${exchangeY})`}>
+        {exchangeData.map((d, index) => (
+          <Row
+            key={d.mode}
+            mode={d.mode}
+            index={index}
+            label={d.mode}
+            width={width}
+            isMobile={isMobile}
+            data={data}
+          >
+            <image
+              width={FLAG_SIZE}
+              height={FLAG_SIZE}
+              style={{ pointerEvents: 'none' }}
+              x={exchangeFlagX}
+              xlinkHref={flagUri(d.mode, FLAG_SIZE)}
+            />
+            <HorizontalBar
+              className="capacity"
+              fill="rgba(0, 0, 0, 0.15)"
+              range={d.exchangeCapacityRange}
+              scale={powerScale}
+            />
+            <HorizontalBar
+              className="exchange"
+              fill={d.gCo2eqPerkWh ? co2ColorScale(d.gCo2eqPerkWh) : 'gray'}
+              range={rangeZeroTo(d.exchange)}
+              scale={powerScale}
+            />
+          </Row>
+        ))}
+      </g>
+    </React.Fragment>
+  );
+};
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -234,176 +460,46 @@ const CountryTable = ({
   const productionData = getProductionData(data);
   const exchangeData = getExchangeData(data, exchangeKeys, electricityMixMode);
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
-  const exchangeLabelLength = d3Max(exchangeData, ed => ed.mode.length) * 8;
-  const barMaxWidth = containerWidth - LABEL_MAX_WIDTH - PADDING_X;
-
-  // Power in MW
-  const powerScale = scaleLinear()
-    .domain([
-      Math.min(
-        -data.maxStorageCapacity || 0,
-        -data.maxStorage || 0,
-        -data.maxExport || 0,
-        -data.maxExportCapacity || 0
-      ),
-      Math.max(
-        data.maxCapacity || 0,
-        data.maxProduction || 0,
-        data.maxDischarge || 0,
-        data.maxStorageCapacity || 0,
-        data.maxImport || 0,
-        data.maxImportCapacity || 0
-      ),
-    ])
-    .range([0, barMaxWidth]);
-  const formatPowerScaleTick = (t) => {
-    const scaleSpan = powerScale.domain()[1] - powerScale.domain()[0];
-    if (scaleSpan <= 1) return `${t * 1e3} kW`;
-    if (scaleSpan <= 1e3) return `${t} MW`;
-    return `${t * 1e-3} GW`;
-  };
-
-  const maxCO2eqExport = d3Max(exchangeData, d => Math.max(0, -d.tCo2eqPerMin));
-  const maxCO2eqImport = d3Max(exchangeData, d => Math.max(0, d.tCo2eqPerMin));
-  const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
-
-  // in tCO2eq/min
-  const co2Scale = scaleLinear()
-    .domain([
-      -maxCO2eqExport || 0,
-      Math.max(
-        maxCO2eqProduction || 0,
-        maxCO2eqImport || 0
-      ),
-    ])
-    .range([0, barMaxWidth]);
-  const formatCo2ScaleTick = (t) => {
-    const scaleSpan = co2Scale.domain()[1] - co2Scale.domain()[0];
-    if (scaleSpan <= 1) return `${t * 1e3} kg / min`;
-    return `${t} t / min`;
-  };
-  
-  const valueScale = displayByEmissions ? co2Scale : powerScale;
-
-  const ticks = valueScale.ticks(SCALE_TICKS);
+  const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - d3Max(exchangeData, ed => ed.mode.length) * 8;
 
   const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangesHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
+  const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
 
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
-  const exchangesY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
   
-  const containerHeight = exchangesY + exchangesHeight;
+  const containerHeight = exchangeY + exchangeHeight;
 
   return (
     <div className="country-table-container">
       <svg className="country-table" height={containerHeight} style={{ overflow: 'visible' }} ref={ref}>
         {displayByEmissions ? (
-          <Axis
-            formatTick={formatCo2ScaleTick}
-            height={containerWidth}
-            scale={co2Scale}
+          <CountryCarbonEmissionsTable
+            colorBlindModeEnabled={colorBlindModeEnabled}
+            exchangeFlagX={exchangeFlagX}
+            data={data}
+            productionY={productionY}
+            productionData={productionData}
+            exchangeY={exchangeY}
+            exchangeData={exchangeData}
+            width={containerWidth}
+            height={containerHeight}
+            isMobile={isMobile}
           />
         ) : (
-          <Axis
-            formatTick={formatPowerScaleTick}
-            height={containerWidth}
-            scale={powerScale}
+          <CountryElectricityProductionTable
+            colorBlindModeEnabled={colorBlindModeEnabled}
+            exchangeFlagX={exchangeFlagX}
+            data={data}
+            productionY={productionY}
+            productionData={productionData}
+            exchangeY={exchangeY}
+            exchangeData={exchangeData}
+            width={containerWidth}
+            height={containerHeight}
+            isMobile={isMobile}
           />
         )}
-        <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, ind) => (
-            <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
-              <RowBackground
-                width={containerWidth}
-                height={ROW_HEIGHT + PADDING_Y}
-                isMobile={isMobile}
-                mode={d.mode}
-                data={data}
-              />
-
-              <RowLabel label={__(d.mode)} />
-
-              {displayByEmissions ? (
-                <HorizontalBar
-                  className="production"
-                  fill={modeColor[d.mode]}
-                  range={rangeZeroTo(d.tCo2eqPerMin)}
-                  scale={co2Scale}
-                />
-              ) : (
-                <React.Fragment>
-                  <HorizontalBar
-                    className="capacity"
-                    fill="rgba(0, 0, 0, 0.15)"
-                    range={d.isStorage ? [-d.capacity, d.capacity] : rangeZeroTo(d.capacity)}
-                    scale={powerScale}
-                  />
-                  <HorizontalBar
-                    className="production"
-                    fill={modeColor[d.mode]}
-                    range={d.isStorage ? [-d.storage, d.production] : rangeZeroTo(d.production)}
-                    scale={powerScale}
-                  />
-                </React.Fragment>
-              )}
-
-              <UnknownValue
-                datapoint={d}
-                scale={valueScale}
-              />
-            </g>
-          ))}
-        </g>
-        <g transform={`translate(0, ${exchangesY})`}>
-          {exchangeData.map((d, ind) => {
-            return (
-              <g key={d.mode} className="row" transform={`translate(0, ${ind * (ROW_HEIGHT + PADDING_Y)})`}>
-                <RowBackground
-                  width={containerWidth}
-                  height={ROW_HEIGHT + PADDING_Y}
-                  isMobile={isMobile}
-                  mode={d.mode}
-                  data={data}
-                />
-
-                <image
-                  width={FLAG_SIZE}
-                  height={FLAG_SIZE}
-                  style={{ pointerEvents: 'none' }}
-                  x={LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - exchangeLabelLength}
-                  xlinkHref={flagUri(d.mode, FLAG_SIZE)}
-                />
-                <RowLabel label={d.mode} />
-
-                {displayByEmissions ? (
-                  <HorizontalBar
-                    className="exchange"
-                    fill="gray"
-                    range={rangeZeroTo(d.tCo2eqPerMin)}
-                    scale={co2Scale}
-                  />
-                ) : (
-                  <React.Fragment>
-                    <HorizontalBar
-                      className="capacity"
-                      fill="rgba(0, 0, 0, 0.15)"
-                      range={d.exchangeCapacityRange}
-                      scale={powerScale}
-                    />
-                    <HorizontalBar
-                      className="exchange"
-                      fill={d.gCo2eqPerkWh ? co2ColorScale(d.gCo2eqPerkWh) : 'gray'}
-                      range={rangeZeroTo(d.exchange)}
-                      scale={powerScale}
-                    />
-                  </React.Fragment>
-                )}
-              </g>
-            );
-          })}
-        </g>
       </svg>
       <NoDataOverlay />
     </div>
