@@ -105,7 +105,7 @@ def get_solar(session, logger):
             logger.warning(msg, extra={'key': 'SG'})
             return None
     else:
-        if solar > 200.0:
+        if solar > 400.0:
             msg = "Solar generation is way over capacity - got {}".format(val)
             logger.warning(msg, extra={'key': 'SG'})
             return None
