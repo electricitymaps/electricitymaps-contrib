@@ -65,8 +65,9 @@ const CountryRenewableGauge = connect((state) => {
 const lowcarbInfoTooltip = new Tooltip('#lowcarb-info-tooltip');
 
 const mapStateToProps = state => ({
-  data: getCurrentZoneData(state),
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
+  countryCode: state.application.selectedZoneName || '',
+  data: getCurrentZoneData(state) || {},
   electricityMixMode: state.application.electricityMixMode,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
 });
@@ -81,12 +82,14 @@ class Component extends React.PureComponent {
 
   render() {
     const {
-      data,
       colorBlindModeEnabled,
+      countryCode,
+      data,
       electricityMixMode,
       tableDisplayEmissions,
     } = this.props;
 
+    const { hasParser } = data;
     const datetime = data.stateDatetime || data.datetime;
     const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
     const co2Intensity = electricityMixMode === 'consumption'
@@ -103,12 +106,12 @@ class Component extends React.PureComponent {
             <div className="country-name-time">
               <div className="country-name-time-table">
                 <div style={{ display: 'table-cell' }}>
-                  <img id="country-flag" className="flag" alt="" src={flagUri(data.countryCode, 24)} />
+                  <img id="country-flag" className="flag" alt="" src={countryCode && flagUri(countryCode, 24)} />
                 </div>
 
                 <div style={{ display: 'table-cell' }}>
                   <div className="country-name">
-                    {getFullZoneName(data.countryCode)}
+                    {getFullZoneName(countryCode)}
                   </div>
                   <div className="country-time">
                     {datetime ? moment(datetime).format('LL LT') : ''}
@@ -117,142 +120,153 @@ class Component extends React.PureComponent {
               </div>
             </div>
           </div>
-          <div className="country-table-header-inner">
-            <div className="country-col country-emission-intensity-wrap">
-              <div
-                id="country-emission-rect"
-                className="country-col-box emission-rect emission-rect-overview"
-                style={{ backgroundColor: co2Intensity ? co2ColorScale(co2Intensity) : 'gray' }}
-              >
-                <div>
-                  <span className="country-emission-intensity">
-                    {Math.round(co2Intensity) || '?'}
-                  </span>
-                  g
+
+          {hasParser && (
+            <React.Fragment>
+              <div className="country-table-header-inner">
+                <div className="country-col country-emission-intensity-wrap">
+                  <div
+                    id="country-emission-rect"
+                    className="country-col-box emission-rect emission-rect-overview"
+                    style={{ backgroundColor: co2Intensity ? co2ColorScale(co2Intensity) : 'gray' }}
+                  >
+                    <div>
+                      <span className="country-emission-intensity">
+                        {Math.round(co2Intensity) || '?'}
+                      </span>
+                      g
+                    </div>
+                  </div>
+                  <div
+                    className="country-col-headline"
+                    dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
+                  />
+                  <div className="country-col-subtext">(gCO<span className="sub">2</span>eq/kWh)</div>
+                </div>
+                <div className="country-col country-lowcarbon-wrap">
+                  <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
+                    <CountryLowCarbonGauge
+                      onMouseOver={() => tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip)}
+                      onMouseMove={(clientX, clientY) => lowcarbInfoTooltip.update(clientX, clientY)}
+                      onMouseOut={() => lowcarbInfoTooltip.hide()}
+                    />
+                  </div>
+                  <div
+                    className="country-col-headline"
+                    dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
+                  />
+                  <div className="country-col-subtext" />
+                </div>
+                <div className="country-col country-renewable-wrap">
+                  <div id="country-renewable-gauge" className="country-gauge-wrap">
+                    <CountryRenewableGauge />
+                  </div>
+                  <div
+                    className="country-col-headline"
+                    dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.renewable')) }}
+                  />
                 </div>
               </div>
-              <div
-                className="country-col-headline"
-                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
-              />
-              <div className="country-col-subtext">(gCO<span className="sub">2</span>eq/kWh)</div>
-            </div>
-            <div className="country-col country-lowcarbon-wrap">
-              <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
-                <CountryLowCarbonGauge
-                  onMouseOver={() => tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip)}
-                  onMouseMove={(clientX, clientY) => lowcarbInfoTooltip.update(clientX, clientY)}
-                  onMouseOut={() => lowcarbInfoTooltip.hide()}
-                />
+              <div className="country-show-emissions-wrap">
+                <div className="menu">
+                  <a
+                    id="production"
+                    onClick={this.toggleSource}
+                    className={!tableDisplayEmissions ? 'selected' : null}
+                    dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
+                  />
+                  |
+                  <a
+                    id="emissions"
+                    onClick={this.toggleSource}
+                    className={tableDisplayEmissions ? 'selected' : null}
+                    dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
+                  />
+                </div>
               </div>
-              <div
-                className="country-col-headline"
-                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
-              />
-              <div className="country-col-subtext" />
-            </div>
-            <div className="country-col country-renewable-wrap">
-              <div id="country-renewable-gauge" className="country-gauge-wrap">
-                <CountryRenewableGauge />
-              </div>
-              <div
-                className="country-col-headline"
-                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.renewable')) }}
-              />
-            </div>
-          </div>
-          <div className="country-show-emissions-wrap">
-            <div className="menu">
-              <a
-                id="production"
-                onClick={this.toggleSource}
-                className={!tableDisplayEmissions ? 'selected' : null}
-                dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
-              />
-              |
-              <a
-                id="emissions"
-                onClick={this.toggleSource}
-                className={tableDisplayEmissions ? 'selected' : null}
-                dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
-              />
-            </div>
-          </div>
+            </React.Fragment>
+          )}
         </div>
+
         <div className="country-panel-wrap">
-          <div className="bysource">
-            {__('country-panel.bysource')}
-          </div>
+          {hasParser ? (
+            <React.Fragment>
+              <div className="bysource">
+                {__('country-panel.bysource')}
+              </div>
 
-          <CountryTable />
+              <CountryTable />
 
-          <div className="zone-details-no-parser-message">
-            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
-          </div>
+              <hr />
+              <div className="country-history">
+                <div className="loading overlay" />
+                <span
+                  className="country-history-title"
+                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-history.carbonintensity24h')) }}
+                />
+                <br />
+                <small className="small-screen-hidden">
+                  <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                  <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
+                </small>
 
-          <hr />
-          <div className="country-history">
-            <div className="loading overlay" />
-            <span
-              className="country-history-title"
-              dangerouslySetInnerHTML={{ __html: co2Sub(__('country-history.carbonintensity24h')) }}
-            />
-            <br />
-            <small className="small-screen-hidden">
-              <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-              <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
-            </small>
+                <CountryHistoryCarbonGraph />
 
-            <CountryHistoryCarbonGraph />
+                <div className="loading overlay" />
+                <span
+                  className="country-history-title"
+                  id="country-history-electricity-carbonintensity"
+                >
+                  { tableDisplayEmissions
+                    ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
+                    : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
+                  }
+                </span>
+                <br />
+                <small className="small-screen-hidden">
+                  <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                  <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
+                </small>
 
-            <div className="loading overlay" />
-            <span
-              className="country-history-title"
-              id="country-history-electricity-carbonintensity"
-            >
-              { tableDisplayEmissions
-                ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
-                : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
-              }
-            </span>
-            <br />
-            <small className="small-screen-hidden">
-              <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-              <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
-            </small>
+                <CountryHistoryMixGraph />
 
-            <CountryHistoryMixGraph />
+                <div className="loading overlay" />
+                <span className="country-history-title">
+                  {__('country-history.electricityprices24h')}
+                </span>
 
-            <div className="loading overlay" />
-            <span className="country-history-title">
-              {__('country-history.electricityprices24h')}
-            </span>
+                <CountryHistoryPricesGraph />
+              </div>
+              <hr />
+              <div>
+                {__('country-panel.source')}
+                {': '}
+                <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank">
+                  <span className="country-data-source">{data.source || '?'}</span>
+                </a>
+                <small>
+                  {' ('}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: __(
+                        'country-panel.addeditsource',
+                        'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                      ),
+                    }}
+                  />
+                  {')'}
+                </small>
+                {' '}
+                {__('country-panel.helpfrom')}
+                <ContributorList />
+              </div>
+            </React.Fragment>
+          ) : (
+            <div className="zone-details-no-parser-message">
+              <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+            </div>
+          )}
 
-            <CountryHistoryPricesGraph />
-          </div>
-          <hr />
-          <div>
-            {__('country-panel.source')}
-            {': '}
-            <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank">
-              <span className="country-data-source">{data.source || '?'}</span>
-            </a>
-            <small>
-              {' ('}
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: __(
-                    'country-panel.addeditsource',
-                    'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
-                  ),
-                }}
-              />
-              {')'}
-            </small>
-            {' '}
-            {__('country-panel.helpfrom')}
-            <ContributorList />
-          </div>
           <div className="social-buttons large-screen-hidden">
             <div>
               { /* Facebook share */}

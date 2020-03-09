@@ -40,8 +40,6 @@ function handleRowMouseOut() {
   dispatchApplication('tooltipDisplayMode', null);
 }
 
-const rangeZeroTo = value => (value < 0 ? [value, 0] : [0, value]);
-
 const getProductionData = data => modeOrder.map((mode) => {
   const isStorage = mode.indexOf('storage') !== -1;
   const key = mode.replace(' storage', '');
@@ -102,6 +100,23 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys
     tCo2eqPerMin,
   };
 });
+
+const getDataBlockPositions = (productionData, exchangeData) => {
+  const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
+  const productionY = X_AXIS_HEIGHT + PADDING_Y;
+
+  const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - d3Max(exchangeData, d => d.mode.length) * 8;
+  const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
+  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
+
+  return {
+    productionHeight,
+    productionY,
+    exchangeFlagX,
+    exchangeHeight,
+    exchangeY,
+  };
+};
 
 const Axis = ({ formatTick, height, scale }) => (
   <g
@@ -173,6 +188,10 @@ const HorizontalBar = ({
   // Don't render if the range is not valid
   if (!isArray(range) || !isFinite(range[0]) || !isFinite(range[1])) return null;
 
+  // Make sure that x1 < x2
+  const x1 = Math.min(range[0], range[1]);
+  const x2 = Math.max(range[0], range[1]);
+
   return (
     <rect
       className={className}
@@ -181,8 +200,8 @@ const HorizontalBar = ({
       shapeRendering="crispEdges"
       style={{ pointerEvents: 'none' }}
       fill={fill}
-      x={LABEL_MAX_WIDTH + scale(range[0])}
-      width={scale(range[1]) - scale(range[0])}
+      x={LABEL_MAX_WIDTH + scale(x1)}
+      width={scale(x2) - scale(x1)}
     />
   );
 };
@@ -211,14 +230,13 @@ const CountryCarbonEmissionsTable = ({
   colorBlindModeEnabled,
   data,
   exchangeData,
-  exchangeFlagX,
-  exchangeY,
   height,
   isMobile,
   productionData,
-  productionY,
   width,
 }) => {
+  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+
   const maxCO2eqExport = d3Max(exchangeData, d => Math.max(0, -d.tCo2eqPerMin));
   const maxCO2eqImport = d3Max(exchangeData, d => Math.max(0, d.tCo2eqPerMin));
   const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
@@ -261,7 +279,7 @@ const CountryCarbonEmissionsTable = ({
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={rangeZeroTo(Math.abs(d.tCo2eqPerMin))}
+              range={[0, Math.abs(d.tCo2eqPerMin)]}
               scale={co2Scale}
             />
             <UnknownValue
@@ -292,7 +310,7 @@ const CountryCarbonEmissionsTable = ({
             <HorizontalBar
               className="exchange"
               fill="gray"
-              range={rangeZeroTo(d.tCo2eqPerMin)}
+              range={[0, d.tCo2eqPerMin]}
               scale={co2Scale}
             />
           </Row>
@@ -306,14 +324,13 @@ const CountryElectricityProductionTable = ({
   colorBlindModeEnabled,
   data,
   exchangeData,
-  exchangeFlagX,
-  exchangeY,
   height,
   isMobile,
   productionData,
-  productionY,
   width,
 }) => {
+  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   // Power in MW
@@ -364,13 +381,13 @@ const CountryElectricityProductionTable = ({
             <HorizontalBar
               className="capacity"
               fill="rgba(0, 0, 0, 0.15)"
-              range={d.isStorage ? [-d.capacity, d.capacity] : rangeZeroTo(d.capacity)}
+              range={d.isStorage ? [-d.capacity, d.capacity] : [0, d.capacity]}
               scale={powerScale}
             />
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={d.isStorage ? [-d.storage, d.production] : rangeZeroTo(d.production)}
+              range={d.isStorage ? [-d.storage, d.production] : [0, d.production]}
               scale={powerScale}
             />
             <UnknownValue
@@ -407,7 +424,7 @@ const CountryElectricityProductionTable = ({
             <HorizontalBar
               className="exchange"
               fill={d.gCo2eqPerkWh ? co2ColorScale(d.gCo2eqPerkWh) : 'gray'}
-              range={rangeZeroTo(d.exchange)}
+              range={[0, d.exchange]}
               scale={powerScale}
             />
           </Row>
@@ -455,19 +472,10 @@ const CountryTable = ({
     };
   });
 
-  // const isMissingParser = !data.hasParser;
-
   const productionData = getProductionData(data);
   const exchangeData = getExchangeData(data, exchangeKeys, electricityMixMode);
 
-  const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - d3Max(exchangeData, ed => ed.mode.length) * 8;
-
-  const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
-  const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
-
-  const productionY = X_AXIS_HEIGHT + PADDING_Y;
-  const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
-  
+  const { exchangeY, exchangeHeight } = getDataBlockPositions(productionData, exchangeData);
   const containerHeight = exchangeY + exchangeHeight;
 
   return (
@@ -476,11 +484,8 @@ const CountryTable = ({
         {displayByEmissions ? (
           <CountryCarbonEmissionsTable
             colorBlindModeEnabled={colorBlindModeEnabled}
-            exchangeFlagX={exchangeFlagX}
             data={data}
-            productionY={productionY}
             productionData={productionData}
-            exchangeY={exchangeY}
             exchangeData={exchangeData}
             width={containerWidth}
             height={containerHeight}
@@ -489,11 +494,8 @@ const CountryTable = ({
         ) : (
           <CountryElectricityProductionTable
             colorBlindModeEnabled={colorBlindModeEnabled}
-            exchangeFlagX={exchangeFlagX}
             data={data}
-            productionY={productionY}
             productionData={productionData}
-            exchangeY={exchangeY}
             exchangeData={exchangeData}
             width={containerWidth}
             height={containerHeight}
