@@ -1,4 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, {
+  useRef,
+  useMemo,
+  useEffect,
+  useState,
+} from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
@@ -224,7 +229,7 @@ const QuestionMarkIfNoData = ({ datapoint, scale }) => {
   );
 };
 
-const CountryCarbonEmissionsTable = ({
+const CountryCarbonEmissionsTable = React.memo(({
   colorBlindModeEnabled,
   data,
   exchangeData,
@@ -316,9 +321,9 @@ const CountryCarbonEmissionsTable = ({
       </g>
     </React.Fragment>
   );
-};
+});
 
-const CountryElectricityProductionTable = ({
+const CountryElectricityProductionTable = React.memo(({
   colorBlindModeEnabled,
   data,
   exchangeData,
@@ -430,7 +435,7 @@ const CountryElectricityProductionTable = ({
       </g>
     </React.Fragment>
   );
-};
+});
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -470,8 +475,14 @@ const CountryTable = ({
     };
   });
 
-  const productionData = getProductionData(data);
-  const exchangeData = getExchangeData(data, exchangeKeys, electricityMixMode);
+  const productionData = useMemo(
+    () => getProductionData(data),
+    [data]
+  );
+  const exchangeData = useMemo(
+    () => getExchangeData(data, exchangeKeys, electricityMixMode),
+    [data, exchangeKeys, electricityMixMode]
+  );
 
   const { exchangeY, exchangeHeight } = getDataBlockPositions(productionData, exchangeData);
   const containerHeight = exchangeY + exchangeHeight;
