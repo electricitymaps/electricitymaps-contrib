@@ -11,6 +11,7 @@ import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isArray, isFinite } from 'lodash';
 
 import { dispatchApplication } from '../store';
+import { useWidthObserver } from '../effects';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
@@ -454,25 +455,7 @@ const CountryTable = ({
   isMobile,
 }) => {
   const ref = useRef(null);
-  const [containerWidth, setContainerWidth] = useState(0);
-
-  // Container resize hook
-  useEffect(() => {
-    const updateContainerWidth = () => {
-      if (ref.current) {
-        setContainerWidth(ref.current.getBoundingClientRect().width);
-      }
-    };
-    // Initialize width if it's not set yet
-    if (!containerWidth) {
-      updateContainerWidth();
-    }
-    // Update container width on every resize
-    window.addEventListener('resize', updateContainerWidth);
-    return () => {
-      window.removeEventListener('resize', updateContainerWidth);
-    };
-  });
+  const width = useWidthObserver(ref);
 
   const productionData = useMemo(
     () => getProductionData(data),
@@ -484,19 +467,19 @@ const CountryTable = ({
   );
 
   const { exchangeY, exchangeHeight } = getDataBlockPositions(productionData, exchangeData);
-  const containerHeight = exchangeY + exchangeHeight;
+  const height = exchangeY + exchangeHeight;
 
   return (
     <div className="country-table-container">
-      <svg className="country-table" height={containerHeight} style={{ overflow: 'visible' }} ref={ref}>
+      <svg className="country-table" height={height} style={{ overflow: 'visible' }} ref={ref}>
         {displayByEmissions ? (
           <CountryCarbonEmissionsTable
             colorBlindModeEnabled={colorBlindModeEnabled}
             data={data}
             productionData={productionData}
             exchangeData={exchangeData}
-            width={containerWidth}
-            height={containerHeight}
+            width={width}
+            height={height}
             isMobile={isMobile}
           />
         ) : (
@@ -505,8 +488,8 @@ const CountryTable = ({
             data={data}
             productionData={productionData}
             exchangeData={exchangeData}
-            width={containerWidth}
-            height={containerHeight}
+            width={width}
+            height={height}
             isMobile={isMobile}
           />
         )}

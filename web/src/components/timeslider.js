@@ -16,15 +16,16 @@ import moment from 'moment';
 
 import { __ } from '../helpers/translation';
 import TimeAxis from './graph/timeaxis';
+import { useWidthObserver } from '../effects';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
-const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
+const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .domain([
     startTime ? moment(startTime).toDate() : first(datetimes),
     endTime ? moment(endTime).toDate() : last(datetimes),
   ])
-  .range([0, containerWidth]);
+  .range([0, width]);
 
 const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex) => (ev) => {
   const value = parseInt(ev.target.value, 10);
@@ -48,30 +49,12 @@ const TimeSlider = ({
   endTime,
 }) => {
   const ref = useRef(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const width = useWidthObserver(ref, 2 * AXIS_HORIZONTAL_MARGINS);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
 
-  // Container resize hook
-  useEffect(() => {
-    const updateContainerWidth = () => {
-      if (ref.current) {
-        setContainerWidth(ref.current.getBoundingClientRect().width - 2 * AXIS_HORIZONTAL_MARGINS);
-      }
-    };
-    // Initialize width if it's not set yet
-    if (!containerWidth) {
-      updateContainerWidth();
-    }
-    // Update container width on every resize
-    window.addEventListener('resize', updateContainerWidth);
-    return () => {
-      window.removeEventListener('resize', updateContainerWidth);
-    };
-  });
-
   const timeScale = useMemo(
-    () => getTimeScale(containerWidth, datetimes, startTime, endTime),
-    [containerWidth, datetimes, startTime, endTime]
+    () => getTimeScale(width, datetimes, startTime, endTime),
+    [width, datetimes, startTime, endTime]
   );
 
   const handleChangeAndInput = useMemo(
