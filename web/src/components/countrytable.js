@@ -42,12 +42,12 @@ function handleRowMouseOut() {
 
 const getProductionData = data => modeOrder.map((mode) => {
   const isStorage = mode.indexOf('storage') !== -1;
-  const key = mode.replace(' storage', '');
+  const resource = mode.replace(' storage', '');
 
   // Power in MW
-  const capacity = (data.capacity || {})[key];
-  const production = (data.production || {})[key];
-  const storage = (data.storage || {})[key];
+  const capacity = (data.capacity || {})[mode];
+  const production = (data.production || {})[resource];
+  const storage = (data.storage || {})[resource];
 
   // Production CO2 intensity
   const gCo2eqPerkWh = ((
@@ -58,7 +58,7 @@ const getProductionData = data => modeOrder.map((mode) => {
     ) : (
       data.productionCo2Intensities
     )
-  ) || {})[key];
+  ) || {})[resource];
 
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (isStorage ? storage : production);
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
@@ -74,15 +74,13 @@ const getProductionData = data => modeOrder.map((mode) => {
 });
 
 const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys.map((mode) => {
-  const key = mode;
-
   // Power in MW
-  const exchange = (data.exchange || {})[key];
-  const exchangeCapacityRange = (data.exchangeCapacities || {})[key];
+  const exchange = (data.exchange || {})[mode];
+  const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
 
   // Exchange CO2 intensity
   const gCo2eqPerkWh = exchange > 0 ? (
-    (data.exchangeCo2Intensities || {})[key]
+    (data.exchangeCo2Intensities || {})[mode]
   ) : (
     electricityMixMode === 'consumption'
       ? data.co2intensity
@@ -206,13 +204,13 @@ const HorizontalBar = ({
   );
 };
 
-const UnknownValue = ({ datapoint, scale }) => {
-  // const visible = displayByEmissions && getExchangeCo2eq(datapoint) === undefined;
-  const visible = (datapoint.capacity === undefined || datapoint.capacity > 0)
-    && datapoint.mode !== 'unknown'
-    && (datapoint.isStorage ? datapoint.storage === undefined : datapoint.production === undefined);
+const QuestionMarkIfNoData = ({ datapoint, scale }) => {
+  // If the mode is unknown, don't need to show the question mark
+  if (datapoint.mode === 'unknown') return null;
 
-  if (!visible) return null;
+  // If both the value and capacity fills are there, don't show the question mark 
+  const value = datapoint.isStorage ? datapoint.storage : datapoint.production;
+  if (datapoint.capacity !== undefined && value !== undefined) return null;
 
   return (
     <text
@@ -254,8 +252,8 @@ const CountryCarbonEmissionsTable = ({
 
   const formatTick = (t) => {
     const [x1, x2] = co2Scale.domain();
-    if (x2 - x1 <= 1) return `${t * 1e3} kg / min`;
-    return `${t} t / min`;
+    if (x2 - x1 <= 1) return `${t * 1e3} kg/min`;
+    return `${t} t/min`;
   };
 
   return (
@@ -282,7 +280,7 @@ const CountryCarbonEmissionsTable = ({
               range={[0, Math.abs(d.tCo2eqPerMin)]}
               scale={co2Scale}
             />
-            <UnknownValue
+            <QuestionMarkIfNoData
               datapoint={d}
               scale={co2Scale}
             />
@@ -387,10 +385,10 @@ const CountryElectricityProductionTable = ({
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={d.isStorage ? [-d.storage, d.production] : [0, d.production]}
+              range={d.isStorage ? [0, -d.storage] : [0, d.production]}
               scale={powerScale}
             />
-            <UnknownValue
+            <QuestionMarkIfNoData
               datapoint={d}
               scale={powerScale}
             />
