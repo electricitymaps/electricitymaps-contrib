@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const NoDataOverlay = ({ zoneData, zoneName, zoneTimeIndex }) => {
+const CountryTableOverlayIfNoData = ({ zoneData, zoneName, zoneTimeIndex }) => {
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
   const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && zonesThatCanHaveZeroProduction.indexOf(zoneName) === -1;
   const zoneIsMissingParser = !zoneData.hasParser;
@@ -29,4 +29,4 @@ const NoDataOverlay = ({ zoneData, zoneName, zoneTimeIndex }) => {
   );
 };
 
-export default connect(mapStateToProps)(NoDataOverlay);
+export default connect(mapStateToProps)(CountryTableOverlayIfNoData);

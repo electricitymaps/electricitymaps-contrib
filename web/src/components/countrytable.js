@@ -18,7 +18,7 @@ import { getCurrentZoneData } from '../helpers/redux';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
-import NoDataOverlay from './nodataoverlay';
+import CountryTableOverlayIfNoData from './countrytableoverlayifnodata';
 
 const LABEL_MAX_WIDTH = 102;
 const TEXT_ADJUST_Y = 11;
@@ -512,7 +512,7 @@ const CountryTable = ({
           />
         )}
       </svg>
-      <NoDataOverlay />
+      <CountryTableOverlayIfNoData />
     </div>
   );
 };
