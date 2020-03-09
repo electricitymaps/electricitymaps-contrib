@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { __ } from '../helpers/translation';
-import { getCurrentZoneData } from '../helpers/redux';
+import { getCurrentZoneData } from '../selectors';
 
 const mapStateToProps = state => ({
   zoneData: getCurrentZoneData(state),

@@ -11,10 +11,9 @@ import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isArray, isFinite } from 'lodash';
 
 import { dispatchApplication } from '../store';
+import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { getSelectedZoneExchangeKeys } from '../helpers/history';
-import { getCurrentZoneData } from '../helpers/redux';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 

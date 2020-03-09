@@ -23,7 +23,7 @@ import {
   getSelectedZoneHistoryDatetimes,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-} from '../../helpers/history';
+} from '../../selectors';
 import SearchBar from '../../components/searchbar';
 import TimeSlider from '../../components/timeslider';
 

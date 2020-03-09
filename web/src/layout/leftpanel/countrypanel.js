@@ -21,7 +21,7 @@ import Tooltip from '../../components/tooltip';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
-import { getCurrentZoneData } from '../../helpers/redux';
+import { getCurrentZoneData } from '../../selectors';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';

@@ -25,8 +25,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getSelectedZoneExchangeKeys } from './helpers/history';
-import { getCurrentZoneData } from './helpers/redux';
+import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
 
 import {

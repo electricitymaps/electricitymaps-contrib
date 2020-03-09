@@ -12,6 +12,8 @@ import {
   getSelectedZoneExchangeKeys,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
+} from '../selectors';
+import {
   createGraphBackgroundMouseMoveHandler,
   createGraphBackgroundMouseOutHandler,
   createGraphLayerMouseMoveHandler,
