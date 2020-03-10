@@ -42,7 +42,6 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
-  previousSelectedZoneTimeIndex: null,
   solarEnabled: cookieGetBool('solarEnabled', false),
   useRemoteEndpoint: document.domain === '' || isLocalhost,
   windEnabled: cookieGetBool('windEnabled', false),
@@ -99,7 +98,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return Object.assign({}, state, {
         selectedZoneName,
         selectedZoneTimeIndex: null,
-        previousSelectedZoneTimeIndex: null,
       });
     }
 
@@ -107,10 +105,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
       const { selectedZoneTimeIndex } = action.payload;
       // Update the selection only if it has changed
       if (selectedZoneTimeIndex !== state.selectedZoneTimeIndex) {
-        return Object.assign({}, state, {
-          selectedZoneTimeIndex,
-          previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
-        });
+        return Object.assign({}, state, { selectedZoneTimeIndex });
       }
       return state;
     }
