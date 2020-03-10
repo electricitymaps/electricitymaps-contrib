@@ -93,6 +93,20 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return state;
     }
 
+    case 'SHOW_TOOLTIP': {
+      return Object.assign({}, state, {
+        tooltipDisplayMode: action.payload.displayMode,
+        tooltipPosition: action.payload.position,
+        tooltipZoneData: action.payload.zoneData,
+      });
+    }
+
+    case 'HIDE_TOOLTIP': {
+      return Object.assign({}, state, {
+        tooltipDisplayMode: null,
+      });
+    }
+
     case 'UPDATE_SELECTED_ZONE': {
       const { selectedZoneName } = action.payload;
       return Object.assign({}, state, {

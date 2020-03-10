@@ -10,7 +10,7 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isArray, isFinite } from 'lodash';
 
-import { dispatchApplication } from '../store';
+import { dispatch } from '../store';
 import { useWidthObserver } from '../effects';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
@@ -30,19 +30,23 @@ const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
 
-function handleRowMouseMove(isMobile, mode, data, ev) {
-  // If in mobile mode, put the tooltip to the top of the screen for
-  // readability, otherwise float it depending on the cursor position.
-  const tooltipPosition = !isMobile
-    ? { x: ev.clientX - 7, y: ev.clientY - 7 }
-    : { x: 0, y: 0 };
-  dispatchApplication('tooltipPosition', tooltipPosition);
-  dispatchApplication('tooltipZoneData', data);
-  dispatchApplication('tooltipDisplayMode', mode);
+function handleRowMouseMove(isMobile, mode, zoneData, ev) {
+  dispatch({
+    type: 'SHOW_TOOLTIP',
+    payload: {
+      displayMode: mode,
+      // If in mobile mode, put the tooltip to the top of the screen for
+      // readability, otherwise float it depending on the cursor position.
+      position: !isMobile
+        ? { x: ev.clientX - 7, y: ev.clientY - 7 }
+        : { x: 0, y: 0 },
+      zoneData,
+    },
+  });
 }
 
 function handleRowMouseOut() {
-  dispatchApplication('tooltipDisplayMode', null);
+  dispatch({ type: 'HIDE_TOOLTIP' });
 }
 
 const getProductionData = data => modeOrder.map((mode) => {

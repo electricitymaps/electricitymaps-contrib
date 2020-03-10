@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { dispatchApplication } from '../store';
+import { dispatch, dispatchApplication } from '../store';
 
 
 export function createGraphBackgroundMouseMoveHandler() {
@@ -17,14 +17,18 @@ export function createGraphBackgroundMouseOutHandler() {
 
 function setLayerTooltip(isMobile, timeIndex, layer, ev, svgRef) {
   if (layer.datapoints[timeIndex]) {
-    // If in mobile mode, put the tooltip to the top of the screen for
-    // readability, otherwise float it depending on the cursor position.
-    const tooltipPosition = !isMobile
-      ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
-      : { x: 0, y: 0 };
-    dispatchApplication('tooltipPosition', tooltipPosition);
-    dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
-    dispatchApplication('tooltipDisplayMode', layer.key);
+    dispatch({
+      type: 'SHOW_TOOLTIP',
+      payload: {
+        displayMode: layer.key,
+        // If in mobile mode, put the tooltip to the top of the screen for
+        // readability, otherwise float it depending on the cursor position.
+        position: !isMobile
+          ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
+          : { x: 0, y: 0 },
+        zoneData: layer.datapoints[timeIndex].data._countryData,
+      },
+    });
   }
 }
 
@@ -43,7 +47,7 @@ export function createGraphLayerMouseOutHandler(setSelectedLayerIndex) {
     if (setSelectedLayerIndex) {
       setSelectedLayerIndex(null);
     }
-    dispatchApplication('tooltipDisplayMode', null);
+    dispatch({ type: 'HIDE_TOOLTIP' });
     dispatchApplication('selectedZoneTimeIndex', null);
   };
 }
@@ -69,7 +73,7 @@ export function createSingleLayerGraphBackgroundMouseOutHandler(setSelectedLayer
     if (setSelectedLayerIndex) {
       setSelectedLayerIndex(null);
     }
-    dispatchApplication('tooltipDisplayMode', null);
+    dispatch({ type: 'HIDE_TOOLTIP' });
     dispatchApplication('selectedZoneTimeIndex', null);
   };
 }
