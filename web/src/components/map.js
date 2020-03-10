@@ -325,7 +325,9 @@ export default class Map {
 
   setCo2color(arg, theme) {
     this.co2color = arg;
-    this.theme = theme;
+    if (theme) {
+      this.theme = theme;
+    }
     this._setupMapColor();
     return this;
   }
