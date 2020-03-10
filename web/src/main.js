@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 // Components
 import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
-import CountryTable from './components/countrytable';
 import HorizontalColorbar from './components/horizontalcolorbar';
 import Tooltip from './components/tooltip';
 
@@ -26,8 +25,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getExchangeKeys } from './helpers/history';
-import { getCurrentZoneData } from './helpers/redux';
+import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
 
 import {
@@ -154,9 +152,6 @@ ReactDOM.render(
 let theme = themes.bright;
 
 // ** Create components
-const countryTable = new CountryTable('.country-table-container', modeColor, modeOrder)
-  .electricityMixMode(getState().application.electricityMixMode);
-
 const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
@@ -285,7 +280,6 @@ function updateCo2Scale() {
     .domain([0, scales.maxCo2])
     .render());
   if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
-  if (countryTable) countryTable.co2color(co2color).render();
 }
 
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -377,41 +371,6 @@ try {
     throw e;
   }
 }
-
-countryTable
-  .co2color(co2color)
-  .displayByEmissions(getState().application.tableDisplayEmissions)
-  .onExchangeMouseMove(() => {
-    countryTableExchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
-  })
-  .onExchangeMouseOver((d, country, displayByEmissions) => {
-    tooltipHelper.showExchange(
-      countryTableExchangeTooltip,
-      d, country, displayByEmissions,
-      co2color, co2Colorbars,
-    );
-    dispatchApplication('tooltipDisplayMode', d);
-  })
-  .onExchangeMouseOut(() => {
-    if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
-    countryTableExchangeTooltip.hide();
-    dispatchApplication('tooltipDisplayMode', null);
-  })
-  .onProductionMouseOver((mode, country, displayByEmissions) => {
-    tooltipHelper.showProduction(
-      countryTableProductionTooltip,
-      mode, country, displayByEmissions,
-      co2color, co2Colorbars,
-    );
-    dispatchApplication('tooltipDisplayMode', mode);
-  })
-  .onProductionMouseMove(() =>
-    countryTableProductionTooltip.update(currentEvent.clientX, currentEvent.clientY))
-  .onProductionMouseOut(() => {
-    if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(undefined); });
-    countryTableProductionTooltip.hide();
-    dispatchApplication('tooltipDisplayMode', null);
-  });
 
 d3.select('.country-show-emissions-wrap a#emissions')
   .classed('selected', getState().application.tableDisplayEmissions);
@@ -680,9 +639,6 @@ function fetch(showLoading, callback) {
 }
 
 window.addEventListener('resize', () => {
-  if (getState().application.selectedZoneName) {
-    countryTable.render();
-  }
   co2Colorbars.forEach((d) => { d.render(); });
 });
 // Only for debugging purposes
@@ -837,91 +793,6 @@ if (onboardingModal) {
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
-
-function renderCountryTable(state) {
-  const d = getCurrentZoneData(state);
-  if (!d) {
-    // In this case there's nothing to do,
-    // as the countryTable doesn't support receiving null data
-  } else {
-    countryTable
-      .electricityMixMode(state.application.electricityMixMode)
-      .data(d)
-      .render(true);
-
-    const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-
-    const zoneHasNotProductionDataAtTimestamp = (!d.production || !Object.keys(d.production).length) && zonesThatCanHaveZeroProduction.indexOf(state.application.selectedZoneName) === -1;
-    const zoneIsMissingParser = d.hasParser === undefined || !d.hasParser;
-    countryTable.showNoParserMessageIf(zoneHasNotProductionDataAtTimestamp && zoneIsMissingParser);
-    const dataIsMostRecentDatapoint = state.application.selectedZoneTimeIndex === null;
-    countryTable.showNoDataMessageIf(
-      zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser,
-      dataIsMostRecentDatapoint
-    );
-  }
-}
-
-function renderHistory(state) {
-  const { selectedZoneName, electricityMixMode } = state.application;
-  const history = state.data.histories[selectedZoneName];
-
-  if (!history) {
-    return;
-  }
-
-  const zone = state.data.grid.zones[selectedZoneName];
-
-  countryTable
-    .powerScaleDomain(null) // Always reset scale if click on a new country
-    .co2ScaleDomain(null)
-    .exchangeKeys(null); // Always reset exchange keys
-
-  const { maxStorageCapacity } = zone;
-
-  // No export capacities are not always defined, and they are thus
-  // varying the scale.
-  // Here's a hack to fix it.
-  const lo = d3.min(history, d =>
-    Math.min(
-      -d.maxStorageCapacity || -maxStorageCapacity || 0,
-      -d.maxStorage || 0,
-      -d.maxExport || 0,
-      -d.maxExportCapacity || 0
-    ));
-  const hi = d3.max(history, d =>
-    Math.max(
-      d.maxCapacity || 0,
-      d.maxProduction || 0,
-      d.maxImport || 0,
-      d.maxImportCapacity || 0,
-      d.maxDischarge || 0,
-      d.maxStorageCapacity || maxStorageCapacity || 0
-    ));
-  // TODO(olc): do those aggregates server-side
-  const lo_emission = d3.min(history, d =>
-    Math.min(
-      // Max export
-      d3.min(d3.entries(d.exchange), o =>
-        Math.min(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0) || 0
-      // Max storage
-      // ?
-    ));
-  const hi_emission = d3.max(history, d =>
-    Math.max(
-      // Max import
-      d3.max(d3.entries(d.exchange), o =>
-        Math.max(o.value, 0) * d.exchangeCo2Intensities[o.key] / 1e3 / 60.0) || 0,
-      // Max production
-      d3.max(d3.entries(d.production), o =>
-        Math.max(o.value, 0) * d.productionCo2Intensities[o.key] / 1e3 / 60.0) || 0
-    ));
-
-  // Update country table with all possible exchanges
-  countryTable
-    .exchangeKeys(getState().application.electricityMixMode === 'consumption' ? getExchangeKeys(history) : [])
-    .render();
-}
 
 function routeToPage(pageName, state) {
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
@@ -1124,8 +995,6 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
   renderExchanges(state);
   renderZones(state);
   renderMap(state);
-  renderCountryTable(state);
-  renderHistory(state);
 });
 
 // Observe for grid zones change
@@ -1140,24 +1009,12 @@ observe(state => state.data.grid.exchanges, (exchanges, state) => {
 
 // Observe for grid change
 observe(state => state.data.grid, (grid, state) => {
-  renderCountryTable(state);
   renderMap(state);
 });
 
 // Observe for page change
 observe(state => state.application.showPageState, (showPageState, state) => {
   routeToPage(showPageState, state);
-
-  /*
-  Although not optimal, we have to also re-render here
-  in case the `state.application.selectedZoneName` observer
-  triggered a countryTable re-render while the table was hidden,
-  meaning that the re-render was cancelled.
-  */
-  if (showPageState === 'country') {
-    renderCountryTable(state);
-    renderHistory(state);
-  }
 
   // Analytics
   // Note: `selectedZoneName` will not yet be changed here
@@ -1167,9 +1024,6 @@ observe(state => state.application.showPageState, (showPageState, state) => {
 // Observe for zone change (for example after map click)
 observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
   if (!selectedZoneName) { return; }
-  // Render
-  renderCountryTable(state);
-  renderHistory(state);
 
   // Fetch history if needed
   tryFetchHistory(state);
@@ -1177,20 +1031,12 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
 
 // Observe for history change
 observe(state => state.data.histories, (histories, state) => {
-  if (state.application.showPageState === 'country') {
-    renderHistory(state);
-  }
   // If history was cleared by the grid data for the currently selected country,
   // try to refetch it.
   const { selectedZoneName } = state.application;
   if (selectedZoneName && !state.data.histories[selectedZoneName]) {
     tryFetchHistory(state);
   }
-});
-
-// Observe for index change (for example by history graph)
-observe(state => state.application.selectedZoneTimeIndex, (i, state) => {
-  renderCountryTable(state);
 });
 
 // Observe for color blind mode changes
@@ -1291,14 +1137,12 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
 
 // Observe
 observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {
-  if (countryTable.data()) {
+  if (getCurrentZoneData(state)) {
     thirdPartyServices.track(
       tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-      { countryCode: countryTable.data().countryCode },
+      { countryCode: getCurrentZoneData(state).countryCode },
     );
   }
-  countryTable
-    .displayByEmissions(tableDisplayEmissions);
 });
 
 

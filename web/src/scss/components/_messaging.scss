@@ -61,13 +61,8 @@
     z-index: 3;
 }
 
-.no-data-overlay-message.visible, 
-.zone-details-no-parser-message.visible{
-    display: block;
-}
-
 .zone-details-no-parser-message{
-    display: none;
+    display: block;
     background-color: $lighter-gray;
     height: 100%;
     width: 100%;

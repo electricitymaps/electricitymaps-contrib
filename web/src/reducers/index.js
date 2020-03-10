@@ -42,7 +42,6 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
-  previousSelectedZoneTimeIndex: null,
   solarEnabled: cookieGetBool('solarEnabled', false),
   useRemoteEndpoint: document.domain === '' || isLocalhost,
   windEnabled: cookieGetBool('windEnabled', false),
@@ -94,12 +93,25 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return state;
     }
 
+    case 'SHOW_TOOLTIP': {
+      return Object.assign({}, state, {
+        tooltipDisplayMode: action.payload.displayMode,
+        tooltipPosition: action.payload.position,
+        tooltipZoneData: action.payload.zoneData,
+      });
+    }
+
+    case 'HIDE_TOOLTIP': {
+      return Object.assign({}, state, {
+        tooltipDisplayMode: null,
+      });
+    }
+
     case 'UPDATE_SELECTED_ZONE': {
       const { selectedZoneName } = action.payload;
       return Object.assign({}, state, {
         selectedZoneName,
         selectedZoneTimeIndex: null,
-        previousSelectedZoneTimeIndex: null,
       });
     }
 
@@ -107,10 +119,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
       const { selectedZoneTimeIndex } = action.payload;
       // Update the selection only if it has changed
       if (selectedZoneTimeIndex !== state.selectedZoneTimeIndex) {
-        return Object.assign({}, state, {
-          selectedZoneTimeIndex,
-          previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
-        });
+        return Object.assign({}, state, { selectedZoneTimeIndex });
       }
       return state;
     }

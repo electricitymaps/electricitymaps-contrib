@@ -72,7 +72,7 @@ module.exports = (state = initialDataState, action) => {
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {
-        const zone = newGrid.zones[key];
+        const zone = Object.assign({}, newGrid.zones[key]);
         zone.co2intensity = undefined;
         zone.exchange = {};
         zone.production = {};
@@ -82,6 +82,7 @@ module.exports = (state = initialDataState, action) => {
         zone.dischargeCo2IntensitySources = {};
         zone.storage = {};
         zone.source = undefined;
+        newGrid.zones[key] = zone;
       });
       Object.keys(newGrid.exchanges).forEach((key) => {
         newGrid.exchanges[key].netFlow = undefined;
