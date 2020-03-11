@@ -152,7 +152,6 @@ ReactDOM.render(
 let theme = themes.bright;
 
 // ** Create components
-const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
@@ -911,7 +910,6 @@ function renderZones(state) {
 observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
   if (!tooltipDisplayMode) {
     countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
   }
 });
 
@@ -920,10 +918,8 @@ function updateTooltip(state) {
   if (!state.application.tooltipDisplayMode) {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
   } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
     countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
     countryTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y,
@@ -937,10 +933,8 @@ function updateTooltip(state) {
   } else if (state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY) {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
   } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
     countryTooltip.hide();
-    countryTableExchangeTooltip.hide();
     countryTableProductionTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y
@@ -955,17 +949,6 @@ function updateTooltip(state) {
   } else {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y
-    );
-    tooltipHelper.showExchange(
-      countryTableExchangeTooltip,
-      state.application.tooltipDisplayMode,
-      state.application.tooltipZoneData,
-      state.application.tableDisplayEmissions,
-      co2color, co2Colorbars
-    );
   }
 }
 

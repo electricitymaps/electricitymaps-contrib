@@ -25,8 +25,8 @@ const TooltipContainer = ({ id, children, position }) => {
   let y = 0;
   // Check that tooltip is not larger than screen
   // and that it does fit on one of the sides
-  if (2 * MARGIN + width >= screenWidth ||
-    (position.x + width + MARGIN >= screenWidth && position.x - width - MARGIN <= 0 )) {
+  if (2 * MARGIN + width >= screenWidth
+    || (position.x + width + MARGIN >= screenWidth && position.x - width - MARGIN <= 0)) {
     // TODO(olc): Once the tooltip has taken 100% width, it's width will always be 100%
     // as we base our decision to revert based on the current width
     style.width = '100%';

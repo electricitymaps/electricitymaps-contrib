@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
+import CountryPanelExchangeTooltip from '../components/tooltips/countrypanelexchangetooltip';
 import PriceTooltip from '../components/tooltips/pricetooltip';
 import CircularGauge from '../components/circulargauge';
 
@@ -130,45 +131,7 @@ export default () => (
         </small>
       </span>
     </div>
-    <div id="countrypanel-exchange-tooltip" className="tooltip panel">
-      <span id="line1" />
-      <br />
-      <small>
-        (
-        <span id="exchange-proportion-detail" />
-        )
-      </small>
-      <br />
-      <span className="production-visible">
-        <br />
-        {__('tooltips.utilizing')}
-        {' '}
-        <b><span id="capacity-factor" /></b>
-        {' '}
-        {__('tooltips.ofinstalled')}
-        <br />
-        <small>
-          (
-          <span id="capacity-factor-detail" />
-          )
-        </small>
-        <br />
-        <br />
-        <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
-        <br />
-        <img className="country-exchange-source-flag flag" alt="" />
-        {' '}
-        <span className="country-exchange-source-name" />
-        : 
-        <div className="emission-rect" />
-        {' '}
-        <span className="emission-intensity" />
-        gCO
-        <span className="sub">2</span>
-        eq/kWh
-        <br />
-      </span>
-    </div>
+    <CountryPanelExchangeTooltip />
     <div id="lowcarb-info-tooltip" className="tooltip panel">
       <span id="lowcarb-info-title" />
       <br />
