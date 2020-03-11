@@ -24,7 +24,7 @@ export function useWidthObserver(ref, offset = 0) {
   return width;
 }
 
-export function useHeightObserver(ref, offset) {
+export function useHeightObserver(ref, offset = 0) {
   const [height, setHeight] = useState(0);
 
   // Resize hook

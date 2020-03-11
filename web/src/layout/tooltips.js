@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
+import PriceTooltip from '../components/tooltips/pricetooltip';
 import CircularGauge from '../components/circulargauge';
 
 const { co2Sub } = require('../helpers/formatting');
@@ -87,12 +88,7 @@ export default () => (
       <span className="sub">2</span>
       eq/kWh
     </div>
-    <div id="price-tooltip" className="tooltip panel">
-      <span className="value" />
-      {' '}
-      <span className="currency" />
-      /MWh
-    </div>
+    <PriceTooltip />
     <div id="countrypanel-production-tooltip" className="tooltip panel">
       <span id="line1" />
       <br />

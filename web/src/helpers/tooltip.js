@@ -271,17 +271,3 @@ module.exports.showLowCarbonDescription = function showInfoLowCarbon(tooltipInst
     .style('font-weight', 'bold');
   tooltipInstance.show();
 }
-
-module.exports.showPrice = function showPrice(tooltipInstance, zoneData) {
-  if (!zoneData) {
-    tooltipInstance.hide();
-    return;
-  }
-  const tooltip = d3.select(tooltipInstance._selector);
-  const priceIsDefined = zoneData.price != null && zoneData.price.value != null;
-  tooltip.select('.value').html(priceIsDefined ? zoneData.price.value : '?');
-  tooltip.select('.currency').html(priceIsDefined
-    ? getSymbolFromCurrency(zoneData.price.currency) : '?');
-
-  tooltipInstance.show();
-};

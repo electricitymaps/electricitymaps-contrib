@@ -156,7 +156,6 @@ const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip'
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
 const exchangeTooltip = new Tooltip('#exchange-tooltip');
-const priceTooltip = new Tooltip('#price-tooltip');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -922,11 +921,9 @@ function updateTooltip(state) {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
   } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
     countryTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y,
@@ -941,18 +938,9 @@ function updateTooltip(state) {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
     countryTableExchangeTooltip.hide();
-    priceTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y,
-    );
-    tooltipHelper.showPrice(
-      priceTooltip,
-      state.application.tooltipZoneData,
-    );
   } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
     countryTooltip.hide();
     countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
     countryTableProductionTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y
@@ -967,7 +955,6 @@ function updateTooltip(state) {
   } else {
     countryTooltip.hide();
     countryTableProductionTooltip.hide();
-    priceTooltip.hide();
     countryTableExchangeTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y
