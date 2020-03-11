@@ -155,31 +155,3 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
 
   tooltipInstance.show();
 };
-
-module.exports.showMapExchange = function showMapExchange(tooltipInstance, exchangeData, co2color, co2Colorbars) {
-  const { co2intensity } = exchangeData;
-
-  const tooltip = d3.select(tooltipInstance._selector);
-  if (co2intensity) {
-    dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
-  }
-  tooltip.select('.emission-rect')
-    .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
-  const i = exchangeData.netFlow > 0 ? 0 : 1;
-  const ctrFrom = exchangeData.countryCodes[i];
-  tooltip.selectAll('span#from')
-    .text(translation.getFullZoneName(ctrFrom));
-  const ctrTo = exchangeData.countryCodes[(i + 1) % 2];
-  tooltip.select('span#to')
-    .text(translation.getFullZoneName(ctrTo));
-  tooltip.select('span#flow')
-    .text(Math.abs(Math.round(exchangeData.netFlow)));
-  tooltip.select('img.flag.from')
-    .attr('src', flags.flagUri(exchangeData.countryCodes[i], 16));
-  tooltip.select('img.flag.to')
-    .attr('src', flags.flagUri(exchangeData.countryCodes[(i + 1) % 2], 16));
-  tooltip.select('.country-emission-intensity')
-    .text(Math.round(co2intensity) || '?');
-
-  tooltipInstance.show();
-};

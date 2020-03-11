@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // Components
 import CountryPanelExchangeTooltip from '../components/tooltips/countrypanelexchangetooltip';
 import LowCarbonInfoTooltip from '../components/tooltips/lowcarboninfotooltip';
+import MapExchangeTooltip from '../components/tooltips/mapexchangetooltip';
 import PriceTooltip from '../components/tooltips/pricetooltip';
 import CircularGauge from '../components/circulargauge';
 
@@ -64,32 +65,7 @@ export default () => (
         <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
       </div>
     </div>
-    <div id="exchange-tooltip" className="tooltip panel">
-      {__('tooltips.crossborderexport')}
-      :
-      <br />
-      <img className="from flag" alt="" />
-      {' '}
-      <span id="from" />
-       → 
-      <img className="to flag" alt="" />
-      {' '}
-      <span id="to" />
-      : 
-      <span id="flow" style={{ fontWeight: 'bold' }} />
-      MW
-      <br />
-      <br />
-      <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.carbonintensityexport')) }} />
-      :
-      <br />
-      <div className="emission-rect" />
-      {' '}
-      <span className="country-emission-intensity emission-intensity" />
-      gCO
-      <span className="sub">2</span>
-      eq/kWh
-    </div>
+    <MapExchangeTooltip />
     <PriceTooltip />
     <div id="countrypanel-production-tooltip" className="tooltip panel">
       <span id="line1" />

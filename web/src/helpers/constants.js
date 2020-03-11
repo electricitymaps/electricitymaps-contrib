@@ -35,6 +35,7 @@ const CARBON_GRAPH_LAYER_KEY = 'carbon';
 const PRICES_GRAPH_LAYER_KEY = 'price';
 
 const LOW_CARBON_INFO_TOOLTIP_KEY = 'low-carbon-info';
+const MAP_EXCHANGE_TOOLTIP_KEY = 'map-exchange';
 
 const DEFAULT_FLAG_SIZE = 16;
 
@@ -46,5 +47,6 @@ module.exports = {
   CARBON_GRAPH_LAYER_KEY,
   PRICES_GRAPH_LAYER_KEY,
   LOW_CARBON_INFO_TOOLTIP_KEY,
+  MAP_EXCHANGE_TOOLTIP_KEY,
   DEFAULT_FLAG_SIZE,
 };

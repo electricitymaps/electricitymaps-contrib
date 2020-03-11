@@ -31,6 +31,7 @@ import { getCo2Scale } from './helpers/scales';
 import {
   CARBON_GRAPH_LAYER_KEY,
   PRICES_GRAPH_LAYER_KEY,
+  MAP_EXCHANGE_TOOLTIP_KEY,
 } from './helpers/constants';
 
 // Layout
@@ -154,7 +155,6 @@ let theme = themes.bright;
 // ** Create components
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
 const countryTooltip = new Tooltip('#country-tooltip');
-const exchangeTooltip = new Tooltip('#exchange-tooltip');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -324,17 +324,23 @@ try {
 
       // Create exchange layer as a result
       exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
-        .onExchangeMouseOver((d) => {
-          tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
-        })
-        .onExchangeMouseMove(() => {
-          exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
+        .onExchangeMouseMove((zoneData) => {
+          const { co2intensity } = zoneData;
+          if (co2intensity) {
+            dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
+          }
+          dispatch({
+            type: 'SHOW_TOOLTIP',
+            payload: {
+              displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
+              position: { x: currentEvent.clientX, y: currentEvent.clientY },
+              zoneData,
+            },
+          });
         })
         .onExchangeMouseOut((d) => {
-          if (d.co2intensity) {
-            dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
-          }
-          exchangeTooltip.hide();
+          dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+          dispatch({ type: 'HIDE_TOOLTIP' });
         })
         .onExchangeClick((d) => {
           console.log(d);
