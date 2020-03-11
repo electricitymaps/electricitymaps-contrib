@@ -83,12 +83,12 @@ locations = {
             'label' : (920,303,1021,338),
             'value' : (1090,309,1172,334)
     },
-    #STATE DEMAND (including Mumbai!)
+    # STATE DEMAND (including Mumbai!)
     'DEMAND' : {
             'label' : (932,1003,1021,1030),
             'value' : (1080,996,1167,1018)
     },
-    #RE TTL
+    # RE TTL
     'TTL' : {
             'label' : (597,1035,663,1056),
             'value' : (783,1032,845,1056)
@@ -159,27 +159,26 @@ generation_map = {
         'add': ['OTHR+SMHYD'],
         'subtract': []
     }
-
 }
 
-#list of values that belong to Central State production
+# list of values that belong to Central State production
 CS = ['SSP',
-     'RGPPL',
-     'TARPR PH-I',
-     'TARPR PH-II',
-     'KK’ PARA',
-     'GANDHAR',
-     'CS GEN. TTL.']
+      'RGPPL',
+      'TARPR PH-I',
+      'TARPR PH-II',
+      'KK’ PARA',
+      'GANDHAR',
+      'CS GEN. TTL.']
 
-#converts image into a black and white
+# converts image into a black and white
 def RGBtoBW(pil_image):
     # pylint: disable=no-member
     image = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2GRAY)
     image = cv2.threshold(image, 0, 255,
-                         cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+                          cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
     return Image.fromarray(image)
 
-#performs text recognition on given location and source image
+# performs text recognition on given location and source image
 def recognize(location, source, lang):
     img = source.crop(location)
     img = RGBtoBW(img)
@@ -207,7 +206,6 @@ def areEqual(str1,str2):
 # TODO: this function actually fetches consumption data
 def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
                      logger=logging.getLogger(__name__)):
-
 
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -237,7 +235,7 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
     labels = {}
     values = {}
 
-    #read in label-value pairs from the image as specified in locations dict
+    # read in label-value pairs from the image as specified in locations dict
     for type, locs in locations.items():
         label,_ = recognize(locs['label'], image, 'eng')
         value, _ = recognize(locs['value'], image, 'digits_comma')
@@ -252,13 +250,13 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
 
     for type, plants in generation_map.items():
         for plant in plants['add']:
-            fac = share if plant in CS else 1 # add only a fraction of central state plant consumption
+            fac = share if plant in CS else 1  # add only a fraction of central state plant consumption
             data['production'][type] += fac * values[plant]
         for plant in plants['subtract']:
             fac = share if plant in CS else 1
             data['production'][type] -= fac * values[plant]
 
-    #Sum over all production types is expected to equal the total demand
+    # Sum over all production types is expected to equal the total demand
     demand_diff = sum( data['production'].values() ) - values['DEMAND']
     assert (abs( demand_diff) < 30), \
         'Production types do not add up to total demand. Difference: {}'.format(demand_diff)
@@ -267,7 +265,6 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
 
 
 if __name__ == '__main__':
-    
+
     print( fetch_production() )
     
-
