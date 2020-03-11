@@ -14,7 +14,7 @@ import { dispatch } from '../store';
 import { useWidthObserver } from '../effects';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
-import { modeOrder, modeColor } from '../helpers/constants';
+import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
@@ -25,7 +25,6 @@ const TEXT_ADJUST_Y = 11;
 const ROW_HEIGHT = 13;
 const PADDING_Y = 7;
 const PADDING_X = 5;
-const FLAG_SIZE = 16;
 const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
@@ -112,7 +111,7 @@ const getDataBlockPositions = (productionData, exchangeData) => {
   const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
-  const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - FLAG_SIZE - d3Max(exchangeData, d => d.mode.length) * 8;
+  const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, d => d.mode.length) * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
   const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
 
@@ -308,11 +307,9 @@ const CountryCarbonEmissionsTable = React.memo(({
             data={data}
           >
             <image
-              width={FLAG_SIZE}
-              height={FLAG_SIZE}
               style={{ pointerEvents: 'none' }}
               x={exchangeFlagX}
-              xlinkHref={flagUri(d.mode, FLAG_SIZE)}
+              xlinkHref={flagUri(d.mode)}
             />
             <HorizontalBar
               className="exchange"
@@ -416,11 +413,9 @@ const CountryElectricityProductionTable = React.memo(({
             data={data}
           >
             <image
-              width={FLAG_SIZE}
-              height={FLAG_SIZE}
               style={{ pointerEvents: 'none' }}
               x={exchangeFlagX}
-              xlinkHref={flagUri(d.mode, FLAG_SIZE)}
+              xlinkHref={flagUri(d.mode)}
             />
             <HorizontalBar
               className="capacity"

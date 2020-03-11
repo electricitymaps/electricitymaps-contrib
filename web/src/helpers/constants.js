@@ -34,6 +34,8 @@ const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d =
 const CARBON_GRAPH_LAYER_KEY = 'carbon';
 const PRICES_GRAPH_LAYER_KEY = 'price';
 
+const DEFAULT_FLAG_SIZE = 16;
+
 module.exports = {
   modeColor,
   modeOrder,
@@ -41,4 +43,5 @@ module.exports = {
   STORAGE_MODES,
   CARBON_GRAPH_LAYER_KEY,
   PRICES_GRAPH_LAYER_KEY,
+  DEFAULT_FLAG_SIZE,
 };

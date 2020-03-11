@@ -11,7 +11,6 @@ const formatting = require('./formatting');
 const { dispatchApplication } = require('../store');
 
 // Production
-const FLAG_SIZE = 16;
 module.exports.showProduction = function showProduction(
   tooltipInstance, mode, country, displayByEmissions, co2color, co2Colorbars, electricityMixMode)
 {
@@ -95,84 +94,7 @@ module.exports.showProduction = function showProduction(
     )))
     .select('#country-flag')
     .classed('flag', true)
-    .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
-
-  tooltipInstance.show();
-};
-
-// Exchange
-module.exports.showExchange = function showExchange(tooltipInstance, key, country, displayByEmissions, co2color, co2Colorbars) {
-  const selector = tooltipInstance._selector;
-  var value = country.exchange[key];
-
-  const isExport = value < 0;
-  const co2intensity = country.exchangeCo2Intensities[key];
-  const tooltip = d3.select(selector);
-
-  const totalPositive = displayByEmissions ?
-    (country.totalCo2Production + country.totalCo2Discharge + country.totalCo2Import) : // gCO2eq/h
-    (country.totalProduction + country.totalDischarge + country.totalImport);
-
-  const domain = totalPositive;
-  const domainName = isExport ? translation.translate('electricityto') : translation.translate('electricityfrom');
-  var value = displayByEmissions ? (value * 1000 * co2intensity) : value;
-  const isNull = !isFinite(value) || value === undefined;
-
-  tooltip.select('.production-visible')
-    .style('display', displayByEmissions ? 'none' : undefined);
-
-  const format = displayByEmissions ? formatting.formatCo2 : formatting.formatPower;
-
-  const absFlow = Math.abs(value);
-  const exchangeProportion = !isNull ? Math.round(absFlow / domain * 100.0) : '?';
-  tooltip.select('#exchange-proportion').text(`${exchangeProportion} %`);
-  tooltip.select('#exchange-proportion-detail').html(`${!isNull ? format(absFlow) : '?'
-  } / ${
-    !isNull ? format(domain) : '?'}`);
-  tooltip.select('#domain-name').text(domainName);
-
-  // Exchange
-  const langString = isExport ?
-    displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo' :
-    displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom';
-
-  tooltip.select('#line1')
-    .html(formatting.co2Sub(translation.translate(
-      langString,
-      exchangeProportion,
-      translation.getFullZoneName(country.countryCode),
-      translation.getFullZoneName(key),
-    )));
-  tooltip.select('#line1 #country-flag')
-    .classed('flag', true)
-    .attr('src', flags.flagUri(country.countryCode, FLAG_SIZE));
-  tooltip.select('#line1 #country-exchange-flag')
-    .classed('flag', true)
-    .attr('src', flags.flagUri(key, FLAG_SIZE));
-
-
-  // Capacity
-  const absCapacity = Math.abs(((country.exchangeCapacities || {})[key] || [])[isExport ? 0 : 1]);
-  const hasCapacity = absCapacity !== undefined && isFinite(absCapacity);
-  const capacityFactor = hasCapacity && Math.round(absFlow / absCapacity * 100) || '?';
-  tooltip.select('#capacity-factor').text(`${capacityFactor} %`);
-  tooltip.select('#capacity-factor-detail').html(`${format(absFlow) || '?'} ` +
-    ` / ${
-      hasCapacity && format(absCapacity) || '?'}`);
-
-
-  // Carbon intensity
-  if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(co2intensity); });
-  const o = value < 0 ? country.countryCode : key;
-  tooltip.selectAll('.country-exchange-source-flag')
-    .attr('src', flags.flagUri(o, FLAG_SIZE));
-  tooltip.select('.emission-rect')
-    .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
-  tooltip.select('.emission-intensity')
-    .text(Math.round(co2intensity) || '?');
-  tooltip.select('.country-exchange-source-name')
-    .text(translation.getFullZoneName(o))
-    .style('font-weight', 'bold');
+    .attr('src', flags.flagUri(country.countryCode));
 
   tooltipInstance.show();
 };

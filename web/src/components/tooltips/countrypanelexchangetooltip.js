@@ -7,11 +7,10 @@ import { __, getFullZoneName } from '../../helpers/translation';
 import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
+import { modifyDOM } from '../../helpers/dom';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
 
 import TooltipContainer from './tooltipcontainer';
-
-const FLAG_SIZE = 16;
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -28,19 +27,7 @@ const CountryPanelExchangeTooltip = ({
   visible,
   zoneData,
 }) => {
-  const lineRef = useRef(null);
-  setTimeout(() => {
-    if (lineRef && lineRef.current) {
-      // This seems to be the most browser-compatible way to iterate through a list of nodes.
-      // See: https://developer.mozilla.org/en-US/docs/Web/API/NodeList#Example.
-      Array.prototype.forEach.call(lineRef.current.querySelectorAll('#country-flag'), (img) => {
-        img.src = flagUri(zoneData.countryCode, FLAG_SIZE);
-      });
-      Array.prototype.forEach.call(lineRef.current.querySelectorAll('#country-exchange-flag'), (img) => {
-        img.src = flagUri(exchangeKey, FLAG_SIZE);
-      });
-    }
-  }, 50);
+  const headlineRef = useRef(null);
 
   if (!visible) return null;
 
@@ -81,11 +68,15 @@ const CountryPanelExchangeTooltip = ({
   // TODO
   // if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(co2intensity); });
 
+  setTimeout(() => {
+    modifyDOM(headlineRef, '#country-flag', (img) => { img.src = flagUri(zoneData.countryCode); });
+    modifyDOM(headlineRef, '#country-exchange-flag', (img) => { img.src = flagUri(exchangeKey); });
+  }, 50);
+
   return (
     <TooltipContainer id="countrypanel-exchange-tooltip">
       <span
-        id="line1"
-        ref={lineRef}
+        ref={headlineRef}
         dangerouslySetInnerHTML={{
           __html: co2Sub(__(
             langString,
@@ -124,7 +115,7 @@ const CountryPanelExchangeTooltip = ({
           <br />
           <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
           <br />
-          <img className="country-exchange-source-flag flag" alt="" src={flagUri(o, FLAG_SIZE)} />
+          <img className="country-exchange-source-flag flag" alt="" src={flagUri(o)} />
           {' '}
           <b><span className="country-exchange-source-name">{getFullZoneName(o)}</span></b>
           : 
