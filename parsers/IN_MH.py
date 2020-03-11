@@ -4,8 +4,6 @@ import cv2
 from imageio import imread
 import numpy as np
 import arrow
-import time
-import datetime
 import logging
 
 url = 'https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg'
@@ -230,7 +228,7 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
             'unknown': 0.0
         },
         'storage': {},
-        'source': 'https://mahasldc.in',
+        'source': 'mahasldc.in',
     }
 
     image = imread(url)
