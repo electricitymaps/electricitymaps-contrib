@@ -8,7 +8,7 @@ const flags = require('../helpers/flags');
 const translation = require('../helpers/translation');
 
 const formatting = require('./formatting');
-const { dispatchApplication } = require('../store');
+const { dispatch, dispatchApplication } = require('../store');
 
 // Production
 module.exports.showProduction = function showProduction(
@@ -37,7 +37,7 @@ module.exports.showProduction = function showProduction(
       country.dischargeCo2IntensitySources[mode.replace(' storage', '')] :
       country.productionCo2IntensitySources[mode];
 
-  if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(co2intensity); });
+  dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
 
   tooltip.select('.emission-rect')
     .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
@@ -109,8 +109,8 @@ module.exports.showMapCountry = function showMapCountry(tooltipInstance, country
     ? countryData.co2intensity
     : countryData.co2intensityProduction;
 
-  if (co2intensity && co2Colorbars) {
-    co2Colorbars.forEach((c) => { c.currentMarker(co2intensity); });
+  if (co2intensity) {
+    dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
   }
   const tooltip = d3.select(tooltipInstance._selector);
   tooltip.select('#country-flag')
@@ -160,7 +160,9 @@ module.exports.showMapExchange = function showMapExchange(tooltipInstance, excha
   const { co2intensity } = exchangeData;
 
   const tooltip = d3.select(tooltipInstance._selector);
-  if (co2intensity && co2Colorbars) { co2Colorbars.forEach((c) => { c.currentMarker(co2intensity); }); }
+  if (co2intensity) {
+    dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
+  }
   tooltip.select('.emission-rect')
     .style('background-color', co2intensity ? co2color(co2intensity) : 'gray');
   const i = exchangeData.netFlow > 0 ? 0 : 1;

@@ -9,6 +9,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { modifyDOM } from '../../helpers/dom';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
+import { dispatch } from '../../store';
 
 import TooltipContainer from './tooltipcontainer';
 
@@ -65,8 +66,7 @@ const CountryPanelExchangeTooltip = ({
   // Carbon intensity
   const o = isExport ? zoneData.countryCode : exchangeKey;
 
-  // TODO
-  // if (co2Colorbars) co2Colorbars.forEach((d) => { d.currentMarker(co2intensity); });
+  dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
 
   setTimeout(() => {
     modifyDOM(headlineRef, '#country-flag', (img) => { img.src = flagUri(zoneData.countryCode); });

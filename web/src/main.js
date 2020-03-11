@@ -268,15 +268,15 @@ d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
 let co2color;
-let co2Colorbars;
+let co2Colorbars = [];
 function updateCo2Scale() {
   co2color = getCo2Scale(getState().application.colorBlindModeEnabled);
-  co2color.clamp(true);
-  co2Colorbars = co2Colorbars || [];
-  co2Colorbars.push(new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
-    .markerColor('white')
-    .domain([0, scales.maxCo2])
-    .render());
+  co2Colorbars = [
+    new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
+      .markerColor('white')
+      .domain([0, scales.maxCo2])
+      .render(),
+  ];
   if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
 }
 
@@ -331,8 +331,8 @@ try {
           exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
         })
         .onExchangeMouseOut((d) => {
-          if (d.co2intensity && co2Colorbars) {
-            co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
+          if (d.co2intensity) {
+            dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
           }
           exchangeTooltip.hide();
         })
@@ -537,9 +537,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         mapMouseOver(lonlat);
       })
       .onZoneMouseOut(() => {
-        if (co2Colorbars) {
-          co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-        }
+        dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
         mapMouseOver(undefined);
         countryTooltip.hide();
       });
@@ -813,14 +811,14 @@ function routeToPage(pageName, state) {
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
+    co2Colorbars.forEach((d) => { d.render(); });
     if (state.application.windEnabled && windColorbar) windColorbar.render();
     if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
     if (pageName === 'info') {
-      if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
+      co2Colorbars.forEach((d) => { d.render(); });
       if (state.application.windEnabled) if (windColorbar) windColorbar.render();
       if (state.application.solarEnabled) if (solarColorbar) solarColorbar.render();
     }
@@ -958,6 +956,10 @@ observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex
 
 observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode, state) => {
   updateTooltip(state);
+});
+
+observe(state => state.application.co2ColorbarMarker, (co2ColorbarMarker, state) => {
+  co2Colorbars.forEach((c) => { c.currentMarker(co2ColorbarMarker); });
 });
 
 // Observe for electricityMixMode change
