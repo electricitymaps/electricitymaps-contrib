@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Components
 import CountryPanelExchangeTooltip from '../components/tooltips/countrypanelexchangetooltip';
+import LowCarbonInfoTooltip from '../components/tooltips/lowcarboninfotooltip';
 import PriceTooltip from '../components/tooltips/pricetooltip';
 import CircularGauge from '../components/circulargauge';
 
@@ -132,11 +133,6 @@ export default () => (
       </span>
     </div>
     <CountryPanelExchangeTooltip />
-    <div id="lowcarb-info-tooltip" className="tooltip panel">
-      <span id="lowcarb-info-title" />
-      <br />
-      <small><span id="lowcarb-info-text" /></small>
-      <br />
-    </div>
+    <LowCarbonInfoTooltip />
   </React.Fragment>
 );

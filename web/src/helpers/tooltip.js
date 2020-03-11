@@ -181,15 +181,3 @@ module.exports.showMapExchange = function showMapExchange(tooltipInstance, excha
 
   tooltipInstance.show();
 };
-
-module.exports.showLowCarbonDescription = function showInfoLowCarbon(tooltipInstance) {
-  const tooltip = d3.select(tooltipInstance._selector);
-  const tooltipTitle = translation.translate(`tooltips.lowcarbon`);
-  const tooltipText = translation.translate(`tooltips.lowCarbDescription`);
-  tooltip.select("#lowcarb-info-text")
-    .html(tooltipText);
-  tooltip.select('#lowcarb-info-title')
-    .text(tooltipTitle)
-    .style('font-weight', 'bold');
-  tooltipInstance.show();
-}
