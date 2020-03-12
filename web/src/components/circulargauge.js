@@ -70,7 +70,7 @@ export default class extends React.PureComponent {
               <path className="background" d={this.arc.endAngle(2 * Math.PI)()} />
               <path
                 className="foreground"
-                d={this.arc.endAngle((this.state.prevPercentage / 100) * 2 * Math.PI)()}
+                d={this.arc.endAngle((percentage / 100) * 2 * Math.PI)()}
                 ref={this.foregroundRef}
               />
               <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
