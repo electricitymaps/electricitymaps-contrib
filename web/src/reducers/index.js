@@ -50,9 +50,6 @@ const initialApplicationState = {
   // TODO(olc): refactor this state
   showPageState: 'map',
   pageToGoBackTo: null,
-  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
-  tooltipLowCarbonGaugePercentage: null,
-  tooltipRenewableGaugePercentage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };

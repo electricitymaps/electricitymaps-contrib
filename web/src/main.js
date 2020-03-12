@@ -32,6 +32,7 @@ import {
   CARBON_GRAPH_LAYER_KEY,
   PRICES_GRAPH_LAYER_KEY,
   MAP_EXCHANGE_TOOLTIP_KEY,
+  MAP_COUNTRY_TOOLTIP_KEY,
 } from './helpers/constants';
 
 // Layout
@@ -154,7 +155,6 @@ let theme = themes.bright;
 
 // ** Create components
 const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
-const countryTooltip = new Tooltip('#country-tooltip');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -524,28 +524,26 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
   if (typeof zoneMap !== 'undefined') {
     // Assign country map data
     zoneMap
-      .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(
-          countryTooltip, d, co2color, co2Colorbars,
-          getState().application.electricityMixMode,
-        );
-      })
-      .onZoneMouseMove((d, i, clientX, clientY) => {
-        // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(
-          countryTooltip, d, co2color, co2Colorbars,
-          getState().application.electricityMixMode,
-        );
-        const rect = node.getBoundingClientRect();
-        countryTooltip.update(clientX + rect.left, clientY + rect.top);
-      })
       .onMouseMove((lonlat) => {
         mapMouseOver(lonlat);
       })
+      .onZoneMouseMove((zoneData, i, clientX, clientY) => {
+        dispatch({
+          type: 'SHOW_TOOLTIP',
+          payload: {
+            displayMode: MAP_COUNTRY_TOOLTIP_KEY,
+            position: {
+              x: node.getBoundingClientRect().left + clientX,
+              y: node.getBoundingClientRect().top + clientY,
+            },
+            zoneData,
+          },
+        });
+      })
       .onZoneMouseOut(() => {
         dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+        dispatch({ type: 'HIDE_TOOLTIP' });
         mapMouseOver(undefined);
-        countryTooltip.hide();
       });
   }
 
@@ -920,25 +918,12 @@ observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
 // TODO: Simplify this when moving the Tooltip component to React.
 function updateTooltip(state) {
   if (!state.application.tooltipDisplayMode) {
-    countryTooltip.hide();
     countryTableProductionTooltip.hide();
   } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
     countryTableProductionTooltip.hide();
-    countryTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y,
-    );
-    tooltipHelper.showMapCountry(
-      countryTooltip,
-      state.application.tooltipZoneData,
-      co2color, co2Colorbars,
-      state.application.electricityMixMode,
-    );
   } else if (state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY) {
-    countryTooltip.hide();
     countryTableProductionTooltip.hide();
   } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
-    countryTooltip.hide();
     countryTableProductionTooltip.update(
       state.application.tooltipPosition.x,
       state.application.tooltipPosition.y
@@ -951,7 +936,6 @@ function updateTooltip(state) {
       co2color, co2Colorbars
     );
   } else {
-    countryTooltip.hide();
     countryTableProductionTooltip.hide();
   }
 }
