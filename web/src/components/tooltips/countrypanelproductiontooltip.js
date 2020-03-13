@@ -11,7 +11,7 @@ import { modifyDOM } from '../../helpers/dom';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
 import { dispatch } from '../../store';
 
-import TooltipContainer from './tooltipcontainer';
+import Tooltip from '../tooltip';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -90,7 +90,7 @@ const CountryPanelProductionTooltip = ({
   }, 50);
 
   return (
-    <TooltipContainer id="countrypanel-production-tooltip">
+    <Tooltip id="countrypanel-production-tooltip">
       <span
         ref={headlineRef}
         dangerouslySetInnerHTML={{
@@ -149,7 +149,7 @@ const CountryPanelProductionTooltip = ({
           </small>
         </span>
       )}
-    </TooltipContainer>
+    </Tooltip>
   );
 };
 

@@ -9,7 +9,7 @@ import { flagUri } from '../../helpers/flags';
 import { dispatch } from '../../store';
 
 import CircularGauge from '../circulargauge';
-import TooltipContainer from './tooltipcontainer';
+import Tooltip from '../tooltip';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -50,7 +50,7 @@ const MapCountryTooltip = ({
     : '?';
 
   return (
-    <TooltipContainer id="country-tooltip">
+    <Tooltip id="country-tooltip">
       <div className="zone-name-header">
         <img id="country-flag" className="flag" src={flagUri(countryData.countryCode)} />
         {' '}
@@ -106,7 +106,7 @@ const MapCountryTooltip = ({
           <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
         </div>
       )}
-    </TooltipContainer>
+    </Tooltip>
   );
 };
 

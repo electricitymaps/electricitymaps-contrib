@@ -4,7 +4,7 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 
 import { PRICES_GRAPH_LAYER_KEY } from '../../helpers/constants';
 
-import TooltipContainer from './tooltipcontainer';
+import Tooltip from '../tooltip';
 
 const mapStateToProps = state => ({
   visible: state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY,
@@ -17,7 +17,7 @@ const PriceTooltip = ({ visible, zoneData }) => {
   const priceIsDefined = zoneData.price !== null && zoneData.price.value !== null;
   
   return (
-    <TooltipContainer id="price-tooltip">
+    <Tooltip id="price-tooltip">
       <span className="value">
         {priceIsDefined ? zoneData.price.value : '?'}
       </span>
@@ -25,7 +25,7 @@ const PriceTooltip = ({ visible, zoneData }) => {
       <span className="currency">
         {priceIsDefined ? getSymbolFromCurrency(zoneData.price.currency) : '?'}
       </span> / MWh
-    </TooltipContainer>
+    </Tooltip>
   );
 };
 

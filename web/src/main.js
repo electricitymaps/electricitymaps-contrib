@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
 import HorizontalColorbar from './components/horizontalcolorbar';
-import Tooltip from './components/tooltip';
 
 // Layer Components
 import ExchangeLayer from './components/layers/exchange';
@@ -151,9 +150,6 @@ ReactDOM.render(
 
 // Set standard theme
 let theme = themes.bright;
-
-// ** Create components
-const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -907,12 +903,6 @@ function renderZones(state) {
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
   }
 }
-
-observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
-  if (!tooltipDisplayMode) {
-    countryTableProductionTooltip.hide();
-  }
-});
 
 observe(state => state.application.co2ColorbarMarker, (co2ColorbarMarker, state) => {
   co2Colorbars.forEach((c) => { c.currentMarker(co2ColorbarMarker); });

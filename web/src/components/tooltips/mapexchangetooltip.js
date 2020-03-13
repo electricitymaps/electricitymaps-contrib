@@ -7,7 +7,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { co2Sub } from '../../helpers/formatting';
 import { flagUri } from '../../helpers/flags';
 
-import TooltipContainer from './tooltipcontainer';
+import Tooltip from '../tooltip';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -27,7 +27,7 @@ const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, visible }) =>
   const zoneTo = exchangeData.countryCodes[isExporting ? 1 : 0];
 
   return (
-    <TooltipContainer id="exchange-tooltip">
+    <Tooltip id="exchange-tooltip">
       {__('tooltips.crossborderexport')}
       :
       <br />
@@ -56,7 +56,7 @@ const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, visible }) =>
       gCO
       <span className="sub">2</span>
       eq/kWh
-    </TooltipContainer>
+    </Tooltip>
   );
 };
 
