@@ -599,7 +599,7 @@ thurl = ('http://portalweb.cammesa.com/Reserved.ReportViewerWebControl.'
 
 cammesa_url = 'http://portalweb.cammesa.com/default.aspx'
 
-tie_mapping = {'CL-SING': "position:absolute; top:349; left:585",
+tie_mapping = {'CL-SEN': "position:absolute; top:349; left:585",
                'PY': "position:absolute; top:67; left:649",
                'UY_1': "position:absolute; top:203; left:533",
                'UY_2': "position:absolute; top:226; left:515"
@@ -966,7 +966,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
-    if sortedcodes == 'AR->CL-SING':
+    if sortedcodes == 'AR->CL-SEN':
         base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Unifilar de NOA&'
     else:
         base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
@@ -981,8 +981,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
         flow = first_tie + second_tie
     elif sortedcodes == 'AR->PY':
         flow = tie_finder(exchange_url, 'PY', s)
-    elif sortedcodes == 'AR->CL-SING':
-        flow = tie_finder(exchange_url, 'CL-SING', s)
+    elif sortedcodes == 'AR->CL-SEN':
+        flow = tie_finder(exchange_url, 'CL-SEN', s)
     else:
         raise NotImplementedError('This exchange is not currently implemented')
 
@@ -1007,5 +1007,5 @@ if __name__ == '__main__':
     print(fetch_exchange('AR', 'PY'))
     print('fetch_exchange(AR, UY) ->')
     print(fetch_exchange('AR', 'UY'))
-    print('fetch_exchange(AR, CL-SING) ->')
-    print(fetch_exchange('AR', 'CL-SING'))
+    print('fetch_exchange(AR, CL-SEN) ->')
+    print(fetch_exchange('AR', 'CL-SEN'))
