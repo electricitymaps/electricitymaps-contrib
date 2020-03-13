@@ -281,7 +281,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
 - Poland  
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1229378459601903617)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1237695748147462144)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
