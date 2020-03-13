@@ -68,7 +68,6 @@ const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
 const { saveKey } = require('./helpers/storage');
-const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
 const { themes } = require('./helpers/themes');
 
@@ -913,39 +912,6 @@ observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
   if (!tooltipDisplayMode) {
     countryTableProductionTooltip.hide();
   }
-});
-
-// TODO: Simplify this when moving the Tooltip component to React.
-function updateTooltip(state) {
-  if (!state.application.tooltipDisplayMode) {
-    countryTableProductionTooltip.hide();
-  } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
-    countryTableProductionTooltip.hide();
-  } else if (state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY) {
-    countryTableProductionTooltip.hide();
-  } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
-    countryTableProductionTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y
-    );
-    tooltipHelper.showProduction(
-      countryTableProductionTooltip,
-      state.application.tooltipDisplayMode,
-      state.application.tooltipZoneData,
-      state.application.tableDisplayEmissions,
-      co2color, co2Colorbars
-    );
-  } else {
-    countryTableProductionTooltip.hide();
-  }
-}
-
-observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex, state) => {
-  updateTooltip(state);
-});
-
-observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode, state) => {
-  updateTooltip(state);
 });
 
 observe(state => state.application.co2ColorbarMarker, (co2ColorbarMarker, state) => {

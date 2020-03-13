@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import getSymbolFromCurrency from 'currency-symbol-map';
 import { isFinite } from 'lodash';
 
 import { __, getFullZoneName } from '../../helpers/translation';
@@ -43,15 +42,13 @@ const CountryPanelExchangeTooltip = ({
     ? (zoneData.totalCo2Production + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO2eq/h
     : (zoneData.totalProduction + zoneData.totalDischarge + zoneData.totalImport);
 
-  const domain = totalPositive;
-
   value = displayByEmissions ? (value * 1000 * co2intensity) : value;
   const isNull = !isFinite(value) || value === undefined;
 
   const format = displayByEmissions ? formatCo2 : formatPower;
 
   const absFlow = Math.abs(value);
-  const exchangeProportion = !isNull ? Math.round(absFlow / domain * 100.0) : '?';
+  const exchangeProportion = !isNull ? Math.round(absFlow / totalPositive * 100.0) : '?';
 
   // Exchange
   const langString = isExport
@@ -89,9 +86,12 @@ const CountryPanelExchangeTooltip = ({
       <br />
       <small>
         (
-        <span id="exchange-proportion-detail">
-          {!isNull ? format(absFlow) : '?'} / {!isNull ? format(domain) : '?'}
-        </span>
+        <span
+          id="exchange-proportion-detail"
+          dangerouslySetInnerHTML={{
+            __html: `${!isNull ? format(absFlow) : '?'} / ${!isNull ? format(totalPositive) : '?'}`,
+          }}
+        />
         )
       </small>
       <br />
