@@ -64,7 +64,7 @@ const MapCountryTooltip = ({
                 <div
                   id="country-emission-rect"
                   className="country-col-box emission-rect emission-rect-overview"
-                  style={{ backgroundColor: co2intensity ? co2ColorScale(co2intensity) : 'gray' }}
+                  style={{ backgroundColor: co2ColorScale(co2intensity) }}
                 >
                   <div>
                     <span className="country-emission-intensity">

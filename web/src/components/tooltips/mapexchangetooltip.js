@@ -48,7 +48,7 @@ const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, visible }) =>
       <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.carbonintensityexport')) }} />
       :
       <br />
-      <div className="emission-rect" style={{ backgroundColor: co2intensity ? co2ColorScale(co2intensity) : 'gray' }} />
+      <div className="emission-rect" style={{ backgroundColor: co2ColorScale(co2intensity) }} />
       {' '}
       <span className="country-emission-intensity emission-intensity">
         {Math.round(co2intensity) || '?'}

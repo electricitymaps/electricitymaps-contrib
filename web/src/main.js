@@ -262,17 +262,17 @@ d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
-let co2color;
+let co2ColorScale;
 let co2Colorbars = [];
 function updateCo2Scale() {
-  co2color = getCo2Scale(getState().application.colorBlindModeEnabled);
+  co2ColorScale = getCo2Scale(getState().application.colorBlindModeEnabled);
   co2Colorbars = [
-    new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
+    new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2ColorScale, null, [0, 400, 800])
       .markerColor('white')
       .domain([0, scales.maxCo2])
       .render(),
   ];
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -299,7 +299,7 @@ function finishLoading() {
 // Start initialising map
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
-    .setCo2color(co2color)
+    .setCo2color(co2ColorScale)
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);

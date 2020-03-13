@@ -34,7 +34,7 @@ const CountryPanelProductionTooltip = ({
 
   if (!visible || !zoneData || !zoneData.productionCo2Intensities) return null;
 
-  const co2color = getCo2Scale(colorBlindModeEnabled);
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   const isStorage = mode.indexOf('storage') !== -1;
   const resource = mode.replace(' storage', '');
@@ -134,7 +134,7 @@ const CountryPanelProductionTooltip = ({
           <br />
           <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
           <br />
-          <div className="emission-rect" style={{ backgroundColor: co2intensity ? co2color(co2intensity) : 'gray' }} />
+          <div className="emission-rect" style={{ backgroundColor: co2ColorScale(co2intensity) }} />
           {' '}
           <span className="emission-intensity">{Math.round(co2intensity) || '?'}</span>
           gCO

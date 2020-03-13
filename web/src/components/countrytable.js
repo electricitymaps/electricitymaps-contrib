@@ -425,7 +425,7 @@ const CountryElectricityProductionTable = React.memo(({
             />
             <HorizontalBar
               className="exchange"
-              fill={d.gCo2eqPerkWh ? co2ColorScale(d.gCo2eqPerkWh) : 'gray'}
+              fill={co2ColorScale(d.gCo2eqPerkWh)}
               range={[0, d.exchange]}
               scale={powerScale}
             />

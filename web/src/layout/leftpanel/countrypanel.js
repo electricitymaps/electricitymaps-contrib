@@ -140,7 +140,7 @@ class Component extends React.PureComponent {
                   <div
                     id="country-emission-rect"
                     className="country-col-box emission-rect emission-rect-overview"
-                    style={{ backgroundColor: co2Intensity ? co2ColorScale(co2Intensity) : 'gray' }}
+                    style={{ backgroundColor: co2ColorScale(co2Intensity) }}
                   >
                     <div>
                       <span className="country-emission-intensity">

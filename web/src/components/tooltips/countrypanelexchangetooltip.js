@@ -31,7 +31,7 @@ const CountryPanelExchangeTooltip = ({
 
   if (!visible) return null;
 
-  const co2color = getCo2Scale(colorBlindModeEnabled);
+  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   let value = zoneData.exchange[exchangeKey];
 
@@ -119,7 +119,7 @@ const CountryPanelExchangeTooltip = ({
           {' '}
           <b><span className="country-exchange-source-name">{getFullZoneName(o)}</span></b>
           : 
-          <div className="emission-rect" style={{ backgroundColor: co2intensity ? co2color(co2intensity) : 'gray' }} />
+          <div className="emission-rect" style={{ backgroundColor: co2ColorScale(co2intensity) }} />
           {' '}
           <span className="emission-intensity">{Math.round(co2intensity) || '?'}</span>
           gCO

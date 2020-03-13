@@ -149,11 +149,7 @@ const ZoneList = ({
           </div>
           <div
             className="co2-intensity-tag"
-            style={{
-              backgroundColor: co2IntensityAccessor(zone) && co2ColorScale
-                ? co2ColorScale(co2IntensityAccessor(zone))
-                : 'gray',
-            }}
+            style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}
           />
         </a>
       ))}
