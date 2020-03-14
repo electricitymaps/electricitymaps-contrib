@@ -15,9 +15,9 @@ const LowCarbonInfoTooltip = ({ visible }) => {
 
   return (
     <Tooltip id="lowcarb-info-tooltip">
-      <b><span id="lowcarb-info-title">{__('tooltips.lowcarbon')}</span></b>
+      <b>{__('tooltips.lowcarbon')}</b>
       <br />
-      <small><span id="lowcarb-info-text">{__('tooltips.lowCarbDescription')}</span></small>
+      <small>{__('tooltips.lowCarbDescription')}</small>
       <br />
     </Tooltip>
   );

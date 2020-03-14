@@ -12,6 +12,7 @@ import { getSelectedZoneExchangeKeys } from '../../selectors';
 import { dispatch } from '../../store';
 
 import Tooltip from '../tooltip';
+import { CarbonIntensity, MetricRatio } from './common';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -103,51 +104,32 @@ const CountryPanelProductionTooltip = ({
         }}
       />
       <br />
-      <small>
-        (
-        <span
-          id="production-proportion-detail"
-          dangerouslySetInnerHTML={{
-            __html: `${!isNull ? format(absValue) : '?'} / ${!isNull ? format(totalPositive) : '?'}`,
-          }}
-        />
-        )
-      </small>
-      <br />
+      <MetricRatio
+        value={absValue}
+        total={totalPositive}
+        format={format}
+      />
       {!displayByEmissions && (
-        <span className="production-visible">
+        <React.Fragment>
           <br />
-          {__('tooltips.utilizing')}
-          {' '}
-          <b><span id="capacity-factor">{capacityFactor} %</span></b>
-          {' '}
-          {__('tooltips.ofinstalled')}
           <br />
-          <small>
-            (
-            <span id="capacity-factor-detail">
-              {format(absValue) || '?'} / {(hasCapacity && format(capacity)) || '?'}
-            </span>
-            )
-          </small>
+          {__('tooltips.utilizing')} <b>{capacityFactor} %</b> {__('tooltips.ofinstalled')}
+          <br />
+          <MetricRatio
+            value={absValue}
+            total={capacity}
+            format={format}
+          />
           <br />
           <br />
           <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
           <br />
-          <div className="emission-rect" style={{ backgroundColor: co2ColorScale(co2intensity) }} />
-          {' '}
-          <span className="emission-intensity">{Math.round(co2intensity) || '?'}</span>
-          gCO
-          <span className="sub">2</span>
-          {'eq/kWh '}
-          <small>
-            (
-            {__('country-panel.source')}
-            {': '}
-            <span className="emission-source">{co2intensitySource || '?'}</span>
-            )
-          </small>
-        </span>
+          <CarbonIntensity
+            colorBlindModeEnabled={colorBlindModeEnabled}
+            intensity={co2intensity}
+          />
+          <small> ({__('country-panel.source')}: {co2intensitySource || '?'})</small>
+        </React.Fragment>
       )}
     </Tooltip>
   );

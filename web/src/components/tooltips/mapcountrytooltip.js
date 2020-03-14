@@ -10,6 +10,7 @@ import { dispatch } from '../../store';
 
 import CircularGauge from '../circulargauge';
 import Tooltip from '../tooltip';
+import { ZoneName } from './common';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -52,9 +53,7 @@ const MapCountryTooltip = ({
   return (
     <Tooltip id="country-tooltip">
       <div className="zone-name-header">
-        <img id="country-flag" className="flag" src={flagUri(countryData.countryCode)} />
-        {' '}
-        <b><span id="country-name">{getFullZoneName(countryData.countryCode)}</span></b>
+        <ZoneName zone={countryData.countryCode} />
       </div>
       {countryData.hasParser ? (
         co2intensity ? (

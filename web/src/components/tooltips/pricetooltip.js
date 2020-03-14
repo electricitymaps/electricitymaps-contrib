@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { isNumber } from 'lodash';
+
 import getSymbolFromCurrency from 'currency-symbol-map';
 
 import { PRICES_GRAPH_LAYER_KEY } from '../../helpers/constants';
@@ -14,17 +16,13 @@ const mapStateToProps = state => ({
 const PriceTooltip = ({ visible, zoneData }) => {
   if (!visible) return null;
 
-  const priceIsDefined = zoneData.price !== null && zoneData.price.value !== null;
+  const priceIsDefined = zoneData.price && isNumber(zoneData.price.value);
+  const currency = priceIsDefined ? getSymbolFromCurrency(zoneData.price.currency) : '?';
+  const value = priceIsDefined ? zoneData.price.value : '?';
   
   return (
     <Tooltip id="price-tooltip">
-      <span className="value">
-        {priceIsDefined ? zoneData.price.value : '?'}
-      </span>
-      {' '}
-      <span className="currency">
-        {priceIsDefined ? getSymbolFromCurrency(zoneData.price.currency) : '?'}
-      </span> / MWh
+      {value} {currency} / MWh
     </Tooltip>
   );
 };

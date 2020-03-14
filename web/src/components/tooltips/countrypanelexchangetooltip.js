@@ -9,8 +9,9 @@ import { flagUri } from '../../helpers/flags';
 import { modifyDOM } from '../../helpers/dom';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
 import { dispatch } from '../../store';
-
 import Tooltip from '../tooltip';
+
+import { CarbonIntensity, MetricRatio, ZoneName } from './common';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -84,49 +85,33 @@ const CountryPanelExchangeTooltip = ({
         }}
       />
       <br />
-      <small>
-        (
-        <span
-          id="exchange-proportion-detail"
-          dangerouslySetInnerHTML={{
-            __html: `${!isNull ? format(absFlow) : '?'} / ${!isNull ? format(totalPositive) : '?'}`,
-          }}
-        />
-        )
-      </small>
-      <br />
+      <MetricRatio
+        value={absFlow}
+        total={totalPositive}
+        format={format}
+      />
       {!displayByEmissions && (
-        <span className="production-visible">
+        <React.Fragment>
           <br />
-          {__('tooltips.utilizing')}
-          {' '}
-          <b><span id="capacity-factor">{capacityFactor}%</span></b>
-          {' '}
-          {__('tooltips.ofinstalled')}
           <br />
-          <small>
-            (
-            <span id="capacity-factor-detail">
-              {format(absFlow) || '?'} / {(hasCapacity && format(absCapacity)) || '?'}
-            </span>
-            )
-          </small>
+          {__('tooltips.utilizing')} <b>{capacityFactor} %</b> {__('tooltips.ofinstalled')}
+          <br />
+          <MetricRatio
+            value={absFlow}
+            total={absCapacity}
+            format={format}
+          />
           <br />
           <br />
           <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
           <br />
-          <img className="country-exchange-source-flag flag" alt="" src={flagUri(o)} />
-          {' '}
-          <b><span className="country-exchange-source-name">{getFullZoneName(o)}</span></b>
-          : 
-          <div className="emission-rect" style={{ backgroundColor: co2ColorScale(co2intensity) }} />
-          {' '}
-          <span className="emission-intensity">{Math.round(co2intensity) || '?'}</span>
-          gCO
-          <span className="sub">2</span>
-          eq/kWh
-          <br />
-        </span>
+          <b><ZoneName zone={o} /></b>
+          {': '}
+          <CarbonIntensity
+            colorBlindModeEnabled={colorBlindModeEnabled}
+            intensity={co2intensity}
+          />
+        </React.Fragment>
       )}
     </Tooltip>
   );
