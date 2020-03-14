@@ -87,7 +87,7 @@ def fetch_price(zone_key='PK', session=None, target_datetime=None,
     A dictionary in the form:
     {
       'zoneKey': 'PK',
-      'currency': EUR,
+      'currency': PKR,
       'datetime': '2017-01-01T00:00:00Z',
       'price': 0.0,
       'source': 'mysource.com'
@@ -123,7 +123,7 @@ def fetch_exchange(zone_key1='PK', zone_key2='FR', session=None,
       changed or is not available, raise an Exception.
     A dictionary in the form:
     {
-      'sortedZoneKeys': 'DK->NO',
+      'sortedZoneKeys': 'PK->FR',
       'datetime': '2017-01-01T00:00:00Z',
       'netFlow': 0.0,
       'source': 'mysource.com'
