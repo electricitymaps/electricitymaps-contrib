@@ -524,6 +524,14 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
       })
       .onZoneMouseMove((zoneData, i, clientX, clientY) => {
         dispatch({
+          type: 'SET_CO2_COLORBAR_MARKER',
+          payload: {
+            marker: getState().application.electricityMixMode === 'consumption'
+              ? zoneData.co2intensity
+              : zoneData.co2intensityProduction,
+          },
+        })
+        dispatch({
           type: 'SHOW_TOOLTIP',
           payload: {
             displayMode: MAP_COUNTRY_TOOLTIP_KEY,

@@ -6,7 +6,6 @@ import { __, getFullZoneName } from '../../helpers/translation';
 import { getCo2Scale } from '../../helpers/scales';
 import { co2Sub } from '../../helpers/formatting';
 import { flagUri } from '../../helpers/flags';
-import { dispatch } from '../../store';
 
 import CircularGauge from '../circulargauge';
 import Tooltip from '../tooltip';
@@ -25,16 +24,13 @@ const MapCountryTooltip = ({
   electricityMixMode,
   visible,
 }) => {
-  if (!countryData || !visible) return null;
+  if (!visible || !countryData) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   const co2intensity = electricityMixMode === 'consumption'
     ? countryData.co2intensity
     : countryData.co2intensityProduction;
-  if (co2intensity) {
-    dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
-  }
 
   const fossilFuelRatio = electricityMixMode === 'consumption'
     ? countryData.fossilFuelRatio

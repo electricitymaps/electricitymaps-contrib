@@ -7,11 +7,12 @@ import { __, getFullZoneName } from '../../helpers/translation';
 import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
+import { getRatioPercent } from '../../helpers/math';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
-import { dispatch } from '../../store';
 
 import Tooltip from '../tooltip';
 import { CarbonIntensity, MetricRatio } from './common';
+import { getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -30,60 +31,38 @@ const CountryPanelProductionTooltip = ({
   visible,
   zoneData,
 }) => {
-  if (!visible || !zoneData || !zoneData.productionCo2Intensities) return null;
+  if (!visible || !zoneData) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const co2Intensity = getProductionCo2Intensity(mode, zoneData);
+
+  const format = displayByEmissions ? formatCo2 : formatPower;
 
   const isStorage = mode.indexOf('storage') !== -1;
   const resource = mode.replace(' storage', '');
 
-  let value = isStorage
-    ? -zoneData.storage[resource]
-    : zoneData.production[resource];
-
-  const isExport = value < 0;
-
-  const co2intensity = !isExport && (
-    isStorage
-      ? zoneData.dischargeCo2Intensities[resource]
-      : zoneData.productionCo2Intensities[resource]
-  );
-  const co2intensitySource = !isExport && (
-    isStorage
-      ? zoneData.dischargeCo2IntensitySources[resource]
-      : zoneData.productionCo2IntensitySources[resource]
-  );
-
-  if (co2intensity) {
-    dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
-  }
-
-  if (displayByEmissions && !isExport) {
-    value *= co2intensity * 1000.0; // MW * gCO2/kWh * 1000 --> gCO2/h
-  }
-
-  const absValue = Math.abs(value);
-  const format = displayByEmissions ? formatCo2 : formatPower;
-
   const capacity = (zoneData.capacity || {})[mode];
-  const hasCapacity = capacity !== undefined && capacity >= (zoneData.production[mode] || 0);
-  const capacityFactor = (hasCapacity && absValue !== null)
-    ? Math.round(absValue / capacity * 10000) / 100
-    : '?';
+  const production = (zoneData.production || {})[resource];
+  const storage = (zoneData.storage || {})[resource];
 
-  const totalPositive = displayByEmissions
-    ? (zoneData.totalCo2Production + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO2eq/h
-    : (zoneData.totalProduction + zoneData.totalDischarge + zoneData.totalImport);
+  const electricity = isStorage ? -storage : production;
+  const isExport = electricity < 0;
 
-  const isNull = !isFinite(absValue) || absValue === undefined;
+  const usage = Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
+  const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
 
-  const productionProportion = !isNull ? Math.round(absValue / totalPositive * 10000) / 100 : '?';
+  const co2IntensitySource = isStorage
+    ? (zoneData.dischargeCo2IntensitySources || {})[resource]
+    : (zoneData.productionCo2IntensitySources || {})[resource];
 
-  const langString = isExport
-    ? (displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing')
-    : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom');
-
-  let headline = co2Sub(__(langString, productionProportion, getFullZoneName(zoneData.countryCode), __(mode)));
+  let headline = co2Sub(__(
+    isExport
+      ? (displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing')
+      : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'),
+    getRatioPercent(usage, totalElectricity),
+    getFullZoneName(zoneData.countryCode),
+    __(mode)
+  ));
   headline = headline.replace('id="country-flag"', `src="${flagUri(zoneData.countryCode)}"`);
 
   return (
@@ -91,18 +70,18 @@ const CountryPanelProductionTooltip = ({
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio
-        value={absValue}
-        total={totalPositive}
+        value={usage}
+        total={totalElectricity}
         format={format}
       />
       {!displayByEmissions && (
         <React.Fragment>
           <br />
           <br />
-          {__('tooltips.utilizing')} <b>{capacityFactor} %</b> {__('tooltips.ofinstalled')}
+          {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b> {__('tooltips.ofinstalled')}
           <br />
           <MetricRatio
-            value={absValue}
+            value={usage}
             total={capacity}
             format={format}
           />
@@ -112,9 +91,9 @@ const CountryPanelProductionTooltip = ({
           <br />
           <CarbonIntensity
             colorBlindModeEnabled={colorBlindModeEnabled}
-            intensity={co2intensity}
+            intensity={co2Intensity}
           />
-          <small> ({__('country-panel.source')}: {co2intensitySource || '?'})</small>
+          <small> ({__('country-panel.source')}: {co2IntensitySource || '?'})</small>
         </React.Fragment>
       )}
     </Tooltip>

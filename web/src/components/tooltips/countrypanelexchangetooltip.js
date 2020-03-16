@@ -6,63 +6,54 @@ import { __, getFullZoneName } from '../../helpers/translation';
 import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
+import { getRatioPercent } from '../../helpers/math';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
-import { dispatch } from '../../store';
 import Tooltip from '../tooltip';
 
 import { CarbonIntensity, MetricRatio, ZoneName } from './common';
+import { getExchangeCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
+  electricityMixMode: state.application.electricityMixMode,
   exchangeKey: state.application.tooltipDisplayMode,
   visible: getSelectedZoneExchangeKeys(state).includes(state.application.tooltipDisplayMode),
   zoneData: state.application.tooltipZoneData,
 });
 
-const getRatioPercent = (value, total) => {
-  const perc = Math.round(value / total * 100);
-  return isFinite(perc) ? `${perc} %` : '?';
-};
-
 const CountryPanelExchangeTooltip = ({
   colorBlindModeEnabled,
   displayByEmissions,
+  electricityMixMode,
   exchangeKey,
   visible,
   zoneData,
 }) => {
-  if (!visible) return null;
+  if (!visible || !zoneData) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const co2Intensity = getExchangeCo2Intensity(exchangeKey, zoneData, electricityMixMode);
+
   const format = displayByEmissions ? formatCo2 : formatPower;
 
-  const co2intensity = (zoneData.exchangeCo2Intensities || {})[exchangeKey];
   const exchangeCapacityRange = (zoneData.exchangeCapacities || {})[exchangeKey];
-  let value = (zoneData.exchange || {})[exchangeKey];
+  const exchange = (zoneData.exchange || {})[exchangeKey];
 
-  const isExport = value < 0;
+  const isExport = exchange < 0;
 
-  const totalPositive = displayByEmissions
-    ? (zoneData.totalCo2Production + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO2eq/h
-    : (zoneData.totalProduction + zoneData.totalDischarge + zoneData.totalImport);
+  const usage = Math.abs(displayByEmissions ? (exchange * 1000 * co2Intensity) : exchange);
+  const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
+  const totalCapacity = Math.abs((exchangeCapacityRange || [])[isExport ? 0 : 1]);
 
-  value = displayByEmissions ? (value * 1000 * co2intensity) : value;
-
-
-  const absFlow = Math.abs(value);
-
-  // Exchange
-  const langString = isExport
-    ? (displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo')
-    : (displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom');
-
-  // Capacity
-  const absCapacity = Math.abs((exchangeCapacityRange || [])[isExport ? 0 : 1]);
-
-  dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
-
-  let headline = co2Sub(__(langString, getRatioPercent(absFlow, totalPositive), getFullZoneName(zoneData.countryCode), getFullZoneName(exchangeKey)));
+  let headline = co2Sub(__(
+    isExport
+      ? (displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo')
+      : (displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom'),
+    getRatioPercent(usage, totalElectricity),
+    getFullZoneName(zoneData.countryCode),
+    getFullZoneName(exchangeKey)
+  ));
   headline = headline.replace('id="country-flag"', `src="${flagUri(zoneData.countryCode)}"`);
   headline = headline.replace('id="country-exchange-flag"', `src="${flagUri(exchangeKey)}"`);
 
@@ -71,19 +62,19 @@ const CountryPanelExchangeTooltip = ({
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio
-        value={absFlow}
-        total={totalPositive}
+        value={usage}
+        total={totalElectricity}
         format={format}
       />
       {!displayByEmissions && (
         <React.Fragment>
           <br />
           <br />
-          {__('tooltips.utilizing')} <b>{getRatioPercent(absFlow, absCapacity)}</b> {__('tooltips.ofinstalled')}
+          {__('tooltips.utilizing')} <b>{getRatioPercent(usage, totalCapacity)} %</b> {__('tooltips.ofinstalled')}
           <br />
           <MetricRatio
-            value={absFlow}
-            total={absCapacity}
+            value={usage}
+            total={totalCapacity}
             format={format}
           />
           <br />
@@ -94,7 +85,7 @@ const CountryPanelExchangeTooltip = ({
           {': '}
           <CarbonIntensity
             colorBlindModeEnabled={colorBlindModeEnabled}
-            intensity={co2intensity}
+            intensity={co2Intensity}
           />
         </React.Fragment>
       )}

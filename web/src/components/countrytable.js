@@ -15,6 +15,7 @@ import { useWidthObserver } from '../effects';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
+import { getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
@@ -29,7 +30,15 @@ const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
 
-function handleRowMouseMove(isMobile, mode, zoneData, ev) {
+function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
+  dispatch({
+    type: 'SET_CO2_COLORBAR_MARKER',
+    payload: {
+      marker: modeOrder.includes(mode)
+        ? getProductionCo2Intensity(mode, zoneData)
+        : getExchangeCo2Intensity(mode, zoneData, electricityMixMode),
+    },
+  });
   dispatch({
     type: 'SHOW_TOOLTIP',
     payload: {
@@ -45,6 +54,7 @@ function handleRowMouseMove(isMobile, mode, zoneData, ev) {
 }
 
 function handleRowMouseOut() {
+  dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
   dispatch({ type: 'HIDE_TOOLTIP' });
 }
 
@@ -58,16 +68,7 @@ const getProductionData = data => modeOrder.map((mode) => {
   const storage = (data.storage || {})[resource];
 
   // Production CO2 intensity
-  const gCo2eqPerkWh = ((
-    isStorage ? (
-      storage > 0
-        ? data.storageCo2Intensities
-        : data.dischargeCo2Intensities
-    ) : (
-      data.productionCo2Intensities
-    )
-  ) || {})[resource];
-
+  const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (isStorage ? storage : production);
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
 
@@ -87,14 +88,7 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys
   const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
 
   // Exchange CO2 intensity
-  const gCo2eqPerkWh = exchange > 0 ? (
-    (data.exchangeCo2Intensities || {})[mode]
-  ) : (
-    electricityMixMode === 'consumption'
-      ? data.co2intensity
-      : data.co2intensityProduction
-  );
-
+  const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data, electricityMixMode);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
 
@@ -151,6 +145,7 @@ const Axis = ({ formatTick, height, scale }) => (
 const Row = ({
   children,
   data,
+  electricityMixMode,
   index,
   isMobile,
   label,
@@ -164,9 +159,9 @@ const Row = ({
       fill="transparent"
       width={width}
       height={ROW_HEIGHT + PADDING_Y}
-      onFocus={ev => handleRowMouseMove(isMobile, mode, data, ev)}
-      onMouseOver={ev => handleRowMouseMove(isMobile, mode, data, ev)}
-      onMouseMove={ev => handleRowMouseMove(isMobile, mode, data, ev)}
+      onFocus={ev => handleRowMouseMove(isMobile, mode, data, electricityMixMode, ev)}
+      onMouseOver={ev => handleRowMouseMove(isMobile, mode, data, electricityMixMode, ev)}
+      onMouseMove={ev => handleRowMouseMove(isMobile, mode, data, electricityMixMode, ev)}
       onMouseOut={handleRowMouseOut}
       onBlur={handleRowMouseOut}
     />
@@ -235,6 +230,7 @@ const QuestionMarkIfNoData = ({ datapoint, scale }) => {
 const CountryCarbonEmissionsTable = React.memo(({
   colorBlindModeEnabled,
   data,
+  electricityMixMode,
   exchangeData,
   height,
   isMobile,
@@ -279,6 +275,7 @@ const CountryCarbonEmissionsTable = React.memo(({
             index={index}
             label={__(d.mode)}
             width={width}
+            electricityMixMode={electricityMixMode}
             isMobile={isMobile}
             data={data}
           >
@@ -303,6 +300,7 @@ const CountryCarbonEmissionsTable = React.memo(({
             index={index}
             label={d.mode}
             width={width}
+            electricityMixMode={electricityMixMode}
             isMobile={isMobile}
             data={data}
           >
@@ -327,6 +325,7 @@ const CountryCarbonEmissionsTable = React.memo(({
 const CountryElectricityProductionTable = React.memo(({
   colorBlindModeEnabled,
   data,
+  electricityMixMode,
   exchangeData,
   height,
   isMobile,
@@ -379,6 +378,7 @@ const CountryElectricityProductionTable = React.memo(({
             index={index}
             label={__(d.mode)}
             width={width}
+            electricityMixMode={electricityMixMode}
             isMobile={isMobile}
             data={data}
           >
@@ -409,6 +409,7 @@ const CountryElectricityProductionTable = React.memo(({
             index={index}
             label={d.mode}
             width={width}
+            electricityMixMode={electricityMixMode}
             isMobile={isMobile}
             data={data}
           >
@@ -474,6 +475,7 @@ const CountryTable = ({
         {displayByEmissions ? (
           <CountryCarbonEmissionsTable
             colorBlindModeEnabled={colorBlindModeEnabled}
+            electricityMixMode={electricityMixMode}
             data={data}
             productionData={productionData}
             exchangeData={exchangeData}
@@ -484,6 +486,7 @@ const CountryTable = ({
         ) : (
           <CountryElectricityProductionTable
             colorBlindModeEnabled={colorBlindModeEnabled}
+            electricityMixMode={electricityMixMode}
             data={data}
             productionData={productionData}
             exchangeData={exchangeData}
