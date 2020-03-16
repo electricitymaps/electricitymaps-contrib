@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { isFinite } from 'lodash';
 
@@ -7,7 +7,6 @@ import { __, getFullZoneName } from '../../helpers/translation';
 import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
-import { modifyDOM } from '../../helpers/dom';
 import { getSelectedZoneExchangeKeys } from '../../selectors';
 import { dispatch } from '../../store';
 
@@ -31,8 +30,6 @@ const CountryPanelProductionTooltip = ({
   visible,
   zoneData,
 }) => {
-  const headlineRef = useRef(null);
-
   if (!visible || !zoneData || !zoneData.productionCo2Intensities) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
@@ -86,23 +83,12 @@ const CountryPanelProductionTooltip = ({
     ? (displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing')
     : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom');
 
-  setTimeout(() => {
-    modifyDOM(headlineRef, '#country-flag', (img) => { img.src = flagUri(zoneData.countryCode); });
-  }, 50);
+  let headline = co2Sub(__(langString, productionProportion, getFullZoneName(zoneData.countryCode), __(mode)));
+  headline = headline.replace('id="country-flag"', `src="${flagUri(zoneData.countryCode)}"`);
 
   return (
     <Tooltip id="countrypanel-production-tooltip">
-      <span
-        ref={headlineRef}
-        dangerouslySetInnerHTML={{
-          __html: co2Sub(__(
-            langString,
-            productionProportion,
-            getFullZoneName(zoneData.countryCode),
-            __(mode),
-          )),
-        }}
-      />
+      <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio
         value={absValue}
