@@ -8,6 +8,9 @@ import {
   first,
   last,
   max,
+  filter,
+  flattenDeep,
+  isFinite,
   isNumber,
   isEmpty,
 } from 'lodash';
@@ -35,7 +38,14 @@ const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   ])
   .range([0, width]);
 
-const getMaxTotalValue = layers => (last(layers) ? max(last(layers).datapoints.map(d => d[1])) : 0);
+const getMaxTotalValue = (layers) => {
+  const values = flattenDeep(
+    layers.map(
+      layer => layer.datapoints.map(d => d[1])
+    )
+  );
+  return max(filter(values, isFinite)) || 0;
+};
 
 const getValueScale = (height, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
