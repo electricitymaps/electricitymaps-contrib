@@ -31,12 +31,12 @@ const modeOrder = [
 const PRODUCTION_MODES = modeOrder.filter(d => d.indexOf('storage') === -1);
 const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d => d.replace(' storage', ''));
 
-const CARBON_GRAPH_LAYER_KEY = 'carbon';
-const PRICES_GRAPH_LAYER_KEY = 'price';
-
 const LOW_CARBON_INFO_TOOLTIP_KEY = 'low-carbon-info';
 const MAP_EXCHANGE_TOOLTIP_KEY = 'map-exchange';
 const MAP_COUNTRY_TOOLTIP_KEY = 'map-country';
+
+const CARBON_GRAPH_LAYER_KEY = MAP_COUNTRY_TOOLTIP_KEY;
+const PRICES_GRAPH_LAYER_KEY = 'price';
 
 const DEFAULT_FLAG_SIZE = 16;
 

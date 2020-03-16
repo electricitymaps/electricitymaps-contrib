@@ -30,7 +30,7 @@ export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
         ? zoneData.co2intensity
         : zoneData.co2intensityProduction
     );
-};
+}
 
 export function getTotalElectricity(zoneData, displayByEmissions) {
   return displayByEmissions

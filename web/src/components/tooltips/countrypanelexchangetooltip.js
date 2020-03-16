@@ -54,8 +54,8 @@ const CountryPanelExchangeTooltip = ({
     getFullZoneName(zoneData.countryCode),
     getFullZoneName(exchangeKey)
   ));
-  headline = headline.replace('id="country-flag"', `src="${flagUri(zoneData.countryCode)}"`);
-  headline = headline.replace('id="country-exchange-flag"', `src="${flagUri(exchangeKey)}"`);
+  headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
+  headline = headline.replace('id="country-exchange-flag"', `class="flag" src="${flagUri(exchangeKey)}"`);
 
   return (
     <Tooltip id="countrypanel-exchange-tooltip">

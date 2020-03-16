@@ -63,7 +63,7 @@ const CountryPanelProductionTooltip = ({
     getFullZoneName(zoneData.countryCode),
     __(mode)
   ));
-  headline = headline.replace('id="country-flag"', `src="${flagUri(zoneData.countryCode)}"`);
+  headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
 
   return (
     <Tooltip id="countrypanel-production-tooltip">

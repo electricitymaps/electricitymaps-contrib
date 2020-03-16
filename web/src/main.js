@@ -530,7 +530,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
               ? zoneData.co2intensity
               : zoneData.co2intensityProduction,
           },
-        })
+        });
         dispatch({
           type: 'SHOW_TOOLTIP',
           payload: {
