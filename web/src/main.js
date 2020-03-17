@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
 import HorizontalColorbar from './components/horizontalcolorbar';
-import Tooltip from './components/tooltip';
 
 // Layer Components
 import ExchangeLayer from './components/layers/exchange';
@@ -31,6 +30,8 @@ import { getCo2Scale } from './helpers/scales';
 import {
   CARBON_GRAPH_LAYER_KEY,
   PRICES_GRAPH_LAYER_KEY,
+  MAP_EXCHANGE_TOOLTIP_KEY,
+  MAP_COUNTRY_TOOLTIP_KEY,
 } from './helpers/constants';
 
 // Layout
@@ -66,7 +67,6 @@ const grib = require('./helpers/grib');
 const HistoryState = require('./helpers/historystate');
 const scales = require('./helpers/scales');
 const { saveKey } = require('./helpers/storage');
-const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
 const { themes } = require('./helpers/themes');
 
@@ -150,13 +150,6 @@ ReactDOM.render(
 
 // Set standard theme
 let theme = themes.bright;
-
-// ** Create components
-const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
-const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
-const countryTooltip = new Tooltip('#country-tooltip');
-const exchangeTooltip = new Tooltip('#exchange-tooltip');
-const priceTooltip = new Tooltip('#price-tooltip');
 
 const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
   .markerColor('black');
@@ -269,17 +262,17 @@ d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
-let co2color;
-let co2Colorbars;
+let co2ColorScale;
+let co2Colorbars = [];
 function updateCo2Scale() {
-  co2color = getCo2Scale(getState().application.colorBlindModeEnabled);
-  co2color.clamp(true);
-  co2Colorbars = co2Colorbars || [];
-  co2Colorbars.push(new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
-    .markerColor('white')
-    .domain([0, scales.maxCo2])
-    .render());
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
+  co2ColorScale = getCo2Scale(getState().application.colorBlindModeEnabled);
+  co2Colorbars = [
+    new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2ColorScale, null, [0, 400, 800])
+      .markerColor('white')
+      .domain([0, scales.maxCo2])
+      .render(),
+  ];
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -306,7 +299,7 @@ function finishLoading() {
 // Start initialising map
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
-    .setCo2color(co2color)
+    .setCo2color(co2ColorScale)
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -326,17 +319,23 @@ try {
 
       // Create exchange layer as a result
       exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
-        .onExchangeMouseOver((d) => {
-          tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
-        })
-        .onExchangeMouseMove(() => {
-          exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
+        .onExchangeMouseMove((zoneData) => {
+          const { co2intensity } = zoneData;
+          if (co2intensity) {
+            dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
+          }
+          dispatch({
+            type: 'SHOW_TOOLTIP',
+            payload: {
+              data: zoneData,
+              displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
+              position: { x: currentEvent.clientX, y: currentEvent.clientY },
+            },
+          });
         })
         .onExchangeMouseOut((d) => {
-          if (d.co2intensity && co2Colorbars) {
-            co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-          }
-          exchangeTooltip.hide();
+          dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+          dispatch({ type: 'HIDE_TOOLTIP' });
         })
         .onExchangeClick((d) => {
           console.log(d);
@@ -520,30 +519,34 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
   if (typeof zoneMap !== 'undefined') {
     // Assign country map data
     zoneMap
-      .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(
-          countryTooltip, d, co2color, co2Colorbars,
-          getState().application.electricityMixMode,
-        );
-      })
-      .onZoneMouseMove((d, i, clientX, clientY) => {
-        // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(
-          countryTooltip, d, co2color, co2Colorbars,
-          getState().application.electricityMixMode,
-        );
-        const rect = node.getBoundingClientRect();
-        countryTooltip.update(clientX + rect.left, clientY + rect.top);
-      })
       .onMouseMove((lonlat) => {
         mapMouseOver(lonlat);
       })
+      .onZoneMouseMove((zoneData, i, clientX, clientY) => {
+        dispatch({
+          type: 'SET_CO2_COLORBAR_MARKER',
+          payload: {
+            marker: getState().application.electricityMixMode === 'consumption'
+              ? zoneData.co2intensity
+              : zoneData.co2intensityProduction,
+          },
+        });
+        dispatch({
+          type: 'SHOW_TOOLTIP',
+          payload: {
+            data: zoneData,
+            displayMode: MAP_COUNTRY_TOOLTIP_KEY,
+            position: {
+              x: node.getBoundingClientRect().left + clientX,
+              y: node.getBoundingClientRect().top + clientY,
+            },
+          },
+        });
+      })
       .onZoneMouseOut(() => {
-        if (co2Colorbars) {
-          co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-        }
+        dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+        dispatch({ type: 'HIDE_TOOLTIP' });
         mapMouseOver(undefined);
-        countryTooltip.hide();
       });
   }
 
@@ -815,14 +818,14 @@ function routeToPage(pageName, state) {
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
+    co2Colorbars.forEach((d) => { d.render(); });
     if (state.application.windEnabled && windColorbar) windColorbar.render();
     if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
     if (pageName === 'info') {
-      if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
+      co2Colorbars.forEach((d) => { d.render(); });
       if (state.application.windEnabled) if (windColorbar) windColorbar.render();
       if (state.application.solarEnabled) if (solarColorbar) solarColorbar.render();
     }
@@ -909,85 +912,8 @@ function renderZones(state) {
   }
 }
 
-observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
-  if (!tooltipDisplayMode) {
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-  }
-});
-
-// TODO: Simplify this when moving the Tooltip component to React.
-function updateTooltip(state) {
-  if (!state.application.tooltipDisplayMode) {
-    countryTooltip.hide();
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
-  } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
-    countryTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y,
-    );
-    tooltipHelper.showMapCountry(
-      countryTooltip,
-      state.application.tooltipZoneData,
-      co2color, co2Colorbars,
-      state.application.electricityMixMode,
-    );
-  } else if (state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY) {
-    countryTooltip.hide();
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y,
-    );
-    tooltipHelper.showPrice(
-      priceTooltip,
-      state.application.tooltipZoneData,
-    );
-  } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
-    countryTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
-    countryTableProductionTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y
-    );
-    tooltipHelper.showProduction(
-      countryTableProductionTooltip,
-      state.application.tooltipDisplayMode,
-      state.application.tooltipZoneData,
-      state.application.tableDisplayEmissions,
-      co2color, co2Colorbars
-    );
-  } else {
-    countryTooltip.hide();
-    countryTableProductionTooltip.hide();
-    priceTooltip.hide();
-    countryTableExchangeTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y
-    );
-    tooltipHelper.showExchange(
-      countryTableExchangeTooltip,
-      state.application.tooltipDisplayMode,
-      state.application.tooltipZoneData,
-      state.application.tableDisplayEmissions,
-      co2color, co2Colorbars
-    );
-  }
-}
-
-observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex, state) => {
-  updateTooltip(state);
-});
-
-observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode, state) => {
-  updateTooltip(state);
+observe(state => state.application.co2ColorbarMarker, (co2ColorbarMarker, state) => {
+  co2Colorbars.forEach((c) => { c.currentMarker(co2ColorbarMarker); });
 });
 
 // Observe for electricityMixMode change

@@ -20,13 +20,13 @@ function setLayerTooltip(isMobile, timeIndex, layer, ev, svgRef) {
     dispatch({
       type: 'SHOW_TOOLTIP',
       payload: {
+        data: layer.datapoints[timeIndex].data._countryData,
         displayMode: layer.key,
         // If in mobile mode, put the tooltip to the top of the screen for
         // readability, otherwise float it depending on the cursor position.
         position: !isMobile
           ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
           : { x: 0, y: 0 },
-        zoneData: layer.datapoints[timeIndex].data._countryData,
       },
     });
   }

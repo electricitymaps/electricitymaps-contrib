@@ -70,7 +70,6 @@
 }
 
 .tooltip {
-    display: none;
     border: 1px solid lightgray;
     background-color: $lighter-gray;
     color: black;
@@ -82,7 +81,6 @@
     border-radius: 5px;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
     box-sizing: border-box;
-    opacity: 0;
 }
 
 #country-tooltip {

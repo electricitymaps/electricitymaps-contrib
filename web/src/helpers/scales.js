@@ -51,15 +51,13 @@ export const solarColor = d3.scaleLinear()
 export const maxCo2 = 800;
 
 export const getCo2Scale = (colorBlindModeEnabled) => {
-  if (colorBlindModeEnabled) {
-    return d3.scaleLinear()
-      .domain(themes.colorblindScale.steps)
-      .range(themes.colorblindScale.colors)
-      .clamp(true);
-  }
+  const theme = colorBlindModeEnabled
+    ? themes.colorblindScale
+    : themes.co2Scale;
 
   return d3.scaleLinear()
-    .domain(themes.co2Scale.steps)
-    .range(themes.co2Scale.colors)
+    .domain(theme.steps)
+    .range(theme.colors)
+    .unknown('gray')
     .clamp(true);
 };

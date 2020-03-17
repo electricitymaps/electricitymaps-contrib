@@ -22,6 +22,7 @@ const initialApplicationState = {
   callerZone: null,
   centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
+  co2ColorbarMarker: undefined,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
   customDate: null,
@@ -36,9 +37,9 @@ const initialApplicationState = {
   legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
+  tooltipData: null,
   tooltipDisplayMode: null,
   tooltipPosition: { x: 0, y: 0 },
-  tooltipZoneData: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
@@ -49,9 +50,6 @@ const initialApplicationState = {
   // TODO(olc): refactor this state
   showPageState: 'map',
   pageToGoBackTo: null,
-  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
-  tooltipLowCarbonGaugePercentage: null,
-  tooltipRenewableGaugePercentage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
@@ -95,15 +93,29 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'SHOW_TOOLTIP': {
       return Object.assign({}, state, {
+        tooltipData: action.payload.data,
         tooltipDisplayMode: action.payload.displayMode,
         tooltipPosition: action.payload.position,
-        tooltipZoneData: action.payload.zoneData,
       });
     }
 
     case 'HIDE_TOOLTIP': {
       return Object.assign({}, state, {
         tooltipDisplayMode: null,
+      });
+    }
+
+    case 'SET_CO2_COLORBAR_MARKER': {
+      const co2ColorbarMarker = action.payload.marker;
+      if (co2ColorbarMarker !== state.co2ColorbarMarker) {
+        return Object.assign({}, state, { co2ColorbarMarker });
+      }
+      return state;
+    }
+
+    case 'UNSET_CO2_COLORBAR_MARKER': {
+      return Object.assign({}, state, {
+        co2ColorbarMarker: undefined,
       });
     }
 
