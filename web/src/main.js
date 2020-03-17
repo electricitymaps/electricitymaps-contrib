@@ -6,7 +6,9 @@
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { debounce } from 'lodash';
 
 // Components
 import OnboardingModal from './components/onboardingmodal';
@@ -64,7 +66,7 @@ const {
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
 const grib = require('./helpers/grib');
-const HistoryState = require('./helpers/historystate');
+const { updateURLFromState } = require('./helpers/router');
 const scales = require('./helpers/scales');
 const { saveKey } = require('./helpers/storage');
 const translation = require('./helpers/translation');
@@ -100,16 +102,9 @@ if (thirdPartyServices._ga) {
 const REFRESH_TIME_MINUTES = 5;
 
 // Set state depending on URL params
-HistoryState.parseInitial(window.location.search);
-
-const applicationState = HistoryState.getStateFromHistory();
-Object.keys(applicationState).forEach((k) => {
-  if (k === 'selectedZoneName'
-    && Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
-    // The selectedZoneName doesn't exist, so don't update it
-    return;
-  }
-  dispatchApplication(k, applicationState[k]);
+dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
+window.addEventListener('popstate', () => {
+  dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
 // TODO(olc): should be stored in redux?
@@ -137,7 +132,13 @@ let onboardingModal;
 // Render DOM
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <BrowserRouter>
+      <Switch>
+        <Route path="/">
+          <Main />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.querySelector('#app'),
   () => {
@@ -211,14 +212,9 @@ const app = {
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
     universalLinks.subscribe(null, (eventData) => {
-      HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
       // In principle we should only do the rest of the app loading
-      // after this point, instead of dispating a new event
-      // eslint-disable-next-line no-shadow
-      const applicationState = HistoryState.getStateFromHistory();
-      Object.keys(applicationState).forEach((k) => {
-        dispatchApplication(k, applicationState[k]);
-      });
+      // after this point, instead of dispatcing a new event
+      dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: eventData.url } });
     });
   },
 
@@ -1041,11 +1037,13 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 });
 
 // Observe for changes requiring an update of history
-Object.values(HistoryState.querystringMappings).forEach((k) => {
-  observe(state => state.application[k], (_, state) => {
-    HistoryState.updateHistoryFromState(state.application);
-  });
-});
+const delayedUpdateURLFromState = debounce(updateURLFromState, 50);
+observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.showPageState, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {
