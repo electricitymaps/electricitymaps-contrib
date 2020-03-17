@@ -13,7 +13,7 @@ import { ZoneName } from './common';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  countryData: state.application.tooltipZoneData,
+  countryData: state.application.tooltipData,
   electricityMixMode: state.application.electricityMixMode,
   visible: state.application.tooltipDisplayMode === MAP_COUNTRY_TOOLTIP_KEY,
 });

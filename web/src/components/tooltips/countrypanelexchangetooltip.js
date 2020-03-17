@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   exchangeKey: state.application.tooltipDisplayMode,
   visible: getSelectedZoneExchangeKeys(state).includes(state.application.tooltipDisplayMode),
-  zoneData: state.application.tooltipZoneData,
+  zoneData: state.application.tooltipData,
 });
 
 const CountryPanelExchangeTooltip = ({

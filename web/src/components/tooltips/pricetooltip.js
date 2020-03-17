@@ -10,7 +10,7 @@ import Tooltip from '../tooltip';
 
 const mapStateToProps = state => ({
   visible: state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY,
-  zoneData: state.application.tooltipZoneData,
+  zoneData: state.application.tooltipData,
 });
 
 const PriceTooltip = ({ visible, zoneData }) => {

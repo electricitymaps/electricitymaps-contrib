@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   mode: state.application.tooltipDisplayMode,
   visible: modeOrder.includes(state.application.tooltipDisplayMode),
-  zoneData: state.application.tooltipZoneData,
+  zoneData: state.application.tooltipData,
 });
 
 const CountryPanelProductionTooltip = ({

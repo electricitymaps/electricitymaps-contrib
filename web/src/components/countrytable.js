@@ -42,13 +42,13 @@ function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
   dispatch({
     type: 'SHOW_TOOLTIP',
     payload: {
+      data: zoneData,
       displayMode: mode,
       // If in mobile mode, put the tooltip to the top of the screen for
       // readability, otherwise float it depending on the cursor position.
       position: !isMobile
         ? { x: ev.clientX - 7, y: ev.clientY - 7 }
         : { x: 0, y: 0 },
-      zoneData,
     },
   });
 }

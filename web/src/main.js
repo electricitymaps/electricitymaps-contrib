@@ -327,9 +327,9 @@ try {
           dispatch({
             type: 'SHOW_TOOLTIP',
             payload: {
+              data: zoneData,
               displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
               position: { x: currentEvent.clientX, y: currentEvent.clientY },
-              zoneData,
             },
           });
         })
@@ -534,12 +534,12 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         dispatch({
           type: 'SHOW_TOOLTIP',
           payload: {
+            data: zoneData,
             displayMode: MAP_COUNTRY_TOOLTIP_KEY,
             position: {
               x: node.getBoundingClientRect().left + clientX,
               y: node.getBoundingClientRect().top + clientY,
             },
-            zoneData,
           },
         });
       })

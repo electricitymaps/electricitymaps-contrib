@@ -10,8 +10,7 @@ import { CarbonIntensity, ZoneName } from './common';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  // TODO: Should probably rename tooltipZoneData -> tooltipData
-  exchangeData: state.application.tooltipZoneData,
+  exchangeData: state.application.tooltipData,
   visible: state.application.tooltipDisplayMode === MAP_EXCHANGE_TOOLTIP_KEY,
 });
 

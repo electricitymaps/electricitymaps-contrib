@@ -37,9 +37,9 @@ const initialApplicationState = {
   legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
+  tooltipData: null,
   tooltipDisplayMode: null,
   tooltipPosition: { x: 0, y: 0 },
-  tooltipZoneData: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
@@ -93,9 +93,9 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'SHOW_TOOLTIP': {
       return Object.assign({}, state, {
+        tooltipData: action.payload.data,
         tooltipDisplayMode: action.payload.displayMode,
         tooltipPosition: action.payload.position,
-        tooltipZoneData: action.payload.zoneData,
       });
     }
 
