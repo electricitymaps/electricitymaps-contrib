@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 
 import { __ } from '../helpers/translation';
 import { co2Sub } from '../helpers/formatting';
-import { modifyDOM } from '../helpers/dom';
 
 const orderings = [
   {
@@ -98,12 +97,17 @@ const FAQ = ({ className }) => {
   // See https://github.com/tmrowco/electricitymap-contrib/issues/2161.
   const ref = useRef(null);
   setTimeout(() => {
-    modifyDOM(ref, '.entry-link', (link) => {
-      const entryKey = link.href.split('#')[1];
-      if (entryKey) {
-        link.onclick = () => { setAnswerVisible(entryKey, true); };
-      }
-    });
+    if (ref && ref.current) {
+      const links = ref.current.querySelectorAll('.entry-link');
+      // This seems to be the most browser-compatible way to iterate through a list of nodes.
+      // See: https://developer.mozilla.org/en-US/docs/Web/API/NodeList#Example.
+      Array.prototype.forEach.call(links, (link) => {
+        const entryKey = link.href.split('#')[1];
+        if (entryKey) {
+          link.onclick = () => { setAnswerVisible(entryKey, true); };
+        }
+      });
+    }
   }, 50);
 
   return (
