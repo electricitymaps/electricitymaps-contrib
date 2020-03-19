@@ -16,6 +16,7 @@ import Tooltips from './tooltips';
 
 // Modules
 import { __ } from '../helpers/translation';
+import OnboardingModal from '../components/onboardingmodal';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -94,5 +95,6 @@ export default connect(mapStateToProps)(props => (
       <Tabs />
     </div>
     <Tooltips />
+    <OnboardingModal />
   </React.Fragment>
 ));

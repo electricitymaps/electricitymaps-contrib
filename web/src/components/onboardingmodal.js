@@ -1,193 +1,152 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-);
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const translation = require('../helpers/translation');
-const formatting = require('../helpers/formatting');
+import { __ } from '../helpers/translation';
+import { co2Sub } from '../helpers/formatting';
+import { saveKey } from '../helpers/storage';
+import { dispatchApplication } from '../store';
+import thirdPartyServices from '../services/thirdparty';
 
-const SPACE_KEY_CODE = 32;
-
-const defaultViews = [{
+const views = [{
   headerImage: 'images/onboarding/electricymapLogoIcon.svg',
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
-  textHtml: `<div><h1>electricityMap</h1></div>
-      <div><h2>${translation.translate('onboarding-modal.view1.subtitle')}</h2></div>`,
-},
-{
+  renderContent: () => (
+    <React.Fragment>
+      <div>
+        <h1>electricityMap</h1>
+      </div>
+      <div>
+        <h2>{__('onboarding-modal.view1.subtitle')}</h2>
+      </div>
+    </React.Fragment>
+  ),
+}, {
   headerImage: 'images/onboarding/mapExtract.png',
-  textHtml: `<div><h2>${formatting.co2Sub(translation.translate('onboarding-modal.view2.header'))}</h2></div>
-      <div>${translation.translate('onboarding-modal.view2.text')}</div>`,
+  renderContent: () => (
+    <React.Fragment>
+      <div>
+        <h2>{co2Sub(__('onboarding-modal.view2.header'))}</h2>
+      </div>
+      <div>{__('onboarding-modal.view2.text')}</div>
+    </React.Fragment>
+  ),
 }, {
   headerImage: 'images/onboarding/exchangeArrows.png',
-  textHtml: `<div><h2>${translation.translate('onboarding-modal.view3.header')}</h2></div> 
-      <div>${translation.translate('onboarding-modal.view3.text')}</div>`,
-},
-{
+  renderContent: () => (
+    <React.Fragment>
+      <div>
+        <h2>{__('onboarding-modal.view3.header')}</h2>
+      </div> 
+      <div>{__('onboarding-modal.view3.text')}</div>
+    </React.Fragment>
+  ),
+}, {
   headerImage: 'images/onboarding/splitLayers.png',
-  textHtml: `<div><h2>${translation.translate('onboarding-modal.view4.header')}</h2></div>
-      <div>${translation.translate('onboarding-modal.view4.text')}</div>`,
-},
-];
+  renderContent: () => (
+    <React.Fragment>
+      <div>
+        <h2>{__('onboarding-modal.view4.header')}</h2>
+      </div>
+      <div>{__('onboarding-modal.view4.text')}</div>
+    </React.Fragment>
+  ),
+}];
 
-export default class OnboardingModal {
-  constructor(selectorId, argConfig) {
-    const config = argConfig || {};
-    this.views = config.views || defaultViews;
-    this.dismissHandler = config.dismissHandler || (() => undefined);
+const mapStateToProps = state => ({
+  // Show onboarding modal only if it's not been seen yet and if the app is not embedded
+  visible: !state.application.onboardingSeen && !state.application.isEmbedded,
+});
 
-    this.selectorId = selectorId;
-    this.currentViewIndex = 0;
-    this._setupSpaceKeypressDismiss();
-    this._setupLayout();
-  }
+const OnboardingModal = ({ visible }) => {
+  const [currentViewIndex, setCurrentViewIndex] = useState(0);
+  const isOnLastView = () => currentViewIndex === views.length - 1;
+  const isOnFirstView = () => currentViewIndex === 0;
 
-  onDismiss(dismissHandler) {
-    this.dismissHandler = dismissHandler;
-  }
-
-  dismiss() {
-    this.dismissHandler();
-    this._hideRootContainer();
-    this._removeBackgroundOverlay();
-  }
-
-  render() {
-    this._updateBody();
-    this._updateSideButtons();
-    this._updateFooter();
-  }
-
-  showPreviousView() {
-    if (this.currentViewIndex > 0) {
-      this.currentViewIndex -= 1;
-      this.render();
-    } else {
-      throw new Error('Cannot show previous view: No more views to show');
+  const handleDismiss = () => {
+    saveKey('onboardingSeen', true);
+    dispatchApplication('onboardingSeen', true);
+  };
+  const handleBack = () => {
+    if (!isOnFirstView()) {
+      setCurrentViewIndex(currentViewIndex - 1);
     }
-  }
-
-  showNextView() {
-    if (this.views.length - 1 > this.currentViewIndex) {
-      this.currentViewIndex += 1;
-      this.render();
-    } else {
-      throw new Error('Cannot show next view: No more views to show');
+  };
+  const handleForward = () => {
+    if (!isOnLastView()) {
+      setCurrentViewIndex(currentViewIndex + 1);
     }
-  }
+  };
 
-  _setupSpaceKeypressDismiss() {
-    document.addEventListener('keypress', (e) => {
-      if (e.keyCode === SPACE_KEY_CODE) {
-        this.dismiss();
+  // Dismiss the modal if SPACE key is pressed
+  useEffect(() => {
+    const keyPressHandlers = (ev) => {
+      if (ev.keyCode === 32) {
+        handleDismiss();
       }
-    });
-  }
+    };
+    document.addEventListener('keypress', keyPressHandlers);
+    return () => {
+      document.removeEventListener('keypress', keyPressHandlers);
+    };
+  });
 
-  _setupLayout() {
-    this._setupRootContainer();
-    this._setupBackgroundOverlay();
-    this._setupLeftButton();
-    this._setupBody();
-    this._setupFooter();
-    this._setupRightButton();
-    this.render();
-  }
-
-  _setupBackgroundOverlay() {
-    this.backgroundOverlay = d3.select(this.selectorId).append('div').attr('class', 'modal-background-overlay');
-    this.backgroundOverlay.on('click', () => {
-      this.dismiss();
-    });
-  }
-
-  _setupRootContainer() {
-    this.rootContainer = d3.select(this.selectorId).append('div').attr('class', 'modal');
-  }
-
-  _hideRootContainer() {
-    this.rootContainer.attr('style', 'display: none');
-  }
-
-  _removeBackgroundOverlay() {
-    this.backgroundOverlay.remove();
-  }
-
-  _setupLeftButton() {
-    const leftButtonContainer = this.rootContainer.append('div').attr('class', 'modal-left-button-container');
-    this.leftButton = leftButtonContainer.append('div').attr('class', 'modal-left-button');
-    this.leftButton.append('i').attr('class', 'material-icons').text('arrow_back');
-    this.leftButton.on('click', () => this.showPreviousView());
-  }
-
-  _setupRightButton() {
-    const rightButtonContainer = this.rootContainer.append('div').attr('class', 'modal-right-button-container');
-    this.rightButton = rightButtonContainer.append('div').attr('class', 'modal-right-button');
-    this.rightButton.append('i').attr('class', 'material-icons');
-    this.rightButton.on('click', () => {
-      if (this._modalIsAtLastView()) {
-        this.dismiss();
-      } else {
-        this.showNextView();
-      }
-    });
-  }
-
-  _setupBody() {
-    this.modalBody = this.rootContainer.append('div').attr('class', 'modal-body');
-  }
-
-  _setupCloseButton() {
-    const closeButtonContainer = this.modalBody.append('div').attr('class', 'modal-close-button-container');
-    this.closeButton = closeButtonContainer.append('div').attr('class', 'modal-close-button');
-    this.closeButton.append('i').attr('class', 'material-icons').text('close');
-    this.closeButton.on('click', () => {
-      this.dismiss();
-    });
-  }
-
-  _setupFooter() {
-    this.modalFooter = this.rootContainer.append('div').attr('class', 'modal-footer');
-    this.modalFooterCircles = [];
-    for (let i = 0; i < this.views.length; i += 1) {
-      this.modalFooterCircles[i] = this.modalFooter.append('div').attr('class', 'modal-footer-circle');
+  // Track event when the onboarding modal opens up
+  useEffect(() => {
+    if (visible) {
+      thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
     }
-    this.modalFooterCircles[0].classed('highlight', true);
-  }
+  }, [visible]);
 
-  _updateBody() {
-    this.modalBody.html(null);
+  if (!visible) return null;
 
-    const currentView = this.views[this.currentViewIndex];
-    this._setupCloseButton();
+  return (
+    <React.Fragment>
+      <div className="modal-background-overlay" onClick={handleDismiss} />
+      <div className="modal">
+        <div className="modal-left-button-container">
+          {!isOnFirstView() && (
+            <div className="modal-left-button" onClick={handleBack}>
+              <i className="material-icons">arrow_back</i>
+            </div>
+          )}
+        </div>
+        <div className="modal-body">
+          <div className="modal-close-button-container">
+            <div className="modal-close-button" onClick={handleDismiss}>
+              <i className="material-icons">close</i>
+            </div>
+          </div>
+          <div
+            className={`modal-header ${views[currentViewIndex].headerCssClass || ''}`}
+            style={{ backgroundImage: `url("${views[currentViewIndex].headerImage}")` }}
+          />
+          <div className={`modal-text ${views[currentViewIndex].textCssClass || ''}`}>
+            {views[currentViewIndex].renderContent()}
+          </div>
+        </div>
+        <div className="modal-footer">
+          {views.map((view, index) => (
+            <div
+              key={view.headerImage}
+              className={`modal-footer-circle ${index === currentViewIndex ? 'highlight' : ''}`}
+            />
+          ))}
+        </div>
+        <div className="modal-right-button-container">
+          {isOnLastView() ? (
+            <div className="modal-right-button green" onClick={handleDismiss}>
+              <i className="material-icons">check</i>
+            </div>
+          ) : (
+            <div className="modal-right-button" onClick={handleForward}>
+              <i className="material-icons">arrow_forward</i>
+            </div>
+          )}
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
 
-    this.modalBody.append('div').attr('class', `modal-header ${currentView.headerCssClass || ''}`)
-      .style('background-image', `url("${currentView.headerImage}")`);
-
-    this.modalBody.append('div').attr('class', `modal-text ${currentView.textCssClass || ''}`)
-      .html(currentView.textHtml);
-  }
-
-  _updateSideButtons() {
-    this.leftButton.classed('hidden', this._modalIsAtFirstView());
-
-    this.rightButton.select('i').text(this._modalIsAtLastView() ? 'check' : 'arrow_forward');
-    this.rightButton.classed('green', this._modalIsAtLastView());
-  }
-
-
-  _updateFooter() {
-    for (let i = 0; i < this.modalFooterCircles.length; i += 1) {
-      this.modalFooterCircles[i].classed('highlight', i === this.currentViewIndex);
-    }
-  }
-
-  _modalIsAtFirstView() {
-    return this.currentViewIndex === 0;
-  }
-
-  _modalIsAtLastView() {
-    return this.currentViewIndex === this.views.length - 1;
-  }
-}
+export default connect(mapStateToProps)(OnboardingModal);

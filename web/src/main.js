@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 import { debounce } from 'lodash';
 
 // Components
-import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
 import HorizontalColorbar from './components/horizontalcolorbar';
 
@@ -130,7 +129,6 @@ LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
-let onboardingModal;
 
 // Render DOM
 ReactDOM.render(
@@ -249,12 +247,6 @@ moment.locale(getState().application.locale.toLowerCase());
 
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
-
-// do not display onboarding when we've seen it or we're embedded
-if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
-  onboardingModal = new OnboardingModal('#app');
-  thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
-}
 
 // Display randomly alternating header campaign message
 const randomBoolean = Math.random() >= 0.5;
@@ -785,14 +777,6 @@ d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('show
 d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('showPageState', 'info'));
 d3.selectAll('.highscore-button')
   .on('click touchend', () => dispatchApplication('showPageState', 'highscore'));
-
-// Onboarding modal
-if (onboardingModal) {
-  onboardingModal.onDismiss(() => {
-    saveKey('onboardingSeen', true);
-    dispatchApplication('onboardingSeen', true);
-  });
-}
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
