@@ -251,7 +251,7 @@ thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
 // do not display onboarding when we've seen it or we're embedded
 if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
-  onboardingModal = new OnboardingModal('#main');
+  onboardingModal = new OnboardingModal('#app');
   thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
 }
 
