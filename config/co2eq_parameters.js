@@ -14,8 +14,21 @@ exports.sourceOf = function(mode, zoneKey) {
 };
 exports.defaultExportIntensityOf = zoneKey =>
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).carbonIntensity;
-exports.defaultRenewableRatioOf = zoneKey =>
+exports.defaultRenewableRatioOf = function(zoneKey) {
+    //if zonekey has ratios in co2eqparameters, then those ratios
+    const key = (Object.keys(co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios || {}).length === 0) ? zoneKey : 'defaults' ;
+    const ratios = co2eqParameters.fallbackZoneMixes[key].powerOriginRatios;
+    
+    let renewableRatio = 0;
+    Object.keys(ratios).forEach(function (fuelKey) {
+      if (exports.renewableAccessor(zoneKey, fuelKey, 1) === 1) {
+        renewableRatio += co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios[fuelKey];
+      }
+    });
+    return renewableRatio
+}
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).renewableRatio;
+
 exports.defaultFossilFuelRatioOf = function(zoneKey) {
   //if zonekey has ratios in co2eqparameters, then those ratios
   const key = (Object.keys(co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios || {}).length === 0) ? zoneKey : 'defaults' ;
