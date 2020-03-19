@@ -1,0 +1,36 @@
+{
+    "allModes" : [
+        "biomass",
+        "battery discharge",
+        "battery storage",
+        "coal", 
+        "gas",
+        "geothermal",
+        "hydro",
+        "hydro discharge",
+        "hydro storage",
+        "nuclear",
+        "oil",
+        "solar",
+        "unknown",
+        "wind"
+    ],
+    "productionModes": [
+        "biomass",
+        "battery discharge",
+        "coal", 
+        "gas",
+        "geothermal",
+        "hydro",
+        "hydro discharge",
+        "nuclear",
+        "oil",
+        "solar",
+        "unknown",
+        "wind"
+    ],
+    "storageModes": [
+        "battery storage",
+        "hydro storage"
+    ]
+}

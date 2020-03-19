@@ -16,8 +16,19 @@ exports.defaultExportIntensityOf = zoneKey =>
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).carbonIntensity;
 exports.defaultRenewableRatioOf = zoneKey =>
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).renewableRatio;
-exports.defaultFossilFuelRatioOf = zoneKey =>
-  (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).fossilFuelRatio;
+exports.defaultFossilFuelRatioOf = function(zoneKey) {
+  //if zonekey has ratios in co2eqparameters, then those ratios
+  const key = (Object.keys(co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios || {}).length === 0) ? zoneKey : 'defaults' ;
+  const ratios = co2eqParameters.fallbackZoneMixes[key].powerOriginRatios;
+  
+  let fossilFuelRatio = 0;
+  Object.keys(ratios).forEach(function (fuelKey) {
+    if (exports.fossilFuelAccessor(zoneKey, fuelKey, 1) === 1) {
+      fossilFuelRatio += co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios[fuelKey];
+    }
+  });
+  return fossilFuelRatio
+}
 exports.fossilFuelAccessor = (zoneKey, k, v) => {
   return (k == 'coal' ||
           k == 'gas' ||
@@ -29,4 +40,17 @@ exports.renewableAccessor = (zoneKey, k, v) => {
   return (exports.fossilFuelAccessor(zoneKey, k, v) ||
           k === 'nuclear') ? 0 : 1;
   // TODO(bl): remove storage from renewable list?
+}
+
+exports.powerOriginRatio = function(zoneKey, fuelKey) {
+  //if no ratios found for that zoneKey, use defaults
+  const key = (Object.keys(co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios || {}).length === 0) ? zoneKey : 'defaults' ;
+  
+  return co2eqParameters.fallbackZoneMixes[key].powerOriginRatios[fuelKey]
+}
+
+exports.powerOriginRatioFuel = function(fuelKey) {
+  return function powerOriginRatioWithFuelSet(zoneKey) {
+    return exports.powerOriginRatio(zoneKey, fuelKey)
+  }
 }
