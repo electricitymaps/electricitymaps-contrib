@@ -101,7 +101,10 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
-// Set state depending on URL params
+// Update Redux state with the URL search params initially and also
+// every time the URL change is triggered by a browser action to ensure
+// the URL -> Redux binding (the other direction is ensured by observing
+// the relevant state Redux entries and triggering the URL update below).
 dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 window.addEventListener('popstate', () => {
   dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
@@ -134,6 +137,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
+        {/* Only one active app route - the application state is */}
+        {/* currently fully managed through the URL search params */}
         <Route path="/">
           <Main />
         </Route>
@@ -1036,8 +1041,15 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
   }
 });
 
-// Observe for changes requiring an update of history
-const delayedUpdateURLFromState = debounce(updateURLFromState, 50);
+// Observe all the Redux state entries that reflect the URL to ensure the
+// Redux -> URL binding one-way binding (the other direction is ensured by
+// listening to the `popstate` event above). The call is being debounced to
+// make sure all the consecutive state changes get bundled together  under
+// a single URL state transition.
+// TODO: In order to get rid of the debounce, we should probably not keep
+// URL search params in Redux at all.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
+const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
 observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.showPageState, (_, state) => { delayedUpdateURLFromState(state); });
