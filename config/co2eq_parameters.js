@@ -16,7 +16,7 @@ exports.defaultExportIntensityOf = zoneKey =>
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).carbonIntensity;
 exports.defaultRenewableRatioOf =(zoneKey) => {
     // if `zoneKey` has ratios in co2eqparameters, then use those ratios
-    const key = (Object.keys(co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios || {}).length === 0) ? zoneKey : 'defaults' ;
+    const key = (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).powerOriginRatios ? zoneKey : 'defaults' ;
     const ratios = co2eqParameters.fallbackZoneMixes[key].powerOriginRatios;
     
     let renewableRatio = 0;
