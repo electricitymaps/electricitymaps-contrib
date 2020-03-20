@@ -441,7 +441,6 @@ function renderMap(state) {
         ? moment(getState().application.customDate) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
-      scales.solarColor,
       (err) => {
         if (err) {
           console.error(err.message);

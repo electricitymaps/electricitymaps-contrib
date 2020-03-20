@@ -9,15 +9,11 @@ import { updateApplication } from '../actioncreators';
 import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
-import { getCo2Scale, maxSolarDSWRF, windColor } from '../helpers/scales';
+import { getCo2Scale, solarColor, windColor } from '../helpers/scales';
 import { co2Sub } from '../helpers/formatting';
 
 // TODO: Move styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
-
-const solarColorbarColor = scaleLinear()
-  .domain([0, 0.5 * maxSolarDSWRF, maxSolarDSWRF])
-  .range(['black', 'white', 'gold']);
 
 const mapStateToProps = state => ({
   co2ColorbarMarker: state.application.co2ColorbarMarker,
@@ -74,7 +70,7 @@ const Legend = ({
               </div>
               <HorizontalColorbar
                 id="solar-potential-bar"
-                colorScale={solarColorbarColor}
+                colorScale={solarColor}
                 currentMarker={co2ColorbarMarker}
                 markerColor="red"
                 ticksCount={5}

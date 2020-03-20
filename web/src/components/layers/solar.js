@@ -61,7 +61,7 @@ class SolarLayer {
     });
   }
 
-  draw(now, argGrib1, argGrib2, solarColor, callback) {
+  draw(now, argGrib1, argGrib2, callback) {
     // Only redraw after 5min
     if (this.lastDraw && (this.lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
       return callback(null);
