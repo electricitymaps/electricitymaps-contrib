@@ -791,7 +791,7 @@
   "fallbackZoneMixes": {
     "defaults": {
       "_source": "BP Statistical Review of World Energy 2019, values from 2018, and Tomorrow Avg for average carbon intensity, and IRENA report for Biomass and geothermal",
-      "_comment": "afsfhttps://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf",
+      "_comment": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf",
       "carbonIntensity": 301.13684338512996,
       "powerOriginRatios": {
         "biomass": 0.017509,
