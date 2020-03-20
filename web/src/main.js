@@ -161,9 +161,6 @@ ReactDOM.render(
 // Set standard theme
 let theme = themes.bright;
 
-const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
-  .markerColor('black');
-
 // Initialise mobile app (cordova)
 const app = {
   // Application Constructor
@@ -372,10 +369,10 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+      dispatchApplication('windColorbarMarker', Math.sqrt(u * u + v * v));
     }
   } else {
-    windColorbar.currentMarker(undefined);
+    dispatchApplication('windColorbarMarker', null);
   }
   if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
     const now = getState().application.customDate
@@ -793,13 +790,9 @@ function routeToPage(pageName, state) {
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    if (state.application.windEnabled && windColorbar) windColorbar.render();
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
-    if (pageName === 'info') {
-      if (state.application.windEnabled) if (windColorbar) windColorbar.render();
-    }
   }
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
@@ -979,7 +972,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 // Observe for wind settings change
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   d3.selectAll('.wind-button').classed('active', windEnabled);
-  d3.select('.wind-potential-legend').classed('visible', windEnabled);
 
   windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
@@ -988,7 +980,6 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
   const now = state.customDate
     ? moment(state.customDate) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
-    windColorbar.render();
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
     } else {

@@ -19,6 +19,7 @@ const HorizontalColorbar = ({
   currentMarker,
   id,
   markerColor,
+  ticksCount = 5,
 }) => {
   const ref = useRef(null);
   const width = useWidthObserver(ref, 2 * PADDING_X);
@@ -70,7 +71,7 @@ const HorizontalColorbar = ({
           fontFamily="sans-serif"
           textAnchor="middle"
         >
-          {spreadOverDomain(linearScale, 5).map(t => (
+          {spreadOverDomain(linearScale, ticksCount).map(t => (
             <g key={`tick-${t}`} className="tick" transform={`translate(${linearScale(t)},0)`}>
               <text fill="currentColor" y="8" dy="0.81em">{Math.round(t)}</text>
             </g>

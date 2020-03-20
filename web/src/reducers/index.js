@@ -47,6 +47,7 @@ const initialApplicationState = {
   solarColorbarMarker: null,
   solarEnabled: cookieGetBool('solarEnabled', false),
   useRemoteEndpoint: false,
+  windColorbarMarker: null,
   windEnabled: cookieGetBool('windEnabled', false),
 
   // TODO(olc): refactor this state

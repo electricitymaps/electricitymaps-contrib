@@ -9,7 +9,7 @@ import { updateApplication } from '../actioncreators';
 import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbarreact';
-import { getCo2Scale, maxSolarDSWRF } from '../helpers/scales';
+import { getCo2Scale, maxSolarDSWRF, windColor } from '../helpers/scales';
 import { co2Sub } from '../helpers/formatting';
 
 // TODO: Move styles from styles.css to here
@@ -25,6 +25,8 @@ const mapStateToProps = state => ({
   legendVisible: state.application.legendVisible,
   solarColorbarMarker: state.application.solarColorbarMarker,
   solarEnabled: state.application.solarEnabled,
+  windColorbarMarker: state.application.windColorbarMarker,
+  windEnabled: state.application.windEnabled,
 });
 const mapDispatchToProps = dispatch => ({
   dispatchApplication: (k, v) => dispatch(updateApplication(k, v)),
@@ -42,6 +44,8 @@ class Component extends React.PureComponent {
       legendVisible,
       solarColorbarMarker,
       solarEnabled,
+      windColorbarMarker,
+      windEnabled,
     } = this.props;
     const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
 
@@ -52,14 +56,20 @@ class Component extends React.PureComponent {
           <i className={`material-icons toggle-legend-button up ${!legendVisible ? 'visible' : ''}`} onClick={this.toggleLegend}>call_made</i>
           <i className={`material-icons toggle-legend-button down ${legendVisible ? 'visible' : ''}`} onClick={this.toggleLegend}>call_received</i>
         </div>
-        <div className={`wind-potential-legend floating-legend ${mobileCollapsedClass}`}>
-          <div className="legend-header">
-            {__('legends.windpotential')}
-            {' '}
-            <small>(m/s)</small>
+        {windEnabled && (
+          <div className={`wind-potential-legend floating-legend ${mobileCollapsedClass}`}>
+            <div className="legend-header">
+              {__('legends.windpotential')}<small> (m/s)</small>
+            </div>
+            <HorizontalColorbar
+              id="wind-potential-bar"
+              colorScale={windColor}
+              currentMarker={windColorbarMarker}
+              markerColor="black"
+              ticksCount={6}
+            />
           </div>
-          <svg className="wind-potential-bar potential-bar colorbar" />
-        </div>
+        )}
         {solarEnabled && (
           <div className={`solar-potential-legend floating-legend ${mobileCollapsedClass}`}>
             <div className="legend-header">
@@ -70,6 +80,7 @@ class Component extends React.PureComponent {
               colorScale={solarColorbarColor}
               currentMarker={co2ColorbarMarker}
               markerColor="red"
+              ticksCount={5}
             />
           </div>
         )}
@@ -83,6 +94,7 @@ class Component extends React.PureComponent {
             colorScale={getCo2Scale(colorBlindModeEnabled)}
             currentMarker={co2ColorbarMarker}
             markerColor="white"
+            ticksCount={5}
           />
         </div>
       </div>
