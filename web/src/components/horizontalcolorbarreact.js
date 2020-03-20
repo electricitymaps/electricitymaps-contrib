@@ -14,7 +14,12 @@ const spreadOverDomain = (scale, count) => {
   return range(count).map(v => x1 + (x2 - x1) * v / (count - 1));
 };
 
-const HorizontalColorbar = ({ colorScale, currentMarker, id, markerColor }) => {
+const HorizontalColorbar = ({
+  colorScale,
+  currentMarker,
+  id,
+  markerColor,
+}) => {
   const ref = useRef(null);
   const width = useWidthObserver(ref, 2 * PADDING_X);
   const height = useHeightObserver(ref, 2 * PADDING_Y);
@@ -24,13 +29,13 @@ const HorizontalColorbar = ({ colorScale, currentMarker, id, markerColor }) => {
     .range([0, width]);
 
   // const deltaOriginal = width - scale.range().length;
-  
+
   return (
-    <svg className="colorbar" ref={ref}>
+    <svg className={`${id} colorbar`} ref={ref}>
       <g transform={`translate(${PADDING_X},0)`}>
         <linearGradient id={`${id}-gradient`} x2="100%">
           {spreadOverDomain(colorScale, 10).map((value, index) => (
-            <stop offset={index / 9} stopColor={colorScale(value)} />
+            <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
           ))}
         </linearGradient>
         <rect
@@ -65,15 +70,15 @@ const HorizontalColorbar = ({ colorScale, currentMarker, id, markerColor }) => {
           fontFamily="sans-serif"
           textAnchor="middle"
         >
-          {spreadOverDomain(linearScale, 3).map(t => (
+          {spreadOverDomain(linearScale, 5).map(t => (
             <g key={`tick-${t}`} className="tick" transform={`translate(${linearScale(t)},0)`}>
-              <text fill="currentColor" y="8" dy="0.81em">{t}</text>
+              <text fill="currentColor" y="8" dy="0.81em">{Math.round(t)}</text>
             </g>
           ))}
         </g>
       </g>
     </svg>
-  )
+  );
 };
 
 export default HorizontalColorbar;

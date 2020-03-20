@@ -10,7 +10,7 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isArray, isFinite } from 'lodash';
 
-import { dispatch } from '../store';
+import { dispatch, dispatchApplication } from '../store';
 import { useWidthObserver } from '../effects';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
@@ -31,14 +31,12 @@ const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
 
 function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
-  dispatch({
-    type: 'SET_CO2_COLORBAR_MARKER',
-    payload: {
-      marker: modeOrder.includes(mode)
-        ? getProductionCo2Intensity(mode, zoneData)
-        : getExchangeCo2Intensity(mode, zoneData, electricityMixMode),
-    },
-  });
+  dispatchApplication(
+    'co2ColorbarMarker',
+    modeOrder.includes(mode)
+      ? getProductionCo2Intensity(mode, zoneData)
+      : getExchangeCo2Intensity(mode, zoneData, electricityMixMode)
+  );
   dispatch({
     type: 'SHOW_TOOLTIP',
     payload: {
@@ -54,7 +52,7 @@ function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
 }
 
 function handleRowMouseOut() {
-  dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+  dispatchApplication('co2ColorbarMarker', null);
   dispatch({ type: 'HIDE_TOOLTIP' });
 }
 
