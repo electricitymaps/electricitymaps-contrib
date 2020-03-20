@@ -19,13 +19,13 @@ exports.defaultRenewableRatioOf =(zoneKey) => {
     const key = (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).powerOriginRatios ? zoneKey : 'defaults' ;
     const ratios = co2eqParameters.fallbackZoneMixes[key].powerOriginRatios;
     
-    let renewableRatio = 0;
-    Object.keys(ratios).forEach(function (fuelKey) {
-      if (exports.renewableAccessor(zoneKey, fuelKey, 1) === 1) {
-        renewableRatio += co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios[fuelKey];
-      }
-    });
-    return renewableRatio
+    return Object.keys(ratios)
+        // only keep the keys that are renewable
+        .filter(fuelKey => exports.renewableAccessor(zoneKey, fuelKey, 1) === 1)
+        // obtain the values
+        .map(fuelKey => ratios[fuelKey])
+        // take the sum
+        .reduce((a, b) => a + b, 0)
 }
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).renewableRatio;
 
