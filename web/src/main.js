@@ -262,15 +262,8 @@ d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
 let co2ColorScale;
-let co2Colorbars = [];
 function updateCo2Scale() {
   co2ColorScale = getCo2Scale(getState().application.colorBlindModeEnabled);
-  co2Colorbars = [
-    new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2ColorScale, null, [0, 400, 800])
-      .markerColor('white')
-      .domain([0, scales.maxCo2])
-      .render(),
-  ];
   if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
@@ -640,9 +633,6 @@ function fetch(showLoading, callback) {
   });
 }
 
-window.addEventListener('resize', () => {
-  co2Colorbars.forEach((d) => { d.render(); });
-});
 // Only for debugging purposes
 window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
@@ -809,14 +799,12 @@ function routeToPage(pageName, state) {
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    co2Colorbars.forEach((d) => { d.render(); });
     if (state.application.windEnabled && windColorbar) windColorbar.render();
     if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
     if (pageName === 'info') {
-      co2Colorbars.forEach((d) => { d.render(); });
       if (state.application.windEnabled) if (windColorbar) windColorbar.render();
       if (state.application.solarEnabled) if (solarColorbar) solarColorbar.render();
     }
@@ -902,10 +890,6 @@ function renderZones(state) {
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
   }
 }
-
-observe(state => state.application.co2ColorbarMarker, (co2ColorbarMarker, state) => {
-  co2Colorbars.forEach((c) => { c.currentMarker(co2ColorbarMarker); });
-});
 
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {

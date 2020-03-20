@@ -7,12 +7,16 @@ import { connect } from 'react-redux';
 import { updateApplication } from '../actioncreators';
 import { __ } from '../helpers/translation';
 
+import HorizontalColorbar from '../components/horizontalcolorbarreact';
+import { getCo2Scale } from '../helpers/scales';
 const { co2Sub } = require('../helpers/formatting');
 
 // TODO: Move styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
 const mapStateToProps = state => ({
+  co2ColorbarMarker: state.application.co2ColorbarMarker,
+  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   legendVisible: state.application.legendVisible,
 });
 const mapDispatchToProps = dispatch => ({
@@ -25,7 +29,7 @@ class Component extends React.PureComponent {
   }
 
   render() {
-    const { legendVisible } = this.props;
+    const { co2ColorbarMarker, colorBlindModeEnabled, legendVisible } = this.props;
     const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
 
     return (
@@ -65,7 +69,12 @@ class Component extends React.PureComponent {
               eq/kWh)
             </small>
           </div>
-          <svg className="co2-colorbar colorbar potential-bar" />
+          <HorizontalColorbar
+            id="carbon-intensity-colorbar"
+            colorScale={getCo2Scale(colorBlindModeEnabled)}
+            currentMarker={co2ColorbarMarker}
+            markerColor="white"
+          />
         </div>
       </div>
     );

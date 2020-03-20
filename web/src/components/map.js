@@ -112,7 +112,7 @@ export default class Map {
       nonClickableFill: '#D4D9DE',
       oceanColor: '#FAFAFA',
       co2Scale: {
-        steps: [0, 150, 600, 750],
+        steps: [0, 150, 600, 800],
         colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
       },
     };
