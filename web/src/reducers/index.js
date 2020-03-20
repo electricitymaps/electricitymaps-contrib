@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
-const dataReducer = require('./dataReducer');
-const { getKey } = require('../helpers/storage');
+import { getKey } from '../helpers/storage';
+
+import dataReducer from './dataReducer';
 
 const isLocalhost = window.location.href.indexOf('electricitymap') !== -1
   || window.location.href.indexOf('192.') !== -1;
@@ -124,6 +125,18 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return Object.assign({}, state, {
         selectedZoneName,
         selectedZoneTimeIndex: null,
+      });
+    }
+
+    case 'UPDATE_STATE_FROM_URL': {
+      const { searchParams } = new URL(action.payload.url);
+      return Object.assign({}, state, {
+        customDate: searchParams.get('datetime'),
+        selectedZoneName: searchParams.get('countryCode'),
+        showPageState: searchParams.get('page'),
+        solarEnabled: searchParams.get('solar') === 'true',
+        useRemoteEndpoint: searchParams.get('remote') === 'true',
+        windEnabled: searchParams.get('wind') === 'true',
       });
     }
 
