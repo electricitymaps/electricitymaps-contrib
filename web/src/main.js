@@ -12,7 +12,6 @@ import { debounce } from 'lodash';
 
 // Components
 import ZoneMap from './components/map';
-import HorizontalColorbar from './components/horizontalcolorbar';
 
 // Layer Components
 import ExchangeLayer from './components/layers/exchange';

@@ -6,8 +6,8 @@ import { extent } from 'd3-array';
 import { getCo2Scale } from '../helpers/scales';
 import { useWidthObserver, useHeightObserver } from '../effects';
 
-const PADDING_X = 13; // Inner padding allow place for the axis text
-const PADDING_Y = 10; // Inner padding allow place for the axis text
+const PADDING_X = 13;
+const PADDING_Y = 10;
 
 const spreadOverDomain = (scale, count) => {
   const [x1, x2] = extent(scale.domain());
@@ -28,8 +28,6 @@ const HorizontalColorbar = ({
   const linearScale = scaleLinear()
     .domain(extent(colorScale.domain()))
     .range([0, width]);
-
-  // const deltaOriginal = width - scale.range().length;
 
   return (
     <svg className={`${id} colorbar`} ref={ref}>

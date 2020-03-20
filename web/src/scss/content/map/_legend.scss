@@ -69,11 +69,6 @@
         position: absolute;
         right: 5px;
         top: 5px;
-        display: none;
-
-        &.visible {
-            display: inherit;
-        }
     }
 }
 
@@ -83,11 +78,5 @@
 
     .colorbar{
         width: 100%;
-    }
-
-    @include respond-to('small') {
-        &.mobile-collapsed {
-            display:none;
-        }
     }
 }
