@@ -8,7 +8,7 @@ import { dispatchApplication } from '../store';
 import { updateApplication } from '../actioncreators';
 import { __ } from '../helpers/translation';
 
-import HorizontalColorbar from '../components/horizontalcolorbarreact';
+import HorizontalColorbar from '../components/horizontalcolorbar';
 import { getCo2Scale, maxSolarDSWRF, windColor } from '../helpers/scales';
 import { co2Sub } from '../helpers/formatting';
 
