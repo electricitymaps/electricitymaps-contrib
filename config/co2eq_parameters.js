@@ -16,7 +16,7 @@ exports.sourceOf = function(mode, zoneKey) {
 exports.defaultExportIntensityOf = zoneKey =>
   (co2eqParameters.fallbackZoneMixes[zoneKey] || {}).carbonIntensity;
 
-exports.defaultRenewableRatioOf =(zoneKey) => {
+exports.defaultRenewableRatioOf = (zoneKey) => {
     // if `zoneKey` has ratios in co2eqparameters, then use those ratios
   const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
@@ -30,7 +30,7 @@ exports.defaultRenewableRatioOf =(zoneKey) => {
         .reduce((a, b) => a + b, 0)
 }
 
-exports.defaultFossilFuelRatioOf = function(zoneKey) {
+exports.defaultFossilFuelRatioOf = (zoneKey) => {
   //if zonekey has ratios in co2eqparameters, then those ratios
   const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
@@ -65,7 +65,7 @@ exports.defaultPowerOriginRatio = (zoneKey, fuelKey) => {
   return co2eqParameters.fallbackZoneMixes[key].powerOriginRatios[fuelKey]
 }
 
-exports.defaultPowerOriginRatioFuel = function(fuelKey) {
+exports.defaultPowerOriginRatioFuel = (fuelKey) => {
   return function powerOriginRatioWithFuelSet(zoneKey) {
     return exports.defaultPowerOriginRatio(zoneKey, fuelKey)
   }
