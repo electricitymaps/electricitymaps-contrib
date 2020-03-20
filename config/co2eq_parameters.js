@@ -55,7 +55,7 @@ exports.renewableAccessor = (zoneKey, k, v) => {
   // TODO(bl): remove storage from renewable list?
 }
 
-exports.powerOriginRatio = function(zoneKey, fuelKey) {
+exports.defaultPowerOriginRatio = (zoneKey, fuelKey) => {
   //if no ratios found for that zoneKey, use defaults
   const key = (Object.keys(co2eqParameters.fallbackZoneMixes[zoneKey].powerOriginRatios || {}).length === 0) ? zoneKey : 'defaults' ;
   
