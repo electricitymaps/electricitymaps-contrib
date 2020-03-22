@@ -21,13 +21,13 @@ exports.defaultRenewableRatioOf = (zoneKey) => {
   const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
     
-    return Object.keys(ratios)
-        // only keep the keys that are renewable
-        .filter(fuelKey => exports.renewableAccessor(zoneKey, fuelKey, 1) === 1)
-        // obtain the values
-        .map(fuelKey => ratios[fuelKey])
-        // take the sum
-        .reduce((a, b) => a + b, 0)
+  return Object.keys(ratios)
+    // only keep the keys that are renewable
+    .filter(fuelKey => exports.renewableAccessor(zoneKey, fuelKey, 1) === 1)
+    // obtain the values
+    .map(fuelKey => ratios[fuelKey])
+    // take the sum
+    .reduce((a, b) => a + b, 0)
 }
 
 exports.defaultFossilFuelRatioOf = (zoneKey) => {
@@ -36,12 +36,12 @@ exports.defaultFossilFuelRatioOf = (zoneKey) => {
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
   
   return Object.keys(ratios)
-  // only keep the keys that are renewable
-  .filter(fuelKey => exports.fossilFuelAccessor(zoneKey, fuelKey, 1) === 1)
-  // obtain the values
-  .map(fuelKey => ratios[fuelKey])
-  // take the sum
-  .reduce((a, b) => a + b, 0)
+    // only keep the keys that are renewable
+    .filter(fuelKey => exports.fossilFuelAccessor(zoneKey, fuelKey, 1) === 1)
+    // obtain the values
+    .map(fuelKey => ratios[fuelKey])
+    // take the sum
+    .reduce((a, b) => a + b, 0)
 }
 
 exports.fossilFuelAccessor = (zoneKey, k, v) => {
