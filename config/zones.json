@@ -4511,7 +4511,7 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "US_CA.fetch_production",
       "consumption": "EIA.fetch_consumption",
       "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
@@ -4663,7 +4663,8 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "US_SPP.fetch_production",
+      "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
       "consumption": "EIA.fetch_consumption",
       "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
@@ -4831,7 +4832,8 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "US_PJM.fetch_production",
+      "price": "US_PJM.fetch_price",
       "consumption": "EIA.fetch_consumption",
       "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
@@ -4885,9 +4887,10 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "US_MISO.fetch_production",
       "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
+      "consumptionForecast": "EIA.fetch_consumption_forecast",
+      "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
     },
     "timezone": "US/Central"
   },
@@ -4899,7 +4902,7 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "US_NEISO.fetch_production",
       "consumption": "EIA.fetch_consumption",
       "consumptionForecast": "EIA.fetch_consumption_forecast"
     },
@@ -5199,7 +5202,7 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "US_NY.fetch_production",
       "consumption": "EIA.fetch_consumption",
       "consumptionForecast": "EIA.fetch_consumption_forecast"
     },

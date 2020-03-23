@@ -225,72 +225,72 @@ REGIONS = {
     'US-TX': 'TEX',
 
 #New regions - EIA
-    'US-CAL-BANC': 'BANC' #Balancing Authority Of Northern California
-    'US-CAL-CISO': 'CISO' #California Independent System Operator
-    'US-CAL-IID': 'IID' #Imperial Irrigation District
-    'US-CAL-LDWP': 'LDWP' #Los Angeles Department Of Water And Power
-    'US-CAL-TIDC': 'TIDC' #Turlock Irrigation District
-    'US-CAR-CPLE': 'CPLE' #Duke Energy Progress East
-    'US-CAR-CPLW': 'CPLW' #Duke Energy Progress West
-    'US-CAR-DUK': 'DUK' #Duke Energy Carolinas
-    'US-CAR-SC': 'SC' #South Carolina Public Service Authority
-    'US-CAR-SCEG': 'SCEG' #South Carolina Electric & Gas Company
-    'US-CAR-YAD': 'YAD' #Alcoa Power Generating, Inc. - Yadkin Division
-    'US-CENT-SPA': 'SPA' #Southwestern Power Administration
-    'US-CENT-SWPP': 'SWPP' #Southwest Power Pool
-    'US-FLA-FMPP': 'FMPP' #Florida Municipal Power Pool
-    'US-FLA-FPC': 'FPC' #Duke Energy Florida Inc
-    'US-FLA-FPL': 'FPL' #Florida Power & Light Company
-    'US-FLA-GVL': 'GVL' #Gainesville Regional Utilities
-    'US-FLA-HST': 'HST' #City Of Homestead
-    'US-FLA-JEA': 'JEA' #Jea
-    'US-FLA-NSB': 'NSB' #New Smyrna Beach, Utilities Commission Of
-    'US-FLA-SEC': 'SEC' #Seminole Electric Cooperative
-    'US-FLA-TAL': 'TAL' #City Of Tallahassee
-    'US-FLA-TEC': 'TEC' #Tampa Electric Company
-    'US-MIDA-OVEC': 'OVEC' #Ohio Valley Electric Corporation
-    'US-MIDA-PJM': 'PJM' #Pjm Interconnection, Llc
-    'US-MIDW-AECI': 'AECI' #Associated Electric Cooperative, Inc.
-    'US-MIDW-EEI': 'EEI' #Electric Energy, Inc.
-    'US-MIDW-LGEE': 'LGEE' #Louisville Gas And Electric Company And Kentucky Utilities
-    'US-MIDW-MISO': 'MISO' #Midcontinent Independent Transmission System Operator, Inc..
-    'US-NE-ISNE': 'ISNE' #Iso New England Inc.
-    'US-NW-AVA': 'AVA' #Avista Corporation
-    'US-NW-AVRN': 'AVRN' #Avangrid Renewables Cooperative
-    'US-NW-BPAT': 'BPAT' #Bonneville Power Administration
-    'US-NW-CHPD': 'CHPD' #Public Utility District No. 1 Of Chelan County
-    'US-NW-DOPD': 'DOPD' #Pud No. 1 Of Douglas County
-    'US-NW-GCPD': 'GCPD' #Public Utility District No. 2 Of Grant County, Washington
-    'US-NW-GRID': 'GRID' #Gridforce Energy Management, Llc
-    'US-NW-GWA': 'GWA' #Naturener Power Watch, Llc (Gwa)
-    'US-NW-IPCO': 'IPCO' #Idaho Power Company
-    'US-NW-NEVP': 'NEVP' #Nevada Power Company
-    'US-NW-NWMT': 'NWMT' #Northwestern Energy (Nwmt)
-    'US-NW-PACE': 'PACE' #Pacificorp - East
-    'US-NW-PACW': 'PACW' #Pacificorp - West
-    'US-NW-PGE': 'PGE' #Portland General Electric Company
-    'US-NW-PSCO': 'PSCO' #Public Service Company Of Colorado
-    'US-NW-PSEI': 'PSEI' #Puget Sound Energy
-    'US-NW-SCL': 'SCL' #Seattle City Light
-    'US-NW-TPWR': 'TPWR' #City Of Tacoma, Department Of Public Utilities, Light Division
-    'US-NW-WACM': 'WACM' #Western Area Power Administration - Rocky Mountain Region
-    'US-NW-WAUW': 'WAUW' #Western Area Power Administration Ugp West
-    'US-NW-WWA': 'WWA' #Naturener Wind Watch, Llc
-    'US-NY-NYIS': 'NYIS' #New York Independent System Operator
-    'US-SE-AEC': 'AEC' #Powersouth Energy Cooperative
-    'US-SE-SEPA': 'SEPA' #Southeastern Power Administration
-    'US-SE-SOCO': 'SOCO' #Southern Company Services, Inc. - Trans
-    'US-SW-AZPS': 'AZPS' #Arizona Public Service Company
-    'US-SW-DEAA': 'DEAA' #Arlington Valley, Llc - Avba
-    'US-SW-EPE': 'EPE' #El Paso Electric Company
-    'US-SW-GRIF': 'GRIF' #Griffith Energy, Llc
-    'US-SW-GRMA': 'GRMA' #Gila River Power, Llc
-    'US-SW-HGMA': 'HGMA' #New Harquahala Generating Company, Llc - Hgba
-    'US-SW-PNM': 'PNM' #Public Service Company Of New Mexico
-    'US-SW-SRP': 'SRP' #Salt River Project
-    'US-SW-TEPC': 'TEPC' #Tucson Electric Power Company
-    'US-SW-WALC': 'WALC' #Western Area Power Administration - Desert Southwest Region
-    'US-TEN-TVA': 'TVA' #Tennessee Valley Authority
+    'US-CAL-BANC': 'BANC', #Balancing Authority Of Northern California
+    'US-CAL-CISO': 'CISO', #California Independent System Operator
+    'US-CAL-IID': 'IID', #Imperial Irrigation District
+    'US-CAL-LDWP': 'LDWP', #Los Angeles Department Of Water And Power
+    'US-CAL-TIDC': 'TIDC', #Turlock Irrigation District
+    'US-CAR-CPLE': 'CPLE', #Duke Energy Progress East
+    'US-CAR-CPLW': 'CPLW', #Duke Energy Progress West
+    'US-CAR-DUK': 'DUK', #Duke Energy Carolinas
+    'US-CAR-SC': 'SC', #South Carolina Public Service Authority
+    'US-CAR-SCEG': 'SCEG', #South Carolina Electric & Gas Company
+    'US-CAR-YAD': 'YAD', #Alcoa Power Generating, Inc. - Yadkin Division
+    'US-CENT-SPA': 'SPA', #Southwestern Power Administration
+    'US-CENT-SWPP': 'SWPP', #Southwest Power Pool
+    'US-FLA-FMPP': 'FMPP', #Florida Municipal Power Pool
+    'US-FLA-FPC': 'FPC', #Duke Energy Florida Inc
+    'US-FLA-FPL': 'FPL', #Florida Power & Light Company
+    'US-FLA-GVL': 'GVL', #Gainesville Regional Utilities
+    'US-FLA-HST': 'HST', #City Of Homestead
+    'US-FLA-JEA': 'JEA', #Jea
+    'US-FLA-NSB': 'NSB', #New Smyrna Beach, Utilities Commission Of
+    'US-FLA-SEC': 'SEC', #Seminole Electric Cooperative
+    'US-FLA-TAL': 'TAL', #City Of Tallahassee
+    'US-FLA-TEC': 'TEC', #Tampa Electric Company
+    'US-MIDA-OVEC': 'OVEC', #Ohio Valley Electric Corporation
+    'US-MIDA-PJM': 'PJM', #Pjm Interconnection, Llc
+    'US-MIDW-AECI': 'AECI', #Associated Electric Cooperative, Inc.
+    'US-MIDW-EEI': 'EEI', #Electric Energy, Inc.
+    'US-MIDW-LGEE': 'LGEE', #Louisville Gas And Electric Company And Kentucky Utilities
+    'US-MIDW-MISO': 'MISO', #Midcontinent Independent Transmission System Operator, Inc..
+    'US-NE-ISNE': 'ISNE', #Iso New England Inc.
+    'US-NW-AVA': 'AVA', #Avista Corporation
+    'US-NW-AVRN': 'AVRN', #Avangrid Renewables Cooperative
+    'US-NW-BPAT': 'BPAT', #Bonneville Power Administration
+    'US-NW-CHPD': 'CHPD', #Public Utility District No. 1 Of Chelan County
+    'US-NW-DOPD': 'DOPD', #Pud No. 1 Of Douglas County
+    'US-NW-GCPD': 'GCPD', #Public Utility District No. 2 Of Grant County, Washington
+    'US-NW-GRID': 'GRID', #Gridforce Energy Management, Llc
+    'US-NW-GWA': 'GWA', #Naturener Power Watch, Llc (Gwa)
+    'US-NW-IPCO': 'IPCO', #Idaho Power Company
+    'US-NW-NEVP': 'NEVP', #Nevada Power Company
+    'US-NW-NWMT': 'NWMT', #Northwestern Energy (Nwmt)
+    'US-NW-PACE': 'PACE', #Pacificorp - East
+    'US-NW-PACW': 'PACW', #Pacificorp - West
+    'US-NW-PGE': 'PGE', #Portland General Electric Company
+    'US-NW-PSCO': 'PSCO', #Public Service Company Of Colorado
+    'US-NW-PSEI': 'PSEI', #Puget Sound Energy
+    'US-NW-SCL': 'SCL', #Seattle City Light
+    'US-NW-TPWR': 'TPWR', #City Of Tacoma, Department Of Public Utilities, Light Division
+    'US-NW-WACM': 'WACM', #Western Area Power Administration - Rocky Mountain Region
+    'US-NW-WAUW': 'WAUW', #Western Area Power Administration Ugp West
+    'US-NW-WWA': 'WWA', #Naturener Wind Watch, Llc
+    'US-NY-NYIS': 'NYIS', #New York Independent System Operator
+    'US-SE-AEC': 'AEC', #Powersouth Energy Cooperative
+    'US-SE-SEPA': 'SEPA', #Southeastern Power Administration
+    'US-SE-SOCO': 'SOCO', #Southern Company Services, Inc. - Trans
+    'US-SW-AZPS': 'AZPS', #Arizona Public Service Company
+    'US-SW-DEAA': 'DEAA', #Arlington Valley, Llc - Avba
+    'US-SW-EPE': 'EPE', #El Paso Electric Company
+    'US-SW-GRIF': 'GRIF', #Griffith Energy, Llc
+    'US-SW-GRMA': 'GRMA', #Gila River Power, Llc
+    'US-SW-HGMA': 'HGMA', #New Harquahala Generating Company, Llc - Hgba
+    'US-SW-PNM': 'PNM', #Public Service Company Of New Mexico
+    'US-SW-SRP': 'SRP', #Salt River Project
+    'US-SW-TEPC': 'TEPC', #Tucson Electric Power Company
+    'US-SW-WALC': 'WALC', #Western Area Power Administration - Desert Southwest Region
+    'US-TEN-TVA': 'TVA', #Tennessee Valley Authority
     'US-TEX-ERCO': 'ERCO' #Electric Reliability Council Of Texas, Inc.
 }
 TYPES = {
