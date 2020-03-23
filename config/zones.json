@@ -4859,7 +4859,7 @@
     ],   
     "flag_file_name": "us.png",
     "parsers": {
-      "production": "EIA.fetch_production_mix",
+      "production": "EIA.fetch_production_mix"
     },
     "timezone": "US/Central"
   },
