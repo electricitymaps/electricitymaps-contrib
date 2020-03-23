@@ -4489,6 +4489,922 @@
     "flag_file_name": "us.png",
     "timezone": null
   },
+  "US-CAL-BANC": {
+    "comment": "Balancing Authority Of Northern California",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-CAL-CISO": {
+    "comment": "California Independent System Operator",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-CAL-IID": {
+    "comment": "Imperial Irrigation District",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-CAL-LDWP": {
+    "comment": "Los Angeles Department Of Water And Power",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-CAL-TIDC": {
+    "comment": "Turlock Irrigation District",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-CAR-CPLE": {
+    "comment": "Duke Energy Progress East",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": ""
+  },
+  "US-CAR-CPLW": {
+    "comment": "Duke Energy Progress West",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-CAR-DUK": {
+    "comment": "Duke Energy Carolinas",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-CAR-SC": {
+    "comment": "South Carolina Public Service Authority",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-CAR-SCEG": {
+    "comment": "South Carolina Electric & Gas Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-CAR-YAD": {
+    "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-CENT-SPA": {
+    "comment": "Southwestern Power Administration",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-CENT-SWPP": {
+    "comment": "Southwest Power Pool",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-FLA-FMPP": {
+    "comment": "Florida Municipal Power Pool",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-FPC": {
+    "comment": "Duke Energy Florida Inc",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-FPL": {
+    "comment": "Florida Power & Light Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-GVL": {
+    "comment": "Gainesville Regional Utilities",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-HST": {
+    "comment": "City Of Homestead",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-JEA": {
+    "comment": "Jea",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-NSB": {
+    "comment": "New Smyrna Beach, Utilities Commission Of",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-SEC": {
+    "comment": "Seminole Electric Cooperative",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-TAL": {
+    "comment": "City Of Tallahassee",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-FLA-TEC": {
+    "comment": "Tampa Electric Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-MIDA-OVEC": {
+    "comment": "Ohio Valley Electric Corporation",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-MIDA-PJM": {
+    "comment": "Pjm Interconnection, Llc",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-MIDW-AECI": {
+    "comment": "Associated Electric Cooperative, Inc.",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-MIDW-EEI": {
+    "comment": "Electric Energy, Inc.",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+    },
+    "timezone": "US/Central"
+  },
+  "US-MIDW-LGEE": {
+    "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-MIDW-MISO": {
+    "comment": "Midcontinent Independent Transmission System Operator, Inc..",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-NE-ISNE": {
+    "comment": "Iso New England Inc.",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-NW-AVA": {
+    "comment": "Avista Corporation",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-AVRN": {
+    "comment": "Avangrid Renewables Cooperative",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-BPAT": {
+    "comment": "Bonneville Power Administration",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-CHPD": {
+    "comment": "Public Utility District No. 1 Of Chelan County",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-DOPD": {
+    "comment": "Pud No. 1 Of Douglas County",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-GCPD": {
+    "comment": "Public Utility District No. 2 Of Grant County, Washington",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-GRID": {
+    "comment": "Gridforce Energy Management, Llc",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-GWA": {
+    "comment": "Naturener Power Watch, Llc (Gwa)",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-IPCO": {
+    "comment": "Idaho Power Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-NEVP": {
+    "comment": "Nevada Power Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-NWMT": {
+    "comment": "Northwestern Energy (Nwmt)",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-PACE": {
+    "comment": "Pacificorp - East",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-PACW": {
+    "comment": "Pacificorp - West",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-PGE": {
+    "comment": "Portland General Electric Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-PSCO": {
+    "comment": "Public Service Company Of Colorado",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-PSEI": {
+    "comment": "Puget Sound Energy",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-SCL": {
+    "comment": "Seattle City Light",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-TPWR": {
+    "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Pacific"
+  },
+  "US-NW-WACM": {
+    "comment": "Western Area Power Administration - Rocky Mountain Region",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-WAUW": {
+    "comment": "Western Area Power Administration Ugp West",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NW-WWA": {
+    "comment": "Naturener Wind Watch, Llc",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-NY-NYIS": {
+    "comment": "New York Independent System Operator",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-SE-AEC": {
+    "comment": "Powersouth Energy Cooperative",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-SE-SEPA": {
+    "comment": "Southeastern Power Administration",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-SE-SOCO": {
+    "comment": "Southern Company Services, Inc. - Trans",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Eastern"
+  },
+  "US-SW-AZPS": {
+    "comment": "Arizona Public Service Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": ""
+  },
+  "US-SW-DEAA": {
+    "comment": "Arlington Valley, Llc - Avba",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-SW-EPE": {
+    "comment": "El Paso Electric Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-SW-GRIF": {
+    "comment": "Griffith Energy, Llc",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-SW-GRMA": {
+    "comment": "Gila River Power, Llc",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-SW-HGMA": {
+    "comment": "New Harquahala Generating Company, Llc - Hgba",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-SW-PNM": {
+    "comment": "Public Service Company Of New Mexico",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Mountain"
+  },
+  "US-SW-SRP": {
+    "comment": "Salt River Project",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-SW-TEPC": {
+    "comment": "Tucson Electric Power Company",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-SW-WALC": {
+    "comment": "Western Area Power Administration - Desert Southwest Region",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Arizona"
+  },
+  "US-TEN-TVA": {
+    "comment": "Tennessee Valley Authority",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
+  "US-TEX-ERCO": {
+    "comment": "Electric Reliability Council Of Texas, Inc.",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],   
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix",
+      "consumption": "EIA.fetch_consumption",
+      "consumptionForecast": "EIA.fetch_consumption_forecast"
+    },
+    "timezone": "US/Central"
+  },
   "UY": {
     "bounding_box": [
       [
