@@ -938,7 +938,8 @@
   },
   "CA-YT": {
     "contributors": [
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -953,8 +954,10 @@
       [
         -123.31910336003193,
         70.15420156500005
-      ]
-    ]
+     ]
+    ],
+    "capacity": {
+      "hydro": 92
   },
   "CH": {
     "bounding_box": [
