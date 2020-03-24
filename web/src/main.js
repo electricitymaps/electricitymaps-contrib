@@ -6,10 +6,11 @@
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { debounce } from 'lodash';
 
 // Components
-import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
 import HorizontalColorbar from './components/horizontalcolorbar';
 
@@ -64,7 +65,7 @@ const {
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
 const grib = require('./helpers/grib');
-const HistoryState = require('./helpers/historystate');
+const { updateURLFromState } = require('./helpers/router');
 const scales = require('./helpers/scales');
 const { saveKey } = require('./helpers/storage');
 const translation = require('./helpers/translation');
@@ -99,22 +100,24 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
-// Set state depending on URL params
-HistoryState.parseInitial(window.location.search);
-
-const applicationState = HistoryState.getStateFromHistory();
-Object.keys(applicationState).forEach((k) => {
-  if (k === 'selectedZoneName'
-    && Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
-    // The selectedZoneName doesn't exist, so don't update it
-    return;
-  }
-  dispatchApplication(k, applicationState[k]);
+// Update Redux state with the URL search params initially and also
+// every time the URL change is triggered by a browser action to ensure
+// the URL -> Redux binding (the other direction is ensured by observing
+// the relevant state Redux entries and triggering the URL update below).
+dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
+window.addEventListener('popstate', () => {
+  dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
-// TODO(olc): should be stored in redux?
-const ENDPOINT = getState().application.useRemoteEndpoint
-  ? REMOTE_ENDPOINT : LOCAL_ENDPOINT;
+// Use local endpoint only if ALL of the following conditions are true:
+// 1. The app is running on localhost
+// 2. The `remote` search param hasn't been explicitly set to true
+// 3. Document domain has a non-empty value
+const getEndpoint = () => ((
+  getState().application.isLocalhost
+  && !getState().application.useRemoteEndpoint
+  && document.domain !== ''
+) ? LOCAL_ENDPOINT : REMOTE_ENDPOINT);
 
 // TODO(olc) move those to redux state
 // or to component state
@@ -132,12 +135,19 @@ LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
-let onboardingModal;
 
 // Render DOM
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <BrowserRouter>
+      <Switch>
+        {/* Only one active app route - the application state is */}
+        {/* currently fully managed through the URL search params */}
+        <Route path="/">
+          <Main />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.querySelector('#app'),
   () => {
@@ -211,14 +221,9 @@ const app = {
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
     universalLinks.subscribe(null, (eventData) => {
-      HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
       // In principle we should only do the rest of the app loading
-      // after this point, instead of dispating a new event
-      // eslint-disable-next-line no-shadow
-      const applicationState = HistoryState.getStateFromHistory();
-      Object.keys(applicationState).forEach((k) => {
-        dispatchApplication(k, applicationState[k]);
-      });
+      // after this point, instead of dispatcing a new event
+      dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: eventData.url } });
     });
   },
 
@@ -248,12 +253,6 @@ moment.locale(getState().application.locale.toLowerCase());
 
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
-
-// do not display onboarding when we've seen it or we're embedded
-if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
-  onboardingModal = new OnboardingModal('#main');
-  thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
-}
 
 // Display randomly alternating header campaign message
 const randomBoolean = Math.random() >= 0.5;
@@ -608,14 +607,14 @@ function fetch(showLoading, callback) {
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, ENDPOINT, getState().application.customDate);
+  Q.defer(DataService.fetchState, getEndpoint(), getState().application.customDate);
 
   const now = getState().application.customDate || new Date();
 
   if (!getState().application.solarEnabled) {
     Q.defer(DataService.fetchNothing);
   } else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
+    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
   } else {
     Q.defer(cb => cb(null, solar));
   }
@@ -623,7 +622,7 @@ function fetch(showLoading, callback) {
   if (!getState().application.windEnabled || typeof windLayer === 'undefined') {
     Q.defer(DataService.fetchNothing);
   } else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
+    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
   } else {
     Q.defer(cb => cb(null, wind));
   }
@@ -785,14 +784,6 @@ d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('sho
 d3.selectAll('.highscore-button')
   .on('click touchend', () => dispatchApplication('showPageState', 'highscore'));
 
-// Onboarding modal
-if (onboardingModal) {
-  onboardingModal.onDismiss(() => {
-    saveKey('onboardingSeen', true);
-    dispatchApplication('onboardingSeen', true);
-  });
-}
-
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
@@ -844,7 +835,7 @@ function tryFetchHistory(state) {
     console.error('Can\'t fetch history when a custom date is provided!');
   } else if (!state.data.histories[selectedZoneName]) {
     LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
+    DataService.fetchHistory(getEndpoint(), selectedZoneName, (err, obj) => {
       LoadingService.stopLoading('.country-history .loading');
       if (err) { return console.error(err); }
       if (!obj || !obj.data) {
@@ -1040,12 +1031,21 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
   }
 });
 
-// Observe for changes requiring an update of history
-Object.values(HistoryState.querystringMappings).forEach((k) => {
-  observe(state => state.application[k], (_, state) => {
-    HistoryState.updateHistoryFromState(state.application);
-  });
-});
+// Observe all the Redux state entries that reflect the URL to ensure the
+// Redux -> URL binding one-way binding (the other direction is ensured by
+// listening to the `popstate` event above). The call is being debounced to
+// make sure all the consecutive state changes get bundled together  under
+// a single URL state transition.
+// TODO: In order to get rid of the debounce, we should probably not keep
+// URL search params in Redux at all.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
+const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
+observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.showPageState, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {
