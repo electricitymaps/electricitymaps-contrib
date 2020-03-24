@@ -109,9 +109,15 @@ window.addEventListener('popstate', () => {
   dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
-// TODO(olc): should be stored in redux?
-const ENDPOINT = getState().application.useRemoteEndpoint
-  ? REMOTE_ENDPOINT : LOCAL_ENDPOINT;
+// Use local endpoint only if ALL of the following conditions are true:
+// 1. The app is running on localhost
+// 2. The `remote` search param hasn't been explicitly set to true
+// 3. Document domain has a non-empty value
+const getEndpoint = () => ((
+  getState().application.isLocalhost
+  && !getState().application.useRemoteEndpoint
+  && document.domain !== ''
+) ? LOCAL_ENDPOINT : REMOTE_ENDPOINT);
 
 // TODO(olc) move those to redux state
 // or to component state
@@ -601,14 +607,14 @@ function fetch(showLoading, callback) {
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, ENDPOINT, getState().application.customDate);
+  Q.defer(DataService.fetchState, getEndpoint(), getState().application.customDate);
 
   const now = getState().application.customDate || new Date();
 
   if (!getState().application.solarEnabled) {
     Q.defer(DataService.fetchNothing);
   } else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
+    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
   } else {
     Q.defer(cb => cb(null, solar));
   }
@@ -616,7 +622,7 @@ function fetch(showLoading, callback) {
   if (!getState().application.windEnabled || typeof windLayer === 'undefined') {
     Q.defer(DataService.fetchNothing);
   } else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
+    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
   } else {
     Q.defer(cb => cb(null, wind));
   }
@@ -829,7 +835,7 @@ function tryFetchHistory(state) {
     console.error('Can\'t fetch history when a custom date is provided!');
   } else if (!state.data.histories[selectedZoneName]) {
     LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
+    DataService.fetchHistory(getEndpoint(), selectedZoneName, (err, obj) => {
       LoadingService.stopLoading('.country-history .loading');
       if (err) { return console.error(err); }
       if (!obj || !obj.data) {
