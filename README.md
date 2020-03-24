@@ -215,6 +215,8 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
 - Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
+- Canada (Yukon)
+  - Hydro: [YukonEnergy](https://yukonenergy.ca/energy-in-yukon/projects-facilities)
 - Chile (SIC)
   - Geothermal, Hydro, Solar, Wind: [SIC](https://sic.coordinador.cl/capacidad-instalada/)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
