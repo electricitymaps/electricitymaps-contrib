@@ -32,7 +32,7 @@ const SCALE_TICKS = 4;
 
 function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
   dispatchApplication(
-    'co2ColorbarMarker',
+    'co2ColorbarValue',
     modeOrder.includes(mode)
       ? getProductionCo2Intensity(mode, zoneData)
       : getExchangeCo2Intensity(mode, zoneData, electricityMixMode)
@@ -52,7 +52,7 @@ function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
 }
 
 function handleRowMouseOut() {
-  dispatchApplication('co2ColorbarMarker', null);
+  dispatchApplication('co2ColorbarValue', null);
   dispatch({ type: 'HIDE_TOOLTIP' });
 }
 

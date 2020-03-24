@@ -16,22 +16,22 @@ import { co2Sub } from '../helpers/formatting';
 // TODO: Remove all unecessary id and class tags
 
 const mapStateToProps = state => ({
-  co2ColorbarMarker: state.application.co2ColorbarMarker,
+  co2ColorbarValue: state.application.co2ColorbarValue,
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   legendVisible: state.application.legendVisible,
-  solarColorbarMarker: state.application.solarColorbarMarker,
+  solarColorbarValue: state.application.solarColorbarValue,
   solarEnabled: state.application.solarEnabled,
-  windColorbarMarker: state.application.windColorbarMarker,
+  windColorbarValue: state.application.windColorbarValue,
   windEnabled: state.application.windEnabled,
 });
 
 const Legend = ({
-  co2ColorbarMarker,
+  co2ColorbarValue,
   colorBlindModeEnabled,
   legendVisible,
-  solarColorbarMarker,
+  solarColorbarValue,
   solarEnabled,
-  windColorbarMarker,
+  windColorbarValue,
   windEnabled,
 }) => {
   const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
@@ -57,7 +57,7 @@ const Legend = ({
               <HorizontalColorbar
                 id="wind-potential-bar"
                 colorScale={windColor}
-                currentMarker={windColorbarMarker}
+                currentValue={windColorbarValue}
                 markerColor="black"
                 ticksCount={6}
               />
@@ -71,7 +71,7 @@ const Legend = ({
               <HorizontalColorbar
                 id="solar-potential-bar"
                 colorScale={solarColor}
-                currentMarker={co2ColorbarMarker}
+                currentValue={solarColorbarValue}
                 markerColor="red"
                 ticksCount={5}
               />
@@ -85,7 +85,7 @@ const Legend = ({
             <HorizontalColorbar
               id="carbon-intensity-bar"
               colorScale={getCo2Scale(colorBlindModeEnabled)}
-              currentMarker={co2ColorbarMarker}
+              currentValue={co2ColorbarValue}
               markerColor="white"
               ticksCount={5}
             />

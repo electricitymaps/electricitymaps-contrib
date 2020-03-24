@@ -16,7 +16,7 @@ const spreadOverDomain = (scale, count) => {
 
 const HorizontalColorbar = ({
   colorScale,
-  currentMarker,
+  currentValue,
   id,
   markerColor,
   ticksCount = 5,
@@ -43,13 +43,13 @@ const HorizontalColorbar = ({
           width={width}
           height={height}
         />
-        {isFinite(currentMarker) && (
+        {isFinite(currentValue) && (
           <line
             className="marker"
             stroke={markerColor}
             strokeWidth="2"
-            x1={linearScale(currentMarker)}
-            x2={linearScale(currentMarker)}
+            x1={linearScale(currentValue)}
+            x2={linearScale(currentValue)}
             y2={height}
           />
         )}

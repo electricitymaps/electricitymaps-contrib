@@ -305,7 +305,7 @@ try {
         .onExchangeMouseMove((zoneData) => {
           const { co2intensity } = zoneData;
           if (co2intensity) {
-            dispatchApplication('co2ColorbarMarker', co2intensity);
+            dispatchApplication('co2ColorbarValue', co2intensity);
           }
           dispatch({
             type: 'SHOW_TOOLTIP',
@@ -317,7 +317,7 @@ try {
           });
         })
         .onExchangeMouseOut((d) => {
-          dispatchApplication('co2ColorbarMarker', null);
+          dispatchApplication('co2ColorbarValue', null);
           dispatch({ type: 'HIDE_TOOLTIP' });
         })
         .onExchangeClick((d) => {
@@ -368,22 +368,22 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      dispatchApplication('windColorbarMarker', Math.sqrt(u * u + v * v));
+      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
     }
   } else {
-    dispatchApplication('windColorbarMarker', null);
+    dispatchApplication('windColorbarValue', null);
   }
   if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
     const now = getState().application.customDate
       ? moment(getState().application.customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       dispatchApplication(
-        'solarColorbarMarker',
+        'solarColorbarValue',
         grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
       );
     }
   } else {
-    dispatchApplication('solarColorbarMarker', null);
+    dispatchApplication('solarColorbarValue', null);
   }
 }
 
@@ -507,7 +507,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
       })
       .onZoneMouseMove((zoneData, i, clientX, clientY) => {
         dispatchApplication(
-          'co2ColorbarMarker',
+          'co2ColorbarValue',
           getState().application.electricityMixMode === 'consumption'
             ? zoneData.co2intensity
             : zoneData.co2intensityProduction
@@ -525,7 +525,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         });
       })
       .onZoneMouseOut(() => {
-        dispatchApplication('co2ColorbarMarker', null);
+        dispatchApplication('co2ColorbarValue', null);
         dispatch({ type: 'HIDE_TOOLTIP' });
         mapMouseOver(undefined);
       });
