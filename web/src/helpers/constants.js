@@ -30,7 +30,6 @@ const modeOrder = [
 ];
 
 const PRODUCTION_MODES = modeOrder.filter(d => d.indexOf('storage') === -1);
-const OUTPUT_MODES = modeOrger.map(d => d.replace('storage','discharge'));
 const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d => d.replace(' storage', ''));
 
 const LOW_CARBON_INFO_TOOLTIP_KEY = 'low-carbon-info';
