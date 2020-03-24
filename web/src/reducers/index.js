@@ -23,7 +23,7 @@ const initialApplicationState = {
   callerZone: null,
   centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
-  co2ColorbarMarker: undefined,
+  co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
   customDate: null,
@@ -44,8 +44,10 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
+  solarColorbarValue: null,
   solarEnabled: cookieGetBool('solarEnabled', false),
   useRemoteEndpoint: false,
+  windColorbarMarker: null,
   windEnabled: cookieGetBool('windEnabled', false),
 
   // TODO(olc): refactor this state
@@ -103,20 +105,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
     case 'HIDE_TOOLTIP': {
       return Object.assign({}, state, {
         tooltipDisplayMode: null,
-      });
-    }
-
-    case 'SET_CO2_COLORBAR_MARKER': {
-      const co2ColorbarMarker = action.payload.marker;
-      if (co2ColorbarMarker !== state.co2ColorbarMarker) {
-        return Object.assign({}, state, { co2ColorbarMarker });
-      }
-      return state;
-    }
-
-    case 'UNSET_CO2_COLORBAR_MARKER': {
-      return Object.assign({}, state, {
-        co2ColorbarMarker: undefined,
       });
     }
 

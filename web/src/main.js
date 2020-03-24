@@ -12,7 +12,6 @@ import { debounce } from 'lodash';
 
 // Components
 import ZoneMap from './components/map';
-import HorizontalColorbar from './components/horizontalcolorbar';
 
 // Layer Components
 import ExchangeLayer from './components/layers/exchange';
@@ -161,14 +160,6 @@ ReactDOM.render(
 // Set standard theme
 let theme = themes.bright;
 
-const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
-  .markerColor('black');
-const solarColorbarColor = d3.scaleLinear()
-  .domain([0, 0.5 * scales.maxSolarDSWRF, scales.maxSolarDSWRF])
-  .range(['black', 'white', 'gold']);
-const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
-  .markerColor('red');
-
 // Initialise mobile app (cordova)
 const app = {
   // Application Constructor
@@ -262,15 +253,8 @@ d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
 let co2ColorScale;
-let co2Colorbars = [];
 function updateCo2Scale() {
   co2ColorScale = getCo2Scale(getState().application.colorBlindModeEnabled);
-  co2Colorbars = [
-    new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2ColorScale, null, [0, 400, 800])
-      .markerColor('white')
-      .domain([0, scales.maxCo2])
-      .render(),
-  ];
   if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
@@ -321,7 +305,7 @@ try {
         .onExchangeMouseMove((zoneData) => {
           const { co2intensity } = zoneData;
           if (co2intensity) {
-            dispatch({ type: 'SET_CO2_COLORBAR_MARKER', payload: { marker: co2intensity } });
+            dispatchApplication('co2ColorbarValue', co2intensity);
           }
           dispatch({
             type: 'SHOW_TOOLTIP',
@@ -333,7 +317,7 @@ try {
           });
         })
         .onExchangeMouseOut((d) => {
-          dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+          dispatchApplication('co2ColorbarValue', null);
           dispatch({ type: 'HIDE_TOOLTIP' });
         })
         .onExchangeClick((d) => {
@@ -384,21 +368,22 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
     }
   } else {
-    windColorbar.currentMarker(undefined);
+    dispatchApplication('windColorbarValue', null);
   }
   if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
     const now = getState().application.customDate
       ? moment(getState().application.customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      const val = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, solar.forecasts[0], solar.forecasts[1]);
-      solarColorbar.currentMarker(val);
+      dispatchApplication(
+        'solarColorbarValue',
+        grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
+      );
     }
   } else {
-    solarColorbar.currentMarker(undefined);
+    dispatchApplication('solarColorbarValue', null);
   }
 }
 
@@ -456,7 +441,6 @@ function renderMap(state) {
         ? moment(getState().application.customDate) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
-      scales.solarColor,
       (err) => {
         if (err) {
           console.error(err.message);
@@ -522,14 +506,12 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         mapMouseOver(lonlat);
       })
       .onZoneMouseMove((zoneData, i, clientX, clientY) => {
-        dispatch({
-          type: 'SET_CO2_COLORBAR_MARKER',
-          payload: {
-            marker: getState().application.electricityMixMode === 'consumption'
-              ? zoneData.co2intensity
-              : zoneData.co2intensityProduction,
-          },
-        });
+        dispatchApplication(
+          'co2ColorbarValue',
+          getState().application.electricityMixMode === 'consumption'
+            ? zoneData.co2intensity
+            : zoneData.co2intensityProduction
+        );
         dispatch({
           type: 'SHOW_TOOLTIP',
           payload: {
@@ -543,7 +525,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         });
       })
       .onZoneMouseOut(() => {
-        dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
+        dispatchApplication('co2ColorbarValue', null);
         dispatch({ type: 'HIDE_TOOLTIP' });
         mapMouseOver(undefined);
       });
@@ -640,9 +622,6 @@ function fetch(showLoading, callback) {
   });
 }
 
-window.addEventListener('resize', () => {
-  co2Colorbars.forEach((d) => { d.render(); });
-});
 // Only for debugging purposes
 window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
@@ -809,17 +788,9 @@ function routeToPage(pageName, state) {
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    co2Colorbars.forEach((d) => { d.render(); });
-    if (state.application.windEnabled && windColorbar) windColorbar.render();
-    if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
-    if (pageName === 'info') {
-      co2Colorbars.forEach((d) => { d.render(); });
-      if (state.application.windEnabled) if (windColorbar) windColorbar.render();
-      if (state.application.solarEnabled) if (solarColorbar) solarColorbar.render();
-    }
   }
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
@@ -903,10 +874,6 @@ function renderZones(state) {
   }
 }
 
-observe(state => state.application.co2ColorbarMarker, (co2ColorbarMarker, state) => {
-  co2Colorbars.forEach((c) => { c.currentMarker(co2ColorbarMarker); });
-});
-
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
   renderExchanges(state);
@@ -983,7 +950,6 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 // Observe for solar settings change
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);
-  d3.select('.solar-potential-legend').classed('visible', solarEnabled);
   saveKey('solarEnabled', solarEnabled);
 
   solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
@@ -991,7 +957,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   const now = state.customDate
     ? moment(state.customDate) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
-    solarColorbar.render();
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       fetch(true);
     } else {
@@ -1005,7 +970,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 // Observe for wind settings change
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   d3.selectAll('.wind-button').classed('active', windEnabled);
-  d3.select('.wind-potential-legend').classed('visible', windEnabled);
 
   windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
@@ -1014,7 +978,6 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
   const now = state.customDate
     ? moment(state.customDate) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
-    windColorbar.render();
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
     } else {
