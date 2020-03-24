@@ -4,13 +4,9 @@ import { range } from 'lodash';
 // TODO: Merge themes and scales
 import { themes } from './themes';
 
-const uniformSpread = ({ from, to, count }) => (
-  range(count).map(index => (from + (to - from) * index / (count - 1)))
-);
-
 // ** Wind
 export const windColor = scaleLinear()
-  .domain(uniformSpread({ from: 0, to: 15, count: 10 }))
+  .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
   .range([
     'rgba(0,   255, 255, 1.0)',
     'rgba(100, 240, 255, 1.0)',
@@ -22,13 +18,14 @@ export const windColor = scaleLinear()
     'rgba(225, 133, 255, 1.0)',
     'rgba(236, 109, 255, 1.0)',
     'rgba(255,  30, 219, 1.0)',
+    'rgba(255,  30, 219, 1.0)',
   ])
   .clamp(true);
 
 
 // ** Solar
 export const solarColor = scaleLinear()
-  .domain(uniformSpread({ from: 0, to: 1000, count: 3 }))
+  .domain([0, 500, 1000])
   .range(['black', 'white', 'gold'])
   .clamp(true);
 
