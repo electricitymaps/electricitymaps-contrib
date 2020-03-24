@@ -1,16 +1,16 @@
 const themes = {
   co2Scale: {
-    steps: [0, 150, 600, 800],
-    colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381d02'],
+    steps: [0, 150, 600, 750, 800],
+    colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
   },
   colorblindScale: {
-    steps: [0, 150, 600, 800],
-    colors: ['#FCFAC4', '#FAB484', '#F57965', '#DA4D6B'],
+    steps: [0, 150, 600, 750, 800],
+    colors: ['#FCFAC4', '#FAB484', '#F57965', '#DA4D6B', '#DA4D6B'],
   },
   dark: {
     co2Scale: {
-      steps: [0, 150, 600, 800],
-      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381d02'],
+      steps: [0, 150, 600, 750, 800],
+      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
     },
     oceanColor: '#33414A',
     strokeWidth: 0.3,
@@ -20,8 +20,8 @@ const themes = {
   },
   bright: {
     co2Scale: {
-      steps: [0, 150, 600, 800],
-      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381d02'],
+      steps: [0, 150, 600, 750, 800],
+      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,
