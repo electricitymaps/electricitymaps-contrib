@@ -72,13 +72,9 @@
         }
       },
       "AT": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 173.4729702559071
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 173.4729702559071
+          "source": "2018 average by Tomorrow",
+          "value": 207.7115013861941
         }
       },
       "AUS-NSW": {
@@ -94,13 +90,9 @@
         }
       },
       "AUS-SA": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 264.9516942784522
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 264.9516942784522
+          "source": "2017 average by Tomorrow",
+          "value": 336.55253056678424
         }
       },
       "AUS-TAS": {
@@ -128,13 +120,9 @@
         }
       },
       "BE": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.438056497875
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.438056497875
+          "source": "2017 average by Tomorrow",
+          "value": 221.2633924759543
         }
       },
       "BG": {
@@ -222,23 +210,15 @@
         }
       },
       "CZ": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 425.78928599410017
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 425.78928599410017
+          "source": "2018 average by Tomorrow",
+          "value": 452.44434476152367
         }
       },
       "DE": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 280.80354301505963
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 280.80354301505963
+          "source": "2018 average by Tomorrow",
+          "value": 345.3584668984193
         }
       },
       "DK-DK1": {
@@ -270,23 +250,15 @@
         }
       },
       "ES": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 157.04376876992868
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 157.04376876992868
+          "source": "2018 average by Tomorrow",
+          "value": 172.80281549205574
         }
       },
       "ES-CN-HI": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 82.05248776720254
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 82.05248776720254
+          "source": "2018 average by Tomorrow",
+          "value": 85.03883175918934
         }
       },
       "ES-IB": {
@@ -308,13 +280,9 @@
         }
       },
       "FR": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 48.14997796838915
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 48.14997796838915
+          "source": "2018 average by Tomorrow",
+          "value": 47.609819428772006
         }
       },
       "GB": {
@@ -368,13 +336,9 @@
         }
       },
       "IE": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 327.25293751297517
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 327.25293751297517
+          "source": "2017 average by Tomorrow",
+          "value": 381.21842143892457
         }
       },
       "IL": {
@@ -441,43 +405,27 @@
         }
       },
       "IT-CSO": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 377.4140994578113
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 377.4140994578113
+          "source": "2018 average by Tomorrow",
+          "value": 413.2039346675014
         }
       },
       "IT-NO": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 328.40962022742235
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 328.40962022742235
+          "source": "2018 average by Tomorrow",
+          "value": 384.7522874777953
         }
       },
       "IT-SAR": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 470.46613342903015
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 470.46613342903015
+          "source": "2018 average by Tomorrow",
+          "value": 560.8529275022686
         }
       },
       "IT-SIC": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 329.3209055463916
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 329.3209055463916
+          "source": "2018 average by Tomorrow",
+          "value": 229.58104974230267
         }
       },
       "IT-SO": {
@@ -513,13 +461,9 @@
         }
       },
       "LT": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 446.070472425505
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 446.070472425505
+          "source": "2018 average by Tomorrow",
+          "value": 407.14470739259156
         }
       },
       "LV": {
@@ -625,13 +569,9 @@
         }
       },
       "PT": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.54253349502017
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.54253349502017
+          "source": "2018 average by Tomorrow",
+          "value": 247.842699948549
         }
       },
       "RO": {
@@ -691,13 +631,9 @@
         }
       },
       "SK": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 270.00397843369217
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 270.00397843369217
+          "source": "2018 average by Tomorrow",
+          "value": 297.06863698831893
         }
       },
       "SV": {
@@ -713,23 +649,15 @@
         }
       },
       "TW": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 549.8577612938966
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 549.8577612938966
+          "source": "2018 average by Tomorrow",
+          "value": 569.0446419280086
         }
       },
       "UA": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 284.9927461471096
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 284.9927461471096
+          "source": "2018 average by Tomorrow",
+          "value": 296.1811431388015
         },
         "unknown": {
           "_comment": "estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in 2018",
@@ -739,13 +667,9 @@
         }
       },
       "US-CA": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 229.3461353882938
-        },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 229.3461353882938
+          "source": "2017 average by Tomorrow",
+          "value": 238.49244489880175
         }
       },
       "US-NEISO": {
@@ -789,2211 +713,784 @@
     }
   },
   "fallbackZoneMixes": {
-    "defaults": {
-      "_source": "BP Statistical Review of World Energy 2019, values from 2018, and Tomorrow Avg for average carbon intensity, and IRENA report for Biomass and geothermal",
-      "_comment": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf",
-      "carbonIntensity": 301.13684338512996,
-      "powerOriginRatios": {
-        "biomass": 0.017509,
-        "battery discharge": 0,
-        "battery storage": 0,
-        "coal": 0.38, 
-        "gas": 0.232,
-        "geothermal": 0.003081,
-        "hydro": 0.158,
-        "hydro discharge": 0,
-        "hydro storage": 0,
-        "nuclear": 0.102,
-        "oil": 0.03,
-        "solar": 0.021966,
-        "unknown": 0.007728,
-        "wind": 0.047716
-      }
+    "AR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 328.9797392163902,
+      "fossilFuelRatio": 0.6398060533820761,
+      "renewableRatio": 0.31018600111051287
     },
-    "zoneOverrides": {
-      "AM": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 223.07759527742408,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 5.320678216618582e-09,
-          "coal": 1.0584976199430881e-07,
-          "gas": 0.4447811083006733,
-          "geothermal": 1.3736955714133292e-10,
-          "hydro": 0.3355866239192643,
-          "hydro discharge": 3.2083507714465876e-11,
-          "nuclear": 0.21949955330631998,
-          "oil": 6.448963095335706e-11,
-          "solar": 2.5299236580704446e-07,
-          "unknown": 7.704350785565688e-05,
-          "wind": 5.5306569138090404e-05
-        }
-      },
-      "AR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 314.1211302669139,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0013944760209234975,
-          "coal": 0.0027286208475801282,
-          "gas": 0.5710807534931038,
-          "geothermal": 0.0,
-          "hydro": 0.2938324093322449,
-          "hydro discharge": 0.004709013067076001,
-          "nuclear": 0.061875167767853054,
-          "oil": 0.012402890187816965,
-          "solar": 0.0036338137399157555,
-          "unknown": 0.0197888812013463,
-          "wind": 0.028553974342139413
-        }
-      },
-      "AT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 191.21160579775008,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.053628260232650805,
-          "coal": 0.09689308623516149,
-          "gas": 0.13650458243817892,
-          "geothermal": 7.864478455695942e-06,
-          "hydro": 0.4149082347427941,
-          "hydro discharge": 0.059002330004048885,
-          "nuclear": 0.05884672934236063,
-          "oil": 0.0008304319779668264,
-          "solar": 0.035804080073763914,
-          "unknown": 0.008146144727791443,
-          "wind": 0.13542825574682724
-        }
-      },
-      "AUS-NSW": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 725.2165826243141,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 7.488517990411672e-05,
-          "coal": 0.8535821983928868,
-          "gas": 0.035559875431599414,
-          "geothermal": 0.0,
-          "hydro": 0.04927408690620556,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 7.266068801532127e-05,
-          "solar": 0.031536346066666096,
-          "unknown": 0.0,
-          "wind": 0.029899947334722628
-        }
-      },
-      "AUS-QLD": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 750.1369951503633,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0010392971133297985,
-          "coal": 0.8508607605568256,
-          "gas": 0.09966940317760901,
-          "geothermal": 0.0,
-          "hydro": 0.01504579491309293,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0002335193388070832,
-          "solar": 0.032987824150061656,
-          "unknown": 0.0,
-          "wind": 0.00016340075027390576
-        }
-      },
-      "AUS-SA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 295.4919621999558,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 1.5283043387177214e-07,
-          "coal": 0.04786285091712733,
-          "gas": 0.5444326303687775,
-          "geothermal": 0.0,
-          "hydro": 0.0022950233867802335,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.000608872332330115,
-          "solar": 0.06143943737205983,
-          "unknown": 0.0,
-          "wind": 0.34336103279249097
-        }
-      },
-      "AUS-TAS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 107.03948484704384,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.0741456236391117e-07,
-          "coal": 0.07319500232649218,
-          "gas": 0.04316174858872642,
-          "geothermal": 0.0,
-          "hydro": 0.7565621564595786,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 5.696826937924544e-07,
-          "solar": 0.01242741717225548,
-          "unknown": 0.0,
-          "wind": 0.11465289835569116
-        }
-      },
-      "AUS-VIC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 667.1443414279648,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.858478761501497e-06,
-          "coal": 0.752601944114975,
-          "gas": 0.08768671422177814,
-          "geothermal": 0.0,
-          "hydro": 0.03847632594969567,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 1.1075365505096629e-05,
-          "solar": 0.026058918063377765,
-          "unknown": 0.0,
-          "wind": 0.0951621638059067
-        }
-      },
-      "AUS-WA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 576.5235437998828,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.455486895604748,
-          "gas": 0.4068239689520351,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 4.385172050551367e-05,
-          "solar": 0.00400469394843494,
-          "unknown": 0.006564469074320909,
-          "wind": 0.12707612069995539
-        }
-      },
-      "AW": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 524.7175518572827,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.8043989592324763,
-          "solar": 0.016138564116738408,
-          "unknown": 0.0,
-          "wind": 0.17946247665078532
-        }
-      },
-      "AX": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 49.48962936425862,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.007009741303381698,
-          "coal": 0.012042811565423,
-          "gas": 0.005418054879999589,
-          "geothermal": 3.5939617228237425e-07,
-          "hydro": 0.30556464906156244,
-          "hydro discharge": 7.187304737271648e-05,
-          "nuclear": 0.28339088962385095,
-          "oil": 0.00031508791173883333,
-          "solar": 0.0007678008595544288,
-          "unknown": 0.05947175909062207,
-          "wind": 0.32594697326032185
-        }
-      },
-      "AZ": {
-        "_source": "IEA yearly data for 2015",
-        "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015",
-        "carbonIntensity": 470
-      },
-      "BA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 541.8644831050644,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0002866536086742124,
-          "coal": 0.6332106488090631,
-          "gas": 0.0012787575045710362,
-          "geothermal": 6.995336851112202e-08,
-          "hydro": 0.34211800425312966,
-          "hydro discharge": 0.0007083186186036497,
-          "nuclear": 0.0029758094135723936,
-          "oil": 1.541916735974516e-05,
-          "solar": 0.00012766786890279835,
-          "unknown": 0.007041214506502138,
-          "wind": 0.012237436296252749
-        }
-      },
-      "BE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 195.43478138434944,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.03937654448039148,
-          "coal": 0.011444366746055376,
-          "gas": 0.2516242258475321,
-          "geothermal": 4.0955053235580226e-07,
-          "hydro": 0.007954651616170878,
-          "hydro discharge": 0.00995479508517582,
-          "nuclear": 0.480517058638453,
-          "oil": 0.00019735272926423491,
-          "solar": 0.03844689583305411,
-          "unknown": 0.06654974182330546,
-          "wind": 0.09393395765006517
-        }
-      },
-      "BG": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 372.44863404656456,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0050484318159014835,
-          "coal": 0.39259146860909483,
-          "gas": 0.0852703607617151,
-          "geothermal": 5.105436826554627e-05,
-          "hydro": 0.09540387997036069,
-          "hydro discharge": 5.652344095868946e-05,
-          "nuclear": 0.3626441506955629,
-          "oil": 8.348664971863332e-06,
-          "solar": 0.025884283508157357,
-          "unknown": 7.656148410570733e-05,
-          "wind": 0.03296493668090581
-        }
-      },
-      "BO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 450.32073983390234,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.34230137200168365,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.6318523306683219,
-          "wind": 0.025846297329994508
-        }
-      },
-      "BR-CS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 109.01127331198309,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 8.218464096071776e-07,
-          "coal": 7.668088159023776e-12,
-          "gas": 1.9276108625916413e-06,
-          "geothermal": 0.0,
-          "hydro": 0.8160137700879239,
-          "hydro discharge": 1.0106981815275344e-08,
-          "nuclear": 0.04676092738012148,
-          "oil": 3.049475766569618e-07,
-          "solar": 0.0045079813807120716,
-          "unknown": 0.1237787914928793,
-          "wind": 0.008935465138864309
-        }
-      },
-      "BR-N": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 168.27425685467261,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 4.911205568244826e-09,
-          "coal": 4.313986116465133e-16,
-          "gas": 1.0853475945439887e-09,
-          "geothermal": 0.0,
-          "hydro": 0.7172439274130927,
-          "hydro discharge": 2.7606478579492795e-12,
-          "nuclear": 8.105030892725133e-05,
-          "oil": 7.447776735800374e-12,
-          "solar": 0.0019175324759946643,
-          "unknown": 0.21556019595945308,
-          "wind": 0.06519728783577029
-        }
-      },
-      "BR-NE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 145.59984036951747,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 1.8640824047005516e-08,
-          "coal": 1.0552760051336436e-14,
-          "gas": 1.9402344371350723e-08,
-          "geothermal": 0.0,
-          "hydro": 0.3359035561233888,
-          "hydro discharge": 2.5637046246516593e-10,
-          "nuclear": 0.0007973205901109388,
-          "oil": 6.239039846068196e-09,
-          "solar": 0.028126433861871164,
-          "unknown": 0.18937143663903125,
-          "wind": 0.44580120824700853
-        }
-      },
-      "BR-S": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 113.08617549255028,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00022553024893881037,
-          "coal": 2.0689979392130977e-06,
-          "gas": 0.001279500270204503,
-          "geothermal": 0.0,
-          "hydro": 0.8070708339657243,
-          "hydro discharge": 7.0765840952525265e-06,
-          "nuclear": 0.008743386546970933,
-          "oil": 0.00012327132139450955,
-          "solar": 0.0009475119457176142,
-          "unknown": 0.12408773405776864,
-          "wind": 0.05751308606124606
-        }
-      },
-      "BY": {
-        "_source": "IEA yearly data for 2016",
-        "_url": "https://www.iea.org/statistics/?country=BELARUS&year=2016&category=Electricity&indicator=ElecGenByFuel",
-        "carbonIntensity": 488
-      },
-      "CA-AB": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 570.6050158576046,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.33899381617362806,
-          "gas": 0.5565668343220327,
-          "geothermal": 0.0,
-          "hydro": 0.024007153818423162,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.027200317140498656,
-          "wind": 0.05323187854541755
-        }
-      },
-      "CA-BC": {
-        "_comment": "Average carbon intensity using 2016 mean production per fuel source (88% hydro, 9% biomass, 1% wind, 1% gas) and IPCC 2014 default lifecycle emission factor",
-        "_source": "List of Generating Stations in BC (Wikipedia) / IPCC 2014 Emissions Factors By Source",
-        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
-        "carbonIntensity": 47
-      },
-      "CA-NB": {
-        "_source": "Canada NEB yearly data for 2016",
-        "_url": "https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html",
-        "carbonIntensity": 300
-      },
-      "CA-NS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 531.4750940946568
-      },
-      "CA-ON": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 26.70363620766451,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0013511697764909713,
-          "coal": 4.698834038411424e-06,
-          "gas": 0.02576138874326961,
-          "geothermal": 0.0,
-          "hydro": 0.23801296887842974,
-          "hydro discharge": 0.0,
-          "nuclear": 0.6461797210759463,
-          "oil": 1.5347728624839063e-09,
-          "solar": 0.0033665186298571076,
-          "unknown": 1.6146812459456887e-07,
-          "wind": 0.08532337105907035
-        }
-      },
-      "CA-PE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 182.56675290459353,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0017525174779592335,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.9982474825220405
-        }
-      },
-      "CA-QC": {
-        "_comment": "see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7. not using NEB data here since the NEB resolution is 1% which makes a difference at these scales",
-        "_source": "StatCan CANSIM Table 127-0002 for 2011-2015",
-        "carbonIntensity": 30
-      },
-      "CA-YT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 121.57363040033647,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.8474150957999734,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.15258490420002668,
-          "wind": 0.0
-        }
-      },
-      "CL-SIC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 394.01636569017154
-      },
-      "CL-SING": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 620.3386653823063
-      },
-      "CR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 59.76978581349455,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00989886255506458,
-          "coal": 0.0,
-          "gas": 3.279618648594993e-05,
-          "geothermal": 0.11319921415055932,
-          "hydro": 0.669617032807585,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.014889881684856743,
-          "solar": 0.0014830827985128077,
-          "unknown": 0.037070700315803,
-          "wind": 0.15380842950113288
-        }
-      },
-      "CY": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 591.7884501094827,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.9084147506622464,
-          "solar": 0.04562222017312572,
-          "unknown": 0.0,
-          "wind": 0.04596302916462786
-        }
-      },
-      "CZ": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 426.7785884854918,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.029581134586084818,
-          "coal": 0.4163035754964945,
-          "gas": 0.08369130733404609,
-          "geothermal": 3.5262660684559796e-06,
-          "hydro": 0.024624291833804123,
-          "hydro discharge": 0.013987175673542612,
-          "nuclear": 0.3314623139798094,
-          "oil": 0.0013046551449315577,
-          "solar": 0.031781684540290164,
-          "unknown": 0.03812510370063918,
-          "wind": 0.029135231444289224
-        }
-      },
-      "DE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 318.139078757198,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.08885879872839676,
-          "coal": 0.282044638646337,
-          "gas": 0.09194290040537627,
-          "geothermal": 5.8962438029233296e-05,
-          "hydro": 0.03600645376796171,
-          "hydro discharge": 0.016784506297133843,
-          "nuclear": 0.15586057932366368,
-          "oil": 0.006191975310423186,
-          "solar": 0.08553310156847795,
-          "unknown": 0.008642827776235696,
-          "wind": 0.22807525573796472
-        }
-      },
-      "DK-BHM": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 61.42121634002235,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.16585768238003806,
-          "coal": 0.0028345344552472484,
-          "gas": 0.0011103148395809968,
-          "geothermal": 1.6192497421565575e-07,
-          "hydro": 0.15747123037921354,
-          "hydro discharge": 3.846070098146171e-05,
-          "nuclear": 0.13853724463336006,
-          "oil": 6.737175025148515e-05,
-          "solar": 0.09242450108148831,
-          "unknown": 0.027498378240386142,
-          "wind": 0.4141601196144785
-        }
-      },
-      "DK-DK1": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 201.30611883357358,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.09323282472754776,
-          "coal": 0.13752156236381624,
-          "gas": 0.09614518949046115,
-          "geothermal": 7.735128221878566e-06,
-          "hydro": 0.14377283097778448,
-          "hydro discharge": 0.0010393946419450985,
-          "nuclear": 0.04854694721440869,
-          "oil": 0.00670307890149188,
-          "solar": 0.03405075543210714,
-          "unknown": 0.010333536663963883,
-          "wind": 0.42864614445825183
-        }
-      },
-      "DK-DK2": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 187.10109395044336,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.20053377914995704,
-          "coal": 0.11256148139595973,
-          "gas": 0.05985725113623406,
-          "geothermal": 9.834707335655713e-06,
-          "hydro": 0.11769668516074741,
-          "hydro discharge": 0.0015735477547811092,
-          "nuclear": 0.10816320933497438,
-          "oil": 0.009239206044563804,
-          "solar": 0.04264270013230295,
-          "unknown": 0.01664694995525625,
-          "wind": 0.33107535522788756
-        }
-      },
-      "DO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 539.2005945080145,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.012174830228366273,
-          "coal": 0.1268312157085024,
-          "gas": 0.41837569449658074,
-          "geothermal": 0.0,
-          "hydro": 0.056027536952169214,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.25314260780094516,
-          "solar": 0.0060781783510567376,
-          "unknown": 0.08675892071973952,
-          "wind": 0.040611015742640026
-        }
-      },
-      "EE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 655.7306081557218,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.09178488905293418,
-          "coal": 0.3975588631617279,
-          "gas": 0.06793629895192849,
-          "geothermal": 3.0440356309053584e-08,
-          "hydro": 0.09943512351443862,
-          "hydro discharge": 0.00010585907203411011,
-          "nuclear": 0.15409683341248365,
-          "oil": 8.171584079210552e-05,
-          "solar": 0.0013191565553633431,
-          "unknown": 0.08628939603835886,
-          "wind": 0.10139183395958243
-        }
-      },
-      "ES": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 206.65234097063006,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.021923133419098153,
-          "coal": 0.043644770252814234,
-          "gas": 0.3030542460864191,
-          "geothermal": 1.1419653122598375e-07,
-          "hydro": 0.10903475573657948,
-          "hydro discharge": 0.0018423837546881793,
-          "nuclear": 0.2471606695251788,
-          "oil": 0.008443851916835748,
-          "solar": 0.0565405218747583,
-          "unknown": 0.004819184901393892,
-          "wind": 0.20353636833570274
-        }
-      },
-      "ES-CN-FVLZ": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 576.7814818911405,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.06271446860095414,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.8353481706646269,
-          "solar": 0.02000737541896436,
-          "unknown": 0.0,
-          "wind": 0.08192998531545453
-        }
-      },
-      "ES-CN-GC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 478.0877284660718,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.4626773149683862,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.3822859421821512,
-          "solar": 0.01811324518439235,
-          "unknown": 0.0,
-          "wind": 0.13692349766507012
-        }
-      },
-      "ES-CN-HI": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 277.2326933004607,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.05124219287056189,
-          "nuclear": 0.0,
-          "oil": 0.4016968220411003,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.5470609850883378
-        }
-      },
-      "ES-CN-IG": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 650.0,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 1.0,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.0
-        }
-      },
-      "ES-CN-LP": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 581.0741556806946,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0022084053400486517,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.8881506955858323,
-          "solar": 0.029106778032731692,
-          "unknown": 0.0,
-          "wind": 0.08053412104138738
-        }
-      },
-      "ES-CN-TE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 462.5646766604788,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.4542534358762791,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.35613750022835705,
-          "solar": 0.06142455197407586,
-          "unknown": 0.0,
-          "wind": 0.12818451192128813
-        }
-      },
-      "ES-IB": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 596.4540580062777
-      },
-      "ES-IB-FO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 499.57475473331033,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.03524683963365322,
-          "coal": 0.20754664727983627,
-          "gas": 0.34367584089059283,
-          "geothermal": 1.67249757935151e-08,
-          "hydro": 0.01754056757305312,
-          "hydro discharge": 0.00029816622330301165,
-          "nuclear": 0.04184622508955616,
-          "oil": 0.2161095768904248,
-          "solar": 0.10392185892401727,
-          "unknown": 0.0008061810527421857,
-          "wind": 0.03300807971784539
-        }
-      },
-      "ES-IB-IZ": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 537.0886237942311,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.03506332668923074,
-          "coal": 0.21871276747531504,
-          "gas": 0.3777778526437003,
-          "geothermal": 1.3848642058813121e-08,
-          "hydro": 0.018025290172142917,
-          "hydro discharge": 0.000291250313804887,
-          "nuclear": 0.04349404690132116,
-          "oil": 0.24830379697066526,
-          "solar": 0.024122833807809847,
-          "unknown": 0.0008388693264286499,
-          "wind": 0.0333699518509392
-        }
-      },
-      "ES-IB-MA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 512.5899580410254,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.06292695619354034,
-          "coal": 0.4055774249232914,
-          "gas": 0.31004886923805935,
-          "geothermal": 2.458331305201969e-08,
-          "hydro": 0.03343002986155294,
-          "hydro discharge": 0.000587638554260916,
-          "nuclear": 0.07900390549691749,
-          "oil": 0.0027329682755307372,
-          "solar": 0.044141749705863646,
-          "unknown": 0.0015154752311720941,
-          "wind": 0.060034957936498004
-        }
-      },
-      "ES-IB-ME": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 559.8711175420456,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.48916144244119314,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.48359139629427733,
-          "solar": 0.016006608880846294,
-          "unknown": 0.0,
-          "wind": 0.011240552383683194
-        }
-      },
-      "FI": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 180.99753394292068,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.07736572382100938,
-          "coal": 0.10709028291331703,
-          "gas": 0.05643469240651852,
-          "geothermal": 8.935189216363906e-08,
-          "hydro": 0.22543877937806872,
-          "hydro discharge": 1.8152006790247836e-05,
-          "nuclear": 0.3696672397513408,
-          "oil": 0.00021969209263031912,
-          "solar": 0.0002892983304103557,
-          "unknown": 0.07146469138719014,
-          "wind": 0.0920113585608323
-        }
-      },
-      "FO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 406.7963208947044,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.2693856053993839,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.6021188908034802,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.12849550379713598
-        }
-      },
-      "FR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 56.7109867031687,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.01356996296197773,
-          "coal": 0.004802760457283329,
-          "gas": 0.07595712257073689,
-          "geothermal": 2.374273858459212e-06,
-          "hydro": 0.10223018646861476,
-          "hydro discharge": 0.010100295042488805,
-          "nuclear": 0.703886628751109,
-          "oil": 0.0031151288317415237,
-          "solar": 0.022445977790699744,
-          "unknown": 0.0004988084370462809,
-          "wind": 0.0633907544144435
-        }
-      },
-      "GB": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 268.1912610035926,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0648466794883742,
-          "coal": 0.029153707993039436,
-          "gas": 0.4554578154358571,
-          "geothermal": 2.1630943841475366e-07,
-          "hydro": 0.01804768561342051,
-          "hydro discharge": 0.007888610021101266,
-          "nuclear": 0.22877691321818902,
-          "oil": 0.0003536886345706338,
-          "solar": 0.04748456414867289,
-          "unknown": 0.007403682251385126,
-          "wind": 0.1405864368859514
-        }
-      },
-      "GB-NIR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 361.6745486300691,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.008958539569725019,
-          "coal": 0.11593325293035403,
-          "gas": 0.5280023449962602,
-          "geothermal": 3.432472746504255e-08,
-          "hydro": 0.003421857292785178,
-          "hydro discharge": 0.0015215635876424916,
-          "nuclear": 0.031115790511719005,
-          "oil": 0.0037049427933796004,
-          "solar": 0.007233707799135829,
-          "unknown": 0.0010529022891172482,
-          "wind": 0.2990550639051538
-        }
-      },
-      "GB-ORK": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 72.7861448532713
-      },
-      "GE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 170.60180720512486,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 3.51956222551958e-07,
-          "coal": 7.188210052963989e-06,
-          "gas": 0.2495025079556199,
-          "geothermal": 2.385411616799037e-07,
-          "hydro": 0.7383734991242824,
-          "hydro discharge": 1.2339136245107426e-09,
-          "nuclear": 0.001474409739565938,
-          "oil": 2.1460778489787228e-08,
-          "solar": 1.0281594268418385e-05,
-          "unknown": 0.003492209644613175,
-          "wind": 0.0071392905395208745
-        }
-      },
-      "GR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 422.38641446720834,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0008438046534683386,
-          "coal": 0.27638088700645147,
-          "gas": 0.36259133908067287,
-          "geothermal": 0.0014874493343108046,
-          "hydro": 0.0899973140082045,
-          "hydro discharge": 0.009752092002701163,
-          "nuclear": 0.019722259734835178,
-          "oil": 0.000178789789858407,
-          "solar": 0.09332002031795346,
-          "unknown": 0.00024618229103503587,
-          "wind": 0.14547986178050878
-        }
-      },
-      "GT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 412.16844868494223,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.11217009024437291,
-          "coal": 0.42425838885729167,
-          "gas": 0.00014745596019026457,
-          "geothermal": 0.02155934579930184,
-          "hydro": 0.3559733437212401,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.04121329802818301,
-          "solar": 0.017201436754533544,
-          "unknown": 0.0,
-          "wind": 0.027476640634886654
-        }
-      },
-      "HR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 245.098847760667,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.004955265547482106,
-          "coal": 0.07582410030971624,
-          "gas": 0.027583370275716786,
-          "geothermal": 7.639691059488852e-07,
-          "hydro": 0.05472174970292402,
-          "hydro discharge": 0.00398231419574039,
-          "nuclear": 0.057559482792033205,
-          "oil": 0.0003285108027672401,
-          "solar": 0.002731808548078299,
-          "unknown": 0.6761940395740391,
-          "wind": 0.0961185942823967
-        }
-      },
-      "HU": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 276.8639468649369,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.03372525954413635,
-          "coal": 0.16992174262600995,
-          "gas": 0.20087000030655353,
-          "geothermal": 1.309028108841377e-06,
-          "hydro": 0.07827024925703643,
-          "hydro discharge": 0.00950969146796223,
-          "nuclear": 0.42594837235653804,
-          "oil": 0.0031232918736974,
-          "solar": 0.005986368807583321,
-          "unknown": 0.029802398770109286,
-          "wind": 0.042841315962264634
-        }
-      },
-      "IE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 342.5762236022499,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.003235061468021914,
-          "coal": 0.10733121544569685,
-          "gas": 0.3761596419074591,
-          "geothermal": 1.0996844270128861e-08,
-          "hydro": 0.03216743618386987,
-          "hydro discharge": 0.01052461101420896,
-          "nuclear": 0.011161331716457128,
-          "oil": 0.08586370689473533,
-          "solar": 0.0031676806925042037,
-          "unknown": 0.0007242384073853224,
-          "wind": 0.36966506527281706
-        }
-      },
-      "IN": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 631.1227789284042,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.739788531237817,
-          "gas": 0.03592277014733543,
-          "geothermal": 0.0,
-          "hydro": 0.1233011541061651,
-          "hydro discharge": 0.0,
-          "nuclear": 0.02956120063948037,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.07142634386920217,
-          "wind": 0.0
-        }
-      },
-      "IN-AP": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 570.8808451774046,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.3802963217164112,
-          "gas": 0.01304529716727588,
-          "geothermal": 0.0,
-          "hydro": 0.04357853641178949,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0687983635603998,
-          "unknown": 0.35403372930938165,
-          "wind": 0.1402477518347421
-        }
-      },
-      "IN-CT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 812.3965270422016,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.9904493437825819,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.009550656217418081,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.0
-        }
-      },
-      "IN-DL": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 461.91737050030406,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.3671267536693038,
-          "coal": 0.19234140785858087,
-          "gas": 0.44053183847211547,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.0
-        }
-      },
-      "IN-GJ": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 612.1706534439026
-      },
-      "IN-KA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 399.8176113274491,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.010400289304650687,
-          "coal": 0.22428539501933673,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.18848332021162467,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.16423886876357416,
-          "unknown": 0.3056135476065499,
-          "wind": 0.10697857909426384
-        }
-      },
-      "IN-PB": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 654.8486560135972,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.010946090186063505,
-          "coal": 0.7904085346783122,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.157629074543371,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.04101630059225319,
-          "unknown": 0.0,
-          "wind": 0.0
-        }
-      },
-      "IN-UP": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 665.8486390383613,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.04625864213952837,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.00373789004634303,
-          "unknown": 0.9500034678141287,
-          "wind": 0.0
-        }
-      },
-      "IN-UT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 340.19599615538266
-      },
-      "IQ": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 504.8265291334278,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.6842536111033685,
-          "geothermal": 0.0,
-          "hydro": 0.05563604369760803,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.26011034519902343,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.0
-        }
-      },
-      "IS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 28.396516370711876,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.3006134269735258,
-          "hydro": 0.6991013815898574,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0002851914366168894,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.0
-        }
-      },
-      "IT-CNO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 291.3763737427268,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.014467484670360476,
-          "coal": 0.03460059993774982,
-          "gas": 0.3906799908672765,
-          "geothermal": 0.16300819441212425,
-          "hydro": 0.1428729614852005,
-          "hydro discharge": 0.005781575893093146,
-          "nuclear": 0.017434647976856954,
-          "oil": 0.0006245662277984689,
-          "solar": 0.10081730252561812,
-          "unknown": 0.07672730985874271,
-          "wind": 0.052985366145179076
-        }
-      },
-      "IT-CSO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 387.65060213132006,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.02676665571075216,
-          "coal": 0.1316313414426873,
-          "gas": 0.43353374464116995,
-          "geothermal": 0.0047549648729465245,
-          "hydro": 0.07033811056152171,
-          "hydro discharge": 0.009292508422918235,
-          "nuclear": 0.0014003370430367946,
-          "oil": 0.0007718684875432453,
-          "solar": 0.10027084979815665,
-          "unknown": 0.07017595023130688,
-          "wind": 0.15106366878796051
-        }
-      },
-      "IT-NO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 334.28294156325325,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.014657506053244932,
-          "coal": 0.034475601834363274,
-          "gas": 0.4148673069923476,
-          "geothermal": 0.0014276159695631107,
-          "hydro": 0.25005679001846715,
-          "hydro discharge": 0.017840162520520685,
-          "nuclear": 0.08031913387765628,
-          "oil": 0.0013065610996046996,
-          "solar": 0.050931139810305476,
-          "unknown": 0.12322461620601888,
-          "wind": 0.010893565617907969
-        }
-      },
-      "IT-SAR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 507.4057597325745,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.033278637310826725,
-          "coal": 0.35377575055880073,
-          "gas": 0.33397726139705264,
-          "geothermal": 0.0001499290667426892,
-          "hydro": 0.02146841893655527,
-          "hydro discharge": 0.011971280780925903,
-          "nuclear": 4.4983199932822223e-05,
-          "oil": 0.013254181044558186,
-          "solar": 0.04947029552674505,
-          "unknown": 0.031421044916921784,
-          "wind": 0.15118821726093823
-        }
-      },
-      "IT-SIC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 352.0579180311387,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.014475784006798479,
-          "coal": 0.01663269395392683,
-          "gas": 0.5427806553380855,
-          "geothermal": 4.481847899998074e-06,
-          "hydro": 0.015482646829812803,
-          "hydro discharge": 0.013897670213323008,
-          "nuclear": 1.5303604048791515e-06,
-          "oil": 0.039717596798132526,
-          "solar": 0.09124423970753721,
-          "unknown": 0.050259627923187666,
-          "wind": 0.215503073020891
-        }
-      },
-      "IT-SO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 367.3485828669919,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0436912988569721,
-          "coal": 0.07927911558288664,
-          "gas": 0.5199226687800704,
-          "geothermal": 1.3349284465083967e-05,
-          "hydro": 0.034501129960264484,
-          "hydro discharge": 2.5469795482530144e-05,
-          "nuclear": 4.596367409018318e-06,
-          "oil": 0.00015790798417970823,
-          "solar": 0.07814282481999035,
-          "unknown": 0.04392668826147143,
-          "wind": 0.2003349503068082
-        }
-      },
-      "JP-KY": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 431.63876328308334,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.29081097411504575,
-          "oil": 0.0,
-          "solar": 0.10022635902649252,
-          "unknown": 0.6089626668584617,
-          "wind": 0.0
-        }
-      },
-      "KR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 503.93546876496197,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.001966626193667225,
-          "hydro discharge": 0.0,
-          "nuclear": 0.2570880298380328,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.7409453439683,
-          "wind": 0.0
-        }
-      },
-      "LT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 310.59313026961024,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.08788771357137579,
-          "coal": 0.05748610520532465,
-          "gas": 0.12250755977480975,
-          "geothermal": 2.92640617186076e-07,
-          "hydro": 0.23687770238450007,
-          "hydro discharge": 0.05207662597158187,
-          "nuclear": 0.14305681553131105,
-          "oil": 0.0005258336450968388,
-          "solar": 0.007754670356232445,
-          "unknown": 0.07761372905265006,
-          "wind": 0.21421295186650033
-        }
-      },
-      "LV": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 407.5932032327419,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.09135809548126898,
-          "coal": 0.09828201832539846,
-          "gas": 0.2897939309211801,
-          "geothermal": 2.5791952033909265e-08,
-          "hydro": 0.25015600270782556,
-          "hydro discharge": 0.000851706173283393,
-          "nuclear": 0.07349316308869615,
-          "oil": 5.7567149933068564e-05,
-          "solar": 0.0005069799778596761,
-          "unknown": 0.14424498317343304,
-          "wind": 0.051255527209169635
-        }
-      },
-      "MD": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 581.5326447620159,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 6.406961421174372e-05,
-          "coal": 0.03636240061621676,
-          "gas": 0.19691572533394358,
-          "geothermal": 3.3582912958727943e-09,
-          "hydro": 0.051821618646797726,
-          "hydro discharge": 2.304777184377018e-05,
-          "nuclear": 0.06724394224677961,
-          "oil": 4.3717102011782304e-05,
-          "solar": 2.3747653621856886e-05,
-          "unknown": 0.645923286281928,
-          "wind": 0.0015784413743539154
-        }
-      },
-      "ME": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 457.4064691088665,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0004318448761643438,
-          "coal": 0.529899272608272,
-          "gas": 0.001535878955383841,
-          "geothermal": 1.696424058350062e-07,
-          "hydro": 0.4097742720409046,
-          "hydro discharge": 0.0011297037321515802,
-          "nuclear": 0.004052231593918584,
-          "oil": 1.3161569031638713e-05,
-          "solar": 0.00022096824811155863,
-          "unknown": 0.00473081725320475,
-          "wind": 0.0482116794804514
-        }
-      },
-      "MK": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 582.865763059556,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0017738939109584295,
-          "coal": 0.667272608507142,
-          "gas": 0.03472396332710049,
-          "geothermal": 3.2991359196164406e-05,
-          "hydro": 0.18245268486593835,
-          "hydro discharge": 0.003947564040057551,
-          "nuclear": 0.07717065313297387,
-          "oil": 1.4468824548204531e-05,
-          "solar": 0.006551252352353977,
-          "unknown": 0.003158653372178756,
-          "wind": 0.022901266307552282
-        }
-      },
-      "MX-BC": {
-        "carbonIntensity": 453.0,
-        "comment": "Only for exports from Baja California to California, assumes 92.3% gas, 7.7% wind, see issue 1497",
-        "source": "Tomorrow & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
-      },
-      "MY-WM": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 661.1953663549518,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.5497922835036958,
-          "gas": 0.41152406479872466,
-          "geothermal": 0.0,
-          "hydro": 0.029552844653127977,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 3.0670152909220193e-06,
-          "unknown": 0.009127740029160792,
-          "wind": 0.0
-        }
-      },
-      "NA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 426.68175883566175,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.018109771958883827,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.6859801523524309,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0021103033497520663,
-          "solar": 0.18441683446500204,
-          "unknown": 0.0,
-          "wind": 0.10938293787393111
-        }
-      },
-      "NI": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 305.62546509363693,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.15803094260698802,
-          "coal": 0.0,
-          "gas": 2.8595921000895583e-06,
-          "geothermal": 0.17810943803989465,
-          "hydro": 0.08323109561401554,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.40055872852355645,
-          "solar": 0.005024668424594931,
-          "unknown": 0.002350834502174446,
-          "wind": 0.17269143269667578
-        }
-      },
-      "NKR": {
-        "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
-        "carbonIntensity": 24
-      },
-      "NL": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 478.75463019112357,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.010474282746588268,
-          "coal": 0.18294900807757467,
-          "gas": 0.42695341468772197,
-          "geothermal": 5.137205139088104e-06,
-          "hydro": 0.027600969991131184,
-          "hydro discharge": 0.0016993368226252202,
-          "nuclear": 0.07663133858252628,
-          "oil": 0.0005234100995840475,
-          "solar": 0.010178773218125992,
-          "unknown": 0.17221838893694466,
-          "wind": 0.0907659396320387
-        }
-      },
-      "NO-NO1": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 38.39712550610449,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0022459477041282708,
-          "coal": 0.00486653532201876,
-          "gas": 0.014891107538121008,
-          "geothermal": 3.278597968376623e-07,
-          "hydro": 0.8721349100803618,
-          "hydro discharge": 3.117039250743086e-05,
-          "nuclear": 0.044994881365175314,
-          "oil": 0.00012202984109237993,
-          "solar": 0.0005212659445992144,
-          "unknown": 0.0114184411021005,
-          "wind": 0.04877338285009839
-        }
-      },
-      "NO-NO2": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 50.015449531005046,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.006805515704165435,
-          "coal": 0.015186892466091166,
-          "gas": 0.018765283259809622,
-          "geothermal": 1.1341432685352868e-06,
-          "hydro": 0.8527214209463434,
-          "hydro discharge": 9.104478832219862e-05,
-          "nuclear": 0.009498322670392375,
-          "oil": 0.00048212460080191186,
-          "solar": 0.0024391895673803645,
-          "unknown": 0.006183875767307299,
-          "wind": 0.08782519608611773
-        }
-      },
-      "NO-NO3": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 38.61762887007422,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0003949848835797223,
-          "coal": 0.0006112317492900574,
-          "gas": 0.02304655113300138,
-          "geothermal": 4.98696726878545e-08,
-          "hydro": 0.8637707058613433,
-          "hydro discharge": 3.51936160032456e-06,
-          "nuclear": 0.02377406077308191,
-          "oil": 1.9396780787808857e-05,
-          "solar": 7.603878316034909e-05,
-          "unknown": 0.009355778937187028,
-          "wind": 0.07894768186729546
-        }
-      },
-      "NO-NO4": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 58.54764664412002,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00022100361723151828,
-          "coal": 0.000351123850794099,
-          "gas": 0.06738020790610326,
-          "geothermal": 6.23606217658176e-09,
-          "hydro": 0.8862827022917135,
-          "hydro discharge": 4.500974318020495e-07,
-          "nuclear": 0.00424845339436572,
-          "oil": 2.6783937629127806e-06,
-          "solar": 1.2003086846209916e-05,
-          "unknown": 0.003118916191582483,
-          "wind": 0.03838245493410654
-        }
-      },
-      "NO-NO5": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 39.6980716375471,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00040433666641565046,
-          "coal": 0.0009434132725478374,
-          "gas": 0.03016505895337649,
-          "geothermal": 7.020493423867024e-08,
-          "hydro": 0.960018122715742,
-          "hydro discharge": 4.284765346447582e-06,
-          "nuclear": 0.0013525064467719988,
-          "oil": 2.3160398318838374e-05,
-          "solar": 8.064721822649731e-05,
-          "unknown": 0.0007376716957748906,
-          "wind": 0.0062707276625451865
-        }
-      },
-      "NZ-NZN": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 177.75133706855047,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.04547821535426373,
-          "gas": 0.1737881212921269,
-          "geothermal": 0.305791367228876,
-          "hydro": 0.3726072534919048,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.00011299266377406926,
-          "solar": 0.0,
-          "unknown": 0.04789397087744419,
-          "wind": 0.05432807909161043
-        }
-      },
-      "NZ-NZS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 24.860113383821673,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.00022657481503481162,
-          "gas": 0.000923780778894452,
-          "geothermal": 0.001739206000548788,
-          "hydro": 0.9870377559030186,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.0,
-          "unknown": 0.0002736491536676093,
-          "wind": 0.009799033348835768
-        }
-      },
-      "PA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 383.3466683877131,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 4.860595252351037e-05,
-          "coal": 0.0,
-          "gas": 0.0012644674487080848,
-          "geothermal": 0.00025954373565018404,
-          "hydro": 0.39635202243639794,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 5.405194653901123e-06,
-          "solar": 0.02156551394369219,
-          "unknown": 0.5264878530607128,
-          "wind": 0.054016588227661436
-        }
-      },
-      "PE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 187.89970958678683,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.004714600325490055,
-          "coal": 0.0009010345421015125,
-          "gas": 0.3487516208940384,
-          "geothermal": 0.0,
-          "hydro": 0.5926561001476831,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.000651361398029383,
-          "solar": 0.01642421830047085,
-          "unknown": 0.0014709627664321872,
-          "wind": 0.034430101625754356
-        }
-      },
-      "PL": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 651.7196283385491,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.019553838173107397,
-          "coal": 0.7240538964670056,
-          "gas": 0.07714322600589038,
-          "geothermal": 3.6969006121861937e-06,
-          "hydro": 0.02266807496033773,
-          "hydro discharge": 0.007878479746687093,
-          "nuclear": 0.02245736712160887,
-          "oil": 0.010425240763994122,
-          "solar": 0.005102773624200512,
-          "unknown": 0.003249339847992352,
-          "wind": 0.10746406638856373
-        }
-      },
-      "PT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 276.6755735003853,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.05452851639082636,
-          "coal": 0.09927705494720786,
-          "gas": 0.3279645620551449,
-          "geothermal": 2.5843804137568795e-08,
-          "hydro": 0.1340660355516998,
-          "hydro discharge": 0.04871089972165981,
-          "nuclear": 0.03523298226329534,
-          "oil": 0.0010755600295932369,
-          "solar": 0.027640311927038183,
-          "unknown": 0.006093515393511715,
-          "wind": 0.26541053587621866
-        }
-      },
-      "RE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 502.5836877888621,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.16382667476718826,
-          "coal": 0.29508780785135996,
-          "gas": 0.0115630485271109,
-          "geothermal": 0.0,
-          "hydro": 0.12553628312487924,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.3171646247821611,
-          "solar": 0.08315593223784189,
-          "unknown": 0.0,
-          "wind": 0.003665628709458577
-        }
-      },
-      "RO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 292.42885315216455,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.007752656530856456,
-          "coal": 0.2386223481247558,
-          "gas": 0.1746291341827769,
-          "geothermal": 2.362905026231066e-06,
-          "hydro": 0.23450378749439396,
-          "hydro discharge": 0.0005516463929507139,
-          "nuclear": 0.20675637210539363,
-          "oil": 0.00010430147497459869,
-          "solar": 0.014117992684397786,
-          "unknown": 0.0011336996179512145,
-          "wind": 0.12182569848652265
-        }
-      },
-      "RS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 563.5223696263673,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00391451664630297,
-          "coal": 0.6403607433638264,
-          "gas": 0.01080418884562055,
-          "geothermal": 1.4237320709163115e-06,
-          "hydro": 0.27440528394167246,
-          "hydro discharge": 0.020154574006056088,
-          "nuclear": 0.02575677510437971,
-          "oil": 5.193029361794011e-05,
-          "solar": 0.0011168465369118862,
-          "unknown": 0.016118278996429557,
-          "wind": 0.007315438533111531
-        }
-      },
-      "RU": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 367.76663733192356,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.15953863849208846,
-          "hydro discharge": 0.0,
-          "nuclear": 0.19914772620393495,
-          "oil": 0.0,
-          "solar": 0.0009334126352413612,
-          "unknown": 0.6403802226687354,
-          "wind": 0.0
-        }
-      },
-      "RU-1": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 356.6864192403283,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 4.132262090152672e-05,
-          "coal": 0.0007620342100923182,
-          "gas": 0.0003267335407244764,
-          "geothermal": 2.2663918631386015e-10,
-          "hydro": 0.07588494490462325,
-          "hydro discharge": 7.86790349827049e-07,
-          "nuclear": 0.2503957346016217,
-          "oil": 6.593626423312858e-07,
-          "solar": 0.0010474694894830935,
-          "unknown": 0.671494041443443,
-          "wind": 4.6272809479278814e-05
-        }
-      },
-      "RU-2": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 410.17722847490353,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.443719380487408e-07,
-          "coal": 6.766070793710594e-06,
-          "gas": 3.1767722345182695e-06,
-          "geothermal": 3.3707909896735885e-12,
-          "hydro": 0.48494206764053943,
-          "hydro discharge": 6.031501766114671e-09,
-          "nuclear": 0.001252841994495255,
-          "oil": 6.445130216768894e-09,
-          "solar": 0.000467848996279447,
-          "unknown": 0.5133267466768396,
-          "wind": 2.949968773471882e-07
-        }
-      },
-      "RU-KGD": {
-        "_comment": "see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants. About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.",
-        "_source": "Energy security in Kaliningrad and geopolitics (2/2014)",
-        "carbonIntensity": 480
-      },
-      "SE": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 52.07454753016652,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.003558719717891228,
-          "coal": 0.008134359526822368,
-          "gas": 0.0029624829396442016,
-          "geothermal": 4.769692793066628e-07,
-          "hydro": 0.4070345757261483,
-          "hydro discharge": 9.521052283294326e-05,
-          "nuclear": 0.37363288039228315,
-          "oil": 0.00022123598178178577,
-          "solar": 0.001036070371518233,
-          "unknown": 0.07865800037274105,
-          "wind": 0.1246659874790573
-        }
-      },
-      "SG": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 493.46698140114785,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0009304891510995508,
-          "gas": 0.9753306438654484,
-          "geothermal": 0.0,
-          "hydro": 4.701846055284745e-05,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.002974613461176593,
-          "unknown": 0.020717235061722582,
-          "wind": 0.0
-        }
-      },
-      "SI": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 232.24083433960394,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.022354292820091624,
-          "coal": 0.21508525259471467,
-          "gas": 0.056238568280299814,
-          "geothermal": 2.4019949261349276e-05,
-          "hydro": 0.3202907677762352,
-          "hydro discharge": 0.02584928667883397,
-          "nuclear": 0.28470817057139497,
-          "oil": 0.00027315607658308654,
-          "solar": 0.023726841712435186,
-          "unknown": 0.014519880939503448,
-          "wind": 0.03692976260064657
-        }
-      },
-      "SK": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 270.4300954824872,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.02893180921402305,
-          "coal": 0.19420811816956016,
-          "gas": 0.09246249791355454,
-          "geothermal": 1.2485535294494618e-06,
-          "hydro": 0.11310368525768802,
-          "hydro discharge": 0.008632941598266258,
-          "nuclear": 0.45561024977669007,
-          "oil": 0.014325633854563626,
-          "solar": 0.02130054672446255,
-          "unknown": 0.0541684963778522,
-          "wind": 0.01725477255981011
-        }
-      },
-      "SV": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 243.78670546324832,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.11611228867016232,
-          "coal": 0.052910610573417886,
-          "gas": 1.8943232258167646e-05,
-          "geothermal": 0.23837452557231184,
-          "hydro": 0.30019818454542,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.24772272547355265,
-          "solar": 0.04004987957191074,
-          "unknown": 0.0,
-          "wind": 0.004612842360966347
-        }
-      },
-      "TR": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 427.0453644250538,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.010041209753802393,
-          "coal": 0.3886404334034411,
-          "gas": 0.18912478078979053,
-          "geothermal": 0.028104260890474395,
-          "hydro": 0.30313022585263866,
-          "hydro discharge": 1.9247973236301711e-07,
-          "nuclear": 0.002150568165564794,
-          "oil": 0.0030044794531228903,
-          "solar": 0.0006592659419763268,
-          "unknown": 0.0022617242218546147,
-          "wind": 0.07288285904760186
-        }
-      },
-      "TW": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 541.3751501116697,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.3781266753736337,
-          "gas": 0.38407817021912977,
-          "geothermal": 0.0,
-          "hydro": 0.022908479013755898,
-          "hydro discharge": 0.013380456533667637,
-          "nuclear": 0.13125798226310553,
-          "oil": 0.018565970726784228,
-          "solar": 0.014772782652029526,
-          "unknown": 0.029605678300276776,
-          "wind": 0.0073038049176170515
-        }
-      },
-      "UA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 294.8880445933354,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0004859391212440437,
-          "coal": 0.2829821842392201,
-          "gas": 0.10050420744914156,
-          "geothermal": 2.4661786696291136e-08,
-          "hydro": 0.054346288385956745,
-          "hydro discharge": 0.00016389961008179445,
-          "nuclear": 0.5347001489021846,
-          "oil": 0.00034169554509441924,
-          "solar": 0.0001843546951249272,
-          "unknown": 0.011828021235492594,
-          "wind": 0.014463236154672453
-        }
-      },
-      "US": {
-        "_comment": "Only for imports to California! Renewable ratio assumed as average 25% hydro with some wind/solar; low-carbon assumed as with average 20% nuclear; from information in Github issue we assume it is either mostly from source with hydro or from source with nuclear but not bot",
-        "_source": "https://github.com/tmrowco/electricitymap/issues/1497",
-        "carbonIntensity": 325
-      },
-      "US-BPA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 92.5541703200337,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 3.064263500295041e-06,
-          "coal": 0.0004258504765287879,
-          "gas": 0.00019334815524038357,
-          "geothermal": 2.584460401783361e-05,
-          "hydro": 0.7347129651465208,
-          "hydro discharge": 0.0,
-          "nuclear": 0.09265971912565989,
-          "oil": 0.0,
-          "solar": 3.9423972905655316e-05,
-          "unknown": 0.09589506777598594,
-          "wind": 0.07604471647964044
-        }
-      },
-      "US-CA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 233.87535224279372,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.02941021808319713,
-          "coal": 0.0006556467640274957,
-          "gas": 0.38826051564725633,
-          "geothermal": 0.04647418641408467,
-          "hydro": 0.17894314112305199,
-          "hydro discharge": 0.0,
-          "nuclear": 0.09828228824076103,
-          "oil": 0.0,
-          "solar": 0.15926426180630407,
-          "unknown": 1.9234319763085327e-07,
-          "wind": 0.09870954957811963
-        }
-      },
-      "US-HI-OA": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 631.6368508583467,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.06184664016104994,
-          "coal": 0.1876337883930708,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.7116492488529725,
-          "solar": 0.020618222439025388,
-          "unknown": 0.0,
-          "wind": 0.01825210015388137
-        }
-      },
-      "US-IPC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 315.8457792523603,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0035393353362828898,
-          "coal": 0.2934014989094449,
-          "gas": 0.13560958245947718,
-          "geothermal": 0.018951534612374525,
-          "hydro": 0.3840074542841999,
-          "hydro discharge": 0.0,
-          "nuclear": 9.388550933243114e-05,
-          "oil": 0.0,
-          "solar": 0.021434945456262313,
-          "unknown": 0.00011618550971948805,
-          "wind": 0.1428455779229065
-        }
-      },
-      "US-MISO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 490.3864114768338,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.764576695461162e-05,
-          "coal": 0.42336063918934574,
-          "gas": 0.2677820721233829,
-          "geothermal": 0.0,
-          "hydro": 0.004716519058014514,
-          "hydro discharge": 0.0,
-          "nuclear": 0.1851627975902798,
-          "oil": 8.807593295001982e-05,
-          "solar": 0.00021402635858385843,
-          "unknown": 0.01933513862718859,
-          "wind": 0.0993130853532999
-        }
-      },
-      "US-NEISO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 240.00486210378685
-      },
-      "US-NY": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 212.54789978382524
-      },
-      "US-PJM": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 380.2023973381298,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 1.5194003584203697e-08,
-          "coal": 0.23703510024409885,
-          "gas": 0.3604294006100377,
-          "geothermal": 0.0,
-          "hydro": 0.02021120297817916,
-          "hydro discharge": 0.0,
-          "nuclear": 0.33628962166768595,
-          "oil": 0.0021662684369487136,
-          "solar": 0.0030036253045122585,
-          "unknown": 0.011571295053636075,
-          "wind": 0.029293470510897666
-        }
-      },
-      "US-SEC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 699.6163702204249,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.00018543738980094144,
-          "unknown": 0.9998145626101991,
-          "wind": 0.0
-        }
-      },
-      "US-SPP": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 415.10394894555816,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0003416806680901817,
-          "coal": 0.35312547003110895,
-          "gas": 0.2581920094224532,
-          "geothermal": 0.0,
-          "hydro": 0.05393510240409148,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0610244913652716,
-          "oil": 0.00014392983370791683,
-          "solar": 0.0021086815976331524,
-          "unknown": 0.0009278127957284803,
-          "wind": 0.2702008218819151
-        }
-      },
-      "US-SVERI": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 462.006385109754
-      },
-      "US-TN": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 263.3177856315049,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.14721736740425218,
-          "gas": 0.27907836040422657,
-          "geothermal": 0.0,
-          "hydro": 0.1433331618110095,
-          "hydro discharge": 0.0,
-          "nuclear": 0.4268026355433382,
-          "oil": 0.0,
-          "solar": 0.002514995463269994,
-          "unknown": 0.0010534793739036007,
-          "wind": 0.0
-        }
-      },
-      "US-TX": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 418.0556458543028,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.013266035792016895,
-          "unknown": 0.808225853071413,
-          "wind": 0.17850811113657017
-        }
-      },
-      "UY": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 44.07817093262462,
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.04648165868261993,
-          "coal": 2.514956006179645e-05,
-          "gas": 0.00448481803984947,
-          "geothermal": 0.0,
-          "hydro": 0.6660397974458279,
-          "hydro discharge": 3.942493607784242e-05,
-          "nuclear": 0.00048174522735202295,
-          "oil": 0.012489666483424474,
-          "solar": 0.019420053345432786,
-          "unknown": 0.00010785392438724089,
-          "wind": 0.2504298323549667
-        }
-      },
-      "ZA": {
-        "_source": "IEA yearly data for 2015",
-        "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=SOUTHAFRIC&product=electricityandheat&year=2015",
-        "carbonIntensity": 750
-      },
-      "ZM": {
-        "_source": "IEA yearly data for 2015",
-        "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=ZAMBIA&product=electricityandheat&year=2015",
-        "carbonIntensity": 50
-      }
+    "AT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 214.20843430228442,
+      "fossilFuelRatio": 0.2594436220805179,
+      "renewableRatio": 0.6680966840115881
+    },
+    "AUS-NSW": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 717.1680079230526,
+      "fossilFuelRatio": 0.8801142910103725,
+      "renewableRatio": 0.11988570898962742
+    },
+    "AUS-QLD": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 754.8224449758145,
+      "fossilFuelRatio": 0.9555842398557496,
+      "renewableRatio": 0.04441576014425043
+    },
+    "AUS-SA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 307.6679502518432,
+      "fossilFuelRatio": 0.5583884347634666,
+      "renewableRatio": 0.4416115652365334
+    },
+    "AUS-TAS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 86.41596082859343,
+      "fossilFuelRatio": 0.09830277545150018,
+      "renewableRatio": 0.9016972245484998
+    },
+    "AUS-VIC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 674.8153960720874,
+      "fossilFuelRatio": 0.8392905138688094,
+      "renewableRatio": 0.16070948613119054
+    },
+    "AUS-WA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 602.6766549802446,
+      "fossilFuelRatio": 0.9051407335275641,
+      "renewableRatio": 0.09485926647243594
+    },
+    "AW": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 541.547766949968,
+      "fossilFuelRatio": 0.8297579317287628,
+      "renewableRatio": 0.17024206827123714
+    },
+    "AX": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 57.17556004252282,
+      "fossilFuelRatio": 0.08221765085560113,
+      "renewableRatio": 0.5872501990075594
+    },
+    "AZ": {
+      "_source": "IEA yearly data for 2015",
+      "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015",
+      "carbonIntensity": 470,
+      "fossilFuelRatio": 0.92,
+      "renewableRatio": 0.07
+    },
+    "BA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 609.7497546218746,
+      "fossilFuelRatio": 0.7357755589144561,
+      "renewableRatio": 0.262322271950046
+    },
+    "BE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 232.5284647530045,
+      "fossilFuelRatio": 0.3853502564640507,
+      "renewableRatio": 0.21291844590226863
+    },
+    "BG": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 370.8044982293758,
+      "fossilFuelRatio": 0.47212493964936547,
+      "renewableRatio": 0.18509445391061924
+    },
+    "BO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 497.59958519299215,
+      "fossilFuelRatio": 0.7009498770391803,
+      "renewableRatio": 0.29905012296081956
+    },
+    "BR-CS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 106.1028494272087,
+      "fossilFuelRatio": 0.12232608100615364,
+      "renewableRatio": 0.8297643993198774
+    },
+    "BR-N": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 177.16088336777872,
+      "fossilFuelRatio": 0.2271478955517019,
+      "renewableRatio": 0.7718797991898486
+    },
+    "BR-NE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 174.50180738953955,
+      "fossilFuelRatio": 0.23027775212451598,
+      "renewableRatio": 0.7682900160337606
+    },
+    "BR-S": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 106.36304764009189,
+      "fossilFuelRatio": 0.12365123269151371,
+      "renewableRatio": 0.8664999599394116
+    },
+    "BY": {
+      "_source": "IEA yearly data for 2016",
+      "_url": "https://www.iea.org/statistics/?country=BELARUS&year=2016&category=Electricity&indicator=ElecGenByFuel",
+      "carbonIntensity": 488,
+      "fossilFuelRatio": 0.99,
+      "renewableRatio": 0.01
+    },
+    "CA-AB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 563.2814555481099,
+      "fossilFuelRatio": 0.9038695852487365,
+      "renewableRatio": 0.09613041475126333
+    },
+    "CA-BC": {
+      "_comment": "Average carbon intensity using 2016 mean production per fuel source (88% hydro, 9% biomass, 1% wind, 1% gas) and IPCC 2014 default lifecycle emission factor",
+      "_source": "List of Generating Stations in BC (Wikipedia) / IPCC 2014 Emissions Factors By Source",
+      "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
+      "carbonIntensity": 47,
+      "fossilFuelRatio": 0.03,
+      "renewableRatio": 0.97
+    },
+    "CA-NB": {
+      "_source": "Canada NEB yearly data for 2016",
+      "_url": "https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html",
+      "carbonIntensity": 300,
+      "fossilFuelRatio": 0.4,
+      "renewableRatio": 0.27
+    },
+    "CA-NS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 531.4750940946568,
+      "fossilFuelRatio": 0.7036774322347756,
+      "renewableRatio": 0.2782092759882649
+    },
+    "CA-ON": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 45.21034939608702,
+      "fossilFuelRatio": 0.06218982738518038,
+      "renewableRatio": 0.32982581430396574
+    },
+    "CA-PE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 177.81851400247436,
+      "fossilFuelRatio": 0.23127161412634234,
+      "renewableRatio": 0.5743149656622953
+    },
+    "CA-QC": {
+      "_comment": "see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7. not using NEB data here since the NEB resolution is 1% which makes a difference at these scales",
+      "_source": "StatCan CANSIM Table 127-0002 for 2011-2015",
+      "carbonIntensity": 30,
+      "fossilFuelRatio": 0.02,
+      "renewableRatio": 0.98
+    },
+    "CA-YT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 72.62686666327355,
+      "fossilFuelRatio": 0.07193323470898455,
+      "renewableRatio": 0.9280667652910155
+    },
+    "CL-SIC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 394.01636569017154,
+      "fossilFuelRatio": 0.5310868969852867,
+      "renewableRatio": 0.4689130859794539
+    },
+    "CL-SING": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 620.3386653823063,
+      "fossilFuelRatio": 0.8799360987239259,
+      "renewableRatio": 0.12006390127607419
+    },
+    "CR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 60.81389637479634,
+      "fossilFuelRatio": 0.054208487612862025,
+      "renewableRatio": 0.9457915123871378
+    },
+    "CY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 596.5133365399062,
+      "fossilFuelRatio": 0.9142686027822075,
+      "renewableRatio": 0.08573139721779267
+    },
+    "CZ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 451.2531526048611,
+      "fossilFuelRatio": 0.5575618054581803,
+      "renewableRatio": 0.11951235444570535
+    },
+    "DE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 380.3042859345496,
+      "fossilFuelRatio": 0.4501312578624131,
+      "renewableRatio": 0.3994712020316192
+    },
+    "DK-BHM": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 58.045301856463226,
+      "fossilFuelRatio": 0.041677335334373476,
+      "renewableRatio": 0.7588953743379281
+    },
+    "DK-DK1": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 217.5316826884701,
+      "fossilFuelRatio": 0.2593367081649686,
+      "renewableRatio": 0.6913355409664925
+    },
+    "DK-DK2": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 257.4311138921053,
+      "fossilFuelRatio": 0.2875142250461577,
+      "renewableRatio": 0.614784631379979
+    },
+    "DO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 508.94117517194655,
+      "fossilFuelRatio": 0.8553246273605778,
+      "renewableRatio": 0.1446753726394221
+    },
+    "EE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 1043.6920157267039,
+      "fossilFuelRatio": 0.7509478911132554,
+      "renewableRatio": 0.17830940551200644
+    },
+    "ES": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 234.32194336764283,
+      "fossilFuelRatio": 0.3479820504744457,
+      "renewableRatio": 0.4056082284207545
+    },
+    "ES-CN-FVLZ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 598.8928475716067,
+      "fossilFuelRatio": 0.9348085145688165,
+      "renewableRatio": 0.06519148543118343
+    },
+    "ES-CN-GC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 498.84794303262044,
+      "fossilFuelRatio": 0.8755444586475999,
+      "renewableRatio": 0.12445554135240018
+    },
+    "ES-CN-HI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 277.61730021707984,
+      "fossilFuelRatio": 0.41245433299125317,
+      "renewableRatio": 0.5875456670087469
+    },
+    "ES-CN-IG": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 650.0,
+      "fossilFuelRatio": 1.0,
+      "renewableRatio": 0.0
+    },
+    "ES-CN-LP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 578.5968004948504,
+      "fossilFuelRatio": 0.8874203248606065,
+      "renewableRatio": 0.11257967513939328
+    },
+    "ES-CN-TE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 514.2054323237697,
+      "fossilFuelRatio": 0.908386439175162,
+      "renewableRatio": 0.09161356082483797
+    },
+    "ES-IB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 596.4540580062777,
+      "fossilFuelRatio": 0.8474958496315581,
+      "renewableRatio": 0.1056416203936768
+    },
+    "ES-IB-FO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 492.1626307954872,
+      "fossilFuelRatio": 0.7566837538976846,
+      "renewableRatio": 0.15275330189980552
+    },
+    "ES-IB-IZ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 573.9729471441588,
+      "fossilFuelRatio": 0.8811029736509941,
+      "renewableRatio": 0.08855427855292357
+    },
+    "ES-IB-MA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 567.5070588763322,
+      "fossilFuelRatio": 0.7589942714859143,
+      "renewableRatio": 0.1833106654203436
+    },
+    "ES-IB-ME": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 581.8030758892916,
+      "fossilFuelRatio": 0.9724804624933556,
+      "renewableRatio": 0.027519537506644456
+    },
+    "FI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 211.54840693737913,
+      "fossilFuelRatio": 0.27129198170465396,
+      "renewableRatio": 0.3830056811314102
+    },
+    "FO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 347.03351967668914,
+      "fossilFuelRatio": 0.5197331196013838,
+      "renewableRatio": 0.4802668803986162
+    },
+    "FR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 55.99820113119911,
+      "fossilFuelRatio": 0.07059446081351785,
+      "renewableRatio": 0.20600689998013855
+    },
+    "GB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 269.7082764745711,
+      "fossilFuelRatio": 0.46625956896907966,
+      "renewableRatio": 0.2787833428020717
+    },
+    "GB-NIR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 394.7277103807488,
+      "fossilFuelRatio": 0.6765137323785518,
+      "renewableRatio": 0.2939729263229492
+    },
+    "GB-ORK": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 72.7861448532713,
+      "fossilFuelRatio": 0.10756969205616461,
+      "renewableRatio": 0.8479628863165546
+    },
+    "GE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 126.626639564712,
+      "fossilFuelRatio": 0.21516307365673942,
+      "renewableRatio": 0.7794204400037019
+    },
+    "GR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 467.47781096700345,
+      "fossilFuelRatio": 0.6821949809896755,
+      "renewableRatio": 0.29838199743886273
+    },
+    "GT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 307.9327733183142,
+      "fossilFuelRatio": 0.3029593355631178,
+      "renewableRatio": 0.6970406644368823
+    },
+    "HU": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 285.2180379725435,
+      "fossilFuelRatio": 0.3965714446434856,
+      "renewableRatio": 0.14372741447476173
+    },
+    "IE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 395.81760304466565,
+      "fossilFuelRatio": 0.6445222833334456,
+      "renewableRatio": 0.34787314103274364
+    },
+    "IN": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 686.6076040835995,
+      "fossilFuelRatio": 0.8944913341676258,
+      "renewableRatio": 0.07753650078281135
+    },
+    "IN-AP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 569.0398379421335,
+      "fossilFuelRatio": 0.7467555324617531,
+      "renewableRatio": 0.2532444675382469
+    },
+    "IN-CT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 812.3623876142727,
+      "fossilFuelRatio": 0.9904050095656691,
+      "renewableRatio": 0.009594990434330736
+    },
+    "IN-DL": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 525.2697786941588,
+      "fossilFuelRatio": 0.9470117209193013,
+      "renewableRatio": 0.052988279080698614
+    },
+    "IN-GJ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 612.1706534439026,
+      "fossilFuelRatio": 0.814555251671704,
+      "renewableRatio": 0.17941251270089506
+    },
+    "IN-KA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 486.4734250013323,
+      "fossilFuelRatio": 0.6325193600783726,
+      "renewableRatio": 0.36748063992162733
+    },
+    "IN-PB": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 689.1312250543531,
+      "fossilFuelRatio": 0.8338651287566249,
+      "renewableRatio": 0.16613487124337512
+    },
+    "IN-UP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 666.3987348864503,
+      "fossilFuelRatio": 0.9501371896252349,
+      "renewableRatio": 0.049862810374765074
+    },
+    "IN-UT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 340.19599615538266,
+      "fossilFuelRatio": 0.469487052005119,
+      "renewableRatio": 0.530512947994881
+    },
+    "IQ": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 531.9080595941796,
+      "fossilFuelRatio": 0.9814972648507905,
+      "renewableRatio": 0.01850273514920954
+    },
+    "IT-CNO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 300.90034666135455,
+      "fossilFuelRatio": 0.47269027651868994,
+      "renewableRatio": 0.5090518259716961
+    },
+    "IT-CSO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 411.5442289658405,
+      "fossilFuelRatio": 0.609981100848625,
+      "renewableRatio": 0.3881292872013588
+    },
+    "IT-NO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 380.53946569620507,
+      "fossilFuelRatio": 0.5727199182760702,
+      "renewableRatio": 0.34598764078648087
+    },
+    "IT-SAR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 587.9856129232622,
+      "fossilFuelRatio": 0.7608619522036791,
+      "renewableRatio": 0.23909668747437768
+    },
+    "IT-SIC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 340.53730402036354,
+      "fossilFuelRatio": 0.6209229198545693,
+      "renewableRatio": 0.37886443268540654
+    },
+    "IT-SO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 293.17560362472017,
+      "fossilFuelRatio": 0.4918660366672224,
+      "renewableRatio": 0.507360480294978
+    },
+    "JP-KY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 399.64675654757554,
+      "fossilFuelRatio": 0.5595814903184134,
+      "renewableRatio": 0.08044518813657552
+    },
+    "LT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 355.55541485513334,
+      "fossilFuelRatio": 0.5345338265104215,
+      "renewableRatio": 0.37890925618130483
+    },
+    "LV": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 539.1635319185683,
+      "fossilFuelRatio": 0.612534998878833,
+      "renewableRatio": 0.331750644679727
+    },
+    "MD": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 577.2256050051128,
+      "fossilFuelRatio": 0.8563023456504815,
+      "renewableRatio": 0.06150336997096011
+    },
+    "ME": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 487.3537481750162,
+      "fossilFuelRatio": 0.5823038971922041,
+      "renewableRatio": 0.411845633487917
+    },
+    "MK": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 512.190282185515,
+      "fossilFuelRatio": 0.6247406307644796,
+      "renewableRatio": 0.2849832243300992
+    },
+    "MX-BC": {
+      "source": "Tomorrow & Dra. Gabriela Muñoz Meléndez",
+      "comment": "Only for exports from Baja California to California, assumes 92.3% gas, 7.7% wind, see issue 1497",
+      "carbonIntensity": 453.0,
+      "fossilFuelRatio": 0.923,
+      "renewableRatio": 0.077
+    },
+    "MY-WM": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 658.8157075461157,
+      "fossilFuelRatio": 0.9628283643971478,
+      "renewableRatio": 0.037171635602851985
+    },
+    "NA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 465.68398999409914,
+      "fossilFuelRatio": 0.5587758228999277,
+      "renewableRatio": 0.4112678648978527
+    },
+    "NI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 269.63385667962143,
+      "fossilFuelRatio": 0.35349837676303403,
+      "renewableRatio": 0.646501623236966
+    },
+    "NKR": {
+      "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
+      "carbonIntensity": 24,
+      "fossilFuelRatio": 0.0,
+      "renewableRatio": 1.00
+    },
+    "NL": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 464.30818315890474,
+      "fossilFuelRatio": 0.7898541720372456,
+      "renewableRatio": 0.18535640418906163
+    },
+    "NO-NO1": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 38.75900081239583,
+      "fossilFuelRatio": 0.028252062928160734,
+      "renewableRatio": 0.9415760219786548
+    },
+    "NO-NO2": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 44.96227918984699,
+      "fossilFuelRatio": 0.031829960549943165,
+      "renewableRatio": 0.9640587690679285
+    },
+    "NO-NO3": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 46.9061030268397,
+      "fossilFuelRatio": 0.04557838939507633,
+      "renewableRatio": 0.9192724501541549
+    },
+    "NO-NO4": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 59.46592986018674,
+      "fossilFuelRatio": 0.07558234273582179,
+      "renewableRatio": 0.9140714277835847
+    },
+    "NO-NO5": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 41.22834152395145,
+      "fossilFuelRatio": 0.035534400990212905,
+      "renewableRatio": 0.9639096903675853
+    },
+    "NZ-NZN": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 167.49348950209566,
+      "fossilFuelRatio": 0.24770340329541743,
+      "renewableRatio": 0.7522965967045827
+    },
+    "NZ-NZS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 26.607660584923504,
+      "fossilFuelRatio": 0.004700130508725035,
+      "renewableRatio": 0.995299869491275
+    },
+    "PA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 169.6695055994893,
+      "fossilFuelRatio": 0.2164853807580489,
+      "renewableRatio": 0.7835146192419512
+    },
+    "PE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 172.9319140281393,
+      "fossilFuelRatio": 0.3170679530498887,
+      "renewableRatio": 0.6829320469501114
+    },
+    "PL": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 681.0285953565947,
+      "fossilFuelRatio": 0.8486483065445515,
+      "renewableRatio": 0.1319078032487511
+    },
+    "PT": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 329.91534399123776,
+      "fossilFuelRatio": 0.47002657083101324,
+      "renewableRatio": 0.5134254580246812
+    },
+    "RO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 299.3661722489199,
+      "fossilFuelRatio": 0.41619768540663427,
+      "renewableRatio": 0.3946721034717733
+    },
+    "RS": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 541.9988595391912,
+      "fossilFuelRatio": 0.6465749507589891,
+      "renewableRatio": 0.3185032395442018
+    },
+    "RU": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 361.8644472214582,
+      "fossilFuelRatio": 0.6267036945239409,
+      "renewableRatio": 0.17029418572164814
+    },
+    "RU-1": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 359.16063516393007,
+      "fossilFuelRatio": 0.6747390420546141,
+      "renewableRatio": 0.07030179928290431
+    },
+    "RU-2": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 355.894055166206,
+      "fossilFuelRatio": 0.43578137755325036,
+      "renewableRatio": 0.5639286239080853
+    },
+    "RU-KGD": {
+      "_comment": "see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants. About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.",
+      "_source": "Energy security in Kaliningrad and geopolitics (2/2014)",
+      "carbonIntensity": 480,
+      "fossilFuelRatio": 0.98,
+      "renewableRatio": 0.02
+    },
+    "SE": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 51.68076265735904,
+      "fossilFuelRatio": 0.08586140400358186,
+      "renewableRatio": 0.5112225272034376
+    },
+    "SG": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 494.1040672198255,
+      "fossilFuelRatio": 0.9985344407757164,
+      "renewableRatio": 0.001465559224283607
+    },
+    "SI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 245.31399103723933,
+      "fossilFuelRatio": 0.287545638005491,
+      "renewableRatio": 0.40815017354692956
+    },
+    "SK": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 300.2005528963091,
+      "fossilFuelRatio": 0.3835513251532343,
+      "renewableRatio": 0.15762935830554856
+    },
+    "SV": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 214.86372596236575,
+      "fossilFuelRatio": 0.24168005931506817,
+      "renewableRatio": 0.7583199406849317
+    },
+    "TR": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 478.2741948183784,
+      "fossilFuelRatio": 0.6947662696486513,
+      "renewableRatio": 0.30140784839452456
+    },
+    "TW": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 560.9428172291457,
+      "fossilFuelRatio": 0.837155047842259,
+      "renewableRatio": 0.04736263670334542
+    },
+    "UA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 303.0392307748414,
+      "fossilFuelRatio": 0.3814163310732858,
+      "renewableRatio": 0.0876421326839146
+    },
+    "US": {
+      "_comment": "Only for imports to California! Renewable ratio assumed as average 25% hydro with some wind/solar; low-carbon assumed as with average 20% nuclear; from information in Github issue we assume it is either mostly from source with hydro or from source with nuclear but not bot",
+      "_source": "https://github.com/tmrowco/electricitymap/issues/1497",
+      "carbonIntensity": 325,
+      "fossilFuelRatio": 0.7,
+      "renewableRatio": 0.3
+    },
+    "US-BPA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 95.3656636612737,
+      "fossilFuelRatio": 0.10854054641844801,
+      "renewableRatio": 0.789467343743674
+    },
+    "US-CA": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 250.73337617853463,
+      "fossilFuelRatio": 0.4888871173733636,
+      "renewableRatio": 0.4283732563775541
+    },
+    "US-IPC": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 255.14603834761132,
+      "fossilFuelRatio": 0.33529049955385903,
+      "renewableRatio": 0.6641852839952217
+    },
+    "US-MISO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 535.6922410674405,
+      "fossilFuelRatio": 0.74455872630903,
+      "renewableRatio": 0.08468579493519039
+    },
+    "US-NEISO": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 240.00486210378685,
+      "fossilFuelRatio": 0.4287833719978936,
+      "renewableRatio": 0.27108235631973027
+    },
+    "US-NY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 212.54789978382524,
+      "fossilFuelRatio": 0.39086705879858774,
+      "renewableRatio": 0.29010121100799435
+    },
+    "US-PJM": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 396.93403342452757,
+      "fossilFuelRatio": 0.6022174497011229,
+      "renewableRatio": 0.050661533046279475
+    },
+    "US-SPP": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 452.6045858184705,
+      "fossilFuelRatio": 0.6388404549466622,
+      "renewableRatio": 0.3055032413098589
+    },
+    "US-SVERI": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 462.006385109754,
+      "fossilFuelRatio": 0.6849134296193662,
+      "renewableRatio": 0.05817284928886304
+    },
+    "UY": {
+      "_source": "Tomorrow",
+      "carbonIntensity": 62.403881755952106,
+      "fossilFuelRatio": 0.04560866602212158,
+      "renewableRatio": 0.9531887978782986
+    },
+    "ZA": {
+      "_source": "IEA yearly data for 2015",
+      "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=SOUTHAFRIC&product=electricityandheat&year=2015",
+      "carbonIntensity": 750,
+      "fossilFuelRatio": 0.92,
+      "renewableRatio": 0.03
+    },
+    "ZM": {
+      "_source": "IEA yearly data for 2015",
+      "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=ZAMBIA&product=electricityandheat&year=2015",
+      "carbonIntensity": 50,
+      "fossilFuelRatio": 0.03,
+      "renewableRatio": 0.97
     }
   }
 }
